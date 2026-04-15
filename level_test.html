@@ -90,7 +90,7 @@
   .btn-next{background:var(--accent);color:#0A0A0A;border:none;padding:13px 32px;border-radius:6px;font-family:'Noto Sans KR',sans-serif;font-size:.86rem;font-weight:700;cursor:pointer;transition:transform .15s,box-shadow .15s,opacity .15s;opacity:.35;pointer-events:none;}
   .btn-next.ready{opacity:1;pointer-events:auto;}
   .btn-next.ready:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(45,212,191,.3);}
-  .btn-prev{background:transparent;color:var(--dim);border:1px solid var(--line);padding:13px 24px;border-radius:6px;font-family:'Noto Sans KR',sans-serif;font-size:.86rem;cursor:pointer;transition:color .2s,border-color .2s;}
+  .btn-prev{background:transparent;color:var(--dim);border:1px solid var(--line);padding:13px 32px;border-radius:6px;font-family:'Noto Sans KR',sans-serif;font-size:.86rem;cursor:pointer;transition:color .2s,border-color .2s;}
   .btn-prev:hover{color:#fff;border-color:rgba(255,255,255,.2);}
   .opt-skip{border-style:dashed;opacity:.6;}
   .opt-skip:hover{opacity:1;border-color:rgba(255,255,255,.25);color:var(--dim);}
@@ -167,6 +167,7 @@
   .float-circle:hover{transform:scale(1.1);}
   .float-kakao{background:#FEE500;color:#181600;}
   .float-insta{background:linear-gradient(45deg,#833AB4,#E1306C,#FCAF45);color:#fff;}
+  @media(max-width:680px){.float-btns{display:none;}}
 </style>
 </head>
 <body>
@@ -189,7 +190,7 @@
 <div class="hero">
   <div class="hero-badge">✦ Level Diagnosis</div>
   <h1 class="hero-title">LEVEL TEST</h1>
-  <p class="hero-sub">20문항 정밀 진단으로 <em>나에게 맞는 정확한 레벨</em>을 찾습니다.<br>소요시간 약 10분 · 어휘·독해·문법·추론 종합 분석</p>
+  <p class="hero-sub">20문항 정밀 진단으로 <br><em>나에게 맞는 정확한 레벨</em>을 찾습니다.<br>소요시간 약 10분 · 어휘·독해·문법·추론 종합 분석</p>
 </div>
 
 <div class="progress-wrap">
@@ -665,7 +666,6 @@ function next(n) {
     const pct = Math.round((n/TOTAL)*100);
     document.getElementById('progress-fill').style.width = pct+'%';
     document.getElementById('progress-text').textContent = n+' / '+TOTAL;
-    window.scrollTo({top:0,behavior:'smooth'});
   }
 }
 
@@ -676,7 +676,6 @@ function prev(n) {
   const pct = Math.round((n/TOTAL)*100);
   document.getElementById('progress-fill').style.width = pct+'%';
   document.getElementById('progress-text').textContent = n+' / '+TOTAL;
-  window.scrollTo({top:0,behavior:'smooth'});
 }
 
 /* ── 점수 계산 ── */

@@ -126,6 +126,10 @@
   .float-insta{background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fd5949 45%,#d6249f 60%,#285AEB 90%);}
   .float-label{position:absolute;right:60px;background:rgba(0,0,0,.75);color:#fff;font-size:.68rem;font-weight:600;padding:4px 10px;border-radius:4px;white-space:nowrap;opacity:0;transition:opacity .2s;pointer-events:none;}
   .float-btn:hover .float-label{opacity:1;}
+  @media(max-width:680px){
+    .level-badge{width:100%;text-align:center;padding:12px 16px;box-sizing:border-box;}
+    .level-header{gap:16px;}
+  }
 </style>
 </head>
 <body>
@@ -410,7 +414,7 @@
   <!-- FREE SAMPLE FORM -->
   <div class="free-sample-section">
     <div class="free-title">FREE SAMPLE</div>
-    <p class="free-desc">이메일로 전체 샘플 PDF를 무료로 받아보세요.<br>원하는 레벨의 한 달치 지문을 미리 확인할 수 있습니다.</p>
+    <p class="free-desc">이메일로 전체 샘플 PDF를 <br>무료로 받아보세요.<br>원하는 레벨의 한 달치 지문을 <br>미리 확인할 수 있습니다.</p>
     <div class="free-form">
       <input type="email" class="free-input" placeholder="이메일 주소 입력">
       <button class="free-btn" onclick="requestSample()">샘플 받기</button>
@@ -426,7 +430,7 @@
   <div class="cta-wrap">
     <div class="cta-title">마음에 드셨나요?</div>
     <div class="cta-btns">
-      <a href="subscription_detail_complete.html" class="btn-primary">구독 상세 보기 →</a>
+      <a href="subscription_detail_complete.html" class="btn-primary">구독 상세 보기</a>
       <a href="level_test.html" class="btn-outline">레벨 테스트 하기</a>
     </div>
   </div>
