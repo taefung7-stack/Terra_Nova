@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>회원가입 — TERRA NOVA ENGLISH</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <style>
   :root {
     --dark:#0A0A0A; --mid:#111111; --card:#1C1C1C; --card2:#222222;
@@ -120,6 +121,7 @@
   </a>
   <div class="nav-right">
     <a href="index.html" class="nav-link">홈으로</a>
+    <a href="market.html" class="nav-link">마켓</a>
     <a href="login.html" class="nav-login">로그인</a>
   </div>
 </nav>
@@ -184,6 +186,26 @@
         <label>학부모 연락처</label>
         <input type="tel" placeholder="010-0000-0000" required>
         <div class="input-note">학습 관련 안내 및 배송 정보를 받을 번호입니다.</div>
+      </div>
+
+      <!-- 배송 주소 -->
+      <div class="form-group">
+        <label>우편번호</label>
+        <div style="display:flex;gap:8px;">
+          <input type="text" id="addr-zip" placeholder="00000" readonly required style="flex:1;">
+          <button type="button" onclick="searchAddress()" style="background:var(--card2);color:var(--txt);border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:0 16px;font-family:'Noto Sans KR',sans-serif;font-size:.82rem;font-weight:600;cursor:pointer;white-space:nowrap;">주소 검색</button>
+        </div>
+        <div class="input-note">실물 책 배송을 위한 주소 정보입니다.</div>
+      </div>
+
+      <div class="form-group">
+        <label>기본 주소</label>
+        <input type="text" id="addr-main" placeholder="도로명/지번 주소" readonly required>
+      </div>
+
+      <div class="form-group">
+        <label>상세 주소</label>
+        <input type="text" id="addr-detail" placeholder="동·호수 등 상세주소" required>
       </div>
 
       <div class="form-group">
@@ -258,6 +280,26 @@
 
 <script>
   function socialSignup(p) { alert(p+' 가입은 백엔드 연동 후 사용 가능합니다.'); }
+
+  function searchAddress() {
+    if (typeof daum === 'undefined' || !daum.Postcode) {
+      const zip = prompt('우편번호를 입력하세요 (예: 06234)');
+      if (!zip) return;
+      const addr = prompt('기본 주소를 입력하세요');
+      if (!addr) return;
+      document.getElementById('addr-zip').value = zip;
+      document.getElementById('addr-main').value = addr;
+      document.getElementById('addr-detail').focus();
+      return;
+    }
+    new daum.Postcode({
+      oncomplete: function(data) {
+        document.getElementById('addr-zip').value = data.zonecode;
+        document.getElementById('addr-main').value = data.roadAddress || data.jibunAddress;
+        document.getElementById('addr-detail').focus();
+      }
+    }).open();
+  }
 
   function checkEmail(inp) {
     const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(inp.value);
