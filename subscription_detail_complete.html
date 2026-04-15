@@ -2312,6 +2312,23 @@
       .plan-cards-grid { grid-template-columns: 1fr; max-width: 460px; }
       .form-plan-cards { grid-template-columns: 1fr; }
     }
+
+    /* ── 햄버거 메뉴 ── */
+    .nav-hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:8px 4px;}
+    .nav-hamburger span{display:block;width:22px;height:2px;background:#333;border-radius:2px;transition:all .28s;}
+    .nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+    .nav-hamburger.open span:nth-child(2){opacity:0;}
+    .nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+    .nav-links-sub{display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+    @media (max-width: 680px) {
+      .nav-links-sub{display:none;}
+      .nav-hamburger{display:flex;}
+      .nav-links-sub.open{display:flex;flex-direction:column;align-items:flex-start;position:fixed;top:72px;left:0;right:0;background:rgba(255,255,255,.98);backdrop-filter:blur(12px);padding:16px 5vw 24px;gap:0;border-bottom:1px solid rgba(0,0,0,.08);z-index:99;box-shadow:0 4px 16px rgba(0,0,0,.06);}
+      .nav-links-sub.open a{display:block;padding:13px 0;border-bottom:1px solid rgba(0,0,0,.06);font-size:.9rem;color:rgba(0,0,0,.65)!important;text-decoration:none;width:100%;}
+      .nav-links-sub.open a:last-child{border-bottom:none;}
+      .nav-links-sub.open a[style*="background"]{background:none!important;color:#4F46E5!important;font-weight:700;}
+      .nav-links-sub.open .btn-back{display:none;}
+    }
   </style>
 </head>
 <body>
@@ -2321,7 +2338,7 @@
       <div class="nav-logo-main">TERRA NOVA</div>
       <div class="nav-logo-sub">English</div>
     </a>
-    <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+    <div class="nav-links-sub" id="nav-links-sub">
       <a href="level_test.html" style="color:rgba(0,0,0,.55);text-decoration:none;font-size:.78rem;font-weight:500;">레벨테스트</a>
       <a href="sample.html" style="color:rgba(0,0,0,.55);text-decoration:none;font-size:.78rem;font-weight:500;">무료샘플</a>
       <a href="faq.html" style="color:rgba(0,0,0,.55);text-decoration:none;font-size:.78rem;font-weight:500;">FAQ</a>
@@ -2331,6 +2348,7 @@
         <span>메인으로</span>
       </a>
     </div>
+    <button class="nav-hamburger" id="nav-hamburger-sub" onclick="toggleNavSub()" aria-label="메뉴"><span></span><span></span><span></span></button>
   </nav>
 
   <section class="hero">
@@ -4260,5 +4278,15 @@
   </a>
 </div>
 
+<script>
+function toggleNavSub(){
+  document.getElementById('nav-hamburger-sub').classList.toggle('open');
+  document.getElementById('nav-links-sub').classList.toggle('open');
+}
+document.querySelectorAll('#nav-links-sub a').forEach(a=>a.addEventListener('click',()=>{
+  document.getElementById('nav-hamburger-sub').classList.remove('open');
+  document.getElementById('nav-links-sub').classList.remove('open');
+}));
+</script>
 </body>
 </html>

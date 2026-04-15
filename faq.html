@@ -25,6 +25,19 @@
   .nav-links a:hover{color:#fff;}
   .nav-cta{color:var(--accent)!important;border:1px solid rgba(45,212,191,.3)!important;padding:7px 18px!important;border-radius:4px!important;font-weight:600!important;}
   @media(max-width:680px){.nav-links{display:none;}}
+  .nav-hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:8px 4px;}
+  .nav-hamburger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:all .28s;}
+  .nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .nav-hamburger.open span:nth-child(2){opacity:0;}
+  .nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+  @media(max-width:680px){
+    .nav-hamburger{display:flex;}
+    .nav-links.open{display:flex!important;flex-direction:column;position:fixed;top:68px;left:0;right:0;background:rgba(6,6,15,.97);backdrop-filter:blur(16px);padding:16px 5vw 24px;gap:0;border-bottom:1px solid rgba(255,255,255,.08);z-index:99;}
+    .nav-links.open li{width:100%;}
+    .nav-links.open a{display:block;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:.88rem;color:rgba(240,240,240,.85)!important;border-radius:0!important;}
+    .nav-links.open li:last-child a{border-bottom:none;}
+    .nav-links.open .nav-cta{border:none!important;padding:14px 0!important;color:var(--accent)!important;}
+  }
 
   /* HERO */
   .hero{padding:140px 5vw 80px;text-align:center;max-width:600px;margin:0 auto;}
@@ -112,6 +125,7 @@
     <li><a href="sample.html">무료샘플</a></li>
     <li><a href="order.html" class="nav-cta">구독 신청</a></li>
   </ul>
+  <button class="nav-hamburger" id="nav-hamburger" onclick="toggleNav()" aria-label="메뉴"><span></span><span></span><span></span></button>
 </nav>
 
 <!-- HERO -->
@@ -410,6 +424,10 @@
       document.querySelectorAll('.faq-group').forEach(g => g.classList.add('active'));
     }
   }
+</script>
+<script>
+function toggleNav(){document.getElementById('nav-hamburger').classList.toggle('open');document.querySelector('.nav-links').classList.toggle('open');}
+document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>{document.getElementById('nav-hamburger').classList.remove('open');document.querySelector('.nav-links').classList.remove('open');}));
 </script>
 </body>
 </html>
