@@ -34,12 +34,14 @@
   .panel{background:linear-gradient(145deg,var(--card) 0%,var(--bg2) 100%);border:1px solid var(--line);border-radius:14px;padding:26px;margin-bottom:20px;}
   .panel h2{font-size:1rem;font-weight:800;margin-bottom:18px;display:flex;align-items:center;gap:8px;}
   .panel h2 .num{background:var(--accent);color:#02021B;width:24px;height:24px;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:900;}
+  .panel.locked{opacity:.55;pointer-events:none;}
 
   .field{margin-bottom:14px;}
   .field label{display:block;font-size:.75rem;font-weight:600;color:rgba(255,255,255,.8);margin-bottom:7px;letter-spacing:.5px;}
   .field input, .field textarea, .field select{width:100%;background:rgba(2,2,27,.6);border:1px solid rgba(0,223,129,.15);border-radius:8px;padding:12px 14px;color:var(--txt);font-family:inherit;font-size:.88rem;outline:none;transition:border-color .18s;}
   .field input:focus, .field textarea:focus, .field select:focus{border-color:var(--accent);}
   .field input::placeholder{color:rgba(241,247,246,.3);}
+  .field input:read-only{background:rgba(2,2,27,.4);color:var(--dim);}
   .row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
   @media(max-width:480px){.row{grid-template-columns:1fr;}}
   .addr-row{display:flex;gap:8px;}
@@ -47,14 +49,32 @@
   .btn-search{background:var(--card2);color:var(--txt);border:1px solid rgba(0,223,129,.2);border-radius:8px;padding:0 16px;font-family:inherit;font-size:.8rem;font-weight:600;cursor:pointer;white-space:nowrap;}
   .btn-search:hover{background:var(--bg2);border-color:var(--accent);color:var(--accent);}
 
+  /* prefilled state */
+  .prefill-header{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px;padding:10px 14px;background:rgba(0,223,129,.08);border:1px solid var(--line);border-radius:8px;font-size:.8rem;}
+  .prefill-header .user-tag{color:var(--accent);font-weight:700;}
+  .btn-edit{background:transparent;color:var(--accent);border:1px solid var(--accent);border-radius:6px;padding:5px 12px;font-family:inherit;font-size:.75rem;font-weight:600;cursor:pointer;}
+  .btn-edit:hover{background:rgba(0,223,129,.1);}
+
   /* Payment methods */
   .pay-methods{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;}
   .pay-method{background:rgba(2,2,27,.6);border:1.5px solid rgba(0,223,129,.15);border-radius:10px;padding:14px;text-align:center;cursor:pointer;transition:all .18s;font-size:.82rem;font-weight:600;}
   .pay-method:hover{border-color:var(--accent);}
   .pay-method.active{border-color:var(--accent);background:rgba(0,223,129,.08);color:var(--accent);}
 
+  /* Login gate */
+  .login-gate{background:linear-gradient(145deg,var(--card) 0%,var(--bg2) 100%);border:1.5px solid var(--line);border-radius:14px;padding:44px 32px;text-align:center;margin-bottom:20px;}
+  .login-gate .icon{font-size:2.6rem;margin-bottom:10px;}
+  .login-gate h3{font-size:1.2rem;font-weight:900;color:#fff;margin-bottom:8px;}
+  .login-gate p{font-size:.88rem;color:var(--dim);line-height:1.7;margin-bottom:20px;}
+  .login-gate .btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+  .btn-gate-primary{background:var(--accent);color:#02021B;border:none;border-radius:9px;padding:13px 30px;font-family:inherit;font-size:.9rem;font-weight:900;cursor:pointer;text-decoration:none;display:inline-block;}
+  .btn-gate-primary:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(0,223,129,.3);}
+  .btn-gate-secondary{background:transparent;color:var(--accent);border:1.5px solid var(--accent);border-radius:9px;padding:13px 30px;font-family:inherit;font-size:.9rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;}
+  .btn-gate-secondary:hover{background:rgba(0,223,129,.08);}
+  .btn-guest{background:transparent;color:var(--dim);border:none;font-family:inherit;font-size:.78rem;cursor:pointer;margin-top:18px;text-decoration:underline;}
+
   /* Order summary */
-  .summary{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px;position:sticky;top:90px;}
+  .summary{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px;position:sticky;top:20px;}
   .summary h2{font-size:1rem;font-weight:800;margin-bottom:20px;display:flex;align-items:center;gap:8px;}
   .items{border-bottom:1px dashed var(--line);padding-bottom:16px;margin-bottom:16px;max-height:300px;overflow-y:auto;}
   .item{display:flex;justify-content:space-between;align-items:center;padding:10px 0;gap:10px;font-size:.85rem;border-bottom:1px solid rgba(0,223,129,.05);}
@@ -62,6 +82,9 @@
   .item-info{flex:1;min-width:0;}
   .item-name{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
   .item-meta{font-size:.72rem;color:var(--dim);margin-top:2px;}
+  .item-badge{display:inline-block;font-size:.62rem;padding:1px 6px;border-radius:4px;margin-left:4px;font-weight:700;letter-spacing:.5px;}
+  .item-badge.ship{background:rgba(0,223,129,.15);color:var(--accent);}
+  .item-badge.pdf{background:rgba(79,195,247,.14);color:#4FC3F7;}
   .item-price{font-weight:700;color:var(--accent);white-space:nowrap;font-size:.85rem;}
   .item-rm{background:none;border:none;color:rgba(241,247,246,.4);cursor:pointer;font-size:1rem;padding:2px 6px;}
   .item-rm:hover{color:#FF8A8A;}
@@ -100,38 +123,66 @@
 <div class="wrap">
   <div>
     <h1>마켓 결제</h1>
-    <p class="sub">구매 정보를 입력하고 결제를 완료해주세요.</p>
+    <p class="sub">구매 정보를 확인하고 결제를 완료해주세요.</p>
 
-    <div class="panel">
-      <h2><span class="num">1</span> 주문자 정보</h2>
-      <div class="row">
-        <div class="field"><label>이름</label><input type="text" id="buyer-name" placeholder="홍길동" required></div>
-        <div class="field"><label>연락처</label><input type="tel" id="buyer-phone" placeholder="010-0000-0000" required></div>
+    <!-- LOGIN GATE (shown when not logged in) -->
+    <div class="login-gate" id="login-gate" style="display:none;">
+      <div class="icon">🔒</div>
+      <h3>로그인 후 결제를 진행해주세요</h3>
+      <p>회원이시면 배송·결제 정보가 자동으로 입력되어 빠르게 결제할 수 있습니다.<br>비회원 결제도 가능합니다.</p>
+      <div class="btns">
+        <a class="btn-gate-primary" id="gate-login">로그인</a>
+        <a class="btn-gate-secondary" id="gate-signup">회원가입</a>
       </div>
-      <div class="field"><label>이메일</label><input type="email" id="buyer-email" placeholder="example@email.com" required></div>
+      <button class="btn-guest" onclick="useGuest()">비회원으로 계속 진행 →</button>
     </div>
 
-    <div class="panel">
-      <h2><span class="num">2</span> 배송 정보</h2>
-      <div class="field">
-        <label>우편번호</label>
-        <div class="addr-row">
-          <input type="text" id="addr-zip" placeholder="00000" readonly required>
-          <button type="button" class="btn-search" onclick="searchAddress()">주소 검색</button>
+    <!-- CHECKOUT FORM (shown when logged in OR guest mode) -->
+    <div id="checkout-form" style="display:none;">
+      <!-- Prefill banner -->
+      <div class="prefill-header" id="prefill-header" style="display:none;">
+        <span>✅ <span class="user-tag" id="user-name"></span> 님의 회원 정보로 자동 입력되었습니다.</span>
+        <button class="btn-edit" onclick="enableEdit()">수정하기</button>
+      </div>
+
+      <div class="panel" id="panel-buyer">
+        <h2><span class="num">1</span> 주문자 정보</h2>
+        <div class="row">
+          <div class="field"><label>이름</label><input type="text" id="buyer-name" placeholder="홍길동" required></div>
+          <div class="field"><label>연락처</label><input type="tel" id="buyer-phone" placeholder="010-0000-0000" required></div>
         </div>
+        <div class="field"><label>이메일</label><input type="email" id="buyer-email" placeholder="example@email.com" required></div>
       </div>
-      <div class="field"><label>기본 주소</label><input type="text" id="addr-main" placeholder="도로명/지번 주소" readonly required></div>
-      <div class="field"><label>상세 주소</label><input type="text" id="addr-detail" placeholder="동·호수 등 상세주소" required></div>
-      <div class="field"><label>배송 메모</label><input type="text" id="addr-memo" placeholder="부재 시 경비실에 맡겨주세요 (선택)"></div>
-    </div>
 
-    <div class="panel">
-      <h2><span class="num">3</span> 결제 수단</h2>
-      <div class="pay-methods">
-        <div class="pay-method active" data-pay="card" onclick="selectPay(this)">💳 신용/체크카드</div>
-        <div class="pay-method" data-pay="kakao" onclick="selectPay(this)">💛 카카오페이</div>
-        <div class="pay-method" data-pay="naver" onclick="selectPay(this)">💚 네이버페이</div>
-        <div class="pay-method" data-pay="bank" onclick="selectPay(this)">🏦 무통장입금</div>
+      <!-- SHIPPING PANEL (hidden when cart is PDF-only) -->
+      <div class="panel" id="panel-shipping">
+        <h2><span class="num">2</span> 배송 정보 <span style="font-size:.72rem;color:var(--dim);font-weight:500;margin-left:6px;">실물 상품 배송용</span></h2>
+        <div class="field">
+          <label>우편번호</label>
+          <div class="addr-row">
+            <input type="text" id="addr-zip" placeholder="00000" readonly required>
+            <button type="button" class="btn-search" onclick="searchAddress()">주소 검색</button>
+          </div>
+        </div>
+        <div class="field"><label>기본 주소</label><input type="text" id="addr-main" placeholder="도로명/지번 주소" readonly required></div>
+        <div class="field"><label>상세 주소</label><input type="text" id="addr-detail" placeholder="동·호수 등 상세주소" required></div>
+        <div class="field"><label>배송 메모</label><input type="text" id="addr-memo" placeholder="부재 시 경비실에 맡겨주세요 (선택)"></div>
+      </div>
+
+      <!-- PDF-only notice -->
+      <div class="panel" id="panel-pdf-notice" style="display:none;">
+        <h2><span class="num">2</span> 디지털 상품 발송</h2>
+        <p style="font-size:.88rem;color:var(--dim);line-height:1.7;">선택하신 상품은 모두 <strong style="color:var(--accent);">PDF 디지털 상품</strong>입니다. 결제 완료 즉시 주문자 이메일로 다운로드 링크가 발송되며, 배송지 입력은 필요하지 않습니다.</p>
+      </div>
+
+      <div class="panel">
+        <h2><span class="num" id="pay-num">3</span> 결제 수단</h2>
+        <div class="pay-methods">
+          <div class="pay-method active" data-pay="card" onclick="selectPay(this)">💳 신용/체크카드</div>
+          <div class="pay-method" data-pay="kakao" onclick="selectPay(this)">💛 카카오페이</div>
+          <div class="pay-method" data-pay="naver" onclick="selectPay(this)">💚 네이버페이</div>
+          <div class="pay-method" data-pay="bank" onclick="selectPay(this)">🏦 무통장입금</div>
+        </div>
       </div>
     </div>
   </div>
@@ -141,7 +192,7 @@
       <h2>🛒 주문 내역</h2>
       <div class="items" id="items"></div>
       <div class="sum-row"><span>상품 합계</span><span id="sum-sub">0원</span></div>
-      <div class="sum-row"><span>배송비</span><span id="sum-ship">3,000원</span></div>
+      <div class="sum-row" id="row-ship"><span>배송비</span><span id="sum-ship">0원</span></div>
       <div class="sum-row total"><span>총 결제금액</span><span class="amt" id="sum-total">0원</span></div>
       <button class="btn-pay" id="btn-pay" onclick="doPay()">결제하기</button>
       <p style="font-size:.7rem;color:rgba(241,247,246,.4);text-align:center;margin-top:12px;line-height:1.6;">주문 시 결제 및 배송 정보 제공에 동의합니다.<br>이 결제는 구독 결제와 별도로 처리됩니다.</p>
@@ -154,9 +205,11 @@
 <script>
   const CART_KEY = 'tn_market_cart';
   const BUYNOW_KEY = 'tn_market_buynow';
+  const USER_KEY = 'tn_user';
   const SHIP_FEE = 3000;
   const FREE_SHIP_THRESHOLD = 30000;
 
+  // ---- items ----
   function getItems(){
     const params = new URLSearchParams(location.search);
     if (params.get('mode') === 'buynow') {
@@ -166,15 +219,75 @@
   }
   function saveItems(items){
     const params = new URLSearchParams(location.search);
-    if (params.get('mode') === 'buynow') {
-      sessionStorage.setItem(BUYNOW_KEY, JSON.stringify(items));
-    } else {
-      localStorage.setItem(CART_KEY, JSON.stringify(items));
-    }
+    if (params.get('mode') === 'buynow') sessionStorage.setItem(BUYNOW_KEY, JSON.stringify(items));
+    else localStorage.setItem(CART_KEY, JSON.stringify(items));
   }
+  function hasPhysical(items){ return items.some(i => !i.digital); }
   function fmt(n){ return n.toLocaleString('ko-KR')+'원'; }
 
-  function render(){
+  // ---- user ----
+  function getUser(){ try { return JSON.parse(localStorage.getItem(USER_KEY)||'null'); } catch(e){ return null; } }
+
+  // ---- init flow ----
+  function init(){
+    const user = getUser();
+    const items = getItems();
+
+    // Login gate
+    if (!user && sessionStorage.getItem('tn_guest') !== '1') {
+      document.getElementById('login-gate').style.display = 'block';
+      document.getElementById('checkout-form').style.display = 'none';
+      const redirect = 'market_checkout.html' + (location.search || '');
+      document.getElementById('gate-login').href = 'login.html?redirect=' + encodeURIComponent(redirect);
+      document.getElementById('gate-signup').href = 'signup.html';
+      renderSummary();
+      return;
+    }
+
+    document.getElementById('checkout-form').style.display = 'block';
+
+    // Auto-fill
+    if (user) {
+      document.getElementById('prefill-header').style.display = 'flex';
+      document.getElementById('user-name').textContent = user.name || '회원';
+      document.getElementById('buyer-name').value = user.name || '';
+      document.getElementById('buyer-phone').value = user.phone || '';
+      document.getElementById('buyer-email').value = user.email || '';
+      document.getElementById('addr-zip').value = user.zip || '';
+      document.getElementById('addr-main').value = user.addr || '';
+      document.getElementById('addr-detail').value = user.addrDetail || '';
+      // lock fields by default; "수정하기" unlocks
+      lockFields(true);
+    }
+
+    // Shipping panel toggle based on cart
+    const physical = hasPhysical(items);
+    document.getElementById('panel-shipping').style.display = physical ? 'block' : 'none';
+    document.getElementById('panel-pdf-notice').style.display = physical ? 'none' : 'block';
+    document.getElementById('pay-num').textContent = physical ? '3' : '3';
+    if (!physical) document.getElementById('pay-num').textContent = '3';
+
+    renderSummary();
+  }
+
+  function lockFields(lock){
+    const ids = ['buyer-name','buyer-phone','buyer-email','addr-detail','addr-memo'];
+    ids.forEach(id=>{
+      const el = document.getElementById(id);
+      if (el) { if (lock) el.setAttribute('readonly','readonly'); else el.removeAttribute('readonly'); }
+    });
+  }
+  function enableEdit(){
+    lockFields(false);
+    document.getElementById('prefill-header').innerHTML = '<span style="color:var(--dim);">✏️ 수정 모드 — 변경 사항은 이번 주문에만 적용됩니다.</span>';
+  }
+  function useGuest(){
+    sessionStorage.setItem('tn_guest','1');
+    init();
+  }
+
+  // ---- summary ----
+  function renderSummary(){
     const items = getItems();
     const box = document.getElementById('items');
     if (!items.length) {
@@ -188,7 +301,7 @@
     box.innerHTML = items.map((it,idx)=>`
       <div class="item">
         <div class="item-info">
-          <div class="item-name">${it.name}</div>
+          <div class="item-name">${it.name}${it.digital ? '<span class="item-badge pdf">PDF</span>' : '<span class="item-badge ship">배송</span>'}</div>
           <div class="item-meta">
             <span class="qty-ctrl">
               <button onclick="chgQty(${idx},-1)">−</button>
@@ -203,21 +316,29 @@
       </div>
     `).join('');
     const sub = items.reduce((s,i)=>s+i.price*i.qty,0);
-    const ship = sub >= FREE_SHIP_THRESHOLD ? 0 : SHIP_FEE;
+    const physical = hasPhysical(items);
+    const ship = !physical ? 0 : (sub >= FREE_SHIP_THRESHOLD ? 0 : SHIP_FEE);
     document.getElementById('sum-sub').textContent = fmt(sub);
-    document.getElementById('sum-ship').textContent = ship===0 ? '무료 🎉' : fmt(ship);
+    if (!physical) {
+      document.getElementById('row-ship').style.display = 'none';
+    } else {
+      document.getElementById('row-ship').style.display = 'flex';
+      document.getElementById('sum-ship').textContent = ship===0 ? '무료 🎉' : fmt(ship);
+    }
     document.getElementById('sum-total').textContent = fmt(sub+ship);
     document.getElementById('btn-pay').disabled = false;
   }
   function chgQty(idx, delta){
     const items = getItems();
     items[idx].qty = Math.max(1, items[idx].qty + delta);
-    saveItems(items); render();
+    saveItems(items);
+    init();
   }
   function rmItem(idx){
     const items = getItems();
     items.splice(idx,1);
-    saveItems(items); render();
+    saveItems(items);
+    init();
   }
   function selectPay(el){
     document.querySelectorAll('.pay-method').forEach(m=>m.classList.remove('active'));
@@ -241,22 +362,29 @@
     }}).open();
   }
   function doPay(){
+    const items = getItems();
+    if (!items.length) { alert('장바구니가 비어있습니다.'); return; }
     const name = document.getElementById('buyer-name').value.trim();
     const phone = document.getElementById('buyer-phone').value.trim();
     const email = document.getElementById('buyer-email').value.trim();
-    const zip = document.getElementById('addr-zip').value.trim();
-    const addr = document.getElementById('addr-main').value.trim();
-    const detail = document.getElementById('addr-detail').value.trim();
     if (!name||!phone||!email){ alert('주문자 정보를 모두 입력해주세요.'); return; }
-    if (!zip||!addr||!detail){ alert('배송 주소를 모두 입력해주세요.'); return; }
+    if (hasPhysical(items)) {
+      const zip = document.getElementById('addr-zip').value.trim();
+      const addr = document.getElementById('addr-main').value.trim();
+      const detail = document.getElementById('addr-detail').value.trim();
+      if (!zip||!addr||!detail){ alert('배송 주소를 모두 입력해주세요.'); return; }
+    }
     const total = document.getElementById('sum-total').textContent;
-    alert('마켓 단품 결제가 요청되었습니다.\n\n총 '+total+'\n\n※ 실제 결제 연동은 PG사 연결 후 활성화됩니다.\n(구독과 별도 결제창)');
+    const pdfOnly = !hasPhysical(items);
+    alert('마켓 단품 결제가 요청되었습니다.\n\n총 '+total+(pdfOnly ? '\n\n📧 결제 완료 후 주문자 이메일로 다운로드 링크가 발송됩니다.' : '\n\n📦 실물 상품은 2~3일 내 출고됩니다.')+'\n\n※ 실제 결제 연동은 PG사 연결 후 활성화됩니다.');
     const params = new URLSearchParams(location.search);
     if (params.get('mode') !== 'buynow') localStorage.removeItem(CART_KEY);
     sessionStorage.removeItem(BUYNOW_KEY);
+    sessionStorage.removeItem('tn_guest');
     location.href = 'market.html';
   }
-  render();
+
+  init();
 </script>
 </body>
 </html>
