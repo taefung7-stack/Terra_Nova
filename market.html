@@ -93,6 +93,13 @@
   .btn-buy{flex:1.3;background:var(--accent);color:#02021B;border:none;border-radius:9px;padding:13px;font-family:inherit;font-size:.88rem;font-weight:900;cursor:pointer;transition:transform .15s,box-shadow .15s;}
   .btn-buy:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(0,223,129,.35);}
 
+  /* MOCK FILTER (년도/학년/월) */
+  .mock-filter{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;max-width:900px;margin:0 auto 36px;padding:18px 22px;background:linear-gradient(145deg,var(--card) 0%,var(--bg2) 100%);border:1px solid var(--line);border-radius:12px;}
+  .mock-filter .mf-group{display:flex;flex-direction:column;gap:6px;flex:1;min-width:140px;}
+  .mock-filter label{font-size:.7rem;font-weight:700;color:var(--dim);letter-spacing:.8px;text-transform:uppercase;}
+  .mock-filter select{background:rgba(2,2,27,.6);border:1px solid rgba(0,223,129,.2);border-radius:8px;padding:11px 14px;color:var(--txt);font-family:inherit;font-size:.9rem;font-weight:600;outline:none;cursor:pointer;transition:border-color .18s;}
+  .mock-filter select:focus, .mock-filter select:hover{border-color:var(--accent);}
+
   /* LEVEL SELECTOR (단어장) */
   .lv-row{display:flex;gap:10px;flex-wrap:wrap;margin:4px 0 10px;}
   .lv-chip{background:rgba(0,223,129,.08);color:var(--txt);border:1.5px solid rgba(0,223,129,.2);border-radius:8px;padding:10px 14px;cursor:pointer;transition:all .15s;font-size:.8rem;font-weight:600;display:flex;flex-direction:column;align-items:center;gap:2px;min-width:110px;}
@@ -174,7 +181,7 @@
   <div class="cat-head">
     <div class="cat-label">VOCABULARY SERIES</div>
     <div class="cat-title">TERRA NOVA 단어장<br>기출 예문 중심 3단계 시리즈</div>
-    <div class="cat-sub">실제 수능·모의고사 기출 예문 2~3개씩 수록.<br> 단순 암기가 아닌 문맥 속에서 어휘를 익히는 단어책. <br> BASIC / ADVANCED / MASTER 3단계로 학년·수준에 맞게<br> 선택할 수 있습니다.</div>
+    <div class="cat-sub">실제 수능·모의고사 기출 예문 2~3개씩 수록.<br> 단순 암기가 아닌 문맥 속에서 어휘를 익히는 단어책. <br> BASIC / ADVANCED / MASTER 3단계로<br> 학년·수준에 맞게 선택할 수 있습니다.</div>
   </div>
 
   <div class="pdetail">
@@ -208,7 +215,7 @@
       </div>
 
       <table class="spec-table">
-        <tr><td>형태</td><td>실물책 (풀컬러 제본)</td></tr>
+        <tr><td>형태</td><td>실물 책 (풀컬러 제본)</td></tr>
         <tr><td>배송</td><td>주문 후 2~3일 출고</td></tr>
       </table>
 
@@ -220,6 +227,11 @@
       </div>
     </div>
   </div>
+
+  <div class="notice">
+    <p><strong>⚡ 별도 결제 안내</strong><br>
+    마켓 상품은 월간 구독과 <strong>별도 결제창</strong>에서 주문됩니다. 구독 플랜과 혼동되지 않도록 설계되었으며, PDF 상품은 주소 입력 없이 이메일로 바로 발송됩니다.</p>
+  </div>
 </section>
 
 <!-- ================ 모의고사 ================ -->
@@ -228,6 +240,38 @@
     <div class="cat-label">MOCK EXAM SERIES</div>
     <div class="cat-title">모의고사 분석지 & 워크북<br>PDF 즉시 다운로드</div>
     <div class="cat-sub">최신 수능·평가원 모의고사를 기반으로 Terra Nova 강사진이 직접 제작한 분석지와 변형문제 워크북.<br> 결제 직후 다운로드 링크가 메일로 발송됩니다.</div>
+  </div>
+
+  <!-- 회차 선택 드롭다운 -->
+  <div class="mock-filter">
+    <div class="mf-group">
+      <label>년도</label>
+      <select id="mf-year">
+        <option value="2026">2026년</option>
+        <option value="2025">2025년</option>
+        <option value="2024">2024년</option>
+      </select>
+    </div>
+    <div class="mf-group">
+      <label>학년</label>
+      <select id="mf-grade">
+        <option value="고1">고1</option>
+        <option value="고2">고2</option>
+        <option value="고3" selected>고3</option>
+      </select>
+    </div>
+    <div class="mf-group">
+      <label>월</label>
+      <select id="mf-month">
+        <option value="3">3월</option>
+        <option value="4">4월</option>
+        <option value="6" selected>6월</option>
+        <option value="7">7월</option>
+        <option value="9">9월</option>
+        <option value="10">10월</option>
+        <option value="11">11월 (수능)</option>
+      </select>
+    </div>
   </div>
 
   <!-- 모의고사 분석지 -->
@@ -251,15 +295,15 @@
 
       <table class="spec-table">
         <tr><td>형태</td><td>PDF</td></tr>
-        <tr><td>수록</td><td>모의고사 1회분 (45문항 전체)</td></tr>
+        <tr><td>수록</td><td>모의고사 완벽 분석지</td></tr>
         <tr><td>제공</td><td>결제 즉시 이메일로 다운로드 링크 발송</td></tr>
       </table>
 
       <div class="price-row"><span class="price-num">₩4,900</span><span class="price-unit">/ 회차</span></div>
 
       <div class="btns-row">
-        <button class="btn-add" onclick="addCart('mock-analysis',4900,'모의고사 분석지','mock',true)">장바구니</button>
-        <button class="btn-buy" onclick="buyNow('mock-analysis',4900,'모의고사 분석지',true)">바로 구매</button>
+        <button class="btn-add" onclick="addMock('analysis','add')">장바구니</button>
+        <button class="btn-buy" onclick="addMock('analysis','buy')">바로 구매</button>
       </div>
     </div>
   </div>
@@ -291,10 +335,15 @@
       <div class="price-row"><span class="price-num">₩4,900</span><span class="price-unit">/ 회차</span></div>
 
       <div class="btns-row">
-        <button class="btn-add" onclick="addCart('mock-workbook',4900,'모의고사 워크북+변형문제','mock',true)">장바구니</button>
-        <button class="btn-buy" onclick="buyNow('mock-workbook',4900,'모의고사 워크북+변형문제',true)">바로 구매</button>
+        <button class="btn-add" onclick="addMock('workbook','add')">장바구니</button>
+        <button class="btn-buy" onclick="addMock('workbook','buy')">바로 구매</button>
       </div>
     </div>
+  </div>
+
+  <div class="notice">
+    <p><strong>⚡ 별도 결제 안내</strong><br>
+    마켓 상품은 월간 구독과 <strong>별도 결제창</strong>에서 주문됩니다. 구독 플랜과 혼동되지 않도록 설계되었으며, PDF 상품은 주소 입력 없이 이메일로 바로 발송됩니다.</p>
   </div>
 </section>
 
@@ -318,7 +367,7 @@
 
       <ul class="feature-list">
         <li>가로 <strong>2m × 세로 1m</strong> 초대형 포스터 사이즈</li>
-        <li>12개월 데일리 + <strong>주요 모의고사·수능 일정</strong> 인쇄</li>
+        <li>1년 데일리 + <strong>주요 모의고사·수능 일정</strong> 인쇄</li>
         <li>D-day 카운터 스티커 · 마킹용 펜 동봉</li>
         <li>연 1회 한정 제작 · 재고 소진 시 마감</li>
       </ul>
@@ -454,6 +503,22 @@
     const name = lvNames[selectedLv];
     if (mode==='buy') buyNow(id, 19000, name, false);
     else addCart(id, 19000, name, 'vocab', false);
+  }
+
+  // ---- MOCK FILTER ----
+  function getMockSel(){
+    const y = document.getElementById('mf-year').value;
+    const g = document.getElementById('mf-grade').value;
+    const m = document.getElementById('mf-month').value;
+    return { y, g, m };
+  }
+  function addMock(kind, mode){
+    const { y, g, m } = getMockSel();
+    const label = kind === 'analysis' ? '분석지' : '워크북+변형문제';
+    const name = `${y} ${g} ${m}월 모의고사 ${label}`;
+    const id = `mock-${kind}-${y}-${g}-${m}`;
+    if (mode === 'buy') buyNow(id, 4900, name, true);
+    else addCart(id, 4900, name, 'mock', true);
   }
 
   renderCart();
