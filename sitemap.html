@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>사이트 구조도 — TERRA NOVA ENGLISH</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --dark:#0A0A0A; --mid:#111111; --card:#1C1C1C; --card2:#222222;
+    --accent:#2DD4BF; --txt:#F0F0F0; --dim:rgba(240,240,240,.72);
+    --line:rgba(255,255,255,.07); --line2:rgba(45,212,191,.25);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--dark);color:var(--txt);font-family:'Noto Sans KR',sans-serif;min-height:100vh;padding:60px 5vw 100px;}
+
+  /* HEADER */
+  .page-header{text-align:center;margin-bottom:72px;}
+  .page-label{font-size:.62rem;font-weight:700;letter-spacing:5px;color:var(--accent);text-transform:uppercase;margin-bottom:14px;}
+  .page-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.4rem,6vw,4.5rem);letter-spacing:6px;color:#fff;margin-bottom:12px;}
+  .page-desc{font-size:.9rem;color:var(--dim);line-height:1.8;}
+  .back-link{display:inline-flex;align-items:center;gap:6px;color:var(--accent);text-decoration:none;font-size:.8rem;font-weight:600;letter-spacing:1px;margin-bottom:40px;opacity:.8;transition:opacity .2s;}
+  .back-link:hover{opacity:1;}
+
+  /* LEGEND */
+  .legend{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin-bottom:64px;}
+  .legend-item{display:flex;align-items:center;gap:8px;font-size:.75rem;color:var(--dim);}
+  .legend-dot{width:12px;height:12px;border-radius:3px;}
+  .dot-live{background:var(--accent);}
+  .dot-new{background:#A78BFA;}
+  .dot-auth{background:#F59E0B;}
+  .dot-manage{background:#64748B;}
+
+  /* SITEMAP GRID */
+  .sitemap{display:flex;flex-direction:column;gap:48px;}
+
+  /* FUNNEL ROW */
+  .funnel{display:flex;align-items:flex-start;justify-content:center;gap:0;flex-wrap:wrap;}
+  .funnel-node{display:flex;flex-direction:column;align-items:center;}
+  .funnel-arrow{display:flex;align-items:center;padding-top:36px;color:var(--accent);font-size:1.4rem;opacity:.5;flex-shrink:0;}
+
+  /* NODE CARD */
+  .node{border-radius:10px;border:1px solid var(--line);padding:20px 22px;min-width:160px;max-width:200px;text-align:center;position:relative;transition:border-color .2s,transform .15s;cursor:default;}
+  .node:hover{transform:translateY(-3px);}
+  .node.live{border-color:rgba(45,212,191,.4);background:rgba(45,212,191,.05);}
+  .node.new{border-color:rgba(167,139,250,.35);background:rgba(167,139,250,.05);}
+  .node.auth{border-color:rgba(245,158,11,.35);background:rgba(245,158,11,.05);}
+  .node.manage{border-color:rgba(100,116,139,.3);background:rgba(100,116,139,.04);}
+
+  .node-badge{font-size:.52rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;padding:3px 8px;border-radius:2px;margin-bottom:10px;display:inline-block;}
+  .badge-live{background:var(--accent);color:#0A0A0A;}
+  .badge-new{background:#A78BFA;color:#0A0A0A;}
+  .badge-auth{background:#F59E0B;color:#0A0A0A;}
+  .badge-manage{background:#64748B;color:#fff;}
+
+  .node-title{font-weight:700;font-size:.9rem;color:#fff;margin-bottom:4px;letter-spacing:-.01em;}
+  .node-file{font-size:.68rem;color:var(--accent);opacity:.7;letter-spacing:.5px;margin-bottom:8px;font-family:monospace;}
+  .node-desc{font-size:.72rem;color:var(--dim);line-height:1.6;}
+
+  /* SECTION LABEL */
+  .section-label{text-align:center;margin-bottom:20px;}
+  .section-label-text{display:inline-flex;align-items:center;gap:10px;font-size:.65rem;font-weight:700;letter-spacing:4px;color:var(--dim);text-transform:uppercase;border:1px solid var(--line);padding:6px 20px;border-radius:999px;}
+
+  /* GRID ROWS */
+  .node-row{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;}
+
+  /* CONNECTOR */
+  .connector-v{display:flex;justify-content:center;padding:6px 0;}
+  .connector-v-line{width:1px;height:32px;background:linear-gradient(to bottom,rgba(45,212,191,.4),rgba(45,212,191,.1));}
+  .connector-h{display:flex;justify-content:center;align-items:center;gap:0;margin:8px 0;}
+
+  /* FUNNEL WRAPPER */
+  .funnel-wrapper{display:flex;flex-direction:column;align-items:center;}
+  .funnel-h-row{display:flex;align-items:center;justify-content:center;gap:0;}
+  .funnel-arrow-h{color:var(--accent);font-size:1.2rem;opacity:.45;padding:0 6px;}
+
+  /* SUPPORT GRID */
+  .support-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;max-width:900px;margin:0 auto;}
+
+  /* AUTH ROW */
+  .auth-row{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;}
+
+  /* FLOW PATH */
+  .flow-path{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:24px 32px;max-width:860px;margin:0 auto;}
+  .flow-path-title{font-size:.65rem;font-weight:700;letter-spacing:4px;color:var(--accent);text-transform:uppercase;margin-bottom:18px;text-align:center;}
+  .flow-steps{display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:wrap;}
+  .flow-step{text-align:center;padding:12px 16px;}
+  .flow-step-num{width:28px;height:28px;border-radius:50%;background:var(--accent);color:#0A0A0A;font-size:.75rem;font-weight:900;display:flex;align-items:center;justify-content:center;margin:0 auto 8px;}
+  .flow-step-name{font-size:.78rem;font-weight:600;color:#fff;white-space:nowrap;}
+  .flow-step-sub{font-size:.65rem;color:var(--dim);margin-top:2px;}
+  .flow-arrow{color:var(--accent);opacity:.35;font-size:1rem;padding:0 4px;padding-bottom:18px;}
+
+  /* PAGE STATS */
+  .stats-bar{display:flex;justify-content:center;gap:40px;flex-wrap:wrap;margin-top:64px;padding-top:40px;border-top:1px solid var(--line);}
+  .stat-item{text-align:center;}
+  .stat-num{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;letter-spacing:2px;color:var(--accent);}
+  .stat-lbl{font-size:.7rem;color:var(--dim);letter-spacing:1px;margin-top:2px;}
+  /* FLOATING CIRCLES */
+  .float-group{position:fixed;bottom:28px;right:24px;display:flex;flex-direction:column;gap:12px;z-index:200;}
+  .float-btn{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;transition:transform .15s,box-shadow .15s;box-shadow:0 4px 16px rgba(0,0,0,.4);}
+  .float-btn:hover{transform:translateY(-3px);}
+  .float-kakao{background:#FEE500;}
+  .float-insta{background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fd5949 45%,#d6249f 60%,#285AEB 90%);}
+  .float-label{position:absolute;right:60px;background:rgba(0,0,0,.75);color:#fff;font-size:.68rem;font-weight:600;padding:4px 10px;border-radius:4px;white-space:nowrap;opacity:0;transition:opacity .2s;pointer-events:none;}
+  .float-btn:hover .float-label{opacity:1;}
+</style>
+</head>
+<body>
+
+<a href="index.html" class="back-link">← 랜딩페이지로</a>
+
+<div class="page-header">
+  <div class="page-label">✦ Site Architecture</div>
+  <div class="page-title">SITE MAP</div>
+  <p class="page-desc">Terra Nova English 전체 페이지 구조도 · 전환 퍼널 흐름</p>
+</div>
+
+<!-- LEGEND -->
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot dot-live"></div>완성된 페이지</div>
+  <div class="legend-item"><div class="legend-dot dot-new"></div>신규 제작 페이지</div>
+  <div class="legend-item"><div class="legend-dot dot-auth"></div>인증 페이지</div>
+  <div class="legend-item"><div class="legend-dot dot-manage"></div>관리 페이지</div>
+</div>
+
+<div class="sitemap">
+
+  <!-- ① 메인 전환 퍼널 -->
+  <div>
+    <div class="section-label">
+      <span class="section-label-text">① 핵심 전환 퍼널 (Conversion Funnel)</span>
+    </div>
+
+    <div class="funnel-wrapper">
+      <div class="funnel-h-row">
+        <!-- 랜딩 -->
+        <div class="node live" style="min-width:172px;">
+          <span class="node-badge badge-live">완성</span>
+          <div class="node-title">랜딩페이지</div>
+          <div class="node-file">index.html</div>
+          <div class="node-desc">브랜드 소개 · 플랜 비교 · 무료 샘플 CTA</div>
+        </div>
+
+        <div class="funnel-arrow-h">→</div>
+
+        <!-- 구독 상세 -->
+        <div class="node live" style="min-width:172px;">
+          <span class="node-badge badge-live">완성</span>
+          <div class="node-title">구독 상세</div>
+          <div class="node-file">subscription_detail_complete.html</div>
+          <div class="node-desc">플랜 상세 · 비교표 · 교과 연계 소개</div>
+        </div>
+
+        <div class="funnel-arrow-h">→</div>
+
+        <!-- 레벨 테스트 -->
+        <div class="node new" style="min-width:172px;">
+          <span class="node-badge badge-new">신규</span>
+          <div class="node-title">레벨 테스트</div>
+          <div class="node-file">level_test.html</div>
+          <div class="node-desc">학년 진단 · 실력 체크 · 추천 레벨 결과</div>
+        </div>
+
+        <div class="funnel-arrow-h">→</div>
+
+        <!-- 구독 신청 -->
+        <div class="node new" style="min-width:172px;">
+          <span class="node-badge badge-new">신규</span>
+          <div class="node-title">구독 신청</div>
+          <div class="node-file">order.html</div>
+          <div class="node-desc">플랜 선택 · 배송정보 · 결제</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ② 지원 페이지 -->
+  <div>
+    <div class="section-label">
+      <span class="section-label-text">② 신뢰 구축 · 지원 페이지 (Support Pages)</span>
+    </div>
+    <div class="support-grid">
+      <div class="node new">
+        <span class="node-badge badge-new">신규</span>
+        <div class="node-title">샘플 미리보기</div>
+        <div class="node-file">sample.html</div>
+        <div class="node-desc">레벨별 샘플 지문 · 교과 연계 설명 · 무료 샘플 신청</div>
+      </div>
+      <div class="node new">
+        <span class="node-badge badge-new">신규</span>
+        <div class="node-title">FAQ</div>
+        <div class="node-file">faq.html</div>
+        <div class="node-desc">배송 · 구독 · 레벨변경 · 환불 자주 묻는 질문</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ③ 인증 페이지 -->
+  <div>
+    <div class="section-label">
+      <span class="section-label-text">③ 회원 인증 (Auth Pages)</span>
+    </div>
+    <div class="auth-row">
+      <div class="node auth">
+        <span class="node-badge badge-auth">인증</span>
+        <div class="node-title">로그인</div>
+        <div class="node-file">login.html</div>
+        <div class="node-desc">이메일 로그인 · 카카오 소셜 로그인</div>
+      </div>
+      <div class="node auth">
+        <span class="node-badge badge-auth">인증</span>
+        <div class="node-title">회원가입</div>
+        <div class="node-file">signup.html</div>
+        <div class="node-desc">이메일 가입 · 카카오 가입</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ④ 관리 페이지 -->
+  <div>
+    <div class="section-label">
+      <span class="section-label-text">④ 회원 관리 (My Pages)</span>
+    </div>
+    <div class="auth-row">
+      <div class="node manage" style="min-width:200px;">
+        <span class="node-badge badge-manage">관리</span>
+        <div class="node-title">마이페이지</div>
+        <div class="node-file">mypage.html</div>
+        <div class="node-desc">구독 현황 · 레벨변경 · 배송주소 · 학습 진도</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑤ 구매 전환 흐름 -->
+  <div>
+    <div class="section-label">
+      <span class="section-label-text">⑤ 구매 전환 단계별 흐름</span>
+    </div>
+    <div class="flow-path">
+      <div class="flow-path-title">Customer Journey</div>
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div class="flow-step-num">1</div>
+          <div class="flow-step-name">랜딩 방문</div>
+          <div class="flow-step-sub">index.html</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-step-num">2</div>
+          <div class="flow-step-name">구독 상세 확인</div>
+          <div class="flow-step-sub">subscription_detail</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-step-num">3</div>
+          <div class="flow-step-name">샘플 체험</div>
+          <div class="flow-step-sub">sample.html</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-step-num">4</div>
+          <div class="flow-step-name">레벨 테스트</div>
+          <div class="flow-step-sub">level_test.html</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-step-num">5</div>
+          <div class="flow-step-name">회원가입</div>
+          <div class="flow-step-sub">signup.html</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-step-num">6</div>
+          <div class="flow-step-name">구독 신청</div>
+          <div class="flow-step-sub">order.html</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-step-num">7</div>
+          <div class="flow-step-name">마이페이지</div>
+          <div class="flow-step-sub">mypage.html</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <div class="stat-num">8</div>
+    <div class="stat-lbl">총 페이지 수</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">2</div>
+    <div class="stat-lbl">완성 페이지</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">6</div>
+    <div class="stat-lbl">신규 제작</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">7</div>
+    <div class="stat-lbl">전환 단계</div>
+  </div>
+</div>
+
+<!-- FLOATING CIRCLE BUTTONS -->
+<div class="float-group">
+  <a href="https://open.kakao.com/" target="_blank" class="float-btn float-kakao" style="position:relative;">
+    <span class="float-label">카카오 문의</span>
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="#181600"><path d="M12 3C6.477 3 2 6.477 2 10.5c0 2.624 1.608 4.934 4.063 6.297L5 21l4.938-2.656c.668.094 1.353.156 2.062.156 5.523 0 10-3.477 10-7.5S17.523 3 12 3z"/></svg>
+  </a>
+  <a href="https://www.instagram.com/" target="_blank" class="float-btn float-insta" style="position:relative;">
+    <span class="float-label">인스타그램</span>
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+  </a>
+</div>
+</body>
+</html>
