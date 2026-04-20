@@ -2373,15 +2373,16 @@
       <div class="nav-logo-sub">English</div>
     </a>
     <div class="nav-links-sub" id="nav-links-sub">
+      <a href="index.html" style="color:rgba(0,0,0,.55);text-decoration:none;font-size:.78rem;font-weight:500;">홈</a>
+      <a href="subscription_detail_complete.html" style="color:#4F46E5;text-decoration:none;font-size:.78rem;font-weight:700;">구독안내</a>
       <a href="level_test.html" style="color:rgba(0,0,0,.55);text-decoration:none;font-size:.78rem;font-weight:500;">레벨테스트</a>
       <a href="sample.html" style="color:rgba(0,0,0,.55);text-decoration:none;font-size:.78rem;font-weight:500;">무료샘플</a>
       <a href="market.html" style="color:rgba(0,0,0,.55);text-decoration:none;font-size:.78rem;font-weight:500;">마켓</a>
       <a href="faq.html" style="color:rgba(0,0,0,.55);text-decoration:none;font-size:.78rem;font-weight:500;">FAQ</a>
+      <a data-auth="guest" href="login.html" style="color:rgba(0,0,0,.55);text-decoration:none;font-size:.78rem;font-weight:500;">로그인</a>
+      <a data-auth="user" href="mypage.html" style="color:rgba(0,0,0,.55);text-decoration:none;font-size:.78rem;font-weight:500;display:none;"><span data-user-name>회원</span> 님</a>
+      <a data-auth="user" href="#" data-action="logout" style="color:rgba(0,0,0,.55);text-decoration:none;font-size:.78rem;font-weight:500;display:none;">로그아웃</a>
       <a href="order.html" style="background:#4F46E5;color:#fff;text-decoration:none;font-size:.78rem;font-weight:700;padding:8px 18px;border-radius:6px;">구독 신청</a>
-      <a href="index.html" class="btn-back">
-        <span>←</span>
-        <span>메인으로</span>
-      </a>
     </div>
     <button class="nav-hamburger" id="nav-hamburger-sub" onclick="toggleNavSub()" aria-label="메뉴"><span></span><span></span><span></span></button>
   </nav>
@@ -4307,5 +4308,7 @@ document.querySelectorAll('#nav-links-sub a').forEach(a=>a.addEventListener('cli
   document.getElementById('nav-links-sub').classList.remove('open');
 }));
 </script>
+<script type="module" src="./nav-auth.js"></script>
+<script src="./footer.js" defer></script>
 </body>
 </html>
