@@ -195,6 +195,9 @@
     <li><a href="sample.html">무료샘플</a></li>
     <li><a href="market.html">마켓</a></li>
     <li><a href="faq.html">FAQ</a></li>
+    <li data-auth="guest"><a href="login.html">로그인</a></li>
+    <li data-auth="user" style="display:none;"><a href="mypage.html"><span data-user-name>회원</span> 님</a></li>
+    <li data-auth="user" style="display:none;"><a href="#" data-action="logout">로그아웃</a></li>
     <li><a href="order.html" class="nav-cta">구독 신청</a></li>
   </ul>
   <button class="nav-hamburger" id="nav-hamburger" onclick="toggleNav()" aria-label="메뉴"><span></span><span></span><span></span></button>
@@ -1002,6 +1005,49 @@ function showResult() {
   document.getElementById('progress-fill').style.width = '100%';
   document.getElementById('progress-text').textContent = '진단 완료!';
   window.scrollTo({top:0,behavior:'smooth'});
+
+  // ── Supabase: 로그인 상태면 결과 저장 ────────────
+  saveLevelResult(lvl, sc, conf).catch(err => console.warn('[level_test] save skipped:', err?.message));
+}
+
+const LEVEL_NUM = { STARTER: 1, JUNIOR: 2, BASIC: 3, INTERMEDIATE: 4, ADVANCED: 5, MASTER: 6 };
+
+async function saveLevelResult(lvl, sc, conf) {
+  const { supabase } = await import('./supabase-client.js');
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) {
+    console.info('[level_test] 비로그인 상태 — 결과 저장 건너뜀. 로그인 후 재응시 시 저장됩니다.');
+    return;
+  }
+  const levelNum = LEVEL_NUM[lvl] || 4;
+  const avgScore = Math.round((sc.vocab + sc.read + sc.gram + sc.logic) / 4);
+  const { error } = await supabase.from('level_test_results').insert({
+    user_id: user.id,
+    level: levelNum,
+    score: avgScore,
+    total_questions: 20,
+    details: {
+      level_label: lvl,
+      scores: { vocab: sc.vocab, read: sc.read, gram: sc.gram, logic: sc.logic },
+      confidence: conf.level,
+      dk_count: conf.dkCount,
+      weakness_self: answers.weakness || null,
+      study_time: answers.time || null
+    }
+  });
+  if (error) {
+    console.warn('[level_test] 저장 실패:', error.message);
+  } else {
+    // 결과 페이지 상단에 저장 안내 뱃지
+    const note = document.getElementById('accuracy-note');
+    if (note && !document.getElementById('saved-badge')) {
+      const badge = document.createElement('div');
+      badge.id = 'saved-badge';
+      badge.style.cssText = 'margin-top:12px;padding:10px 14px;background:rgba(45,212,191,.08);border:1px solid rgba(45,212,191,.3);border-radius:6px;font-size:.8rem;color:var(--accent);';
+      badge.textContent = '✓ 결과가 마이페이지에 저장되었습니다.';
+      note.after(badge);
+    }
+  }
 }
 
 function retryTest() {
@@ -1018,5 +1064,6 @@ function retryTest() {
 function toggleNav(){document.getElementById('nav-hamburger').classList.toggle('open');document.querySelector('.nav-links').classList.toggle('open');}
 document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>{document.getElementById('nav-hamburger').classList.remove('open');document.querySelector('.nav-links').classList.remove('open');}));
 </script>
+<script type="module" src="./nav-auth.js"></script>
 </body>
 </html>

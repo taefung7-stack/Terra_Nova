@@ -236,7 +236,9 @@
     <li><a href="subscription_detail_complete.html">구독안내</a></li>
     <li><a href="market.html" style="color:var(--accent);">마켓</a></li>
     <li><a href="faq.html">FAQ</a></li>
-    <li><a href="login.html">로그인</a></li>
+    <li data-auth="guest"><a href="login.html">로그인</a></li>
+    <li data-auth="user" style="display:none;"><a href="mypage.html"><span data-user-name>회원</span> 님</a></li>
+    <li data-auth="user" style="display:none;"><a href="#" data-action="logout">로그아웃</a></li>
     <li><a href="order.html" class="nav-cta">구독 신청</a></li>
   </ul>
   <button class="nav-hamburger" id="nav-hamburger" onclick="toggleNav()" aria-label="메뉴"><span></span><span></span><span></span></button>
@@ -718,5 +720,6 @@
 
   renderCart();
 </script>
+<script type="module" src="./nav-auth.js"></script>
 </body>
 </html>

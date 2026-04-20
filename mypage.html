@@ -160,6 +160,7 @@
   .float-label{position:absolute;right:60px;background:rgba(0,0,0,.75);color:#fff;font-size:.68rem;font-weight:600;padding:4px 10px;border-radius:4px;white-space:nowrap;opacity:0;transition:opacity .2s;pointer-events:none;}
   .float-btn:hover .float-label{opacity:1;}
 </style>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
 <body>
 
@@ -170,9 +171,10 @@
     <div class="logo-eng">ENGLISH</div>
   </a>
   <div class="nav-right">
-    <a href="market.html" style="color:var(--dim,#aaa);text-decoration:none;font-size:.82rem;font-weight:600;margin-right:8px;">마켓</a>
-    <span class="nav-username"><strong>홍길동</strong> 님</span>
-    <button class="btn-logout" onclick="if(confirm('로그아웃 하시겠습니까?')) window.location.href='login.html'">로그아웃</button>
+    <a href="market.html" style="color:var(--dim,#aaa);text-decoration:none;font-size:.82rem;font-weight:600;margin-right:14px;">마켓</a>
+    <a href="order.html" style="background:var(--accent);color:#02021B;text-decoration:none;font-size:.78rem;font-weight:900;padding:8px 16px;border-radius:6px;margin-right:14px;letter-spacing:.3px;">구독 신청</a>
+    <span class="nav-username"><strong id="nav-user-name">...</strong> 님</span>
+    <button class="btn-logout" id="btn-logout">로그아웃</button>
   </div>
 </nav>
 
@@ -190,10 +192,10 @@
   <!-- SIDEBAR -->
   <div class="sidebar">
     <div class="user-card">
-      <div class="user-avatar">홍</div>
-      <div class="user-name">홍길동</div>
-      <div class="user-grade">중학교 3학년</div>
-      <span class="user-level-badge">INTERMEDIATE LEVEL</span>
+      <div class="user-avatar" id="side-user-initial">?</div>
+      <div class="user-name" id="side-user-name">...</div>
+      <div class="user-grade" id="side-user-grade">-</div>
+      <span class="user-level-badge" id="side-user-level" style="display:none;">-</span>
     </div>
     <nav class="nav-menu">
       <div class="nav-menu-item active" onclick="switchTab('dashboard',this)">
@@ -222,103 +224,113 @@
       <h1 class="page-title">MY PAGE</h1>
       <p class="page-sub">4월 학습 현황 · 구독 관리</p>
 
-      <!-- 구독 카드 -->
-      <div class="sub-card">
+      <!-- 구독 카드: 실제 구독이 있으면 sub-card-active / 없으면 sub-card-empty 표시 -->
+      <div class="sub-card" id="sub-card-active" style="display:none;">
         <div class="sub-card-header">
           <div>
-            <span class="sub-badge">PDF + 실물</span>
-            <div class="sub-plan" style="margin-top:10px;">PDF + 실물 플랜</div>
-            <div class="sub-level">INTERMEDIATE LEVEL · 중3~고1</div>
+            <span class="sub-badge" id="sub-badge">-</span>
+            <div class="sub-plan" style="margin-top:10px;" id="sub-plan-name">-</div>
+            <div class="sub-level" id="sub-plan-level">-</div>
           </div>
           <div class="sub-status">
             <div class="status-dot"></div>
-            구독 중
+            <span id="sub-status-label">구독 중</span>
           </div>
         </div>
         <div class="sub-info-grid">
           <div class="sub-info-item">
-            <div class="sub-info-label">월 결제금액</div>
-            <div class="sub-info-value accent">28,900원</div>
+            <div class="sub-info-label">결제금액</div>
+            <div class="sub-info-value accent" id="sub-price">-</div>
           </div>
           <div class="sub-info-item">
-            <div class="sub-info-label">다음 결제일</div>
-            <div class="sub-info-value">2026.05.01</div>
+            <div class="sub-info-label">다음 갱신일</div>
+            <div class="sub-info-value" id="sub-next-date">-</div>
           </div>
           <div class="sub-info-item">
             <div class="sub-info-label">구독 시작일</div>
-            <div class="sub-info-value">2026.01.01</div>
+            <div class="sub-info-value" id="sub-start-date">-</div>
           </div>
           <div class="sub-info-item">
-            <div class="sub-info-label">이번 달 배송</div>
-            <div class="sub-info-value">배송 완료</div>
+            <div class="sub-info-label">자동 갱신</div>
+            <div class="sub-info-value" id="sub-autorenew">-</div>
           </div>
         </div>
         <div class="sub-actions">
-          <button class="btn-sm btn-sm-primary" onclick="switchTab('level',document.querySelector('.nav-menu-item:nth-child(2))'))">레벨 변경</button>
-          <button class="btn-sm btn-sm-outline" onclick="alert('PDF를 다운로드합니다.')">PDF 다운로드</button>
+          <button class="btn-sm btn-sm-primary" onclick="switchTab('level',null)">레벨 변경</button>
           <button class="btn-sm btn-sm-outline" onclick="switchTab('delivery',null)">배송 조회</button>
-          <button class="btn-sm btn-sm-danger" onclick="if(confirm('정말 구독을 해지하시겠습니까?\n당월 말까지는 계속 이용 가능합니다.'))alert('구독 해지가 신청되었습니다.')">구독 해지</button>
+          <button class="btn-sm btn-sm-danger" id="btn-cancel-sub">구독 해지</button>
         </div>
       </div>
 
-      <!-- 학습 진도 -->
-      <div class="progress-section">
-        <div class="progress-header">
-          <div class="progress-title">이번 달 학습 진도</div>
-          <div class="progress-month">2026년 4월 · INTERMEDIATE</div>
+      <div class="sub-card" id="sub-card-empty" style="text-align:center;padding:48px 24px;">
+        <div style="font-size:2.4rem;margin-bottom:10px;">📭</div>
+        <div style="font-size:1.05rem;font-weight:900;color:#fff;margin-bottom:6px;">현재 구독 중인 상품이 없습니다</div>
+        <div style="font-size:.82rem;color:var(--dim);margin-bottom:22px;line-height:1.7;">
+          Terra Nova 구독으로 매달 맞춤 교재와 학습 자료를 받아보세요.
         </div>
-        <div class="progress-grid">
-          <div class="day-col">
-            <div class="day-label">MON</div>
-            <div class="day-passages">
-              <div class="passage-block done">1-1</div>
-              <div class="passage-block done">1-2</div>
-            </div>
-          </div>
-          <div class="day-col">
-            <div class="day-label">TUE</div>
-            <div class="day-passages">
-              <div class="passage-block done">1-3</div>
-              <div class="passage-block done">1-4</div>
-            </div>
-          </div>
-          <div class="day-col">
-            <div class="day-label">WED</div>
-            <div class="day-passages">
-              <div class="passage-block done">1-5</div>
-              <div class="passage-block done">1-6</div>
-            </div>
-          </div>
-          <div class="day-col">
-            <div class="day-label">THU</div>
-            <div class="day-passages">
-              <div class="passage-block done">1-7</div>
-              <div class="passage-block done">1-8</div>
-            </div>
-          </div>
-          <div class="day-col">
-            <div class="day-label">FRI</div>
-            <div class="day-passages">
-              <div class="passage-block done">1-9</div>
-              <div class="passage-block today">1-10</div>
-            </div>
-          </div>
+        <a href="index.html#plans" class="btn-sm btn-sm-primary" style="text-decoration:none;display:inline-block;">구독 플랜 보기 →</a>
+      </div>
+
+      <!-- 내 정보 요약 -->
+      <div class="section-block">
+        <div class="section-block-title" style="display:flex;justify-content:space-between;align-items:center;">
+          <span>내 정보</span>
+          <button class="btn-sm btn-sm-outline" onclick="switchTab('account', document.querySelector('.nav-menu-item:nth-child(5)'))" style="font-size:.72rem;padding:5px 12px;">수정하기 →</button>
         </div>
-        <div class="progress-stats">
-          <div class="prog-stat">
-            <div class="prog-stat-num">10</div>
-            <div class="prog-stat-label">완료 지문</div>
+        <div class="info-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:14px 28px;margin-top:8px;">
+          <div class="info-row">
+            <div style="font-size:.7rem;color:var(--dim);letter-spacing:.5px;margin-bottom:4px;">학생 이름</div>
+            <div id="info-name" style="font-size:.92rem;color:#fff;font-weight:700;">-</div>
           </div>
-          <div class="prog-stat">
-            <div class="prog-stat-num">30</div>
-            <div class="prog-stat-label">남은 지문</div>
+          <div class="info-row">
+            <div style="font-size:.7rem;color:var(--dim);letter-spacing:.5px;margin-bottom:4px;">학년</div>
+            <div id="info-grade" style="font-size:.92rem;color:#fff;font-weight:700;">-</div>
           </div>
-          <div class="prog-stat">
-            <div class="prog-stat-num">25%</div>
-            <div class="prog-stat-label">이번 달 진도</div>
+          <div class="info-row">
+            <div style="font-size:.7rem;color:var(--dim);letter-spacing:.5px;margin-bottom:4px;">재학 학교</div>
+            <div id="info-school" style="font-size:.92rem;color:#fff;font-weight:500;">-</div>
+          </div>
+          <div class="info-row">
+            <div style="font-size:.7rem;color:var(--dim);letter-spacing:.5px;margin-bottom:4px;">목표 점수</div>
+            <div id="info-target" style="font-size:.92rem;color:var(--accent);font-weight:800;">-</div>
+          </div>
+          <div class="info-row">
+            <div style="font-size:.7rem;color:var(--dim);letter-spacing:.5px;margin-bottom:4px;">연락처 (학부모)</div>
+            <div id="info-phone" style="font-size:.92rem;color:#fff;font-weight:500;">-</div>
+          </div>
+          <div class="info-row">
+            <div style="font-size:.7rem;color:var(--dim);letter-spacing:.5px;margin-bottom:4px;">이메일</div>
+            <div id="info-email" style="font-size:.88rem;color:#fff;font-weight:500;word-break:break-all;">-</div>
+          </div>
+          <div class="info-row" style="grid-column:span 2;">
+            <div style="font-size:.7rem;color:var(--dim);letter-spacing:.5px;margin-bottom:4px;">기본 배송 주소</div>
+            <div id="info-addr" style="font-size:.88rem;color:#fff;font-weight:500;line-height:1.6;">-</div>
+          </div>
+          <div class="info-row">
+            <div style="font-size:.7rem;color:var(--dim);letter-spacing:.5px;margin-bottom:4px;">가입일</div>
+            <div id="info-joined" style="font-size:.88rem;color:var(--dim);font-weight:500;">-</div>
+          </div>
+          <div class="info-row">
+            <div style="font-size:.7rem;color:var(--dim);letter-spacing:.5px;margin-bottom:4px;">현재 레벨</div>
+            <div id="info-level" style="font-size:.88rem;color:#fff;font-weight:700;">-</div>
           </div>
         </div>
       </div>
+
+      <!-- 레벨 테스트 결과 이력 -->
+      <div class="section-block" id="lvl-results-block">
+        <div class="section-block-title">레벨 테스트 결과</div>
+        <div id="lvl-results-list" style="display:flex;flex-direction:column;gap:10px;">
+          <div id="lvl-results-empty" style="text-align:center;padding:24px;color:var(--dim);font-size:.85rem;line-height:1.7;">
+            아직 응시한 레벨 테스트가 없습니다.<br>
+            <a href="level_test.html" style="color:var(--accent);text-decoration:none;font-weight:700;">→ 레벨 테스트 받으러 가기</a>
+          </div>
+        </div>
+      </div>
+
+      <style>
+        @media(max-width:680px){ .info-grid{grid-template-columns:1fr!important;} }
+      </style>
     </div>
 
     <!-- 레벨 변경 -->
@@ -371,76 +383,29 @@
     <!-- 배송 관리 -->
     <div class="tab-view" id="tab-delivery">
       <h2 class="page-title">DELIVERY</h2>
-      <p class="page-sub">배송 주소 관리 · 이번 달 배송 현황</p>
+      <p class="page-sub">배송 현황 · 최근 주문 기준</p>
 
       <div class="section-block">
-        <div class="section-block-title">이번 달 배송 현황</div>
-        <div style="display:flex;align-items:center;gap:12px;padding:16px;background:rgba(74,222,128,.05);border:1px solid rgba(74,222,128,.2);border-radius:8px;">
-          <span style="font-size:1.2rem;">✅</span>
-          <div>
-            <div style="font-weight:700;color:#fff;margin-bottom:2px;">배송 완료</div>
-            <div style="font-size:.78rem;color:var(--dim);">2026년 4월 3일 배송 완료 · CJ대한통운</div>
-            <div style="font-size:.72rem;color:var(--accent);margin-top:4px;cursor:pointer;" onclick="alert('운송장: 123456789012')">운송장 번호 확인 →</div>
+        <div class="section-block-title">최근 배송 현황</div>
+        <div id="delivery-list" style="display:flex;flex-direction:column;gap:10px;">
+          <div id="delivery-empty" style="text-align:center;padding:32px;color:var(--dim);font-size:.85rem;line-height:1.7;">
+            배송 예정 주문이 없습니다.<br>
+            배송 주소 변경은 <span style="color:var(--accent);cursor:pointer;" onclick="switchTab('account',null)">계정 설정</span>에서 가능합니다.
           </div>
         </div>
-      </div>
-
-      <div class="section-block">
-        <div class="section-block-title">배송 주소</div>
-        <div class="form-group">
-          <label>받는 분</label>
-          <input type="text" value="홍길동">
-        </div>
-        <div class="form-group">
-          <label>주소</label>
-          <input type="text" value="서울특별시 강남구 테헤란로 123" style="margin-bottom:8px;">
-          <input type="text" placeholder="상세 주소 (동, 호수)">
-        </div>
-        <div class="form-group">
-          <label>배송 요청사항</label>
-          <input type="text" placeholder="예: 부재 시 경비실에 맡겨주세요.">
-        </div>
-        <button class="btn-save" onclick="alert('배송 주소가 저장되었습니다.')">주소 저장</button>
       </div>
     </div>
 
     <!-- 결제 내역 -->
     <div class="tab-view" id="tab-history">
       <h2 class="page-title">PAYMENT</h2>
-      <p class="page-sub">결제 내역 · 최근 6개월</p>
+      <p class="page-sub">결제 내역 · 전체</p>
 
       <div class="section-block">
         <div class="section-block-title">결제 내역</div>
-        <div class="history-list">
-          <div class="history-item">
-            <div class="history-date">2026.05.01</div>
-            <div class="history-desc">PDF+실물 플랜 · INTERMEDIATE</div>
-            <div class="history-amount">28,900원</div>
-            <span class="history-status status-scheduled">예정</span>
-          </div>
-          <div class="history-item">
-            <div class="history-date">2026.04.01</div>
-            <div class="history-desc">PDF+실물 플랜 · INTERMEDIATE</div>
-            <div class="history-amount">28,900원</div>
-            <span class="history-status status-paid">결제완료</span>
-          </div>
-          <div class="history-item">
-            <div class="history-date">2026.03.01</div>
-            <div class="history-desc">PDF+실물 플랜 · INTERMEDIATE</div>
-            <div class="history-amount">28,900원</div>
-            <span class="history-status status-paid">결제완료</span>
-          </div>
-          <div class="history-item">
-            <div class="history-date">2026.02.01</div>
-            <div class="history-desc">PDF+실물 플랜 · INTERMEDIATE</div>
-            <div class="history-amount">28,900원</div>
-            <span class="history-status status-paid">결제완료</span>
-          </div>
-          <div class="history-item">
-            <div class="history-date">2026.01.01</div>
-            <div class="history-desc">PDF+실물 플랜 · INTERMEDIATE (첫 달)</div>
-            <div class="history-amount">0원</div>
-            <span class="history-status status-paid">무료</span>
+        <div class="history-list" id="history-list">
+          <div id="history-empty" style="text-align:center;padding:32px;color:var(--dim);font-size:.85rem;line-height:1.7;">
+            아직 결제 내역이 없습니다.
           </div>
         </div>
       </div>
@@ -455,26 +420,67 @@
         <div class="section-block-title">기본 정보</div>
         <div class="form-row">
           <div class="form-group">
-            <label>학생 이름</label>
-            <input type="text" value="홍길동">
+            <label>학생 이름 <span style="color:#F87171;">*</span></label>
+            <input type="text" id="acc-name" value="" placeholder="홍길동">
           </div>
           <div class="form-group">
-            <label>학년</label>
-            <select>
+            <label>학년 <span style="color:#F87171;">*</span></label>
+            <select id="acc-grade">
+              <option value="">선택</option>
+              <option>초등 3학년</option><option>초등 4학년</option>
+              <option>초등 5학년</option><option>초등 6학년</option>
+              <option>중학교 1학년</option><option>중학교 2학년</option>
               <option>중학교 3학년</option>
-              <option>고등학교 1학년</option>
+              <option>고등학교 1학년</option><option>고등학교 2학년</option>
+              <option>고등학교 3학년</option>
             </select>
           </div>
         </div>
-        <div class="form-group">
-          <label>연락처 (학부모)</label>
-          <input type="tel" value="010-1234-5678">
+        <div class="form-row">
+          <div class="form-group">
+            <label>재학 학교</label>
+            <input type="text" id="acc-school" value="" placeholder="예: 강남고등학교">
+          </div>
+          <div class="form-group">
+            <label>목표 점수 (수능 영어)</label>
+            <input type="number" id="acc-target" value="" placeholder="예: 90" min="0" max="100">
+          </div>
         </div>
         <div class="form-group">
-          <label>이메일</label>
-          <input type="email" value="hong@example.com">
+          <label>연락처 (학부모) <span style="color:#F87171;">*</span></label>
+          <input type="tel" id="acc-phone" value="" placeholder="010-0000-0000">
         </div>
-        <button class="btn-save" onclick="alert('정보가 저장되었습니다.')">저장</button>
+        <div class="form-group">
+          <label>이메일 <small style="color:var(--dim);font-weight:400;">(변경 불가)</small></label>
+          <input type="email" id="acc-email" value="" readonly style="opacity:.65;cursor:not-allowed;">
+        </div>
+        <button class="btn-save" id="btn-save-account">저장</button>
+        <span id="acc-save-msg" style="margin-left:12px;font-size:.78rem;color:var(--accent);opacity:0;transition:opacity .3s;">✓ 저장되었습니다</span>
+      </div>
+
+      <div class="section-block">
+        <div class="section-block-title">배송 기본 주소</div>
+        <p style="font-size:.78rem;color:var(--dim);margin-bottom:14px;line-height:1.7;">구독·주문 시 기본으로 사용되는 주소입니다.</p>
+        <div class="form-row">
+          <div class="form-group">
+            <label>우편번호</label>
+            <div style="display:flex;gap:8px;">
+              <input type="text" id="acc-zip" value="" readonly style="flex:1;background:rgba(255,255,255,.04);">
+              <button type="button" id="btn-search-addr" class="btn-sm btn-sm-outline" style="white-space:nowrap;padding:0 18px;">주소 검색</button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>받는 분</label>
+            <input type="text" id="acc-recipient" value="" placeholder="받는 분 이름">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>주소</label>
+          <input type="text" id="acc-addr" value="" readonly style="margin-bottom:8px;background:rgba(255,255,255,.04);">
+          <input type="text" id="acc-addr-detail" placeholder="상세 주소 (동, 호수 등)">
+        </div>
+        <button class="btn-save" id="btn-save-addr">주소 저장</button>
+        <span id="addr-save-msg" style="margin-left:12px;font-size:.78rem;color:var(--accent);opacity:0;transition:opacity .3s;">✓ 저장되었습니다</span>
       </div>
 
       <div class="section-block">
@@ -552,6 +558,247 @@
       alert('레벨 변경 신청이 완료되었습니다!\n\n새 레벨: ' + lvl + '\n적용: 2026년 5월 발송분부터');
     }
   }
+</script>
+
+<!-- Supabase 실데이터 연동 -->
+<script type="module">
+  import { supabase, requireAuth, getProfile, getActiveSubscription, signOut } from './supabase-client.js';
+
+  const $ = (id) => document.getElementById(id);
+  const setText = (id, v) => { const el = $(id); if (el) el.textContent = v ?? '-'; };
+  const setVal  = (id, v) => { const el = $(id); if (el) el.value = v ?? ''; };
+  const won = (n) => (n ?? 0).toLocaleString('ko-KR') + '원';
+  const ymd = (iso) => iso ? new Date(iso).toLocaleDateString('ko-KR') : '-';
+  const flashMsg = (id) => { const el = $(id); if (!el) return; el.style.opacity = '1'; setTimeout(() => el.style.opacity = '0', 2000); };
+
+  const STATUS_LABEL = {
+    pending: '결제 대기', paid: '결제 완료', shipped: '배송 중', delivered: '배송 완료',
+    cancelled: '취소됨', refunded: '환불됨'
+  };
+
+  (async () => {
+    const user = await requireAuth('login.html');
+    if (!user) return;
+
+    const meta = user.user_metadata || {};
+    const profile = (await getProfile(user.id)) || {};
+    const sub = await getActiveSubscription(user.id);
+
+    const name = profile.display_name || meta.display_name || user.email.split('@')[0];
+    const gradeLabel = meta.grade_label || '-';
+    const initial = (name || '?').slice(0, 1);
+
+    // ── 네비/사이드바 ────────────────────
+    setText('nav-user-name', name);
+    setText('side-user-initial', initial);
+    setText('side-user-name', name);
+    setText('side-user-grade', gradeLabel);
+
+    // ── 내 정보 요약 (대시보드 상단) ───────
+    setText('info-name', name);
+    setText('info-grade', gradeLabel);
+    setText('info-school', profile.school || '미입력');
+    setText('info-target', profile.target_score ? profile.target_score + '점' : '미설정');
+    setText('info-phone', profile.phone || meta.phone || '미입력');
+    setText('info-email', user.email);
+    const fullAddr = meta.shipping_zipcode
+      ? `(${meta.shipping_zipcode}) ${meta.shipping_address || ''} ${meta.shipping_detail || ''}`.trim()
+      : '주소 미등록 — 계정 설정에서 입력하세요';
+    setText('info-addr', fullAddr);
+    setText('info-joined', ymd(user.created_at));
+    setText('info-level', '레벨 테스트 필요');  // 기본값 — sub/결과 있으면 아래에서 덮어씀
+
+    // ── 구독 상태 ────────────────────────
+    if (sub) {
+      $('sub-card-empty').style.display = 'none';
+      $('sub-card-active').style.display = '';
+      setText('sub-badge', sub.plan_code);
+      setText('sub-plan-name', sub.plan_code + ' 플랜 (' + (sub.billing_cycle === 'annual' ? '연간' : '월간') + ')');
+      setText('sub-plan-level', sub.plan_code + ' LEVEL');
+      setText('sub-next-date', ymd(sub.expires_at));
+      setText('sub-start-date', ymd(sub.started_at));
+      setText('sub-autorenew', sub.auto_renew ? '활성' : '비활성');
+      setText('sub-status-label', sub.status === 'active' ? '구독 중' : sub.status);
+
+      const lvlBadge = $('side-user-level');
+      if (lvlBadge) { lvlBadge.textContent = sub.plan_code + ' LEVEL'; lvlBadge.style.display = ''; }
+      setText('info-level', sub.plan_code + ' LEVEL');
+    }
+
+    // ── 계정 설정 기본값 ─────────────────
+    setVal('acc-name', name);
+    setVal('acc-phone', profile.phone || meta.phone || '');
+    setVal('acc-email', user.email);
+    setVal('acc-school', profile.school || '');
+    setVal('acc-target', profile.target_score ?? '');
+    const accGrade = $('acc-grade');
+    if (accGrade && meta.grade_label) {
+      Array.from(accGrade.options).forEach(o => { if (o.value === meta.grade_label || o.text === meta.grade_label) o.selected = true; });
+    }
+
+    // ── 배송 주소 기본값 ─────────────────
+    setVal('acc-zip', meta.shipping_zipcode || '');
+    setVal('acc-addr', meta.shipping_address || '');
+    setVal('acc-addr-detail', meta.shipping_detail || '');
+    setVal('acc-recipient', meta.shipping_recipient || name);
+
+    // ── 주소 검색 (Daum Postcode) ───────
+    $('btn-search-addr')?.addEventListener('click', () => {
+      if (!window.daum || !window.daum.Postcode) {
+        alert('주소 검색 스크립트 로딩 실패. 새로고침 후 다시 시도해주세요.');
+        return;
+      }
+      new window.daum.Postcode({
+        oncomplete: (data) => {
+          $('acc-zip').value = data.zonecode;
+          $('acc-addr').value = data.roadAddress || data.jibunAddress;
+          $('acc-addr-detail').focus();
+        }
+      }).open();
+    });
+
+    // ── 계정 정보 저장 ───────────────────
+    $('btn-save-account')?.addEventListener('click', async () => {
+      const newName = $('acc-name').value.trim();
+      const newPhone = $('acc-phone').value.trim();
+      const newGrade = $('acc-grade').value;
+      const newSchool = $('acc-school').value.trim();
+      const newTargetRaw = $('acc-target').value;
+      const newTarget = newTargetRaw === '' ? null : parseInt(newTargetRaw, 10);
+      if (!newName) { alert('이름을 입력해주세요.'); return; }
+      if (!newGrade) { alert('학년을 선택해주세요.'); return; }
+      if (!newPhone) { alert('연락처를 입력해주세요.'); return; }
+      if (newTarget !== null && (isNaN(newTarget) || newTarget < 0 || newTarget > 100)) {
+        alert('목표 점수는 0~100 사이로 입력해주세요.'); return;
+      }
+
+      const { error: pErr } = await supabase.from('profiles').update({
+        display_name: newName,
+        phone: newPhone,
+        school: newSchool || null,
+        target_score: newTarget
+      }).eq('id', user.id);
+
+      const { error: uErr } = await supabase.auth.updateUser({
+        data: { ...meta, display_name: newName, phone: newPhone, grade_label: newGrade }
+      });
+
+      if (pErr || uErr) { alert('저장 실패: ' + (pErr?.message || uErr?.message)); return; }
+      flashMsg('acc-save-msg');
+      // 화면 즉시 갱신
+      setText('nav-user-name', newName);
+      setText('side-user-name', newName);
+      setText('side-user-initial', newName.slice(0, 1));
+      setText('side-user-grade', newGrade);
+    });
+
+    // ── 주소 저장 ────────────────────────
+    $('btn-save-addr')?.addEventListener('click', async () => {
+      const zip = $('acc-zip').value.trim();
+      const addr = $('acc-addr').value.trim();
+      const detail = $('acc-addr-detail').value.trim();
+      const recipient = $('acc-recipient').value.trim();
+      if (!zip || !addr) { alert('주소 검색 버튼으로 주소를 먼저 입력해주세요.'); return; }
+      if (!detail) { alert('상세 주소를 입력해주세요.'); return; }
+
+      const { error } = await supabase.auth.updateUser({
+        data: {
+          ...meta,
+          shipping_zipcode: zip,
+          shipping_address: addr,
+          shipping_detail: detail,
+          shipping_recipient: recipient || name
+        }
+      });
+      if (error) { alert('저장 실패: ' + error.message); return; }
+      flashMsg('addr-save-msg');
+    });
+
+    // ── 구독 해지 ────────────────────────
+    $('btn-cancel-sub')?.addEventListener('click', async () => {
+      if (!sub) return;
+      if (!confirm('정말 구독을 해지하시겠습니까?\n만료일까지는 계속 이용 가능합니다.')) return;
+      const { error } = await supabase.from('subscriptions').update({
+        status: 'cancelled', auto_renew: false, cancelled_at: new Date().toISOString()
+      }).eq('id', sub.id);
+      if (error) { alert('해지 실패: ' + error.message); return; }
+      alert('구독 해지가 접수되었습니다.');
+      location.reload();
+    });
+
+    // ── 로그아웃 ────────────────────────
+    $('btn-logout')?.addEventListener('click', async () => {
+      if (!confirm('로그아웃 하시겠습니까?')) return;
+      await signOut();
+    });
+
+    // ── 레벨 테스트 결과 로드 ────────────
+    const { data: lvlResults } = await supabase
+      .from('level_test_results')
+      .select('*')
+      .eq('user_id', user.id)
+      .order('created_at', { ascending: false })
+      .limit(10);
+    if (lvlResults && lvlResults.length > 0) {
+      // 최신 결과의 레벨 라벨로 info-level 업데이트 (구독 없을 때)
+      if (!sub) {
+        const latestLabel = lvlResults[0].details?.level_label || ('LEVEL ' + lvlResults[0].level);
+        setText('info-level', latestLabel);
+      }
+      const listEl = $('lvl-results-list');
+      $('lvl-results-empty').remove();
+      listEl.innerHTML = lvlResults.map(r => `
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:rgba(45,212,191,.04);border:1px solid rgba(45,212,191,.15);border-radius:8px;">
+          <div>
+            <div style="font-weight:800;color:#fff;font-size:.92rem;">LEVEL ${r.level} ${r.score !== null ? '· 점수 ' + r.score + (r.total_questions ? '/' + r.total_questions : '') : ''}</div>
+            <div style="font-size:.72rem;color:var(--dim);margin-top:4px;">${ymd(r.created_at)}</div>
+          </div>
+          <a href="level_test.html" style="font-size:.74rem;color:var(--accent);text-decoration:none;font-weight:700;">재응시 →</a>
+        </div>
+      `).join('');
+    }
+
+    // ── 결제 내역 로드 ───────────────────
+    const { data: orders } = await supabase
+      .from('orders')
+      .select('*, order_items(*)')
+      .eq('user_id', user.id)
+      .order('created_at', { ascending: false });
+    if (orders && orders.length > 0) {
+      const listEl = $('history-list');
+      $('history-empty').remove();
+      listEl.innerHTML = orders.map(o => {
+        const itemNames = (o.order_items || []).map(it => (it.product_snapshot?.name || '상품') + (it.quantity > 1 ? ` x${it.quantity}` : '')).join(', ');
+        const statusClass = o.status === 'paid' || o.status === 'delivered' || o.status === 'shipped' ? 'status-paid'
+                          : o.status === 'pending' ? 'status-scheduled' : 'status-paid';
+        return `
+          <div class="history-item">
+            <div class="history-date">${ymd(o.paid_at || o.created_at)}</div>
+            <div class="history-desc">${itemNames || '주문 #' + o.order_number}</div>
+            <div class="history-amount">${won(o.total_amount)}</div>
+            <span class="history-status ${statusClass}">${STATUS_LABEL[o.status] || o.status}</span>
+          </div>
+        `;
+      }).join('');
+
+      // 배송 관리 탭: 배송 중/완료된 주문만
+      const shipping = orders.filter(o => ['paid','shipped','delivered'].includes(o.status));
+      if (shipping.length > 0) {
+        const dList = $('delivery-list');
+        $('delivery-empty').remove();
+        dList.innerHTML = shipping.map(o => `
+          <div style="display:flex;align-items:center;gap:12px;padding:16px;background:rgba(74,222,128,.05);border:1px solid rgba(74,222,128,.2);border-radius:8px;">
+            <span style="font-size:1.3rem;">${o.status === 'delivered' ? '✅' : o.status === 'shipped' ? '🚚' : '📦'}</span>
+            <div style="flex:1;">
+              <div style="font-weight:700;color:#fff;margin-bottom:2px;">${STATUS_LABEL[o.status]}</div>
+              <div style="font-size:.76rem;color:var(--dim);">주문 ${o.order_number} · ${ymd(o.created_at)}</div>
+              <div style="font-size:.72rem;color:rgba(255,255,255,.7);margin-top:4px;">${o.shipping_address || ''} ${o.shipping_detail || ''}</div>
+            </div>
+          </div>
+        `).join('');
+      }
+    }
+  })();
 </script>
 
 <!-- FLOATING CIRCLE BUTTONS -->

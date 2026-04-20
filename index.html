@@ -638,7 +638,9 @@
     <li><a href="market.html">마켓</a></li>
     <li><a href="faq.html">FAQ</a></li>
     <li><a href="https://www.instagram.com/terra_nova_english/" target="_blank" class="nav-insta">📷 인스타</a></li>
-    <li><a href="login.html" style="color:var(--dim);">로그인</a></li>
+    <li data-auth="guest"><a href="login.html" style="color:var(--dim);">로그인</a></li>
+    <li data-auth="user" style="display:none;"><a href="mypage.html" style="color:var(--dim);"><span data-user-name>회원</span> 님</a></li>
+    <li data-auth="user" style="display:none;"><a href="#" data-action="logout" style="color:var(--dim);">로그아웃</a></li>
     <li><a href="order.html" class="nav-cta">구독 신청</a></li>
   </ul>
   <button class="nav-hamburger" id="nav-hamburger" onclick="toggleNav()" aria-label="메뉴"><span></span><span></span><span></span></button>
@@ -2553,5 +2555,6 @@
 function toggleNav(){document.getElementById('nav-hamburger').classList.toggle('open');document.querySelector('.nav-links').classList.toggle('open');}
 document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>{document.getElementById('nav-hamburger').classList.remove('open');document.querySelector('.nav-links').classList.remove('open');}));
 </script>
+<script type="module" src="./nav-auth.js"></script>
 </body>
 </html>

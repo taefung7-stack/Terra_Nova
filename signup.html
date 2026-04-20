@@ -383,7 +383,7 @@
     document.querySelectorAll('.term-check').forEach(c => c.checked = cb.checked);
   }
 
-  function handleSignup(e) {
+  async function handleSignup(e) {
     e.preventDefault();
     const email = document.getElementById('signup-email').value.trim();
     const pw = document.getElementById('signup-pw').value;
@@ -391,21 +391,63 @@
     const phone = document.getElementById('signup-phone').value;
     const name = document.getElementById('signup-name').value.trim();
     const grade = document.getElementById('signup-grade').value;
+    const zip = document.getElementById('addr-zip').value;
+    const addrMain = document.getElementById('addr-main').value;
+    const addrDetail = document.getElementById('addr-detail').value.trim();
     const requiredTerms = document.querySelectorAll('.term-check[required]');
 
-    // 종합 검증
     if(name.length < 2){ alert('학생 이름을 2자 이상 입력해 주세요.'); document.getElementById('signup-name').focus(); return; }
     if(!grade){ alert('학년을 선택해 주세요.'); document.getElementById('signup-grade').focus(); return; }
     if(!/^01[0-9]-\d{3,4}-\d{4}$/.test(phone)){ alert('올바른 휴대폰 번호를 입력해 주세요 (예: 010-1234-5678).'); document.getElementById('signup-phone').focus(); return; }
-    if(!document.getElementById('addr-zip').value){ alert('주소 검색 버튼으로 주소를 입력해 주세요.'); return; }
-    if(!document.getElementById('addr-detail').value.trim()){ alert('상세 주소를 입력해 주세요.'); document.getElementById('addr-detail').focus(); return; }
+    if(!zip){ alert('주소 검색 버튼으로 주소를 입력해 주세요.'); return; }
+    if(!addrDetail){ alert('상세 주소를 입력해 주세요.'); document.getElementById('addr-detail').focus(); return; }
     if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){ alert('올바른 이메일 주소를 입력해 주세요.'); document.getElementById('signup-email').focus(); return; }
     if(pw.length < 8){ alert('비밀번호는 8자 이상이어야 합니다.'); document.getElementById('signup-pw').focus(); return; }
     if(pw !== pw2){ alert('비밀번호가 일치하지 않습니다.'); document.getElementById('signup-pw2').focus(); return; }
     const allTermsOk = Array.from(requiredTerms).every(cb => cb.checked);
     if(!allTermsOk){ alert('필수 약관에 모두 동의해 주세요.'); return; }
 
-    alert('회원가입이 완료되었습니다!\n\n입력하신 연락처로 인증 메시지가 발송됩니다.\n(현재 UI 프로토타입 — 실제 가입은 백엔드 연동 후)');
+    const submitBtn = e.target.querySelector('button[type="submit"]');
+    if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = '가입 중...'; }
+
+    const { supabase } = await import('./supabase-client.js');
+
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password: pw,
+      options: {
+        data: {
+          display_name: name,
+          phone,
+          grade_label: grade,
+          shipping_zipcode: zip,
+          shipping_address: addrMain,
+          shipping_detail: addrDetail
+        },
+        emailRedirectTo: location.origin + location.pathname.replace(/signup\.html$/, 'login.html')
+      }
+    });
+
+    if (error) {
+      if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = '회원가입'; }
+      if (error.message.includes('already registered') || error.message.includes('User already')) {
+        alert('이미 가입된 이메일입니다. 로그인 페이지로 이동합니다.');
+        location.href = 'login.html';
+      } else {
+        alert('회원가입 실패: ' + error.message);
+      }
+      return;
+    }
+
+    // profile 기본 정보 업데이트 (grade_label은 auth.users.raw_user_meta_data에 보관)
+    if (data.user) {
+      await supabase.from('profiles').update({
+        display_name: name,
+        phone
+      }).eq('id', data.user.id);
+    }
+
+    alert('회원가입이 완료되었습니다!\n\n입력하신 이메일로 인증 메일이 발송되었습니다.\n메일 인증 후 로그인해주세요.');
     window.location.href = 'login.html';
   }
 </script>
