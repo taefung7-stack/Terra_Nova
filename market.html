@@ -3,8 +3,35 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>마켓 — TERRA NOVA ENGLISH</title>
-<meta name="description" content="Terra Nova 단어장, 모의고사 분석지·워크북, 초대형 연간 플랜 달력 구매.">
+<title>마켓 — TERRA NOVA ENGLISH · 단어장·모의고사 분석지·플래너</title>
+<meta name="description" content="Terra Nova 단어장(₩19,000), 모의고사 분석지·워크북(₩4,900), 초대형 연간 플랜 달력(₩29,000) — 레벨별 3단계 선택 가능.">
+<link rel="canonical" href="https://terranova.co.kr/market.html">
+<meta property="og:type" content="website"><meta property="og:site_name" content="TERRA NOVA ENGLISH"><meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="Terra Nova 마켓 · 단어장·워크북·플래너">
+<meta property="og:description" content="단어장 3단계, 모의고사 분석지, 연간 플랜 달력까지 한 곳에서.">
+<meta property="og:url" content="https://terranova.co.kr/market.html">
+<meta property="og:image" content="https://terranova.co.kr/og-cover.svg">
+<meta name="twitter:card" content="summary_large_image">
+<!-- Schema.org Product Catalog -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"item":{"@type":"Product","name":"Terra Nova 단어장","offers":{"@type":"Offer","price":"19000","priceCurrency":"KRW"}}},
+    {"@type":"ListItem","position":2,"item":{"@type":"Product","name":"모의고사 분석지","offers":{"@type":"Offer","price":"4900","priceCurrency":"KRW"}}},
+    {"@type":"ListItem","position":3,"item":{"@type":"Product","name":"워크북·변형문제","offers":{"@type":"Offer","price":"4900","priceCurrency":"KRW"}}},
+    {"@type":"ListItem","position":4,"item":{"@type":"Product","name":"초대형 연간 플랜 달력","offers":{"@type":"Offer","price":"29000","priceCurrency":"KRW"}}}
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://fonts.googleapis.com">
+<!-- 다음 유력 페이지 미리 가져오기 (전환 속도 개선) -->
+<link rel="prefetch" href="market_checkout.html">
+<link rel="prefetch" href="login.html">
+<link rel="stylesheet" href="shared.css">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 <style>
   :root{
@@ -114,10 +141,61 @@
   .notice strong{color:var(--accent);font-weight:800;}
   .notice p{font-size:.82rem;color:var(--dim);line-height:1.6;}
 
-  /* CART BAR */
-  .cart-bar{position:fixed;top:140px;right:5vw;z-index:85;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 16px;display:flex;align-items:center;gap:12px;font-size:.82rem;box-shadow:0 4px 20px rgba(0,0,0,.4);}
-  .cart-count{background:var(--accent);color:#02021B;font-weight:900;border-radius:999px;padding:2px 10px;font-size:.75rem;}
-  @media(max-width:780px){.cart-bar{top:auto;bottom:100px;right:20px;left:20px;justify-content:center;}}
+  /* CART BAR · 데스크톱: 우측 하단 플로팅 (인스타/카카오 위) · 모바일: 하단 오버레이 */
+  .cart-bar{position:fixed;bottom:100px;right:24px;z-index:85;}
+  .cart-bar-summary{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 16px;display:flex;align-items:center;gap:12px;font-size:.82rem;box-shadow:0 4px 20px rgba(0,0,0,.4);cursor:pointer;transition:border-color .15s;user-select:none;}
+  .cart-bar-summary:hover{border-color:rgba(0,223,129,.4);}
+  .cart-count{background:var(--accent);color:#02021B;font-weight:900;border-radius:999px;padding:2px 10px;font-size:.75rem;min-width:22px;text-align:center;}
+  .cart-caret{font-size:.7rem;color:var(--dim);transition:transform .2s;margin-left:-4px;}
+  .cart-bar.open .cart-caret{transform:rotate(180deg);color:var(--accent);}
+
+  /* CART DROPDOWN · 위쪽으로 펼침 (하단 고정이므로) */
+  .cart-dropdown{position:absolute;bottom:calc(100% + 10px);right:0;width:360px;background:var(--card);border:1px solid rgba(0,223,129,.25);border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,.6);padding:14px;display:none;z-index:86;animation:cart-fade .18s ease;}
+  @keyframes cart-fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+  .cart-bar.open .cart-dropdown{display:block;}
+  .cart-dropdown-title{font-size:.72rem;font-weight:700;color:var(--dim);letter-spacing:2px;padding:4px 6px 10px;border-bottom:1px solid var(--line);margin-bottom:8px;}
+  .cart-items-scroll{overflow-y:auto;max-height:320px;padding:2px;}
+  .cart-items-scroll::-webkit-scrollbar{width:6px;}
+  .cart-items-scroll::-webkit-scrollbar-thumb{background:rgba(0,223,129,.2);border-radius:3px;}
+  .cart-item{display:flex;align-items:center;gap:10px;padding:10px 12px;background:rgba(2,2,27,.55);border:1px solid rgba(0,223,129,.12);border-radius:7px;margin-bottom:6px;}
+  .cart-item:last-child{margin-bottom:0;}
+  .cart-item-info{flex:1;min-width:0;}
+  .cart-item-name{color:#fff;font-size:.8rem;font-weight:700;margin-bottom:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .cart-item-meta{display:flex;align-items:center;gap:6px;font-size:.68rem;color:var(--dim);flex-wrap:wrap;}
+  .cart-item-price{color:var(--accent);font-weight:700;}
+  .cart-item-tag{font-size:.6rem;font-weight:700;padding:1px 6px;border-radius:3px;letter-spacing:.3px;}
+  .cart-item-tag.ship{background:rgba(255,204,128,.14);color:#FFD08A;}
+  .cart-item-tag.pdf{background:rgba(79,195,247,.14);color:#4FC3F7;}
+
+  /* 수량 컨트롤 */
+  .cart-qty-ctrl{display:inline-flex;align-items:center;border:1px solid rgba(0,223,129,.2);border-radius:5px;overflow:hidden;margin-top:6px;}
+  .cart-qty-btn{width:22px;height:22px;background:rgba(0,223,129,.08);color:var(--accent);border:none;cursor:pointer;font-family:inherit;font-size:.85rem;font-weight:900;display:flex;align-items:center;justify-content:center;padding:0;transition:background .12s;}
+  .cart-qty-btn:hover{background:rgba(0,223,129,.2);}
+  .cart-qty-btn:disabled{opacity:.35;cursor:not-allowed;}
+  .cart-qty-val{min-width:26px;text-align:center;color:#fff;font-size:.78rem;font-weight:800;padding:0 6px;background:rgba(2,2,27,.6);}
+  .cart-item-del{background:rgba(248,113,113,.1);color:#F87171;border:1px solid rgba(248,113,113,.22);border-radius:5px;width:26px;height:26px;cursor:pointer;font-family:inherit;font-size:.9rem;flex-shrink:0;display:flex;align-items:center;justify-content:center;padding:0;transition:all .12s;}
+  .cart-item-del:hover{background:rgba(248,113,113,.22);border-color:#F87171;}
+  .cart-total-row{display:flex;justify-content:space-between;align-items:center;padding:10px 6px 4px;margin-top:8px;border-top:1px solid var(--line);font-size:.85rem;}
+  .cart-total-label{color:var(--dim);font-weight:600;}
+  .cart-total-val{color:var(--accent);font-weight:900;font-size:1.05rem;}
+  .cart-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;}
+  .cart-clear{background:transparent;color:var(--dim);border:1px solid var(--line);border-radius:6px;padding:10px;font-family:inherit;font-size:.74rem;font-weight:600;cursor:pointer;transition:color .15s,border-color .15s;}
+  .cart-clear:hover{color:#F87171;border-color:rgba(248,113,113,.4);}
+  .cart-checkout{background:var(--accent);color:#02021B;border:none;border-radius:6px;padding:10px;font-family:inherit;font-size:.8rem;font-weight:900;cursor:pointer;}
+  .cart-checkout:hover{opacity:.9;}
+  .cart-empty{padding:32px 12px;text-align:center;color:var(--dim);font-size:.82rem;line-height:1.6;}
+  .cart-empty .emoji{font-size:1.8rem;margin-bottom:8px;display:block;}
+
+  /* 태블릿 이하 — 작은 화면 대응 */
+  @media(max-width:1100px){
+    .cart-dropdown{width:min(360px,calc(100vw - 40px));}
+  }
+  /* 모바일 — 하단 플로팅, 드롭다운이 위로 펼침 */
+  @media(max-width:780px){
+    .cart-bar{bottom:90px;right:16px;}
+    .cart-dropdown{right:0;left:auto;width:min(340px,calc(100vw - 32px));max-height:60vh;}
+    .cart-items-scroll{max-height:36vh;}
+  }
 
   /* FLOATING BTNS */
   .float-btn-common{position:fixed;bottom:28px;z-index:200;display:flex;align-items:center;justify-content:center;gap:8px;height:50px;padding:0 20px;border-radius:6px;font-family:'Noto Sans KR',sans-serif;font-weight:600;font-size:.82rem;letter-spacing:.4px;text-decoration:none;transition:transform .15s,box-shadow .15s,opacity .15s;white-space:nowrap;border:none;cursor:pointer;}
@@ -230,7 +308,7 @@
 
   <div class="notice">
     <p><strong>⚡ 별도 결제 안내</strong><br>
-    마켓 상품은 월간 구독과 <strong>별도 결제창</strong>에서 주문됩니다. 구독 플랜과 혼동되지 않도록 설계되었으며, PDF 상품은 주소 입력 없이 이메일로 바로 발송됩니다.</p>
+    마켓 상품은 월간 구독과 <strong>별도 결제창</strong>에서 주문됩니다.<br>구독 플랜과 혼동되지 않도록 설계되었으며,<br>PDF 상품은 주소 입력 없이 이메일로 바로 발송됩니다.</p>
   </div>
 </section>
 
@@ -335,7 +413,7 @@
 
   <div class="notice">
     <p><strong>⚡ 별도 결제 안내</strong><br>
-    마켓 상품은 월간 구독과 <strong>별도 결제창</strong>에서 주문됩니다. 구독 플랜과 혼동되지 않도록 설계되었으며, PDF 상품은 주소 입력 없이 이메일로 바로 발송됩니다.</p>
+    마켓 상품은 월간 구독과 <strong>별도 결제창</strong>에서 주문됩니다.<br>구독 플랜과 혼동되지 않도록 설계되었으며,<br>PDF 상품은 주소 입력 없이 이메일로 바로 발송됩니다.</p>
   </div>
 </section>
 
@@ -381,7 +459,7 @@
 
   <div class="notice">
     <p><strong>⚡ 별도 결제 안내</strong><br>
-    마켓 상품은 월간 구독과 <strong>별도 결제창</strong>에서 주문됩니다. 구독 플랜과 혼동되지 않도록 설계되었으며, PDF 상품은 주소 입력 없이 이메일로 바로 발송됩니다.</p>
+    마켓 상품은 월간 구독과 <strong>별도 결제창</strong>에서 주문됩니다.<br>구독 플랜과 혼동되지 않도록 설계되었으며,<br>PDF 상품은 주소 입력 없이 이메일로 바로 발송됩니다.</p>
   </div>
 </section>
 
@@ -398,9 +476,23 @@
 </footer>
 
 <div class="cart-bar" id="cart-bar" style="display:none;">
-  <span>🛒 장바구니</span>
-  <span class="cart-count" id="cart-count">0</span>
-  <button onclick="goCheckout()" style="background:var(--accent);color:#02021B;border:none;padding:6px 14px;border-radius:6px;font-weight:800;cursor:pointer;font-family:inherit;font-size:.78rem;">결제 →</button>
+  <div class="cart-bar-summary" onclick="toggleCart(event)" role="button" aria-expanded="false" aria-controls="cart-dropdown" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleCart(event);}">
+    <span>🛒 장바구니</span>
+    <span class="cart-count" id="cart-count">0</span>
+    <span class="cart-caret" aria-hidden="true">▾</span>
+  </div>
+  <div class="cart-dropdown" id="cart-dropdown" role="region" aria-label="장바구니 상세">
+    <div class="cart-dropdown-title">장바구니 내역</div>
+    <div class="cart-items-scroll" id="cart-items-scroll"></div>
+    <div class="cart-total-row">
+      <span class="cart-total-label">총 결제금액</span>
+      <span class="cart-total-val" id="cart-total-val">0원</span>
+    </div>
+    <div class="cart-actions">
+      <button class="cart-clear" onclick="clearCart()">전체 비우기</button>
+      <button class="cart-checkout" onclick="goCheckout()">결제하기 →</button>
+    </div>
+  </div>
 </div>
 
 <!-- FLOATING BTNS -->
@@ -439,6 +531,15 @@
     if(ex) ex.qty += 1; else cart.push({id,price,name,cat,digital,qty:1});
     setCart(cart);
     showToast(name+' 장바구니에 담았습니다.');
+    // 담은 직후 드롭다운 자동 열기 (데스크톱 전용)
+    const bar = document.getElementById('cart-bar');
+    if (bar){
+      delete bar.dataset.userClosed;   // 수동 닫힘 플래그 해제
+      if (window.innerWidth >= 900) {
+        bar.classList.add('open');
+        document.querySelector('.cart-bar-summary')?.setAttribute('aria-expanded','true');
+      }
+    }
   }
   function buyNow(id, price, name, digital){
     const items = [{id,price,name,digital,qty:1}];
@@ -447,14 +548,116 @@
   }
   function goCheckout(){ location.href = 'market_checkout.html'; }
 
+  // 데스크톱 여부 — 데스크톱에서만 자동 펼침
+  const isDesktop = () => window.innerWidth >= 900;
+
   function renderCart(){
     const cart = getCart();
     const bar = document.getElementById('cart-bar');
     const cnt = document.getElementById('cart-count');
-    const total = cart.reduce((s,i)=>s+i.qty,0);
-    cnt.textContent = total;
-    bar.style.display = total > 0 ? 'flex' : 'none';
+    const list = document.getElementById('cart-items-scroll');
+    const totalVal = document.getElementById('cart-total-val');
+    const totalQty = cart.reduce((s,i)=>s+i.qty,0);
+    const totalKRW = cart.reduce((s,i)=>s + i.price * i.qty, 0);
+
+    cnt.textContent = totalQty;
+
+    if (totalQty === 0 || cart.length === 0) {
+      bar.style.display = 'none';
+      bar.classList.remove('open');
+      document.querySelector('.cart-bar-summary')?.setAttribute('aria-expanded','false');
+      return;
+    }
+    bar.style.display = 'block';
+    if (totalVal) totalVal.textContent = totalKRW.toLocaleString() + '원';
+
+    // 데스크톱: 장바구니 담김 상태면 자동 펼침 유지
+    if (isDesktop() && !bar.dataset.userClosed) {
+      bar.classList.add('open');
+      document.querySelector('.cart-bar-summary')?.setAttribute('aria-expanded','true');
+    }
+
+    if (!list) return;
+    list.innerHTML = cart.map(it => {
+      const subTotal = (it.price * it.qty).toLocaleString();
+      const safeName = escapeHtml(it.name);
+      const safeId = escapeHtml(it.id);
+      const tag = it.digital
+        ? '<span class="cart-item-tag pdf">PDF</span>'
+        : '<span class="cart-item-tag ship">배송</span>';
+      return `<div class="cart-item">
+        <div class="cart-item-info">
+          <div class="cart-item-name" title="${safeName}">${safeName}</div>
+          <div class="cart-item-meta">
+            <span class="cart-item-price">${subTotal}원</span>
+            ${tag}
+          </div>
+          <div class="cart-qty-ctrl" role="group" aria-label="${safeName} 수량 조절">
+            <button class="cart-qty-btn" onclick="decQty('${safeId}')" aria-label="수량 감소" ${it.qty <= 1 ? 'disabled' : ''}>−</button>
+            <span class="cart-qty-val" aria-live="polite">${it.qty}</span>
+            <button class="cart-qty-btn" onclick="incQty('${safeId}')" aria-label="수량 증가">+</button>
+          </div>
+        </div>
+        <button class="cart-item-del" onclick="removeCartItem('${safeId}')" aria-label="${safeName} 삭제" title="전체 삭제">×</button>
+      </div>`;
+    }).join('');
   }
+
+  function escapeHtml(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+  function toggleCart(e){
+    if (e) e.stopPropagation();
+    const bar = document.getElementById('cart-bar');
+    const sum = document.querySelector('.cart-bar-summary');
+    const isOpen = bar.classList.toggle('open');
+    sum?.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    // 사용자가 명시적으로 닫은 경우 표시 (이후 자동 펼침 방지)
+    if (!isOpen) bar.dataset.userClosed = '1';
+    else delete bar.dataset.userClosed;
+  }
+  function closeCart(){
+    const bar = document.getElementById('cart-bar');
+    if (bar) { bar.classList.remove('open'); bar.dataset.userClosed = '1'; }
+    document.querySelector('.cart-bar-summary')?.setAttribute('aria-expanded','false');
+  }
+  // 바깥 클릭·ESC 닫기 (모바일에서만 — 데스크톱은 열린 상태 유지)
+  document.addEventListener('click', (e) => {
+    if (isDesktop()) return;
+    const bar = document.getElementById('cart-bar');
+    if (bar && bar.classList.contains('open') && !bar.contains(e.target)) closeCart();
+  });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeCart(); });
+
+  // 수량 조절
+  function incQty(id){
+    const cart = getCart();
+    const it = cart.find(i => i.id === id);
+    if (!it) return;
+    it.qty += 1;
+    setCart(cart);
+  }
+  function decQty(id){
+    const cart = getCart();
+    const idx = cart.findIndex(i => i.id === id);
+    if (idx < 0) return;
+    cart[idx].qty -= 1;
+    if (cart[idx].qty <= 0) cart.splice(idx, 1);
+    setCart(cart);
+  }
+  function removeCartItem(id){
+    const cart = getCart().filter(i => i.id !== id);
+    setCart(cart);
+    showToast('삭제되었습니다.');
+  }
+  function clearCart(){
+    if (!confirm('장바구니를 모두 비우시겠습니까?')) return;
+    setCart([]);
+    const bar = document.getElementById('cart-bar');
+    if (bar) delete bar.dataset.userClosed;
+    showToast('장바구니를 비웠습니다.');
+  }
+  // 창 크기 변경 시 재렌더 (데스크톱↔모바일 전환 반영)
+  window.addEventListener('resize', () => { renderCart(); });
   function showToast(msg){
     const t = document.createElement('div');
     t.textContent = msg;

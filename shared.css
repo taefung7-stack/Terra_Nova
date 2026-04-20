@@ -1,0 +1,146 @@
+/* ================================================================
+   Terra Nova English — Shared Stylesheet
+   목적: 페이지 공통 유틸리티 (접근성 · 포커스 · 모션 · 기본 토큰)
+   전략: 기존 인라인 <style> 제거 없이 *추가*만 — 기존 페이지별
+         스타일이 우선되며, shared.css는 부족한 부분만 보완함.
+   ================================================================ */
+
+/* ── 브랜드 공통 토큰 (페이지별 변수가 없을 때 fallback) ─────────── */
+:root {
+  --tn-brand:#2DD4BF;              /* Terra Nova 민트 (공식 메인 액센트) */
+  --tn-brand-deep:#14B8A6;
+  --tn-dark:#0A0A0A;
+  --tn-card:#1C1C1C;
+  --tn-line:rgba(255,255,255,.07);
+  --tn-txt:#F0F0F0;
+  --tn-dim:rgba(240,240,240,.72);
+  --tn-error:#F87171;
+  --tn-ok:#34D399;
+  --tn-warn:#FBBF24;
+}
+
+/* ── 스크린 리더 전용 텍스트 ─────────────────────────────────── */
+.sr-only,
+.visually-hidden {
+  position:absolute!important;
+  width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+  clip:rect(0,0,0,0);white-space:nowrap;border:0;
+}
+
+/* ── 스킵 링크 (키보드·SR 사용자용) ───────────────────────────── */
+.skip-link {
+  position:absolute;top:-48px;left:8px;z-index:9999;
+  background:var(--tn-brand);color:#0A0A0A;
+  padding:10px 16px;border-radius:4px;
+  font-weight:700;text-decoration:none;font-size:.85rem;
+  transition:top .2s;
+}
+.skip-link:focus { top:8px; outline:none; }
+
+/* ── 포커스 링 (모든 포커스 가능 요소) ────────────────────────── */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline:2px solid var(--tn-brand);
+  outline-offset:3px;
+  border-radius:4px;
+}
+
+/* ── 움직임 감소 선호 환경 ──────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ── 고대비 선호 환경 ────────────────────────────────────────── */
+@media (prefers-contrast: more) {
+  :root {
+    --tn-line:rgba(255,255,255,.2);
+    --tn-dim:rgba(240,240,240,.9);
+  }
+}
+
+/* ── 터치 디바이스: 커스텀 커서 비활성화 ──────────────────────── */
+@media (hover:none), (pointer:coarse) {
+  body { cursor:auto !important; }
+  #cursor { display:none !important; }
+}
+
+/* ── 폼 유효성 피드백 (공통) ─────────────────────────────────── */
+[aria-invalid="true"] {
+  border-color:var(--tn-error) !important;
+  box-shadow:0 0 0 2px rgba(248,113,113,.15);
+}
+.field-err,
+.input-err {
+  color:var(--tn-error);
+  font-size:.72rem;
+  margin-top:6px;
+  line-height:1.4;
+  font-family:'Noto Sans KR',sans-serif;
+}
+.field-ok,
+.input-ok {
+  color:var(--tn-ok);
+  font-size:.72rem;
+  margin-top:6px;
+  line-height:1.4;
+}
+
+/* ── 이미지·미디어 기본 ──────────────────────────────────────── */
+img { max-width:100%; height:auto; }
+svg { display:inline-block; }
+
+/* ── 인쇄 최적화 (간단) ──────────────────────────────────────── */
+@media print {
+  nav, footer, .float-btn-common, .float-btn, .float-group, .float-btns,
+  #cursor, canvas#starfield, .scroll-top-float, .subscribe-float,
+  .insta-float, .kakao-float {
+    display:none !important;
+  }
+  body { background:#fff !important; color:#000 !important; }
+  a { color:#000 !important; text-decoration:underline; }
+}
+
+/* ── 기본 버튼 상태 (공통) ──────────────────────────────────── */
+button:disabled,
+[aria-disabled="true"] {
+  cursor:not-allowed;
+  opacity:.5;
+}
+
+/* ── 선택 영역 컬러 (브랜드 일관성) ─────────────────────────── */
+::selection { background:rgba(45,212,191,.35); color:#fff; }
+::-moz-selection { background:rgba(45,212,191,.35); color:#fff; }
+
+/* ── 성능: 뷰포트 밖 긴 섹션 페인트 스킵 ────────────────────── */
+/* 아래 섹션은 뷰포트에 가까워질 때까지 렌더 미루기 (Chromium/Safari 18+).
+   초기 페인트 시간 단축. 미지원 브라우저는 자동으로 무시됨. */
+#reviews, #grade-graph, #trust {
+  content-visibility: auto;
+  contain-intrinsic-size: 1 1200px;
+}
+
+/* ── 이미지·SVG 기본 lazy 로딩 ─────────────────────────────── */
+img[loading="lazy"],
+iframe[loading="lazy"] {
+  will-change: opacity;
+}
+
+/* ── 스켈레톤 로더 (폼·페이지 전환) ────────────────────────── */
+@keyframes tn-pulse {
+  0% { opacity:.6; }
+  50% { opacity:1; }
+  100% { opacity:.6; }
+}
+.tn-loading {
+  animation: tn-pulse 1.4s ease-in-out infinite;
+  pointer-events: none;
+}

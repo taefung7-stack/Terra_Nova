@@ -1,0 +1,27 @@
+# Terra Nova English — robots.txt
+# Docs: https://developers.google.com/search/docs/crawling-indexing/robots/intro
+
+User-agent: *
+Allow: /
+
+# 회원 전용 · 결제 진행 페이지는 색인 제외
+Disallow: /mypage.html
+Disallow: /login.html
+Disallow: /signup.html
+Disallow: /market_checkout.html
+
+# AI 크롤러 제한 (원치 않으면 아래 블록 삭제)
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+# Sitemap
+Sitemap: https://terranova.co.kr/sitemap.xml

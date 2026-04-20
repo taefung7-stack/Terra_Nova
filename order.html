@@ -3,7 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>구독 신청 — TERRA NOVA ENGLISH</title>
+<title>구독 신청 — TERRA NOVA ENGLISH · 월 14,900원부터</title>
+<meta name="description" content="Terra Nova 월간 독해 학습지 구독 신청 — LIGHT(₩14,900)·STANDARD(₩28,900)·PREMIUM 플랜. 6단계 레벨 · 주 5일 × 하루 2지문 · 월 40문제.">
+<link rel="canonical" href="https://terranova.co.kr/order.html">
+<meta property="og:type" content="product"><meta property="og:site_name" content="TERRA NOVA ENGLISH"><meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="월간 독해 학습지 구독 · TERRA NOVA">
+<meta property="og:description" content="교과 연계 월간 영어 독해지. LIGHT 14,900원·STANDARD 28,900원.">
+<meta property="og:url" content="https://terranova.co.kr/order.html">
+<meta property="og:image" content="https://terranova.co.kr/og-cover.svg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="shared.css">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -336,8 +348,8 @@
           <div class="annual-banner-icon">🎁</div>
           <div class="annual-banner-text">
             <strong>연간 구독 이벤트 진행 중!</strong><br>
-            연간 결제 시 <em>2개월 무료</em> <br>— 10개월 금액으로 12개월 이용하세요.<br>
-            월 환산 금액 기준으로 최대 <em>17% 절감</em>됩니다.
+            연간 결제 시 <em>2개월 무료</em> — 10개월 금액으로 12개월 이용.<br>
+            STANDARD 기준 <em>연 57,800원 절감</em> (월 환산 약 16.7% 절감)
           </div>
         </div>
 
@@ -352,7 +364,7 @@
               <div class="plan-price" id="price-light">14,900</div>
             </div>
             <div class="plan-price-unit" id="unit-light">원 / 월</div>
-            <div class="plan-annual-saving" id="saving-light">연간 35,760원 절약</div>
+            <div class="plan-annual-saving" id="saving-light">연 29,800원 절약 (2개월 무료)</div>
             <ul class="plan-features">
               <li>PDF 교재 (매월 발행)</li>
               <li>학습 해설 PDF</li>
@@ -371,7 +383,7 @@
               <div class="plan-price" id="price-standard">28,900</div>
             </div>
             <div class="plan-price-unit" id="unit-standard">원 / 월</div>
-            <div class="plan-annual-saving" id="saving-standard">연간 69,360원 절약</div>
+            <div class="plan-annual-saving" id="saving-standard">연 57,800원 절약 (2개월 무료)</div>
             <ul class="plan-features">
               <li>PDF 교재 포함</li>
               <li>실물 책 매월 배송</li>
@@ -443,12 +455,12 @@
         <div class="form-section-title">04 — 구독자 정보</div>
         <div class="form-row">
           <div class="form-group">
-            <label>학생 이름</label>
-            <input type="text" placeholder="홍길동">
+            <label for="subscriber-name">학생 이름</label>
+            <input type="text" id="subscriber-name" placeholder="홍길동" required minlength="2" autocomplete="name">
           </div>
           <div class="form-group">
-            <label>학년</label>
-            <select>
+            <label for="subscriber-grade">학년</label>
+            <select id="subscriber-grade" required>
               <option value="">선택</option>
               <option>초등 3학년</option><option>초등 4학년</option>
               <option>초등 5학년</option><option>초등 6학년</option>
@@ -460,12 +472,12 @@
           </div>
         </div>
         <div class="form-group">
-          <label>연락처 (학부모)</label>
-          <input type="tel" placeholder="010-0000-0000">
+          <label for="subscriber-phone">연락처 (학부모)</label>
+          <input type="tel" id="subscriber-phone" placeholder="010-0000-0000" required pattern="01[0-9]-?[0-9]{3,4}-?[0-9]{4}" autocomplete="tel" oninput="this.value=this.value.replace(/\D/g,'').replace(/^(\d{3})(\d{3,4})(\d{4}).*/,'$1-$2-$3').slice(0,13)">
         </div>
         <div class="form-group">
-          <label>이메일</label>
-          <input type="email" id="subscriber-email" placeholder="example@email.com">
+          <label for="subscriber-email">이메일</label>
+          <input type="email" id="subscriber-email" placeholder="example@email.com" required autocomplete="email">
         </div>
       </div>
 
@@ -571,11 +583,11 @@
 
 <!-- FLOATING CIRCLE BUTTONS -->
 <div class="float-group">
-  <a href="https://open.kakao.com/" target="_blank" class="float-btn float-kakao" style="position:relative;">
+  <a href="https://pf.kakao.com/_aLExdX" target="_blank" class="float-btn float-kakao" style="position:relative;">
     <span class="float-label">카카오 문의</span>
     <svg width="24" height="24" viewBox="0 0 24 24" fill="#181600"><path d="M12 3C6.477 3 2 6.477 2 10.5c0 2.624 1.608 4.934 4.063 6.297L5 21l4.938-2.656c.668.094 1.353.156 2.062.156 5.523 0 10-3.477 10-7.5S17.523 3 12 3z"/></svg>
   </a>
-  <a href="https://www.instagram.com/" target="_blank" class="float-btn float-insta" style="position:relative;">
+  <a href="https://www.instagram.com/terra_nova_english/" target="_blank" class="float-btn float-insta" style="position:relative;">
     <span class="float-label">인스타그램</span>
     <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
   </a>
@@ -752,15 +764,27 @@
   function submitOrder() {
     if (!selectedPlan) { alert('플랜을 선택해주세요.'); return; }
     if (!selectedLevel) { alert('레벨을 선택해주세요.'); return; }
+
+    // 구독자 정보 검증
+    const name = (document.getElementById('subscriber-name')||{}).value || '';
+    const grade = (document.getElementById('subscriber-grade')||{}).value || '';
+    const phone = (document.getElementById('subscriber-phone')||{}).value || '';
+    const email = (document.getElementById('subscriber-email')||{}).value || '';
+    if (name.trim().length < 2) { alert('학생 이름을 입력해 주세요.'); (document.getElementById('subscriber-name')||{}).focus?.(); return; }
+    if (!grade) { alert('학년을 선택해 주세요.'); (document.getElementById('subscriber-grade')||{}).focus?.(); return; }
+    if (!/^01[0-9]-?\d{3,4}-?\d{4}$/.test(phone.replace(/\s/g,''))) { alert('올바른 휴대폰 번호를 입력해 주세요 (예: 010-1234-5678).'); (document.getElementById('subscriber-phone')||{}).focus?.(); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.trim())) { alert('올바른 이메일 주소를 입력해 주세요.'); (document.getElementById('subscriber-email')||{}).focus?.(); return; }
+
     const isAnnual = billingCycle === 'annual';
     const price    = isAnnual ? annualPrice : monthlyPrice;
     alert('구독 신청이 완료되었습니다!\n\n플랜: ' + selectedPlan + ' (' + selectedPlanDisplay + ')\n레벨: ' + selectedLevel + '\n결제 주기: ' + (isAnnual?'연간':'월간') + '\n결제 금액: ' + price.toLocaleString() + '원\n\n카카오톡으로 확인 메시지가 발송됩니다.');
   }
 
-  // ── URL params: auto-select level & plan ──
+  // ── URL params: auto-select level, plan, billing cycle ──
   const params = new URLSearchParams(location.search);
-  const lvlParam  = params.get('level');
-  const planParam = params.get('plan');
+  const lvlParam   = params.get('level');
+  const planParam  = params.get('plan');
+  const cycleParam = params.get('cycle');  // 'annual' | 'monthly'
 
   if (lvlParam) {
     const btn = [...document.querySelectorAll('.level-btn')].find(b => b.querySelector('.level-name').textContent === lvlParam);
@@ -777,6 +801,15 @@
         if (p) selectPlan(card, p[0], p[1], p[2]);
       }
     }
+  }
+  // 연간 구독 자동 전환 (subscription_detail 페이지에서 "연간 구독 신청하기" 클릭 시)
+  if (cycleParam === 'annual') {
+    setBilling('annual');
+    // 부드러운 스크롤로 플랜 선택 영역으로 이동
+    setTimeout(() => {
+      const banner = document.getElementById('annual-banner');
+      if (banner) banner.scrollIntoView({behavior:'smooth', block:'center'});
+    }, 200);
   }
 
   // Init summary

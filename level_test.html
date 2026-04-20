@@ -3,7 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>레벨 테스트 — TERRA NOVA ENGLISH</title>
+<title>레벨 테스트 — TERRA NOVA ENGLISH · 10분 정밀 진단</title>
+<meta name="description" content="20문항 정밀 레벨 진단으로 나에게 맞는 영어 학습 레벨을 10분 만에 확인하세요. STARTER부터 MASTER까지 6단계 · 어휘·독해·문법·논리 종합 분석 · 학년 ceiling 자동 조정.">
+<link rel="canonical" href="https://terranova.co.kr/level_test.html">
+<meta property="og:type" content="website"><meta property="og:site_name" content="TERRA NOVA ENGLISH"><meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="10분 영어 레벨 정밀 테스트 · TERRA NOVA">
+<meta property="og:description" content="어휘·독해·문법·논리 20문항으로 나에게 맞는 학습 레벨을 진단합니다.">
+<meta property="og:url" content="https://terranova.co.kr/level_test.html">
+<meta property="og:image" content="https://terranova.co.kr/og-cover.svg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="shared.css">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -415,10 +427,10 @@
     <div class="passage-text">"The girl _______ sits next to me in class is really good at math."</div>
   </div>
   <div class="options">
-    <button class="option-btn" onclick="sel(this,'gramC','w1')"><div class="opt-dot"></div> which wrote</button>
-    <button class="option-btn" onclick="sel(this,'gramC','w2')"><div class="opt-dot"></div> whom wrote</button>
-    <button class="option-btn" onclick="sel(this,'gramC','c')"><div class="opt-dot"></div> who wrote</button>
-    <button class="option-btn" onclick="sel(this,'gramC','w3')"><div class="opt-dot"></div> whose wrote</button>
+    <button class="option-btn" onclick="sel(this,'gramC','w1')"><div class="opt-dot"></div> which</button>
+    <button class="option-btn" onclick="sel(this,'gramC','w2')"><div class="opt-dot"></div> whom</button>
+    <button class="option-btn" onclick="sel(this,'gramC','c')"><div class="opt-dot"></div> who</button>
+    <button class="option-btn" onclick="sel(this,'gramC','w3')"><div class="opt-dot"></div> whose</button>
     <button class="option-btn opt-skip" onclick="sel(this,'gramC','dk')"><div class="opt-dot"></div> 모르겠음</button>
   </div>
   <div class="btn-row"><button class="btn-prev" onclick="prev(11)">← 이전</button><button class="btn-next" id="btn12" onclick="next(13)">다음 →</button></div>
@@ -614,7 +626,7 @@
       </div>
     </div>
 
-    <div class="accuracy-note">
+    <div class="accuracy-note" id="accuracy-note">
       ⚠️ 본 테스트는 학습 배경과 자가진단을 기반으로 한 참고용 진단입니다. 실제 레벨은 학습 후 마이페이지에서 언제든지 변경 가능합니다.
     </div>
 
@@ -679,54 +691,97 @@ function prev(n) {
   document.getElementById('progress-text').textContent = n+' / '+TOTAL;
 }
 
-/* ── 점수 계산 ── */
+/* ── 점수 계산 ──
+   정확한 레벨 진단을 위한 규칙:
+   - 정답: 만점 가까이 부여
+   - 오답 (선택지 시도함): 소폭 기본점수 (문제 형식 이해는 있음)
+   - 'dk' (모르겠음 선택): 최저점 (진짜 모름을 인정한 점수)
+   ───────────────────────────────────────── */
 function calcScores() {
-  // 어휘력: A(자가) + B(자가) + C(객관식)
-  const va = {'0-2':10,'3-5':30,'6-7':65,'8':90}[answers.vocabA]||0;
-  const vb = {'0-2':0,'3-5':20,'6-7':55,'8':90}[answers.vocabB]||0;
-  const vc = (answers.vocabC==='b') ? 80 : 15;
-  const vocab = Math.round((va+vb+vc)/3);
+  // 내부 헬퍼: 정답/오답/모름을 구분
+  const score = (ans, correct, correctPts, wrongPts, dkPts) =>
+    ans === correct ? correctPts : ans === 'dk' ? dkPts : wrongPts;
 
-  // 독해력: A+B+C+D
-  const ra = (answers.rdA==='c') ? 28 : 7;
-  const rb = (answers.rdB==='c') ? 28 : 5;
-  const rc = (answers.rdC==='c') ? 24 : 5;
-  const rd = (answers.rdD==='b') ? 24 : 5;
-  const read = Math.min(100, ra+rb+rc+rd);
+  // ── 어휘력 (A 자가 + B 자가 + C 객관식) ──
+  const va = {'0-2':12,'3-5':32,'6-7':62,'8':88}[answers.vocabA] || 8;
+  const vb = {'0-2':4,'3-5':22,'6-7':58,'8':92}[answers.vocabB] || 4;
+  const vc = score(answers.vocabC, 'b', 88, 18, 4);
+  const vocab = Math.round((va + vb + vc) / 3);
 
-  // 문법: 객관식 3문제(60%) + 자가진단(40%)
-  const ga = (answers.gramA==='c') ? 35 : 0;
-  const gb = (answers.gramB==='c') ? 35 : 0;
-  const gc = (answers.gramC==='c') ? 30 : 0;
-  const gramObj = Math.min(100, ga+gb+gc);
-  const gmap = {기초:15,초중급:35,중급:60,고급:80,수능:100};
-  const gramSelf = gmap[answers.grammar]||15;
-  const gram = Math.round(gramObj*0.6 + gramSelf*0.4);
+  // ── 독해력 (A + B + C + D 4문항) ──
+  // 정답 합산 시 최대 100점 / 모두 오답이면 약 18~20점 floor
+  const ra = score(answers.rdA, 'c', 25, 6, 2);
+  const rb = score(answers.rdB, 'c', 25, 4, 2);
+  const rc = score(answers.rdC, 'c', 25, 4, 2);
+  const rd = score(answers.rdD, 'b', 25, 4, 2);
+  const read = Math.min(100, ra + rb + rc + rd);
 
-  // 논리 추론: 순서+삽입(60%) + 체감 난이도(40%)
-  const ordOk = (answers.order==='c') ? 50 : 8;
-  const insOk = (answers.insertion==='c') ? 50 : 8;
-  const logicObj = Math.min(100, ordOk+insOk);
-  const diffOk = {매우어려움:10,어려움:30,보통:55,쉬움:80}[answers.difficulty]||20;
-  const logic = Math.round(logicObj*0.6 + diffOk*0.4);
+  // ── 문법 (객관식 3문항 65% + 자가진단 35%) ──
+  // 자가진단 비중 축소 (객관식이 더 정확한 지표)
+  const ga = score(answers.gramA, 'c', 34, 4, 0);
+  const gb = score(answers.gramB, 'c', 34, 4, 0);
+  const gc = score(answers.gramC, 'c', 32, 4, 0);
+  const gramObj = Math.min(100, ga + gb + gc);
+  const gmap = {기초:15, 초중급:35, 중급:58, 고급:78, 수능:95};
+  const gramSelf = gmap[answers.grammar] || 12;
+  const gram = Math.round(gramObj * 0.65 + gramSelf * 0.35);
+
+  // ── 논리 추론 (순서 + 삽입 객관식 70% + 체감 난이도 30%) ──
+  // 객관식 비중 확대
+  const ordOk = score(answers.order, 'c', 50, 6, 2);
+  const insOk = score(answers.insertion, 'c', 50, 6, 2);
+  const logicObj = Math.min(100, ordOk + insOk);
+  const diffOk = {매우어려움:8, 어려움:28, 보통:58, 쉬움:82}[answers.difficulty] || 18;
+  const logic = Math.round(logicObj * 0.7 + diffOk * 0.3);
 
   return {vocab, read, gram, logic};
 }
 
-/* ── 레벨 결정 ── */
+/* ── 응답 신뢰도 측정: 'dk' 비율이 높으면 신뢰도 하락 ── */
+function calcConfidence() {
+  const objKeys = ['vocabC','rdA','rdB','rdC','rdD','gramA','gramB','gramC','order','insertion'];
+  const total = objKeys.length;
+  let dkCount = 0;
+  objKeys.forEach(k => { if (answers[k] === 'dk') dkCount++; });
+  const dkRatio = dkCount / total;
+  if (dkRatio >= 0.5) return {level:'low', dkCount, total, label:'낮음'};
+  if (dkRatio >= 0.3) return {level:'mid', dkCount, total, label:'보통'};
+  return {level:'high', dkCount, total, label:'높음'};
+}
+
+/* ── 레벨 결정 ──
+   - 학년 base 40% + 점수 lvl 60%
+   - 점수 threshold는 실제 레벨 평균 벤치마크에 맞춰 조정
+   - MASTER는 avg ≥ 85, 최저 영역 점수 ≥ 70 요건 추가 (과대 추천 방지)
+   - 학년 ceiling: 고2 이하는 MASTER 원천 차단 (학년 불일치 콘텐츠 방지)
+   ───────────────────────────────────────── */
 function calcLevel(sc) {
-  const avg = (sc.vocab+sc.read+sc.gram+sc.logic)/4;
-  const gradeBase = {'초3-4':0,'초5-6':1,'중1-2':2,'중3-고1':3,'고2':4,'고3':5}[answers.grade]||0;
+  const avg = (sc.vocab + sc.read + sc.gram + sc.logic) / 4;
+  const minDomain = Math.min(sc.vocab, sc.read, sc.gram, sc.logic);
+  const gradeBase = {'초3-4':0,'초5-6':1,'중1-2':2,'중3-고1':3,'고2':4,'고3':5}[answers.grade] || 0;
+
+  // 점수 기반 레벨 (벤치마크와 일치)
   let scoreLvl;
-  if(avg < 22) scoreLvl = 0;
-  else if(avg < 38) scoreLvl = 1;
-  else if(avg < 52) scoreLvl = 2;
-  else if(avg < 65) scoreLvl = 3;
-  else if(avg < 80) scoreLvl = 4;
+  if (avg < 28) scoreLvl = 0;
+  else if (avg < 42) scoreLvl = 1;
+  else if (avg < 56) scoreLvl = 2;
+  else if (avg < 70) scoreLvl = 3;
+  else if (avg < 84) scoreLvl = 4;
   else scoreLvl = 5;
-  const finalLvl = Math.round(gradeBase*0.4 + scoreLvl*0.6);
+
+  // MASTER 추가 요건: 최저 영역 ≥ 70 (영역 간 균형 확인)
+  if (scoreLvl === 5 && minDomain < 70) scoreLvl = 4;
+
+  let finalLvl = Math.round(gradeBase * 0.4 + scoreLvl * 0.6);
+  finalLvl = Math.max(0, Math.min(5, finalLvl));
+
+  // 학년 ceiling: 고2 이하 학생은 MASTER 콘텐츠 차단
+  if (gradeBase <= 4 && finalLvl === 5) finalLvl = 4;
+  // 초3-4 학생은 INTERMEDIATE까지만 (수능형 지문 부담)
+  if (gradeBase === 0 && finalLvl > 3) finalLvl = 3;
+
   const levels = ['STARTER','JUNIOR','BASIC','INTERMEDIATE','ADVANCED','MASTER'];
-  return {lvl: levels[Math.min(5,finalLvl)], idx: Math.min(5,finalLvl), avg};
+  return {lvl: levels[finalLvl], idx: finalLvl, avg, scoreLvl, gradeBase, minDomain};
 }
 
 /* ── 등급 문자 ── */
@@ -845,6 +900,21 @@ function showResult() {
   const sc = calcScores();
   const {lvl, avg} = calcLevel(sc);
   const info = levelData[lvl];
+  const conf = calcConfidence();
+
+  // 신뢰도 경고 메시지 (모르겠음 비율 과다 시)
+  const note = document.getElementById('accuracy-note');
+  if (conf.level === 'low') {
+    note.innerHTML = `⚠️ <strong>진단 신뢰도: 낮음</strong> (객관식 ${conf.total}문항 중 ${conf.dkCount}문항 '모르겠음' 선택)<br>
+      이 결과는 참고용입니다. 더 정확한 레벨 진단을 원하시면 <strong style="color:var(--accent);">다시 테스트</strong>를 권장드립니다. 실제 레벨은 학습 후 마이페이지에서 언제든지 변경 가능합니다.`;
+    note.style.background = 'rgba(248,113,113,.07)';
+    note.style.borderColor = 'rgba(248,113,113,.3)';
+    note.style.color = 'rgba(255,180,180,.95)';
+  } else if (conf.level === 'mid') {
+    note.innerHTML = `ℹ️ <strong>진단 신뢰도: 보통</strong> (${conf.total}문항 중 ${conf.dkCount}문항 '모르겠음'). 결과는 참고용으로 활용해 주세요. 실제 레벨은 학습 후 마이페이지에서 변경 가능합니다.`;
+  } else {
+    note.innerHTML = `✓ <strong>진단 신뢰도: 높음</strong> (객관식 10문항 중 ${conf.dkCount}문항만 '모르겠음'). 본 테스트는 참고용이며, 실제 레벨은 학습 후 마이페이지에서 언제든지 변경 가능합니다.`;
+  }
 
   // 레벨 표시
   document.getElementById('result-level-box').textContent = lvl;

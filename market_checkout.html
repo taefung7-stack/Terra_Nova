@@ -4,8 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>마켓 결제 — TERRA NOVA ENGLISH</title>
+<meta name="description" content="Terra Nova 마켓 결제 페이지 — 단어장·모의고사 분석지·워크북·플래너 주문 확인 및 결제.">
+<link rel="canonical" href="https://terranova.co.kr/market_checkout.html">
+<meta name="robots" content="noindex,follow">
+<meta property="og:type" content="website"><meta property="og:site_name" content="TERRA NOVA ENGLISH"><meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="마켓 결제 · TERRA NOVA ENGLISH">
+<meta property="og:image" content="https://terranova.co.kr/og-cover.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="shared.css">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<!-- Daum Postcode: 클릭 시 lazy-load 하여 초기 페이지 로딩 속도 개선 -->
 <style>
   :root{
     --bg:#02021B; --bg2:#06302B; --card:#08453A; --card2:#095544;
@@ -345,8 +355,30 @@
     document.querySelectorAll('.pay-method').forEach(m=>m.classList.remove('active'));
     el.classList.add('active');
   }
+  // Daum Postcode lazy-load (초기 페이지 속도 개선)
+  let _daumLoading = null;
+  function loadDaumPostcode(){
+    if (window.daum && window.daum.Postcode) return Promise.resolve();
+    if (_daumLoading) return _daumLoading;
+    _daumLoading = new Promise((resolve, reject) => {
+      const s = document.createElement('script');
+      s.src = '//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js';
+      s.async = true;
+      s.onload = resolve;
+      s.onerror = reject;
+      document.head.appendChild(s);
+    });
+    return _daumLoading;
+  }
+  function openDaumPostcode(){
+    new daum.Postcode({ oncomplete: function(data){
+      document.getElementById('addr-zip').value = data.zonecode;
+      document.getElementById('addr-main').value = data.roadAddress || data.jibunAddress;
+      document.getElementById('addr-detail').focus();
+    }}).open();
+  }
   function searchAddress(){
-    if (typeof daum === 'undefined' || !daum.Postcode) {
+    loadDaumPostcode().then(openDaumPostcode).catch(() => {
       const zip = prompt('우편번호를 입력하세요 (예: 06234)');
       if (!zip) return;
       const addr = prompt('기본 주소를 입력하세요');
@@ -354,13 +386,7 @@
       document.getElementById('addr-zip').value = zip;
       document.getElementById('addr-main').value = addr;
       document.getElementById('addr-detail').focus();
-      return;
-    }
-    new daum.Postcode({ oncomplete: function(data){
-      document.getElementById('addr-zip').value = data.zonecode;
-      document.getElementById('addr-main').value = data.roadAddress || data.jibunAddress;
-      document.getElementById('addr-detail').focus();
-    }}).open();
+    });
   }
   function doPay(){
     const items = getItems();

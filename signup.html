@@ -4,8 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>회원가입 — TERRA NOVA ENGLISH</title>
+<meta name="description" content="Terra Nova ENGLISH 회원가입 — 간단한 3단계 가입으로 무료 샘플·레벨 테스트·월간 구독 즉시 시작.">
+<link rel="canonical" href="https://terranova.co.kr/signup.html">
+<meta name="robots" content="noindex,follow">
+<meta property="og:type" content="website"><meta property="og:site_name" content="TERRA NOVA ENGLISH"><meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="회원가입 · TERRA NOVA ENGLISH">
+<meta property="og:description" content="간단 가입으로 Terra Nova 학습 서비스를 시작하세요.">
+<meta property="og:url" content="https://terranova.co.kr/signup.html">
+<meta property="og:image" content="https://terranova.co.kr/og-cover.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="shared.css">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<!-- Daum Postcode: 클릭 시 lazy-load 하여 초기 페이지 로딩 속도 개선 -->
 <style>
   :root {
     --dark:#0A0A0A; --mid:#111111; --card:#1C1C1C; --card2:#222222;
@@ -165,12 +177,12 @@
 
       <div class="form-row">
         <div class="form-group">
-          <label>학생 이름</label>
-          <input type="text" placeholder="홍길동" required>
+          <label for="signup-name">학생 이름</label>
+          <input type="text" id="signup-name" name="name" placeholder="홍길동" required minlength="2" autocomplete="name" aria-required="true">
         </div>
         <div class="form-group">
-          <label>학년</label>
-          <select required>
+          <label for="signup-grade">학년</label>
+          <select id="signup-grade" name="grade" required aria-required="true">
             <option value="">선택</option>
             <option>초등 3학년</option><option>초등 4학년</option>
             <option>초등 5학년</option><option>초등 6학년</option>
@@ -183,9 +195,9 @@
       </div>
 
       <div class="form-group">
-        <label>학부모 연락처</label>
-        <input type="tel" placeholder="010-0000-0000" required>
-        <div class="input-note">학습 관련 안내 및 배송 정보를 받을 번호입니다.</div>
+        <label for="signup-phone">학부모 연락처</label>
+        <input type="tel" id="signup-phone" name="phone" placeholder="010-0000-0000" required pattern="01[0-9]-?[0-9]{3,4}-?[0-9]{4}" autocomplete="tel" aria-required="true" aria-describedby="phone-note" oninput="formatPhone(this);checkPhone(this)">
+        <div class="input-note" id="phone-note">학습 관련 안내 및 배송 정보를 받을 번호입니다.</div>
       </div>
 
       <!-- 배송 주소 -->
@@ -209,14 +221,14 @@
       </div>
 
       <div class="form-group">
-        <label>이메일</label>
-        <input type="email" placeholder="example@email.com" required oninput="checkEmail(this)">
+        <label for="signup-email">이메일</label>
+        <input type="email" id="signup-email" name="email" placeholder="example@email.com" required autocomplete="email" aria-required="true" aria-describedby="email-note" oninput="checkEmail(this)">
         <div class="input-note" id="email-note"></div>
       </div>
 
       <div class="form-group">
-        <label>비밀번호</label>
-        <input type="password" placeholder="8자리 이상 입력" required oninput="checkPw(this)">
+        <label for="signup-pw">비밀번호</label>
+        <input type="password" id="signup-pw" name="password" placeholder="8자 이상 (영문+숫자 권장)" required minlength="8" autocomplete="new-password" aria-required="true" aria-describedby="pw-label" oninput="checkPw(this)">
         <div class="pw-strength">
           <div class="pw-strength-bar">
             <div class="pw-bar-seg" id="bar1"></div>
@@ -228,8 +240,8 @@
       </div>
 
       <div class="form-group">
-        <label>비밀번호 확인</label>
-        <input type="password" placeholder="비밀번호 재입력" required oninput="checkPwConfirm(this)">
+        <label for="signup-pw2">비밀번호 확인</label>
+        <input type="password" id="signup-pw2" name="password-confirm" placeholder="비밀번호 재입력" required autocomplete="new-password" aria-required="true" aria-describedby="pw-confirm-note" oninput="checkPwConfirm(this)">
         <div class="input-note" id="pw-confirm-note"></div>
       </div>
 
@@ -281,17 +293,22 @@
 <script>
   function socialSignup(p) { alert(p+' 가입은 백엔드 연동 후 사용 가능합니다.'); }
 
-  function searchAddress() {
-    if (typeof daum === 'undefined' || !daum.Postcode) {
-      const zip = prompt('우편번호를 입력하세요 (예: 06234)');
-      if (!zip) return;
-      const addr = prompt('기본 주소를 입력하세요');
-      if (!addr) return;
-      document.getElementById('addr-zip').value = zip;
-      document.getElementById('addr-main').value = addr;
-      document.getElementById('addr-detail').focus();
-      return;
-    }
+  // Daum Postcode를 클릭 시 lazy-load (초기 페이지 속도 개선)
+  let _daumLoading = null;
+  function loadDaumPostcode(){
+    if (window.daum && window.daum.Postcode) return Promise.resolve();
+    if (_daumLoading) return _daumLoading;
+    _daumLoading = new Promise((resolve, reject) => {
+      const s = document.createElement('script');
+      s.src = '//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js';
+      s.async = true;
+      s.onload = resolve;
+      s.onerror = reject;
+      document.head.appendChild(s);
+    });
+    return _daumLoading;
+  }
+  function openDaumPostcode(){
     new daum.Postcode({
       oncomplete: function(data) {
         document.getElementById('addr-zip').value = data.zonecode;
@@ -299,6 +316,18 @@
         document.getElementById('addr-detail').focus();
       }
     }).open();
+  }
+  function searchAddress() {
+    loadDaumPostcode().then(openDaumPostcode).catch(() => {
+      // 네트워크 실패 시 수동 입력 폴백
+      const zip = prompt('우편번호를 입력하세요 (예: 06234)');
+      if (!zip) return;
+      const addr = prompt('기본 주소를 입력하세요');
+      if (!addr) return;
+      document.getElementById('addr-zip').value = zip;
+      document.getElementById('addr-main').value = addr;
+      document.getElementById('addr-detail').focus();
+    });
   }
 
   function checkEmail(inp) {
@@ -325,12 +354,29 @@
   }
 
   function checkPwConfirm(inp) {
-    const pw = document.querySelector('input[type=password]').value;
+    const pw = document.getElementById('signup-pw').value;
     const el = document.getElementById('pw-confirm-note');
     if(!inp.value) { el.textContent = ''; return; }
     const match = pw === inp.value;
     el.textContent = match ? '✓ 비밀번호가 일치합니다.' : '비밀번호가 일치하지 않습니다.';
     el.className = 'input-note ' + (match ? 'input-ok' : 'input-err');
+    inp.setAttribute('aria-invalid', match ? 'false' : 'true');
+  }
+
+  function formatPhone(inp) {
+    let v = inp.value.replace(/\D/g,'');
+    if(v.length > 11) v = v.slice(0,11);
+    if(v.length >= 7) v = v.slice(0,3)+'-'+v.slice(3,7)+'-'+v.slice(7);
+    else if(v.length >= 4) v = v.slice(0,3)+'-'+v.slice(3);
+    inp.value = v;
+  }
+  function checkPhone(inp) {
+    const ok = /^01[0-9]-\d{3,4}-\d{4}$/.test(inp.value);
+    const el = document.getElementById('phone-note');
+    if(!inp.value){ el.textContent='학습 관련 안내 및 배송 정보를 받을 번호입니다.'; el.className='input-note'; inp.setAttribute('aria-invalid','false'); return; }
+    el.textContent = ok ? '✓ 올바른 번호 형식입니다.' : '휴대폰 번호 형식이 아닙니다 (예: 010-1234-5678).';
+    el.className = 'input-note ' + (ok ? 'input-ok' : 'input-err');
+    inp.setAttribute('aria-invalid', ok ? 'false' : 'true');
   }
 
   function toggleAll(cb) {
@@ -339,18 +385,38 @@
 
   function handleSignup(e) {
     e.preventDefault();
-    alert('회원가입이 완료되었습니다!\n\n입력하신 연락처로 인증 메시지가 발송됩니다.\n(현재 UI 프로토타입)');
+    const email = document.getElementById('signup-email').value.trim();
+    const pw = document.getElementById('signup-pw').value;
+    const pw2 = document.getElementById('signup-pw2').value;
+    const phone = document.getElementById('signup-phone').value;
+    const name = document.getElementById('signup-name').value.trim();
+    const grade = document.getElementById('signup-grade').value;
+    const requiredTerms = document.querySelectorAll('.term-check[required]');
+
+    // 종합 검증
+    if(name.length < 2){ alert('학생 이름을 2자 이상 입력해 주세요.'); document.getElementById('signup-name').focus(); return; }
+    if(!grade){ alert('학년을 선택해 주세요.'); document.getElementById('signup-grade').focus(); return; }
+    if(!/^01[0-9]-\d{3,4}-\d{4}$/.test(phone)){ alert('올바른 휴대폰 번호를 입력해 주세요 (예: 010-1234-5678).'); document.getElementById('signup-phone').focus(); return; }
+    if(!document.getElementById('addr-zip').value){ alert('주소 검색 버튼으로 주소를 입력해 주세요.'); return; }
+    if(!document.getElementById('addr-detail').value.trim()){ alert('상세 주소를 입력해 주세요.'); document.getElementById('addr-detail').focus(); return; }
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){ alert('올바른 이메일 주소를 입력해 주세요.'); document.getElementById('signup-email').focus(); return; }
+    if(pw.length < 8){ alert('비밀번호는 8자 이상이어야 합니다.'); document.getElementById('signup-pw').focus(); return; }
+    if(pw !== pw2){ alert('비밀번호가 일치하지 않습니다.'); document.getElementById('signup-pw2').focus(); return; }
+    const allTermsOk = Array.from(requiredTerms).every(cb => cb.checked);
+    if(!allTermsOk){ alert('필수 약관에 모두 동의해 주세요.'); return; }
+
+    alert('회원가입이 완료되었습니다!\n\n입력하신 연락처로 인증 메시지가 발송됩니다.\n(현재 UI 프로토타입 — 실제 가입은 백엔드 연동 후)');
     window.location.href = 'login.html';
   }
 </script>
 
 <!-- FLOATING CIRCLE BUTTONS -->
 <div class="float-group">
-  <a href="https://open.kakao.com/" target="_blank" class="float-btn float-kakao" style="position:relative;">
+  <a href="https://pf.kakao.com/_aLExdX" target="_blank" class="float-btn float-kakao" style="position:relative;">
     <span class="float-label">카카오 문의</span>
     <svg width="24" height="24" viewBox="0 0 24 24" fill="#181600"><path d="M12 3C6.477 3 2 6.477 2 10.5c0 2.624 1.608 4.934 4.063 6.297L5 21l4.938-2.656c.668.094 1.353.156 2.062.156 5.523 0 10-3.477 10-7.5S17.523 3 12 3z"/></svg>
   </a>
-  <a href="https://www.instagram.com/" target="_blank" class="float-btn float-insta" style="position:relative;">
+  <a href="https://www.instagram.com/terra_nova_english/" target="_blank" class="float-btn float-insta" style="position:relative;">
     <span class="float-label">인스타그램</span>
     <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
   </a>
