@@ -27,14 +27,25 @@
 
   /* NAV */
   nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;height:68px;background:rgba(6,6,15,.95);backdrop-filter:blur(24px);border-bottom:1px solid var(--line);}
-  .logo-wrap{display:flex;flex-direction:column;gap:2px;text-decoration:none;}
+  .logo-wrap,.nav-logo{display:flex;flex-direction:column;gap:2px;text-decoration:none;}
   .logo-main{font-family:'Bebas Neue',sans-serif;font-size:1.45rem;letter-spacing:7px;color:#fff;}
   .logo-eng{font-size:.5rem;font-weight:500;letter-spacing:5px;color:rgba(45,212,191,.35);text-transform:uppercase;}
-  .nav-right{display:flex;align-items:center;gap:20px;}
-  .nav-username{font-size:.8rem;color:var(--dim);}
-  .nav-username strong{color:#fff;}
-  .btn-logout{background:none;border:1px solid var(--line);padding:6px 14px;border-radius:4px;color:var(--dim);font-family:'Noto Sans KR',sans-serif;font-size:.72rem;cursor:pointer;transition:color .2s,border-color .2s;}
-  .btn-logout:hover{color:#fff;border-color:rgba(255,255,255,.2);}
+  .nav-links{display:flex;gap:28px;list-style:none;align-items:center;}
+  .nav-links a{color:var(--dim);text-decoration:none;font-size:.75rem;font-weight:500;letter-spacing:.8px;transition:color .2s;cursor:pointer;}
+  .nav-links a:hover{color:#fff;}
+  .nav-links .nav-cta{color:var(--accent)!important;border:1px solid rgba(45,212,191,.3)!important;padding:7px 18px!important;border-radius:4px!important;font-weight:600!important;}
+  .nav-links .nav-cta:hover{background:rgba(45,212,191,.08);}
+  .nav-hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:8px 4px;}
+  .nav-hamburger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:.2s;}
+  @media(max-width:900px){
+    .nav-links{display:none;}
+    .nav-hamburger{display:flex;}
+    .nav-links.open{display:flex!important;flex-direction:column;position:fixed;top:68px;left:0;right:0;background:rgba(6,6,15,.97);backdrop-filter:blur(16px);padding:16px 5vw 24px;gap:0;border-bottom:1px solid var(--line);z-index:99;}
+    .nav-links.open li{width:100%;}
+    .nav-links.open a{display:block;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:.88rem;color:rgba(240,240,240,.85)!important;border-radius:0!important;}
+    .nav-links.open li:last-child a{border-bottom:none;}
+    .nav-links.open .nav-cta{border:none!important;padding:14px 0!important;color:var(--accent)!important;}
+  }
 
   /* LAYOUT */
   .page-wrap{padding-top:68px;display:flex;min-height:100vh;}
@@ -161,6 +172,7 @@
   .float-btn:hover .float-label{opacity:1;}
 </style>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="./analytics.js" defer></script>
 </head>
 <body>
 
@@ -170,12 +182,18 @@
     <div class="logo-main">TERRA NOVA</div>
     <div class="logo-eng">ENGLISH</div>
   </a>
-  <div class="nav-right">
-    <a href="market.html" style="color:var(--dim,#aaa);text-decoration:none;font-size:.82rem;font-weight:600;margin-right:14px;">마켓</a>
-    <a href="order.html" style="background:var(--accent);color:#02021B;text-decoration:none;font-size:.78rem;font-weight:900;padding:8px 16px;border-radius:6px;margin-right:14px;letter-spacing:.3px;">구독 신청</a>
-    <span class="nav-username"><strong id="nav-user-name">...</strong> 님</span>
-    <button class="btn-logout" id="btn-logout">로그아웃</button>
-  </div>
+  <ul class="nav-links">
+    <li><a href="index.html">홈</a></li>
+    <li><a href="subscription_detail_complete.html">구독안내</a></li>
+    <li><a href="level_test.html">레벨테스트</a></li>
+    <li><a href="sample.html">무료샘플</a></li>
+    <li><a href="market.html">마켓</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="mypage.html" style="color:var(--accent);"><strong id="nav-user-name">회원</strong> 님</a></li>
+    <li><a href="#" id="btn-logout">로그아웃</a></li>
+    <li><a href="order.html" class="nav-cta">구독 신청</a></li>
+  </ul>
+  <button class="nav-hamburger" id="nav-hamburger" onclick="toggleNav()" aria-label="메뉴"><span></span><span></span><span></span></button>
 </nav>
 
 <!-- MOBILE TAB MENU -->
@@ -558,6 +576,8 @@
       alert('레벨 변경 신청이 완료되었습니다!\n\n새 레벨: ' + lvl + '\n적용: 2026년 5월 발송분부터');
     }
   }
+  function toggleNav(){document.getElementById('nav-hamburger').classList.toggle('open');document.querySelector('.nav-links').classList.toggle('open');}
+  document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>{document.getElementById('nav-hamburger')?.classList.remove('open');document.querySelector('.nav-links')?.classList.remove('open');}));
 </script>
 
 <!-- Supabase 실데이터 연동 -->
@@ -727,7 +747,8 @@
     });
 
     // ── 로그아웃 ────────────────────────
-    $('btn-logout')?.addEventListener('click', async () => {
+    $('btn-logout')?.addEventListener('click', async (e) => {
+      e.preventDefault();
       if (!confirm('로그아웃 하시겠습니까?')) return;
       await signOut();
     });

@@ -216,6 +216,7 @@
   .float-label{position:absolute;right:60px;background:rgba(0,0,0,.75);color:#fff;font-size:.68rem;font-weight:600;padding:4px 10px;border-radius:4px;white-space:nowrap;opacity:0;transition:opacity .2s;pointer-events:none;}
   .float-btn:hover .float-label{opacity:1;}
 </style>
+<script src="./analytics.js" defer></script>
 </head>
 <body>
 
@@ -229,11 +230,13 @@
     <li><a href="index.html">홈</a></li>
     <li><a href="subscription_detail_complete.html">구독안내</a></li>
     <li><a href="level_test.html">레벨테스트</a></li>
+    <li><a href="sample.html">무료샘플</a></li>
     <li><a href="market.html">마켓</a></li>
     <li><a href="faq.html">FAQ</a></li>
     <li data-auth="guest"><a href="login.html" class="nav-login">로그인</a></li>
     <li data-auth="user" style="display:none;"><a href="mypage.html"><span data-user-name>회원</span> 님</a></li>
     <li data-auth="user" style="display:none;"><a href="#" data-action="logout">로그아웃</a></li>
+    <li><a href="order.html" class="nav-cta" style="color:var(--accent);">구독 신청</a></li>
   </ul>
   <button class="nav-hamburger" id="nav-hamburger" onclick="toggleNav()" aria-label="메뉴"><span></span><span></span><span></span></button>
 </nav>

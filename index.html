@@ -7,6 +7,17 @@
 <meta name="description" content="수능영어 전문 학습자료 Terra Nova. 교과 연계 독해로 영어 + 수학·과학·사회·국어 배경지식을 동시에. 월 14,900원부터 · 6단계 레벨 · SKY 출신 현직 강남·목동 강사 설계.">
 <meta name="keywords" content="수능영어,영어 독해,월간 학습지,교과 연계,레벨 테스트,Terra Nova,내신 영어,수능 1등급">
 <meta name="author" content="Terra Nova English">
+<!-- Search Console 인증 (사용자가 코드 발급받으면 content 값만 교체) -->
+<!-- <meta name="google-site-verification" content="REPLACE_AFTER_SEARCH_CONSOLE_SETUP"> -->
+<!-- <meta name="naver-site-verification" content="REPLACE_AFTER_NAVER_WEBMASTER_SETUP"> -->
+<!-- PWA -->
+<link rel="manifest" href="./manifest.webmanifest">
+<meta name="theme-color" content="#2DD4BF">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Terra Nova">
+<link rel="apple-touch-icon" href="./logo.png">
+<script src="./pwa-register.js" defer></script>
 <link rel="canonical" href="https://terranova.co.kr/">
 <!-- Open Graph -->
 <meta property="og:type" content="website">
@@ -599,6 +610,7 @@
     }
   }
 </style>
+<script src="./analytics.js" defer></script>
 </head>
 <body>
 
@@ -2438,8 +2450,50 @@
     <div class="footer-logo">TERRA NOVA</div>
     <div class="footer-sub2">ENGLISH · 수능영어 전문 학습자료</div>
   </div>
-  <p>© 2025 Terra Nova English. All rights reserved.</p>
+
+  <!-- 뉴스레터 구독 -->
+  <div style="margin-top:18px;max-width:420px;width:100%;">
+    <div style="font-size:.72rem;color:var(--dim);margin-bottom:10px;letter-spacing:.5px;">월간 학습 팁·신규 콘텐츠 소식받기</div>
+    <form id="newsletter-form" style="display:flex;gap:8px;">
+      <input type="email" id="newsletter-email" required placeholder="your@email.com" style="flex:1;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);color:#fff;padding:10px 14px;border-radius:6px;font-size:.82rem;font-family:inherit;outline:none;">
+      <button type="submit" style="background:var(--accent);color:#0A0A0A;border:none;padding:10px 20px;border-radius:6px;font-weight:800;font-size:.78rem;cursor:pointer;font-family:inherit;white-space:nowrap;">구독</button>
+    </form>
+    <div id="newsletter-msg" style="font-size:.7rem;color:var(--accent);margin-top:6px;min-height:14px;"></div>
+  </div>
+
+  <div style="display:flex;gap:20px;flex-wrap:wrap;justify-content:center;margin-top:16px;">
+    <a href="terms.html" style="color:var(--dim2);text-decoration:none;font-size:.72rem;">이용약관</a>
+    <a href="privacy.html" style="color:var(--dim2);text-decoration:none;font-size:.72rem;font-weight:700;">개인정보처리방침</a>
+    <a href="faq.html" style="color:var(--dim2);text-decoration:none;font-size:.72rem;">FAQ</a>
+    <a href="mailto:support@terranova.co.kr" style="color:var(--dim2);text-decoration:none;font-size:.72rem;">문의</a>
+  </div>
+  <p>© 2026 Terra Nova English. All rights reserved.</p>
 </footer>
+
+<script type="module">
+  import { supabase } from './supabase-client.js';
+  const form = document.getElementById('newsletter-form');
+  const msg = document.getElementById('newsletter-msg');
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = document.getElementById('newsletter-email').value.trim();
+    if (!email) return;
+    msg.style.color = 'var(--dim)';
+    msg.textContent = '구독 중...';
+    const { error } = await supabase.from('newsletter_subscribers').insert({
+      email, source: 'index_footer'
+    });
+    if (error) {
+      if (error.code === '23505') { msg.style.color = '#FFD08A'; msg.textContent = '이미 구독된 이메일입니다.'; }
+      else { msg.style.color = '#F87171'; msg.textContent = '구독 실패: ' + error.message; }
+      return;
+    }
+    msg.style.color = 'var(--accent)';
+    msg.textContent = '✓ 구독이 완료되었습니다. 감사합니다!';
+    form.reset();
+    window.trackEvent?.('newsletter_subscribe', { source: 'footer' });
+  });
+</script>
 
 <script>
   const cursor=document.getElementById('cursor');
