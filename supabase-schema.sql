@@ -2,6 +2,11 @@
 -- Terra Nova English · Supabase Database Schema v1.0
 -- Run this entire file in Supabase SQL Editor (one shot)
 -- Path: Dashboard > SQL Editor > New query > paste > RUN
+--
+-- ⚠️ 실행 순서 (IMPORTANT):
+--   1. 이 파일(supabase-schema.sql)을 먼저 실행
+--   2. 그 다음 supabase-schema-v2.sql을 실행
+--   (v2는 reviews·newsletter·Search Console 테이블을 추가하는 마이그레이션)
 -- ==========================================================
 
 -- Extensions
