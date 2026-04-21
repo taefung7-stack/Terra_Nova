@@ -20,6 +20,6 @@ git push origin main
 
 echo.
 echo 완료! 1~2분 후 아래 주소에서 확인하세요.
-echo https://taefung7-stack.github.io/Terra_Nova/
+echo https://terra-nova.kr/
 echo.
 pause

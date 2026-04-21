@@ -109,10 +109,10 @@ Supabase 대시보드 > **Authentication > Email** > 각 템플릿 클릭 → Su
 
 ### 무료 권장: Resend
 1. https://resend.com 회원가입 → 무료 3,000건/월
-2. 도메인 인증 (terranova.co.kr 소유 시) 또는 resend.dev 서브도메인 사용
+2. 도메인 인증 (terra-nova.kr 소유 시) 또는 resend.dev 서브도메인 사용
 3. Supabase > SMTP Settings:
    - Host: `smtp.resend.com`
    - Port: `465` (SSL)
    - Username: `resend`
    - Password: Resend API Key
-   - Sender: `noreply@resend.dev` 또는 `noreply@terranova.co.kr`
+   - Sender: `noreply@resend.dev` 또는 `noreply@terra-nova.kr`

@@ -18,15 +18,15 @@
 <meta name="apple-mobile-web-app-title" content="Terra Nova">
 <link rel="apple-touch-icon" href="./logo.png">
 <script src="./pwa-register.js" defer></script>
-<link rel="canonical" href="https://terranova.co.kr/">
+<link rel="canonical" href="https://terra-nova.kr/">
 <!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="TERRA NOVA ENGLISH">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:title" content="TERRA NOVA ENGLISH · 수능영어 + 전과목 동시 학습">
 <meta property="og:description" content="교과 연계 독해로 영어 읽는 동안 수학·과학·사회·국어가 함께 쌓입니다. 월 14,900원부터.">
-<meta property="og:url" content="https://terranova.co.kr/">
-<meta property="og:image" content="https://terranova.co.kr/og-cover.svg">
+<meta property="og:url" content="https://terra-nova.kr/">
+<meta property="og:image" content="https://terra-nova.kr/og-cover.svg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Terra Nova English — 수능영어 + 전과목 통합 학습">
@@ -34,7 +34,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="TERRA NOVA ENGLISH · 수능영어 + 전과목 동시 학습">
 <meta name="twitter:description" content="교과 연계 독해로 영어와 전과목을 동시에. 월 14,900원부터.">
-<meta name="twitter:image" content="https://terranova.co.kr/og-cover.svg">
+<meta name="twitter:image" content="https://terra-nova.kr/og-cover.svg">
 <!-- Schema.org Organization + Product -->
 <script type="application/ld+json">
 {
@@ -42,10 +42,10 @@
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://terranova.co.kr/#organization",
+      "@id": "https://terra-nova.kr/#organization",
       "name": "Terra Nova English",
-      "url": "https://terranova.co.kr/",
-      "logo": "https://terranova.co.kr/og-cover.svg",
+      "url": "https://terra-nova.kr/",
+      "logo": "https://terra-nova.kr/og-cover.svg",
       "description": "수능영어 + 전과목 통합 학습 월간 구독 서비스",
       "sameAs": ["https://www.instagram.com/terra_nova_english/"],
       "contactPoint": {
@@ -56,16 +56,20 @@
     },
     {
       "@type": "WebSite",
-      "@id": "https://terranova.co.kr/#website",
-      "url": "https://terranova.co.kr/",
+      "@id": "https://terra-nova.kr/#website",
+      "url": "https://terra-nova.kr/",
       "name": "TERRA NOVA ENGLISH",
       "inLanguage": "ko-KR",
-      "publisher": {"@id": "https://terranova.co.kr/#organization"}
+      "publisher": {"@id": "https://terra-nova.kr/#organization"}
     },
     {
       "@type": "Product",
       "name": "Terra Nova 월간 독해 학습지",
       "description": "교과 연계 영어 독해 월간 학습지. 6단계 레벨(STARTER~MASTER). 월 40지문 구성.",
+      "image": [
+        "https://terra-nova.kr/og-cover.svg",
+        "https://terra-nova.kr/logo.png"
+      ],
       "brand": {"@type": "Brand", "name": "Terra Nova English"},
       "aggregateRating": {
         "@type": "AggregateRating",
@@ -74,10 +78,74 @@
         "bestRating": "5"
       },
       "offers": [
-        {"@type": "Offer", "name": "LIGHT", "price": "14900", "priceCurrency": "KRW", "availability": "https://schema.org/InStock"},
-        {"@type": "Offer", "name": "STANDARD", "price": "28900", "priceCurrency": "KRW", "availability": "https://schema.org/InStock"},
-        {"@type": "Offer", "name": "PREMIUM", "price": "45900", "priceCurrency": "KRW", "availability": "https://schema.org/PreOrder"}
+        {
+          "@type": "Offer",
+          "name": "LIGHT",
+          "price": "14900",
+          "priceCurrency": "KRW",
+          "availability": "https://schema.org/InStock",
+          "shippingDetails": {"@id": "https://terra-nova.kr/#shipping-kr"},
+          "hasMerchantReturnPolicy": {"@id": "https://terra-nova.kr/#return-policy"}
+        },
+        {
+          "@type": "Offer",
+          "name": "STANDARD",
+          "price": "28900",
+          "priceCurrency": "KRW",
+          "availability": "https://schema.org/InStock",
+          "shippingDetails": {"@id": "https://terra-nova.kr/#shipping-kr"},
+          "hasMerchantReturnPolicy": {"@id": "https://terra-nova.kr/#return-policy"}
+        },
+        {
+          "@type": "Offer",
+          "name": "PREMIUM",
+          "price": "45900",
+          "priceCurrency": "KRW",
+          "availability": "https://schema.org/PreOrder",
+          "shippingDetails": {"@id": "https://terra-nova.kr/#shipping-kr"},
+          "hasMerchantReturnPolicy": {"@id": "https://terra-nova.kr/#return-policy"}
+        }
       ]
+    },
+    {
+      "@type": "OfferShippingDetails",
+      "@id": "https://terra-nova.kr/#shipping-kr",
+      "shippingRate": {
+        "@type": "MonetaryAmount",
+        "value": "0",
+        "currency": "KRW"
+      },
+      "shippingDestination": {
+        "@type": "DefinedRegion",
+        "addressCountry": "KR"
+      },
+      "deliveryTime": {
+        "@type": "ShippingDeliveryTime",
+        "handlingTime": {
+          "@type": "QuantitativeValue",
+          "minValue": 0,
+          "maxValue": 1,
+          "unitCode": "DAY"
+        },
+        "transitTime": {
+          "@type": "QuantitativeValue",
+          "minValue": 1,
+          "maxValue": 3,
+          "unitCode": "DAY"
+        }
+      }
+    },
+    {
+      "@type": "MerchantReturnPolicy",
+      "@id": "https://terra-nova.kr/#return-policy",
+      "applicableCountry": "KR",
+      "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+      "merchantReturnDays": 7,
+      "returnMethod": "https://schema.org/ReturnByMail",
+      "returnFees": "https://schema.org/ReturnFeesCustomerResponsibility",
+      "customerRemorseReturnFees": "https://schema.org/ReturnFeesCustomerResponsibility",
+      "itemDefectReturnFees": "https://schema.org/FreeReturn",
+      "itemCondition": "https://schema.org/NewCondition"
     }
   ]
 }
@@ -2458,7 +2526,7 @@
     <a href="terms.html">이용약관</a>
     <a href="privacy.html" style="font-weight:700;">개인정보처리방침</a>
     <a href="faq.html">FAQ</a>
-    <a href="mailto:support@terranova.co.kr">문의</a>
+    <a href="mailto:support@terra-nova.kr">문의</a>
   </div>
   <p>© 2026 Terra Nova English. All rights reserved.</p>
 </footer>

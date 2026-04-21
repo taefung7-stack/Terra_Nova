@@ -30,7 +30,7 @@
       <a href="terms.html" style="color:${fg};text-decoration:none;font-size:.72rem;">이용약관</a>
       <a href="privacy.html" style="color:${fg};text-decoration:none;font-size:.72rem;font-weight:700;">개인정보처리방침</a>
       <a href="faq.html" style="color:${fg};text-decoration:none;font-size:.72rem;">FAQ</a>
-      <a href="mailto:support@terranova.co.kr" style="color:${fg};text-decoration:none;font-size:.72rem;">문의</a>
+      <a href="mailto:support@terra-nova.kr" style="color:${fg};text-decoration:none;font-size:.72rem;">문의</a>
     </div>
     <p style="font-size:.7rem;color:${fg};">© 2026 Terra Nova English. All rights reserved.</p>
   `;
