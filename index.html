@@ -384,9 +384,10 @@
   .product-card{background:var(--dark);border-radius:0;overflow:hidden;transition:background .2s;}
   .product-card:hover{background:var(--card);}
   .card-top{height:140px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:var(--card);}
-  /* 은하 궤도가 들어가는 card-top은 자동 높이 확장 */
-  .card-top.has-galaxy-orbit{height:auto;min-height:540px;padding:48px 20px 32px;flex-direction:column;justify-content:center;background:radial-gradient(ellipse at center,rgba(45,212,191,.06) 0%,var(--card) 60%);}
-  @media(max-width:780px){.card-top.has-galaxy-orbit{min-height:420px;padding:32px 12px 24px;}}
+  /* 은하 궤도가 들어가는 card-top — 3D 관람석처럼 충분한 여백 */
+  .card-top.has-galaxy-orbit{height:auto;min-height:820px;padding:100px 24px 80px;flex-direction:column;justify-content:center;background:radial-gradient(ellipse at center 40%,rgba(45,212,191,.08) 0%,rgba(45,212,191,.02) 50%,var(--card) 80%);perspective:1600px;}
+  @media(max-width:780px){.card-top.has-galaxy-orbit{min-height:560px;padding:60px 12px 48px;}}
+  @media(max-width:420px){.card-top.has-galaxy-orbit{min-height:480px;padding:44px 8px 36px;}}
   .card-top.c1{background:var(--card);}
   .card-top.c2{background:var(--card);}
   .card-top.c3{background:var(--card);}
@@ -425,22 +426,24 @@
      GALAXY ORBIT ANIMATION — 10 레벨 선택 컴포넌트
      ======================================================== */
   .galaxy-orbit-wrap{
-    --orbit-radius:200px;
+    --orbit-radius:290px;
+    --orbit-tilt:26deg;
     position:relative;
-    width:min(520px,calc(100vw - 80px));
+    width:min(720px,calc(100vw - 80px));
     aspect-ratio:1;
     margin:0 auto;
     cursor:grab;
     user-select:none;
     -webkit-user-select:none;
     touch-action:pan-y;
+    transform-style:preserve-3d;
   }
   .galaxy-orbit-wrap:active{cursor:grabbing;}
   @media(max-width:780px){
-    .galaxy-orbit-wrap{width:min(360px,calc(100vw - 40px));--orbit-radius:135px;}
+    .galaxy-orbit-wrap{width:min(420px,calc(100vw - 40px));--orbit-radius:155px;--orbit-tilt:20deg;}
   }
   @media(max-width:420px){
-    .galaxy-orbit-wrap{--orbit-radius:115px;}
+    .galaxy-orbit-wrap{--orbit-radius:130px;--orbit-tilt:16deg;}
   }
 
   /* 별빛 배경 */
@@ -458,16 +461,28 @@
   }
   @keyframes twinkle{0%,100%{opacity:.6;}50%{opacity:1;}}
 
-  /* 궤도 원 (subtle guide line) */
+  /* 궤도 타원 (3D 틸트된 plane) */
   .galaxy-orbit-ring{
     position:absolute;
     top:50%;left:50%;
-    width:74%;height:74%;
-    transform:translate(-50%,-50%);
-    border:1px dashed rgba(45,212,191,.15);
+    width:80%;height:80%;
+    transform:translate(-50%,-50%) rotateX(var(--orbit-tilt));
+    border:1px dashed rgba(45,212,191,.2);
     border-radius:50%;
     pointer-events:none;
+    transform-style:preserve-3d;
+    box-shadow:
+      inset 0 0 60px rgba(45,212,191,.06),
+      0 0 120px rgba(45,212,191,.04);
   }
+  .galaxy-orbit-ring::before,
+  .galaxy-orbit-ring::after{
+    content:'';position:absolute;inset:-1px;border-radius:50%;
+    border:1px solid rgba(45,212,191,.08);
+    pointer-events:none;
+  }
+  .galaxy-orbit-ring::before{transform:scale(.92);}
+  .galaxy-orbit-ring::after{transform:scale(1.08);border-style:dotted;opacity:.4;}
 
   /* 은하 노드 (버튼) */
   .galaxy-node{
@@ -478,19 +493,48 @@
     background:transparent;
     border:none;
     cursor:pointer;
-    transform:translate(-50%,-50%) rotate(var(--angle)) translateX(var(--orbit-radius)) rotate(calc(-1 * var(--angle)));
-    transition:transform .3s cubic-bezier(.34,1.56,.64,1),filter .2s;
+    transform-style:preserve-3d;
+    /* 3D 틸트된 궤도 평면 위에 배치 + 카메라를 향하게 펴기 */
+    transform:
+      translate(-50%,-50%)
+      rotateX(var(--orbit-tilt))
+      rotate(var(--angle))
+      translateX(var(--orbit-radius))
+      rotate(calc(-1 * var(--angle)))
+      rotateX(calc(-1 * var(--orbit-tilt)));
+    transition:transform .4s cubic-bezier(.34,1.56,.64,1),filter .3s;
     outline:none;
     z-index:2;
   }
-  /* 각 은하 위치: angle=-90°→상단(TERRA), 90°→하단, 시계방향 진행 */
+  /* 각 은하는 기울어진 궤도 위를 시계방향으로 공전. TERRA(-90°)=상단, 90°=하단 */
   .galaxy-node .gv{
+    position:relative;
     display:block;
     width:100%;height:100%;
     border-radius:50%;
     background:var(--gv-color,#fff);
-    box-shadow:0 0 var(--gv-glow,8px) var(--gv-color,rgba(255,255,255,.3));
-    transition:transform .2s,box-shadow .2s;
+    box-shadow:
+      0 0 var(--gv-glow,8px) var(--gv-color,rgba(255,255,255,.3)),
+      inset -6% -6% 14% rgba(0,0,0,.35),
+      inset 8% 8% 18% rgba(255,255,255,.15);
+    transition:transform .25s,box-shadow .25s;
+    animation:gvPulse 4s ease-in-out infinite;
+  }
+  .galaxy-node .gv::before{
+    content:'';position:absolute;inset:-18%;
+    border-radius:50%;
+    background:radial-gradient(circle,transparent 48%,var(--gv-color) 50%,transparent 55%);
+    opacity:.35;
+    animation:gvHalo 8s linear infinite;
+    pointer-events:none;
+  }
+  @keyframes gvPulse{
+    0%,100%{filter:brightness(1);}
+    50%{filter:brightness(1.18);}
+  }
+  @keyframes gvHalo{
+    from{transform:rotate(0deg);}
+    to{transform:rotate(360deg);}
   }
   .galaxy-node .gn-label{
     position:absolute;
@@ -506,18 +550,46 @@
     pointer-events:none;
     transition:color .2s,text-shadow .2s;
   }
+  /* Hover: 카메라 쪽으로 튀어나오는 입체 효과 */
+  .galaxy-node:hover,
+  .galaxy-node:focus-visible{
+    transform:
+      translate(-50%,-50%)
+      rotateX(var(--orbit-tilt))
+      rotate(var(--angle))
+      translateX(var(--orbit-radius))
+      rotate(calc(-1 * var(--angle)))
+      rotateX(calc(-1 * var(--orbit-tilt)))
+      translateZ(40px) scale(1.15);
+  }
   .galaxy-node:hover .gv,
   .galaxy-node:focus-visible .gv{
-    transform:scale(1.25);
-    box-shadow:0 0 calc(var(--gv-glow,8px) * 2) var(--gv-color,rgba(255,255,255,.6));
+    box-shadow:
+      0 0 calc(var(--gv-glow,8px) * 2.5) var(--gv-color,rgba(255,255,255,.8)),
+      inset -6% -6% 14% rgba(0,0,0,.35),
+      inset 8% 8% 18% rgba(255,255,255,.25);
   }
   .galaxy-node:hover .gn-label,
-  .galaxy-node:focus-visible .gn-label{color:#fff;text-shadow:0 0 12px var(--gv-color);}
-  .galaxy-node.selected .gv{
-    transform:scale(1.35);
-    box-shadow:0 0 calc(var(--gv-glow,8px) * 2.5) var(--gv-color,rgba(255,255,255,.7));
+  .galaxy-node:focus-visible .gn-label{color:#fff;text-shadow:0 0 16px var(--gv-color);font-weight:800;}
+  /* Selected: 더 크게 확대 + 깊은 글로우 */
+  .galaxy-node.selected{
+    transform:
+      translate(-50%,-50%)
+      rotateX(var(--orbit-tilt))
+      rotate(var(--angle))
+      translateX(var(--orbit-radius))
+      rotate(calc(-1 * var(--angle)))
+      rotateX(calc(-1 * var(--orbit-tilt)))
+      translateZ(60px) scale(1.25);
   }
-  .galaxy-node.selected .gn-label{color:#fff;font-weight:900;}
+  .galaxy-node.selected .gv{
+    box-shadow:
+      0 0 calc(var(--gv-glow,8px) * 3.5) var(--gv-color,rgba(255,255,255,.9)),
+      0 0 calc(var(--gv-glow,8px) * 1.5) var(--gv-color,rgba(255,255,255,.6)),
+      inset -6% -6% 14% rgba(0,0,0,.35),
+      inset 8% 8% 18% rgba(255,255,255,.3);
+  }
+  .galaxy-node.selected .gn-label{color:#fff;font-weight:900;text-shadow:0 0 20px var(--gv-color);}
 
   /* 은하별 색상 + 글로우 */
   .gv-1{--gv-color:#60A5FA;--gv-glow:10px;background:radial-gradient(circle at 30% 30%,#93C5FD,#3B82F6);}
@@ -531,23 +603,44 @@
   .gv-9{--gv-color:#A78BFA;--gv-glow:20px;background:radial-gradient(circle at 30% 30%,#C4B5FD,#7C3AED);}
   .gv-10{--gv-color:#E879F9;--gv-glow:26px;background:radial-gradient(circle at 30% 30%,#F0ABFC,#C026D3);}
 
-  /* 중앙 정보 표시 */
+  /* 중앙 nebula 글로우 + 정보 표시 */
   .orbit-center{
     position:absolute;
     top:50%;left:50%;
     transform:translate(-50%,-50%);
-    width:48%;
-    max-width:220px;
+    width:42%;
+    max-width:260px;
     aspect-ratio:1;
     display:flex;
     flex-direction:column;
     align-items:center;
     justify-content:center;
-    padding:20px;
+    padding:24px;
     border-radius:50%;
-    background:radial-gradient(circle,rgba(10,10,10,.85) 0%,rgba(10,10,10,.5) 70%,transparent 100%);
+    background:
+      radial-gradient(circle at 50% 50%,rgba(45,212,191,.22) 0%,rgba(45,212,191,.08) 30%,rgba(10,10,10,.92) 60%,rgba(10,10,10,.6) 85%,transparent 100%);
     text-align:center;
     pointer-events:none;
+    box-shadow:
+      0 0 80px rgba(45,212,191,.18),
+      inset 0 0 40px rgba(45,212,191,.12);
+    animation:centerPulse 6s ease-in-out infinite;
+  }
+  .orbit-center::before{
+    content:'';position:absolute;inset:-20%;
+    border-radius:50%;
+    background:radial-gradient(circle,rgba(45,212,191,.12) 0%,transparent 60%);
+    animation:centerHalo 10s ease-in-out infinite;
+    pointer-events:none;
+    z-index:-1;
+  }
+  @keyframes centerPulse{
+    0%,100%{box-shadow:0 0 80px rgba(45,212,191,.18),inset 0 0 40px rgba(45,212,191,.12);}
+    50%{box-shadow:0 0 120px rgba(45,212,191,.28),inset 0 0 60px rgba(45,212,191,.18);}
+  }
+  @keyframes centerHalo{
+    0%,100%{transform:scale(1);opacity:.6;}
+    50%{transform:scale(1.15);opacity:1;}
   }
   .orbit-center-kicker{
     font-family:'Noto Sans KR',sans-serif;
