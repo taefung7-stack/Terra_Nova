@@ -179,21 +179,21 @@
 <!-- TABS -->
 <div class="tabs-wrap">
   <div class="tabs">
-    <div class="tab active" onclick="showLevel('starter',this)">STARTER<br><span style="font-size:.62rem;opacity:.7;">초3~4</span></div>
-    <div class="tab" onclick="showLevel('junior',this)">JUNIOR<br><span style="font-size:.62rem;opacity:.7;">초5~6</span></div>
-    <div class="tab" onclick="showLevel('basic',this)">BASIC<br><span style="font-size:.62rem;opacity:.7;">중1~2</span></div>
-    <div class="tab" onclick="showLevel('intermediate',this)">INTERMEDIATE<br><span style="font-size:.62rem;opacity:.7;">중3~고1</span></div>
-    <div class="tab" onclick="showLevel('advanced',this)">ADVANCED<br><span style="font-size:.62rem;opacity:.7;">고2</span></div>
-    <div class="tab" onclick="showLevel('master',this)">MASTER<br><span style="font-size:.62rem;opacity:.7;">고3</span></div>
+    <div class="tab active" onclick="showLevel('terra',this)">TERRA<br><span style="font-size:.62rem;opacity:.7;">초3~4</span></div>
+    <div class="tab" onclick="showLevel('sombrero',this)">SOMBRERO<br><span style="font-size:.62rem;opacity:.7;">초5~6</span></div>
+    <div class="tab" onclick="showLevel('whirlpool',this)">WHIRLPOOL<br><span style="font-size:.62rem;opacity:.7;">중1~2</span></div>
+    <div class="tab" onclick="showLevel('milkyway',this)">MILKYWAY<br><span style="font-size:.62rem;opacity:.7;">중3~고1</span></div>
+    <div class="tab" onclick="showLevel('pinwheel',this)">PINWHEEL<br><span style="font-size:.62rem;opacity:.7;">고2</span></div>
+    <div class="tab" onclick="showLevel('andromeda',this)">ANDROMEDA<br><span style="font-size:.62rem;opacity:.7;">고3</span></div>
   </div>
 </div>
 
 <div class="content">
 
-  <!-- STARTER -->
+  <!-- TERRA -->
   <div class="level-section active" id="sec-starter">
     <div class="level-header">
-      <div class="level-badge">STARTER</div>
+      <div class="level-badge">TERRA</div>
       <div class="level-info">
         <div class="level-title">스타터 레벨</div>
         <div class="level-target">초등학교 3~4학년 대상</div>
@@ -245,10 +245,10 @@
     </div>
   </div>
 
-  <!-- JUNIOR -->
+  <!-- SOMBRERO -->
   <div class="level-section" id="sec-junior">
     <div class="level-header">
-      <div class="level-badge">JUNIOR</div>
+      <div class="level-badge">SOMBRERO</div>
       <div class="level-info">
         <div class="level-title">주니어 레벨</div>
         <div class="level-target">초등학교 5~6학년 대상</div>
@@ -282,10 +282,10 @@
     </div>
   </div>
 
-  <!-- BASIC -->
+  <!--  WHIRLPOOL -->
   <div class="level-section" id="sec-basic">
     <div class="level-header">
-      <div class="level-badge">BASIC</div>
+      <div class="level-badge">WHIRLPOOL</div>
       <div class="level-info">
         <div class="level-title">베이직 레벨</div>
         <div class="level-target">중학교 1~2학년 대상</div>
@@ -319,10 +319,10 @@
     </div>
   </div>
 
-  <!-- INTERMEDIATE -->
+  <!-- MILKYWAY -->
   <div class="level-section" id="sec-intermediate">
     <div class="level-header">
-      <div class="level-badge">INTERMEDIATE</div>
+      <div class="level-badge">MILKYWAY</div>
       <div class="level-info">
         <div class="level-title">인터미디엇 레벨</div>
         <div class="level-target">중학교 3학년~고등학교 1학년 대상</div>
@@ -356,10 +356,10 @@
     </div>
   </div>
 
-  <!-- ADVANCED -->
+  <!-- PINWHEEL -->
   <div class="level-section" id="sec-advanced">
     <div class="level-header">
-      <div class="level-badge">ADVANCED</div>
+      <div class="level-badge">PINWHEEL</div>
       <div class="level-info">
         <div class="level-title">어드밴스드 레벨</div>
         <div class="level-target">고등학교 2학년 대상</div>
@@ -393,10 +393,10 @@
     </div>
   </div>
 
-  <!-- MASTER -->
+  <!-- ANDROMEDA -->
   <div class="level-section" id="sec-master">
     <div class="level-header">
-      <div class="level-badge">MASTER</div>
+      <div class="level-badge">ANDROMEDA</div>
       <div class="level-info">
         <div class="level-title">마스터 레벨</div>
         <div class="level-target">고등학교 3학년 대상</div>
@@ -484,7 +484,7 @@
   // URL param: auto-switch level tab
   const lvlParam = new URLSearchParams(location.search).get('level');
   if (lvlParam) {
-    const map = {STARTER:'starter',JUNIOR:'junior',BASIC:'basic',INTERMEDIATE:'intermediate',ADVANCED:'advanced',MASTER:'master'};
+    const map = {TERRA:'terra',SOMBRERO:'sombrero',BASIC:'whirlpool',MILKYWAY:'milkyway',PINWHEEL:'pinwheel',ANDROMEDA:'andromeda'};
     const key = map[lvlParam.toUpperCase()];
     if (key) {
       const tab = [...document.querySelectorAll('.tab')].find(t => t.getAttribute('onclick') && t.getAttribute('onclick').includes("'"+key+"'"));
