@@ -820,7 +820,35 @@
 
   // Init summary
   updateSummary();
+
+  // 전역 노출 (module 스크립트에서 호출용)
+  window.__setLoggedInFromSupabase = setLoggedIn;
 </script>
+
+<!-- Supabase 세션 체크: 로그인 상태면 auth 게이트 자동 건너뛰고 실제 주소 자동 입력 -->
+<script type="module">
+  import { supabase } from './supabase-client.js';
+  (async () => {
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return;
+
+    const meta = user.user_metadata || {};
+    const { data: profile } = await supabase.from('profiles').select('*').eq('id', user.id).maybeSingle();
+    const name = profile?.display_name || meta.display_name || user.email.split('@')[0];
+    const addrParts = [meta.shipping_address, meta.shipping_detail].filter(Boolean).join(' ').trim();
+    const addrText = addrParts || '등록된 주소가 없습니다. 마이페이지에서 입력해주세요.';
+
+    // 실제 로그인 상태 적용
+    window.__setLoggedInFromSupabase?.(user.email, addrText);
+
+    // 가입자 이름·전화번호 필드도 자동 채움
+    const nameEl = document.getElementById('subscriber-name');
+    const phoneEl = document.getElementById('subscriber-phone');
+    if (nameEl && !nameEl.value) nameEl.value = name;
+    if (phoneEl && !phoneEl.value) phoneEl.value = profile?.phone || meta.phone || '';
+  })();
+</script>
+
 <script>
 function toggleNav(){document.getElementById('nav-hamburger').classList.toggle('open');document.querySelector('.nav-links').classList.toggle('open');}
 document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>{document.getElementById('nav-hamburger').classList.remove('open');document.querySelector('.nav-links').classList.remove('open');}));

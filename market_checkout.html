@@ -262,15 +262,32 @@
   function hasPhysical(items){ return items.some(i => !i.digital); }
   function fmt(n){ return n.toLocaleString('ko-KR')+'원'; }
 
-  // ---- user ----
-  function getUser(){ try { return JSON.parse(localStorage.getItem(USER_KEY)||'null'); } catch(e){ return null; } }
+  // ---- user (Supabase 세션 기반) ----
+  async function getUser(){
+    try {
+      const { supabase } = await import('./supabase-client.js');
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) return null;
+      const meta = user.user_metadata || {};
+      // profiles 테이블에서 추가 정보
+      const { data: profile } = await supabase.from('profiles').select('*').eq('id', user.id).maybeSingle();
+      return {
+        name: profile?.display_name || meta.display_name || user.email.split('@')[0],
+        phone: profile?.phone || meta.phone || '',
+        email: user.email,
+        zip: meta.shipping_zipcode || '',
+        addr: meta.shipping_address || '',
+        addrDetail: meta.shipping_detail || ''
+      };
+    } catch(e) { console.warn('[checkout] user fetch failed:', e.message); return null; }
+  }
 
   // ---- init flow ----
-  function init(){
-    const user = getUser();
+  async function init(){
+    const user = await getUser();
     const items = getItems();
 
-    // Login gate
+    // Login gate — 실제 Supabase 세션 없을 때만 표시
     if (!user && sessionStorage.getItem('tn_guest') !== '1') {
       document.getElementById('login-gate').style.display = 'block';
       document.getElementById('checkout-form').style.display = 'none';
@@ -283,7 +300,7 @@
 
     document.getElementById('checkout-form').style.display = 'block';
 
-    // Auto-fill
+    // Auto-fill (로그인 사용자)
     if (user) {
       document.getElementById('prefill-header').style.display = 'flex';
       document.getElementById('user-name').textContent = user.name || '회원';
