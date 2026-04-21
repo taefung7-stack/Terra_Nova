@@ -99,13 +99,13 @@ create index if not exists subs_user_idx on public.subscriptions(user_id, status
 create table if not exists public.level_test_results (
   id uuid primary key default uuid_generate_v4(),
   user_id uuid references auth.users(id) on delete cascade,
-  level int not null check (level between 1 and 6),
+  level int not null check (level between 1 and 10),
   score int,
   total_questions int,
   details jsonb, -- 과목별/문항별 세부 결과
   created_at timestamptz default now()
 );
-comment on table public.level_test_results is '레벨 테스트 결과 (6단계)';
+comment on table public.level_test_results is '레벨 테스트 결과 (10단계)';
 create index if not exists lvl_user_idx on public.level_test_results(user_id, created_at desc);
 
 -- ==========================================================

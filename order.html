@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>구독 신청 — TERRA NOVA ENGLISH · 월 11,900원부터</title>
-<meta name="description" content="Terra Nova 월간 독해 학습지 구독 신청 — LIGHT(₩11,900)·STANDARD(₩22,900)·PREMIUM 플랜. 6단계 레벨 · 체계적 학습 커리큘럼.">
+<meta name="description" content="Terra Nova 월간 독해 학습지 구독 신청 — LIGHT(₩11,900)·STANDARD(₩22,900)·PREMIUM 플랜. 10단계 레벨 · 체계적 학습 커리큘럼.">
 <link rel="canonical" href="https://terra-nova.kr/order.html">
 <meta property="og:type" content="product"><meta property="og:site_name" content="TERRA NOVA ENGLISH"><meta property="og:locale" content="ko_KR">
 <meta property="og:title" content="월간 독해 학습지 구독 · TERRA NOVA">
@@ -130,11 +130,25 @@
   .plan-card.selected .plan-features li{color:rgba(255,255,255,.85);}
 
   /* ── LEVEL BUTTONS ── */
-  .level-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px;}
+  .level-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:16px;}
+  @media(max-width:768px){.level-grid{grid-template-columns:repeat(3,1fr);}}
   @media(max-width:480px){.level-grid{grid-template-columns:repeat(2,1fr);}}
-  .level-btn{border:1px solid var(--line);border-radius:8px;padding:14px 10px;cursor:pointer;text-align:center;background:var(--card);transition:all .18s;font-family:'Noto Sans KR',sans-serif;}
-  .level-btn:hover{border-color:rgba(45,212,191,.3);}
-  .level-btn.selected{border-color:var(--accent);background:rgba(45,212,191,.08);}
+  .level-btn{border:1px solid var(--line);border-radius:8px;padding:14px 10px;cursor:pointer;text-align:center;background:var(--card);transition:all .18s;font-family:'Noto Sans KR',sans-serif;position:relative;overflow:hidden;}
+  .level-btn::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .18s;pointer-events:none;}
+  .level-btn:hover{border-color:rgba(45,212,191,.5);transform:translateY(-2px);}
+  .level-btn:hover::before{opacity:.1;}
+  .level-btn.selected{border-color:var(--accent);background:rgba(45,212,191,.12);box-shadow:0 4px 20px rgba(45,212,191,.2);}
+  /* Galaxy-specific accents (glow on hover/select) */
+  .level-btn.lv-1::before{background:radial-gradient(circle at center,rgba(59,130,246,.6) 0%,transparent 70%);}
+  .level-btn.lv-2::before{background:radial-gradient(circle at center,rgba(236,72,153,.6) 0%,transparent 70%);}
+  .level-btn.lv-3::before{background:radial-gradient(circle at center,rgba(168,85,247,.6) 0%,transparent 70%);}
+  .level-btn.lv-4::before{background:radial-gradient(circle at center,rgba(20,184,166,.6) 0%,transparent 70%);}
+  .level-btn.lv-5::before{background:radial-gradient(circle at center,rgba(14,165,233,.6) 0%,transparent 70%);}
+  .level-btn.lv-6::before{background:radial-gradient(circle at center,rgba(234,179,8,.6) 0%,transparent 70%);}
+  .level-btn.lv-7::before{background:radial-gradient(circle at center,rgba(203,213,225,.6) 0%,transparent 70%);}
+  .level-btn.lv-8::before{background:radial-gradient(circle at center,rgba(239,68,68,.6) 0%,transparent 70%);}
+  .level-btn.lv-9::before{background:radial-gradient(circle at center,rgba(139,92,246,.6) 0%,transparent 70%);}
+  .level-btn.lv-10::before{background:radial-gradient(circle at center,rgba(217,70,239,.6) 0%,transparent 70%);}
   .level-name{font-size:1rem;font-weight:700;color:#fff;}
   .level-target{font-size:.78rem;color:var(--dim);margin-top:3px;}
 
@@ -426,29 +440,45 @@
       <div class="form-section">
         <div class="form-section-title">03 — 레벨 선택</div>
         <div class="level-grid">
-          <div class="level-btn" onclick="selectLevel(this,'STARTER')">
-            <div class="level-name">STARTER</div>
-            <div class="level-target">초3~4학년</div>
+          <div class="level-btn lv-1" onclick="selectLevel(this,'TERRA')">
+            <div class="level-name">TERRA</div>
+            <div class="level-target">초3학년 · 🌍 지구</div>
           </div>
-          <div class="level-btn" onclick="selectLevel(this,'JUNIOR')">
-            <div class="level-name">JUNIOR</div>
-            <div class="level-target">초5~6학년</div>
+          <div class="level-btn lv-2" onclick="selectLevel(this,'MAGELLAN')">
+            <div class="level-name">MAGELLAN</div>
+            <div class="level-target">초4학년 · 마젤란 은하</div>
           </div>
-          <div class="level-btn" onclick="selectLevel(this,'BASIC')">
-            <div class="level-name">BASIC</div>
-            <div class="level-target">중1~2학년</div>
+          <div class="level-btn lv-3" onclick="selectLevel(this,'SOMBRERO')">
+            <div class="level-name">SOMBRERO</div>
+            <div class="level-target">초5학년 · 솜브레로 은하</div>
           </div>
-          <div class="level-btn" onclick="selectLevel(this,'INTERMEDIATE')">
-            <div class="level-name">INTERMEDIATE</div>
-            <div class="level-target">중3~고1</div>
+          <div class="level-btn lv-4" onclick="selectLevel(this,'TRIANGULUM')">
+            <div class="level-name">TRIANGULUM</div>
+            <div class="level-target">초6학년 · 삼각형자리 은하</div>
           </div>
-          <div class="level-btn" onclick="selectLevel(this,'ADVANCED')">
-            <div class="level-name">ADVANCED</div>
-            <div class="level-target">고2학년</div>
+          <div class="level-btn lv-5" onclick="selectLevel(this,'WHIRLPOOL')">
+            <div class="level-name">WHIRLPOOL</div>
+            <div class="level-target">중1학년 · 소용돌이 은하</div>
           </div>
-          <div class="level-btn" onclick="selectLevel(this,'MASTER')">
-            <div class="level-name">MASTER</div>
-            <div class="level-target">고3학년</div>
+          <div class="level-btn lv-6" onclick="selectLevel(this,'SUNFLOWER')">
+            <div class="level-name">SUNFLOWER</div>
+            <div class="level-target">중2학년 · 해바라기 은하</div>
+          </div>
+          <div class="level-btn lv-7" onclick="selectLevel(this,'MILKYWAY')">
+            <div class="level-name">MILKYWAY</div>
+            <div class="level-target">중3학년 · 우리 은하</div>
+          </div>
+          <div class="level-btn lv-8" onclick="selectLevel(this,'CARTWHEEL')">
+            <div class="level-name">CARTWHEEL</div>
+            <div class="level-target">고1학년 · 수레바퀴 은하</div>
+          </div>
+          <div class="level-btn lv-9" onclick="selectLevel(this,'PINWHEEL')">
+            <div class="level-name">PINWHEEL</div>
+            <div class="level-target">고2학년 · 바람개비 은하</div>
+          </div>
+          <div class="level-btn lv-10" onclick="selectLevel(this,'ANDROMEDA')">
+            <div class="level-name">ANDROMEDA</div>
+            <div class="level-target">고3학년 · 안드로메다 은하 🌌</div>
           </div>
         </div>
         <a href="level_test.html" style="font-size:.75rem;color:var(--accent);text-decoration:none;display:inline-flex;align-items:center;gap:4px;margin-top:4px;opacity:.8;">
