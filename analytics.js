@@ -7,7 +7,7 @@
 
 (function() {
   const GA_ID = 'G-XXXXXXXXXX';         // TODO: 교체
-  const CLARITY_ID = 'REPLACE_CLARITY'; // TODO: 교체
+  const CLARITY_ID = 'wey9ub1wvt';
 
   // 개발 모드 (localhost)에서는 추적 비활성화
   if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
