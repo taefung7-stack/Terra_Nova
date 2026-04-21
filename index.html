@@ -384,6 +384,9 @@
   .product-card{background:var(--dark);border-radius:0;overflow:hidden;transition:background .2s;}
   .product-card:hover{background:var(--card);}
   .card-top{height:140px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:var(--card);}
+  /* 은하 궤도가 들어가는 card-top은 자동 높이 확장 */
+  .card-top.has-galaxy-orbit{height:auto;min-height:540px;padding:48px 20px 32px;flex-direction:column;justify-content:center;background:radial-gradient(ellipse at center,rgba(45,212,191,.06) 0%,var(--card) 60%);}
+  @media(max-width:780px){.card-top.has-galaxy-orbit{min-height:420px;padding:32px 12px 24px;}}
   .card-top.c1{background:var(--card);}
   .card-top.c2{background:var(--card);}
   .card-top.c3{background:var(--card);}
@@ -417,6 +420,184 @@
   .lv-8{border-color:rgba(239,68,68,.55);color:#FCA5A5;background:rgba(239,68,68,.14);}     /* CARTWHEEL 🔥 Red */
   .lv-9{border-color:rgba(139,92,246,.55);color:#C4B5FD;background:rgba(139,92,246,.14);}   /* PINWHEEL 🟣 Purple */
   .lv-10{border-color:rgba(217,70,239,.6);color:#F0ABFC;background:rgba(217,70,239,.16);box-shadow:0 0 12px rgba(217,70,239,.18);}  /* ANDROMEDA 🌌 Magenta */
+
+  /* ========================================================
+     GALAXY ORBIT ANIMATION — 10 레벨 선택 컴포넌트
+     ======================================================== */
+  .galaxy-orbit-wrap{
+    --orbit-radius:200px;
+    position:relative;
+    width:min(520px,calc(100vw - 80px));
+    aspect-ratio:1;
+    margin:0 auto;
+    cursor:grab;
+    user-select:none;
+    -webkit-user-select:none;
+    touch-action:pan-y;
+  }
+  .galaxy-orbit-wrap:active{cursor:grabbing;}
+  @media(max-width:780px){
+    .galaxy-orbit-wrap{width:min(360px,calc(100vw - 40px));--orbit-radius:135px;}
+  }
+  @media(max-width:420px){
+    .galaxy-orbit-wrap{--orbit-radius:115px;}
+  }
+
+  /* 별빛 배경 */
+  .galaxy-stars{
+    position:absolute;inset:-40px;
+    background-image:
+      radial-gradient(1px 1px at 20% 30%,rgba(255,255,255,.4),transparent),
+      radial-gradient(1px 1px at 60% 70%,rgba(255,255,255,.3),transparent),
+      radial-gradient(1.5px 1.5px at 80% 20%,rgba(255,255,255,.5),transparent),
+      radial-gradient(1px 1px at 40% 85%,rgba(255,255,255,.3),transparent),
+      radial-gradient(1px 1px at 90% 50%,rgba(255,255,255,.35),transparent),
+      radial-gradient(1px 1px at 15% 65%,rgba(255,255,255,.3),transparent);
+    animation:twinkle 4s ease-in-out infinite;
+    pointer-events:none;
+  }
+  @keyframes twinkle{0%,100%{opacity:.6;}50%{opacity:1;}}
+
+  /* 궤도 원 (subtle guide line) */
+  .galaxy-orbit-ring{
+    position:absolute;
+    top:50%;left:50%;
+    width:74%;height:74%;
+    transform:translate(-50%,-50%);
+    border:1px dashed rgba(45,212,191,.15);
+    border-radius:50%;
+    pointer-events:none;
+  }
+
+  /* 은하 노드 (버튼) */
+  .galaxy-node{
+    position:absolute;
+    top:50%;left:50%;
+    width:var(--size);height:var(--size);
+    padding:0;
+    background:transparent;
+    border:none;
+    cursor:pointer;
+    transform:translate(-50%,-50%) rotate(var(--angle)) translateX(var(--orbit-radius)) rotate(calc(-1 * var(--angle)));
+    transition:transform .3s cubic-bezier(.34,1.56,.64,1),filter .2s;
+    outline:none;
+    z-index:2;
+  }
+  /* 각 은하 위치: angle=-90°→상단(TERRA), 90°→하단, 시계방향 진행 */
+  .galaxy-node .gv{
+    display:block;
+    width:100%;height:100%;
+    border-radius:50%;
+    background:var(--gv-color,#fff);
+    box-shadow:0 0 var(--gv-glow,8px) var(--gv-color,rgba(255,255,255,.3));
+    transition:transform .2s,box-shadow .2s;
+  }
+  .galaxy-node .gn-label{
+    position:absolute;
+    top:calc(100% + 6px);
+    left:50%;
+    transform:translateX(-50%);
+    font-family:'Noto Sans KR',sans-serif;
+    font-size:clamp(.7rem,1.2vw,.82rem);
+    font-weight:700;
+    color:rgba(255,255,255,.85);
+    letter-spacing:.3px;
+    white-space:nowrap;
+    pointer-events:none;
+    transition:color .2s,text-shadow .2s;
+  }
+  .galaxy-node:hover .gv,
+  .galaxy-node:focus-visible .gv{
+    transform:scale(1.25);
+    box-shadow:0 0 calc(var(--gv-glow,8px) * 2) var(--gv-color,rgba(255,255,255,.6));
+  }
+  .galaxy-node:hover .gn-label,
+  .galaxy-node:focus-visible .gn-label{color:#fff;text-shadow:0 0 12px var(--gv-color);}
+  .galaxy-node.selected .gv{
+    transform:scale(1.35);
+    box-shadow:0 0 calc(var(--gv-glow,8px) * 2.5) var(--gv-color,rgba(255,255,255,.7));
+  }
+  .galaxy-node.selected .gn-label{color:#fff;font-weight:900;}
+
+  /* 은하별 색상 + 글로우 */
+  .gv-1{--gv-color:#60A5FA;--gv-glow:10px;background:radial-gradient(circle at 30% 30%,#93C5FD,#3B82F6);}
+  .gv-2{--gv-color:#F472B6;--gv-glow:10px;background:radial-gradient(circle at 30% 30%,#F9A8D4,#EC4899);}
+  .gv-3{--gv-color:#A78BFA;--gv-glow:12px;background:radial-gradient(circle at 30% 30%,#D8B4FE,#8B5CF6);}
+  .gv-4{--gv-color:#2DD4BF;--gv-glow:12px;background:radial-gradient(circle at 30% 30%,#5EEAD4,#14B8A6);}
+  .gv-5{--gv-color:#38BDF8;--gv-glow:14px;background:radial-gradient(circle at 30% 30%,#7DD3FC,#0EA5E9);}
+  .gv-6{--gv-color:#FBBF24;--gv-glow:14px;background:radial-gradient(circle at 30% 30%,#FDE68A,#F59E0B);}
+  .gv-7{--gv-color:#E2E8F0;--gv-glow:16px;background:radial-gradient(circle at 30% 30%,#F8FAFC,#CBD5E1);}
+  .gv-8{--gv-color:#F87171;--gv-glow:18px;background:radial-gradient(circle at 30% 30%,#FCA5A5,#DC2626);}
+  .gv-9{--gv-color:#A78BFA;--gv-glow:20px;background:radial-gradient(circle at 30% 30%,#C4B5FD,#7C3AED);}
+  .gv-10{--gv-color:#E879F9;--gv-glow:26px;background:radial-gradient(circle at 30% 30%,#F0ABFC,#C026D3);}
+
+  /* 중앙 정보 표시 */
+  .orbit-center{
+    position:absolute;
+    top:50%;left:50%;
+    transform:translate(-50%,-50%);
+    width:48%;
+    max-width:220px;
+    aspect-ratio:1;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    border-radius:50%;
+    background:radial-gradient(circle,rgba(10,10,10,.85) 0%,rgba(10,10,10,.5) 70%,transparent 100%);
+    text-align:center;
+    pointer-events:none;
+  }
+  .orbit-center-kicker{
+    font-family:'Noto Sans KR',sans-serif;
+    font-size:clamp(.6rem,1vw,.72rem);
+    font-weight:700;
+    letter-spacing:3px;
+    color:var(--accent);
+    margin-bottom:6px;
+  }
+  .orbit-center-grade{
+    font-family:'Noto Sans KR',sans-serif;
+    font-size:clamp(.82rem,1.3vw,.95rem);
+    color:rgba(255,255,255,.75);
+    margin-bottom:4px;
+    font-weight:600;
+  }
+  .orbit-center-name{
+    font-family:'Noto Sans KR',sans-serif;
+    font-size:clamp(1.2rem,2.4vw,1.75rem);
+    font-weight:900;
+    color:#fff;
+    letter-spacing:.5px;
+    margin-bottom:6px;
+    line-height:1.1;
+    transition:color .3s;
+  }
+  .orbit-center-desc{
+    font-family:'Noto Sans KR',sans-serif;
+    font-size:clamp(.72rem,1.1vw,.85rem);
+    color:rgba(255,255,255,.65);
+    line-height:1.45;
+    word-break:keep-all;
+    padding:0 8px;
+  }
+
+  /* 힌트 텍스트 */
+  .orbit-hint{
+    margin-top:20px;
+    text-align:center;
+    font-family:'Noto Sans KR',sans-serif;
+    font-size:clamp(.72rem,1.1vw,.82rem);
+    color:var(--dim);
+    letter-spacing:.3px;
+  }
+
+  /* 접근성: 축소 모션 환경에서는 자동회전 비활성 */
+  @media(prefers-reduced-motion:reduce){
+    .galaxy-stars{animation:none;}
+  }
+
   .card-wide .card-body{display:flex;flex-direction:column;}
   .card-wide-header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px;}
   .sub-badge{background:rgba(45,212,191,.08);color:var(--accent);font-family:'Noto Sans KR',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:1.2px;padding:6px 14px;border:1px solid var(--line2);white-space:nowrap;flex-shrink:0;}
@@ -1079,21 +1260,53 @@
   </div>
   <div class="product-grid" style="margin-bottom:20px;">
     <div class="product-card card-wide reveal">
-      <div class="card-top c1">
+      <div class="card-top c1 has-galaxy-orbit">
         <div class="card-glow"></div>
-        <span class="card-icon" style="margin-bottom:10px;">📖</span>
-        <div class="level-badges">
-          <span class="lv-badge lv-1">● TERRA 초3</span>
-          <span class="lv-badge lv-2">● MAGELLAN 초4</span>
-          <span class="lv-badge lv-3">● SOMBRERO 초5</span>
-          <span class="lv-badge lv-4">● TRIANGULUM 초6</span>
-          <span class="lv-badge lv-5">● WHIRLPOOL 중1</span>
-          <span class="lv-badge lv-6">● SUNFLOWER 중2</span>
-          <span class="lv-badge lv-7">● MILKYWAY 중3</span>
-          <span class="lv-badge lv-8">● CARTWHEEL 고1</span>
-          <span class="lv-badge lv-9">● PINWHEEL 고2</span>
-          <span class="lv-badge lv-10">● ANDROMEDA 고3</span>
+
+        <!-- 10 Galaxy Orbit Animation — 레벨 선택 인터랙션 -->
+        <div class="galaxy-orbit-wrap" id="galaxyOrbit" role="region" aria-label="10 레벨 은하 선택">
+          <div class="galaxy-stars" aria-hidden="true"></div>
+          <div class="galaxy-orbit-ring" aria-hidden="true"></div>
+
+          <button class="galaxy-node gn-1"  data-idx="1"  data-name="TERRA"      data-grade="초3" data-desc="지구 · 출발점"            style="--angle:-90deg;--size:20px;" type="button">
+            <span class="gv gv-1"></span><span class="gn-label">TERRA</span>
+          </button>
+          <button class="galaxy-node gn-2"  data-idx="2"  data-name="MAGELLAN"   data-grade="초4" data-desc="마젤란 구름 · 왜소 은하"  style="--angle:-54deg;--size:24px;" type="button">
+            <span class="gv gv-2"></span><span class="gn-label">MAGELLAN</span>
+          </button>
+          <button class="galaxy-node gn-3"  data-idx="3"  data-name="SOMBRERO"   data-grade="초5" data-desc="솜브레로 은하 (M104)"     style="--angle:-18deg;--size:28px;" type="button">
+            <span class="gv gv-3"></span><span class="gn-label">SOMBRERO</span>
+          </button>
+          <button class="galaxy-node gn-4"  data-idx="4"  data-name="TRIANGULUM" data-grade="초6" data-desc="삼각형자리 은하 (M33)"    style="--angle:18deg;--size:32px;" type="button">
+            <span class="gv gv-4"></span><span class="gn-label">TRIANGULUM</span>
+          </button>
+          <button class="galaxy-node gn-5"  data-idx="5"  data-name="WHIRLPOOL"  data-grade="중1" data-desc="소용돌이 은하 (M51)"      style="--angle:54deg;--size:36px;" type="button">
+            <span class="gv gv-5"></span><span class="gn-label">WHIRLPOOL</span>
+          </button>
+          <button class="galaxy-node gn-6"  data-idx="6"  data-name="SUNFLOWER"  data-grade="중2" data-desc="해바라기 은하 (M63)"      style="--angle:90deg;--size:40px;" type="button">
+            <span class="gv gv-6"></span><span class="gn-label">SUNFLOWER</span>
+          </button>
+          <button class="galaxy-node gn-7"  data-idx="7"  data-name="MILKYWAY"   data-grade="중3" data-desc="우리 은하"                style="--angle:126deg;--size:46px;" type="button">
+            <span class="gv gv-7"></span><span class="gn-label">MILKYWAY</span>
+          </button>
+          <button class="galaxy-node gn-8"  data-idx="8"  data-name="CARTWHEEL"  data-grade="고1" data-desc="수레바퀴 은하"            style="--angle:162deg;--size:52px;" type="button">
+            <span class="gv gv-8"></span><span class="gn-label">CARTWHEEL</span>
+          </button>
+          <button class="galaxy-node gn-9"  data-idx="9"  data-name="PINWHEEL"   data-grade="고2" data-desc="바람개비 은하 (M101)"     style="--angle:198deg;--size:58px;" type="button">
+            <span class="gv gv-9"></span><span class="gn-label">PINWHEEL</span>
+          </button>
+          <button class="galaxy-node gn-10" data-idx="10" data-name="ANDROMEDA"  data-grade="고3" data-desc="안드로메다 은하 (M31)"    style="--angle:234deg;--size:66px;" type="button">
+            <span class="gv gv-10"></span><span class="gn-label">ANDROMEDA</span>
+          </button>
+
+          <div class="orbit-center">
+            <div class="orbit-center-kicker">10 GALAXY LEVELS</div>
+            <div class="orbit-center-grade" id="orbitGrade">초3 ~ 고3</div>
+            <div class="orbit-center-name" id="orbitName">TERRA</div>
+            <div class="orbit-center-desc" id="orbitDesc">지구 · 출발점</div>
+          </div>
         </div>
+        <div class="orbit-hint" aria-hidden="true">💫 드래그해서 회전 · 은하를 클릭하면 레벨이 표시됩니다</div>
       </div>
       <div class="card-body">
         <div class="card-wide-header">
@@ -2664,6 +2877,151 @@
   function handleDownload(){alert('샘플이 곧 다운로드됩니다.\n(PDF 연결 후 자동 다운로드 예정)');}
 function toggleNav(){document.getElementById('nav-hamburger').classList.toggle('open');document.querySelector('.nav-links').classList.toggle('open');}
 document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>{document.getElementById('nav-hamburger').classList.remove('open');document.querySelector('.nav-links').classList.remove('open');}));
+
+/* =========================================================
+   GALAXY ORBIT — 10 레벨 인터랙션
+   · 자동 회전 (reduced-motion 환경에선 비활성)
+   · 마우스 드래그 / 터치 스와이프 회전
+   · 클릭 시 중앙 정보 업데이트 + 해당 은하 하이라이트
+   ========================================================= */
+(function initGalaxyOrbit(){
+  const orbit = document.getElementById('galaxyOrbit');
+  if(!orbit) return;
+
+  const nodes = Array.from(orbit.querySelectorAll('.galaxy-node'));
+  const grade = document.getElementById('orbitGrade');
+  const name  = document.getElementById('orbitName');
+  const desc  = document.getElementById('orbitDesc');
+  if(!nodes.length) return;
+
+  // 각 노드의 "기본 각도" 배열 (0°= 우측, -90°=TERRA 상단)
+  const baseAngles = nodes.map(n => parseFloat(n.style.getPropertyValue('--angle')) || 0);
+  let offset = 0;
+  let isDragging = false;
+  let dragStartX = 0;
+  let dragStartY = 0;
+  let dragStartOffset = 0;
+  let autoRotateId = null;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function applyRotation(){
+    nodes.forEach((n,i)=>{
+      n.style.setProperty('--angle', `${baseAngles[i] + offset}deg`);
+    });
+  }
+
+  // 자동 회전 (초당 ~3°, 느린 은하 같은 속도)
+  function startAutoRotate(){
+    if(reduceMotion || autoRotateId) return;
+    let last = performance.now();
+    const tick = (now) => {
+      const dt = (now - last) / 1000;
+      last = now;
+      if(!isDragging) {
+        offset += dt * 3; // 3 deg/sec
+        applyRotation();
+      }
+      autoRotateId = requestAnimationFrame(tick);
+    };
+    autoRotateId = requestAnimationFrame(tick);
+  }
+  function stopAutoRotate(){
+    if(autoRotateId){ cancelAnimationFrame(autoRotateId); autoRotateId = null; }
+  }
+
+  // 드래그 시작
+  function dragStart(clientX, clientY){
+    isDragging = true;
+    dragStartX = clientX;
+    dragStartY = clientY;
+    dragStartOffset = offset;
+    orbit.style.cursor = 'grabbing';
+  }
+  // 드래그 이동: x 변위를 각도로 변환 (1px = 0.4도)
+  function dragMove(clientX, clientY){
+    if(!isDragging) return;
+    const dx = clientX - dragStartX;
+    offset = dragStartOffset + dx * 0.4;
+    applyRotation();
+  }
+  function dragEnd(){
+    isDragging = false;
+    orbit.style.cursor = 'grab';
+  }
+
+  // 마우스 이벤트
+  orbit.addEventListener('mousedown', e => {
+    // 버튼 클릭은 dragStart 대신 click 이벤트로 처리
+    if(e.target.closest('.galaxy-node')) return;
+    e.preventDefault();
+    dragStart(e.clientX, e.clientY);
+  });
+  document.addEventListener('mousemove', e => {
+    if(isDragging) dragMove(e.clientX, e.clientY);
+  });
+  document.addEventListener('mouseup', dragEnd);
+
+  // 터치 이벤트
+  orbit.addEventListener('touchstart', e => {
+    if(e.target.closest('.galaxy-node')) return;
+    const t = e.touches[0];
+    dragStart(t.clientX, t.clientY);
+  }, {passive:true});
+  orbit.addEventListener('touchmove', e => {
+    if(!isDragging) return;
+    const t = e.touches[0];
+    // 가로 드래그가 세로보다 크면 회전 (세로 스크롤 방해 방지)
+    const dx = Math.abs(t.clientX - dragStartX);
+    const dy = Math.abs(t.clientY - dragStartY);
+    if(dx > dy){
+      e.preventDefault();
+      dragMove(t.clientX, t.clientY);
+    }
+  }, {passive:false});
+  orbit.addEventListener('touchend', dragEnd);
+  orbit.addEventListener('touchcancel', dragEnd);
+
+  // 은하 클릭: 선택 + 중앙 정보 업데이트
+  function selectGalaxy(node){
+    nodes.forEach(n => n.classList.remove('selected'));
+    node.classList.add('selected');
+    if(grade) grade.textContent = node.dataset.grade || '';
+    if(name)  name.textContent  = node.dataset.name || '';
+    if(desc)  desc.textContent  = node.dataset.desc || '';
+    // 중앙 이름 색상을 해당 은하 색상으로
+    const gv = node.querySelector('.gv');
+    if(gv && name){
+      const color = getComputedStyle(gv).getPropertyValue('--gv-color').trim();
+      name.style.color = color || '#fff';
+    }
+  }
+
+  nodes.forEach(n => {
+    n.addEventListener('click', e => {
+      e.stopPropagation();
+      selectGalaxy(n);
+    });
+    n.addEventListener('keydown', e => {
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); selectGalaxy(n); }
+    });
+  });
+
+  // 초기 선택: TERRA
+  selectGalaxy(nodes[0]);
+
+  // Viewport 진입 시 자동 회전 시작 (성능 최적화)
+  if('IntersectionObserver' in window){
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(ent => {
+        if(ent.isIntersecting) startAutoRotate();
+        else stopAutoRotate();
+      });
+    }, {threshold:0.2});
+    io.observe(orbit);
+  } else {
+    startAutoRotate();
+  }
+})();
 </script>
 <script type="module" src="./nav-auth.js"></script>
 </body>
