@@ -346,6 +346,17 @@
   .tb-sub{font-size:.85rem;color:var(--dim);line-height:2;}
   .tb-subjects{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px;}
   .tb-subj{font-family:'Noto Sans KR',sans-serif;font-size:.68rem;font-weight:600;padding:5px 12px;border-radius:2px;border:1px solid var(--line);color:var(--dim);letter-spacing:.5px;}
+
+  /* ── Pain Points 섹션 (고객 고민 체크리스트) ── */
+  .pp-wrap{margin:32px 0;padding:32px 28px;border:1px solid rgba(45,212,191,.18);border-radius:12px;background:rgba(45,212,191,.035);}
+  .pp-kicker{text-align:center;font-family:'Noto Sans KR',sans-serif;font-size:clamp(1.02rem,2.3vw,1.28rem);font-weight:700;color:#fff;margin-bottom:30px;letter-spacing:.2px;word-break:keep-all;}
+  .pp-groups{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+  .pp-group-title{font-family:'Noto Sans KR',sans-serif;font-size:.9rem;font-weight:700;color:var(--accent);margin-bottom:14px;letter-spacing:.3px;word-break:keep-all;line-height:1.45;}
+  .pp-list{list-style:none;padding:0;margin:0;}
+  .pp-list li{position:relative;padding:8px 0 8px 22px;font-family:'Noto Sans KR',sans-serif;font-size:.86rem;color:rgba(255,255,255,.84);line-height:1.7;word-break:keep-all;overflow-wrap:break-word;}
+  .pp-list li::before{content:'✓';position:absolute;left:0;top:8px;color:var(--accent);font-weight:700;font-size:.95rem;line-height:1.7;}
+  .pp-closing{margin-top:30px;padding-top:22px;border-top:1px solid rgba(45,212,191,.14);text-align:center;font-family:'Noto Sans KR',sans-serif;font-size:clamp(.96rem,2vw,1.1rem);color:#fff;line-height:1.8;word-break:keep-all;}
+  .pp-closing strong{color:var(--accent);font-weight:700;}
   .int-ex-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--line);}
   .int-ex-card{background:var(--mid);padding:32px 28px;transition:background .2s;position:relative;overflow:hidden;}
   .int-ex-card:hover{background:var(--card);}
@@ -593,6 +604,13 @@
     .saving-card{border-top:1px solid var(--line);}
     .price-compare{padding:24px 18px;}
     .textbook-banner{padding:28px 24px;}
+    .pp-wrap{padding:24px 18px;margin:24px 0;}
+    .pp-groups{grid-template-columns:1fr;gap:22px;}
+    .pp-kicker{margin-bottom:22px;}
+    .pp-group-title{margin-bottom:10px;font-size:.92rem;}
+    .pp-list li{font-size:.88rem;padding:7px 0 7px 20px;}
+    .pp-list li::before{top:7px;}
+    .pp-closing{margin-top:22px;padding-top:18px;font-size:.98rem;}
     .why-grid{background:none;gap:0;border-top:1px solid var(--line);}
     .why-card{border-bottom:1px solid var(--line);}
     .int-ex-grid{background:none;gap:0;}
@@ -774,20 +792,46 @@
       영어를 읽으면서 <em>수학·과학·사회·국어</em> 개념이 쌓입니다.
     </div>
 
-    <!-- 수치 3개 — Noto Sans KR로 통일, 센터 -->
-    <div style="display:flex;gap:0;flex-wrap:wrap;margin:32px 0;justify-content:center;border:1px solid rgba(45,212,191,.15);border-radius:8px;overflow:hidden;">
-      <div style="flex:1;min-width:160px;padding:28px 24px;border-right:1px solid rgba(45,212,191,.12);">
-        <div style="font-family:'Noto Sans KR',sans-serif;font-size:2.6rem;font-weight:900;color:var(--accent);line-height:1;">매 달</div>
-        <div style="font-family:'Noto Sans KR',sans-serif;font-size:.72rem;color:var(--dim);margin-top:8px;letter-spacing:.5px;">40지문 · 교과 연계 영어 학습</div>
+    <!-- 타겟 고객의 9가지 고민 — Pain Points 체크리스트 -->
+    <div class="pp-wrap">
+      <div class="pp-kicker">이런 고민, 익숙하시죠?</div>
+
+      <div class="pp-groups">
+        <div class="pp-group">
+          <div class="pp-group-title">⏱️ 영어에 쏟는 시간을<br>줄이고 싶어요</div>
+          <ul class="pp-list">
+            <li>영어는 충분한데, 학원 주 6~9시간은 과해요</li>
+            <li>영어는 절대평가, 상대평가 과목에 더 집중하고 싶어요</li>
+            <li>수학 비중이 커져서 수학에 더 시간을 쓰고 싶어요</li>
+          </ul>
+        </div>
+
+        <div class="pp-group">
+          <div class="pp-group-title">📖 그렇다고 영어를<br>놓을 순 없어요</div>
+          <ul class="pp-list">
+            <li>손 놓기엔 영어 감은 유지해야 해요</li>
+            <li>원서 읽기에서 수능 독해·문법으로 넘어갈 시기예요</li>
+            <li>영어 기초 없는 아이, 첫 교재 선택이 어려워요</li>
+          </ul>
+        </div>
+
+        <div class="pp-group">
+          <div class="pp-group-title">⚖️ 과목 전체 균형도<br>중요하죠</div>
+          <ul class="pp-list">
+            <li>타 과목 시간도 부족한데 영어까지 챙겨야 해요</li>
+            <li>과목별 공부가 따로 놀아 시간 배분이 어려워요</li>
+            <li>전 과목 학원은 비용 부담이 너무 큽니다</li>
+          </ul>
+        </div>
       </div>
-      <div style="flex:1;min-width:160px;padding:28px 24px;">
-        <div style="font-family:'Noto Sans KR',sans-serif;font-size:2.6rem;font-weight:900;color:var(--accent);line-height:1;">100%</div>
-        <div style="font-family:'Noto Sans KR',sans-serif;font-size:.72rem;color:var(--dim);margin-top:8px;letter-spacing:.5px;">교과과정 그대로 · 실제 단원과 1:1 연계</div>
+
+      <div class="pp-closing">
+        <strong>Terra Nova English</strong>는 바로 이 아홉 가지 고민을<br>풀기 위해 설계됐습니다.
       </div>
     </div>
 
     <div class="tb-sub" style="font-size:.92rem;">
-      같은 시간, <strong style="color:#fff;">두 배로 쌓입니다.</strong><br>이것이 Terra Nova의 핵심 설계입니다.
+      같은 시간, <strong style="color:#fff;">두 배로 쌓이는</strong> 교과 연계 학습.
     </div>
 
     <div class="tb-subjects" style="justify-content:center;">
