@@ -6,7 +6,7 @@
 // - CLARITY_ID = "xxxxxxxxxx" (Microsoft Clarity 프로젝트 ID)
 
 (function() {
-  const GA_ID = 'G-XXXXXXXXXX';         // TODO: 교체
+  const GA_ID = 'G-SBNDFFYX6S';
   const CLARITY_ID = 'wey9ub1wvt';
 
   // 개발 모드 (localhost)에서는 추적 비활성화
