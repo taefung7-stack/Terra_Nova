@@ -347,16 +347,21 @@
   .tb-subjects{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px;}
   .tb-subj{font-family:'Noto Sans KR',sans-serif;font-size:.68rem;font-weight:600;padding:5px 12px;border-radius:2px;border:1px solid var(--line);color:var(--dim);letter-spacing:.5px;}
 
-  /* ── Pain Points 섹션 (고객 고민 체크리스트) ── */
-  .pp-wrap{margin:36px 0;padding:36px 32px;border:1px solid rgba(45,212,191,.18);border-radius:12px;background:rgba(45,212,191,.035);}
-  .pp-kicker{text-align:center;font-family:'Noto Sans KR',sans-serif;font-size:clamp(1.2rem,2.8vw,1.55rem);font-weight:700;color:#fff;margin-bottom:32px;letter-spacing:.3px;word-break:keep-all;line-height:1.5;}
-  .pp-groups{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;}
-  .pp-group-title{font-family:'Noto Sans KR',sans-serif;font-size:clamp(1rem,1.7vw,1.1rem);font-weight:700;color:var(--accent);margin-bottom:16px;letter-spacing:.3px;word-break:keep-all;line-height:1.5;}
+  /* ── Pain Points 전용 섹션 (Hero 직후 공감 섹션) ── */
+  .pp-title{font-family:'Noto Sans KR',sans-serif;font-size:clamp(2rem,5.2vw,3.4rem);font-weight:900;color:#fff;line-height:1.32;margin:18px 0 24px;letter-spacing:-.025em;word-break:keep-all;}
+  .pp-highlight{color:var(--accent);position:relative;display:inline-block;}
+  .pp-highlight::after{content:'';position:absolute;left:-4px;right:-4px;bottom:4px;height:14px;background:rgba(45,212,191,.18);z-index:-1;border-radius:2px;}
+  .pp-subtitle{font-family:'Noto Sans KR',sans-serif;font-size:clamp(1.05rem,1.9vw,1.25rem);color:rgba(255,255,255,.78);line-height:1.85;margin:0 auto;max-width:640px;word-break:keep-all;}
+  .pp-subtitle strong{color:#fff;font-weight:700;}
+  .pp-wrap{margin:0;padding:40px 36px;border:1px solid rgba(45,212,191,.22);border-radius:16px;background:linear-gradient(180deg,rgba(45,212,191,.05) 0%,rgba(45,212,191,.02) 100%);box-shadow:0 10px 40px rgba(0,0,0,.3);}
+  .pp-groups{display:grid;grid-template-columns:repeat(3,1fr);gap:36px;}
+  .pp-group{padding:4px;}
+  .pp-group-title{font-family:'Noto Sans KR',sans-serif;font-size:clamp(1.1rem,1.9vw,1.25rem);font-weight:800;color:var(--accent);margin-bottom:20px;letter-spacing:.2px;word-break:keep-all;line-height:1.5;padding-bottom:14px;border-bottom:1px solid rgba(45,212,191,.2);}
   .pp-list{list-style:none;padding:0;margin:0;}
-  .pp-list li{position:relative;padding:10px 0 10px 24px;font-family:'Noto Sans KR',sans-serif;font-size:clamp(.98rem,1.5vw,1.05rem);color:rgba(255,255,255,.9);line-height:1.75;word-break:keep-all;overflow-wrap:break-word;}
-  .pp-list li::before{content:'✓';position:absolute;left:0;top:10px;color:var(--accent);font-weight:700;font-size:1.05rem;line-height:1.75;}
-  .pp-closing{margin-top:32px;padding-top:24px;border-top:1px solid rgba(45,212,191,.14);text-align:center;font-family:'Noto Sans KR',sans-serif;font-size:clamp(1.08rem,2.2vw,1.25rem);color:#fff;line-height:1.8;word-break:keep-all;}
-  .pp-closing strong{color:var(--accent);font-weight:700;}
+  .pp-list li{position:relative;padding:12px 0 12px 28px;font-family:'Noto Sans KR',sans-serif;font-size:clamp(1.02rem,1.55vw,1.12rem);color:rgba(255,255,255,.92);line-height:1.75;word-break:keep-all;overflow-wrap:break-word;font-weight:500;}
+  .pp-list li::before{content:'';position:absolute;left:2px;top:22px;width:12px;height:12px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(45,212,191,.18);}
+  .pp-closing{margin-top:40px;padding-top:28px;border-top:1px solid rgba(45,212,191,.18);text-align:center;font-family:'Noto Sans KR',sans-serif;font-size:clamp(1.15rem,2.4vw,1.42rem);color:#fff;line-height:1.75;word-break:keep-all;font-weight:500;}
+  .pp-closing strong{color:var(--accent);font-weight:800;}
   .int-ex-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--line);}
   .int-ex-card{background:var(--mid);padding:32px 28px;transition:background .2s;position:relative;overflow:hidden;}
   .int-ex-card:hover{background:var(--card);}
@@ -604,13 +609,15 @@
     .saving-card{border-top:1px solid var(--line);}
     .price-compare{padding:24px 18px;}
     .textbook-banner{padding:28px 24px;}
-    .pp-wrap{padding:26px 20px;margin:28px 0;}
-    .pp-groups{grid-template-columns:1fr;gap:26px;}
-    .pp-kicker{margin-bottom:26px;font-size:1.28rem;}
-    .pp-group-title{margin-bottom:12px;font-size:1.08rem;}
-    .pp-list li{font-size:1.02rem;padding:9px 0 9px 22px;line-height:1.7;}
-    .pp-list li::before{top:9px;font-size:1.05rem;}
-    .pp-closing{margin-top:26px;padding-top:20px;font-size:1.12rem;line-height:1.75;}
+    #pain-points{padding:64px 5vw 56px;}
+    .pp-title{font-size:1.9rem;margin:16px 0 20px;}
+    .pp-subtitle{font-size:1.02rem;line-height:1.75;}
+    .pp-wrap{padding:28px 22px;}
+    .pp-groups{grid-template-columns:1fr;gap:28px;}
+    .pp-group-title{margin-bottom:14px;padding-bottom:10px;font-size:1.12rem;}
+    .pp-list li{font-size:1.04rem;padding:10px 0 10px 26px;line-height:1.7;}
+    .pp-list li::before{top:20px;width:10px;height:10px;}
+    .pp-closing{margin-top:30px;padding-top:22px;font-size:1.15rem;line-height:1.75;}
     .why-grid{background:none;gap:0;border-top:1px solid var(--line);}
     .why-card{border-bottom:1px solid var(--line);}
     .int-ex-grid{background:none;gap:0;}
@@ -773,29 +780,27 @@
   </div>
 </section>
 
-<!-- INTEGRATED LEARNING -->
-<section id="integrated" style="background:var(--mid);">
+<!-- PAIN POINTS — 유입 직후 공감 섹션 -->
+<section id="pain-points" style="background:var(--dark);padding:100px 5vw 80px;position:relative;overflow:hidden;">
+  <!-- 배경 장식 -->
+  <div aria-hidden="true" style="position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(45,212,191,.06) 0%,transparent 60%);pointer-events:none;"></div>
 
-  <!-- 타이틀 — 센터 정렬 + 임팩트 -->
-  <div class="reveal" style="text-align:center;max-width:700px;margin:0 auto 56px;">
-    <div class="sec-label" style="display:flex;align-items:center;justify-content:center;gap:10px;">✦ WORLD FIRST ✦</div>
-    <h2 class="sec-title" style="font-size:clamp(2rem,5.5vw,3.8rem);margin-bottom:20px;">영어 한 권으로<br><span style="color:var(--accent);">전 교과가 저절로 됩니다.</span></h2>
-    <p style="font-family:'Noto Sans KR',sans-serif;font-size:clamp(.92rem,1.7vw,1.08rem);color:rgba(255,255,255,.78);line-height:2.1;max-width:560px;margin:0 auto;">영어를 읽는 동안, 수학·과학·사회·국어가 함께 쌓입니다.<br>Terra Nova만이 가능한 교과 연계 설계입니다.</p>
-  </div>
-
-  <!-- 핵심 배너 — 센터 정렬 -->
-  <div class="textbook-banner reveal" style="text-align:center;border-left:none;border-top:3px solid var(--accent);">
-    <div class="tb-kicker" style="display:flex;align-items:center;justify-content:center;gap:8px;">📚 CURRICULUM-LINKED READING</div>
-
-    <div class="tb-headline" style="max-width:660px;margin:0 auto 24px;">
-      모든 지문이 <em>실제 교과서 단원</em>과 <br>직결됩니다.<br>
-      영어를 읽으면서 <em>수학·과학·사회·국어</em> 개념이 쌓입니다.
+  <div style="max-width:1100px;margin:0 auto;position:relative;">
+    <!-- 헤드라인 -->
+    <div class="reveal" style="text-align:center;margin-bottom:56px;">
+      <div class="sec-label" style="display:flex;align-items:center;justify-content:center;gap:10px;">⊹ WHY TERRA NOVA ⊹</div>
+      <h2 class="pp-title">
+        혹시, <span class="pp-highlight">이런 고민</span>을<br>
+        매일 하고 계시진 않나요?
+      </h2>
+      <p class="pp-subtitle">
+        대한민국 학부모님이 털어놓은 <strong>아홉 가지 속마음</strong>.<br>
+        이 중 하나라도 공감되신다면, 계속 읽어주세요.
+      </p>
     </div>
 
-    <!-- 타겟 고객의 9가지 고민 — Pain Points 체크리스트 -->
-    <div class="pp-wrap">
-      <div class="pp-kicker">이런 고민, 익숙하시죠?</div>
-
+    <!-- 9가지 고민 — 3그룹 -->
+    <div class="pp-wrap reveal">
       <div class="pp-groups">
         <div class="pp-group">
           <div class="pp-group-title">⏱️ 영어에 쏟는 시간을<br>줄이고 싶어요</div>
@@ -829,8 +834,29 @@
         <strong>Terra Nova English</strong>는 바로 이 아홉 가지 고민을<br>풀기 위해 설계됐습니다.
       </div>
     </div>
+  </div>
+</section>
 
-    <div class="tb-sub" style="font-size:.92rem;">
+<!-- INTEGRATED LEARNING -->
+<section id="integrated" style="background:var(--mid);">
+
+  <!-- 타이틀 — 센터 정렬 + 임팩트 -->
+  <div class="reveal" style="text-align:center;max-width:700px;margin:0 auto 56px;">
+    <div class="sec-label" style="display:flex;align-items:center;justify-content:center;gap:10px;">✦ WORLD FIRST ✦</div>
+    <h2 class="sec-title" style="font-size:clamp(2rem,5.5vw,3.8rem);margin-bottom:20px;">영어 한 권으로<br><span style="color:var(--accent);">전 교과가 저절로 됩니다.</span></h2>
+    <p style="font-family:'Noto Sans KR',sans-serif;font-size:clamp(.92rem,1.7vw,1.08rem);color:rgba(255,255,255,.78);line-height:2.1;max-width:560px;margin:0 auto;">영어를 읽는 동안, 수학·과학·사회·국어가 함께 쌓입니다.<br>Terra Nova만이 가능한 교과 연계 설계입니다.</p>
+  </div>
+
+  <!-- 핵심 배너 — 센터 정렬 -->
+  <div class="textbook-banner reveal" style="text-align:center;border-left:none;border-top:3px solid var(--accent);">
+    <div class="tb-kicker" style="display:flex;align-items:center;justify-content:center;gap:8px;">📚 CURRICULUM-LINKED READING</div>
+
+    <div class="tb-headline" style="max-width:660px;margin:0 auto 24px;">
+      모든 지문이 <em>실제 교과서 단원</em>과 <br>직결됩니다.<br>
+      영어를 읽으면서 <em>수학·과학·사회·국어</em> 개념이 쌓입니다.
+    </div>
+
+    <div class="tb-sub" style="font-size:.95rem;margin-top:20px;">
       같은 시간, <strong style="color:#fff;">두 배로 쌓이는</strong> 교과 연계 학습.
     </div>
 
