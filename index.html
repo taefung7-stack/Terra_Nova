@@ -494,9 +494,11 @@
     border:none;
     cursor:pointer;
     transform-style:preserve-3d;
-    /* 3D 틸트된 궤도 평면 위에 배치 + 카메라를 향하게 펴기 */
+    /* 3D 틸트된 궤도 + 마우스 시차(parallax) */
     transform:
       translate(-50%,-50%)
+      rotateY(calc(var(--parallax-x,0) * 6deg))
+      rotateX(calc(var(--parallax-y,0) * -6deg))
       rotateX(var(--orbit-tilt))
       rotate(var(--angle))
       translateX(var(--orbit-radius))
@@ -555,6 +557,8 @@
   .galaxy-node:focus-visible{
     transform:
       translate(-50%,-50%)
+      rotateY(calc(var(--parallax-x,0) * 6deg))
+      rotateX(calc(var(--parallax-y,0) * -6deg))
       rotateX(var(--orbit-tilt))
       rotate(var(--angle))
       translateX(var(--orbit-radius))
@@ -575,6 +579,8 @@
   .galaxy-node.selected{
     transform:
       translate(-50%,-50%)
+      rotateY(calc(var(--parallax-x,0) * 6deg))
+      rotateX(calc(var(--parallax-y,0) * -6deg))
       rotateX(var(--orbit-tilt))
       rotate(var(--angle))
       translateX(var(--orbit-radius))
@@ -591,17 +597,18 @@
   }
   .galaxy-node.selected .gn-label{color:#fff;font-weight:900;text-shadow:0 0 20px var(--gv-color);}
 
-  /* 은하별 색상 + 글로우 */
-  .gv-1{--gv-color:#60A5FA;--gv-glow:10px;background:radial-gradient(circle at 30% 30%,#93C5FD,#3B82F6);}
-  .gv-2{--gv-color:#F472B6;--gv-glow:10px;background:radial-gradient(circle at 30% 30%,#F9A8D4,#EC4899);}
-  .gv-3{--gv-color:#A78BFA;--gv-glow:12px;background:radial-gradient(circle at 30% 30%,#D8B4FE,#8B5CF6);}
-  .gv-4{--gv-color:#2DD4BF;--gv-glow:12px;background:radial-gradient(circle at 30% 30%,#5EEAD4,#14B8A6);}
-  .gv-5{--gv-color:#38BDF8;--gv-glow:14px;background:radial-gradient(circle at 30% 30%,#7DD3FC,#0EA5E9);}
-  .gv-6{--gv-color:#FBBF24;--gv-glow:14px;background:radial-gradient(circle at 30% 30%,#FDE68A,#F59E0B);}
-  .gv-7{--gv-color:#E2E8F0;--gv-glow:16px;background:radial-gradient(circle at 30% 30%,#F8FAFC,#CBD5E1);}
-  .gv-8{--gv-color:#F87171;--gv-glow:18px;background:radial-gradient(circle at 30% 30%,#FCA5A5,#DC2626);}
-  .gv-9{--gv-color:#A78BFA;--gv-glow:20px;background:radial-gradient(circle at 30% 30%,#C4B5FD,#7C3AED);}
-  .gv-10{--gv-color:#E879F9;--gv-glow:26px;background:radial-gradient(circle at 30% 30%,#F0ABFC,#C026D3);}
+  /* 은하 실사 이미지 (Wikipedia Commons · NASA/Hubble/ESO · public domain) */
+  .galaxy-node .gv{background-size:140%;background-position:center;background-repeat:no-repeat;}
+  .gv-1{--gv-color:#60A5FA;--gv-glow:12px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/The_Earth_seen_from_Apollo_17.jpg/480px-The_Earth_seen_from_Apollo_17.jpg');background-size:100%;}
+  .gv-2{--gv-color:#F9A8D4;--gv-glow:14px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Large_Magellanic_Cloud.jpg/480px-Large_Magellanic_Cloud.jpg');}
+  .gv-3{--gv-color:#D8B4FE;--gv-glow:16px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/M104_ngc4594_sombrero_galaxy_hi-res.jpg/480px-M104_ngc4594_sombrero_galaxy_hi-res.jpg');background-size:200%;}
+  .gv-4{--gv-color:#5EEAD4;--gv-glow:16px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/VST_snaps_a_very_detailed_view_of_the_Triangulum_Galaxy.jpg/480px-VST_snaps_a_very_detailed_view_of_the_Triangulum_Galaxy.jpg');}
+  .gv-5{--gv-color:#7DD3FC;--gv-glow:18px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/M51Hubble.jpg/480px-M51Hubble.jpg');}
+  .gv-6{--gv-color:#FDE68A;--gv-glow:20px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Messier_63_by_Hubble.jpg/480px-Messier_63_by_Hubble.jpg');}
+  .gv-7{--gv-color:#F1F5F9;--gv-glow:22px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/ESO-VLT-Laser-phot-33a-07.jpg/480px-ESO-VLT-Laser-phot-33a-07.jpg');}
+  .gv-8{--gv-color:#FCA5A5;--gv-glow:24px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/The_Cartwheel_Galaxy_%28IC_45%29.jpg/480px-The_Cartwheel_Galaxy_%28IC_45%29.jpg');}
+  .gv-9{--gv-color:#C4B5FD;--gv-glow:28px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/M101_hires_STScI-PRC2006-10a.jpg/480px-M101_hires_STScI-PRC2006-10a.jpg');}
+  .gv-10{--gv-color:#F0ABFC;--gv-glow:34px;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Andromeda_Galaxy_%28with_h-alpha%29.jpg/480px-Andromeda_Galaxy_%28with_h-alpha%29.jpg');background-size:160%;}
 
   /* 중앙 nebula 글로우 + 정보 표시 */
   .orbit-center{
@@ -686,9 +693,34 @@
     letter-spacing:.3px;
   }
 
+  /* ── A. 슈팅 스타 (유성) ── */
+  .shooting-stars{position:absolute;inset:-30%;pointer-events:none;overflow:hidden;z-index:1;}
+  .ss{position:absolute;width:140px;height:2px;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.9) 50%,rgba(255,255,255,0) 100%);opacity:0;border-radius:2px;filter:blur(.5px);box-shadow:0 0 8px rgba(255,255,255,.6);}
+  .ss-1{top:8%;left:-20%;transform:rotate(18deg);animation:shootStar 7s ease-in infinite;animation-delay:0s;}
+  .ss-2{top:42%;left:-20%;transform:rotate(22deg);animation:shootStar 11s ease-in infinite;animation-delay:3s;}
+  .ss-3{top:68%;left:-20%;transform:rotate(14deg);animation:shootStar 9s ease-in infinite;animation-delay:6s;}
+  .ss-4{top:22%;left:-20%;transform:rotate(28deg);animation:shootStar 13s ease-in infinite;animation-delay:1.5s;}
+  @keyframes shootStar{
+    0%{opacity:0;transform:translateX(0) translateY(0) rotate(var(--ss-angle,20deg));}
+    5%{opacity:1;}
+    35%{opacity:.9;}
+    55%{opacity:0;transform:translateX(150%) translateY(60%) rotate(var(--ss-angle,20deg));}
+    100%{opacity:0;transform:translateX(150%) translateY(60%) rotate(var(--ss-angle,20deg));}
+  }
+
+  /* ── C. 선택된 은하 자체 회전 ── */
+  .galaxy-node.selected .gv{
+    animation:gvPulse 4s ease-in-out infinite,galaxySpin 22s linear infinite;
+  }
+  @keyframes galaxySpin{
+    from{background-position:0% center;}
+    to{background-position:400% center;}
+  }
+  /* 실제로는 background-position 이동이 texture를 스크롤시키는 효과 */
+
   /* 접근성: 축소 모션 환경에서는 자동회전 비활성 */
   @media(prefers-reduced-motion:reduce){
-    .galaxy-stars{animation:none;}
+    .galaxy-stars,.ss,.galaxy-node .gv,.orbit-center,.orbit-center::before{animation:none!important;}
   }
 
   .card-wide .card-body{display:flex;flex-direction:column;}
@@ -1359,6 +1391,12 @@
         <!-- 10 Galaxy Orbit Animation — 레벨 선택 인터랙션 -->
         <div class="galaxy-orbit-wrap" id="galaxyOrbit" role="region" aria-label="10 레벨 은하 선택">
           <div class="galaxy-stars" aria-hidden="true"></div>
+          <div class="shooting-stars" aria-hidden="true">
+            <span class="ss ss-1"></span>
+            <span class="ss ss-2"></span>
+            <span class="ss ss-3"></span>
+            <span class="ss ss-4"></span>
+          </div>
           <div class="galaxy-orbit-ring" aria-hidden="true"></div>
 
           <button class="galaxy-node gn-1"  data-idx="1"  data-name="TERRA"      data-grade="초3" data-desc="지구 · 출발점"            style="--angle:-90deg;--size:20px;" type="button">
@@ -3114,6 +3152,36 @@ document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',
   } else {
     startAutoRotate();
   }
+
+  /* D. 마우스 시차 (parallax) — 마우스 위치에 따라 궤도가 미세하게 기울어짐 */
+  let parallaxRaf = null;
+  let targetPX = 0, targetPY = 0;
+  let curPX = 0, curPY = 0;
+  function applyParallax(){
+    // 부드럽게 보간 (lerp) — 급격한 마우스 이동 시 자연스러움
+    curPX += (targetPX - curPX) * 0.08;
+    curPY += (targetPY - curPY) * 0.08;
+    orbit.style.setProperty('--parallax-x', curPX.toFixed(3));
+    orbit.style.setProperty('--parallax-y', curPY.toFixed(3));
+    if(Math.abs(curPX - targetPX) > 0.002 || Math.abs(curPY - targetPY) > 0.002){
+      parallaxRaf = requestAnimationFrame(applyParallax);
+    } else {
+      parallaxRaf = null;
+    }
+  }
+  // 마우스 리스너 — 궤도 카드(has-galaxy-orbit) 전체 영역에서 감지
+  const parallaxZone = orbit.closest('.card-top.has-galaxy-orbit') || orbit;
+  parallaxZone.addEventListener('mousemove', e => {
+    if(reduceMotion) return;
+    const rect = parallaxZone.getBoundingClientRect();
+    targetPX = ((e.clientX - rect.left) / rect.width - 0.5) * 2;  // -1 ~ 1
+    targetPY = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+    if(!parallaxRaf) parallaxRaf = requestAnimationFrame(applyParallax);
+  });
+  parallaxZone.addEventListener('mouseleave', () => {
+    targetPX = 0; targetPY = 0;
+    if(!parallaxRaf) parallaxRaf = requestAnimationFrame(applyParallax);
+  });
 })();
 </script>
 <script type="module" src="./nav-auth.js"></script>
