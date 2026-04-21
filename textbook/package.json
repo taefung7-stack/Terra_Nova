@@ -1,0 +1,22 @@
+{
+  "name": "terra-nova-textbook",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "preview": "node tools/dev-server.mjs",
+    "validate": "node tools/validate-content.mjs",
+    "build": "node tools/build-pdf.mjs",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
+    "puppeteer": "^22.15.0",
+    "sirv-cli": "^2.0.2"
+  },
+  "devDependencies": {
+    "vitest": "^1.6.0"
+  }
+}
