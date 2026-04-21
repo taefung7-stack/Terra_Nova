@@ -1,8 +1,35 @@
 /* ================================================================
    Terra Nova English — Shared Stylesheet
    목적: 페이지 공통 유틸리티 (접근성 · 포커스 · 모션 · 기본 토큰)
-   전략: 기존 인라인 <style> 제거 없이 *추가*만 — 기존 페이지별
-         스타일이 우선되며, shared.css는 부족한 부분만 보완함.
+
+   ── 설계 철학 (중요) ──────────────────────────────────────────
+   본 파일은 **추가만** 한다. 기존 페이지 인라인 <style>은 손대지 않음.
+   이유: 각 HTML 페이지는 자기 스타일을 독립적으로 소유하도록
+         의도적으로 설계됨 → 한 페이지 수정 시 다른 페이지가 깨지지
+         않도록 격리. 유지보수 안정성 > DRY.
+
+   ── 변수 네이밍 규칙 ──────────────────────────────────────────
+   shared.css의 토큰은 반드시 `--tn-` 접두어 사용 (예: --tn-brand).
+   각 페이지의 인라인 :root 변수(--dark, --mint 등)와 충돌 방지.
+   페이지 쪽 스타일이 자연스럽게 우선 적용되고, 정의 안 된 값만
+   shared.css 쪽 --tn-* fallback이 작동하는 구조.
+
+   ── 페이지별 디자인 시스템 맵 (2026-04-21 기준) ───────────────
+   [DARK · Terra Nova 민트 #2DD4BF]  — 13개 페이지
+     index, order, level_test, sample, market, market_checkout,
+     faq, signup, login, mypage, privacy, terms, sitemap
+
+   [LIGHT · 인디고 #4F46E5]           — 1개 페이지 (의도적 분리)
+     subscription_detail_complete
+
+   [Snippet 템플릿, 실제 페이지 아님]
+     analytics.html  (다른 HTML <head>에 복사해 붙여넣는 GA/Clarity 블록)
+
+   ── 새 페이지를 추가할 때 체크리스트 ─────────────────────────
+   1. 기본 다크 모드면 index.html의 :root 블록을 참고해서 복사
+   2. 다른 디자인이 필요하면 subscription_detail_complete.html 스타일로
+   3. 어떤 경우든 <head>에 <link rel="stylesheet" href="shared.css"> 포함
+   4. footer.js, nav-auth.js 로드 (일관된 네비·푸터)
    ================================================================ */
 
 /* ── 브랜드 공통 토큰 (페이지별 변수가 없을 때 fallback) ─────────── */
