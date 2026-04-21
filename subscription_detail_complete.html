@@ -1197,111 +1197,18 @@
       opacity: 0.6;
     }
 
-    /* ========== 플로팅 버튼들 ========== */
-    #floating-buttons {
-      position: fixed;
-      right: 24px;
-      bottom: 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      z-index: 1000;
-    }
-    
-    .floating-btn {
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      border: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      text-decoration: none;
-    }
-    
-    .floating-btn:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    }
-    
-    .floating-btn:active {
-      transform: translateY(-2px);
-    }
-    
-    /* 맨 위로 버튼 */
-    .scroll-top-btn {
-      background: var(--white);
-      color: var(--primary);
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(20px);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    
-    .scroll-top-btn.visible {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-    }
-    
-    .scroll-top-btn:hover {
-      background: var(--primary);
-      color: var(--white);
-    }
-    
-    /* 인스타그램 버튼 */
-    .instagram-btn {
-      background: linear-gradient(135deg, #833AB4 0%, #FD1D1D 50%, #FCAF45 100%);
-      color: var(--white);
-    }
-    
-    .instagram-btn:hover {
-      background: linear-gradient(135deg, #9B4AC7 0%, #FF3A3A 50%, #FDBD5F 100%);
-    }
-    
-    /* 카카오톡 버튼 */
-    .kakao-btn {
-      background: #FEE500;
-      color: #3C1E1E;
-    }
-    
-    .kakao-btn:hover {
-      background: #FFE812;
-    }
-    
-    /* 모바일 최적화 */
-    @media (max-width: 768px) {
-      #floating-buttons {
-        right: 16px;
-        bottom: 16px;
-        gap: 10px;
-      }
-      
-      .floating-btn {
-        width: 52px;
-        height: 52px;
-      }
-    }
-    
-    @media (max-width: 400px) {
-      #floating-buttons {
-        right: 12px;
-        bottom: 12px;
-        gap: 8px;
-      }
-      
-      .floating-btn {
-        width: 48px;
-        height: 48px;
-      }
-      
-      .floating-btn svg {
-        width: 22px;
-        height: 22px;
-      }
+    /* ========== 플로팅 버튼 (index 통일 스타일) ========== */
+    .float-btn-common{position:fixed;bottom:24px;z-index:1000;display:flex;align-items:center;justify-content:center;gap:7px;height:42px;padding:0 16px;border-radius:6px;font-family:'Noto Sans KR',sans-serif;font-weight:600;font-size:.74rem;letter-spacing:.3px;text-decoration:none;transition:transform .15s,box-shadow .15s,opacity .15s;white-space:nowrap;border:none;cursor:pointer;}
+    .float-btn-common:hover{transform:translateY(-2px);}
+    .kakao-float{right:20px;background:#FEE500;color:#181600;box-shadow:0 4px 16px rgba(254,229,0,.28);}
+    .kakao-float:hover{box-shadow:0 6px 24px rgba(254,229,0,.45);}
+    .insta-float{right:170px;background:linear-gradient(45deg,#833AB4,#E1306C,#FCAF45);color:#fff;border:none;}
+    .insta-float:hover{opacity:.88;}
+    .kakao-float svg,.insta-float svg{width:16px;height:16px;flex-shrink:0;}
+    @media(max-width:680px){
+      .kakao-float{right:16px;padding:0;width:42px;}
+      .kakao-float span,.insta-float span{display:none;}
+      .insta-float{right:70px;padding:0;width:42px;}
     }
 
     /* RESPONSIVE */
@@ -4034,11 +3941,6 @@
     </div>
   </section>
 
-  <footer>
-    <div class="container">
-      <p class="footer-text">© 2025 Terra Nova English. All rights reserved.</p>
-    </div>
-  </footer>
 
   <script>
     // FAQ 토글
@@ -4253,49 +4155,17 @@
       }
     });
   </script>
-  <!-- 플로팅 버튼들 -->
-  <div id="floating-buttons">
-    <!-- 맨 위로 버튼 -->
-    <button id="scroll-to-top" class="floating-btn scroll-top-btn" title="맨 위로">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <polyline points="18 15 12 9 6 15"></polyline>
-      </svg>
-    </button>
-    
-    <!-- 인스타그램 버튼 -->
-    <a href="https://www.instagram.com/terra_nova_english/" target="_blank" class="floating-btn social-btn instagram-btn" title="Instagram">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12 2c2.717 0 3.056.01 4.122.06 1.065.05 1.79.217 2.428.465.66.254 1.216.598 1.772 1.153.509.5.902 1.105 1.153 1.772.247.637.415 1.363.465 2.428.047 1.066.06 1.405.06 4.122 0 2.717-.01 3.056-.06 4.122-.05 1.065-.218 1.79-.465 2.428a4.883 4.883 0 01-1.153 1.772c-.5.509-1.105.902-1.772 1.153-.637.247-1.363.415-2.428.465-1.066.047-1.405.06-4.122.06-2.717 0-3.056-.01-4.122-.06-1.065-.05-1.79-.218-2.428-.465a4.89 4.89 0 01-1.772-1.153 4.904 4.904 0 01-1.153-1.772c-.248-.637-.415-1.363-.465-2.428C2.013 15.056 2 14.717 2 12c0-2.717.01-3.056.06-4.122.05-1.066.217-1.79.465-2.428a4.88 4.88 0 011.153-1.772A4.897 4.897 0 015.45 2.525c.638-.248 1.362-.415 2.428-.465C8.944 2.013 9.283 2 12 2zm0 5a5 5 0 100 10 5 5 0 000-10zm6.5-.25a1.25 1.25 0 10-2.5 0 1.25 1.25 0 002.5 0zM12 9a3 3 0 110 6 3 3 0 010-6z"/>
-      </svg>
-    </a>
-    
-    <!-- 카카오톡 버튼 -->
-    <a href="https://pf.kakao.com/_aLExdX/friend" target="_blank" class="floating-btn social-btn kakao-btn" title="카카오톡 문의">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12 3c5.799 0 10.5 3.664 10.5 8.185 0 4.52-4.701 8.184-10.5 8.184a13.5 13.5 0 01-1.727-.11l-4.408 2.883c-.501.265-.678.236-.472-.413l.892-3.678c-2.88-1.46-4.785-3.99-4.785-6.866C1.5 6.665 6.201 3 12 3zm5.907 8.06l1.47-1.424a.472.472 0 00-.656-.678l-1.928 1.866V9.282a.472.472 0 00-.944 0v2.557a.471.471 0 000 .222V13.5a.472.472 0 00.944 0v-1.363l.427-.413 1.428 2.033a.472.472 0 10.773-.543l-1.514-2.155zm-2.958 1.924h-1.46V9.297a.472.472 0 00-.943 0v4.159c0 .26.21.472.471.472h1.932a.472.472 0 000-.944zm-5.857-1.092l.696-1.707.638 1.707H9.092zm2.523.488l.002-.016a.469.469 0 00-.127-.32l-1.046-2.8a.69.69 0 00-.627-.474.696.696 0 00-.653.447l-1.661 4.075a.472.472 0 00.874.357l.33-.813h2.07l.299.8a.472.472 0 10.884-.33l-.345-.926zM8.293 9.302a.472.472 0 00-.471-.472H4.577a.472.472 0 100 .944h1.16v3.736a.472.472 0 00.944 0V9.774h1.14c.261 0 .472-.212.472-.472z"/>
-      </svg>
-    </a>
-  </div>
+  <!-- 플로팅 버튼 (index 통일 스타일) -->
+  <a href="https://www.instagram.com/terra_nova_english/" target="_blank" class="float-btn-common insta-float">
+    <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+    <span>인스타그램</span>
+  </a>
 
-  <script>
-    // 맨 위로 스크롤 버튼
-    const scrollTopBtn = document.getElementById('scroll-to-top');
-    
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 400) {
-        scrollTopBtn.classList.add('visible');
-      } else {
-        scrollTopBtn.classList.remove('visible');
-      }
-    });
-    
-    scrollTopBtn.addEventListener('click', () => {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-    });
-  </script>
+  <a href="https://pf.kakao.com/_aLExdX/friend" target="_blank" class="float-btn-common kakao-float">
+    <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 3C6.477 3 2 6.477 2 10.5c0 2.667 1.613 5.013 4.075 6.435L5 21l4.833-2.573C10.535 18.803 11.26 18.9 12 18.9c5.523 0 10-3.477 10-7.4S17.523 3 12 3z"/></svg>
+    <span>카카오톡 문의</span>
+  </a>
+
 
 
 <script>

@@ -28,7 +28,24 @@
   body{background:var(--dark);color:var(--txt);font-family:'Noto Sans KR',sans-serif;min-height:100vh;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;}
 
   /* NAV */
-  nav{display:flex;align-items:center;justify-content:space-between;padding:0 5vw;height:68px;border-bottom:1px solid var(--line);}
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;height:68px;background:rgba(6,6,15,.92);backdrop-filter:blur(24px);border-bottom:1px solid var(--line);}
+  .nav-links{display:flex;gap:28px;list-style:none;align-items:center;}
+  .nav-links a{color:var(--dim);text-decoration:none;font-size:.75rem;font-weight:500;letter-spacing:.8px;transition:color .2s;cursor:pointer;}
+  .nav-links a:hover{color:#fff;}
+  .nav-cta{color:var(--accent)!important;border:1px solid rgba(45,212,191,.3)!important;padding:7px 18px!important;border-radius:4px!important;font-weight:600!important;}
+  .nav-cta:hover{background:rgba(45,212,191,.08);}
+  .nav-hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:8px 4px;}
+  .nav-hamburger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:.2s;}
+  @media(max-width:900px){
+    .nav-links{display:none;}
+    .nav-hamburger{display:flex;}
+    .nav-links.open{display:flex!important;flex-direction:column;position:fixed;top:68px;left:0;right:0;background:rgba(6,6,15,.97);backdrop-filter:blur(16px);padding:16px 5vw 24px;gap:0;border-bottom:1px solid var(--line);z-index:99;}
+    .nav-links.open li{width:100%;}
+    .nav-links.open a{display:block;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:.88rem;color:rgba(240,240,240,.85)!important;border-radius:0!important;}
+    .nav-links.open li:last-child a{border-bottom:none;}
+    .nav-links.open .nav-cta{border:none!important;padding:14px 0!important;color:var(--accent)!important;}
+  }
+  .auth-wrap{padding-top:68px;}
   .logo-wrap{display:flex;flex-direction:column;gap:2px;text-decoration:none;}
   .logo-main{font-family:'Bebas Neue',sans-serif;font-size:1.45rem;letter-spacing:7px;color:#fff;}
   .logo-eng{font-size:.5rem;font-weight:500;letter-spacing:5px;color:rgba(45,212,191,.35);text-transform:uppercase;}
@@ -113,11 +130,19 @@
     <div class="logo-main">TERRA NOVA</div>
     <div class="logo-eng">ENGLISH</div>
   </a>
-  <div class="nav-right">
-    <a href="index.html" class="nav-link">홈으로</a>
-    <a href="market.html" class="nav-link">마켓</a>
-    <a href="signup.html" class="nav-signup">회원가입</a>
-  </div>
+  <ul class="nav-links">
+    <li><a href="index.html">홈</a></li>
+    <li><a href="subscription_detail_complete.html">구독안내</a></li>
+    <li><a href="level_test.html">레벨테스트</a></li>
+    <li><a href="sample.html">무료샘플</a></li>
+    <li><a href="market.html">마켓</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li data-auth="guest"><a href="signup.html">회원가입</a></li>
+    <li data-auth="user" style="display:none;"><a href="mypage.html"><span data-user-name>회원</span> 님</a></li>
+    <li data-auth="user" style="display:none;"><a href="#" data-action="logout">로그아웃</a></li>
+    <li><a href="order.html" class="nav-cta">구독 신청</a></li>
+  </ul>
+  <button class="nav-hamburger" id="nav-hamburger" onclick="toggleNav()" aria-label="메뉴"><span></span><span></span><span></span></button>
 </nav>
 
 <!-- MAIN -->
@@ -185,15 +210,6 @@
   </div>
 </div>
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-links">
-    <a href="#">이용약관</a>
-    <a href="#">개인정보처리방침</a>
-    <a href="faq.html">FAQ</a>
-    <a href="#">고객센터</a>
-  </div>
-</footer>
 
 <!-- FLOATING CIRCLE BUTTONS -->
 <div class="float-group">
@@ -299,7 +315,12 @@
   window.handleLogin = handleLogin;
   window.openForgotPassword = openForgotPassword;
   window.socialLogin = socialLogin;
+  window.toggleNav = () => {
+    document.getElementById('nav-hamburger').classList.toggle('open');
+    document.querySelector('.nav-links').classList.toggle('open');
+  };
 </script>
+<script type="module" src="./nav-auth.js"></script>
 <script src="./footer.js" defer></script>
 </body>
 </html>
