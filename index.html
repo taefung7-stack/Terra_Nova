@@ -66,7 +66,7 @@
     {
       "@type": "Product",
       "name": "Terra Nova 월간 독해 학습지",
-      "description": "교과 연계 영어 독해 월간 학습지. 10단계 레벨(TERRA~ANDROMEDA).",
+      "description": "교과 연계 영어 독해 월간 학습지. 10단계 레벨(PLUTO~SUN).",
       "image": [
         "https://terra-nova.kr/og-cover.svg",
         "https://terra-nova.kr/logo.png"
@@ -168,7 +168,7 @@
     --nova:#2DD4BF;
     --nova2:#14B8A6;
     --nova3:#2DD4BF;
-    --terra:#2DD4BF;
+    --pluto:#2DD4BF;
     --gold:#2DD4BF;
     /* 배경 — 순수 블랙 계열 */
     --dark:#0A0A0A;
@@ -475,17 +475,17 @@
   .card-wide .card-top{height:140px;flex-direction:column;gap:12px;}
   .level-badges{display:grid;grid-template-columns:repeat(3,auto);gap:6px;justify-content:center;position:relative;z-index:1;}
   .lv-badge{font-family:'Noto Sans KR',sans-serif;font-size:clamp(.72rem,1vw,.82rem);font-weight:600;letter-spacing:.8px;padding:6px 13px;border:1px solid;white-space:nowrap;text-align:center;}
-  /* 10-Galaxy Level System — 초3(TERRA) → 고3(ANDROMEDA), 크기순 진화 */
-  .lv-1{border-color:rgba(59,130,246,.55);color:#93C5FD;background:rgba(59,130,246,.14);}   /* TERRA 🌍 Earth Blue */
-  .lv-2{border-color:rgba(236,72,153,.55);color:#F9A8D4;background:rgba(236,72,153,.14);}   /* MAGELLAN 💗 Dwarf Pink */
-  .lv-3{border-color:rgba(168,85,247,.55);color:#D8B4FE;background:rgba(168,85,247,.14);}   /* SOMBRERO 💜 Violet */
-  .lv-4{border-color:rgba(20,184,166,.55);color:#5EEAD4;background:rgba(20,184,166,.14);}   /* TRIANGULUM 💎 Teal */
-  .lv-5{border-color:rgba(14,165,233,.55);color:#7DD3FC;background:rgba(14,165,233,.14);}   /* WHIRLPOOL 🌊 Ocean */
-  .lv-6{border-color:rgba(234,179,8,.55);color:#FDE68A;background:rgba(234,179,8,.14);}     /* SUNFLOWER ☀️ Yellow */
-  .lv-7{border-color:rgba(203,213,225,.55);color:#F1F5F9;background:rgba(203,213,225,.12);} /* MILKYWAY ⭐ Silver */
-  .lv-8{border-color:rgba(239,68,68,.55);color:#FCA5A5;background:rgba(239,68,68,.14);}     /* CARTWHEEL 🔥 Red */
-  .lv-9{border-color:rgba(139,92,246,.55);color:#C4B5FD;background:rgba(139,92,246,.14);}   /* PINWHEEL 🟣 Purple */
-  .lv-10{border-color:rgba(217,70,239,.6);color:#F0ABFC;background:rgba(217,70,239,.16);box-shadow:0 0 12px rgba(217,70,239,.18);}  /* ANDROMEDA 🌌 Magenta */
+  /* 10-Galaxy Level System — 초3(PLUTO) → 고3(SUN), 크기순 진화 */
+  .lv-1{border-color:rgba(59,130,246,.55);color:#93C5FD;background:rgba(59,130,246,.14);}   /* PLUTO 🌍 Earth Blue */
+  .lv-2{border-color:rgba(236,72,153,.55);color:#F9A8D4;background:rgba(236,72,153,.14);}   /* MERCURY 💗 Dwarf Pink */
+  .lv-3{border-color:rgba(168,85,247,.55);color:#D8B4FE;background:rgba(168,85,247,.14);}   /* MARS 💜 Violet */
+  .lv-4{border-color:rgba(20,184,166,.55);color:#5EEAD4;background:rgba(20,184,166,.14);}   /* VENUS 💎 Teal */
+  .lv-5{border-color:rgba(14,165,233,.55);color:#7DD3FC;background:rgba(14,165,233,.14);}   /* EARTH 🌊 Ocean */
+  .lv-6{border-color:rgba(234,179,8,.55);color:#FDE68A;background:rgba(234,179,8,.14);}     /* NEPTUNE ☀️ Yellow */
+  .lv-7{border-color:rgba(203,213,225,.55);color:#F1F5F9;background:rgba(203,213,225,.12);} /* URANUS ⭐ Silver */
+  .lv-8{border-color:rgba(239,68,68,.55);color:#FCA5A5;background:rgba(239,68,68,.14);}     /* SATURN 🔥 Red */
+  .lv-9{border-color:rgba(139,92,246,.55);color:#C4B5FD;background:rgba(139,92,246,.14);}   /* JUPITER 🟣 Purple */
+  .lv-10{border-color:rgba(217,70,239,.6);color:#F0ABFC;background:rgba(217,70,239,.16);box-shadow:0 0 12px rgba(217,70,239,.18);}  /* SUN 🌌 Magenta */
 
   /* ========================================================
      GALAXY ORBIT ANIMATION — 10 레벨 선택 컴포넌트
@@ -574,7 +574,7 @@
     border-radius:50%;
     z-index:-1;
   }
-  /* 각 은하는 기울어진 궤도 위를 시계방향으로 공전. TERRA(-90°)=상단, 90°=하단 */
+  /* 각 은하는 기울어진 궤도 위를 시계방향으로 공전. PLUTO(-90°)=상단, 90°=하단 */
   .galaxy-node .gv{
     position:relative;
     display:block;
@@ -676,62 +676,87 @@
     pointer-events:none;mix-blend-mode:screen;
   }
 
-  /* 1. TERRA — 지구 (파랑 바다 + 초록 대륙 마블) */
-  .galaxy-node .gv-1{--gv-color:#2F6BBF;--gv-glow:14px;background:radial-gradient(circle at 32% 38%,#7CC3E8 0%,#3D8BC4 20%,#1E5A7D 55%,#0B3652 100%);}
+  /* ============= 10 PLANETS (작은→큰 순) =============
+     각 행성 고유 시각 특성: 색상·표면 패턴·고리·띠 등 */
+
+  /* 1. PLUTO — 회갈색 얼음·암석 표면 */
+  .galaxy-node .gv-1{--gv-color:#A89080;--gv-glow:10px;background:radial-gradient(circle at 35% 32%,#E8D5C0 0%,#B8A090 25%,#8A7060 55%,#4A3528 100%);}
   .galaxy-node .gv-1::after{background:
-    radial-gradient(ellipse 35% 22% at 62% 42%,rgba(92,154,85,.85) 0%,transparent 70%),
-    radial-gradient(ellipse 20% 16% at 28% 65%,rgba(92,154,85,.7) 0%,transparent 70%),
-    radial-gradient(ellipse 15% 12% at 72% 72%,rgba(120,170,110,.6) 0%,transparent 70%),
-    radial-gradient(ellipse 60% 20% at 50% 35%,rgba(255,255,255,.18) 0%,transparent 60%);}
+    radial-gradient(ellipse 18% 14% at 60% 55%,rgba(75,50,35,.7) 0%,transparent 70%),
+    radial-gradient(ellipse 14% 10% at 30% 70%,rgba(85,55,40,.6) 0%,transparent 70%),
+    radial-gradient(circle 12% at 70% 25%,rgba(100,70,50,.5) 0%,transparent 70%);}
 
-  /* 2. MAGELLAN — 왜소·불규칙 핑크 구름 */
-  .galaxy-node .gv-2{--gv-color:#D44E8A;--gv-glow:16px;background:radial-gradient(circle at 45% 45%,#F9D6E7 0%,#E491BA 20%,#C45488 45%,#5E1F3C 100%);}
+  /* 2. MERCURY — 회색 크레이터 표면 */
+  .galaxy-node .gv-2{--gv-color:#9C8F80;--gv-glow:12px;background:radial-gradient(circle at 35% 32%,#D8CEC2 0%,#A89B8E 28%,#756A5F 60%,#3A2F28 100%);}
   .galaxy-node .gv-2::after{background:
-    radial-gradient(ellipse 45% 30% at 30% 60%,rgba(255,200,235,.6) 0%,transparent 70%),
-    radial-gradient(ellipse 30% 20% at 70% 30%,rgba(255,180,220,.5) 0%,transparent 70%),
-    radial-gradient(circle at 50% 40%,rgba(255,255,255,.4) 0%,transparent 15%);}
+    radial-gradient(circle 14% at 55% 48%,rgba(60,48,40,.55) 0%,transparent 70%),
+    radial-gradient(circle 10% at 28% 65%,rgba(70,55,45,.5) 0%,transparent 70%),
+    radial-gradient(circle 11% at 72% 72%,rgba(60,48,40,.5) 0%,transparent 70%),
+    radial-gradient(circle 8% at 42% 30%,rgba(80,65,50,.5) 0%,transparent 70%);}
 
-  /* 3. SOMBRERO — 수평 납작 원반 + 황금 중심 (edge-on) */
-  .galaxy-node .gv-3{--gv-color:#7A4CA6;--gv-glow:18px;background:radial-gradient(ellipse 90% 30% at center,#FFE082 0%,#FFF5C4 30%,#FFB84D 55%,#2A1B47 85%,#0B0919 100%);}
+  /* 3. MARS — 붉은 녹색 표면 + 북극 얼음 */
+  .galaxy-node .gv-3{--gv-color:#C9522F;--gv-glow:14px;background:radial-gradient(circle at 35% 35%,#F4A888 0%,#D4683E 25%,#A03820 55%,#4E1A10 100%);}
   .galaxy-node .gv-3::after{background:
-    radial-gradient(ellipse 30% 10% at 50% 50%,#FFFFFF 0%,#FFE082 40%,transparent 90%),
-    radial-gradient(ellipse 100% 6% at 50% 50%,rgba(0,0,0,.4) 0%,transparent 50%);
-    mix-blend-mode:screen;}
+    radial-gradient(ellipse 22% 14% at 52% 22%,rgba(245,230,210,.65) 0%,transparent 80%),
+    radial-gradient(circle 14% at 30% 60%,rgba(90,25,15,.55) 0%,transparent 70%),
+    radial-gradient(ellipse 20% 16% at 68% 55%,rgba(100,28,15,.5) 0%,transparent 70%);}
 
-  /* 4. TRIANGULUM — 작고 또렷한 나선 (face-on) */
-  .galaxy-node .gv-4{--gv-color:#14B8A6;--gv-glow:18px;background:radial-gradient(circle at center,#E0F7FA 0%,#4DD0E1 18%,#26A69A 40%,#16383C 80%,#0B1F23 100%);}
-  .galaxy-node .gv-4::after{background:conic-gradient(from 45deg,rgba(180,230,235,.5) 0deg,transparent 40deg,rgba(180,230,235,.55) 180deg,transparent 220deg,rgba(180,230,235,.5) 360deg);filter:blur(2px);}
+  /* 4. VENUS — 노랑-오렌지 구름 덮인 표면 */
+  .galaxy-node .gv-4{--gv-color:#E8B570;--gv-glow:16px;background:radial-gradient(circle at 35% 32%,#FFE5B0 0%,#F5C078 20%,#D48A3C 50%,#703C18 100%);}
+  .galaxy-node .gv-4::after{background:
+    radial-gradient(ellipse 60% 10% at 50% 35%,rgba(255,240,200,.35) 0%,transparent 80%),
+    radial-gradient(ellipse 55% 8% at 50% 55%,rgba(255,220,150,.3) 0%,transparent 80%),
+    radial-gradient(ellipse 50% 7% at 50% 72%,rgba(255,230,170,.25) 0%,transparent 80%);}
 
-  /* 5. WHIRLPOOL — 역동적 나선 + 작은 동반 은하 */
-  .galaxy-node .gv-5{--gv-color:#0B6EAB;--gv-glow:20px;background:radial-gradient(circle at 42% 50%,#FFE082 0%,#F5A623 12%,#5B8AD0 35%,#1A3A6B 70%,#0A1830 100%);}
+  /* 5. EARTH — 파랑 바다 + 초록 대륙 + 흰 구름 */
+  .galaxy-node .gv-5{--gv-color:#3B82C4;--gv-glow:18px;background:radial-gradient(circle at 32% 30%,#A8DCF5 0%,#4BA3D8 22%,#1E5F94 55%,#0A2A50 100%);}
   .galaxy-node .gv-5::after{background:
-    conic-gradient(from 0deg at 42% 50%,rgba(160,195,240,.6) 0deg,transparent 80deg,rgba(160,195,240,.7) 160deg,transparent 240deg,rgba(160,195,240,.6) 360deg),
-    radial-gradient(circle 14% at 88% 50%,#FFD54F 0%,#8B4513 40%,transparent 80%);
-    filter:blur(1.5px);}
+    radial-gradient(ellipse 30% 20% at 65% 42%,rgba(90,160,85,.85) 0%,transparent 70%),
+    radial-gradient(ellipse 22% 18% at 28% 62%,rgba(100,170,95,.75) 0%,transparent 70%),
+    radial-gradient(ellipse 16% 12% at 72% 72%,rgba(110,180,100,.7) 0%,transparent 70%),
+    radial-gradient(ellipse 55% 10% at 50% 22%,rgba(255,255,255,.35) 0%,transparent 80%),
+    radial-gradient(ellipse 40% 6% at 38% 78%,rgba(255,255,255,.28) 0%,transparent 80%);}
 
-  /* 6. SUNFLOWER — 촘촘한 나선 + 황금 중심 */
-  .galaxy-node .gv-6{--gv-color:#CB8A06;--gv-glow:22px;background:radial-gradient(circle at center,#FFF8E1 0%,#FFD54F 12%,#FF8F00 32%,#4E342E 70%,#1A1005 100%);}
-  .galaxy-node .gv-6::after{background:conic-gradient(from 0deg,rgba(255,215,100,.75) 0deg,transparent 25deg,rgba(255,215,100,.7) 80deg,transparent 110deg,rgba(255,215,100,.8) 170deg,transparent 200deg,rgba(255,215,100,.7) 260deg,transparent 290deg,rgba(255,215,100,.75) 360deg);filter:blur(1px);}
+  /* 6. NEPTUNE — 진한 파랑 표면 + 대흑반 */
+  .galaxy-node .gv-6{--gv-color:#3A68D4;--gv-glow:20px;background:radial-gradient(circle at 35% 32%,#8DB8F5 0%,#4A7DDC 22%,#1D3C9E 55%,#0A1955 100%);}
+  .galaxy-node .gv-6::after{background:
+    radial-gradient(ellipse 18% 14% at 40% 55%,rgba(10,15,60,.7) 0%,transparent 70%),
+    radial-gradient(ellipse 45% 6% at 50% 35%,rgba(200,220,255,.25) 0%,transparent 80%),
+    radial-gradient(ellipse 50% 7% at 50% 65%,rgba(200,220,255,.2) 0%,transparent 80%);}
 
-  /* 7. MILKYWAY — 우리 은하, 4개 나선팔 + 노란 중심 */
-  .galaxy-node .gv-7{--gv-color:#4B5B6E;--gv-glow:24px;background:radial-gradient(circle at center,#FFF5C4 0%,#FFB84D 10%,#8C5B8E 32%,#3A2F5E 65%,#0D0A1C 100%);}
-  .galaxy-node .gv-7::after{background:conic-gradient(from 15deg,rgba(200,170,230,.6) 0deg,transparent 45deg,rgba(200,170,230,.7) 90deg,transparent 135deg,rgba(200,170,230,.6) 180deg,transparent 225deg,rgba(200,170,230,.7) 270deg,transparent 315deg,rgba(200,170,230,.6) 360deg);filter:blur(2px);}
+  /* 7. URANUS — 연한 시안 거의 단색 + 세로 축 */
+  .galaxy-node .gv-7{--gv-color:#7FD8D4;--gv-glow:22px;background:radial-gradient(circle at 35% 32%,#CFF5F2 0%,#8FDCD8 22%,#5CA8A4 55%,#1F4240 100%);}
+  .galaxy-node .gv-7::after{background:
+    radial-gradient(ellipse 100% 4% at 50% 48%,rgba(180,230,228,.25) 0%,transparent 70%),
+    radial-gradient(ellipse 80% 6% at 50% 60%,rgba(150,215,210,.2) 0%,transparent 80%);}
 
-  /* 8. CARTWHEEL — 고리 은하 (도넛 구조) */
-  .galaxy-node .gv-8{--gv-color:#A13838;--gv-glow:26px;background:radial-gradient(circle at center,#FFFFFF 0%,#FFB4B4 8%,rgba(161,56,56,.3) 20%,#0F0508 45%,#0F0508 100%);}
-  .galaxy-node .gv-8::after{background:radial-gradient(circle at center,transparent 0%,transparent 35%,#FF6B6B 42%,#FFE082 48%,#FFFFFF 50%,#FFE082 52%,#FF6B6B 58%,transparent 65%,transparent 100%);}
+  /* 8. SATURN — 탄황색 + 고리 (가로 타원 고리) */
+  .galaxy-node .gv-8{--gv-color:#E8C278;--gv-glow:26px;background:radial-gradient(circle at 35% 32%,#FFE8B8,#E8C278 22%,#A8823A 55%,#4E3A15 100%);overflow:visible;}
+  .galaxy-node .gv-8::after{
+    inset:-20% -35%;
+    background:
+      radial-gradient(ellipse 100% 8% at 50% 50%,transparent 30%,rgba(200,170,130,.75) 42%,rgba(230,200,150,.9) 50%,rgba(200,170,130,.75) 58%,transparent 70%),
+      radial-gradient(ellipse 85% 4% at 50% 50%,transparent 30%,rgba(230,210,160,.9) 50%,transparent 70%);
+    transform:rotate(-18deg);}
 
-  /* 9. PINWHEEL — 넓게 펼쳐진 나선팔 */
-  .galaxy-node .gv-9{--gv-color:#5B3FA5;--gv-glow:30px;background:radial-gradient(circle at center,#E8DAFF 0%,#B794F4 15%,#7C3AED 35%,#2D1B69 70%,#100626 100%);}
-  .galaxy-node .gv-9::after{background:conic-gradient(from 60deg,rgba(220,195,255,.7) 0deg,transparent 70deg,rgba(220,195,255,.8) 180deg,transparent 250deg,rgba(220,195,255,.7) 360deg);filter:blur(2.5px);}
+  /* 9. JUPITER — 주황-갈색 가로 줄무늬 (belts and zones) */
+  .galaxy-node .gv-9{--gv-color:#E8A068;--gv-glow:32px;background:radial-gradient(circle at 35% 32%,#FFD8A8,#E8B078 15%,#B47848 45%,#5A3820 100%);}
+  .galaxy-node .gv-9::after{background:
+    linear-gradient(180deg,
+      transparent 0%,rgba(255,225,190,.25) 15%,
+      rgba(140,80,50,.4) 22%,transparent 27%,
+      rgba(255,220,180,.2) 34%,rgba(160,100,65,.45) 42%,
+      transparent 47%,rgba(255,230,195,.2) 54%,
+      rgba(150,90,55,.4) 62%,transparent 67%,
+      rgba(255,225,190,.2) 74%,rgba(130,75,45,.35) 82%,
+      transparent 90%,transparent 100%);}
 
-  /* 10. ANDROMEDA — 거대 기울어진 나선, 진한 중심, 풍성한 팔 */
-  .galaxy-node .gv-10{--gv-color:#8B1BA8;--gv-glow:38px;background:radial-gradient(ellipse 100% 65% at center,#FFF9E7 0%,#FFCD9E 8%,#E879F9 22%,#6B2B87 55%,#1F0A2E 90%,#000 100%);}
+  /* 10. SUN — 밝은 노랑-오렌지 스타 + 코로나 */
+  .galaxy-node .gv-10{--gv-color:#FFB84D;--gv-glow:42px;background:radial-gradient(circle at center,#FFFBE5 0%,#FFE47C 15%,#FFA830 45%,#E06010 75%,#8B2E00 100%);box-shadow:0 0 var(--gv-glow) #FFB84D,0 0 calc(var(--gv-glow)*2) rgba(255,184,77,.5),0 0 calc(var(--gv-glow)*3) rgba(255,100,0,.3);}
   .galaxy-node .gv-10::after{background:
-    conic-gradient(from 30deg,rgba(240,200,255,.75) 0deg,transparent 60deg,rgba(240,200,255,.85) 150deg,transparent 210deg,rgba(240,200,255,.75) 330deg,transparent 360deg),
-    radial-gradient(ellipse 30% 8% at 15% 50%,rgba(255,255,255,.3) 0%,transparent 100%),
-    radial-gradient(ellipse 30% 8% at 85% 50%,rgba(255,255,255,.3) 0%,transparent 100%);
-    filter:blur(1.5px);}
+    conic-gradient(from 0deg,rgba(255,200,80,.6) 0deg,rgba(255,240,180,.3) 30deg,rgba(255,180,60,.5) 60deg,rgba(255,230,150,.35) 90deg,rgba(255,160,50,.5) 120deg,rgba(255,220,130,.35) 150deg,rgba(255,200,80,.55) 180deg,rgba(255,240,170,.3) 210deg,rgba(255,180,60,.5) 240deg,rgba(255,230,150,.35) 270deg,rgba(255,160,50,.5) 300deg,rgba(255,220,130,.35) 330deg,rgba(255,200,80,.6) 360deg);
+    filter:blur(1.5px);
+    mix-blend-mode:soft-light;}
 
   /* 중앙 nebula 글로우 + 정보 표시 */
   .orbit-center{
@@ -1569,41 +1594,41 @@
           <div class="galaxy-stars" aria-hidden="true"></div>
           <div class="galaxy-orbit-ring" aria-hidden="true"></div>
 
-          <button class="galaxy-node gn-1"  data-idx="1"  data-name="TERRA"      data-grade="초3" data-desc="지구 · 출발점"            style="--angle:-90deg;--size:22px;" type="button">
-            <span class="gv gv-1"></span><span class="gn-label"><span class="gn-name">TERRA</span><span class="gn-grade">초3</span></span>
+          <button class="galaxy-node gn-1"  data-idx="1"  data-name="PLUTO"      data-grade="초3" data-desc="명왕성 · 시작의 행성"            style="--angle:-90deg;--size:22px;" type="button">
+            <span class="gv gv-1"></span><span class="gn-label"><span class="gn-name">PLUTO</span><span class="gn-grade">초3</span></span>
           </button>
-          <button class="galaxy-node gn-2"  data-idx="2"  data-name="MAGELLAN"   data-grade="초4" data-desc="마젤란 구름 · 왜소 은하"  style="--angle:-54deg;--size:26px;" type="button">
-            <span class="gv gv-2"></span><span class="gn-label"><span class="gn-name">MAGELLAN</span><span class="gn-grade">초4</span></span>
+          <button class="galaxy-node gn-2"  data-idx="2"  data-name="MERCURY"   data-grade="초4" data-desc="수성 · 태양계 첫 행성"  style="--angle:-54deg;--size:26px;" type="button">
+            <span class="gv gv-2"></span><span class="gn-label"><span class="gn-name">MERCURY</span><span class="gn-grade">초4</span></span>
           </button>
-          <button class="galaxy-node gn-3"  data-idx="3"  data-name="SOMBRERO"   data-grade="초5" data-desc="솜브레로 은하 (M104)"     style="--angle:-18deg;--size:30px;" type="button">
-            <span class="gv gv-3"></span><span class="gn-label"><span class="gn-name">SOMBRERO</span><span class="gn-grade">초5</span></span>
+          <button class="galaxy-node gn-3"  data-idx="3"  data-name="MARS"   data-grade="초5" data-desc="화성 · 붉은 행성"     style="--angle:-18deg;--size:30px;" type="button">
+            <span class="gv gv-3"></span><span class="gn-label"><span class="gn-name">MARS</span><span class="gn-grade">초5</span></span>
           </button>
-          <button class="galaxy-node gn-4"  data-idx="4"  data-name="TRIANGULUM" data-grade="초6" data-desc="삼각형자리 은하 (M33)"    style="--angle:18deg;--size:34px;" type="button">
-            <span class="gv gv-4"></span><span class="gn-label"><span class="gn-name">TRIANGULUM</span><span class="gn-grade">초6</span></span>
+          <button class="galaxy-node gn-4"  data-idx="4"  data-name="VENUS" data-grade="초6" data-desc="금성 · 새벽의 별"    style="--angle:18deg;--size:34px;" type="button">
+            <span class="gv gv-4"></span><span class="gn-label"><span class="gn-name">VENUS</span><span class="gn-grade">초6</span></span>
           </button>
-          <button class="galaxy-node gn-5"  data-idx="5"  data-name="WHIRLPOOL"  data-grade="중1" data-desc="소용돌이 은하 (M51)"      style="--angle:54deg;--size:38px;" type="button">
-            <span class="gv gv-5"></span><span class="gn-label"><span class="gn-name">WHIRLPOOL</span><span class="gn-grade">중1</span></span>
+          <button class="galaxy-node gn-5"  data-idx="5"  data-name="EARTH"  data-grade="중1" data-desc="지구 · 우리 집 🌍"      style="--angle:54deg;--size:38px;" type="button">
+            <span class="gv gv-5"></span><span class="gn-label"><span class="gn-name">EARTH</span><span class="gn-grade">중1</span></span>
           </button>
-          <button class="galaxy-node gn-6"  data-idx="6"  data-name="SUNFLOWER"  data-grade="중2" data-desc="해바라기 은하 (M63)"      style="--angle:90deg;--size:42px;" type="button">
-            <span class="gv gv-6"></span><span class="gn-label"><span class="gn-name">SUNFLOWER</span><span class="gn-grade">중2</span></span>
+          <button class="galaxy-node gn-6"  data-idx="6"  data-name="NEPTUNE"  data-grade="중2" data-desc="해왕성 · 푸른 바람"      style="--angle:90deg;--size:42px;" type="button">
+            <span class="gv gv-6"></span><span class="gn-label"><span class="gn-name">NEPTUNE</span><span class="gn-grade">중2</span></span>
           </button>
-          <button class="galaxy-node gn-7"  data-idx="7"  data-name="MILKYWAY"   data-grade="중3" data-desc="우리 은하"                style="--angle:126deg;--size:48px;" type="button">
-            <span class="gv gv-7"></span><span class="gn-label"><span class="gn-name">MILKYWAY</span><span class="gn-grade">중3</span></span>
+          <button class="galaxy-node gn-7"  data-idx="7"  data-name="URANUS"   data-grade="중3" data-desc="천왕성 · 얼음 거인"                style="--angle:126deg;--size:48px;" type="button">
+            <span class="gv gv-7"></span><span class="gn-label"><span class="gn-name">URANUS</span><span class="gn-grade">중3</span></span>
           </button>
-          <button class="galaxy-node gn-8"  data-idx="8"  data-name="CARTWHEEL"  data-grade="고1" data-desc="수레바퀴 은하"            style="--angle:162deg;--size:54px;" type="button">
-            <span class="gv gv-8"></span><span class="gn-label"><span class="gn-name">CARTWHEEL</span><span class="gn-grade">고1</span></span>
+          <button class="galaxy-node gn-8"  data-idx="8"  data-name="SATURN"  data-grade="고1" data-desc="토성 · 고리의 왕"            style="--angle:162deg;--size:54px;" type="button">
+            <span class="gv gv-8"></span><span class="gn-label"><span class="gn-name">SATURN</span><span class="gn-grade">고1</span></span>
           </button>
-          <button class="galaxy-node gn-9"  data-idx="9"  data-name="PINWHEEL"   data-grade="고2" data-desc="바람개비 은하 (M101)"     style="--angle:198deg;--size:60px;" type="button">
-            <span class="gv gv-9"></span><span class="gn-label"><span class="gn-name">PINWHEEL</span><span class="gn-grade">고2</span></span>
+          <button class="galaxy-node gn-9"  data-idx="9"  data-name="JUPITER"   data-grade="고2" data-desc="목성 · 태양계 왕자"     style="--angle:198deg;--size:60px;" type="button">
+            <span class="gv gv-9"></span><span class="gn-label"><span class="gn-name">JUPITER</span><span class="gn-grade">고2</span></span>
           </button>
-          <button class="galaxy-node gn-10" data-idx="10" data-name="ANDROMEDA"  data-grade="고3" data-desc="안드로메다 은하 (M31)"    style="--angle:234deg;--size:68px;" type="button">
-            <span class="gv gv-10"></span><span class="gn-label"><span class="gn-name">ANDROMEDA</span><span class="gn-grade">고3</span></span>
+          <button class="galaxy-node gn-10" data-idx="10" data-name="SUN"  data-grade="고3" data-desc="태양 · 스스로 빛나는 별 ⭐"    style="--angle:234deg;--size:68px;" type="button">
+            <span class="gv gv-10"></span><span class="gn-label"><span class="gn-name">SUN</span><span class="gn-grade">고3</span></span>
           </button>
 
           <div class="orbit-center">
             <div class="orbit-center-kicker">10 GALAXY LEVELS</div>
             <div class="orbit-center-grade" id="orbitGrade">초3 ~ 고3</div>
-            <div class="orbit-center-name" id="orbitName">TERRA</div>
+            <div class="orbit-center-name" id="orbitName">PLUTO</div>
             <div class="orbit-center-desc" id="orbitDesc">지구 · 출발점</div>
           </div>
         </div>
@@ -3195,7 +3220,7 @@ document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',
   const desc  = document.getElementById('orbitDesc');
   if(!nodes.length) return;
 
-  // 각 노드의 "기본 각도" 배열 (0°= 우측, -90°=TERRA 상단)
+  // 각 노드의 "기본 각도" 배열 (0°= 우측, -90°=PLUTO 상단)
   const baseAngles = nodes.map(n => parseFloat(n.style.getPropertyValue('--angle')) || 0);
   let offset = 0;
   let isDragging = false;
@@ -3322,7 +3347,7 @@ document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',
     });
   });
 
-  // 초기 선택: TERRA
+  // 초기 선택: PLUTO
   selectGalaxy(nodes[0]);
 
   // Viewport 진입 시 자동 회전 시작 (성능 최적화)
