@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Terra Nova Textbook</title>
+<link rel="stylesheet" href="styles/tokens.css" />
+<link rel="stylesheet" href="styles/layout.css" />
+<link rel="stylesheet" href="styles/print.css" />
+</head>
+<body>
+
+<template id="tpl-passage">
+  <article class="passage" data-slot="root">
+
+    <section class="page page-1" data-page="1">
+      <header class="page-head">
+        <span class="section-label">Passage</span>
+        <span data-slot="passage-id"></span>
+      </header>
+      <div class="page-body">
+        <div class="p1-meta">
+          <span class="chip" data-slot="subject"></span>
+          <span class="difficulty" data-slot="difficulty"></span>
+        </div>
+        <h1 class="p1-title" data-slot="title"></h1>
+        <p class="p1-subtitle" data-slot="subtitle"></p>
+        <div class="p1-body" data-slot="body"></div>
+        <figure class="p1-illustration">
+          <img data-slot="illustration" alt="" />
+        </figure>
+        <figcaption class="p1-caption" data-slot="illustration-caption"></figcaption>
+      </div>
+      <footer class="page-foot">
+        <span data-slot="theme-foot"></span>
+        <span class="brand">Terra Nova</span>
+      </footer>
+    </section>
+
+    <section class="page page-2" data-page="2">
+      <header class="page-head">
+        <span class="section-label">Practice</span>
+        <span data-slot="passage-id-2"></span>
+      </header>
+      <div class="page-body">
+        <div class="p2-questions" data-slot="questions"></div>
+        <aside class="tieback">
+          <div class="unit-label" data-slot="tieback-unit"></div>
+          <div class="body-ko" data-slot="tieback-body"></div>
+          <div class="tags" data-slot="tieback-tags"></div>
+        </aside>
+      </div>
+      <footer class="page-foot">
+        <span>Practice · 1/1</span>
+        <span class="brand">Terra Nova</span>
+      </footer>
+    </section>
+
+    <section class="page page-3" data-page="3">
+      <header class="page-head">
+        <span class="section-label">Syntax</span>
+        <span data-slot="passage-id-3"></span>
+      </header>
+      <div class="page-body">
+        <div class="p3-reprint" data-slot="reprint"></div>
+        <div class="p3-sentences" data-slot="sentences"></div>
+        <div class="p3-grammar">
+          <h4>문법 포인트</h4>
+          <ul data-slot="grammar-points"></ul>
+        </div>
+        <div class="p3-translation" data-slot="translation"></div>
+      </div>
+      <footer class="page-foot">
+        <span>Syntax · 1/1</span>
+        <span class="brand">Terra Nova</span>
+      </footer>
+    </section>
+
+    <section class="page page-4" data-page="4">
+      <header class="page-head">
+        <span class="section-label">Vocab</span>
+        <span data-slot="passage-id-4"></span>
+      </header>
+      <div class="page-body">
+        <div class="p4-vocab" data-slot="vocab"></div>
+        <div class="p4-selftest" data-slot="selftest"></div>
+      </div>
+      <footer class="page-foot">
+        <span>Vocab · 1/1</span>
+        <span class="brand">Terra Nova</span>
+      </footer>
+    </section>
+
+  </article>
+</template>
+
+<main id="stage"></main>
+
+<script type="module" src="scripts/render.js"></script>
+</body>
+</html>
