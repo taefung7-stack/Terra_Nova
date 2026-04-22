@@ -427,8 +427,8 @@
      GALAXY ORBIT ANIMATION — 10 레벨 선택 컴포넌트
      ======================================================== */
   .galaxy-orbit-wrap{
-    --orbit-radius:290px;
-    --orbit-tilt:26deg;
+    --orbit-radius:300px;
+    --orbit-tilt:0deg;
     position:relative;
     width:min(720px,calc(100vw - 80px));
     aspect-ratio:1;
@@ -437,14 +437,13 @@
     user-select:none;
     -webkit-user-select:none;
     touch-action:pan-y;
-    transform-style:preserve-3d;
   }
   .galaxy-orbit-wrap:active{cursor:grabbing;}
   @media(max-width:780px){
-    .galaxy-orbit-wrap{width:min(420px,calc(100vw - 40px));--orbit-radius:155px;--orbit-tilt:20deg;}
+    .galaxy-orbit-wrap{width:min(420px,calc(100vw - 40px));--orbit-radius:165px;}
   }
   @media(max-width:420px){
-    .galaxy-orbit-wrap{--orbit-radius:130px;--orbit-tilt:16deg;}
+    .galaxy-orbit-wrap{--orbit-radius:140px;}
   }
 
   /* 별빛 배경 */
@@ -494,20 +493,22 @@
     background:transparent;
     border:none;
     cursor:pointer;
-    transform-style:preserve-3d;
-    /* 3D 틸트된 궤도 + 마우스 시차(parallax) */
+    /* 2D 원형 궤도 배치 — 클릭 히트박스 안정적 */
     transform:
       translate(-50%,-50%)
-      rotateY(calc(var(--parallax-x,0) * 6deg))
-      rotateX(calc(var(--parallax-y,0) * -6deg))
-      rotateX(var(--orbit-tilt))
       rotate(var(--angle))
       translateX(var(--orbit-radius))
-      rotate(calc(-1 * var(--angle)))
-      rotateX(calc(-1 * var(--orbit-tilt)));
+      rotate(calc(-1 * var(--angle)));
     transition:transform .4s cubic-bezier(.34,1.56,.64,1),filter .3s;
     outline:none;
-    z-index:2;
+    z-index:5;
+  }
+  /* 히트박스 확장: 작은 은하에도 충분한 클릭 영역 */
+  .galaxy-node::before{
+    content:'';position:absolute;
+    inset:calc(var(--size,40px) * -.4);
+    border-radius:50%;
+    z-index:-1;
   }
   /* 각 은하는 기울어진 궤도 위를 시계방향으로 공전. TERRA(-90°)=상단, 90°=하단 */
   .galaxy-node .gv{
@@ -541,31 +542,47 @@
   }
   .galaxy-node .gn-label{
     position:absolute;
-    top:calc(100% + 6px);
+    top:calc(100% + 10px);
     left:50%;
     transform:translateX(-50%);
-    font-family:'Noto Sans KR',sans-serif;
-    font-size:clamp(.7rem,1.2vw,.82rem);
-    font-weight:700;
-    color:rgba(255,255,255,.85);
-    letter-spacing:.3px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:3px;
     white-space:nowrap;
     pointer-events:none;
     transition:color .2s,text-shadow .2s;
   }
-  /* Hover: 카메라 쪽으로 튀어나오는 입체 효과 */
+  .galaxy-node .gn-name{
+    font-family:'Noto Sans KR',sans-serif;
+    font-size:clamp(.72rem,1.2vw,.86rem);
+    font-weight:700;
+    color:rgba(255,255,255,.92);
+    letter-spacing:.3px;
+    line-height:1.1;
+  }
+  .galaxy-node .gn-grade{
+    font-family:'Noto Sans KR',sans-serif;
+    font-size:clamp(.62rem,1vw,.72rem);
+    font-weight:600;
+    color:var(--gv-color);
+    background:rgba(255,255,255,.06);
+    border:1px solid color-mix(in oklab,var(--gv-color) 50%,transparent);
+    padding:1px 8px;
+    border-radius:10px;
+    line-height:1.3;
+    letter-spacing:.5px;
+  }
+  /* Hover: 크게 확대 + 밝기 업 */
   .galaxy-node:hover,
   .galaxy-node:focus-visible{
     transform:
       translate(-50%,-50%)
-      rotateY(calc(var(--parallax-x,0) * 6deg))
-      rotateX(calc(var(--parallax-y,0) * -6deg))
-      rotateX(var(--orbit-tilt))
       rotate(var(--angle))
       translateX(var(--orbit-radius))
       rotate(calc(-1 * var(--angle)))
-      rotateX(calc(-1 * var(--orbit-tilt)))
-      translateZ(40px) scale(1.15);
+      scale(1.2);
+    z-index:10;
   }
   .galaxy-node:hover .gv,
   .galaxy-node:focus-visible .gv{
@@ -576,18 +593,15 @@
   }
   .galaxy-node:hover .gn-label,
   .galaxy-node:focus-visible .gn-label{color:#fff;text-shadow:0 0 16px var(--gv-color);font-weight:800;}
-  /* Selected: 더 크게 확대 + 깊은 글로우 */
+  /* Selected: 최대 확대 + 삼중 글로우 */
   .galaxy-node.selected{
     transform:
       translate(-50%,-50%)
-      rotateY(calc(var(--parallax-x,0) * 6deg))
-      rotateX(calc(var(--parallax-y,0) * -6deg))
-      rotateX(var(--orbit-tilt))
       rotate(var(--angle))
       translateX(var(--orbit-radius))
       rotate(calc(-1 * var(--angle)))
-      rotateX(calc(-1 * var(--orbit-tilt)))
-      translateZ(60px) scale(1.25);
+      scale(1.35);
+    z-index:15;
   }
   .galaxy-node.selected .gv{
     box-shadow:
@@ -749,19 +763,29 @@
     letter-spacing:.3px;
   }
 
-  /* ── A. 슈팅 스타 (유성) ── */
-  .shooting-stars{position:absolute;inset:-30%;pointer-events:none;overflow:hidden;z-index:1;}
-  .ss{position:absolute;width:140px;height:2px;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.9) 50%,rgba(255,255,255,0) 100%);opacity:0;border-radius:2px;filter:blur(.5px);box-shadow:0 0 8px rgba(255,255,255,.6);}
-  .ss-1{top:8%;left:-20%;transform:rotate(18deg);animation:shootStar 7s ease-in infinite;animation-delay:0s;}
-  .ss-2{top:42%;left:-20%;transform:rotate(22deg);animation:shootStar 11s ease-in infinite;animation-delay:3s;}
-  .ss-3{top:68%;left:-20%;transform:rotate(14deg);animation:shootStar 9s ease-in infinite;animation-delay:6s;}
-  .ss-4{top:22%;left:-20%;transform:rotate(28deg);animation:shootStar 13s ease-in infinite;animation-delay:1.5s;}
-  @keyframes shootStar{
-    0%{opacity:0;transform:translateX(0) translateY(0) rotate(var(--ss-angle,20deg));}
-    5%{opacity:1;}
-    35%{opacity:.9;}
-    55%{opacity:0;transform:translateX(150%) translateY(60%) rotate(var(--ss-angle,20deg));}
-    100%{opacity:0;transform:translateX(150%) translateY(60%) rotate(var(--ss-angle,20deg));}
+  /* ── A. 슈팅 스타 (유성) — card-top 전체 영역 커버 ── */
+  .shooting-stars-wide{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1;}
+  .shooting-stars-wide .ss{
+    position:absolute;
+    width:220px;height:3px;
+    background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.95) 40%,rgba(180,220,255,1) 50%,rgba(255,255,255,.9) 60%,transparent 100%);
+    opacity:0;
+    border-radius:3px;
+    filter:blur(.6px);
+    box-shadow:0 0 14px rgba(255,255,255,.75),0 0 24px rgba(180,220,255,.5);
+    transform-origin:left center;
+  }
+  .shooting-stars-wide .ss-1{top:6%; left:-25%;--ss-angle:18deg; animation:shootStarWide 6s ease-in infinite;     animation-delay:0.5s;}
+  .shooting-stars-wide .ss-2{top:28%;left:-25%;--ss-angle:25deg; animation:shootStarWide 9s ease-in infinite;     animation-delay:3s;}
+  .shooting-stars-wide .ss-3{top:52%;left:-25%;--ss-angle:15deg; animation:shootStarWide 11s ease-in infinite;    animation-delay:6.5s;}
+  .shooting-stars-wide .ss-4{top:18%;left:-25%;--ss-angle:32deg; animation:shootStarWide 8s ease-in infinite;     animation-delay:2s;}
+  .shooting-stars-wide .ss-5{top:70%;left:-25%;--ss-angle:22deg; animation:shootStarWide 13s ease-in infinite;    animation-delay:5s;}
+  @keyframes shootStarWide{
+    0%,8%  {opacity:0;transform:translate(0,0) rotate(var(--ss-angle));}
+    10%    {opacity:1;}
+    42%    {opacity:.95;}
+    55%    {opacity:0;transform:translate(180vw,80vh) rotate(var(--ss-angle));}
+    100%   {opacity:0;transform:translate(180vw,80vh) rotate(var(--ss-angle));}
   }
 
   /* ── C. 선택된 은하 자체 회전 ── */
@@ -1444,46 +1468,49 @@
       <div class="card-top c1 has-galaxy-orbit">
         <div class="card-glow"></div>
 
+        <!-- 슈팅스타는 card-top 전체 영역으로 확장 -->
+        <div class="shooting-stars shooting-stars-wide" aria-hidden="true">
+          <span class="ss ss-1"></span>
+          <span class="ss ss-2"></span>
+          <span class="ss ss-3"></span>
+          <span class="ss ss-4"></span>
+          <span class="ss ss-5"></span>
+        </div>
+
         <!-- 10 Galaxy Orbit Animation — 레벨 선택 인터랙션 -->
         <div class="galaxy-orbit-wrap" id="galaxyOrbit" role="region" aria-label="10 레벨 은하 선택">
           <div class="galaxy-stars" aria-hidden="true"></div>
-          <div class="shooting-stars" aria-hidden="true">
-            <span class="ss ss-1"></span>
-            <span class="ss ss-2"></span>
-            <span class="ss ss-3"></span>
-            <span class="ss ss-4"></span>
-          </div>
           <div class="galaxy-orbit-ring" aria-hidden="true"></div>
 
-          <button class="galaxy-node gn-1"  data-idx="1"  data-name="TERRA"      data-grade="초3" data-desc="지구 · 출발점"            style="--angle:-90deg;--size:20px;" type="button">
-            <span class="gv gv-1"></span><span class="gn-label">TERRA</span>
+          <button class="galaxy-node gn-1"  data-idx="1"  data-name="TERRA"      data-grade="초3" data-desc="지구 · 출발점"            style="--angle:-90deg;--size:22px;" type="button">
+            <span class="gv gv-1"></span><span class="gn-label"><span class="gn-name">TERRA</span><span class="gn-grade">초3</span></span>
           </button>
-          <button class="galaxy-node gn-2"  data-idx="2"  data-name="MAGELLAN"   data-grade="초4" data-desc="마젤란 구름 · 왜소 은하"  style="--angle:-54deg;--size:24px;" type="button">
-            <span class="gv gv-2"></span><span class="gn-label">MAGELLAN</span>
+          <button class="galaxy-node gn-2"  data-idx="2"  data-name="MAGELLAN"   data-grade="초4" data-desc="마젤란 구름 · 왜소 은하"  style="--angle:-54deg;--size:26px;" type="button">
+            <span class="gv gv-2"></span><span class="gn-label"><span class="gn-name">MAGELLAN</span><span class="gn-grade">초4</span></span>
           </button>
-          <button class="galaxy-node gn-3"  data-idx="3"  data-name="SOMBRERO"   data-grade="초5" data-desc="솜브레로 은하 (M104)"     style="--angle:-18deg;--size:28px;" type="button">
-            <span class="gv gv-3"></span><span class="gn-label">SOMBRERO</span>
+          <button class="galaxy-node gn-3"  data-idx="3"  data-name="SOMBRERO"   data-grade="초5" data-desc="솜브레로 은하 (M104)"     style="--angle:-18deg;--size:30px;" type="button">
+            <span class="gv gv-3"></span><span class="gn-label"><span class="gn-name">SOMBRERO</span><span class="gn-grade">초5</span></span>
           </button>
-          <button class="galaxy-node gn-4"  data-idx="4"  data-name="TRIANGULUM" data-grade="초6" data-desc="삼각형자리 은하 (M33)"    style="--angle:18deg;--size:32px;" type="button">
-            <span class="gv gv-4"></span><span class="gn-label">TRIANGULUM</span>
+          <button class="galaxy-node gn-4"  data-idx="4"  data-name="TRIANGULUM" data-grade="초6" data-desc="삼각형자리 은하 (M33)"    style="--angle:18deg;--size:34px;" type="button">
+            <span class="gv gv-4"></span><span class="gn-label"><span class="gn-name">TRIANGULUM</span><span class="gn-grade">초6</span></span>
           </button>
-          <button class="galaxy-node gn-5"  data-idx="5"  data-name="WHIRLPOOL"  data-grade="중1" data-desc="소용돌이 은하 (M51)"      style="--angle:54deg;--size:36px;" type="button">
-            <span class="gv gv-5"></span><span class="gn-label">WHIRLPOOL</span>
+          <button class="galaxy-node gn-5"  data-idx="5"  data-name="WHIRLPOOL"  data-grade="중1" data-desc="소용돌이 은하 (M51)"      style="--angle:54deg;--size:38px;" type="button">
+            <span class="gv gv-5"></span><span class="gn-label"><span class="gn-name">WHIRLPOOL</span><span class="gn-grade">중1</span></span>
           </button>
-          <button class="galaxy-node gn-6"  data-idx="6"  data-name="SUNFLOWER"  data-grade="중2" data-desc="해바라기 은하 (M63)"      style="--angle:90deg;--size:40px;" type="button">
-            <span class="gv gv-6"></span><span class="gn-label">SUNFLOWER</span>
+          <button class="galaxy-node gn-6"  data-idx="6"  data-name="SUNFLOWER"  data-grade="중2" data-desc="해바라기 은하 (M63)"      style="--angle:90deg;--size:42px;" type="button">
+            <span class="gv gv-6"></span><span class="gn-label"><span class="gn-name">SUNFLOWER</span><span class="gn-grade">중2</span></span>
           </button>
-          <button class="galaxy-node gn-7"  data-idx="7"  data-name="MILKYWAY"   data-grade="중3" data-desc="우리 은하"                style="--angle:126deg;--size:46px;" type="button">
-            <span class="gv gv-7"></span><span class="gn-label">MILKYWAY</span>
+          <button class="galaxy-node gn-7"  data-idx="7"  data-name="MILKYWAY"   data-grade="중3" data-desc="우리 은하"                style="--angle:126deg;--size:48px;" type="button">
+            <span class="gv gv-7"></span><span class="gn-label"><span class="gn-name">MILKYWAY</span><span class="gn-grade">중3</span></span>
           </button>
-          <button class="galaxy-node gn-8"  data-idx="8"  data-name="CARTWHEEL"  data-grade="고1" data-desc="수레바퀴 은하"            style="--angle:162deg;--size:52px;" type="button">
-            <span class="gv gv-8"></span><span class="gn-label">CARTWHEEL</span>
+          <button class="galaxy-node gn-8"  data-idx="8"  data-name="CARTWHEEL"  data-grade="고1" data-desc="수레바퀴 은하"            style="--angle:162deg;--size:54px;" type="button">
+            <span class="gv gv-8"></span><span class="gn-label"><span class="gn-name">CARTWHEEL</span><span class="gn-grade">고1</span></span>
           </button>
-          <button class="galaxy-node gn-9"  data-idx="9"  data-name="PINWHEEL"   data-grade="고2" data-desc="바람개비 은하 (M101)"     style="--angle:198deg;--size:58px;" type="button">
-            <span class="gv gv-9"></span><span class="gn-label">PINWHEEL</span>
+          <button class="galaxy-node gn-9"  data-idx="9"  data-name="PINWHEEL"   data-grade="고2" data-desc="바람개비 은하 (M101)"     style="--angle:198deg;--size:60px;" type="button">
+            <span class="gv gv-9"></span><span class="gn-label"><span class="gn-name">PINWHEEL</span><span class="gn-grade">고2</span></span>
           </button>
-          <button class="galaxy-node gn-10" data-idx="10" data-name="ANDROMEDA"  data-grade="고3" data-desc="안드로메다 은하 (M31)"    style="--angle:234deg;--size:66px;" type="button">
-            <span class="gv gv-10"></span><span class="gn-label">ANDROMEDA</span>
+          <button class="galaxy-node gn-10" data-idx="10" data-name="ANDROMEDA"  data-grade="고3" data-desc="안드로메다 은하 (M31)"    style="--angle:234deg;--size:68px;" type="button">
+            <span class="gv gv-10"></span><span class="gn-label"><span class="gn-name">ANDROMEDA</span><span class="gn-grade">고3</span></span>
           </button>
 
           <div class="orbit-center">
@@ -3097,14 +3124,15 @@ document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',
     });
   }
 
-  // 자동 회전 (초당 ~3°, 느린 은하 같은 속도)
+  // 자동 회전 (초당 ~3°, 드래그 직후 3초간 일시정지)
   function startAutoRotate(){
     if(reduceMotion || autoRotateId) return;
     let last = performance.now();
     const tick = (now) => {
       const dt = (now - last) / 1000;
       last = now;
-      if(!isDragging) {
+      const sinceLastDrag = now - dragEndTime;
+      if(!isDragging && sinceLastDrag > 3000) {
         offset += dt * 3; // 3 deg/sec
         applyRotation();
       }
@@ -3117,6 +3145,7 @@ document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',
   }
 
   // 드래그 시작
+  let dragEndTime = 0;
   function dragStart(clientX, clientY){
     isDragging = true;
     dragStartX = clientX;
@@ -3124,14 +3153,17 @@ document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',
     dragStartOffset = offset;
     orbit.style.cursor = 'grabbing';
   }
-  // 드래그 이동: x 변위를 각도로 변환 (1px = 0.4도)
+  // 드래그 이동: x 변위를 각도로 변환 (1px = 0.9도, 자연스러운 감)
   function dragMove(clientX, clientY){
     if(!isDragging) return;
     const dx = clientX - dragStartX;
-    offset = dragStartOffset + dx * 0.4;
+    offset = dragStartOffset + dx * 0.9;
     applyRotation();
   }
   function dragEnd(){
+    if(isDragging){
+      dragEndTime = performance.now();
+    }
     isDragging = false;
     orbit.style.cursor = 'grab';
   }
