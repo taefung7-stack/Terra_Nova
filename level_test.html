@@ -243,9 +243,9 @@
   </div>
   <div class="options grade-grid">
     <button class="option-btn" onclick="sel(this,'grade','초3')"><div class="grade-emoji">🌑</div><div class="grade-label">초3</div><div class="grade-sub">MOON · Level 1</div></button>
-    <button class="option-btn" onclick="sel(this,'grade','초4')"><div class="grade-emoji">☿️</div><div class="grade-label">초4</div><div class="grade-sub">MERCURY · Level 2</div></button>
-    <button class="option-btn" onclick="sel(this,'grade','초5')"><div class="grade-emoji">♂️</div><div class="grade-label">초5</div><div class="grade-sub">MARS · Level 3</div></button>
-    <button class="option-btn" onclick="sel(this,'grade','초6')"><div class="grade-emoji">♀️</div><div class="grade-label">초6</div><div class="grade-sub">VENUS · Level 4</div></button>
+    <button class="option-btn" onclick="sel(this,'grade','초4')"><div class="grade-emoji">⚫</div><div class="grade-label">초4</div><div class="grade-sub">MERCURY · Level 2</div></button>
+    <button class="option-btn" onclick="sel(this,'grade','초5')"><div class="grade-emoji">🔴</div><div class="grade-label">초5</div><div class="grade-sub">MARS · Level 3</div></button>
+    <button class="option-btn" onclick="sel(this,'grade','초6')"><div class="grade-emoji">🟡</div><div class="grade-label">초6</div><div class="grade-sub">VENUS · Level 4</div></button>
     <button class="option-btn" onclick="sel(this,'grade','중1')"><div class="grade-emoji">🌍</div><div class="grade-label">중1</div><div class="grade-sub">TERRA · Level 5</div></button>
     <button class="option-btn" onclick="sel(this,'grade','중2')"><div class="grade-emoji">🔵</div><div class="grade-label">중2</div><div class="grade-sub">NEPTUNE · Level 6</div></button>
     <button class="option-btn" onclick="sel(this,'grade','중3')"><div class="grade-emoji">💠</div><div class="grade-label">중3</div><div class="grade-sub">URANUS · Level 7</div></button>
@@ -639,7 +639,7 @@
 
     <!-- 추천 주간 학습 플랜 -->
     <div class="study-plan-box">
-      <div class="result-analysis-title">📅 추천 주간 학습 플랜</div>
+      <div class="result-analysis-title">📚 이 레벨의 커리큘럼 예시 (첫 달)</div>
       <div id="study-plan-content"></div>
     </div>
 
@@ -1074,11 +1074,15 @@ function showResult() {
     `<div class="weak-item"><div class="weak-domain">${w.domain}</div><div class="weak-text">${w.advice}</div></div>`
   ).join('');
 
-  // 주간 학습 플랜
-  const plan = studyPlanMap[lvl] || studyPlanMap.URANUS;
-  const timeLabel = {'15분':'15분/일','30분':'30분/일','1시간':'1시간/일','1시간이상':'1시간30분+/일'}[answers.time]||'30분/일';
-  let planHtml = `<div style="font-size:.72rem;color:var(--accent);font-weight:700;margin-bottom:14px;">기준: ${timeLabel} · ${info.name} 최적화</div>`;
-  planHtml += plan.map(p=>`<div class="plan-row"><div class="plan-day">${p.day}</div><div class="plan-text">${p.task}</div></div>`).join('');
+  // 이 레벨의 커리큘럼 예시 (첫 달)
+  const curriculum = curriculumMap[lvl] || curriculumMap.URANUS;
+  let planHtml = `<div style="font-size:.75rem;color:var(--accent);font-weight:700;margin-bottom:6px;letter-spacing:.5px;">${info.target} · 월 4주 커리큘럼</div>`;
+  planHtml += `<div style="font-size:.82rem;color:var(--dim);margin-bottom:18px;line-height:1.6;">${info.name} 레벨의 학생이 첫 달에 접하는 <strong style="color:#fff;">교과 연계 영어 지문</strong> 주제입니다.</div>`;
+  planHtml += '<div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-family:\'Noto Sans KR\',sans-serif;font-size:.85rem;">';
+  planHtml += '<thead><tr style="border-bottom:1px solid rgba(45,212,191,.25);"><th style="text-align:left;padding:10px 8px;font-size:.72rem;font-weight:700;letter-spacing:1px;color:var(--accent);text-transform:uppercase;width:18%;">주차</th><th style="text-align:left;padding:10px 8px;font-size:.72rem;font-weight:700;letter-spacing:1px;color:var(--accent);text-transform:uppercase;width:24%;">교과 연계</th><th style="text-align:left;padding:10px 8px;font-size:.72rem;font-weight:700;letter-spacing:1px;color:var(--accent);text-transform:uppercase;">학습 주제</th></tr></thead><tbody>';
+  planHtml += curriculum.map((w,i)=>`<tr style="border-bottom:1px solid var(--line);"><td style="padding:14px 8px;vertical-align:top;"><div style="font-weight:800;color:#fff;">${w.week}</div><div style="font-size:.7rem;color:var(--dim);margin-top:2px;">${w.days}</div></td><td style="padding:14px 8px;vertical-align:top;"><div style="display:inline-block;padding:3px 10px;border:1px solid rgba(45,212,191,.3);border-radius:3px;font-size:.72rem;color:var(--accent);font-weight:600;">${w.subject}</div><div style="font-size:.7rem;color:var(--dim);margin-top:6px;">${w.unit}</div></td><td style="padding:14px 8px;vertical-align:top;"><div style="color:#fff;font-weight:700;margin-bottom:4px;">${w.topic}</div><div style="font-size:.76rem;color:var(--dim);line-height:1.6;font-style:italic;">"${w.preview}"</div></td></tr>`).join('');
+  planHtml += '</tbody></table></div>';
+  planHtml += `<div style="margin-top:16px;padding:12px 14px;background:rgba(45,212,191,.06);border:1px solid rgba(45,212,191,.2);border-radius:6px;font-size:.76rem;color:var(--dim);line-height:1.7;">💡 실제 구독자는 매주 월~금 하루 <strong style="color:#fff;">1지문(약 10~15분)</strong>을 풀이합니다. 위 표는 Level ${LEVEL_NUM[lvl]} (${lvl}) 학생이 첫 달에 만나는 지문 예시입니다.</div>`;
   document.getElementById('study-plan-content').innerHTML = planHtml;
 
   // 샘플
@@ -1098,6 +1102,71 @@ function showResult() {
   // ── Supabase: 로그인 상태면 결과 저장 ────────────
   saveLevelResult(lvl, sc, conf).catch(err => console.warn('[level_test] save skipped:', err?.message));
 }
+
+
+// 레벨별 교과 연계 커리큘럼 (첫 달 4주 예시)
+const curriculumMap = {
+  MOON: [
+    {week:'Week 1',days:'월~금',subject:'🌱 과학',unit:'초3 · 동식물의 한살이',topic:'The Life of a Butterfly',preview:'Butterflies start as tiny eggs. They become caterpillars, then pupae, then beautiful butterflies.'},
+    {week:'Week 2',days:'월~금',subject:'🏘️ 사회',unit:'초3 · 우리 고장',topic:'My Town',preview:'My town has a school, a park, and a library. People help each other every day.'},
+    {week:'Week 3',days:'월~금',subject:'🔢 수학',unit:'초3 · 시각과 시간',topic:'Telling Time',preview:'The big hand points to 12. The small hand points to 3. It is 3 oclock.'},
+    {week:'Week 4',days:'월~금',subject:'📖 국어',unit:'초3 · 느낌을 살려 읽기',topic:'Reading with Feeling',preview:'When we read a happy story, our voice sounds cheerful. When sad, our voice is soft.'}
+  ],
+  MERCURY: [
+    {week:'Week 1',days:'월~금',subject:'💧 과학',unit:'초4 · 물의 상태 변화',topic:'Water Changes State',preview:'Water becomes ice when it is very cold. It becomes steam when heated. These changes are all around us.'},
+    {week:'Week 2',days:'월~금',subject:'🗺️ 사회',unit:'초4 · 우리 지역의 지리',topic:'Land and Rivers',preview:'Rivers flow from mountains to the sea. People build cities near rivers because water is essential for life.'},
+    {week:'Week 3',days:'월~금',subject:'🍰 수학',unit:'초4 · 분수와 소수',topic:'Fractions in Daily Life',preview:'Half a pizza is 1/2. A quarter of an apple is 1/4. Fractions help us share equally.'},
+    {week:'Week 4',days:'월~금',subject:'✍️ 국어',unit:'초4 · 사실과 의견',topic:'Fact vs. Opinion',preview:'A fact can be proven. An opinion is what someone thinks. Good writers know the difference.'}
+  ],
+  MARS: [
+    {week:'Week 1',days:'월~금',subject:'🌌 과학',unit:'초5 · 태양계와 별',topic:'Our Solar System',preview:'The solar system has eight planets orbiting the Sun. Earth is the only planet where we know life exists.'},
+    {week:'Week 2',days:'월~금',subject:'🏛️ 사회',unit:'초5 · 우리나라의 역사',topic:'Ancient Korea',preview:'Long ago, Koreans built the Goryeo and Joseon dynasties. They invented hangul, our writing system.'},
+    {week:'Week 3',days:'월~금',subject:'📐 수학',unit:'초5 · 평면도형의 둘레와 넓이',topic:'Area and Perimeter',preview:'The perimeter of a rectangle is the sum of all its sides. The area is length times width.'},
+    {week:'Week 4',days:'월~금',subject:'📚 국어',unit:'초5 · 글의 짜임',topic:'Text Structure',preview:'Every good story has a beginning, middle, and end. Essays have an introduction, body, and conclusion.'}
+  ],
+  VENUS: [
+    {week:'Week 1',days:'월~금',subject:'🌿 과학',unit:'초6 · 생태계의 평형',topic:'Balance in Ecosystems',preview:'Ecosystems maintain balance through food chains. When one link breaks, the entire system is affected.'},
+    {week:'Week 2',days:'월~금',subject:'🌍 사회',unit:'초6 · 세계 여러 나라의 문화',topic:'Cultures Around the World',preview:'Different cultures develop unique traditions based on their environment, but the desire for family is universal.'},
+    {week:'Week 3',days:'월~금',subject:'⚖️ 수학',unit:'초6 · 비와 비율',topic:'Ratios and Proportions',preview:'Understanding ratios helps in cooking, building, and science. A 2:1 ratio means twice as much of one thing.'},
+    {week:'Week 4',days:'월~금',subject:'📝 국어',unit:'초6 · 논설문',topic:'Persuasive Writing',preview:'A persuasive essay tries to convince. It needs a clear claim, strong reasons, and evidence to support them.'}
+  ],
+  TERRA: [
+    {week:'Week 1',days:'월~금',subject:'⚡ 과학',unit:'중1 · 전기와 자기',topic:'Electricity and Magnetism',preview:'Electricity and magnetism are closely related. Electric current flowing through a wire creates a magnetic field.'},
+    {week:'Week 2',days:'월~금',subject:'🗺️ 사회',unit:'중1 · 자연환경과 인간 생활',topic:'Climate and Human Life',preview:'Climate shapes how people live. People in deserts build flat-roofed homes, while those in rainy areas use sloped roofs.'},
+    {week:'Week 3',days:'월~금',subject:'🔺 수학',unit:'중1 · 일차방정식',topic:'Solving Linear Equations',preview:'A linear equation has one variable. To solve 2x + 3 = 11, we subtract 3 from both sides, then divide by 2.'},
+    {week:'Week 4',days:'월~금',subject:'📖 국어',unit:'중1 · 시의 표현',topic:'Poetic Expression',preview:'Poetry uses metaphors to compare things. "Her eyes are stars" creates a vivid image that goes beyond literal meaning.'}
+  ],
+  NEPTUNE: [
+    {week:'Week 1',days:'월~금',subject:'🧬 과학',unit:'중2 · 유전과 DNA',topic:'DNA: Blueprint of Life',preview:'DNA carries genetic information from parents to offspring. Each cell contains instructions for traits like eye color.'},
+    {week:'Week 2',days:'월~금',subject:'📜 사회',unit:'중2 · 근대 국가의 성립',topic:'Rise of Modern Nations',preview:'Revolutions in France and America demonstrated that governments derive their power from the people, not hereditary rulers.'},
+    {week:'Week 3',days:'월~금',subject:'🎲 수학',unit:'중2 · 확률과 경우의 수',topic:'Probability in Real Life',preview:'Weather forecasts say "60% chance of rain" because meteorologists count similar past patterns and calculate frequencies.'},
+    {week:'Week 4',days:'월~금',subject:'🎭 국어',unit:'중2 · 소설의 구성',topic:'Story Structure',preview:'Every story has conflict at its heart. The protagonist faces challenges, grows, and either succeeds or learns.'}
+  ],
+  URANUS: [
+    {week:'Week 1',days:'월~금',subject:'🧪 과학',unit:'중3 · 세포 호흡',topic:'Cellular Respiration',preview:'Cellular respiration converts glucose and oxygen into energy. This process occurs in mitochondria, the powerhouses of cells.'},
+    {week:'Week 2',days:'월~금',subject:'💱 사회',unit:'중3 · 경제와 사회',topic:'Economic Systems',preview:'Market economies rely on supply and demand, while planned economies use government decisions. Most countries blend both.'},
+    {week:'Week 3',days:'월~금',subject:'📊 수학',unit:'중3 · 함수의 그래프',topic:'Graphing Functions',preview:'A function assigns one output to each input. Graphing reveals patterns: linear functions form lines, quadratics form curves.'},
+    {week:'Week 4',days:'월~금',subject:'🖋️ 국어',unit:'중3 · 비문학 독해',topic:'Critical Reading',preview:'Critical readers question the authors purpose, evidence, and bias. They distinguish claims from facts and seek multiple perspectives.'}
+  ],
+  SATURN: [
+    {week:'Week 1',days:'월~금',subject:'🔭 통합과학',unit:'고1 · 우주의 기원',topic:'The Big Bang Theory',preview:'Observations of cosmic microwave background support the Big Bang. This ancient light provides evidence the universe began 13.8 billion years ago.'},
+    {week:'Week 2',days:'월~금',subject:'💹 사회',unit:'고1 · 시장과 경제',topic:'Market Economics',preview:'A market economy operates through supply and demand. Prices adjust based on how much sellers offer and buyers want.'},
+    {week:'Week 3',days:'월~금',subject:'📈 수학',unit:'고1 · 지수함수와 로그함수',topic:'Exponential Growth',preview:'Exponential functions describe rapid growth: bacteria populations, compound interest, and viral spread all follow this pattern.'},
+    {week:'Week 4',days:'월~금',subject:'⚖️ 윤리',unit:'고1 · 윤리와 사상',topic:'Utilitarian Ethics',preview:'Utilitarianism proposes that the moral action maximizes overall happiness. But whose happiness counts, and can suffering be justified?'}
+  ],
+  JUPITER: [
+    {week:'Week 1',days:'월~금',subject:'💡 심화과학',unit:'고2 · 양자역학',topic:'Quantum Mechanics',preview:'Quantum mechanics describes nature at atomic scales, where particles behave as both waves and particles simultaneously—a paradox classical physics cannot explain.'},
+    {week:'Week 2',days:'월~금',subject:'📊 경제',unit:'고2 · 거시경제',topic:'Macroeconomic Policy',preview:'Central banks adjust interest rates to manage inflation and employment. Lower rates stimulate spending; higher rates cool an overheated economy.'},
+    {week:'Week 3',days:'월~금',subject:'🔢 수학',unit:'고2 · 미적분',topic:'Calculus and Change',preview:'Calculus measures change: derivatives capture instantaneous rates of change, while integrals accumulate quantities over continuous intervals.'},
+    {week:'Week 4',days:'월~금',subject:'🌏 지리',unit:'고2 · 세계지리',topic:'Climate Change Impact',preview:'Rising global temperatures accelerate ice melt, raise sea levels, and displace coastal populations. The crisis demands international cooperation at unprecedented scale.'}
+  ],
+  SUN: [
+    {week:'Week 1',days:'월~금',subject:'🧠 철학',unit:'고3·N · 수능 최고난도',topic:'Emergent Properties',preview:'Emergence suggests complex systems exhibit properties absent in their individual components. Consciousness arises from coordinated neural activity, yet no single neuron possesses awareness.'},
+    {week:'Week 2',days:'월~금',subject:'🏛️ 정치',unit:'고3·N · 민주주의',topic:'Democracy and Liberty',preview:'Democratic societies balance majority rule with protection of individual rights. Without such limits, democracy risks devolving into the tyranny of the majority.'},
+    {week:'Week 3',days:'월~금',subject:'🧬 생명과학',unit:'고3·N · 진화',topic:'Evolutionary Biology',preview:'Natural selection is not random; it is the non-random preservation of random mutations. Over time, this process has sculpted the extraordinary diversity of life on Earth.'},
+    {week:'Week 4',days:'월~금',subject:'📚 문학',unit:'고3·N · 고난도 지문',topic:'Literary Criticism',preview:'Deconstructionism challenges fixed meanings in texts. Each reader, informed by their own context and assumptions, inevitably shapes interpretation in ways the author never anticipated.'}
+  ]
+};
 
 const LEVEL_NUM = { MOON: 1, MERCURY: 2, MARS: 3, VENUS: 4, TERRA: 5, NEPTUNE: 6, URANUS: 7, SATURN: 8, JUPITER: 9, SUN: 10 };
 
