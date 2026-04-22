@@ -14,8 +14,16 @@ const ajv = new Ajv({ allErrors: true, strict: false });
 addFormats(ajv);
 const ajvValidate = ajv.compile(schema);
 
+const BODY_WORD_MIN = 225;
+const BODY_WORD_MAX = 310;
+
 function countWords(text) {
-  return text.trim().split(/\s+/).filter(Boolean).length;
+  // Strip custom markers like <u>...</u> and <blank> before counting
+  const cleaned = text
+    .replace(/<\/?u>/g, ' ')
+    .replace(/<blank>/g, ' blank ')
+    .replace(/<\/?mark>/g, ' ');
+  return cleaned.trim().split(/\s+/).filter(Boolean).length;
 }
 
 export function validatePassage(data) {
@@ -24,10 +32,20 @@ export function validatePassage(data) {
 
   if (ok) {
     const wc = countWords(data.page1.body);
-    if (wc < 150 || wc > 200) {
+    if (wc < BODY_WORD_MIN || wc > BODY_WORD_MAX) {
       errors.push({
         instancePath: '/page1/body',
-        message: `word count ${wc} is outside 150–200`
+        message: `word count ${wc} is outside ${BODY_WORD_MIN}–${BODY_WORD_MAX}`
+      });
+    }
+
+    const qs = data.page2.questions;
+    const mockCount = qs.filter(q => q.type === 'mock_objective').length;
+    const descCount = qs.filter(q => q.type === 'school_descriptive').length;
+    if (mockCount !== 3 || descCount !== 1) {
+      errors.push({
+        instancePath: '/page2/questions',
+        message: `expected 3 mock_objective + 1 school_descriptive, got ${mockCount} + ${descCount}`
       });
     }
   }

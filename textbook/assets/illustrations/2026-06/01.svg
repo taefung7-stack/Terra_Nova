@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 350" role="img" aria-label="Carbon atoms linking into chains, rings, and crystals">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%"  stop-color="#2D1C7F"/>
+      <stop offset="55%" stop-color="#7546E8"/>
+      <stop offset="100%" stop-color="#C8B3F6"/>
+    </linearGradient>
+    <radialGradient id="atom" cx="30%" cy="30%" r="70%">
+      <stop offset="0%"  stop-color="#FFFFFF" stop-opacity="0.95"/>
+      <stop offset="60%" stop-color="#C8B3F6" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#7546E8" stop-opacity="0.0"/>
+    </radialGradient>
+    <filter id="soft" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="0.8"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="350" fill="url(#bg)"/>
+
+  <!-- faint star field -->
+  <g fill="#FFFFFF" opacity="0.35">
+    <circle cx="55"  cy="40"  r="1.1"/>
+    <circle cx="120" cy="80"  r="0.9"/>
+    <circle cx="200" cy="30"  r="1.3"/>
+    <circle cx="310" cy="60"  r="0.9"/>
+    <circle cx="410" cy="28"  r="1.1"/>
+    <circle cx="520" cy="75"  r="1.0"/>
+    <circle cx="640" cy="38"  r="1.2"/>
+    <circle cx="730" cy="70"  r="0.9"/>
+    <circle cx="80"  cy="280" r="1.0"/>
+    <circle cx="180" cy="310" r="1.2"/>
+    <circle cx="340" cy="295" r="0.9"/>
+    <circle cx="510" cy="315" r="1.1"/>
+    <circle cx="680" cy="300" r="1.0"/>
+  </g>
+
+  <!-- === 1) Chain (alkane-like CH3-CH2-CH2-CH3) === -->
+  <g transform="translate(60,175)" stroke="#FFFFFF" stroke-width="1.8" fill="none" opacity="0.95">
+    <line x1="0"  y1="0"  x2="45" y2="-25"/>
+    <line x1="45" y1="-25" x2="90" y2="0"/>
+    <line x1="90" y1="0"  x2="135" y2="-25"/>
+    <line x1="135" y1="-25" x2="180" y2="0"/>
+  </g>
+  <g transform="translate(60,175)">
+    <circle cx="0"   cy="0"   r="10" fill="url(#atom)"/>
+    <circle cx="45"  cy="-25" r="10" fill="url(#atom)"/>
+    <circle cx="90"  cy="0"   r="10" fill="url(#atom)"/>
+    <circle cx="135" cy="-25" r="10" fill="url(#atom)"/>
+    <circle cx="180" cy="0"   r="10" fill="url(#atom)"/>
+    <circle cx="0"   cy="0"   r="5" fill="#FFFFFF"/>
+    <circle cx="45"  cy="-25" r="5" fill="#FFFFFF"/>
+    <circle cx="90"  cy="0"   r="5" fill="#FFFFFF"/>
+    <circle cx="135" cy="-25" r="5" fill="#FFFFFF"/>
+    <circle cx="180" cy="0"   r="5" fill="#FFFFFF"/>
+  </g>
+  <text x="150" y="230" fill="#FFFFFF" font-family="Axiforma, sans-serif" font-size="11" text-anchor="middle" opacity="0.85" letter-spacing="1">CHAIN</text>
+
+  <!-- === 2) Benzene ring === -->
+  <g transform="translate(400,175)" stroke="#FFFFFF" stroke-width="1.8" fill="none" opacity="0.95">
+    <polygon points="0,-55 48,-28 48,28 0,55 -48,28 -48,-28"/>
+    <polygon points="0,-42 36,-21 36,21 0,42 -36,21 -36,-21"/>
+  </g>
+  <g transform="translate(400,175)">
+    <circle cx="0"   cy="-55" r="10" fill="url(#atom)"/>
+    <circle cx="48"  cy="-28" r="10" fill="url(#atom)"/>
+    <circle cx="48"  cy="28"  r="10" fill="url(#atom)"/>
+    <circle cx="0"   cy="55"  r="10" fill="url(#atom)"/>
+    <circle cx="-48" cy="28"  r="10" fill="url(#atom)"/>
+    <circle cx="-48" cy="-28" r="10" fill="url(#atom)"/>
+    <circle cx="0"   cy="-55" r="5" fill="#FFFFFF"/>
+    <circle cx="48"  cy="-28" r="5" fill="#FFFFFF"/>
+    <circle cx="48"  cy="28"  r="5" fill="#FFFFFF"/>
+    <circle cx="0"   cy="55"  r="5" fill="#FFFFFF"/>
+    <circle cx="-48" cy="28"  r="5" fill="#FFFFFF"/>
+    <circle cx="-48" cy="-28" r="5" fill="#FFFFFF"/>
+  </g>
+  <text x="400" y="255" fill="#FFFFFF" font-family="Axiforma, sans-serif" font-size="11" text-anchor="middle" opacity="0.85" letter-spacing="1">RING</text>
+
+  <!-- === 3) Diamond lattice (tetrahedra) === -->
+  <g transform="translate(640,175)" stroke="#FFFFFF" stroke-width="1.6" fill="none" opacity="0.9">
+    <!-- central atom -->
+    <line x1="0" y1="0" x2="-35" y2="-30"/>
+    <line x1="0" y1="0" x2="35"  y2="-30"/>
+    <line x1="0" y1="0" x2="-22" y2="32"/>
+    <line x1="0" y1="0" x2="22"  y2="32"/>
+    <!-- second layer -->
+    <line x1="-35" y1="-30" x2="-65" y2="-55"/>
+    <line x1="-35" y1="-30" x2="-50" y2="5"/>
+    <line x1="35"  y1="-30" x2="65"  y2="-55"/>
+    <line x1="35"  y1="-30" x2="50"  y2="5"/>
+    <line x1="-22" y1="32"  x2="-48" y2="55"/>
+    <line x1="22"  y1="32"  x2="48"  y2="55"/>
+  </g>
+  <g transform="translate(640,175)">
+    <circle cx="0"   cy="0"   r="9"  fill="url(#atom)"/>
+    <circle cx="-35" cy="-30" r="8"  fill="url(#atom)"/>
+    <circle cx="35"  cy="-30" r="8"  fill="url(#atom)"/>
+    <circle cx="-22" cy="32"  r="8"  fill="url(#atom)"/>
+    <circle cx="22"  cy="32"  r="8"  fill="url(#atom)"/>
+    <circle cx="-65" cy="-55" r="6"  fill="url(#atom)"/>
+    <circle cx="-50" cy="5"   r="6"  fill="url(#atom)"/>
+    <circle cx="65"  cy="-55" r="6"  fill="url(#atom)"/>
+    <circle cx="50"  cy="5"   r="6"  fill="url(#atom)"/>
+    <circle cx="-48" cy="55"  r="6"  fill="url(#atom)"/>
+    <circle cx="48"  cy="55"  r="6"  fill="url(#atom)"/>
+    <circle cx="0"   cy="0"   r="4"  fill="#FFFFFF"/>
+    <circle cx="-35" cy="-30" r="3.5" fill="#FFFFFF"/>
+    <circle cx="35"  cy="-30" r="3.5" fill="#FFFFFF"/>
+    <circle cx="-22" cy="32"  r="3.5" fill="#FFFFFF"/>
+    <circle cx="22"  cy="32"  r="3.5" fill="#FFFFFF"/>
+  </g>
+  <text x="640" y="255" fill="#FFFFFF" font-family="Axiforma, sans-serif" font-size="11" text-anchor="middle" opacity="0.85" letter-spacing="1">CRYSTAL</text>
+
+  <!-- arrows hinting "C → C → C" progression -->
+  <g fill="#FFFFFF" opacity="0.55">
+    <polygon points="270,175 288,168 288,182"/>
+    <polygon points="505,175 523,168 523,182"/>
+  </g>
+
+  <!-- caption ribbon -->
+  <rect x="0" y="300" width="800" height="50" fill="#0D0E20" opacity="0.55"/>
+  <text x="400" y="322" fill="#FFFFFF" font-family="Playfair Display, serif" font-size="15" font-style="italic" text-anchor="middle" opacity="0.95">
+    From a single carbon atom to the architecture of life.
+  </text>
+  <text x="400" y="340" fill="#C8B3F6" font-family="Axiforma, sans-serif" font-size="9" text-anchor="middle" letter-spacing="2">
+    C · C—C · C=C—C · CRYSTAL
+  </text>
+</svg>

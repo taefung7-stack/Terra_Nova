@@ -1,10 +1,11 @@
 const params = new URLSearchParams(location.search);
-const month = params.get('month') || '2026-05';
+const month = params.get('month') || '2026-06';
 const passage = params.get('passage') || '01';
 
 const stage = document.getElementById('stage');
 const tpl = document.getElementById('tpl-passage');
 
+/* ---------- Slot helpers ---------- */
 function setText(root, slot, value) {
   const el = root.querySelector(`[data-slot="${slot}"]`);
   if (!el) return;
@@ -30,86 +31,177 @@ function escapeHTML(s) {
     .replaceAll("'", '&#39;');
 }
 
-function renderParagraphs(text) {
-  return text.split(/\n\s*\n/).map(p => `<p>${escapeHTML(p.trim()).replace(/\n/g, '<br/>')}</p>`).join('');
+/* Allow a small whitelist of markup in body/stems so authors can mark underlines and blanks.
+   After escapeHTML, we re-enable:
+     &lt;u&gt;text&lt;/u&gt;      → <u>text</u>
+     &lt;blank&gt;               → <span class="blank"></span>
+     &lt;mark&gt;text&lt;/mark&gt; → <mark>text</mark>
+*/
+function allowMarkup(escaped) {
+  return escaped
+    .replaceAll('&lt;u&gt;', '<u>').replaceAll('&lt;/u&gt;', '</u>')
+    .replaceAll('&lt;mark&gt;', '<mark>').replaceAll('&lt;/mark&gt;', '</mark>')
+    .replaceAll('&lt;blank&gt;', '<span class="blank"></span>')
+    .replaceAll('&lt;/blank&gt;', '');
 }
 
+function renderParagraphs(text) {
+  const safe = allowMarkup(escapeHTML(text));
+  return safe.split(/\n\s*\n/).map(p => `<p>${p.trim().replace(/\n/g, '<br/>')}</p>`).join('');
+}
+
+function renderRichInline(text) {
+  return allowMarkup(escapeHTML(text));
+}
+
+/* ---------- Page 2: Questions ---------- */
 function renderQuestions(list) {
   return list.map((q, i) => {
+    const qNum = `Q${i + 1}.`;
     if (q.type === 'mock_objective') {
-      const choices = q.choices.map(c => `<li>${escapeHTML(c)}</li>`).join('');
+      const styleTag = q.style ? `<span class="q-style">${escapeHTML(q.style)}</span>` : '';
+      const choices = q.choices.map(c => `<li>${renderRichInline(c)}</li>`).join('');
       return `<div class="question mock">
-        <div class="stem">Q${i+1}. [${escapeHTML(q.style)}] ${escapeHTML(q.stem)}</div>
+        <div class="stem"><span class="q-num">${qNum}</span>${styleTag}${renderRichInline(q.stem)}</div>
         <ol class="choices">${choices}</ol>
       </div>`;
     }
+    // school_descriptive
+    const styleTag = q.style ? `<span class="q-style">${escapeHTML(q.style)}</span>` : '';
+    const hints = (q.hints && q.hints.length)
+      ? `<div class="hints">${q.hints.map(h => `<span class="hint">${escapeHTML(h)}</span>`).join('')}</div>`
+      : '';
+    const template = q.summary_template
+      ? `<div class="summary-template">${renderRichInline(q.summary_template)}</div>`
+      : '';
     return `<div class="question descriptive">
-      <div class="stem">Q${i+1}. [서술형] ${escapeHTML(q.prompt)}</div>
+      <div class="stem"><span class="q-num">${qNum}</span>${styleTag}${renderRichInline(q.prompt)}</div>
+      ${template}
+      ${hints}
       <div class="answer-slot" aria-hidden="true"></div>
     </div>`;
   }).join('');
 }
 
+/* ---------- Page 2: Tieback tags + visual aid ---------- */
 function renderTags(tags) {
   return tags.map(t => `<span class="tag">#${escapeHTML(t)}</span>`).join('');
 }
 
-function renderReprint(text) {
-  const sentences = text.match(/[^.!?]+[.!?]+/g) || [text];
-  return sentences.map(s => `<span class="sent">${escapeHTML(s.trim())}</span> `).join('');
+function renderVisualAid(va) {
+  if (!va) return '';
+  const type = va.type;
+  const safeTitle = escapeHTML(va.title || '');
+  if (type === 'emoji_flow' || type === 'timeline') {
+    const parts = [];
+    va.steps.forEach((s, i) => {
+      parts.push(
+        `<div class="va-step">
+          <span class="va-emoji">${escapeHTML(s.emoji)}</span>
+          <span class="va-label">${escapeHTML(s.label || '')}</span>
+          ${s.note ? `<span class="va-note">${escapeHTML(s.note)}</span>` : ''}
+        </div>`
+      );
+      if (i < va.steps.length - 1) {
+        parts.push(`<span class="va-arrow">➜</span>`);
+      }
+    });
+    return `<div class="visual-aid ${type}">
+      <div class="va-title">🧭 ${safeTitle}</div>
+      <div class="va-steps">${parts.join('')}</div>
+    </div>`;
+  }
+  if (type === 'compare') {
+    const cells = va.steps.map(s =>
+      `<div class="va-step">
+        <div class="va-emoji">${escapeHTML(s.emoji)}</div>
+        <div class="va-label">${escapeHTML(s.label || '')}</div>
+        ${s.note ? `<div class="va-note">${escapeHTML(s.note)}</div>` : ''}
+      </div>`
+    ).join('');
+    return `<div class="visual-aid compare">
+      <div class="va-title">⚖️ ${safeTitle}</div>
+      <div class="va-steps">${cells}</div>
+    </div>`;
+  }
+  if (type === 'mindmap') {
+    const cells = va.steps.map(s =>
+      `<div class="va-step"><span class="va-emoji">${escapeHTML(s.emoji)}</span> <strong>${escapeHTML(s.label || '')}</strong>${s.note ? ` — ${escapeHTML(s.note)}` : ''}</div>`
+    ).join('');
+    return `<div class="visual-aid mindmap">
+      <div class="va-title">🧠 ${safeTitle}</div>
+      <div class="va-steps">${cells}</div>
+    </div>`;
+  }
+  return '';
 }
+
+/* ---------- Page 3: Sentences ---------- */
+const ROLE_TAG = { S: 'S', V: 'V', O: 'O', C: 'C', M: 'M', CONJ: '접', REL: '관', '': '' };
 
 function renderSentences(list) {
   return list.map(s => {
-    const parts = Object.entries(s.parts).map(([k, v]) => `<span><span class="k">${escapeHTML(k)}</span>=${escapeHTML(v)}</span>`).join('');
+    const segs = s.segments.map(seg => {
+      const role = seg.role || '';
+      const tag = ROLE_TAG[role] || '';
+      const tagHtml = tag ? ` <span class="seg-tag">${tag}</span>` : '';
+      return `<span class="seg" data-role="${role}">${renderRichInline(seg.text)}${tagHtml}</span>`;
+    }).join(' ');
     return `<div class="p3-sentence">
-      <div><span class="num">[${s.index}]</span><span class="en">${escapeHTML(s.en)}</span></div>
-      <div class="parts">${parts}</div>
-      <div class="note">💬 ${escapeHTML(s.grammar_note)}</div>
+      <div class="en-row"><span class="num">[${s.index}]</span>${segs}</div>
+      <div class="note">${escapeHTML(s.grammar_note)}</div>
     </div>`;
   }).join('');
 }
 
-function renderGrammar(list) {
-  return list.map(g => `<li>${escapeHTML(g)}</li>`).join('');
+/* ---------- Page 3: Translation (continuous, with inline [n] markers) ---------- */
+function renderTranslation(text) {
+  // Keep text continuous. Convert [1] [2] markers to colored spans.
+  const safe = escapeHTML(text);
+  const marked = safe.replace(/\[(\d+)\]/g, (_, n) => `<span class="tr-num">[${n}]</span>`);
+  return marked;
 }
 
-function renderTranslation(paragraphs) {
-  return paragraphs.map(p => `<p>${escapeHTML(p)}</p>`).join('');
-}
-
+/* ---------- Page 4: Vocab ---------- */
 function renderVocab(list) {
   return list.map(v => {
-    const syn = v.synonyms.length ? `syn: ${v.synonyms.map(escapeHTML).join(', ')}` : '';
-    const ant = v.antonyms.length ? `ant: ${v.antonyms.map(escapeHTML).join(', ')}` : '';
-    const synAnt = [syn, ant].filter(Boolean).join(' / ');
+    const syn = v.synonyms && v.synonyms.length ? `<span class="syn-ant-label">≈</span>${v.synonyms.map(escapeHTML).join(', ')}` : '';
+    const ant = v.antonyms && v.antonyms.length ? `<span class="syn-ant-label">↔</span>${v.antonyms.map(escapeHTML).join(', ')}` : '';
+    const synAnt = [syn, ant].filter(Boolean).join(' &nbsp;·&nbsp; ');
     return `<div class="vocab-card">
-      <div class="head"><span class="word">${escapeHTML(v.word)}</span><span class="pos">${escapeHTML(v.pos)}</span></div>
+      <div class="head">
+        <div class="word-block">
+          <span class="word">${escapeHTML(v.word)}</span>
+          <span class="pos">${escapeHTML(v.pos)}</span>
+        </div>
+      </div>
       <div class="meaning">${escapeHTML(v.meaning_ko)}</div>
       ${synAnt ? `<div class="syn-ant">${synAnt}</div>` : ''}
       <div class="example">📘 ${escapeHTML(v.example)}</div>
-      <div class="exam-source">${escapeHTML(v.exam_source)}</div>
+      <div class="example-ko">${escapeHTML(v.example_ko)}</div>
+      <div class="exam-source">출처: ${escapeHTML(v.exam_source)}</div>
     </div>`;
   }).join('');
 }
 
-function renderSelftest(list) {
-  return list.map(v => `<div class="cell"><span class="box"></span>${escapeHTML(v.word)}</div>`).join('');
-}
-
+/* ---------- Overflow detection ---------- */
 function detectOverflow(root) {
   root.querySelectorAll('.page').forEach(p => {
-    if (p.scrollHeight > p.clientHeight + 2) {
+    const body = p.querySelector('.page-body');
+    const target = body || p;
+    const overflowBy = target.scrollHeight - target.clientHeight;
+    if (overflowBy > 2) {
       p.classList.add('overflow');
       const warn = document.createElement('div');
       warn.className = 'overflow-warning';
-      warn.textContent = 'OVERFLOW';
+      warn.textContent = `OVERFLOW p${p.dataset.page} (+${overflowBy}px)`;
       p.appendChild(warn);
-      console.warn('[render] overflow detected on page', p.dataset.page);
+      console.warn('[render] overflow detected on page', p.dataset.page, 'by', overflowBy, 'px');
     }
   });
 }
 
+/* ---------- Main ---------- */
 async function main() {
   const path = `content/passages/${month}/${passage}.json`;
   const res = await fetch(path);
@@ -122,36 +214,40 @@ async function main() {
   const frag = tpl.content.cloneNode(true);
   const root = frag.querySelector('[data-slot="root"]');
 
+  // Theme per month
   root.dataset.month = data.meta.month;
   document.body.setAttribute('data-month', data.meta.month);
 
-  const id = `${data.meta.month} · ${String(data.meta.sequence).padStart(2, '0')}`;
-  for (const s of ['passage-id', 'passage-id-2', 'passage-id-3', 'passage-id-4']) {
-    setText(root, s, id);
-  }
+  // Chapter tag shown upper-right of each page header
+  const chapterLabel = escapeHTML(data.meta.linked_unit);
+  ['chapter-tag', 'chapter-tag-2', 'chapter-tag-3', 'chapter-tag-4'].forEach(s => {
+    setHTML(root, s, chapterLabel);
+  });
 
+  // Page 1
   setText(root, 'subject', data.meta.subject);
   setText(root, 'difficulty', `● ${data.meta.difficulty}`);
+  setText(root, 'cognitive', data.meta.cognitive_skill);
   setText(root, 'title', data.page1.title);
   setText(root, 'subtitle', data.page1.subtitle);
   setHTML(root, 'body', renderParagraphs(data.page1.body));
   setAttr(root, 'illustration', 'src', data.page1.illustration);
   setAttr(root, 'illustration', 'alt', data.page1.illustration_caption);
   setText(root, 'illustration-caption', data.page1.illustration_caption);
-  setText(root, 'theme-foot', data.meta.theme_en);
 
+  // Page 2
   setHTML(root, 'questions', renderQuestions(data.page2.questions));
-  setText(root, 'tieback-unit', `[${data.page2.textbook_tieback.unit_label}]`);
+  setText(root, 'tieback-unit', data.page2.textbook_tieback.unit_label);
   setText(root, 'tieback-body', data.page2.textbook_tieback.body_ko);
   setHTML(root, 'tieback-tags', renderTags(data.page2.textbook_tieback.tags));
+  setHTML(root, 'tieback-visual', renderVisualAid(data.page2.textbook_tieback.visual_aid));
 
-  setHTML(root, 'reprint', renderReprint(data.page1.body));
+  // Page 3
   setHTML(root, 'sentences', renderSentences(data.page3.sentences));
-  setHTML(root, 'grammar-points', renderGrammar(data.page3.grammar_points));
   setHTML(root, 'translation', renderTranslation(data.page3.translation_ko));
 
+  // Page 4
   setHTML(root, 'vocab', renderVocab(data.page4.vocab));
-  setHTML(root, 'selftest', renderSelftest(data.page4.vocab));
 
   stage.innerHTML = '';
   stage.appendChild(frag);

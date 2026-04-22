@@ -1,25 +1,24 @@
 {
-  "schema_version": "1.0",
-  "id": "2026-05-99",
+  "schema_version": "2.0",
+  "id": "2026-06-99",
   "meta": {
-    "month": "2026-05",
+    "month": "2026-06",
     "sequence": 20,
-    "theme_en": "Test Fixture",
     "subject": "통합과학",
     "linked_unit": "Test Unit",
     "achievement_standard": "10통과01-01",
     "difficulty": "중간",
     "cognitive_skill": "요지",
     "key_concepts": [
-      "test",
-      "fixture"
+      "fixture",
+      "validation"
     ]
   },
   "page1": {
-    "title": "Fixture Title",
-    "subtitle": "Fixture Subtitle",
-    "body": "This is a test fixture passage body written to satisfy the schema validator and the word-count rule simultaneously. It contains enough carefully chosen prose to reach the minimum length requirement of one hundred fifty words that the JavaScript validator enforces on top of the JSON Schema constraints. Sentences deliberately repeat concepts like fixture testing, validator behavior, and structured data so the text reads naturally while remaining entirely synthetic in origin. The passage consistently describes the process of building a robust test fixture, ensuring that both the validator and the renderer receive predictable, well-formed inputs at all times during development. When engineers inspect this body text they should immediately recognize it as intentionally synthetic yet structurally sound and semantically coherent. Each sentence follows a clear subject-verb-object order to mimic real classroom English at an appropriate reading level for high school students. The fixture deliberately includes vocabulary of moderate difficulty suitable for tenth-grade readers who are actively preparing for the CSAT entrance examination in Korea.",
-    "illustration": "../../assets/illustrations/2026-05/99.svg",
+    "title": "Fixture Title For Schema Validation",
+    "subtitle": "A synthetic passage used by automated tests.",
+    "body": "This fixture passage exists so that the automated validator and renderer always have a predictable example to exercise. The prose is deliberately repetitive yet grammatically consistent. It describes the idea of building a robust test fixture so the validator and renderer both have predictable inputs to operate on. When engineers inspect this body they should recognize it as intentionally synthetic but structurally sound. Each sentence follows a simple subject verb object order to mimic classroom English material. The fixture includes vocabulary of moderate difficulty suitable for tenth grade readers. In addition, the body reaches the required word count range by repeating its central theme across multiple sentences without introducing confusing content. Readers who glance at the fixture will quickly see that it is scaffolding rather than genuine editorial writing. The synthetic passage makes sure our pipeline remains stable. The passage also demonstrates underlined words and blanks so renderer markup paths get exercised properly. Consistent structure is always preferred over clever prose during validation work. A healthy test corpus protects the overall quality of the textbook pipeline from surprise regressions. We maintain this fixture with care so that future schema changes remain detectable. The passage concludes by underscoring the purpose of fixtures. Fixtures give confidence that real passages will render without breaking the page layout or exceeding the strict character budgets applied to each textual slot in the schema definition.",
+    "illustration": "../../assets/illustrations/2026-06/99.svg",
     "illustration_caption": "Synthetic fixture illustration."
   },
   "page2": {
@@ -27,36 +26,50 @@
       {
         "type": "mock_objective",
         "style": "요지",
-        "stem": "What is the main idea?",
+        "stem": "다음 글의 요지로 가장 적절한 것은?",
         "choices": [
-          "A",
-          "B",
-          "C",
-          "D",
-          "E"
+          "A synthetic fixture protects the pipeline from surprise regressions over time.",
+          "Schoolbooks should always avoid synthetic test passages for any reason.",
+          "Fixtures are only relevant when the renderer is completely rewritten.",
+          "Classroom English should never mimic real textbook structure at all.",
+          "Vocabulary of moderate difficulty makes passages impossible to validate."
         ],
         "answer_index": 0
       },
       {
         "type": "mock_objective",
         "style": "빈칸",
-        "stem": "Fill the blank.",
+        "stem": "다음 글의 빈칸에 들어갈 말로 가장 적절한 것은?",
         "choices": [
-          "A",
-          "B",
-          "C",
-          "D",
-          "E"
+          "predictable",
+          "unpredictable",
+          "decorative",
+          "stylistic",
+          "experimental"
         ],
-        "answer_index": 1
+        "answer_index": 0
+      },
+      {
+        "type": "mock_objective",
+        "style": "어휘",
+        "stem": "밑줄 친 단어의 문맥상 의미로 가장 적절한 것은?",
+        "choices": [
+          "intentionally crafted for testing",
+          "mistakenly generated without purpose",
+          "borrowed from published works",
+          "translated from another language",
+          "written by students themselves"
+        ],
+        "answer_index": 0
       }
     ],
     "textbook_tieback": {
-      "unit_label": "통합과학 I-1",
-      "body_ko": "이 교과 연계 블록은 본문 주제와 연결되는 고1 통합과학 1단원의 핵심 내용을 한글로 150자 이상 230자 이하로 간결하게 요약한다. 실제 교과서에서 배우는 핵심 개념 두세 가지를 학생 눈높이에서 알기 쉽게 풀어 쓴다. 본 샘플 텍스트는 스키마 검증을 위해 의도적으로 글자 수를 맞춰 작성되었다.",
+      "unit_label": "통합과학 I-1 Test Unit",
+      "body_ko": "테스트 픽스처는 시스템을 검증하기 위해 의도적으로 합성된 지문이다. 실제 교과 내용은 아니지만 스키마와 렌더러 경로를 모두 통과시킬 수 있는 구조와 분량을 갖추고 있어야 한다. 이와 같은 합성 자료는 파이프라인이 새로운 버전으로 바뀔 때 회귀를 조기에 잡아내는 역할을 한다. 검증 기준은 단어 수, 문장 수, 어휘 항목 수, 문제 구성 등 여러 축에서 동시에 작동하며, 어느 한 축이라도 벗어나면 빌드가 중단된다.",
       "tags": [
-        "태그1",
-        "태그2"
+        "픽스처",
+        "회귀방지",
+        "파이프라인"
       ]
     }
   },
@@ -64,51 +77,78 @@
     "sentences": [
       {
         "index": 1,
-        "en": "This is sentence one.",
-        "parts": {
-          "subject": "This",
-          "verb": "is",
-          "complement": "sentence one"
-        },
-        "grammar_note": "be + 보어"
+        "segments": [
+          {
+            "role": "S",
+            "text": "This fixture passage"
+          },
+          {
+            "role": "V",
+            "text": "exists"
+          },
+          {
+            "role": "M",
+            "text": "so that the validator always has a predictable example"
+          }
+        ],
+        "grammar_note": "so that 구문은 목적·결과를 나타내는 접속사 역할"
       },
       {
         "index": 2,
-        "en": "This is sentence two.",
-        "parts": {
-          "subject": "This",
-          "verb": "is",
-          "complement": "sentence two"
-        },
-        "grammar_note": "be + 보어"
+        "segments": [
+          {
+            "role": "S",
+            "text": "The prose"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "deliberately repetitive"
+          }
+        ],
+        "grammar_note": "be 동사 + 보어, 부사 deliberately는 보어 수식"
       },
       {
         "index": 3,
-        "en": "This is sentence three.",
-        "parts": {
-          "subject": "This",
-          "verb": "is",
-          "complement": "sentence three"
-        },
-        "grammar_note": "be + 보어"
+        "segments": [
+          {
+            "role": "S",
+            "text": "Each sentence"
+          },
+          {
+            "role": "V",
+            "text": "follows"
+          },
+          {
+            "role": "O",
+            "text": "a simple subject verb object order"
+          }
+        ],
+        "grammar_note": "3형식 문장 구조 확인용"
       },
       {
         "index": 4,
-        "en": "This is sentence four.",
-        "parts": {
-          "subject": "This",
-          "verb": "is",
-          "complement": "sentence four"
-        },
-        "grammar_note": "be + 보어"
+        "segments": [
+          {
+            "role": "S",
+            "text": "The fixture"
+          },
+          {
+            "role": "V",
+            "text": "includes"
+          },
+          {
+            "role": "O",
+            "text": "vocabulary of moderate difficulty"
+          }
+        ],
+        "grammar_note": "of 구는 vocabulary를 수식하는 형용사구"
       }
     ],
-    "grammar_points": [
-      "be 동사 + 보어"
-    ],
-    "translation_ko": [
-      "이것은 문장 하나입니다. 이것은 문장 둘입니다."
-    ]
+    "translation_ko": "[1] 이 픽스처 지문은 검증기가 예측 가능한 예시를 항상 확보하도록 존재한다. [2] 글의 문체는 의도적으로 반복적이며, 같은 주제가 여러 문장에 걸쳐 재진술된다. [3] 각 문장은 단순한 주어-동사-목적어 순서를 따라 교실 영어의 문형을 모방한다. [4] 이 픽스처는 중간 수준의 어휘를 포함하여 고1 독자가 쉽게 읽을 수 있도록 구성된다. 전체 분량은 스키마의 최소·최대 글자 수를 만족하도록 세밀하게 맞춰져 있으며, 특정 축의 수치가 벗어날 경우 검증 단계에서 바로 실패로 판정된다. 실제 교재 제작자는 이 파일을 직접 수정할 일이 거의 없고, 회귀 테스트를 위한 안전망으로만 활용한다."
   },
   "page4": {
     "vocab": [
@@ -121,7 +161,8 @@
         ],
         "antonyms": [],
         "example": "The fixture was used in the test.",
-        "exam_source": "internal"
+        "example_ko": "그 픽스처는 테스트에 사용되었다.",
+        "exam_source": "Terra Nova 자체 예문"
       },
       {
         "word": "synthetic",
@@ -133,8 +174,9 @@
         "antonyms": [
           "natural"
         ],
-        "example": "A synthetic example.",
-        "exam_source": "internal"
+        "example": "A synthetic example keeps the tests stable.",
+        "example_ko": "합성 예문은 테스트를 안정적으로 유지한다.",
+        "exam_source": "Terra Nova 자체 예문"
       },
       {
         "word": "validator",
@@ -142,8 +184,9 @@
         "meaning_ko": "검증기",
         "synonyms": [],
         "antonyms": [],
-        "example": "The validator checks JSON.",
-        "exam_source": "internal"
+        "example": "The validator checks every JSON file carefully.",
+        "example_ko": "검증기는 모든 JSON 파일을 꼼꼼히 점검한다.",
+        "exam_source": "Terra Nova 자체 예문"
       },
       {
         "word": "predictable",
@@ -155,8 +198,9 @@
         "antonyms": [
           "random"
         ],
-        "example": "Predictable inputs help testing.",
-        "exam_source": "internal"
+        "example": "Predictable inputs help testing succeed.",
+        "example_ko": "예측 가능한 입력은 테스트 성공을 돕는다.",
+        "exam_source": "Terra Nova 자체 예문"
       },
       {
         "word": "robust",
@@ -168,8 +212,9 @@
         "antonyms": [
           "fragile"
         ],
-        "example": "Robust code survives bad inputs.",
-        "exam_source": "internal"
+        "example": "Robust code survives unexpected inputs.",
+        "example_ko": "견고한 코드는 예상치 못한 입력도 견뎌낸다.",
+        "exam_source": "Terra Nova 자체 예문"
       },
       {
         "word": "minimal",
@@ -181,8 +226,9 @@
         "antonyms": [
           "maximal"
         ],
-        "example": "A minimal test fixture.",
-        "exam_source": "internal"
+        "example": "A minimal fixture avoids unnecessary noise.",
+        "example_ko": "최소 픽스처는 불필요한 잡음을 피한다.",
+        "exam_source": "Terra Nova 자체 예문"
       },
       {
         "word": "inspect",
@@ -192,8 +238,9 @@
           "examine"
         ],
         "antonyms": [],
-        "example": "Engineers inspect the fixture.",
-        "exam_source": "internal"
+        "example": "Engineers inspect the fixture before a release.",
+        "example_ko": "엔지니어는 릴리스 전에 픽스처를 점검한다.",
+        "exam_source": "Terra Nova 자체 예문"
       },
       {
         "word": "structurally",
@@ -201,8 +248,31 @@
         "meaning_ko": "구조적으로",
         "synonyms": [],
         "antonyms": [],
-        "example": "Structurally sound code.",
-        "exam_source": "internal"
+        "example": "The test is structurally sound and reliable.",
+        "example_ko": "그 테스트는 구조적으로 건실하고 신뢰할 만하다.",
+        "exam_source": "Terra Nova 자체 예문"
+      },
+      {
+        "word": "regression",
+        "pos": "n.",
+        "meaning_ko": "회귀, 퇴보",
+        "synonyms": [],
+        "antonyms": [],
+        "example": "Fixtures prevent regression during upgrades.",
+        "example_ko": "픽스처는 업그레이드 중 회귀를 막아준다.",
+        "exam_source": "Terra Nova 자체 예문"
+      },
+      {
+        "word": "budget",
+        "pos": "n.",
+        "meaning_ko": "(크기·수 등의) 한도",
+        "synonyms": [
+          "limit"
+        ],
+        "antonyms": [],
+        "example": "The character budget keeps layouts intact.",
+        "example_ko": "글자 수 한도는 레이아웃이 깨지지 않도록 지켜준다.",
+        "exam_source": "Terra Nova 자체 예문"
       }
     ]
   }

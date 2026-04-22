@@ -13,15 +13,17 @@
 <template id="tpl-passage">
   <article class="passage" data-slot="root">
 
+    <!-- Page 1 — Passage -->
     <section class="page page-1" data-page="1">
       <header class="page-head">
-        <span class="section-label">Passage</span>
-        <span data-slot="passage-id"></span>
+        <span class="section-label">PASSAGE</span>
+        <span class="chapter-tag" data-slot="chapter-tag"></span>
       </header>
       <div class="page-body">
         <div class="p1-meta">
           <span class="chip" data-slot="subject"></span>
           <span class="difficulty" data-slot="difficulty"></span>
+          <span class="cog" data-slot="cognitive"></span>
         </div>
         <h1 class="p1-title" data-slot="title"></h1>
         <p class="p1-subtitle" data-slot="subtitle"></p>
@@ -32,15 +34,16 @@
         <figcaption class="p1-caption" data-slot="illustration-caption"></figcaption>
       </div>
       <footer class="page-foot">
-        <span data-slot="theme-foot"></span>
-        <span class="brand">Terra Nova</span>
+        <span class="page-num" data-slot="page-num-1">1</span>
+        <span class="brand">TERRA<span class="brand-dot">·</span>NOVA</span>
       </footer>
     </section>
 
+    <!-- Page 2 — Practice + Tieback -->
     <section class="page page-2" data-page="2">
       <header class="page-head">
-        <span class="section-label">Practice</span>
-        <span data-slot="passage-id-2"></span>
+        <span class="section-label">PRACTICE</span>
+        <span class="chapter-tag" data-slot="chapter-tag-2"></span>
       </header>
       <div class="page-body">
         <div class="p2-questions" data-slot="questions"></div>
@@ -48,46 +51,55 @@
           <div class="unit-label" data-slot="tieback-unit"></div>
           <div class="body-ko" data-slot="tieback-body"></div>
           <div class="tags" data-slot="tieback-tags"></div>
+          <div class="visual-aid-wrap" data-slot="tieback-visual"></div>
         </aside>
       </div>
       <footer class="page-foot">
-        <span>Practice · 1/1</span>
-        <span class="brand">Terra Nova</span>
+        <span class="page-num">2</span>
+        <span class="brand">TERRA<span class="brand-dot">·</span>NOVA</span>
       </footer>
     </section>
 
+    <!-- Page 3 — Syntax Breakdown -->
     <section class="page page-3" data-page="3">
       <header class="page-head">
-        <span class="section-label">Syntax</span>
-        <span data-slot="passage-id-3"></span>
+        <span class="section-label">SYNTAX</span>
+        <span class="chapter-tag" data-slot="chapter-tag-3"></span>
       </header>
       <div class="page-body">
-        <div class="p3-reprint" data-slot="reprint"></div>
-        <div class="p3-sentences" data-slot="sentences"></div>
-        <div class="p3-grammar">
-          <h4>문법 포인트</h4>
-          <ul data-slot="grammar-points"></ul>
+        <div class="p3-legend">
+          <span class="legend-item"><span class="role-badge" style="background: var(--role-S); color: var(--role-S-ink);">S</span>주어</span>
+          <span class="legend-item"><span class="role-badge" style="background: var(--role-V); color: var(--role-V-ink);">V</span>동사</span>
+          <span class="legend-item"><span class="role-badge" style="background: var(--role-O); color: var(--role-O-ink);">O</span>목적어</span>
+          <span class="legend-item"><span class="role-badge" style="background: var(--role-C); color: var(--role-C-ink);">C</span>보어</span>
+          <span class="legend-item"><span class="role-badge" style="background: var(--role-M); color: var(--role-M-ink);">M</span>수식어</span>
+          <span class="legend-item"><span class="role-badge" style="background: var(--role-CONJ); color: var(--role-CONJ-ink);">접</span>접속사</span>
+          <span class="legend-item"><span class="role-badge" style="background: var(--role-REL); color: var(--role-REL-ink);">관</span>관계사</span>
         </div>
-        <div class="p3-translation" data-slot="translation"></div>
+        <div class="p3-sentences" data-slot="sentences"></div>
+        <div class="p3-translation">
+          <h4>📖 우리말 해석</h4>
+          <div class="body" data-slot="translation"></div>
+        </div>
       </div>
       <footer class="page-foot">
-        <span>Syntax · 1/1</span>
-        <span class="brand">Terra Nova</span>
+        <span class="page-num">3</span>
+        <span class="brand">TERRA<span class="brand-dot">·</span>NOVA</span>
       </footer>
     </section>
 
+    <!-- Page 4 — Vocabulary Lab -->
     <section class="page page-4" data-page="4">
       <header class="page-head">
-        <span class="section-label">Vocab</span>
-        <span data-slot="passage-id-4"></span>
+        <span class="section-label">VOCAB</span>
+        <span class="chapter-tag" data-slot="chapter-tag-4"></span>
       </header>
       <div class="page-body">
         <div class="p4-vocab" data-slot="vocab"></div>
-        <div class="p4-selftest" data-slot="selftest"></div>
       </div>
       <footer class="page-foot">
-        <span>Vocab · 1/1</span>
-        <span class="brand">Terra Nova</span>
+        <span class="page-num">4</span>
+        <span class="brand">TERRA<span class="brand-dot">·</span>NOVA</span>
       </footer>
     </section>
 

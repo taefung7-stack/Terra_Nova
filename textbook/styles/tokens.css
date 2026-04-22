@@ -1,5 +1,5 @@
 :root {
-  /* ===== Terra Nova brand palette ===== */
+  /* ===== Terra Nova base brand palette ===== */
   --tn-bg:         #F8FAF9;
   --tn-ink:        #032221;
   --tn-ink-soft:   #06302B;
@@ -11,22 +11,43 @@
   --tn-warn:       #E0655A;
 
   /* ===== Per-month theme override (defaults to accent) ===== */
-  --tn-theme:      var(--tn-accent);
+  --tn-theme:        var(--tn-accent);
+  --tn-theme-deep:   var(--tn-accent-2);
+  --tn-theme-soft:   #E3EDE9;
+  --tn-theme-bar-h:  7mm;   /* thicker top bar */
+
+  /* ===== Role colors for syntax analysis (S/V/O/C/M/CONJ/REL) =====
+     Role colors are kept constant across months to keep learning signal stable. */
+  --role-S:     #F6D5E8;   /* 주어 — 분홍 */
+  --role-S-ink: #8E2E66;
+  --role-V:     #D5E6F6;   /* 동사 — 하늘 */
+  --role-V-ink: #1F5D91;
+  --role-O:     #FFE8C8;   /* 목적어 — 주황 */
+  --role-O-ink: #8B5A15;
+  --role-C:     #E0F3D1;   /* 보어 — 연두 */
+  --role-C-ink: #3E6B1F;
+  --role-M:     #EDE4FA;   /* 수식어 — 연보라 */
+  --role-M-ink: #523A8A;
+  --role-CONJ:  #FFF4C2;   /* 접속사 — 연노랑 */
+  --role-CONJ-ink: #7A5B12;
+  --role-REL:   #FEDCDC;   /* 관계사 — 연산호 */
+  --role-REL-ink: #9A3B3B;
 
   /* ===== Typography ===== */
   --font-body:     'Axiforma', 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
   --font-display:  'Axiforma', 'Pretendard', -apple-system, sans-serif;
   --font-ko:       'Pretendard', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
   --font-mono:     'JetBrains Mono', Menlo, Consolas, monospace;
+  --font-serif-display: 'Playfair Display', 'Cormorant Garamond', 'Nanum Myeongjo', Georgia, serif;
 
   /* ===== Type scale (print-first) ===== */
   --fs-title:      22pt;
   --fs-subtitle:   12pt;
-  --fs-body:       12pt;
+  --fs-body:       11.5pt;
   --fs-body-small: 10pt;
   --fs-caption:    9pt;
   --fs-meta:       8pt;
-  --lh-body:       1.7;
+  --lh-body:       1.65;
   --lh-tight:      1.3;
 
   /* ===== Structural spacing ===== */
@@ -39,15 +60,68 @@
 }
 
 /* ===== Per-month accent overrides ===== */
-[data-month="2026-05"] { --tn-theme: #6EA8FF; }
-[data-month="2026-06"] { --tn-theme: #2CC295; }
-[data-month="2026-07"] { --tn-theme: #E29B54; }
-[data-month="2026-08"] { --tn-theme: #A06EE0; }
-[data-month="2026-09"] { --tn-theme: #F06A8F; }
-[data-month="2026-10"] { --tn-theme: #4FD1C5; }
-[data-month="2026-11"] { --tn-theme: #C48BE0; }
-[data-month="2026-12"] { --tn-theme: #E0B04A; }
-[data-month="2027-01"] { --tn-theme: #7FB8E0; }
-[data-month="2027-02"] { --tn-theme: #E06E6E; }
-[data-month="2027-03"] { --tn-theme: #5F8FDB; }
-[data-month="2027-04"] { --tn-theme: #00DF81; }
+[data-month="2026-05"] {
+  --tn-theme:      #6EA8FF;
+  --tn-theme-deep: #2B5FC4;
+  --tn-theme-soft: #E3ECFD;
+}
+[data-month="2026-06"] {
+  /* Purple palette (Chinese Black / Persian Indigo / Majorelle Blue / Vodka / Max Blue Purple) */
+  --tn-theme:      #7546E8;   /* Majorelle Blue */
+  --tn-theme-deep: #2D1C7F;   /* Persian Indigo */
+  --tn-theme-soft: #E8E2FA;   /* Light lavender for tieback bg */
+  --tn-ink:        #0D0E20;   /* Chinese Black */
+  --tn-ink-soft:   #2D1C7F;
+  --tn-muted:      #B0A9E5;   /* Max Blue Purple */
+  --tn-divider:    #E8E2FA;
+}
+[data-month="2026-07"] {
+  --tn-theme:      #E29B54;
+  --tn-theme-deep: #8A4B0F;
+  --tn-theme-soft: #FAE9D2;
+}
+[data-month="2026-08"] {
+  --tn-theme:      #A06EE0;
+  --tn-theme-deep: #5A2E9C;
+  --tn-theme-soft: #ECDEFA;
+}
+[data-month="2026-09"] {
+  --tn-theme:      #F06A8F;
+  --tn-theme-deep: #B02555;
+  --tn-theme-soft: #FCDBE4;
+}
+[data-month="2026-10"] {
+  --tn-theme:      #4FD1C5;
+  --tn-theme-deep: #0F7B72;
+  --tn-theme-soft: #D6F3EF;
+}
+[data-month="2026-11"] {
+  --tn-theme:      #C48BE0;
+  --tn-theme-deep: #6E3F8E;
+  --tn-theme-soft: #F0E2FA;
+}
+[data-month="2026-12"] {
+  --tn-theme:      #E0B04A;
+  --tn-theme-deep: #8A6310;
+  --tn-theme-soft: #FAEDC8;
+}
+[data-month="2027-01"] {
+  --tn-theme:      #7FB8E0;
+  --tn-theme-deep: #2E6A9E;
+  --tn-theme-soft: #DDECF7;
+}
+[data-month="2027-02"] {
+  --tn-theme:      #E06E6E;
+  --tn-theme-deep: #8A2020;
+  --tn-theme-soft: #FADBDB;
+}
+[data-month="2027-03"] {
+  --tn-theme:      #5F8FDB;
+  --tn-theme-deep: #22468F;
+  --tn-theme-soft: #DEE7F8;
+}
+[data-month="2027-04"] {
+  --tn-theme:      #00DF81;
+  --tn-theme-deep: #03624C;
+  --tn-theme-soft: #DBF5E9;
+}
