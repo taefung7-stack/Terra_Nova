@@ -1,0 +1,71 @@
+import { describe, it, expect, beforeAll, afterAll } from 'vitest';
+import puppeteer from 'puppeteer';
+import { spawn } from 'node:child_process';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const here = dirname(fileURLToPath(import.meta.url));
+const root = resolve(here, '..');
+
+let server, browser;
+const PORT = 4174;
+
+async function waitFor(url, timeoutMs = 15000) {
+  const start = Date.now();
+  while (Date.now() - start < timeoutMs) {
+    try {
+      const r = await fetch(url);
+      if (r.ok) return true;
+    } catch {}
+    await new Promise(r => setTimeout(r, 150));
+  }
+  throw new Error('server did not start at ' + url);
+}
+
+beforeAll(async () => {
+  server = spawn('npx', ['sirv', '.', '--port', String(PORT), '--host', '127.0.0.1', '--quiet'], {
+    cwd: root,
+    stdio: 'pipe',
+    shell: process.platform === 'win32'
+  });
+  await waitFor(`http://127.0.0.1:${PORT}/textbook.html`);
+  browser = await puppeteer.launch({ headless: 'new' });
+}, 60_000);
+
+afterAll(async () => {
+  if (browser) await browser.close();
+  if (server) server.kill();
+});
+
+describe('render pipeline', () => {
+  it('produces exactly four .page sections for the sample', async () => {
+    const page = await browser.newPage();
+    await page.goto(`http://127.0.0.1:${PORT}/textbook.html?month=2026-05&passage=01`, { waitUntil: 'networkidle0' });
+    const count = await page.$$eval('.page', nodes => nodes.length);
+    expect(count).toBe(4);
+    await page.close();
+  });
+
+  it('does not trigger overflow on any page', async () => {
+    const page = await browser.newPage();
+    const warnings = [];
+    page.on('console', msg => { if (msg.type() === 'warn') warnings.push(msg.text()); });
+    await page.goto(`http://127.0.0.1:${PORT}/textbook.html?month=2026-05&passage=01`, { waitUntil: 'networkidle0' });
+    const overflowPages = await page.$$eval('.page.overflow', n => n.length);
+    expect(overflowPages).toBe(0);
+    expect(warnings.filter(w => w.includes('overflow'))).toEqual([]);
+    await page.close();
+  });
+
+  it('injects title, subject chip, and 9 vocab cards', async () => {
+    const page = await browser.newPage();
+    await page.goto(`http://127.0.0.1:${PORT}/textbook.html?month=2026-05&passage=01`, { waitUntil: 'networkidle0' });
+    const title = await page.$eval('.p1-title', el => el.textContent.trim());
+    const subject = await page.$eval('.chip', el => el.textContent.trim());
+    const vocabCount = await page.$$eval('.vocab-card', n => n.length);
+    expect(title).toBe('Where Do Atoms Come From?');
+    expect(subject).toBe('통합과학');
+    expect(vocabCount).toBe(9);
+    await page.close();
+  });
+});
