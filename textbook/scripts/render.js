@@ -180,6 +180,12 @@ function renderVocab(list) {
     const syn = v.synonyms && v.synonyms.length ? `<span class="syn-ant-label">≈</span>${v.synonyms.map(escapeHTML).join(', ')}` : '';
     const ant = v.antonyms && v.antonyms.length ? `<span class="syn-ant-label">↔</span>${v.antonyms.map(escapeHTML).join(', ')}` : '';
     const synAnt = [syn, ant].filter(Boolean).join(' &nbsp;·&nbsp; ');
+    const examples = (v.examples || []).map(ex =>
+      `<div class="example-item">
+        <div class="en">📘 ${escapeHTML(ex.en)}</div>
+        <div class="ko">${escapeHTML(ex.ko)}</div>
+      </div>`
+    ).join('');
     return `<div class="vocab-card">
       <div class="head">
         <div class="word-block">
@@ -189,9 +195,7 @@ function renderVocab(list) {
       </div>
       <div class="meaning">${escapeHTML(v.meaning_ko)}</div>
       ${synAnt ? `<div class="syn-ant">${synAnt}</div>` : ''}
-      <div class="example">📘 ${escapeHTML(v.example)}</div>
-      <div class="example-ko">${escapeHTML(v.example_ko)}</div>
-      <div class="exam-source">출처: ${escapeHTML(v.exam_source)}</div>
+      <div class="examples">${examples}</div>
     </div>`;
   }).join('');
 }

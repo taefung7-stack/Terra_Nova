@@ -1016,7 +1016,7 @@ function showResult() {
   saveLevelResult(lvl, sc, conf).catch(err => console.warn('[level_test] save skipped:', err?.message));
 }
 
-const LEVEL_NUM = { MOON: 1, MARS: 2, BASIC: 3, URANUS: 4, JUPITER: 5, SUN: 6 };
+const LEVEL_NUM = { MOON: 1, MERCURY: 2, MARS: 3, VENUS: 4, TERRA: 5, NEPTUNE: 6, URANUS: 7, SATURN: 8, JUPITER: 9, SUN: 10 };
 
 async function saveLevelResult(lvl, sc, conf) {
   const { supabase } = await import('./supabase-client.js');

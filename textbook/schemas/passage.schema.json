@@ -161,7 +161,7 @@
           "maxItems": 14,
           "items": {
             "type": "object",
-            "required": ["word", "pos", "meaning_ko", "synonyms", "antonyms", "example", "example_ko", "exam_source"],
+            "required": ["word", "pos", "meaning_ko", "synonyms", "antonyms", "examples"],
             "additionalProperties": false,
             "properties": {
               "word": { "type": "string", "minLength": 1, "maxLength": 40 },
@@ -169,8 +169,20 @@
               "meaning_ko": { "type": "string", "minLength": 1, "maxLength": 80 },
               "synonyms": { "type": "array", "minItems": 0, "maxItems": 4, "items": { "type": "string", "maxLength": 30 } },
               "antonyms": { "type": "array", "minItems": 0, "maxItems": 4, "items": { "type": "string", "maxLength": 30 } },
-              "example": { "type": "string", "minLength": 5, "maxLength": 240 },
-              "example_ko": { "type": "string", "minLength": 3, "maxLength": 160 },
+              "examples": {
+                "type": "array",
+                "minItems": 2,
+                "maxItems": 2,
+                "items": {
+                  "type": "object",
+                  "required": ["en", "ko"],
+                  "additionalProperties": false,
+                  "properties": {
+                    "en": { "type": "string", "minLength": 5, "maxLength": 200 },
+                    "ko": { "type": "string", "minLength": 3, "maxLength": 140 }
+                  }
+                }
+              },
               "exam_source": { "type": "string", "minLength": 3, "maxLength": 80 }
             }
           }
