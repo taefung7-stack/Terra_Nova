@@ -763,29 +763,67 @@
     letter-spacing:.3px;
   }
 
-  /* ── A. 슈팅 스타 (유성) — card-top 전체 영역 커버 ── */
+  /* ── A. 슈팅 스타 (유성) — 고퀄 헤드 + 테이퍼 꼬리 ── */
   .shooting-stars-wide{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1;}
   .shooting-stars-wide .ss{
     position:absolute;
-    width:220px;height:3px;
-    background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.95) 40%,rgba(180,220,255,1) 50%,rgba(255,255,255,.9) 60%,transparent 100%);
+    width:260px;height:1.5px;
+    /* 꼬리: 오른쪽(헤드) 최대 밝기 → 왼쪽(테일) 서서히 사라짐. 다층 gradient로 자연스러운 연무 */
+    background:
+      linear-gradient(90deg,
+        transparent 0%,
+        rgba(200,220,255,.06) 25%,
+        rgba(220,235,255,.3) 60%,
+        rgba(255,255,255,.9) 88%,
+        rgba(255,255,255,1) 100%);
     opacity:0;
-    border-radius:3px;
-    filter:blur(.6px);
-    box-shadow:0 0 14px rgba(255,255,255,.75),0 0 24px rgba(180,220,255,.5);
-    transform-origin:left center;
+    border-radius:2px;
+    filter:blur(.5px);
+    transform-origin:right center;
   }
-  .shooting-stars-wide .ss-1{top:6%; left:-25%;--ss-angle:18deg; animation:shootStarWide 6s ease-in infinite;     animation-delay:0.5s;}
-  .shooting-stars-wide .ss-2{top:28%;left:-25%;--ss-angle:25deg; animation:shootStarWide 9s ease-in infinite;     animation-delay:3s;}
-  .shooting-stars-wide .ss-3{top:52%;left:-25%;--ss-angle:15deg; animation:shootStarWide 11s ease-in infinite;    animation-delay:6.5s;}
-  .shooting-stars-wide .ss-4{top:18%;left:-25%;--ss-angle:32deg; animation:shootStarWide 8s ease-in infinite;     animation-delay:2s;}
-  .shooting-stars-wide .ss-5{top:70%;left:-25%;--ss-angle:22deg; animation:shootStarWide 13s ease-in infinite;    animation-delay:5s;}
-  @keyframes shootStarWide{
-    0%,8%  {opacity:0;transform:translate(0,0) rotate(var(--ss-angle));}
-    10%    {opacity:1;}
-    42%    {opacity:.95;}
-    55%    {opacity:0;transform:translate(180vw,80vh) rotate(var(--ss-angle));}
-    100%   {opacity:0;transform:translate(180vw,80vh) rotate(var(--ss-angle));}
+  /* 헤드 스파크: 별빛 점광원 */
+  .shooting-stars-wide .ss::after{
+    content:'';
+    position:absolute;
+    right:-3px;top:50%;
+    width:10px;height:10px;
+    transform:translateY(-50%);
+    background:radial-gradient(circle,
+      rgba(255,255,255,1) 0%,
+      rgba(220,235,255,.95) 20%,
+      rgba(160,200,255,.7) 40%,
+      rgba(120,180,255,.3) 70%,
+      transparent 100%);
+    border-radius:50%;
+    filter:blur(.8px);
+    box-shadow:
+      0 0 8px rgba(255,255,255,.9),
+      0 0 18px rgba(180,220,255,.7),
+      0 0 30px rgba(120,180,255,.4);
+  }
+  /* 희미한 외곽 후광 (은은한 cosmic blue) */
+  .shooting-stars-wide .ss::before{
+    content:'';
+    position:absolute;
+    right:-1px;top:50%;
+    width:100%;height:6px;
+    transform:translateY(-50%);
+    background:linear-gradient(90deg,transparent 0%,rgba(140,180,255,0) 40%,rgba(140,180,255,.15) 80%,rgba(180,220,255,.4) 100%);
+    border-radius:3px;
+    filter:blur(3px);
+  }
+  .shooting-stars-wide .ss-1{top:8%; left:-20%;--ss-angle:16deg;--ss-dur:5.5s; animation:shootStarFine var(--ss-dur) cubic-bezier(.25,.45,.45,.95) infinite;animation-delay:0.5s;}
+  .shooting-stars-wide .ss-2{top:32%;left:-20%;--ss-angle:22deg;--ss-dur:8.5s; animation:shootStarFine var(--ss-dur) cubic-bezier(.25,.45,.45,.95) infinite;animation-delay:3.2s;}
+  .shooting-stars-wide .ss-3{top:56%;left:-20%;--ss-angle:13deg;--ss-dur:10s;  animation:shootStarFine var(--ss-dur) cubic-bezier(.25,.45,.45,.95) infinite;animation-delay:7s;}
+  .shooting-stars-wide .ss-4{top:18%;left:-20%;--ss-angle:28deg;--ss-dur:7s;   animation:shootStarFine var(--ss-dur) cubic-bezier(.25,.45,.45,.95) infinite;animation-delay:2.2s;}
+  .shooting-stars-wide .ss-5{top:72%;left:-20%;--ss-angle:20deg;--ss-dur:12s;  animation:shootStarFine var(--ss-dur) cubic-bezier(.25,.45,.45,.95) infinite;animation-delay:5.5s;}
+  @keyframes shootStarFine{
+    0%,12%  {opacity:0;transform:translate(0,0) rotate(var(--ss-angle));}
+    14%     {opacity:0;transform:translate(0,0) rotate(var(--ss-angle)) scaleX(.4);}
+    20%     {opacity:.95;transform:translate(30vw,15vh) rotate(var(--ss-angle)) scaleX(1);}
+    45%     {opacity:1;transform:translate(100vw,50vh) rotate(var(--ss-angle)) scaleX(1);}
+    58%     {opacity:0;transform:translate(160vw,80vh) rotate(var(--ss-angle)) scaleX(.6);}
+    100%    {opacity:0;transform:translate(160vw,80vh) rotate(var(--ss-angle)) scaleX(.6);}
   }
 
   /* ── C. 선택된 은하 자체 회전 ── */
@@ -3153,11 +3191,11 @@ document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',
     dragStartOffset = offset;
     orbit.style.cursor = 'grabbing';
   }
-  // 드래그 이동: x 변위를 각도로 변환 (1px = 0.9도, 자연스러운 감)
+  // 드래그 이동: x 변위를 각도로 변환 (1px = -0.9도, 손과 같은 방향으로 따라옴)
   function dragMove(clientX, clientY){
     if(!isDragging) return;
     const dx = clientX - dragStartX;
-    offset = dragStartOffset + dx * 0.9;
+    offset = dragStartOffset - dx * 0.9;
     applyRotation();
   }
   function dragEnd(){
