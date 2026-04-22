@@ -8,7 +8,7 @@ const here = dirname(fileURLToPath(import.meta.url));
 const root = resolve(here, '..');
 
 let server, browser;
-const PORT = 4200;
+const PORT = 4260;
 const MONTH = '2026-06';
 const PASSAGE = '01';
 
