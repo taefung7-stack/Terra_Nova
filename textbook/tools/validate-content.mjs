@@ -15,7 +15,7 @@ addFormats(ajv);
 const ajvValidate = ajv.compile(schema);
 
 const BODY_WORD_MIN = 290;
-const BODY_WORD_MAX = 360;
+const BODY_WORD_MAX = 315;   // practical ceiling; beyond ~315 words, page 3 sentence analysis reliably overflows
 
 function countWords(text) {
   // Strip custom markers like <u>...</u> and <blank> before counting

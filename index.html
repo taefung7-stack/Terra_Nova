@@ -925,13 +925,11 @@
   .shooting-stars-wide .ss-1{top:12%;left:-20%;--ss-angle:20deg;--ss-dur:20s; animation:shootStarFine var(--ss-dur) cubic-bezier(.3,.7,.4,1) infinite;animation-delay:3s;}
   .shooting-stars-wide .ss-2{top:58%;left:-20%;--ss-angle:14deg;--ss-dur:30s; animation:shootStarFine var(--ss-dur) cubic-bezier(.3,.7,.4,1) infinite;animation-delay:14s;}
   @keyframes shootStarFine{
-    /* 가시 구간 확장 (78→99% = 21%), 실제 별똥별처럼 2~3초 천천히 흐름 */
-    0%,78%  {opacity:0;transform:translate(0,0) rotate(var(--ss-angle));}
-    80%     {opacity:0;transform:translate(0,0) rotate(var(--ss-angle)) scaleX(.5);}
-    84%     {opacity:1;transform:translate(25vw,12vh) rotate(var(--ss-angle)) scaleX(1);}
-    94%     {opacity:1;transform:translate(100vw,50vh) rotate(var(--ss-angle)) scaleX(1);}
-    99%     {opacity:0;transform:translate(155vw,78vh) rotate(var(--ss-angle)) scaleX(.7);}
-    100%    {opacity:0;transform:translate(155vw,78vh) rotate(var(--ss-angle)) scaleX(.7);}
+    /* 끊김 없는 연속 운동 — fade-in과 동시에 이동 시작 (pause 제거) */
+    0%,78%  {opacity:0;transform:translate(0,0) rotate(var(--ss-angle)) scaleX(.3);}
+    82%     {opacity:1;transform:translate(40vw,20vh) rotate(var(--ss-angle)) scaleX(1);}
+    93%     {opacity:1;transform:translate(120vw,60vh) rotate(var(--ss-angle)) scaleX(1);}
+    99%,100%{opacity:0;transform:translate(170vw,85vh) rotate(var(--ss-angle)) scaleX(.5);}
   }
 
   /* ── C. 선택된 은하 자체 회전 ── */
