@@ -74,7 +74,8 @@ describe('render pipeline', () => {
     expect(questionCount).toBe(4);
     expect(mockCount).toBe(3);
     expect(descCount).toBe(1);
-    expect(vocabCount).toBe(10);
+    expect(vocabCount).toBeGreaterThanOrEqual(10);
+    expect(vocabCount).toBeLessThanOrEqual(14);
     await page.close();
   });
 

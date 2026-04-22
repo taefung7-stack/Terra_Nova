@@ -183,8 +183,8 @@
     <div class="tab" onclick="showLevel('pluto',this)">MERCURY<br><span style="font-size:.62rem;opacity:.7;">초4</span></div>
     <div class="tab" onclick="showLevel('mars',this)">MARS<br><span style="font-size:.62rem;opacity:.7;">초5</span></div>
     <div class="tab" onclick="showLevel('mars',this)">VENUS<br><span style="font-size:.62rem;opacity:.7;">초6</span></div>
-    <div class="tab" onclick="showLevel('earth',this)">EARTH<br><span style="font-size:.62rem;opacity:.7;">중1</span></div>
-    <div class="tab" onclick="showLevel('earth',this)">NEPTUNE<br><span style="font-size:.62rem;opacity:.7;">중2</span></div>
+    <div class="tab" onclick="showLevel('terra',this)">TERRA<br><span style="font-size:.62rem;opacity:.7;">중1</span></div>
+    <div class="tab" onclick="showLevel('terra',this)">NEPTUNE<br><span style="font-size:.62rem;opacity:.7;">중2</span></div>
     <div class="tab" onclick="showLevel('uranus',this)">URANUS<br><span style="font-size:.62rem;opacity:.7;">중3</span></div>
     <div class="tab" onclick="showLevel('uranus',this)">SATURN<br><span style="font-size:.62rem;opacity:.7;">고1</span></div>
     <div class="tab" onclick="showLevel('jupiter',this)">JUPITER<br><span style="font-size:.62rem;opacity:.7;">고2</span></div>
@@ -286,10 +286,10 @@
     </div>
   </div>
 
-  <!--  EARTH -->
+  <!--  TERRA -->
   <div class="level-section" id="sec-basic">
     <div class="level-header">
-      <div class="level-badge">EARTH</div>
+      <div class="level-badge">TERRA</div>
       <div class="level-info">
         <div class="level-title">베이직 레벨</div>
         <div class="level-target">중학교 1~2학년 대상</div>
@@ -488,7 +488,7 @@
   // URL param: auto-switch level tab
   const lvlParam = new URLSearchParams(location.search).get('level');
   if (lvlParam) {
-    const map = {PLUTO:'pluto',MARS:'mars',BASIC:'earth',URANUS:'uranus',JUPITER:'jupiter',SUN:'sun'};
+    const map = {PLUTO:'pluto',MARS:'mars',BASIC:'terra',URANUS:'uranus',JUPITER:'jupiter',SUN:'sun'};
     const key = map[lvlParam.toUpperCase()];
     if (key) {
       const tab = [...document.querySelectorAll('.tab')].find(t => t.getAttribute('onclick') && t.getAttribute('onclick').includes("'"+key+"'"));

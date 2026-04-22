@@ -14,8 +14,8 @@ const ajv = new Ajv({ allErrors: true, strict: false });
 addFormats(ajv);
 const ajvValidate = ajv.compile(schema);
 
-const BODY_WORD_MIN = 225;
-const BODY_WORD_MAX = 310;
+const BODY_WORD_MIN = 290;
+const BODY_WORD_MAX = 360;
 
 function countWords(text) {
   // Strip custom markers like <u>...</u> and <blank> before counting

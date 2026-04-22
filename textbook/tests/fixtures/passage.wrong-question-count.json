@@ -1,5 +1,5 @@
 {
-  "schema_version": "2.0",
+  "schema_version": "2.1",
   "id": "2026-06-99",
   "meta": {
     "month": "2026-06",
@@ -12,12 +12,15 @@
     "key_concepts": [
       "fixture",
       "validation"
-    ]
+    ],
+    "part_ko": "픽스처 단원",
+    "lexile": "950L",
+    "ar_level": 6.5
   },
   "page1": {
     "title": "Fixture Title For Schema Validation",
     "subtitle": "A synthetic passage used by automated tests.",
-    "body": "This fixture passage exists so that the automated validator and renderer always have a predictable example to exercise. The prose is deliberately repetitive yet grammatically consistent. It describes the idea of building a robust test fixture so the validator and renderer both have predictable inputs to operate on. When engineers inspect this body they should recognize it as intentionally synthetic but structurally sound. Each sentence follows a simple subject verb object order to mimic classroom English material. The fixture includes vocabulary of moderate difficulty suitable for tenth grade readers. In addition, the body reaches the required word count range by repeating its central theme across multiple sentences without introducing confusing content. Readers who glance at the fixture will quickly see that it is scaffolding rather than genuine editorial writing. The synthetic passage makes sure our pipeline remains stable. The passage also demonstrates underlined words and blanks so renderer markup paths get exercised properly. Consistent structure is always preferred over clever prose during validation work. A healthy test corpus protects the overall quality of the textbook pipeline from surprise regressions. We maintain this fixture with care so that future schema changes remain detectable. The passage concludes by underscoring the purpose of fixtures. Fixtures give confidence that real passages will render without breaking the page layout or exceeding the strict character budgets applied to each textual slot in the schema definition.",
+    "body": "This fixture passage exists so that the automated validator and renderer always have a predictable example to exercise. The prose is deliberately repetitive yet grammatically consistent. It describes the idea of building a robust test fixture so the validator and renderer both have predictable inputs to operate on. When engineers inspect this body they should recognize it as intentionally synthetic but structurally sound. Each sentence follows a simple subject verb object order to mimic classroom English material. The fixture includes vocabulary of moderate difficulty suitable for tenth grade readers. In addition, the body reaches the required word count range by repeating its central theme across multiple sentences without introducing confusing content. Readers who glance at the fixture will quickly see that it is scaffolding rather than genuine editorial writing. The synthetic passage makes sure our pipeline remains stable. The passage also demonstrates underlined words and blanks so renderer markup paths get exercised properly. Consistent structure is always preferred over clever prose during validation work. A healthy test corpus protects the overall quality of the textbook pipeline from surprise regressions. We maintain this fixture with care so that future schema changes remain detectable. The passage concludes by underscoring the purpose of fixtures. Fixtures give confidence that real passages will render without breaking the page layout or exceeding the strict character budgets applied to each textual slot in the schema definition. The fixture also exercises paragraph breaks and inline markers across multiple sentences so the renderer can be regression tested. In production the same validator will check every monthly batch, catching overflow before the PDF build stage. This synthetic corpus stays editorial but predictable, which means changes to the layout pipeline are detected before any real passage reaches the student. We therefore treat the fixture as a safety net, and we update its word count ranges whenever the schema itself changes so drift cannot occur.",
     "illustration": "../../assets/illustrations/2026-06/99.svg",
     "illustration_caption": "Synthetic fixture illustration."
   },
@@ -84,7 +87,8 @@
           },
           {
             "role": "V",
-            "text": "exists"
+            "text": "exists",
+            "note": "be + p.p. 수동태"
           },
           {
             "role": "M",

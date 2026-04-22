@@ -400,56 +400,22 @@
       /* 심우주 베이스 */
       linear-gradient(145deg,#050215 0%,#0A0520 30%,#100A2E 60%,#080418 100%);
   }
-  /* 별밭 오버레이 — 작은 별들 (::before) + 큰 빛나는 별들 (::after) */
-  .card-top.has-galaxy-orbit::before{
-    content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
-    background-image:
-      /* 작은 점별 (22개) */
-      radial-gradient(2px 2px at 7% 9%,#fff,transparent 60%),
-      radial-gradient(2.5px 2.5px at 17% 36%,#dce8ff,transparent 60%),
-      radial-gradient(2px 2px at 25% 68%,#fff5e0,transparent 60%),
-      radial-gradient(3px 3px at 34% 16%,#fff,transparent 60%),
-      radial-gradient(2px 2px at 42% 84%,#cfe0ff,transparent 60%),
-      radial-gradient(2.5px 2.5px at 50% 50%,#fff,transparent 60%),
-      radial-gradient(2px 2px at 58% 28%,#ffe8c4,transparent 60%),
-      radial-gradient(3px 3px at 66% 60%,#fff,transparent 60%),
-      radial-gradient(2px 2px at 73% 7%,#dde4ff,transparent 60%),
-      radial-gradient(2.5px 2.5px at 81% 44%,#fff,transparent 60%),
-      radial-gradient(3px 3px at 89% 78%,#fff4d0,transparent 60%),
-      radial-gradient(2px 2px at 12% 86%,#fff,transparent 60%),
-      radial-gradient(2.5px 2.5px at 29% 42%,#cfdcff,transparent 60%),
-      radial-gradient(2px 2px at 45% 11%,#fff,transparent 60%),
-      radial-gradient(2px 2px at 65% 76%,#fff6dd,transparent 60%),
-      radial-gradient(2.5px 2.5px at 95% 22%,#fff,transparent 60%),
-      radial-gradient(2px 2px at 3% 50%,#e8efff,transparent 60%),
-      radial-gradient(2px 2px at 20% 90%,#fff,transparent 60%),
-      radial-gradient(2px 2px at 38% 60%,#fff5e5,transparent 60%),
-      radial-gradient(2.5px 2.5px at 54% 38%,#fff,transparent 60%),
-      radial-gradient(2px 2px at 76% 88%,#d8e2ff,transparent 60%),
-      radial-gradient(2.5px 2.5px at 92% 62%,#fff,transparent 60%);
-    animation:starFieldTwinkle 5s ease-in-out infinite;
+  /* 실제 별밭 (DOM 주입) — 가만히 있고 개별 트윙클 */
+  .starfield-real{position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
+  .star-point{
+    position:absolute;
+    left:var(--x);top:var(--y);
+    width:var(--size);height:var(--size);
+    background:var(--star-color,#fff);
+    border-radius:50%;
+    box-shadow:0 0 calc(var(--size) * 2) var(--star-color,rgba(255,255,255,.9)),
+               0 0 calc(var(--size) * 4) rgba(200,220,255,.3);
+    animation:starTwinkle var(--duration) ease-in-out infinite;
+    animation-delay:var(--delay);
   }
-  /* 큰 빛나는 별들 (::after) — box-shadow 여러 겹으로 십자 글로우 */
-  .card-top.has-galaxy-orbit::after{
-    content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
-    background-image:
-      radial-gradient(4px 4px at 12% 18%,#fff,transparent 40%),
-      radial-gradient(5px 5px at 28% 52%,#fff,transparent 40%),
-      radial-gradient(4px 4px at 48% 24%,#fffaeb,transparent 40%),
-      radial-gradient(5px 5px at 64% 82%,#fff,transparent 40%),
-      radial-gradient(4.5px 4.5px at 82% 16%,#fff,transparent 40%),
-      radial-gradient(5px 5px at 93% 68%,#ffeecc,transparent 40%),
-      radial-gradient(4px 4px at 7% 72%,#fff,transparent 40%);
-    filter:drop-shadow(0 0 3px rgba(255,255,255,.7)) drop-shadow(0 0 8px rgba(180,210,255,.4));
-    animation:brightStarsTwinkle 4s ease-in-out infinite;
-  }
-  @keyframes starFieldTwinkle{
-    0%,100%{opacity:.85;}
-    50%{opacity:1;}
-  }
-  @keyframes brightStarsTwinkle{
-    0%,100%{opacity:.9;transform:scale(1);}
-    50%{opacity:1;transform:scale(1.12);}
+  @keyframes starTwinkle{
+    0%,100%{opacity:var(--min-opacity,.3);transform:scale(.8);}
+    50%    {opacity:1;                     transform:scale(1.1);}
   }
   @media(max-width:780px){.card-top.has-galaxy-orbit{min-height:560px;padding:60px 12px 48px;}}
   @media(max-width:420px){.card-top.has-galaxy-orbit{min-height:480px;padding:44px 8px 36px;}}
@@ -480,7 +446,7 @@
   .lv-2{border-color:rgba(236,72,153,.55);color:#F9A8D4;background:rgba(236,72,153,.14);}   /* MERCURY 💗 Dwarf Pink */
   .lv-3{border-color:rgba(168,85,247,.55);color:#D8B4FE;background:rgba(168,85,247,.14);}   /* MARS 💜 Violet */
   .lv-4{border-color:rgba(20,184,166,.55);color:#5EEAD4;background:rgba(20,184,166,.14);}   /* VENUS 💎 Teal */
-  .lv-5{border-color:rgba(14,165,233,.55);color:#7DD3FC;background:rgba(14,165,233,.14);}   /* EARTH 🌊 Ocean */
+  .lv-5{border-color:rgba(14,165,233,.55);color:#7DD3FC;background:rgba(14,165,233,.14);}   /* TERRA 🌊 Ocean */
   .lv-6{border-color:rgba(234,179,8,.55);color:#FDE68A;background:rgba(234,179,8,.14);}     /* NEPTUNE ☀️ Yellow */
   .lv-7{border-color:rgba(203,213,225,.55);color:#F1F5F9;background:rgba(203,213,225,.12);} /* URANUS ⭐ Silver */
   .lv-8{border-color:rgba(239,68,68,.55);color:#FCA5A5;background:rgba(239,68,68,.14);}     /* SATURN 🔥 Red */
@@ -708,7 +674,7 @@
     radial-gradient(ellipse 55% 8% at 50% 55%,rgba(255,220,150,.3) 0%,transparent 80%),
     radial-gradient(ellipse 50% 7% at 50% 72%,rgba(255,230,170,.25) 0%,transparent 80%);}
 
-  /* 5. EARTH — 파랑 바다 + 초록 대륙 + 흰 구름 */
+  /* 5. TERRA — 파랑 바다 + 초록 대륙 + 흰 구름 */
   .galaxy-node .gv-5{--gv-color:#3B82C4;--gv-glow:18px;background:radial-gradient(circle at 32% 30%,#A8DCF5 0%,#4BA3D8 22%,#1E5F94 55%,#0A2A50 100%);}
   .galaxy-node .gv-5::after{background:
     radial-gradient(ellipse 30% 20% at 65% 42%,rgba(90,160,85,.85) 0%,transparent 70%),
@@ -730,14 +696,23 @@
     radial-gradient(ellipse 100% 4% at 50% 48%,rgba(180,230,228,.25) 0%,transparent 70%),
     radial-gradient(ellipse 80% 6% at 50% 60%,rgba(150,215,210,.2) 0%,transparent 80%);}
 
-  /* 8. SATURN — 탄황색 + 고리 (가로 타원 고리) */
-  .galaxy-node .gv-8{--gv-color:#E8C278;--gv-glow:26px;background:radial-gradient(circle at 35% 32%,#FFE8B8,#E8C278 22%,#A8823A 55%,#4E3A15 100%);overflow:visible;}
+  /* 8. SATURN — 탄황색 + 고리가 원 밖으로 확장 (mask 해제) */
+  .galaxy-node .gv-8{
+    --gv-color:#E8C278;--gv-glow:26px;
+    -webkit-mask:none;mask:none;
+    overflow:visible;
+    background:radial-gradient(circle at 35% 32%,#FFE8B8,#E8C278 22%,#A8823A 55%,#4E3A15 100%);
+    box-shadow:0 0 var(--gv-glow) var(--gv-color),inset -8% -8% 24% rgba(60,35,10,.5);
+  }
+  /* 고리 — 원보다 훨씬 크게 확장 */
   .galaxy-node .gv-8::after{
-    inset:-20% -35%;
+    inset:-55% -95%;
     background:
-      radial-gradient(ellipse 100% 8% at 50% 50%,transparent 30%,rgba(200,170,130,.75) 42%,rgba(230,200,150,.9) 50%,rgba(200,170,130,.75) 58%,transparent 70%),
-      radial-gradient(ellipse 85% 4% at 50% 50%,transparent 30%,rgba(230,210,160,.9) 50%,transparent 70%);
-    transform:rotate(-18deg);}
+      radial-gradient(ellipse 100% 5% at 50% 50%,transparent 30%,rgba(200,170,130,.85) 44%,rgba(245,215,165,.95) 50%,rgba(200,170,130,.85) 56%,transparent 70%),
+      radial-gradient(ellipse 85% 3% at 50% 50%,transparent 35%,rgba(250,230,180,.9) 50%,transparent 65%);
+    transform:rotate(-18deg);
+    z-index:-1;
+  }
 
   /* 9. JUPITER — 주황-갈색 가로 줄무늬 (belts and zones) */
   .galaxy-node .gv-9{--gv-color:#E8A068;--gv-glow:32px;background:radial-gradient(circle at 35% 32%,#FFD8A8,#E8B078 15%,#B47848 45%,#5A3820 100%);}
@@ -1583,6 +1558,9 @@
       <div class="card-top c1 has-galaxy-orbit">
         <div class="card-glow"></div>
 
+        <!-- 실제 별밭 (JS 주입 70개, 각자 개별 트윙클) -->
+        <div class="starfield-real" id="starfieldReal" aria-hidden="true"></div>
+
         <!-- 슈팅스타는 card-top 전체 영역으로 확장 (희소성 있게 2개만) -->
         <div class="shooting-stars shooting-stars-wide" aria-hidden="true">
           <span class="ss ss-1"></span>
@@ -1606,8 +1584,8 @@
           <button class="galaxy-node gn-4"  data-idx="4"  data-name="VENUS" data-grade="초6" data-desc="금성 · 새벽의 별"    style="--angle:18deg;--size:34px;" type="button">
             <span class="gv gv-4"></span><span class="gn-label"><span class="gn-name">VENUS</span><span class="gn-grade">초6</span></span>
           </button>
-          <button class="galaxy-node gn-5"  data-idx="5"  data-name="EARTH"  data-grade="중1" data-desc="지구 · 우리 집 🌍"      style="--angle:54deg;--size:38px;" type="button">
-            <span class="gv gv-5"></span><span class="gn-label"><span class="gn-name">EARTH</span><span class="gn-grade">중1</span></span>
+          <button class="galaxy-node gn-5"  data-idx="5"  data-name="TERRA"  data-grade="중1" data-desc="지구 · 우리 집 🌍"      style="--angle:54deg;--size:38px;" type="button">
+            <span class="gv gv-5"></span><span class="gn-label"><span class="gn-name">TERRA</span><span class="gn-grade">중1</span></span>
           </button>
           <button class="galaxy-node gn-6"  data-idx="6"  data-name="NEPTUNE"  data-grade="중2" data-desc="해왕성 · 푸른 바람"      style="--angle:90deg;--size:42px;" type="button">
             <span class="gv gv-6"></span><span class="gn-label"><span class="gn-name">NEPTUNE</span><span class="gn-grade">중2</span></span>
@@ -3210,6 +3188,41 @@ document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',
    · 마우스 드래그 / 터치 스와이프 회전
    · 클릭 시 중앙 정보 업데이트 + 해당 은하 하이라이트
    ========================================================= */
+(function initStarfield(){
+  const field = document.getElementById('starfieldReal');
+  if(!field) return;
+  const COUNT = 72;  // 총 별 개수
+  const tintPool = ['255,255,255','220,235,255','255,245,220','200,220,255','255,235,200','230,240,255'];
+  const frag = document.createDocumentFragment();
+  for(let i = 0; i < COUNT; i++){
+    const star = document.createElement('span');
+    star.className = 'star-point';
+    const x = Math.random() * 100;
+    const y = Math.random() * 100;
+    // 크기 차등: 70%는 작은 별(1.5~3px), 25%는 중간(3~5px), 5%는 큰 별(5~7px)
+    let size;
+    const r = Math.random();
+    if(r < 0.7) size = 1.5 + Math.random() * 1.5;
+    else if(r < 0.95) size = 3 + Math.random() * 2;
+    else size = 5 + Math.random() * 2;
+    const tint = tintPool[Math.floor(Math.random() * tintPool.length)];
+    const duration = 2.5 + Math.random() * 4;        // 2.5~6.5초 주기
+    const delay = -Math.random() * 6;                 // 음수 delay로 초기부터 분산 시작
+    const minOpacity = 0.15 + Math.random() * 0.3;    // 각 별마다 다른 최소 밝기
+    star.style.cssText = [
+      '--x:' + x.toFixed(2) + '%',
+      '--y:' + y.toFixed(2) + '%',
+      '--size:' + size.toFixed(2) + 'px',
+      '--star-color:rgba(' + tint + ',.95)',
+      '--duration:' + duration.toFixed(2) + 's',
+      '--delay:' + delay.toFixed(2) + 's',
+      '--min-opacity:' + minOpacity.toFixed(2)
+    ].join(';');
+    frag.appendChild(star);
+  }
+  field.appendChild(frag);
+})();
+
 (function initGalaxyOrbit(){
   const orbit = document.getElementById('galaxyOrbit');
   if(!orbit) return;

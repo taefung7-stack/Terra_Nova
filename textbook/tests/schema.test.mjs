@@ -14,7 +14,7 @@ describe('passage schema validator (v2.0)', () => {
     expect(result.errors).toEqual([]);
   });
 
-  it('rejects body longer than 2800 characters', () => {
+  it('rejects body longer than 3200 characters', () => {
     const result = validatePassage(fixture('passage.too-long.json'));
     expect(result.ok).toBe(false);
     expect(result.errors.some(e => e.instancePath.includes('/page1/body'))).toBe(true);
@@ -26,10 +26,10 @@ describe('passage schema validator (v2.0)', () => {
     expect(result.errors.some(e => e.instancePath.includes('/page2/questions'))).toBe(true);
   });
 
-  it('enforces word count 225–310 in page1.body', () => {
+  it('enforces word count 290–360 in page1.body', () => {
     const passage = fixture('passage.good.json');
-    // 400 words, ~2000 chars — passes char-length AJV check, fails word-count check (>310)
-    passage.page1.body = 'word '.repeat(400).trim();
+    // 500 words — passes char-length AJV check (2500 chars), fails word-count (>360)
+    passage.page1.body = 'word '.repeat(500).trim();
     const result = validatePassage(passage);
     expect(result.ok).toBe(false);
     expect(result.errors.some(e => e.message.includes('word count'))).toBe(true);

@@ -139,17 +139,23 @@ function renderVisualAid(va) {
 /* ---------- Page 3: Sentences ---------- */
 const ROLE_TAG = { S: 'S', V: 'V', O: 'O', C: 'C', M: 'M', CONJ: '접', REL: '관', '': '' };
 
+function renderSegment(seg) {
+  const role = seg.role || '';
+  const tag = ROLE_TAG[role] || '';
+  const tagHtml = tag ? `<span class="seg-tag">${tag}</span>` : '';
+  const safeText = renderRichInline(seg.text);
+  if (seg.note) {
+    // Render per-segment grammar note as ruby under the segment
+    return `<span class="seg" data-role="${role}"><ruby><rb>${safeText}${tagHtml}</rb><rt>${escapeHTML(seg.note)}</rt></ruby></span>`;
+  }
+  return `<span class="seg" data-role="${role}">${safeText}${tagHtml}</span>`;
+}
+
 function renderSentences(list) {
   return list.map(s => {
-    const segs = s.segments.map(seg => {
-      const role = seg.role || '';
-      const tag = ROLE_TAG[role] || '';
-      const tagHtml = tag ? ` <span class="seg-tag">${tag}</span>` : '';
-      return `<span class="seg" data-role="${role}">${renderRichInline(seg.text)}${tagHtml}</span>`;
-    }).join(' ');
+    const segs = s.segments.map(renderSegment).join(' ');
     return `<div class="p3-sentence">
       <div class="en-row"><span class="num">[${s.index}]</span>${segs}</div>
-      <div class="note">${escapeHTML(s.grammar_note)}</div>
     </div>`;
   }).join('');
 }
@@ -218,16 +224,18 @@ async function main() {
   root.dataset.month = data.meta.month;
   document.body.setAttribute('data-month', data.meta.month);
 
-  // Chapter tag shown upper-right of each page header
-  const chapterLabel = escapeHTML(data.meta.linked_unit);
+  // Chapter tag: strip leading unit number (e.g. "I-2 생명의 진화와 탄소" → "생명의 진화와 탄소")
+  const unitClean = data.meta.linked_unit.replace(/^[IVX]+(-\d+)?\s+/, '').replace(/^\d+(-\d+)?\s+/, '');
+  const chapterLabel = escapeHTML(unitClean);
   ['chapter-tag', 'chapter-tag-2', 'chapter-tag-3', 'chapter-tag-4'].forEach(s => {
     setHTML(root, s, chapterLabel);
   });
 
-  // Page 1
+  // Page 1 — new meta chips: subject / part / Lexile / AR
   setText(root, 'subject', data.meta.subject);
-  setText(root, 'difficulty', `● ${data.meta.difficulty}`);
-  setText(root, 'cognitive', data.meta.cognitive_skill);
+  setHTML(root, 'part', escapeHTML(data.meta.part_ko));
+  setHTML(root, 'lexile', `<span class="lvl-label">Lexile</span>${escapeHTML(data.meta.lexile)}`);
+  setHTML(root, 'ar', `<span class="lvl-label">AR</span>${escapeHTML(String(data.meta.ar_level.toFixed(1)))}`);
   setText(root, 'title', data.page1.title);
   setText(root, 'subtitle', data.page1.subtitle);
   setHTML(root, 'body', renderParagraphs(data.page1.body));
