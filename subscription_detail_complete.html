@@ -718,12 +718,16 @@
       box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1), var(--shadow-xl);
     }
     
-    .level-card.lv-1::before { background: linear-gradient(90deg, #8B5CF6, #A78BFA); }
-    .level-card.lv-2::before { background: linear-gradient(90deg, #3B82F6, #60A5FA); }
-    .level-card.lv-3::before { background: linear-gradient(90deg, #14B8A6, #5EEAD4); }
-    .level-card.lv-4::before { background: linear-gradient(90deg, #84CC16, #BEF264); }
-    .level-card.lv-5::before { background: linear-gradient(90deg, #F59E0B, #FCD34D); }
-    .level-card.lv-6::before { background: linear-gradient(90deg, #EF4444, #F87171); }
+    .level-card.lv-1::before  { background: linear-gradient(90deg, #8E8878, #D0CCC5); } /* MOON 회색 */
+    .level-card.lv-2::before  { background: linear-gradient(90deg, #6E6256, #A89B8E); } /* MERCURY 회갈 */
+    .level-card.lv-3::before  { background: linear-gradient(90deg, #A03820, #F4A888); } /* MARS 붉은 */
+    .level-card.lv-4::before  { background: linear-gradient(90deg, #D48A3C, #FFEAB8); } /* VENUS 금색 */
+    .level-card.lv-5::before  { background: linear-gradient(90deg, #1E5F94, #4BA3D8); } /* TERRA 파랑 */
+    .level-card.lv-6::before  { background: linear-gradient(90deg, #1D3CA8, #98C2F8); } /* NEPTUNE 진파랑 */
+    .level-card.lv-7::before  { background: linear-gradient(90deg, #5CA8A4, #CFF8F4); } /* URANUS 시안 */
+    .level-card.lv-8::before  { background: linear-gradient(90deg, #A8823A, #FFE8B8); } /* SATURN 탄황 */
+    .level-card.lv-9::before  { background: linear-gradient(90deg, #B47848, #FFD8A8); } /* JUPITER 주황갈 */
+    .level-card.lv-10::before { background: linear-gradient(90deg, #E06010, #FFE47C); } /* SUN 태양 */
     
     .level-badge {
       display: inline-block;
@@ -3994,12 +3998,16 @@
     let selectedLevelName = '';
 
     const levelTargets = {
-      'MOON': '초등학교 3~4학년',
-      'MARS': '초등학교 5~6학년',
-      'TERRA': '중학교 1~2학년',
-      'URANUS': '중학교 3학년 ~ 고등학교 1학년',
-      'JUPITER': '고등학교 2학년',
-      'SUN': '고등학교 3학년 / N수생'
+      'MOON':    '초등학교 3학년 · 출발점',
+      'MERCURY': '초등학교 4학년 · 기초 어휘 확장',
+      'MARS':    '초등학교 5학년 · 문장 구조 이해',
+      'VENUS':   '초등학교 6학년 · 중학 선행',
+      'TERRA':   '중학교 1학년 · 본격 독해 훈련',
+      'NEPTUNE': '중학교 2학년 · 내신·학평 완성',
+      'URANUS':  '중학교 3학년 · 수능 유형 입문',
+      'SATURN':  '고등학교 1학년 · 모의고사 대비',
+      'JUPITER': '고등학교 2학년 · 수능 실전',
+      'SUN':     '고등학교 3학년 / N수생 · 1등급 완성'
     };
 
     document.querySelectorAll('.level-card').forEach(card => {

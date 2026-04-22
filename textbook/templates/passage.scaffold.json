@@ -1,0 +1,121 @@
+{
+  "$schema_note": "SCAFFOLD — copy to content/passages/YYYY-MM/NN.json and fill every TODO. See templates/AUTHORING-GUIDE.md for full rules.",
+  "schema_version": "2.1",
+  "id": "YYYY-MM-NN",
+  "meta": {
+    "month": "YYYY-MM",
+    "sequence": 0,
+    "subject": "통합과학",
+    "linked_unit": "TODO — 교과서 단원 (예: I-2 생명의 진화와 탄소)",
+    "part_ko": "TODO 파트명(짧게)",
+    "achievement_standard": "10통과01-01",
+    "difficulty": "중간",
+    "cognitive_skill": "요지",
+    "lexile": "1000L",
+    "ar_level": 6.5,
+    "key_concepts": ["TODO개념1", "TODO개념2", "TODO개념3"]
+  },
+  "page1": {
+    "title": "TODO — English title (3–80 chars)",
+    "subtitle": "TODO — English subtitle (3–110 chars)",
+    "body": "TODO — replace with 290–360 English words across 3 paragraphs separated by blank lines. Inline markers allowed: <u>word</u> for underlines, <mark>phrase</mark> for highlight, <blank> for fill-in-the-blank. Ensure the passage ties to the unit and that at least one <blank> or <u> matches a question on page 2.",
+    "illustration": "../../assets/illustrations/YYYY-MM/NN.svg",
+    "illustration_caption": "TODO — one-line caption under the illustration"
+  },
+  "page2": {
+    "questions": [
+      {
+        "type": "mock_objective",
+        "style": "요지",
+        "stem": "다음 글의 요지로 가장 적절한 것은?",
+        "choices": [
+          "TODO distractor sentence 1 (full clause in English)",
+          "TODO correct answer sentence",
+          "TODO distractor sentence 3",
+          "TODO distractor sentence 4",
+          "TODO distractor sentence 5"
+        ],
+        "answer_index": 1
+      },
+      {
+        "type": "mock_objective",
+        "style": "빈칸 추론",
+        "stem": "윗글의 밑줄 친 빈칸에 들어갈 말로 가장 적절한 것은?",
+        "choices": [
+          "TODO option 1",
+          "TODO option 2",
+          "TODO option 3",
+          "TODO option 4",
+          "TODO option 5"
+        ],
+        "answer_index": 0
+      },
+      {
+        "type": "mock_objective",
+        "style": "함의 추론",
+        "stem": "윗글의 밑줄 친 표현 ___ 이 의미하는 바로 가장 적절한 것은?",
+        "choices": [
+          "TODO option 1",
+          "TODO option 2",
+          "TODO option 3",
+          "TODO option 4",
+          "TODO option 5"
+        ],
+        "answer_index": 0
+      },
+      {
+        "type": "school_descriptive",
+        "style": "요약문 빈칸 완성",
+        "prompt": "다음은 본문의 요약문이다. 본문의 내용을 바탕으로 빈칸 (A), (B)에 들어갈 말을 <조건>에 맞게 영어 한 단어로 각각 쓰시오. <조건> 본문에서 제시된 단어를 그대로 활용할 것.",
+        "hints": ["hint1", "hint2", "hint3", "hint4"],
+        "summary_template": "TODO summary sentence with <blank> (A) ... and <blank> (B) ...",
+        "model_answer": "(A) word1  (B) word2"
+      }
+    ],
+    "textbook_tieback": {
+      "unit_label": "통합과학 X-Y · 단원명",
+      "body_ko": "TODO — 본문 주제와 연결되는 고1 교과 내용 200~600자. 학생이 영어만 읽다가 교과 지식까지 쉽게 이해할 수 있도록 평이한 한국어로 서술.",
+      "tags": ["태그1", "태그2", "태그3"],
+      "visual_aid": {
+        "type": "emoji_flow",
+        "title": "TODO 시각 제목",
+        "steps": [
+          { "emoji": "🔹", "label": "단계1", "note": "설명" },
+          { "emoji": "🔹", "label": "단계2", "note": "설명" },
+          { "emoji": "🔹", "label": "단계3", "note": "설명" }
+        ]
+      }
+    }
+  },
+  "page3": {
+    "sentences": [
+      {
+        "index": 1,
+        "segments": [
+          { "role": "S", "text": "TODO 주어 덩어리" },
+          { "role": "V", "text": "TODO 동사", "note": "문법 메모 (선택)" },
+          { "role": "O", "text": "TODO 목적어" }
+        ],
+        "grammar_note": "문장 전체 코멘트 (선택)"
+      }
+    ],
+    "translation_ko": "[1] TODO 문장 1의 자연스러운 한글 해석. [2] TODO 문장 2. [3] ... 본문의 모든 문장 번호가 빠짐없이 들어가야 한다. 줄바꿈 없이 하나의 단락으로 이어서 작성."
+  },
+  "page4": {
+    "vocab": [
+      {
+        "word": "TODO",
+        "pos": "n./v./adj./adv.",
+        "meaning_ko": "한글 뜻",
+        "synonyms": ["syn1"],
+        "antonyms": [],
+        "examples": [
+          { "en": "TODO example sentence 1 (from passage context).",
+            "ko": "TODO 한글 해석." },
+          { "en": "TODO example sentence 2 (everyday context).",
+            "ko": "TODO 한글 해석." }
+        ]
+      }
+    ]
+  }
+}
