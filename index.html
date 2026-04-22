@@ -517,28 +517,17 @@
     width:100%;height:100%;
     border-radius:50%;
     background:var(--gv-color,#fff);
-    box-shadow:
-      0 0 var(--gv-glow,8px) var(--gv-color,rgba(255,255,255,.3)),
-      inset -6% -6% 14% rgba(0,0,0,.35),
-      inset 8% 8% 18% rgba(255,255,255,.15);
-    transition:transform .25s,box-shadow .25s;
+    /* 외곽 페더링 — 우주 배경과 자연스럽게 블렌드, "사진 합성" 느낌 제거 */
+    -webkit-mask-image:radial-gradient(circle at center,#000 60%,rgba(0,0,0,.55) 82%,transparent 99%);
+    mask-image:radial-gradient(circle at center,#000 60%,rgba(0,0,0,.55) 82%,transparent 99%);
+    box-shadow:0 0 var(--gv-glow,8px) var(--gv-color,rgba(255,255,255,.3));
+    transition:transform .25s,box-shadow .25s,filter .25s;
     animation:gvPulse 4s ease-in-out infinite;
   }
-  .galaxy-node .gv::before{
-    content:'';position:absolute;inset:-18%;
-    border-radius:50%;
-    background:radial-gradient(circle,transparent 48%,var(--gv-color) 50%,transparent 55%);
-    opacity:.35;
-    animation:gvHalo 8s linear infinite;
-    pointer-events:none;
-  }
+  /* halo 링 제거 — 마스크된 페더 블렌드만으로 충분히 자연스러움 */
   @keyframes gvPulse{
     0%,100%{filter:brightness(1);}
-    50%{filter:brightness(1.18);}
-  }
-  @keyframes gvHalo{
-    from{transform:rotate(0deg);}
-    to{transform:rotate(360deg);}
+    50%{filter:brightness(1.15);}
   }
   .galaxy-node .gn-label{
     position:absolute;
@@ -812,17 +801,16 @@
     border-radius:3px;
     filter:blur(3px);
   }
-  .shooting-stars-wide .ss-1{top:8%; left:-20%;--ss-angle:16deg;--ss-dur:5.5s; animation:shootStarFine var(--ss-dur) cubic-bezier(.25,.45,.45,.95) infinite;animation-delay:0.5s;}
-  .shooting-stars-wide .ss-2{top:32%;left:-20%;--ss-angle:22deg;--ss-dur:8.5s; animation:shootStarFine var(--ss-dur) cubic-bezier(.25,.45,.45,.95) infinite;animation-delay:3.2s;}
-  .shooting-stars-wide .ss-3{top:56%;left:-20%;--ss-angle:13deg;--ss-dur:10s;  animation:shootStarFine var(--ss-dur) cubic-bezier(.25,.45,.45,.95) infinite;animation-delay:7s;}
-  .shooting-stars-wide .ss-4{top:18%;left:-20%;--ss-angle:28deg;--ss-dur:7s;   animation:shootStarFine var(--ss-dur) cubic-bezier(.25,.45,.45,.95) infinite;animation-delay:2.2s;}
-  .shooting-stars-wide .ss-5{top:72%;left:-20%;--ss-angle:20deg;--ss-dur:12s;  animation:shootStarFine var(--ss-dur) cubic-bezier(.25,.45,.45,.95) infinite;animation-delay:5.5s;}
+  /* 2개만, 긴 주기(15초)로 간헐적 — 희소성 유지 */
+  .shooting-stars-wide .ss-1{top:12%;left:-20%;--ss-angle:20deg;--ss-dur:15s; animation:shootStarFine var(--ss-dur) cubic-bezier(.2,.4,.4,1) infinite;animation-delay:2s;}
+  .shooting-stars-wide .ss-2{top:58%;left:-20%;--ss-angle:14deg;--ss-dur:22s; animation:shootStarFine var(--ss-dur) cubic-bezier(.2,.4,.4,1) infinite;animation-delay:11s;}
   @keyframes shootStarFine{
-    0%,12%  {opacity:0;transform:translate(0,0) rotate(var(--ss-angle));}
-    14%     {opacity:0;transform:translate(0,0) rotate(var(--ss-angle)) scaleX(.4);}
-    20%     {opacity:.95;transform:translate(30vw,15vh) rotate(var(--ss-angle)) scaleX(1);}
-    45%     {opacity:1;transform:translate(100vw,50vh) rotate(var(--ss-angle)) scaleX(1);}
-    58%     {opacity:0;transform:translate(160vw,80vh) rotate(var(--ss-angle)) scaleX(.6);}
+    /* 전체 주기 대비 유성은 짧은 순간만 보임 (5% 구간) */
+    0%,90%  {opacity:0;transform:translate(0,0) rotate(var(--ss-angle));}
+    91%     {opacity:0;transform:translate(0,0) rotate(var(--ss-angle)) scaleX(.4);}
+    93%     {opacity:.95;transform:translate(30vw,15vh) rotate(var(--ss-angle)) scaleX(1);}
+    96%     {opacity:1;transform:translate(100vw,50vh) rotate(var(--ss-angle)) scaleX(1);}
+    99%     {opacity:0;transform:translate(160vw,80vh) rotate(var(--ss-angle)) scaleX(.6);}
     100%    {opacity:0;transform:translate(160vw,80vh) rotate(var(--ss-angle)) scaleX(.6);}
   }
 
@@ -1506,13 +1494,10 @@
       <div class="card-top c1 has-galaxy-orbit">
         <div class="card-glow"></div>
 
-        <!-- 슈팅스타는 card-top 전체 영역으로 확장 -->
+        <!-- 슈팅스타는 card-top 전체 영역으로 확장 (희소성 있게 2개만) -->
         <div class="shooting-stars shooting-stars-wide" aria-hidden="true">
           <span class="ss ss-1"></span>
           <span class="ss ss-2"></span>
-          <span class="ss ss-3"></span>
-          <span class="ss ss-4"></span>
-          <span class="ss ss-5"></span>
         </div>
 
         <!-- 10 Galaxy Orbit Animation — 레벨 선택 인터랙션 -->
@@ -3150,9 +3135,7 @@ document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',
   const baseAngles = nodes.map(n => parseFloat(n.style.getPropertyValue('--angle')) || 0);
   let offset = 0;
   let isDragging = false;
-  let dragStartX = 0;
-  let dragStartY = 0;
-  let dragStartOffset = 0;
+  let lastPointerAngle = 0;   // 이전 프레임 포인터의 궤도 중심 기준 각도
   let autoRotateId = null;
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -3160,6 +3143,14 @@ document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',
     nodes.forEach((n,i)=>{
       n.style.setProperty('--angle', `${baseAngles[i] + offset}deg`);
     });
+  }
+
+  // 포인터 위치 → 궤도 중심 기준 각도(deg)
+  function pointerAngle(clientX, clientY){
+    const rect = orbit.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    return Math.atan2(clientY - cy, clientX - cx) * 180 / Math.PI;
   }
 
   // 자동 회전 (초당 ~3°, 드래그 직후 3초간 일시정지)
@@ -3182,26 +3173,28 @@ document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',
     if(autoRotateId){ cancelAnimationFrame(autoRotateId); autoRotateId = null; }
   }
 
-  // 드래그 시작
+  // 드래그 시작: 포인터 잡힌 각도만 기록
   let dragEndTime = 0;
   function dragStart(clientX, clientY){
     isDragging = true;
-    dragStartX = clientX;
-    dragStartY = clientY;
-    dragStartOffset = offset;
+    lastPointerAngle = pointerAngle(clientX, clientY);
     orbit.style.cursor = 'grabbing';
   }
-  // 드래그 이동: x 변위를 각도로 변환 (1px = -0.9도, 손과 같은 방향으로 따라옴)
+  // 드래그 이동: 포인터가 궤도 중심 주위를 회전한 각도만큼 궤도도 회전
+  // → 위·아래·좌·우 어디서 잡아도 "손 따라오는 회전"이 됨 (자연 물리 일치)
   function dragMove(clientX, clientY){
     if(!isDragging) return;
-    const dx = clientX - dragStartX;
-    offset = dragStartOffset - dx * 0.9;
+    const currentAngle = pointerAngle(clientX, clientY);
+    let delta = currentAngle - lastPointerAngle;
+    // 180°/-180° 경계 래핑 보정
+    while(delta > 180) delta -= 360;
+    while(delta < -180) delta += 360;
+    offset += delta;
+    lastPointerAngle = currentAngle;
     applyRotation();
   }
   function dragEnd(){
-    if(isDragging){
-      dragEndTime = performance.now();
-    }
+    if(isDragging){ dragEndTime = performance.now(); }
     isDragging = false;
     orbit.style.cursor = 'grab';
   }
@@ -3218,18 +3211,20 @@ document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',
   });
   document.addEventListener('mouseup', dragEnd);
 
-  // 터치 이벤트
+  // 터치 이벤트 — 터치 시작점 각도 기록 + 궤도 원형 영역 내에서만 세로 스크롤 방해
+  let touchStartX = 0, touchStartY = 0;
   orbit.addEventListener('touchstart', e => {
     if(e.target.closest('.galaxy-node')) return;
     const t = e.touches[0];
+    touchStartX = t.clientX;
+    touchStartY = t.clientY;
     dragStart(t.clientX, t.clientY);
   }, {passive:true});
   orbit.addEventListener('touchmove', e => {
     if(!isDragging) return;
     const t = e.touches[0];
-    // 가로 드래그가 세로보다 크면 회전 (세로 스크롤 방해 방지)
-    const dx = Math.abs(t.clientX - dragStartX);
-    const dy = Math.abs(t.clientY - dragStartY);
+    const dx = Math.abs(t.clientX - touchStartX);
+    const dy = Math.abs(t.clientY - touchStartY);
     if(dx > dy){
       e.preventDefault();
       dragMove(t.clientX, t.clientY);
