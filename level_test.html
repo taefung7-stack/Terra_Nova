@@ -789,7 +789,7 @@ function calcLevel(sc) {
   // 초3-4 학생은 URANUS까지만 (수능형 지문 부담)
   if (gradeBase === 0 && finalLvl > 3) finalLvl = 3;
 
-  const levels = ['PLUTO','MARS','TERRA','URANUS','JUPITER','SUN'];
+  const levels = ['MOON','MARS','TERRA','URANUS','JUPITER','SUN'];
   return {lvl: levels[finalLvl], idx: finalLvl, avg, scoreLvl, gradeBase, minDomain};
 }
 
@@ -803,7 +803,7 @@ function letterGrade(score) {
 }
 
 const levelData = {
-  PLUTO: {
+  MOON: {
     name:'스타터 레벨', target:'초등학교 3~4학년',
     main:'영어 독해를 처음 시작하는 단계에 적합합니다. 기초 어휘와 짧은 문장 구조를 통해 영어 읽기에 대한 자신감을 키울 수 있습니다.',
     detail:'현재 어휘력이 형성되는 단계입니다. 초등 교과서와 연계된 친숙한 주제의 지문으로 영어 학습을 즐겁게 시작해보세요.',
@@ -867,7 +867,7 @@ const weakAdviceMap = {
 };
 
 const studyPlanMap = {
-  PLUTO: [
+  MOON: [
     {day:'월·목', task:'기초 어휘 암기 15단어 + 예문 소리 내어 읽기'},
     {day:'화·금', task:'짧은 지문 1편 독해 (주제 파악)'},
     {day:'수·토', task:'be동사·현재시제 문법 1단원 정리'},
@@ -1016,7 +1016,7 @@ function showResult() {
   saveLevelResult(lvl, sc, conf).catch(err => console.warn('[level_test] save skipped:', err?.message));
 }
 
-const LEVEL_NUM = { PLUTO: 1, MARS: 2, BASIC: 3, URANUS: 4, JUPITER: 5, SUN: 6 };
+const LEVEL_NUM = { MOON: 1, MARS: 2, BASIC: 3, URANUS: 4, JUPITER: 5, SUN: 6 };
 
 async function saveLevelResult(lvl, sc, conf) {
   const { supabase } = await import('./supabase-client.js');

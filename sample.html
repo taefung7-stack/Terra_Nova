@@ -179,8 +179,8 @@
 <!-- TABS -->
 <div class="tabs-wrap">
   <div class="tabs">
-    <div class="tab active" onclick="showLevel('pluto',this)">PLUTO<br><span style="font-size:.62rem;opacity:.7;">초3</span></div>
-    <div class="tab" onclick="showLevel('pluto',this)">MERCURY<br><span style="font-size:.62rem;opacity:.7;">초4</span></div>
+    <div class="tab active" onclick="showLevel('moon',this)">MOON<br><span style="font-size:.62rem;opacity:.7;">초3</span></div>
+    <div class="tab" onclick="showLevel('moon',this)">MERCURY<br><span style="font-size:.62rem;opacity:.7;">초4</span></div>
     <div class="tab" onclick="showLevel('mars',this)">MARS<br><span style="font-size:.62rem;opacity:.7;">초5</span></div>
     <div class="tab" onclick="showLevel('mars',this)">VENUS<br><span style="font-size:.62rem;opacity:.7;">초6</span></div>
     <div class="tab" onclick="showLevel('terra',this)">TERRA<br><span style="font-size:.62rem;opacity:.7;">중1</span></div>
@@ -194,10 +194,10 @@
 
 <div class="content">
 
-  <!-- PLUTO -->
+  <!-- MOON -->
   <div class="level-section active" id="sec-starter">
     <div class="level-header">
-      <div class="level-badge">PLUTO</div>
+      <div class="level-badge">MOON</div>
       <div class="level-info">
         <div class="level-title">스타터 레벨</div>
         <div class="level-target">초등학교 3~4학년 대상</div>
@@ -488,7 +488,7 @@
   // URL param: auto-switch level tab
   const lvlParam = new URLSearchParams(location.search).get('level');
   if (lvlParam) {
-    const map = {PLUTO:'pluto',MARS:'mars',BASIC:'terra',URANUS:'uranus',JUPITER:'jupiter',SUN:'sun'};
+    const map = {MOON:'moon',MARS:'mars',BASIC:'terra',URANUS:'uranus',JUPITER:'jupiter',SUN:'sun'};
     const key = map[lvlParam.toUpperCase()];
     if (key) {
       const tab = [...document.querySelectorAll('.tab')].find(t => t.getAttribute('onclick') && t.getAttribute('onclick').includes("'"+key+"'"));
