@@ -209,17 +209,22 @@ body { font-size: var(--fs-body); line-height: var(--lh-body); }
   margin-bottom: 2pt;
   font-size: var(--fs-body-small);
   line-height: 1.5;
-  /* hanging indent: Q1. stays left, wrapped lines align past Q1. */
-  padding-left: 20pt;
-  text-indent: -20pt;
+  /* flex so Q1. never clips into the border, and wrapped prompt lines
+     stay in the .stem-rest column (never creep under Q1.) */
+  display: flex;
+  align-items: baseline;
+  gap: 5pt;
 }
 .question .stem .q-num {
   color: var(--tn-theme-deep);
   font-family: var(--font-display);
   font-weight: 700;
-  margin-right: 6pt;
-  display: inline-block;
-  min-width: 14pt;
+  flex-shrink: 0;
+  min-width: 16pt;
+}
+.question .stem .stem-rest {
+  flex: 1;
+  min-width: 0;    /* allow wrap inside flex */
 }
 .question .stem .q-style {
   background: var(--tn-theme-soft);
@@ -238,7 +243,7 @@ body { font-size: var(--fs-body); line-height: var(--lh-body); }
 }
 .question .choices {
   list-style: none;
-  padding: 0 0 0 20pt;   /* choices indent under Q1. stem start */
+  padding: 0 0 0 21pt;   /* align under .stem-rest (Q-num 16pt + gap 5pt) */
   margin: 2pt 0 0;
   counter-reset: choice;
   display: flex;
@@ -272,7 +277,7 @@ body { font-size: var(--fs-body); line-height: var(--lh-body); }
   border: 0.8pt dashed var(--tn-muted);
   border-radius: 3pt;
   min-height: 9mm;
-  margin: 2pt 0 0 20pt;
+  margin: 2pt 0 0 21pt;
   background: repeating-linear-gradient(
     to bottom,
     transparent 0,
@@ -283,7 +288,7 @@ body { font-size: var(--fs-body); line-height: var(--lh-body); }
 }
 .descriptive .hints {
   display: flex; flex-wrap: wrap; gap: 3pt;
-  margin: 2pt 0 0 20pt;
+  margin: 2pt 0 0 21pt;
   font-family: var(--font-body);
   font-size: var(--fs-caption);
 }
@@ -295,7 +300,7 @@ body { font-size: var(--fs-body); line-height: var(--lh-body); }
   background: var(--tn-theme-soft);
 }
 .descriptive .summary-template {
-  margin: 3pt 0 0 20pt;
+  margin: 3pt 0 0 21pt;
   padding: 4pt 6pt;
   background: var(--tn-theme-soft);
   border-radius: 3pt;
@@ -551,14 +556,18 @@ body { font-size: var(--fs-body); line-height: var(--lh-body); }
   margin-right: 1pt;
 }
 
-/* ===== Page 4 Vocab Lab ===== */
+/* ===== Page 4 Vocab Lab =====
+   Cards keep their natural (content-sized) height.
+   Extra vertical space on the page is distributed as ROW GAP
+   between rows, not as empty space inside individual cards. */
 .p4-vocab {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--p4-card-gap, 5pt);
+  column-gap: 6pt;
+  row-gap: 4pt;
   flex: 1;
-  align-content: stretch;
-  grid-auto-rows: 1fr;
+  align-content: space-between;   /* space stretched between rows */
+  grid-auto-rows: min-content;    /* each row = tallest content in it */
 }
 .vocab-card {
   border: 0.8pt solid var(--tn-divider);
@@ -568,7 +577,7 @@ body { font-size: var(--fs-body); line-height: var(--lh-body); }
   background: #fff;
   font-size: 9pt;
   display: flex; flex-direction: column;
-  gap: 1.5pt;
+  gap: 1pt;
 }
 .vocab-card .head {
   display: flex; align-items: baseline; gap: 4pt;

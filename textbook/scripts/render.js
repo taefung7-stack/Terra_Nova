@@ -62,7 +62,10 @@ function renderQuestions(list) {
       const styleTag = q.style ? `<span class="q-style">${escapeHTML(q.style)}</span>` : '';
       const choices = q.choices.map(c => `<li>${renderRichInline(c)}</li>`).join('');
       return `<div class="question mock">
-        <div class="stem"><span class="q-num">${qNum}</span>${styleTag}${renderRichInline(q.stem)}</div>
+        <div class="stem">
+          <span class="q-num">${qNum}</span>
+          <span class="stem-rest">${styleTag}${renderRichInline(q.stem)}</span>
+        </div>
         <ol class="choices">${choices}</ol>
       </div>`;
     }
@@ -75,7 +78,10 @@ function renderQuestions(list) {
       ? `<div class="summary-template">${renderRichInline(q.summary_template)}</div>`
       : '';
     return `<div class="question descriptive">
-      <div class="stem"><span class="q-num">${qNum}</span>${styleTag}${renderRichInline(q.prompt)}</div>
+      <div class="stem">
+        <span class="q-num">${qNum}</span>
+        <span class="stem-rest">${styleTag}${renderRichInline(q.prompt)}</span>
+      </div>
       ${template}
       ${hints}
       <div class="answer-slot" aria-hidden="true"></div>
