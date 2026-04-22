@@ -102,20 +102,20 @@ body { font-size: var(--fs-body); line-height: var(--lh-body); }
 .tieback .tag { background: var(--tn-surface); border: 1pt solid var(--tn-muted); border-radius: 999px; padding: 1pt 6pt; font-size: var(--fs-caption); }
 
 /* ===== Page 3 ===== */
-.p3-reprint { font-size: var(--fs-body-small); line-height: var(--lh-body); padding: var(--space-sm); background: var(--tn-divider); border-radius: 3pt; counter-reset: sent; }
+.p3-reprint { font-size: 8pt; line-height: 1.4; padding: var(--space-xs); background: var(--tn-divider); border-radius: 3pt; counter-reset: sent; }
 .p3-reprint .sent::before { content: "[" counter(sent) "] "; counter-increment: sent; color: var(--tn-accent-2); font-weight: 600; }
-.p3-sentences { display: flex; flex-direction: column; gap: var(--space-sm); margin-top: var(--space-md); }
-.p3-sentence { border-top: 1pt solid var(--tn-divider); padding-top: var(--space-xs); }
-.p3-sentence .num { font-weight: 600; color: var(--tn-theme); margin-right: var(--space-xs); }
-.p3-sentence .en { font-size: var(--fs-body-small); }
-.p3-sentence .parts { display: flex; gap: var(--space-md); font-size: var(--fs-caption); margin-top: 2pt; font-family: var(--font-mono); flex-wrap: wrap; }
+.p3-sentences { display: flex; flex-direction: column; gap: 3pt; margin-top: var(--space-xs); }
+.p3-sentence { border-top: 1pt solid var(--tn-divider); padding-top: 2pt; }
+.p3-sentence .num { font-weight: 600; color: var(--tn-theme); margin-right: 2pt; }
+.p3-sentence .en { font-size: 8pt; }
+.p3-sentence .parts { display: flex; gap: var(--space-sm); font-size: 7pt; margin-top: 1pt; font-family: var(--font-mono); flex-wrap: wrap; }
 .p3-sentence .parts .k { color: var(--tn-accent-2); font-weight: 600; }
-.p3-sentence .note { font-size: var(--fs-caption); color: var(--tn-ink-soft); margin-top: 2pt; }
-.p3-grammar { margin-top: var(--space-md); }
-.p3-grammar h4 { font-size: var(--fs-body-small); margin: 0 0 var(--space-xs); }
-.p3-grammar ul { margin: 0; padding-left: 14pt; font-size: var(--fs-body-small); }
-.p3-translation { margin-top: var(--space-md); font-family: var(--font-ko); font-size: var(--fs-body-small); }
-.p3-translation p { margin: 0 0 var(--space-xs); }
+.p3-sentence .note { font-size: 7pt; color: var(--tn-ink-soft); margin-top: 1pt; }
+.p3-grammar { margin-top: var(--space-xs); }
+.p3-grammar h4 { font-size: 8pt; margin: 0 0 2pt; }
+.p3-grammar ul { margin: 0; padding-left: 12pt; font-size: 8pt; }
+.p3-translation { margin-top: var(--space-xs); font-family: var(--font-ko); font-size: 8pt; line-height: 1.5; }
+.p3-translation p { margin: 0 0 2pt; }
 
 /* ===== Page 4 ===== */
 .p4-vocab { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-sm); }
