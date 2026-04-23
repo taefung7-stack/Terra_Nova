@@ -1,0 +1,285 @@
+/* ===== Common cover/divider page (A4 each) ===== */
+.cover {
+  width: 210mm;
+  height: 297mm;
+  margin: 10mm auto;
+  background: var(--tn-surface);
+  color: var(--tn-ink);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 1px 10px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  padding: 22mm 22mm 18mm 22mm;
+  font-family: var(--font-body);
+  page-break-after: always;
+  break-after: page;
+}
+
+.cover-head {
+  display: flex; align-items: center; justify-content: space-between;
+  font-family: var(--font-display);
+  font-size: 9pt;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--tn-ink-soft);
+  margin-bottom: 12mm;
+}
+.cover-head.light, .cover-head .light { color: rgba(255,255,255,0.85); }
+.cover-head .brand { font-weight: 700; color: var(--tn-theme-deep); }
+.cover-head .brand.light { color: #FFFFFF; }
+.cover-head .month-tag { font-family: var(--font-ko); letter-spacing: 0; text-transform: none; font-weight: 500; }
+.cover-head .month-tag.light { color: #C8B3F6; }
+
+.cover-foot {
+  margin-top: auto;
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: var(--font-display);
+  font-size: 8pt;
+  letter-spacing: 0.12em;
+  color: var(--tn-muted);
+}
+.cover-foot.light { color: rgba(255,255,255,0.75); }
+.cover-foot .brand-mark { font-weight: 600; }
+
+/* ===== TOC ===== */
+.toc { background: #FFFFFF; }
+.toc-title {
+  font-family: var(--font-serif-display);
+  font-weight: 700;
+  font-size: 36pt;
+  margin: 0 0 4mm;
+  color: var(--tn-theme-deep);
+  letter-spacing: -0.01em;
+}
+.toc-title-en {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 14pt;
+  color: var(--tn-muted);
+  letter-spacing: 0.12em;
+  margin-left: 6mm;
+}
+.toc-sub {
+  font-family: var(--font-ko);
+  font-size: 10pt;
+  color: var(--tn-ink-soft);
+  margin: 0 0 10mm;
+}
+.toc-list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5pt;
+  font-family: var(--font-body);
+  font-size: 9.5pt;
+}
+.toc-week-band {
+  display: flex; align-items: center; gap: 10pt;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 8.5pt;
+  letter-spacing: 0.16em;
+  color: var(--tn-theme-deep);
+  text-transform: uppercase;
+  margin: 6pt 0 1pt;
+  padding-bottom: 2pt;
+  border-bottom: 1pt solid var(--tn-theme);
+}
+.toc-week-band .week-page {
+  margin-left: auto;
+  font-size: 7.5pt;
+  color: var(--tn-muted);
+  font-weight: 500;
+}
+.toc-row {
+  display: grid;
+  grid-template-columns: 22pt 1fr 70pt 24pt;
+  gap: 6pt;
+  align-items: baseline;
+  padding: 1.5pt 0;
+  border-bottom: 0.4pt dotted var(--tn-divider);
+  font-family: var(--font-body);
+}
+.toc-row .seq {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--tn-theme-deep);
+  font-size: 10pt;
+}
+.toc-row .titles {
+  display: flex; flex-direction: column; gap: 0;
+  min-width: 0;
+}
+.toc-row .titles .en {
+  font-family: var(--font-serif-display);
+  font-weight: 600;
+  font-size: 10pt;
+  color: var(--tn-ink);
+  line-height: 1.25;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.toc-row .titles .ko {
+  font-family: var(--font-ko);
+  font-size: 8pt;
+  color: var(--tn-ink-soft);
+  line-height: 1.2;
+}
+.toc-row .subject {
+  font-family: var(--font-ko);
+  font-size: 8pt;
+  color: var(--tn-theme-deep);
+  text-align: right;
+  background: var(--tn-theme-soft);
+  padding: 1pt 6pt;
+  border-radius: 999px;
+  justify-self: end;
+  white-space: nowrap;
+}
+.toc-row .pg {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--tn-muted);
+  font-size: 9pt;
+  text-align: right;
+}
+
+/* ===== WEEK divider — full-bleed purple ===== */
+.week-left, .week-right {
+  background:
+    radial-gradient(ellipse at top right, rgba(255,255,255,0.08), transparent 60%),
+    linear-gradient(160deg, var(--tn-theme-deep) 0%, var(--tn-theme) 100%);
+  color: #FFFFFF;
+  padding: 22mm;
+  position: relative;
+}
+.week-left::before, .week-right::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: radial-gradient(800px 400px at 80% 10%, rgba(255,255,255,0.06), transparent 70%);
+  pointer-events: none;
+}
+
+.week-left .bg-deco {
+  position: absolute; inset: 0;
+  pointer-events: none;
+}
+.week-left .bg-deco .dot {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.06);
+}
+.week-left .bg-deco .d1 { width: 280mm; height: 280mm; left: -180mm; top: -100mm; }
+.week-left .bg-deco .d2 { width: 120mm; height: 120mm; right: -50mm; bottom: -40mm; background: rgba(255,255,255,0.04); }
+.week-left .bg-deco .d3 { width: 50mm; height: 50mm; right: 30mm; top: 40mm; background: rgba(255,255,255,0.05); }
+
+.week-left-inner {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  z-index: 1;
+}
+.week-label {
+  font-family: var(--font-display);
+  font-size: 22pt;
+  font-weight: 600;
+  letter-spacing: 0.4em;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 0;
+}
+.week-num {
+  font-family: var(--font-serif-display);
+  font-weight: 700;
+  font-size: 200pt;
+  line-height: 0.9;
+  color: #FFFFFF;
+  letter-spacing: -0.04em;
+  margin: -8mm 0 -4mm -8pt;
+}
+.week-meta {
+  font-family: var(--font-ko);
+  font-size: 11pt;
+  color: rgba(255,255,255,0.85);
+  margin-top: 4mm;
+  letter-spacing: 0.04em;
+}
+
+/* RIGHT page */
+.week-right-h {
+  font-family: var(--font-serif-display);
+  font-weight: 700;
+  font-size: 22pt;
+  margin: 0 0 3mm;
+  color: #FFFFFF;
+  letter-spacing: -0.01em;
+}
+.week-right-sub {
+  font-family: var(--font-ko);
+  font-size: 10pt;
+  color: rgba(255,255,255,0.78);
+  margin: 0 0 10mm;
+  letter-spacing: 0.02em;
+}
+.week-passages {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5mm;
+}
+.week-passage-card {
+  display: grid;
+  grid-template-columns: 28pt 1fr 60pt;
+  gap: 8pt 10pt;
+  padding-bottom: 4mm;
+  border-bottom: 0.6pt solid rgba(255,255,255,0.18);
+  align-items: baseline;
+}
+.week-passage-card:last-child { border-bottom: none; }
+.week-passage-card .pc-num {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14pt;
+  color: rgba(255,255,255,0.9);
+}
+.week-passage-card .pc-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1mm;
+  min-width: 0;
+}
+.week-passage-card .pc-en {
+  font-family: var(--font-serif-display);
+  font-weight: 700;
+  font-size: 12pt;
+  color: #FFFFFF;
+  line-height: 1.2;
+}
+.week-passage-card .pc-ko {
+  font-family: var(--font-ko);
+  font-size: 9pt;
+  color: rgba(255,255,255,0.78);
+  line-height: 1.3;
+}
+.week-passage-card .pc-subject {
+  background: rgba(255,255,255,0.18);
+  color: #FFFFFF;
+  font-family: var(--font-ko);
+  font-size: 8.5pt;
+  padding: 1.5pt 8pt;
+  border-radius: 999px;
+  justify-self: end;
+  align-self: start;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+/* Print: A4 full-bleed (no margins around .cover when printing) */
+@media print {
+  .cover { margin: 0; box-shadow: none; }
+  .week-left, .week-right { color: #FFFFFF !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}

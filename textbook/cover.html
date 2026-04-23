@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Terra Nova Cover</title>
+<link rel="stylesheet" href="styles/tokens.css" />
+<link rel="stylesheet" href="styles/cover.css" />
+<link rel="stylesheet" href="styles/print.css" />
+</head>
+<body>
+
+<!-- TOC: single A4 page -->
+<template id="tpl-toc">
+  <section class="cover toc">
+    <header class="cover-head">
+      <span class="brand">TERRA·NOVA</span>
+      <span class="month-tag" data-slot="month-label"></span>
+    </header>
+    <h1 class="toc-title">목차 <span class="toc-title-en">CONTENTS</span></h1>
+    <p class="toc-sub">고1 영어 월간 — 4주 × 5지문 = 20지문</p>
+    <div class="toc-list" data-slot="toc-rows"></div>
+    <footer class="cover-foot">
+      <span class="brand-mark">TERRA·NOVA · 고1 STANDARD · <span data-slot="month-label-foot"></span></span>
+    </footer>
+  </section>
+</template>
+
+<!-- WEEK divider: TWO consecutive A4 pages bleeding the same color -->
+<template id="tpl-week">
+  <section class="cover week-left" data-slot="week-page-left">
+    <div class="bg-deco">
+      <span class="dot d1"></span>
+      <span class="dot d2"></span>
+      <span class="dot d3"></span>
+    </div>
+    <div class="week-left-inner">
+      <span class="week-label">WEEK</span>
+      <span class="week-num" data-slot="week-num"></span>
+      <span class="week-meta" data-slot="week-meta"></span>
+    </div>
+    <footer class="cover-foot light">
+      <span class="brand-mark">TERRA·NOVA · <span data-slot="month-label-w-l"></span></span>
+    </footer>
+  </section>
+  <section class="cover week-right" data-slot="week-page-right">
+    <header class="cover-head light">
+      <span class="brand light">TERRA·NOVA</span>
+      <span class="month-tag light" data-slot="month-label-w-r"></span>
+    </header>
+    <h2 class="week-right-h">이번 주 학습할 5지문</h2>
+    <p class="week-right-sub" data-slot="week-right-sub"></p>
+    <div class="week-passages" data-slot="week-passages"></div>
+    <footer class="cover-foot light">
+      <span class="brand-mark"><span data-slot="week-foot"></span></span>
+    </footer>
+  </section>
+</template>
+
+<main id="stage"></main>
+<script type="module" src="scripts/cover-render.js"></script>
+</body>
+</html>
