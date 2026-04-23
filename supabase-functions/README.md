@@ -18,14 +18,20 @@ supabase secrets set PORTONE_WEBHOOK_SECRET=<포트원_웹훅_시크릿>  # whse
 # 자동 갱신 크론 인증용 (64자 이상 랜덤 문자열 추천)
 # 예: openssl rand -hex 32   또는   uuidgen (Windows: [System.Guid]::NewGuid())
 supabase secrets set RENEWAL_CRON_SECRET=<임의의_랜덤_문자열>
+
+# 이메일 발송용 (send-email Function — Resend 기반)
+supabase secrets set RESEND_API_KEY=<resend_api_key>    # https://resend.com/api-keys
+supabase secrets set EMAIL_FROM="Terra Nova <no-reply@terra-nova.kr>"
+supabase secrets set INTERNAL_EMAIL_SECRET=<임의의_랜덤_문자열>
 ```
 (포트원 값은 [포트원 관리자](https://admin.portone.io) > 내 상점 > API 키 에서 발급)
 
-### 3. Edge Function 배포 (2개)
+### 3. Edge Function 배포 (3개)
 ```bash
 cd "c:/Users/user/OneDrive/Desktop/Terra Nova"
 supabase functions deploy portone-webhook      --no-verify-jwt
 supabase functions deploy renew-subscriptions  --no-verify-jwt
+supabase functions deploy send-email           --no-verify-jwt
 ```
 
 ### 4. 포트원 대시보드에 웹훅 URL 등록
@@ -54,6 +60,7 @@ supabase functions deploy renew-subscriptions  --no-verify-jwt
 |-----------------------|--------------------------------------------------|------------------------------|
 | `portone-webhook`     | 결제 완료/취소/빌링키 발급 이벤트 수신 → DB 기록 | 포트원 서버에서 HTTP POST    |
 | `renew-subscriptions` | 만료 임박 구독을 billing key로 자동 결제 → 연장  | pg_cron 매일 KST 03:00       |
+| `send-email`          | 트랜잭셔널 이메일 발송 (결제 확인/갱신 통보)     | 내부 Edge Function 호출      |
 
 ## 보안 체크리스트
 

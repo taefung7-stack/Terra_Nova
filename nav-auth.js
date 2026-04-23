@@ -4,7 +4,7 @@
 
 import { supabase, signOut } from './supabase-client.js';
 
-function applyAuthState(session) {
+async function applyAuthState(session) {
   const loggedIn = !!session?.user;
   document.querySelectorAll('[data-auth="guest"]').forEach(el => {
     el.style.display = loggedIn ? 'none' : '';
@@ -17,6 +17,20 @@ function applyAuthState(session) {
     const meta = session.user.user_metadata || {};
     const name = meta.display_name || session.user.email.split('@')[0];
     document.querySelectorAll('[data-user-name]').forEach(el => { el.textContent = name; });
+
+    // 관리자는 [data-auth="admin"] 요소 노출
+    try {
+      const { data: profile } = await supabase
+        .from('profiles').select('is_admin').eq('id', session.user.id).maybeSingle();
+      const isAdmin = profile?.is_admin === true;
+      document.querySelectorAll('[data-auth="admin"]').forEach(el => {
+        el.style.display = isAdmin ? '' : 'none';
+      });
+    } catch { /* no-op — admin link 실패 시 숨김 유지 */ }
+  } else {
+    document.querySelectorAll('[data-auth="admin"]').forEach(el => {
+      el.style.display = 'none';
+    });
   }
 }
 

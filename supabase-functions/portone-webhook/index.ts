@@ -15,6 +15,24 @@ const SUPABASE_URL = Deno.env.get('SUPABASE_URL')!;
 const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
 const PORTONE_API_SECRET = Deno.env.get('PORTONE_V2_API_SECRET')!;
 const PORTONE_WEBHOOK_SECRET = Deno.env.get('PORTONE_WEBHOOK_SECRET')!;
+const INTERNAL_EMAIL_SECRET = Deno.env.get('INTERNAL_EMAIL_SECRET') || '';
+
+// 트랜잭셔널 이메일 발송 (실패해도 결제 처리에는 영향 주지 않음 — best-effort)
+async function sendEmail(to: string, type: string, data: Record<string, any>) {
+  if (!INTERNAL_EMAIL_SECRET) return;
+  try {
+    await fetch(`${SUPABASE_URL}/functions/v1/send-email`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${INTERNAL_EMAIL_SECRET}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ to, type, data })
+    });
+  } catch (err) {
+    console.warn('[webhook] email send failed:', (err as Error).message);
+  }
+}
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, {
   auth: { persistSession: false }
@@ -170,6 +188,19 @@ async function handlePayment(data: { paymentId: string; txId: string }) {
     await activateSubscription(userId, planCode, billingCycle, payment);
   } else {
     await createOrder(userId, payment, items, shipping);
+  }
+
+  // 5. 결제 확인 이메일 (best-effort)
+  if (payment.customer?.email) {
+    await sendEmail(payment.customer.email, 'payment_confirm', {
+      plan: planCode || null,
+      billingCycle: billingCycle || null,
+      amount: payment.amount?.total || 0,
+      orderNumber: payment.id,
+      nextBillingDate: planCode
+        ? new Date(Date.now() + (billingCycle === 'annual' ? 365 : 30) * 86400000).toLocaleDateString('ko-KR')
+        : null
+    });
   }
 
   return new Response(JSON.stringify({ ok: true }), { status: 200 });

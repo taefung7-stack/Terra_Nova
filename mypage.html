@@ -235,6 +235,11 @@
       <div class="nav-menu-item" onclick="switchTab('account',this)">
         <span class="nav-menu-icon">⚙️</span> 계정 설정
       </div>
+      <a href="admin.html" data-auth="admin" style="display:none;text-decoration:none;margin-top:8px;padding-top:12px;border-top:1px solid var(--line);">
+        <div class="nav-menu-item" style="color:#F59E0B;">
+          <span class="nav-menu-icon">🛡️</span> 관리자
+        </div>
+      </a>
     </nav>
   </div>
 
@@ -686,6 +691,11 @@
     const name = profile.display_name || meta.display_name || user.email.split('@')[0];
     const gradeLabel = meta.grade_label || '-';
     const initial = (name || '?').slice(0, 1);
+
+    // 관리자 링크 노출 여부
+    if (profile.is_admin === true) {
+      document.querySelectorAll('[data-auth="admin"]').forEach(el => { el.style.display = ''; });
+    }
 
     // ── 네비/사이드바 ────────────────────
     setText('nav-user-name', name);

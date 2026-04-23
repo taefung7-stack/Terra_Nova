@@ -21,6 +21,28 @@ const SUPABASE_URL = Deno.env.get('SUPABASE_URL')!;
 const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
 const PORTONE_API_SECRET = Deno.env.get('PORTONE_V2_API_SECRET')!;
 const RENEWAL_CRON_SECRET = Deno.env.get('RENEWAL_CRON_SECRET')!;
+const INTERNAL_EMAIL_SECRET = Deno.env.get('INTERNAL_EMAIL_SECRET') || '';
+
+async function sendEmail(to: string, type: string, data: Record<string, any>) {
+  if (!INTERNAL_EMAIL_SECRET) return;
+  try {
+    await fetch(`${SUPABASE_URL}/functions/v1/send-email`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${INTERNAL_EMAIL_SECRET}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ to, type, data })
+    });
+  } catch (err) {
+    console.warn('[renew] email send failed:', (err as Error).message);
+  }
+}
+
+async function getUserEmail(userId: string): Promise<string | null> {
+  const { data } = await supabase.auth.admin.getUserById(userId);
+  return data?.user?.email || null;
+}
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, {
   auth: { persistSession: false }
@@ -65,14 +87,31 @@ async function renewExpiringSubscriptions() {
   const errors: Array<{ subscription_id: string; reason: string }> = [];
 
   for (const sub of subs || []) {
+    const email = await getUserEmail(sub.user_id);
     try {
       await renewOne(sub);
       succeeded++;
+      if (email) {
+        const next = new Date(sub.expires_at);
+        if (sub.billing_cycle === 'annual') next.setFullYear(next.getFullYear() + 1);
+        else next.setMonth(next.getMonth() + 1);
+        await sendEmail(email, 'renewal_success', {
+          plan: sub.plan_code,
+          amount: null, // product price lookup을 다시 안 하려면 null, 필요하면 renewOne에서 반환하도록 개선
+          nextBillingDate: next.toLocaleDateString('ko-KR')
+        });
+      }
     } catch (e) {
       failed++;
       const reason = (e as Error).message;
       errors.push({ subscription_id: sub.id, reason });
       await markFailed(sub.id, reason);
+      if (email) {
+        await sendEmail(email, 'renewal_failure', {
+          plan: sub.plan_code,
+          reason
+        });
+      }
     }
   }
 
