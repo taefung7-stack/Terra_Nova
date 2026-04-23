@@ -1175,6 +1175,19 @@ async function saveLevelResult(lvl, sc, conf) {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) {
     console.info('[level_test] 비로그인 상태 — 결과 저장 건너뜀. 로그인 후 재응시 시 저장됩니다.');
+    // 비로그인 사용자에게 결과 보존 유도 CTA 표시
+    const note = document.getElementById('accuracy-note');
+    if (note && !document.getElementById('guest-save-cta')) {
+      const cta = document.createElement('div');
+      cta.id = 'guest-save-cta';
+      cta.style.cssText = 'margin-top:12px;padding:14px 16px;background:rgba(45,212,191,.06);border:1px solid rgba(45,212,191,.25);border-radius:8px;font-size:.8rem;color:var(--dim);line-height:1.6;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;';
+      cta.innerHTML = '<span>💡 로그인하면 결과를 저장하고 마이페이지에서 이력을 볼 수 있어요.</span>' +
+        '<span style="display:flex;gap:8px;">' +
+          '<a href="login.html?redirect=' + encodeURIComponent(location.pathname) + '" style="padding:6px 14px;border:1px solid rgba(45,212,191,.4);border-radius:4px;color:var(--accent);text-decoration:none;font-weight:700;font-size:.76rem;">로그인</a>' +
+          '<a href="signup.html" style="padding:6px 14px;background:var(--accent);color:#0A0A0A;border-radius:4px;text-decoration:none;font-weight:700;font-size:.76rem;">회원가입</a>' +
+        '</span>';
+      note.after(cta);
+    }
     return;
   }
   const levelNum = LEVEL_NUM[lvl] || 4;

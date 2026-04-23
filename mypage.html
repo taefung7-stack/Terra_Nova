@@ -229,6 +229,9 @@
       <div class="nav-menu-item" onclick="switchTab('history',this)">
         <span class="nav-menu-icon">💳</span> 결제 내역
       </div>
+      <div class="nav-menu-item" onclick="switchTab('reviews',this)">
+        <span class="nav-menu-icon">⭐</span> 리뷰 작성
+      </div>
       <div class="nav-menu-item" onclick="switchTab('account',this)">
         <span class="nav-menu-icon">⚙️</span> 계정 설정
       </div>
@@ -441,6 +444,65 @@
         <div class="history-list" id="history-list">
           <div id="history-empty" style="text-align:center;padding:32px;color:var(--dim);font-size:.85rem;line-height:1.7;">
             아직 결제 내역이 없습니다.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 리뷰 작성 -->
+    <div class="tab-view" id="tab-reviews">
+      <h2 class="page-title">REVIEWS</h2>
+      <p class="page-sub">Terra Nova 수강 후기 · 관리자 검토 후 공개됩니다</p>
+
+      <!-- 새 리뷰 작성 -->
+      <div class="section-block">
+        <div class="section-block-title">새 후기 작성</div>
+        <form id="review-form" onsubmit="return false;">
+          <div class="form-row">
+            <div class="form-group">
+              <label>별점 <span style="color:#F87171;">*</span></label>
+              <div id="review-star-picker" style="display:flex;gap:6px;user-select:none;">
+                <!-- populated by JS, 5 stars -->
+              </div>
+              <input type="hidden" id="review-rating" required>
+            </div>
+            <div class="form-group">
+              <label>레벨 <span style="color:#F87171;">*</span></label>
+              <select id="review-level" required>
+                <option value="">선택</option>
+                <option value="STARTER">STARTER (초3~4)</option>
+                <option value="JUNIOR">JUNIOR (초5~6)</option>
+                <option value="BASIC">BASIC (중1~2)</option>
+                <option value="INTERMEDIATE">INTERMEDIATE (중3~고1)</option>
+                <option value="ADVANCED">ADVANCED (고2)</option>
+                <option value="MASTER">MASTER (고3)</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>제목 <span style="color:#F87171;">*</span></label>
+            <input type="text" id="review-title" maxlength="60" placeholder="예: 영어가 재밌어졌어요" required>
+          </div>
+          <div class="form-group">
+            <label>내용 <span style="color:#F87171;">*</span></label>
+            <textarea id="review-content" maxlength="1000" rows="5" placeholder="Terra Nova를 통한 학습 경험과 변화를 자유롭게 작성해주세요. (20자 이상)"
+              style="width:100%;background:var(--card2);border:1px solid rgba(255,255,255,.1);border-radius:6px;padding:11px 14px;color:var(--txt);font-family:'Noto Sans KR',sans-serif;font-size:.88rem;outline:none;resize:vertical;min-height:120px;transition:border-color .18s;"
+              required></textarea>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:8px;">
+            <p style="font-size:.72rem;color:var(--dim);margin:0;">작성자 이름은 프로필의 이름에서 자동으로 가져옵니다.</p>
+            <button type="button" class="btn-save" id="btn-submit-review">후기 등록</button>
+          </div>
+          <div id="review-form-msg" style="margin-top:12px;font-size:.78rem;display:none;"></div>
+        </form>
+      </div>
+
+      <!-- 내가 작성한 리뷰 목록 -->
+      <div class="section-block">
+        <div class="section-block-title">내가 작성한 리뷰</div>
+        <div id="my-reviews-list">
+          <div id="my-reviews-empty" style="text-align:center;padding:32px;color:var(--dim);font-size:.85rem;line-height:1.7;">
+            아직 작성한 리뷰가 없습니다.<br>위 폼에서 첫 후기를 남겨보세요.
           </div>
         </div>
       </div>
@@ -836,6 +898,145 @@
         `).join('');
       }
     }
+
+    // ── 리뷰 기능 ────────────────────────
+    const reviewStarPicker = $('review-star-picker');
+    const reviewRatingInput = $('review-rating');
+    const reviewTitleInput = $('review-title');
+    const reviewContentInput = $('review-content');
+    const reviewLevelSelect = $('review-level');
+    const reviewSubmitBtn = $('btn-submit-review');
+    const reviewFormMsg = $('review-form-msg');
+    const myReviewsList = $('my-reviews-list');
+
+    // 별점 선택기 렌더
+    if (reviewStarPicker) {
+      reviewStarPicker.innerHTML = '';
+      for (let i = 1; i <= 5; i++) {
+        const s = document.createElement('span');
+        s.dataset.value = i;
+        s.textContent = '☆';
+        s.style.cssText = 'font-size:1.8rem;cursor:pointer;color:rgba(255,255,255,.25);transition:color .12s;';
+        s.addEventListener('mouseenter', () => highlightStars(i));
+        s.addEventListener('click', () => setRating(i));
+        reviewStarPicker.appendChild(s);
+      }
+      reviewStarPicker.addEventListener('mouseleave', () => highlightStars(parseInt(reviewRatingInput.value) || 0));
+    }
+    function highlightStars(n) {
+      if (!reviewStarPicker) return;
+      Array.from(reviewStarPicker.children).forEach((s, idx) => {
+        const on = idx < n;
+        s.textContent = on ? '★' : '☆';
+        s.style.color = on ? '#FFC857' : 'rgba(255,255,255,.25)';
+      });
+    }
+    function setRating(n) {
+      reviewRatingInput.value = n;
+      highlightStars(n);
+    }
+
+    // 리뷰 제출
+    function showReviewMsg(text, type) {
+      if (!reviewFormMsg) return;
+      reviewFormMsg.style.display = 'block';
+      reviewFormMsg.textContent = text;
+      reviewFormMsg.style.color = type === 'error' ? '#F87171' : 'var(--accent)';
+    }
+    async function loadMyReviews() {
+      if (!myReviewsList) return;
+      const { data: rows, error } = await supabase
+        .from('reviews')
+        .select('*')
+        .eq('user_id', user.id)
+        .order('created_at', { ascending: false });
+      if (error) {
+        console.warn('[reviews] load failed:', error.message);
+        return;
+      }
+      if (!rows || rows.length === 0) {
+        myReviewsList.innerHTML = '<div id="my-reviews-empty" style="text-align:center;padding:32px;color:var(--dim);font-size:.85rem;line-height:1.7;">아직 작성한 리뷰가 없습니다.<br>위 폼에서 첫 후기를 남겨보세요.</div>';
+        return;
+      }
+      myReviewsList.innerHTML = rows.map(r => `
+        <div style="padding:16px;background:rgba(255,255,255,.02);border:1px solid var(--line);border-radius:8px;margin-bottom:10px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px;flex-wrap:wrap;">
+            <div>
+              <span style="color:#FFC857;font-size:.95rem;letter-spacing:2px;">${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}</span>
+              <span style="margin-left:10px;font-size:.72rem;color:var(--dim);">${r.level || ''} · ${ymd(r.created_at)}</span>
+            </div>
+            <div style="display:flex;gap:6px;align-items:center;">
+              ${r.is_published
+                ? '<span style="font-size:.65rem;padding:3px 9px;background:rgba(74,222,128,.12);border:1px solid rgba(74,222,128,.3);border-radius:3px;color:#4ADE80;font-weight:700;letter-spacing:.5px;">공개 중</span>'
+                : '<span style="font-size:.65rem;padding:3px 9px;background:rgba(234,179,8,.1);border:1px solid rgba(234,179,8,.3);border-radius:3px;color:#FDE68A;font-weight:700;letter-spacing:.5px;">검토 중</span>'}
+              <button type="button" class="btn-sm btn-sm-danger" data-delete-review="${r.id}" style="font-size:.68rem;padding:5px 10px;">삭제</button>
+            </div>
+          </div>
+          <div style="font-weight:700;color:#fff;font-size:.92rem;margin-bottom:6px;">${escapeHtml(r.title)}</div>
+          <div style="font-size:.82rem;color:rgba(255,255,255,.8);line-height:1.7;white-space:pre-wrap;">${escapeHtml(r.content)}</div>
+        </div>
+      `).join('');
+      // 삭제 핸들러 연결
+      myReviewsList.querySelectorAll('[data-delete-review]').forEach(btn => {
+        btn.addEventListener('click', async () => {
+          const id = btn.getAttribute('data-delete-review');
+          if (!confirm('이 리뷰를 삭제하시겠습니까?')) return;
+          const { error } = await supabase.from('reviews').delete().eq('id', id);
+          if (error) { alert('삭제 실패: ' + error.message); return; }
+          loadMyReviews();
+        });
+      });
+    }
+    function escapeHtml(s) {
+      return String(s ?? '')
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    }
+
+    reviewSubmitBtn?.addEventListener('click', async () => {
+      const rating = parseInt(reviewRatingInput.value, 10);
+      const level = reviewLevelSelect.value;
+      const title = reviewTitleInput.value.trim();
+      const content = reviewContentInput.value.trim();
+      const authorName = profile.display_name || (user.email ? user.email.split('@')[0] : '익명');
+      const authorGrade = (profile && profile.grade) ? profile.grade : (user.user_metadata?.grade_label || null);
+
+      if (!rating || rating < 1 || rating > 5) { showReviewMsg('별점을 선택해주세요.', 'error'); return; }
+      if (!level) { showReviewMsg('레벨을 선택해주세요.', 'error'); return; }
+      if (!title) { showReviewMsg('제목을 입력해주세요.', 'error'); return; }
+      if (content.length < 20) { showReviewMsg('내용을 20자 이상 입력해주세요.', 'error'); return; }
+
+      reviewSubmitBtn.disabled = true;
+      reviewSubmitBtn.textContent = '등록 중...';
+      const { error } = await supabase.from('reviews').insert({
+        user_id: user.id,
+        author_name: authorName,
+        author_grade: authorGrade ? String(authorGrade) : null,
+        level,
+        rating,
+        title,
+        content,
+        is_published: false,
+        is_verified: false
+      });
+      reviewSubmitBtn.disabled = false;
+      reviewSubmitBtn.textContent = '후기 등록';
+
+      if (error) {
+        showReviewMsg('등록 실패: ' + error.message, 'error');
+        return;
+      }
+      // 폼 초기화
+      setRating(0);
+      reviewTitleInput.value = '';
+      reviewContentInput.value = '';
+      reviewLevelSelect.value = '';
+      showReviewMsg('✓ 후기가 등록되었습니다. 관리자 검토 후 공개됩니다.', 'ok');
+      loadMyReviews();
+    });
+
+    // 초기 리뷰 목록 로드
+    loadMyReviews();
   })();
 </script>
 
