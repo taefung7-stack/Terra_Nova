@@ -1,0 +1,796 @@
+{
+  "schema_version": "2.1",
+  "id": "2026-06-07",
+  "meta": {
+    "month": "2026-06",
+    "sequence": 7,
+    "subject": "수학",
+    "linked_unit": "수학(상) 수열",
+    "part_ko": "복리와 장기 저축",
+    "achievement_standard": "10수학01-03",
+    "difficulty": "중간",
+    "cognitive_skill": "글의순서",
+    "lexile": "1020L",
+    "ar_level": 6.8,
+    "key_concepts": [
+      "복리",
+      "수열"
+    ]
+  },
+  "page1": {
+    "title": "Compound Interest and Long-Term Saving",
+    "subtitle": "How a sequence of multiplications quietly grows a fortune over time.",
+    "body": "When you deposit money in a savings account, a bank adds interest at fixed, regular intervals. With <u>simple interest</u>, the bank calculates earnings only on your original amount every period. With compound interest, however, the bank adds each period's earnings to your running balance first, so money then earns interest on its own accumulated interest. This small difference in method may seem minor at first, yet it creates a dramatic difference in outcome over long stretches of time.\n\nMathematicians describe this growth using a geometric sequence, where each term is the previous term multiplied by a fixed ratio greater than one. Suppose you place a fixed initial amount in an account and never make a withdrawal. After the first period your balance is your principal multiplied by that ratio once. After the second period it is multiplied twice, and so on in a pattern that <mark>accelerates quietly in the background</mark>. The total at any point in time is the principal times the ratio raised to the power of the number of periods elapsed. Because exponents grow far faster than addition, even a modest starting amount becomes surprisingly large given enough time.\n\nThe most powerful ally of compound interest is patient time itself, and the lesson it quietly teaches is this: start early and stay <blank>. Someone who starts saving in their twenties and holds firm through market fluctuations will accumulate far more wealth than a person who begins a decade later. Each year of delay reduces how many times interest can compound, and that lost compounding quietly but surely grows into a substantial gap. Understanding this principle is not merely a financial skill; it is a genuine mathematical insight built directly on sequences and exponential growth first studied in high-school algebra.",
+    "illustration": "../../assets/illustrations/2026-06/07.svg",
+    "illustration_caption": "A money tree whose branches double with each passing year — compound growth made visible."
+  },
+  "page2": {
+    "questions": [
+      {
+        "type": "mock_objective",
+        "style": "글의순서",
+        "stem": "주어진 글 다음에 이어질 순서로 가장 적절한 것은?\n\nA bank adds interest on your deposit at regular intervals.\n\n(A) Total = principal × ratio^periods, so modest amounts grow surprisingly large.\n\n(B) With compound interest, interest is added to the balance, so later periods earn interest on earlier interest.\n\n(C) This is a geometric sequence — each term equals the previous term times a fixed ratio greater than one.",
+        "choices": [
+          "(B) - (C) - (A)",
+          "(C) - (A) - (B)",
+          "(A) - (B) - (C)",
+          "(B) - (A) - (C)",
+          "(C) - (B) - (A)"
+        ],
+        "answer_index": 0
+      },
+      {
+        "type": "mock_objective",
+        "style": "빈칸 추론",
+        "stem": "윗글의 빈칸에 들어갈 말로 가장 적절한 것은?",
+        "choices": [
+          "consistent — letting time and repeated multiplication do the work",
+          "flexible — switching accounts whenever a better rate appears",
+          "cautious — withdrawing profits each year to avoid any risk of loss",
+          "informed — reading financial news every morning before markets open",
+          "selective — choosing only accounts that pay the highest advertised rate"
+        ],
+        "answer_index": 0
+      },
+      {
+        "type": "mock_objective",
+        "style": "함의 추론",
+        "stem": "윗글의 밑줄 친 표현 accelerates quietly in the background 가 의미하는 바로 가장 적절한 것은?",
+        "choices": [
+          "bank employees manually boost interest rates without telling customers",
+          "the geometric growth of compound interest speeds up unnoticed until the total becomes striking",
+          "savings accounts are managed by background computer programs that run without human oversight",
+          "interest calculations are hidden in fine print that most account holders never read carefully",
+          "a quiet economic policy causes inflation to rise faster than savings interest can offset"
+        ],
+        "answer_index": 1
+      },
+      {
+        "type": "school_descriptive",
+        "style": "요약문 빈칸 완성",
+        "prompt": "다음은 본문의 요약문이다. 본문의 내용을 바탕으로 빈칸 (A), (B)에 들어갈 말을 <조건>에 맞게 영어 한 단어로 각각 쓰시오. <조건> 본문에서 제시된 단어를 그대로 활용할 것.",
+        "hints": [
+          "compound",
+          "sequence",
+          "principal",
+          "exponents",
+          "early"
+        ],
+        "summary_template": "Unlike simple interest, <blank> (A) interest multiplies a balance repeatedly using a geometric <blank> (B), so starting to save as early as possible is the most powerful strategy.",
+        "model_answer": "(A) compound  (B) sequence"
+      }
+    ],
+    "textbook_tieback": {
+      "unit_label": "수학(상) · 수열",
+      "body_ko": "고1 수학(상) 수열 단원에서는 등비수열을 학습한다. 등비수열은 앞 항에 일정한 공비(r)를 곱하여 나열한 수열로, 복리 계산이 그 대표적 실생활 응용이다. 원금 P에 공비 r을 n번 곱하면 P·rⁿ이 되며, 이 값은 등차수열(덧셈)보다 훨씬 빠르게 커진다. 교과서에서는 등비수열의 일반항과 합 공식을 다루고, 복리 이자나 인구 성장처럼 반복 곱셈이 등장하는 실생활 맥락을 통해 지수적 증가의 의미를 구체적으로 이해하도록 돕는다.",
+      "tags": [
+        "등비수열",
+        "복리",
+        "지수 성장"
+      ],
+      "visual_aid": {
+        "type": "emoji_flow",
+        "title": "복리가 쌓이는 과정",
+        "steps": [
+          {
+            "emoji": "💰",
+            "label": "원금 P",
+            "note": "저축 시작 금액"
+          },
+          {
+            "emoji": "✖️",
+            "label": "공비 r 반복 곱셈",
+            "note": "매 기간 × r → P·rⁿ"
+          },
+          {
+            "emoji": "📈",
+            "label": "지수 성장",
+            "note": "시간이 길수록 가파르게 증가"
+          }
+        ]
+      }
+    }
+  },
+  "page3": {
+    "sentences": [
+      {
+        "index": 1,
+        "segments": [
+          {
+            "role": "M",
+            "text": "When you deposit money in a savings account,"
+          },
+          {
+            "role": "S",
+            "text": "a bank"
+          },
+          {
+            "role": "V",
+            "text": "adds"
+          },
+          {
+            "role": "O",
+            "text": "interest"
+          },
+          {
+            "role": "M",
+            "text": "at regular intervals.",
+            "note": "전치사구 부사"
+          }
+        ],
+        "grammar_note": "when 부사절 + 3형식"
+      },
+      {
+        "index": 2,
+        "segments": [
+          {
+            "role": "M",
+            "text": "With simple interest,"
+          },
+          {
+            "role": "S",
+            "text": "the bank"
+          },
+          {
+            "role": "V",
+            "text": "calculates"
+          },
+          {
+            "role": "O",
+            "text": "earnings"
+          },
+          {
+            "role": "M",
+            "text": "only on your original amount every period.",
+            "note": "only 부사 강조"
+          }
+        ],
+        "grammar_note": "전치사구 부사 + 3형식"
+      },
+      {
+        "index": 3,
+        "segments": [
+          {
+            "role": "M",
+            "text": "With compound interest, however,"
+          },
+          {
+            "role": "S",
+            "text": "the bank"
+          },
+          {
+            "role": "V",
+            "text": "adds"
+          },
+          {
+            "role": "O",
+            "text": "each period's earnings"
+          },
+          {
+            "role": "M",
+            "text": "to your running balance first,"
+          },
+          {
+            "role": "CONJ",
+            "text": "so"
+          },
+          {
+            "role": "S",
+            "text": "money"
+          },
+          {
+            "role": "V",
+            "text": "then earns"
+          },
+          {
+            "role": "O",
+            "text": "interest on its own accumulated interest.",
+            "note": "so 결과 접속사"
+          }
+        ],
+        "grammar_note": "before 부사절 + so 결과절"
+      },
+      {
+        "index": 4,
+        "segments": [
+          {
+            "role": "S",
+            "text": "This small difference in method"
+          },
+          {
+            "role": "V",
+            "text": "may seem"
+          },
+          {
+            "role": "C",
+            "text": "minor at first,"
+          },
+          {
+            "role": "CONJ",
+            "text": "yet"
+          },
+          {
+            "role": "S",
+            "text": "it"
+          },
+          {
+            "role": "V",
+            "text": "creates"
+          },
+          {
+            "role": "O",
+            "text": "a dramatic difference in outcome"
+          },
+          {
+            "role": "M",
+            "text": "over long stretches of time.",
+            "note": "전치사구 부사"
+          }
+        ],
+        "grammar_note": "역접 yet + 3형식"
+      },
+      {
+        "index": 5,
+        "segments": [
+          {
+            "role": "S",
+            "text": "Mathematicians"
+          },
+          {
+            "role": "V",
+            "text": "describe"
+          },
+          {
+            "role": "O",
+            "text": "this growth"
+          },
+          {
+            "role": "M",
+            "text": "using a geometric sequence,",
+            "note": "분사구문 using ~"
+          },
+          {
+            "role": "REL",
+            "text": "where"
+          },
+          {
+            "role": "S",
+            "text": "each term"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "the previous term multiplied by a fixed ratio greater than one.",
+            "note": "과거분사 후치수식"
+          }
+        ],
+        "grammar_note": "3형식 + 분사구문 + 관계부사 where절"
+      },
+      {
+        "index": 6,
+        "segments": [
+          {
+            "role": "S",
+            "text": "Suppose"
+          },
+          {
+            "role": "O",
+            "text": "you place a fixed initial amount in an account and never make a withdrawal.",
+            "note": "suppose + that절 생략"
+          }
+        ],
+        "grammar_note": "suppose + 명사절 (가정 도입)"
+      },
+      {
+        "index": 7,
+        "segments": [
+          {
+            "role": "M",
+            "text": "After the first period"
+          },
+          {
+            "role": "S",
+            "text": "your balance"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "your principal multiplied by that ratio once.",
+            "note": "과거분사 후치수식"
+          }
+        ],
+        "grammar_note": "전치사구 부사 + 2형식"
+      },
+      {
+        "index": 8,
+        "segments": [
+          {
+            "role": "M",
+            "text": "After the second period"
+          },
+          {
+            "role": "S",
+            "text": "it"
+          },
+          {
+            "role": "V",
+            "text": "is multiplied",
+            "note": "수동태"
+          },
+          {
+            "role": "M",
+            "text": "twice,"
+          },
+          {
+            "role": "CONJ",
+            "text": "and so on"
+          },
+          {
+            "role": "M",
+            "text": "in a pattern that accelerates quietly in the background.",
+            "note": "관계절 that accelerates"
+          }
+        ],
+        "grammar_note": "수동태 + and so on + 관계절"
+      },
+      {
+        "index": 9,
+        "segments": [
+          {
+            "role": "S",
+            "text": "The total at any point in time"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "the principal times the ratio raised to the power of the number of periods elapsed.",
+            "note": "과거분사 후치수식 중첩"
+          }
+        ],
+        "grammar_note": "2형식 + 과거분사 후치수식"
+      },
+      {
+        "index": 10,
+        "segments": [
+          {
+            "role": "M",
+            "text": "Because exponents grow far faster than addition,",
+            "note": "비교급 far faster than"
+          },
+          {
+            "role": "S",
+            "text": "even a modest starting amount"
+          },
+          {
+            "role": "V",
+            "text": "becomes"
+          },
+          {
+            "role": "C",
+            "text": "surprisingly large"
+          },
+          {
+            "role": "M",
+            "text": "given enough time.",
+            "note": "분사구문 given ~ = if given"
+          }
+        ],
+        "grammar_note": "because 부사절 + 분사구문 given"
+      },
+      {
+        "index": 11,
+        "segments": [
+          {
+            "role": "S",
+            "text": "The most powerful ally of compound interest"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "patient time itself,"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "S",
+            "text": "the lesson it quietly teaches"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "this: start early and stay ___.",
+            "note": "콜론 + 명령절 병렬 (빈칸 연동)"
+          }
+        ],
+        "grammar_note": "등위접속사 and + 콜론 명령절"
+      },
+      {
+        "index": 12,
+        "segments": [
+          {
+            "role": "S",
+            "text": "Someone who starts saving in their twenties and holds firm through market fluctuations",
+            "note": "관계절 who ~ and ~ 동사 병렬"
+          },
+          {
+            "role": "V",
+            "text": "will accumulate"
+          },
+          {
+            "role": "O",
+            "text": "far more wealth"
+          },
+          {
+            "role": "M",
+            "text": "than a person who begins a decade later.",
+            "note": "비교 than + 관계절"
+          }
+        ],
+        "grammar_note": "관계절 동사 병렬 + 비교급 far more ~ than"
+      },
+      {
+        "index": 13,
+        "segments": [
+          {
+            "role": "S",
+            "text": "Each year of delay"
+          },
+          {
+            "role": "V",
+            "text": "reduces"
+          },
+          {
+            "role": "O",
+            "text": "how many times interest can compound,"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "S",
+            "text": "that lost compounding"
+          },
+          {
+            "role": "V",
+            "text": "quietly but surely grows"
+          },
+          {
+            "role": "M",
+            "text": "into a substantial gap.",
+            "note": "부사 열거 quietly but surely"
+          }
+        ],
+        "grammar_note": "3형식 + 등위접속사 and + 2형식"
+      },
+      {
+        "index": 14,
+        "segments": [
+          {
+            "role": "S",
+            "text": "Understanding this principle",
+            "note": "동명사구 주어"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "not merely a financial skill;"
+          },
+          {
+            "role": "S",
+            "text": "it"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "a genuine mathematical insight built directly on sequences and exponential growth first studied in high-school algebra.",
+            "note": "과거분사 후치수식 중첩"
+          }
+        ],
+        "grammar_note": "동명사구 주어 + 세미콜론 대조 + 과거분사 후치수식"
+      }
+    ],
+    "translation_ko": "[1] 예금 계좌에 돈을 맡기면, 은행은 고정된 일정한 주기마다 이자를 더해 준다. [2] 단리의 경우, 은행은 매 기간 원래 원금에 대해서만 이자를 계산한다. [3] 그러나 복리의 경우, 은행은 매 기간의 이자를 먼저 잔액에 더하므로, 돈이 그 쌓인 이자에 다시 이자를 버는 구조가 된다. [4] 이 방법의 작은 차이가 처음에는 사소해 보일 수 있지만, 긴 시간에 걸쳐 결과에서 극적인 차이를 만들어낸다. [5] 수학자들은 이 성장을 등비수열로 설명하는데, 등비수열에서 각 항은 이전 항에 1보다 큰 일정한 공비를 곱한 값이다. [6] 일정한 초기 금액을 계좌에 넣고 한 번도 인출하지 않는다고 가정해 보자. [7] 첫 기간이 지난 후 잔액은 원금에 그 공비를 한 번 곱한 값이 된다. [8] 두 번째 기간 후에는 두 번 곱해지며, 이렇게 배경에서 조용히 가속되는 패턴으로 이어진다. [9] 어느 시점에서든 총액은 원금에 공비를 경과 기간 수만큼 거듭제곱한 값이다. [10] 지수는 덧셈보다 훨씬 빠르게 커지기 때문에, 소박한 시작 금액도 충분한 시간이 주어지면 놀라울 만큼 커진다. [11] 복리의 가장 강력한 동반자는 인내심 있는 시간 그 자체이며, 그것이 조용히 가르치는 교훈은 이것이다: 일찍 시작하고 꾸준히 유지하라. [12] 20대부터 저축을 시작해 시장 변동에도 흔들리지 않는 사람은 10년 늦게 시작한 사람보다 훨씬 많은 부를 쌓게 된다. [13] 저축을 늦출 때마다 이자가 복리로 쌓일 수 있는 횟수가 줄어들고, 그 잃어버린 복리가 조용하지만 확실하게 상당한 격차로 커진다. [14] 이 원리를 이해하는 것은 단순한 금융 기술이 아니라, 고등학교 수학에서 처음 배우는 수열과 지수 성장에 직접 뿌리를 둔 진정한 수학적 통찰이다."
+  },
+  "page4": {
+    "vocab": [
+      {
+        "word": "deposit",
+        "pos": "v.",
+        "meaning_ko": "예금하다, 맡기다",
+        "synonyms": [
+          "place",
+          "put in"
+        ],
+        "antonyms": [
+          "withdraw"
+        ],
+        "examples": [
+          {
+            "en": "She deposits a fixed sum each month without fail.",
+            "ko": "그녀는 매달 빠짐없이 일정 금액을 예금한다."
+          },
+          {
+            "en": "Deposit the cheque at the bank before Friday.",
+            "ko": "금요일 전에 수표를 은행에 입금하세요."
+          }
+        ]
+      },
+      {
+        "word": "interval",
+        "pos": "n.",
+        "meaning_ko": "간격, 주기",
+        "synonyms": [
+          "period",
+          "gap"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "Interest is added at regular intervals, not just once.",
+            "ko": "이자는 한 번만이 아니라 일정한 주기로 더해진다."
+          },
+          {
+            "en": "The trains run at fifteen-minute intervals during rush hour.",
+            "ko": "출퇴근 시간대에 전철은 15분 간격으로 운행된다."
+          }
+        ]
+      },
+      {
+        "word": "compound",
+        "pos": "v. / adj.",
+        "meaning_ko": "복리로 늘리다; 복합적인",
+        "synonyms": [
+          "accumulate",
+          "multiply"
+        ],
+        "antonyms": [
+          "diminish"
+        ],
+        "examples": [
+          {
+            "en": "Interest compounds when earnings are added back to the total.",
+            "ko": "이자는 수익이 잔액에 다시 더해질 때 복리로 불어난다."
+          },
+          {
+            "en": "Stress can compound over weeks if left unaddressed.",
+            "ko": "스트레스는 방치하면 몇 주에 걸쳐 복합적으로 쌓일 수 있다."
+          }
+        ]
+      },
+      {
+        "word": "geometric",
+        "pos": "adj.",
+        "meaning_ko": "등비의, 기하학적인",
+        "synonyms": [
+          "exponential",
+          "multiplicative"
+        ],
+        "antonyms": [
+          "arithmetic"
+        ],
+        "examples": [
+          {
+            "en": "Compound growth follows a geometric sequence, not arithmetic.",
+            "ko": "복리 성장은 등차가 아닌 등비수열을 따른다."
+          },
+          {
+            "en": "The artist used geometric shapes to create a balanced pattern.",
+            "ko": "그 예술가는 균형 잡힌 패턴을 만들기 위해 기하학적 도형을 사용했다."
+          }
+        ]
+      },
+      {
+        "word": "sequence",
+        "pos": "n.",
+        "meaning_ko": "수열; 순서, 연속",
+        "synonyms": [
+          "series",
+          "progression"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "A geometric sequence multiplies each term by a constant ratio.",
+            "ko": "등비수열은 각 항에 일정한 공비를 곱한다."
+          },
+          {
+            "en": "Follow the correct sequence of steps to assemble the device.",
+            "ko": "장치를 조립하려면 올바른 단계 순서를 따르세요."
+          }
+        ]
+      },
+      {
+        "word": "principal",
+        "pos": "n.",
+        "meaning_ko": "원금",
+        "synonyms": [
+          "initial sum",
+          "capital"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "The total is your principal multiplied by the ratio over time.",
+            "ko": "총액은 원금에 시간에 따른 공비를 곱한 값이다."
+          },
+          {
+            "en": "He paid off the interest first and then reduced the principal.",
+            "ko": "그는 이자를 먼저 갚고 원금을 줄여나갔다."
+          }
+        ]
+      },
+      {
+        "word": "ratio",
+        "pos": "n.",
+        "meaning_ko": "비율, 비",
+        "synonyms": [
+          "proportion",
+          "rate"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "A ratio greater than one causes a geometric sequence to grow.",
+            "ko": "1보다 큰 공비는 등비수열을 증가하게 만든다."
+          },
+          {
+            "en": "The student-to-teacher ratio in the class is twelve to one.",
+            "ko": "그 반의 학생 대 교사 비율은 12 대 1이다."
+          }
+        ]
+      },
+      {
+        "word": "exponent",
+        "pos": "n.",
+        "meaning_ko": "지수",
+        "synonyms": [
+          "power",
+          "index"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "Exponents grow far faster than simple addition over time.",
+            "ko": "지수는 시간이 지남에 따라 단순 덧셈보다 훨씬 빠르게 커진다."
+          },
+          {
+            "en": "In 2³, the number 3 is the exponent applied to the base 2.",
+            "ko": "2³에서 3이 밑 2에 적용된 지수이다."
+          }
+        ]
+      },
+      {
+        "word": "accumulate",
+        "pos": "v.",
+        "meaning_ko": "쌓다, 축적하다",
+        "synonyms": [
+          "build up",
+          "amass"
+        ],
+        "antonyms": [
+          "deplete"
+        ],
+        "examples": [
+          {
+            "en": "Early savers accumulate far more wealth over the long run.",
+            "ko": "일찍 시작한 저축자는 장기적으로 훨씬 많은 부를 쌓는다."
+          },
+          {
+            "en": "Dust accumulates quickly on shelves that are rarely cleaned.",
+            "ko": "먼지는 자주 닦지 않는 선반 위에 빠르게 쌓인다."
+          }
+        ]
+      },
+      {
+        "word": "fluctuation",
+        "pos": "n.",
+        "meaning_ko": "변동, 오르내림",
+        "synonyms": [
+          "variation",
+          "swing"
+        ],
+        "antonyms": [
+          "stability"
+        ],
+        "examples": [
+          {
+            "en": "Patient savers hold firm through market fluctuations.",
+            "ko": "인내심 있는 저축자는 시장 변동에도 흔들리지 않는다."
+          },
+          {
+            "en": "Temperature fluctuations can damage sensitive electronic parts.",
+            "ko": "온도 변동은 민감한 전자 부품을 손상시킬 수 있다."
+          }
+        ]
+      },
+      {
+        "word": "substantial",
+        "pos": "adj.",
+        "meaning_ko": "상당한, 실질적인",
+        "synonyms": [
+          "significant",
+          "considerable"
+        ],
+        "antonyms": [
+          "negligible"
+        ],
+        "examples": [
+          {
+            "en": "A decade's delay can open a substantial gap in final savings.",
+            "ko": "10년의 지연은 최종 저축액에 상당한 격차를 만들 수 있다."
+          },
+          {
+            "en": "She made a substantial improvement in her exam score.",
+            "ko": "그녀는 시험 점수에서 상당한 향상을 이루었다."
+          }
+        ]
+      },
+      {
+        "word": "insight",
+        "pos": "n.",
+        "meaning_ko": "통찰, 이해",
+        "synonyms": [
+          "understanding",
+          "perception"
+        ],
+        "antonyms": [
+          "ignorance"
+        ],
+        "examples": [
+          {
+            "en": "Grasping compound interest is a genuine mathematical insight.",
+            "ko": "복리를 이해하는 것은 진정한 수학적 통찰이다."
+          },
+          {
+            "en": "Her insight into the problem helped the team find a solution.",
+            "ko": "그녀의 통찰이 팀이 해결책을 찾는 데 도움이 됐다."
+          }
+        ]
+      }
+    ]
+  }
+}

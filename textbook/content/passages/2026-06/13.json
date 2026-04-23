@@ -1,0 +1,901 @@
+{
+  "schema_version": "2.1",
+  "id": "2026-06-13",
+  "meta": {
+    "month": "2026-06",
+    "sequence": 13,
+    "subject": "수학",
+    "linked_unit": "수학(상) 함수",
+    "part_ko": "지수함수와 생태",
+    "achievement_standard": "10수학01-03",
+    "difficulty": "쉬움",
+    "cognitive_skill": "일치",
+    "lexile": "970L",
+    "ar_level": 6.3,
+    "key_concepts": [
+      "지수함수",
+      "생태",
+      "증식"
+    ]
+  },
+  "page1": {
+    "title": "Exponential Growth in Nature",
+    "subtitle": "How living things double, branch, and finally bend into a curve that nature cannot ignore.",
+    "body": "A single bacterium divides into two daughter cells, and within twenty minutes each of those daughters divides once more, doubling the total again. This relentless cycle, called <u>exponential growth</u>, obeys one elegant rule: every new generation multiplies the existing population by the same fixed number. Starting with just one Escherichia coli cell in warm, nutrient-rich broth, a colony of over one billion cells can appear in fewer than ten hours. That stunning result feels truly impossible to picture, yet it requires nothing beyond patient, repeated multiplication applied faithfully generation after generation.\n\nThe same doubling logic drives many natural systems that extend far beyond the biology laboratory. Each burning patch in a forest fire ignites two or three neighboring zones, and those neighbors each ignite two or three more. The result is a <mark>branching chain of combustion</mark> that spreads much faster than any single rescue team can possibly contain. Viruses follow an identical pattern, because one silent carrier passes the pathogen to several others long before any symptom appears. Chemists observe the same accelerating shape in chain reactions, where one energized molecule strikes two stable neighbors and releases energy that triggers still more collisions. In each of these systems, <blank> is the shared mechanism that converts a quiet beginning into an overwhelming and unstoppable surge.\n\nNature, however, never permits such exponential growth to continue without limit, since every population depends on finite physical resources. Bacteria stop dividing rapidly once they exhaust all available nutrients and begin to accumulate their own metabolic waste. A spreading virus finds fewer and fewer susceptible hosts as growing immunity gradually closes off the remaining available population. Scientists capture this slowdown with the logistic model, a familiar S-shaped curve that rises steeply and then bends toward a stable ceiling.",
+    "illustration": "../../assets/illustrations/2026-06/13.svg",
+    "illustration_caption": "From one bacterium to billions: exponential doubling curves that bend into logistic S-shapes."
+  },
+  "page2": {
+    "questions": [
+      {
+        "type": "mock_objective",
+        "style": "일치",
+        "stem": "윗글의 내용과 일치하는 것은?",
+        "choices": [
+          "A single E. coli cell needs more than twenty hours to produce one billion descendants.",
+          "Exponential growth requires a different multiplying factor at each step of the process.",
+          "One bacterium dividing repeatedly can exceed one billion cells in under ten hours.",
+          "The logistic curve rises steeply at first and then continues to climb without any limit.",
+          "Forest fires spread exponentially only when the surrounding trees are completely dry."
+        ],
+        "answer_index": 2
+      },
+      {
+        "type": "mock_objective",
+        "style": "빈칸 추론",
+        "stem": "윗글의 빈칸에 들어갈 말로 가장 적절한 것은?",
+        "choices": [
+          "a slow, steady pace that prevents any system from growing too rapidly over time",
+          "a fixed multiplier applied at every step",
+          "a sudden drop in available nutrients that forces organisms to compete",
+          "a gradual decline in the rate of reproduction after the first few cycles",
+          "a ceiling imposed by outside scientists measuring the reaction carefully"
+        ],
+        "answer_index": 1
+      },
+      {
+        "type": "mock_objective",
+        "style": "함의 추론",
+        "stem": "윗글의 밑줄 친 branching chain of combustion 이 의미하는 바로 가장 적절한 것은?",
+        "choices": [
+          "a slow chemical process in which molecules release energy one at a time in sequence",
+          "a pattern where each burning area sets off more fires, multiplying the spread rapidly",
+          "a controlled lab experiment that measures how long it takes wood to reach ignition point",
+          "a safety system that stops a fire from crossing natural boundaries such as rivers",
+          "a single large flame that grows in size without producing any additional smaller fires"
+        ],
+        "answer_index": 1
+      },
+      {
+        "type": "school_descriptive",
+        "style": "요약문 빈칸 완성",
+        "prompt": "다음은 본문의 요약문이다. 본문의 내용을 바탕으로 빈칸 (A), (B)에 들어갈 말을 <조건>에 맞게 영어 한 단어로 각각 쓰시오. <조건> 본문에서 사용된 단어를 그대로 쓸 것.",
+        "hints": [
+          "exponential",
+          "logistic",
+          "doubling",
+          "resources",
+          "ceiling"
+        ],
+        "summary_template": "In nature, growth often starts as <blank> (A) growth, where each step multiplies the count by a fixed number, but eventually bends into the <blank> (B) curve when resources run out.",
+        "model_answer": "(A) exponential  (B) logistic"
+      }
+    ],
+    "textbook_tieback": {
+      "unit_label": "수학(상) · 지수함수와 생태",
+      "body_ko": "고1 수학(상)에서 지수함수 y = a·bˣ는 밑(b)이 1보다 클 때 x가 증가할수록 값이 폭발적으로 커진다. 세균 증식처럼 매 세대 수가 2배씩 늘면 y = 2ˣ 꼴이 되어, x가 조금만 커져도 y가 천문학적으로 증가한다. 실제 자연에서는 영양분·공간 같은 자원이 유한하므로 성장이 둔화되고, 그래프가 S자형 로지스틱 곡선으로 바뀐다. 교과서는 지수함수 그래프와 이 현실적 한계를 비교함으로써 수학 모델이 생태 현상을 어떻게 설명하는지를 보여 준다.",
+      "tags": [
+        "지수함수",
+        "생태",
+        "증식",
+        "로지스틱"
+      ],
+      "visual_aid": {
+        "type": "emoji_flow",
+        "title": "세균에서 S곡선까지",
+        "steps": [
+          {
+            "emoji": "🦠",
+            "label": "1개 → 2배 증식",
+            "note": "y = 2ˣ, 지수함수"
+          },
+          {
+            "emoji": "📈",
+            "label": "가파른 지수 곡선",
+            "note": "자원이 충분할 때"
+          },
+          {
+            "emoji": "〰️",
+            "label": "S자 로지스틱 곡선",
+            "note": "자원 고갈 → 성장 둔화"
+          }
+        ]
+      }
+    }
+  },
+  "page3": {
+    "sentences": [
+      {
+        "index": 1,
+        "segments": [
+          {
+            "role": "S",
+            "text": "A single bacterium"
+          },
+          {
+            "role": "V",
+            "text": "divides"
+          },
+          {
+            "role": "C",
+            "text": "into two daughter cells,"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "M",
+            "text": "within twenty minutes"
+          },
+          {
+            "role": "S",
+            "text": "each of those daughters"
+          },
+          {
+            "role": "V",
+            "text": "divides"
+          },
+          {
+            "role": "M",
+            "text": "once more,",
+            "note": "once more = 부사구"
+          },
+          {
+            "role": "M",
+            "text": "doubling the total again."
+          }
+        ],
+        "grammar_note": "등위접속사 and + 분사구문 (결과)"
+      },
+      {
+        "index": 2,
+        "segments": [
+          {
+            "role": "S",
+            "text": "This relentless cycle,"
+          },
+          {
+            "role": "M",
+            "text": "called exponential growth,"
+          },
+          {
+            "role": "V",
+            "text": "obeys"
+          },
+          {
+            "role": "O",
+            "text": "one elegant rule:"
+          },
+          {
+            "role": "S",
+            "text": "every new generation"
+          },
+          {
+            "role": "V",
+            "text": "multiplies"
+          },
+          {
+            "role": "O",
+            "text": "the existing population by the same fixed number.",
+            "note": "콜론 뒤 독립절 설명"
+          }
+        ],
+        "grammar_note": "과거분사 삽입구 + 콜론 설명절"
+      },
+      {
+        "index": 3,
+        "segments": [
+          {
+            "role": "M",
+            "text": "Starting with just one Escherichia coli cell in warm, nutrient-rich broth,"
+          },
+          {
+            "role": "S",
+            "text": "a colony of over one billion cells"
+          },
+          {
+            "role": "V",
+            "text": "can appear"
+          },
+          {
+            "role": "M",
+            "text": "in fewer than ten hours.",
+            "note": "조동사 can"
+          }
+        ],
+        "grammar_note": "분사구문 주어 제시 + 조동사 can"
+      },
+      {
+        "index": 4,
+        "segments": [
+          {
+            "role": "S",
+            "text": "That stunning result"
+          },
+          {
+            "role": "V",
+            "text": "feels"
+          },
+          {
+            "role": "C",
+            "text": "truly impossible to picture,"
+          },
+          {
+            "role": "CONJ",
+            "text": "yet"
+          },
+          {
+            "role": "S",
+            "text": "it"
+          },
+          {
+            "role": "V",
+            "text": "requires"
+          },
+          {
+            "role": "O",
+            "text": "nothing beyond patient, repeated multiplication applied faithfully generation after generation.",
+            "note": "과거분사 applied가 multiplication 수식"
+          }
+        ],
+        "grammar_note": "역접 yet + 과거분사 후치 수식"
+      },
+      {
+        "index": 5,
+        "segments": [
+          {
+            "role": "S",
+            "text": "The same doubling logic"
+          },
+          {
+            "role": "V",
+            "text": "drives"
+          },
+          {
+            "role": "O",
+            "text": "many natural systems"
+          },
+          {
+            "role": "REL",
+            "text": "that"
+          },
+          {
+            "role": "V",
+            "text": "extend"
+          },
+          {
+            "role": "M",
+            "text": "far beyond the biology laboratory.",
+            "note": "주격 관계절"
+          }
+        ],
+        "grammar_note": "3형식 + 주격 관계절 that"
+      },
+      {
+        "index": 6,
+        "segments": [
+          {
+            "role": "S",
+            "text": "Each burning patch in a forest fire"
+          },
+          {
+            "role": "V",
+            "text": "ignites"
+          },
+          {
+            "role": "O",
+            "text": "two or three neighboring zones,"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "S",
+            "text": "those neighbors"
+          },
+          {
+            "role": "V",
+            "text": "each ignite"
+          },
+          {
+            "role": "O",
+            "text": "two or three more.",
+            "note": "each는 강조 부사"
+          }
+        ],
+        "grammar_note": "등위접속사 and로 두 절 병렬"
+      },
+      {
+        "index": 7,
+        "segments": [
+          {
+            "role": "S",
+            "text": "The result"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "a branching chain of combustion"
+          },
+          {
+            "role": "REL",
+            "text": "that"
+          },
+          {
+            "role": "V",
+            "text": "spreads"
+          },
+          {
+            "role": "M",
+            "text": "much faster than any single rescue team can possibly contain.",
+            "note": "비교급 much faster than"
+          }
+        ],
+        "grammar_note": "2형식 + 주격 관계절 + 비교급"
+      },
+      {
+        "index": 8,
+        "segments": [
+          {
+            "role": "S",
+            "text": "Viruses"
+          },
+          {
+            "role": "V",
+            "text": "follow"
+          },
+          {
+            "role": "O",
+            "text": "an identical pattern,"
+          },
+          {
+            "role": "CONJ",
+            "text": "because"
+          },
+          {
+            "role": "S",
+            "text": "one silent carrier"
+          },
+          {
+            "role": "V",
+            "text": "passes"
+          },
+          {
+            "role": "O",
+            "text": "the pathogen to several others"
+          },
+          {
+            "role": "M",
+            "text": "long before any symptom appears."
+          }
+        ],
+        "grammar_note": "이유 because절 + long before 부사절"
+      },
+      {
+        "index": 9,
+        "segments": [
+          {
+            "role": "S",
+            "text": "Chemists"
+          },
+          {
+            "role": "V",
+            "text": "observe"
+          },
+          {
+            "role": "O",
+            "text": "the same accelerating shape in chain reactions,"
+          },
+          {
+            "role": "M",
+            "text": "where one energized molecule strikes two stable neighbors",
+            "note": "관계부사 where"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "V",
+            "text": "releases"
+          },
+          {
+            "role": "O",
+            "text": "energy that triggers still more collisions."
+          }
+        ],
+        "grammar_note": "관계부사 where + 관계절 that"
+      },
+      {
+        "index": 10,
+        "segments": [
+          {
+            "role": "M",
+            "text": "In each of these systems,"
+          },
+          {
+            "role": "S",
+            "text": "the blank"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "S",
+            "text": "the shared mechanism"
+          },
+          {
+            "role": "REL",
+            "text": "that"
+          },
+          {
+            "role": "V",
+            "text": "converts"
+          },
+          {
+            "role": "O",
+            "text": "a quiet beginning into an overwhelming and unstoppable surge.",
+            "note": "선행사 포함 관계절"
+          }
+        ],
+        "grammar_note": "보어 자리 + 주격 관계절 that"
+      },
+      {
+        "index": 11,
+        "segments": [
+          {
+            "role": "S",
+            "text": "Nature,"
+          },
+          {
+            "role": "M",
+            "text": "however,"
+          },
+          {
+            "role": "M",
+            "text": "never"
+          },
+          {
+            "role": "V",
+            "text": "permits"
+          },
+          {
+            "role": "O",
+            "text": "such exponential growth"
+          },
+          {
+            "role": "C",
+            "text": "to continue without limit,",
+            "note": "permit O to-V 5형식"
+          },
+          {
+            "role": "CONJ",
+            "text": "since"
+          },
+          {
+            "role": "S",
+            "text": "every population"
+          },
+          {
+            "role": "V",
+            "text": "depends"
+          },
+          {
+            "role": "M",
+            "text": "on finite physical resources.",
+            "note": "since 이유절"
+          }
+        ],
+        "grammar_note": "permit O to-V 5형식 + since 이유절"
+      },
+      {
+        "index": 12,
+        "segments": [
+          {
+            "role": "S",
+            "text": "Bacteria"
+          },
+          {
+            "role": "V",
+            "text": "stop dividing"
+          },
+          {
+            "role": "M",
+            "text": "rapidly"
+          },
+          {
+            "role": "CONJ",
+            "text": "once"
+          },
+          {
+            "role": "S",
+            "text": "they"
+          },
+          {
+            "role": "V",
+            "text": "exhaust"
+          },
+          {
+            "role": "O",
+            "text": "all available nutrients"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "V",
+            "text": "begin to accumulate"
+          },
+          {
+            "role": "O",
+            "text": "their own metabolic waste."
+          }
+        ],
+        "grammar_note": "stop + 동명사 + once 시간절"
+      },
+      {
+        "index": 13,
+        "segments": [
+          {
+            "role": "S",
+            "text": "A spreading virus"
+          },
+          {
+            "role": "V",
+            "text": "finds"
+          },
+          {
+            "role": "O",
+            "text": "fewer and fewer susceptible hosts"
+          },
+          {
+            "role": "CONJ",
+            "text": "as"
+          },
+          {
+            "role": "S",
+            "text": "growing immunity"
+          },
+          {
+            "role": "V",
+            "text": "gradually closes off"
+          },
+          {
+            "role": "O",
+            "text": "the remaining available population."
+          }
+        ],
+        "grammar_note": "비교급 반복 fewer and fewer + as 부사절"
+      },
+      {
+        "index": 14,
+        "segments": [
+          {
+            "role": "S",
+            "text": "Scientists"
+          },
+          {
+            "role": "V",
+            "text": "capture"
+          },
+          {
+            "role": "O",
+            "text": "this slowdown"
+          },
+          {
+            "role": "M",
+            "text": "with the logistic model,"
+          },
+          {
+            "role": "S",
+            "text": "a familiar S-shaped curve",
+            "note": "동격 명사구"
+          },
+          {
+            "role": "REL",
+            "text": "that"
+          },
+          {
+            "role": "V",
+            "text": "rises"
+          },
+          {
+            "role": "M",
+            "text": "steeply"
+          },
+          {
+            "role": "CONJ",
+            "text": "and then"
+          },
+          {
+            "role": "V",
+            "text": "bends"
+          },
+          {
+            "role": "M",
+            "text": "toward a stable ceiling.",
+            "note": "동격 + 주격 관계절"
+          }
+        ],
+        "grammar_note": "3형식 + 동격 명사구 + 관계절"
+      }
+    ],
+    "translation_ko": "[1] 세균 하나가 두 딸세포로 분열하고, 이십 분 안에 그 딸세포들이 각각 다시 한 번 분열하여 총수를 거듭 두 배로 만든다. [2] 지수함수적 성장이라 불리는 이 끊임없는 주기는 하나의 우아한 규칙을 따른다 — 새로운 세대마다 기존 개체 수를 같은 고정 배수로 곱한다. [3] 따뜻하고 영양이 풍부한 배지에서 대장균 단 한 마리로 시작하면, 열 시간도 안 되어 10억 마리가 넘는 집락이 나타날 수 있다. [4] 그 놀라운 결과는 정말 상상하기 불가능하게 느껴지지만, 세대를 거듭하며 꾸준히 곱셈을 반복하는 것 이상은 필요하지 않다. [5] 같은 배증 논리가 생물학 실험실을 훨씬 벗어난 수많은 자연 시스템을 이끈다. [6] 산불에서 불타는 구역 각각이 이웃한 두세 구역에 불을 옮기고, 그 이웃들이 또다시 두세 군데에 불을 붙인다. [7] 그 결과는 어떤 단일 구조팀도 따라잡을 수 없을 만큼 빠르게 번지는 분기하는 연소 사슬이다. [8] 바이러스는 동일한 양상을 따른다 — 증상이 나타나기 훨씬 전에 잠복 감염자 한 명이 여러 명에게 병원체를 전달하기 때문이다. [9] 화학자들은 연쇄 반응에서 같은 가속 형태를 관찰한다. 에너지를 얻은 분자 하나가 안정된 이웃 분자 두 개를 치고, 더 많은 충돌을 유발하는 에너지를 방출한다. [10] 이 모든 시스템에서, 빈칸에 해당하는 것이 조용한 시작을 압도적이고 멈출 수 없는 급증으로 바꾸는 공통 메커니즘이다. [11] 그러나 자연은 모든 개체군이 유한한 물리적 자원에 의존하기 때문에, 그러한 지수함수적 성장이 한없이 지속되도록 결코 내버려 두지 않는다. [12] 세균은 이용 가능한 영양분을 모두 소진하고 자신의 대사 노폐물이 축적되기 시작하면 급격히 분열을 멈춘다. [13] 퍼져 가는 바이러스는 면역이 확산되면서 남아 있는 감수성 집단을 차단함에 따라 감수성 숙주를 점점 더 적게 발견한다. [14] 과학자들은 가파르게 오르다가 안정적인 한계치를 향해 꺾이는 친숙한 S자형 곡선인 로지스틱 모델로 이 둔화를 포착한다."
+  },
+  "page4": {
+    "vocab": [
+      {
+        "word": "bacterium",
+        "pos": "n.",
+        "meaning_ko": "세균, 박테리아 (단수)",
+        "synonyms": [
+          "microbe",
+          "germ"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "A single bacterium can divide and fill a dish overnight.",
+            "ko": "세균 하나가 분열해 하룻밤에 접시를 가득 채울 수 있다."
+          },
+          {
+            "en": "The bacterium was identified under a microscope.",
+            "ko": "그 세균은 현미경 아래에서 확인되었다."
+          }
+        ]
+      },
+      {
+        "word": "divide",
+        "pos": "v.",
+        "meaning_ko": "분열하다; 나누다",
+        "synonyms": [
+          "split",
+          "multiply"
+        ],
+        "antonyms": [
+          "merge"
+        ],
+        "examples": [
+          {
+            "en": "Bacteria divide rapidly when nutrients are plentiful.",
+            "ko": "세균은 영양분이 풍부할 때 빠르게 분열한다."
+          },
+          {
+            "en": "She divided the class into four small groups.",
+            "ko": "그녀는 수업을 네 개의 소그룹으로 나눴다."
+          }
+        ]
+      },
+      {
+        "word": "exponential",
+        "pos": "adj.",
+        "meaning_ko": "지수적인, 기하급수적인",
+        "synonyms": [
+          "multiplying",
+          "geometric"
+        ],
+        "antonyms": [
+          "linear"
+        ],
+        "examples": [
+          {
+            "en": "Exponential growth starts slowly but accelerates fast.",
+            "ko": "지수적 성장은 느리게 시작하지만 빠르게 가속된다."
+          },
+          {
+            "en": "The app gained an exponential number of users.",
+            "ko": "그 앱은 기하급수적인 수의 사용자를 확보했다."
+          }
+        ]
+      },
+      {
+        "word": "generation",
+        "pos": "n.",
+        "meaning_ko": "세대; (세균의) 한 번의 분열 주기",
+        "synonyms": [
+          "cycle",
+          "cohort"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "Each generation of bacteria doubles the total count.",
+            "ko": "세균의 각 세대는 총 수를 두 배로 만든다."
+          },
+          {
+            "en": "The new generation of students prefers digital textbooks.",
+            "ko": "새 세대의 학생들은 디지털 교재를 선호한다."
+          }
+        ]
+      },
+      {
+        "word": "descendant",
+        "pos": "n.",
+        "meaning_ko": "후손, 자손",
+        "synonyms": [
+          "offspring",
+          "progeny"
+        ],
+        "antonyms": [
+          "ancestor"
+        ],
+        "examples": [
+          {
+            "en": "One E. coli cell leaves billions of descendants in hours.",
+            "ko": "대장균 한 마리가 몇 시간 만에 수십억 자손을 남긴다."
+          },
+          {
+            "en": "Modern birds are descendants of ancient dinosaurs.",
+            "ko": "현대 새들은 고대 공룡의 후손이다."
+          }
+        ]
+      },
+      {
+        "word": "ignite",
+        "pos": "v.",
+        "meaning_ko": "점화하다, 불을 붙이다",
+        "synonyms": [
+          "kindle",
+          "set alight"
+        ],
+        "antonyms": [
+          "extinguish"
+        ],
+        "examples": [
+          {
+            "en": "A spark can ignite dry leaves and spread a fire fast.",
+            "ko": "불꽃 하나가 마른 잎을 점화해 불을 빠르게 퍼뜨릴 수 있다."
+          },
+          {
+            "en": "The speech ignited enthusiasm throughout the crowd.",
+            "ko": "그 연설은 군중 전체에 열정을 불러일으켰다."
+          }
+        ]
+      },
+      {
+        "word": "combustion",
+        "pos": "n.",
+        "meaning_ko": "연소, 점화 반응",
+        "synonyms": [
+          "burning",
+          "ignition"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "Each fire zone creates a branching chain of combustion.",
+            "ko": "각 화재 구역이 분기하는 연소 사슬을 만들어낸다."
+          },
+          {
+            "en": "Combustion of fossil fuels releases carbon dioxide.",
+            "ko": "화석 연료의 연소는 이산화탄소를 배출한다."
+          }
+        ]
+      },
+      {
+        "word": "pathogen",
+        "pos": "n.",
+        "meaning_ko": "병원체, 병을 일으키는 미생물",
+        "synonyms": [
+          "germ",
+          "microbe"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "An infected host passes the pathogen to several others.",
+            "ko": "감염된 숙주가 병원체를 여러 사람에게 전달한다."
+          },
+          {
+            "en": "Vaccines train the body to fight a specific pathogen.",
+            "ko": "백신은 몸이 특정 병원체에 맞서도록 훈련시킨다."
+          }
+        ]
+      },
+      {
+        "word": "collide",
+        "pos": "v.",
+        "meaning_ko": "충돌하다",
+        "synonyms": [
+          "crash",
+          "strike"
+        ],
+        "antonyms": [
+          "separate"
+        ],
+        "examples": [
+          {
+            "en": "One energized molecule collides with two stable ones.",
+            "ko": "에너지를 얻은 분자 하나가 안정된 분자 두 개와 충돌한다."
+          },
+          {
+            "en": "Two cars collided at the crossroads last night.",
+            "ko": "어젯밤 두 차가 교차로에서 충돌했다."
+          }
+        ]
+      },
+      {
+        "word": "exhaust",
+        "pos": "v.",
+        "meaning_ko": "고갈시키다; 소진하다",
+        "synonyms": [
+          "deplete",
+          "drain"
+        ],
+        "antonyms": [
+          "replenish"
+        ],
+        "examples": [
+          {
+            "en": "Bacteria exhaust their nutrients and stop doubling.",
+            "ko": "세균은 영양분을 고갈시키고 배증을 멈춘다."
+          },
+          {
+            "en": "Running a marathon can exhaust even trained athletes.",
+            "ko": "마라톤 완주는 훈련된 선수도 소진시킬 수 있다."
+          }
+        ]
+      },
+      {
+        "word": "logistic",
+        "pos": "adj.",
+        "meaning_ko": "로지스틱의, S자형 성장 곡선의",
+        "synonyms": [
+          "S-shaped"
+        ],
+        "antonyms": [
+          "exponential"
+        ],
+        "examples": [
+          {
+            "en": "The logistic curve levels off when resources run out.",
+            "ko": "로지스틱 곡선은 자원이 고갈되면 수평을 이룬다."
+          },
+          {
+            "en": "Population models often use a logistic equation.",
+            "ko": "개체군 모델은 흔히 로지스틱 방정식을 사용한다."
+          }
+        ]
+      },
+      {
+        "word": "scarce",
+        "pos": "adj.",
+        "meaning_ko": "부족한, 희소한",
+        "synonyms": [
+          "rare",
+          "limited"
+        ],
+        "antonyms": [
+          "abundant"
+        ],
+        "examples": [
+          {
+            "en": "Growth slows as food resources become scarce.",
+            "ko": "먹이 자원이 부족해지면 성장이 느려진다."
+          },
+          {
+            "en": "Clean water is scarce in many desert regions.",
+            "ko": "많은 사막 지역에서 깨끗한 물은 부족하다."
+          }
+        ]
+      }
+    ]
+  }
+}

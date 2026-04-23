@@ -1,0 +1,209 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 350">
+  <defs>
+    <!-- Background gradient: deep purple night -->
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a0a2e"/>
+      <stop offset="100%" stop-color="#2d1060"/>
+    </linearGradient>
+    <!-- Lantern glow -->
+    <radialGradient id="lanternGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#f9c74f" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#f9c74f" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Stage spotlight -->
+    <radialGradient id="spotlight" cx="50%" cy="0%" r="80%">
+      <stop offset="0%" stop-color="#7b2d8b" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#1a0a2e" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Mask face gradient -->
+    <linearGradient id="maskGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#c77dff"/>
+      <stop offset="100%" stop-color="#7b2d8b"/>
+    </linearGradient>
+    <!-- Robe gradient -->
+    <linearGradient id="robeGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#9d4edd"/>
+      <stop offset="100%" stop-color="#5a189a"/>
+    </linearGradient>
+    <!-- Ground gradient -->
+    <linearGradient id="groundGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3c096c"/>
+      <stop offset="100%" stop-color="#10002b"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="350" fill="url(#bg)"/>
+
+  <!-- Stars -->
+  <circle cx="60" cy="25" r="1.2" fill="#e0aaff" opacity="0.8"/>
+  <circle cx="130" cy="18" r="0.9" fill="#e0aaff" opacity="0.6"/>
+  <circle cx="200" cy="30" r="1.4" fill="#ffffff" opacity="0.7"/>
+  <circle cx="270" cy="12" r="1.0" fill="#e0aaff" opacity="0.5"/>
+  <circle cx="340" cy="22" r="0.8" fill="#ffffff" opacity="0.6"/>
+  <circle cx="490" cy="18" r="1.3" fill="#e0aaff" opacity="0.7"/>
+  <circle cx="560" cy="28" r="0.9" fill="#ffffff" opacity="0.5"/>
+  <circle cx="630" cy="14" r="1.1" fill="#e0aaff" opacity="0.8"/>
+  <circle cx="700" cy="25" r="1.0" fill="#ffffff" opacity="0.6"/>
+  <circle cx="760" cy="16" r="1.4" fill="#e0aaff" opacity="0.7"/>
+
+  <!-- Spotlight cone from above -->
+  <ellipse cx="310" cy="0" rx="220" ry="10" fill="#9d4edd" opacity="0.3"/>
+  <polygon points="90,0 530,0 420,200 200,200" fill="url(#spotlight)" opacity="0.25"/>
+
+  <!-- Ground platform -->
+  <ellipse cx="310" cy="295" rx="200" ry="22" fill="url(#groundGrad)" opacity="0.9"/>
+  <rect x="110" y="278" width="400" height="20" fill="#10002b" rx="4"/>
+
+  <!-- ===== STORYTELLER (center-left) ===== -->
+  <!-- Robe / body -->
+  <ellipse cx="310" cy="270" rx="48" ry="20" fill="#3c096c" opacity="0.7"/>
+  <polygon points="270,260 350,260 340,180 280,180" fill="url(#robeGrad)" rx="8"/>
+  <!-- Robe bottom folds -->
+  <path d="M270,260 Q290,275 310,268 Q330,275 350,260" fill="#7b2d8b" opacity="0.6"/>
+  <!-- Belt sash -->
+  <rect x="275" y="220" width="70" height="10" rx="5" fill="#f9c74f" opacity="0.85"/>
+
+  <!-- Arms -->
+  <!-- Right arm raised (holding staff) -->
+  <path d="M340,200 Q370,170 380,145" stroke="#9d4edd" stroke-width="12" fill="none" stroke-linecap="round"/>
+  <!-- Left arm out toward audience -->
+  <path d="M280,210 Q250,220 230,225" stroke="#9d4edd" stroke-width="12" fill="none" stroke-linecap="round"/>
+
+  <!-- Staff / prop stick -->
+  <line x1="380" y1="145" x2="390" y2="90" stroke="#c77dff" stroke-width="4" stroke-linecap="round"/>
+  <!-- Staff tip star -->
+  <polygon points="390,82 393,90 401,90 395,95 397,103 390,98 383,103 385,95 379,90 387,90"
+           fill="#f9c74f" stroke="#f9c74f" stroke-width="1" opacity="0.9"/>
+
+  <!-- Neck -->
+  <rect x="302" y="170" width="16" height="14" rx="7" fill="#c77dff"/>
+
+  <!-- HEAD with mask -->
+  <!-- Back of head -->
+  <ellipse cx="310" cy="160" rx="28" ry="28" fill="#2d1060"/>
+  <!-- Hair / headdress -->
+  <ellipse cx="310" cy="140" rx="30" ry="12" fill="#10002b"/>
+  <!-- Headdress decoration ribbon -->
+  <path d="M285,138 Q310,128 335,138" stroke="#f9c74f" stroke-width="3" fill="none"/>
+  <circle cx="310" cy="130" r="5" fill="#f9c74f"/>
+  <!-- Korean mask face (탈) -->
+  <ellipse cx="310" cy="162" rx="24" ry="22" fill="url(#maskGrad)" stroke="#e0aaff" stroke-width="1.5"/>
+  <!-- Mask eye-holes -->
+  <ellipse cx="300" cy="157" rx="6" ry="5" fill="#1a0a2e"/>
+  <ellipse cx="320" cy="157" rx="6" ry="5" fill="#1a0a2e"/>
+  <!-- Mask eyes (white) -->
+  <ellipse cx="300" cy="157" rx="4" ry="3.5" fill="#fff" opacity="0.9"/>
+  <ellipse cx="320" cy="157" rx="4" ry="3.5" fill="#fff" opacity="0.9"/>
+  <!-- Mask pupils -->
+  <circle cx="301" cy="158" r="2" fill="#1a0a2e"/>
+  <circle cx="321" cy="158" r="2" fill="#1a0a2e"/>
+  <!-- Mask nose -->
+  <path d="M308,162 Q310,167 312,162" stroke="#5a189a" stroke-width="2" fill="none"/>
+  <!-- Mask wide grin -->
+  <path d="M294,168 Q310,178 326,168" stroke="#10002b" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- Mask cheek blush marks -->
+  <circle cx="293" cy="165" r="5" fill="#ff6b9d" opacity="0.45"/>
+  <circle cx="327" cy="165" r="5" fill="#ff6b9d" opacity="0.45"/>
+  <!-- Mask decorative lines -->
+  <line x1="286" y1="155" x2="292" y2="158" stroke="#f9c74f" stroke-width="1.2" opacity="0.7"/>
+  <line x1="334" y1="155" x2="328" y2="158" stroke="#f9c74f" stroke-width="1.2" opacity="0.7"/>
+
+  <!-- ===== AUDIENCE LEFT ===== -->
+  <!-- Person 1 (seated, bowing forward) -->
+  <ellipse cx="160" cy="278" rx="22" ry="8" fill="#3c096c" opacity="0.6"/>
+  <circle cx="160" cy="250" r="16" fill="#5a189a"/>
+  <!-- face -->
+  <circle cx="160" cy="247" r="10" fill="#c77dff"/>
+  <circle cx="155" cy="245" r="2" fill="#1a0a2e"/>
+  <circle cx="165" cy="245" r="2" fill="#1a0a2e"/>
+  <path d="M154,251 Q160,255 166,251" stroke="#1a0a2e" stroke-width="1.5" fill="none"/>
+
+  <!-- Person 2 (taller, standing back-left) -->
+  <ellipse cx="115" cy="280" rx="18" ry="7" fill="#3c096c" opacity="0.5"/>
+  <rect x="100" y="230" width="30" height="50" rx="10" fill="#7b2d8b" opacity="0.85"/>
+  <circle cx="115" cy="222" r="14" fill="#9d4edd"/>
+  <circle cx="110" cy="220" r="2.5" fill="#1a0a2e"/>
+  <circle cx="120" cy="220" r="2.5" fill="#1a0a2e"/>
+  <path d="M109,226 Q115,230 121,226" stroke="#1a0a2e" stroke-width="1.5" fill="none"/>
+
+  <!-- Person 3 (child, small, front-left) -->
+  <ellipse cx="200" cy="285" rx="14" ry="5" fill="#3c096c" opacity="0.5"/>
+  <rect x="190" y="258" width="20" height="28" rx="8" fill="#c77dff" opacity="0.75"/>
+  <circle cx="200" cy="250" r="10" fill="#e0aaff"/>
+  <circle cx="196" cy="248" r="2" fill="#1a0a2e"/>
+  <circle cx="204" cy="248" r="2" fill="#1a0a2e"/>
+  <path d="M195,253 Q200,257 205,253" stroke="#1a0a2e" stroke-width="1.2" fill="none"/>
+
+  <!-- ===== AUDIENCE RIGHT ===== -->
+  <!-- Person 4 -->
+  <ellipse cx="460" cy="278" rx="22" ry="8" fill="#3c096c" opacity="0.6"/>
+  <rect x="445" y="238" width="30" height="42" rx="10" fill="#7b2d8b" opacity="0.85"/>
+  <circle cx="460" cy="230" r="15" fill="#9d4edd"/>
+  <circle cx="455" cy="228" r="2.5" fill="#1a0a2e"/>
+  <circle cx="465" cy="228" r="2.5" fill="#1a0a2e"/>
+  <path d="M454,234 Q460,238 466,234" stroke="#1a0a2e" stroke-width="1.5" fill="none"/>
+
+  <!-- Person 5 (leaning forward, interested) -->
+  <ellipse cx="510" cy="282" rx="20" ry="7" fill="#3c096c" opacity="0.5"/>
+  <rect x="494" y="248" width="32" height="36" rx="10" fill="#5a189a" opacity="0.9"/>
+  <circle cx="510" cy="240" r="14" fill="#c77dff"/>
+  <circle cx="505" cy="238" r="2" fill="#1a0a2e"/>
+  <circle cx="515" cy="238" r="2" fill="#1a0a2e"/>
+  <path d="M504,244 Q510,249 516,244" stroke="#1a0a2e" stroke-width="1.5" fill="none"/>
+
+  <!-- Person 6 (back right, elder with hat) -->
+  <ellipse cx="560" cy="276" rx="18" ry="6" fill="#3c096c" opacity="0.5"/>
+  <rect x="545" y="238" width="30" height="40" rx="10" fill="#3c096c" opacity="0.9"/>
+  <!-- Hat -->
+  <ellipse cx="560" cy="224" rx="18" ry="5" fill="#10002b"/>
+  <rect x="553" y="210" width="14" height="16" rx="7" fill="#2d1060"/>
+  <circle cx="560" cy="232" r="12" fill="#9d4edd"/>
+  <circle cx="555" cy="230" r="2.5" fill="#1a0a2e"/>
+  <circle cx="565" cy="230" r="2.5" fill="#1a0a2e"/>
+  <path d="M554,236 Q560,240 566,236" stroke="#1a0a2e" stroke-width="1.5" fill="none"/>
+
+  <!-- ===== HANGING LANTERNS ===== -->
+  <!-- Left lantern -->
+  <line x1="155" y1="0" x2="155" y2="65" stroke="#c77dff" stroke-width="2"/>
+  <ellipse cx="155" cy="75" rx="18" ry="22" fill="#f9c74f" opacity="0.85" stroke="#e0aaff" stroke-width="1"/>
+  <ellipse cx="155" cy="78" rx="12" ry="14" fill="url(#lanternGlow)" opacity="0.6"/>
+  <line x1="148" y1="65" x2="162" y2="65" stroke="#e0aaff" stroke-width="1.5"/>
+  <line x1="145" y1="97" x2="165" y2="97" stroke="#e0aaff" stroke-width="1.5"/>
+  <ellipse cx="155" cy="97" rx="10" ry="4" fill="#e09f00" opacity="0.7"/>
+  <!-- Glow halo -->
+  <ellipse cx="155" cy="78" rx="35" ry="35" fill="#f9c74f" opacity="0.08"/>
+
+  <!-- Right lantern -->
+  <line x1="480" y1="0" x2="480" y2="55" stroke="#c77dff" stroke-width="2"/>
+  <ellipse cx="480" cy="65" rx="16" ry="20" fill="#f9c74f" opacity="0.8" stroke="#e0aaff" stroke-width="1"/>
+  <ellipse cx="480" cy="68" rx="10" ry="13" fill="url(#lanternGlow)" opacity="0.55"/>
+  <line x1="474" y1="55" x2="486" y2="55" stroke="#e0aaff" stroke-width="1.5"/>
+  <line x1="472" y1="85" x2="488" y2="85" stroke="#e0aaff" stroke-width="1.5"/>
+  <ellipse cx="480" cy="85" rx="9" ry="3.5" fill="#e09f00" opacity="0.7"/>
+  <ellipse cx="480" cy="68" rx="30" ry="30" fill="#f9c74f" opacity="0.07"/>
+
+  <!-- ===== DECORATIVE BANNER / CURTAIN ===== -->
+  <!-- Left curtain swag -->
+  <path d="M0,0 Q80,40 100,80 Q70,100 0,110" fill="#5a189a" opacity="0.55"/>
+  <!-- Right curtain swag -->
+  <path d="M800,0 Q720,40 700,80 Q730,100 800,110" fill="#5a189a" opacity="0.55"/>
+
+  <!-- Top banner rope with tassels -->
+  <path d="M0,8 Q400,50 800,8" stroke="#c77dff" stroke-width="2.5" fill="none" opacity="0.5"/>
+  <!-- Tassels -->
+  <line x1="200" y1="20" x2="200" y2="38" stroke="#f9c74f" stroke-width="2" opacity="0.7"/>
+  <circle cx="200" cy="40" r="4" fill="#f9c74f" opacity="0.7"/>
+  <line x1="400" y1="28" x2="400" y2="46" stroke="#f9c74f" stroke-width="2" opacity="0.7"/>
+  <circle cx="400" cy="48" r="4" fill="#f9c74f" opacity="0.7"/>
+  <line x1="600" y1="20" x2="600" y2="38" stroke="#f9c74f" stroke-width="2" opacity="0.7"/>
+  <circle cx="600" cy="40" r="4" fill="#f9c74f" opacity="0.7"/>
+
+  <!-- ===== FLOATING TEXT GLYPHS (representing folk speech) ===== -->
+  <text x="365" y="110" font-family="serif" font-size="18" fill="#e0aaff" opacity="0.35" transform="rotate(-8,365,110)">흥</text>
+  <text x="385" y="90" font-family="serif" font-size="14" fill="#c77dff" opacity="0.3" transform="rotate(5,385,90)">부</text>
+  <text x="420" y="120" font-family="serif" font-size="16" fill="#e0aaff" opacity="0.28" transform="rotate(-4,420,120)">전</text>
+
+  <!-- ===== GROUND SHADOW REFLECTION ===== -->
+  <ellipse cx="310" cy="296" rx="90" ry="10" fill="#7b2d8b" opacity="0.2"/>
+</svg>

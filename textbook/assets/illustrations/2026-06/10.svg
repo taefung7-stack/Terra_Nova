@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 350">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a0a2e;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#2d1457;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="mirrorGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#7c3aed;stop-opacity:0.6"/>
+      <stop offset="100%" style="stop-color:#4c1d95;stop-opacity:0.3"/>
+    </linearGradient>
+    <linearGradient id="figureL" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#a78bfa;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="figureR" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#c4b5fd;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="distort">
+      <feTurbulence type="turbulence" baseFrequency="0.04 0.07" numOctaves="2" seed="5" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="10" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <clipPath id="mirrorClip">
+      <rect x="355" y="45" width="90" height="260" rx="8"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="350" fill="url(#bgGrad)"/>
+
+  <!-- Subtle star field -->
+  <circle cx="60" cy="40" r="1" fill="#c4b5fd" opacity="0.5"/>
+  <circle cx="120" cy="80" r="1.2" fill="#ddd6fe" opacity="0.4"/>
+  <circle cx="200" cy="25" r="0.8" fill="#a78bfa" opacity="0.6"/>
+  <circle cx="680" cy="30" r="1" fill="#c4b5fd" opacity="0.5"/>
+  <circle cx="740" cy="70" r="1.2" fill="#ddd6fe" opacity="0.4"/>
+  <circle cx="760" cy="20" r="0.8" fill="#a78bfa" opacity="0.6"/>
+  <circle cx="320" cy="15" r="0.9" fill="#ddd6fe" opacity="0.4"/>
+  <circle cx="480" cy="18" r="1" fill="#c4b5fd" opacity="0.3"/>
+
+  <!-- Dividing vertical mirror frame -->
+  <rect x="355" y="45" width="90" height="260" rx="8" fill="url(#mirrorGrad)" stroke="#a78bfa" stroke-width="2" opacity="0.85"/>
+  <!-- Mirror glass shimmer -->
+  <rect x="365" y="55" width="12" height="230" rx="4" fill="white" opacity="0.08"/>
+  <!-- Distorted reflection strip inside mirror -->
+  <rect x="375" y="55" width="60" height="230" fill="#6d28d9" opacity="0.15" clip-path="url(#mirrorClip)"/>
+
+  <!-- LEFT FIGURE — storyteller A (clear, confident silhouette) -->
+  <!-- Head -->
+  <ellipse cx="230" cy="110" rx="28" ry="32" fill="url(#figureL)" filter="url(#glow)"/>
+  <!-- Neck -->
+  <rect x="220" y="138" width="20" height="18" rx="4" fill="#7c3aed"/>
+  <!-- Body -->
+  <path d="M175 158 Q180 250 195 310 L265 310 Q280 250 285 158 Q265 148 230 148 Q195 148 175 158Z" fill="url(#figureL)" opacity="0.9"/>
+  <!-- Left arm gesturing outward (pointing at mirror) -->
+  <path d="M285 190 Q330 195 355 200" stroke="#a78bfa" stroke-width="12" stroke-linecap="round" fill="none" opacity="0.85"/>
+  <!-- Right arm down -->
+  <path d="M175 190 Q155 220 148 255" stroke="#7c3aed" stroke-width="12" stroke-linecap="round" fill="none" opacity="0.7"/>
+
+  <!-- Speech bubble LEFT — version A -->
+  <rect x="60" y="55" width="148" height="46" rx="10" fill="#4c1d95" opacity="0.85" stroke="#a78bfa" stroke-width="1.2"/>
+  <polygon points="130,101 145,101 138,115" fill="#4c1d95"/>
+  <text x="134" y="78" font-family="Georgia, serif" font-size="11" fill="#ddd6fe" text-anchor="middle">"I acted with</text>
+  <text x="134" y="93" font-family="Georgia, serif" font-size="11" fill="#ddd6fe" text-anchor="middle">genuine kindness."</text>
+
+  <!-- RIGHT FIGURE — storyteller B (distorted, slightly fragmented silhouette) -->
+  <g filter="url(#distort)" opacity="0.88">
+    <!-- Head -->
+    <ellipse cx="570" cy="110" rx="28" ry="32" fill="url(#figureR)"/>
+    <!-- Neck -->
+    <rect x="560" y="138" width="20" height="18" rx="4" fill="#8b5cf6"/>
+    <!-- Body -->
+    <path d="M515 158 Q520 250 535 310 L605 310 Q620 250 625 158 Q605 148 570 148 Q535 148 515 158Z" fill="url(#figureR)" opacity="0.9"/>
+    <!-- Left arm gesturing outward (pointing at mirror) -->
+    <path d="M515 190 Q480 195 445 200" stroke="#c4b5fd" stroke-width="12" stroke-linecap="round" fill="none" opacity="0.85"/>
+    <!-- Right arm down -->
+    <path d="M625 190 Q645 220 652 255" stroke="#8b5cf6" stroke-width="12" stroke-linecap="round" fill="none" opacity="0.7"/>
+  </g>
+
+  <!-- Speech bubble RIGHT — version B -->
+  <rect x="590" y="55" width="148" height="46" rx="10" fill="#3b0764" opacity="0.85" stroke="#c4b5fd" stroke-width="1.2"/>
+  <polygon points="660,101 675,101 668,115" fill="#3b0764"/>
+  <text x="664" y="78" font-family="Georgia, serif" font-size="11" fill="#e9d5ff" text-anchor="middle">"She was cold</text>
+  <text x="664" y="93" font-family="Georgia, serif" font-size="11" fill="#e9d5ff" text-anchor="middle">and dismissive."</text>
+
+  <!-- Mirror label -->
+  <text x="400" y="38" font-family="Georgia, serif" font-size="11" fill="#c4b5fd" text-anchor="middle" opacity="0.8">same event</text>
+
+  <!-- Decorative dividing label at bottom of mirror -->
+  <text x="400" y="322" font-family="Georgia, serif" font-size="10" fill="#a78bfa" text-anchor="middle" opacity="0.7">whose truth?</text>
+
+  <!-- Label LEFT -->
+  <text x="230" y="330" font-family="Georgia, serif" font-size="12" fill="#a78bfa" text-anchor="middle" opacity="0.9">Narrator A</text>
+
+  <!-- Label RIGHT -->
+  <text x="570" y="330" font-family="Georgia, serif" font-size="12" fill="#c4b5fd" text-anchor="middle" opacity="0.9">Narrator B</text>
+
+  <!-- Subtle purple glow behind mirror -->
+  <ellipse cx="400" cy="175" rx="55" ry="140" fill="#7c3aed" opacity="0.08"/>
+</svg>
