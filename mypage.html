@@ -52,7 +52,9 @@
 
   /* SIDEBAR */
   .sidebar{width:240px;flex-shrink:0;background:var(--mid);border-right:1px solid var(--line);padding:40px 0;position:sticky;top:68px;height:calc(100vh - 68px);overflow-y:auto;}
-  @media(max-width:800px){.sidebar{display:none;}}
+  /* 작은 화면(DevTools 도킹 등)에서도 사이드바를 좁게라도 유지 — 완전 숨김 방지 */
+  @media(max-width:800px){.sidebar{width:180px;padding:20px 0;}}
+  @media(max-width:600px){.sidebar{display:none;}}
   .user-card{padding:24px 24px 28px;border-bottom:1px solid var(--line);}
   .user-avatar{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#14B8A6);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.2rem;color:#0A0A0A;margin-bottom:12px;}
   .user-name{font-weight:700;color:#fff;font-size:.95rem;margin-bottom:2px;}
