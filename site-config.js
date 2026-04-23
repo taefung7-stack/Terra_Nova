@@ -2,7 +2,7 @@
 // ⚠️ SECRET은 절대 여기 넣지 말 것 — .env / Supabase Secrets 사용
 // 사용법: 모든 HTML <head> 안에 `<script src="./site-config.js"></script>` 추가
 
-window.NAVER_CLIENT_ID = 'REPLACE_AFTER_NAVER_DEVELOPER_REGISTRATION';
+window.NAVER_CLIENT_ID = 'jrpqX5SMmUskZT2AuJvE';
   // 설정 방법:
   // 1. https://developers.naver.com 로그인 → 애플리케이션 등록
   // 2. 서비스 URL: https://terra-nova.kr
