@@ -122,6 +122,7 @@
 </style>
 <script src="./analytics.js" defer></script>
 <link rel="icon" type="image/png" href="./logo.png">
+<script src="./site-config.js"></script>
 </head>
 <body>
 
@@ -291,14 +292,25 @@
 
   async function socialLogin(provider) {
     // provider: 'google' | 'kakao' | 'naver'
-    const providerMap = { google: 'google', kakao: 'kakao', naver: 'keycloak' };
-    const p = providerMap[provider];
-    if (!p || provider === 'naver') {
-      alert(provider + ' 로그인은 아직 준비 중입니다. 이메일 로그인을 이용해주세요.');
+    if (provider === 'naver') {
+      // Naver는 Supabase 네이티브 미지원 → 커스텀 OAuth 흐름 (naver-callback.html + Edge Function)
+      const clientId = window.NAVER_CLIENT_ID;
+      if (!clientId || clientId.startsWith('REPLACE')) {
+        alert('네이버 로그인은 현재 준비 중입니다. 구글/카카오 또는 이메일 로그인을 이용해주세요.');
+        return;
+      }
+      const state = Math.random().toString(36).slice(2) + Date.now().toString(36);
+      sessionStorage.setItem('naver_oauth_state', state);
+      const redirectUri = location.origin + '/naver-callback.html';
+      location.href = 'https://nid.naver.com/oauth2.0/authorize?response_type=code'
+        + '&client_id=' + encodeURIComponent(clientId)
+        + '&redirect_uri=' + encodeURIComponent(redirectUri)
+        + '&state=' + encodeURIComponent(state);
       return;
     }
+    // Google, Kakao: Supabase 내장 OAuth
     const { error } = await supabase.auth.signInWithOAuth({
-      provider: p,
+      provider,
       options: {
         redirectTo: location.origin + location.pathname.replace(/login\.html$/, 'mypage.html')
       }

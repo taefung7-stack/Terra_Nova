@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>네이버 로그인 처리 중 · Terra Nova</title>
+<link rel="stylesheet" href="shared.css">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --dark:#0A0A0A; --mid:#111; --card:#1C1C1C;
+    --accent:#2DD4BF; --txt:#F0F0F0; --dim:rgba(240,240,240,.72);
+    --line:rgba(255,255,255,.07); --danger:#F87171; --ok:#4ADE80;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--dark);color:var(--txt);font-family:'Noto Sans KR',sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;}
+  .wrap{text-align:center;max-width:420px;}
+  .logo{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:7px;color:rgba(255,255,255,.45);margin-bottom:40px;}
+  .naver-ring{width:64px;height:64px;border-radius:50%;background:#03C75A;color:#fff;display:flex;align-items:center;justify-content:center;font-family:sans-serif;font-weight:900;font-size:2rem;margin:0 auto 20px;}
+  .spinner{width:36px;height:36px;margin:20px auto;border:3px solid rgba(45,212,191,.2);border-top-color:var(--accent);border-radius:50%;animation:spin 0.9s linear infinite;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+  h1{font-size:1.3rem;font-weight:800;color:#fff;margin-bottom:10px;letter-spacing:-.01em;}
+  p.msg{font-size:.88rem;color:var(--dim);line-height:1.7;}
+  .ok{color:var(--ok);}
+  .err{color:var(--danger);}
+  .actions{margin-top:28px;display:flex;gap:10px;justify-content:center;}
+  .btn{padding:10px 20px;border-radius:6px;text-decoration:none;font-weight:700;font-size:.85rem;}
+  .btn-primary{background:var(--accent);color:#0A0A0A;border:none;cursor:pointer;}
+  .btn-outline{background:transparent;color:var(--accent);border:1px solid rgba(45,212,191,.4);}
+  code{background:var(--card);border:1px solid var(--line);padding:2px 8px;border-radius:4px;font-size:.72rem;color:var(--dim);}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="logo">TERRA NOVA</div>
+    <div class="naver-ring">N</div>
+    <h1 id="title">네이버 로그인 처리 중…</h1>
+    <div class="spinner" id="spin"></div>
+    <p class="msg" id="msg">잠시만 기다려주세요. 계정을 연결하고 있습니다.</p>
+    <div class="actions" id="actions" style="display:none;">
+      <a href="login.html" class="btn btn-primary">로그인 페이지로</a>
+      <a href="index.html" class="btn btn-outline">홈으로</a>
+    </div>
+  </div>
+
+<script type="module">
+  import { supabase } from './supabase-client.js';
+
+  const SUPABASE_URL = 'https://betkydmxrnlhgmnprbca.supabase.co';
+  const titleEl = document.getElementById('title');
+  const msgEl = document.getElementById('msg');
+  const spinEl = document.getElementById('spin');
+  const actionsEl = document.getElementById('actions');
+
+  function fail(title, detail) {
+    titleEl.textContent = title;
+    titleEl.classList.add('err');
+    msgEl.innerHTML = detail || '';
+    spinEl.style.display = 'none';
+    actionsEl.style.display = 'flex';
+  }
+  function success(title, detail) {
+    titleEl.textContent = title;
+    titleEl.classList.add('ok');
+    msgEl.innerHTML = detail || '';
+  }
+
+  (async () => {
+    const params = new URLSearchParams(location.search);
+    const code = params.get('code');
+    const state = params.get('state');
+    const errorParam = params.get('error');
+    const errorDesc = params.get('error_description');
+
+    if (errorParam) {
+      fail('로그인 취소됨', '네이버 인증이 거부되었습니다.<br><code>' + (errorDesc || errorParam) + '</code>');
+      return;
+    }
+
+    if (!code) {
+      fail('잘못된 접근', '네이버에서 전달받은 인증 코드가 없습니다.');
+      return;
+    }
+
+    // CSRF 방어: state 검증
+    const savedState = sessionStorage.getItem('naver_oauth_state');
+    sessionStorage.removeItem('naver_oauth_state');
+    if (!savedState || savedState !== state) {
+      fail('보안 검증 실패', 'CSRF 방지 토큰(state)이 일치하지 않습니다. 다시 시도해주세요.');
+      return;
+    }
+
+    // Edge Function 호출
+    try {
+      const redirectUri = location.origin + '/naver-callback.html';
+      const res = await fetch(SUPABASE_URL + '/functions/v1/naver-oauth', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code, state, redirect_uri: redirectUri })
+      });
+      const data = await res.json();
+      if (!res.ok || !data.ok || !data.action_link) {
+        fail('로그인 실패', '서버에서 세션을 생성하지 못했습니다.<br><code>' + (data.error || res.statusText) + '</code>');
+        return;
+      }
+
+      success(
+        data.is_new_user ? '가입 완료! 🎉' : '로그인 성공',
+        '마이페이지로 이동 중…'
+      );
+      // Magic link로 리다이렉트 → Supabase가 세션 발급
+      location.href = data.action_link;
+    } catch (err) {
+      fail('네트워크 오류', err.message);
+    }
+  })();
+</script>
+</body>
+</html>
