@@ -138,8 +138,10 @@
     <!-- 탭 -->
     <div class="tab-row">
       <button class="tab-btn active" onclick="switchAdminTab('reviews',this)">⭐ 리뷰 관리</button>
+      <button class="tab-btn" onclick="switchAdminTab('coupons',this)">🎟️ 쿠폰</button>
       <button class="tab-btn" onclick="switchAdminTab('newsletter',this)">📧 뉴스레터</button>
       <button class="tab-btn" onclick="switchAdminTab('orders',this)">💳 최근 주문</button>
+      <button class="tab-btn" onclick="switchAdminTab('revenue',this)">📊 매출</button>
     </div>
 
     <!-- 리뷰 관리 -->
@@ -156,6 +158,65 @@
         </div>
         <div id="reviews-list">
           <div class="empty" id="reviews-empty">불러오는 중…</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 쿠폰 -->
+    <div class="tab-view" id="tab-coupons">
+      <div class="section">
+        <div class="section-title">
+          <span>쿠폰 발행</span>
+        </div>
+        <form id="coupon-form" onsubmit="return false;" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;">
+          <div>
+            <label for="cp-code" style="font-size:.7rem;color:var(--dim);display:block;margin-bottom:4px;">코드 *</label>
+            <input type="text" id="cp-code" name="code" required style="width:100%;background:var(--card2);border:1px solid var(--line);border-radius:6px;padding:9px 12px;color:var(--txt);text-transform:uppercase;" placeholder="LAUNCH2026">
+          </div>
+          <div>
+            <label for="cp-type" style="font-size:.7rem;color:var(--dim);display:block;margin-bottom:4px;">할인 유형 *</label>
+            <select id="cp-type" name="discount_type" style="width:100%;background:var(--card2);border:1px solid var(--line);border-radius:6px;padding:9px 12px;color:var(--txt);">
+              <option value="percentage">% 비율</option>
+              <option value="fixed">원 정액</option>
+            </select>
+          </div>
+          <div>
+            <label for="cp-value" style="font-size:.7rem;color:var(--dim);display:block;margin-bottom:4px;">할인 값 *</label>
+            <input type="number" id="cp-value" name="discount_value" required min="1" style="width:100%;background:var(--card2);border:1px solid var(--line);border-radius:6px;padding:9px 12px;color:var(--txt);" placeholder="30">
+          </div>
+          <div>
+            <label for="cp-max-discount" style="font-size:.7rem;color:var(--dim);display:block;margin-bottom:4px;">최대 할인액 (원)</label>
+            <input type="number" id="cp-max-discount" name="max_discount_amount" min="0" style="width:100%;background:var(--card2);border:1px solid var(--line);border-radius:6px;padding:9px 12px;color:var(--txt);" placeholder="20000">
+          </div>
+          <div>
+            <label for="cp-uses-per-user" style="font-size:.7rem;color:var(--dim);display:block;margin-bottom:4px;">사용자당 사용 횟수</label>
+            <input type="number" id="cp-uses-per-user" name="max_uses_per_user" value="1" min="1" style="width:100%;background:var(--card2);border:1px solid var(--line);border-radius:6px;padding:9px 12px;color:var(--txt);">
+          </div>
+          <div>
+            <label for="cp-max-uses" style="font-size:.7rem;color:var(--dim);display:block;margin-bottom:4px;">전체 사용 한도 (비워두면 무제한)</label>
+            <input type="number" id="cp-max-uses" name="max_uses" min="1" style="width:100%;background:var(--card2);border:1px solid var(--line);border-radius:6px;padding:9px 12px;color:var(--txt);" placeholder="100">
+          </div>
+          <div>
+            <label for="cp-valid-until" style="font-size:.7rem;color:var(--dim);display:block;margin-bottom:4px;">유효 기간 (비워두면 무제한)</label>
+            <input type="date" id="cp-valid-until" name="valid_until" style="width:100%;background:var(--card2);border:1px solid var(--line);border-radius:6px;padding:9px 12px;color:var(--txt);">
+          </div>
+          <div style="grid-column:1/-1;">
+            <label for="cp-description" style="font-size:.7rem;color:var(--dim);display:block;margin-bottom:4px;">설명</label>
+            <input type="text" id="cp-description" name="description" style="width:100%;background:var(--card2);border:1px solid var(--line);border-radius:6px;padding:9px 12px;color:var(--txt);" placeholder="론칭 기념 첫 달 30% 할인">
+          </div>
+          <div style="grid-column:1/-1;display:flex;gap:10px;align-items:center;margin-top:6px;">
+            <button type="button" id="btn-create-coupon" class="btn-admin btn-approve">쿠폰 발행</button>
+            <span id="coupon-form-msg" style="font-size:.78rem;"></span>
+          </div>
+        </form>
+      </div>
+      <div class="section">
+        <div class="section-title">
+          <span>발행된 쿠폰</span>
+          <span class="count" id="coupons-count">—</span>
+        </div>
+        <div id="coupons-table-wrap">
+          <div class="empty">불러오는 중…</div>
         </div>
       </div>
     </div>
@@ -185,8 +246,53 @@
         </div>
       </div>
     </div>
+
+    <!-- 매출 대시보드 -->
+    <div class="tab-view" id="tab-revenue">
+      <div class="section">
+        <div class="section-title"><span>기간별 매출</span></div>
+        <div class="stats-row" style="margin-bottom:0;">
+          <div class="stat-card">
+            <div class="stat-label">오늘</div>
+            <div class="stat-value accent" id="rev-today">-</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">최근 7일</div>
+            <div class="stat-value" id="rev-week">-</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">최근 30일</div>
+            <div class="stat-value" id="rev-month">-</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">누적 매출</div>
+            <div class="stat-value" id="rev-all">-</div>
+          </div>
+        </div>
+      </div>
+      <div class="section">
+        <div class="section-title"><span>플랜별 활성 구독</span></div>
+        <div id="plan-breakdown"><div class="empty">불러오는 중…</div></div>
+      </div>
+      <div class="section">
+        <div class="section-title"><span>자동갱신 / 해지 현황</span></div>
+        <div id="renewal-breakdown"><div class="empty">불러오는 중…</div></div>
+      </div>
+    </div>
+
   </div>
 </main>
+
+<!-- 주문 상세 모달 -->
+<div id="order-modal" style="display:none;position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:20px;" onclick="if(event.target===this) document.getElementById('order-modal').style.display='none';">
+  <div style="background:var(--card);border:1px solid var(--line);border-radius:12px;padding:24px;max-width:560px;width:100%;max-height:85vh;overflow-y:auto;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+      <h3 style="font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:3px;color:#fff;">주문 상세</h3>
+      <button onclick="document.getElementById('order-modal').style.display='none'" style="background:none;color:var(--dim);border:none;font-size:1.4rem;cursor:pointer;" aria-label="닫기">×</button>
+    </div>
+    <div id="order-modal-body"></div>
+  </div>
+</div>
 
 <script type="module">
   import { supabase, signOut } from './supabase-client.js';
@@ -403,7 +509,7 @@
         </thead>
         <tbody>
           ${data.map(o => `
-            <tr>
+            <tr data-order-id="${esc(o.id)}" style="cursor:pointer;">
               <td style="font-family:monospace;font-size:.78rem;">${esc(o.order_number || o.id.slice(0,8))}</td>
               <td><span style="font-size:.7rem;padding:3px 8px;border-radius:3px;background:${o.status==='paid'?'rgba(74,222,128,.12)':'rgba(234,179,8,.1)'};color:${o.status==='paid'?'var(--ok)':'var(--warn)'};">${esc(o.status)}</span></td>
               <td style="font-weight:700;">${won(o.total_amount)}</td>
@@ -414,7 +520,250 @@
         </tbody>
       </table>
     `;
+    // 주문 행 클릭 → 상세 모달
+    const ordersById = new Map(data.map(o => [o.id, o]));
+    wrap.querySelectorAll('tr[data-order-id]').forEach(tr => {
+      tr.addEventListener('click', () => openOrderModal(ordersById.get(tr.dataset.orderId)));
+    });
   }
+
+  function openOrderModal(o) {
+    if (!o) return;
+    const items = (o.order_items || []).map(it => `
+      <div style="padding:8px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;font-size:.82rem;">
+        <span>${esc(it.product_snapshot?.name || '상품')} ${it.quantity>1 ? '× ' + Number(it.quantity) : ''}</span>
+        <span style="font-weight:700;">${won(it.subtotal)}</span>
+      </div>
+    `).join('') || '<div style="color:var(--dim);font-size:.82rem;padding:8px 0;">아이템 정보 없음 (구독 결제일 수 있음)</div>';
+    $('order-modal-body').innerHTML = `
+      <table style="width:100%;font-size:.82rem;margin-bottom:14px;">
+        <tr><td style="color:var(--dim);padding:4px 0;width:110px;">주문번호</td><td style="font-family:monospace;">${esc(o.order_number || o.id)}</td></tr>
+        <tr><td style="color:var(--dim);padding:4px 0;">상태</td><td>${esc(o.status)}</td></tr>
+        <tr><td style="color:var(--dim);padding:4px 0;">결제금액</td><td style="font-weight:700;color:var(--accent);">${won(o.total_amount)}</td></tr>
+        <tr><td style="color:var(--dim);padding:4px 0;">결제수단</td><td>${esc(o.payment_method || '-')}</td></tr>
+        <tr><td style="color:var(--dim);padding:4px 0;">포트원 ID</td><td style="font-family:monospace;font-size:.72rem;">${esc(o.portone_payment_id || '-')}</td></tr>
+        <tr><td style="color:var(--dim);padding:4px 0;">주문일</td><td>${ymdhm(o.created_at)}</td></tr>
+        ${o.paid_at ? `<tr><td style="color:var(--dim);padding:4px 0;">결제일</td><td>${ymdhm(o.paid_at)}</td></tr>` : ''}
+        ${o.shipping_name ? `<tr><td style="color:var(--dim);padding:4px 0;">받는분</td><td>${esc(o.shipping_name)} / ${esc(o.shipping_phone || '')}</td></tr>` : ''}
+        ${o.shipping_address ? `<tr><td style="color:var(--dim);padding:4px 0;vertical-align:top;">배송지</td><td>(${esc(o.shipping_zipcode || '')}) ${esc(o.shipping_address)} ${esc(o.shipping_detail || '')}</td></tr>` : ''}
+      </table>
+      <div style="font-size:.68rem;color:var(--dim);letter-spacing:1px;text-transform:uppercase;margin:16px 0 6px;">주문 아이템</div>
+      ${items}
+    `;
+    $('order-modal').style.display = 'flex';
+  }
+
+  // ── 리뷰 일괄 작업 (체크박스 기반) ─────
+  function setupBulkReviewActions() {
+    const filterRow = document.querySelector('#tab-reviews .filter-row');
+    if (!filterRow || filterRow.querySelector('.bulk-actions')) return;
+    const bulk = document.createElement('div');
+    bulk.className = 'bulk-actions';
+    bulk.style.cssText = 'display:flex;gap:6px;margin-left:auto;';
+    bulk.innerHTML = `
+      <label style="display:flex;align-items:center;gap:5px;font-size:.72rem;color:var(--dim);">
+        <input type="checkbox" id="review-select-all" style="accent-color:var(--accent);"> 전체 선택
+      </label>
+      <button class="btn-admin btn-approve" id="btn-bulk-approve">선택 승인</button>
+      <button class="btn-admin btn-unpublish" id="btn-bulk-unpublish">선택 비공개</button>
+      <button class="btn-admin btn-delete" id="btn-bulk-delete">선택 삭제</button>
+    `;
+    filterRow.style.alignItems = 'center';
+    filterRow.appendChild(bulk);
+
+    $('review-select-all').addEventListener('change', (e) => {
+      document.querySelectorAll('.review-select').forEach(cb => cb.checked = e.target.checked);
+    });
+    $('btn-bulk-approve').addEventListener('click', () => bulkReviewAction('approve'));
+    $('btn-bulk-unpublish').addEventListener('click', () => bulkReviewAction('unpublish'));
+    $('btn-bulk-delete').addEventListener('click', () => bulkReviewAction('delete'));
+  }
+  async function bulkReviewAction(action) {
+    const ids = Array.from(document.querySelectorAll('.review-select:checked')).map(cb => cb.dataset.id);
+    if (ids.length === 0) { alert('선택된 리뷰가 없습니다.'); return; }
+    if (action === 'delete' && !confirm(`선택한 ${ids.length}건 리뷰를 영구 삭제하시겠습니까?`)) return;
+    try {
+      if (action === 'approve') await supabase.from('reviews').update({ is_published: true }).in('id', ids);
+      else if (action === 'unpublish') await supabase.from('reviews').update({ is_published: false }).in('id', ids);
+      else if (action === 'delete') await supabase.from('reviews').delete().in('id', ids);
+      await loadReviews();
+      await loadStats();
+    } catch (err) {
+      alert('일괄 작업 실패: ' + err.message);
+    }
+  }
+
+  // renderReviews 원본 확장: 체크박스 주입
+  const _origRenderReviews = renderReviews;
+  renderReviews = function () {
+    _origRenderReviews();
+    // 각 리뷰 아이템에 체크박스 추가
+    document.querySelectorAll('.review-item').forEach(item => {
+      if (item.querySelector('.review-select')) return;
+      const cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.className = 'review-select';
+      cb.dataset.id = item.dataset.id;
+      cb.style.cssText = 'margin-right:10px;accent-color:var(--accent);transform:translateY(1px);';
+      const meta = item.querySelector('.review-meta > div:first-child');
+      if (meta) meta.prepend(cb);
+    });
+    setupBulkReviewActions();
+  };
+
+  // ── 쿠폰 관리 ────────────────────────
+  async function loadCoupons() {
+    const { data, error } = await supabase
+      .from('coupons')
+      .select('*, coupon_redemptions(count)')
+      .order('created_at', { ascending: false });
+    const wrap = $('coupons-table-wrap');
+    if (error) {
+      wrap.innerHTML = '<div class="empty">불러오기 실패: ' + esc(error.message) + '</div>';
+      return;
+    }
+    $('coupons-count').textContent = (data?.length || 0) + '개';
+    if (!data || data.length === 0) {
+      wrap.innerHTML = '<div class="empty">아직 발행된 쿠폰이 없습니다.</div>';
+      return;
+    }
+    wrap.innerHTML = `
+      <table class="newsletter-table">
+        <thead>
+          <tr><th>코드</th><th>할인</th><th>적용 플랜</th><th>사용</th><th>상태</th><th></th></tr>
+        </thead>
+        <tbody>
+          ${data.map(c => {
+            const usedCount = c.coupon_redemptions?.[0]?.count || 0;
+            const expired = c.valid_until && new Date(c.valid_until) < new Date();
+            const exhausted = c.max_uses && usedCount >= c.max_uses;
+            const stateLabel = expired ? '만료' : exhausted ? '소진' : c.is_active ? '활성' : '비활성';
+            const stateColor = (expired || exhausted || !c.is_active) ? 'var(--warn)' : 'var(--ok)';
+            return `
+              <tr>
+                <td style="font-family:monospace;font-weight:700;color:var(--accent);">${esc(c.code)}</td>
+                <td style="font-size:.78rem;">${c.discount_type === 'percentage' ? c.discount_value + '%' : won(c.discount_value)}${c.max_discount_amount ? ` (최대 ${won(c.max_discount_amount)})` : ''}</td>
+                <td style="font-size:.72rem;color:var(--dim);">${(c.applicable_plans || []).join(', ')}<br><small>${(c.applicable_billing || []).join('+')}</small></td>
+                <td style="font-size:.78rem;">${usedCount}${c.max_uses ? ` / ${c.max_uses}` : ''}<br><small style="color:var(--dim);">/유저 ${c.max_uses_per_user || 1}</small></td>
+                <td><span style="font-size:.7rem;padding:3px 8px;border-radius:3px;color:${stateColor};border:1px solid ${stateColor};">${stateLabel}</span></td>
+                <td>
+                  <button class="btn-admin ${c.is_active ? 'btn-unpublish' : 'btn-approve'}" data-coupon-id="${esc(c.id)}" data-coupon-toggle="${c.is_active}" style="font-size:.68rem;padding:4px 10px;">${c.is_active ? '비활성화' : '활성화'}</button>
+                </td>
+              </tr>
+            `;
+          }).join('')}
+        </tbody>
+      </table>
+    `;
+    wrap.querySelectorAll('[data-coupon-toggle]').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const id = btn.dataset.couponId;
+        const cur = btn.dataset.couponToggle === 'true';
+        await supabase.from('coupons').update({ is_active: !cur }).eq('id', id);
+        loadCoupons();
+      });
+    });
+  }
+
+  $('btn-create-coupon')?.addEventListener('click', async () => {
+    const msg = $('coupon-form-msg');
+    const code = $('cp-code').value.trim().toUpperCase();
+    const type = $('cp-type').value;
+    const value = parseInt($('cp-value').value, 10);
+    const maxDiscount = $('cp-max-discount').value ? parseInt($('cp-max-discount').value, 10) : null;
+    const perUser = parseInt($('cp-uses-per-user').value || '1', 10);
+    const maxUses = $('cp-max-uses').value ? parseInt($('cp-max-uses').value, 10) : null;
+    const validUntil = $('cp-valid-until').value || null;
+    const description = $('cp-description').value.trim() || null;
+
+    if (!code || !value) { msg.textContent = '코드/할인값 필수'; msg.style.color = 'var(--danger)'; return; }
+    if (type === 'percentage' && value > 100) { msg.textContent = '% 쿠폰은 100 이하'; msg.style.color = 'var(--danger)'; return; }
+
+    const { error } = await supabase.from('coupons').insert({
+      code, discount_type: type, discount_value: value,
+      max_discount_amount: maxDiscount,
+      max_uses_per_user: perUser, max_uses: maxUses,
+      valid_until: validUntil ? new Date(validUntil).toISOString() : null,
+      description, is_active: true,
+      created_by: user.id
+    });
+    if (error) {
+      msg.textContent = (error.code === '23505') ? '이미 존재하는 코드입니다' : ('실패: ' + error.message);
+      msg.style.color = 'var(--danger)';
+      return;
+    }
+    msg.textContent = '✓ 쿠폰 발행됨';
+    msg.style.color = 'var(--ok)';
+    $('coupon-form').reset();
+    $('cp-uses-per-user').value = '1';
+    loadCoupons();
+  });
+
+  // ── 매출 대시보드 ────────────────────
+  async function loadRevenue() {
+    const now = Date.now();
+    const day = 86400000;
+    const todayStart = new Date(new Date().toISOString().slice(0,10)).toISOString();
+    const weekStart = new Date(now - 7*day).toISOString();
+    const monthStart = new Date(now - 30*day).toISOString();
+
+    const [{ data: paidAll }, { data: subsBreakdown }] = await Promise.all([
+      supabase.from('orders').select('total_amount, paid_at, status').eq('status','paid'),
+      supabase.from('subscriptions').select('plan_code, billing_cycle, status, auto_renew').eq('status','active')
+    ]);
+    const sum = (rows, fromIso) => (rows || [])
+      .filter(r => !fromIso || (r.paid_at && r.paid_at >= fromIso))
+      .reduce((s, r) => s + (r.total_amount || 0), 0);
+
+    $('rev-today').textContent = won(sum(paidAll, todayStart));
+    $('rev-week').textContent  = won(sum(paidAll, weekStart));
+    $('rev-month').textContent = won(sum(paidAll, monthStart));
+    $('rev-all').textContent   = won(sum(paidAll, null));
+
+    // 플랜별 활성 구독 분포
+    const byPlan = {};
+    (subsBreakdown || []).forEach(s => {
+      const key = (s.plan_code || 'UNKNOWN') + '·' + (s.billing_cycle || '?');
+      byPlan[key] = (byPlan[key] || 0) + 1;
+    });
+    const planTotal = subsBreakdown?.length || 0;
+    $('plan-breakdown').innerHTML = planTotal === 0
+      ? '<div class="empty">활성 구독이 없습니다.</div>'
+      : Object.entries(byPlan).map(([k,v]) => {
+          const pct = ((v / planTotal) * 100).toFixed(1);
+          return `
+            <div style="display:flex;align-items:center;gap:12px;padding:8px 0;">
+              <div style="min-width:160px;font-weight:700;">${esc(k)}</div>
+              <div style="flex:1;height:10px;background:rgba(255,255,255,.05);border-radius:999px;overflow:hidden;">
+                <div style="height:100%;width:${pct}%;background:var(--accent);"></div>
+              </div>
+              <div style="min-width:80px;text-align:right;font-size:.82rem;"><strong>${v}</strong> <span style="color:var(--dim);font-size:.72rem;">${pct}%</span></div>
+            </div>`;
+        }).join('');
+
+    // 자동갱신 on/off 비율
+    const autoOn = (subsBreakdown || []).filter(s => s.auto_renew).length;
+    const autoOff = planTotal - autoOn;
+    $('renewal-breakdown').innerHTML = planTotal === 0
+      ? '<div class="empty">데이터 없음</div>'
+      : `
+        <div style="display:flex;gap:20px;font-size:.86rem;">
+          <div><span style="color:var(--ok);">●</span> 자동갱신 <strong>${autoOn}</strong>건</div>
+          <div><span style="color:var(--warn);">●</span> 해지 예정 <strong>${autoOff}</strong>건</div>
+          <div style="margin-left:auto;color:var(--dim);font-size:.78rem;">갱신률 ${planTotal ? ((autoOn/planTotal)*100).toFixed(1) : 0}%</div>
+        </div>`;
+  }
+
+  // 초기 로드 확장 — 쿠폰/매출 추가
+  const _origLoadAll = loadAll;
+  loadAll = async function() {
+    await _origLoadAll();
+    await loadCoupons();
+    await loadRevenue();
+  };
+  // 이미 초기 호출이 일어났을 가능성이 있어 명시적으로 한 번 더
+  loadCoupons();
+  loadRevenue();
 
   window.switchAdminTab = function(tab, btn) {
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));

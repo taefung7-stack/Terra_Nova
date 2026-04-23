@@ -10,7 +10,7 @@
 <meta property="og:title" content="월간 독해 학습지 구독 · TERRA NOVA">
 <meta property="og:description" content="교과 연계 월간 영어 독해지. LIGHT 11,900원·STANDARD 24,900원.">
 <meta property="og:url" content="https://terra-nova.kr/order.html">
-<meta property="og:image" content="https://terra-nova.kr/og-cover.svg">
+<meta property="og:image" content="https://terra-nova.kr/assets/og/og-order.svg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -594,6 +594,19 @@
           <span class="summary-item-label">배송비</span>
           <span class="summary-item-value accent" id="sum-delivery">—</span>
         </div>
+        <div class="summary-item" id="sum-coupon-row" style="display:none;">
+          <span class="summary-item-label">쿠폰 (<span id="sum-coupon-code">—</span>)</span>
+          <span class="summary-item-value green" id="sum-coupon-discount">—</span>
+        </div>
+        <!-- 쿠폰 입력 -->
+        <div style="margin-top:14px;padding:12px;background:rgba(45,212,191,.04);border:1px dashed rgba(45,212,191,.3);border-radius:8px;">
+          <label for="coupon-input" style="display:block;font-size:.72rem;color:var(--dim);margin-bottom:6px;letter-spacing:1px;text-transform:uppercase;font-weight:700;">🎟️ 쿠폰 코드</label>
+          <div style="display:flex;gap:6px;">
+            <input type="text" id="coupon-input" name="coupon_code" autocomplete="off" placeholder="LAUNCH2026" style="flex:1;background:var(--card2);border:1px solid var(--line);border-radius:6px;padding:8px 12px;color:var(--txt);text-transform:uppercase;font-size:.88rem;outline:none;">
+            <button type="button" id="btn-apply-coupon" style="background:var(--accent);color:#0A0A0A;border:none;padding:0 14px;border-radius:6px;font-weight:700;font-size:.78rem;cursor:pointer;white-space:nowrap;">적용</button>
+          </div>
+          <div id="coupon-msg" style="margin-top:6px;font-size:.72rem;min-height:1em;"></div>
+        </div>
         <div class="summary-total">
           <span class="summary-total-label">결제 금액</span>
           <div class="summary-total-right">
@@ -767,6 +780,9 @@
   }
 
   // ── Summary update ──
+  // 쿠폰 상태
+  let appliedCoupon = null; // { coupon_id, code, discount_applied, discount_type, discount_value }
+
   function updateSummary() {
     const isAnnual = billingCycle === 'annual';
     const price    = isAnnual ? annualPrice : monthlyPrice;
@@ -787,14 +803,66 @@
       savingRow.style.display = 'none';
     }
 
-    if (price) {
-      document.getElementById('sum-total').textContent = price.toLocaleString();
+    // 쿠폰 할인 행
+    const couponRow = document.getElementById('sum-coupon-row');
+    let finalPrice = price;
+    if (appliedCoupon && price) {
+      couponRow.style.display = 'flex';
+      document.getElementById('sum-coupon-code').textContent = appliedCoupon.code;
+      document.getElementById('sum-coupon-discount').textContent = '-' + appliedCoupon.discount_applied.toLocaleString() + '원';
+      finalPrice = Math.max(0, price - appliedCoupon.discount_applied);
+    } else {
+      couponRow.style.display = 'none';
+    }
+
+    if (finalPrice >= 0 && price) {
+      document.getElementById('sum-total').textContent = finalPrice.toLocaleString();
       document.getElementById('sum-total-unit').textContent = isAnnual ? '원 / 년' : '원 / 월';
     } else {
       document.getElementById('sum-total').textContent = '0';
       document.getElementById('sum-total-unit').textContent = '원';
     }
   }
+
+  // 쿠폰 적용 버튼
+  async function applyCoupon() {
+    const input = document.getElementById('coupon-input');
+    const msg = document.getElementById('coupon-msg');
+    const code = (input.value || '').trim().toUpperCase();
+    if (!code) { msg.textContent = '쿠폰 코드를 입력해주세요'; msg.style.color = '#F87171'; return; }
+    if (!selectedPlan) { msg.textContent = '먼저 플랜을 선택해주세요'; msg.style.color = '#F87171'; return; }
+
+    const price = billingCycle === 'annual' ? annualPrice : monthlyPrice;
+    if (!price) { msg.textContent = '플랜 가격 정보가 없습니다'; msg.style.color = '#F87171'; return; }
+
+    msg.textContent = '확인 중...';
+    msg.style.color = 'var(--dim)';
+    try {
+      const { supabase } = await import('./supabase-client.js');
+      const { data, error } = await supabase.rpc('validate_coupon', {
+        p_code: code, p_plan: selectedPlan, p_billing: billingCycle, p_amount: price
+      });
+      if (error) throw error;
+      if (!data?.valid) {
+        msg.textContent = '✗ ' + (data?.reason || '유효하지 않은 쿠폰입니다');
+        msg.style.color = '#F87171';
+        appliedCoupon = null;
+        updateSummary();
+        return;
+      }
+      appliedCoupon = data;
+      msg.textContent = '✓ ' + (data.description || '쿠폰이 적용되었습니다') + ' (-' + data.discount_applied.toLocaleString() + '원)';
+      msg.style.color = '#4ADE80';
+      updateSummary();
+    } catch (err) {
+      msg.textContent = '적용 실패: ' + (err?.message || '알 수 없는 오류');
+      msg.style.color = '#F87171';
+    }
+  }
+  document.getElementById('btn-apply-coupon')?.addEventListener('click', applyCoupon);
+  document.getElementById('coupon-input')?.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') { e.preventDefault(); applyCoupon(); }
+  });
 
   // ── Submit ──
   function submitOrder() {
