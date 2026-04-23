@@ -482,15 +482,15 @@
         <form id="review-form" onsubmit="return false;">
           <div class="form-row">
             <div class="form-group">
-              <label>별점 <span style="color:#F87171;">*</span></label>
-              <div id="review-star-picker" style="display:flex;gap:6px;user-select:none;">
+              <label for="review-star-picker">별점 <span style="color:#F87171;">*</span></label>
+              <div id="review-star-picker" role="radiogroup" aria-label="별점 선택 (1~5)" style="display:flex;gap:6px;user-select:none;">
                 <!-- populated by JS, 5 stars -->
               </div>
-              <input type="hidden" id="review-rating" required>
+              <input type="hidden" id="review-rating" name="rating" required>
             </div>
             <div class="form-group">
-              <label>레벨 <span style="color:#F87171;">*</span></label>
-              <select id="review-level" required>
+              <label for="review-level">레벨 <span style="color:#F87171;">*</span></label>
+              <select id="review-level" name="level" required>
                 <option value="">선택</option>
                 <option value="STARTER">STARTER (초3~4)</option>
                 <option value="JUNIOR">JUNIOR (초5~6)</option>
@@ -502,12 +502,12 @@
             </div>
           </div>
           <div class="form-group">
-            <label>제목 <span style="color:#F87171;">*</span></label>
-            <input type="text" id="review-title" maxlength="60" placeholder="예: 영어가 재밌어졌어요" required>
+            <label for="review-title">제목 <span style="color:#F87171;">*</span></label>
+            <input type="text" id="review-title" name="title" maxlength="60" placeholder="예: 영어가 재밌어졌어요" required>
           </div>
           <div class="form-group">
-            <label>내용 <span style="color:#F87171;">*</span></label>
-            <textarea id="review-content" maxlength="1000" rows="5" placeholder="Terra Nova를 통한 학습 경험과 변화를 자유롭게 작성해주세요. (20자 이상)"
+            <label for="review-content">내용 <span style="color:#F87171;">*</span></label>
+            <textarea id="review-content" name="content" maxlength="1000" rows="5" placeholder="Terra Nova를 통한 학습 경험과 변화를 자유롭게 작성해주세요. (20자 이상)"
               style="width:100%;background:var(--card2);border:1px solid rgba(255,255,255,.1);border-radius:6px;padding:11px 14px;color:var(--txt);font-family:'Noto Sans KR',sans-serif;font-size:.88rem;outline:none;resize:vertical;min-height:120px;transition:border-color .18s;"
               required></textarea>
           </div>
@@ -539,12 +539,12 @@
         <div class="section-block-title">기본 정보</div>
         <div class="form-row">
           <div class="form-group">
-            <label>학생 이름 <span style="color:#F87171;">*</span></label>
-            <input type="text" id="acc-name" value="" placeholder="홍길동">
+            <label for="acc-name">학생 이름 <span style="color:#F87171;">*</span></label>
+            <input type="text" id="acc-name" name="student_name" autocomplete="name" value="" placeholder="홍길동">
           </div>
           <div class="form-group">
-            <label>학년 <span style="color:#F87171;">*</span></label>
-            <select id="acc-grade">
+            <label for="acc-grade">학년 <span style="color:#F87171;">*</span></label>
+            <select id="acc-grade" name="grade">
               <option value="">선택</option>
               <option>초등 3학년</option><option>초등 4학년</option>
               <option>초등 5학년</option><option>초등 6학년</option>
@@ -557,21 +557,21 @@
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label>재학 학교</label>
-            <input type="text" id="acc-school" value="" placeholder="예: 강남고등학교">
+            <label for="acc-school">재학 학교</label>
+            <input type="text" id="acc-school" name="school" autocomplete="organization" value="" placeholder="예: 강남고등학교">
           </div>
           <div class="form-group">
-            <label>목표 점수 (수능 영어)</label>
-            <input type="number" id="acc-target" value="" placeholder="예: 90" min="0" max="100">
+            <label for="acc-target">목표 점수 (수능 영어)</label>
+            <input type="number" id="acc-target" name="target_score" value="" placeholder="예: 90" min="0" max="100">
           </div>
         </div>
         <div class="form-group">
-          <label>연락처 (학부모) <span style="color:#F87171;">*</span></label>
-          <input type="tel" id="acc-phone" value="" placeholder="010-0000-0000">
+          <label for="acc-phone">연락처 (학부모) <span style="color:#F87171;">*</span></label>
+          <input type="tel" id="acc-phone" name="phone" autocomplete="tel" value="" placeholder="010-0000-0000">
         </div>
         <div class="form-group">
-          <label>이메일 <small style="color:var(--dim);font-weight:400;">(변경 불가)</small></label>
-          <input type="email" id="acc-email" value="" readonly style="opacity:.65;cursor:not-allowed;">
+          <label for="acc-email">이메일 <small style="color:var(--dim);font-weight:400;">(변경 불가)</small></label>
+          <input type="email" id="acc-email" name="email" autocomplete="email" value="" readonly style="opacity:.65;cursor:not-allowed;">
         </div>
         <button class="btn-save" id="btn-save-account">저장</button>
         <span id="acc-save-msg" style="margin-left:12px;font-size:.78rem;color:var(--accent);opacity:0;transition:opacity .3s;">✓ 저장되었습니다</span>
@@ -582,21 +582,21 @@
         <p style="font-size:.78rem;color:var(--dim);margin-bottom:14px;line-height:1.7;">구독·주문 시 기본으로 사용되는 주소입니다.</p>
         <div class="form-row">
           <div class="form-group">
-            <label>우편번호</label>
+            <label for="acc-zip">우편번호</label>
             <div style="display:flex;gap:8px;">
-              <input type="text" id="acc-zip" value="" readonly style="flex:1;background:rgba(255,255,255,.04);">
+              <input type="text" id="acc-zip" name="zipcode" autocomplete="postal-code" value="" readonly style="flex:1;background:rgba(255,255,255,.04);">
               <button type="button" id="btn-search-addr" class="btn-sm btn-sm-outline" style="white-space:nowrap;padding:0 18px;">주소 검색</button>
             </div>
           </div>
           <div class="form-group">
-            <label>받는 분</label>
-            <input type="text" id="acc-recipient" value="" placeholder="받는 분 이름">
+            <label for="acc-recipient">받는 분</label>
+            <input type="text" id="acc-recipient" name="recipient" autocomplete="name" value="" placeholder="받는 분 이름">
           </div>
         </div>
         <div class="form-group">
-          <label>주소</label>
-          <input type="text" id="acc-addr" value="" readonly style="margin-bottom:8px;background:rgba(255,255,255,.04);">
-          <input type="text" id="acc-addr-detail" placeholder="상세 주소 (동, 호수 등)">
+          <label for="acc-addr">주소</label>
+          <input type="text" id="acc-addr" name="address" autocomplete="street-address" value="" readonly style="margin-bottom:8px;background:rgba(255,255,255,.04);">
+          <input type="text" id="acc-addr-detail" name="address_detail" autocomplete="address-line2" placeholder="상세 주소 (동, 호수 등)" aria-label="상세 주소">
         </div>
         <button class="btn-save" id="btn-save-addr">주소 저장</button>
         <span id="addr-save-msg" style="margin-left:12px;font-size:.78rem;color:var(--accent);opacity:0;transition:opacity .3s;">✓ 저장되었습니다</span>
@@ -605,16 +605,16 @@
       <div class="section-block">
         <div class="section-block-title">비밀번호 변경</div>
         <div class="form-group">
-          <label>현재 비밀번호</label>
-          <input type="password" placeholder="현재 비밀번호">
+          <label for="pw-current">현재 비밀번호</label>
+          <input type="password" id="pw-current" name="current_password" autocomplete="current-password" placeholder="현재 비밀번호">
         </div>
         <div class="form-group">
-          <label>새 비밀번호</label>
-          <input type="password" placeholder="새 비밀번호 (8자 이상)">
+          <label for="pw-new">새 비밀번호</label>
+          <input type="password" id="pw-new" name="new_password" autocomplete="new-password" placeholder="새 비밀번호 (8자 이상)">
         </div>
         <div class="form-group">
-          <label>새 비밀번호 확인</label>
-          <input type="password" placeholder="새 비밀번호 재입력">
+          <label for="pw-confirm">새 비밀번호 확인</label>
+          <input type="password" id="pw-confirm" name="confirm_password" autocomplete="new-password" placeholder="새 비밀번호 재입력">
         </div>
         <button class="btn-save" onclick="alert('비밀번호가 변경되었습니다.')">변경</button>
       </div>
@@ -622,21 +622,21 @@
       <div class="section-block">
         <div class="section-block-title">알림 설정</div>
         <div style="display:flex;flex-direction:column;gap:12px;">
-          <label style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;">
+          <label style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;" for="notif-kakao">
             <span style="font-size:.85rem;color:rgba(255,255,255,.85);">카카오톡 배송 알림</span>
-            <input type="checkbox" checked style="width:16px;height:16px;accent-color:var(--accent);">
+            <input type="checkbox" id="notif-kakao" name="notif_kakao" checked style="width:16px;height:16px;accent-color:var(--accent);">
           </label>
-          <label style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;">
+          <label style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;" for="notif-payment">
             <span style="font-size:.85rem;color:rgba(255,255,255,.85);">결제 완료 알림</span>
-            <input type="checkbox" checked style="width:16px;height:16px;accent-color:var(--accent);">
+            <input type="checkbox" id="notif-payment" name="notif_payment" checked style="width:16px;height:16px;accent-color:var(--accent);">
           </label>
-          <label style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;">
+          <label style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;" for="notif-reminder">
             <span style="font-size:.85rem;color:rgba(255,255,255,.85);">학습 리마인더 (매일 오후 6시)</span>
-            <input type="checkbox" style="width:16px;height:16px;accent-color:var(--accent);">
+            <input type="checkbox" id="notif-reminder" name="notif_reminder" style="width:16px;height:16px;accent-color:var(--accent);">
           </label>
-          <label style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;">
+          <label style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;" for="notif-marketing">
             <span style="font-size:.85rem;color:rgba(255,255,255,.85);">마케팅 정보 수신</span>
-            <input type="checkbox" style="width:16px;height:16px;accent-color:var(--accent);">
+            <input type="checkbox" id="notif-marketing" name="notif_marketing" style="width:16px;height:16px;accent-color:var(--accent);">
           </label>
         </div>
       </div>
@@ -686,6 +686,9 @@
   import { supabase, requireAuth, getProfile, getActiveSubscription, signOut } from './supabase-client.js';
 
   const $ = (id) => document.getElementById(id);
+  const escapeHtml = (s) => String(s ?? '')
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
   const setText = (id, v) => { const el = $(id); if (el) el.textContent = v ?? '-'; };
   const setVal  = (id, v) => { const el = $(id); if (el) el.value = v ?? ''; };
   const won = (n) => (n ?? 0).toLocaleString('ko-KR') + '원';
@@ -903,15 +906,15 @@
       const listEl = $('history-list');
       $('history-empty').remove();
       listEl.innerHTML = orders.map(o => {
-        const itemNames = (o.order_items || []).map(it => (it.product_snapshot?.name || '상품') + (it.quantity > 1 ? ` x${it.quantity}` : '')).join(', ');
+        const itemNames = (o.order_items || []).map(it => escapeHtml(it.product_snapshot?.name || '상품') + (it.quantity > 1 ? ` x${Number(it.quantity) || 1}` : '')).join(', ');
         const statusClass = o.status === 'paid' || o.status === 'delivered' || o.status === 'shipped' ? 'status-paid'
                           : o.status === 'pending' ? 'status-scheduled' : 'status-paid';
         return `
           <div class="history-item">
             <div class="history-date">${ymd(o.paid_at || o.created_at)}</div>
-            <div class="history-desc">${itemNames || '주문 #' + o.order_number}</div>
+            <div class="history-desc">${itemNames || '주문 #' + escapeHtml(o.order_number)}</div>
             <div class="history-amount">${won(o.total_amount)}</div>
-            <span class="history-status ${statusClass}">${STATUS_LABEL[o.status] || o.status}</span>
+            <span class="history-status ${statusClass}">${escapeHtml(STATUS_LABEL[o.status] || o.status)}</span>
           </div>
         `;
       }).join('');
@@ -925,9 +928,9 @@
           <div style="display:flex;align-items:center;gap:12px;padding:16px;background:rgba(74,222,128,.05);border:1px solid rgba(74,222,128,.2);border-radius:8px;">
             <span style="font-size:1.3rem;">${o.status === 'delivered' ? '✅' : o.status === 'shipped' ? '🚚' : '📦'}</span>
             <div style="flex:1;">
-              <div style="font-weight:700;color:#fff;margin-bottom:2px;">${STATUS_LABEL[o.status]}</div>
-              <div style="font-size:.76rem;color:var(--dim);">주문 ${o.order_number} · ${ymd(o.created_at)}</div>
-              <div style="font-size:.72rem;color:rgba(255,255,255,.7);margin-top:4px;">${o.shipping_address || ''} ${o.shipping_detail || ''}</div>
+              <div style="font-weight:700;color:#fff;margin-bottom:2px;">${escapeHtml(STATUS_LABEL[o.status])}</div>
+              <div style="font-size:.76rem;color:var(--dim);">주문 ${escapeHtml(o.order_number)} · ${ymd(o.created_at)}</div>
+              <div style="font-size:.72rem;color:rgba(255,255,255,.7);margin-top:4px;">${escapeHtml(o.shipping_address || '')} ${escapeHtml(o.shipping_detail || '')}</div>
             </div>
           </div>
         `).join('');
@@ -1022,12 +1025,6 @@
         });
       });
     }
-    function escapeHtml(s) {
-      return String(s ?? '')
-        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
-    }
-
     reviewSubmitBtn?.addEventListener('click', async () => {
       const rating = parseInt(reviewRatingInput.value, 10);
       const level = reviewLevelSelect.value;
