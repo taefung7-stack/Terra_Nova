@@ -50,32 +50,19 @@
   /* LAYOUT */
   .page-wrap{padding-top:68px;display:flex;min-height:100vh;}
 
-  /* SIDEBAR — flex column으로 자식들이 자연스럽게 세로 스택되도록 */
-  .sidebar{width:240px;flex-shrink:0;background:var(--mid);border-right:1px solid var(--line);padding:24px 0 40px;position:sticky;top:68px;height:calc(100vh - 68px);overflow-y:auto;display:flex;flex-direction:column;align-items:stretch;}
-  .user-card{padding:20px 24px 24px;border-bottom:1px solid var(--line);flex-shrink:0;}
+  /* SIDEBAR */
+  .sidebar{width:240px;flex-shrink:0;background:var(--mid);border-right:1px solid var(--line);padding:40px 0;position:sticky;top:68px;height:calc(100vh - 68px);overflow-y:auto;}
+  @media(max-width:800px){.sidebar{display:none;}}
+  .user-card{padding:24px 24px 28px;border-bottom:1px solid var(--line);}
   .user-avatar{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#14B8A6);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.2rem;color:#0A0A0A;margin-bottom:12px;}
   .user-name{font-weight:700;color:#fff;font-size:.95rem;margin-bottom:2px;}
   .user-grade{font-size:.72rem;color:var(--accent);font-weight:600;margin-bottom:6px;}
   .user-level-badge{display:inline-block;font-size:.6rem;font-weight:700;letter-spacing:2px;background:rgba(45,212,191,.1);border:1px solid rgba(45,212,191,.3);color:var(--accent);padding:3px 9px;border-radius:3px;}
-  .nav-menu{padding:16px 0;display:flex;flex-direction:column;flex-shrink:0;}
+  .nav-menu{padding:16px 0;}
   .nav-menu-item{display:flex;align-items:center;gap:12px;padding:12px 24px;color:var(--dim);font-size:.82rem;font-weight:500;cursor:pointer;transition:all .18s;border-left:2px solid transparent;}
   .nav-menu-item:hover{color:#fff;background:rgba(255,255,255,.03);}
   .nav-menu-item.active{color:var(--accent);border-left-color:var(--accent);background:rgba(45,212,191,.04);}
   .nav-menu-icon{width:18px;text-align:center;font-size:.9rem;}
-
-  /* MOBILE: 사이드바를 상단 가로 스크롤 탭 바로 전환 (탭 숨김 버그 수정) */
-  @media(max-width:800px){
-    .page-wrap{flex-direction:column;}
-    .sidebar{width:100%;height:auto;position:sticky;top:68px;padding:0;border-right:none;border-bottom:1px solid var(--line);z-index:50;background:var(--mid);}
-    .user-card{display:none;}
-    .nav-menu{padding:0;display:flex;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
-    .nav-menu::-webkit-scrollbar{display:none;}
-    .nav-menu > a,
-    .nav-menu > .nav-menu-item{flex-shrink:0;}
-    .nav-menu .nav-menu-item{padding:13px 16px;font-size:.78rem;border-left:none;border-bottom:2px solid transparent;white-space:nowrap;}
-    .nav-menu .nav-menu-item.active{border-left:none;border-bottom-color:var(--accent);}
-    .nav-menu > a[data-auth="admin"]{margin-top:0 !important;padding-top:0 !important;border-top:none !important;border-left:1px solid var(--line);}
-  }
 
   /* MAIN CONTENT */
   .main-content{flex:1;padding:40px 40px 100px;max-width:860px;}
@@ -216,7 +203,9 @@
   <div class="mobile-tab" onclick="switchTab('level',this)">레벨변경</div>
   <div class="mobile-tab" onclick="switchTab('delivery',this)">배송관리</div>
   <div class="mobile-tab" onclick="switchTab('history',this)">결제내역</div>
+  <div class="mobile-tab" onclick="switchTab('reviews',this)">리뷰작성</div>
   <div class="mobile-tab" onclick="switchTab('account',this)">계정설정</div>
+  <a href="admin.html" class="mobile-tab" data-auth="admin" style="display:none;text-decoration:none;color:#F59E0B;">🛡️ 관리자</a>
 </div>
 
 <div class="page-wrap">
