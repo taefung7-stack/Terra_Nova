@@ -245,17 +245,44 @@ npm run build -- --month 2026-06 --only 02
 
 ---
 
-## 4. 삽화 SVG 가이드
+## 4. 삽화 워크플로 (Midjourney / 외부 이미지)
+
+**작가 서브에이전트는 SVG를 만들지 않습니다.** 다음 흐름으로 처리됩니다:
+
+1. JSON에는 `page1.illustration` 경로만 기록 — 예: `"../../assets/illustrations/2026-07/01.png"`
+2. 실제 파일은 **나중에** Midjourney(또는 다른 도구)로 생성한 뒤 `assets/illustrations/{YYYY-MM}/{NN}.png` 경로에 떨어뜨림
+3. 파일이 없으면 렌더러가 자동으로 보라색 dotted placeholder + "🎨 Illustration · 2026-07-01" 라벨로 대체 → 미리보기·PDF 빌드 모두 깨지지 않음
+4. PDF 인쇄 직전에만 진짜 이미지를 넣으면 됨
+
+### 권장 이미지 사양
 
 | 항목 | 규칙 |
 |------|------|
-| viewBox | 권장 `0 0 800 350` (가로형) |
-| 색상 | 해당 월의 theme 팔레트 사용 — `tokens.css`의 `[data-month="YYYY-MM"]` 변수 참조 |
-| 스타일 | 라인아트 + 서브틀 그라데이션, 배경은 다크/테마색 |
-| 캡션 | SVG 안에도 있지만 `illustration_caption`이 실제 표시됨 |
-| 크기 | 화면에 `height: 52mm` 고정 슬롯 + `object-fit: cover` → SVG 비율이 달라도 깨지지 않음 |
+| 형식 | `png` / `jpg` / `webp` (스키마 패턴이 모두 허용) |
+| 비율 | **16:7 권장** (대략 1600 × 700) — 슬롯이 `height: 52mm`고 `object-fit: cover` |
+| 해상도 | 인쇄 시 300 DPI 기준 최소 1600 × 700 px |
+| 색감 | 해당 월 테마 팔레트와 어울리도록 MJ 프롬프트에 색상 키워드 명시 권장 |
+| 파일명 | `NN.확장자` (sequence 두 자리 + 점 + 확장자) |
 
-PNG/JPG/WebP 사용시: 최소 1600 × 700 이상 권장 (인쇄 선명도).
+### Midjourney 프롬프트 팁
+
+`page1.title` + `illustration_caption` + 월 테마 색상을 합치면 좋습니다. 예:
+
+```
+"Where Do Atoms Come From?", elegant editorial illustration,
+stars forging elements inside us, deep purple and majorelle blue palette,
+clean line-art style, 16:7 aspect, soft glow --ar 16:7 --v 6
+```
+
+### Placeholder 동작
+
+이미지 파일이 없거나 경로가 틀리면 페이지 1에 다음과 같이 표시됩니다:
+
+- 보라색 사선 패턴 배경 + 점선 테두리
+- 가운데 🎨 이모지 + `Illustration · 2026-07-01` 텍스트
+- 캡션은 정상 표시
+
+따라서 콘텐츠 작가 / Midjourney 작업자가 완전히 분리되어 일할 수 있습니다.
 
 ---
 

@@ -24,6 +24,16 @@ npm test
 
 The 4-page layout is **fixed**. The template (HTML + CSS + render.js) stays identical across every passage — only JSON content changes.
 
+## Illustration workflow (Midjourney-driven)
+
+We **do not generate SVG illustrations during authoring**. The author writes JSON only; the illustration is added later as a separate step:
+
+1. JSON references `assets/illustrations/{YYYY-MM}/{NN}.png` (or .svg/.jpg/.webp)
+2. Until that file exists, the layout shows a clean purple placeholder ("🎨 Illustration · 2026-07-01")
+3. When the Midjourney/external image is ready, drop it at the referenced path → next render picks it up automatically
+
+Recommended MJ aspect: **16:7** (slot is 52mm tall with `object-fit: cover`).
+
 ## Directory map
 
 ```text

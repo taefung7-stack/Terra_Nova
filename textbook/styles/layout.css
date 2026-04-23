@@ -186,6 +186,34 @@ body { font-size: var(--fs-body); line-height: var(--lh-body); }
 .p1-illustration img, .p1-illustration svg {
   width: 100%; height: 100%; object-fit: cover; display: block;
 }
+/* Empty-image placeholder shown when the illustration file is missing
+   (e.g. waiting for a Midjourney-generated PNG to drop in). */
+.p1-illustration.illustration-empty {
+  background:
+    linear-gradient(135deg, var(--tn-theme-soft) 0%, var(--tn-theme-soft) 50%, #FFFFFF 50%, #FFFFFF 100%);
+  background-size: 12pt 12pt;
+  background-color: var(--tn-theme-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 3pt;
+  border: 0.6pt dashed var(--tn-theme);
+}
+.p1-illustration.illustration-empty::before {
+  content: "🎨";
+  font-size: 22pt;
+  opacity: 0.7;
+}
+.p1-illustration.illustration-empty::after {
+  content: "Illustration · " attr(data-placeholder-id);
+  font-family: var(--font-display);
+  font-size: 9pt;
+  color: var(--tn-theme-deep);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  opacity: 0.85;
+}
 .p1-caption {
   font-style: italic;
   font-size: var(--fs-caption);

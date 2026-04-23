@@ -252,6 +252,17 @@ async function main() {
   setAttr(root, 'illustration', 'src', data.page1.illustration);
   setAttr(root, 'illustration', 'alt', data.page1.illustration_caption);
   setText(root, 'illustration-caption', data.page1.illustration_caption);
+  // If the actual image file is missing (e.g. waiting for Midjourney drop-in),
+  // swap to a styled placeholder so layout stays clean.
+  const imgEl = root.querySelector('[data-slot="illustration"]');
+  if (imgEl) {
+    imgEl.addEventListener('error', () => {
+      const wrap = imgEl.parentElement;
+      wrap.classList.add('illustration-empty');
+      wrap.dataset.placeholderId = data.id;
+      imgEl.style.display = 'none';
+    });
+  }
 
   // Page 2
   setHTML(root, 'questions', renderQuestions(data.page2.questions));
