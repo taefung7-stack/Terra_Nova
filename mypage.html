@@ -50,10 +50,14 @@
   /* LAYOUT */
   .page-wrap{padding-top:68px;display:flex;min-height:100vh;}
 
-  /* SIDEBAR — sticky 제거하고 자연스러운 flex 자식으로 (메뉴 미노출 버그 원인) */
+  /* SIDEBAR — 모든 사이즈에서 유지 (너비만 반응형으로 조정) */
   .sidebar{width:240px;flex-shrink:0;background:var(--mid);border-right:1px solid var(--line);padding:40px 0;align-self:stretch;}
-  @media(max-width:800px){.sidebar{width:180px;padding:20px 0;}}
-  @media(max-width:600px){.sidebar{display:none;}}
+  @media(max-width:800px){.sidebar{width:200px;padding:24px 0;}}
+  @media(max-width:500px){.sidebar{width:64px;padding:20px 0;}}
+  @media(max-width:500px){.user-card{padding:12px 8px;text-align:center;}}
+  @media(max-width:500px){.user-name,.user-grade,.user-level-badge{display:none;}}
+  @media(max-width:500px){.nav-menu-item{padding:14px 8px;justify-content:center;font-size:0;}}
+  @media(max-width:500px){.nav-menu-icon{font-size:1.2rem;}}
   .user-card{padding:24px 24px 28px;border-bottom:1px solid var(--line);}
   .user-avatar{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#14B8A6);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.2rem;color:#0A0A0A;margin-bottom:12px;}
   .user-name{font-weight:700;color:#fff;font-size:.95rem;margin-bottom:2px;}
@@ -158,11 +162,8 @@
   .status-paid{background:rgba(74,222,128,.1);color:#4ADE80;border:1px solid rgba(74,222,128,.2);}
   .status-scheduled{background:rgba(45,212,191,.1);color:var(--accent);border:1px solid rgba(45,212,191,.2);}
 
-  /* MOBILE NAV */
-  .mobile-menu{display:none;background:var(--mid);border-bottom:1px solid var(--line);padding:0 5vw;}
-  @media(max-width:800px){.mobile-menu{display:flex;gap:0;overflow-x:auto;}}
-  .mobile-tab{padding:14px 18px;font-size:.75rem;font-weight:600;color:var(--dim);white-space:nowrap;cursor:pointer;border-bottom:2px solid transparent;transition:all .18s;flex-shrink:0;}
-  .mobile-tab.active{color:var(--accent);border-bottom-color:var(--accent);}
+  /* MOBILE NAV — 현재 사용 안 함, 사이드바를 모든 사이즈에서 유지 */
+  .mobile-menu{display:none !important;}
   /* FLOATING CIRCLES */
   .float-group{position:fixed;bottom:28px;right:24px;display:flex;flex-direction:column;gap:12px;z-index:200;}
   .float-btn{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;transition:transform .15s,box-shadow .15s;box-shadow:0 4px 16px rgba(0,0,0,.4);}
