@@ -705,9 +705,18 @@
     const gradeLabel = meta.grade_label || '-';
     const initial = (name || '?').slice(0, 1);
 
-    // 관리자 링크 노출 여부
-    if (profile.is_admin === true) {
-      document.querySelectorAll('[data-auth="admin"]').forEach(el => { el.style.display = ''; });
+    // 관리자 링크 노출 여부 — 캐시/undefined 방지용으로 is_admin을 명시적으로 재조회
+    let isAdmin = profile.is_admin === true;
+    if (!isAdmin) {
+      try {
+        const { data: adminCheck } = await supabase
+          .from('profiles').select('is_admin').eq('id', user.id).maybeSingle();
+        isAdmin = adminCheck?.is_admin === true;
+      } catch { /* ignore */ }
+    }
+    console.info('[mypage] is_admin =', isAdmin);
+    if (isAdmin) {
+      document.querySelectorAll('[data-auth="admin"]').forEach(el => { el.style.display = 'block'; });
     }
 
     // ── 네비/사이드바 ────────────────────
