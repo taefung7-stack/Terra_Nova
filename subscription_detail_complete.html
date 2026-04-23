@@ -4199,6 +4199,22 @@
       }
     });
   </script>
+  <!-- 스크롤-투-탑 버튼 (카톡 버튼 위에 위치) -->
+  <button id="scroll-top" aria-label="맨 위로" style="position:fixed;bottom:150px;right:24px;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border:1px solid rgba(79,70,229,.3);color:#4F46E5;font-size:1rem;font-weight:700;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:199;box-shadow:0 4px 16px rgba(0,0,0,.15);transition:transform .15s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'" onclick="window.scrollTo({top:0,behavior:'smooth'})">▲</button>
+  <script>
+    (function(){
+      const btn = document.getElementById('scroll-top');
+      if (!btn) return;
+      let visible = false;
+      window.addEventListener('scroll', () => {
+        const show = window.scrollY > 600;
+        if (show === visible) return;
+        visible = show;
+        btn.style.display = show ? 'flex' : 'none';
+      }, { passive: true });
+    })();
+  </script>
+
   <!-- 플로팅 원형 버튼 (sample/faq 통일 스타일) -->
   <div class="float-group">
     <a href="https://pf.kakao.com/_aLExdX" target="_blank" class="float-btn float-kakao" style="position:relative;">
