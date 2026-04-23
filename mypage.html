@@ -261,6 +261,19 @@
 
     <!-- 구독 현황 -->
     <div class="tab-view active" id="tab-dashboard">
+
+      <!-- 관리자 전용 배너 (is_admin=true 인 경우에만 노출) -->
+      <a href="admin.html" data-auth="admin" style="display:none;text-decoration:none;margin-bottom:20px;padding:14px 20px;background:linear-gradient(90deg,rgba(245,158,11,.12),rgba(245,158,11,.04));border:1px solid rgba(245,158,11,.35);border-radius:10px;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <span style="font-size:1.4rem;">🛡️</span>
+          <div>
+            <div style="color:#F59E0B;font-weight:800;font-size:.92rem;">관리자 페이지</div>
+            <div style="color:var(--dim);font-size:.74rem;margin-top:2px;">리뷰 승인 · 뉴스레터 · 최근 주문 관리</div>
+          </div>
+        </div>
+        <span style="color:#F59E0B;font-weight:700;font-size:.82rem;">바로가기 →</span>
+      </a>
+
       <h1 class="page-title">MY PAGE</h1>
       <p class="page-sub">4월 학습 현황 · 구독 관리</p>
 
@@ -716,7 +729,7 @@
     }
     console.info('[mypage] is_admin =', isAdmin);
     if (isAdmin) {
-      document.querySelectorAll('[data-auth="admin"]').forEach(el => { el.style.display = 'block'; });
+      document.querySelectorAll('[data-auth="admin"]').forEach(el => { el.style.display = 'flex'; });
     }
 
     // ── 네비/사이드바 ────────────────────
