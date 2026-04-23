@@ -142,14 +142,16 @@ body { font-size: var(--fs-body); line-height: var(--lh-body); }
 }
 .p1-body {
   font-size: 11pt;
-  line-height: 1.6;
+  line-height: 1.7;
   max-width: 100%;
   text-align: justify;
   hyphens: auto;
   -webkit-hyphens: auto;
-  flex: 1;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
 }
-.p1-body p { margin: 0 0 3pt; text-indent: 2.2em; }
+.p1-body p { margin: 0 0 6pt; text-indent: 2.2em; }
 .p1-body p:last-child { margin-bottom: 0; }
 .p1-body u {
   text-decoration: underline;
@@ -225,18 +227,20 @@ body { font-size: var(--fs-body); line-height: var(--lh-body); }
 /* ===== Page 2 ===== */
 .p2-questions {
   display: flex; flex-direction: column;
-  gap: 2pt;
+  gap: 5pt;
+  flex: 1;
+  justify-content: space-between;
 }
 .question {
   border-left: 2.5pt solid var(--tn-theme);
-  padding: 1pt 0 1pt 9pt;
+  padding: 2pt 0 2pt 9pt;
 }
 .question .stem {
   font-family: var(--font-ko);
   font-weight: 600;
-  margin-bottom: 2pt;
-  font-size: var(--fs-body-small);
-  line-height: 1.5;
+  margin-bottom: 3pt;
+  font-size: 10.5pt;
+  line-height: 1.55;
   /* flex so Q1. never clips into the border, and wrapped prompt lines
      stay in the .stem-rest column (never creep under Q1.) */
   display: flex;
@@ -271,14 +275,15 @@ body { font-size: var(--fs-body); line-height: var(--lh-body); }
 }
 .question .choices {
   list-style: none;
-  padding: 0 0 0 21pt;   /* align under .stem-rest (Q-num 16pt + gap 5pt) */
-  margin: 2pt 0 0;
+  padding: 0 0 0 21pt;
+  margin: 3pt 0 0;
   counter-reset: choice;
   display: flex;
   flex-direction: column;
-  gap: 1.5pt;
-  font-size: var(--fs-body-small);
+  gap: 2.5pt;
+  font-size: 10pt;
   font-family: var(--font-body);
+  line-height: 1.45;
 }
 .question .choices li {
   display: grid;
@@ -477,20 +482,21 @@ body { font-size: var(--fs-body); line-height: var(--lh-body); }
 
 .p3-sentences {
   display: flex; flex-direction: column;
-  gap: 2pt;
+  gap: 1.5pt;
   flex: 1;
-  justify-content: flex-start;
+  /* Distribute remaining vertical space evenly between sentences. */
+  justify-content: space-between;
 }
 .p3-sentence {
   padding-bottom: 1pt;
-  border-bottom: 0.4pt solid var(--tn-divider);
+  border-bottom: 0.3pt solid var(--tn-divider);
   padding-left: 16pt;
   text-indent: -16pt;
 }
 .p3-sentence:last-child { border-bottom: none; }
 .p3-sentence .en-row {
   font-size: 8.4pt;
-  line-height: 1.5;
+  line-height: 1.45;
   font-family: var(--font-body);
 }
 .p3-sentence .num {
@@ -504,14 +510,16 @@ body { font-size: var(--fs-body); line-height: var(--lh-body); }
   margin-right: 2pt;
 }
 
-/* Each segment stays inline so sentence wraps naturally.
-   box-decoration-break: clone keeps the background on every wrap line. */
+/* Each segment stays inline so sentence wraps WORD-BY-WORD across segment
+   boundaries. ZERO horizontal padding/margin/border-radius is critical:
+   any of those make Chromium treat the inline span as an atomic unit
+   that can't be split when its first word doesn't fit on the current line. */
 .p3-sentence .seg {
   display: inline;
-  padding: 0.4pt 3pt;
-  margin: 0 0.5pt;
-  border-radius: 3pt;
-  line-height: 1.45;
+  padding: 0.4pt 0;
+  margin: 0;
+  border-radius: 0;
+  line-height: 1.5;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
   text-indent: 0;
@@ -555,8 +563,8 @@ body { font-size: var(--fs-body); line-height: var(--lh-body); }
 }
 
 .p3-translation {
-  margin-top: 7pt;
-  padding: 5pt 8pt;
+  margin-top: 5pt;
+  padding: 4pt 8pt;
   border-top: 1pt solid var(--tn-theme);
   background: var(--tn-theme-soft);
   border-radius: 4pt;
@@ -571,8 +579,8 @@ body { font-size: var(--fs-body); line-height: var(--lh-body); }
 }
 .p3-translation .body {
   font-family: var(--font-ko);
-  font-size: 8.5pt;
-  line-height: 1.45;
+  font-size: 8pt;
+  line-height: 1.4;
   color: var(--tn-ink);
   text-align: justify;
 }
