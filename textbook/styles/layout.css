@@ -177,8 +177,8 @@ body { font-size: var(--fs-body); line-height: var(--lh-body); }
   border-radius: 2pt;
 }
 .p1-illustration {
-  margin-top: 8pt;
-  height: 52mm;
+  margin-top: 6pt;
+  height: 48mm;
   overflow: hidden;
   border-radius: 3pt;
   background: var(--tn-theme-soft);
@@ -541,23 +541,23 @@ body { font-size: var(--fs-body); line-height: var(--lh-body); }
   opacity: 0.7;
 }
 
-/* per-segment grammar note rendered as ruby text directly under the segment */
+/* per-segment grammar note: native ruby (NOT inline-flex) so the rb text
+   can still word-wrap mid-segment. inline-flex would lock the whole ruby
+   block as an atomic unit and force segment-level line breaks. */
 .p3-sentence .seg ruby {
   ruby-position: under;
   -webkit-ruby-position: after;
-  display: inline-flex;   /* inline-flex keeps the ruby annotation directly under */
-  flex-direction: column;
-  align-items: center;
-  vertical-align: baseline;
 }
-.p3-sentence .seg ruby rb { display: block; }
+.p3-sentence .seg ruby rb {
+  display: ruby-base;
+}
 .p3-sentence .seg ruby rt {
+  display: ruby-text;
   font-size: 6.2pt;
   font-family: var(--font-ko);
   font-weight: 500;
   color: var(--tn-ink-soft);
   line-height: 1.05;
-  margin-top: 0.5pt;
   opacity: 0.9;
   letter-spacing: 0;
 }
