@@ -50,9 +50,8 @@
   /* LAYOUT */
   .page-wrap{padding-top:68px;display:flex;min-height:100vh;}
 
-  /* SIDEBAR */
-  .sidebar{width:240px;flex-shrink:0;background:var(--mid);border-right:1px solid var(--line);padding:40px 0;position:sticky;top:68px;height:calc(100vh - 68px);overflow-y:auto;}
-  /* 작은 화면(DevTools 도킹 등)에서도 사이드바를 좁게라도 유지 — 완전 숨김 방지 */
+  /* SIDEBAR — sticky 제거하고 자연스러운 flex 자식으로 (메뉴 미노출 버그 원인) */
+  .sidebar{width:240px;flex-shrink:0;background:var(--mid);border-right:1px solid var(--line);padding:40px 0;align-self:stretch;}
   @media(max-width:800px){.sidebar{width:180px;padding:20px 0;}}
   @media(max-width:600px){.sidebar{display:none;}}
   .user-card{padding:24px 24px 28px;border-bottom:1px solid var(--line);}
