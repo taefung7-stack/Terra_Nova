@@ -541,12 +541,12 @@ body { font-size: var(--fs-body); line-height: var(--lh-body); }
   opacity: 0.7;
 }
 
-/* per-segment grammar note: native ruby (NOT inline-flex) so the rb text
-   can still word-wrap mid-segment. inline-flex would lock the whole ruby
-   block as an atomic unit and force segment-level line breaks. */
+/* per-segment grammar note: native ruby + ruby-align: start so the
+   note sits as ONE block under the segment (not word-distributed). */
 .p3-sentence .seg ruby {
   ruby-position: under;
   -webkit-ruby-position: after;
+  ruby-align: start;
 }
 .p3-sentence .seg ruby rb {
   display: ruby-base;
@@ -560,6 +560,16 @@ body { font-size: var(--fs-body); line-height: var(--lh-body); }
   line-height: 1.05;
   opacity: 0.9;
   letter-spacing: 0;
+  text-align: left;
+}
+/* The actual note text lives inside <rt><span class="rt-note">…</span></rt>;
+   making that span inline-block + nowrap forces the browser to treat the
+   whole annotation as one indivisible unit (otherwise Chromium splits the
+   note words and distributes them across the rb word boundaries). */
+.p3-sentence .seg ruby rt .rt-note {
+  display: inline-block;
+  white-space: nowrap;
+  text-align: left;
 }
 
 .p3-translation {

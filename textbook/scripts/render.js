@@ -151,8 +151,11 @@ function renderSegment(seg) {
   const tagHtml = tag ? `<span class="seg-tag">${tag}</span>` : '';
   const safeText = renderRichInline(seg.text);
   if (seg.note) {
-    // Render per-segment grammar note as ruby under the segment
-    return `<span class="seg" data-role="${role}"><ruby><rb>${safeText}${tagHtml}</rb><rt>${escapeHTML(seg.note)}</rt></ruby></span>`;
+    // Render per-segment grammar note as ruby under the segment.
+    // The note is wrapped in <span class="rt-note"> with display:inline-block
+    // so Chromium treats it as one indivisible annotation block instead of
+    // splitting the note words across the rb word boundaries.
+    return `<span class="seg" data-role="${role}"><ruby><rb>${safeText}${tagHtml}</rb><rt><span class="rt-note">${escapeHTML(seg.note)}</span></rt></ruby></span>`;
   }
   return `<span class="seg" data-role="${role}">${safeText}${tagHtml}</span>`;
 }
