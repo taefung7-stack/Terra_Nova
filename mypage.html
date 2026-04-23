@@ -50,15 +50,15 @@
   /* LAYOUT */
   .page-wrap{padding-top:68px;display:flex;min-height:100vh;}
 
-  /* SIDEBAR */
-  .sidebar{width:240px;flex-shrink:0;background:var(--mid);border-right:1px solid var(--line);padding:40px 0;position:sticky;top:68px;height:calc(100vh - 68px);overflow-y:auto;}
-  .user-card{padding:24px 24px 28px;border-bottom:1px solid var(--line);}
+  /* SIDEBAR — flex column으로 자식들이 자연스럽게 세로 스택되도록 */
+  .sidebar{width:240px;flex-shrink:0;background:var(--mid);border-right:1px solid var(--line);padding:24px 0 40px;position:sticky;top:68px;height:calc(100vh - 68px);overflow-y:auto;display:flex;flex-direction:column;align-items:stretch;}
+  .user-card{padding:20px 24px 24px;border-bottom:1px solid var(--line);flex-shrink:0;}
   .user-avatar{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#14B8A6);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.2rem;color:#0A0A0A;margin-bottom:12px;}
   .user-name{font-weight:700;color:#fff;font-size:.95rem;margin-bottom:2px;}
   .user-grade{font-size:.72rem;color:var(--accent);font-weight:600;margin-bottom:6px;}
   .user-level-badge{display:inline-block;font-size:.6rem;font-weight:700;letter-spacing:2px;background:rgba(45,212,191,.1);border:1px solid rgba(45,212,191,.3);color:var(--accent);padding:3px 9px;border-radius:3px;}
-  .nav-menu{padding:16px 0;display:block;visibility:visible;opacity:1;}
-  .nav-menu-item{display:flex !important;align-items:center;gap:12px;padding:12px 24px;color:var(--dim);font-size:.82rem;font-weight:500;cursor:pointer;transition:all .18s;border-left:2px solid transparent;visibility:visible;opacity:1;}
+  .nav-menu{padding:16px 0;display:flex;flex-direction:column;flex-shrink:0;}
+  .nav-menu-item{display:flex;align-items:center;gap:12px;padding:12px 24px;color:var(--dim);font-size:.82rem;font-weight:500;cursor:pointer;transition:all .18s;border-left:2px solid transparent;}
   .nav-menu-item:hover{color:#fff;background:rgba(255,255,255,.03);}
   .nav-menu-item.active{color:var(--accent);border-left-color:var(--accent);background:rgba(45,212,191,.04);}
   .nav-menu-icon{width:18px;text-align:center;font-size:.9rem;}
@@ -727,30 +727,9 @@
         isAdmin = adminCheck?.is_admin === true;
       } catch { /* ignore */ }
     }
-    console.info('[mypage] is_admin =', isAdmin);
     if (isAdmin) {
       document.querySelectorAll('[data-auth="admin"]').forEach(el => { el.style.display = 'flex'; });
     }
-
-    // ── 디버그: 사이드바 메뉴 상태 로깅 ────────────
-    try {
-      const nm = document.querySelector('.nav-menu');
-      const items = document.querySelectorAll('.nav-menu .nav-menu-item');
-      if (nm) {
-        const cs = window.getComputedStyle(nm);
-        console.info('[mypage] nav-menu:', {
-          exists: true,
-          display: cs.display,
-          visibility: cs.visibility,
-          opacity: cs.opacity,
-          height: cs.height,
-          itemsInDOM: items.length,
-          viewportW: window.innerWidth
-        });
-      } else {
-        console.warn('[mypage] nav-menu element NOT FOUND in DOM');
-      }
-    } catch {}
 
     // ── 네비/사이드바 ────────────────────
     setText('nav-user-name', name);
