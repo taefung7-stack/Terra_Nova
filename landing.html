@@ -327,6 +327,13 @@ nav.site-nav {
   min-height:220px;
   display:flex; flex-direction:column; justify-content:center; gap:10px;
 }
+.hero-visual-card--accent {
+  border-color:var(--line2);
+  background:rgba(45,212,191,.03);
+}
+.hero-visual-card--accent .hero-visual-label {
+  color:var(--accent);
+}
 .hero-visual-label {
   font-family:'Space Grotesk',sans-serif;
   font-size:.7rem; letter-spacing:2px;
@@ -427,17 +434,17 @@ nav.site-nav {
           <div class="hero-visual-body">복리 계산, 지수 증가 모델, 로그 스케일 — 학교에서 배우는 개념.</div>
         </div>
         <div class="hero-visual-arrow">↔</div>
-        <div class="hero-visual-card" style="border-color:var(--line2); background:rgba(45,212,191,.03);">
-          <div class="hero-visual-label" style="color:var(--accent);">TERRA NOVA · SATURN 고1</div>
+        <div class="hero-visual-card hero-visual-card--accent">
+          <div class="hero-visual-label">TERRA NOVA · SATURN 고1</div>
           <div class="hero-visual-title">Compound Interest &amp; Exponential Growth</div>
           <div class="hero-visual-body">같은 개념을 영어 지문으로. 배경지식은 이미 학교에서, 어휘·구문은 Terra Nova에서.</div>
         </div>
       </div>
 
       <div class="hero-chips">
-        <span class="hero-chip">📚 매달 1권 · 월 20지문</span>
-        <span class="hero-chip">🎯 수학·과학·사회 교과 연계</span>
-        <span class="hero-chip">✅ 언제든 해지 · 레벨 변경</span>
+        <span class="hero-chip"><span aria-hidden="true">📚</span> 매달 1권 · 월 20지문</span>
+        <span class="hero-chip"><span aria-hidden="true">🎯</span> 수학·과학·사회 교과 연계</span>
+        <span class="hero-chip"><span aria-hidden="true">✅</span> 언제든 해지 · 레벨 변경</span>
       </div>
 
       <div class="hero-btns">
