@@ -221,10 +221,58 @@ section { padding:180px 6vw; position:relative; }
   transition:top .2s;
 }
 .skip-link:focus { top:8px; }
+
+/* NAV */
+nav.site-nav {
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 5vw; height:68px;
+  background:rgba(6,6,15,.92); backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--line);
+}
+.logo-wrap { display:flex; flex-direction:column; gap:2px; }
+.logo-main {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.45rem; letter-spacing:7px; color:#fff;
+}
+.logo-eng {
+  font-family:'Noto Sans KR',sans-serif;
+  font-size:.5rem; font-weight:500; letter-spacing:5px;
+  color:rgba(45,212,191,.35); text-transform:uppercase;
+}
+.nav-links { display:flex; gap:32px; list-style:none; align-items:center; }
+.nav-links a {
+  color:var(--dim); font-size:.75rem; font-weight:500;
+  letter-spacing:.8px; transition:color .2s;
+}
+.nav-links a:hover { color:#fff; }
+.nav-cta {
+  color:var(--accent) !important;
+  border:1px solid rgba(45,212,191,.3);
+  padding:7px 18px; border-radius:4px;
+  font-weight:600;
+  transition:background .2s;
+}
+.nav-cta:hover { background:rgba(45,212,191,.08); }
+@media (max-width:720px) {
+  .nav-links { display:none; }
+}
 </style>
 </head>
 <body>
 <a href="#main" class="skip-link">본문으로 건너뛰기</a>
+<nav class="site-nav" role="navigation">
+  <a href="index.html" class="logo-wrap" aria-label="Terra Nova 홈">
+    <span class="logo-main">TERRA NOVA</span>
+    <span class="logo-eng">ENGLISH</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="sample.html">샘플</a></li>
+    <li><a href="level_test.html">레벨 테스트</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="order.html" class="nav-cta">구독 시작</a></li>
+  </ul>
+</nav>
 <main id="main">
   <!-- TODO: sections 1-9 -->
 </main>
@@ -247,5 +295,12 @@ section { padding:180px 6vw; position:relative; }
     els.forEach(function(el){ io.observe(el); });
   })();
 </script>
+<footer id="site-footer"></footer>
+<script defer src="footer.js"></script>
+<script defer src="nav-auth.js"></script>
+<script defer src="analytics.js"></script>
+<script defer src="pwa-register.js"></script>
+<script defer src="sentry-init.js"></script>
+<script defer src="site-config.js"></script>
 </body>
 </html>
