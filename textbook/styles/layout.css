@@ -209,13 +209,12 @@ body { font-size: var(--fs-body); line-height: var(--lh-body); }
 }
 .p1-illustration {
   margin-top: 6pt;
-  /* Lock the container to the EXACT source-image ratio (3904 × 1216 = 3.21:1)
-     so the full illustration always displays without any cropping —
-     neither on the sides nor on the top/bottom. With width: 100% at the
-     body's 180mm column, aspect-ratio pins height to 56mm automatically.
-     No max-height so the container stays true to the image every time. */
-  width: 100%;
-  aspect-ratio: 3904 / 1216;
+  /* No fixed height, no aspect-ratio declaration — the <img> inside
+     decides the container height using its own natural aspect ratio.
+     With the image being width: 100% + height: auto below, the
+     illustration slot ends up exactly as tall as the source PNG needs
+     (≈56mm for a 3904×1216 file placed at the 180mm body width),
+     and NO cropping happens on any edge. */
   overflow: hidden;
   border-radius: 3pt;
   background: var(--tn-theme-soft);
@@ -223,7 +222,12 @@ body { font-size: var(--fs-body); line-height: var(--lh-body); }
   flex-shrink: 0;
 }
 .p1-illustration img, .p1-illustration svg {
-  width: 100%; height: 100%; object-fit: cover; display: block;
+  /* width: 100% + height: auto lets the image display at the container's
+     full 180mm width and take whatever natural height that implies. No
+     object-fit needed — the image is shown in its entirety, every pixel. */
+  display: block;
+  width: 100%;
+  height: auto;
 }
 /* Empty-image placeholder shown when the illustration file is missing
    (e.g. waiting for a Midjourney-generated PNG to drop in). */
