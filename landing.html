@@ -534,6 +534,40 @@ nav.site-nav {
 }
 .sample-passage-explanation strong { color:#fff; }
 .sample-passage-cta { margin-top:20px; display:flex; gap:12px; flex-wrap:wrap; }
+
+.compare-table-wrap { overflow-x:auto; border:1px solid var(--line); border-radius:6px; }
+.compare-table {
+  width:100%; border-collapse:collapse;
+  background:var(--card); min-width:620px;
+}
+.compare-table th, .compare-table td {
+  padding:16px 20px; text-align:left;
+  font-size:.9rem; border-bottom:1px solid var(--line);
+}
+.compare-table th {
+  font-family:'Space Grotesk',sans-serif;
+  font-size:.72rem; letter-spacing:2px; text-transform:uppercase;
+  color:var(--dim); background:rgba(255,255,255,.02);
+}
+.compare-table th.highlight-col, .compare-table td.highlight-col {
+  background:rgba(45,212,191,.06);
+  border-left:1px solid var(--line2);
+  border-right:1px solid var(--line2);
+  color:#fff;
+}
+.compare-table th.highlight-col { color:var(--accent); }
+.compare-table tr:last-child td { border-bottom:none; }
+
+.proof-bridge {
+  text-align:center; padding:40px 20px 0;
+}
+.proof-bridge-text {
+  font-size:clamp(1.1rem, 1.8vw, 1.3rem);
+  color:#fff; font-weight:700; margin-bottom:10px;
+}
+.proof-bridge-arrow {
+  font-size:.85rem; color:var(--dim); letter-spacing:2px;
+}
 </style>
 </head>
 <body>
@@ -734,7 +768,56 @@ nav.site-nav {
           </div>
         </div>
       </div>
-      <!-- TODO: Block C comparison, Block D bridge -->
+      <!-- BLOCK C: Comparison checklist -->
+      <div class="proof-block">
+        <div class="proof-block-title">일반 영어 교재와 Terra Nova, 이렇게 다릅니다</div>
+        <p class="proof-block-sub">학습 효과 기준의 비교 (비용 비교는 플랜 섹션에서 따로 다룹니다).</p>
+
+        <div class="compare-table-wrap reveal">
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th>항목</th>
+                <th>일반 영어 교재</th>
+                <th class="highlight-col">Terra Nova</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>지문 주제</td>
+                <td>임의 선정</td>
+                <td class="highlight-col"><strong>교과 단원과 1:1 매칭</strong></td>
+              </tr>
+              <tr>
+                <td>학습 결과</td>
+                <td>영어 실력</td>
+                <td class="highlight-col"><strong>영어 + 전과목 배경 지식</strong></td>
+              </tr>
+              <tr>
+                <td>해설 범위</td>
+                <td>문제 풀이 중심</td>
+                <td class="highlight-col"><strong>배경 지식 연결까지</strong></td>
+              </tr>
+              <tr>
+                <td>시간 효율</td>
+                <td>영어 1시간 = 영어 1시간</td>
+                <td class="highlight-col"><strong>영어 1시간 = 영어 + 전과목 배경 1시간</strong></td>
+              </tr>
+              <tr>
+                <td>수능 대비</td>
+                <td>문제 유형 훈련</td>
+                <td class="highlight-col"><strong>유형 + 주제 친숙화</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- BLOCK D: Bridge to Section 4 -->
+      <div class="proof-bridge reveal">
+        <div class="proof-bridge-text">왜 교과 연계 독해가 수능에 더 유리한지 — 아래에서 논리로 설명드립니다.</div>
+        <div class="proof-bridge-arrow">↓</div>
+      </div>
     </div>
   </section>
 
