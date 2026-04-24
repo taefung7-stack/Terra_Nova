@@ -505,6 +505,35 @@ nav.site-nav {
 @media (max-width:720px) {
   .mapping-cta { flex-direction:column; align-items:flex-start; }
 }
+
+.sample-passage {
+  background:var(--card); border:1px solid var(--line);
+  border-radius:6px; padding:32px 36px;
+  margin-top:16px;
+}
+.sample-passage-label {
+  display:inline-block; padding:4px 12px;
+  background:rgba(45,212,191,.08); color:var(--accent);
+  font-family:'Space Grotesk',sans-serif;
+  font-size:.72rem; letter-spacing:2px;
+  border-radius:2px; text-transform:uppercase;
+  margin-bottom:16px;
+}
+.sample-passage-title {
+  font-size:1.3rem; font-weight:700; color:#fff;
+  margin-bottom:18px; font-family:'Space Grotesk',sans-serif;
+}
+.sample-passage-text {
+  font-size:.95rem; line-height:1.85; color:var(--dim);
+  font-family:'Space Grotesk',sans-serif;
+  margin-bottom:20px;
+}
+.sample-passage-explanation {
+  border-top:1px solid var(--line); padding-top:20px;
+  font-size:.88rem; color:var(--dim); line-height:1.8;
+}
+.sample-passage-explanation strong { color:#fff; }
+.sample-passage-cta { margin-top:20px; display:flex; gap:12px; flex-wrap:wrap; }
 </style>
 </head>
 <body>
@@ -680,7 +709,32 @@ nav.site-nav {
           <a href="sample.html" class="btn-ghost">매칭표 PDF 받기 →</a>
         </div>
       </div>
-      <!-- TODO: Block B sample passage, Block C comparison, Block D bridge -->
+      <!-- BLOCK B: Sample passage -->
+      <div class="proof-block">
+        <div class="proof-block-title">샘플 지문 1편, 페이지 안에서 공개합니다</div>
+        <p class="proof-block-sub">SATURN 레벨(고1) 6월호 지문 예시. <!-- EDITORIAL: replace with actual passage text at launch. --></p>
+
+        <div class="sample-passage reveal">
+          <span class="sample-passage-label">SATURN · 고1 · 수학Ⅰ 지수와 로그</span>
+          <h3 class="sample-passage-title">Compound Interest and Exponential Growth</h3>
+          <p class="sample-passage-text">
+            <!-- EDITORIAL PLACEHOLDER — replace with actual passage at launch -->
+            [샘플 지문 300~350단어. 편집진이 고1 6월호 실제 지문으로 교체.
+            주제: 복리 개념이 어떻게 지수 함수 모델과 연결되는가. 학교 수학Ⅰ II-3 단원과 1:1 대응.]
+          </p>
+          <div class="sample-passage-explanation">
+            <strong>이 지문은 이렇게 활용합니다.</strong><br>
+            학교 수학 시간에 배우는 '지수함수와 로그함수' 단원의 개념이 영어 지문의 주제와 그대로 대응됩니다.
+            학생은 이미 익숙한 수학 개념을 영어로 다시 만나면서 배경지식 친숙도와 영어 독해를 동시에 쌓습니다.
+            문제 풀이 후에는 해설지가 "왜 이 지문 주제가 교과서 개념과 연결되는지"를 한 번 더 짚어줍니다.
+          </div>
+          <div class="sample-passage-cta">
+            <a href="sample.html" class="btn-primary">해설 포함 전체 샘플 PDF 받기</a>
+            <a href="sample.html" class="btn-ghost">모든 레벨 샘플 보기</a>
+          </div>
+        </div>
+      </div>
+      <!-- TODO: Block C comparison, Block D bridge -->
     </div>
   </section>
 
