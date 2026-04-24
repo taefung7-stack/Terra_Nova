@@ -850,6 +850,45 @@ nav.site-nav {
 @media (max-width:520px) {
   .risk-reversal { grid-template-columns:1fr; }
 }
+
+/* SECTION 8 FAQ */
+#faq { background:var(--mid); border-top:1px solid var(--line); }
+.faq-list { display:flex; flex-direction:column; gap:12px; max-width:840px; }
+.faq-item {
+  background:var(--card); border:1px solid var(--line);
+  border-radius:6px; overflow:hidden;
+}
+.faq-question {
+  width:100%; text-align:left;
+  padding:20px 24px; background:transparent; border:none;
+  color:#fff; font-weight:700; font-size:1rem;
+  display:flex; justify-content:space-between; align-items:center;
+  gap:16px; line-height:1.5;
+}
+.faq-question::after {
+  content:'+'; color:var(--accent);
+  font-size:1.4rem; font-weight:400; flex-shrink:0;
+  transition:transform .2s;
+}
+.faq-item.open .faq-question::after { transform:rotate(45deg); }
+.faq-answer {
+  max-height:0; overflow:hidden;
+  transition:max-height .3s ease, padding .3s ease;
+  padding:0 24px;
+}
+.faq-item.open .faq-answer {
+  max-height:500px;
+  padding:0 24px 22px;
+}
+.faq-answer p {
+  font-size:.92rem; color:var(--dim); line-height:1.8;
+}
+.faq-answer strong { color:#fff; }
+.faq-bottom-link {
+  margin-top:24px; text-align:center;
+  font-size:.88rem; color:var(--dim);
+}
+.faq-bottom-link a { color:var(--accent); text-decoration:underline; }
 </style>
 </head>
 <body>
@@ -1408,7 +1447,58 @@ nav.site-nav {
     </div>
   </section>
 
-  <!-- TODO: sections 8-9 -->
+  <section id="faq">
+    <div class="sec-wrap">
+      <div class="sec-kicker">자주 묻는 질문</div>
+      <h2 class="sec-h2">결정 전에 확인하시는 3가지</h2>
+      <p class="sec-sub">결제 직전에 꼭 확인되면 좋은 내용들입니다.</p>
+
+      <div class="faq-list">
+        <div class="faq-item reveal">
+          <button class="faq-question" aria-expanded="false">
+            환불은 되나요?
+          </button>
+          <div class="faq-answer">
+            <p>
+              <strong>환불은 제공하지 않습니다.</strong> 대신 결제 전 샘플 지문 전문을 공개하고, 월 단위 해지가 자유롭습니다.
+              구독 중 다음 달 결제 이전에 해지하시면 이후 비용이 발생하지 않습니다.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-question" aria-expanded="false">
+            얼리버드 할인은 끝나면 어떻게 되나요?
+          </button>
+          <div class="faq-answer">
+            <p>
+              첫 100명 한정 50% 할인은 해당 멤버의 <strong>첫 달</strong>에만 적용됩니다.
+              둘째 달부터는 정상가(11,900원/월)로 자동 전환됩니다. 100명 모집 후에는 얼리버드 신규 가입이 중단됩니다.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-question" aria-expanded="false">
+            영어 기초가 약한데 가능한가요?
+          </button>
+          <div class="faq-answer">
+            <p>
+              <strong>초3부터 고3까지 10단계 레벨</strong>로 나눠 놓았습니다.
+              행성 이름(MOON · MERCURY · MARS · VENUS · TERRA · NEPTUNE · URANUS · SATURN · JUPITER · SUN)으로 구분되며,
+              시작 전 무료 <a href="level_test.html" style="color:var(--accent);text-decoration:underline;">레벨 테스트</a>로 적합한 레벨을 확인하실 수 있습니다.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-bottom-link">
+        더 많은 질문 → <a href="faq.html">전체 FAQ 보기</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TODO: section 9 -->
 </main>
 <script>
   // Scroll-reveal: add .is-visible when element enters viewport
@@ -1428,6 +1518,17 @@ nav.site-nav {
     }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
     els.forEach(function(el){ io.observe(el); });
   })();
+</script>
+<script>
+  // FAQ accordion
+  document.querySelectorAll('.faq-question').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var item = btn.parentElement;
+      var isOpen = item.classList.contains('open');
+      item.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(!isOpen));
+    });
+  });
 </script>
 <script defer src="./footer.js"></script>
 <script type="module" src="./nav-auth.js"></script>
