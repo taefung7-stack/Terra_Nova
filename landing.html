@@ -815,6 +815,41 @@ nav.site-nav {
 @media (max-width:900px) {
   .plans-grid { grid-template-columns:1fr; }
 }
+
+.plans-compare {
+  margin-top:60px; margin-bottom:48px;
+}
+.plans-compare-title {
+  font-size:1.2rem; font-weight:900; color:#fff;
+  margin-bottom:14px;
+}
+.plans-compare-caption {
+  margin-top:14px; font-size:.82rem; color:var(--dim2);
+  line-height:1.75; font-style:italic;
+  padding:14px 18px; border-left:2px solid var(--line2);
+  background:rgba(255,255,255,.02);
+}
+.plans-compare-caption strong { color:var(--accent); font-style:normal; }
+
+.risk-reversal {
+  display:grid; grid-template-columns:repeat(4, 1fr); gap:14px;
+  margin-top:32px;
+}
+.risk-item {
+  background:var(--card); border:1px solid var(--line);
+  border-radius:4px; padding:16px;
+  font-size:.85rem; color:var(--dim);
+  display:flex; align-items:flex-start; gap:10px; line-height:1.55;
+}
+.risk-item::before { content:'✓'; color:var(--accent); font-weight:700; flex-shrink:0; font-size:1rem; }
+.risk-item strong { color:#fff; }
+
+@media (max-width:900px) {
+  .risk-reversal { grid-template-columns:repeat(2, 1fr); }
+}
+@media (max-width:520px) {
+  .risk-reversal { grid-template-columns:1fr; }
+}
 </style>
 </head>
 <body>
@@ -1309,7 +1344,71 @@ nav.site-nav {
           <a href="order.html?plan=premium" class="plan-cta ghost">PREMIUM 구독하기</a>
         </div>
       </div>
-      <!-- TODO: plans comparison, risk reversal, mid-CTA -->
+    <!-- Block C: cost comparison table -->
+    <div class="plans-compare">
+      <div class="plans-compare-title">학원·인강 vs Terra Nova</div>
+      <div class="compare-table-wrap reveal">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>비교 항목</th>
+              <th>일반 학원</th>
+              <th>인터넷 강의</th>
+              <th class="highlight-col">Terra Nova</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>월 수업료</td>
+              <td>400,000원</td>
+              <td>100,000원~</td>
+              <td class="highlight-col"><strong>11,900원~</strong></td>
+            </tr>
+            <tr>
+              <td>교재비</td>
+              <td>별도</td>
+              <td>별도</td>
+              <td class="highlight-col"><strong>포함</strong></td>
+            </tr>
+            <tr>
+              <td>교과 연계</td>
+              <td>✕</td>
+              <td>✕</td>
+              <td class="highlight-col"><strong>✓</strong></td>
+            </tr>
+            <tr>
+              <td>해설</td>
+              <td>수업 중만</td>
+              <td>강의 내만</td>
+              <td class="highlight-col"><strong>교재에 포함</strong></td>
+            </tr>
+            <tr>
+              <td>해지 자유도</td>
+              <td>학기 단위</td>
+              <td>강좌 단위</td>
+              <td class="highlight-col"><strong>월 단위</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="plans-compare-caption">
+        학원비 400,000원은 수도권 고등 영어 입시 학원 평균 기준. 초·중등 학원은 평균 월 25~30만 원대. <br>
+        <strong>영어 학원비에 월 40만 원. Terra Nova는 11,900원부터 시작합니다.</strong>
+      </p>
+    </div>
+
+    <!-- Block D: risk reversal -->
+    <div class="plans-compare-title">결제하기 전에 안심하세요</div>
+    <div class="risk-reversal">
+      <div class="risk-item"><span><strong>런칭 멤버 50% 할인</strong><br>LIGHT 첫 달</span></div>
+      <div class="risk-item"><span><strong>월 단위 해지 자유</strong><br>위약금 없음</span></div>
+      <div class="risk-item"><span><strong>레벨 변경 자유</strong><br>매달 재선택</span></div>
+      <div class="risk-item"><span><strong>결제 전 샘플 전문 공개</strong><br>품질 사전 확인</span></div>
+    </div>
+    </div>
+  </section>
+
+  <!-- TODO: sections 8-9 -->
 </main>
 <script>
   // Scroll-reveal: add .is-visible when element enters viewport
