@@ -3461,21 +3461,6 @@ document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',
   });
 })();
 </script>
-<!-- 스크롤-투-탑 버튼 -->
-<button id="scroll-top" aria-label="맨 위로" style="position:fixed;bottom:88px;right:24px;width:44px;height:44px;border-radius:50%;background:rgba(10,10,10,.8);backdrop-filter:blur(10px);border:1px solid rgba(45,212,191,.35);color:var(--accent);font-size:1.1rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:199;transition:opacity .2s,transform .15s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'" onclick="window.scrollTo({top:0,behavior:'smooth'})">▲</button>
-<script>
-  (function(){
-    const btn = document.getElementById('scroll-top');
-    if (!btn) return;
-    let visible = false;
-    window.addEventListener('scroll', () => {
-      const show = window.scrollY > 600;
-      if (show === visible) return;
-      visible = show;
-      btn.style.display = show ? 'flex' : 'none';
-    }, { passive: true });
-  })();
-</script>
 <script type="module" src="./nav-auth.js"></script>
 </body>
 </html>

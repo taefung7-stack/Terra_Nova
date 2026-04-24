@@ -1206,8 +1206,9 @@
     }
 
     /* ========== 플로팅 원형 버튼 (sample/faq 통일 스타일) ========== */
-    .float-group{position:fixed;bottom:28px;right:24px;display:flex;flex-direction:column;gap:12px;z-index:1000;}
-    .float-btn{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;transition:transform .15s,box-shadow .15s;box-shadow:0 4px 16px rgba(0,0,0,.4);}
+    .float-group{position:fixed;bottom:14px;right:14px;display:flex;flex-direction:column;gap:8px;z-index:1000;}
+    .float-btn{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;transition:transform .15s,box-shadow .15s;box-shadow:0 4px 14px rgba(0,0,0,.35);}
+    .float-btn svg{width:19px;height:19px;}
     .float-btn:hover{transform:translateY(-3px);}
     .float-kakao{background:#FEE500;}
     .float-insta{background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fd5949 45%,#d6249f 60%,#285AEB 90%);}
@@ -4200,7 +4201,7 @@
     });
   </script>
   <!-- 스크롤-투-탑 버튼 (카톡 버튼 위에 위치) -->
-  <button id="scroll-top" aria-label="맨 위로" style="position:fixed;bottom:150px;right:24px;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border:1px solid rgba(79,70,229,.3);color:#4F46E5;font-size:1rem;font-weight:700;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:199;box-shadow:0 4px 16px rgba(0,0,0,.15);transition:transform .15s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'" onclick="window.scrollTo({top:0,behavior:'smooth'})">▲</button>
+  <button id="scroll-top" aria-label="맨 위로" style="position:fixed;bottom:118px;right:14px;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border:1px solid rgba(79,70,229,.3);color:#4F46E5;font-size:1rem;font-weight:700;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:199;box-shadow:0 4px 16px rgba(0,0,0,.15);transition:transform .15s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'" onclick="window.scrollTo({top:0,behavior:'smooth'})">▲</button>
   <script>
     (function(){
       const btn = document.getElementById('scroll-top');
