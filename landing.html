@@ -889,6 +889,72 @@ nav.site-nav {
   font-size:.88rem; color:var(--dim);
 }
 .faq-bottom-link a { color:var(--accent); text-decoration:underline; }
+
+/* SECTION 9 FINAL CTA */
+#final-cta {
+  background:
+    radial-gradient(ellipse at 50% 30%, rgba(45,212,191,.08) 0%, transparent 70%),
+    var(--dark);
+  border-top:1px solid var(--line);
+  text-align:center; padding:120px 5vw;
+}
+.final-kicker { margin:0 auto 24px; }
+.final-h2 {
+  font-family:'Noto Sans KR',sans-serif;
+  font-size:clamp(2rem, 5vw, 3.4rem);
+  font-weight:900; letter-spacing:-.02em;
+  line-height:1.3; color:#fff; margin-bottom:18px;
+}
+.final-sub {
+  font-size:clamp(1rem, 1.6vw, 1.2rem);
+  color:var(--dim); margin-bottom:48px;
+  font-style:italic;
+}
+.final-primary {
+  display:inline-block;
+  padding:22px 48px;
+  background:var(--accent); color:#0A0A0A;
+  border-radius:6px; font-weight:900;
+  font-size:1.1rem; letter-spacing:.5px;
+  transition:transform .15s, box-shadow .15s;
+  margin-bottom:20px;
+}
+.final-primary:hover { transform:translateY(-3px); box-shadow:0 12px 32px rgba(45,212,191,.35); }
+.final-primary-sub {
+  font-size:.82rem; color:var(--dim); margin-bottom:36px;
+  font-family:'Space Grotesk',sans-serif; letter-spacing:1px;
+}
+.final-secondary {
+  display:flex; justify-content:center; gap:16px; flex-wrap:wrap;
+  margin-bottom:28px;
+}
+.final-sec-btn {
+  padding:13px 22px; border:1px solid var(--line2);
+  color:var(--accent); border-radius:4px;
+  font-weight:600; font-size:.88rem;
+  transition:background .15s;
+}
+.final-sec-btn:hover { background:rgba(45,212,191,.08); }
+.final-tertiary {
+  display:flex; justify-content:center; gap:20px; flex-wrap:wrap;
+  margin-bottom:48px;
+}
+.final-ter-link {
+  font-size:.82rem; color:var(--dim); font-weight:500;
+  border-bottom:1px dashed var(--line); padding-bottom:2px;
+}
+.final-ter-link:hover { color:#fff; border-color:var(--accent); }
+.final-trust-strip {
+  display:flex; justify-content:center; flex-wrap:wrap; gap:24px;
+  padding-top:36px; border-top:1px solid var(--line);
+  font-size:.82rem; color:var(--dim);
+}
+.final-trust-item { display:inline-flex; align-items:center; gap:6px; }
+.final-trust-item::before { content:'✓'; color:var(--accent); font-weight:700; }
+@media (max-width:720px) {
+  .final-primary { padding:18px 28px; font-size:1rem; width:100%; max-width:340px; }
+  .final-secondary, .final-tertiary { flex-direction:column; align-items:center; }
+}
 </style>
 </head>
 <body>
@@ -1498,7 +1564,36 @@ nav.site-nav {
     </div>
   </section>
 
-  <!-- TODO: section 9 -->
+  <section id="final-cta" class="reveal">
+    <div class="sec-wrap">
+      <div class="sec-kicker final-kicker">지금 시작합니다</div>
+      <h2 class="final-h2">Terra Nova의 첫 100명, <br class="mobile-br">오늘 당신입니다.</h2>
+      <p class="final-sub">샘플을 확인하셨다면, 시작할 시간입니다.</p>
+
+      <a href="order.html?plan=light&ref=earlybird" class="final-primary">
+        LIGHT 얼리버드 시작하기 — 첫 달 5,950원
+      </a>
+      <div class="final-primary-sub">ⓘ LIGHT 얼리버드 현재 <strong id="final-earlybird-count">0</strong>/100명 모집 중 · 100명 달성 시 정가 전환</div>
+
+      <div class="final-secondary">
+        <a href="order.html?plan=standard" class="final-sec-btn">STANDARD 구독하기 — 24,900원/월</a>
+        <a href="order.html?plan=premium" class="final-sec-btn">PREMIUM 구독하기 — 58,900원/월</a>
+        <a href="level_test.html" class="final-sec-btn">무료 레벨 테스트 먼저</a>
+      </div>
+
+      <div class="final-tertiary">
+        <a href="sample.html" class="final-ter-link">무료 샘플 지문 받기</a>
+        <a href="faq.html" class="final-ter-link">더 많은 질문</a>
+      </div>
+
+      <div class="final-trust-strip">
+        <span class="final-trust-item">결제 전 샘플 공개</span>
+        <span class="final-trust-item">월 단위 해지 자유</span>
+        <span class="final-trust-item">레벨 변경 자유</span>
+        <span class="final-trust-item">STANDARD/PREMIUM 배송 무료</span>
+      </div>
+    </div>
+  </section>
 </main>
 <script>
   // Scroll-reveal: add .is-visible when element enters viewport
