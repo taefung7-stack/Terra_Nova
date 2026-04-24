@@ -12,13 +12,18 @@
     "cognitive_skill": "어휘",
     "lexile": "950L",
     "ar_level": 6.2,
-    "key_concepts": ["삼국시대", "불교", "고구려·백제·신라", "문화"]
+    "key_concepts": [
+      "삼국시대",
+      "불교",
+      "고구려·백제·신라",
+      "문화"
+    ]
   },
   "page1": {
     "title": "The Three Kingdoms and Buddhism",
     "subtitle": "How a foreign faith reshaped art, architecture, and royal authority across ancient Korea.",
     "body": "Buddhism arrived on the Korean peninsula in the fourth century, reaching each of the Three Kingdoms through a separate and distinct cultural route. In 372, a Chinese monk named Sundo traveled to Goguryeo, presenting the royal court with a set of sacred scriptures and beautifully gilded statues. Baekje received the faith twelve years later, in 384, when a monk named Marananta sailed from the Eastern Jin dynasty across the southern sea. Silla, the most remote kingdom, resisted the foreign religion for over a century before formally <u>adopting</u> Buddhism as its official state faith in 528.\n\nThe arrival of Buddhism quickly and deeply transformed the artistic landscape and the political culture of ancient Korea in lasting ways. Rulers commissioned grand <mark>pagodas and stone temples</mark> that towered above city walls, making a visible declaration of royal piety to all who passed. Temple bells cast from bronze sent deep, resonant tones rolling outward across wide river valleys at both dawn and dusk. Skilled stone carvers shaped seated Buddha figures from local granite, carefully blending Indian artistic iconography with traditional Korean stone-working methods. These works were not purely religious; they were also <blank>, signaling that a kingdom capable of building so magnificently deserved the loyalty of its people.\n\nState-sponsored Buddhism provided rulers with a powerful new ideology for binding diverse regional populations firmly together under a single shared moral framework. Monks traveling between kingdoms carried Buddhist manuscripts, bronze ritual instruments, and carefully guarded techniques for preparing vivid mineral pigments. Silla's eventual unification of much of the peninsula was shaped partly by the Buddhist vision of a sacred king who protected all living beings. Landmarks such as Bulguksa temple and its broad stone staircases still stand today, testifying silently to kings who built for a unified people.",
-    "illustration": "../../assets/illustrations/2026-06/17.svg",
+    "illustration": "../../assets/illustrations/2026-06/17.png",
     "illustration_caption": "A multi-tiered stone pagoda rises above lotus carvings — symbol of Buddhist Korea."
   },
   "page2": {
@@ -66,7 +71,13 @@
         "type": "school_descriptive",
         "style": "요약문 빈칸 완성",
         "prompt": "다음은 본문의 요약문이다. 본문의 내용을 바탕으로 빈칸 (A), (B)에 들어갈 말을 <조건>에 맞게 영어 한 단어로 각각 쓰시오. <조건> 본문에서 제시된 단어를 그대로 활용할 것.",
-        "hints": ["commissioned", "ideology", "adopting", "scriptures", "unification"],
+        "hints": [
+          "commissioned",
+          "ideology",
+          "adopting",
+          "scriptures",
+          "unification"
+        ],
         "summary_template": "After each of the Three Kingdoms received Buddhism, rulers <blank> (A) temples and pagodas to display their power, while the faith supplied a shared <blank> (B) for uniting diverse peoples.",
         "model_answer": "(A) commissioned  (B) ideology"
       }
@@ -74,14 +85,31 @@
     "textbook_tieback": {
       "unit_label": "한국사 I · 고대 문화",
       "body_ko": "고1 한국사 I 단원에서 삼국시대 불교 수용은 단순한 종교 전파가 아니라 왕권 강화와 고대 문화 발전의 핵심 동력으로 다루어진다. 고구려(372)·백제(384)·신라(528)의 공인 순서와 국가 주도의 사찰·탑 건립, 그리고 불교 이념이 신라의 삼국 통일에 기여한 방식을 교과서는 구체적인 사례와 함께 설명한다. 불국사 같은 현존 유적이 그 역사를 오늘날도 증언하고 있다.",
-      "tags": ["삼국시대", "불교", "왕권", "고대 문화"],
+      "tags": [
+        "삼국시대",
+        "불교",
+        "왕권",
+        "고대 문화"
+      ],
       "visual_aid": {
         "type": "timeline",
         "title": "삼국의 불교 공인 연도",
         "steps": [
-          { "emoji": "🏯", "label": "고구려 372년", "note": "승려 순도가 불경·불상 전래" },
-          { "emoji": "⛵", "label": "백제 384년", "note": "동진(東晉)에서 마라난타 도래" },
-          { "emoji": "🪷", "label": "신라 528년", "note": "이차돈 순교 후 국가 공인" }
+          {
+            "emoji": "🏯",
+            "label": "고구려 372년",
+            "note": "승려 순도가 불경·불상 전래"
+          },
+          {
+            "emoji": "⛵",
+            "label": "백제 384년",
+            "note": "동진(東晉)에서 마라난타 도래"
+          },
+          {
+            "emoji": "🪷",
+            "label": "신라 528년",
+            "note": "이차돈 순교 후 국가 공인"
+          }
         ]
       }
     }
@@ -91,137 +119,312 @@
       {
         "index": 1,
         "segments": [
-          { "role": "S", "text": "Buddhism" },
-          { "role": "V", "text": "arrived" },
-          { "role": "M", "text": "on the Korean peninsula in the fourth century," },
-          { "role": "M", "text": "reaching each of the Three Kingdoms through a separate and distinct cultural route.", "note": "분사구문 — 동시 상황" }
+          {
+            "role": "S",
+            "text": "Buddhism"
+          },
+          {
+            "role": "V",
+            "text": "arrived"
+          },
+          {
+            "role": "M",
+            "text": "on the Korean peninsula in the fourth century,"
+          },
+          {
+            "role": "M",
+            "text": "reaching each of the Three Kingdoms through a separate and distinct cultural route.",
+            "note": "분사구문 — 동시 상황"
+          }
         ],
         "grammar_note": "1형식 + 전치사구 + 분사구문"
       },
       {
         "index": 2,
         "segments": [
-          { "role": "M", "text": "In 372," },
-          { "role": "S", "text": "a Chinese monk named Sundo", "note": "과거분사 named가 monk 후치 수식" },
-          { "role": "V", "text": "traveled" },
-          { "role": "M", "text": "to Goguryeo," },
-          { "role": "M", "text": "presenting the royal court with a set of sacred scriptures and beautifully gilded statues.", "note": "분사구문 — 동반 행동" }
+          {
+            "role": "M",
+            "text": "In 372,"
+          },
+          {
+            "role": "S",
+            "text": "a Chinese monk named Sundo",
+            "note": "과거분사 named가 monk 후치 수식"
+          },
+          {
+            "role": "V",
+            "text": "traveled"
+          },
+          {
+            "role": "M",
+            "text": "to Goguryeo,"
+          },
+          {
+            "role": "M",
+            "text": "presenting the royal court with a set of sacred scriptures and beautifully gilded statues.",
+            "note": "분사구문 — 동반 행동"
+          }
         ],
         "grammar_note": "시간 부사구 도치 + 과거분사 후치 수식 + 분사구문"
       },
       {
         "index": 3,
         "segments": [
-          { "role": "S", "text": "Baekje" },
-          { "role": "V", "text": "received" },
-          { "role": "O", "text": "the faith twelve years later, in 384," },
-          { "role": "M", "text": "when a monk named Marananta sailed from the Eastern Jin dynasty across the southern sea.", "note": "관계부사 when — 시간 부가절" }
+          {
+            "role": "S",
+            "text": "Baekje"
+          },
+          {
+            "role": "V",
+            "text": "received"
+          },
+          {
+            "role": "O",
+            "text": "the faith twelve years later, in 384,"
+          },
+          {
+            "role": "M",
+            "text": "when a monk named Marananta sailed from the Eastern Jin dynasty across the southern sea.",
+            "note": "관계부사 when — 시간 부가절"
+          }
         ],
         "grammar_note": "3형식 + 관계부사 when 부가절"
       },
       {
         "index": 4,
         "segments": [
-          { "role": "S", "text": "Silla, the most remote kingdom," },
-          { "role": "V", "text": "resisted" },
-          { "role": "O", "text": "the foreign religion for over a century" },
-          { "role": "M", "text": "before formally adopting Buddhism as its official state faith in 528.", "note": "before + 동명사 시간절" }
+          {
+            "role": "S",
+            "text": "Silla, the most remote kingdom,"
+          },
+          {
+            "role": "V",
+            "text": "resisted"
+          },
+          {
+            "role": "O",
+            "text": "the foreign religion for over a century"
+          },
+          {
+            "role": "M",
+            "text": "before formally adopting Buddhism as its official state faith in 528.",
+            "note": "before + 동명사 시간절"
+          }
         ],
         "grammar_note": "동격 삽입구 + before 동명사절"
       },
       {
         "index": 5,
         "segments": [
-          { "role": "S", "text": "The arrival of Buddhism" },
-          { "role": "V", "text": "quickly and deeply transformed" },
-          { "role": "O", "text": "the artistic landscape and the political culture of ancient Korea" },
-          { "role": "M", "text": "in lasting ways." }
+          {
+            "role": "S",
+            "text": "The arrival of Buddhism"
+          },
+          {
+            "role": "V",
+            "text": "quickly and deeply transformed"
+          },
+          {
+            "role": "O",
+            "text": "the artistic landscape and the political culture of ancient Korea"
+          },
+          {
+            "role": "M",
+            "text": "in lasting ways."
+          }
         ],
         "grammar_note": "3형식 + 부사 병렬 수식 + 전치사구"
       },
       {
         "index": 6,
         "segments": [
-          { "role": "S", "text": "Rulers" },
-          { "role": "V", "text": "commissioned" },
-          { "role": "O", "text": "grand pagodas and stone temples that towered above city walls," },
-          { "role": "M", "text": "making a visible declaration of royal piety to all who passed.", "note": "분사구문 + 관계절" }
+          {
+            "role": "S",
+            "text": "Rulers"
+          },
+          {
+            "role": "V",
+            "text": "commissioned"
+          },
+          {
+            "role": "O",
+            "text": "grand pagodas and stone temples that towered above city walls,"
+          },
+          {
+            "role": "M",
+            "text": "making a visible declaration of royal piety to all who passed.",
+            "note": "분사구문 + 관계절"
+          }
         ],
         "grammar_note": "3형식 + 관계절 + 분사구문"
       },
       {
         "index": 7,
         "segments": [
-          { "role": "S", "text": "Temple bells cast from bronze", "note": "과거분사 후치 수식" },
-          { "role": "V", "text": "sent" },
-          { "role": "O", "text": "deep, resonant tones" },
-          { "role": "M", "text": "rolling outward across wide river valleys at both dawn and dusk." }
+          {
+            "role": "S",
+            "text": "Temple bells cast from bronze",
+            "note": "과거분사 후치 수식"
+          },
+          {
+            "role": "V",
+            "text": "sent"
+          },
+          {
+            "role": "O",
+            "text": "deep, resonant tones"
+          },
+          {
+            "role": "M",
+            "text": "rolling outward across wide river valleys at both dawn and dusk."
+          }
         ],
         "grammar_note": "과거분사 후치 수식 + 3형식"
       },
       {
         "index": 8,
         "segments": [
-          { "role": "S", "text": "Skilled stone carvers" },
-          { "role": "V", "text": "shaped" },
-          { "role": "O", "text": "seated Buddha figures from local granite," },
-          { "role": "M", "text": "carefully blending Indian artistic iconography with traditional Korean stone-working methods.", "note": "분사구문 — 동반 행동" }
+          {
+            "role": "S",
+            "text": "Skilled stone carvers"
+          },
+          {
+            "role": "V",
+            "text": "shaped"
+          },
+          {
+            "role": "O",
+            "text": "seated Buddha figures from local granite,"
+          },
+          {
+            "role": "M",
+            "text": "carefully blending Indian artistic iconography with traditional Korean stone-working methods.",
+            "note": "분사구문 — 동반 행동"
+          }
         ],
         "grammar_note": "3형식 + 분사구문"
       },
       {
         "index": 9,
         "segments": [
-          { "role": "S", "text": "These works" },
-          { "role": "V", "text": "were" },
-          { "role": "C", "text": "not purely religious;" },
-          { "role": "S", "text": "they" },
-          { "role": "V", "text": "were also" },
-          { "role": "C", "text": "symbols of power, signaling that a kingdom building so magnificently deserved loyalty.", "note": "빈칸 = 추론 보어" }
+          {
+            "role": "S",
+            "text": "These works"
+          },
+          {
+            "role": "V",
+            "text": "were"
+          },
+          {
+            "role": "C",
+            "text": "not purely religious;"
+          },
+          {
+            "role": "S",
+            "text": "they"
+          },
+          {
+            "role": "V",
+            "text": "were also"
+          },
+          {
+            "role": "C",
+            "text": "<blank>, signaling that a kingdom capable of building so magnificently deserved the loyalty of its people.",
+            "note": "빈칸 = 추론 보어"
+          }
         ],
         "grammar_note": "세미콜론 대조 + 2형식 × 2 + that절"
       },
       {
         "index": 10,
         "segments": [
-          { "role": "S", "text": "State-sponsored Buddhism" },
-          { "role": "V", "text": "provided" },
-          { "role": "O", "text": "rulers with a powerful new ideology" },
-          { "role": "M", "text": "for binding diverse regional populations firmly together under a single shared moral framework.", "note": "for + 동명사 — 목적" }
+          {
+            "role": "S",
+            "text": "State-sponsored Buddhism"
+          },
+          {
+            "role": "V",
+            "text": "provided"
+          },
+          {
+            "role": "O",
+            "text": "rulers with a powerful new ideology"
+          },
+          {
+            "role": "M",
+            "text": "for binding diverse regional populations firmly together under a single shared moral framework.",
+            "note": "for + 동명사 — 목적"
+          }
         ],
         "grammar_note": "3형식 provide A with B + for 동명사 목적구"
       },
       {
         "index": 11,
         "segments": [
-          { "role": "S", "text": "Monks traveling between kingdoms", "note": "현재분사 후치 수식" },
-          { "role": "V", "text": "carried" },
-          { "role": "O", "text": "Buddhist manuscripts, bronze ritual instruments, and carefully guarded techniques" },
-          { "role": "M", "text": "for preparing vivid mineral pigments." }
+          {
+            "role": "S",
+            "text": "Monks traveling between kingdoms",
+            "note": "현재분사 후치 수식"
+          },
+          {
+            "role": "V",
+            "text": "carried"
+          },
+          {
+            "role": "O",
+            "text": "Buddhist manuscripts, bronze ritual instruments, and carefully guarded techniques"
+          },
+          {
+            "role": "M",
+            "text": "for preparing vivid mineral pigments."
+          }
         ],
         "grammar_note": "현재분사 후치 수식 + 3형식 + 전치사구"
       },
       {
         "index": 12,
         "segments": [
-          { "role": "S", "text": "Silla's eventual unification of much of the peninsula" },
-          { "role": "V", "text": "was shaped" },
-          { "role": "M", "text": "partly by the Buddhist vision of a sacred king who protected all living beings.", "note": "수동태 + 관계절" }
+          {
+            "role": "S",
+            "text": "Silla's eventual unification of much of the peninsula"
+          },
+          {
+            "role": "V",
+            "text": "was shaped"
+          },
+          {
+            "role": "M",
+            "text": "partly by the Buddhist vision of a sacred king who protected all living beings.",
+            "note": "수동태 + 관계절"
+          }
         ],
         "grammar_note": "명사구 주어 + 수동태 + 관계절"
       },
       {
         "index": 13,
         "segments": [
-          { "role": "S", "text": "Landmarks such as Bulguksa temple and its broad stone staircases" },
-          { "role": "V", "text": "still stand" },
-          { "role": "M", "text": "today," },
-          { "role": "M", "text": "testifying silently to kings who built for a unified people.", "note": "분사구문 + 관계절" }
+          {
+            "role": "S",
+            "text": "Landmarks such as Bulguksa temple and its broad stone staircases"
+          },
+          {
+            "role": "V",
+            "text": "still stand"
+          },
+          {
+            "role": "M",
+            "text": "today,"
+          },
+          {
+            "role": "M",
+            "text": "testifying silently to kings who built for a unified people.",
+            "note": "분사구문 + 관계절"
+          }
         ],
         "grammar_note": "1형식 + 분사구문 testifying + 관계절"
       }
     ],
-    "translation_ko": "[1] 불교는 4세기에 한반도에 도달하여, 삼국 각각에 서로 다른 고유한 문화적 경로를 통해 전해졌다. [2] 372년, 순도라는 중국 승려가 고구려로 건너가 왕실에 신성한 불경과 아름답게 금박을 입힌 불상을 선물로 바쳤다. [3] 백제는 12년 뒤인 384년, 마라난타라는 승려가 동진(東晉)에서 남해를 건너오면서 불교를 받아들였다. [4] 삼국 중 가장 외진 신라는 100년 이상 외래 종교에 저항하다가 528년에 불교를 공식 국가 신앙으로 채택했다. [5] 불교의 도래는 고대 한국의 예술적 풍경과 정치 문화를 빠르고 깊이 오래도록 변화시켰다. [6] 지배자들은 성벽 위로 우뚝 솟은 웅장한 탑과 석조 사찰을 건립하여, 지나는 모든 이들에게 왕의 신앙심을 눈으로 선포했다. [7] 청동으로 주조된 범종은 새벽과 해 질 녘마다 깊고 울림 있는 소리를 넓은 강 계곡 너머 사방으로 퍼뜨렸다. [8] 숙련된 석조 장인들은 현지 화강암으로 석불좌상을 조각하며, 인도 불교 도상을 한국의 전통적인 석조 기법과 정성껏 융합했다. [9] 이 작품들은 순수하게 종교적인 것이 아니었다 — 그것들은 권력의 상징이기도 하여, 그토록 웅장하게 건설할 수 있는 왕국이 충성을 받을 자격이 있음을 알렸다. [10] 국가가 후원하는 불교는 지배자들에게 다양한 지역 집단을 하나의 공유된 도덕적 틀 아래 굳건히 묶어 낼 수 있는 강력한 새 이념을 제공했다. [11] 왕국들 사이를 오가는 승려들은 불교 필사본, 청동 의식 악기, 그리고 선명한 광물 안료 제조 기술을 전달했다. [12] 신라의 반도 통일은 부분적으로 모든 생명을 보호하는 신성한 왕이라는 불교적 비전에 의해 형성되었다. [13] 불국사와 그 넓은 석조 계단 같은 유적들은 오늘날에도 여전히 서서, 하나의 통합된 백성을 위해 건립한 왕들을 조용히 증언한다."
+    "translation_ko": "[1] 불교는 4세기에 한반도에 도달하여, 삼국 각각에 서로 다른 고유한 문화적 경로를 통해 전해졌다. [2] 372년, 순도라는 중국 승려가 고구려로 건너가 왕실에 신성한 불경과 아름답게 금박을 입힌 불상을 선물로 바쳤다. [3] 백제는 12년 뒤인 384년, 마라난타라는 승려가 동진(東晉)에서 남해를 건너오면서 불교를 받아들였다. [4] 삼국 중 가장 외진 신라는 100년 이상 외래 종교에 저항하다가 528년에 불교를 공식 국가 신앙으로 채택했다. [5] 불교의 도래는 고대 한국의 예술적 풍경과 정치 문화를 빠르고 깊이 오래도록 변화시켰다. [6] 지배자들은 성벽 위로 우뚝 솟은 웅장한 탑과 석조 사찰을 건립하여, 지나는 모든 이들에게 왕의 신앙심을 눈으로 선포했다. [7] 청동으로 주조된 범종은 새벽과 해 질 녘마다 깊고 울림 있는 소리를 넓은 강 계곡 너머 사방으로 퍼뜨렸다. [8] 숙련된 석조 장인들은 현지 화강암으로 석불좌상을 조각하며, 인도 불교 도상을 한국의 전통적인 석조 기법과 정성껏 융합했다. [9] 이 작품들은 순수하게 종교적인 것이 아니었다 — 그것들은 ____이기도 하여, 그토록 웅장하게 건설할 수 있는 왕국이 백성의 충성을 받을 자격이 있음을 알렸다. [10] 국가가 후원하는 불교는 지배자들에게 다양한 지역 집단을 하나의 공유된 도덕적 틀 아래 굳건히 묶어 낼 수 있는 강력한 새 이념을 제공했다. [11] 왕국들 사이를 오가는 승려들은 불교 필사본, 청동 의식 악기, 그리고 선명한 광물 안료 제조 기술을 전달했다. [12] 신라의 반도 통일은 부분적으로 모든 생명을 보호하는 신성한 왕이라는 불교적 비전에 의해 형성되었다. [13] 불국사와 그 넓은 석조 계단 같은 유적들은 오늘날에도 여전히 서서, 하나의 통합된 백성을 위해 건립한 왕들을 조용히 증언한다."
   },
   "page4": {
     "vocab": [
@@ -229,132 +432,256 @@
         "word": "peninsula",
         "pos": "n.",
         "meaning_ko": "반도",
-        "synonyms": ["landmass"],
+        "synonyms": [
+          "landmass"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "Buddhism reached the Korean peninsula in the 300s.", "ko": "불교는 300년대에 한반도에 전해졌다." },
-          { "en": "Italy is a peninsula surrounded by three seas.", "ko": "이탈리아는 세 바다로 둘러싸인 반도이다." }
+          {
+            "en": "Buddhism reached the Korean peninsula in the 300s.",
+            "ko": "불교는 300년대에 한반도에 전해졌다."
+          },
+          {
+            "en": "Italy is a peninsula surrounded by three seas.",
+            "ko": "이탈리아는 세 바다로 둘러싸인 반도이다."
+          }
         ]
       },
       {
         "word": "scripture",
         "pos": "n.",
         "meaning_ko": "경전, 성문서",
-        "synonyms": ["text", "canon"],
+        "synonyms": [
+          "text",
+          "canon"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "Sundo presented the court with sacred scriptures.", "ko": "순도는 왕실에 신성한 불경을 바쳤다." },
-          { "en": "Monks copied scriptures by hand for centuries.", "ko": "승려들은 수백 년간 경전을 손으로 필사했다." }
+          {
+            "en": "Sundo presented the court with sacred scriptures.",
+            "ko": "순도는 왕실에 신성한 불경을 바쳤다."
+          },
+          {
+            "en": "Monks copied scriptures by hand for centuries.",
+            "ko": "승려들은 수백 년간 경전을 손으로 필사했다."
+          }
         ]
       },
       {
         "word": "remote",
         "pos": "adj.",
         "meaning_ko": "외진, 멀리 떨어진",
-        "synonyms": ["isolated", "distant"],
-        "antonyms": ["central", "accessible"],
+        "synonyms": [
+          "isolated",
+          "distant"
+        ],
+        "antonyms": [
+          "central",
+          "accessible"
+        ],
         "examples": [
-          { "en": "Silla was the most remote of the three kingdoms.", "ko": "신라는 삼국 중 가장 외진 왕국이었다." },
-          { "en": "The remote village had no paved roads at all.", "ko": "그 외진 마을에는 포장도로가 전혀 없었다." }
+          {
+            "en": "Silla was the most remote of the three kingdoms.",
+            "ko": "신라는 삼국 중 가장 외진 왕국이었다."
+          },
+          {
+            "en": "The remote village had no paved roads at all.",
+            "ko": "그 외진 마을에는 포장도로가 전혀 없었다."
+          }
         ]
       },
       {
         "word": "adopt",
         "pos": "v.",
         "meaning_ko": "받아들이다, 채택하다",
-        "synonyms": ["accept", "embrace"],
-        "antonyms": ["reject"],
+        "synonyms": [
+          "accept",
+          "embrace"
+        ],
+        "antonyms": [
+          "reject"
+        ],
         "examples": [
-          { "en": "Silla adopted Buddhism as its state faith in 528.", "ko": "신라는 528년 불교를 국가 신앙으로 채택했다." },
-          { "en": "Our school adopted a new policy last year.", "ko": "우리 학교는 작년에 새로운 방침을 채택했다." }
+          {
+            "en": "Silla adopted Buddhism as its state faith in 528.",
+            "ko": "신라는 528년 불교를 국가 신앙으로 채택했다."
+          },
+          {
+            "en": "Our school adopted a new policy last year.",
+            "ko": "우리 학교는 작년에 새로운 방침을 채택했다."
+          }
         ]
       },
       {
         "word": "commission",
         "pos": "v.",
         "meaning_ko": "의뢰하다, 건립을 명하다",
-        "synonyms": ["order", "authorize"],
-        "antonyms": ["cancel"],
+        "synonyms": [
+          "order",
+          "authorize"
+        ],
+        "antonyms": [
+          "cancel"
+        ],
         "examples": [
-          { "en": "Kings commissioned pagodas to show their piety.", "ko": "왕들은 신앙심을 보이려 탑 건립을 명했다." },
-          { "en": "The city commissioned a new statue for the park.", "ko": "도시는 공원을 위한 새 조각상을 의뢰했다." }
+          {
+            "en": "Kings commissioned pagodas to show their piety.",
+            "ko": "왕들은 신앙심을 보이려 탑 건립을 명했다."
+          },
+          {
+            "en": "The city commissioned a new statue for the park.",
+            "ko": "도시는 공원을 위한 새 조각상을 의뢰했다."
+          }
         ]
       },
       {
         "word": "piety",
         "pos": "n.",
         "meaning_ko": "신앙심, 경건함",
-        "synonyms": ["devotion", "reverence"],
-        "antonyms": ["impiety"],
+        "synonyms": [
+          "devotion",
+          "reverence"
+        ],
+        "antonyms": [
+          "impiety"
+        ],
         "examples": [
-          { "en": "Pagodas made a visible declaration of royal piety.", "ko": "탑은 왕의 신앙심을 눈으로 선포했다." },
-          { "en": "She showed her piety by donating to the temple.", "ko": "그녀는 사찰에 기부하며 신앙심을 드러냈다." }
+          {
+            "en": "Pagodas made a visible declaration of royal piety.",
+            "ko": "탑은 왕의 신앙심을 눈으로 선포했다."
+          },
+          {
+            "en": "She showed her piety by donating to the temple.",
+            "ko": "그녀는 사찰에 기부하며 신앙심을 드러냈다."
+          }
         ]
       },
       {
         "word": "resonant",
         "pos": "adj.",
         "meaning_ko": "울림 있는, 공명하는",
-        "synonyms": ["rich", "deep"],
-        "antonyms": ["thin", "flat"],
+        "synonyms": [
+          "rich",
+          "deep"
+        ],
+        "antonyms": [
+          "thin",
+          "flat"
+        ],
         "examples": [
-          { "en": "Bronze bells sent resonant tones across valleys.", "ko": "청동 종은 계곡에 울림 있는 소리를 전했다." },
-          { "en": "His resonant voice filled the entire concert hall.", "ko": "그의 울림 있는 목소리가 공연장을 가득 채웠다." }
+          {
+            "en": "Bronze bells sent resonant tones across valleys.",
+            "ko": "청동 종은 계곡에 울림 있는 소리를 전했다."
+          },
+          {
+            "en": "His resonant voice filled the entire concert hall.",
+            "ko": "그의 울림 있는 목소리가 공연장을 가득 채웠다."
+          }
         ]
       },
       {
         "word": "iconography",
         "pos": "n.",
         "meaning_ko": "도상(학), 도상 체계",
-        "synonyms": ["imagery", "symbolism"],
+        "synonyms": [
+          "imagery",
+          "symbolism"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "Indian iconography blended with Korean traditions.", "ko": "인도 도상이 한국 전통과 융합되었다." },
-          { "en": "Historians study medieval church iconography.", "ko": "역사학자들은 중세 교회의 도상학을 연구한다." }
+          {
+            "en": "Indian iconography blended with Korean traditions.",
+            "ko": "인도 도상이 한국 전통과 융합되었다."
+          },
+          {
+            "en": "Historians study medieval church iconography.",
+            "ko": "역사학자들은 중세 교회의 도상학을 연구한다."
+          }
         ]
       },
       {
         "word": "ideology",
         "pos": "n.",
         "meaning_ko": "이념, 이데올로기",
-        "synonyms": ["doctrine", "belief system"],
+        "synonyms": [
+          "doctrine",
+          "belief system"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "Buddhism gave rulers a powerful unifying ideology.", "ko": "불교는 지배자들에게 강력한 통합 이념을 주었다." },
-          { "en": "Political parties often differ in core ideology.", "ko": "정당들은 종종 핵심 이념에서 차이를 보인다." }
+          {
+            "en": "Buddhism gave rulers a powerful unifying ideology.",
+            "ko": "불교는 지배자들에게 강력한 통합 이념을 주었다."
+          },
+          {
+            "en": "Political parties often differ in core ideology.",
+            "ko": "정당들은 종종 핵심 이념에서 차이를 보인다."
+          }
         ]
       },
       {
         "word": "manuscript",
         "pos": "n.",
         "meaning_ko": "필사본, 원고",
-        "synonyms": ["document", "text"],
+        "synonyms": [
+          "document",
+          "text"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "Monks carried manuscripts between kingdoms.", "ko": "승려들은 필사본을 왕국들 사이에 전했다." },
-          { "en": "The old manuscript was kept in a sealed box.", "ko": "오래된 필사본은 밀봉된 상자에 보관되었다." }
+          {
+            "en": "Monks carried manuscripts between kingdoms.",
+            "ko": "승려들은 필사본을 왕국들 사이에 전했다."
+          },
+          {
+            "en": "The old manuscript was kept in a sealed box.",
+            "ko": "오래된 필사본은 밀봉된 상자에 보관되었다."
+          }
         ]
       },
       {
         "word": "unification",
         "pos": "n.",
         "meaning_ko": "통일, 통합",
-        "synonyms": ["union", "integration"],
-        "antonyms": ["division", "separation"],
+        "synonyms": [
+          "union",
+          "integration"
+        ],
+        "antonyms": [
+          "division",
+          "separation"
+        ],
         "examples": [
-          { "en": "Silla's unification was shaped by Buddhist ideas.", "ko": "신라의 통일은 불교 사상에 의해 형성되었다." },
-          { "en": "The unification of two clubs brought new energy.", "ko": "두 동아리의 통합은 새로운 활력을 가져왔다." }
+          {
+            "en": "Silla's unification was shaped by Buddhist ideas.",
+            "ko": "신라의 통일은 불교 사상에 의해 형성되었다."
+          },
+          {
+            "en": "The unification of two clubs brought new energy.",
+            "ko": "두 동아리의 통합은 새로운 활력을 가져왔다."
+          }
         ]
       },
       {
         "word": "testify",
         "pos": "v.",
         "meaning_ko": "증언하다, 증거가 되다",
-        "synonyms": ["witness", "attest"],
-        "antonyms": ["deny"],
+        "synonyms": [
+          "witness",
+          "attest"
+        ],
+        "antonyms": [
+          "deny"
+        ],
         "examples": [
-          { "en": "Old temples testify to Buddhist royal ambitions.", "ko": "옛 사찰들은 불교 왕권의 야망을 증언한다." },
-          { "en": "The ruins testify to a once-great civilization.", "ko": "그 유적은 한때 위대했던 문명의 증거이다." }
+          {
+            "en": "Old temples testify to Buddhist royal ambitions.",
+            "ko": "옛 사찰들은 불교 왕권의 야망을 증언한다."
+          },
+          {
+            "en": "The ruins testify to a once-great civilization.",
+            "ko": "그 유적은 한때 위대했던 문명의 증거이다."
+          }
         ]
       }
     ]

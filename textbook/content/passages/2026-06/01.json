@@ -12,13 +12,18 @@
     "cognitive_skill": "요지",
     "lexile": "1020L",
     "ar_level": 6.8,
-    "key_concepts": ["탄소", "공유결합", "유기물", "생명의 기원"]
+    "key_concepts": [
+      "탄소",
+      "공유결합",
+      "유기물",
+      "생명의 기원"
+    ]
   },
   "page1": {
     "title": "Why Carbon Can Build Almost Anything",
     "subtitle": "One stubborn element, infinite architectures.",
     "body": "Every living thing you can name, from the moss on a rock to the blue whale in the deep, is assembled from the same surprising element: <u>carbon</u>. Out of ninety-something natural elements available on our planet, why did life repeatedly and independently pick this one? The answer hides in the geometry of a single atom. Carbon has four outer electrons, which means that it can share bonds with four different neighbors at the same time. That freedom allows carbon to form straight chains, closed loops, branching trees, and even rigid three-dimensional cages. No other common element offers this range of shapes.\n\nOxygen bonds twice, nitrogen three times, but carbon is the only cheap, plentiful atom that reaches four — and that small difference quietly shapes <mark>the entire story of biology</mark>. Each carbon skeleton can then pick up hydrogen, oxygen, and nitrogen like tiny decorations on a tree, and the result becomes a protein, a sugar, a fat, or even a piece of DNA. Change a single side group and you change the function of the whole molecule, so small chemical tweaks become huge biological effects. This is why a caffeine molecule keeps you awake at midnight while a nearly identical structure sits silently in your blood and does nothing at all.\n\nCarbon's flexibility also explains why modern chemists can design new drugs, plastics, and cleaner fuels simply by editing its scaffolds in the laboratory. Every semester in a chemistry lab, students build molecules that never existed in nature, yet they always obey the same four-bond rule. In a sense, life did not choose carbon because it was beautiful; life chose carbon because carbon is <blank>. The universe is full of atoms, but only this one quietly builds whole worlds, one bond at a time.",
-    "illustration": "../../assets/illustrations/2026-06/01.svg",
+    "illustration": "../../assets/illustrations/2026-06/01.png",
     "illustration_caption": "From a single carbon atom to chains, rings, and crystals."
   },
   "page2": {
@@ -66,7 +71,13 @@
         "type": "school_descriptive",
         "style": "요약문 빈칸 완성",
         "prompt": "다음은 본문의 요약문이다. 본문의 내용을 바탕으로 빈칸 (A), (B)에 들어갈 말을 <조건>에 맞게 영어 한 단어로 각각 쓰시오. <조건> 본문에서 제시된 단어를 그대로 활용할 것.",
-        "hints": ["four", "shapes", "bonds", "scaffolds", "flexible"],
+        "hints": [
+          "four",
+          "shapes",
+          "bonds",
+          "scaffolds",
+          "flexible"
+        ],
         "summary_template": "Carbon became the chemical foundation of life because its atom can form <blank> (A) at once, which lets it build chains, rings, and three-dimensional <blank> (B). Small changes to a carbon skeleton therefore produce very different biological outcomes.",
         "model_answer": "(A) bonds  (B) shapes (또는 scaffolds)"
       }
@@ -74,16 +85,41 @@
     "textbook_tieback": {
       "unit_label": "통합과학 I-2 · 생명의 진화와 탄소",
       "body_ko": "고1 통합과학에서 탄소는 '생명의 기원' 단원의 핵심이다. 탄소 원자는 원자가 전자가 4개라서 최대 4개의 원자와 공유결합을 만들 수 있고, 그 덕분에 사슬·고리·3차원 구조까지 거의 모든 형태의 분자를 만들 수 있다. 교과서에서는 이를 탄소 화합물의 다양성이라 부르며, 탄수화물·단백질·지질·핵산이 모두 탄소 골격 위에서 만들어진다. 곁가지만 살짝 바뀌어도 기능이 크게 달라진다는 점이 단원의 핵심이다.",
-      "tags": ["공유결합", "탄소화합물", "유기물", "생명"],
+      "tags": [
+        "공유결합",
+        "탄소화합물",
+        "유기물",
+        "생명"
+      ],
       "visual_aid": {
         "type": "emoji_flow",
         "title": "탄소가 만드는 구조 한눈에 보기",
         "steps": [
-          { "emoji": "⚛️", "label": "탄소 원자", "note": "원자가 전자 4개" },
-          { "emoji": "🔗", "label": "사슬", "note": "C–C–C 직선" },
-          { "emoji": "⬡",  "label": "고리", "note": "벤젠·포도당" },
-          { "emoji": "💎", "label": "3D 결정", "note": "다이아몬드" },
-          { "emoji": "🧬", "label": "생체 분자", "note": "단백질·DNA" }
+          {
+            "emoji": "⚛️",
+            "label": "탄소 원자",
+            "note": "원자가 전자 4개"
+          },
+          {
+            "emoji": "🔗",
+            "label": "사슬",
+            "note": "C–C–C 직선"
+          },
+          {
+            "emoji": "⬡",
+            "label": "고리",
+            "note": "벤젠·포도당"
+          },
+          {
+            "emoji": "💎",
+            "label": "3D 결정",
+            "note": "다이아몬드"
+          },
+          {
+            "emoji": "🧬",
+            "label": "생체 분자",
+            "note": "단백질·DNA"
+          }
         ]
       }
     }
@@ -93,178 +129,485 @@
       {
         "index": 1,
         "segments": [
-          { "role": "S", "text": "Every living thing you can name", "note": "주어 + 관계절(that 생략)" },
-          { "role": "M", "text": "from the moss on a rock to the blue whale in the deep", "note": "from A to B 범위" },
-          { "role": "V", "text": "is assembled", "note": "be + p.p. 수동태" },
-          { "role": "M", "text": "from the same surprising element: carbon" }
+          {
+            "role": "S",
+            "text": "Every living thing you can name",
+            "note": "주어 + 관계절(that 생략)"
+          },
+          {
+            "role": "M",
+            "text": "from the moss on a rock to the blue whale in the deep",
+            "note": "from A to B 범위"
+          },
+          {
+            "role": "V",
+            "text": "is assembled",
+            "note": "be + p.p. 수동태"
+          },
+          {
+            "role": "M",
+            "text": "from the same surprising element: carbon"
+          }
         ],
         "grammar_note": "수동태, 주어 수식 관계절, 콜론 뒤 동격"
       },
       {
         "index": 2,
         "segments": [
-          { "role": "M", "text": "Out of ninety-something natural elements available on our planet,", "note": "Out of ~ 중에서" },
-          { "role": "V", "text": "why did" },
-          { "role": "S", "text": "life" },
-          { "role": "V", "text": "repeatedly pick", "note": "의문문 도치" },
-          { "role": "O", "text": "this one?" }
+          {
+            "role": "M",
+            "text": "Out of ninety-something natural elements available on our planet,",
+            "note": "Out of ~ 중에서"
+          },
+          {
+            "role": "V",
+            "text": "why did"
+          },
+          {
+            "role": "S",
+            "text": "life"
+          },
+          {
+            "role": "V",
+            "text": "repeatedly pick",
+            "note": "의문문 도치"
+          },
+          {
+            "role": "O",
+            "text": "this one?"
+          }
         ],
         "grammar_note": "의문문 조동사 도치"
       },
       {
         "index": 3,
         "segments": [
-          { "role": "S", "text": "The answer" },
-          { "role": "V", "text": "hides", "note": "3인칭 단수 현재" },
-          { "role": "M", "text": "in the geometry of a single atom." }
+          {
+            "role": "S",
+            "text": "The answer"
+          },
+          {
+            "role": "V",
+            "text": "hides",
+            "note": "3인칭 단수 현재"
+          },
+          {
+            "role": "M",
+            "text": "in the geometry of a single atom."
+          }
         ],
         "grammar_note": "1형식, 전치사구 수식"
       },
       {
         "index": 4,
         "segments": [
-          { "role": "S", "text": "Carbon" },
-          { "role": "V", "text": "has" },
-          { "role": "O", "text": "four outer electrons" },
-          { "role": "REL", "text": ", which", "note": "계속적 용법: 앞 절 전체 수식" },
-          { "role": "V", "text": "means" },
-          { "role": "O", "text": "it can share bonds with four different neighbors at once." }
+          {
+            "role": "S",
+            "text": "Carbon"
+          },
+          {
+            "role": "V",
+            "text": "has"
+          },
+          {
+            "role": "O",
+            "text": "four outer electrons"
+          },
+          {
+            "role": "REL",
+            "text": ", which",
+            "note": "계속적 용법: 앞 절 전체 수식"
+          },
+          {
+            "role": "V",
+            "text": "means"
+          },
+          {
+            "role": "O",
+            "text": "it can share bonds with four different neighbors at once."
+          }
         ],
         "grammar_note": "계속적 용법 which + 명사절 목적어"
       },
       {
         "index": 5,
         "segments": [
-          { "role": "S", "text": "That freedom" },
-          { "role": "V", "text": "allows", "note": "allow O to-V 5형식" },
-          { "role": "O", "text": "carbon" },
-          { "role": "C", "text": "to form straight chains, closed loops, branching trees, and even rigid three-dimensional cages." }
+          {
+            "role": "S",
+            "text": "That freedom"
+          },
+          {
+            "role": "V",
+            "text": "allows",
+            "note": "allow O to-V 5형식"
+          },
+          {
+            "role": "O",
+            "text": "carbon"
+          },
+          {
+            "role": "C",
+            "text": "to form straight chains, closed loops, branching trees, and even rigid three-dimensional cages."
+          }
         ],
         "grammar_note": "allow + O + to-V 구문"
       },
       {
         "index": 6,
         "segments": [
-          { "role": "S", "text": "No other common element", "note": "최상급 의미의 부정 주어" },
-          { "role": "V", "text": "offers" },
-          { "role": "O", "text": "this range of shapes." }
+          {
+            "role": "S",
+            "text": "No other common element",
+            "note": "최상급 의미의 부정 주어"
+          },
+          {
+            "role": "V",
+            "text": "offers"
+          },
+          {
+            "role": "O",
+            "text": "this range of shapes."
+          }
         ],
         "grammar_note": "no other + 단수명사 = 최상급 의미"
       },
       {
         "index": 7,
         "segments": [
-          { "role": "S", "text": "Oxygen" },
-          { "role": "V", "text": "bonds twice," },
-          { "role": "S", "text": "nitrogen" },
-          { "role": "V", "text": "three times," },
-          { "role": "CONJ", "text": "but", "note": "대조 접속사" },
-          { "role": "S", "text": "carbon" },
-          { "role": "V", "text": "is" },
-          { "role": "C", "text": "the only cheap, plentiful atom that reaches four", "note": "관계절이 보어 수식" },
-          { "role": "M", "text": "— and that small difference quietly shapes the entire story of biology." }
+          {
+            "role": "S",
+            "text": "Oxygen"
+          },
+          {
+            "role": "V",
+            "text": "bonds twice,"
+          },
+          {
+            "role": "S",
+            "text": "nitrogen"
+          },
+          {
+            "role": "V",
+            "text": "three times,"
+          },
+          {
+            "role": "CONJ",
+            "text": "but",
+            "note": "대조 접속사"
+          },
+          {
+            "role": "S",
+            "text": "carbon"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "the only cheap, plentiful atom that reaches four",
+            "note": "관계절이 보어 수식"
+          },
+          {
+            "role": "M",
+            "text": "— and that small difference quietly shapes the entire story of biology."
+          }
         ],
         "grammar_note": "병렬 구조 + 대조 but + 관계대명사 that"
       },
       {
         "index": 8,
         "segments": [
-          { "role": "S", "text": "Each carbon skeleton" },
-          { "role": "V", "text": "can then pick up", "note": "숙어: ~을 받아들이다" },
-          { "role": "O", "text": "hydrogen, oxygen, and nitrogen" },
-          { "role": "M", "text": "like tiny decorations on a tree," },
-          { "role": "CONJ", "text": "and" },
-          { "role": "S", "text": "the result" },
-          { "role": "V", "text": "becomes", "note": "2형식 동사" },
-          { "role": "C", "text": "a protein, a sugar, a fat, or a piece of DNA." }
+          {
+            "role": "S",
+            "text": "Each carbon skeleton"
+          },
+          {
+            "role": "V",
+            "text": "can then pick up",
+            "note": "숙어: ~을 받아들이다"
+          },
+          {
+            "role": "O",
+            "text": "hydrogen, oxygen, and nitrogen"
+          },
+          {
+            "role": "M",
+            "text": "like tiny decorations on a tree,"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "S",
+            "text": "the result"
+          },
+          {
+            "role": "V",
+            "text": "becomes",
+            "note": "2형식 동사"
+          },
+          {
+            "role": "C",
+            "text": "a protein, a sugar, a fat, or a piece of DNA."
+          }
         ],
         "grammar_note": "등위 접속사 and로 연결된 두 문장"
       },
       {
         "index": 9,
         "segments": [
-          { "role": "V", "text": "Change", "note": "명령문" },
-          { "role": "O", "text": "a single side group" },
-          { "role": "CONJ", "text": "and", "note": "명령문+and = 조건절" },
-          { "role": "S", "text": "you" },
-          { "role": "V", "text": "change" },
-          { "role": "O", "text": "the function of the whole molecule," },
-          { "role": "CONJ", "text": "so", "note": "결과 접속사" },
-          { "role": "S", "text": "small chemical tweaks" },
-          { "role": "V", "text": "become" },
-          { "role": "C", "text": "huge biological effects." }
+          {
+            "role": "V",
+            "text": "Change",
+            "note": "명령문"
+          },
+          {
+            "role": "O",
+            "text": "a single side group"
+          },
+          {
+            "role": "CONJ",
+            "text": "and",
+            "note": "명령문+and = 조건절"
+          },
+          {
+            "role": "S",
+            "text": "you"
+          },
+          {
+            "role": "V",
+            "text": "change"
+          },
+          {
+            "role": "O",
+            "text": "the function of the whole molecule,"
+          },
+          {
+            "role": "CONJ",
+            "text": "so",
+            "note": "결과 접속사"
+          },
+          {
+            "role": "S",
+            "text": "small chemical tweaks"
+          },
+          {
+            "role": "V",
+            "text": "become"
+          },
+          {
+            "role": "C",
+            "text": "huge biological effects."
+          }
         ],
         "grammar_note": "명령문+and = if절; so = therefore"
       },
       {
         "index": 10,
         "segments": [
-          { "role": "CONJ", "text": "This is why", "note": "이것이 ~한 이유이다" },
-          { "role": "S", "text": "a caffeine molecule" },
-          { "role": "V", "text": "keeps", "note": "keep O C 5형식" },
-          { "role": "O", "text": "you" },
-          { "role": "C", "text": "awake at midnight" },
-          { "role": "CONJ", "text": "while" },
-          { "role": "S", "text": "a nearly identical structure" },
-          { "role": "V", "text": "sits silently in your blood and does", "note": "병렬 동사" },
-          { "role": "O", "text": "nothing at all." }
+          {
+            "role": "CONJ",
+            "text": "This is why",
+            "note": "이것이 ~한 이유이다"
+          },
+          {
+            "role": "S",
+            "text": "a caffeine molecule"
+          },
+          {
+            "role": "V",
+            "text": "keeps",
+            "note": "keep O C 5형식"
+          },
+          {
+            "role": "O",
+            "text": "you"
+          },
+          {
+            "role": "C",
+            "text": "awake at midnight"
+          },
+          {
+            "role": "CONJ",
+            "text": "while"
+          },
+          {
+            "role": "S",
+            "text": "a nearly identical structure"
+          },
+          {
+            "role": "V",
+            "text": "sits silently in your blood and does",
+            "note": "병렬 동사"
+          },
+          {
+            "role": "O",
+            "text": "nothing at all."
+          }
         ],
         "grammar_note": "keep O C 5형식 + 대조의 while"
       },
       {
         "index": 11,
         "segments": [
-          { "role": "S", "text": "Carbon's flexibility" },
-          { "role": "V", "text": "also explains" },
-          { "role": "O", "text": "why modern chemists can design new drugs, plastics, and cleaner fuels", "note": "의문사 why 명사절" },
-          { "role": "M", "text": "simply by editing its scaffolds." }
+          {
+            "role": "S",
+            "text": "Carbon's flexibility"
+          },
+          {
+            "role": "V",
+            "text": "also explains"
+          },
+          {
+            "role": "O",
+            "text": "why modern chemists can design new drugs, plastics, and cleaner fuels",
+            "note": "의문사 why 명사절"
+          },
+          {
+            "role": "M",
+            "text": "simply by editing its scaffolds."
+          }
         ],
         "grammar_note": "why 명사절 목적어, by + -ing 수단"
       },
       {
         "index": 12,
         "segments": [
-          { "role": "M", "text": "Every semester in a chemistry lab," },
-          { "role": "S", "text": "students" },
-          { "role": "V", "text": "build" },
-          { "role": "O", "text": "molecules that never existed in nature,", "note": "관계대명사 that 수식" },
-          { "role": "CONJ", "text": "yet", "note": "양보 접속사" },
-          { "role": "V", "text": "obey" },
-          { "role": "O", "text": "the same four-bond rule." }
+          {
+            "role": "M",
+            "text": "Every semester in a chemistry lab,"
+          },
+          {
+            "role": "S",
+            "text": "students"
+          },
+          {
+            "role": "V",
+            "text": "build"
+          },
+          {
+            "role": "O",
+            "text": "molecules that never existed in nature,",
+            "note": "관계대명사 that 수식"
+          },
+          {
+            "role": "CONJ",
+            "text": "yet",
+            "note": "양보 접속사"
+          },
+          {
+            "role": "V",
+            "text": "obey"
+          },
+          {
+            "role": "O",
+            "text": "the same four-bond rule."
+          }
         ],
         "grammar_note": "관계대명사 that + 양보 yet"
       },
       {
         "index": 13,
         "segments": [
-          { "role": "M", "text": "In a sense," },
-          { "role": "S", "text": "life" },
-          { "role": "V", "text": "did not choose", "note": "부정 과거형" },
-          { "role": "O", "text": "carbon" },
-          { "role": "CONJ", "text": "because" },
-          { "role": "S", "text": "it" },
-          { "role": "V", "text": "was" },
-          { "role": "C", "text": "beautiful;" },
-          { "role": "S", "text": "life" },
-          { "role": "V", "text": "chose" },
-          { "role": "O", "text": "carbon" },
-          { "role": "CONJ", "text": "because", "note": "원인 부사절" },
-          { "role": "S", "text": "carbon" },
-          { "role": "V", "text": "is" },
-          { "role": "C", "text": "____ (= extraordinarily talented …)." }
+          {
+            "role": "M",
+            "text": "In a sense,"
+          },
+          {
+            "role": "S",
+            "text": "life"
+          },
+          {
+            "role": "V",
+            "text": "did not choose",
+            "note": "부정 과거형"
+          },
+          {
+            "role": "O",
+            "text": "carbon"
+          },
+          {
+            "role": "CONJ",
+            "text": "because"
+          },
+          {
+            "role": "S",
+            "text": "it"
+          },
+          {
+            "role": "V",
+            "text": "was"
+          },
+          {
+            "role": "C",
+            "text": "beautiful;"
+          },
+          {
+            "role": "S",
+            "text": "life"
+          },
+          {
+            "role": "V",
+            "text": "chose"
+          },
+          {
+            "role": "O",
+            "text": "carbon"
+          },
+          {
+            "role": "CONJ",
+            "text": "because",
+            "note": "원인 부사절"
+          },
+          {
+            "role": "S",
+            "text": "carbon"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "____ (= extraordinarily talented …)."
+          }
         ],
         "grammar_note": "not A because B, but because C 구조"
       },
       {
         "index": 14,
         "segments": [
-          { "role": "S", "text": "The universe" },
-          { "role": "V", "text": "is" },
-          { "role": "C", "text": "full of atoms," },
-          { "role": "CONJ", "text": "but" },
-          { "role": "S", "text": "only this one" },
-          { "role": "V", "text": "quietly builds", "note": "부사가 동사 수식" },
-          { "role": "O", "text": "worlds, one bond at a time." }
+          {
+            "role": "S",
+            "text": "The universe"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "full of atoms,"
+          },
+          {
+            "role": "CONJ",
+            "text": "but"
+          },
+          {
+            "role": "S",
+            "text": "only this one"
+          },
+          {
+            "role": "V",
+            "text": "quietly builds",
+            "note": "부사가 동사 수식"
+          },
+          {
+            "role": "O",
+            "text": "worlds, one bond at a time."
+          }
         ],
         "grammar_note": "대조 but + 강조 only"
       }
@@ -273,54 +616,248 @@
   },
   "page4": {
     "vocab": [
-      { "word": "assemble", "pos": "v.", "meaning_ko": "조립하다, 모으다", "synonyms": ["construct", "put together"], "antonyms": ["disassemble"], "examples": [
-        { "en": "The parts were carefully assembled into a working device.", "ko": "부품들이 조심스럽게 조립되어 작동하는 장치가 되었다." },
-        { "en": "Students assembled a model engine during the science fair.", "ko": "학생들은 과학 경진대회에서 모형 엔진을 조립했다." }
-      ] },
-      { "word": "bond", "pos": "n./v.", "meaning_ko": "결합(하다)", "synonyms": ["link", "connection"], "antonyms": [], "examples": [
-        { "en": "Carbon atoms bond with four neighbors at the same time.", "ko": "탄소 원자는 동시에 네 개의 이웃과 결합한다." },
-        { "en": "Oxygen and hydrogen bond together to form a water molecule.", "ko": "산소와 수소가 결합하여 물 분자를 이룬다." }
-      ] },
-      { "word": "skeleton", "pos": "n.", "meaning_ko": "(분자·구조의) 골격", "synonyms": ["framework", "backbone"], "antonyms": [], "examples": [
-        { "en": "A carbon skeleton forms the base of most biological molecules.", "ko": "탄소 골격은 대부분의 생체 분자의 기초를 이룬다." },
-        { "en": "Every protein is built on a skeleton of carbon atoms.", "ko": "모든 단백질은 탄소 원자 골격 위에 지어진다." }
-      ] },
-      { "word": "molecule", "pos": "n.", "meaning_ko": "분자", "synonyms": [], "antonyms": [], "examples": [
-        { "en": "Water is the most familiar molecule in biology.", "ko": "물은 생물학에서 가장 친숙한 분자이다." },
-        { "en": "A single glucose molecule contains six carbon atoms.", "ko": "포도당 분자 하나에는 여섯 개의 탄소 원자가 들어 있다." }
-      ] },
-      { "word": "flexibility", "pos": "n.", "meaning_ko": "유연성, 융통성", "synonyms": ["adaptability"], "antonyms": ["rigidity"], "examples": [
-        { "en": "The flexibility of carbon allows an enormous variety of shapes.", "ko": "탄소의 유연성 덕분에 엄청나게 다양한 모양이 가능하다." },
-        { "en": "This material's flexibility makes it perfect for wearable sensors.", "ko": "이 소재의 유연성 덕분에 착용형 센서에 안성맞춤이다." }
-      ] },
-      { "word": "scaffold", "pos": "n.", "meaning_ko": "뼈대, 기반 구조", "synonyms": ["framework"], "antonyms": [], "examples": [
-        { "en": "Chemists edit carbon scaffolds to design new drugs.", "ko": "화학자들은 새로운 약을 설계하기 위해 탄소 뼈대를 수정한다." },
-        { "en": "Vaccines are often built on a known molecular scaffold.", "ko": "백신은 흔히 이미 알려진 분자 뼈대 위에 만들어진다." }
-      ] },
-      { "word": "neighbor", "pos": "n.", "meaning_ko": "이웃한 것", "synonyms": [], "antonyms": [], "examples": [
-        { "en": "Each carbon atom can share electrons with four neighbors.", "ko": "각 탄소 원자는 네 이웃과 전자를 공유할 수 있다." },
-        { "en": "Atoms in a diamond crystal are locked to four neighbors.", "ko": "다이아몬드 결정 속 원자들은 네 이웃과 단단히 묶여 있다." }
-      ] },
-      { "word": "range", "pos": "n.", "meaning_ko": "범위, 폭", "synonyms": ["variety", "span"], "antonyms": [], "examples": [
-        { "en": "No other element offers this range of shapes.", "ko": "다른 어떤 원소도 이 정도의 형태 범위를 제공하지 않는다." },
-        { "en": "Carbon compounds span a wide range of uses, from fuel to DNA.", "ko": "탄소 화합물은 연료부터 DNA까지 폭넓은 용도를 아우른다." }
-      ] },
-      { "word": "tweak", "pos": "n./v.", "meaning_ko": "세부 조정, 살짝 바꾸기", "synonyms": ["adjust", "modify"], "antonyms": [], "examples": [
-        { "en": "A small chemical tweak can change the molecule's function.", "ko": "사소한 화학적 변형이 분자의 기능을 바꿀 수 있다." },
-        { "en": "Scientists tweak the side group to create different medicines.", "ko": "과학자들은 곁가지를 살짝 바꾸어 서로 다른 약을 만들어낸다." }
-      ] },
-      { "word": "extraordinarily", "pos": "adv.", "meaning_ko": "유별나게, 대단히", "synonyms": ["unusually", "remarkably"], "antonyms": ["ordinarily"], "examples": [
-        { "en": "Carbon is extraordinarily talented at forming stable structures.", "ko": "탄소는 안정한 구조를 만드는 데 유별나게 재능이 있다." },
-        { "en": "The new battery is extraordinarily light for its storage capacity.", "ko": "이 새 배터리는 저장 용량에 비해 유별나게 가볍다." }
-      ] },
-      { "word": "plentiful", "pos": "adj.", "meaning_ko": "풍부한, 많은", "synonyms": ["abundant", "ample"], "antonyms": ["scarce"], "examples": [
-        { "en": "Water is plentiful on Earth but scarce on Mars.", "ko": "물은 지구에 풍부하지만 화성에서는 드물다." },
-        { "en": "Carbon is plentiful in the atmosphere and in every living cell.", "ko": "탄소는 대기와 모든 살아 있는 세포 속에 풍부하다." }
-      ] },
-      { "word": "obey", "pos": "v.", "meaning_ko": "(법칙을) 따르다", "synonyms": ["follow", "abide by"], "antonyms": ["disobey"], "examples": [
-        { "en": "Every new molecule still obeys the four-bond rule.", "ko": "새로 만든 분자도 여전히 4결합 규칙을 따른다." },
-        { "en": "Planets obey the laws of gravity established centuries ago.", "ko": "행성은 수세기 전 확립된 중력 법칙을 따른다." }
-      ] }
+      {
+        "word": "assemble",
+        "pos": "v.",
+        "meaning_ko": "조립하다, 모으다",
+        "synonyms": [
+          "construct",
+          "put together"
+        ],
+        "antonyms": [
+          "disassemble"
+        ],
+        "examples": [
+          {
+            "en": "The parts were carefully assembled into a working device.",
+            "ko": "부품들이 조심스럽게 조립되어 작동하는 장치가 되었다."
+          },
+          {
+            "en": "Students assembled a model engine during the science fair.",
+            "ko": "학생들은 과학 경진대회에서 모형 엔진을 조립했다."
+          }
+        ]
+      },
+      {
+        "word": "bond",
+        "pos": "n./v.",
+        "meaning_ko": "결합(하다)",
+        "synonyms": [
+          "link",
+          "connection"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "Carbon atoms bond with four neighbors at the same time.",
+            "ko": "탄소 원자는 동시에 네 개의 이웃과 결합한다."
+          },
+          {
+            "en": "Oxygen and hydrogen bond together to form a water molecule.",
+            "ko": "산소와 수소가 결합하여 물 분자를 이룬다."
+          }
+        ]
+      },
+      {
+        "word": "skeleton",
+        "pos": "n.",
+        "meaning_ko": "(분자·구조의) 골격",
+        "synonyms": [
+          "framework",
+          "backbone"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "A carbon skeleton forms the base of most biological molecules.",
+            "ko": "탄소 골격은 대부분의 생체 분자의 기초를 이룬다."
+          },
+          {
+            "en": "Every protein is built on a skeleton of carbon atoms.",
+            "ko": "모든 단백질은 탄소 원자 골격 위에 지어진다."
+          }
+        ]
+      },
+      {
+        "word": "molecule",
+        "pos": "n.",
+        "meaning_ko": "분자",
+        "synonyms": [],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "Water is the most familiar molecule in biology.",
+            "ko": "물은 생물학에서 가장 친숙한 분자이다."
+          },
+          {
+            "en": "A single glucose molecule contains six carbon atoms.",
+            "ko": "포도당 분자 하나에는 여섯 개의 탄소 원자가 들어 있다."
+          }
+        ]
+      },
+      {
+        "word": "flexibility",
+        "pos": "n.",
+        "meaning_ko": "유연성, 융통성",
+        "synonyms": [
+          "adaptability"
+        ],
+        "antonyms": [
+          "rigidity"
+        ],
+        "examples": [
+          {
+            "en": "The flexibility of carbon allows an enormous variety of shapes.",
+            "ko": "탄소의 유연성 덕분에 엄청나게 다양한 모양이 가능하다."
+          },
+          {
+            "en": "This material's flexibility makes it perfect for wearable sensors.",
+            "ko": "이 소재의 유연성 덕분에 착용형 센서에 안성맞춤이다."
+          }
+        ]
+      },
+      {
+        "word": "scaffold",
+        "pos": "n.",
+        "meaning_ko": "뼈대, 기반 구조",
+        "synonyms": [
+          "framework"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "Chemists edit carbon scaffolds to design new drugs.",
+            "ko": "화학자들은 새로운 약을 설계하기 위해 탄소 뼈대를 수정한다."
+          },
+          {
+            "en": "Vaccines are often built on a known molecular scaffold.",
+            "ko": "백신은 흔히 이미 알려진 분자 뼈대 위에 만들어진다."
+          }
+        ]
+      },
+      {
+        "word": "neighbor",
+        "pos": "n.",
+        "meaning_ko": "이웃한 것",
+        "synonyms": [],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "Each carbon atom can share electrons with four neighbors.",
+            "ko": "각 탄소 원자는 네 이웃과 전자를 공유할 수 있다."
+          },
+          {
+            "en": "Atoms in a diamond crystal are locked to four neighbors.",
+            "ko": "다이아몬드 결정 속 원자들은 네 이웃과 단단히 묶여 있다."
+          }
+        ]
+      },
+      {
+        "word": "range",
+        "pos": "n.",
+        "meaning_ko": "범위, 폭",
+        "synonyms": [
+          "variety",
+          "span"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "No other element offers this range of shapes.",
+            "ko": "다른 어떤 원소도 이 정도의 형태 범위를 제공하지 않는다."
+          },
+          {
+            "en": "Carbon compounds span a wide range of uses, from fuel to DNA.",
+            "ko": "탄소 화합물은 연료부터 DNA까지 폭넓은 용도를 아우른다."
+          }
+        ]
+      },
+      {
+        "word": "tweak",
+        "pos": "n./v.",
+        "meaning_ko": "세부 조정, 살짝 바꾸기",
+        "synonyms": [
+          "adjust",
+          "modify"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "A small chemical tweak can change the molecule's function.",
+            "ko": "사소한 화학적 변형이 분자의 기능을 바꿀 수 있다."
+          },
+          {
+            "en": "Scientists tweak the side group to create different medicines.",
+            "ko": "과학자들은 곁가지를 살짝 바꾸어 서로 다른 약을 만들어낸다."
+          }
+        ]
+      },
+      {
+        "word": "extraordinarily",
+        "pos": "adv.",
+        "meaning_ko": "유별나게, 대단히",
+        "synonyms": [
+          "unusually",
+          "remarkably"
+        ],
+        "antonyms": [
+          "ordinarily"
+        ],
+        "examples": [
+          {
+            "en": "Carbon is extraordinarily talented at forming stable structures.",
+            "ko": "탄소는 안정한 구조를 만드는 데 유별나게 재능이 있다."
+          },
+          {
+            "en": "The new battery is extraordinarily light for its storage capacity.",
+            "ko": "이 새 배터리는 저장 용량에 비해 유별나게 가볍다."
+          }
+        ]
+      },
+      {
+        "word": "plentiful",
+        "pos": "adj.",
+        "meaning_ko": "풍부한, 많은",
+        "synonyms": [
+          "abundant",
+          "ample"
+        ],
+        "antonyms": [
+          "scarce"
+        ],
+        "examples": [
+          {
+            "en": "Water is plentiful on Earth but scarce on Mars.",
+            "ko": "물은 지구에 풍부하지만 화성에서는 드물다."
+          },
+          {
+            "en": "Carbon is plentiful in the atmosphere and in every living cell.",
+            "ko": "탄소는 대기와 모든 살아 있는 세포 속에 풍부하다."
+          }
+        ]
+      },
+      {
+        "word": "obey",
+        "pos": "v.",
+        "meaning_ko": "(법칙을) 따르다",
+        "synonyms": [
+          "follow",
+          "abide by"
+        ],
+        "antonyms": [
+          "disobey"
+        ],
+        "examples": [
+          {
+            "en": "Every new molecule still obeys the four-bond rule.",
+            "ko": "새로 만든 분자도 여전히 4결합 규칙을 따른다."
+          },
+          {
+            "en": "Planets obey the laws of gravity established centuries ago.",
+            "ko": "행성은 수세기 전 확립된 중력 법칙을 따른다."
+          }
+        ]
+      }
     ]
   }
 }

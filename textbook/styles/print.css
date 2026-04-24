@@ -4,7 +4,9 @@
 }
 
 @media print {
-  html, body { background: white; }
+  /* Do NOT force html/body background to white — it would clobber the
+     week-divider's solid purple canvas. Each mode sets its own background:
+     textbook pages keep the default white, week-mode covers paint purple. */
   body { margin: 0; }
   .page { margin: 0; box-shadow: none; page-break-after: always; break-after: page; }
   .page:last-child { page-break-after: auto; break-after: auto; }

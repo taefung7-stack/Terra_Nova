@@ -24,14 +24,22 @@ body { font-size: var(--fs-body); line-height: var(--lh-body); }
   flex-direction: column;
 }
 
-/* top theme bar (thicker, gradient) */
+/* top theme bar (thicker, gradient)
+   The gradient is painted at 200% width so that a LEFT page shows the deep→mid
+   portion and a RIGHT page shows the mid→light portion. When the book is
+   opened and the two pages sit side-by-side, the gradient appears as one
+   continuous deep→light sweep across the whole spread. */
 .page::before {
   content: "";
   position: absolute;
   top: 0; left: 0; right: 0;
   height: var(--tn-theme-bar-h);
   background: linear-gradient(90deg, var(--tn-theme-deep) 0%, var(--tn-theme) 100%);
+  background-size: 200% 100%;
+  background-position: left center;
 }
+.page.left-page::before  { background-position: left  center; }
+.page.right-page::before { background-position: right center; }
 
 .page-head {
   display: flex; align-items: baseline; justify-content: space-between;
@@ -68,29 +76,52 @@ body { font-size: var(--fs-body); line-height: var(--lh-body); }
   color: var(--tn-muted);
   padding-top: var(--space-xs);
   border-top: 0.7pt solid var(--tn-divider);
+  gap: 6pt;
 }
 .page-foot .page-num {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 16pt;
+  min-width: 16pt;
   height: 16pt;
-  border-radius: 50%;
+  padding: 0 5pt;
+  border-radius: 999px;
   background: var(--tn-theme-deep);
   color: #fff;
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 700;
   font-size: 9pt;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
 }
 .page-foot .brand {
-  font-family: var(--font-serif-display);
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-weight: 800;
   color: var(--tn-theme-deep);
   font-size: 10pt;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.08em;
   text-transform: none;
 }
 .page-foot .brand .brand-dot { color: var(--tn-theme); }
+.page-foot .foot-day {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 9pt;
+  letter-spacing: 0.22em;
+  color: var(--tn-theme-deep);
+  text-transform: uppercase;
+}
+
+/* ---- Left / Right page asymmetric footer ----
+   Left  page (odd in book): [page-num] ........ [TERRA·NOVA]   (no DAY)
+   Right page (even in book): [DAY NN] ........ [page-num]      (no brand) */
+.page.left-page  .page-foot .foot-day { display: none; }
+.page.left-page  .page-foot .page-num { order: 1; }
+.page.left-page  .page-foot .brand    { order: 2; }
+
+.page.right-page .page-foot .brand    { display: none; }
+.page.right-page .page-foot .foot-day { order: 1; }
+.page.right-page .page-foot .page-num { order: 2; }
 
 /* ===== Page 1 ===== */
 .p1-meta {
@@ -178,12 +209,19 @@ body { font-size: var(--fs-body); line-height: var(--lh-body); }
 }
 .p1-illustration {
   margin-top: 6pt;
-  height: 48mm;
+  /* Midjourney images are 16:5 (≈ 3.21:1). At 180mm wide that maps exactly
+     to 56mm tall — no cropping. Container starts at 48mm (current baseline)
+     and can grow up to 56mm when the body is short, eating any vertical
+     slack without distorting the image. Long-body pages (e.g. passage 15)
+     have no slack to give, so the container stays at the 48mm minimum and
+     their body text is undisturbed. */
+  flex: 1 0 48mm;
+  min-height: 48mm;
+  max-height: 56mm;
   overflow: hidden;
   border-radius: 3pt;
   background: var(--tn-theme-soft);
   position: relative;
-  flex-shrink: 0;
 }
 .p1-illustration img, .p1-illustration svg {
   width: 100%; height: 100%; object-fit: cover; display: block;

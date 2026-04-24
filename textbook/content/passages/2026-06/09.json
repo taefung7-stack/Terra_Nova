@@ -12,13 +12,16 @@
     "cognitive_skill": "제목",
     "lexile": "960L",
     "ar_level": 6.2,
-    "key_concepts": ["기후", "음식문화"]
+    "key_concepts": [
+      "기후",
+      "음식문화"
+    ]
   },
   "page1": {
     "title": "Climate and Cuisine",
     "subtitle": "How the weather outside your window quietly shaped the food on your plate.",
     "body": "Every meal on earth tells a quiet story about the sky above it. <u>Climate</u> — the long-term pattern of temperature, rainfall, and seasons in a region — is perhaps the strongest force shaping what people grow, cook, and eat. Long before global trade or refrigeration existed, communities could eat only what their local environment allowed them to produce each season.\n\nIn cold northern regions, winters arrive early and stretch for months, making fresh vegetables scarce for most of the year. People there learned to preserve their food through fermentation, smoking, and salting to survive the cold months. Korean kimchi, German sauerkraut, and Scandinavian pickled herring all trace their origins to the simple need to <mark>survive a long, cold winter</mark> on carefully stored food. In warm tropical regions, by contrast, heat speeds up spoilage, so cooks relied on spices — chili, turmeric, and ginger — which have natural antibacterial properties. These spices were not merely a source of flavor; they were a deeply practical response to a hot and challenging climate.\n\nRainfall patterns shape local diets just as powerfully as temperature and season do. In monsoon Asia, abundant seasonal rain floods the rice paddies, making rice the foundation of nearly every meal eaten there. In drier regions of the Middle East, wheat and barley thrive in thin soil with little water, giving rise to flatbreads eaten widely across the land. Where open grasslands dominate and crops are hard to grow, nomadic herders built their entire diets around dairy products and meat from their animals. Climate, in this sense, is not simply a backdrop to human culture; it is <blank>. Recognising this deep connection helps explain why protecting regional food traditions also means caring for the natural landscapes that originally created them.",
-    "illustration": "../../assets/illustrations/2026-06/09.svg",
+    "illustration": "../../assets/illustrations/2026-06/09.png",
     "illustration_caption": "From icy tundra to tropical rainforest — climate writes the recipe for every culture's table."
   },
   "page2": {
@@ -66,7 +69,13 @@
         "type": "school_descriptive",
         "style": "요약문 빈칸 완성",
         "prompt": "다음은 본문의 요약문이다. 본문의 내용을 바탕으로 빈칸 (A), (B)에 들어갈 말을 <조건>에 맞게 영어 한 단어로 각각 쓰시오. <조건> 본문에서 제시된 단어를 그대로 활용할 것.",
-        "hints": ["climate", "spices", "fermentation", "rainfall", "preserve"],
+        "hints": [
+          "climate",
+          "spices",
+          "fermentation",
+          "rainfall",
+          "preserve"
+        ],
         "summary_template": "Because <blank> (A) determines what can grow in a region, communities developed techniques such as fermentation and the use of <blank> (B) to adapt their diets to local conditions.",
         "model_answer": "(A) climate  (B) spices"
       }
@@ -74,14 +83,30 @@
     "textbook_tieback": {
       "unit_label": "통합사회 II-1 · 기후와 문화",
       "body_ko": "고1 통합사회 'II-1 기후와 문화' 단원에서는 기후가 의식주를 비롯한 인간의 생활 양식 전반을 어떻게 결정하는지를 학습한다. 특히 냉대 기후의 발효식품, 열대 기후의 향신료 의존, 건조 기후의 밀·보리 재배라는 구체적 사례를 통해, 기후와 음식문화가 어떻게 상호 연결되는지를 이해할 수 있다. 이 지문은 교과서의 기후와 문화 핵심 개념을 생생한 영어 맥락으로 체험하는 데 도움을 준다.",
-      "tags": ["기후", "음식문화", "생활양식"],
+      "tags": [
+        "기후",
+        "음식문화",
+        "생활양식"
+      ],
       "visual_aid": {
         "type": "emoji_flow",
         "title": "기후 → 식재료 → 음식문화",
         "steps": [
-          { "emoji": "🌡️", "label": "기후 조건", "note": "온도·강수량·계절이 결정" },
-          { "emoji": "🌾", "label": "재배 가능 작물", "note": "벼·밀·유제품 등 지역별 분화" },
-          { "emoji": "🍽️", "label": "음식문화 형성", "note": "발효·향신료·수렵 등 적응 전략" }
+          {
+            "emoji": "🌡️",
+            "label": "기후 조건",
+            "note": "온도·강수량·계절이 결정"
+          },
+          {
+            "emoji": "🌾",
+            "label": "재배 가능 작물",
+            "note": "벼·밀·유제품 등 지역별 분화"
+          },
+          {
+            "emoji": "🍽️",
+            "label": "음식문화 형성",
+            "note": "발효·향신료·수렵 등 적응 전략"
+          }
         ]
       }
     }
@@ -91,159 +116,405 @@
       {
         "index": 1,
         "segments": [
-          { "role": "S", "text": "Every meal on earth" },
-          { "role": "V", "text": "tells" },
-          { "role": "O", "text": "a quiet story" },
-          { "role": "M", "text": "about the sky above it." }
+          {
+            "role": "S",
+            "text": "Every meal on earth"
+          },
+          {
+            "role": "V",
+            "text": "tells"
+          },
+          {
+            "role": "O",
+            "text": "a quiet story"
+          },
+          {
+            "role": "M",
+            "text": "about the sky above it."
+          }
         ],
         "grammar_note": "3형식 단문 — 은유적 도입"
       },
       {
         "index": 2,
         "segments": [
-          { "role": "S", "text": "Climate — the long-term pattern of temperature, rainfall, and seasons in a region —", "note": "대시 삽입구: 동격 명사 설명" },
-          { "role": "V", "text": "is" },
-          { "role": "C", "text": "perhaps the strongest force", "note": "최상급 strongest" },
-          { "role": "M", "text": "shaping what people grow, cook, and eat.", "note": "현재분사구 후치수식" }
+          {
+            "role": "S",
+            "text": "Climate — the long-term pattern of temperature, rainfall, and seasons in a region —",
+            "note": "대시 삽입구: 동격 명사 설명"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "perhaps the strongest force",
+            "note": "최상급 strongest"
+          },
+          {
+            "role": "M",
+            "text": "shaping what people grow, cook, and eat.",
+            "note": "현재분사구 후치수식"
+          }
         ],
         "grammar_note": "동격 대시 삽입구 + 최상급 + 현재분사 후치수식"
       },
       {
         "index": 3,
         "segments": [
-          { "role": "M", "text": "Long before global trade or refrigeration existed," },
-          { "role": "S", "text": "communities" },
-          { "role": "V", "text": "could eat only" },
-          { "role": "O", "text": "what their local environment allowed them to produce each season.", "note": "관계대명사 what + allow O to-V 5형식" }
+          {
+            "role": "M",
+            "text": "Long before global trade or refrigeration existed,"
+          },
+          {
+            "role": "S",
+            "text": "communities"
+          },
+          {
+            "role": "V",
+            "text": "could eat only"
+          },
+          {
+            "role": "O",
+            "text": "what their local environment allowed them to produce each season.",
+            "note": "관계대명사 what + allow O to-V 5형식"
+          }
         ],
         "grammar_note": "시간 부사절 + 관계대명사 what + 5형식 allow O to-V"
       },
       {
         "index": 4,
         "segments": [
-          { "role": "M", "text": "In cold northern regions," },
-          { "role": "S", "text": "winters" },
-          { "role": "V", "text": "arrive early" },
-          { "role": "CONJ", "text": "and" },
-          { "role": "V", "text": "stretch" },
-          { "role": "M", "text": "for months, making fresh vegetables scarce for most of the year.", "note": "분사구문 making O C (5형식)" }
+          {
+            "role": "M",
+            "text": "In cold northern regions,"
+          },
+          {
+            "role": "S",
+            "text": "winters"
+          },
+          {
+            "role": "V",
+            "text": "arrive early"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "V",
+            "text": "stretch"
+          },
+          {
+            "role": "M",
+            "text": "for months, making fresh vegetables scarce for most of the year.",
+            "note": "분사구문 making O C (5형식)"
+          }
         ],
         "grammar_note": "장소 전치사구 + 동사 병렬 + 분사구문"
       },
       {
         "index": 5,
         "segments": [
-          { "role": "S", "text": "People there" },
-          { "role": "V", "text": "learned" },
-          { "role": "O", "text": "to preserve their food", "note": "to-V 목적어" },
-          { "role": "M", "text": "through fermentation, smoking, and salting", "note": "수단 전치사구 병렬" },
-          { "role": "M", "text": "to survive the cold months.", "note": "목적 to-V" }
+          {
+            "role": "S",
+            "text": "People there"
+          },
+          {
+            "role": "V",
+            "text": "learned"
+          },
+          {
+            "role": "O",
+            "text": "to preserve their food",
+            "note": "to-V 목적어"
+          },
+          {
+            "role": "M",
+            "text": "through fermentation, smoking, and salting",
+            "note": "수단 전치사구 병렬"
+          },
+          {
+            "role": "M",
+            "text": "to survive the cold months.",
+            "note": "목적 to-V"
+          }
         ],
         "grammar_note": "learn + to-V + through 수단구 + 목적 to-V"
       },
       {
         "index": 6,
         "segments": [
-          { "role": "S", "text": "Korean kimchi, German sauerkraut, and Scandinavian pickled herring", "note": "복합 주어 열거" },
-          { "role": "V", "text": "all trace" },
-          { "role": "O", "text": "their origins" },
-          { "role": "M", "text": "to the simple need to survive a long, cold winter on carefully stored food.", "note": "to-V 명사 수식" }
+          {
+            "role": "S",
+            "text": "Korean kimchi, German sauerkraut, and Scandinavian pickled herring",
+            "note": "복합 주어 열거"
+          },
+          {
+            "role": "V",
+            "text": "all trace"
+          },
+          {
+            "role": "O",
+            "text": "their origins"
+          },
+          {
+            "role": "M",
+            "text": "to the simple need to survive a long, cold winter on carefully stored food.",
+            "note": "to-V 명사 수식"
+          }
         ],
         "grammar_note": "복합 주어 + trace ~ to 표현 + to-V 후치수식"
       },
       {
         "index": 7,
         "segments": [
-          { "role": "M", "text": "In warm tropical regions, by contrast," },
-          { "role": "S", "text": "heat" },
-          { "role": "V", "text": "speeds up" },
-          { "role": "O", "text": "spoilage," },
-          { "role": "CONJ", "text": "so" },
-          { "role": "S", "text": "cooks" },
-          { "role": "V", "text": "relied on" },
-          { "role": "O", "text": "spices — chili, turmeric, and ginger —", "note": "대시 열거" },
-          { "role": "REL", "text": "which" },
-          { "role": "V", "text": "have" },
-          { "role": "O", "text": "natural antibacterial properties.", "note": "계속적 용법 which" }
+          {
+            "role": "M",
+            "text": "In warm tropical regions, by contrast,"
+          },
+          {
+            "role": "S",
+            "text": "heat"
+          },
+          {
+            "role": "V",
+            "text": "speeds up"
+          },
+          {
+            "role": "O",
+            "text": "spoilage,"
+          },
+          {
+            "role": "CONJ",
+            "text": "so"
+          },
+          {
+            "role": "S",
+            "text": "cooks"
+          },
+          {
+            "role": "V",
+            "text": "relied on"
+          },
+          {
+            "role": "O",
+            "text": "spices — chili, turmeric, and ginger —",
+            "note": "대시 열거"
+          },
+          {
+            "role": "REL",
+            "text": "which"
+          },
+          {
+            "role": "V",
+            "text": "have"
+          },
+          {
+            "role": "O",
+            "text": "natural antibacterial properties.",
+            "note": "계속적 용법 which"
+          }
         ],
         "grammar_note": "대조 삽입구 + so 결과절 + 계속적 관계절 which"
       },
       {
         "index": 8,
         "segments": [
-          { "role": "S", "text": "These spices" },
-          { "role": "V", "text": "were" },
-          { "role": "C", "text": "not merely a source of flavor;" },
-          { "role": "S", "text": "they" },
-          { "role": "V", "text": "were" },
-          { "role": "C", "text": "a deeply practical response to a hot and challenging climate.", "note": "세미콜론 대조" }
+          {
+            "role": "S",
+            "text": "These spices"
+          },
+          {
+            "role": "V",
+            "text": "were"
+          },
+          {
+            "role": "C",
+            "text": "not merely a source of flavor;"
+          },
+          {
+            "role": "S",
+            "text": "they"
+          },
+          {
+            "role": "V",
+            "text": "were"
+          },
+          {
+            "role": "C",
+            "text": "a deeply practical response to a hot and challenging climate.",
+            "note": "세미콜론 대조"
+          }
         ],
         "grammar_note": "세미콜론으로 연결된 대조 구조 (not merely ~ ; ~ )"
       },
       {
         "index": 9,
         "segments": [
-          { "role": "S", "text": "Rainfall patterns" },
-          { "role": "V", "text": "shape" },
-          { "role": "O", "text": "local diets" },
-          { "role": "M", "text": "just as powerfully as temperature and season do.", "note": "as ~ as 동등비교" }
+          {
+            "role": "S",
+            "text": "Rainfall patterns"
+          },
+          {
+            "role": "V",
+            "text": "shape"
+          },
+          {
+            "role": "O",
+            "text": "local diets"
+          },
+          {
+            "role": "M",
+            "text": "just as powerfully as temperature and season do.",
+            "note": "as ~ as 동등비교"
+          }
         ],
         "grammar_note": "3형식 + as ~ as 동등비교 부사구"
       },
       {
         "index": 10,
         "segments": [
-          { "role": "M", "text": "In monsoon Asia," },
-          { "role": "S", "text": "abundant seasonal rain" },
-          { "role": "V", "text": "floods" },
-          { "role": "O", "text": "the rice paddies," },
-          { "role": "M", "text": "making rice the foundation of nearly every meal eaten there.", "note": "분사구문 make O C (5형식)" }
+          {
+            "role": "M",
+            "text": "In monsoon Asia,"
+          },
+          {
+            "role": "S",
+            "text": "abundant seasonal rain"
+          },
+          {
+            "role": "V",
+            "text": "floods"
+          },
+          {
+            "role": "O",
+            "text": "the rice paddies,"
+          },
+          {
+            "role": "M",
+            "text": "making rice the foundation of nearly every meal eaten there.",
+            "note": "분사구문 make O C (5형식)"
+          }
         ],
         "grammar_note": "3형식 + 분사구문 make O C"
       },
       {
         "index": 11,
         "segments": [
-          { "role": "M", "text": "In drier regions of the Middle East," },
-          { "role": "S", "text": "wheat and barley" },
-          { "role": "V", "text": "thrive" },
-          { "role": "M", "text": "in thin soil with little water, giving rise to flatbreads eaten widely across the land.", "note": "분사구문 giving rise to" }
+          {
+            "role": "M",
+            "text": "In drier regions of the Middle East,"
+          },
+          {
+            "role": "S",
+            "text": "wheat and barley"
+          },
+          {
+            "role": "V",
+            "text": "thrive"
+          },
+          {
+            "role": "M",
+            "text": "in thin soil with little water, giving rise to flatbreads eaten widely across the land.",
+            "note": "분사구문 giving rise to"
+          }
         ],
         "grammar_note": "장소 전치사구 + 1형식 + 분사구문 give rise to"
       },
       {
         "index": 12,
         "segments": [
-          { "role": "M", "text": "Where open grasslands dominate and crops are hard to grow,", "note": "where 장소 부사절" },
-          { "role": "S", "text": "nomadic herders" },
-          { "role": "V", "text": "built" },
-          { "role": "O", "text": "their entire diets" },
-          { "role": "M", "text": "around dairy products and meat from their animals." }
+          {
+            "role": "M",
+            "text": "Where open grasslands dominate and crops are hard to grow,",
+            "note": "where 장소 부사절"
+          },
+          {
+            "role": "S",
+            "text": "nomadic herders"
+          },
+          {
+            "role": "V",
+            "text": "built"
+          },
+          {
+            "role": "O",
+            "text": "their entire diets"
+          },
+          {
+            "role": "M",
+            "text": "around dairy products and meat from their animals."
+          }
         ],
         "grammar_note": "where 장소 부사절 선행 + 3형식"
       },
       {
         "index": 13,
         "segments": [
-          { "role": "S", "text": "Climate, in this sense," },
-          { "role": "V", "text": "is" },
-          { "role": "C", "text": "not simply a backdrop to human culture;" },
-          { "role": "S", "text": "it" },
-          { "role": "V", "text": "is" },
-          { "role": "C", "text": "____ (= the original author of every food tradition …).", "note": "빈칸 추론 위치" }
+          {
+            "role": "S",
+            "text": "Climate, in this sense,"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "not simply a backdrop to human culture;"
+          },
+          {
+            "role": "S",
+            "text": "it"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "____ (= the original author of every food tradition …).",
+            "note": "빈칸 추론 위치"
+          }
         ],
         "grammar_note": "세미콜론 대조 + 빈칸 2형식"
       },
       {
         "index": 14,
         "segments": [
-          { "role": "S", "text": "Recognising this deep connection", "note": "동명사구 주어" },
-          { "role": "V", "text": "helps" },
-          { "role": "O", "text": "explain", "note": "help + 동사원형 (준사역)" },
-          { "role": "M", "text": "why protecting regional food traditions also means caring for the natural landscapes", "note": "간접의문문 + 동명사" },
-          { "role": "REL", "text": "that" },
-          { "role": "V", "text": "originally created" },
-          { "role": "O", "text": "them." }
+          {
+            "role": "S",
+            "text": "Recognising this deep connection",
+            "note": "동명사구 주어"
+          },
+          {
+            "role": "V",
+            "text": "helps"
+          },
+          {
+            "role": "O",
+            "text": "explain",
+            "note": "help + 동사원형 (준사역)"
+          },
+          {
+            "role": "M",
+            "text": "why protecting regional food traditions also means caring for the natural landscapes",
+            "note": "간접의문문 + 동명사"
+          },
+          {
+            "role": "REL",
+            "text": "that"
+          },
+          {
+            "role": "V",
+            "text": "originally created"
+          },
+          {
+            "role": "O",
+            "text": "them."
+          }
         ],
         "grammar_note": "동명사구 주어 + help + 동사원형 + 간접의문문 + 관계절"
       }
@@ -256,132 +527,249 @@
         "word": "climate",
         "pos": "n.",
         "meaning_ko": "기후 (장기적인 기상 패턴)",
-        "synonyms": ["weather pattern"],
+        "synonyms": [
+          "weather pattern"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "Climate determines what crops grow in each region.", "ko": "기후는 각 지역에서 자라는 작물을 결정한다." },
-          { "en": "Scientists study climate to understand long-term change.", "ko": "과학자들은 장기적 변화를 이해하기 위해 기후를 연구한다." }
+          {
+            "en": "Climate determines what crops grow in each region.",
+            "ko": "기후는 각 지역에서 자라는 작물을 결정한다."
+          },
+          {
+            "en": "Scientists study climate to understand long-term change.",
+            "ko": "과학자들은 장기적 변화를 이해하기 위해 기후를 연구한다."
+          }
         ]
       },
       {
         "word": "fermentation",
         "pos": "n.",
         "meaning_ko": "발효 (미생물이 유기물을 분해하는 과정)",
-        "synonyms": ["curing"],
+        "synonyms": [
+          "curing"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "Fermentation turns cabbage into kimchi over several days.", "ko": "발효는 며칠에 걸쳐 배추를 김치로 바꾼다." },
-          { "en": "Beer brewing relies on fermentation to produce alcohol.", "ko": "맥주 양조는 알코올을 만들기 위해 발효에 의존한다." }
+          {
+            "en": "Fermentation turns cabbage into kimchi over several days.",
+            "ko": "발효는 며칠에 걸쳐 배추를 김치로 바꾼다."
+          },
+          {
+            "en": "Beer brewing relies on fermentation to produce alcohol.",
+            "ko": "맥주 양조는 알코올을 만들기 위해 발효에 의존한다."
+          }
         ]
       },
       {
         "word": "preserve",
         "pos": "v.",
         "meaning_ko": "보존하다; (식품을) 저장·가공하다",
-        "synonyms": ["store", "cure"],
-        "antonyms": ["spoil"],
+        "synonyms": [
+          "store",
+          "cure"
+        ],
+        "antonyms": [
+          "spoil"
+        ],
         "examples": [
-          { "en": "People preserved food through fermentation and salting.", "ko": "사람들은 발효와 염장으로 식품을 보존했다." },
-          { "en": "Museums work hard to preserve ancient artifacts safely.", "ko": "박물관은 고대 유물을 안전하게 보존하기 위해 애쓴다." }
+          {
+            "en": "People preserved food through fermentation and salting.",
+            "ko": "사람들은 발효와 염장으로 식품을 보존했다."
+          },
+          {
+            "en": "Museums work hard to preserve ancient artifacts safely.",
+            "ko": "박물관은 고대 유물을 안전하게 보존하기 위해 애쓴다."
+          }
         ]
       },
       {
         "word": "spoilage",
         "pos": "n.",
         "meaning_ko": "부패, 상함",
-        "synonyms": ["decay", "rot"],
-        "antonyms": ["preservation"],
+        "synonyms": [
+          "decay",
+          "rot"
+        ],
+        "antonyms": [
+          "preservation"
+        ],
         "examples": [
-          { "en": "Heat speeds up food spoilage in tropical regions.", "ko": "열기는 열대 지방에서 식품 부패를 앞당긴다." },
-          { "en": "Refrigeration greatly reduced spoilage of dairy products.", "ko": "냉장 기술은 유제품의 부패를 크게 줄였다." }
+          {
+            "en": "Heat speeds up food spoilage in tropical regions.",
+            "ko": "열기는 열대 지방에서 식품 부패를 앞당긴다."
+          },
+          {
+            "en": "Refrigeration greatly reduced spoilage of dairy products.",
+            "ko": "냉장 기술은 유제품의 부패를 크게 줄였다."
+          }
         ]
       },
       {
         "word": "antibacterial",
         "pos": "adj.",
         "meaning_ko": "항균의, 세균을 억제하는",
-        "synonyms": ["antimicrobial"],
+        "synonyms": [
+          "antimicrobial"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "Turmeric and chili carry natural antibacterial properties.", "ko": "강황과 칠리는 천연 항균 성분을 지니고 있다." },
-          { "en": "The soap contains an antibacterial ingredient for safety.", "ko": "그 비누에는 안전을 위한 항균 성분이 들어 있다." }
+          {
+            "en": "Turmeric and chili carry natural antibacterial properties.",
+            "ko": "강황과 칠리는 천연 항균 성분을 지니고 있다."
+          },
+          {
+            "en": "The soap contains an antibacterial ingredient for safety.",
+            "ko": "그 비누에는 안전을 위한 항균 성분이 들어 있다."
+          }
         ]
       },
       {
         "word": "spice",
         "pos": "n.",
         "meaning_ko": "향신료",
-        "synonyms": ["seasoning", "condiment"],
+        "synonyms": [
+          "seasoning",
+          "condiment"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "Cooks in hot climates relied on spices to slow spoilage.", "ko": "더운 기후의 요리사들은 부패를 늦추기 위해 향신료에 의존했다." },
-          { "en": "She added a blend of spices to deepen the soup's flavor.", "ko": "그녀는 국물 맛을 깊게 하기 위해 향신료 조합을 넣었다." }
+          {
+            "en": "Cooks in hot climates relied on spices to slow spoilage.",
+            "ko": "더운 기후의 요리사들은 부패를 늦추기 위해 향신료에 의존했다."
+          },
+          {
+            "en": "She added a blend of spices to deepen the soup's flavor.",
+            "ko": "그녀는 국물 맛을 깊게 하기 위해 향신료 조합을 넣었다."
+          }
         ]
       },
       {
         "word": "monsoon",
         "pos": "n.",
         "meaning_ko": "몬순, 계절풍 (특히 집중 강우 계절)",
-        "synonyms": ["rainy season"],
-        "antonyms": ["dry season"],
+        "synonyms": [
+          "rainy season"
+        ],
+        "antonyms": [
+          "dry season"
+        ],
         "examples": [
-          { "en": "Monsoon rains fill the rice paddies of Southeast Asia.", "ko": "몬순 비가 동남아시아의 논을 채운다." },
-          { "en": "Farmers plan their planting schedule around the monsoon.", "ko": "농부들은 몬순에 맞춰 파종 일정을 계획한다." }
+          {
+            "en": "Monsoon rains fill the rice paddies of Southeast Asia.",
+            "ko": "몬순 비가 동남아시아의 논을 채운다."
+          },
+          {
+            "en": "Farmers plan their planting schedule around the monsoon.",
+            "ko": "농부들은 몬순에 맞춰 파종 일정을 계획한다."
+          }
         ]
       },
       {
         "word": "paddy",
         "pos": "n.",
         "meaning_ko": "논; 벼 (수확 전)",
-        "synonyms": ["rice field"],
+        "synonyms": [
+          "rice field"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "Rice paddies need large amounts of standing water to grow.", "ko": "논은 벼가 자라기 위해 많은 양의 물이 고여 있어야 한다." },
-          { "en": "The green paddies covered the valley after the rains came.", "ko": "비가 온 후 푸른 논이 계곡을 가득 채웠다." }
+          {
+            "en": "Rice paddies need large amounts of standing water to grow.",
+            "ko": "논은 벼가 자라기 위해 많은 양의 물이 고여 있어야 한다."
+          },
+          {
+            "en": "The green paddies covered the valley after the rains came.",
+            "ko": "비가 온 후 푸른 논이 계곡을 가득 채웠다."
+          }
         ]
       },
       {
         "word": "nomadic",
         "pos": "adj.",
         "meaning_ko": "유목의, 이동하며 생활하는",
-        "synonyms": ["wandering", "migratory"],
-        "antonyms": ["settled"],
+        "synonyms": [
+          "wandering",
+          "migratory"
+        ],
+        "antonyms": [
+          "settled"
+        ],
         "examples": [
-          { "en": "Nomadic herders built diets around dairy and meat.", "ko": "유목 목축민들은 유제품과 고기 중심의 식단을 구성했다." },
-          { "en": "The tribe's nomadic life followed seasonal grass growth.", "ko": "그 부족의 유목 생활은 계절별 풀의 성장을 따랐다." }
+          {
+            "en": "Nomadic herders built diets around dairy and meat.",
+            "ko": "유목 목축민들은 유제품과 고기 중심의 식단을 구성했다."
+          },
+          {
+            "en": "The tribe's nomadic life followed seasonal grass growth.",
+            "ko": "그 부족의 유목 생활은 계절별 풀의 성장을 따랐다."
+          }
         ]
       },
       {
         "word": "backdrop",
         "pos": "n.",
         "meaning_ko": "배경, 배경막",
-        "synonyms": ["background", "setting"],
-        "antonyms": ["foreground"],
+        "synonyms": [
+          "background",
+          "setting"
+        ],
+        "antonyms": [
+          "foreground"
+        ],
         "examples": [
-          { "en": "Climate is not simply a backdrop to human food culture.", "ko": "기후는 단순히 인간 음식 문화의 배경이 아니다." },
-          { "en": "The mountains served as a dramatic backdrop for the show.", "ko": "산들이 공연의 극적인 배경 역할을 했다." }
+          {
+            "en": "Climate is not simply a backdrop to human food culture.",
+            "ko": "기후는 단순히 인간 음식 문화의 배경이 아니다."
+          },
+          {
+            "en": "The mountains served as a dramatic backdrop for the show.",
+            "ko": "산들이 공연의 극적인 배경 역할을 했다."
+          }
         ]
       },
       {
         "word": "regional",
         "pos": "adj.",
         "meaning_ko": "지역의, 지방의",
-        "synonyms": ["local", "area-specific"],
-        "antonyms": ["global"],
+        "synonyms": [
+          "local",
+          "area-specific"
+        ],
+        "antonyms": [
+          "global"
+        ],
         "examples": [
-          { "en": "Protecting regional food cultures preserves diversity.", "ko": "지역 음식 문화를 보호하는 것은 다양성을 지킨다." },
-          { "en": "Regional dialects reflect the unique history of each area.", "ko": "지역 방언은 각 지역의 고유한 역사를 반영한다." }
+          {
+            "en": "Protecting regional food cultures preserves diversity.",
+            "ko": "지역 음식 문화를 보호하는 것은 다양성을 지킨다."
+          },
+          {
+            "en": "Regional dialects reflect the unique history of each area.",
+            "ko": "지역 방언은 각 지역의 고유한 역사를 반영한다."
+          }
         ]
       },
       {
         "word": "foundation",
         "pos": "n.",
         "meaning_ko": "토대, 기초; 기반 식품",
-        "synonyms": ["basis", "base"],
-        "antonyms": ["periphery"],
+        "synonyms": [
+          "basis",
+          "base"
+        ],
+        "antonyms": [
+          "periphery"
+        ],
         "examples": [
-          { "en": "Rice is the foundation of almost every meal across Asia.", "ko": "쌀은 아시아 전역에서 거의 모든 식사의 토대가 된다." },
-          { "en": "Strong reading skills form the foundation of all learning.", "ko": "강력한 독해 능력이 모든 학습의 토대를 이룬다." }
+          {
+            "en": "Rice is the foundation of almost every meal across Asia.",
+            "ko": "쌀은 아시아 전역에서 거의 모든 식사의 토대가 된다."
+          },
+          {
+            "en": "Strong reading skills form the foundation of all learning.",
+            "ko": "강력한 독해 능력이 모든 학습의 토대를 이룬다."
+          }
         ]
       }
     ]

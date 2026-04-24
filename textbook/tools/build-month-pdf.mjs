@@ -3,12 +3,12 @@
  * Build the entire month book as a single merged PDF.
  *
  * Sequence per month:
- *   1) TOC (1 page)
+ *   1) TOC (2 pages = left + right spread)
  *   2) For each week 1..4:
  *        - WEEK divider (2 pages = left + right)
  *        - 5 passages × 4 pages = 20 pages
  *
- * Total: 1 + 4 × (2 + 20) = 89 pages.
+ * Total: 2 + 4 × (2 + 20) = 90 pages.
  *
  * Usage:
  *   node tools/build-month-pdf.mjs --month 2026-06
@@ -97,9 +97,16 @@ async function main() {
         console.warn(`SKIP ${seq} (no JSON)`);
         continue;
       }
-      console.log(`  · passage ${seq}`);
+      // Book page where this passage's page 1 lands.
+      // Layout: TOC(2) + (w-1)*(2 divider + 5*4 passages) + 2 divider + inWeek*4 + 1
+      const inWeekIdx = (n - 1) % 5;
+      const startPage = 4 + (w - 1) * 22 + inWeekIdx * 4 + 1;
+      console.log(`  · passage ${seq} (p.${startPage})`);
       const pPath = join(tmpDir, `p-${seq}.pdf`);
-      await renderToPdf(`http://127.0.0.1:${port}/textbook.html?month=${month}&passage=${seq}`, pPath);
+      await renderToPdf(
+        `http://127.0.0.1:${port}/textbook.html?month=${month}&passage=${seq}&startPage=${startPage}`,
+        pPath
+      );
       collectedPdfs.push(pPath);
     }
   }

@@ -2,6 +2,20 @@ const params = new URLSearchParams(location.search);
 const month = params.get('month') || '2026-06';
 const passage = params.get('passage') || '01';
 
+/* Book page number of passage page 1.
+   If the URL provides ?startPage=N, use that; otherwise compute from the
+   passage sequence using the same formula as cover-render.js.
+   Book layout: TOC = 2, each week = 2 divider + 5×4 passages = 22 pages. */
+function computeStartPage(seqStr) {
+  const n = parseInt(seqStr, 10);
+  if (!Number.isFinite(n) || n < 1) return 1;
+  const w = Math.ceil(n / 5);
+  const before = 4 + (w - 1) * 22;
+  const inWeekIdx = (n - 1) % 5;
+  return before + inWeekIdx * 4 + 1;
+}
+const startPage = parseInt(params.get('startPage') || String(computeStartPage(passage)), 10);
+
 const stage = document.getElementById('stage');
 const tpl = document.getElementById('tpl-passage');
 
@@ -280,6 +294,23 @@ async function main() {
 
   // Page 4
   setHTML(root, 'vocab', renderVocab(data.page4.vocab));
+
+  /* ---- Book-level page numbering + left/right page side + DAY label ----
+     startPage is the book page of this passage's page 1.
+     Within a passage: p1 LEFT, p2 RIGHT, p3 LEFT, p4 RIGHT.
+     (Passages always start on an odd page in our layout.)
+     Right pages show DAY NN (where NN = passage sequence). */
+  const dayLabel = `DAY ${String(parseInt(passage, 10)).padStart(2, '0')}`;
+  const pageEls = root.querySelectorAll('.page');
+  pageEls.forEach((pEl, idx) => {
+    const bookPage = startPage + idx;
+    const isLeft = idx % 2 === 0;              // p1/p3 = left, p2/p4 = right
+    pEl.classList.add(isLeft ? 'left-page' : 'right-page');
+    const numEl = pEl.querySelector('.page-num');
+    if (numEl) numEl.textContent = String(bookPage);
+    const dayEl = pEl.querySelector('.foot-day');
+    if (dayEl) dayEl.textContent = dayLabel;
+  });
 
   stage.innerHTML = '';
   stage.appendChild(frag);

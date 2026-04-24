@@ -11,14 +11,19 @@
     "difficulty": "중간",
     "cognitive_skill": "빈칸추론",
     "lexile": "1060L",
-    "ar_level": 7.0,
-    "key_concepts": ["선형 성장", "지수 성장", "복리", "피드백 루프"]
+    "ar_level": 7,
+    "key_concepts": [
+      "선형 성장",
+      "지수 성장",
+      "복리",
+      "피드백 루프"
+    ]
   },
   "page1": {
     "title": "Linear vs. Exponential Thinking",
     "subtitle": "Why our brains keep missing curves that never stop rising.",
     "body": "A student who adds one page to her notebook each day will finish one hundred pages in a hundred days, and that feels like steady progress. Another student who begins with a single page and doubles it daily will crush her rival, passing one million pages before day twenty. Our brains are simply not built to feel this difference. Humans evolved to track linear change — one more step, one more meal, one more sunrise — and that habit still shapes the way we read <mark>news headlines today</mark>.\n\nA famous story captures the problem. A king once promised his advisor any reward for inventing chess, and the clever advisor asked only for rice: one grain on the first square, two on the second, four on the third, and so on, doubling each time. The king laughed, thinking it a modest request. By the sixty-fourth square, however, he would have owed more rice than every farm on Earth could ever produce. What looked like a harmless trickle had quietly turned into an unstoppable ocean.\n\nThe same shape now appears in the things we care about most. A virus that doubles its infected count every three days seems harmless in the first week and unstoppable by the fifth. A small savings account that earns only a few percent each year looks dull on paper, yet it multiplies itself over decades, rewarding patient savers who trust the curve. Climate feedback loops and viral videos follow exactly the same line, hiding behind long stretches of apparent calm before they explode. Learning to see the very moment when a line is secretly bending upward is not just a dry mathematician's trick; in the noisy age of data and daily headlines, it is <blank>.",
-    "illustration": "../../assets/illustrations/2026-06/02.svg",
+    "illustration": "../../assets/illustrations/2026-06/02.png",
     "illustration_caption": "Linear keeps its step; exponential quietly leaves the page."
   },
   "page2": {
@@ -66,7 +71,13 @@
         "type": "school_descriptive",
         "style": "요약문 빈칸 완성",
         "prompt": "다음은 본문의 요약문이다. 본문의 내용을 바탕으로 빈칸 (A), (B)에 들어갈 말을 <조건>에 맞게 영어 한 단어로 각각 쓰시오. <조건> 본문에서 제시된 단어를 그대로 활용할 것.",
-        "hints": ["linear", "double", "exponential", "trickle", "ocean"],
+        "hints": [
+          "linear",
+          "double",
+          "exponential",
+          "trickle",
+          "ocean"
+        ],
         "summary_template": "Because the human mind is wired to expect <blank> (A) change, it routinely misses how fast quantities can grow when they <blank> (B) at each step — which is why viruses, savings, and climate feedback so often surprise us.",
         "model_answer": "(A) linear  (B) double"
       }
@@ -74,13 +85,26 @@
     "textbook_tieback": {
       "unit_label": "수학(상) · 지수함수 입문",
       "body_ko": "고1 수학(상)에서 지수함수는 일정 비율로 곱해지며 커지는 함수로 배운다. y = a·b^x 꼴로 표현되며, 밑(b)이 1보다 크면 값이 폭발적으로 증가한다. 반면 일차함수 y = ax + b는 같은 양만큼씩 늘어나기 때문에 같은 시간이 지나도 두 함수의 차이가 놀라울 만큼 벌어진다. 교과서에서는 복리·인구 증가·방사성 붕괴 같은 실제 예시를 통해 이 차이를 시각화하고, 초반에 비슷해 보이는 두 그래프가 뒤로 갈수록 얼마나 달라지는지를 표와 그래프로 비교한다.",
-      "tags": ["지수함수", "일차함수", "복리", "기하급수"],
+      "tags": [
+        "지수함수",
+        "일차함수",
+        "복리",
+        "기하급수"
+      ],
       "visual_aid": {
         "type": "compare",
         "title": "같은 20일, 두 얼굴의 성장",
         "steps": [
-          { "emoji": "📏", "label": "선형 (+1)", "note": "1일차 1 · 10일 10 · 20일 20" },
-          { "emoji": "📈", "label": "지수 (×2)", "note": "1일차 1 · 10일 1,024 · 20일 1,048,576" }
+          {
+            "emoji": "📏",
+            "label": "선형 (+1)",
+            "note": "1일차 1 · 10일 10 · 20일 20"
+          },
+          {
+            "emoji": "📈",
+            "label": "지수 (×2)",
+            "note": "1일차 1 · 10일 1,024 · 20일 1,048,576"
+          }
         ]
       }
     }
@@ -90,155 +114,394 @@
       {
         "index": 1,
         "segments": [
-          { "role": "S", "text": "A student who adds one page to her notebook each day", "note": "주격 관계절 who가 학생 수식" },
-          { "role": "V", "text": "will finish", "note": "미래 조동사 will" },
-          { "role": "O", "text": "one hundred pages in a hundred days," },
-          { "role": "CONJ", "text": "and" },
-          { "role": "S", "text": "that" },
-          { "role": "V", "text": "feels" },
-          { "role": "C", "text": "like steady progress.", "note": "feel + like + 명사 (2형식)" }
+          {
+            "role": "S",
+            "text": "A student who adds one page to her notebook each day",
+            "note": "주격 관계절 who가 학생 수식"
+          },
+          {
+            "role": "V",
+            "text": "will finish",
+            "note": "미래 조동사 will"
+          },
+          {
+            "role": "O",
+            "text": "one hundred pages in a hundred days,"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "S",
+            "text": "that"
+          },
+          {
+            "role": "V",
+            "text": "feels"
+          },
+          {
+            "role": "C",
+            "text": "like steady progress.",
+            "note": "feel + like + 명사 (2형식)"
+          }
         ],
         "grammar_note": "관계절 who + 등위접속사 and + feel 2형식"
       },
       {
         "index": 2,
         "segments": [
-          { "role": "S", "text": "Another student who begins with a single page and doubles it daily", "note": "and로 묶인 두 동사구 (begins, doubles)" },
-          { "role": "V", "text": "will crush" },
-          { "role": "O", "text": "her rival," },
-          { "role": "M", "text": "passing one million pages before day twenty.", "note": "분사구문: and passes ~" }
+          {
+            "role": "S",
+            "text": "Another student who begins with a single page and doubles it daily",
+            "note": "and로 묶인 두 동사구 (begins, doubles)"
+          },
+          {
+            "role": "V",
+            "text": "will crush"
+          },
+          {
+            "role": "O",
+            "text": "her rival,"
+          },
+          {
+            "role": "M",
+            "text": "passing one million pages before day twenty.",
+            "note": "분사구문: and passes ~"
+          }
         ],
         "grammar_note": "관계절 내부 동사 병렬 + 분사구문"
       },
       {
         "index": 3,
         "segments": [
-          { "role": "S", "text": "Our brains" },
-          { "role": "V", "text": "are" },
-          { "role": "M", "text": "simply", "note": "부사가 보어 강조" },
-          { "role": "C", "text": "not built to feel this difference.", "note": "be not p.p. + to-V" }
+          {
+            "role": "S",
+            "text": "Our brains"
+          },
+          {
+            "role": "V",
+            "text": "are"
+          },
+          {
+            "role": "M",
+            "text": "simply",
+            "note": "부사가 보어 강조"
+          },
+          {
+            "role": "C",
+            "text": "not built to feel this difference.",
+            "note": "be not p.p. + to-V"
+          }
         ],
         "grammar_note": "수동태 + to부정사 보어"
       },
       {
         "index": 4,
         "segments": [
-          { "role": "S", "text": "Humans" },
-          { "role": "V", "text": "evolved" },
-          { "role": "M", "text": "to track linear change", "note": "목적 to-V" },
-          { "role": "M", "text": "— one more step, one more meal, one more sunrise —" },
-          { "role": "CONJ", "text": "and" },
-          { "role": "S", "text": "that habit" },
-          { "role": "V", "text": "still shapes" },
-          { "role": "O", "text": "the way we read news headlines today.", "note": "the way (how) 관계" }
+          {
+            "role": "S",
+            "text": "Humans"
+          },
+          {
+            "role": "V",
+            "text": "evolved"
+          },
+          {
+            "role": "M",
+            "text": "to track linear change",
+            "note": "목적 to-V"
+          },
+          {
+            "role": "M",
+            "text": "— one more step, one more meal, one more sunrise —"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "S",
+            "text": "that habit"
+          },
+          {
+            "role": "V",
+            "text": "still shapes"
+          },
+          {
+            "role": "O",
+            "text": "the way we read news headlines today.",
+            "note": "the way (how) 관계"
+          }
         ],
         "grammar_note": "부사적 용법 to-V + the way 관계구문"
       },
       {
         "index": 5,
         "segments": [
-          { "role": "S", "text": "A famous story" },
-          { "role": "V", "text": "captures" },
-          { "role": "O", "text": "the problem." }
+          {
+            "role": "S",
+            "text": "A famous story"
+          },
+          {
+            "role": "V",
+            "text": "captures"
+          },
+          {
+            "role": "O",
+            "text": "the problem."
+          }
         ],
         "grammar_note": "3형식 단문"
       },
       {
         "index": 6,
         "segments": [
-          { "role": "S", "text": "A king" },
-          { "role": "V", "text": "once promised", "note": "과거시제" },
-          { "role": "O", "text": "his advisor any reward" },
-          { "role": "M", "text": "for inventing chess,", "note": "for + 동명사 (이유)" },
-          { "role": "CONJ", "text": "and" },
-          { "role": "S", "text": "the clever advisor" },
-          { "role": "V", "text": "asked" },
-          { "role": "M", "text": "only for rice: one grain on the first square, two on the second, four on the third, and so on, doubling each time.", "note": "분사구문 doubling ~" }
+          {
+            "role": "S",
+            "text": "A king"
+          },
+          {
+            "role": "V",
+            "text": "once promised",
+            "note": "과거시제"
+          },
+          {
+            "role": "O",
+            "text": "his advisor any reward"
+          },
+          {
+            "role": "M",
+            "text": "for inventing chess,",
+            "note": "for + 동명사 (이유)"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "S",
+            "text": "the clever advisor"
+          },
+          {
+            "role": "V",
+            "text": "asked"
+          },
+          {
+            "role": "M",
+            "text": "only for rice: one grain on the first square, two on the second, four on the third, and so on, doubling each time.",
+            "note": "분사구문 doubling ~"
+          }
         ],
         "grammar_note": "4형식 + 분사구문"
       },
       {
         "index": 7,
         "segments": [
-          { "role": "S", "text": "The king" },
-          { "role": "V", "text": "laughed,", "note": "1형식 자동사" },
-          { "role": "M", "text": "thinking it a modest request.", "note": "분사구문 + 5형식(think O C)" }
+          {
+            "role": "S",
+            "text": "The king"
+          },
+          {
+            "role": "V",
+            "text": "laughed,",
+            "note": "1형식 자동사"
+          },
+          {
+            "role": "M",
+            "text": "thinking it a modest request.",
+            "note": "분사구문 + 5형식(think O C)"
+          }
         ],
         "grammar_note": "분사구문 + think O C"
       },
       {
         "index": 8,
         "segments": [
-          { "role": "M", "text": "By the sixty-fourth square, however," },
-          { "role": "S", "text": "he" },
-          { "role": "V", "text": "would have owed", "note": "would have p.p. 가정법 과거완료" },
-          { "role": "O", "text": "more rice than every farm on Earth could ever produce.", "note": "비교급 + 관계절" }
+          {
+            "role": "M",
+            "text": "By the sixty-fourth square, however,"
+          },
+          {
+            "role": "S",
+            "text": "he"
+          },
+          {
+            "role": "V",
+            "text": "would have owed",
+            "note": "would have p.p. 가정법 과거완료"
+          },
+          {
+            "role": "O",
+            "text": "more rice than every farm on Earth could ever produce.",
+            "note": "비교급 + 관계절"
+          }
         ],
         "grammar_note": "가정법 과거완료 + 비교급 more ~ than"
       },
       {
         "index": 9,
         "segments": [
-          { "role": "S", "text": "What looked like a harmless trickle", "note": "관계대명사 what = the thing which" },
-          { "role": "V", "text": "had quietly turned", "note": "과거완료 had p.p." },
-          { "role": "C", "text": "into an unstoppable ocean." }
+          {
+            "role": "S",
+            "text": "What looked like a harmless trickle",
+            "note": "관계대명사 what = the thing which"
+          },
+          {
+            "role": "V",
+            "text": "had quietly turned",
+            "note": "과거완료 had p.p."
+          },
+          {
+            "role": "C",
+            "text": "into an unstoppable ocean."
+          }
         ],
         "grammar_note": "선행사 포함 관계대명사 What + 과거완료"
       },
       {
         "index": 10,
         "segments": [
-          { "role": "S", "text": "The same shape" },
-          { "role": "V", "text": "now appears" },
-          { "role": "M", "text": "in the things we care about most.", "note": "관계대명사 that 생략" }
+          {
+            "role": "S",
+            "text": "The same shape"
+          },
+          {
+            "role": "V",
+            "text": "now appears"
+          },
+          {
+            "role": "M",
+            "text": "in the things we care about most.",
+            "note": "관계대명사 that 생략"
+          }
         ],
         "grammar_note": "빈도 부사 + 관계절 생략"
       },
       {
         "index": 11,
         "segments": [
-          { "role": "S", "text": "A virus that doubles its infected count every three days", "note": "관계대명사 that 주격" },
-          { "role": "V", "text": "seems" },
-          { "role": "C", "text": "harmless in the first week" },
-          { "role": "CONJ", "text": "and" },
-          { "role": "C", "text": "unstoppable by the fifth." }
+          {
+            "role": "S",
+            "text": "A virus that doubles its infected count every three days",
+            "note": "관계대명사 that 주격"
+          },
+          {
+            "role": "V",
+            "text": "seems"
+          },
+          {
+            "role": "C",
+            "text": "harmless in the first week"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "C",
+            "text": "unstoppable by the fifth."
+          }
         ],
         "grammar_note": "seem + 형용사 2형식 + 보어 병렬"
       },
       {
         "index": 12,
         "segments": [
-          { "role": "S", "text": "A small savings account that earns only a few percent each year", "note": "관계절 that earns" },
-          { "role": "V", "text": "looks" },
-          { "role": "C", "text": "dull on paper," },
-          { "role": "CONJ", "text": "yet" },
-          { "role": "S", "text": "it" },
-          { "role": "V", "text": "multiplies" },
-          { "role": "O", "text": "itself" },
-          { "role": "M", "text": "over decades, rewarding patient savers who trust the curve.", "note": "분사구문 rewarding ~" }
+          {
+            "role": "S",
+            "text": "A small savings account that earns only a few percent each year",
+            "note": "관계절 that earns"
+          },
+          {
+            "role": "V",
+            "text": "looks"
+          },
+          {
+            "role": "C",
+            "text": "dull on paper,"
+          },
+          {
+            "role": "CONJ",
+            "text": "yet"
+          },
+          {
+            "role": "S",
+            "text": "it"
+          },
+          {
+            "role": "V",
+            "text": "multiplies"
+          },
+          {
+            "role": "O",
+            "text": "itself"
+          },
+          {
+            "role": "M",
+            "text": "over decades, rewarding patient savers who trust the curve.",
+            "note": "분사구문 rewarding ~"
+          }
         ],
         "grammar_note": "역접 yet + 분사구문"
       },
       {
         "index": 13,
         "segments": [
-          { "role": "S", "text": "Climate feedback loops and viral videos" },
-          { "role": "V", "text": "follow" },
-          { "role": "O", "text": "exactly the same line,", "note": "exactly 부사가 명사구 강조" },
-          { "role": "M", "text": "hiding behind long stretches of apparent calm before they explode.", "note": "분사구문 hiding ~" }
+          {
+            "role": "S",
+            "text": "Climate feedback loops and viral videos"
+          },
+          {
+            "role": "V",
+            "text": "follow"
+          },
+          {
+            "role": "O",
+            "text": "exactly the same line,",
+            "note": "exactly 부사가 명사구 강조"
+          },
+          {
+            "role": "M",
+            "text": "hiding behind long stretches of apparent calm before they explode.",
+            "note": "분사구문 hiding ~"
+          }
         ],
         "grammar_note": "3형식 + 분사구문 hiding"
       },
       {
         "index": 14,
         "segments": [
-          { "role": "S", "text": "Learning to see the moment when a line is secretly bending upward", "note": "동명사구 주어, 관계부사 when" },
-          { "role": "V", "text": "is" },
-          { "role": "C", "text": "not just a mathematician's trick;" },
-          { "role": "M", "text": "in the age of data and daily headlines," },
-          { "role": "S", "text": "it" },
-          { "role": "V", "text": "is" },
-          { "role": "C", "text": "____ (= a basic survival skill …).", "note": "빈칸 = 추론" }
+          {
+            "role": "S",
+            "text": "Learning to see the moment when a line is secretly bending upward",
+            "note": "동명사구 주어, 관계부사 when"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "not just a mathematician's trick;"
+          },
+          {
+            "role": "M",
+            "text": "in the age of data and daily headlines,"
+          },
+          {
+            "role": "S",
+            "text": "it"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "____ (= a basic survival skill …).",
+            "note": "빈칸 = 추론"
+          }
         ],
         "grammar_note": "동명사구 주어 + 관계부사 when + 세미콜론 대조"
       }
@@ -247,54 +510,257 @@
   },
   "page4": {
     "vocab": [
-      { "word": "linear", "pos": "adj.", "meaning_ko": "선형의, 일정하게 늘어나는", "synonyms": ["straight", "proportional"], "antonyms": ["exponential"], "examples": [
-        { "en": "A linear increase adds the same amount at every step.", "ko": "선형 증가는 매 단계 같은 양을 더한다." },
-        { "en": "Bus fares used to follow a linear pricing rule.", "ko": "버스 요금은 예전에 선형 요금 규칙을 따랐다." }
-      ] },
-      { "word": "exponential", "pos": "adj.", "meaning_ko": "지수적인, 곱절로 커지는", "synonyms": ["multiplying"], "antonyms": ["linear"], "examples": [
-        { "en": "Viruses often show exponential growth in the first weeks.", "ko": "바이러스는 초반 몇 주 동안 지수적 성장을 보이곤 한다." },
-        { "en": "The app's user base grew at an exponential rate last year.", "ko": "이 앱의 사용자는 작년 지수적인 속도로 늘어났다." }
-      ] },
-      { "word": "double", "pos": "v.", "meaning_ko": "두 배가 되다 / 두 배로 만들다", "synonyms": ["multiply by two"], "antonyms": ["halve"], "examples": [
-        { "en": "If you double the dose, the effect may become dangerous.", "ko": "복용량을 두 배로 하면 효과가 위험해질 수 있다." },
-        { "en": "The company's revenue doubled within three years.", "ko": "그 회사의 매출은 3년 안에 두 배가 되었다." }
-      ] },
-      { "word": "rival", "pos": "n.", "meaning_ko": "경쟁자, 맞수", "synonyms": ["competitor", "opponent"], "antonyms": ["ally"], "examples": [
-        { "en": "Her doubling strategy quickly left her rival behind.", "ko": "그녀의 2배 전략은 곧 경쟁자를 따돌렸다." },
-        { "en": "The two teams have been fierce rivals for a decade.", "ko": "그 두 팀은 10년째 치열한 맞수였다." }
-      ] },
-      { "word": "advisor", "pos": "n.", "meaning_ko": "조언자, 자문", "synonyms": ["counselor"], "antonyms": [], "examples": [
-        { "en": "The king trusted his clever advisor more than his generals.", "ko": "왕은 장군들보다 영리한 조언자를 더 신뢰했다." },
-        { "en": "Students meet their academic advisor once a semester.", "ko": "학생들은 학기에 한 번 지도 교수를 만난다." }
-      ] },
-      { "word": "modest", "pos": "adj.", "meaning_ko": "겸손한, 소박한", "synonyms": ["humble", "small"], "antonyms": ["grand"], "examples": [
-        { "en": "The king thought it a modest request and agreed.", "ko": "왕은 그것을 소박한 요구라 여기고 동의했다." },
-        { "en": "She described her role in the project in modest terms.", "ko": "그녀는 프로젝트에서 자기 역할을 겸손하게 표현했다." }
-      ] },
-      { "word": "trickle", "pos": "n.", "meaning_ko": "졸졸 흐름, 적은 양", "synonyms": ["drip"], "antonyms": ["flood"], "examples": [
-        { "en": "The rice started as a trickle but soon became an ocean.", "ko": "쌀은 졸졸 흐르듯 시작했지만 곧 바다가 되었다." },
-        { "en": "Only a trickle of visitors came before noon.", "ko": "정오 이전에는 아주 적은 방문객만 왔다." }
-      ] },
-      { "word": "unstoppable", "pos": "adj.", "meaning_ko": "막을 수 없는", "synonyms": ["unrelenting"], "antonyms": ["controllable"], "examples": [
-        { "en": "By the fifth week the outbreak felt unstoppable.", "ko": "다섯째 주가 되자 그 유행은 막을 수 없게 느껴졌다." },
-        { "en": "Her unstoppable energy inspired the whole team.", "ko": "그녀의 멈출 줄 모르는 에너지가 팀 전체에 영감을 주었다." }
-      ] },
-      { "word": "feedback", "pos": "n.", "meaning_ko": "(되먹임) 피드백", "synonyms": ["response"], "antonyms": [], "examples": [
-        { "en": "Climate feedback loops can speed up warming unexpectedly.", "ko": "기후 피드백 루프는 예기치 않게 온난화를 가속시킬 수 있다." },
-        { "en": "Teachers use quick feedback to help students improve.", "ko": "교사는 빠른 피드백으로 학생의 성장을 돕는다." }
-      ] },
-      { "word": "harmless", "pos": "adj.", "meaning_ko": "해롭지 않은", "synonyms": ["safe"], "antonyms": ["dangerous"], "examples": [
-        { "en": "A doubling count can look harmless in the early days.", "ko": "두 배씩 늘어나는 수치는 초기에는 해롭지 않아 보일 수 있다." },
-        { "en": "The dog's bark is loud but completely harmless.", "ko": "그 개의 짖음은 크지만 완전히 해롭지 않다." }
-      ] },
-      { "word": "patient", "pos": "adj.", "meaning_ko": "인내심 있는", "synonyms": ["tolerant"], "antonyms": ["impatient"], "examples": [
-        { "en": "Compound interest rewards patient savers over time.", "ko": "복리는 시간이 지나면 인내심 있는 저축자를 보상한다." },
-        { "en": "Good teachers stay patient when students make mistakes.", "ko": "좋은 교사는 학생이 실수할 때도 인내심을 유지한다." }
-      ] },
-      { "word": "secretly", "pos": "adv.", "meaning_ko": "남몰래, 은밀히", "synonyms": ["quietly"], "antonyms": ["openly"], "examples": [
-        { "en": "An exponential line is secretly bending upward all along.", "ko": "지수 곡선은 내내 남몰래 위로 꺾이고 있다." },
-        { "en": "He secretly saved money for his sister's birthday gift.", "ko": "그는 여동생의 생일 선물을 위해 몰래 돈을 모았다." }
-      ] }
+      {
+        "word": "linear",
+        "pos": "adj.",
+        "meaning_ko": "선형의, 일정하게 늘어나는",
+        "synonyms": [
+          "straight",
+          "proportional"
+        ],
+        "antonyms": [
+          "exponential"
+        ],
+        "examples": [
+          {
+            "en": "A linear increase adds the same amount at every step.",
+            "ko": "선형 증가는 매 단계 같은 양을 더한다."
+          },
+          {
+            "en": "Bus fares used to follow a linear pricing rule.",
+            "ko": "버스 요금은 예전에 선형 요금 규칙을 따랐다."
+          }
+        ]
+      },
+      {
+        "word": "exponential",
+        "pos": "adj.",
+        "meaning_ko": "지수적인, 곱절로 커지는",
+        "synonyms": [
+          "multiplying"
+        ],
+        "antonyms": [
+          "linear"
+        ],
+        "examples": [
+          {
+            "en": "Viruses often show exponential growth in the first weeks.",
+            "ko": "바이러스는 초반 몇 주 동안 지수적 성장을 보이곤 한다."
+          },
+          {
+            "en": "The app's user base grew at an exponential rate last year.",
+            "ko": "이 앱의 사용자는 작년 지수적인 속도로 늘어났다."
+          }
+        ]
+      },
+      {
+        "word": "double",
+        "pos": "v.",
+        "meaning_ko": "두 배가 되다 / 두 배로 만들다",
+        "synonyms": [
+          "multiply by two"
+        ],
+        "antonyms": [
+          "halve"
+        ],
+        "examples": [
+          {
+            "en": "If you double the dose, the effect may become dangerous.",
+            "ko": "복용량을 두 배로 하면 효과가 위험해질 수 있다."
+          },
+          {
+            "en": "The company's revenue doubled within three years.",
+            "ko": "그 회사의 매출은 3년 안에 두 배가 되었다."
+          }
+        ]
+      },
+      {
+        "word": "rival",
+        "pos": "n.",
+        "meaning_ko": "경쟁자, 맞수",
+        "synonyms": [
+          "competitor",
+          "opponent"
+        ],
+        "antonyms": [
+          "ally"
+        ],
+        "examples": [
+          {
+            "en": "Her doubling strategy quickly left her rival behind.",
+            "ko": "그녀의 2배 전략은 곧 경쟁자를 따돌렸다."
+          },
+          {
+            "en": "The two teams have been fierce rivals for a decade.",
+            "ko": "그 두 팀은 10년째 치열한 맞수였다."
+          }
+        ]
+      },
+      {
+        "word": "advisor",
+        "pos": "n.",
+        "meaning_ko": "조언자, 자문",
+        "synonyms": [
+          "counselor"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "The king trusted his clever advisor more than his generals.",
+            "ko": "왕은 장군들보다 영리한 조언자를 더 신뢰했다."
+          },
+          {
+            "en": "Students meet their academic advisor once a semester.",
+            "ko": "학생들은 학기에 한 번 지도 교수를 만난다."
+          }
+        ]
+      },
+      {
+        "word": "modest",
+        "pos": "adj.",
+        "meaning_ko": "겸손한, 소박한",
+        "synonyms": [
+          "humble",
+          "small"
+        ],
+        "antonyms": [
+          "grand"
+        ],
+        "examples": [
+          {
+            "en": "The king thought it a modest request and agreed.",
+            "ko": "왕은 그것을 소박한 요구라 여기고 동의했다."
+          },
+          {
+            "en": "She described her role in the project in modest terms.",
+            "ko": "그녀는 프로젝트에서 자기 역할을 겸손하게 표현했다."
+          }
+        ]
+      },
+      {
+        "word": "trickle",
+        "pos": "n.",
+        "meaning_ko": "졸졸 흐름, 적은 양",
+        "synonyms": [
+          "drip"
+        ],
+        "antonyms": [
+          "flood"
+        ],
+        "examples": [
+          {
+            "en": "The rice started as a trickle but soon became an ocean.",
+            "ko": "쌀은 졸졸 흐르듯 시작했지만 곧 바다가 되었다."
+          },
+          {
+            "en": "Only a trickle of visitors came before noon.",
+            "ko": "정오 이전에는 아주 적은 방문객만 왔다."
+          }
+        ]
+      },
+      {
+        "word": "unstoppable",
+        "pos": "adj.",
+        "meaning_ko": "막을 수 없는",
+        "synonyms": [
+          "unrelenting"
+        ],
+        "antonyms": [
+          "controllable"
+        ],
+        "examples": [
+          {
+            "en": "By the fifth week the outbreak felt unstoppable.",
+            "ko": "다섯째 주가 되자 그 유행은 막을 수 없게 느껴졌다."
+          },
+          {
+            "en": "Her unstoppable energy inspired the whole team.",
+            "ko": "그녀의 멈출 줄 모르는 에너지가 팀 전체에 영감을 주었다."
+          }
+        ]
+      },
+      {
+        "word": "feedback",
+        "pos": "n.",
+        "meaning_ko": "(되먹임) 피드백",
+        "synonyms": [
+          "response"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "Climate feedback loops can speed up warming unexpectedly.",
+            "ko": "기후 피드백 루프는 예기치 않게 온난화를 가속시킬 수 있다."
+          },
+          {
+            "en": "Teachers use quick feedback to help students improve.",
+            "ko": "교사는 빠른 피드백으로 학생의 성장을 돕는다."
+          }
+        ]
+      },
+      {
+        "word": "harmless",
+        "pos": "adj.",
+        "meaning_ko": "해롭지 않은",
+        "synonyms": [
+          "safe"
+        ],
+        "antonyms": [
+          "dangerous"
+        ],
+        "examples": [
+          {
+            "en": "A doubling count can look harmless in the early days.",
+            "ko": "두 배씩 늘어나는 수치는 초기에는 해롭지 않아 보일 수 있다."
+          },
+          {
+            "en": "The dog's bark is loud but completely harmless.",
+            "ko": "그 개의 짖음은 크지만 완전히 해롭지 않다."
+          }
+        ]
+      },
+      {
+        "word": "patient",
+        "pos": "adj.",
+        "meaning_ko": "인내심 있는",
+        "synonyms": [
+          "tolerant"
+        ],
+        "antonyms": [
+          "impatient"
+        ],
+        "examples": [
+          {
+            "en": "Compound interest rewards patient savers over time.",
+            "ko": "복리는 시간이 지나면 인내심 있는 저축자를 보상한다."
+          },
+          {
+            "en": "Good teachers stay patient when students make mistakes.",
+            "ko": "좋은 교사는 학생이 실수할 때도 인내심을 유지한다."
+          }
+        ]
+      },
+      {
+        "word": "secretly",
+        "pos": "adv.",
+        "meaning_ko": "남몰래, 은밀히",
+        "synonyms": [
+          "quietly"
+        ],
+        "antonyms": [
+          "openly"
+        ],
+        "examples": [
+          {
+            "en": "An exponential line is secretly bending upward all along.",
+            "ko": "지수 곡선은 내내 남몰래 위로 꺾이고 있다."
+          },
+          {
+            "en": "He secretly saved money for his sister's birthday gift.",
+            "ko": "그는 여동생의 생일 선물을 위해 몰래 돈을 모았다."
+          }
+        ]
+      }
     ]
   }
 }
