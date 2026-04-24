@@ -10,6 +10,27 @@
 
 ---
 
+## Amendment 2026-04-25 — arsea.kr visual language
+
+User requested adopting arsea.kr's visual language (bigger typography, more breathing room, subtle effects) while keeping Terra Nova's dark + mint palette. Three-knob adjustment applied inline to affected tasks:
+
+1. **Typography scale ↑** — H1 bumped from `clamp(2.4rem, 6vw, 4.4rem)` → `clamp(3rem, 8.5vw, 7rem)`. H2 from `clamp(1.8rem, 4.2vw, 2.9rem)` → `clamp(2.4rem, 6vw, 4.6rem)`. Body text unchanged for contrast.
+2. **Section breathing ↑** — Default section padding `120px 5vw` → `180px 6vw`. Mobile `80px 5vw` → `110px 5vw`. Hero `min-height:92vh` → `100vh`.
+3. **Subtle effects** — Scroll-reveal fade-in via IntersectionObserver + H1 slow fade-in animation + stronger button hover transforms.
+
+**Full-screen statement stages added** (cinematic rhythm):
+- New `#proof-statement` stage before `#proof` content (Section 3)
+- New `#change-statement` stage before `#change` content (Section 5)
+
+Hero anchor CTAs (`#proof`, `#plans`) unchanged — intent-driven users still jump directly to content. Organic scrollers experience the statement stages as narrative beats.
+
+**Reveal class application** — during each section task below, add `class="reveal"` (or append to existing classes) to the following block-level elements to make them fade in on scroll:
+- `.pain-card` (Section 2) · `.mapping-table-wrap`, `.sample-passage`, `.compare-table-wrap`, `.proof-bridge` (Section 3) · `.logic-card` (Section 4) · `.change-box`, `.effect-card`, `.cycle-table` (Section 5) · `.makers-credentials`, `.principle-card` (Section 6) · `.plan-card`, `.plans-compare`, `.risk-item` (Section 7) · `.faq-item` (Section 8) · `#final-cta > .sec-wrap` (Section 9)
+
+The `#proof-statement` and `#change-statement` stages already have `reveal` applied in their task HTML. Hero uses its own custom `heroFadeUp` keyframes (defined in Task 4).
+
+---
+
 ## Important Deviations From Spec
 
 The spec was written from memory that was stale on two items. Actual project tokens must be used for visual consistency with other Terra Nova pages:
@@ -215,37 +236,37 @@ a:focus-visible, button:focus-visible, input:focus-visible {
   }
 }
 
-/* Section base */
-section { padding:120px 5vw; position:relative; }
+/* Section base — arsea.kr-inspired breathing room */
+section { padding:180px 6vw; position:relative; }
 .sec-wrap { max-width:1180px; margin:0 auto; }
 .sec-kicker {
   display:inline-block;
   font-family:'Space Grotesk',sans-serif;
-  font-size:.72rem;
-  letter-spacing:3px;
+  font-size:.78rem;
+  letter-spacing:4px;
   color:var(--accent);
   text-transform:uppercase;
-  margin-bottom:18px;
-  padding:4px 12px;
+  margin-bottom:32px;
+  padding:6px 14px;
   border:1px solid var(--line2);
   border-radius:2px;
 }
 .sec-h2 {
   font-family:'Noto Sans KR',sans-serif;
-  font-size:clamp(1.8rem, 4.2vw, 2.9rem);
+  font-size:clamp(2.4rem, 6vw, 4.6rem);
   font-weight:900;
-  letter-spacing:-.02em;
-  line-height:1.25;
+  letter-spacing:-.03em;
+  line-height:1.2;
   color:#fff;
-  margin-bottom:16px;
+  margin-bottom:28px;
 }
 .sec-sub {
-  font-size:clamp(1rem, 1.6vw, 1.15rem);
+  font-size:clamp(1.05rem, 1.7vw, 1.25rem);
   color:var(--dim);
   line-height:1.85;
   font-weight:500;
-  max-width:720px;
-  margin-bottom:48px;
+  max-width:760px;
+  margin-bottom:72px;
 }
 .accent-text { color:var(--accent); }
 
@@ -253,7 +274,60 @@ section { padding:120px 5vw; position:relative; }
 .mobile-br { display:none; }
 @media (max-width:720px) {
   .mobile-br { display:inline; }
-  section { padding:80px 5vw; }
+  section { padding:110px 5vw; }
+  .sec-sub { margin-bottom:56px; }
+}
+
+/* Scroll-reveal utility (IntersectionObserver target) */
+.reveal {
+  opacity:0;
+  transform:translateY(24px);
+  transition:opacity .8s cubic-bezier(.2,.8,.2,1), transform .8s cubic-bezier(.2,.8,.2,1);
+  will-change:opacity, transform;
+}
+.reveal.is-visible { opacity:1; transform:translateY(0); }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity:1; transform:none; transition:none; }
+}
+
+/* Stage statement (arsea-style full-screen single-sentence) */
+.stage-statement {
+  min-height:100vh;
+  display:flex; align-items:center; justify-content:center;
+  padding:120px 6vw;
+  text-align:center;
+  background:var(--dark);
+  border-top:1px solid var(--line);
+  position:relative;
+}
+.stage-statement::before {
+  content:''; position:absolute; inset:0;
+  background:radial-gradient(ellipse at 50% 50%, rgba(45,212,191,.05) 0%, transparent 65%);
+  pointer-events:none;
+}
+.stage-inner { max-width:1040px; position:relative; z-index:1; }
+.stage-kicker {
+  display:inline-block;
+  font-family:'Space Grotesk',sans-serif;
+  font-size:.78rem; letter-spacing:4px;
+  color:var(--accent); text-transform:uppercase;
+  margin-bottom:40px;
+  padding:6px 14px; border:1px solid var(--line2); border-radius:2px;
+}
+.stage-h2 {
+  font-family:'Noto Sans KR',sans-serif;
+  font-size:clamp(2.8rem, 7.5vw, 6rem);
+  font-weight:900; letter-spacing:-.035em;
+  line-height:1.22; color:#fff; margin-bottom:36px;
+}
+.stage-h2 .accent-text { color:var(--accent); }
+.stage-sub {
+  font-size:clamp(1.05rem, 1.8vw, 1.3rem);
+  color:var(--dim); max-width:720px;
+  margin:0 auto; line-height:1.85; font-weight:500;
+}
+@media (max-width:720px) {
+  .stage-statement { min-height:90vh; padding:80px 5vw; }
 }
 
 /* Skip link (accessibility) */
@@ -279,15 +353,39 @@ Replace the TODO comment in body:
 </main>
 ```
 
-- [ ] **Step 3: Reload browser, verify dark bg + white text**
+- [ ] **Step 3: Add scroll-reveal JS (IntersectionObserver) before `</body>` — add to the existing `<script>` block if later created, or start a new one now**
 
-Expected: black background (`#0A0A0A`), no content yet but body renders correctly.
+```html
+<script>
+  // Scroll-reveal: add .is-visible when element enters viewport
+  (function() {
+    var els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) {
+      els.forEach(function(el){ el.classList.add('is-visible'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+    els.forEach(function(el){ io.observe(el); });
+  })();
+</script>
+```
 
-- [ ] **Step 4: Commit**
+- [ ] **Step 4: Reload browser, verify dark bg + white text**
+
+Expected: black background (`#0A0A0A`), no content yet but body renders correctly. Reveal utility won't show anything yet (no `.reveal` elements).
+
+- [ ] **Step 5: Commit**
 
 ```bash
 git add landing.html
-git commit -m "feat(landing): add design tokens and base styles"
+git commit -m "feat(landing): add design tokens, stage/reveal utilities (arsea-inspired)"
 ```
 
 ---
@@ -391,12 +489,12 @@ Spec reference: Section 1 of design spec.
 - [ ] **Step 1: Add hero styles to `<style>` block**
 
 ```css
-/* HERO */
+/* HERO — arsea-inspired: full viewport height */
 #hero {
-  padding-top:140px;
-  padding-bottom:100px;
+  padding-top:160px;
+  padding-bottom:120px;
   background:var(--dark);
-  min-height:92vh;
+  min-height:100vh;
   display:flex; align-items:center;
   position:relative; overflow:hidden;
 }
@@ -423,10 +521,22 @@ Spec reference: Section 1 of design spec.
 }
 .hero-h1 {
   font-family:'Noto Sans KR',sans-serif;
-  font-size:clamp(2.4rem, 6vw, 4.4rem);
-  font-weight:900; letter-spacing:-.03em;
-  line-height:1.2; color:#fff;
-  margin-bottom:28px; max-width:960px;
+  font-size:clamp(3rem, 8.5vw, 7rem);
+  font-weight:900; letter-spacing:-.04em;
+  line-height:1.12; color:#fff;
+  margin-bottom:36px; max-width:1080px;
+}
+/* Hero H1 slow fade-in on load */
+@keyframes heroFadeUp {
+  from { opacity:0; transform:translateY(28px); }
+  to { opacity:1; transform:translateY(0); }
+}
+.hero-h1, .hero-sub, .hero-kicker { animation:heroFadeUp 1s cubic-bezier(.2,.8,.2,1) both; }
+.hero-kicker { animation-delay:.1s; }
+.hero-h1 { animation-delay:.25s; }
+.hero-sub { animation-delay:.45s; }
+@media (prefers-reduced-motion: reduce) {
+  .hero-h1, .hero-sub, .hero-kicker { animation:none; }
 }
 .hero-divider {
   width:64px; height:3px; background:var(--accent);
@@ -759,17 +869,23 @@ Spec reference: Section 3 Block A. This is the page spine evidence.
 }
 ```
 
-- [ ] **Step 2: Add proof section opener HTML + Block A (mapping table)**
+- [ ] **Step 2: Add Section 3 full-screen statement stage + proof section opener HTML + Block A (mapping table)**
 
-Add after `#empathy`:
+Add after `#empathy`. Note the new `#proof-statement` stage before `#proof` content — creates cinematic beat per arsea pattern.
 
 ```html
+<!-- SECTION 3 STAGE: arsea-style full-screen H2 beat -->
+<section id="proof-statement" class="stage-statement reveal">
+  <div class="stage-inner">
+    <div class="stage-kicker">Terra Nova의 증거</div>
+    <h2 class="stage-h2">후기 대신, <br class="mobile-br">교재 그 자체를 <br class="mobile-br"><span class="accent-text">보여드립니다.</span></h2>
+    <p class="stage-sub">아직 후기는 쌓이지 않았습니다. 대신 첫 배송본 안쪽을 전부 열어 보여드립니다.</p>
+  </div>
+</section>
+
+<!-- SECTION 3 CONTENT: mapping table + sample + comparison -->
 <section id="proof">
   <div class="sec-wrap">
-    <div class="sec-kicker">Terra Nova의 증거</div>
-    <h2 class="sec-h2">후기 대신, <br class="mobile-br">교재 그 자체를 보여드립니다.</h2>
-    <p class="sec-sub">아직 후기는 쌓이지 않았습니다. 대신 첫 배송본 안쪽을 전부 열어 보여드립니다.</p>
-
     <!-- BLOCK A: Mapping table -->
     <div class="proof-block">
       <div class="proof-block-title">10단계 × 학년별 교과 매칭 — 대표 5지문</div>
@@ -1270,14 +1386,23 @@ Spec reference: Section 5 (with plan-aware Block A revision).
 }
 ```
 
-- [ ] **Step 2: Add change section HTML after `#logic`**
+- [ ] **Step 2: Add Section 5 full-screen statement stage + change section HTML after `#logic`**
+
+Note the new `#change-statement` stage before `#change` content — second cinematic beat per arsea pattern.
 
 ```html
+<!-- SECTION 5 STAGE: arsea-style full-screen H2 beat -->
+<section id="change-statement" class="stage-statement reveal">
+  <div class="stage-inner">
+    <div class="stage-kicker">구독 첫 달</div>
+    <h2 class="stage-h2">영어 공부한 시간이, <br class="mobile-br"><span class="accent-text">수학·과학 공부한 시간</span>이 됩니다.</h2>
+    <p class="stage-sub">구독 첫 달, 하루 한 지문으로 달라지는 공부 구조.</p>
+  </div>
+</section>
+
+<!-- SECTION 5 CONTENT: delivery + routine + effects + cycle -->
 <section id="change">
   <div class="sec-wrap">
-    <div class="sec-kicker">구독 첫 달</div>
-    <h2 class="sec-h2">영어 공부한 시간이, <br class="mobile-br">수학·과학 공부한 시간이 됩니다.</h2>
-    <p class="sec-sub">구독 첫 달, 하루 한 지문으로 달라지는 공부 구조.</p>
 
     <div class="change-boxes">
       <!-- Block A: plan-aware first delivery -->
