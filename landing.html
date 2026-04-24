@@ -451,6 +451,60 @@ nav.site-nav {
 @media (max-width:720px) {
   .empathy-grid { grid-template-columns:1fr; }
 }
+
+/* SECTION 3 PROOF */
+#proof { background:var(--mid); border-top:1px solid var(--line); }
+.proof-block { margin-bottom:72px; }
+.proof-block-title {
+  font-size:clamp(1.35rem, 2.5vw, 1.7rem);
+  font-weight:900; color:#fff;
+  margin-bottom:10px; line-height:1.35;
+}
+.proof-block-sub {
+  font-size:.95rem; color:var(--dim);
+  line-height:1.75; margin-bottom:28px; max-width:720px;
+}
+
+/* Mapping table */
+.mapping-table-wrap { overflow-x:auto; border:1px solid var(--line); border-radius:6px; }
+.mapping-table {
+  width:100%; border-collapse:collapse;
+  background:var(--card); min-width:780px;
+}
+.mapping-table th, .mapping-table td {
+  padding:16px 18px; text-align:left;
+  font-size:.9rem; border-bottom:1px solid var(--line);
+}
+.mapping-table th {
+  font-family:'Space Grotesk',sans-serif;
+  font-size:.72rem; letter-spacing:2px;
+  color:var(--accent); text-transform:uppercase;
+  background:rgba(45,212,191,.04);
+  border-bottom:1px solid var(--line2);
+}
+.mapping-table tr:last-child td { border-bottom:none; }
+.mapping-table .level-cell {
+  font-weight:700; color:#fff;
+  font-family:'Space Grotesk',sans-serif;
+  letter-spacing:2px;
+}
+.mapping-table .grade-cell { color:var(--accent); font-size:.82rem; }
+.mapping-table .topic-cell { color:#fff; font-weight:500; }
+.mapping-table .subject-cell { color:var(--dim); }
+.mapping-table .concept-cell { color:var(--dim2); font-size:.82rem; }
+
+.mapping-cta {
+  margin-top:24px; padding:20px;
+  background:var(--card); border:1px dashed var(--line2); border-radius:6px;
+  display:flex; justify-content:space-between; align-items:center; gap:16px;
+  flex-wrap:wrap;
+}
+.mapping-cta-text { color:var(--dim); font-size:.95rem; }
+.mapping-cta-text strong { color:#fff; }
+
+@media (max-width:720px) {
+  .mapping-cta { flex-direction:column; align-items:flex-start; }
+}
 </style>
 </head>
 <body>
@@ -546,7 +600,91 @@ nav.site-nav {
     </div>
   </section>
 
-  <!-- TODO: sections 3-9 -->
+  <!-- SECTION 3 STAGE: arsea-style full-screen H2 beat -->
+  <section id="proof-statement" class="stage-statement reveal">
+    <div class="stage-inner">
+      <div class="stage-kicker">Terra Nova의 증거</div>
+      <h2 class="stage-h2">후기 대신, <br class="mobile-br">교재 그 자체를 <br class="mobile-br"><span class="accent-text">보여드립니다.</span></h2>
+      <p class="stage-sub">아직 후기는 쌓이지 않았습니다. 대신 첫 배송본 안쪽을 전부 열어 보여드립니다.</p>
+    </div>
+  </section>
+
+  <!-- SECTION 3 CONTENT: mapping table + sample + comparison -->
+  <section id="proof">
+    <div class="sec-wrap">
+      <!-- BLOCK A: Mapping table -->
+      <div class="proof-block">
+        <div class="proof-block-title">10단계 × 학년별 교과 매칭 — 대표 5지문</div>
+        <p class="proof-block-sub">
+          초3부터 고3까지 10단계 전 레벨이 각자 학년 교과와 1:1 매칭됩니다.
+          아래는 레벨 스펙트럼을 보여주는 대표 5지문.
+          <!-- EDITORIAL: replace with finalized data at launch -->
+        </p>
+
+        <div class="mapping-table-wrap reveal">
+          <table class="mapping-table">
+            <thead>
+              <tr>
+                <th>레벨</th>
+                <th>학년</th>
+                <th>지문 주제</th>
+                <th>연계 교과·단원</th>
+                <th>핵심 개념</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="level-cell">MOON</td>
+                <td class="grade-cell">초3</td>
+                <td class="topic-cell">Animal Habitats</td>
+                <td class="subject-cell">초3 과학 · 동식물의 한살이</td>
+                <td class="concept-cell">서식지</td>
+              </tr>
+              <tr>
+                <td class="level-cell">VENUS</td>
+                <td class="grade-cell">초6</td>
+                <td class="topic-cell">Why Democracy Works</td>
+                <td class="subject-cell">초6 사회 · 민주 정치</td>
+                <td class="concept-cell">의사결정</td>
+              </tr>
+              <tr>
+                <td class="level-cell">NEPTUNE</td>
+                <td class="grade-cell">중2</td>
+                <td class="topic-cell">Energy Transformation</td>
+                <td class="subject-cell">중2 과학 · 에너지 전환</td>
+                <td class="concept-cell">에너지 변환</td>
+              </tr>
+              <tr>
+                <td class="level-cell">SATURN</td>
+                <td class="grade-cell">고1</td>
+                <td class="topic-cell">Compound Interest and Exponential Growth</td>
+                <td class="subject-cell">수학Ⅰ · 지수와 로그</td>
+                <td class="concept-cell">복리 / 지수 증가</td>
+              </tr>
+              <tr>
+                <td class="level-cell">SUN</td>
+                <td class="grade-cell">고3</td>
+                <td class="topic-cell">Market Equilibrium in Global Trade</td>
+                <td class="subject-cell">사회·문화 · 경제</td>
+                <td class="concept-cell">수요 / 공급</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="mapping-cta">
+          <div class="mapping-cta-text">
+            <strong>전체 20지문 매칭표</strong>를 PDF로 받으시겠어요? <br>
+            이메일 남겨 주시면 현재 레벨의 전체 매칭표를 바로 보내드립니다.
+          </div>
+          <a href="sample.html" class="btn-ghost">매칭표 PDF 받기 →</a>
+        </div>
+      </div>
+      <!-- TODO: Block B sample passage, Block C comparison, Block D bridge -->
+    </div>
+  </section>
+
+  <!-- TODO: sections 3B-9 -->
 </main>
 <script>
   // Scroll-reveal: add .is-visible when element enters viewport
