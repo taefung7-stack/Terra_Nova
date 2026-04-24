@@ -568,6 +568,63 @@ nav.site-nav {
 .proof-bridge-arrow {
   font-size:.85rem; color:var(--dim); letter-spacing:2px;
 }
+
+/* SECTION 4 LOGIC */
+#logic {
+  background:var(--mid);
+  border-top:1px solid var(--line);
+  background-image:linear-gradient(180deg, rgba(45,212,191,.02), transparent 400px);
+}
+.logic-grid {
+  display:grid; grid-template-columns:repeat(3, 1fr); gap:28px;
+  margin-bottom:40px;
+}
+.logic-card {
+  background:var(--card); border:1px solid var(--line);
+  border-radius:6px; padding:32px 28px;
+}
+.logic-num {
+  font-family:'Space Grotesk',sans-serif;
+  font-size:.72rem; letter-spacing:3px; color:var(--accent);
+  margin-bottom:14px;
+}
+.logic-title {
+  font-size:1.12rem; font-weight:900; color:#fff;
+  line-height:1.4; margin-bottom:14px;
+}
+.logic-body {
+  font-size:.9rem; color:var(--dim); line-height:1.8;
+}
+.logic-example {
+  margin-top:16px; padding:14px 16px;
+  background:rgba(45,212,191,.04);
+  border-left:3px solid var(--accent);
+  font-size:.85rem; color:var(--dim); font-style:italic;
+  line-height:1.75;
+}
+.vocab-table {
+  width:100%; margin-top:14px; border-collapse:collapse;
+  font-size:.85rem;
+}
+.vocab-table td {
+  padding:6px 10px; border-bottom:1px solid var(--line);
+  color:var(--dim);
+}
+.vocab-table .ko { color:#fff; font-weight:700; width:45%; }
+.vocab-table .en {
+  font-family:'Space Grotesk',sans-serif;
+  color:var(--accent);
+}
+.logic-chart-placeholder {
+  margin-top:16px; padding:20px;
+  background:rgba(255,255,255,.02);
+  border:1px dashed var(--line); border-radius:4px;
+  font-size:.8rem; color:var(--dim2); text-align:center;
+}
+.logic-bridge { text-align:center; padding:40px 20px 0; }
+@media (max-width:720px) {
+  .logic-grid { grid-template-columns:1fr; }
+}
 </style>
 </head>
 <body>
@@ -821,7 +878,53 @@ nav.site-nav {
     </div>
   </section>
 
-  <!-- TODO: sections 3B-9 -->
+  <section id="logic">
+    <div class="sec-wrap">
+      <div class="sec-kicker">작동 원리</div>
+      <h2 class="sec-h2">수능 영어는 '문법'이 아니라 <br class="mobile-br"><span class="accent-text">'배경지식' 싸움</span>입니다.</h2>
+      <p class="sec-sub">학부모 대부분이 놓치는 수능 영어의 실제 작동 원리.</p>
+
+      <div class="logic-grid">
+        <div class="logic-card reveal">
+          <div class="logic-num">POINT 1</div>
+          <div class="logic-title">수능 영어 지문 주제는 <br>학교 교과와 크게 겹칩니다</div>
+          <p class="logic-body">최근 수능 영어 지문의 주제 분포를 분석해보면 과학·사회·경제·철학 주제가 다수입니다. 영어 실력만으로는 벽을 넘기 어렵다는 뜻입니다.</p>
+          <div class="logic-chart-placeholder">
+            <!-- EDITORIAL: insert actual chart using publicly available 수능 주제 분석 data -->
+            [차트: 최근 5년 수능 영어 지문 주제 분포 — 교육평가원·EBS 공개 분석 기반]
+          </div>
+        </div>
+
+        <div class="logic-card reveal">
+          <div class="logic-num">POINT 2</div>
+          <div class="logic-title">배경지식이 있으면 <br>풀이 속도가 다릅니다</div>
+          <p class="logic-body">같은 어휘·구문 난이도라도 주제가 친숙하면 읽기 속도가 다릅니다. 수능 영어는 정답률보다 시간 관리가 승부처입니다.</p>
+          <div class="logic-example">
+            지수함수를 학교에서 배운 학생이 <em>Compound Interest</em> 지문을 읽을 때 — 개념을 이해하고 있으니 한 번 읽고 문제로 바로 넘어갑니다.
+          </div>
+        </div>
+
+        <div class="logic-card reveal">
+          <div class="logic-num">POINT 3</div>
+          <div class="logic-title">이중 학습 효과</div>
+          <p class="logic-body">영어 학습 한 시간에 교과 개념의 영어 표현까지 동시에 익힙니다. 수학·과학·사회 수업을 영어로 다시 듣는 경험이 됩니다.</p>
+          <table class="vocab-table">
+            <tr><td class="ko">지수</td><td class="en">exponential</td></tr>
+            <tr><td class="ko">생태계</td><td class="en">ecosystem</td></tr>
+            <tr><td class="ko">수요</td><td class="en">demand</td></tr>
+            <tr><td class="ko">정체성</td><td class="en">identity</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="logic-bridge">
+        <div class="proof-bridge-text">그래서 구독 첫 달, 무엇이 어떻게 달라지는지 — 생활 단위로 보여드립니다.</div>
+        <div class="proof-bridge-arrow">↓</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TODO: sections 5-9 -->
 </main>
 <script>
   // Scroll-reveal: add .is-visible when element enters viewport
