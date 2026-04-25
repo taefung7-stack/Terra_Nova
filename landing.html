@@ -967,6 +967,47 @@ nav.site-nav {
 @media (max-width:720px) {
   .final-primary { padding:18px 28px; font-size:1rem; width:100%; max-width:340px; }
   .final-secondary, .final-tertiary { flex-direction:column; align-items:center; }
+  .final-sec-btn { width:100%; max-width:340px; text-align:center; }
+  #final-cta { padding:90px 5vw; }
+  /* Hero mid-mobile (480-720px): ease H1 from 8.5vw which is too tall */
+  .hero-h1 { font-size:clamp(2.4rem, 7vw, 3.4rem); }
+  .stage-h2 { font-size:clamp(2.2rem, 6.5vw, 3.4rem); }
+  .sec-h2 { font-size:clamp(2rem, 5.6vw, 2.8rem); }
+  .final-h2 { font-size:clamp(1.8rem, 5vw, 2.4rem); }
+  /* Stacked hero cards: relax forced 220px min-height */
+  .hero-visual-card { min-height:0; padding:20px; }
+  /* Sample passage: tighten side padding so text uses full mobile width */
+  .sample-passage { padding:24px 20px; }
+  /* FAQ question: more compact at mobile */
+  .faq-question { padding:18px 18px; font-size:.95rem; }
+  .faq-item.open .faq-answer { padding:0 18px 20px; }
+  /* Plan card earlybird banner: stack price line cleanly */
+  .earlybird-price { line-height:1.4; }
+  .earlybird-price small { display:inline-block; }
+  /* Trust strip: reduce gap so 4 items wrap cleanly */
+  .final-trust-strip { gap:14px 20px; font-size:.78rem; }
+}
+@media (max-width:480px) {
+  .hero-h1 { font-size:2.1rem; line-height:1.18; }
+  .stage-h2 { font-size:2rem; line-height:1.25; }
+  .sec-h2 { font-size:1.85rem; }
+  .final-h2 { font-size:1.7rem; }
+  .hero-sub, .sec-sub, .stage-sub { font-size:.98rem; line-height:1.75; }
+  .hero-kicker, .sec-kicker, .stage-kicker { font-size:.7rem; letter-spacing:3px; }
+  .pain-title, .logic-title, .effect-title, .principle-title { font-size:1rem; }
+  .plan-price { font-size:1.9rem; }
+  .sample-passage-title { font-size:1.1rem; }
+  .proof-block-title { font-size:1.2rem; }
+  /* Hero CTA group spacing tightened */
+  .hero-btns { gap:10px; margin-bottom:24px; }
+  .hero-chips { gap:8px; }
+  .hero-chip { font-size:.76rem; padding:6px 12px; }
+  /* Smaller logo on tight screens */
+  .logo-main { font-size:1.2rem; letter-spacing:5px; }
+  .logo-eng { font-size:.45rem; letter-spacing:4px; }
+  nav.site-nav { padding:0 4vw; height:60px; }
+  /* Tighter final CTA breathing room at 375px */
+  #final-cta { padding:70px 5vw; }
 }
 </style>
 </head>
