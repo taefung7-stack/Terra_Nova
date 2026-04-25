@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TERRA NOVA — 조각이 모여 하나가 됩니다</title>
+<meta name="description" content="여러 교과가 영어 하나로 모이는 학습. Terra Nova 시작 전 1분 경험.">
+<link rel="canonical" href="https://terra-nova.kr/intro.html">
+<link rel="manifest" href="./manifest.webmanifest">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="apple-touch-icon" href="./logo.png">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="TERRA NOVA — 조각이 모여 하나가 됩니다">
+<meta property="og:description" content="여러 교과가 영어 하나로 모이는 학습. Terra Nova.">
+<meta property="og:url" content="https://terra-nova.kr/intro.html">
+<meta property="og:image" content="https://terra-nova.kr/og-cover.svg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@200;300;400;500;700;900&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg:#0A0A0A;
+  --bg2:#080808;
+  --txt:#F0F0F0;
+  --dim:rgba(240,240,240,.55);
+  --dim2:rgba(240,240,240,.32);
+  --accent:#2DD4BF;
+  --accent-soft:rgba(45,212,191,.12);
+  --line:rgba(255,255,255,.08);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  background:var(--bg);
+  color:var(--txt);
+  font-family:'Noto Sans KR',sans-serif;
+  font-weight:300;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  letter-spacing:-.005em;
+}
+a { color:inherit; text-decoration:none; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration:.01ms !important; transition-duration:.01ms !important; }
+}
+
+/* SKIP button — top-left, always fixed */
+.skip-link {
+  position:fixed; top:24px; left:24px; z-index:100;
+  font-family:'Space Grotesk',sans-serif;
+  font-size:.78rem; letter-spacing:.3em;
+  color:var(--dim); padding:10px 16px;
+  border:1px solid var(--line); border-radius:2px;
+  text-transform:uppercase;
+  transition:color .2s, border-color .2s, background .2s;
+  backdrop-filter:blur(8px);
+  background:rgba(10,10,10,.4);
+}
+.skip-link:hover { color:var(--accent); border-color:var(--accent); background:var(--accent-soft); }
+.skip-link::after { content:'  \2192'; }
+
+/* Brand mark — top-center, always fixed */
+.brand-mark {
+  position:fixed; top:28px; left:50%; transform:translateX(-50%);
+  z-index:99;
+  font-family:'Space Grotesk',sans-serif;
+  font-size:.72rem; letter-spacing:.5em;
+  color:var(--dim2); text-transform:uppercase;
+  pointer-events:none;
+}
+
+/* Stage base */
+.stage {
+  min-height:100vh;
+  display:flex; align-items:center; justify-content:center;
+  padding:120px 6vw;
+  position:relative;
+  text-align:center;
+}
+.stage-inner { max-width:1200px; width:100%; }
+
+/* Reveal-on-enter base (scroll-triggered fade up) */
+.reveal {
+  opacity:0;
+  transform:translateY(40px);
+  transition:opacity 1.4s cubic-bezier(.2,.8,.2,1), transform 1.4s cubic-bezier(.2,.8,.2,1);
+}
+.reveal.is-visible { opacity:1; transform:translateY(0); }
+.reveal-delay-1 { transition-delay:.15s; }
+.reveal-delay-2 { transition-delay:.3s; }
+.reveal-delay-3 { transition-delay:.45s; }
+
+/* === STAGE 1: TITLE === */
+.stage-title { background:var(--bg); }
+.stage-title .brand-h1 {
+  font-family:'Space Grotesk',sans-serif;
+  font-size:clamp(2.8rem, 8vw, 7rem);
+  font-weight:300; letter-spacing:.18em;
+  color:var(--txt);
+  text-transform:uppercase;
+  margin-bottom:32px;
+  line-height:1;
+}
+.stage-title .brand-tag {
+  font-family:'Space Grotesk',sans-serif;
+  font-size:.78rem; letter-spacing:.5em;
+  color:var(--accent); text-transform:uppercase;
+  margin-bottom:88px;
+}
+.stage-title .scroll-cue {
+  position:absolute; bottom:48px; left:50%; transform:translateX(-50%);
+  font-family:'Space Grotesk',sans-serif;
+  font-size:.74rem; letter-spacing:.4em;
+  color:var(--dim); text-transform:uppercase;
+  display:flex; flex-direction:column; align-items:center; gap:14px;
+  animation:bounce 2s ease-in-out infinite;
+}
+.stage-title .scroll-cue::after {
+  content:''; width:1px; height:36px;
+  background:linear-gradient(180deg, var(--dim), transparent);
+}
+@keyframes bounce {
+  0%,100% { transform:translateX(-50%) translateY(0); opacity:.7; }
+  50% { transform:translateX(-50%) translateY(8px); opacity:1; }
+}
+
+/* === STAGE 2: SCATTERED PIECES === */
+.stage-pieces { background:var(--bg); }
+.stage-pieces .stage-prologue {
+  font-family:'Noto Sans KR',sans-serif;
+  font-size:clamp(1rem, 1.6vw, 1.25rem);
+  font-weight:300; color:var(--dim);
+  margin-bottom:80px; line-height:1.85;
+}
+.scatter-canvas {
+  position:relative;
+  width:100%; max-width:1000px;
+  aspect-ratio:16/9;
+  margin:0 auto;
+}
+.piece {
+  position:absolute;
+  font-family:'Noto Sans KR',sans-serif;
+  font-size:clamp(.92rem, 1.3vw, 1.05rem);
+  font-weight:500;
+  color:var(--txt);
+  padding:14px 20px;
+  border:1px solid var(--line);
+  border-radius:3px;
+  background:rgba(255,255,255,.02);
+  backdrop-filter:blur(6px);
+  white-space:nowrap;
+  letter-spacing:-.01em;
+}
+.piece-label {
+  display:block;
+  font-family:'Space Grotesk',sans-serif;
+  font-size:.62rem; letter-spacing:.3em;
+  color:var(--accent); text-transform:uppercase;
+  margin-bottom:6px; font-weight:500;
+}
+/* Initial scatter positions (Stage 2) — 4 pieces around the canvas */
+.piece-math     { top:8%;  left:6%; }
+.piece-science  { top:14%; right:8%; }
+.piece-society  { bottom:18%; left:10%; }
+.piece-literature { bottom:8%; right:6%; }
+
+@media (max-width:720px) {
+  .scatter-canvas { aspect-ratio:3/4; }
+  .piece-math     { top:5%;  left:5%; }
+  .piece-science  { top:10%; right:3%; }
+  .piece-society  { bottom:18%; left:3%; }
+  .piece-literature { bottom:5%; right:5%; }
+}
+
+/* === STAGE 3: CONVERGENCE (sticky scroll) === */
+.stage-converge {
+  height:200vh;
+  background:var(--bg);
+  padding:0;
+}
+.converge-sticky {
+  position:sticky; top:0;
+  height:100vh;
+  display:flex; align-items:center; justify-content:center;
+  overflow:hidden;
+}
+.converge-canvas {
+  position:relative;
+  width:100%; height:100%;
+  display:flex; align-items:center; justify-content:center;
+}
+.converge-piece {
+  position:absolute;
+  font-family:'Noto Sans KR',sans-serif;
+  font-size:clamp(.92rem, 1.3vw, 1.05rem);
+  font-weight:500; color:var(--txt);
+  padding:14px 20px;
+  border:1px solid var(--line);
+  border-radius:3px;
+  background:rgba(10,10,10,.6);
+  backdrop-filter:blur(6px);
+  white-space:nowrap; letter-spacing:-.01em;
+  /* Position interpolated via JS scroll-linked --p (0 = scattered, 1 = converged center) */
+  --p:0;
+  /* Each piece has its own start offset via custom props set inline */
+  transform:translate(
+    calc(var(--start-x, 0px) * (1 - var(--p))),
+    calc(var(--start-y, 0px) * (1 - var(--p)))
+  );
+  transition:opacity .6s ease;
+}
+.converge-piece .piece-label {
+  display:block;
+  font-family:'Space Grotesk',sans-serif;
+  font-size:.62rem; letter-spacing:.3em;
+  color:var(--accent); text-transform:uppercase;
+  margin-bottom:6px; font-weight:500;
+}
+
+/* === STAGE 4: ENGLISH BINDS === */
+.stage-english {
+  height:150vh;
+  background:var(--bg);
+  padding:0;
+}
+.english-sticky {
+  position:sticky; top:0;
+  height:100vh;
+  display:flex; align-items:center; justify-content:center;
+  flex-direction:column;
+  overflow:hidden;
+}
+.english-mark {
+  font-family:'Space Grotesk',sans-serif;
+  font-size:clamp(4rem, 14vw, 12rem);
+  font-weight:200; letter-spacing:.05em;
+  color:var(--accent);
+  text-transform:uppercase; line-height:.95;
+  position:relative;
+  text-shadow:0 0 80px rgba(45,212,191,.25);
+}
+.english-tag {
+  margin-top:36px;
+  font-family:'Space Grotesk',sans-serif;
+  font-size:.74rem; letter-spacing:.45em;
+  color:var(--dim); text-transform:uppercase;
+}
+
+/* === STAGE 5: FINAL MESSAGE === */
+.stage-message { background:var(--bg); }
+.stage-message .final-h1 {
+  font-family:'Noto Sans KR',sans-serif;
+  font-size:clamp(2.4rem, 7vw, 5.5rem);
+  font-weight:200; letter-spacing:-.03em;
+  line-height:1.25; color:var(--txt);
+  max-width:1100px; margin:0 auto;
+}
+.stage-message .final-h1 .accent { color:var(--accent); font-weight:500; }
+.stage-message .final-h1 .dim { color:var(--dim); }
+.stage-message .final-tag {
+  margin-top:60px;
+  font-family:'Space Grotesk',sans-serif;
+  font-size:.74rem; letter-spacing:.4em;
+  color:var(--dim2); text-transform:uppercase;
+}
+
+/* === STAGE 6: ENTER CTA === */
+.stage-cta { background:var(--bg); }
+.stage-cta .enter-prologue {
+  font-family:'Space Grotesk',sans-serif;
+  font-size:.74rem; letter-spacing:.4em;
+  color:var(--dim); text-transform:uppercase;
+  margin-bottom:48px;
+}
+.enter-btn {
+  display:inline-flex; align-items:center; gap:16px;
+  padding:24px 56px;
+  border:1px solid var(--accent);
+  background:transparent;
+  color:var(--accent);
+  font-family:'Space Grotesk',sans-serif;
+  font-size:1rem; letter-spacing:.3em;
+  text-transform:uppercase; font-weight:400;
+  border-radius:2px;
+  transition:background .25s, color .25s, transform .25s, box-shadow .25s;
+}
+.enter-btn:hover {
+  background:var(--accent);
+  color:var(--bg);
+  transform:translateY(-2px);
+  box-shadow:0 12px 40px rgba(45,212,191,.25);
+}
+.enter-btn::after { content:'\2192'; font-size:1.25rem; }
+.stage-cta .enter-foot {
+  position:absolute; bottom:48px; left:0; right:0;
+  font-family:'Space Grotesk',sans-serif;
+  font-size:.68rem; letter-spacing:.4em;
+  color:var(--dim2); text-transform:uppercase;
+}
+
+@media (max-width:720px) {
+  .stage { padding:80px 5vw; }
+  .skip-link { top:14px; left:14px; padding:8px 12px; font-size:.7rem; }
+  .brand-mark { top:18px; font-size:.62rem; letter-spacing:.4em; }
+  .stage-title .brand-tag { margin-bottom:48px; }
+  .enter-btn { padding:20px 36px; font-size:.88rem; letter-spacing:.25em; }
+}
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="landing.html">SKIP</a>
+<div class="brand-mark">Terra Nova</div>
+
+<main>
+
+  <!-- ========================== STAGE 1: TITLE ========================== -->
+  <section class="stage stage-title">
+    <div class="stage-inner">
+      <div class="brand-tag reveal">A Reading Curriculum for the Multi-Subject Mind</div>
+      <h1 class="brand-h1 reveal reveal-delay-1">Terra Nova</h1>
+    </div>
+    <div class="scroll-cue">SCROLL</div>
+  </section>
+
+  <!-- ========================== STAGE 2: SCATTERED PIECES ========================== -->
+  <section class="stage stage-pieces">
+    <div class="stage-inner">
+      <p class="stage-prologue reveal">
+        한 학년 동안 배우는 과목들은 <br>
+        지금 따로따로 흩어져 있습니다.
+      </p>
+
+      <div class="scatter-canvas">
+        <div class="piece piece-math reveal reveal-delay-1">
+          <span class="piece-label">Math · 수학&#8544;</span>
+          &#8545;-3. 지수함수와 로그함수
+        </div>
+        <div class="piece piece-science reveal reveal-delay-2">
+          <span class="piece-label">Science · 통합과학</span>
+          &#8547;. 에너지 전환과 보존
+        </div>
+        <div class="piece piece-society reveal reveal-delay-2">
+          <span class="piece-label">Society · 사회·문화</span>
+          &#8546;. 시장과 경제 활동
+        </div>
+        <div class="piece piece-literature reveal reveal-delay-3">
+          <span class="piece-label">Literature · 문학</span>
+          &#8545;. 정체성과 자아의 발견
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================== STAGE 3: CONVERGENCE (sticky scroll) ========================== -->
+  <section class="stage-converge" id="converge">
+    <div class="converge-sticky">
+      <div class="converge-canvas">
+        <div class="converge-piece" style="--start-x:-340px; --start-y:-200px;">
+          <span class="piece-label">Math</span>
+          수학&#8544; · 지수와 로그
+        </div>
+        <div class="converge-piece" style="--start-x:340px; --start-y:-200px;">
+          <span class="piece-label">Science</span>
+          통합과학 · 에너지 전환
+        </div>
+        <div class="converge-piece" style="--start-x:-340px; --start-y:200px;">
+          <span class="piece-label">Society</span>
+          사회·문화 · 경제
+        </div>
+        <div class="converge-piece" style="--start-x:340px; --start-y:200px;">
+          <span class="piece-label">Literature</span>
+          문학 · 정체성
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================== STAGE 4: ENGLISH BINDS ========================== -->
+  <section class="stage-english" id="english">
+    <div class="english-sticky">
+      <div class="english-mark reveal">ENGLISH</div>
+      <div class="english-tag reveal reveal-delay-2">Reading binds them all</div>
+    </div>
+  </section>
+
+  <!-- ========================== STAGE 5: FINAL MESSAGE ========================== -->
+  <section class="stage stage-message">
+    <div class="stage-inner">
+      <h1 class="final-h1 reveal">
+        영어 한 지문에, <br>
+        <span class="accent">수학 한 단원</span>이 <br class="mobile-br">
+        들어 있습니다.
+      </h1>
+      <div class="final-tag reveal reveal-delay-2">Terra Nova · Curriculum-Linked Reading</div>
+    </div>
+  </section>
+
+  <!-- ========================== STAGE 6: ENTER CTA ========================== -->
+  <section class="stage stage-cta">
+    <div class="stage-inner">
+      <div class="enter-prologue reveal">Begin</div>
+      <a class="enter-btn reveal reveal-delay-1" href="landing.html">Terra Nova 시작하기</a>
+    </div>
+    <div class="enter-foot">© Terra Nova English · 2026</div>
+  </section>
+
+</main>
+
+<script>
+(function() {
+  /* === Scroll-reveal: fade-in on entry === */
+  var revealEls = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) {
+    revealEls.forEach(function(el){ el.classList.add('is-visible'); });
+  } else {
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold:0.18, rootMargin:'0px 0px -80px 0px' });
+    revealEls.forEach(function(el){ io.observe(el); });
+  }
+
+  /* === Scroll-linked convergence: Stage 3 === */
+  var convergeSection = document.getElementById('converge');
+  var convergePieces = document.querySelectorAll('.converge-piece');
+  function updateConverge() {
+    if (!convergeSection) return;
+    var rect = convergeSection.getBoundingClientRect();
+    var sectionTop = rect.top;
+    var sectionHeight = rect.height;
+    var vh = window.innerHeight;
+    /* Progress is 0 when section top hits viewport top, 1 when section bottom reaches viewport bottom */
+    var totalScrollable = sectionHeight - vh;
+    var scrolled = -sectionTop;
+    var p = scrolled / totalScrollable;
+    p = Math.max(0, Math.min(1, p));
+    convergePieces.forEach(function(piece) {
+      piece.style.setProperty('--p', p.toFixed(3));
+    });
+  }
+  updateConverge();
+  window.addEventListener('scroll', updateConverge, { passive:true });
+  window.addEventListener('resize', updateConverge);
+})();
+</script>
+
+</body>
+</html>
