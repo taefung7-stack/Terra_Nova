@@ -395,23 +395,6 @@ main {
     }
   }
 
-  // Bridge ScrollTrigger to Lenis's virtual scroll position. Without this,
-  // ScrollTrigger reads native window.scrollY, which Lenis decouples from
-  // actual page progress — leaving ScrollTrigger.progress stuck at 0.
-  if (lenis) {
-    ScrollTrigger.scrollerProxy(document.body, {
-      scrollTop: function (value) {
-        if (arguments.length) {
-          lenis.scrollTo(value, { immediate: true });
-        }
-        return (typeof lenis.scroll === 'number') ? lenis.scroll : window.scrollY;
-      },
-      getBoundingClientRect: function () {
-        return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
-      }
-    });
-  }
-
   // ============================================================
   // Three.js setup
   // ============================================================
@@ -627,7 +610,6 @@ main {
 
   ScrollTrigger.create({
     trigger: 'body',
-    scroller: lenis ? document.body : undefined,
     start: 'top top',
     end: 'bottom bottom',
     scrub: 0.5,
@@ -643,8 +625,9 @@ main {
     }
   });
 
-  // After wiring the scrollerProxy + ScrollTrigger, ask GSAP to recompute
-  // scroll bounds. Required when scroller switches from window to body.
+  // Recompute scroll bounds after the trigger is registered. Lenis updates
+  // window.scrollY natively, and `lenis.on('scroll', ScrollTrigger.update)`
+  // (above) keeps progress in sync — no scrollerProxy needed.
   ScrollTrigger.refresh();
 
   // ============================================================
