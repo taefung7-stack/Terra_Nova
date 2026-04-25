@@ -23,6 +23,12 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@200;300;400;500;700;900&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
 
+<!-- Three.js + GSAP + ScrollTrigger + Lenis (CDN, no build step) -->
+<script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+<script src="https://unpkg.com/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://unpkg.com/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+
 <style>
 :root {
   --bg:#0A0A0A;
@@ -35,7 +41,7 @@
   --line:rgba(255,255,255,.08);
 }
 * { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior:smooth; }
+html, body { height:100%; }
 body {
   background:var(--bg);
   color:var(--txt);
@@ -44,13 +50,21 @@ body {
   -webkit-font-smoothing:antialiased;
   overflow-x:hidden;
   letter-spacing:-.005em;
+  position:relative;
 }
 a { color:inherit; text-decoration:none; }
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration:.01ms !important; transition-duration:.01ms !important; }
+
+/* ===== Background canvas ===== */
+#bg {
+  position:fixed;
+  inset:0;
+  width:100vw; height:100vh;
+  z-index:0;
+  pointer-events:none;
+  display:block;
 }
 
-/* SKIP button — top-left, always fixed */
+/* ===== SKIP button — top-left, always fixed ===== */
 .skip-link {
   position:fixed; top:24px; left:24px; z-index:100;
   font-family:'Space Grotesk',sans-serif;
@@ -61,11 +75,12 @@ a { color:inherit; text-decoration:none; }
   transition:color .2s, border-color .2s, background .2s;
   backdrop-filter:blur(8px);
   background:rgba(10,10,10,.4);
+  pointer-events:auto;
 }
 .skip-link:hover { color:var(--accent); border-color:var(--accent); background:var(--accent-soft); }
 .skip-link::after { content:'  \2192'; }
 
-/* Brand mark — top-center, always fixed */
+/* ===== Brand mark — top-center, always fixed ===== */
 .brand-mark {
   position:fixed; top:28px; left:50%; transform:translateX(-50%);
   z-index:99;
@@ -75,45 +90,48 @@ a { color:inherit; text-decoration:none; }
   pointer-events:none;
 }
 
-/* Stage base */
+/* ===== Stage layout ===== */
+main {
+  position:relative;
+  z-index:2;
+}
 .stage {
   min-height:100vh;
   display:flex; align-items:center; justify-content:center;
   padding:120px 6vw;
   position:relative;
   text-align:center;
+  pointer-events:none; /* Let canvas show through; CTA opts back in */
 }
-.stage-inner { max-width:1200px; width:100%; }
-
-/* Reveal-on-enter base (scroll-triggered fade up) */
-.reveal {
+.stage .overlay {
+  max-width:1100px;
+  width:100%;
   opacity:0;
-  transform:translateY(40px);
-  transition:opacity 1.4s cubic-bezier(.2,.8,.2,1), transform 1.4s cubic-bezier(.2,.8,.2,1);
+  transform:translateY(28px);
+  transition:opacity 1s cubic-bezier(.2,.8,.2,1), transform 1s cubic-bezier(.2,.8,.2,1);
 }
-.reveal.is-visible { opacity:1; transform:translateY(0); }
-.reveal-delay-1 { transition-delay:.15s; }
-.reveal-delay-2 { transition-delay:.3s; }
-.reveal-delay-3 { transition-delay:.45s; }
+.stage.is-active .overlay {
+  opacity:1;
+  transform:translateY(0);
+}
 
-/* === STAGE 1: TITLE === */
-.stage-title { background:var(--bg); }
-.stage-title .brand-h1 {
+/* ===== STAGE 1: TITLE ===== */
+.stage-1 .brand-h1 {
   font-family:'Space Grotesk',sans-serif;
   font-size:clamp(2.8rem, 8vw, 7rem);
   font-weight:300; letter-spacing:.18em;
   color:var(--txt);
   text-transform:uppercase;
-  margin-bottom:32px;
+  margin-bottom:24px;
   line-height:1;
 }
-.stage-title .brand-tag {
+.stage-1 .brand-tag {
   font-family:'Space Grotesk',sans-serif;
   font-size:.78rem; letter-spacing:.5em;
   color:var(--accent); text-transform:uppercase;
-  margin-bottom:88px;
+  margin-bottom:32px;
 }
-.stage-title .scroll-cue {
+.stage-1 .scroll-cue {
   position:absolute; bottom:48px; left:50%; transform:translateX(-50%);
   font-family:'Space Grotesk',sans-serif;
   font-size:.74rem; letter-spacing:.4em;
@@ -121,163 +139,90 @@ a { color:inherit; text-decoration:none; }
   display:flex; flex-direction:column; align-items:center; gap:14px;
   animation:bounce 2s ease-in-out infinite;
 }
-.stage-title .scroll-cue::after {
+.stage-1 .scroll-cue::after {
   content:''; width:1px; height:36px;
   background:linear-gradient(180deg, var(--dim), transparent);
 }
 @keyframes bounce {
   0%,100% { transform:translateX(-50%) translateY(0); opacity:.7; }
-  50% { transform:translateX(-50%) translateY(8px); opacity:1; }
+  50%     { transform:translateX(-50%) translateY(8px); opacity:1; }
 }
 
-/* === STAGE 2: SCATTERED PIECES === */
-.stage-pieces { background:var(--bg); }
-.stage-pieces .stage-prologue {
+/* ===== STAGE 2: PROLOGUE ===== */
+.stage-2 .prologue {
   font-family:'Noto Sans KR',sans-serif;
-  font-size:clamp(1rem, 1.6vw, 1.25rem);
+  font-size:clamp(1.05rem, 1.7vw, 1.4rem);
   font-weight:300; color:var(--dim);
-  margin-bottom:80px; line-height:1.85;
+  line-height:1.95;
+  letter-spacing:-.005em;
+  text-shadow:0 1px 24px rgba(10,10,10,.6);
 }
-.scatter-canvas {
+
+/* ===== STAGE 3: CLUSTER LABELS at corners ===== */
+.stage-3 .overlay {
   position:relative;
-  width:100%; max-width:1000px;
-  aspect-ratio:16/9;
-  margin:0 auto;
+  height:70vh;
+  max-width:1200px;
+  width:100%;
 }
-.piece {
+.cluster-label {
   position:absolute;
   font-family:'Noto Sans KR',sans-serif;
-  font-size:clamp(.92rem, 1.3vw, 1.05rem);
-  font-weight:500;
+  font-size:clamp(.78rem, 1vw, .92rem);
   color:var(--txt);
-  padding:14px 20px;
-  border:1px solid var(--line);
-  border-radius:3px;
-  background:rgba(255,255,255,.02);
-  backdrop-filter:blur(6px);
+  font-weight:500;
   white-space:nowrap;
-  letter-spacing:-.01em;
-}
-.piece-label {
-  display:block;
-  font-family:'Space Grotesk',sans-serif;
-  font-size:.62rem; letter-spacing:.3em;
-  color:var(--accent); text-transform:uppercase;
-  margin-bottom:6px; font-weight:500;
-}
-/* Initial scatter positions (Stage 2) — 4 pieces around the canvas */
-.piece-math     { top:8%;  left:6%; }
-.piece-science  { top:14%; right:8%; }
-.piece-society  { bottom:18%; left:10%; }
-.piece-literature { bottom:8%; right:6%; }
-
-@media (max-width:720px) {
-  .scatter-canvas { aspect-ratio:3/4; }
-  .piece-math     { top:5%;  left:5%; }
-  .piece-science  { top:10%; right:3%; }
-  .piece-society  { bottom:18%; left:3%; }
-  .piece-literature { bottom:5%; right:5%; }
-}
-
-/* === STAGE 3: CONVERGENCE (sticky scroll) === */
-.stage-converge {
-  height:200vh;
-  background:var(--bg);
-  padding:0;
-}
-.converge-sticky {
-  position:sticky; top:0;
-  height:100vh;
-  display:flex; align-items:center; justify-content:center;
-  overflow:hidden;
-}
-.converge-canvas {
-  position:relative;
-  width:100%; height:100%;
-  display:flex; align-items:center; justify-content:center;
-}
-.converge-piece {
-  position:absolute;
-  font-family:'Noto Sans KR',sans-serif;
-  font-size:clamp(.92rem, 1.3vw, 1.05rem);
-  font-weight:500; color:var(--txt);
-  padding:14px 20px;
+  padding:10px 14px;
+  background:rgba(10,10,10,.55);
   border:1px solid var(--line);
   border-radius:3px;
-  background:rgba(10,10,10,.6);
   backdrop-filter:blur(6px);
-  white-space:nowrap; letter-spacing:-.01em;
-  /* Position interpolated via JS scroll-linked --p (0 = scattered, 1 = converged center) */
-  --p:0;
-  /* Each piece has its own start offset via custom props set inline */
-  transform:translate(
-    calc(var(--start-x, 0px) * (1 - var(--p))),
-    calc(var(--start-y, 0px) * (1 - var(--p)))
-  );
-  transition:opacity .6s ease;
+  letter-spacing:-.005em;
+  text-align:left;
 }
-.converge-piece .piece-label {
+.cluster-label .lbl {
   display:block;
   font-family:'Space Grotesk',sans-serif;
-  font-size:.62rem; letter-spacing:.3em;
-  color:var(--accent); text-transform:uppercase;
-  margin-bottom:6px; font-weight:500;
-}
-
-/* === STAGE 4: ENGLISH BINDS === */
-.stage-english {
-  height:150vh;
-  background:var(--bg);
-  padding:0;
-}
-.english-sticky {
-  position:sticky; top:0;
-  height:100vh;
-  display:flex; align-items:center; justify-content:center;
-  flex-direction:column;
-  overflow:hidden;
-}
-.english-mark {
-  font-family:'Space Grotesk',sans-serif;
-  font-size:clamp(4rem, 14vw, 12rem);
-  font-weight:200; letter-spacing:.05em;
+  font-size:.6rem; letter-spacing:.3em;
   color:var(--accent);
-  text-transform:uppercase; line-height:.95;
-  position:relative;
-  text-shadow:0 0 80px rgba(45,212,191,.25);
+  text-transform:uppercase;
+  margin-bottom:5px; font-weight:500;
 }
-.english-tag {
-  margin-top:36px;
+.cluster-nw { top:6%;    left:4%; }
+.cluster-ne { top:6%;    right:4%; }
+.cluster-sw { bottom:6%; left:4%; }
+.cluster-se { bottom:6%; right:4%; }
+
+/* ===== STAGE 4: ENGLISH binds ===== */
+.stage-4 .english-tag {
   font-family:'Space Grotesk',sans-serif;
-  font-size:.74rem; letter-spacing:.45em;
+  font-size:.78rem; letter-spacing:.5em;
   color:var(--dim); text-transform:uppercase;
+  margin-top:160px; /* Push below the canvas-rendered ENGLISH */
 }
 
-/* === STAGE 5: FINAL MESSAGE === */
-.stage-message { background:var(--bg); }
-.stage-message .final-h1 {
+/* ===== STAGE 5: FINAL HEADLINE ===== */
+.stage-5 .final-h1 {
   font-family:'Noto Sans KR',sans-serif;
-  font-size:clamp(2.4rem, 7vw, 5.5rem);
+  font-size:clamp(2.2rem, 6vw, 4.8rem);
   font-weight:200; letter-spacing:-.03em;
-  line-height:1.25; color:var(--txt);
+  line-height:1.3; color:var(--txt);
   max-width:1100px; margin:0 auto;
 }
-.stage-message .final-h1 .accent { color:var(--accent); font-weight:500; }
-.stage-message .final-h1 .dim { color:var(--dim); }
-.stage-message .final-tag {
-  margin-top:60px;
+.stage-5 .final-h1 .accent { color:var(--accent); font-weight:500; }
+.stage-5 .final-tag {
+  margin-top:48px;
   font-family:'Space Grotesk',sans-serif;
   font-size:.74rem; letter-spacing:.4em;
   color:var(--dim2); text-transform:uppercase;
 }
 
-/* === STAGE 6: ENTER CTA === */
-.stage-cta { background:var(--bg); }
-.stage-cta .enter-prologue {
+/* ===== STAGE 6: ENTER CTA ===== */
+.stage-6 .enter-prologue {
   font-family:'Space Grotesk',sans-serif;
   font-size:.74rem; letter-spacing:.4em;
   color:var(--dim); text-transform:uppercase;
-  margin-bottom:48px;
+  margin-bottom:40px;
 }
 .enter-btn {
   display:inline-flex; align-items:center; gap:16px;
@@ -289,6 +234,7 @@ a { color:inherit; text-decoration:none; }
   font-size:1rem; letter-spacing:.3em;
   text-transform:uppercase; font-weight:400;
   border-radius:2px;
+  pointer-events:auto;
   transition:background .25s, color .25s, transform .25s, box-shadow .25s;
 }
 .enter-btn:hover {
@@ -298,19 +244,28 @@ a { color:inherit; text-decoration:none; }
   box-shadow:0 12px 40px rgba(45,212,191,.25);
 }
 .enter-btn::after { content:'\2192'; font-size:1.25rem; }
-.stage-cta .enter-foot {
-  position:absolute; bottom:48px; left:0; right:0;
+.stage-6 .enter-foot {
+  position:absolute; bottom:36px; left:0; right:0;
   font-family:'Space Grotesk',sans-serif;
   font-size:.68rem; letter-spacing:.4em;
   color:var(--dim2); text-transform:uppercase;
+  pointer-events:none;
 }
 
+/* ===== Mobile ===== */
 @media (max-width:720px) {
   .stage { padding:80px 5vw; }
   .skip-link { top:14px; left:14px; padding:8px 12px; font-size:.7rem; }
   .brand-mark { top:18px; font-size:.62rem; letter-spacing:.4em; }
-  .stage-title .brand-tag { margin-bottom:48px; }
   .enter-btn { padding:20px 36px; font-size:.88rem; letter-spacing:.25em; }
+  .cluster-label { font-size:.72rem; padding:8px 10px; }
+}
+
+/* ===== prefers-reduced-motion: graceful CSS-only fallback ===== */
+@media (prefers-reduced-motion: reduce) {
+  #bg { display:none; }
+  .stage .overlay { opacity:1; transform:none; transition:none; }
+  .stage-1 .scroll-cue { animation:none; }
 }
 </style>
 </head>
@@ -319,95 +274,62 @@ a { color:inherit; text-decoration:none; }
 <a class="skip-link" href="landing.html">SKIP</a>
 <div class="brand-mark">Terra Nova</div>
 
+<canvas id="bg" aria-hidden="true"></canvas>
+
 <main>
 
-  <!-- ========================== STAGE 1: TITLE ========================== -->
-  <section class="stage stage-title">
-    <div class="stage-inner">
-      <div class="brand-tag reveal">A Reading Curriculum for the Multi-Subject Mind</div>
-      <h1 class="brand-h1 reveal reveal-delay-1">Terra Nova</h1>
+  <!-- STAGE 1 — drift -->
+  <section class="stage stage-1" data-scene="drift">
+    <div class="overlay">
+      <div class="brand-tag">A Reading Curriculum for the Multi-Subject Mind</div>
+      <h1 class="brand-h1">Terra Nova</h1>
     </div>
     <div class="scroll-cue">SCROLL</div>
   </section>
 
-  <!-- ========================== STAGE 2: SCATTERED PIECES ========================== -->
-  <section class="stage stage-pieces">
-    <div class="stage-inner">
-      <p class="stage-prologue reveal">
-        한 학년 동안 배우는 과목들은 <br>
+  <!-- STAGE 2 — scatter -->
+  <section class="stage stage-2" data-scene="scatter">
+    <div class="overlay">
+      <p class="prologue">
+        한 학년 동안 배우는 과목들은<br>
         지금 따로따로 흩어져 있습니다.
       </p>
-
-      <div class="scatter-canvas">
-        <div class="piece piece-math reveal reveal-delay-1">
-          <span class="piece-label">Math · 수학&#8544;</span>
-          &#8545;-3. 지수함수와 로그함수
-        </div>
-        <div class="piece piece-science reveal reveal-delay-2">
-          <span class="piece-label">Science · 통합과학</span>
-          &#8547;. 에너지 전환과 보존
-        </div>
-        <div class="piece piece-society reveal reveal-delay-2">
-          <span class="piece-label">Society · 사회·문화</span>
-          &#8546;. 시장과 경제 활동
-        </div>
-        <div class="piece piece-literature reveal reveal-delay-3">
-          <span class="piece-label">Literature · 문학</span>
-          &#8545;. 정체성과 자아의 발견
-        </div>
-      </div>
     </div>
   </section>
 
-  <!-- ========================== STAGE 3: CONVERGENCE (sticky scroll) ========================== -->
-  <section class="stage-converge" id="converge">
-    <div class="converge-sticky">
-      <div class="converge-canvas">
-        <div class="converge-piece" style="--start-x:-340px; --start-y:-200px;">
-          <span class="piece-label">Math</span>
-          수학&#8544; · 지수와 로그
-        </div>
-        <div class="converge-piece" style="--start-x:340px; --start-y:-200px;">
-          <span class="piece-label">Science</span>
-          통합과학 · 에너지 전환
-        </div>
-        <div class="converge-piece" style="--start-x:-340px; --start-y:200px;">
-          <span class="piece-label">Society</span>
-          사회·문화 · 경제
-        </div>
-        <div class="converge-piece" style="--start-x:340px; --start-y:200px;">
-          <span class="piece-label">Literature</span>
-          문학 · 정체성
-        </div>
-      </div>
+  <!-- STAGE 3 — clusters -->
+  <section class="stage stage-3" data-scene="clusters">
+    <div class="overlay">
+      <div class="cluster-label cluster-nw"><span class="lbl">Math</span>수학&#8544; · 지수와 로그</div>
+      <div class="cluster-label cluster-ne"><span class="lbl">Science</span>통합과학 · 에너지 전환</div>
+      <div class="cluster-label cluster-sw"><span class="lbl">Society</span>사회·문화 · 경제</div>
+      <div class="cluster-label cluster-se"><span class="lbl">Literature</span>문학 · 정체성</div>
     </div>
   </section>
 
-  <!-- ========================== STAGE 4: ENGLISH BINDS ========================== -->
-  <section class="stage-english" id="english">
-    <div class="english-sticky">
-      <div class="english-mark reveal">ENGLISH</div>
-      <div class="english-tag reveal reveal-delay-2">Reading binds them all</div>
+  <!-- STAGE 4 — text (canvas renders ENGLISH) -->
+  <section class="stage stage-4" data-scene="text">
+    <div class="overlay">
+      <div class="english-tag">Reading binds them all</div>
     </div>
   </section>
 
-  <!-- ========================== STAGE 5: FINAL MESSAGE ========================== -->
-  <section class="stage stage-message">
-    <div class="stage-inner">
-      <h1 class="final-h1 reveal">
-        영어 한 지문에, <br>
-        <span class="accent">수학 한 단원</span>이 <br class="mobile-br">
-        들어 있습니다.
+  <!-- STAGE 5 — dissolve -->
+  <section class="stage stage-5" data-scene="dissolve">
+    <div class="overlay">
+      <h1 class="final-h1">
+        영어 한 지문에,<br>
+        <span class="accent">수학 한 단원</span>이 들어 있습니다.
       </h1>
-      <div class="final-tag reveal reveal-delay-2">Terra Nova · Curriculum-Linked Reading</div>
+      <div class="final-tag">Terra Nova · Curriculum-Linked Reading</div>
     </div>
   </section>
 
-  <!-- ========================== STAGE 6: ENTER CTA ========================== -->
-  <section class="stage stage-cta">
-    <div class="stage-inner">
-      <div class="enter-prologue reveal">Begin</div>
-      <a class="enter-btn reveal reveal-delay-1" href="landing.html">Terra Nova 시작하기</a>
+  <!-- STAGE 6 — calm + CTA -->
+  <section class="stage stage-6" data-scene="calm">
+    <div class="overlay">
+      <div class="enter-prologue">Begin</div>
+      <a class="enter-btn" href="landing.html">Terra Nova 시작하기</a>
     </div>
     <div class="enter-foot">© Terra Nova English · 2026</div>
   </section>
@@ -415,44 +337,365 @@ a { color:inherit; text-decoration:none; }
 </main>
 
 <script>
-(function() {
-  /* === Scroll-reveal: fade-in on entry === */
-  var revealEls = document.querySelectorAll('.reveal');
-  if (!('IntersectionObserver' in window)) {
-    revealEls.forEach(function(el){ el.classList.add('is-visible'); });
-  } else {
-    var io = new IntersectionObserver(function(entries) {
-      entries.forEach(function(e) {
-        if (e.isIntersecting) {
-          e.target.classList.add('is-visible');
-          io.unobserve(e.target);
-        }
-      });
-    }, { threshold:0.18, rootMargin:'0px 0px -80px 0px' });
-    revealEls.forEach(function(el){ io.observe(el); });
+(function () {
+  'use strict';
+
+  // ============================================================
+  // Reduced-motion guard: bail out entirely.
+  // Stages still display via CSS fallback above.
+  // ============================================================
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) {
+    // Force overlays visible for screen-readers / users with motion sensitivity.
+    document.querySelectorAll('.stage').forEach(function (s) { s.classList.add('is-active'); });
+    return;
   }
 
-  /* === Scroll-linked convergence: Stage 3 === */
-  var convergeSection = document.getElementById('converge');
-  var convergePieces = document.querySelectorAll('.converge-piece');
-  function updateConverge() {
-    if (!convergeSection) return;
-    var rect = convergeSection.getBoundingClientRect();
-    var sectionTop = rect.top;
-    var sectionHeight = rect.height;
-    var vh = window.innerHeight;
-    /* Progress is 0 when section top hits viewport top, 1 when section bottom reaches viewport bottom */
-    var totalScrollable = sectionHeight - vh;
-    var scrolled = -sectionTop;
-    var p = scrolled / totalScrollable;
-    p = Math.max(0, Math.min(1, p));
-    convergePieces.forEach(function(piece) {
-      piece.style.setProperty('--p', p.toFixed(3));
-    });
+  // ============================================================
+  // Library availability check (CDNs sometimes fail)
+  // ============================================================
+  if (!window.THREE || !window.gsap || !window.ScrollTrigger) {
+    console.warn('[intro] Required CDN libraries not available — falling back to static layout.');
+    document.querySelectorAll('.stage').forEach(function (s) { s.classList.add('is-active'); });
+    var bgEl = document.getElementById('bg');
+    if (bgEl) bgEl.style.display = 'none';
+    return;
   }
-  updateConverge();
-  window.addEventListener('scroll', updateConverge, { passive:true });
-  window.addEventListener('resize', updateConverge);
+  gsap.registerPlugin(ScrollTrigger);
+
+  // ============================================================
+  // Stage activation (overlay fade-in via IntersectionObserver)
+  // ============================================================
+  var stages = document.querySelectorAll('.stage');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) e.target.classList.add('is-active');
+      });
+    }, { threshold: 0.35 });
+    stages.forEach(function (s) { io.observe(s); });
+  } else {
+    stages.forEach(function (s) { s.classList.add('is-active'); });
+  }
+
+  // ============================================================
+  // Lenis smooth scroll (skip on small mobile to avoid jank)
+  // ============================================================
+  var useLenis = window.innerWidth >= 720;
+  var lenis = null;
+  if (useLenis && window.Lenis) {
+    try {
+      lenis = new Lenis({ duration: 1.4, smoothWheel: true });
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add(function (time) { lenis.raf(time * 1000); });
+      gsap.ticker.lagSmoothing(0);
+    } catch (err) {
+      console.warn('[intro] Lenis init failed:', err);
+      lenis = null;
+    }
+  }
+
+  // ============================================================
+  // Three.js setup
+  // ============================================================
+  var canvas = document.getElementById('bg');
+  var renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setClearColor(0x000000, 0); // transparent — body bg shows through
+
+  var scene = new THREE.Scene();
+
+  // Orthographic camera in pixel-space: 1 world unit = 1 CSS pixel.
+  var W = window.innerWidth;
+  var H = window.innerHeight;
+  var camera = new THREE.OrthographicCamera(-W / 2, W / 2, H / 2, -H / 2, -1000, 1000);
+  camera.position.z = 10;
+
+  function resizeRenderer() {
+    W = window.innerWidth;
+    H = window.innerHeight;
+    renderer.setSize(W, H, false);
+    camera.left = -W / 2;
+    camera.right = W / 2;
+    camera.top = H / 2;
+    camera.bottom = -H / 2;
+    camera.updateProjectionMatrix();
+  }
+  resizeRenderer();
+
+  // ============================================================
+  // Particle system
+  // ============================================================
+  // Choose count based on device — 3500 desktop / 2000 mobile.
+  var IS_MOBILE = window.innerWidth < 720;
+  var COUNT = IS_MOBILE ? 2000 : 3500;
+
+  var positions = new Float32Array(COUNT * 3);
+  var colors = new Float32Array(COUNT * 3);
+
+  // Initial positions — random within viewport
+  for (var i = 0; i < COUNT; i++) {
+    positions[i * 3]     = (Math.random() - 0.5) * W;
+    positions[i * 3 + 1] = (Math.random() - 0.5) * H;
+    positions[i * 3 + 2] = 0;
+
+    // Per-particle color: 70% mint, 20% lighter mint, 10% white
+    var roll = Math.random();
+    var r, g, b;
+    if (roll < 0.7) { r = 0.176; g = 0.831; b = 0.749; }   // #2DD4BF mint
+    else if (roll < 0.9) { r = 0.369; g = 0.914; b = 0.839; } // #5EE9D6
+    else { r = 1.0; g = 1.0; b = 1.0; }                    // white
+    colors[i * 3] = r;
+    colors[i * 3 + 1] = g;
+    colors[i * 3 + 2] = b;
+  }
+
+  var geometry = new THREE.BufferGeometry();
+  geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+  var material = new THREE.PointsMaterial({
+    size: IS_MOBILE ? 1.4 : 1.8,
+    transparent: true,
+    opacity: 0.85,
+    vertexColors: true,
+    blending: THREE.AdditiveBlending,
+    depthWrite: false,
+    sizeAttenuation: false
+  });
+
+  var points = new THREE.Points(geometry, material);
+  scene.add(points);
+
+  // ============================================================
+  // Scene targets — pre-computed Float32Array of length COUNT*3
+  // ============================================================
+  var targets = {};
+
+  // 1. drift — soft cloud filling viewport
+  function makeDrift() {
+    var t = new Float32Array(COUNT * 3);
+    for (var i = 0; i < COUNT; i++) {
+      t[i * 3]     = (Math.random() - 0.5) * W * 0.85;
+      t[i * 3 + 1] = (Math.random() - 0.5) * H * 0.7;
+      t[i * 3 + 2] = 0;
+    }
+    return t;
+  }
+
+  // 2. scatter — wider/looser
+  function makeScatter() {
+    var t = new Float32Array(COUNT * 3);
+    for (var i = 0; i < COUNT; i++) {
+      t[i * 3]     = (Math.random() - 0.5) * W * 1.1;
+      t[i * 3 + 1] = (Math.random() - 0.5) * H * 1.0;
+      t[i * 3 + 2] = 0;
+    }
+    return t;
+  }
+
+  // 3. clusters — 4 dense clusters at corners (NW/NE/SW/SE)
+  function makeClusters() {
+    var t = new Float32Array(COUNT * 3);
+    var cx = W * 0.32;
+    var cy = H * 0.28;
+    var centers = [
+      [-cx, cy], [cx, cy], [-cx, -cy], [cx, -cy]
+    ];
+    var radius = Math.min(W, H) * 0.13;
+    for (var i = 0; i < COUNT; i++) {
+      var c = centers[i % 4];
+      var angle = Math.random() * Math.PI * 2;
+      var rr = Math.sqrt(Math.random()) * radius; // sqrt -> uniform disk density
+      t[i * 3]     = c[0] + Math.cos(angle) * rr;
+      t[i * 3 + 1] = c[1] + Math.sin(angle) * rr;
+      t[i * 3 + 2] = 0;
+    }
+    return t;
+  }
+
+  // 4. text — sample "ENGLISH" via offscreen canvas
+  function makeText(text) {
+    var cw = 1024, ch = 256;
+    var c = document.createElement('canvas');
+    c.width = cw; c.height = ch;
+    var ctx = c.getContext('2d');
+    ctx.fillStyle = '#000';
+    ctx.fillRect(0, 0, cw, ch);
+    ctx.fillStyle = '#fff';
+    // Bold, large text. Web font may not be ready → fall back to system sans.
+    var fontSize = 200;
+    ctx.font = 'bold ' + fontSize + 'px "Space Grotesk", system-ui, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(text, cw / 2, ch / 2);
+
+    var data = ctx.getImageData(0, 0, cw, ch).data;
+    var pixels = [];
+    var step = 2;
+    for (var y = 0; y < ch; y += step) {
+      for (var x = 0; x < cw; x += step) {
+        if (data[(y * cw + x) * 4] > 200) {
+          pixels.push([x - cw / 2, ch / 2 - y]);
+        }
+      }
+    }
+
+    var t = new Float32Array(COUNT * 3);
+    if (pixels.length === 0) {
+      // Defensive: if font failed to render, fall back to drift
+      console.warn('[intro] text canvas produced no pixels — using drift fallback');
+      return makeDrift();
+    }
+
+    // Scale pixel coords so the word fills ~70% of viewport width.
+    var targetWidth = Math.min(W * 0.7, 900);
+    var scale = targetWidth / cw;
+
+    for (var i = 0; i < COUNT; i++) {
+      var p = pixels[Math.floor(Math.random() * pixels.length)];
+      t[i * 3]     = p[0] * scale + (Math.random() - 0.5) * 4;
+      t[i * 3 + 1] = p[1] * scale + (Math.random() - 0.5) * 4;
+      t[i * 3 + 2] = 0;
+    }
+    return t;
+  }
+
+  // 5. dissolve — calm horizontal band at bottom 1/3
+  function makeDissolve() {
+    var t = new Float32Array(COUNT * 3);
+    var bandY = -H * 0.22;
+    var bandH = H * 0.18;
+    for (var i = 0; i < COUNT; i++) {
+      t[i * 3]     = (Math.random() - 0.5) * W * 1.0;
+      t[i * 3 + 1] = bandY + (Math.random() - 0.5) * bandH;
+      t[i * 3 + 2] = 0;
+    }
+    return t;
+  }
+
+  // 6. calm — sparse drifting field, most particles offscreen-ish
+  function makeCalm() {
+    var t = new Float32Array(COUNT * 3);
+    for (var i = 0; i < COUNT; i++) {
+      // 60% pushed beyond the visible area (so they're "gone")
+      if (Math.random() < 0.6) {
+        var side = Math.random() < 0.5 ? -1 : 1;
+        t[i * 3]     = side * (W * 0.6 + Math.random() * W * 0.5);
+        t[i * 3 + 1] = (Math.random() - 0.5) * H * 1.4;
+      } else {
+        t[i * 3]     = (Math.random() - 0.5) * W * 0.9;
+        t[i * 3 + 1] = (Math.random() - 0.5) * H * 0.8;
+      }
+      t[i * 3 + 2] = 0;
+    }
+    return t;
+  }
+
+  function recomputeTargets() {
+    targets.drift    = makeDrift();
+    targets.scatter  = makeScatter();
+    targets.clusters = makeClusters();
+    targets.text     = makeText('ENGLISH');
+    targets.dissolve = makeDissolve();
+    targets.calm     = makeCalm();
+  }
+  recomputeTargets();
+
+  // ============================================================
+  // ScrollTrigger → morphState
+  // ============================================================
+  var sceneOrder = ['drift', 'scatter', 'clusters', 'text', 'dissolve', 'calm'];
+  var morphState = { from: 'drift', to: 'scatter', t: 0, scrollProgress: 0 };
+
+  ScrollTrigger.create({
+    trigger: 'body',
+    start: 'top top',
+    end: 'bottom bottom',
+    scrub: 0.5,
+    onUpdate: function (self) {
+      var p = self.progress;
+      morphState.scrollProgress = p;
+      var segments = sceneOrder.length - 1; // 5 transitions
+      var segIndex = Math.min(Math.floor(p * segments), segments - 1);
+      var segP = (p * segments) - segIndex;
+      morphState.from = sceneOrder[segIndex];
+      morphState.to   = sceneOrder[segIndex + 1];
+      morphState.t    = Math.max(0, Math.min(1, segP));
+    }
+  });
+
+  // ============================================================
+  // Animate loop
+  // ============================================================
+  function easeInOutCubic(x) {
+    return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+  }
+
+  var posAttr = geometry.attributes.position;
+  var damping = 0.085;
+  var time = 0;
+
+  function animate() {
+    time += 0.005;
+
+    var fromTargets = targets[morphState.from] || targets.drift;
+    var toTargets   = targets[morphState.to]   || targets.scatter;
+    var t = easeInOutCubic(morphState.t);
+
+    // For drift / calm scenes we add a tiny noise so particles never freeze.
+    var doNoise = (morphState.from === 'drift' || morphState.to === 'drift'
+                || morphState.from === 'calm'  || morphState.to === 'calm');
+
+    var arr = posAttr.array;
+    for (var i = 0; i < COUNT; i++) {
+      var ix = i * 3, iy = ix + 1;
+      var tx = fromTargets[ix] * (1 - t) + toTargets[ix] * t;
+      var ty = fromTargets[iy] * (1 - t) + toTargets[iy] * t;
+      if (doNoise) {
+        // Cheap pseudo-noise using particle index + time
+        tx += Math.sin(time + i * 0.013) * 6;
+        ty += Math.cos(time * 0.9 + i * 0.017) * 6;
+      }
+      arr[ix] += (tx - arr[ix]) * damping;
+      arr[iy] += (ty - arr[iy]) * damping;
+    }
+    posAttr.needsUpdate = true;
+
+    // Opacity / size tweaks per dominant scene
+    var dominant = morphState.t < 0.5 ? morphState.from : morphState.to;
+    var targetOpacity = 0.85;
+    if (dominant === 'scatter')      targetOpacity = 0.55;
+    else if (dominant === 'text')    targetOpacity = 0.95;
+    else if (dominant === 'dissolve')targetOpacity = 0.45;
+    else if (dominant === 'calm')    targetOpacity = 0.32;
+    material.opacity += (targetOpacity - material.opacity) * 0.05;
+
+    renderer.render(scene, camera);
+    requestAnimationFrame(animate);
+  }
+  requestAnimationFrame(animate);
+
+  // ============================================================
+  // Resize handling — recompute targets so they stay viewport-relative
+  // ============================================================
+  var resizeTimer = null;
+  window.addEventListener('resize', function () {
+    resizeRenderer();
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function () {
+      recomputeTargets();
+      ScrollTrigger.refresh();
+    }, 200);
+  });
+
+  // Web-fonts may load AFTER our initial text-canvas sample — recompute once they're ready.
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(function () {
+      targets.text = makeText('ENGLISH');
+    }).catch(function () { /* ignore */ });
+  }
+
 })();
 </script>
 
