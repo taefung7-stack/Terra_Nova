@@ -834,7 +834,7 @@ nav.site-nav {
 .plans-compare-caption strong { color:var(--accent); font-style:normal; }
 
 .risk-reversal {
-  display:grid; grid-template-columns:repeat(4, 1fr); gap:14px;
+  display:grid; grid-template-columns:repeat(3, 1fr); gap:14px;
   margin-top:32px;
 }
 .risk-item {
@@ -846,11 +846,10 @@ nav.site-nav {
 .risk-item::before { content:'✓'; color:var(--accent); font-weight:700; flex-shrink:0; font-size:1rem; }
 .risk-item strong { color:#fff; }
 
-@media (max-width:900px) {
-  .risk-reversal { grid-template-columns:repeat(2, 1fr); }
+@media (max-width:720px) {
+  .risk-reversal { grid-template-columns:1fr; }
 }
 @media (max-width:520px) {
-  .risk-reversal { grid-template-columns:1fr; }
   /* Polish: tighten typography + table padding for 375px viewports */
   .hero-h1 { font-size:2.4rem; }
   .stage-h2 { font-size:2.4rem; }
@@ -1410,6 +1409,7 @@ nav.site-nav {
           <h3>제작진 구성</h3>
           <ul>
             <li>SKY 출신 영어 전공 · 강남·목동·대치 현직 입시강사</li>
+            <!-- EDITORIAL: verify "30년 이상" claim against actual contributor roster on launch day; soften to qualitative copy if not verifiable -->
             <li>수능 영어 지도 경력 총합 30년 이상</li>
             <li>모의고사 출제·분석 경험 보유</li>
             <!-- EDITORIAL: include next line only if true -->
@@ -1561,7 +1561,6 @@ nav.site-nav {
     <!-- Block D: risk reversal -->
     <div class="plans-compare-title">결제하기 전에 안심하세요</div>
     <div class="risk-reversal">
-      <div class="risk-item"><span><strong>런칭 멤버 50% 할인</strong><br>LIGHT 첫 달</span></div>
       <div class="risk-item"><span><strong>월 단위 해지 자유</strong><br>위약금 없음</span></div>
       <div class="risk-item"><span><strong>레벨 변경 자유</strong><br>매달 재선택</span></div>
       <div class="risk-item"><span><strong>결제 전 샘플 전문 공개</strong><br>품질 사전 확인</span></div>
