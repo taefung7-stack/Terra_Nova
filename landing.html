@@ -126,6 +126,19 @@ a { color:inherit; text-decoration:none; }
   overflow:hidden;
   background:var(--bg);
 }
+#hero-warp {
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  display:block;
+  z-index:0;
+  pointer-events:none;
+  opacity:0;
+  transition:opacity 1.4s ease;
+}
+.hero.is-bigbang #hero-warp,
+.hero.is-post    #hero-warp { opacity:1; }
 #bg-canvas {
   position:absolute;
   inset:0;
@@ -133,6 +146,26 @@ a { color:inherit; text-decoration:none; }
   height:100%;
   display:block;
   z-index:1;
+  cursor: var(--tn-cursor-default);
+}
+#bg-canvas.is-hover-target { cursor: var(--tn-cursor-pointer); }
+#mouse-halo {
+  position:absolute;
+  width:360px;
+  height:360px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(45,212,191,.20), rgba(45,212,191,.06) 35%, transparent 65%);
+  pointer-events:none;
+  z-index:3;
+  mix-blend-mode:screen;
+  transform:translate(-50%, -50%);
+  opacity:0;
+  transition:opacity .4s ease;
+  will-change:left, top, opacity;
+}
+.hero.is-pre #mouse-halo.active { opacity:1; }
+@media (max-width: 720px) {
+  #hero-warp, #mouse-halo { display:none; }
 }
 .hero-ui {
   position:absolute;
@@ -148,9 +181,10 @@ a { color:inherit; text-decoration:none; }
 }
 .hero-ui > * { pointer-events:auto; }
 .brand-mark {
-  font-family:'Bebas Neue', sans-serif;
-  font-size:1.4rem;
-  letter-spacing:.4em;
+  font-family:'Space Grotesk', sans-serif;
+  font-weight:700;
+  font-size:1.25rem;
+  letter-spacing:.22em;
   color:#F0F0F0;
   display:inline-block;
   text-shadow:0 1px 12px rgba(0,0,0,.6);
@@ -168,6 +202,62 @@ a { color:inherit; text-decoration:none; }
   text-shadow:0 1px 12px rgba(0,0,0,.6);
 }
 .hero-cta:hover { color:#F0F0F0; border-bottom-color:#F0F0F0; }
+
+/* Center overlay text (sits above/below the WebGL TERRA NOVA Sprite) */
+.hero-tagline, .hero-english {
+  position:absolute;
+  left:50%;
+  top:50%;
+  z-index:5;
+  pointer-events:none;
+  opacity:0;
+  transition:opacity 1.4s ease;
+  white-space:nowrap;
+  text-shadow:0 1px 12px rgba(0,0,0,.6);
+}
+.hero-tagline {
+  --para-x: 0px;
+  --para-y: 0px;
+  transform:translate(-50%, calc(-50% - 130px)) translate3d(var(--para-x), var(--para-y), 0);
+  font-family:'Noto Sans KR', sans-serif;
+  font-size:.84rem;
+  letter-spacing:.16em;
+  font-weight:500;
+  color:var(--accent);
+  background:rgba(10,10,10,.55);
+  border:1px solid var(--line3);
+  border-radius:999px;
+  padding:9px 22px 9px 32px;
+  backdrop-filter:blur(2px);
+  -webkit-backdrop-filter:blur(2px);
+}
+.hero-tagline::before {
+  content:'';
+  position:absolute;
+  left:14px;
+  top:50%;
+  transform:translateY(-50%);
+  width:6px; height:6px;
+  border-radius:50%;
+  background:var(--accent);
+  box-shadow:0 0 8px rgba(45,212,191,.85);
+}
+.hero-english {
+  --para-x: 0px;
+  --para-y: 0px;
+  transform:translate(-50%, calc(-50% + 110px)) translate3d(var(--para-x), var(--para-y), 0);
+  font-family:'Space Grotesk', sans-serif;
+  font-size:1.55rem;
+  letter-spacing:.55em;
+  font-weight:400;
+  color:rgba(240,240,240,.78);
+  padding-left:.55em; /* compensate trailing letter-spacing for visual centering */
+}
+.hero.is-post .hero-tagline { opacity:1; transition-delay:.8s; }
+.hero.is-post .hero-english { opacity:1; transition-delay:1.05s; }
+@media (max-width: 720px) {
+  .hero-tagline, .hero-english { display:none; }
+}
 
 .scroll-cue {
   position:absolute;
@@ -496,87 +586,53 @@ a { color:inherit; text-decoration:none; }
 .reveal { opacity:0; transform:translateY(40px); transition:opacity 1s ease, transform 1s cubic-bezier(.2,.8,.2,1); }
 .reveal.in { opacity:1; transform:translateY(0); }
 
-/* =============== Hero puzzle UI =============== */
-.hover-label {
-  position:fixed;
-  pointer-events:none;
-  background:rgba(0,0,0,0.7);
-  border:1px solid var(--line2);
-  color:var(--txt);
-  padding:6px 12px;
-  font-size:.78rem;
-  letter-spacing:.15em;
-  font-family:'Space Grotesk', sans-serif;
-  border-radius:2px;
-  z-index:50;
-  opacity:0;
-  transform:translate(-50%, -120%);
-  transition:opacity .15s;
-  white-space:nowrap;
-  backdrop-filter:blur(8px);
-  -webkit-backdrop-filter:blur(8px);
-}
-.hover-label.visible { opacity:1; }
-.hover-label.letter { color:var(--accent); font-size:.92rem; letter-spacing:.3em; }
-
-.letter-counter {
+/* =============== Hero hint (idle prompt) =============== */
+.terra-hint {
   position:absolute;
-  top:32px;
   left:50%;
-  transform:translateX(-50%);
-  font-family:'Space Grotesk', sans-serif;
-  font-size:.74rem;
-  letter-spacing:.4em;
-  color:var(--dim);
-  z-index:10;
-  opacity:0;
-  transition:opacity .4s;
-  pointer-events:none;
-  text-shadow:0 1px 12px rgba(0,0,0,.6);
-}
-.letter-counter.active { opacity:1; }
-
-.discover-hint {
-  position:absolute;
-  bottom:100px;
-  left:50%;
+  bottom:14%;
   transform:translateX(-50%);
   font-family:'Space Grotesk', sans-serif;
   font-size:.68rem;
-  letter-spacing:.4em;
+  letter-spacing:.45em;
   color:var(--accent);
   opacity:0;
   z-index:10;
   pointer-events:none;
   text-shadow:0 1px 12px rgba(0,0,0,.6);
-  animation:discoverHintIn 1s ease forwards;
+  animation:terraHintIn 1.6s ease 4s forwards;
+  text-transform:uppercase;
 }
-.discover-hint.fade-out { animation:discoverHintOut 1s ease forwards; }
-@keyframes discoverHintIn { to { opacity:.7; } }
-@keyframes discoverHintOut { to { opacity:0; } }
+.terra-hint.fade-out { animation:terraHintOut .5s ease forwards; }
+@keyframes terraHintIn  { 0%{opacity:0;} 100%{opacity:.78;} }
+@keyframes terraHintOut { to { opacity:0; } }
 
-.reset-btn {
-  position:fixed;
-  bottom:20px;
-  left:20px;
-  background:transparent;
-  border:1px solid var(--line);
-  color:var(--dim2);
-  width:32px; height:32px;
-  border-radius:50%;
-  font-size:.9rem;
-  cursor:pointer;
-  z-index:60;
-  opacity:.4;
-  transition:opacity .2s, color .2s, border-color .2s;
-  display:flex; align-items:center; justify-content:center;
-  font-family:'Space Grotesk', sans-serif;
-  line-height:1;
+/* Big bang radial flash overlay (hero only) */
+.bigbang-flash {
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at 50% 50%, rgba(230,247,244,.95), rgba(45,212,191,.55) 28%, transparent 70%);
+  opacity:0;
+  pointer-events:none;
+  z-index:5;
+  mix-blend-mode:screen;
 }
-.reset-btn:hover { opacity:1; color:var(--accent); border-color:var(--line3); }
+.bigbang-flash.active { animation:flashPulse 420ms ease-out; }
+@keyframes flashPulse {
+  0%   { opacity:0; }
+  18%  { opacity:1; }
+  100% { opacity:0; }
+}
+
+/* hero-ui starts hidden, revealed after big bang */
+.hero-ui, .scroll-cue { transition:opacity 1s ease; }
+.hero.is-pre  .hero-ui,
+.hero.is-pre  .scroll-cue { opacity:0; }
+.hero.is-post .hero-ui,
+.hero.is-post .scroll-cue { opacity:1; }
+
 @media (max-width: 720px) {
-  .reset-btn { display:none; }
-  .letter-counter, .discover-hint, .hover-label { display:none; }
+  .terra-hint, .bigbang-flash { display:none; }
 }
 
 /* =============== Mobile =============== */
@@ -586,7 +642,7 @@ a { color:inherit; text-decoration:none; }
 }
 @media (max-width: 720px) {
   .hero-ui { padding:20px 22px; }
-  .brand-mark { font-size:1.2rem; letter-spacing:.26em; }
+  .brand-mark { font-size:1.05rem; letter-spacing:.16em; }
   .hero-cta { font-size:.72rem; }
   #bg-canvas { display:none; }
   .hero-fallback { display:flex; }
@@ -617,8 +673,10 @@ a { color:inherit; text-decoration:none; }
 <a href="#main" class="skip-link">본문으로 건너뛰기</a>
 
 <!-- =============== HERO =============== -->
-<section id="hero" class="hero" aria-label="Terra Nova hero">
+<section id="hero" class="hero is-pre" aria-label="Terra Nova hero">
+  <canvas id="hero-warp" aria-hidden="true"></canvas>
   <canvas id="bg-canvas" aria-hidden="true"></canvas>
+  <div id="mouse-halo" aria-hidden="true"></div>
 
   <!-- Static fallback for mobile / reduced-motion -->
   <div class="hero-fallback" aria-hidden="false">
@@ -627,16 +685,17 @@ a { color:inherit; text-decoration:none; }
 
   <div class="hero-ui">
     <a href="index.html" class="brand-mark" aria-label="Terra Nova 홈">TERRA&nbsp;NOVA</a>
-    <a href="#plans" class="hero-cta">구독 시작하기 →</a>
   </div>
 
-  <div class="letter-counter" id="letter-counter" aria-live="polite">0 / 7</div>
+  <!-- Center overlay: kicker pill above + ENGLISH below the WebGL TERRA NOVA -->
+  <div class="hero-tagline" aria-hidden="true">영어로 전과목 학습</div>
+  <div class="hero-english" aria-hidden="true">ENGLISH</div>
+
+  <div class="terra-hint" id="terra-hint" aria-hidden="true">CLICK&nbsp;TERRA&nbsp;NOVA</div>
+  <div class="bigbang-flash" id="bigbang-flash" aria-hidden="true"></div>
 
   <div class="scroll-cue" aria-hidden="true">SCROLL <span class="arrow">↓</span></div>
 </section>
-
-<div id="hover-label" class="hover-label" aria-hidden="true"></div>
-<button class="reset-btn" id="reset-btn" type="button" title="Replay intro" aria-label="Replay intro">↻</button>
 
 <main id="main">
 
@@ -715,7 +774,22 @@ a { color:inherit; text-decoration:none; }
 </footer>
 
 <!-- =============== Three.js mouse-reactive hero =============== -->
-<script src="https://unpkg.com/three@0.160.0/build/three.min.js" defer></script>
+<!-- Import map for ESM-based Three.js + GLTFLoader (Three.js 0.150+ removed UMD addons) -->
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+<script type="module">
+  import * as THREE from 'three';
+  import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+  // Expose to non-module IIFE below — keeps existing code intact, no bundler needed.
+  window.THREE = THREE;
+  window.GLTFLoader = GLTFLoader;
+</script>
 <script>
 (function () {
   'use strict';
@@ -798,7 +872,7 @@ a { color:inherit; text-decoration:none; }
     });
   }
 
-  // ---------- Three.js scene ----------
+  // ---------- Three.js scene (Lusion-style cylinder crosses + TERRA NOVA + Big Bang) ----------
   function initScene() {
     if (typeof THREE === 'undefined') return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -808,6 +882,13 @@ a { color:inherit; text-decoration:none; }
     if (!canvas) return;
 
     var hero = document.getElementById('hero');
+    var hintEl = document.getElementById('terra-hint');
+    var flashEl = document.getElementById('bigbang-flash');
+    var haloEl = document.getElementById('mouse-halo');
+    // DOM elements that parallax with the WebGL TERRA NOVA group
+    var taglineEl = document.querySelector('.hero-tagline');
+    var englishEl = document.querySelector('.hero-english');
+
     var w = hero.clientWidth;
     var h = hero.clientHeight;
 
@@ -817,397 +898,479 @@ a { color:inherit; text-decoration:none; }
     renderer.setClearColor(0x000000, 0);
 
     var scene = new THREE.Scene();
-    var camera = new THREE.PerspectiveCamera(50, w / h, 0.1, 1000);
+    var camera = new THREE.PerspectiveCamera(50, w / h, 0.1, 100);
     camera.position.set(0, 0, 12);
     camera.lookAt(0, 0, 0);
 
-    // Lights
-    scene.add(new THREE.AmbientLight(0xffffff, 0.45));
-    var dir = new THREE.DirectionalLight(0x2DD4BF, 1.4);
-    dir.position.set(3, 4, 5);
-    scene.add(dir);
-    var rim = new THREE.DirectionalLight(0xffffff, 0.5);
-    rim.position.set(-3, 2, -2);
-    scene.add(rim);
-
-    // Materials (shared, performant)
-    var matMint = new THREE.MeshStandardMaterial({
-      color: 0x2DD4BF, metalness: 0.45, roughness: 0.32,
-      emissive: 0x2DD4BF, emissiveIntensity: 0.18
-    });
-    var matMintDark = new THREE.MeshStandardMaterial({
-      color: 0x14B8A6, metalness: 0.6, roughness: 0.55
-    });
-    var matWhite = new THREE.MeshStandardMaterial({
-      color: 0xF0F0F0, metalness: 0.2, roughness: 0.4
-    });
-    // Letter-cross material: dimmer, recognizably distinct (white-ish, low emissive)
-    var matLetter = new THREE.MeshStandardMaterial({
-      color: 0xE6F7F4, metalness: 0.3, roughness: 0.45,
-      emissive: 0x2DD4BF, emissiveIntensity: 0.08
-    });
-    function pickMat() {
-      var r = Math.random();
-      if (r < 0.7) return matMint;
-      if (r < 0.9) return matMintDark;
-      return matWhite;
-    }
-
-    // Shared box geometries (reused across all shapes for low overhead)
-    var gA = new THREE.BoxGeometry(0.3, 0.3, 1.2);
-    var gB = new THREE.BoxGeometry(1.2, 0.3, 0.3);
-    var gC = new THREE.BoxGeometry(0.3, 1.2, 0.3);
-
-    function makePlus(mat) {
-      var grp = new THREE.Group();
-      grp.add(new THREE.Mesh(gA, mat));
-      grp.add(new THREE.Mesh(gB, mat));
-      grp.add(new THREE.Mesh(gC, mat));
-      return grp;
-    }
+    // Lights — strong key + mint rim for matte cross surfaces
+    scene.add(new THREE.AmbientLight(0xffffff, 0.35));
+    var keyLight = new THREE.DirectionalLight(0xffffff, 1.0);
+    keyLight.position.set(5, 8, 6);
+    scene.add(keyLight);
+    var rimLight = new THREE.DirectionalLight(0x2DD4BF, 0.85);
+    rimLight.position.set(-4, -2, 4);
+    scene.add(rimLight);
 
     function rand(min, max) { return Math.random() * (max - min) + min; }
 
-    // Sprite factory for letter watermark
-    function makeLetterSprite(letter) {
+    // ---- Materials: factory accepting (color, finish) → mixed glossy/matte per cross ----
+    function makeMat(hex, finish) {
+      // finish: 'glossy' (high metal, low roughness) or 'matte' (low metal, high roughness)
+      if (finish === 'matte') {
+        return new THREE.MeshStandardMaterial({ color: hex, metalness: 0.08, roughness: 0.78 });
+      }
+      return new THREE.MeshStandardMaterial({ color: hex, metalness: 0.55, roughness: 0.22 });
+    }
+
+    // ---- Anchor colors (Lusion's "fixed white/black") ----
+    // Anchors stay these colors regardless of palette cycle.
+    var ANCHOR_WHITE = 0xF0F0F0;
+    var ANCHOR_DARK  = 0x111111; // near-pure black, like Lusion
+
+    // ---- Variable palettes — 5 distinct hue families. Click cycles. ----
+    // No mint overlap in non-mint palettes → color shift is dramatic & legible.
+    var PALETTES = [
+      { name: 'mint',   colors: [0x2DD4BF, 0x14B8A6, 0x5EEAD4, 0x99F6E4] }, // P0: mint family (default)
+      { name: 'cool',   colors: [0x60A5FA, 0x4FC3F7, 0x7DD3FC, 0x93C5FD] }, // P1: pure blue/cyan
+      { name: 'warm',   colors: [0xFCA5A5, 0xFB7185, 0xFFB088, 0xF87171] }, // P2: pure coral/salmon
+      { name: 'regal',  colors: [0xC4B5FD, 0xA78BFA, 0xD8B4FE, 0xDDD6FE] }, // P3: pure violet
+      { name: 'golden', colors: [0xFDE68A, 0xFCD34D, 0xFFC36F, 0xF59E0B] }  // P4: pure amber/gold
+    ];
+    var paletteIdx = 0;
+
+    function pickFinish() {
+      // 60% glossy, 40% matte — Lusion's mix
+      return Math.random() < 0.6 ? 'glossy' : 'matte';
+    }
+    function pickColorFromPalette(weights /* unused — random pick */) {
+      var pal = PALETTES[paletteIdx].colors;
+      return pal[Math.floor(Math.random() * pal.length)];
+    }
+
+    // ---- Cross prototype: GLTF-loaded merged mesh (Spline export) ----
+    // Source: assets/3d/cross.gltf (Spline-exported subdivision mesh, ~80K verts).
+    // Prototype is normalized so bounding sphere radius = 1.68 → matches existing
+    // spawn box / collision physics (no other constants need to change).
+    // window.__crossPrototype is populated by the boot loader before initScene runs.
+    var crossPrototype = window.__crossPrototype || null;
+
+    // Procedural fallback (used only if GLTF failed to load) — preserves prior look.
+    var capsuleGeom = new THREE.CapsuleGeometry(0.58, 2.20, 10, 22);
+    var sphereGeom  = new THREE.SphereGeometry(0.62, 22, 16);
+
+    function makeCross(initialMat) {
+      var grp = new THREE.Group();
+      if (crossPrototype) {
+        // Single merged mesh — geometry is shared across all 51 instances (1 VBO on GPU).
+        // Material is per-mesh so palette cycle can independently re-color each cross.
+        grp.add(new THREE.Mesh(crossPrototype, initialMat));
+      } else {
+        // Fallback: 3 capsules + sphere (the previous procedural cross).
+        grp.add(new THREE.Mesh(sphereGeom, initialMat));
+        grp.add(new THREE.Mesh(capsuleGeom, initialMat));        // Y-axis
+        var bx = new THREE.Mesh(capsuleGeom, initialMat);
+        bx.rotation.z = Math.PI / 2; grp.add(bx);                 // X-axis
+        var bz = new THREE.Mesh(capsuleGeom, initialMat);
+        bz.rotation.x = Math.PI / 2; grp.add(bz);                 // Z-axis
+      }
+      return grp;
+    }
+
+    // ---- Spawn: rejection sampling so crosses don't initially overlap ----
+    var crosses = [];
+    var COUNT = 51;
+    var ANCHOR_COUNT = 18; // 8 white + 10 dark — strong fixed presence (Lusion-style)
+    var BOX = { x: 10.0, y: 5.8, z: 2.0 };
+    var MAX_TRIES = 250;
+    var OVERLAP_FACTOR = 0.78; // 22% overlap allowed for visual density
+
+    // Center sub-box: forces some crosses to spawn over the TERRA NOVA Sprite area
+    // so the brand text is partially obscured before any mouse interaction.
+    var CENTER_BOX = { x: 4.5, y: 1.6, z: 1.5 };
+
+    function trySpawn(scale, boxOverride) {
+      var rThis = scale * 1.68; // bounding sphere radius (arm half-length L/2=1.10 + cap r=0.58)
+      var bb = boxOverride || BOX;
+      for (var tr = 0; tr < MAX_TRIES; tr++) {
+        var px = rand(-bb.x, bb.x);
+        var py = rand(-bb.y, bb.y);
+        var pz = rand(-bb.z, bb.z);
+        var ok = true;
+        for (var k = 0; k < crosses.length; k++) {
+          var c = crosses[k];
+          var dx = px - c.position.x, dy = py - c.position.y, dz = pz - c.position.z;
+          var minD = (rThis + c.userData.r) * OVERLAP_FACTOR;
+          if (dx*dx + dy*dy + dz*dz < minD*minD) { ok = false; break; }
+        }
+        if (ok) return { x: px, y: py, z: pz, r: rThis };
+      }
+      // Fallback: random position
+      return { x: rand(-bb.x, bb.x), y: rand(-bb.y, bb.y), z: rand(-bb.z, bb.z), r: rThis };
+    }
+
+    function setCrossMaterials(cross, hex, finish) {
+      var mat = makeMat(hex, finish);
+      cross.userData.color = hex;
+      cross.userData.finish = finish;
+      cross.children.forEach(function (m) {
+        if (m.isMesh) {
+          if (m.material && m.material.dispose) m.material.dispose();
+          m.material = mat;
+        }
+      });
+    }
+
+    for (var i = 0; i < COUNT; i++) {
+      var isAnchor = i < ANCHOR_COUNT;
+      var sc = isAnchor ? rand(1.00, 1.30) : rand(0.85, 1.30);
+      var c = makeCross(makeMat(0xffffff, 'glossy')); // placeholder, set properly below
+      c.scale.setScalar(sc);
+      // First 6 spawn in CENTER_BOX → some crosses cover the TERRA NOVA brand initially.
+      var spawn = (i < 6) ? trySpawn(sc, CENTER_BOX) : trySpawn(sc);
+      c.position.set(spawn.x, spawn.y, spawn.z);
+      c.rotation.set(rand(0, Math.PI * 2), rand(0, Math.PI * 2), rand(0, Math.PI * 2));
+      c.userData.home = c.position.clone();
+      c.userData.velocity = new THREE.Vector3(0, 0, 0);
+      c.userData.r = spawn.r; // bounding sphere for collision
+      // No idle spin / bob — crosses only move via mouse impulse + pair collision (real physics)
+      c.userData.spin = { x: 0, y: 0, z: 0 };
+      c.userData.bobPhase = 0;
+      c.userData.bobAmp = 0;
+      c.userData.angVel = new THREE.Vector3(0, 0, 0); // angular velocity (collision-driven)
+      c.userData.isCross = true;
+      c.userData.isAnchor = isAnchor;
+      // Apply colors: anchors fixed (white matte / black matte), variables from palette
+      if (isAnchor) {
+        // First 8 anchors white matte, rest pure-black matte
+        var aHex = i < 8 ? ANCHOR_WHITE : ANCHOR_DARK;
+        setCrossMaterials(c, aHex, 'matte');
+      } else {
+        setCrossMaterials(c, pickColorFromPalette(), pickFinish());
+      }
+      scene.add(c);
+      crosses.push(c);
+    }
+
+    // ---- TERRA NOVA: canvas-rendered Sprite at z=-3 (behind cross cluster) ----
+    function buildTerraTexture() {
       var c = document.createElement('canvas');
-      c.width = 256; c.height = 256;
+      c.width = 2048; c.height = 384;
       var ctx = c.getContext('2d');
-      ctx.clearRect(0, 0, 256, 256);
-      ctx.fillStyle = 'rgba(255,255,255,0.85)';
-      ctx.font = 'bold 200px "Space Grotesk", sans-serif';
+      ctx.clearRect(0, 0, 2048, 384);
+      ctx.fillStyle = 'rgba(240, 247, 244, 0.92)';
+      ctx.font = '700 280px "Space Grotesk", system-ui, sans-serif';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      ctx.fillText(letter, 128, 128);
-      var texture = new THREE.CanvasTexture(c);
-      texture.needsUpdate = true;
-      var mat = new THREE.SpriteMaterial({
-        map: texture,
-        transparent: true,
-        opacity: 0.32,
-        depthTest: false,
-        depthWrite: false
-      });
-      var sprite = new THREE.Sprite(mat);
-      sprite.scale.set(0.9, 0.9, 1);
-      // Render letter sprite on top of its parent group
-      sprite.renderOrder = 5;
-      return sprite;
+      ctx.fillText('TERRA NOVA', 1024, 200);
+      var tex = new THREE.CanvasTexture(c);
+      tex.minFilter = THREE.LinearFilter;
+      tex.magFilter = THREE.LinearFilter;
+      tex.needsUpdate = true;
+      return tex;
     }
 
-    // Subject + letter pools
-    var SUBJECTS = [
-      '수학', '수학Ⅰ', '수학Ⅱ', '확률과 통계', '미적분',
-      '통합과학', '물리Ⅰ', '화학Ⅰ', '생명과학Ⅰ', '지구과학Ⅰ',
-      '통합사회', '사회·문화', '경제', '정치와 법', '세계사', '한국사',
-      '국어', '문학', '독서', '화법과 작문',
-      '예술', '체육', '기술·가정', '정보',
-      '윤리', '세계 지리', '한국 지리', '동아시아사'
-    ];
-    var LETTERS = ['E', 'N', 'G', 'L', 'I', 'S', 'H'];
+    var terraTex = buildTerraTexture();
+    var terraMat = new THREE.SpriteMaterial({
+      map: terraTex,
+      transparent: true,
+      opacity: 0.85,
+      depthTest: true,
+      depthWrite: false
+    });
+    var terraNova = new THREE.Sprite(terraMat);
+    terraNova.scale.set(9.0, 1.7, 1);
+    terraNova.position.set(0, 0, -4);
+    // Render BEFORE opaque crosses so cross depth buffer wins → TERRA NOVA never appears in front.
+    terraNova.renderOrder = -1;
+    terraNova.userData.isTerraNova = true;
+    terraNova.userData.targetOpacity = 0.85;
+    scene.add(terraNova);
 
-    var shapes = [];
-    var COUNT = 50;
-
-    // localStorage re-visitor flag
-    var isReturning = (function () {
-      try { return localStorage.getItem('terra-intro-completed') === '1'; } catch (e) { return false; }
-    })();
-
-    // State for puzzle / explosion
-    var collected = 0;
-    var bigBangTriggered = false;
-    var starfield = null;
-    var counterEl = document.getElementById('letter-counter');
-    var hoverLabel = document.getElementById('hover-label');
-
-    // Build shapes (skip if returning visitor)
-    if (!isReturning) {
-      // Shuffle indices so letter-crosses aren't always the first 7 in space
-      var letterIndices = [];
-      var allIdx = [];
-      for (var k = 0; k < COUNT; k++) allIdx.push(k);
-      // pick 7 random indices for letters
-      for (var lp = 0; lp < 7; lp++) {
-        var pi = Math.floor(Math.random() * allIdx.length);
-        letterIndices.push(allIdx.splice(pi, 1)[0]);
-      }
-      var letterCursor = 0;
-
-      for (var i = 0; i < COUNT; i++) {
-        var isLetter = letterIndices.indexOf(i) !== -1;
-        var mat = isLetter ? matLetter : pickMat();
-        var s = makePlus(mat);
-        var sc = isLetter ? rand(1.15, 1.45) : rand(0.7, 1.4);
-        s.scale.setScalar(sc);
-        var x = rand(-7, 7);
-        var y = rand(-5, 5);
-        var z = rand(-4, 4);
-        s.position.set(x, y, z);
-        s.rotation.set(rand(0, Math.PI * 2), rand(0, Math.PI * 2), rand(0, Math.PI * 2));
-        s.userData.home = s.position.clone();
-        s.userData.spin = {
-          x: rand(0.0015, 0.008) * (Math.random() < 0.5 ? 1 : -1) * (isLetter ? 0.6 : 1),
-          y: rand(0.0015, 0.008) * (Math.random() < 0.5 ? 1 : -1) * (isLetter ? 0.6 : 1),
-          z: rand(0.0008, 0.004) * (Math.random() < 0.5 ? 1 : -1) * (isLetter ? 0.6 : 1)
-        };
-        s.userData.bobPhase = rand(0, Math.PI * 2);
-        s.userData.bobAmp = rand(0.05, 0.15);
-        s.userData.isLetter = isLetter;
-        s.userData.activated = false;
-        if (isLetter) {
-          s.userData.letter = LETTERS[letterCursor++];
-          s.userData.subject = null;
-          var sprite = makeLetterSprite(s.userData.letter);
-          s.add(sprite);
-          s.userData.letterSprite = sprite;
-        } else {
-          s.userData.letter = null;
-          s.userData.subject = SUBJECTS[Math.floor(Math.random() * SUBJECTS.length)];
-        }
-        scene.add(s);
-        shapes.push(s);
-      }
+    // Rebuild texture once Space Grotesk is fully loaded (font swap)
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(function () {
+        var newTex = buildTerraTexture();
+        terraNova.material.map.dispose();
+        terraNova.material.map = newTex;
+        terraNova.material.needsUpdate = true;
+      }).catch(function () {});
     }
 
-    // Mouse tracking (normalized -1..1)
+    // ---- Mouse / Raycaster ----
     var mouseX = 0, mouseY = 0;
     var targetMouseX = 0, targetMouseY = 0;
-    var lastClientX = -1, lastClientY = -1;
-
-    // Raycaster for hover/click
     var raycaster = new THREE.Raycaster();
     var ndc = new THREE.Vector2();
 
-    function findShapeAncestor(obj) {
-      var n = obj;
+    var bigBangTriggered = false;
+    var orbs = [];
+    var crossesGone = false;
+    var bigbangLight = null;
+
+    function pickRayHit(nx, ny) {
+      ndc.set(nx, ny);
+      raycaster.setFromCamera(ndc, camera);
+      var pool = [terraNova];
+      for (var k = 0; k < crosses.length; k++) pool.push(crosses[k]);
+      var hits = raycaster.intersectObjects(pool, true);
+      if (!hits.length) return null;
+      // Walk up to find the cross-Group or terra Sprite
+      var first = hits[0];
+      if (first.object === terraNova) return { kind: 'terra' };
+      var n = first.object;
       while (n) {
-        if (n.userData && (n.userData.isLetter === true || n.userData.subject)) return n;
+        if (n.userData && n.userData.isCross) return { kind: 'cross', target: n };
         n = n.parent;
       }
-      return null;
-    }
-
-    function updateHoverLabel(clientX, clientY) {
-      if (bigBangTriggered) {
-        hoverLabel.classList.remove('visible');
-        canvas.style.cursor = 'default';
-        return;
-      }
-      ndc.set(targetMouseX, targetMouseY);
-      raycaster.setFromCamera(ndc, camera);
-      var hits = raycaster.intersectObjects(shapes, true);
-      if (hits.length > 0) {
-        var hitShape = findShapeAncestor(hits[0].object);
-        if (hitShape) {
-          var ud = hitShape.userData;
-          var text = ud.isLetter ? ud.letter : ud.subject;
-          hoverLabel.textContent = text || '';
-          hoverLabel.classList.toggle('letter', !!ud.isLetter);
-          hoverLabel.classList.add('visible');
-          hoverLabel.style.left = clientX + 'px';
-          hoverLabel.style.top = (clientY - 20) + 'px';
-          canvas.style.cursor = (ud.isLetter && !ud.activated) ? 'pointer' : 'default';
-          return;
-        }
-      }
-      hoverLabel.classList.remove('visible');
-      canvas.style.cursor = 'default';
+      return { kind: 'cross' }; // fallback
     }
 
     function onMove(e) {
       var rect = canvas.getBoundingClientRect();
       targetMouseX = ((e.clientX - rect.left) / rect.width) * 2 - 1;
       targetMouseY = -(((e.clientY - rect.top) / rect.height) * 2 - 1);
-      lastClientX = e.clientX;
-      lastClientY = e.clientY;
-      if (hoverLabel) updateHoverLabel(e.clientX, e.clientY);
+
+      // Mouse halo div follows cursor (idle only)
+      if (haloEl && !bigBangTriggered) {
+        haloEl.style.left = (e.clientX - rect.left) + 'px';
+        haloEl.style.top  = (e.clientY - rect.top) + 'px';
+        if (!haloEl.classList.contains('active')) haloEl.classList.add('active');
+      }
+
+      if (bigBangTriggered) {
+        canvas.classList.remove('is-hover-target');
+        return;
+      }
+      var hit = pickRayHit(targetMouseX, targetMouseY);
+      var inCenterZone = (targetMouseX * targetMouseX + targetMouseY * targetMouseY) < 0.18 * 0.18;
+      if ((hit && hit.kind === 'terra') || inCenterZone) {
+        canvas.classList.add('is-hover-target');
+        terraNova.userData.targetOpacity = 1.0;
+      } else {
+        canvas.classList.remove('is-hover-target');
+        terraNova.userData.targetOpacity = 0.85;
+      }
     }
     window.addEventListener('mousemove', onMove, { passive: true });
+    // Hide halo when cursor leaves hero
+    if (haloEl) {
+      hero.addEventListener('mouseleave', function () { haloEl.classList.remove('active'); });
+    }
     window.addEventListener('touchmove', function (e) {
       if (!e.touches[0]) return;
       onMove(e.touches[0]);
     }, { passive: true });
 
-    // Click handler — letter collection
+    function dismissHint() {
+      if (hintEl && !hintEl.classList.contains('fade-out')) {
+        hintEl.classList.add('fade-out');
+      }
+    }
+
     function onClick(e) {
       if (bigBangTriggered) return;
       var rect = canvas.getBoundingClientRect();
       var nx = ((e.clientX - rect.left) / rect.width) * 2 - 1;
       var ny = -(((e.clientY - rect.top) / rect.height) * 2 - 1);
-      ndc.set(nx, ny);
-      raycaster.setFromCamera(ndc, camera);
-      var hits = raycaster.intersectObjects(shapes, true);
-      if (hits.length === 0) return;
-      var shape = findShapeAncestor(hits[0].object);
-      if (shape && shape.userData.isLetter && !shape.userData.activated) {
-        activateLetter(shape);
+      var hit = pickRayHit(nx, ny);
+      // Big-bang trigger zone: ray-hit TERRA NOVA, OR click within central radius
+      // (denser cross packing means center pixels are often occluded — accept
+      // central clicks as TERRA NOVA intent so users aren't trapped by occlusion)
+      var inCenterZone = (nx * nx + ny * ny) < 0.18 * 0.18; // ~18% of half-viewport radius
+      if ((hit && hit.kind === 'terra') || inCenterZone) {
+        triggerBigBang();
+      } else {
+        cyclePalette();
+        dismissHint();
       }
     }
     canvas.addEventListener('click', onClick);
 
-    function activateLetter(shape) {
-      shape.userData.activated = true;
-      collected++;
-
-      // Swap material on cross meshes — bright white-mint with strong emissive
-      var activeMat = new THREE.MeshStandardMaterial({
-        color: 0xffffff,
-        metalness: 0.2,
-        roughness: 0.3,
-        emissive: 0x2DD4BF,
-        emissiveIntensity: 0.55
-      });
-      shape.children.forEach(function (child) {
-        if (child.isMesh) {
-          child.material = activeMat;
+    // ---- Palette cycle (anchors stay fixed; variable crosses rotate hue) ----
+    function cyclePalette() {
+      if (bigBangTriggered) return;
+      paletteIdx = (paletteIdx + 1) % PALETTES.length;
+      crosses.forEach(function (c) {
+        if (!c.userData.isAnchor) {
+          // Re-color variable crosses, keep finish (avoid harsh visual flicker)
+          var newHex = pickColorFromPalette();
+          setCrossMaterials(c, newHex, c.userData.finish || pickFinish());
         }
+        // Pulse on every cross including anchors (subtle "wave swept" feel)
+        var t0 = performance.now();
+        var startScale = c.scale.x;
+        var peak = startScale * (c.userData.isAnchor ? 1.03 : 1.07);
+        (function pulse() {
+          var dt = (performance.now() - t0) / 160;
+          if (dt < 1) {
+            var s = startScale + (peak - startScale) * Math.sin(dt * Math.PI);
+            c.scale.set(s, s, s);
+            requestAnimationFrame(pulse);
+          } else {
+            c.scale.set(startScale, startScale, startScale);
+          }
+        })();
       });
-      if (shape.userData.letterSprite) {
-        shape.userData.letterSprite.material.opacity = 1.0;
-      }
-
-      // Scale bump animation
-      var startScale = shape.scale.x;
-      var peak = startScale * 1.4;
-      var settled = startScale * 1.15;
-      var t0b = performance.now();
-      function bump() {
-        var dt = (performance.now() - t0b) / 320;
-        if (dt < 1) {
-          var s = startScale + (peak - startScale) * Math.sin(dt * Math.PI);
-          shape.scale.set(s, s, s);
-          requestAnimationFrame(bump);
-        } else {
-          shape.scale.set(settled, settled, settled);
-        }
-      }
-      bump();
-
-      if (counterEl) {
-        counterEl.textContent = collected + ' / 7';
-        counterEl.classList.add('active');
-      }
-      // Remove discover hint as soon as user makes first click
-      var existingHint = document.querySelector('.discover-hint');
-      if (existingHint && !existingHint.classList.contains('fade-out')) {
-        existingHint.classList.add('fade-out');
-        setTimeout(function () { existingHint.remove(); }, 1100);
-      }
-
-      if (collected >= 7) {
-        setTimeout(triggerBigBang, 700);
-      }
     }
 
-    // Discover hint after 4s idle if no clicks yet
-    if (!isReturning) {
-      setTimeout(function () {
-        if (collected === 0 && !bigBangTriggered) {
-          var hint = document.createElement('div');
-          hint.className = 'discover-hint';
-          hint.textContent = 'CLICK THE LETTERS';
-          var heroUi = document.getElementById('hero');
-          if (heroUi) heroUi.appendChild(hint);
-          setTimeout(function () { if (hint.parentNode) hint.classList.add('fade-out'); }, 6000);
-          setTimeout(function () { if (hint.parentNode) hint.remove(); }, 7500);
-        }
-      }, 4000);
-    }
+    // ---- Big Bang sequence (convergence → climax → explosion → decel → reveal) ----
+    // Timeline:
+    //   0     ~ 700ms : crosses converge to center, shrinking, spin accelerates ("지이잉")
+    //   ~700ms        : climax — flash, orbs spawn, warp burst (speed 4×)
+    //   700  ~ 1500ms : orbs + warp at peak velocity
+    //   1500 ~ 2500ms : warp decelerates to ambient, orbs fade, light decays
+    //   2500ms        : reveal hero (TERRA NOVA forward + UI fade in)
+    var CONVERGE_MS = 700;
+    var CLIMAX_MS   = CONVERGE_MS;
+    var REVEAL_MS   = 2500;
 
-    // ---------- Big bang + star rain ----------
     function triggerBigBang() {
       bigBangTriggered = true;
-      if (counterEl) counterEl.classList.remove('active');
-      if (hoverLabel) hoverLabel.classList.remove('visible');
-      canvas.style.cursor = 'default';
+      // Don't set inline cursor — keep CSS custom cursor (--tn-cursor-default) active
+      dismissHint();
+      if (haloEl) haloEl.classList.remove('active');
+      // Reveal warp canvas immediately so it can fade in during the bigbang itself
+      // (not abruptly appearing only at REVEAL_MS) → continuous explosion → starfield.
+      hero.classList.add('is-bigbang');
 
-      var center = new THREE.Vector3(0, 0, 0);
-      shapes.forEach(function (s) {
-        var dir = s.position.clone().sub(center);
-        if (dir.lengthSq() < 0.0001) {
-          dir.set(rand(-1, 1), rand(-1, 1), rand(-1, 1));
-        }
-        dir.normalize().multiplyScalar(rand(0.3, 0.6));
-        s.userData.velocity = dir;
-        s.userData.exploding = true;
+      var bbT0 = performance.now();
+      // Snapshot pre-bang state on each cross + clone materials for independent opacity
+      crosses.forEach(function (s) {
+        s.userData.bbT0 = bbT0;
+        s.userData.preBangPos = s.position.clone();
+        s.userData.preBangScale = s.scale.x;
+        s.children.forEach(function (m) {
+          if (m.isMesh && m.material) {
+            m.material = m.material.clone();
+            m.material.transparent = true;
+          }
+        });
       });
 
-      setTimeout(spawnStarRain, 200);
-    }
+      // Fade out background TERRA NOVA during convergence
+      var fadeStart = performance.now();
+      (function fadeOut() {
+        var dt = (performance.now() - fadeStart) / 480;
+        terraNova.material.opacity = 0.85 * Math.max(0, 1 - dt);
+        if (dt < 1) requestAnimationFrame(fadeOut);
+        else terraNova.visible = false;
+      })();
 
-    function spawnStarRain() {
-      var STAR_COUNT = 3000;
-      var positions = new Float32Array(STAR_COUNT * 3);
-      var velocities = new Float32Array(STAR_COUNT * 3);
-      var colors = new Float32Array(STAR_COUNT * 3);
-
-      for (var i = 0; i < STAR_COUNT; i++) {
-        positions[i * 3]     = rand(-15, 15);
-        positions[i * 3 + 1] = rand(8, 20);
-        positions[i * 3 + 2] = rand(-5, 5);
-
-        velocities[i * 3]     = rand(-0.005, 0.005);
-        velocities[i * 3 + 1] = rand(-0.04, -0.02);
-        velocities[i * 3 + 2] = rand(-0.005, 0.005);
-
-        if (Math.random() < 0.8) {
-          colors[i * 3] = 0.176; colors[i * 3 + 1] = 0.831; colors[i * 3 + 2] = 0.749;
+      // Bigbang PointLight: builds 0→6 during convergence, peaks at climax, decays
+      bigbangLight = new THREE.PointLight(0xE6F7F4, 0, 22, 1.4);
+      bigbangLight.position.set(0, 0, 0);
+      scene.add(bigbangLight);
+      (function animateBBLight() {
+        var dt = performance.now() - bbT0;
+        if (dt < CLIMAX_MS) {
+          var t = dt / CLIMAX_MS;
+          bigbangLight.intensity = 6.0 * (t * t); // accelerating build-up
+        } else if (dt < CLIMAX_MS + 200) {
+          bigbangLight.intensity = 6.0; // hold peak
+        } else if (dt < REVEAL_MS) {
+          bigbangLight.intensity = 6.0 * (1 - (dt - CLIMAX_MS - 200) / (REVEAL_MS - CLIMAX_MS - 200));
         } else {
-          colors[i * 3] = 1; colors[i * 3 + 1] = 1; colors[i * 3 + 2] = 1;
+          bigbangLight.intensity = 0;
+          return;
         }
+        requestAnimationFrame(animateBBLight);
+      })();
+
+      // Climax flash (timed slightly before climax for snap)
+      setTimeout(function () {
+        if (flashEl) {
+          flashEl.classList.add('active');
+          setTimeout(function () { flashEl.classList.remove('active'); }, 520);
+        }
+      }, CLIMAX_MS - 40);
+
+      // Warp burst starts AT climax — STARS ARE THE EXPLOSION.
+      // Crosses dissolve into center as the star burst rushes outward → unified animation.
+      setTimeout(function () { if (warpField) warpField.startWithBurst(); }, CLIMAX_MS);
+      // Cross husks fully removed after dissolve (200ms post-climax)
+      setTimeout(function () {
+        crosses.forEach(function (s) { scene.remove(s); });
+        crossesGone = true;
+      }, CLIMAX_MS + 250);
+      // Reveal hero (TERRA NOVA forward + UI fade in)
+      setTimeout(revealHero, REVEAL_MS);
+    }
+
+    function spawnOrbs() {
+      var orbGeom = new THREE.SphereGeometry(0.65, 24, 24);
+      var ORB_COUNT = 60;
+      for (var i = 0; i < ORB_COUNT; i++) {
+        var isWhite = Math.random() < 0.30;
+        // Glassy chrome marble material — low emissive, high metallic, low roughness.
+        // Lighting (key + rim + bigbang PointLight) creates true 3D shading.
+        var mat = new THREE.MeshStandardMaterial({
+          color: isWhite ? 0xffffff : 0x2DD4BF,
+          emissive: isWhite ? 0xE6F7F4 : 0x2DD4BF,
+          emissiveIntensity: isWhite ? 0.55 : 0.40,
+          metalness: 0.70,
+          roughness: 0.18,
+          transparent: true,
+          opacity: 1.0
+        });
+        var orb = new THREE.Mesh(orbGeom, mat);
+        orb.position.set(rand(-0.3, 0.3), rand(-0.3, 0.3), rand(-0.3, 0.3));
+        orb.scale.setScalar(0.5); // start small for impact pulse
+        orb.userData.spawnTime = performance.now();
+        // Spherical-ish random direction with reduced Z spread
+        var theta = Math.random() * Math.PI * 2;
+        var phi = Math.acos(2 * Math.random() - 1);
+        var speed = rand(0.25, 0.55);
+        orb.userData.velocity = new THREE.Vector3(
+          Math.sin(phi) * Math.cos(theta) * speed,
+          Math.sin(phi) * Math.sin(theta) * speed,
+          Math.cos(phi) * speed * 0.35
+        );
+        orb.userData.alive = 1.0;
+        orb.userData.lifeRate = rand(0.006, 0.011);
+
+        // Trail: Line with N back-positions, additive blending
+        var trailLen = 24;
+        var tp = new Float32Array(trailLen * 3);
+        for (var t = 0; t < trailLen; t++) {
+          tp[t*3] = orb.position.x; tp[t*3+1] = orb.position.y; tp[t*3+2] = orb.position.z;
+        }
+        var tg = new THREE.BufferGeometry();
+        tg.setAttribute('position', new THREE.BufferAttribute(tp, 3));
+        var tm = new THREE.LineBasicMaterial({
+          color: isWhite ? 0xE6F7F4 : 0x2DD4BF,
+          transparent: true,
+          opacity: 0.7,
+          blending: THREE.AdditiveBlending,
+          depthWrite: false
+        });
+        var trail = new THREE.Line(tg, tm);
+        orb.userData.trail = trail;
+        orb.userData.trailPositions = tp;
+        orb.userData.trailLen = trailLen;
+        scene.add(orb);
+        scene.add(trail);
+        orbs.push(orb);
       }
-
-      var geom = new THREE.BufferGeometry();
-      geom.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-      geom.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-      geom.userData.velocities = velocities;
-
-      var mat = new THREE.PointsMaterial({
-        size: 0.04,
-        vertexColors: true,
-        transparent: true,
-        opacity: 0.95,
-        sizeAttenuation: true,
-        blending: THREE.AdditiveBlending,
-        depthWrite: false
-      });
-
-      starfield = new THREE.Points(geom, mat);
-      scene.add(starfield);
-
-      // Remove old crosses after they've scattered
-      setTimeout(function () {
-        shapes.forEach(function (s) { scene.remove(s); });
-      }, 2500);
-
-      // Persist completion + subtle auto-scroll
-      setTimeout(function () {
-        try { localStorage.setItem('terra-intro-completed', '1'); } catch (e) {}
-        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-          window.scrollTo({ top: window.innerHeight * 0.95, behavior: 'smooth' });
-        }
-      }, 3000);
     }
 
-    // Returning visitor: skip puzzle, go straight to ambient star rain
-    if (isReturning) {
-      bigBangTriggered = true;
-      collected = 7;
-      spawnStarRain();
-      if (counterEl) counterEl.classList.remove('active');
+    function revealHero() {
+      // Bring TERRA NOVA back forward (z=-3 → z=0)
+      terraNova.visible = true;
+      terraNova.position.set(0, 0, 0);
+      terraNova.scale.set(9.0, 1.7, 1);
+      terraNova.material.opacity = 0;
+      var t0 = performance.now();
+      (function fadeIn() {
+        var dt = (performance.now() - t0) / 800;
+        terraNova.material.opacity = 0.95 * Math.min(1, dt);
+        if (dt < 1) requestAnimationFrame(fadeIn);
+      })();
+      // Reveal corner UI + scroll cue
+      hero.classList.remove('is-pre');
+      hero.classList.add('is-post');
     }
 
-    // Reset button — also bind in scene scope so it's wired even after init
-    var resetBtn = document.getElementById('reset-btn');
-    if (resetBtn) {
-      resetBtn.addEventListener('click', function () {
-        try { localStorage.removeItem('terra-intro-completed'); } catch (e) {}
-        location.reload();
-      });
-    }
-
-    // Resize
+    // ---- Resize / visibility ----
     function resize() {
       var nw = hero.clientWidth, nh = hero.clientHeight;
       renderer.setSize(nw, nh, false);
@@ -1216,13 +1379,11 @@ a { color:inherit; text-decoration:none; }
     }
     window.addEventListener('resize', resize);
 
-    // Pause when tab hidden / hero off-screen
-    var running = true;
+    var running = true, heroVisible = true;
     document.addEventListener('visibilitychange', function () {
       running = document.visibilityState === 'visible';
       if (running) loop();
     });
-    var heroVisible = true;
     if ('IntersectionObserver' in window) {
       var hio = new IntersectionObserver(function (ents) {
         ents.forEach(function (e) { heroVisible = e.isIntersecting; });
@@ -1235,7 +1396,7 @@ a { color:inherit; text-decoration:none; }
     var rafId = 0;
 
     function loop() {
-      if (!running || !heroVisible) { return; }
+      if (!running || !heroVisible) return;
       cancelAnimationFrame(rafId);
       rafId = requestAnimationFrame(tick);
     }
@@ -1246,83 +1407,407 @@ a { color:inherit; text-decoration:none; }
       // Smooth mouse easing
       mouseX += (targetMouseX - mouseX) * 0.08;
       mouseY += (targetMouseY - mouseY) * 0.08;
-
       var mWorldX = mouseX * 7;
       var mWorldY = mouseY * 4;
 
       if (!bigBangTriggered) {
-        for (var i = 0; i < shapes.length; i++) {
-          var s = shapes[i];
+        // Idle physics — collision-driven only. No self-spin, no bob.
+        // Crosses are still until something hits them: mouse OR another cross.
+        // Bouncy feel: stronger spring (oscillation visible) + streak-based sleep
+        // (peaks of oscillation don't false-trigger sleep). Eventually crosses
+        // settle near (but not at) original home → mostly elastic, slight drift.
+        var SPRING_K   = 0.0085;
+        var DAMPING    = 0.94;
+        var ANG_DAMPING = 0.93;
+        var MOUSE_R    = 3.6;
+        var MOUSE_K    = 0.22;
+        var COLLIDE_K  = 0.36;   // collision response strength
+        // PAD must be < OVERLAP_FACTOR (0.78) at spawn — otherwise home positions
+        // sit inside the collision zone, and spring↔collision oscillate forever (vibration).
+        var COLLIDE_PAD = 0.72;
+        var COLLIDE_TORQUE = 0.045; // how much collision tweaks rotation
+        var SLEEP_VEL_SQ = 0.0009;  // ~|v| < 0.03 considered low velocity
+        var SLEEP_STREAK = 7;       // require N consecutive low-vel frames before sleep
+                                    // (prevents oscillation peaks from false-sleeping)
+
+        // Step 1: Spring force + mouse impulse
+        for (var i = 0; i < crosses.length; i++) {
+          var s = crosses[i];
           var home = s.userData.home;
-
-          var bob = Math.sin(t * 0.9 + s.userData.bobPhase) * s.userData.bobAmp;
-
-          var hx = home.x;
-          var hy = home.y + bob;
-          var hz = home.z;
-          s.position.x += (hx - s.position.x) * 0.08;
-          s.position.y += (hy - s.position.y) * 0.08;
-          s.position.z += (hz - s.position.z) * 0.08;
-
+          var vel  = s.userData.velocity;
+          // Spring: only meaningful when displaced from home
+          vel.x += (home.x - s.position.x) * SPRING_K;
+          vel.y += (home.y - s.position.y) * SPRING_K;
+          vel.z += (home.z - s.position.z) * SPRING_K;
+          // Mouse impulse (collision-like — adds linear + angular velocity)
           var dx = s.position.x - mWorldX;
           var dy = s.position.y - mWorldY;
           var dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 2.2 && dist > 0.0001) {
-            var force = (2.2 - dist) * 0.22;
-            s.position.x += (dx / dist) * force;
-            s.position.y += (dy / dist) * force;
-            s.rotation.z += force * 0.03;
+          if (dist < MOUSE_R && dist > 0.0001) {
+            var fmag = (MOUSE_R - dist) * MOUSE_K;
+            vel.x += (dx / dist) * fmag;
+            vel.y += (dy / dist) * fmag;
+            // Tangential angular kick (hand of cards effect) — stronger for bouncy feel
+            s.userData.angVel.x += fmag * 0.06 * (Math.random() - 0.5);
+            s.userData.angVel.y += fmag * 0.06 * (Math.random() - 0.5);
+            s.userData.angVel.z += fmag * 0.10;
           }
-
-          s.rotation.x += s.userData.spin.x;
-          s.rotation.y += s.userData.spin.y;
-          s.rotation.z += s.userData.spin.z;
         }
+        // Step 2: Pair-wise collision push (Newton's 3rd law: equal opposite impulse + small torque)
+        for (var ai = 0; ai < crosses.length; ai++) {
+          var a = crosses[ai];
+          for (var bj = ai + 1; bj < crosses.length; bj++) {
+            var b = crosses[bj];
+            var ddx = a.position.x - b.position.x;
+            var ddy = a.position.y - b.position.y;
+            var ddz = a.position.z - b.position.z;
+            var d2 = ddx*ddx + ddy*ddy + ddz*ddz;
+            var minD = (a.userData.r + b.userData.r) * COLLIDE_PAD;
+            if (d2 < minD * minD && d2 > 0.0001) {
+              var dd = Math.sqrt(d2);
+              var pen = (minD - dd) * COLLIDE_K;
+              var nxc = ddx / dd, nyc = ddy / dd, nzc = ddz / dd;
+              a.userData.velocity.x += nxc * pen;
+              a.userData.velocity.y += nyc * pen;
+              a.userData.velocity.z += nzc * pen;
+              b.userData.velocity.x -= nxc * pen;
+              b.userData.velocity.y -= nyc * pen;
+              b.userData.velocity.z -= nzc * pen;
+              // Cross torque from collision — perpendicular to contact normal
+              a.userData.angVel.x += nyc * pen * COLLIDE_TORQUE;
+              a.userData.angVel.y += nzc * pen * COLLIDE_TORQUE;
+              a.userData.angVel.z += nxc * pen * COLLIDE_TORQUE;
+              b.userData.angVel.x -= nyc * pen * COLLIDE_TORQUE;
+              b.userData.angVel.y -= nzc * pen * COLLIDE_TORQUE;
+              b.userData.angVel.z -= nxc * pen * COLLIDE_TORQUE;
+            }
+          }
+        }
+        // Step 3: Damping + integrate + sleep latch
+        for (var ii = 0; ii < crosses.length; ii++) {
+          var ss = crosses[ii];
+          ss.userData.velocity.multiplyScalar(DAMPING);
+          ss.position.add(ss.userData.velocity);
+          ss.userData.angVel.multiplyScalar(ANG_DAMPING);
+          ss.rotation.x += ss.userData.angVel.x;
+          ss.rotation.y += ss.userData.angVel.y;
+          ss.rotation.z += ss.userData.angVel.z;
+          // Sleep: only after N consecutive low-vel frames (prevents peak-displacement
+          // false sleep where vel briefly hits 0 mid-oscillation). When latched,
+          // adopt current pos as new home so cross settles slightly displaced.
+          if (ss.userData.velocity.lengthSq() < SLEEP_VEL_SQ) {
+            ss.userData.lowVelStreak = (ss.userData.lowVelStreak || 0) + 1;
+            if (ss.userData.lowVelStreak >= SLEEP_STREAK) {
+              ss.userData.home.copy(ss.position);
+              ss.userData.velocity.set(0, 0, 0);
+              ss.userData.angVel.set(0, 0, 0);
+              ss.userData.lowVelStreak = 0;
+            }
+          } else {
+            ss.userData.lowVelStreak = 0;
+          }
+        }
+        // TERRA NOVA hover opacity easing
+        var cur = terraNova.material.opacity;
+        var tgt = terraNova.userData.targetOpacity;
+        terraNova.material.opacity += (tgt - cur) * 0.12;
       } else {
-        // Exploding shapes
-        for (var ei = 0; ei < shapes.length; ei++) {
-          var es = shapes[ei];
-          if (es.userData.exploding && es.userData.velocity) {
-            es.position.add(es.userData.velocity);
-            es.userData.velocity.multiplyScalar(1.04);
-            es.rotation.x += 0.02;
-            es.rotation.y += 0.02;
-            var sc = es.scale.x * 0.985;
-            es.scale.set(sc, sc, sc);
+        // Bigbang: convergence (700ms) → cross dissolves into center → STARS are the explosion
+        // The crosses' kinetic energy "becomes" the star burst — visually, crosses pile up at
+        // center, then disappear AS the warp stars burst outward. Single unified animation.
+        var DISSOLVE_MS = 200;
+        for (var ei = 0; ei < crosses.length; ei++) {
+          var es = crosses[ei];
+          if (!es.userData.bbT0) continue;
+          var dtBB = now - es.userData.bbT0;
+          if (dtBB < CONVERGE_MS) {
+            // Convergence: lerp pre-bang pos → (0,0,0), shrink toward 0.25
+            var t = dtBB / CONVERGE_MS;
+            var ease = t * t * (3 - 2 * t); // smoothstep
+            var sp = es.userData.preBangPos;
+            es.position.x = sp.x * (1 - ease);
+            es.position.y = sp.y * (1 - ease);
+            es.position.z = sp.z * (1 - ease);
+            var ss0 = es.userData.preBangScale;
+            var newSc = ss0 + (0.25 - ss0) * ease;
+            es.scale.set(newSc, newSc, newSc);
+            // Rotation accelerates as they speed inward (energy gathering)
+            var spinTotal = ease * 0.06;
+            es.rotation.x += spinTotal;
+            es.rotation.y += spinTotal;
+            es.rotation.z += spinTotal * 0.6;
+          } else if (dtBB < CONVERGE_MS + DISSOLVE_MS) {
+            // Dissolve at center: scale 0.25 → 0, opacity → 0 (very fast — they "become" the burst)
+            var t2 = (dtBB - CONVERGE_MS) / DISSOLVE_MS;
+            var s2 = 0.25 * (1 - t2);
+            es.scale.set(s2, s2, s2);
+            es.rotation.x += 0.10;
+            es.rotation.y += 0.10;
+            es.children.forEach(function (m) {
+              if (m.isMesh && m.material) m.material.opacity = 1 - t2;
+            });
+          } else {
+            es.visible = false;
           }
+        }
+        // Orbs + trails (scale pulse on spawn → max → drift)
+        for (var oi = 0; oi < orbs.length; oi++) {
+          var orb = orbs[oi];
+          // Scale pulse: 0.5 → 1.0 over 100ms (impact bloom)
+          var elapsedSpawn = now - orb.userData.spawnTime;
+          if (elapsedSpawn < 100) {
+            var pt = elapsedSpawn / 100;
+            orb.scale.setScalar(0.5 + 0.5 * pt);
+          } else if (orb.scale.x < 1) {
+            orb.scale.setScalar(1.0);
+          }
+
+          var tp = orb.userData.trailPositions;
+          var tl = orb.userData.trailLen;
+          // shift trail back, write head
+          for (var ti = tl - 1; ti > 0; ti--) {
+            tp[ti*3]     = tp[(ti-1)*3];
+            tp[ti*3 + 1] = tp[(ti-1)*3 + 1];
+            tp[ti*3 + 2] = tp[(ti-1)*3 + 2];
+          }
+          tp[0] = orb.position.x; tp[1] = orb.position.y; tp[2] = orb.position.z;
+          orb.userData.trail.geometry.attributes.position.needsUpdate = true;
+
+          orb.position.add(orb.userData.velocity);
+          orb.userData.velocity.multiplyScalar(1.012); // slight outward acceleration for warp feel
+          orb.userData.alive -= orb.userData.lifeRate;
+          if (orb.userData.alive < 0) orb.userData.alive = 0;
+          orb.material.opacity = orb.userData.alive;
+          orb.userData.trail.material.opacity = orb.userData.alive * 0.7;
         }
       }
 
-      // Starfield update
-      if (starfield) {
-        var pos = starfield.geometry.attributes.position.array;
-        var vel = starfield.geometry.userData.velocities;
-        for (var pi = 0; pi < pos.length; pi += 3) {
-          pos[pi]     += vel[pi];
-          pos[pi + 1] += vel[pi + 1];
-          pos[pi + 2] += vel[pi + 2];
-          if (pos[pi + 1] < -10) {
-            pos[pi + 1] = rand(8, 12);
-            pos[pi]     = rand(-15, 15);
-          }
-        }
-        starfield.geometry.attributes.position.needsUpdate = true;
-        if (starfield.material.opacity > 0.4) {
-          starfield.material.opacity -= 0.001;
-        }
-      }
-
-      // Camera idle parallax
-      camera.position.x += (mouseX * 0.6 - camera.position.x) * 0.04;
-      camera.position.y += (mouseY * 0.4 - camera.position.y) * 0.04;
+      // Camera parallax — pre-bigbang only (gives crosses some motion).
+      // POST-bigbang: camera locked at (0,0,12) so TERRA NOVA Sprite's offset is the
+      // sole source of motion → DOM tagline/english can match it exactly (same mouseX).
+      var paraX = bigBangTriggered ? 0 : 0.6;
+      var paraY = bigBangTriggered ? 0 : 0.4;
+      camera.position.x += (mouseX * paraX - camera.position.x) * 0.04;
+      camera.position.y += (mouseY * paraY - camera.position.y) * 0.04;
       camera.lookAt(0, 0, 0);
+      // Group parallax: TERRA NOVA Sprite + tagline pill + ENGLISH all driven by the
+      // SAME smoothed mouseX/Y → guaranteed in lockstep. No secondary easing on TN.
+      // Calibration: 0.5 world unit ≈ 40px at viewport_h≈900 (1 unit = h/11.18 px).
+      if (bigBangTriggered && terraNova.visible) {
+        terraNova.position.x = -mouseX * 0.5;
+        terraNova.position.y = -mouseY * 0.32;
+        var domDx = (-mouseX * 40).toFixed(1) + 'px';
+        var domDy = (-mouseY * 26).toFixed(1) + 'px';
+        if (taglineEl) {
+          taglineEl.style.setProperty('--para-x', domDx);
+          taglineEl.style.setProperty('--para-y', domDy);
+        }
+        if (englishEl) {
+          englishEl.style.setProperty('--para-x', domDx);
+          englishEl.style.setProperty('--para-y', domDy);
+        }
+      }
 
       renderer.render(scene, camera);
-
       if (running && heroVisible) rafId = requestAnimationFrame(tick);
     }
 
     loop();
+  }
+
+  // ---------- 2D warp starfield (ported from index.html) ----------
+  // Background canvas that fades in during/after big-bang to create hyperspace warp.
+  // White-dominant (~90%) with mint accent (~10%) per user feedback.
+  var warpField = null;
+  function initWarpField() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return null;
+    if (window.innerWidth < 720) return null;
+    var canvas = document.getElementById('hero-warp');
+    if (!canvas) return null;
+    var ctx = canvas.getContext('2d');
+    var hero = document.getElementById('hero');
+    var stars = [];
+    var running = false;
+    var rafId = 0;
+    var speedMul = 1.0;     // ambient speed
+    var burstActive = false;
+    var burstT0 = 0;
+    var BURST_MS = 2200;
+    var BURST_PEAK = 6.0;
+
+    function resize() {
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      var w = hero.clientWidth, h = hero.clientHeight;
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      canvas.style.width = w + 'px';
+      canvas.style.height = h + 'px';
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.scale(dpr, dpr);
+      canvas.lw = w; canvas.lh = h;
+    }
+    function init() {
+      stars = [];
+      var cx = canvas.lw / 2, cy = canvas.lh / 2;
+      var md = Math.min(canvas.lw, canvas.lh) * 0.3;
+      var n = 1400;
+      for (var i = 0; i < n; i++) {
+        var angle = Math.random() * Math.PI * 2;
+        var dist = md + Math.random() * Math.max(canvas.lw, canvas.lh);
+        stars.push({
+          x: cx + Math.cos(angle) * dist,
+          y: cy + Math.sin(angle) * dist,
+          z: Math.random() * 1500 + 500,
+          r: Math.random() * 2 + 0.8,
+          a: Math.random() * 0.5 + 0.5,
+          tw: Math.random() * Math.PI * 2,
+          sp: Math.random() * 0.003 + 0.001,
+          mint: Math.random() < 0.10  // 10% mint, 90% white
+        });
+      }
+    }
+    resize(); init();
+    var resizeTimer = null;
+    window.addEventListener('resize', function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function () { resize(); init(); }, 250);
+    });
+
+    // Mouse-driven vanishing point shift (warp tilts toward cursor for parallax feel)
+    var mShiftX = 0, mShiftY = 0;
+    var mTargetX = 0, mTargetY = 0;
+    var SHIFT_AMP = 90; // max px shift of vanishing point
+    hero.addEventListener('mousemove', function (e) {
+      var rect = hero.getBoundingClientRect();
+      var nx = (e.clientX - rect.left) / rect.width - 0.5;  // -0.5..0.5
+      var ny = (e.clientY - rect.top) / rect.height - 0.5;
+      mTargetX = nx * 2 * SHIFT_AMP;
+      mTargetY = ny * 2 * SHIFT_AMP;
+    });
+    hero.addEventListener('mouseleave', function () {
+      mTargetX = 0; mTargetY = 0;
+    });
+
+    // Hold left-click → speed-boost the star rain. Release → ease back to normal.
+    var boostMul = 1.0;       // smoothed
+    var boostTarget = 1.0;    // target (1.0 normal, 2.6 while holding)
+    hero.addEventListener('mousedown', function (e) {
+      if (e.button === 0) boostTarget = 2.6;
+    });
+    // Listen on window for mouseup so dragging out of hero still releases
+    window.addEventListener('mouseup', function (e) {
+      if (e.button === 0) boostTarget = 1.0;
+    });
+    window.addEventListener('blur', function () { boostTarget = 1.0; });
+
+    function draw() {
+      if (!running) return;
+      // Ease vanishing-point toward target mouse position
+      mShiftX += (mTargetX - mShiftX) * 0.06;
+      mShiftY += (mTargetY - mShiftY) * 0.06;
+      // Ease boost (mouse held = faster star rain)
+      boostMul += (boostTarget - boostMul) * 0.10;
+      var w = canvas.lw, h = canvas.lh, cx = w/2 + mShiftX, cy = h/2 + mShiftY;
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.scale(dpr, dpr);
+      // Burst speed decay — ease-out (cubic) from BURST_PEAK to 1.0 over BURST_MS
+      if (burstActive) {
+        var bt = (performance.now() - burstT0) / BURST_MS;
+        if (bt >= 1) { speedMul = 1.0; burstActive = false; }
+        else {
+          var eo = 1 - Math.pow(1 - bt, 3); // ease-out cubic
+          speedMul = BURST_PEAK + (1.0 - BURST_PEAK) * eo;
+        }
+      }
+      // Effective speed combines burst (or ambient) with click-hold boost
+      var effSpeed = speedMul * boostMul;
+      // Trail alpha scales with effective speed → streaks lengthen on boost
+      var trailAlpha = burstActive ? Math.max(0.06, 0.15 / effSpeed)
+                                   : Math.max(0.07, 0.15 / boostMul);
+      ctx.fillStyle = 'rgba(4,4,12,' + trailAlpha + ')';
+      ctx.fillRect(0, 0, w, h);
+      stars.forEach(function (s) {
+        s.z -= 0.8 * effSpeed;
+        if (s.z <= 0) {
+          s.z = 1500 + Math.random() * 500;
+          var angle = Math.random() * Math.PI * 2;
+          var md = Math.min(w, h) * 0.3;
+          var dist = md + Math.random() * Math.max(w, h);
+          s.x = cx + Math.cos(angle) * dist;
+          s.y = cy + Math.sin(angle) * dist;
+        }
+        var k = 128 / s.z;
+        var px = (s.x - cx) * k + cx;
+        var py = (s.y - cy) * k + cy;
+        var size = s.r * k * 2;
+        s.tw += s.sp;
+        var alpha = s.a * (0.5 + 0.5 * Math.sin(s.tw)) * Math.min(1, k);
+        var rgb = s.mint ? '94,234,212' : '255,255,255';   // mint accent or white
+        var glow = s.mint ? '45,212,191' : '79,195,247';   // mint glow or cool blue
+        // Streak (warp tail)
+        if (size > 0.5) {
+          ctx.beginPath();
+          ctx.moveTo(px, py);
+          ctx.lineTo(px + (cx - s.x) * k * 0.1, py + (cy - s.y) * k * 0.1);
+          ctx.strokeStyle = 'rgba(' + rgb + ',' + (alpha * 0.3) + ')';
+          ctx.lineWidth = size * 0.5;
+          ctx.stroke();
+        }
+        // Star body
+        ctx.beginPath();
+        ctx.arc(px, py, size, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(' + rgb + ',' + alpha + ')';
+        ctx.fill();
+        // Glow for big stars
+        if (size > 1.5) {
+          ctx.shadowBlur = size * 3;
+          ctx.shadowColor = 'rgba(' + glow + ',' + (alpha * 0.8) + ')';
+          ctx.beginPath();
+          ctx.arc(px, py, size, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(' + rgb + ',' + alpha + ')';
+          ctx.fill();
+          ctx.shadowBlur = 0;
+        }
+      });
+      rafId = requestAnimationFrame(draw);
+    }
+
+    return {
+      start: function () {
+        if (running) return;
+        running = true;
+        rafId = requestAnimationFrame(draw);
+      },
+      startWithBurst: function () {
+        // Hybrid: 60% of stars reset to NEAR-Z + outer XY → "burst from center" feel.
+        // Remaining 40% keep their varied z positions → continuous flow during/after burst.
+        // Result: dramatic explosion AND uninterrupted continuous stream.
+        var cx = canvas.lw / 2, cy = canvas.lh / 2;
+        var burstQty = Math.floor(stars.length * 0.6);
+        for (var i = 0; i < burstQty; i++) {
+          var s = stars[i];
+          // Stagger near-z values so they exit at different times → no wave-quiet pattern
+          s.z = 150 + Math.random() * 1100;
+          var angle = Math.random() * Math.PI * 2;
+          var md = Math.min(canvas.lw, canvas.lh) * 0.25;
+          var dist = md + Math.random() * Math.max(canvas.lw, canvas.lh) * 0.5;
+          s.x = cx + Math.cos(angle) * dist;
+          s.y = cy + Math.sin(angle) * dist;
+        }
+        speedMul = BURST_PEAK;
+        burstActive = true;
+        burstT0 = performance.now();
+        if (!running) {
+          running = true;
+          rafId = requestAnimationFrame(draw);
+        }
+      },
+      stop: function () {
+        running = false;
+        cancelAnimationFrame(rafId);
+      }
+    };
   }
 
   // ---------- Boot ----------
@@ -1330,29 +1815,83 @@ a { color:inherit; text-decoration:none; }
     if (document.readyState !== 'loading') fn();
     else document.addEventListener('DOMContentLoaded', fn);
   }
-  // Always wire the reset button — works for mobile/reduced-motion fallback too
-  function wireResetBtn() {
-    var btn = document.getElementById('reset-btn');
-    if (!btn) return;
-    if (btn.dataset.wired === '1') return;
-    btn.dataset.wired = '1';
-    btn.addEventListener('click', function () {
-      try { localStorage.removeItem('terra-intro-completed'); } catch (e) {}
-      location.reload();
+
+  // ---- GLTF cross prototype loader ----
+  // Loads the Spline-exported cross mesh once, normalizes it to bounding radius 1.68
+  // (matches existing spawn/physics constants), and stores on window.__crossPrototype.
+  // Called BEFORE initScene so makeCross() finds the prototype synchronously.
+  function loadCrossPrototype(cb) {
+    if (typeof window.GLTFLoader === 'undefined' || typeof window.THREE === 'undefined') {
+      cb(null); return;
+    }
+    var loader = new window.GLTFLoader();
+    loader.load('assets/3d/cross.gltf', function (gltf) {
+      try {
+        var crossMesh = null;
+        gltf.scene.updateMatrixWorld(true);
+        // Spline names the merged cross mesh "Cube 2" (misleading — it's the SDF union output).
+        gltf.scene.traverse(function (o) {
+          if (o.isMesh && o.name === 'Cube 2') crossMesh = o;
+        });
+        // Fallback: pick largest mesh by vertex count.
+        if (!crossMesh) {
+          var maxV = 0;
+          gltf.scene.traverse(function (o) {
+            if (o.isMesh && o.geometry) {
+              var v = o.geometry.attributes.position.count;
+              if (v > maxV) { maxV = v; crossMesh = o; }
+            }
+          });
+        }
+        if (!crossMesh) { cb(null); return; }
+
+        // Bake parent transforms (root scale 0.01 + Group offset + Cube 2 rotation) into geometry.
+        var geom = crossMesh.geometry.clone();
+        geom.applyMatrix4(crossMesh.matrixWorld);
+
+        // Center on origin so spawn positions / physics treat the cross as origin-centered.
+        geom.computeBoundingBox();
+        var center = new window.THREE.Vector3();
+        geom.boundingBox.getCenter(center);
+        geom.translate(-center.x, -center.y, -center.z);
+
+        // Normalize to bounding sphere radius 1.68 (matches old capsule cross's bounding radius
+        // → all spawn box / overlap / Big Bang constants stay valid without re-tuning).
+        geom.computeBoundingSphere();
+        var TARGET_R = 1.68;
+        var scale = TARGET_R / geom.boundingSphere.radius;
+        geom.scale(scale, scale, scale);
+        geom.computeBoundingSphere();
+        geom.computeBoundingBox();
+
+        cb(geom);
+      } catch (e) {
+        console.error('[cross gltf] extract failed', e);
+        cb(null);
+      }
+    }, undefined, function (err) {
+      console.error('[cross gltf] load failed', err);
+      cb(null);
     });
   }
 
   ready(function () {
     initReveals();
-    wireResetBtn();
-    // Defer Three.js boot until script tag has loaded
-    if (typeof THREE !== 'undefined') {
-      initScene();
-    } else {
+    warpField = initWarpField();
+    // Defer Three.js boot until both THREE and GLTFLoader (ESM module) are ready.
+    function tryBoot() {
+      if (typeof window.THREE === 'undefined' || typeof window.GLTFLoader === 'undefined') return false;
+      loadCrossPrototype(function (proto) {
+        window.__crossPrototype = proto; // null on failure → makeCross uses procedural fallback
+        initScene();
+      });
+      return true;
+    }
+    if (!tryBoot()) {
       var maxTries = 60;
       var iv = setInterval(function () {
-        if (typeof THREE !== 'undefined') { clearInterval(iv); initScene(); }
-        else if (--maxTries <= 0) { clearInterval(iv); }
+        if (tryBoot()) clearInterval(iv);
+        else if (--maxTries <= 0) clearInterval(iv);
       }, 100);
     }
   });
