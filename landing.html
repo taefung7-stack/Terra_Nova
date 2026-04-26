@@ -496,6 +496,89 @@ a { color:inherit; text-decoration:none; }
 .reveal { opacity:0; transform:translateY(40px); transition:opacity 1s ease, transform 1s cubic-bezier(.2,.8,.2,1); }
 .reveal.in { opacity:1; transform:translateY(0); }
 
+/* =============== Hero puzzle UI =============== */
+.hover-label {
+  position:fixed;
+  pointer-events:none;
+  background:rgba(0,0,0,0.7);
+  border:1px solid var(--line2);
+  color:var(--txt);
+  padding:6px 12px;
+  font-size:.78rem;
+  letter-spacing:.15em;
+  font-family:'Space Grotesk', sans-serif;
+  border-radius:2px;
+  z-index:50;
+  opacity:0;
+  transform:translate(-50%, -120%);
+  transition:opacity .15s;
+  white-space:nowrap;
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+}
+.hover-label.visible { opacity:1; }
+.hover-label.letter { color:var(--accent); font-size:.92rem; letter-spacing:.3em; }
+
+.letter-counter {
+  position:absolute;
+  top:32px;
+  left:50%;
+  transform:translateX(-50%);
+  font-family:'Space Grotesk', sans-serif;
+  font-size:.74rem;
+  letter-spacing:.4em;
+  color:var(--dim);
+  z-index:10;
+  opacity:0;
+  transition:opacity .4s;
+  pointer-events:none;
+  text-shadow:0 1px 12px rgba(0,0,0,.6);
+}
+.letter-counter.active { opacity:1; }
+
+.discover-hint {
+  position:absolute;
+  bottom:100px;
+  left:50%;
+  transform:translateX(-50%);
+  font-family:'Space Grotesk', sans-serif;
+  font-size:.68rem;
+  letter-spacing:.4em;
+  color:var(--accent);
+  opacity:0;
+  z-index:10;
+  pointer-events:none;
+  text-shadow:0 1px 12px rgba(0,0,0,.6);
+  animation:discoverHintIn 1s ease forwards;
+}
+.discover-hint.fade-out { animation:discoverHintOut 1s ease forwards; }
+@keyframes discoverHintIn { to { opacity:.7; } }
+@keyframes discoverHintOut { to { opacity:0; } }
+
+.reset-btn {
+  position:fixed;
+  bottom:20px;
+  left:20px;
+  background:transparent;
+  border:1px solid var(--line);
+  color:var(--dim2);
+  width:32px; height:32px;
+  border-radius:50%;
+  font-size:.9rem;
+  cursor:pointer;
+  z-index:60;
+  opacity:.4;
+  transition:opacity .2s, color .2s, border-color .2s;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Space Grotesk', sans-serif;
+  line-height:1;
+}
+.reset-btn:hover { opacity:1; color:var(--accent); border-color:var(--line3); }
+@media (max-width: 720px) {
+  .reset-btn { display:none; }
+  .letter-counter, .discover-hint, .hover-label { display:none; }
+}
+
 /* =============== Mobile =============== */
 @media (max-width: 960px) {
   .subject-grid { grid-template-columns:repeat(2, 1fr); }
@@ -547,8 +630,13 @@ a { color:inherit; text-decoration:none; }
     <a href="#plans" class="hero-cta">구독 시작하기 →</a>
   </div>
 
+  <div class="letter-counter" id="letter-counter" aria-live="polite">0 / 7</div>
+
   <div class="scroll-cue" aria-hidden="true">SCROLL <span class="arrow">↓</span></div>
 </section>
+
+<div id="hover-label" class="hover-label" aria-hidden="true"></div>
+<button class="reset-btn" id="reset-btn" type="button" title="Replay intro" aria-label="Replay intro">↻</button>
 
 <main id="main">
 
@@ -753,6 +841,11 @@ a { color:inherit; text-decoration:none; }
     var matWhite = new THREE.MeshStandardMaterial({
       color: 0xF0F0F0, metalness: 0.2, roughness: 0.4
     });
+    // Letter-cross material: dimmer, recognizably distinct (white-ish, low emissive)
+    var matLetter = new THREE.MeshStandardMaterial({
+      color: 0xE6F7F4, metalness: 0.3, roughness: 0.45,
+      emissive: 0x2DD4BF, emissiveIntensity: 0.08
+    });
     function pickMat() {
       var r = Math.random();
       if (r < 0.7) return matMint;
@@ -775,43 +868,344 @@ a { color:inherit; text-decoration:none; }
 
     function rand(min, max) { return Math.random() * (max - min) + min; }
 
+    // Sprite factory for letter watermark
+    function makeLetterSprite(letter) {
+      var c = document.createElement('canvas');
+      c.width = 256; c.height = 256;
+      var ctx = c.getContext('2d');
+      ctx.clearRect(0, 0, 256, 256);
+      ctx.fillStyle = 'rgba(255,255,255,0.85)';
+      ctx.font = 'bold 200px "Space Grotesk", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(letter, 128, 128);
+      var texture = new THREE.CanvasTexture(c);
+      texture.needsUpdate = true;
+      var mat = new THREE.SpriteMaterial({
+        map: texture,
+        transparent: true,
+        opacity: 0.32,
+        depthTest: false,
+        depthWrite: false
+      });
+      var sprite = new THREE.Sprite(mat);
+      sprite.scale.set(0.9, 0.9, 1);
+      // Render letter sprite on top of its parent group
+      sprite.renderOrder = 5;
+      return sprite;
+    }
+
+    // Subject + letter pools
+    var SUBJECTS = [
+      '수학', '수학Ⅰ', '수학Ⅱ', '확률과 통계', '미적분',
+      '통합과학', '물리Ⅰ', '화학Ⅰ', '생명과학Ⅰ', '지구과학Ⅰ',
+      '통합사회', '사회·문화', '경제', '정치와 법', '세계사', '한국사',
+      '국어', '문학', '독서', '화법과 작문',
+      '예술', '체육', '기술·가정', '정보',
+      '윤리', '세계 지리', '한국 지리', '동아시아사'
+    ];
+    var LETTERS = ['E', 'N', 'G', 'L', 'I', 'S', 'H'];
+
     var shapes = [];
-    var COUNT = 18;
-    for (var i = 0; i < COUNT; i++) {
-      var mat = pickMat();
-      var s = makePlus(mat);
-      var sc = rand(0.7, 1.4);
-      s.scale.setScalar(sc);
-      var x = rand(-6, 6);
-      var y = rand(-4, 4);
-      var z = rand(-3, 3);
-      s.position.set(x, y, z);
-      s.rotation.set(rand(0, Math.PI * 2), rand(0, Math.PI * 2), rand(0, Math.PI * 2));
-      s.userData.home = s.position.clone();
-      s.userData.spin = {
-        x: rand(0.0015, 0.008) * (Math.random() < 0.5 ? 1 : -1),
-        y: rand(0.0015, 0.008) * (Math.random() < 0.5 ? 1 : -1),
-        z: rand(0.0008, 0.004) * (Math.random() < 0.5 ? 1 : -1)
-      };
-      s.userData.bobPhase = rand(0, Math.PI * 2);
-      s.userData.bobAmp = rand(0.05, 0.15);
-      scene.add(s);
-      shapes.push(s);
+    var COUNT = 50;
+
+    // localStorage re-visitor flag
+    var isReturning = (function () {
+      try { return localStorage.getItem('terra-intro-completed') === '1'; } catch (e) { return false; }
+    })();
+
+    // State for puzzle / explosion
+    var collected = 0;
+    var bigBangTriggered = false;
+    var starfield = null;
+    var counterEl = document.getElementById('letter-counter');
+    var hoverLabel = document.getElementById('hover-label');
+
+    // Build shapes (skip if returning visitor)
+    if (!isReturning) {
+      // Shuffle indices so letter-crosses aren't always the first 7 in space
+      var letterIndices = [];
+      var allIdx = [];
+      for (var k = 0; k < COUNT; k++) allIdx.push(k);
+      // pick 7 random indices for letters
+      for (var lp = 0; lp < 7; lp++) {
+        var pi = Math.floor(Math.random() * allIdx.length);
+        letterIndices.push(allIdx.splice(pi, 1)[0]);
+      }
+      var letterCursor = 0;
+
+      for (var i = 0; i < COUNT; i++) {
+        var isLetter = letterIndices.indexOf(i) !== -1;
+        var mat = isLetter ? matLetter : pickMat();
+        var s = makePlus(mat);
+        var sc = isLetter ? rand(1.15, 1.45) : rand(0.7, 1.4);
+        s.scale.setScalar(sc);
+        var x = rand(-7, 7);
+        var y = rand(-5, 5);
+        var z = rand(-4, 4);
+        s.position.set(x, y, z);
+        s.rotation.set(rand(0, Math.PI * 2), rand(0, Math.PI * 2), rand(0, Math.PI * 2));
+        s.userData.home = s.position.clone();
+        s.userData.spin = {
+          x: rand(0.0015, 0.008) * (Math.random() < 0.5 ? 1 : -1) * (isLetter ? 0.6 : 1),
+          y: rand(0.0015, 0.008) * (Math.random() < 0.5 ? 1 : -1) * (isLetter ? 0.6 : 1),
+          z: rand(0.0008, 0.004) * (Math.random() < 0.5 ? 1 : -1) * (isLetter ? 0.6 : 1)
+        };
+        s.userData.bobPhase = rand(0, Math.PI * 2);
+        s.userData.bobAmp = rand(0.05, 0.15);
+        s.userData.isLetter = isLetter;
+        s.userData.activated = false;
+        if (isLetter) {
+          s.userData.letter = LETTERS[letterCursor++];
+          s.userData.subject = null;
+          var sprite = makeLetterSprite(s.userData.letter);
+          s.add(sprite);
+          s.userData.letterSprite = sprite;
+        } else {
+          s.userData.letter = null;
+          s.userData.subject = SUBJECTS[Math.floor(Math.random() * SUBJECTS.length)];
+        }
+        scene.add(s);
+        shapes.push(s);
+      }
     }
 
     // Mouse tracking (normalized -1..1)
     var mouseX = 0, mouseY = 0;
     var targetMouseX = 0, targetMouseY = 0;
+    var lastClientX = -1, lastClientY = -1;
+
+    // Raycaster for hover/click
+    var raycaster = new THREE.Raycaster();
+    var ndc = new THREE.Vector2();
+
+    function findShapeAncestor(obj) {
+      var n = obj;
+      while (n) {
+        if (n.userData && (n.userData.isLetter === true || n.userData.subject)) return n;
+        n = n.parent;
+      }
+      return null;
+    }
+
+    function updateHoverLabel(clientX, clientY) {
+      if (bigBangTriggered) {
+        hoverLabel.classList.remove('visible');
+        canvas.style.cursor = 'default';
+        return;
+      }
+      ndc.set(targetMouseX, targetMouseY);
+      raycaster.setFromCamera(ndc, camera);
+      var hits = raycaster.intersectObjects(shapes, true);
+      if (hits.length > 0) {
+        var hitShape = findShapeAncestor(hits[0].object);
+        if (hitShape) {
+          var ud = hitShape.userData;
+          var text = ud.isLetter ? ud.letter : ud.subject;
+          hoverLabel.textContent = text || '';
+          hoverLabel.classList.toggle('letter', !!ud.isLetter);
+          hoverLabel.classList.add('visible');
+          hoverLabel.style.left = clientX + 'px';
+          hoverLabel.style.top = (clientY - 20) + 'px';
+          canvas.style.cursor = (ud.isLetter && !ud.activated) ? 'pointer' : 'default';
+          return;
+        }
+      }
+      hoverLabel.classList.remove('visible');
+      canvas.style.cursor = 'default';
+    }
+
     function onMove(e) {
       var rect = canvas.getBoundingClientRect();
       targetMouseX = ((e.clientX - rect.left) / rect.width) * 2 - 1;
       targetMouseY = -(((e.clientY - rect.top) / rect.height) * 2 - 1);
+      lastClientX = e.clientX;
+      lastClientY = e.clientY;
+      if (hoverLabel) updateHoverLabel(e.clientX, e.clientY);
     }
     window.addEventListener('mousemove', onMove, { passive: true });
     window.addEventListener('touchmove', function (e) {
       if (!e.touches[0]) return;
       onMove(e.touches[0]);
     }, { passive: true });
+
+    // Click handler — letter collection
+    function onClick(e) {
+      if (bigBangTriggered) return;
+      var rect = canvas.getBoundingClientRect();
+      var nx = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+      var ny = -(((e.clientY - rect.top) / rect.height) * 2 - 1);
+      ndc.set(nx, ny);
+      raycaster.setFromCamera(ndc, camera);
+      var hits = raycaster.intersectObjects(shapes, true);
+      if (hits.length === 0) return;
+      var shape = findShapeAncestor(hits[0].object);
+      if (shape && shape.userData.isLetter && !shape.userData.activated) {
+        activateLetter(shape);
+      }
+    }
+    canvas.addEventListener('click', onClick);
+
+    function activateLetter(shape) {
+      shape.userData.activated = true;
+      collected++;
+
+      // Swap material on cross meshes — bright white-mint with strong emissive
+      var activeMat = new THREE.MeshStandardMaterial({
+        color: 0xffffff,
+        metalness: 0.2,
+        roughness: 0.3,
+        emissive: 0x2DD4BF,
+        emissiveIntensity: 0.55
+      });
+      shape.children.forEach(function (child) {
+        if (child.isMesh) {
+          child.material = activeMat;
+        }
+      });
+      if (shape.userData.letterSprite) {
+        shape.userData.letterSprite.material.opacity = 1.0;
+      }
+
+      // Scale bump animation
+      var startScale = shape.scale.x;
+      var peak = startScale * 1.4;
+      var settled = startScale * 1.15;
+      var t0b = performance.now();
+      function bump() {
+        var dt = (performance.now() - t0b) / 320;
+        if (dt < 1) {
+          var s = startScale + (peak - startScale) * Math.sin(dt * Math.PI);
+          shape.scale.set(s, s, s);
+          requestAnimationFrame(bump);
+        } else {
+          shape.scale.set(settled, settled, settled);
+        }
+      }
+      bump();
+
+      if (counterEl) {
+        counterEl.textContent = collected + ' / 7';
+        counterEl.classList.add('active');
+      }
+      // Remove discover hint as soon as user makes first click
+      var existingHint = document.querySelector('.discover-hint');
+      if (existingHint && !existingHint.classList.contains('fade-out')) {
+        existingHint.classList.add('fade-out');
+        setTimeout(function () { existingHint.remove(); }, 1100);
+      }
+
+      if (collected >= 7) {
+        setTimeout(triggerBigBang, 700);
+      }
+    }
+
+    // Discover hint after 4s idle if no clicks yet
+    if (!isReturning) {
+      setTimeout(function () {
+        if (collected === 0 && !bigBangTriggered) {
+          var hint = document.createElement('div');
+          hint.className = 'discover-hint';
+          hint.textContent = 'CLICK THE LETTERS';
+          var heroUi = document.getElementById('hero');
+          if (heroUi) heroUi.appendChild(hint);
+          setTimeout(function () { if (hint.parentNode) hint.classList.add('fade-out'); }, 6000);
+          setTimeout(function () { if (hint.parentNode) hint.remove(); }, 7500);
+        }
+      }, 4000);
+    }
+
+    // ---------- Big bang + star rain ----------
+    function triggerBigBang() {
+      bigBangTriggered = true;
+      if (counterEl) counterEl.classList.remove('active');
+      if (hoverLabel) hoverLabel.classList.remove('visible');
+      canvas.style.cursor = 'default';
+
+      var center = new THREE.Vector3(0, 0, 0);
+      shapes.forEach(function (s) {
+        var dir = s.position.clone().sub(center);
+        if (dir.lengthSq() < 0.0001) {
+          dir.set(rand(-1, 1), rand(-1, 1), rand(-1, 1));
+        }
+        dir.normalize().multiplyScalar(rand(0.3, 0.6));
+        s.userData.velocity = dir;
+        s.userData.exploding = true;
+      });
+
+      setTimeout(spawnStarRain, 200);
+    }
+
+    function spawnStarRain() {
+      var STAR_COUNT = 3000;
+      var positions = new Float32Array(STAR_COUNT * 3);
+      var velocities = new Float32Array(STAR_COUNT * 3);
+      var colors = new Float32Array(STAR_COUNT * 3);
+
+      for (var i = 0; i < STAR_COUNT; i++) {
+        positions[i * 3]     = rand(-15, 15);
+        positions[i * 3 + 1] = rand(8, 20);
+        positions[i * 3 + 2] = rand(-5, 5);
+
+        velocities[i * 3]     = rand(-0.005, 0.005);
+        velocities[i * 3 + 1] = rand(-0.04, -0.02);
+        velocities[i * 3 + 2] = rand(-0.005, 0.005);
+
+        if (Math.random() < 0.8) {
+          colors[i * 3] = 0.176; colors[i * 3 + 1] = 0.831; colors[i * 3 + 2] = 0.749;
+        } else {
+          colors[i * 3] = 1; colors[i * 3 + 1] = 1; colors[i * 3 + 2] = 1;
+        }
+      }
+
+      var geom = new THREE.BufferGeometry();
+      geom.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+      geom.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+      geom.userData.velocities = velocities;
+
+      var mat = new THREE.PointsMaterial({
+        size: 0.04,
+        vertexColors: true,
+        transparent: true,
+        opacity: 0.95,
+        sizeAttenuation: true,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false
+      });
+
+      starfield = new THREE.Points(geom, mat);
+      scene.add(starfield);
+
+      // Remove old crosses after they've scattered
+      setTimeout(function () {
+        shapes.forEach(function (s) { scene.remove(s); });
+      }, 2500);
+
+      // Persist completion + subtle auto-scroll
+      setTimeout(function () {
+        try { localStorage.setItem('terra-intro-completed', '1'); } catch (e) {}
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          window.scrollTo({ top: window.innerHeight * 0.95, behavior: 'smooth' });
+        }
+      }, 3000);
+    }
+
+    // Returning visitor: skip puzzle, go straight to ambient star rain
+    if (isReturning) {
+      bigBangTriggered = true;
+      collected = 7;
+      spawnStarRain();
+      if (counterEl) counterEl.classList.remove('active');
+    }
+
+    // Reset button — also bind in scene scope so it's wired even after init
+    var resetBtn = document.getElementById('reset-btn');
+    if (resetBtn) {
+      resetBtn.addEventListener('click', function () {
+        try { localStorage.removeItem('terra-intro-completed'); } catch (e) {}
+        location.reload();
+      });
+    }
 
     // Resize
     function resize() {
@@ -853,41 +1247,69 @@ a { color:inherit; text-decoration:none; }
       mouseX += (targetMouseX - mouseX) * 0.08;
       mouseY += (targetMouseY - mouseY) * 0.08;
 
-      // Mouse projected onto Z=0 plane (matches camera FOV approx)
       var mWorldX = mouseX * 7;
       var mWorldY = mouseY * 4;
 
-      for (var i = 0; i < shapes.length; i++) {
-        var s = shapes[i];
-        var home = s.userData.home;
+      if (!bigBangTriggered) {
+        for (var i = 0; i < shapes.length; i++) {
+          var s = shapes[i];
+          var home = s.userData.home;
 
-        // Idle bob
-        var bob = Math.sin(t * 0.9 + s.userData.bobPhase) * s.userData.bobAmp;
+          var bob = Math.sin(t * 0.9 + s.userData.bobPhase) * s.userData.bobAmp;
 
-        // Spring back toward home (with bob applied to Y)
-        var hx = home.x;
-        var hy = home.y + bob;
-        var hz = home.z;
-        s.position.x += (hx - s.position.x) * 0.08;
-        s.position.y += (hy - s.position.y) * 0.08;
-        s.position.z += (hz - s.position.z) * 0.08;
+          var hx = home.x;
+          var hy = home.y + bob;
+          var hz = home.z;
+          s.position.x += (hx - s.position.x) * 0.08;
+          s.position.y += (hy - s.position.y) * 0.08;
+          s.position.z += (hz - s.position.z) * 0.08;
 
-        // Repulsion from cursor (XY plane)
-        var dx = s.position.x - mWorldX;
-        var dy = s.position.y - mWorldY;
-        var dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 2.2 && dist > 0.0001) {
-          var force = (2.2 - dist) * 0.22;
-          s.position.x += (dx / dist) * force;
-          s.position.y += (dy / dist) * force;
-          // Slight rotational kick for liveliness
-          s.rotation.z += force * 0.03;
+          var dx = s.position.x - mWorldX;
+          var dy = s.position.y - mWorldY;
+          var dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 2.2 && dist > 0.0001) {
+            var force = (2.2 - dist) * 0.22;
+            s.position.x += (dx / dist) * force;
+            s.position.y += (dy / dist) * force;
+            s.rotation.z += force * 0.03;
+          }
+
+          s.rotation.x += s.userData.spin.x;
+          s.rotation.y += s.userData.spin.y;
+          s.rotation.z += s.userData.spin.z;
         }
+      } else {
+        // Exploding shapes
+        for (var ei = 0; ei < shapes.length; ei++) {
+          var es = shapes[ei];
+          if (es.userData.exploding && es.userData.velocity) {
+            es.position.add(es.userData.velocity);
+            es.userData.velocity.multiplyScalar(1.04);
+            es.rotation.x += 0.02;
+            es.rotation.y += 0.02;
+            var sc = es.scale.x * 0.985;
+            es.scale.set(sc, sc, sc);
+          }
+        }
+      }
 
-        // Spin
-        s.rotation.x += s.userData.spin.x;
-        s.rotation.y += s.userData.spin.y;
-        s.rotation.z += s.userData.spin.z;
+      // Starfield update
+      if (starfield) {
+        var pos = starfield.geometry.attributes.position.array;
+        var vel = starfield.geometry.userData.velocities;
+        for (var pi = 0; pi < pos.length; pi += 3) {
+          pos[pi]     += vel[pi];
+          pos[pi + 1] += vel[pi + 1];
+          pos[pi + 2] += vel[pi + 2];
+          if (pos[pi + 1] < -10) {
+            pos[pi + 1] = rand(8, 12);
+            pos[pi]     = rand(-15, 15);
+          }
+        }
+        starfield.geometry.attributes.position.needsUpdate = true;
+        if (starfield.material.opacity > 0.4) {
+          starfield.material.opacity -= 0.001;
+        }
       }
 
       // Camera idle parallax
@@ -908,8 +1330,21 @@ a { color:inherit; text-decoration:none; }
     if (document.readyState !== 'loading') fn();
     else document.addEventListener('DOMContentLoaded', fn);
   }
+  // Always wire the reset button — works for mobile/reduced-motion fallback too
+  function wireResetBtn() {
+    var btn = document.getElementById('reset-btn');
+    if (!btn) return;
+    if (btn.dataset.wired === '1') return;
+    btn.dataset.wired = '1';
+    btn.addEventListener('click', function () {
+      try { localStorage.removeItem('terra-intro-completed'); } catch (e) {}
+      location.reload();
+    });
+  }
+
   ready(function () {
     initReveals();
+    wireResetBtn();
     // Defer Three.js boot until script tag has loaded
     if (typeof THREE !== 'undefined') {
       initScene();
