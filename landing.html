@@ -223,24 +223,28 @@ a { color:inherit; text-decoration:none; }
   font-size:.84rem;
   letter-spacing:.16em;
   font-weight:500;
+  line-height:1;                      /* prevent baseline drift inside the pill */
   color:var(--accent);
   background:rgba(10,10,10,.55);
   border:1px solid var(--line3);
   border-radius:999px;
-  padding:9px 22px 9px 32px;
+  /* Symmetric padding + inline-flex with gap = dot+text centered as one unit */
+  padding:10px 22px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
   backdrop-filter:blur(2px);
   -webkit-backdrop-filter:blur(2px);
 }
 .hero-tagline::before {
   content:'';
-  position:absolute;
-  left:14px;
-  top:50%;
-  transform:translateY(-50%);
+  /* Now an inline flex item — flows with text, both centered together */
   width:6px; height:6px;
   border-radius:50%;
   background:var(--accent);
   box-shadow:0 0 8px rgba(45,212,191,.85);
+  flex:0 0 auto;
 }
 .hero-english {
   --para-x: 0px;
@@ -249,7 +253,7 @@ a { color:inherit; text-decoration:none; }
   font-family:'Space Grotesk', sans-serif;
   font-size:1.55rem;
   letter-spacing:.55em;
-  font-weight:400;
+  font-weight:700;       /* Match TERRA NOVA brand weight (canvas Sprite uses 700) */
   color:rgba(240,240,240,.78);
   padding-left:.55em; /* compensate trailing letter-spacing for visual centering */
 }
@@ -790,6 +794,10 @@ a { color:inherit; text-decoration:none; }
   window.THREE = THREE;
   window.GLTFLoader = GLTFLoader;
 </script>
+<!-- Inline GLTF data so file:// (double-click open) works without HTTP server.
+     Plain <script> tag is loaded via the script loader (not fetch), so it's NOT
+     blocked by file:// CORS. Defines window.__crossGltfText. -->
+<script src="assets/3d/cross-gltf-data.js" defer></script>
 <script>
 (function () {
   'use strict';
@@ -1592,12 +1600,23 @@ a { color:inherit; text-decoration:none; }
       camera.lookAt(0, 0, 0);
       // Group parallax: TERRA NOVA Sprite + tagline pill + ENGLISH all driven by the
       // SAME smoothed mouseX/Y → guaranteed in lockstep. No secondary easing on TN.
-      // Calibration: 0.5 world unit ≈ 40px at viewport_h≈900 (1 unit = h/11.18 px).
+      // DYNAMIC calibration (was hardcoded for viewport_h=900):
+      //   PerspectiveCamera FOV=50° at z=12, terraNova at z=0
+      //   → visible world height = 2 × 12 × tan(25°) ≈ 11.19 units
+      //   → 1 world unit = currentHeroHeight / 11.19 px
+      //   So DOM displacement (px) = WebGL displacement (world units) × pxPerUnit
+      //   This keeps lockstep exact at ANY viewport size (1080p, 720p, etc.)
       if (bigBangTriggered && terraNova.visible) {
-        terraNova.position.x = -mouseX * 0.5;
-        terraNova.position.y = -mouseY * 0.32;
-        var domDx = (-mouseX * 40).toFixed(1) + 'px';
-        var domDy = (-mouseY * 26).toFixed(1) + 'px';
+        var tnDx = -mouseX * 0.5;   // world units
+        var tnDy = -mouseY * 0.32;  // world units
+        terraNova.position.x = tnDx;
+        terraNova.position.y = tnDy;
+        var pxPerUnit = hero.clientHeight / 11.19;
+        // X axis: Three.js world+X = screen right = CSS translateX(+) → SAME sign
+        // Y axis: Three.js world+Y = screen UP, but CSS translateY(+) = screen DOWN
+        //         → INVERT sign for DOM Y to keep visual lockstep with terraNova
+        var domDx = (tnDx * pxPerUnit).toFixed(1) + 'px';
+        var domDy = (-tnDy * pxPerUnit).toFixed(1) + 'px';
         if (taglineEl) {
           taglineEl.style.setProperty('--para-x', domDx);
           taglineEl.style.setProperty('--para-y', domDy);
@@ -1824,8 +1843,14 @@ a { color:inherit; text-decoration:none; }
     if (typeof window.GLTFLoader === 'undefined' || typeof window.THREE === 'undefined') {
       cb(null); return;
     }
+    if (typeof window.__crossGltfText === 'undefined') {
+      console.error('[cross gltf] inline data missing — assets/3d/cross-gltf-data.js not loaded?');
+      cb(null); return;
+    }
     var loader = new window.GLTFLoader();
-    loader.load('assets/3d/cross.gltf', function (gltf) {
+    // Use parse() (not load()) — reads inline JS string instead of fetching.
+    // Works with both file:// and http:// (no fetch involved).
+    loader.parse(window.__crossGltfText, '', function (gltf) {
       try {
         var crossMesh = null;
         gltf.scene.updateMatrixWorld(true);
@@ -1869,8 +1894,8 @@ a { color:inherit; text-decoration:none; }
         console.error('[cross gltf] extract failed', e);
         cb(null);
       }
-    }, undefined, function (err) {
-      console.error('[cross gltf] load failed', err);
+    }, function (err) {
+      console.error('[cross gltf] parse failed', err);
       cb(null);
     });
   }
@@ -1878,13 +1903,21 @@ a { color:inherit; text-decoration:none; }
   ready(function () {
     initReveals();
     warpField = initWarpField();
-    // Defer Three.js boot until both THREE and GLTFLoader (ESM module) are ready.
+    // Defer Three.js boot until THREE + GLTFLoader (ESM module) are ready.
+    // Inline GLTF data (cross-gltf-data.js) is checked separately — if missing,
+    // makeCross falls back to procedural capsule cross (page still works).
     function tryBoot() {
       if (typeof window.THREE === 'undefined' || typeof window.GLTFLoader === 'undefined') return false;
-      loadCrossPrototype(function (proto) {
-        window.__crossPrototype = proto; // null on failure → makeCross uses procedural fallback
+      if (typeof window.__crossGltfText !== 'undefined') {
+        loadCrossPrototype(function (proto) {
+          window.__crossPrototype = proto; // null on failure → procedural fallback
+          initScene();
+        });
+      } else {
+        console.warn('[cross] inline GLTF data missing — using procedural fallback');
+        window.__crossPrototype = null;
         initScene();
-      });
+      }
       return true;
     }
     if (!tryBoot()) {
