@@ -185,6 +185,42 @@
 </style>
 <script src="./analytics.js" defer></script>
 <link rel="icon" type="image/png" href="./logo.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "홈", "item": "https://terra-nova.kr/"},
+        {"@type": "ListItem", "position": 2, "name": "레벨 테스트", "item": "https://terra-nova.kr/level_test.html"}
+      ]
+    },
+    {
+      "@type": "Quiz",
+      "@id": "https://terra-nova.kr/level_test.html#quiz",
+      "name": "Terra Nova 영어 레벨 정밀 진단",
+      "description": "20문항으로 나에게 맞는 학습 레벨(MOON ~ SUN)을 10분 만에 확인하는 영어 진단 테스트. 어휘·독해·문법·논리 종합 분석, 학년 ceiling 자동 조정.",
+      "url": "https://terra-nova.kr/level_test.html",
+      "inLanguage": "ko",
+      "isAccessibleForFree": true,
+      "educationalLevel": "Elementary 3rd Grade ~ High School 3rd Grade",
+      "educationalUse": "assessment",
+      "learningResourceType": "Diagnostic Quiz",
+      "teaches": "English reading proficiency level",
+      "timeRequired": "PT10M",
+      "numberOfQuestions": 20,
+      "about": [
+        {"@type": "Thing", "name": "어휘 (Vocabulary)"},
+        {"@type": "Thing", "name": "독해 (Reading Comprehension)"},
+        {"@type": "Thing", "name": "문법 (Grammar)"},
+        {"@type": "Thing", "name": "논리 (Logical Reasoning)"}
+      ],
+      "provider": {"@id": "https://terra-nova.kr/#organization"}
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
