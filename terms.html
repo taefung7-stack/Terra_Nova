@@ -11,6 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="shared.css">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<script src="./site-config.js"></script>
 <script src="./analytics.js" defer></script>
 <style>
   :root{--dark:#0A0A0A;--mid:#111;--card:#1C1C1C;--accent:#2DD4BF;--txt:#F0F0F0;--dim:rgba(240,240,240,.72);--line:rgba(255,255,255,.07);}
@@ -154,11 +155,49 @@
   <h2>부칙</h2>
   <p>본 약관은 2026년 1월 1일부터 시행합니다.</p>
 
-  <div class="meta" style="margin-top:48px;">
-    <strong style="color:#fff;">문의</strong><br>
-    이메일: support@terra-nova.kr<br>
-    카카오채널: @TerraNovaEnglish
+  <h2>사업자 정보 (전자상거래법 제13조)</h2>
+  <div class="meta">
+    상호: <span data-biz="companyName">Terra Nova English</span><br>
+    대표자: <span data-biz="representative">강성엽</span><br>
+    사업자등록번호: <span data-biz="businessNumber">___-__-_____</span><br>
+    통신판매업 신고번호: <span data-biz="ecommerceNumber">제2026-서울____-____호</span><br>
+    사업장 주소: <span data-biz="address">—</span><br>
+    이메일: <span data-biz="email">support@terra-nova.kr</span><br>
+    전화: <span data-biz="phone">010-8248-6428</span><br>
+    호스팅 제공: <span data-biz="hosting">GitHub Pages · Supabase Inc.</span>
   </div>
+
+  <div class="meta" style="margin-top:24px;">
+    <strong style="color:#fff;">문의 / 분쟁 처리 책임자</strong><br>
+    이름: <span data-biz="csName">강성엽</span><br>
+    이메일: <span data-biz="csEmail">support@terra-nova.kr</span><br>
+    전화: <span data-biz="csPhone">010-8248-6428</span><br>
+    카카오채널: <span data-biz="kakao">@TerraNovaEnglish</span>
+  </div>
+  <script>
+  (function(){
+    const B = window.BUSINESS_INFO || {};
+    const safe = (v, fb='—') => (v && String(v).trim() && !String(v).includes('___')) ? v : fb;
+    const map = {
+      companyName: B.companyName,
+      representative: B.representative,
+      businessNumber: B.businessNumber,
+      ecommerceNumber: B.ecommerceNumber,
+      address: [B.address, B.addressDetail].filter(Boolean).join(' '),
+      email: B.email,
+      phone: B.phone,
+      hosting: B.hosting,
+      csName: B.customerServiceOfficer && B.customerServiceOfficer.name,
+      csEmail: B.customerServiceOfficer && B.customerServiceOfficer.email,
+      csPhone: B.customerServiceOfficer && B.customerServiceOfficer.phone,
+      kakao: B.kakaoChannel,
+    };
+    document.querySelectorAll('[data-biz]').forEach(el => {
+      const key = el.getAttribute('data-biz');
+      if (map[key] !== undefined) el.textContent = safe(map[key], el.textContent);
+    });
+  })();
+  </script>
 </main>
 
 <script type="module" src="./nav-auth.js"></script>

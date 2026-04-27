@@ -19,6 +19,7 @@
 <meta name="apple-mobile-web-app-title" content="Terra Nova">
 <link rel="apple-touch-icon" href="./logo.png">
 <script src="./pwa-register.js" defer></script>
+<script src="./site-config.js"></script>
 <link rel="canonical" href="https://terra-nova.kr/">
 <!-- Open Graph -->
 <meta property="og:type" content="website">
@@ -3116,11 +3117,32 @@
   <div class="footer-links">
     <a href="terms.html">이용약관</a>
     <a href="privacy.html" style="font-weight:700;">개인정보처리방침</a>
+    <a href="refund.html">환불·교환 정책</a>
     <a href="faq.html">FAQ</a>
     <a href="mailto:support@terra-nova.kr">문의</a>
   </div>
-  <p>© 2026 Terra Nova English. All rights reserved.</p>
+  <!-- 사업자정보 (전자상거래법 제13조 의무 표시) — site-config.js의 BUSINESS_INFO에서 자동 채움 -->
+  <div class="tn-business-info" style="margin-top:18px;padding-top:18px;border-top:1px solid rgba(255,255,255,.05);max-width:760px;font-size:.66rem;color:rgba(240,240,240,.45);line-height:1.85;letter-spacing:.2px;">
+    <div id="biz-line-1" style="margin-bottom:4px;"></div>
+    <div id="biz-line-2" style="margin-bottom:4px;"></div>
+    <div id="biz-line-3"></div>
+  </div>
+  <p style="margin-top:14px;">© 2026 Terra Nova English. All rights reserved.</p>
 </footer>
+<script>
+  // BUSINESS_INFO 채우기 (site-config.js에서 로드)
+  (function(){
+    const B = window.BUSINESS_INFO || {};
+    const safe = (v, fb='—') => (v && String(v).trim() && !String(v).includes('___')) ? v : fb;
+    const addr = [B.address, B.addressDetail].filter(Boolean).join(' ');
+    const l1 = document.getElementById('biz-line-1');
+    const l2 = document.getElementById('biz-line-2');
+    const l3 = document.getElementById('biz-line-3');
+    if (l1) l1.innerHTML = `<strong style="color:rgba(255,255,255,.6);font-weight:600;">${safe(B.companyName,'Terra Nova English')}</strong> · 대표 ${safe(B.representative)} · 사업자등록번호 ${safe(B.businessNumber)}`;
+    if (l2) l2.innerHTML = `통신판매업 신고번호 ${safe(B.ecommerceNumber)}${addr ? ' · ' + addr : ''}`;
+    if (l3) l3.innerHTML = `Tel ${safe(B.phone)} · Email <a href="mailto:${safe(B.email,'support@terra-nova.kr')}" style="color:inherit;text-decoration:underline;">${safe(B.email,'support@terra-nova.kr')}</a>${B.customerServiceOfficer && B.customerServiceOfficer.name ? ' · 개인정보보호책임자 ' + B.customerServiceOfficer.name : ''}`;
+  })();
+</script>
 
 <script>
   const cursor=document.getElementById('cursor');

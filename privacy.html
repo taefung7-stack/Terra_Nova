@@ -11,6 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="shared.css">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<script src="./site-config.js"></script>
 <script src="./analytics.js" defer></script>
 <style>
   :root{--dark:#0A0A0A;--mid:#111;--card:#1C1C1C;--accent:#2DD4BF;--txt:#F0F0F0;--dim:rgba(240,240,240,.72);--line:rgba(255,255,255,.07);}
@@ -144,13 +145,44 @@
   <h2>9. 쿠키 운영</h2>
   <p>회사는 서비스 개선을 위해 쿠키를 사용합니다. 이용자는 브라우저 설정에서 쿠키 저장을 거부할 수 있으나, 이 경우 일부 서비스 이용에 제한이 있을 수 있습니다.</p>
 
-  <h2>10. 개인정보 보호책임자</h2>
+  <h2>10. 개인정보 보호책임자 및 사업자 정보</h2>
   <div class="meta">
     <strong style="color:#fff;">개인정보 보호책임자</strong><br>
-    이름: 강성엽<br>
-    이메일: support@terra-nova.kr<br>
-    연락처: 010-8248-6428
+    이름: <span data-biz="privacyOfficerName">강성엽</span><br>
+    이메일: <span data-biz="privacyOfficerEmail">support@terra-nova.kr</span><br>
+    연락처: <span data-biz="privacyOfficerPhone">010-8248-6428</span>
   </div>
+  <div class="meta">
+    <strong style="color:#fff;">사업자 정보</strong><br>
+    상호: <span data-biz="companyName">Terra Nova English</span><br>
+    대표자: <span data-biz="representative">강성엽</span><br>
+    사업자등록번호: <span data-biz="businessNumber">___-__-_____</span><br>
+    통신판매업 신고번호: <span data-biz="ecommerceNumber">제2026-서울____-____호</span><br>
+    사업장 주소: <span data-biz="address">—</span><br>
+    이메일: <span data-biz="email">support@terra-nova.kr</span> · 전화: <span data-biz="phone">010-8248-6428</span>
+  </div>
+  <script>
+  (function(){
+    const B = window.BUSINESS_INFO || {};
+    const safe = (v, fb='—') => (v && String(v).trim() && !String(v).includes('___')) ? v : fb;
+    const map = {
+      privacyOfficerName: B.privacyOfficer && B.privacyOfficer.name,
+      privacyOfficerEmail: B.privacyOfficer && B.privacyOfficer.email,
+      privacyOfficerPhone: B.privacyOfficer && B.privacyOfficer.phone,
+      companyName: B.companyName,
+      representative: B.representative,
+      businessNumber: B.businessNumber,
+      ecommerceNumber: B.ecommerceNumber,
+      address: [B.address, B.addressDetail].filter(Boolean).join(' '),
+      email: B.email,
+      phone: B.phone,
+    };
+    document.querySelectorAll('[data-biz]').forEach(el => {
+      const key = el.getAttribute('data-biz');
+      if (map[key] !== undefined) el.textContent = safe(map[key], el.textContent);
+    });
+  })();
+  </script>
 
   <h2>11. 권익침해 구제 방법</h2>
   <ul>
