@@ -12,23 +12,81 @@
   <meta property="og:url" content="https://terra-nova.kr/subscription_detail_complete.html" />
   <meta property="og:image" content="https://terra-nova.kr/og-cover.svg" />
   <meta name="twitter:card" content="summary_large_image" />
-  <!-- Schema.org Course -->
+  <!-- Schema.org Course + Breadcrumb -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Course",
-    "name": "Terra Nova 월간 독해 학습지",
-    "description": "교과 연계 영어 독해 월간 구독 학습지. 10단계 레벨(MOON~SUN).",
-    "provider": {"@type":"Organization","name":"Terra Nova English","sameAs":"https://terra-nova.kr/"},
-    "hasCourseInstance":[
-      {"@type":"CourseInstance","name":"LIGHT (PDF)","courseMode":"online","courseWorkload":"PT10H"},
-      {"@type":"CourseInstance","name":"STANDARD (PDF+실물책)","courseMode":"blended","courseWorkload":"PT15H"},
-      {"@type":"CourseInstance","name":"PREMIUM (+해설강의)","courseMode":"blended","courseWorkload":"PT20H"}
-    ],
-    "offers":[
-      {"@type":"Offer","name":"LIGHT","price":"11900","priceCurrency":"KRW","category":"monthly"},
-      {"@type":"Offer","name":"STANDARD","price":"24900","priceCurrency":"KRW","category":"monthly"},
-      {"@type":"Offer","name":"PREMIUM","price":"38900","priceCurrency":"KRW","category":"monthly"}
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "홈", "item": "https://terra-nova.kr/"},
+          {"@type": "ListItem", "position": 2, "name": "구독 상세", "item": "https://terra-nova.kr/subscription_detail_complete.html"}
+        ]
+      },
+      {
+        "@type": "Course",
+        "@id": "https://terra-nova.kr/subscription_detail_complete.html#course",
+        "name": "Terra Nova 월간 독해 학습지",
+        "description": "교과 연계 영어 독해 월간 구독 학습지. MOON(초3)부터 SUN(고3/수능)까지 10단계 레벨, 매월 20지문.",
+        "url": "https://terra-nova.kr/subscription_detail_complete.html",
+        "inLanguage": "ko",
+        "educationalLevel": "Elementary 3rd Grade ~ High School 3rd Grade",
+        "teaches": "English reading comprehension with cross-curricular knowledge integration",
+        "provider": {"@type": "Organization", "name": "Terra Nova English", "sameAs": "https://terra-nova.kr/"},
+        "hasCourseInstance": [
+          {"@type": "CourseInstance", "name": "LIGHT (PDF)", "courseMode": "online", "courseWorkload": "PT10H"},
+          {"@type": "CourseInstance", "name": "STANDARD (PDF+실물책)", "courseMode": "blended", "courseWorkload": "PT15H"},
+          {"@type": "CourseInstance", "name": "PREMIUM (+해설강의)", "courseMode": "blended", "courseWorkload": "PT20H"}
+        ],
+        "offers": [
+          {
+            "@type": "Offer",
+            "name": "LIGHT",
+            "price": "11900",
+            "priceCurrency": "KRW",
+            "category": "monthly subscription",
+            "availability": "https://schema.org/InStock",
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "price": "11900",
+              "priceCurrency": "KRW",
+              "billingDuration": "P1M",
+              "unitText": "MONTH"
+            }
+          },
+          {
+            "@type": "Offer",
+            "name": "STANDARD",
+            "price": "24900",
+            "priceCurrency": "KRW",
+            "category": "monthly subscription",
+            "availability": "https://schema.org/InStock",
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "price": "24900",
+              "priceCurrency": "KRW",
+              "billingDuration": "P1M",
+              "unitText": "MONTH"
+            }
+          },
+          {
+            "@type": "Offer",
+            "name": "PREMIUM",
+            "price": "38900",
+            "priceCurrency": "KRW",
+            "category": "monthly subscription",
+            "availability": "https://schema.org/PreOrder",
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "price": "38900",
+              "priceCurrency": "KRW",
+              "billingDuration": "P1M",
+              "unitText": "MONTH"
+            }
+          }
+        ]
+      }
     ]
   }
   </script>
