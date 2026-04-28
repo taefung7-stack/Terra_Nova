@@ -77,14 +77,14 @@
 :root {
   --bg: #0A0A0A;
   --bg2: #0E0E0E;
-  --accent: #2DD4BF;
-  --accent2: #14B8A6;
+  --accent: #00FFA3;
+  --accent2: #2DD4BF;
   --txt: #F0F0F0;
   --dim: rgba(240,240,240,.62);
   --dim2: rgba(240,240,240,.32);
   --line: rgba(255,255,255,.08);
-  --line2: rgba(45,212,191,.18);
-  --line3: rgba(45,212,191,.42);
+  --line2: rgba(0,255,163,.18);
+  --line3: rgba(0,255,163,.48);
 }
 * { margin:0; padding:0; box-sizing:border-box; }
 html { scroll-behavior:smooth; }
@@ -93,6 +93,7 @@ body {
   color:var(--txt);
   font-family:'Noto Sans KR', sans-serif;
   font-weight:300;
+  line-height:1.2;
   overflow-x:hidden;
   -webkit-font-smoothing:antialiased;
   text-rendering:optimizeLegibility;
@@ -106,6 +107,143 @@ a { color:inherit; text-decoration:none; }
   z-index:9999; font-weight:500;
 }
 .skip-link:focus { left:12px; top:12px; }
+
+/* ── SITE NAV (fixed, transparent over hero → solid bg after scroll) ─────── */
+/* Scoped via .site-nav class to avoid leaking global nav type selector */
+.site-nav {
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 5vw; height:76px;
+  /* Frosted glass — kept throughout the page (slightly more opaque on scroll
+     but never fully solid → maintains the see-through translucent feel) */
+  background:rgba(10,10,10,.32);
+  backdrop-filter:blur(16px) saturate(140%);
+  -webkit-backdrop-filter:blur(16px) saturate(140%);
+  border-bottom:1px solid rgba(255,255,255,.06);
+  /* Hidden by default — revealed only after Big Bang via body.bigbang-done.
+     Note: `backdrop-filter` is intentionally NOT in the transition list —
+     animating its blur radius forces a full-strip GPU re-blur each frame
+     and is the single most expensive CSS transition possible. The blur
+     stays a static value; only background/border color cross-fade. */
+  opacity:0; visibility:hidden; transform:translateY(-12px);
+  transition:
+    opacity 1.1s ease, visibility 0s linear 1.1s, transform 1.1s ease,
+    background .35s ease, border-color .35s ease;
+}
+body.bigbang-done .site-nav {
+  opacity:1; visibility:visible; transform:none;
+  /* Slight delay so nav arrives just after the tagline + english reveal (~.8-1.05s) */
+  transition:
+    opacity 1.2s ease 1.2s, visibility 0s linear 1.2s, transform 1.2s ease 1.2s,
+    background .35s ease, border-color .35s ease;
+}
+.site-nav.scrolled {
+  /* Slightly more opaque after scroll, but STILL frosted (not fully solid).
+     backdrop-filter blur kept identical to the default state (16px) — the
+     visual difference between 16↔22px is imperceptible compared to the
+     scroll-jank cost of changing it. */
+  background:rgba(10,10,10,.62);
+  border-bottom-color:var(--line);
+}
+/* Lock body scroll until Big Bang completes */
+body:not(.bigbang-done) { overflow:hidden; height:100vh; }
+body.bigbang-done { overflow:auto; height:auto; }
+body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
+
+.site-nav .logo-wrap { display:flex; flex-direction:column; gap:2px; text-decoration:none; }
+.site-nav .logo-main {
+  /* Match the canvas-rendered TERRA NOVA brand (Space Grotesk 700) */
+  font-family:'Space Grotesk', sans-serif;
+  font-weight:700;
+  font-size:1.4rem; letter-spacing:.14em;
+  color:#fff;
+  text-shadow:0 1px 12px rgba(0,0,0,.55);
+}
+.site-nav .logo-eng {
+  font-family:'Noto Sans KR',sans-serif;
+  font-size:.6rem; font-weight:500; letter-spacing:5px;
+  color:rgba(45,212,191,.62); text-transform:uppercase;
+}
+.site-nav .nav-links {
+  display:flex; gap:32px; list-style:none; align-items:center;
+  margin:0; padding:0;
+}
+.site-nav .nav-links a {
+  color:var(--txt);
+  text-decoration:none; font-size:.82rem; font-weight:500; letter-spacing:.8px;
+  transition:color .2s, opacity .2s;
+  text-shadow:0 1px 8px rgba(0,0,0,.55);
+  opacity:.88;
+}
+.site-nav .nav-links a:hover { color:#fff; opacity:1; }
+
+/* === CTA "구독 신청" — Leonardo-style sparkling pill (mint glow border) === */
+.site-nav .nav-cta {
+  position:relative;
+  color:var(--accent)!important;
+  background:rgba(10,10,10,.45);
+  padding:9px 22px!important;
+  border-radius:999px!important;
+  font-weight:600!important;
+  border:1.5px solid rgba(45,212,191,.55)!important;
+  box-shadow:0 0 8px rgba(45,212,191,.30), inset 0 0 8px rgba(45,212,191,.06);
+  animation:ctaGlow 2.6s ease-in-out infinite;
+  transition:background .55s ease, color .55s ease, border-color .55s ease !important;
+}
+@keyframes ctaGlow {
+  0%, 100% { box-shadow:0 0 6px rgba(45,212,191,.22), inset 0 0 6px rgba(45,212,191,.05); border-color:rgba(45,212,191,.55) !important; }
+  50%      { box-shadow:0 0 22px rgba(45,212,191,.65), inset 0 0 14px rgba(45,212,191,.12); border-color:rgba(45,212,191,1) !important; }
+}
+.site-nav .nav-cta:hover {
+  background:var(--accent)!important;
+  color:#0A0A0A!important;
+  animation-play-state:paused;
+}
+
+/* === LOGIN — Leonardo-style white pill (hover → mint) === */
+.site-nav .nav-login {
+  background:#fff;
+  color:#000 !important;
+  padding:9px 22px;
+  border-radius:999px;
+  border:1.5px solid #fff;
+  font-weight:600;
+  font-size:.82rem;
+  letter-spacing:.8px;
+  text-shadow:none !important;
+  opacity:1 !important;
+  transition:background .55s ease, color .55s ease, border-color .55s ease;
+}
+.site-nav .nav-login:hover {
+  background:var(--accent);
+  color:#0A0A0A !important;
+  border-color:var(--accent);
+}
+.site-nav .nav-hamburger { display:none; background:none; border:none; cursor:pointer; padding:8px; }
+.site-nav .nav-hamburger span {
+  display:block; width:22px; height:2px; background:#fff; margin:4px 0;
+  transition:transform .2s, opacity .2s;
+}
+
+@media (max-width:900px) {
+  .site-nav { padding:0 22px; }
+  .site-nav .nav-links { display:none; }
+  .site-nav .nav-links.open {
+    display:flex !important; flex-direction:column;
+    position:fixed; top:76px; left:0; right:0;
+    background:rgba(10,10,10,.97); backdrop-filter:blur(16px);
+    padding:16px 5vw 24px; gap:0;
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+  .site-nav .nav-links.open li { width:100%; }
+  .site-nav .nav-links.open a {
+    display:block; padding:14px 0;
+    border-bottom:1px solid rgba(255,255,255,.05);
+    font-size:.88rem;
+  }
+  .site-nav .nav-links.open li:last-child a { border-bottom:none; }
+  .site-nav .nav-hamburger { display:block; }
+}
 
 /* ---- Type system ---- */
 .kicker {
@@ -135,10 +273,86 @@ a { color:inherit; text-decoration:none; }
   z-index:0;
   pointer-events:none;
   opacity:0;
-  transition:opacity 1.4s ease;
+  /* Was 1.4s — too slow: warp was still fading in (47-70% opacity) DURING the flash
+     and burst peak, so the explosion and starfield felt disconnected. 0.4s makes warp
+     fully visible by t=400ms, well before the flash at t=660ms → continuous transition. */
+  transition:opacity .4s ease;
 }
 .hero.is-bigbang #hero-warp,
 .hero.is-post    #hero-warp { opacity:1; }
+
+/* Radial light "warp rays" — analogueagency.com inspired.
+   Two repeating-conic-gradient layers create discrete light bands radiating from
+   center. They counter-rotate slowly for a subtle shimmer. Radial mask fades the
+   rays at the edges so they don't extend beyond the hero. mix-blend-mode:screen
+   keeps stars visible through the rays. */
+.hero-rays {
+  position:absolute;
+  inset:0;
+  z-index:2;                /* above #hero-warp(0) and #bg-canvas(1), below #mouse-halo(3) */
+  pointer-events:none;
+  opacity:0;
+  transition:opacity .4s ease;   /* match warp fade-in (was 1.4s) */
+  overflow:hidden;
+  mix-blend-mode:screen;
+  /* Subtle hot pinpoint at vanishing point — slightly bumped from .14 → .22 */
+  background: radial-gradient(circle at 50% 50%,
+    rgba(255,255,255,.22) 0%,
+    rgba(94,234,212,.10) 6%,
+    rgba(45,212,191,.04) 16%,
+    transparent 28%);
+}
+.hero.is-bigbang .hero-rays,
+.hero.is-post    .hero-rays { opacity:1; }
+
+/* Layer 1: fine white rays, slow CW spin */
+.hero-rays::before {
+  content:'';
+  position:absolute; inset:-25%;
+  background: repeating-conic-gradient(
+    from 0deg at 50% 50%,
+    transparent 0deg,
+    rgba(255,255,255,.11) 0.4deg,
+    transparent 1.6deg,
+    transparent 7deg                  /* 5° → 7° cycle: ~51 rays (was ~72) */
+  );
+  -webkit-mask-image: radial-gradient(circle at 50% 50%,
+    rgba(0,0,0,.9) 0%, rgba(0,0,0,.45) 25%, transparent 55%);
+          mask-image: radial-gradient(circle at 50% 50%,
+    rgba(0,0,0,.9) 0%, rgba(0,0,0,.45) 25%, transparent 55%);
+  filter: blur(3px);                  /* soften sharp ray edges → hazy diffuse look */
+  animation: heroRaysBlink1 8s ease-in-out infinite;
+  will-change: opacity;
+}
+/* Layer 2: wider mint rays, slow CCW spin (offset 7deg for non-aligned overlap) */
+.hero-rays::after {
+  content:'';
+  position:absolute; inset:-25%;
+  background: repeating-conic-gradient(
+    from 7deg at 50% 50%,
+    transparent 0deg,
+    rgba(94,234,212,.09) 0.8deg,
+    transparent 3deg,
+    transparent 15deg                 /* 11° → 15° cycle: ~24 rays (was ~33) */
+  );
+  -webkit-mask-image: radial-gradient(circle at 50% 50%,
+    rgba(0,0,0,.8) 0%, rgba(0,0,0,.4) 30%, transparent 60%);
+          mask-image: radial-gradient(circle at 50% 50%,
+    rgba(0,0,0,.8) 0%, rgba(0,0,0,.4) 30%, transparent 60%);
+  filter: blur(5px);                  /* slightly more blur on the wider mint band layer */
+  animation: heroRaysBlink2 11s ease-in-out infinite;
+  will-change: opacity;
+}
+/* Two slow, OFFSET opacity pulses so layers don't dim together — feels organic, not on/off.
+   Range 0.55 ↔ 1.0 (not full fade) keeps presence at all times. */
+@keyframes heroRaysBlink1 {
+  0%, 100% { opacity: 1;    }
+  50%      { opacity: .55;  }
+}
+@keyframes heroRaysBlink2 {
+  0%, 100% { opacity: .65;  }
+  50%      { opacity: 1;    }
+}
 #bg-canvas {
   position:absolute;
   inset:0;
@@ -245,6 +459,11 @@ a { color:inherit; text-decoration:none; }
   background:var(--accent);
   box-shadow:0 0 8px rgba(45,212,191,.85);
   flex:0 0 auto;
+  animation:dotBlink 1.6s ease-in-out infinite;
+}
+@keyframes dotBlink {
+  0%, 100% { opacity:1; transform:scale(1); box-shadow:0 0 10px rgba(45,212,191,.95); }
+  50%      { opacity:.28; transform:scale(.78); box-shadow:0 0 4px rgba(45,212,191,.4); }
 }
 .hero-english {
   --para-x: 0px;
@@ -257,10 +476,61 @@ a { color:inherit; text-decoration:none; }
   color:rgba(240,240,240,.78);
   padding-left:.55em; /* compensate trailing letter-spacing for visual centering */
 }
-.hero.is-post .hero-tagline { opacity:1; transition-delay:.8s; }
-.hero.is-post .hero-english { opacity:1; transition-delay:1.05s; }
+.hero.is-post .hero-tagline { opacity:1; transition-delay:.4s; }
+.hero.is-post .hero-english { opacity:1; transition-delay:.6s; }
+.hero-actions {
+  position:absolute;
+  left:50%;
+  top:50%;
+  z-index:6;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  opacity:0;
+  transform:translate(-50%, calc(-50% + 186px));
+  transition:opacity 1.1s ease .8s, transform 1.1s cubic-bezier(.2,.8,.2,1) .8s;
+}
+.hero.is-post .hero-actions {
+  opacity:1;
+  transform:translate(-50%, calc(-50% + 172px));
+}
+.hero-action {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:46px;
+  padding:0 24px;
+  border:1px solid var(--line3);
+  border-radius:999px;
+  color:var(--accent);
+  background:rgba(10,10,10,.46);
+  font-family:'Space Grotesk', sans-serif;
+  font-size:.75rem;
+  font-weight:700;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  text-shadow:0 1px 12px rgba(0,0,0,.6);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  transition:background .35s ease, color .35s ease, border-color .35s ease, transform .35s ease;
+}
+.hero-action:hover {
+  background:var(--accent);
+  color:#030303;
+  border-color:var(--accent);
+  transform:translateY(-2px);
+}
+.hero-action.secondary {
+  color:rgba(240,240,240,.82);
+  border-color:rgba(255,255,255,.18);
+}
+.hero-action.secondary:hover {
+  color:#030303;
+  border-color:var(--accent);
+}
 @media (max-width: 720px) {
-  .hero-tagline, .hero-english { display:none; }
+  .hero-tagline, .hero-english, .hero-actions { display:none; }
 }
 
 .scroll-cue {
@@ -307,26 +577,50 @@ a { color:inherit; text-decoration:none; }
 }
 .hero-fallback h1 .accent { color:var(--accent); font-weight:300; }
 
-/* =============== STATEMENT =============== */
-.statement {
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  padding:120px 8vw;
-  background:var(--bg);
+/* =============== PAIN → SOLUTION STORY =============== */
+.story-section {
   position:relative;
+  padding:140px 8vw;
+  overflow:hidden;
 }
-.statement .kicker { margin-bottom:36px; }
-.statement-h1 {
-  font-family:'Noto Sans KR', sans-serif;
-  font-weight:200;
-  font-size:clamp(2.6rem, 11vw, 9rem);
-  line-height:1.1;
-  letter-spacing:-.04em;
-  color:var(--txt);
+.story-section::before {
+  content:'';
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+  background-size:72px 72px;
+  mask-image:linear-gradient(to bottom, transparent, #000 14%, #000 78%, transparent);
+  opacity:.42;
 }
-.statement-h1 .accent { color:var(--accent); font-weight:300; }
+.story-section > * { position:relative; z-index:1; }
+.story-kicker {
+  font-family:'Space Grotesk', sans-serif;
+  font-size:.76rem;
+  font-weight:700;
+  letter-spacing:.38em;
+  text-transform:uppercase;
+  color:var(--accent);
+  margin-bottom:22px;
+}
+.story-title {
+  font-family:'Space Grotesk', 'Noto Sans KR', sans-serif;
+  font-weight:700;
+  font-size:clamp(3rem, 8.4vw, 8.8rem);
+  line-height:.88;
+  letter-spacing:-.055em;
+  text-transform:uppercase;
+  max-width:1180px;
+}
+.story-title .accent { color:var(--accent); }
+.story-copy {
+  color:rgba(240,240,240,.74);
+  font-size:clamp(1rem, 1.45vw, 1.28rem);
+  line-height:1.85;
+  font-weight:300;
+}
 
 /* Split-text reveal: per character */
 .split .char {
@@ -340,73 +634,925 @@ a { color:inherit; text-decoration:none; }
   opacity:1;
 }
 
-/* =============== VISUAL PROOF =============== */
-.proof {
+/* =============== CONCERNS =============== */
+.statement {
   min-height:100vh;
+  display:grid;
+  grid-template-columns:minmax(0, 1.08fr) minmax(320px, .92fr);
+  align-items:center;
+  gap:clamp(36px, 6vw, 110px);
+  background:
+    radial-gradient(circle at 84% 18%, rgba(0,255,163,.13), transparent 30%),
+    var(--bg);
+}
+.statement-lede {
+  max-width:680px;
+  margin-top:34px;
+}
+.worry-stack {
+  display:grid;
+  gap:16px;
+}
+.worry-line {
+  position:relative;
+  min-height:118px;
+  padding:26px 28px;
+  background:linear-gradient(135deg, rgba(255,255,255,.07), rgba(255,255,255,.025));
+  border:1px solid rgba(255,255,255,.10);
   display:flex;
   flex-direction:column;
+  justify-content:space-between;
+  overflow:hidden;
+  opacity:0;
+  transform:translateY(28px);
+  transition:opacity .75s ease, transform .75s cubic-bezier(.2,.8,.2,1), border-color .35s ease;
+}
+.worry-line::after {
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(90deg, transparent, rgba(0,255,163,.11), transparent);
+  transform:translateX(-120%);
+  transition:transform .7s ease;
+}
+.worry-line.in { opacity:1; transform:none; }
+.worry-line:hover { border-color:var(--line3); }
+.worry-line:hover::after { transform:translateX(120%); }
+.worry-tag {
+  font-family:'Space Grotesk', sans-serif;
+  font-size:.68rem;
+  font-weight:700;
+  letter-spacing:.26em;
+  text-transform:uppercase;
+  color:var(--accent);
+}
+.worry-line strong {
+  font-size:clamp(1.25rem, 2vw, 1.8rem);
+  line-height:1.28;
+  letter-spacing:-.03em;
+  color:#fff;
+}
+
+.concerns {
+  /* Was var(--bg2). Now transparent so the aurora-zone canvas shows through.
+     The card backgrounds (.concern-card) handle their own surface contrast. */
+  background:transparent;
+}
+/* Tone down the .story-section grid overlay inside the aurora zone — at full
+   strength it competes with the mesh gradient. */
+.aurora-zone .concerns.story-section::before { opacity:.18; }
+.concerns-head {
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:40px;
+  margin-bottom:54px;
+}
+.concerns-head .story-title {
+  font-size:clamp(2.6rem, 6.8vw, 6.8rem);
+  max-width:940px;
+}
+.concerns-head .story-copy { max-width:380px; }
+.concern-grid {
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  gap:24px;
+}
+.concern-card {
+  min-height:420px;
+  padding:34px 30px;
+  border:1px solid rgba(255,255,255,.10);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.015)),
+    #0C0C0C;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  opacity:0;
+  transform:translateY(34px);
+  transition:opacity .75s ease, transform .75s cubic-bezier(.2,.8,.2,1), border-color .35s ease, box-shadow .35s ease;
+}
+.concern-card.in { opacity:1; transform:none; }
+.concern-card:hover {
+  border-color:var(--line3);
+  box-shadow:0 26px 74px -40px rgba(0,255,163,.45);
+  transform:translateY(-6px);
+}
+.concern-num {
+  font-family:'Space Grotesk', sans-serif;
+  font-size:.78rem;
+  letter-spacing:.25em;
+  color:var(--accent);
+}
+.concern-card h3 {
+  font-size:clamp(1.55rem, 2.45vw, 2.25rem);
+  line-height:1.22;
+  letter-spacing:-.04em;
+  color:#fff;
+}
+.concern-card p {
+  color:var(--dim);
+  line-height:1.8;
+}
+
+/* ── AURORA ZONE (wraps concerns + meshy-transition) ────────────────
+   The mesh-gradient canvas spans this whole wrapper so the aurora reads
+   as a continuous backdrop across two sections. Concerns content + cards
+   sit above it via z-index. */
+.aurora-zone {
+  position:relative;
+  background:var(--bg);   /* fallback under canvas */
+}
+.aurora-zone > section {
+  position:relative;
+  z-index:1;              /* above the canvas */
+}
+
+/* ── MESHY TRANSITION ───────────────────────────────────────────── */
+.meshy-transition {
+  width:100%;
+  height:54vh;
+  min-height:360px;
+  overflow:hidden;
+  background:transparent;   /* aurora canvas shows through from .aurora-zone */
+}
+#meshy-canvas {
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  display:block;
+  z-index:0;
+  opacity:.55;              /* slightly more transparent so it reads as
+                               background, not foreground */
+  pointer-events:none;
+}
+.meshy-copy {
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
   justify-content:center;
+  z-index:1;
+  padding:0 5vw;
+  pointer-events:none;
+}
+.meshy-copy p {
+  font-family:'Space Grotesk','Noto Sans KR',sans-serif;
+  font-size:clamp(1.5rem, 3.6vw, 4rem);
+  font-weight:700;
+  line-height:.98;
+  letter-spacing:-.04em;
+  color:rgba(255,255,255,.94);
+  text-shadow:0 2px 18px rgba(0,0,0,.7);
+  text-align:center;
+  margin:0;
+  max-width:920px;
+  text-transform:uppercase;
+}
+.meshy-copy .accent { color:var(--accent); }
+.meshy-transition::after {
+  content:'';
+  position:absolute;
+  left:0; right:0;
+  height:90px;
+  z-index:2;
+  pointer-events:none;
+  bottom:0;
+  background:linear-gradient(0deg, var(--bg2) 0%, transparent 100%);
+}
+
+/* =============== TERRA NOVA SOLUTION =============== */
+.proof {
+  min-height:100vh;
   padding:140px 8vw;
   background:var(--bg2);
   position:relative;
 }
-.proof .kicker { margin-bottom:48px; }
-.subject-grid {
+.proof-head {
   display:grid;
-  grid-template-columns:repeat(4, 1fr);
-  gap:20px;
-  margin-bottom:48px;
+  grid-template-columns:minmax(0, 1fr) minmax(280px, 420px);
+  gap:40px;
+  align-items:end;
+  margin-bottom:58px;
 }
-.subject-card {
-  background:var(--bg);
+.proof .story-title {
+  font-size:clamp(2.8rem, 6.6vw, 7rem);
+}
+.solution-grid {
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  gap:28px;
+}
+.solution-panel {
+  position:relative;
+  min-height:560px;
+  padding:36px;
+  overflow:hidden;
   border:1px solid var(--line2);
-  padding:48px 32px;
-  min-height:240px;
+  background:
+    linear-gradient(135deg, rgba(0,255,163,.14), transparent 42%),
+    radial-gradient(circle at 74% 22%, rgba(0,255,163,.18), transparent 24%),
+    #090909;
+  opacity:0;
+  transform:translateY(34px);
+  transition:opacity .75s ease, transform .75s cubic-bezier(.2,.8,.2,1), border-color .35s ease, box-shadow .35s ease;
+}
+.solution-panel.in { opacity:1; transform:none; }
+.solution-panel:hover {
+  border-color:var(--line3);
+  box-shadow:0 28px 80px -42px rgba(0,255,163,.48);
+  transform:translateY(-6px);
+}
+.solution-panel.hero-card {
   display:flex;
   flex-direction:column;
   justify-content:space-between;
-  transition:transform .5s cubic-bezier(.2,.8,.2,1), border-color .5s, box-shadow .5s;
-  opacity:0;
-  transform:translateY(36px);
 }
-.subject-card.in {
-  opacity:1;
-  transform:translateY(0);
+.solution-panel.hero-card::before {
+  content:'ENGLISH';
+  position:absolute;
+  right:-.08em;
+  bottom:-.22em;
+  font-family:'Space Grotesk', sans-serif;
+  font-size:clamp(6rem, 18vw, 18rem);
+  font-weight:700;
+  letter-spacing:-.08em;
+  color:rgba(255,255,255,.045);
 }
-.subject-card:hover {
-  transform:translateY(-6px);
-  border-color:var(--line3);
-  box-shadow:0 16px 40px -20px rgba(45,212,191,.5);
+.solution-panel .label {
+  font-family:'Space Grotesk', sans-serif;
+  font-size:.78rem;
+  font-weight:700;
+  letter-spacing:.26em;
+  color:var(--accent);
+  text-transform:uppercase;
 }
-.subject-cat {
+.solution-panel h3 {
+  position:relative;
+  max-width:740px;
+  font-size:clamp(2.1rem, 5vw, 5.4rem);
+  line-height:.98;
+  letter-spacing:-.055em;
+  color:#fff;
+  z-index:1;
+}
+.solution-list {
+  position:relative;
+  z-index:1;
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  gap:14px;
+}
+.solution-list span {
+  border:1px solid rgba(255,255,255,.12);
+  padding:14px 16px;
+  color:rgba(240,240,240,.78);
+  line-height:1.55;
+}
+.solution-side {
+  display:grid;
+  gap:28px;
+}
+.solution-side .solution-panel {
+  min-height:266px;
+}
+.solution-side .solution-panel h3 {
+  font-size:clamp(1.6rem, 2.8vw, 2.5rem);
+  line-height:1.16;
+  margin-top:34px;
+}
+.solution-side .solution-panel p {
+  position:relative;
+  z-index:1;
+  color:var(--dim);
+  line-height:1.8;
+  margin-top:22px;
+}
+
+/* =============== TERRA NOVA SOLUTION — DARK cinematic horizontal pin ============ */
+/* Pins the section for ~180vh and translates the inner track horizontally.
+   Stays in the dark brand palette so the section flows seamlessly between
+   the dark statement above and the dark exam-match below. */
+.proof.proof-cinematic {
+  padding:0;
+  background:var(--bg2);
+  min-height:0;
+}
+.proof-pin {
+  position:relative;
+  height:280vh; /* 280 - 100 = 180vh of pinned horizontal travel */
+}
+.proof-stage {
+  position:sticky;
+  top:0;
+  height:100vh;
+  width:100%;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+}
+.proof-track {
+  display:flex;
+  flex-wrap:nowrap;
+  gap:32px;
+  padding:0 8vw;
+  will-change:transform;
+  transform:translate3d(0,0,0);
+}
+.proof-headline-card,
+.proof.proof-cinematic .solution-panel {
+  flex:0 0 auto;
+  width:min(80vw, 880px);
+  height:min(78vh, 600px);
+  border-radius:28px;
+  padding:56px 52px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  position:relative;
+  overflow:hidden;
+}
+.proof-headline-card {
+  width:min(72vw, 760px);
+  background:transparent;
+  border:none;
+  padding:56px 0;
+}
+.proof-headline-card .story-kicker {
+  color:var(--accent);
+  font-size:.84rem;
+  letter-spacing:.32em;
+  margin-bottom:0;
+}
+.proof-headline-card .story-title {
+  font-size:clamp(3rem, 7.4vw, 7.4rem);
+  line-height:.94;
+  letter-spacing:-.055em;
+  color:#fff;
+  margin-top:28px;
+  text-transform:none;
+}
+.proof-headline-card .story-title .accent { color:var(--accent); }
+.proof-headline-card .story-copy {
+  font-size:clamp(.95rem, 1.2vw, 1.08rem);
+  line-height:1.75;
+  color:var(--dim);
+  max-width:520px;
+  margin-top:32px;
+  font-weight:300;
+}
+.track-hint {
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  margin-top:auto;
+  padding:14px 22px;
+  border:1px solid var(--line2);
+  border-radius:999px;
+  align-self:flex-start;
   font-family:'Space Grotesk', sans-serif;
   font-size:.74rem;
-  letter-spacing:.32em;
+  font-weight:700;
+  letter-spacing:.22em;
   text-transform:uppercase;
   color:var(--accent);
-  font-weight:500;
+  background:rgba(0,255,163,.04);
 }
-.subject-card h3 {
-  font-family:'Noto Sans KR', sans-serif;
-  font-weight:300;
-  font-size:1.5rem;
-  letter-spacing:-.01em;
-  color:var(--txt);
-  line-height:1.3;
+.track-hint-dot {
+  width:8px; height:8px;
+  border-radius:50%;
+  background:var(--accent);
+  box-shadow:0 0 12px rgba(0,255,163,.6);
+  animation:trackHintPulse 1.6s ease-in-out infinite;
 }
-.proof-foot {
-  font-family:'Noto Sans KR', sans-serif;
-  font-size:.95rem;
-  font-weight:300;
-  color:var(--dim);
-  line-height:1.7;
+@keyframes trackHintPulse { 0%,100%{ opacity:.4 } 50%{ opacity:1 } }
+
+/* Cinematic-mode card surfaces — keep dark mode but make panels visible
+   immediately (override the global .solution-panel reveal opacity:0). */
+.proof.proof-cinematic .solution-panel {
+  opacity:1;
+  transform:none;
+  min-height:0;
+  transition:transform .4s cubic-bezier(.2,.8,.2,1), box-shadow .4s ease, border-color .35s ease;
 }
-.proof-foot a {
+.proof.proof-cinematic .solution-panel:hover {
+  transform:translateY(-6px);
+}
+.proof.proof-cinematic .solution-panel h3 {
+  font-size:clamp(1.9rem, 4vw, 3.4rem);
+  line-height:1.04;
+  letter-spacing:-.045em;
+  margin-top:20px;
+}
+.proof.proof-cinematic .solution-list {
+  margin-top:auto;
+  display:grid;
+  gap:10px;
+  grid-template-columns:1fr;
+}
+
+/* Horizontal scroll-progress bar pinned to the bottom of the stage */
+.proof-progress {
+  position:absolute;
+  left:8vw;
+  right:8vw;
+  bottom:7vh;
+  height:2px;
+  background:rgba(0,255,163,.14);
+  border-radius:2px;
+  overflow:hidden;
+  pointer-events:none;
+}
+.proof-progress-fill {
+  display:block;
+  height:100%;
+  width:0;
+  background:linear-gradient(90deg, var(--accent), #2DD4BF);
+  box-shadow:0 0 12px rgba(0,255,163,.5);
+  transition:width .12s linear;
+}
+
+/* Mobile / reduced-motion fallback: revert to a normal vertical stack */
+@media (max-width: 900px) {
+  .proof.proof-cinematic { padding:80px 24px; }
+  .proof-pin { height:auto; }
+  .proof-stage {
+    position:static;
+    height:auto;
+    overflow:visible;
+    display:block;
+  }
+  .proof-track {
+    flex-direction:column;
+    gap:20px;
+    padding:0;
+    transform:none !important;
+  }
+  .proof-headline-card,
+  .proof.proof-cinematic .solution-panel {
+    width:100%;
+    height:auto;
+    min-height:340px;
+    padding:36px 28px;
+  }
+  .proof-headline-card { padding:24px 4px 12px; }
+  .track-hint { display:none; }
+  .proof-progress { display:none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  /* JS bails out → CSS must collapse the pin into a vertical stack so the
+     other panels remain reachable without horizontal motion. */
+  .track-hint-dot { animation:none; }
+  .proof.proof-cinematic { padding:80px 24px; }
+  .proof-pin { height:auto; }
+  .proof-stage {
+    position:static;
+    height:auto;
+    overflow:visible;
+    display:block;
+  }
+  .proof-track {
+    flex-direction:column;
+    gap:20px;
+    padding:0;
+    transform:none !important;
+  }
+  .proof-headline-card,
+  .proof.proof-cinematic .solution-panel {
+    width:100%;
+    height:auto;
+    min-height:340px;
+  }
+  .track-hint, .proof-progress { display:none; }
+}
+
+/* =============== EXAM MATCH (real mock exam ↔ our textbook) ============ */
+.exam-match {
+  padding:104px 4vw 132px;
+  background:
+    radial-gradient(circle at 50% 12%, rgba(0,255,163,.13), transparent 31%),
+    radial-gradient(circle at 50% 72%, rgba(45,212,191,.055), transparent 34%),
+    var(--bg);
+  overflow:hidden;
+}
+.exam-match-head {
+  width:100%;
+  max-width:none;
+  margin:0 auto 64px;
+  text-align:center;
+}
+.exam-match-head .story-kicker {
+  margin-bottom:18px;
+  display:inline-block;
+  text-align:center;
+}
+.exam-match-head .story-title {
+  width:fit-content;
+  max-width:min(1700px, 100%);   /* widened 1360 → 1700 to fit the longer
+                                     "수학·과학·사회 시험에 나온…" headline
+                                     on one line at large viewports. */
+  margin:0 auto;
+  text-align:center;
+  font-size:clamp(2.2rem, 4vw, 4.4rem);   /* trimmed from
+                                     clamp(2.45, 4.45, 5rem) so the longer
+                                     ~24-char headline fits the content
+                                     area (~1325px at 1440 viewport)
+                                     without overflow. */
+  margin-bottom:0;
+  line-height:1.18;
+  white-space:nowrap;
+  text-wrap:balance;
+  filter:drop-shadow(0 18px 36px rgba(0,0,0,.4));
+}
+.exam-match-grid {
+  display:grid;
+  grid-template-columns:minmax(0,1.02fr) auto minmax(0,1.02fr);
+  align-items:stretch;
+  gap:42px;
+  max-width:1760px;
+  margin:0 auto;
+}
+.exam-card {
+  position:relative;
+  padding:34px 34px 26px;
+  border-radius:24px;
+  /* Glass morphism — translucent surface + backdrop blur over the section's
+     radial-gradient background lets the green glow seep through subtly.
+     Layered gradient: directional sheen top-left + soft radial highlight
+     bottom-right gives the surface a subtle 3D wet-glass quality. */
+  /* Static fake-glass: a touch more opaque so we don't need a runtime
+     backdrop-filter (which forced the compositor to blur the pixels
+     behind every card every frame — the dominant scroll-jank source on
+     this section). The layered gradients still give a wet-glass sheen
+     without any per-frame GPU blur. */
+  background:
+    radial-gradient(140% 90% at 88% 110%, rgba(0,255,163,.07) 0%, transparent 55%),
+    linear-gradient(135deg, rgba(255,255,255,.13) 0%, rgba(28,32,38,.72) 38%, rgba(18,22,26,.86) 100%);
+  border:1px solid rgba(255,255,255,.18);
+  box-shadow:
+    0 28px 72px rgba(0,0,0,.55),
+    0 4px 14px rgba(0,0,0,.32),
+    inset 0 1px 0 rgba(255,255,255,.16),
+    inset 0 -1px 0 rgba(255,255,255,.04),
+    inset 1px 0 0 rgba(255,255,255,.06);
+  opacity:0;
+  /* Entrance animates only opacity + transform — both are GPU-cheap
+     compositor properties. Previously also animated `filter: blur(12px)`,
+     which combined with the backdrop-filter blur forced the compositor
+     to re-blur the entire card region every frame for ~900ms — major
+     scroll jank. Removing it preserves the soft-arrival feel via opacity
+     fade alone. */
+  will-change:transform, opacity;
+  transition:
+    opacity .7s ease,
+    transform .85s cubic-bezier(.16,1,.3,1);
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+}
+.exam-card::before {
+  content:'';
+  position:absolute;
+  inset:-1px;
+  background:linear-gradient(110deg, transparent 0 36%, rgba(255,255,255,.18) 48%, transparent 60% 100%);
+  transform:translateX(-130%);
+  opacity:.65;
+  pointer-events:none;
+}
+/* Far-flung scatter pose — cards start way off to the sides + tilted, so when
+   they fly inward and lock into place the entrance reads strongly. The
+   .exam-match section has overflow:hidden, so the off-screen translation
+   doesn't introduce horizontal scroll. */
+.exam-card.mock-card  { transform:translateX(-340px) translateY(60px) rotate(-9deg) scale(.86); }
+.exam-card.book-card  {
+  transform:translateX(340px) translateY(60px) rotate(9deg) scale(.86);
+  /* Brand-tinted static glass — opaque enough to skip backdrop-filter. */
+  background:
+    radial-gradient(140% 90% at 88% 110%, rgba(0,255,163,.20) 0%, transparent 58%),
+    linear-gradient(135deg, rgba(0,255,163,.16) 0%, rgba(8,32,24,.72) 42%, rgba(6,22,16,.88) 100%);
+  border-color:rgba(0,255,163,.34);
+  box-shadow:
+    0 28px 72px rgba(0,0,0,.55),
+    0 6px 22px rgba(0,255,163,.10),
+    inset 0 1px 0 rgba(0,255,163,.22),
+    inset 0 -1px 0 rgba(0,255,163,.05),
+    inset 1px 0 0 rgba(0,255,163,.10);
+}
+.exam-match.in .exam-card {
+  opacity:1;
+}
+.exam-match.in .exam-card.mock-card {
+  transform:rotate(-.45deg) scale(1);
+  transition-delay:.04s;
+}
+.exam-match.in .exam-card.book-card {
+  transform:rotate(.45deg) scale(1);
+  /* Was .34s — too long, made the right card feel like it stalled before
+     starting. Tightened to .14s so the stagger is still perceptible but
+     the entrance reads as one fluid motion. */
+  transition-delay:.14s;
+}
+.exam-match.in .exam-card::before {
+  animation:examCardSweep 1.05s cubic-bezier(.16,1,.3,1) .62s both;
+}
+.exam-match.in .book-card::before { animation-delay:.82s; }
+/* Hover reaction intentionally removed — when the entrance animation was
+   running and the user's cursor happened to be inside a card, the hover
+   transform would override the in-flight transform and the card appeared
+   to stutter mid-entrance. The page now treats these as static reveal
+   cards: scroll-driven, not pointer-driven. */
+
+/* Text selection inside the cards uses Flax (the highlighter color) so
+   drag-selecting feels consistent with the on-page mark highlights. */
+.exam-card ::selection      { background:#F4EB9A; color:#0F464C; }
+.exam-card ::-moz-selection { background:#F4EB9A; color:#0F464C; }
+@keyframes examCardSweep {
+  from { transform:translateX(-130%); }
+  to { transform:translateX(130%); }
+}
+
+/* Big role badge — the at-a-glance "which is which" signal. */
+.exam-role-badge {
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  align-self:flex-start;
+  margin-bottom:20px;
+  padding:10px 20px 10px 16px;
+  font-family:'Space Grotesk', 'Noto Sans KR', sans-serif;
+  font-size:1.06rem;
+  font-weight:700;
+  letter-spacing:.04em;
+  border-radius:999px;
+}
+.exam-role-badge .role-dot {
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  display:inline-block;
+}
+.mock-badge {
+  background:rgba(255,255,255,.08);
+  color:#fff;
+  border:1px solid rgba(255,255,255,.18);
+}
+.mock-badge .role-dot { background:#cfd0d2; box-shadow:0 0 8px rgba(207,208,210,.6); }
+.book-badge {
+  background:rgba(0,255,163,.14);
   color:var(--accent);
-  border-bottom:1px solid transparent;
-  transition:border-color .3s;
+  border:1px solid rgba(0,255,163,.45);
 }
-.proof-foot a:hover { border-bottom-color:var(--accent); }
+.book-badge .role-dot { background:var(--accent); box-shadow:0 0 10px rgba(0,255,163,.7); }
+
+.exam-card-tag {
+  font-family:'Space Grotesk', sans-serif;
+  font-size:1.1rem;
+  font-weight:600;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:rgba(240,240,240,.72);
+  margin-bottom:12px;
+}
+.exam-card-num {
+  font-family:'Space Grotesk', 'Noto Sans KR', sans-serif;
+  font-size:clamp(2.2rem, 2.95vw, 2.85rem);
+  font-weight:800;
+  color:#fff;
+  margin:0 0 24px;
+  padding-bottom:22px;
+  border-bottom:1px solid rgba(255,255,255,.14);
+  letter-spacing:-.01em;
+  line-height:1.2;
+}
+.exam-card-body {
+  font-size:1.18rem;
+  line-height:1.72;
+  color:rgba(240,240,240,.88);
+  flex:1;
+}
+.exam-stem        { margin:0 0 16px; }
+.exam-stem strong { color:#fff; }
+.exam-mol {
+  display:flex;
+  gap:32px;
+  align-items:center;
+  justify-content:space-around;
+  margin:18px 0;
+  padding:24px 14px;
+  background:rgba(0,0,0,.32);
+  border:1px dashed rgba(255,255,255,.14);
+}
+.exam-mol figure {
+  margin:0;
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:8px;
+}
+.exam-mol svg { display:block; transform:scale(1.18); transform-origin:center; }
+.exam-mol figcaption {
+  font-family:'Space Grotesk', 'Noto Sans KR', sans-serif;
+  font-size:.98rem;
+  letter-spacing:.06em;
+  color:rgba(240,240,240,.78);
+}
+.exam-stem-sm {
+  font-size:1.05rem;
+  color:rgba(240,240,240,.7);
+  margin:8px 0 14px;
+}
+.exam-points {
+  color:inherit;
+  font-weight:700;
+  font-family:'Space Grotesk', sans-serif;
+}
+.exam-choices {
+  list-style:none;
+  padding:0;
+  margin:0 0 8px;
+  font-size:1.18rem;
+}
+.exam-choices li {
+  padding:7px 0 7px 28px;
+  position:relative;
+}
+.exam-choices li::before {
+  content:'ㄱ';
+  position:absolute;
+  left:0;
+  top:7px;
+  color:rgba(240,240,240,.5);
+  font-weight:600;
+}
+.exam-choices li:nth-child(2)::before { content:'ㄴ'; }
+.exam-choices li:nth-child(3)::before { content:'ㄷ'; }
+.exam-choices mark {
+  background:#F4EB9A;
+  color:#0F464C;
+  padding:1px 6px;
+  border-radius:2px;
+  font-weight:600;
+}
+
+/* Shared key-concept chip — IDENTICAL on both cards = the visual punchline. */
+.exam-key-shared {
+  margin-top:24px;
+  padding:20px 22px;
+  background:#C8DFDA;
+  border:1px solid rgba(15,70,76,.3);
+  border-radius:14px;
+  display:flex;
+  flex-wrap:wrap;
+  align-items:baseline;
+  gap:6px 14px;
+  font-size:1.18rem;
+  color:#0F464C;
+}
+.exam-key-shared .key-label {
+  font-family:'Space Grotesk', sans-serif;
+  font-size:.86rem;
+  font-weight:700;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:#0F464C;
+}
+.exam-key-shared strong {
+  color:#0F464C;
+  font-weight:800;
+  font-size:1.32rem;
+}
+.exam-key-shared .key-curr {
+  font-size:.96rem;
+  color:rgba(15,70,76,.7);
+  letter-spacing:.02em;
+  margin-left:auto;
+}
+
+/* Right card — English passage */
+.book-card .exam-passage {
+  font-family:'Space Grotesk', 'Noto Sans KR', sans-serif;
+  font-size:1.42rem;
+  line-height:1.66;
+  color:rgba(245,245,245,.96);
+  margin:0 0 18px;
+}
+.book-card .exam-passage mark {
+  background:#F4EB9A;
+  color:#0F464C;
+  padding:1px 6px;
+  border-radius:2px;
+  font-weight:700;
+}
+.book-card .exam-passage em { font-style:italic; color:#fff; font-weight:500; }
+.book-card .exam-passage-ko-min {
+  margin:0 0 16px;
+  font-size:1.14rem;
+  line-height:1.7;
+  color:rgba(240,240,240,.74);
+  padding-left:14px;
+  border-left:2px solid rgba(255,255,255,.14);
+}
+.book-card .exam-passage-ko-min strong { color:#fff; font-weight:600; }
+
+/* Comprehension teaser question — mirrors the mock-exam Q. format */
+.exam-comprehension {
+  font-family:'Space Grotesk', 'Noto Sans KR', sans-serif;
+  font-size:1.16rem;
+  line-height:1.55;
+  color:rgba(245,245,245,.92);
+  padding:14px 16px;
+  border-left:2px solid rgba(0,255,163,.55);
+  background:rgba(0,255,163,.04);
+}
+.exam-comprehension .q-mark {
+  font-weight:700;
+  color:var(--accent);
+  margin-right:6px;
+}
+.exam-comprehension em { font-style:italic; color:#fff; font-weight:600; }
+
+.exam-card-foot {
+  margin-top:22px;
+  padding-top:16px;
+  border-top:1px dashed rgba(255,255,255,.12);
+  font-family:'Space Grotesk', 'Noto Sans KR', sans-serif;
+  font-size:.96rem;
+  font-weight:500;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:rgba(240,240,240,.74);
+}
+
+/* Center connector — desktop arrow & "같은 개념" pill */
+.exam-match-arrow {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:16px;
+  color:var(--accent);
+  padding:0 4px;
+}
+.exam-match-arrow svg {
+  width:96px;
+  height:36px;
+  filter:drop-shadow(0 0 14px rgba(0,255,163,.55));
+  opacity:0;
+  transform:scaleX(.2);
+  transform-origin:left center;
+  transition:opacity .55s ease .56s, transform .85s cubic-bezier(.16,1,.3,1) .56s;
+}
+.exam-match.in .exam-match-arrow svg {
+  opacity:1;
+  transform:scaleX(1);
+}
+.exam-match-arrow .arrow-label {
+  font-family:'Space Grotesk', 'Noto Sans KR', sans-serif;
+  font-size:1rem;
+  font-weight:700;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  white-space:nowrap;
+  padding:10px 16px;
+  background:rgba(0,255,163,.14);
+  border:1px solid rgba(0,255,163,.45);
+  border-radius:999px;
+  color:var(--accent);
+  opacity:0;
+  transform:translateY(10px) scale(.92);
+  transition:opacity .58s ease .95s, transform .58s cubic-bezier(.16,1,.3,1) .95s;
+}
+.exam-match.in .exam-match-arrow .arrow-label {
+  opacity:1;
+  transform:translateY(0) scale(1);
+}
+
+@media (max-width: 960px) {
+  .exam-match { padding:80px 22px 96px; }
+  .exam-match-head .story-title {
+    white-space:normal;
+    width:100%;
+    font-size:clamp(2.1rem, 6.2vw, 3.1rem);
+  }
+  .exam-match-grid {
+    grid-template-columns:1fr;
+    gap:24px;
+  }
+  .exam-card.mock-card,
+  .exam-card.book-card { transform:none; }
+  .exam-match.in .exam-card.mock-card,
+  .exam-match.in .exam-card.book-card { transform:none; }
+  .exam-match-arrow {
+    flex-direction:row;
+    justify-self:center;
+  }
+  .exam-match-arrow svg,
+  .exam-match.in .exam-match-arrow svg { transform:rotate(90deg) scaleX(1); }
+  .exam-card-num { font-size:1.55rem; }
+  .exam-key-shared .key-curr { margin-left:0; }
+}
 
 /* =============== PLANS =============== */
 .plans {
@@ -418,11 +1564,12 @@ a { color:inherit; text-decoration:none; }
   background:var(--bg);
 }
 .plans-h2 {
-  font-family:'Noto Sans KR', sans-serif;
-  font-weight:300;
-  font-size:clamp(2rem, 7vw, 5.5rem);
-  line-height:1.1;
-  letter-spacing:-.03em;
+  font-family:'Space Grotesk', 'Noto Sans KR', sans-serif;
+  font-weight:700;
+  font-size:clamp(2.4rem, 7vw, 6.5rem);
+  line-height:.92;
+  letter-spacing:-.04em;
+  text-transform:uppercase;
   margin-bottom:64px;
 }
 .plans-grid {
@@ -435,7 +1582,7 @@ a { color:inherit; text-decoration:none; }
   position:relative;
   background:var(--bg2);
   border:1px solid var(--line);
-  padding:56px 36px 40px;
+  padding:64px 36px 42px;
   display:flex;
   flex-direction:column;
   gap:18px;
@@ -450,7 +1597,7 @@ a { color:inherit; text-decoration:none; }
 .plan:hover {
   transform:translateY(-6px);
   border-color:var(--line3);
-  box-shadow:0 24px 60px -28px rgba(45,212,191,.55);
+  box-shadow:0 24px 68px -30px rgba(0,255,163,.58);
 }
 .plan-name {
   font-family:'Space Grotesk', sans-serif;
@@ -493,7 +1640,7 @@ a { color:inherit; text-decoration:none; }
 .plan:hover .plan-cta { color:var(--txt); }
 .plan-featured {
   border-color:var(--line3);
-  background:linear-gradient(180deg, rgba(45,212,191,.04), transparent 60%);
+  background:linear-gradient(180deg, rgba(0,255,163,.055), transparent 60%);
 }
 .plan-featured::before {
   content:"RECOMMENDED";
@@ -535,7 +1682,7 @@ a { color:inherit; text-decoration:none; }
 
 /* =============== FINAL =============== */
 .final {
-  min-height:80vh;
+  min-height:86vh;
   display:flex;
   flex-direction:column;
   align-items:center;
@@ -544,6 +1691,21 @@ a { color:inherit; text-decoration:none; }
   padding:120px 8vw;
   background:var(--bg);
   text-align:center;
+}
+.final-kicker {
+  font-family:'Space Grotesk', sans-serif;
+  font-size:.82rem;
+  letter-spacing:.35em;
+  text-transform:uppercase;
+  color:var(--accent);
+}
+.final h2 {
+  font-family:'Space Grotesk', 'Noto Sans KR', sans-serif;
+  font-size:clamp(3rem, 12vw, 10rem);
+  line-height:.86;
+  letter-spacing:-.05em;
+  text-transform:uppercase;
+  max-width:1120px;
 }
 .final-btn {
   display:inline-block;
@@ -559,7 +1721,7 @@ a { color:inherit; text-decoration:none; }
 }
 .final-btn:hover {
   transform:scale(1.04);
-  box-shadow:0 24px 80px -16px rgba(45,212,191,.6);
+  box-shadow:0 24px 80px -16px rgba(0,255,163,.62);
 }
 .final-link {
   font-family:'Space Grotesk', sans-serif;
@@ -641,7 +1803,10 @@ a { color:inherit; text-decoration:none; }
 
 /* =============== Mobile =============== */
 @media (max-width: 960px) {
-  .subject-grid { grid-template-columns:repeat(2, 1fr); }
+  .statement { grid-template-columns:1fr; align-items:start; }
+  .concerns-head, .proof-head { display:block; }
+  .concerns-head .story-copy, .proof-head .story-copy { margin-top:18px; max-width:680px; }
+  .concern-grid, .solution-grid, .solution-list { grid-template-columns:1fr; }
   .plans-grid { grid-template-columns:1fr; }
 }
 @media (max-width: 720px) {
@@ -651,11 +1816,14 @@ a { color:inherit; text-decoration:none; }
   #bg-canvas { display:none; }
   .hero-fallback { display:flex; }
   .scroll-cue { font-size:.62rem; bottom:22px; }
-  .statement, .proof, .plans, .final { padding-left:24px; padding-right:24px; }
-  .statement { padding-top:80px; padding-bottom:80px; }
+  .story-section, .proof, .plans, .final { padding-left:24px; padding-right:24px; }
+  .story-section { padding-top:88px; padding-bottom:88px; }
+  .statement { gap:34px; }
+  .worry-line, .concern-card, .solution-panel { min-height:auto; padding:26px 22px; }
+  .concern-grid, .solution-side { gap:16px; }
+  .meshy-transition { height:40vh; min-height:260px; }
   .proof, .plans { padding-top:96px; padding-bottom:96px; }
-  .subject-grid { grid-template-columns:1fr; gap:14px; }
-  .subject-card { min-height:180px; padding:32px 24px; }
+  .solution-panel.hero-card { min-height:440px; }
   .plan { padding:40px 28px 32px; }
   .final-btn { padding:24px 40px; width:100%; max-width:320px; }
   .site-footer { padding:24px; }
@@ -668,18 +1836,234 @@ a { color:inherit; text-decoration:none; }
   .scroll-cue .arrow { animation:none; }
   .reveal, .reveal.in { opacity:1; transform:none; transition:none; }
   .split .char { opacity:1; transform:none; transition:none; }
-  .subject-card, .plan { opacity:1; transform:none; }
-  .final-btn:hover, .plan:hover, .subject-card:hover { transform:none; }
+  .worry-line, .concern-card, .solution-panel, .exam-card, .plan { opacity:1; filter:none; transform:none; transition:none; }
+  .exam-card::before { display:none; }
+  .exam-match-arrow svg,
+  .exam-match-arrow .arrow-label { opacity:1; transform:none; transition:none; }
+  .final-btn:hover, .plan:hover, .concern-card:hover, .solution-panel:hover { transform:none; }
+}
+
+/* ── HORIZON HERO (vanilla port of three.js horizon section) ────────────────
+   Lives directly below #hero. Spans 3 viewport-heights of scroll: a sticky
+   stage holds the WebGL canvas + overlays while three labelled scroll panels
+   (HORIZON / COSMOS / INFINITY) drive camera keyframes via landing-horizon.js.
+   ────────────────────────────────────────────────────────────────────────── */
+.horizon-hero {
+  position:relative;
+  width:100%;
+  background:#000;
+  /* 3 panels × 100vh + a tail so the last panel can fully resolve */
+  /* Total scrollable = (height - 100vh). With 300vh → 200vh of scroll → enough
+     for camera to traverse all 3 keyframes smoothly. */
+  height:300vh;
+  z-index:1;
+  isolation:isolate;
+}
+.horizon-hero__stage {
+  position:sticky;
+  top:0;
+  width:100%;
+  height:100vh;
+  overflow:hidden;
+}
+#horizon-canvas {
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  display:block;
+}
+
+/* Side menu (vertical word + 3-bar icon) — left edge of viewport */
+.horizon-side-menu {
+  position:absolute;
+  left:max(24px, 3vw);
+  top:50%;
+  transform:translateY(-50%);
+  z-index:5;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:24px;
+  pointer-events:none;
+}
+.horizon-side-menu__icon {
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+}
+.horizon-side-menu__icon span {
+  display:block;
+  width:24px;
+  height:1.5px;
+  background:rgba(255,255,255,.7);
+  transition:background .3s ease;
+}
+.horizon-side-menu__vert {
+  font-family:'Space Grotesk', sans-serif;
+  font-size:.7rem;
+  font-weight:500;
+  letter-spacing:.55em;
+  color:rgba(255,255,255,.55);
+  writing-mode:vertical-rl;
+  text-orientation:mixed;
+  text-transform:uppercase;
+}
+
+/* Center stack: title + subtitle */
+.horizon-content {
+  position:absolute;
+  inset:0;
+  z-index:4;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  pointer-events:none;
+  padding:0 6vw;
+}
+.horizon-title {
+  font-family:'Bebas Neue', 'Space Grotesk', sans-serif;
+  font-weight:400;
+  font-size:clamp(64px, 14vw, 220px);
+  letter-spacing:.04em;
+  line-height:.95;
+  color:#fff;
+  margin:0 0 28px;
+  text-shadow:0 4px 40px rgba(0,0,0,.55);
+  display:inline-block;
+  /* Each char gets its own span for stagger animation */
+}
+.horizon-title__char {
+  display:inline-block;
+  white-space:pre;
+}
+.horizon-subtitle {
+  font-family:'Space Grotesk', 'Noto Sans KR', sans-serif;
+  font-weight:300;
+  font-size:clamp(14px, 1.4vw, 18px);
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.78);
+  max-width:640px;
+}
+.horizon-subtitle__line {
+  margin:0;
+  line-height:1.7;
+}
+
+/* Scroll progress indicator — bottom left */
+.horizon-progress {
+  position:absolute;
+  left:max(24px, 3vw);
+  bottom:max(28px, 3vh);
+  z-index:5;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  font-family:'Space Grotesk', sans-serif;
+  color:rgba(255,255,255,.7);
+  font-size:.72rem;
+  letter-spacing:.32em;
+  text-transform:uppercase;
+  pointer-events:none;
+  min-width:180px;
+}
+.horizon-progress__label { font-weight:500; }
+.horizon-progress__track {
+  position:relative;
+  width:160px;
+  height:1.5px;
+  background:rgba(255,255,255,.18);
+  overflow:hidden;
+}
+.horizon-progress__fill {
+  position:absolute;
+  inset:0 auto 0 0;
+  width:0%;
+  background:linear-gradient(90deg, #2DD4BF, #fff);
+  transition:width .15s linear;
+}
+.horizon-progress__counter {
+  font-variant-numeric:tabular-nums;
+  font-size:.68rem;
+  letter-spacing:.2em;
+  color:rgba(255,255,255,.5);
+}
+
+/* The three scroll panels — invisible (canvas does the visuals) but provide
+   the scroll space and act as semantic landmarks. Each panel = 100vh. */
+.horizon-panel {
+  position:relative;
+  width:100%;
+  height:100vh;
+  /* Invisible — canvas + overlays in .horizon-hero__stage handle visuals.
+     A11y text inside is visually hidden but readable by screen readers. */
+}
+.horizon-panel > .sr-only {
+  position:absolute;
+  width:1px; height:1px;
+  padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0,0,0,0);
+  white-space:nowrap; border:0;
+}
+
+/* Mobile / reduced-motion fallback — show static credits, hide scroll spans
+   and shrink the section so it doesn't dominate the page. */
+@media (max-width: 768px) {
+  .horizon-hero { height:120vh; }
+  .horizon-title { font-size:clamp(56px, 18vw, 120px); }
+  .horizon-side-menu { display:none; }
+  .horizon-progress { left:50%; transform:translateX(-50%); align-items:center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .horizon-hero { height:100vh; }
+  .horizon-panel { display:none; }
+  .horizon-side-menu, .horizon-progress { display:none; }
+  #horizon-canvas { display:none; }
+  .horizon-hero__stage::before {
+    content:'';
+    position:absolute; inset:0;
+    background:
+      radial-gradient(ellipse at 50% 80%, rgba(45,212,191,.15), transparent 60%),
+      radial-gradient(ellipse at 50% 30%, rgba(0,51,255,.18), transparent 70%),
+      #050511;
+  }
 }
 </style>
 </head>
 <body>
 <a href="#main" class="skip-link">본문으로 건너뛰기</a>
 
+<!-- =============== SITE NAV (transparent → solid on scroll past hero) =============== -->
+<nav class="site-nav" aria-label="주 메뉴">
+  <a href="index.html" class="logo-wrap" aria-label="Terra Nova 홈">
+    <div class="logo-main">TERRA NOVA</div>
+    <div class="logo-eng">ENGLISH</div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">홈</a></li>
+    <li><a href="subscription_detail_complete.html">구독안내</a></li>
+    <li><a href="level_test.html">레벨테스트</a></li>
+    <li><a href="sample.html">무료샘플</a></li>
+    <li><a href="market.html">마켓</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <!-- 구독 신청 (CTA, sparkling pill) — left of login -->
+    <li><a href="order.html" class="nav-cta">구독 신청</a></li>
+    <!-- 로그인 (white pill, hover → mint) — right side -->
+    <li data-auth="guest"><a href="login.html" class="nav-login">로그인</a></li>
+    <li data-auth="user" style="display:none;"><a href="mypage.html" class="nav-login"><span data-user-name>회원</span> 님</a></li>
+    <li data-auth="user" style="display:none;"><a href="#" data-action="logout" class="nav-login">로그아웃</a></li>
+  </ul>
+  <button class="nav-hamburger" id="nav-hamburger" onclick="toggleNav()" aria-label="메뉴"><span></span><span></span><span></span></button>
+</nav>
+
 <!-- =============== HERO =============== -->
 <section id="hero" class="hero is-pre" aria-label="Terra Nova hero">
   <canvas id="hero-warp" aria-hidden="true"></canvas>
   <canvas id="bg-canvas" aria-hidden="true"></canvas>
+  <div class="hero-rays" aria-hidden="true"></div>
   <div id="mouse-halo" aria-hidden="true"></div>
 
   <!-- Static fallback for mobile / reduced-motion -->
@@ -687,9 +2071,7 @@ a { color:inherit; text-decoration:none; }
     <h1>영어 한 지문에<br><span class="accent">수학 한 단원</span><br>이 들어 있습니다.</h1>
   </div>
 
-  <div class="hero-ui">
-    <a href="index.html" class="brand-mark" aria-label="Terra Nova 홈">TERRA&nbsp;NOVA</a>
-  </div>
+  <!-- (brand-mark removed — new fixed .site-nav at top of page provides the logo) -->
 
   <!-- Center overlay: kicker pill above + ENGLISH below the WebGL TERRA NOVA -->
   <div class="hero-tagline" aria-hidden="true">영어로 전과목 학습</div>
@@ -701,44 +2083,240 @@ a { color:inherit; text-decoration:none; }
   <div class="scroll-cue" aria-hidden="true">SCROLL <span class="arrow">↓</span></div>
 </section>
 
-<main id="main">
+<!-- =============== HORIZON HERO (3-panel cosmic scroll) =============== -->
+<!-- Sticky WebGL stage stays pinned while user scrolls through 3 panels.
+     Panel content is rendered into the stage by landing-horizon.js based on
+     scroll progress. Panels themselves are invisible scroll spacers. -->
+<section id="horizon-hero" class="horizon-hero" aria-label="Cosmic horizon scroll experience">
+  <div class="horizon-hero__stage">
+    <canvas id="horizon-canvas" aria-hidden="true"></canvas>
 
-  <!-- =============== STATEMENT =============== -->
-  <section class="statement reveal">
-    <div class="kicker split" data-split>한 학년 교과를 영어로</div>
-    <h1 class="statement-h1 split" data-split>영어 한 지문에,<br><span class="accent">수학 한 단원</span>이<br>들어 있습니다.</h1>
-  </section>
+    <aside class="horizon-side-menu" style="visibility:hidden;" aria-hidden="true">
+      <div class="horizon-side-menu__icon"><span></span><span></span><span></span></div>
+      <div class="horizon-side-menu__vert">SPACE</div>
+    </aside>
 
-  <!-- =============== VISUAL PROOF =============== -->
-  <section class="proof reveal">
-    <div class="kicker">10단계 × 학년별 교과 매칭</div>
-    <div class="subject-grid">
-      <div class="subject-card">
-        <span class="subject-cat">Math · 수학Ⅰ</span>
-        <h3>II-3. 지수와 로그</h3>
-      </div>
-      <div class="subject-card">
-        <span class="subject-cat">Science · 통합과학</span>
-        <h3>IV. 에너지 전환</h3>
-      </div>
-      <div class="subject-card">
-        <span class="subject-cat">Society · 사회·문화</span>
-        <h3>III. 시장과 경제</h3>
-      </div>
-      <div class="subject-card">
-        <span class="subject-cat">Literature · 문학</span>
-        <h3>II. 정체성과 자아</h3>
+    <div class="horizon-content">
+      <h2 class="horizon-title" data-horizon-title style="visibility:hidden;">HORIZON</h2>
+      <div class="horizon-subtitle" data-horizon-subtitle style="visibility:hidden;">
+        <p class="horizon-subtitle__line">Where vision meets reality,</p>
+        <p class="horizon-subtitle__line">we shape the future of tomorrow</p>
       </div>
     </div>
-    <p class="proof-foot">
-      각 레벨이 자기 학년의 교과 단원과 1:1로 연결됩니다.<br>
-      <a href="subscription_detail_complete.html#levels">전체 매칭표 보기 →</a>
-    </p>
+
+    <div class="horizon-progress" style="visibility:hidden;" aria-hidden="true">
+      <span class="horizon-progress__label">Scroll</span>
+      <div class="horizon-progress__track"><div class="horizon-progress__fill"></div></div>
+      <span class="horizon-progress__counter">00 / 02</span>
+    </div>
+  </div>
+
+  <!-- Three scroll panels provide the vertical scroll space (no visible content) -->
+  <div class="horizon-panel"><span class="sr-only">Horizon</span></div>
+  <div class="horizon-panel"><span class="sr-only">Cosmos</span></div>
+  <div class="horizon-panel"><span class="sr-only">Infinity</span></div>
+</section>
+
+<main id="main">
+
+  <!-- =============== PAIN OPENING =============== -->
+  <section class="statement story-section reveal">
+    <div>
+      <div class="story-kicker split" data-split>THE BEGINNING OF TERRA NOVA</div>
+      <h1 class="story-title split" data-split>영어는 언어입니다. 영어로<span class="accent">영어만 공부해야 할까요?</span></h1>
+      <p class="story-copy statement-lede">
+        영어 공부를 하면서 다른 과목도 같이 공부할 수는 없을까? 다른 과목을 공부하면서 영어 실력도 늘릴 수 없을까?
+        이 고민에서부터 시작했습니다.
+      </p>
+    </div>
+    <div class="worry-stack" aria-label="학부모의 주요 고민">
+      <div class="worry-line">
+        <span class="worry-tag">Concern 01</span>
+        <strong>원서 읽기에서 수능형 독해로 넘어갈 시기인데 뭘 해야하죠?</strong>
+      </div>
+      <div class="worry-line">
+        <span class="worry-tag">Concern 02</span>
+        <strong>영어 기초 없는 아이, 너무 다양한 영어 교재.. 선택이 너무 어려워요. </strong>
+      </div>
+      <div class="worry-line">
+        <span class="worry-tag">Concern 03</span>
+        <strong>고등학교를 올라가니 해야 할 과목이 너무 많아서 시간 배분이 힘들어요.</strong>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============== TERRA NOVA SOLUTION (light-mode cinematic horizontal pin) ===============
+       Inverts to ivory/mint-white background ("scroll into the light") AND
+       converts the 3-panel grid into a horizontally-scrolled cinematic track.
+       Vertical scroll → horizontal track translate (sticky-pin pattern).
+       Mobile (<900px) and prefers-reduced-motion fall back to a vertical stack. -->
+  <section class="proof proof-cinematic">
+    <div class="proof-pin">
+      <div class="proof-stage">
+        <div class="proof-track">
+
+          <article class="proof-headline-card">
+            <div class="story-kicker">Terra Nova solution</div>
+            <h2 class="story-title">그래서 우리는<br>지문을 이렇게<br><span class="accent">설계합니다.</span></h2>
+            <p class="story-copy">
+              영어 공부 시간을 전과목 배경지식 시간으로 바꾸는 것. 그것이 Terra Nova의 핵심 해결책입니다.
+            </p>
+            <div class="track-hint" aria-hidden="true">
+              <span class="track-hint-dot"></span>
+              <span>Scroll →</span>
+            </div>
+          </article>
+
+          <a class="solution-panel hero-card" href="subscription_detail_complete.html#levels">
+            <span class="label">Curriculum map</span>
+            <h3>한 달 20지문이<br>교과 단원과 연결됩니다.</h3>
+            <div class="solution-list">
+              <span>수학 개념을 영어 소재로 읽기</span>
+              <span>과학 원리를 지문 구조로 이해하기</span>
+              <span>사회 이슈를 배경지식으로 축적하기</span>
+            </div>
+          </a>
+
+          <a class="solution-panel" href="sample.html">
+            <span class="label">Sample passage</span>
+            <h3>단어 암기보다 먼저,<br>지문의 세계를 익숙하게.</h3>
+            <p>예를 들어 SATURN 레벨은 지수와 로그 같은 수학 개념을 영어 독해 소재로 다룹니다.</p>
+          </a>
+
+          <a class="solution-panel" href="#plans">
+            <span class="label">Monthly routine</span>
+            <h3>하루 15분, 영어 하나로<br>전과목 감각을 쌓습니다.</h3>
+            <p>PDF 또는 실물 교재로 시작하고, 플랜에 따라 모의고사와 해설 학습을 더합니다.</p>
+          </a>
+
+        </div>
+        <div class="proof-progress" aria-hidden="true">
+          <span class="proof-progress-fill"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============== EXAM MATCH (mock-exam ↔ Terra Nova passage) =================
+       Concrete proof point: the chemistry concept asked on the 2026.06 고1 통합과학
+       mock exam (Q15, H₂O / CO₂ covalent-bond model) is the same concept students
+       already meet — in English — in the first passage of our 2026.06 textbook
+       ("Why Carbon Can Build Almost Anything"). Two side-by-side "captured"
+       cards make the overlap visible at a glance. -->
+  <section id="exam-match" class="exam-match reveal" aria-label="모의고사와 Terra Nova 교재 내용 비교">
+    <div class="exam-match-head">
+      <span class="story-kicker split" data-split>실제 시험 그대로</span>
+      <h2 class="story-title split" data-split>수학·과학·사회 시험에 나온 그 개념을, <span class="accent">영어 지문</span>으로.</h2>
+    </div>
+
+    <div class="exam-match-grid">
+
+      <!-- LEFT — Mock exam capture -->
+      <article class="exam-card mock-card">
+        <div class="exam-role-badge mock-badge">
+          <span class="role-dot" aria-hidden="true"></span>
+          모의고사
+        </div>
+        <div class="exam-card-tag">2026학년도 6월 · 고1 전국연합학력평가</div>
+        <h3 class="exam-card-num">통합과학 15번</h3>
+        <div class="exam-card-body">
+          <p class="exam-stem">
+            그림은 분자 (가)와 (나)를 화학 결합 모형으로 나타낸 것이다. (가)와 (나)는 각각
+            <strong>물(H<sub>2</sub>O)</strong>과 <strong>이산화 탄소(CO<sub>2</sub>)</strong> 중 하나이다.
+          </p>
+          <div class="exam-mol" aria-hidden="true">
+            <figure>
+              <svg width="92" height="68" viewBox="0 0 92 68" role="img" aria-label="물 분자 모형">
+                <line x1="22" y1="54" x2="46" y2="22" stroke="#cfd0d2" stroke-width="2"/>
+                <line x1="46" y1="22" x2="70" y2="54" stroke="#cfd0d2" stroke-width="2"/>
+                <circle cx="46" cy="22" r="14" fill="#33d6ff"/>
+                <text x="46" y="27" text-anchor="middle" font-size="13" font-weight="700" fill="#001417" font-family="Space Grotesk, sans-serif">O</text>
+                <circle cx="22" cy="54" r="9" fill="#fff"/>
+                <text x="22" y="58" text-anchor="middle" font-size="10" font-weight="700" fill="#000" font-family="Space Grotesk, sans-serif">H</text>
+                <circle cx="70" cy="54" r="9" fill="#fff"/>
+                <text x="70" y="58" text-anchor="middle" font-size="10" font-weight="700" fill="#000" font-family="Space Grotesk, sans-serif">H</text>
+              </svg>
+              <figcaption>(가) H<sub>2</sub>O</figcaption>
+            </figure>
+            <figure>
+              <svg width="140" height="48" viewBox="0 0 140 48" role="img" aria-label="이산화 탄소 분자 모형">
+                <line x1="22" y1="20" x2="50" y2="20" stroke="#cfd0d2" stroke-width="1.6"/>
+                <line x1="22" y1="28" x2="50" y2="28" stroke="#cfd0d2" stroke-width="1.6"/>
+                <line x1="90" y1="20" x2="118" y2="20" stroke="#cfd0d2" stroke-width="1.6"/>
+                <line x1="90" y1="28" x2="118" y2="28" stroke="#cfd0d2" stroke-width="1.6"/>
+                <circle cx="70" cy="24" r="13" fill="#1f1f1f" stroke="#fff" stroke-width="1.2"/>
+                <text x="70" y="29" text-anchor="middle" font-size="13" font-weight="700" fill="#fff" font-family="Space Grotesk, sans-serif">C</text>
+                <circle cx="22" cy="24" r="11" fill="#33d6ff"/>
+                <text x="22" y="29" text-anchor="middle" font-size="12" font-weight="700" fill="#001417" font-family="Space Grotesk, sans-serif">O</text>
+                <circle cx="118" cy="24" r="11" fill="#33d6ff"/>
+                <text x="118" y="29" text-anchor="middle" font-size="12" font-weight="700" fill="#001417" font-family="Space Grotesk, sans-serif">O</text>
+              </svg>
+              <figcaption>(나) CO<sub>2</sub></figcaption>
+            </figure>
+          </div>
+          <p class="exam-stem-sm">이에 대한 설명으로 옳은 것만을 &lt;보기&gt;에서 있는 대로 고른 것은? <span class="exam-points">[2점]</span></p>
+          <ul class="exam-choices">
+            <li>(가)는 물(H<sub>2</sub>O)이다.</li>
+            <li>(가)에서 모든 원자는 네온(Ne)과 같은 <mark>전자 배치</mark>를 가진다.</li>
+            <li><mark>공유하는 전자쌍의 수</mark>는 (가)와 (나)가 같다.</li>
+          </ul>
+        </div>
+        <div class="exam-key-shared">
+          <span class="key-label">핵심 개념</span>
+          <strong>공유결합 · 전자쌍 공유</strong>
+          <span class="key-curr">통합과학 I-2</span>
+        </div>
+        <div class="exam-card-foot">출처 한국교육과정평가원 · 시·도교육청 학력평가</div>
+      </article>
+
+      <!-- Center connector — "같은 개념" / arrow -->
+      <div class="exam-match-arrow" aria-hidden="true">
+        <svg viewBox="0 0 64 24" fill="none">
+          <path d="M2 12 H54" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M48 5 L60 12 L48 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+        <span class="arrow-label">같은 개념</span>
+      </div>
+
+      <!-- RIGHT — Terra Nova textbook capture -->
+      <article class="exam-card book-card">
+        <div class="exam-role-badge book-badge">
+          <span class="role-dot" aria-hidden="true"></span>
+          Terra Nova 교재
+        </div>
+        <div class="exam-card-tag">Terra Nova English · 2026.06 · Lesson 1</div>
+        <h3 class="exam-card-num">Why Carbon Can Build Almost Anything</h3>
+        <div class="exam-card-body">
+          <p class="exam-passage">
+            Carbon has <mark>four outer electrons</mark>, which means it can
+            <mark>share bonds</mark> with four different neighbors at the same time.
+            Oxygen bonds twice, nitrogen three times — but carbon is the only cheap,
+            plentiful atom that reaches four, and that small difference quietly shapes
+            <em>the entire story of biology</em>.
+          </p>
+          <p class="exam-passage-ko-min">
+            탄소는 <strong>가장 바깥쪽 전자가 4개</strong>라, 네 개의 서로 다른 이웃 원자와 동시에 결합을 <strong>공유</strong>할 수 있다.
+            산소는 두 번, 질소는 세 번이 한계지만, 흔하면서 값싼 원소 중 네 번 결합에 도달하는 것은 오직 탄소뿐 — 그 작은 차이가 생물학 전체를 조용히 빚어낸다.
+          </p>
+          <div class="exam-comprehension">
+            <span class="q-mark" aria-hidden="true">Q.</span>
+            Why can carbon connect to <em>four</em> different neighbors at once?
+          </div>
+        </div>
+        <div class="exam-key-shared">
+          <span class="key-label">핵심 개념</span>
+          <strong>공유결합 · 전자쌍 공유</strong>
+          <span class="key-curr">통합과학 I-2</span>
+        </div>
+        <div class="exam-card-foot">출처 Terra Nova Textbook · 2026.06 · Passage 01</div>
+      </article>
+
+    </div>
   </section>
 
   <!-- =============== PLANS =============== -->
   <section id="plans" class="plans reveal">
-    <h2 class="plans-h2">세 가지로 시작합니다</h2>
+    <h2 class="plans-h2">Choose your first month.</h2>
     <div class="plans-grid">
       <a class="plan" href="order.html?plan=light&ref=earlybird">
         <div class="plan-name">LIGHT</div>
@@ -767,6 +2345,8 @@ a { color:inherit; text-decoration:none; }
 
   <!-- =============== FINAL CTA =============== -->
   <section class="final reveal">
+    <div class="final-kicker">Terra Nova English</div>
+    <h2>Start with one passage.</h2>
     <a class="final-btn" href="order.html?plan=light&ref=earlybird">지금 시작하기</a>
     <a class="final-link" href="subscription_detail_complete.html">더 자세한 안내 →</a>
   </section>
@@ -802,6 +2382,29 @@ a { color:inherit; text-decoration:none; }
 (function () {
   'use strict';
 
+  // ---------- Scroll restoration ----------
+  // Landing pages should always open at the hero on refresh, not at the
+  // user's previous scroll position. Browser default is to auto-restore;
+  // we opt out and reset to top — but only if no URL hash anchor is set
+  // (so /landing.html#plans still jumps to the plans section).
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+  if (location.hash) {
+    document.body.classList.add('bigbang-done');
+    var deepLinkedHero = document.getElementById('hero');
+    if (deepLinkedHero) {
+      deepLinkedHero.classList.remove('is-pre');
+      deepLinkedHero.classList.add('is-post');
+    }
+  }
+  if (!location.hash) {
+    window.scrollTo(0, 0);
+  }
+  window.addEventListener('load', function () {
+    if (!location.hash) window.scrollTo(0, 0);
+  });
+
   // ---------- Reveal observers (always run; cheap) ----------
   function initReveals() {
     var io = ('IntersectionObserver' in window) ? new IntersectionObserver(function (entries) {
@@ -813,11 +2416,44 @@ a { color:inherit; text-decoration:none; }
       });
     }, { threshold: 0.18, rootMargin: '0px 0px -8% 0px' }) : null;
 
-    document.querySelectorAll('.reveal').forEach(function (el) {
+    document.querySelectorAll('.reveal:not(.exam-match)').forEach(function (el) {
       if (io) io.observe(el); else el.classList.add('in');
     });
 
-    // Card stagger inside proof + plans
+    // Bidirectional reveal for .exam-match — the two comparison cards scatter
+    // when scrolled out of the viewport center band, and re-assemble when
+    // scrolled back in. All other sections keep one-shot reveal because
+    // re-running their entrances on every scroll feels gimmicky; exam-match
+    // is the visual punchline, so the replay reinforces the message.
+    //
+    // We observe the *card grid* (not the whole section). rootMargin trims
+    // the viewport — the grid must intersect the trimmed region to be "in".
+    // Trigger geometry:
+    //   • IN  — grid has any pixel inside the viewport's central 76% band
+    //   • OUT — grid fully outside that band (above or below)
+    //
+    // -12% (vs the earlier -38%) means the grid triggers IN almost as soon
+    // as it enters the viewport from the bottom — users no longer have to
+    // scroll deep into the section to see the cards assemble. Trade-off:
+    // scatter (OUT) fires later when scrolling away, but the central band
+    // is still big enough that the grid feels stable while in view.
+    var examMatch = document.querySelector('.exam-match');
+    var examMatchGrid = document.querySelector('.exam-match-grid');
+    if (examMatch && examMatchGrid) {
+      if ('IntersectionObserver' in window) {
+        var emIO = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) examMatch.classList.add('in');
+            else                  examMatch.classList.remove('in');
+          });
+        }, { threshold: 0, rootMargin: '-2% 0px -2% 0px' });
+        emIO.observe(examMatchGrid);
+      } else {
+        examMatch.classList.add('in');
+      }
+    }
+
+    // Card stagger inside the post-hero story sections
     function staggerIn(parentSelector, childSelector, delayStep) {
       var parent = document.querySelector(parentSelector);
       if (!parent) return;
@@ -834,7 +2470,8 @@ a { color:inherit; text-decoration:none; }
       }, { threshold: 0.2 }) : null;
       if (pio) pio.observe(parent); else cards.forEach(function (c) { c.classList.add('in'); });
     }
-    staggerIn('.proof', '.subject-card', 110);
+    staggerIn('.statement', '.worry-line', 110);
+    staggerIn('.proof', '.solution-panel', 120);
     staggerIn('.plans', '.plan', 130);
 
     // Split-text reveal for elements marked [data-split]
@@ -848,7 +2485,7 @@ a { color:inherit; text-decoration:none; }
         for (var i = 0; i < txt.length; i++) {
           var ch = txt[i];
           if (ch === ' ') { out += ' '; continue; }
-          out += '<span class="char" style="transition-delay:' + (charIndex * 18) + 'ms">' + ch + '</span>';
+          out += '<span class="char" style="transition-delay:' + (charIndex * 70) + 'ms">' + ch + '</span>';
           charIndex++;
         }
         return out;
@@ -880,14 +2517,34 @@ a { color:inherit; text-decoration:none; }
     });
   }
 
+  // ---------- Hero fallback activator ----------
+  // Desktop hero headline is rendered by Three.js. If WebGL fails to init
+  // (Chrome's WebGL context limit, hardware accel off, script load error,
+  // refresh storms exhausting contexts), the user sees only the static
+  // tagline + "ENGLISH" + "CLICK TERRA NOVA" hint with no actual headline —
+  // visually broken. This activator force-displays the static h1 fallback
+  // and hides the WebGL-dependent overlay text so the page is always
+  // legible regardless of WebGL state.
+  function activateHeroFallback() {
+    var hero = document.getElementById('hero');
+    if (!hero) return;
+    hero.classList.add('webgl-failed');
+    var fb = document.querySelector('.hero-fallback');
+    if (fb) fb.style.display = 'flex';
+    ['.hero-tagline', '.hero-english', '#terra-hint'].forEach(function (sel) {
+      var el = document.querySelector(sel);
+      if (el) el.style.display = 'none';
+    });
+  }
+
   // ---------- Three.js scene (Lusion-style cylinder crosses + TERRA NOVA + Big Bang) ----------
   function initScene() {
-    if (typeof THREE === 'undefined') return;
+    if (typeof THREE === 'undefined') { activateHeroFallback(); return; }
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     if (window.innerWidth < 720) return;
 
     var canvas = document.getElementById('bg-canvas');
-    if (!canvas) return;
+    if (!canvas) { activateHeroFallback(); return; }
 
     var hero = document.getElementById('hero');
     var hintEl = document.getElementById('terra-hint');
@@ -900,7 +2557,26 @@ a { color:inherit; text-decoration:none; }
     var w = hero.clientWidth;
     var h = hero.clientHeight;
 
-    var renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+    var renderer;
+    try {
+      renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+    } catch (e) {
+      // WebGL context creation failed — likely the browser's per-tab
+      // context limit was hit (often happens during rapid refreshes).
+      activateHeroFallback();
+      return;
+    }
+    if (!renderer || !renderer.getContext()) {
+      activateHeroFallback();
+      return;
+    }
+    // If the WebGL context is later lost (GPU reset, tab backgrounded too
+    // long), gracefully degrade to the static fallback rather than freeze.
+    canvas.addEventListener('webglcontextlost', function (ev) {
+      ev.preventDefault();
+      activateHeroFallback();
+    }, { once: true });
+
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setSize(w, h, false);
     renderer.setClearColor(0x000000, 0);
@@ -1221,25 +2897,34 @@ a { color:inherit; text-decoration:none; }
       });
     }
 
-    // ---- Big Bang sequence (convergence → climax → explosion → decel → reveal) ----
+    // ---- Big Bang sequence (converge → hold → flash → dissolve+burst → decel → reveal) ----
     // Timeline:
-    //   0     ~ 700ms : crosses converge to center, shrinking, spin accelerates ("지이잉")
-    //   ~700ms        : climax — flash, orbs spawn, warp burst (speed 4×)
-    //   700  ~ 1500ms : orbs + warp at peak velocity
-    //   1500 ~ 2500ms : warp decelerates to ambient, orbs fade, light decays
-    //   2500ms        : reveal hero (TERRA NOVA forward + UI fade in)
-    var CONVERGE_MS = 700;
-    var CLIMAX_MS   = CONVERGE_MS;
-    var REVEAL_MS   = 2500;
+    //   0     ~  900ms : crosses converge to center, shrinking to point-size (~0.05)
+    //    900ms         : warp/rays fade-in begins (.4s transition) — visible WITH the bang
+    //    900 ~ 1030ms : HOLD — crosses held at point-size, spinning ("응축, 긴장감")
+    //    990ms         : climax flash starts (40ms before the bang for snap)
+    //   1030ms         : "펑" — dissolve starts AND star burst starts simultaneously
+    //                    (no gap — burst was previously delayed 80ms which read as
+    //                     "light orb, then stars" sequence; now they're unified)
+    //   1030 ~ 1100ms : DISSOLVE — point-sized crosses fade out
+    //   1030 ~ 1090ms : PointLight peak hold (60ms — was 200ms; brief so the orb
+    //                    doesn't dwell while the user waits for stars to appear)
+    //   1090 ~ 2400ms : PointLight decays, stars stream at peak then settle
+    //   2400ms        : reveal hero (TERRA NOVA forward + UI fade in)
+    var CONVERGE_MS = 900;
+    var HOLD_MS     = 130;
+    var CLIMAX_MS   = CONVERGE_MS + HOLD_MS;   // 1030ms — moment of "펑"
+    var REVEAL_MS   = 2400;
 
     function triggerBigBang() {
       bigBangTriggered = true;
       // Don't set inline cursor — keep CSS custom cursor (--tn-cursor-default) active
       dismissHint();
       if (haloEl) haloEl.classList.remove('active');
-      // Reveal warp canvas immediately so it can fade in during the bigbang itself
-      // (not abruptly appearing only at REVEAL_MS) → continuous explosion → starfield.
-      hero.classList.add('is-bigbang');
+      // NOTE: hero.classList.add('is-bigbang') is deferred to the burst moment
+      // (CLIMAX_MS + BURST_DELAY) so the warp canvas + light rays appear AS the
+      // stars rush out — not during the converge phase, which previously made
+      // the streaks visible while crosses were still gathering (felt premature).
 
       var bbT0 = performance.now();
       // Snapshot pre-bang state on each cross + clone materials for independent opacity
@@ -1268,15 +2953,20 @@ a { color:inherit; text-decoration:none; }
       bigbangLight = new THREE.PointLight(0xE6F7F4, 0, 22, 1.4);
       bigbangLight.position.set(0, 0, 0);
       scene.add(bigbangLight);
+      // Peak intensity tuned down further: 6.0 → 4.0 → 2.5 (much more translucent,
+      // the light orb is now a soft glow rather than a hard burst — yields cleanly
+      // to the streaming stars). Hold 30ms (snappy handoff, no perceptible dwell).
+      var BB_PEAK = 2.5;
+      var BB_HOLD = 30;
       (function animateBBLight() {
         var dt = performance.now() - bbT0;
         if (dt < CLIMAX_MS) {
           var t = dt / CLIMAX_MS;
-          bigbangLight.intensity = 6.0 * (t * t); // accelerating build-up
-        } else if (dt < CLIMAX_MS + 200) {
-          bigbangLight.intensity = 6.0; // hold peak
+          bigbangLight.intensity = BB_PEAK * (t * t); // accelerating build-up
+        } else if (dt < CLIMAX_MS + BB_HOLD) {
+          bigbangLight.intensity = BB_PEAK; // brief peak hold
         } else if (dt < REVEAL_MS) {
-          bigbangLight.intensity = 6.0 * (1 - (dt - CLIMAX_MS - 200) / (REVEAL_MS - CLIMAX_MS - 200));
+          bigbangLight.intensity = BB_PEAK * (1 - (dt - CLIMAX_MS - BB_HOLD) / (REVEAL_MS - CLIMAX_MS - BB_HOLD));
         } else {
           bigbangLight.intensity = 0;
           return;
@@ -1292,14 +2982,23 @@ a { color:inherit; text-decoration:none; }
         }
       }, CLIMAX_MS - 40);
 
-      // Warp burst starts AT climax — STARS ARE THE EXPLOSION.
-      // Crosses dissolve into center as the star burst rushes outward → unified animation.
-      setTimeout(function () { if (warpField) warpField.startWithBurst(); }, CLIMAX_MS);
-      // Cross husks fully removed after dissolve (200ms post-climax)
+      // Warp + rays fade-in starts at CONVERGE_MS (right after crosses gather).
+      // The 0.4s CSS transition means they're partially visible during the 130ms
+      // hold and ready to fully appear AT the bang — eliminating the previous
+      // gap where users saw a brief light orb before stars finally streamed.
+      setTimeout(function () {
+        hero.classList.add('is-bigbang');
+      }, CONVERGE_MS);
+      // Star burst at the bang ("펑") — synchronized with cross dissolve so
+      // stars rush outward exactly as the point-crosses vanish. No delay.
+      setTimeout(function () {
+        if (warpField) warpField.startWithBurst();
+      }, CLIMAX_MS);
+      // Cross husks removed right after dissolve (CLIMAX_MS + 70ms dissolve + 50ms safety = 150ms)
       setTimeout(function () {
         crosses.forEach(function (s) { scene.remove(s); });
         crossesGone = true;
-      }, CLIMAX_MS + 250);
+      }, CLIMAX_MS + 150);
       // Reveal hero (TERRA NOVA forward + UI fade in)
       setTimeout(revealHero, REVEAL_MS);
     }
@@ -1376,6 +3075,18 @@ a { color:inherit; text-decoration:none; }
       // Reveal corner UI + scroll cue
       hero.classList.remove('is-pre');
       hero.classList.add('is-post');
+      // Reveal site nav + unlock body scroll (CSS hooks on body.bigbang-done)
+      document.body.classList.add('bigbang-done');
+      if (window.location.hash) {
+        setTimeout(function () {
+          var target = document.querySelector(window.location.hash);
+          if (target) target.scrollIntoView();
+        }, 0);
+        setTimeout(function () {
+          var target = document.querySelector(window.location.hash);
+          if (target) target.scrollIntoView();
+        }, 400);
+      }
     }
 
     // ---- Resize / visibility ----
@@ -1520,16 +3231,17 @@ a { color:inherit; text-decoration:none; }
         var tgt = terraNova.userData.targetOpacity;
         terraNova.material.opacity += (tgt - cur) * 0.12;
       } else {
-        // Bigbang: convergence (700ms) → cross dissolves into center → STARS are the explosion
-        // The crosses' kinetic energy "becomes" the star burst — visually, crosses pile up at
-        // center, then disappear AS the warp stars burst outward. Single unified animation.
-        var DISSOLVE_MS = 200;
+        // Bigbang sequence — separated into 3 distinct beats so the user can read
+        // each phase: ① converge to point ② hold (응축, 긴장감) ③ flash + dissolve.
+        // Star burst (separate code) fires AFTER this dissolve via BURST_DELAY.
+        var POINT_SC   = 0.05;   // converged scale — point-like (was 0.25)
+        var DISSOLVE_MS = 70;    // tight dissolve so "펑" reads as instant (was 200)
         for (var ei = 0; ei < crosses.length; ei++) {
           var es = crosses[ei];
           if (!es.userData.bbT0) continue;
           var dtBB = now - es.userData.bbT0;
           if (dtBB < CONVERGE_MS) {
-            // Convergence: lerp pre-bang pos → (0,0,0), shrink toward 0.25
+            // ① Converge: lerp pre-bang pos → (0,0,0), shrink toward POINT_SC.
             var t = dtBB / CONVERGE_MS;
             var ease = t * t * (3 - 2 * t); // smoothstep
             var sp = es.userData.preBangPos;
@@ -1537,20 +3249,33 @@ a { color:inherit; text-decoration:none; }
             es.position.y = sp.y * (1 - ease);
             es.position.z = sp.z * (1 - ease);
             var ss0 = es.userData.preBangScale;
-            var newSc = ss0 + (0.25 - ss0) * ease;
+            var newSc = ss0 + (POINT_SC - ss0) * ease;
             es.scale.set(newSc, newSc, newSc);
             // Rotation accelerates as they speed inward (energy gathering)
             var spinTotal = ease * 0.06;
             es.rotation.x += spinTotal;
             es.rotation.y += spinTotal;
             es.rotation.z += spinTotal * 0.6;
-          } else if (dtBB < CONVERGE_MS + DISSOLVE_MS) {
-            // Dissolve at center: scale 0.25 → 0, opacity → 0 (very fast — they "become" the burst)
-            var t2 = (dtBB - CONVERGE_MS) / DISSOLVE_MS;
-            var s2 = 0.25 * (1 - t2);
+          } else if (dtBB < CONVERGE_MS + HOLD_MS) {
+            // ② Hold at point-size with subtle micro-pulse — visualizes condensed
+            // energy waiting to release. Brief enough that the user feels tension
+            // but doesn't get bored.
+            var holdT = (dtBB - CONVERGE_MS) / HOLD_MS;
+            var pulse = 1 + Math.sin(holdT * Math.PI * 3) * 0.18; // 1.5 oscillations
+            var heldSc = POINT_SC * pulse;
+            es.scale.set(heldSc, heldSc, heldSc);
+            es.position.set(0, 0, 0);
+            es.rotation.x += 0.06;
+            es.rotation.y += 0.06;
+            es.rotation.z += 0.04;
+          } else if (dtBB < CONVERGE_MS + HOLD_MS + DISSOLVE_MS) {
+            // ③ Dissolve — the "펑" moment. Point-sized cross shrinks + fades to 0
+            // very quickly, perfectly aligned with the climax flash.
+            var t2 = (dtBB - CONVERGE_MS - HOLD_MS) / DISSOLVE_MS;
+            var s2 = POINT_SC * (1 - t2);
             es.scale.set(s2, s2, s2);
-            es.rotation.x += 0.10;
-            es.rotation.y += 0.10;
+            es.rotation.x += 0.12;
+            es.rotation.y += 0.12;
             es.children.forEach(function (m) {
               if (m.isMesh && m.material) m.material.opacity = 1 - t2;
             });
@@ -1669,7 +3394,7 @@ a { color:inherit; text-decoration:none; }
       stars = [];
       var cx = canvas.lw / 2, cy = canvas.lh / 2;
       var md = Math.min(canvas.lw, canvas.lh) * 0.3;
-      var n = 1400;
+      var n = 2200; // bumped from 1900 → denser field, masks any post-burst dip
       for (var i = 0; i < n; i++) {
         var angle = Math.random() * Math.PI * 2;
         var dist = md + Math.random() * Math.max(canvas.lw, canvas.lh);
@@ -1730,12 +3455,16 @@ a { color:inherit; text-decoration:none; }
       var dpr = Math.min(window.devicePixelRatio || 1, 2);
       ctx.setTransform(1, 0, 0, 1, 0, 0);
       ctx.scale(dpr, dpr);
-      // Burst speed decay — ease-out (cubic) from BURST_PEAK to 1.0 over BURST_MS
+      // Burst speed: HOLD at peak for first 35%, then ease-out cubic to 1.0 over remaining 65%.
+      // The hold makes the "fast streaming" feel last longer before stars settle.
       if (burstActive) {
         var bt = (performance.now() - burstT0) / BURST_MS;
         if (bt >= 1) { speedMul = 1.0; burstActive = false; }
-        else {
-          var eo = 1 - Math.pow(1 - bt, 3); // ease-out cubic
+        else if (bt < 0.35) {
+          speedMul = BURST_PEAK;  // hold at peak
+        } else {
+          var nt = (bt - 0.35) / 0.65; // remap remaining 65% to 0..1
+          var eo = 1 - Math.pow(1 - nt, 3); // ease-out cubic
           speedMul = BURST_PEAK + (1.0 - BURST_PEAK) * eo;
         }
       }
@@ -1747,9 +3476,12 @@ a { color:inherit; text-decoration:none; }
       ctx.fillStyle = 'rgba(4,4,12,' + trailAlpha + ')';
       ctx.fillRect(0, 0, w, h);
       stars.forEach(function (s) {
-        s.z -= 0.8 * effSpeed;
+        s.z -= 1.0 * effSpeed;   // bumped 0.8 → 1.0 (~25% faster ambient flow)
         if (s.z <= 0) {
-          s.z = 1500 + Math.random() * 500;
+          // Wider z reset distribution (was 1500-2000) so respawned stars return at
+          // STAGGERED depths — some appear close to camera quickly, others slowly.
+          // Eliminates the synchronized "thin ring" gap visible 1-2s after burst.
+          s.z = 600 + Math.random() * 1400;
           var angle = Math.random() * Math.PI * 2;
           var md = Math.min(w, h) * 0.3;
           var dist = md + Math.random() * Math.max(w, h);
@@ -1806,8 +3538,10 @@ a { color:inherit; text-decoration:none; }
         var burstQty = Math.floor(stars.length * 0.6);
         for (var i = 0; i < burstQty; i++) {
           var s = stars[i];
-          // Stagger near-z values so they exit at different times → no wave-quiet pattern
-          s.z = 150 + Math.random() * 1100;
+          // Initial z range tightened from 150-1250 → 40-340 so stars are
+          // already very close to camera on the first draw → streaks read
+          // as instant rather than "stars take a moment to come into view".
+          s.z = 40 + Math.random() * 300;
           var angle = Math.random() * Math.PI * 2;
           var md = Math.min(canvas.lw, canvas.lh) * 0.25;
           var dist = md + Math.random() * Math.max(canvas.lw, canvas.lh) * 0.5;
@@ -1819,6 +3553,10 @@ a { color:inherit; text-decoration:none; }
         burstT0 = performance.now();
         if (!running) {
           running = true;
+          // Force immediate first frame instead of waiting for the next rAF
+          // (~16ms gap). Combined with near-z star reset, streaks are visible
+          // synchronously with the call → bang and burst feel unified.
+          draw();
           rafId = requestAnimationFrame(draw);
         }
       },
@@ -1902,7 +3640,35 @@ a { color:inherit; text-decoration:none; }
 
   ready(function () {
     initReveals();
+
+    // Every page load — including refreshes — runs the full cinematic intro
+    // (crosses + click-to-bigbang ceremony). The previous "skip on refresh"
+    // optimization was reverted at user request: refreshes should always
+    // return to the first-screen experience.
+
     warpField = initWarpField();
+    if (!warpField) {
+      var staticHero = document.getElementById('hero');
+      if (staticHero) {
+        staticHero.classList.remove('is-pre');
+        staticHero.classList.add('is-post');
+      }
+      document.body.classList.add('bigbang-done');
+      // Warp canvas WebGL failed → Three.js boot is also skipped below,
+      // so headline would be missing. Show fallback h1.
+      activateHeroFallback();
+      if (window.location.hash) {
+        setTimeout(function () {
+          var target = document.querySelector(window.location.hash);
+          if (target) target.scrollIntoView();
+        }, 0);
+        setTimeout(function () {
+          var target = document.querySelector(window.location.hash);
+          if (target) target.scrollIntoView();
+        }, 400);
+      }
+      return;
+    }
     // Defer Three.js boot until THREE + GLTFLoader (ESM module) are ready.
     // Inline GLTF data (cross-gltf-data.js) is checked separately — if missing,
     // makeCross falls back to procedural capsule cross (page still works).
@@ -1924,11 +3690,122 @@ a { color:inherit; text-decoration:none; }
       var maxTries = 60;
       var iv = setInterval(function () {
         if (tryBoot()) clearInterval(iv);
-        else if (--maxTries <= 0) clearInterval(iv);
+        else if (--maxTries <= 0) {
+          // THREE / GLTFLoader never loaded (network failure, blocked CDN, etc.)
+          // Stop retrying and degrade to the static fallback so the hero isn't
+          // left headline-less.
+          clearInterval(iv);
+          activateHeroFallback();
+        }
       }, 100);
     }
   });
 })();
 </script>
+
+<!-- =============== SITE NAV: scroll-aware bg + mobile hamburger =============== -->
+<script>
+(function () {
+  // Toggle .scrolled class when user scrolls past the hero section.
+  // Threshold = hero bottom minus nav height → nav becomes solid right as it
+  // crosses the hero/next-section boundary.
+  function initNavScroll() {
+    var nav = document.querySelector('.site-nav');
+    var hero = document.getElementById('hero');
+    if (!nav || !hero) return;
+    var NAV_H = 76;
+    function onScroll() {
+      var threshold = hero.offsetHeight - NAV_H;
+      if (window.scrollY > threshold) nav.classList.add('scrolled');
+      else nav.classList.remove('scrolled');
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    onScroll(); // initial state
+  }
+  if (document.readyState !== 'loading') initNavScroll();
+  else document.addEventListener('DOMContentLoaded', initNavScroll);
+})();
+
+// Global — used by inline onclick on the hamburger button
+function toggleNav() {
+  var btn = document.getElementById('nav-hamburger');
+  var ul = document.querySelector('.site-nav .nav-links');
+  if (btn) btn.classList.toggle('open');
+  if (ul) ul.classList.toggle('open');
+}
+// Close mobile menu after a link tap
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.site-nav .nav-links a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      var btn = document.getElementById('nav-hamburger');
+      var ul = document.querySelector('.site-nav .nav-links');
+      if (btn) btn.classList.remove('open');
+      if (ul) ul.classList.remove('open');
+    });
+  });
+});
+</script>
+
+<!-- Auth-aware nav: toggles data-auth="guest"/"user" li visibility -->
+<script src="nav-auth.js" defer></script>
+
+<!-- =============== PROOF CINEMATIC PIN: vertical scroll → horizontal track ===============
+     Maps the user's vertical scroll progress through .proof-pin (a 280vh tall
+     spacer) onto a horizontal translate of .proof-track. Skipped on mobile /
+     prefers-reduced-motion → CSS fallback shows a normal vertical stack. -->
+<script>
+(function initProofPin() {
+  var pin = document.querySelector('.proof.proof-cinematic .proof-pin');
+  var stage = document.querySelector('.proof.proof-cinematic .proof-stage');
+  var track = document.querySelector('.proof.proof-cinematic .proof-track');
+  var fill = document.querySelector('.proof.proof-cinematic .proof-progress-fill');
+  if (!pin || !stage || !track) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var maxX = 0;
+  var active = false;
+
+  function recalc() {
+    if (window.innerWidth < 900) {
+      maxX = 0;
+      active = false;
+      track.style.transform = '';
+      if (fill) fill.style.width = '0%';
+      return;
+    }
+    active = true;
+    var trackWidth = track.scrollWidth;
+    var stageWidth = stage.clientWidth;
+    maxX = Math.max(0, trackWidth - stageWidth + 32);
+  }
+
+  function update() {
+    if (!active) return;
+    var rect = pin.getBoundingClientRect();
+    var total = pin.offsetHeight - window.innerHeight;
+    if (total <= 0) return;
+    var p = Math.max(0, Math.min(1, -rect.top / total));
+    track.style.transform = 'translate3d(' + (-maxX * p).toFixed(2) + 'px, 0, 0)';
+    if (fill) fill.style.width = (p * 100).toFixed(2) + '%';
+  }
+
+  recalc();
+  update();
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', function () { recalc(); update(); });
+  // Sizes can shift after fonts/images load → recalc once everything settles
+  if (document.readyState !== 'complete') {
+    window.addEventListener('load', function () { recalc(); update(); });
+  }
+})();
+</script>
+
+<!-- ─── HORIZON HERO ─── GSAP (intro tween) + ES module (Three.js scene)
+     Three.js itself is already loaded via the importmap declared earlier in
+     the page, so the module just imports `three` and `three/addons/...`. -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script type="module" src="assets/landing-horizon.js"></script>
+
 </body>
 </html>
