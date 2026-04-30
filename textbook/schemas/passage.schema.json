@@ -1,24 +1,25 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://terranova.app/schemas/passage-2.0.json",
-  "title": "Terra Nova Passage v2",
+  "$id": "https://terranova.app/schemas/passage-2.2.json",
+  "title": "Terra Nova Passage v2.2",
   "type": "object",
-  "required": ["schema_version", "id", "meta", "page1", "page2", "page3", "page4"],
+  "required": ["schema_version", "id", "meta", "page1", "page2", "page3", "page4", "answers"],
   "additionalProperties": false,
   "properties": {
-    "schema_version": { "const": "2.1" },
-    "id": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+    "schema_version": { "enum": ["2.1", "2.2"] },
+    "id": { "type": "string", "pattern": "^\\d{4}-\\d{2}(-[A-Z])?-\\d{2}$" },
     "meta": {
       "type": "object",
       "required": ["month", "sequence", "subject", "linked_unit", "part_ko", "achievement_standard", "difficulty", "cognitive_skill", "lexile", "ar_level", "key_concepts"],
       "additionalProperties": false,
       "properties": {
-        "month": { "type": "string", "pattern": "^\\d{4}-\\d{2}$" },
+        "month": { "type": "string", "pattern": "^\\d{4}-\\d{2}(-[A-Z])?$" },
         "sequence": { "type": "integer", "minimum": 1, "maximum": 20 },
-        "subject": { "enum": ["통합과학", "통합사회", "수학", "국어", "한국사", "예체능·정보"] },
+        "subject": { "enum": ["통합과학", "통합사회", "공통수학", "공통국어", "공통영어", "한국사", "정보", "수학", "국어", "영어", "예체능·정보", "과학", "사회"] },
         "linked_unit": { "type": "string", "minLength": 3, "maxLength": 120 },
         "part_ko": { "type": "string", "minLength": 2, "maxLength": 24 },
-        "achievement_standard": { "type": "string", "pattern": "^10[가-힣]{2,3}\\d{2}-\\d{2}$" },
+        "achievement_standard": { "type": "string", "pattern": "^(10(통과|통사|공국|공수|공영|한사)[12]-\\d{2}-\\d{2}|(9|10|12)[가-힣A-Z]{1,5}\\d{2}-\\d{2})$" },
+        "achievement_verified": { "type": "boolean", "description": "2022 개정 NCIC 평가기준 기준 코드 정확성 검수 여부. true=공식 자료로 1:1 검증 완료, false=본문 기반 추정값(검수 대기)." },
         "difficulty": { "enum": ["쉬움", "중간", "어려움", "도전"] },
         "cognitive_skill": { "type": "string", "minLength": 2, "maxLength": 30 },
         "lexile": { "type": "string", "pattern": "^\\d{3,4}L$" },
@@ -34,8 +35,9 @@
         "title": { "type": "string", "minLength": 3, "maxLength": 80 },
         "subtitle": { "type": "string", "minLength": 3, "maxLength": 110 },
         "body": { "type": "string", "minLength": 1400, "maxLength": 3200 },
-        "illustration": { "type": "string", "pattern": "^\\.\\./\\.\\./assets/illustrations/\\d{4}-\\d{2}/\\d{2}\\.(svg|png|jpg|webp)$" },
-        "illustration_caption": { "type": "string", "minLength": 3, "maxLength": 100 }
+        "illustration": { "type": "string", "pattern": "^\\.\\./\\.\\./assets/illustrations/\\d{4}-\\d{2}(-[A-Z])?/\\d{2}\\.(svg|png|jpg|webp)$" },
+        "illustration_caption": { "type": "string", "minLength": 3, "maxLength": 100 },
+        "illustration_max_height_mm": { "type": "number", "minimum": 10, "maximum": 100, "description": "본문이 길어 이미지가 페이지 하단을 침범할 때, 시각적으로 보일 최대 높이(mm). 파일은 그대로 두고 CSS overflow:hidden으로 아래쪽만 잘라 표시." }
       }
     },
     "page2": {
@@ -184,6 +186,58 @@
                 }
               },
               "exam_source": { "type": "string", "minLength": 3, "maxLength": 80 }
+            }
+          }
+        }
+      }
+    },
+    "answers": {
+      "type": "object",
+      "required": ["explanations"],
+      "additionalProperties": false,
+      "description": "정답·해설 보충자료. supplements.html answers 렌더러가 사용. q_index 0..3 = page2.questions[i] 와 1:1 매핑. 객관식: correct = answer_index, rationales 5개. 서술형(school_descriptive): correct = null, model_answer_en + rationales 2개((A)·(B)).",
+      "properties": {
+        "explanations": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "items": {
+            "type": "object",
+            "required": ["q_index", "q_style", "correct", "evidence", "rationales"],
+            "additionalProperties": false,
+            "properties": {
+              "q_index": { "type": "integer", "minimum": 0, "maximum": 3 },
+              "q_style": { "type": "string", "minLength": 2, "maxLength": 30 },
+              "correct": {
+                "oneOf": [
+                  { "type": "integer", "minimum": 0, "maximum": 4 },
+                  { "type": "null" }
+                ],
+                "description": "객관식: 0~4 (= page2.questions[q_index].answer_index 와 일치 필수). 서술형: null."
+              },
+              "evidence": { "type": "string", "minLength": 10, "maxLength": 600, "description": "정답 근거 1~2문장. 본문 인용 권장." },
+              "rationales": {
+                "type": "array",
+                "minItems": 2,
+                "maxItems": 5,
+                "items": { "type": "string", "minLength": 5, "maxLength": 280 },
+                "description": "객관식: 5개 (각 선지 분석, 정답 선지에 '(정답)' 접두어 권장). 서술형: 2개 ((A)·(B) 빈칸 풀이)."
+              },
+              "model_answer_en": { "type": "string", "minLength": 1, "maxLength": 200, "description": "서술형 전용. 예: '(A) bonds  (B) shapes'" },
+              "key_terms": {
+                "type": "array",
+                "maxItems": 6,
+                "items": {
+                  "type": "object",
+                  "required": ["en", "ko"],
+                  "additionalProperties": false,
+                  "properties": {
+                    "en": { "type": "string", "minLength": 1, "maxLength": 60 },
+                    "ko": { "type": "string", "minLength": 1, "maxLength": 60 }
+                  }
+                },
+                "description": "선택 항목. 현재 렌더링되지 않음 (보존 목적)."
+              }
             }
           }
         }

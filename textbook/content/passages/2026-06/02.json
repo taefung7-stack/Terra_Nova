@@ -4,27 +4,28 @@
   "meta": {
     "month": "2026-06",
     "sequence": 2,
-    "subject": "수학",
-    "linked_unit": "수학(상) 함수 — 지수함수 입문",
-    "part_ko": "지수함수와 예측",
-    "achievement_standard": "10수학01-02",
+    "subject": "공통수학",
+    "linked_unit": "공통수학1 ③ 경우의 수 — 곱의 법칙·순열·조합",
+    "part_ko": "경우의 수의 힘",
+    "achievement_standard": "10공수1-03-02",
+    "achievement_verified": false,
     "difficulty": "중간",
     "cognitive_skill": "빈칸추론",
     "lexile": "1060L",
     "ar_level": 7,
     "key_concepts": [
-      "선형 성장",
-      "지수 성장",
-      "복리",
-      "피드백 루프"
+      "곱의 법칙",
+      "순열",
+      "조합",
+      "경우의 수"
     ]
   },
   "page1": {
-    "title": "Linear vs. Exponential Thinking",
-    "subtitle": "Why our brains keep missing curves that never stop rising.",
-    "body": "A student who adds one page to her notebook each day will finish one hundred pages in a hundred days, and that feels like steady progress. Another student who begins with a single page and doubles it daily will crush her rival, passing one million pages before day twenty. Our brains are simply not built to feel this difference. Humans evolved to track linear change — one more step, one more meal, one more sunrise — and that habit still shapes the way we read <mark>news headlines today</mark>.\n\nA famous story captures the problem. A king once promised his advisor any reward for inventing chess, and the clever advisor asked only for rice: one grain on the first square, two on the second, four on the third, and so on, doubling each time. The king laughed, thinking it a modest request. By the sixty-fourth square, however, he would have owed more rice than every farm on Earth could ever produce. What looked like a harmless trickle had quietly turned into an unstoppable ocean.\n\nThe same shape now appears in the things we care about most. A virus that doubles its infected count every three days seems harmless in the first week and unstoppable by the fifth. A small savings account that earns only a few percent each year looks dull on paper, yet it multiplies itself over decades, rewarding patient savers who trust the curve. Climate feedback loops and viral videos follow exactly the same line, hiding behind long stretches of apparent calm before they explode. Learning to see the very moment when a line is secretly bending upward is not just a dry mathematician's trick; in the noisy age of data and daily headlines, it is <blank>.",
-    "illustration": "../../assets/illustrations/2026-06/02.png",
-    "illustration_caption": "Linear keeps its step; exponential quietly leaves the page."
+    "title": "Counting What We Cannot See",
+    "subtitle": "Why a four-digit lock feels safer than the math actually says it should.",
+    "body": "A four-digit lock is a familiar object, and most travelers trust it without thought. Yet a quiet calculation hides inside that small dial. Each digit can be any number from zero to nine, so the first wheel offers ten choices, the second offers ten more, and so on for every position. By the <u>multiplication principle</u> of counting, the total number of distinct combinations is ten multiplied by itself four times — exactly ten thousand. That number feels both impressive and disappointing at the same time, because it is large enough to slow a careless thief but small enough that <mark>a patient computer</mark> could try every option in a single blink.\n\nThe same logic of stacking choices governs far stranger spaces. A music playlist of just six songs can be ordered in 720 different sequences, since the first slot has six options, the second has five, the third has four, and so on. Mathematicians call this kind of count a <u>permutation</u>, and they reserve the word <u>combination</u> for situations where order does not matter — five members chosen for a student council name the same group no matter which person is read first. Permutations and combinations look identical at first glance, yet they describe different worlds: one cares about sequence, the other only about membership, and a careful solver must decide which world a question lives in.\n\nBeyond simple puzzles, this kind of careful counting quietly powers some of the most important systems around us. Cryptographers measure the safety of a password by the size of its possibility space, and a single extra character can multiply that space tenfold or more. Geneticists count how many distinct gene combinations a single pair of parents can produce, and the answer routinely runs into the trillions. Sports analysts count the ways a sixteen-team bracket can play out before the championship, and the result dwarfs the number of seconds in a lifetime. In each of these settings, the question is never how to list every case but how to count without listing — direct enumeration fails before the truth begins, and a clean counting rule is <blank>.",
+    "illustration": "../../assets/illustrations/2026-06/02.webp",
+    "illustration_caption": "Stacked dials, branching choices: how multiplication quietly counts what no list can hold."
   },
   "page2": {
     "questions": [
@@ -33,11 +34,11 @@
         "style": "요지",
         "stem": "다음 글의 요지로 가장 적절한 것은?",
         "choices": [
-          "Exponential growth is mostly limited to laboratory science and rarely affects ordinary daily life.",
-          "Humans understand exponential curves easily because they encounter such curves almost every day.",
-          "Because our brains are wired to track linear change, we routinely underestimate how fast exponential patterns unfold.",
-          "A savings account that grows by a few percent each year cannot outperform simple linear addition over time.",
-          "The ancient chessboard rice story proves that kings of the past were wiser than modern economists are today."
+          "Counting problems are mostly an academic hobby that has very little to do with ordinary daily life.",
+          "Permutations and combinations always give exactly the same answer whenever a team must be formed.",
+          "Because human intuition fails to grasp the true size of possibility spaces, careful counting rules become essential in cryptography, biology, and beyond.",
+          "A four-digit lock is mathematically the safest password format that ordinary people can rely on today.",
+          "Listing every possible case remains the most efficient counting method even in the age of fast computers."
         ],
         "answer_index": 2
       },
@@ -46,24 +47,24 @@
         "style": "빈칸 추론",
         "stem": "윗글의 밑줄 친 빈칸에 들어갈 말로 가장 적절한 것은?",
         "choices": [
-          "a mathematical curiosity worth studying only inside college lecture halls",
-          "a basic survival skill for anyone who wants to read the world honestly",
-          "an old-fashioned habit left over from pre-digital economics textbooks",
-          "a clear warning that schools should stop teaching abstract algebra altogether",
-          "firm proof that linear thinking is always more reliable than exponential thinking"
+          "a tool useful only inside abstract textbooks far removed from any real situation",
+          "the only path that can reveal what enumeration alone could never reach",
+          "an outdated trick replaced by modern computer programs many decades ago",
+          "fresh evidence that listing every case remains the most reliable method available",
+          "firm proof that probability works only on small, easily counted experiments"
         ],
         "answer_index": 1
       },
       {
         "type": "mock_objective",
         "style": "함의 추론",
-        "stem": "윗글의 밑줄 친 표현 news headlines today 가 의미하는 바로 가장 적절한 것은?",
+        "stem": "윗글의 밑줄 친 표현 a patient computer 가 의미하는 바로 가장 적절한 것은?",
         "choices": [
-          "the short text messages teachers send students about weekly homework deadlines",
-          "the fast-changing numbers and stories that dominate public attention each day",
-          "the long, carefully peer-reviewed articles published in academic science journals",
-          "the weekly broadcast summaries presented on national television by senior anchors",
-          "the printed physical newspapers still sold in small shops on busy street corners"
+          "a slow textbook problem that students often skip during math class today",
+          "an automated system that quietly tests every option without ever stopping",
+          "an old mechanical lock whose dial spins on its own each morning",
+          "a careful banker who reviews every withdrawal request one at a time",
+          "a curious child who memorizes every digit shown on a calculator"
         ],
         "answer_index": 1
       },
@@ -72,38 +73,38 @@
         "style": "요약문 빈칸 완성",
         "prompt": "다음은 본문의 요약문이다. 본문의 내용을 바탕으로 빈칸 (A), (B)에 들어갈 말을 <조건>에 맞게 영어 한 단어로 각각 쓰시오. <조건> 본문에서 제시된 단어를 그대로 활용할 것.",
         "hints": [
-          "linear",
-          "double",
-          "exponential",
-          "trickle",
-          "ocean"
+          "multiplication",
+          "permutation",
+          "combination",
+          "list",
+          "size"
         ],
-        "summary_template": "Because the human mind is wired to expect <blank> (A) change, it routinely misses how fast quantities can grow when they <blank> (B) at each step — which is why viruses, savings, and climate feedback so often surprise us.",
-        "model_answer": "(A) linear  (B) double"
+        "summary_template": "Counting problems hide everywhere from locks to genetics, and the basic <blank> (A) principle lets us count enormous spaces without ever having to <blank> (B) the cases one by one — which is why even modest-looking puzzles quickly run far beyond what plain intuition can reach.",
+        "model_answer": "(A) multiplication  (B) list"
       }
     ],
     "textbook_tieback": {
-      "unit_label": "수학(상) · 지수함수 입문",
-      "body_ko": "고1 수학(상)에서 지수함수는 일정 비율로 곱해지며 커지는 함수로 배운다. y = a·b^x 꼴로 표현되며, 밑(b)이 1보다 크면 값이 폭발적으로 증가한다. 반면 일차함수 y = ax + b는 같은 양만큼씩 늘어나기 때문에 같은 시간이 지나도 두 함수의 차이가 놀라울 만큼 벌어진다. 교과서에서는 복리·인구 증가·방사성 붕괴 같은 실제 예시를 통해 이 차이를 시각화하고, 초반에 비슷해 보이는 두 그래프가 뒤로 갈수록 얼마나 달라지는지를 표와 그래프로 비교한다.",
+      "unit_label": "공통수학1 · 경우의 수 (곱의 법칙·순열·조합)",
+      "body_ko": "고1 「공통수학1」 경우의 수 단원에서는 두 사건이 함께 일어나면 m × n 가지(곱의 법칙), 동시에 일어나지 못하면 m + n 가지(합의 법칙)로 센다. n개에서 r개를 차례로 늘어놓는 순열 nPr = n! / (n−r)! 와, 순서 없이 r개만 고르는 조합 nCr = n! / [r!(n−r)!] 도 정의된다. 본문은 자물쇠·재생목록·학생회처럼 친숙한 상황을 통해 일일이 나열하기 전에 곱·합 법칙으로 가능한 경우의 수를 가늠하는 사고법을 보여 준다.",
       "tags": [
-        "지수함수",
-        "일차함수",
-        "복리",
-        "기하급수"
+        "경우의 수",
+        "곱의 법칙",
+        "순열",
+        "조합"
       ],
       "visual_aid": {
         "type": "compare",
-        "title": "같은 20일, 두 얼굴의 성장",
+        "title": "순서가 중요한가? — 순열 vs 조합",
         "steps": [
           {
-            "emoji": "📏",
-            "label": "선형 (+1)",
-            "note": "1일차 1 · 10일 10 · 20일 20"
+            "emoji": "🔢",
+            "label": "순열 (순서 O)",
+            "note": "재생목록 6곡 배열 6! = 720가지"
           },
           {
-            "emoji": "📈",
-            "label": "지수 (×2)",
-            "note": "1일차 1 · 10일 1,024 · 20일 1,048,576"
+            "emoji": "👥",
+            "label": "조합 (순서 X)",
+            "note": "20명 중 학생회 5명 ₂₀C₅ = 15,504가지"
           }
         ]
       }
@@ -116,17 +117,15 @@
         "segments": [
           {
             "role": "S",
-            "text": "A student who adds one page to her notebook each day",
-            "note": "주격 관계절 who가 학생 수식"
+            "text": "A four-digit lock"
           },
           {
             "role": "V",
-            "text": "will finish",
-            "note": "미래 조동사 will"
+            "text": "is"
           },
           {
-            "role": "O",
-            "text": "one hundred pages in a hundred days,"
+            "role": "C",
+            "text": "a familiar object,"
           },
           {
             "role": "CONJ",
@@ -134,7 +133,116 @@
           },
           {
             "role": "S",
-            "text": "that"
+            "text": "most travelers"
+          },
+          {
+            "role": "V",
+            "text": "trust"
+          },
+          {
+            "role": "O",
+            "text": "it"
+          },
+          {
+            "role": "M",
+            "text": "without thought.",
+            "note": "전치사구 부사"
+          }
+        ],
+        "grammar_note": "2형식 + 등위접속사 and + 3형식 병렬"
+      },
+      {
+        "index": 2,
+        "segments": [
+          {
+            "role": "CONJ",
+            "text": "Yet"
+          },
+          {
+            "role": "S",
+            "text": "a quiet calculation"
+          },
+          {
+            "role": "V",
+            "text": "hides"
+          },
+          {
+            "role": "M",
+            "text": "inside that small dial.",
+            "note": "장소 전치사구"
+          }
+        ],
+        "grammar_note": "역접 부사 Yet + 1형식 자동사 hide"
+      },
+      {
+        "index": 3,
+        "segments": [
+          {
+            "role": "S",
+            "text": "Each digit"
+          },
+          {
+            "role": "V",
+            "text": "can be"
+          },
+          {
+            "role": "C",
+            "text": "any number from zero to nine,"
+          },
+          {
+            "role": "CONJ",
+            "text": "so"
+          },
+          {
+            "role": "S",
+            "text": "the first wheel"
+          },
+          {
+            "role": "V",
+            "text": "offers"
+          },
+          {
+            "role": "O",
+            "text": "ten choices,"
+          },
+          {
+            "role": "M",
+            "text": "the second offers ten more, and so on for every position.",
+            "note": "and so on 생략·반복 표현"
+          }
+        ],
+        "grammar_note": "조동사 can + 결과 so + 병렬구조"
+      },
+      {
+        "index": 4,
+        "segments": [
+          {
+            "role": "M",
+            "text": "By the multiplication principle of counting,",
+            "note": "원리 전치사구"
+          },
+          {
+            "role": "S",
+            "text": "the total number of distinct combinations"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "ten multiplied by itself four times — exactly ten thousand.",
+            "note": "과거분사 multiplied 후치 수식"
+          }
+        ],
+        "grammar_note": "전치사구 도입 + 과거분사 후치 수식"
+      },
+      {
+        "index": 5,
+        "segments": [
+          {
+            "role": "S",
+            "text": "That number"
           },
           {
             "role": "V",
@@ -142,284 +250,145 @@
           },
           {
             "role": "C",
-            "text": "like steady progress.",
-            "note": "feel + like + 명사 (2형식)"
-          }
-        ],
-        "grammar_note": "관계절 who + 등위접속사 and + feel 2형식"
-      },
-      {
-        "index": 2,
-        "segments": [
-          {
-            "role": "S",
-            "text": "Another student who begins with a single page and doubles it daily",
-            "note": "and로 묶인 두 동사구 (begins, doubles)"
-          },
-          {
-            "role": "V",
-            "text": "will crush"
-          },
-          {
-            "role": "O",
-            "text": "her rival,"
+            "text": "both impressive and disappointing"
           },
           {
             "role": "M",
-            "text": "passing one million pages before day twenty.",
-            "note": "분사구문: and passes ~"
-          }
-        ],
-        "grammar_note": "관계절 내부 동사 병렬 + 분사구문"
-      },
-      {
-        "index": 3,
-        "segments": [
-          {
-            "role": "S",
-            "text": "Our brains"
-          },
-          {
-            "role": "V",
-            "text": "are"
-          },
-          {
-            "role": "M",
-            "text": "simply",
-            "note": "부사가 보어 강조"
-          },
-          {
-            "role": "C",
-            "text": "not built to feel this difference.",
-            "note": "be not p.p. + to-V"
-          }
-        ],
-        "grammar_note": "수동태 + to부정사 보어"
-      },
-      {
-        "index": 4,
-        "segments": [
-          {
-            "role": "S",
-            "text": "Humans"
-          },
-          {
-            "role": "V",
-            "text": "evolved"
-          },
-          {
-            "role": "M",
-            "text": "to track linear change",
-            "note": "목적 to-V"
-          },
-          {
-            "role": "M",
-            "text": "— one more step, one more meal, one more sunrise —"
+            "text": "at the same time,"
           },
           {
             "role": "CONJ",
-            "text": "and"
+            "text": "because"
           },
           {
             "role": "S",
-            "text": "that habit"
+            "text": "it"
           },
           {
             "role": "V",
-            "text": "still shapes"
+            "text": "is"
           },
           {
-            "role": "O",
-            "text": "the way we read news headlines today.",
-            "note": "the way (how) 관계"
+            "role": "C",
+            "text": "large enough to slow a careless thief but small enough that a patient computer could try every option in a single blink.",
+            "note": "enough to-V / enough that 절"
           }
         ],
-        "grammar_note": "부사적 용법 to-V + the way 관계구문"
-      },
-      {
-        "index": 5,
-        "segments": [
-          {
-            "role": "S",
-            "text": "A famous story"
-          },
-          {
-            "role": "V",
-            "text": "captures"
-          },
-          {
-            "role": "O",
-            "text": "the problem."
-          }
-        ],
-        "grammar_note": "3형식 단문"
+        "grammar_note": "feel 2형식 + 이유절 because + enough to/that 구문"
       },
       {
         "index": 6,
         "segments": [
           {
             "role": "S",
-            "text": "A king"
+            "text": "The same logic of stacking choices"
           },
           {
             "role": "V",
-            "text": "once promised",
-            "note": "과거시제"
+            "text": "governs"
           },
           {
             "role": "O",
-            "text": "his advisor any reward"
-          },
-          {
-            "role": "M",
-            "text": "for inventing chess,",
-            "note": "for + 동명사 (이유)"
-          },
-          {
-            "role": "CONJ",
-            "text": "and"
-          },
-          {
-            "role": "S",
-            "text": "the clever advisor"
-          },
-          {
-            "role": "V",
-            "text": "asked"
-          },
-          {
-            "role": "M",
-            "text": "only for rice: one grain on the first square, two on the second, four on the third, and so on, doubling each time.",
-            "note": "분사구문 doubling ~"
+            "text": "far stranger spaces.",
+            "note": "비교급 강조 far"
           }
         ],
-        "grammar_note": "4형식 + 분사구문"
+        "grammar_note": "동명사 stacking + 비교급 강조 far"
       },
       {
         "index": 7,
         "segments": [
           {
             "role": "S",
-            "text": "The king"
+            "text": "A music playlist of just six songs"
           },
           {
             "role": "V",
-            "text": "laughed,",
-            "note": "1형식 자동사"
+            "text": "can be ordered"
           },
           {
             "role": "M",
-            "text": "thinking it a modest request.",
-            "note": "분사구문 + 5형식(think O C)"
+            "text": "in 720 different sequences,",
+            "note": "수동태 + 방법 전치사구"
+          },
+          {
+            "role": "CONJ",
+            "text": "since"
+          },
+          {
+            "role": "S",
+            "text": "the first slot"
+          },
+          {
+            "role": "V",
+            "text": "has"
+          },
+          {
+            "role": "O",
+            "text": "six options, the second has five, the third has four, and so on.",
+            "note": "감소 병렬 + and so on"
           }
         ],
-        "grammar_note": "분사구문 + think O C"
+        "grammar_note": "수동태 can be p.p. + 이유절 since + 감소 병렬"
       },
       {
         "index": 8,
         "segments": [
           {
-            "role": "M",
-            "text": "By the sixty-fourth square, however,"
-          },
-          {
             "role": "S",
-            "text": "he"
+            "text": "Mathematicians"
           },
           {
             "role": "V",
-            "text": "would have owed",
-            "note": "would have p.p. 가정법 과거완료"
+            "text": "call"
           },
           {
             "role": "O",
-            "text": "more rice than every farm on Earth could ever produce.",
-            "note": "비교급 + 관계절"
-          }
-        ],
-        "grammar_note": "가정법 과거완료 + 비교급 more ~ than"
-      },
-      {
-        "index": 9,
-        "segments": [
-          {
-            "role": "S",
-            "text": "What looked like a harmless trickle",
-            "note": "관계대명사 what = the thing which"
-          },
-          {
-            "role": "V",
-            "text": "had quietly turned",
-            "note": "과거완료 had p.p."
+            "text": "this kind of count"
           },
           {
             "role": "C",
-            "text": "into an unstoppable ocean."
-          }
-        ],
-        "grammar_note": "선행사 포함 관계대명사 What + 과거완료"
-      },
-      {
-        "index": 10,
-        "segments": [
-          {
-            "role": "S",
-            "text": "The same shape"
-          },
-          {
-            "role": "V",
-            "text": "now appears"
-          },
-          {
-            "role": "M",
-            "text": "in the things we care about most.",
-            "note": "관계대명사 that 생략"
-          }
-        ],
-        "grammar_note": "빈도 부사 + 관계절 생략"
-      },
-      {
-        "index": 11,
-        "segments": [
-          {
-            "role": "S",
-            "text": "A virus that doubles its infected count every three days",
-            "note": "관계대명사 that 주격"
-          },
-          {
-            "role": "V",
-            "text": "seems"
-          },
-          {
-            "role": "C",
-            "text": "harmless in the first week"
+            "text": "a permutation,",
+            "note": "5형식 call O C"
           },
           {
             "role": "CONJ",
             "text": "and"
           },
           {
-            "role": "C",
-            "text": "unstoppable by the fifth."
-          }
-        ],
-        "grammar_note": "seem + 형용사 2형식 + 보어 병렬"
-      },
-      {
-        "index": 12,
-        "segments": [
-          {
             "role": "S",
-            "text": "A small savings account that earns only a few percent each year",
-            "note": "관계절 that earns"
+            "text": "they"
           },
           {
             "role": "V",
-            "text": "looks"
+            "text": "reserve"
+          },
+          {
+            "role": "O",
+            "text": "the word combination"
+          },
+          {
+            "role": "M",
+            "text": "for situations where order does not matter — five members chosen for a student council name the same group no matter which person is read first.",
+            "note": "관계부사 where + 과거분사 후치 수식 + no matter which"
+          }
+        ],
+        "grammar_note": "5형식 call O C + 관계부사 where + 양보 no matter which"
+      },
+      {
+        "index": 9,
+        "segments": [
+          {
+            "role": "S",
+            "text": "Permutations and combinations"
+          },
+          {
+            "role": "V",
+            "text": "look"
           },
           {
             "role": "C",
-            "text": "dull on paper,"
+            "text": "identical at first glance,"
           },
           {
             "role": "CONJ",
@@ -427,55 +396,199 @@
           },
           {
             "role": "S",
-            "text": "it"
+            "text": "they"
           },
           {
             "role": "V",
-            "text": "multiplies"
+            "text": "describe"
           },
           {
             "role": "O",
-            "text": "itself"
+            "text": "different worlds:"
           },
           {
             "role": "M",
-            "text": "over decades, rewarding patient savers who trust the curve.",
-            "note": "분사구문 rewarding ~"
+            "text": "one cares about sequence, the other only about membership,",
+            "note": "동격 부연 — 콜론 뒤 설명"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "S",
+            "text": "a careful solver"
+          },
+          {
+            "role": "V",
+            "text": "must decide"
+          },
+          {
+            "role": "O",
+            "text": "which world a question lives in.",
+            "note": "간접의문문 which world ~ in"
           }
         ],
-        "grammar_note": "역접 yet + 분사구문"
+        "grammar_note": "look 2형식 + 역접 yet + 콜론 부연 + 간접의문문"
+      },
+      {
+        "index": 10,
+        "segments": [
+          {
+            "role": "M",
+            "text": "Beyond simple puzzles,"
+          },
+          {
+            "role": "S",
+            "text": "this kind of careful counting"
+          },
+          {
+            "role": "M",
+            "text": "quietly"
+          },
+          {
+            "role": "V",
+            "text": "powers"
+          },
+          {
+            "role": "O",
+            "text": "some of the most important systems around us.",
+            "note": "최상급 the most + 후치 수식"
+          }
+        ],
+        "grammar_note": "전치사구 도입 Beyond + 부사 + 최상급"
+      },
+      {
+        "index": 11,
+        "segments": [
+          {
+            "role": "S",
+            "text": "Cryptographers"
+          },
+          {
+            "role": "V",
+            "text": "measure"
+          },
+          {
+            "role": "O",
+            "text": "the safety of a password"
+          },
+          {
+            "role": "M",
+            "text": "by the size of its possibility space,",
+            "note": "수단 by"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "S",
+            "text": "a single extra character"
+          },
+          {
+            "role": "V",
+            "text": "can multiply"
+          },
+          {
+            "role": "O",
+            "text": "that space"
+          },
+          {
+            "role": "M",
+            "text": "tenfold or more.",
+            "note": "정도 부사 tenfold"
+          }
+        ],
+        "grammar_note": "3형식 measure + 등위 and + 조동사 can + tenfold 부사"
+      },
+      {
+        "index": 12,
+        "segments": [
+          {
+            "role": "S",
+            "text": "Geneticists"
+          },
+          {
+            "role": "V",
+            "text": "count"
+          },
+          {
+            "role": "O",
+            "text": "how many distinct gene combinations a single pair of parents can produce,",
+            "note": "간접의문문 how many ~"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "S",
+            "text": "the answer"
+          },
+          {
+            "role": "M",
+            "text": "routinely"
+          },
+          {
+            "role": "V",
+            "text": "runs"
+          },
+          {
+            "role": "M",
+            "text": "into the trillions.",
+            "note": "결과 전치사구"
+          }
+        ],
+        "grammar_note": "간접의문문 how many + 자동사 run into"
       },
       {
         "index": 13,
         "segments": [
           {
             "role": "S",
-            "text": "Climate feedback loops and viral videos"
+            "text": "Sports analysts"
           },
           {
             "role": "V",
-            "text": "follow"
+            "text": "count"
           },
           {
             "role": "O",
-            "text": "exactly the same line,",
-            "note": "exactly 부사가 명사구 강조"
+            "text": "the ways a sixteen-team bracket can play out before the championship,",
+            "note": "the way 관계 + 시간 before"
           },
           {
-            "role": "M",
-            "text": "hiding behind long stretches of apparent calm before they explode.",
-            "note": "분사구문 hiding ~"
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "S",
+            "text": "the result"
+          },
+          {
+            "role": "V",
+            "text": "dwarfs"
+          },
+          {
+            "role": "O",
+            "text": "the number of seconds in a lifetime.",
+            "note": "비교 능가"
           }
         ],
-        "grammar_note": "3형식 + 분사구문 hiding"
+        "grammar_note": "the way 관계구문 + dwarf 능가 동사"
       },
       {
         "index": 14,
         "segments": [
           {
+            "role": "M",
+            "text": "In each of these settings,",
+            "note": "장소·범위 부사구"
+          },
+          {
             "role": "S",
-            "text": "Learning to see the moment when a line is secretly bending upward",
-            "note": "동명사구 주어, 관계부사 when"
+            "text": "the question"
           },
           {
             "role": "V",
@@ -483,15 +596,28 @@
           },
           {
             "role": "C",
-            "text": "not just a mathematician's trick;"
+            "text": "never how to list every case but how to count without listing —",
+            "note": "not A but B 구문 + how to-V"
+          },
+          {
+            "role": "S",
+            "text": "direct enumeration"
+          },
+          {
+            "role": "V",
+            "text": "fails"
           },
           {
             "role": "M",
-            "text": "in the age of data and daily headlines,"
+            "text": "before the truth begins,"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
           },
           {
             "role": "S",
-            "text": "it"
+            "text": "a clean counting rule"
           },
           {
             "role": "V",
@@ -499,265 +625,317 @@
           },
           {
             "role": "C",
-            "text": "____ (= a basic survival skill …).",
+            "text": "____ (= the only path that reveals what listing alone cannot show).",
             "note": "빈칸 = 추론"
           }
         ],
-        "grammar_note": "동명사구 주어 + 관계부사 when + 세미콜론 대조"
+        "grammar_note": "not A but B + 부연 dash + 빈칸 추론"
       }
     ],
-    "translation_ko": "[1] 매일 공책에 한 쪽씩 더하는 학생은 100일이 지나면 100쪽을 채우게 되고, 그 속도는 꾸준한 진전처럼 느껴진다. [2] 반면 한 쪽에서 시작해 매일 두 배로 늘리는 또 다른 학생은 경쟁자를 압도하며, 20일이 되기 전에 100만 쪽을 넘어선다. [3] 우리 뇌는 이런 차이를 체감하도록 만들어져 있지 않다. [4] 인간은 '한 걸음 더, 한 끼 더, 하루 더' 같은 선형적 변화를 추적하도록 진화했고, 그 습관은 오늘날 뉴스 헤드라인을 읽는 방식까지 지배한다. [5] 한 유명한 이야기가 이 문제를 잘 보여 준다. [6] 어느 왕이 체스를 발명한 신하에게 원하는 대로 상을 주겠다고 약속했고, 영리한 신하는 쌀만 요구했다 — 첫 칸에 한 알, 둘째 칸에 두 알, 셋째 칸에 네 알, 이렇게 매번 두 배씩. [7] 왕은 소박한 요구라 여기며 웃었다. [8] 그러나 64번째 칸에 이르면, 지구의 모든 농장이 생산해도 감당할 수 없는 양의 쌀을 빚지게 된다. [9] 해롭지 않아 보이던 졸졸 흐르는 물줄기가 어느새 멈출 수 없는 바다로 바뀐 것이다. [10] 오늘 우리가 가장 신경 쓰는 일들도 이와 같은 모양을 따른다. [11] 3일마다 감염자가 두 배로 늘어나는 바이러스는 첫 주에는 별일 아닌 듯하다가 다섯째 주에는 이미 막을 수 없는 힘이 된다. [12] 연 몇 퍼센트밖에 늘지 않는 작은 예금은 얇아 보이지만, 수십 년에 걸쳐 스스로를 몇 곱절로 불리며 곡선을 믿는 인내심 있는 저축자를 보상한다. [13] 기후 피드백 루프와 바이럴 영상도 정확히 같은 선을 따르며, 잠잠해 보이는 긴 구간 뒤에 갑자기 폭발한다. [14] 어느 순간 선이 몰래 위로 꺾이는 것을 알아보는 힘은 단지 수학자의 기교가 아니라, 데이터와 매일의 헤드라인으로 가득한 이 시대를 정직하게 읽고 싶은 사람 누구에게나 필요한 기본 생존 능력이다."
+    "translation_ko": "[1] 네 자리 자물쇠는 흔한 물건이고, 대부분의 여행자는 별 생각 없이 그것을 신뢰한다. [2] 그러나 그 작은 다이얼 안에는 조용한 계산 하나가 숨어 있다. [3] 각 자리는 0에서 9까지 어떤 숫자도 될 수 있으므로, 첫 바퀴는 10가지 선택, 둘째 바퀴도 10가지, 그렇게 모든 자리가 이어진다. [4] 가장 기본적인 곱의 법칙에 따르면, 서로 다른 조합의 총수는 10을 자기 자신과 네 번 곱한 값 — 정확히 10,000가지다. [5] 그 수는 인상적이면서도 실망스럽게 느껴진다. 부주의한 도둑은 잠시 막을 수 있을 만큼 크지만, 인내심 있는 컴퓨터가 한 번 눈 깜박할 사이에 모든 경우를 다 시도해 볼 만큼 작기 때문이다. [6] 선택을 차곡차곡 쌓아 가는 같은 논리는 훨씬 낯선 공간들도 지배한다. [7] 단 여섯 곡으로 구성된 재생목록은 720가지 서로 다른 순서로 나열될 수 있는데, 첫 슬롯은 6가지 선택, 두 번째는 5가지, 세 번째는 4가지, 그렇게 줄어들기 때문이다. [8] 수학자들은 이런 셈을 순열이라 부르고, 순서가 중요하지 않은 경우에는 조합이라는 단어를 따로 둔다 — 예컨대 학생회 위원 5명을 뽑는 일은 누구의 이름을 먼저 읽더라도 같은 모임을 가리킨다. [9] 순열과 조합은 처음엔 거의 똑같아 보이지만, 사실은 매우 다른 세계를 설명한다. 하나는 순서를 따지고 다른 하나는 구성원만을 따진다. 신중한 풀이자라면 자기가 풀고 있는 문제가 어느 세계에 속하는지를 늘 먼저 가려야 한다. [10] 단순한 퍼즐을 넘어, 이런 세심한 셈은 우리 주변의 가장 중요한 체계들을 조용히 떠받친다. [11] 암호학자는 비밀번호의 안전성을 그 가능 공간의 크기로 측정하고, 글자 한 개를 더 붙이는 것만으로 그 공간이 열 배 이상 늘어난다. [12] 유전학자는 한 쌍의 부모가 만들어 낼 수 있는 서로 다른 유전자 조합의 수를 셈하는데, 그 답은 종종 조 단위에 이른다. [13] 스포츠 분석가는 16팀 브래킷이 우승까지 갈 수 있는 경로의 수를 셈하고, 그 결과는 평생의 초 단위 시간을 가뿐히 능가한다. [14] 이 모든 상황에서 문제는 결코 모든 경우를 일일이 나열하는 법이 아니라 나열 없이 세는 법이다 — 직접 나열은 진실 근처에 닿기도 전에 늘 무너지기 때문이고, 깔끔한 계산 규칙은 나열만으로는 결코 보이지 않는 것을 보게 해 주는 유일한 길이다."
+  },
+  "answers": {
+    "explanations": [
+      {
+        "q_index": 0,
+        "q_style": "요지",
+        "correct": 2,
+        "evidence": "본문은 자물쇠·재생목록·학생회·암호·유전·스포츠를 한 줄로 꿰뚫는 동일한 메시지를 반복한다: 가능 공간은 직관보다 훨씬 빨리 커지고, 따라서 곱의 법칙·순열·조합 같은 셈의 규칙이 직접 나열을 대신해야 한다.",
+        "rationales": [
+          "본문은 정반대로 암호·유전·스포츠 등 일상·과학 전반의 응용을 강조한다.",
+          "본문 [9]는 순열과 조합이 '매우 다른 세계'라고 명시한다. 정반대 진술.",
+          "(정답) 인간 직관이 가능 공간의 크기를 못 따라간다는 [5][6][9][14]의 핵심을 정확히 포착.",
+          "본문 [4]는 4자리 자물쇠가 1만 가지뿐이라 컴퓨터에 쉽게 뚫린다는 한계를 강조한다.",
+          "[14] '직접 나열은 진실 근처에 닿기도 전에 늘 무너진다'와 정면 모순."
+        ]
+      },
+      {
+        "q_index": 1,
+        "q_style": "빈칸 추론",
+        "correct": 1,
+        "evidence": "빈칸 직전 \"the question is never how to list every case but how to count without listing — because direct enumeration always fails long before the truth begins\" 가 결론의 근거다. 빈칸은 '나열로는 도달할 수 없는 것을 드러내 주는 유일한 길'이라는 의미여야 한다.",
+        "rationales": [
+          "본문은 추상 교과서가 아니라 실제 응용 — 암호·유전·스포츠 — 을 줄곧 든다.",
+          "(정답) 나열이 닿지 못하는 영역을 보여 주는 유일한 길이라는 본문 결론에 정확히 부합.",
+          "본문은 셈 규칙이 컴퓨터로 대체되었다고 말하지 않고, 오히려 컴퓨터의 한계도 셈 규칙으로 가늠한다고 본다.",
+          "[14] 'never how to list every case' 와 정면 모순.",
+          "본문은 확률이 작은 실험에만 통한다고 말한 적이 없다 — 오히려 거대한 공간을 다룬다."
+        ]
+      },
+      {
+        "q_index": 2,
+        "q_style": "함의 추론",
+        "correct": 1,
+        "evidence": "[5] \"a patient computer could try every option in a single blink\" 가 핵심 근거. '인내심 있는 컴퓨터'는 1만 가지 모든 경우를 멈추지 않고 자동으로 시도하는 시스템을 가리킨다.",
+        "rationales": [
+          "본문은 학생이 푸는 교과 문제가 아닌 자물쇠 보안 위협을 다룬다.",
+          "(정답) 멈추지 않고 모든 옵션을 자동 시도하는 무인 시스템을 정확히 포착.",
+          "기계식 자물쇠 자체가 자동으로 돌아간다는 의미가 아니다.",
+          "은행원 비유는 본문에 없다.",
+          "계산기 숫자 암기는 비유의 의미가 아니다."
+        ]
+      },
+      {
+        "q_index": 3,
+        "q_style": "요약문 빈칸 완성",
+        "correct": null,
+        "model_answer_en": "(A) multiplication  (B) list",
+        "evidence": "(A) [4] \"basic multiplication principle of counting\" 이 본문이 첫 번째로 끌어들이는 핵심 도구다. (B) [14] \"never how to list every case\" 가 본문이 거부하는 셈의 방법을 정확히 보여 준다.",
+        "rationales": [
+          "(A) multiplication — 곱의 법칙이 본문 전체의 셈 도구를 대표한다.",
+          "(B) list — 본문이 줄곧 거부하는 '경우를 일일이 나열' 행위를 가리킨다."
+        ]
+      }
+    ]
   },
   "page4": {
     "vocab": [
       {
-        "word": "linear",
-        "pos": "adj.",
-        "meaning_ko": "선형의, 일정하게 늘어나는",
+        "word": "digit",
+        "pos": "n.",
+        "meaning_ko": "(0~9의) 숫자, 자릿수",
         "synonyms": [
-          "straight",
-          "proportional"
+          "numeral",
+          "figure"
         ],
-        "antonyms": [
-          "exponential"
-        ],
+        "antonyms": [],
         "examples": [
           {
-            "en": "A linear increase adds the same amount at every step.",
-            "ko": "선형 증가는 매 단계 같은 양을 더한다."
+            "en": "A four-digit lock has exactly ten thousand combinations.",
+            "ko": "네 자리 자물쇠는 정확히 1만 가지 조합을 가진다."
           },
           {
-            "en": "Bus fares used to follow a linear pricing rule.",
-            "ko": "버스 요금은 예전에 선형 요금 규칙을 따랐다."
+            "en": "Phone numbers usually contain ten digits in this country.",
+            "ko": "이 나라의 전화번호는 보통 10자리로 구성된다."
           }
         ]
       },
       {
-        "word": "exponential",
-        "pos": "adj.",
-        "meaning_ko": "지수적인, 곱절로 커지는",
+        "word": "principle",
+        "pos": "n.",
+        "meaning_ko": "법칙, 원리",
         "synonyms": [
-          "multiplying"
+          "rule",
+          "law"
         ],
-        "antonyms": [
-          "linear"
-        ],
+        "antonyms": [],
         "examples": [
           {
-            "en": "Viruses often show exponential growth in the first weeks.",
-            "ko": "바이러스는 초반 몇 주 동안 지수적 성장을 보이곤 한다."
+            "en": "The multiplication principle counts independent choices in a row.",
+            "ko": "곱의 법칙은 잇따른 독립 선택의 수를 헤아린다."
           },
           {
-            "en": "The app's user base grew at an exponential rate last year.",
-            "ko": "이 앱의 사용자는 작년 지수적인 속도로 늘어났다."
+            "en": "Every science textbook starts with a few basic principles.",
+            "ko": "모든 과학 교과서는 몇 가지 기본 원리에서 시작한다."
           }
         ]
       },
       {
-        "word": "double",
+        "word": "distinct",
+        "pos": "adj.",
+        "meaning_ko": "서로 다른, 구별되는",
+        "synonyms": [
+          "different",
+          "separate"
+        ],
+        "antonyms": [
+          "identical"
+        ],
+        "examples": [
+          {
+            "en": "The dial offers ten thousand distinct combinations.",
+            "ko": "그 다이얼은 1만 개의 서로 다른 조합을 제공한다."
+          },
+          {
+            "en": "These two ideas look similar but are quite distinct.",
+            "ko": "두 개념은 비슷해 보이지만 사실은 꽤 다르다."
+          }
+        ]
+      },
+      {
+        "word": "permutation",
+        "pos": "n.",
+        "meaning_ko": "순열 (순서 있는 배열)",
+        "synonyms": [
+          "ordered arrangement"
+        ],
+        "antonyms": [
+          "combination"
+        ],
+        "examples": [
+          {
+            "en": "Six songs can be played in 720 different permutations.",
+            "ko": "여섯 곡은 720가지 서로 다른 순열로 재생될 수 있다."
+          },
+          {
+            "en": "Permutations are used to count rankings in a race.",
+            "ko": "순열은 경주에서 순위 가짓수를 셀 때 쓰인다."
+          }
+        ]
+      },
+      {
+        "word": "combination",
+        "pos": "n.",
+        "meaning_ko": "조합 (순서를 따지지 않는 묶음)",
+        "synonyms": [
+          "selection"
+        ],
+        "antonyms": [
+          "permutation"
+        ],
+        "examples": [
+          {
+            "en": "Choosing five members for a council is a combination problem.",
+            "ko": "위원 5명을 뽑는 것은 조합 문제다."
+          },
+          {
+            "en": "Different combinations of two ingredients can taste the same.",
+            "ko": "두 재료의 서로 다른 조합도 같은 맛을 낼 수 있다."
+          }
+        ]
+      },
+      {
+        "word": "stack",
         "pos": "v.",
-        "meaning_ko": "두 배가 되다 / 두 배로 만들다",
+        "meaning_ko": "차곡차곡 쌓다",
         "synonyms": [
-          "multiply by two"
+          "pile",
+          "layer"
         ],
         "antonyms": [
-          "halve"
+          "scatter"
         ],
         "examples": [
           {
-            "en": "If you double the dose, the effect may become dangerous.",
-            "ko": "복용량을 두 배로 하면 효과가 위험해질 수 있다."
+            "en": "Independent choices stack into one giant possibility space.",
+            "ko": "독립 선택은 차곡차곡 쌓여 거대한 가능 공간이 된다."
           },
           {
-            "en": "The company's revenue doubled within three years.",
-            "ko": "그 회사의 매출은 3년 안에 두 배가 되었다."
+            "en": "He stacked the books carefully on the corner shelf.",
+            "ko": "그는 책을 모서리 선반에 조심스레 쌓았다."
           }
         ]
       },
       {
-        "word": "rival",
+        "word": "sequence",
         "pos": "n.",
-        "meaning_ko": "경쟁자, 맞수",
+        "meaning_ko": "순서, 배열",
         "synonyms": [
-          "competitor",
-          "opponent"
+          "order",
+          "arrangement"
         ],
         "antonyms": [
-          "ally"
+          "randomness"
         ],
         "examples": [
           {
-            "en": "Her doubling strategy quickly left her rival behind.",
-            "ko": "그녀의 2배 전략은 곧 경쟁자를 따돌렸다."
+            "en": "The same six songs sound new in a fresh sequence.",
+            "ko": "같은 여섯 곡도 새 순서로 들으면 새롭게 들린다."
           },
           {
-            "en": "The two teams have been fierce rivals for a decade.",
-            "ko": "그 두 팀은 10년째 치열한 맞수였다."
+            "en": "Permutations differ from combinations only in sequence.",
+            "ko": "순열은 조합과 오직 순서에서만 구별된다."
           }
         ]
       },
       {
-        "word": "advisor",
+        "word": "membership",
         "pos": "n.",
-        "meaning_ko": "조언자, 자문",
+        "meaning_ko": "구성원 자격, 소속",
         "synonyms": [
-          "counselor"
+          "inclusion"
+        ],
+        "antonyms": [
+          "exclusion"
+        ],
+        "examples": [
+          {
+            "en": "Combinations care only about membership, not order.",
+            "ko": "조합은 순서가 아니라 구성원 자격만을 따진다."
+          },
+          {
+            "en": "Library membership opens access to every digital book.",
+            "ko": "도서관 회원 자격은 모든 디지털 도서로의 접근을 열어 준다."
+          }
+        ]
+      },
+      {
+        "word": "cryptographer",
+        "pos": "n.",
+        "meaning_ko": "암호 전문가, 암호학자",
+        "synonyms": [
+          "code expert"
         ],
         "antonyms": [],
         "examples": [
           {
-            "en": "The king trusted his clever advisor more than his generals.",
-            "ko": "왕은 장군들보다 영리한 조언자를 더 신뢰했다."
+            "en": "Cryptographers measure password safety by possibility space.",
+            "ko": "암호학자는 비밀번호의 안전성을 가능 공간의 크기로 잰다."
           },
           {
-            "en": "Students meet their academic advisor once a semester.",
-            "ko": "학생들은 학기에 한 번 지도 교수를 만난다."
+            "en": "A skilled cryptographer can detect weak password rules quickly.",
+            "ko": "숙련된 암호학자는 허술한 비밀번호 규칙을 빠르게 짚어낸다."
           }
         ]
       },
       {
-        "word": "modest",
-        "pos": "adj.",
-        "meaning_ko": "겸손한, 소박한",
+        "word": "tenfold",
+        "pos": "adv./adj.",
+        "meaning_ko": "열 배로",
         "synonyms": [
-          "humble",
-          "small"
-        ],
-        "antonyms": [
-          "grand"
-        ],
-        "examples": [
-          {
-            "en": "The king thought it a modest request and agreed.",
-            "ko": "왕은 그것을 소박한 요구라 여기고 동의했다."
-          },
-          {
-            "en": "She described her role in the project in modest terms.",
-            "ko": "그녀는 프로젝트에서 자기 역할을 겸손하게 표현했다."
-          }
-        ]
-      },
-      {
-        "word": "trickle",
-        "pos": "n.",
-        "meaning_ko": "졸졸 흐름, 적은 양",
-        "synonyms": [
-          "drip"
-        ],
-        "antonyms": [
-          "flood"
-        ],
-        "examples": [
-          {
-            "en": "The rice started as a trickle but soon became an ocean.",
-            "ko": "쌀은 졸졸 흐르듯 시작했지만 곧 바다가 되었다."
-          },
-          {
-            "en": "Only a trickle of visitors came before noon.",
-            "ko": "정오 이전에는 아주 적은 방문객만 왔다."
-          }
-        ]
-      },
-      {
-        "word": "unstoppable",
-        "pos": "adj.",
-        "meaning_ko": "막을 수 없는",
-        "synonyms": [
-          "unrelenting"
-        ],
-        "antonyms": [
-          "controllable"
-        ],
-        "examples": [
-          {
-            "en": "By the fifth week the outbreak felt unstoppable.",
-            "ko": "다섯째 주가 되자 그 유행은 막을 수 없게 느껴졌다."
-          },
-          {
-            "en": "Her unstoppable energy inspired the whole team.",
-            "ko": "그녀의 멈출 줄 모르는 에너지가 팀 전체에 영감을 주었다."
-          }
-        ]
-      },
-      {
-        "word": "feedback",
-        "pos": "n.",
-        "meaning_ko": "(되먹임) 피드백",
-        "synonyms": [
-          "response"
+          "by ten times"
         ],
         "antonyms": [],
         "examples": [
           {
-            "en": "Climate feedback loops can speed up warming unexpectedly.",
-            "ko": "기후 피드백 루프는 예기치 않게 온난화를 가속시킬 수 있다."
+            "en": "One extra character can grow the password space tenfold.",
+            "ko": "글자 한 개만 늘려도 비밀번호 공간이 열 배로 커진다."
           },
           {
-            "en": "Teachers use quick feedback to help students improve.",
-            "ko": "교사는 빠른 피드백으로 학생의 성장을 돕는다."
+            "en": "Their sales rose tenfold within five years.",
+            "ko": "그들의 매출은 5년 만에 열 배가 되었다."
           }
         ]
       },
       {
-        "word": "harmless",
-        "pos": "adj.",
-        "meaning_ko": "해롭지 않은",
+        "word": "dwarf",
+        "pos": "v.",
+        "meaning_ko": "(비교에서) 압도하다, 왜소해 보이게 하다",
         "synonyms": [
-          "safe"
+          "overshadow"
         ],
         "antonyms": [
-          "dangerous"
+          "magnify"
         ],
         "examples": [
           {
-            "en": "A doubling count can look harmless in the early days.",
-            "ko": "두 배씩 늘어나는 수치는 초기에는 해롭지 않아 보일 수 있다."
+            "en": "The bracket count dwarfs the seconds in a lifetime.",
+            "ko": "브래킷 경우의 수가 평생의 초 단위 시간을 압도한다."
           },
           {
-            "en": "The dog's bark is loud but completely harmless.",
-            "ko": "그 개의 짖음은 크지만 완전히 해롭지 않다."
+            "en": "The new tower dwarfs every building around the square.",
+            "ko": "새 타워는 광장 주변의 모든 건물을 작아 보이게 한다."
           }
         ]
       },
       {
-        "word": "patient",
-        "pos": "adj.",
-        "meaning_ko": "인내심 있는",
+        "word": "enumeration",
+        "pos": "n.",
+        "meaning_ko": "(하나하나) 나열, 열거",
         "synonyms": [
-          "tolerant"
+          "listing"
         ],
         "antonyms": [
-          "impatient"
+          "summation"
         ],
         "examples": [
           {
-            "en": "Compound interest rewards patient savers over time.",
-            "ko": "복리는 시간이 지나면 인내심 있는 저축자를 보상한다."
+            "en": "Direct enumeration fails long before the truth appears.",
+            "ko": "직접 나열은 진실이 드러나기 한참 전에 무너진다."
           },
           {
-            "en": "Good teachers stay patient when students make mistakes.",
-            "ko": "좋은 교사는 학생이 실수할 때도 인내심을 유지한다."
-          }
-        ]
-      },
-      {
-        "word": "secretly",
-        "pos": "adv.",
-        "meaning_ko": "남몰래, 은밀히",
-        "synonyms": [
-          "quietly"
-        ],
-        "antonyms": [
-          "openly"
-        ],
-        "examples": [
-          {
-            "en": "An exponential line is secretly bending upward all along.",
-            "ko": "지수 곡선은 내내 남몰래 위로 꺾이고 있다."
-          },
-          {
-            "en": "He secretly saved money for his sister's birthday gift.",
-            "ko": "그는 여동생의 생일 선물을 위해 몰래 돈을 모았다."
+            "en": "Census workers used careful enumeration of every household.",
+            "ko": "인구조사 직원은 모든 가구를 꼼꼼히 열거했다."
           }
         ]
       }
