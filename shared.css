@@ -44,6 +44,13 @@
   --tn-error:#F87171;
   --tn-ok:#34D399;
   --tn-warn:#FBBF24;
+
+  /* ── 커스텀 커서 (landing/index #bg-canvas Three.js scene) ─────────
+     v2 비비드 그린(#00FFA3) 톤 + 14×14 hotspot.
+     default: 얇은 mint 링 + 중앙 점 (둘러보기 / look around)
+     pointer: 굵은 mint 링 + 큰 중앙 점 + 외곽 글로우 (clickable) */
+  --tn-cursor-default: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'><circle cx='14' cy='14' r='8' fill='none' stroke='%2300FFA3' stroke-width='1.5' opacity='0.85'/><circle cx='14' cy='14' r='1.6' fill='%2300FFA3'/></svg>") 14 14, auto;
+  --tn-cursor-pointer: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'><circle cx='16' cy='16' r='12' fill='%2300FFA3' opacity='0.18'/><circle cx='16' cy='16' r='9' fill='none' stroke='%2300FFA3' stroke-width='2'/><circle cx='16' cy='16' r='3.5' fill='%2300FFA3'/></svg>") 16 16, pointer;
 }
 
 /* ── 스크린 리더 전용 텍스트 ─────────────────────────────────── */
