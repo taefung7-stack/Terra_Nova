@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Terra Nova Supplements</title>
+<link rel="stylesheet" href="styles/tokens.css" />
+<link rel="stylesheet" href="styles/layout.css" />
+<link rel="stylesheet" href="styles/supplements.css" />
+<link rel="stylesheet" href="styles/print.css" />
+</head>
+<body>
+
+<!-- ============================================================= -->
+<!-- SECTION DIVIDER — full A4 cover page (interleaf)              -->
+<!-- ============================================================= -->
+<template id="tpl-divider">
+  <!-- LEFT (odd) page — big titles only -->
+  <section class="page supp supp-divider supp-divider-left">
+    <div class="div-stack">
+      <h1 class="div-title-en" data-slot="title-en"></h1>
+      <h2 class="div-title-ko" data-slot="title-ko"></h2>
+    </div>
+  </section>
+  <!-- RIGHT (even) page — blank with TERRA·NOVA at bottom-right -->
+  <section class="page supp supp-divider supp-divider-right">
+    <div class="div-foot-brand">TERRA<span class="brand-dot">·</span>NOVA</div>
+  </section>
+</template>
+
+<!-- ============================================================= -->
+<!-- ANSWER BOOK — 2 questions per page, DAY NN identifier         -->
+<!-- ============================================================= -->
+<template id="tpl-answer-page">
+  <section class="page supp supp-answer" data-slot="root">
+    <header class="page-head">
+      <span class="section-label">ANSWER &amp; EXPLANATION</span>
+      <span class="chapter-tag" data-slot="chapter-tag"></span>
+    </header>
+    <div class="page-body">
+      <div class="ans-meta">
+        <span class="chip" data-slot="subject"></span>
+        <span class="chip part" data-slot="part"></span>
+        <span class="chip seq" data-slot="seq"></span>
+      </div>
+      <div class="ans-pair" data-slot="pair"></div>
+    </div>
+    <footer class="page-foot">
+      <span class="page-num" data-slot="page-num"></span>
+      <span class="foot-day" data-slot="foot-day"></span>
+      <span class="brand">TERRA<span class="brand-dot">·</span>NOVA<span class="brand-sub">정답·해설</span></span>
+    </footer>
+  </section>
+</template>
+
+<!-- ============================================================= -->
+<!-- WORDBOOK page                                                 -->
+<!-- ============================================================= -->
+<template id="tpl-wordbook-page">
+  <section class="page supp supp-wordbook" data-slot="root">
+    <header class="page-head supp-head">
+      <span class="supp-section-label">WORDBOOK</span>
+      <span class="supp-scope-label" data-slot="scope-label"></span>
+    </header>
+    <div class="page-body">
+      <table class="wb-table">
+        <thead>
+          <tr>
+            <th class="col-n">#</th>
+            <th class="col-w">Word</th>
+            <th class="col-p">품사</th>
+            <th class="col-m">뜻</th>
+            <th class="col-s">Synonyms / Antonyms</th>
+          </tr>
+        </thead>
+        <tbody data-slot="rows"></tbody>
+      </table>
+    </div>
+    <footer class="page-foot">
+      <span class="page-num" data-slot="page-num"></span>
+      <span class="foot-day">단어장</span>
+      <span class="brand">TERRA<span class="brand-dot">·</span>NOVA</span>
+    </footer>
+  </section>
+</template>
+
+<!-- ============================================================= -->
+<!-- WORDTEST — Part A (60 words, 1 page) and Part B (20 MC, 1 page) -->
+<!-- ============================================================= -->
+<template id="tpl-wordtest-partA">
+  <section class="page supp supp-wordtest" data-slot="root">
+    <header class="page-head supp-head">
+      <span class="supp-section-label">WORD TEST</span>
+      <span class="supp-scope-label" data-slot="scope-label"></span>
+    </header>
+    <div class="page-body">
+      <div class="wt-header">
+        <div class="wt-student">이름 <span class="wt-blank"></span>　점수 <span class="wt-blank small"></span> / <span data-slot="total-score"></span></div>
+        <div class="wt-scope" data-slot="scope-full"></div>
+      </div>
+      <h2 class="wt-section-h"><span class="wt-sec-num">Part A</span> 영어 단어의 뜻을 한글로 쓰시오. <span class="wt-point">(각 1점, 60문제)</span></h2>
+      <ol class="wt-partA" data-slot="partA"></ol>
+    </div>
+    <footer class="page-foot">
+      <span class="page-num" data-slot="page-num"></span>
+      <span class="foot-day">단어시험지</span>
+      <span class="brand">TERRA<span class="brand-dot">·</span>NOVA</span>
+    </footer>
+  </section>
+</template>
+
+<template id="tpl-wordtest-partB">
+  <section class="page supp supp-wordtest" data-slot="root">
+    <header class="page-head supp-head">
+      <span class="supp-section-label">WORD TEST</span>
+      <span class="supp-scope-label" data-slot="scope-label"></span>
+    </header>
+    <div class="page-body">
+      <h2 class="wt-section-h"><span class="wt-sec-num">Part B</span> 빈칸에 들어갈 가장 적절한 단어를 고르시오. <span class="wt-point">(각 1점, 20문제)</span></h2>
+      <ol class="wt-partB" data-slot="partB"></ol>
+    </div>
+    <footer class="page-foot">
+      <span class="page-num" data-slot="page-num"></span>
+      <span class="foot-day">단어시험지</span>
+      <span class="brand">TERRA<span class="brand-dot">·</span>NOVA</span>
+    </footer>
+  </section>
+</template>
+
+<!-- Wordtest answer key — one full page per week (80 answers packed) -->
+<template id="tpl-wordtest-key">
+  <section class="page supp supp-wordtest-key" data-slot="root">
+    <header class="page-head supp-head">
+      <span class="supp-section-label">ANSWER KEY</span>
+      <span class="supp-scope-label" data-slot="scope-label"></span>
+    </header>
+    <div class="page-body">
+      <h2 class="wtk-h">Part A 정답 <span class="wtk-h-sub">영단어 → 한글 뜻</span></h2>
+      <ol class="wtk-list wtk-a" data-slot="keyA"></ol>
+      <h2 class="wtk-h">Part B 정답 <span class="wtk-h-sub">빈칸 4지선다</span></h2>
+      <ol class="wtk-list wtk-b" data-slot="keyB"></ol>
+    </div>
+    <footer class="page-foot">
+      <span class="page-num" data-slot="page-num"></span>
+      <span class="foot-day">정답</span>
+      <span class="brand">TERRA<span class="brand-dot">·</span>NOVA</span>
+    </footer>
+  </section>
+</template>
+
+<main id="stage"></main>
+<script type="module" src="scripts/supplements-render.js"></script>
+</body>
+</html>

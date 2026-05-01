@@ -6,15 +6,19 @@
 <meta name="robots" content="noindex, nofollow">
 <title>관리자 · Terra Nova</title>
 <link rel="stylesheet" href="shared.css">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+KR:wght@300;400;500;700;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --dark:#0A0A0A; --mid:#111111; --card:#1C1C1C; --card2:#222222;
-    --accent:#2DD4BF; --txt:#F0F0F0; --dim:rgba(240,240,240,.72);
+    --accent:#00FFA3; --txt:#F0F0F0; --dim:rgba(240,240,240,.72);
     --line:rgba(255,255,255,.07); --warn:#F59E0B; --danger:#F87171; --ok:#4ADE80;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
-  body{background:var(--dark);color:var(--txt);font-family:'Noto Sans KR',sans-serif;}
+  body{background:var(--dark);color:var(--txt);font-family:'Pretendard','Noto Sans KR',sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
 
   .admin-nav{position:sticky;top:0;z-index:100;background:rgba(10,10,10,.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--line);padding:14px 5vw;display:flex;justify-content:space-between;align-items:center;}
   .admin-brand{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:4px;color:#fff;text-decoration:none;}
@@ -27,7 +31,7 @@
   .page-sub{font-size:.85rem;color:var(--dim);margin-bottom:28px;}
 
   .tab-row{display:flex;gap:2px;margin-bottom:24px;border-bottom:1px solid var(--line);}
-  .tab-btn{padding:12px 22px;font-size:.82rem;font-weight:600;color:var(--dim);background:none;border:none;cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;font-family:'Noto Sans KR',sans-serif;}
+  .tab-btn{padding:12px 22px;font-size:.82rem;font-weight:600;color:var(--dim);background:none;border:none;cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;font-family:'Pretendard','Noto Sans KR',sans-serif;}
   .tab-btn.active{color:var(--accent);border-bottom-color:var(--accent);}
   .tab-btn:hover{color:#fff;}
   .tab-view{display:none;}
@@ -41,12 +45,12 @@
   .stat-value.warn{color:var(--warn);}
 
   .section{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:22px;margin-bottom:18px;}
-  .section-title{font-size:.7rem;font-weight:700;letter-spacing:3px;color:var(--accent);text-transform:uppercase;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center;gap:10px;}
+  .section-title{font-family:'Space Grotesk',sans-serif;font-size:.7rem;font-weight:600;letter-spacing:3px;color:var(--accent);text-transform:uppercase;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center;gap:10px;}
   .section-title .count{font-size:.7rem;color:var(--dim);font-weight:500;letter-spacing:1px;}
 
   .filter-row{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;}
   .filter-btn{padding:7px 14px;font-size:.72rem;font-weight:600;color:var(--dim);background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:4px;cursor:pointer;transition:all .15s;}
-  .filter-btn.active{color:var(--accent);border-color:rgba(45,212,191,.4);background:rgba(45,212,191,.08);}
+  .filter-btn.active{color:var(--accent);border-color:rgba(0,255,163,.4);background:rgba(0,255,163,.08);}
   .filter-btn:hover{color:#fff;}
 
   .review-item{padding:16px;background:rgba(255,255,255,.02);border:1px solid var(--line);border-radius:8px;margin-bottom:10px;}
@@ -59,13 +63,13 @@
   .review-title{font-weight:700;color:#fff;font-size:.95rem;margin-bottom:6px;}
   .review-content{font-size:.82rem;color:rgba(255,255,255,.8);line-height:1.7;white-space:pre-wrap;margin-bottom:12px;}
   .review-actions{display:flex;gap:8px;flex-wrap:wrap;}
-  .btn-admin{padding:7px 14px;font-size:.72rem;font-weight:700;border:none;border-radius:4px;cursor:pointer;transition:all .15s;font-family:'Noto Sans KR',sans-serif;}
+  .btn-admin{padding:7px 14px;font-size:.72rem;font-weight:700;border:none;border-radius:4px;cursor:pointer;transition:all .15s;font-family:'Pretendard','Noto Sans KR',sans-serif;}
   .btn-approve{background:var(--accent);color:#0A0A0A;}
   .btn-approve:hover{opacity:.88;}
   .btn-unpublish{background:transparent;color:var(--warn);border:1px solid rgba(245,158,11,.4);}
   .btn-unpublish:hover{background:rgba(245,158,11,.08);}
-  .btn-verify{background:transparent;color:var(--accent);border:1px solid rgba(45,212,191,.4);}
-  .btn-verify:hover{background:rgba(45,212,191,.08);}
+  .btn-verify{background:transparent;color:var(--accent);border:1px solid rgba(0,255,163,.4);}
+  .btn-verify:hover{background:rgba(0,255,163,.08);}
   .btn-delete{background:transparent;color:var(--danger);border:1px solid rgba(248,113,113,.3);}
   .btn-delete:hover{background:rgba(248,113,113,.08);}
 
@@ -394,7 +398,7 @@
             <span class="review-author" style="margin-left:10px;">${esc(r.author_name)} · ${esc(r.author_grade || '')} · ${esc(r.level || '')} · ${ymdhm(r.created_at)}</span>
           </div>
           <div style="display:flex;gap:6px;align-items:center;">
-            ${r.is_verified ? '<span style="font-size:.62rem;padding:3px 8px;background:rgba(45,212,191,.1);border:1px solid rgba(45,212,191,.3);border-radius:3px;color:var(--accent);font-weight:700;">✓ 인증</span>' : ''}
+            ${r.is_verified ? '<span style="font-size:.62rem;padding:3px 8px;background:rgba(0,255,163,.1);border:1px solid rgba(0,255,163,.3);border-radius:3px;color:var(--accent);font-weight:700;">✓ 인증</span>' : ''}
             <span class="review-status ${r.is_published ? 'published' : 'pending'}">${r.is_published ? '공개 중' : '검토 중'}</span>
           </div>
         </div>

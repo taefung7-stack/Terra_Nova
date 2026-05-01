@@ -16,25 +16,27 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="dns-prefetch" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="shared.css">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+KR:wght@300;400;500;700;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --dark:#0A0A0A;--mid:#111111;--card:#1C1C1C;--card2:#222222;
-    --accent:#2DD4BF;--txt:#F0F0F0;--dim:rgba(240,240,240,.72);
-    --line:rgba(255,255,255,.07);--line2:rgba(45,212,191,.25);
+    --accent:#00FFA3;--txt:#F0F0F0;--dim:rgba(240,240,240,.72);
+    --line:rgba(255,255,255,.07);--line2:rgba(0,255,163,.25);
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
-  body{background:var(--dark);color:var(--txt);font-family:'Noto Sans KR',sans-serif;-webkit-font-smoothing:antialiased;}
+  body{background:var(--dark);color:var(--txt);font-family:'Pretendard','Noto Sans KR',sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
 
   nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;height:68px;background:rgba(6,6,15,.92);backdrop-filter:blur(24px);border-bottom:1px solid var(--line);}
   .logo-wrap{display:flex;flex-direction:column;gap:2px;text-decoration:none;}
   .logo-main{font-family:'Bebas Neue',sans-serif;font-size:1.45rem;letter-spacing:7px;color:#fff;}
-  .logo-eng{font-size:.5rem;font-weight:500;letter-spacing:5px;color:rgba(45,212,191,.35);text-transform:uppercase;}
+  .logo-eng{font-size:.5rem;font-weight:500;letter-spacing:5px;color:rgba(0,255,163,.35);text-transform:uppercase;}
   .nav-links{display:flex;gap:28px;list-style:none;align-items:center;}
   .nav-links a{color:var(--dim);text-decoration:none;font-size:.75rem;font-weight:500;letter-spacing:.8px;transition:color .2s;}
   .nav-links a:hover{color:#fff;}
-  .nav-cta{color:var(--accent)!important;border:1px solid rgba(45,212,191,.3)!important;padding:7px 18px!important;border-radius:4px!important;font-weight:600!important;}
+  .nav-cta{color:var(--accent)!important;border:1px solid rgba(0,255,163,.3)!important;padding:7px 18px!important;border-radius:4px!important;font-weight:600!important;}
   @media(max-width:680px){.nav-links{display:none;}}
   .nav-hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:8px 4px;}
   .nav-hamburger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:all .28s;}
@@ -51,9 +53,16 @@
   }
 
   .hero{padding:120px 5vw 60px;text-align:center;max-width:700px;margin:0 auto;}
-  .hero-badge{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(45,212,191,.35);color:rgba(224,255,251,.9);background:rgba(45,212,191,.07);font-size:.62rem;font-weight:700;letter-spacing:4px;padding:6px 20px;margin-bottom:28px;text-transform:uppercase;}
+  .hero-badge{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(0,255,163,.35);color:rgba(224,255,251,.9);background:rgba(0,255,163,.07);font-family:'Space Grotesk',sans-serif;font-size:.7rem;font-weight:600;letter-spacing:3px;padding:6px 14px;margin-bottom:28px;text-transform:uppercase;border-radius:2px;}
   .hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,9vw,6rem);letter-spacing:4px;color:#fff;line-height:1;margin-bottom:12px;}
   .hero-sub{font-size:clamp(.88rem,1.8vw,1rem);color:var(--dim);line-height:1.9;}
+  /* Landing-style hero fade-up */
+  @keyframes tnHeroFadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+  .hero-badge,.hero-title,.hero-sub{animation:tnHeroFadeUp 1s cubic-bezier(.2,.8,.2,1) both;}
+  .hero-badge{animation-delay:.1s;}
+  .hero-title{animation-delay:.25s;}
+  .hero-sub{animation-delay:.45s;}
+  @media (prefers-reduced-motion: reduce){.hero-badge,.hero-title,.hero-sub{animation:none;}}
   .hero-sub em{color:var(--accent);font-style:normal;font-weight:700;}
 
   /* PROGRESS */
@@ -70,16 +79,16 @@
   .step.active{display:block;}
   @keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
 
-  .step-num{font-family:'Noto Sans KR',sans-serif;font-size:clamp(1.1rem,2vw,1.35rem);font-weight:900;color:#fff;margin-bottom:16px;letter-spacing:-.01em;}
+  .step-num{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:clamp(1.1rem,2vw,1.35rem);font-weight:900;color:#fff;margin-bottom:16px;letter-spacing:-.01em;}
   .step-q{font-size:clamp(1.1rem,2.8vw,1.6rem);font-weight:900;color:#fff;line-height:1.4;margin-bottom:8px;}
   .step-hint{font-size:.78rem;color:var(--dim);margin-bottom:24px;line-height:1.6;}
 
   .options{display:grid;gap:10px;}
   .options.grade-grid{grid-template-columns:repeat(3,1fr);}
   @media(max-width:500px){.options.grade-grid{grid-template-columns:repeat(2,1fr);}}
-  .option-btn{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:14px 18px;color:var(--dim);font-family:'Noto Sans KR',sans-serif;font-size:.86rem;font-weight:500;text-align:left;cursor:pointer;transition:all .18s;display:flex;align-items:center;gap:12px;}
-  .option-btn:hover{border-color:rgba(45,212,191,.4);color:#fff;background:rgba(45,212,191,.05);}
-  .option-btn.selected{border-color:var(--accent);background:rgba(45,212,191,.1);color:#fff;}
+  .option-btn{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:14px 18px;color:var(--dim);font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:.86rem;font-weight:500;text-align:left;cursor:pointer;transition:all .18s;display:flex;align-items:center;gap:12px;}
+  .option-btn:hover{border-color:rgba(0,255,163,.4);color:#fff;background:rgba(0,255,163,.05);}
+  .option-btn.selected{border-color:var(--accent);background:rgba(0,255,163,.1);color:#fff;}
   .option-btn.selected .opt-dot{background:var(--accent);border-color:var(--accent);}
   .option-btn.selected .opt-dot::after{opacity:1;}
   .opt-dot{width:16px;height:16px;border-radius:50%;border:1.5px solid rgba(255,255,255,.2);flex-shrink:0;position:relative;transition:all .18s;}
@@ -90,19 +99,19 @@
   .grade-sub{font-size:.65rem;color:var(--dim);}
 
   /* PASSAGE */
-  .passage-box{background:var(--card);border:1px solid var(--line);border-left:3px solid rgba(45,212,191,.4);border-radius:8px;padding:22px 24px;margin-bottom:20px;}
-  .passage-label{font-family:'Noto Sans KR',sans-serif;font-size:clamp(1rem,1.7vw,1.18rem);font-weight:800;color:#fff;margin-bottom:12px;letter-spacing:-.005em;}
+  .passage-box{background:var(--card);border:1px solid var(--line);border-left:3px solid rgba(0,255,163,.4);border-radius:8px;padding:22px 24px;margin-bottom:20px;}
+  .passage-label{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:clamp(1rem,1.7vw,1.18rem);font-weight:800;color:#fff;margin-bottom:12px;letter-spacing:-.005em;}
   .passage-text{font-size:.88rem;color:rgba(255,255,255,.88);line-height:2;font-style:italic;}
   .passage-vocab{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
-  .vocab-chip{font-size:.88rem;padding:4px 10px;border-radius:4px;background:rgba(45,212,191,.08);border:1px solid rgba(45,212,191,.2);color:var(--accent);}
+  .vocab-chip{font-size:.88rem;padding:4px 10px;border-radius:4px;background:rgba(0,255,163,.08);border:1px solid rgba(0,255,163,.2);color:var(--accent);}
   .passage-source{font-size:.88rem;color:var(--dim);margin-top:10px;}
 
   /* NAV BUTTONS */
   .btn-row{display:flex;gap:10px;margin-top:28px;justify-content:flex-end;align-items:center;}
-  .btn-next{background:var(--accent);color:#0A0A0A;border:none;padding:13px 32px;border-radius:6px;font-family:'Noto Sans KR',sans-serif;font-size:.86rem;font-weight:700;cursor:pointer;transition:transform .15s,box-shadow .15s,opacity .15s;opacity:.35;pointer-events:none;}
+  .btn-next{background:var(--accent);color:#0A0A0A;border:none;padding:13px 32px;border-radius:6px;font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:.86rem;font-weight:700;cursor:pointer;transition:transform .15s,box-shadow .15s,opacity .15s;opacity:.35;pointer-events:none;}
   .btn-next.ready{opacity:1;pointer-events:auto;}
-  .btn-next.ready:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(45,212,191,.3);}
-  .btn-prev{background:transparent;color:var(--dim);border:1px solid var(--line);padding:13px 32px;border-radius:6px;font-family:'Noto Sans KR',sans-serif;font-size:.86rem;cursor:pointer;transition:color .2s,border-color .2s;}
+  .btn-next.ready:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,255,163,.3);}
+  .btn-prev{background:transparent;color:var(--dim);border:1px solid var(--line);padding:13px 32px;border-radius:6px;font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:.86rem;cursor:pointer;transition:color .2s,border-color .2s;}
   .btn-prev:hover{color:#fff;border-color:rgba(255,255,255,.2);}
   .opt-skip{border-style:dashed;opacity:.6;}
   .opt-skip:hover{opacity:1;border-color:rgba(255,255,255,.25);color:var(--dim);}
@@ -117,7 +126,7 @@
   /* 점수 바 */
   .score-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin:28px 0;}
   .score-item{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:16px 18px;}
-  .score-label{font-family:'Noto Sans KR',sans-serif;font-size:clamp(.95rem,1.5vw,1.08rem);font-weight:700;color:rgba(255,255,255,.7);margin-bottom:10px;letter-spacing:.3px;}
+  .score-label{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:clamp(.95rem,1.5vw,1.08rem);font-weight:700;color:rgba(255,255,255,.7);margin-bottom:10px;letter-spacing:.3px;}
   .score-bar-bg{background:rgba(255,255,255,.06);height:6px;border-radius:999px;overflow:hidden;margin-bottom:6px;}
   .score-bar-fill{height:100%;border-radius:999px;transition:width .6s ease;}
   .score-row{display:flex;justify-content:space-between;align-items:center;}
@@ -125,7 +134,7 @@
   .domain-grade{font-size:.95rem;font-weight:900;letter-spacing:1px;}
 
   .result-analysis{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:24px 28px;text-align:left;margin:16px 0;}
-  .result-analysis-title{font-family:'Noto Sans KR',sans-serif;font-size:clamp(1.05rem,1.8vw,1.25rem);font-weight:800;color:#fff;margin-bottom:16px;letter-spacing:-.01em;}
+  .result-analysis-title{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:clamp(1.05rem,1.8vw,1.25rem);font-weight:800;color:#fff;margin-bottom:16px;letter-spacing:-.01em;}
   .result-analysis p{font-size:.86rem;color:var(--dim);line-height:1.9;margin-bottom:10px;}
   .result-analysis p:last-child{margin-bottom:0;}
   .result-strengths{margin-top:16px;display:flex;flex-direction:column;gap:6px;}
@@ -133,13 +142,13 @@
   .strength-icon{color:var(--accent);flex-shrink:0;}
 
   /* 벤치마크 */
-  .benchmark-box{background:rgba(45,212,191,.05);border:1px solid rgba(45,212,191,.2);border-radius:10px;padding:20px 24px;text-align:left;margin:16px 0;}
+  .benchmark-box{background:rgba(0,255,163,.05);border:1px solid rgba(0,255,163,.2);border-radius:10px;padding:20px 24px;text-align:left;margin:16px 0;}
   .benchmark-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.05);gap:8px;}
   .benchmark-row:last-child{border-bottom:none;}
   .benchmark-label{font-size:.78rem;color:var(--dim);min-width:60px;}
   .benchmark-val{font-size:.78rem;font-weight:700;color:#fff;}
   .benchmark-diff{font-size:.7rem;padding:2px 8px;border-radius:4px;white-space:nowrap;}
-  .benchmark-diff.up{background:rgba(45,212,191,.15);color:var(--accent);}
+  .benchmark-diff.up{background:rgba(0,255,163,.15);color:var(--accent);}
   .benchmark-diff.down{background:rgba(248,113,113,.12);color:#F87171;}
   .benchmark-diff.even{background:rgba(255,255,255,.06);color:var(--dim);}
 
@@ -158,17 +167,17 @@
   .plan-text{font-size:.8rem;color:rgba(255,255,255,.8);line-height:1.75;}
 
   .result-sample{margin-top:20px;}
-  .sample-tag{font-size:.62rem;font-weight:700;letter-spacing:3px;color:var(--accent);text-transform:uppercase;margin-bottom:10px;}
-  .sample-card{background:var(--card);border:1px solid rgba(45,212,191,.2);border-radius:8px;padding:18px 22px;}
+  .sample-tag{font-family:'Space Grotesk',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:3px;color:var(--accent);text-transform:uppercase;margin-bottom:10px;}
+  .sample-card{background:var(--card);border:1px solid rgba(0,255,163,.2);border-radius:8px;padding:18px 22px;}
   .sample-card-title{font-weight:700;color:#fff;margin-bottom:6px;font-size:.88rem;}
   .sample-card-text{font-size:.8rem;color:var(--dim);line-height:1.85;font-style:italic;}
 
   .result-cta{display:flex;gap:12px;justify-content:center;margin-top:36px;flex-wrap:wrap;}
-  .btn-primary{background:var(--accent);color:#0A0A0A;padding:15px 40px;border-radius:6px;font-family:'Noto Sans KR',sans-serif;font-weight:700;font-size:.92rem;text-decoration:none;transition:transform .15s,box-shadow .15s;display:inline-block;}
-  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(45,212,191,.32);}
-  .btn-outline{background:transparent;color:var(--txt);padding:14px 32px;border-radius:6px;border:1px solid rgba(255,255,255,.15);font-family:'Noto Sans KR',sans-serif;font-weight:600;font-size:.92rem;text-decoration:none;transition:border-color .2s;display:inline-block;}
-  .btn-outline:hover{border-color:rgba(255,255,255,.35);}
-  .retry-btn{background:none;border:none;color:var(--accent);font-family:'Noto Sans KR',sans-serif;font-size:.8rem;cursor:pointer;text-decoration:underline;margin-top:14px;display:block;text-align:center;}
+  .btn-primary{background:var(--accent);color:#0A0A0A;padding:15px 40px;border-radius:4px;font-family:'Pretendard','Noto Sans KR',sans-serif;font-weight:700;font-size:.92rem;text-decoration:none;transition:transform .15s,box-shadow .15s;display:inline-block;}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,255,163,.28);}
+  .btn-outline{background:transparent;color:var(--txt);padding:14px 32px;border-radius:4px;border:1px solid rgba(255,255,255,.15);font-family:'Pretendard','Noto Sans KR',sans-serif;font-weight:600;font-size:.92rem;text-decoration:none;transition:border-color .2s,background .2s;display:inline-block;}
+  .btn-outline:hover{border-color:rgba(255,255,255,.35);background:rgba(255,255,255,.04);}
+  .retry-btn{background:none;border:none;color:var(--accent);font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:.8rem;cursor:pointer;text-decoration:underline;margin-top:14px;display:block;text-align:center;}
 
   /* 정확도 주의 */
   .accuracy-note{background:rgba(251,191,36,.07);border:1px solid rgba(251,191,36,.25);border-radius:8px;padding:14px 18px;font-size:.75rem;color:rgba(251,191,36,.9);line-height:1.7;margin-top:20px;text-align:left;}
@@ -250,7 +259,7 @@
   <p class="hero-sub">20문항 정밀 진단으로 <br><em>나에게 맞는 정확한 레벨</em>을 찾습니다.<br>소요시간 약 10분 · 어휘·독해·문법·추론 종합 분석</p>
 
   <!-- 철학 설명 카드 -->
-  <div style="max-width:680px;margin:36px auto 0;padding:24px 26px;background:linear-gradient(145deg,rgba(45,212,191,.06),rgba(45,212,191,.02));border:1px solid rgba(45,212,191,.25);border-radius:12px;text-align:left;line-height:1.85;">
+  <div style="max-width:680px;margin:36px auto 0;padding:24px 26px;background:linear-gradient(145deg,rgba(0,255,163,.06),rgba(0,255,163,.02));border:1px solid rgba(0,255,163,.25);border-radius:12px;text-align:left;line-height:1.85;">
     <div style="font-size:.72rem;font-weight:800;letter-spacing:3px;color:var(--accent);margin-bottom:12px;">📐 추천 원칙</div>
     <p style="font-size:.96rem;color:rgba(255,255,255,.88);margin-bottom:12px;">
       Terra Nova는 기본적으로 <strong style="color:#fff;">학년에 맞는 레벨을 우선 추천</strong>합니다. 교과 연계 학습의 특성상 학년별 교과 진도와 동기화된 커리큘럼이 가장 효과적이기 때문입니다.
@@ -855,7 +864,7 @@ function calcLevel(sc) {
 
 /* ── 등급 문자 ── */
 function letterGrade(score) {
-  if(score >= 85) return {g:'A', c:'#2DD4BF'};
+  if(score >= 85) return {g:'A', c:'#00FFA3'};
   if(score >= 70) return {g:'B', c:'#34D399'};
   if(score >= 55) return {g:'C', c:'#F59E0B'};
   if(score >= 40) return {g:'D', c:'#F87171'};
@@ -1116,10 +1125,10 @@ function showResult() {
   let planHtml = `<div style="font-size:.75rem;color:var(--accent);font-weight:700;margin-bottom:6px;letter-spacing:.5px;">${info.target} · 월 4주 커리큘럼</div>`;
   planHtml += `<div style="font-size:.82rem;color:var(--dim);margin-bottom:18px;line-height:1.6;">${info.name} 레벨의 학생이 첫 달에 접하는 <strong style="color:#fff;">교과 연계 영어 지문</strong> 주제입니다.</div>`;
   planHtml += '<div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-family:\'Noto Sans KR\',sans-serif;font-size:.85rem;">';
-  planHtml += '<thead><tr style="border-bottom:1px solid rgba(45,212,191,.25);"><th style="text-align:left;padding:10px 8px;font-size:.72rem;font-weight:700;letter-spacing:1px;color:var(--accent);text-transform:uppercase;width:18%;">주차</th><th style="text-align:left;padding:10px 8px;font-size:.72rem;font-weight:700;letter-spacing:1px;color:var(--accent);text-transform:uppercase;width:24%;">교과 연계</th><th style="text-align:left;padding:10px 8px;font-size:.72rem;font-weight:700;letter-spacing:1px;color:var(--accent);text-transform:uppercase;">학습 주제</th></tr></thead><tbody>';
-  planHtml += curriculum.map((w,i)=>`<tr style="border-bottom:1px solid var(--line);"><td style="padding:14px 8px;vertical-align:top;"><div style="font-weight:800;color:#fff;">${w.week}</div><div style="font-size:.7rem;color:var(--dim);margin-top:2px;">${w.days}</div></td><td style="padding:14px 8px;vertical-align:top;"><div style="display:inline-block;padding:3px 10px;border:1px solid rgba(45,212,191,.3);border-radius:3px;font-size:.72rem;color:var(--accent);font-weight:600;">${w.subject}</div><div style="font-size:.7rem;color:var(--dim);margin-top:6px;">${w.unit}</div></td><td style="padding:14px 8px;vertical-align:top;"><div style="color:#fff;font-weight:700;margin-bottom:4px;">${w.topic}</div><div style="font-size:.76rem;color:var(--dim);line-height:1.6;font-style:italic;">"${w.preview}"</div></td></tr>`).join('');
+  planHtml += '<thead><tr style="border-bottom:1px solid rgba(0,255,163,.25);"><th style="text-align:left;padding:10px 8px;font-size:.72rem;font-weight:700;letter-spacing:1px;color:var(--accent);text-transform:uppercase;width:18%;">주차</th><th style="text-align:left;padding:10px 8px;font-size:.72rem;font-weight:700;letter-spacing:1px;color:var(--accent);text-transform:uppercase;width:24%;">교과 연계</th><th style="text-align:left;padding:10px 8px;font-size:.72rem;font-weight:700;letter-spacing:1px;color:var(--accent);text-transform:uppercase;">학습 주제</th></tr></thead><tbody>';
+  planHtml += curriculum.map((w,i)=>`<tr style="border-bottom:1px solid var(--line);"><td style="padding:14px 8px;vertical-align:top;"><div style="font-weight:800;color:#fff;">${w.week}</div><div style="font-size:.7rem;color:var(--dim);margin-top:2px;">${w.days}</div></td><td style="padding:14px 8px;vertical-align:top;"><div style="display:inline-block;padding:3px 10px;border:1px solid rgba(0,255,163,.3);border-radius:3px;font-size:.72rem;color:var(--accent);font-weight:600;">${w.subject}</div><div style="font-size:.7rem;color:var(--dim);margin-top:6px;">${w.unit}</div></td><td style="padding:14px 8px;vertical-align:top;"><div style="color:#fff;font-weight:700;margin-bottom:4px;">${w.topic}</div><div style="font-size:.76rem;color:var(--dim);line-height:1.6;font-style:italic;">"${w.preview}"</div></td></tr>`).join('');
   planHtml += '</tbody></table></div>';
-  planHtml += `<div style="margin-top:16px;padding:12px 14px;background:rgba(45,212,191,.06);border:1px solid rgba(45,212,191,.2);border-radius:6px;font-size:.76rem;color:var(--dim);line-height:1.7;">💡 실제 구독자는 매주 월~금 하루 <strong style="color:#fff;">1지문(약 10~15분)</strong>을 풀이합니다. 위 표는 Level ${LEVEL_NUM[lvl]} (${lvl}) 학생이 첫 달에 만나는 지문 예시입니다.</div>`;
+  planHtml += `<div style="margin-top:16px;padding:12px 14px;background:rgba(0,255,163,.06);border:1px solid rgba(0,255,163,.2);border-radius:6px;font-size:.76rem;color:var(--dim);line-height:1.7;">💡 실제 구독자는 매주 월~금 하루 <strong style="color:#fff;">1지문(약 10~15분)</strong>을 풀이합니다. 위 표는 Level ${LEVEL_NUM[lvl]} (${lvl}) 학생이 첫 달에 만나는 지문 예시입니다.</div>`;
   document.getElementById('study-plan-content').innerHTML = planHtml;
 
   // 샘플
@@ -1217,10 +1226,10 @@ async function saveLevelResult(lvl, sc, conf) {
     if (note && !document.getElementById('guest-save-cta')) {
       const cta = document.createElement('div');
       cta.id = 'guest-save-cta';
-      cta.style.cssText = 'margin-top:12px;padding:14px 16px;background:rgba(45,212,191,.06);border:1px solid rgba(45,212,191,.25);border-radius:8px;font-size:.8rem;color:var(--dim);line-height:1.6;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;';
+      cta.style.cssText = 'margin-top:12px;padding:14px 16px;background:rgba(0,255,163,.06);border:1px solid rgba(0,255,163,.25);border-radius:8px;font-size:.8rem;color:var(--dim);line-height:1.6;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;';
       cta.innerHTML = '<span>💡 로그인하면 결과를 저장하고 마이페이지에서 이력을 볼 수 있어요.</span>' +
         '<span style="display:flex;gap:8px;">' +
-          '<a href="login.html?redirect=' + encodeURIComponent(location.pathname) + '" style="padding:6px 14px;border:1px solid rgba(45,212,191,.4);border-radius:4px;color:var(--accent);text-decoration:none;font-weight:700;font-size:.76rem;">로그인</a>' +
+          '<a href="login.html?redirect=' + encodeURIComponent(location.pathname) + '" style="padding:6px 14px;border:1px solid rgba(0,255,163,.4);border-radius:4px;color:var(--accent);text-decoration:none;font-weight:700;font-size:.76rem;">로그인</a>' +
           '<a href="signup.html" style="padding:6px 14px;background:var(--accent);color:#0A0A0A;border-radius:4px;text-decoration:none;font-weight:700;font-size:.76rem;">회원가입</a>' +
         '</span>';
       note.after(cta);
@@ -1251,7 +1260,7 @@ async function saveLevelResult(lvl, sc, conf) {
     if (note && !document.getElementById('saved-badge')) {
       const badge = document.createElement('div');
       badge.id = 'saved-badge';
-      badge.style.cssText = 'margin-top:12px;padding:10px 14px;background:rgba(45,212,191,.08);border:1px solid rgba(45,212,191,.3);border-radius:6px;font-size:.8rem;color:var(--accent);';
+      badge.style.cssText = 'margin-top:12px;padding:10px 14px;background:rgba(0,255,163,.08);border:1px solid rgba(0,255,163,.3);border-radius:6px;font-size:.8rem;color:var(--accent);';
       badge.textContent = '✓ 결과가 마이페이지에 저장되었습니다.';
       note.after(badge);
     }
