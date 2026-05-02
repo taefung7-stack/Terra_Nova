@@ -24,13 +24,13 @@
     --accent:#00FFA3; --accent2:#00CC83; --mint:#33FFB5;
     --txt:#F0F0F0; --dim:rgba(240,240,240,.72); --line:rgba(255,255,255,.07);
   }
-  *{margin:0;padding:0;box-sizing:border-box;}html{font-size:18px;}
+  *{margin:0;padding:0;box-sizing:border-box;}html{font-size:20px;}
   html,body{overflow-x:hidden;max-width:100%;}
   body{background:var(--bg);color:var(--txt);font-family:'Pretendard','Noto Sans KR',sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;min-height:100vh;display:flex;flex-direction:column;}
 
   nav{display:flex;align-items:center;justify-content:space-between;padding:0 5vw;height:80px;border-bottom:1px solid var(--line);background:rgba(10,10,10,.92);backdrop-filter:blur(14px);}
   .logo-wrap{display:flex;flex-direction:column;gap:2px;text-decoration:none;}
-  .logo-main{font-family:'Bebas Neue',sans-serif;font-size:1.45rem;letter-spacing:7px;color:#fff;font-weight:900;}
+  .logo-main{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.4rem;letter-spacing:.14em;color:#fff;text-shadow:0 1px 12px rgba(0,0,0,.55);line-height:1;}
   .logo-eng{font-size:.5rem;font-weight:500;letter-spacing:5px;color:rgba(0,255,163,.5);text-transform:uppercase;}
   .nav-back{color:var(--accent);text-decoration:none;font-size:.82rem;font-weight:700;}
   .nav-back:hover{text-decoration:underline;}
@@ -53,7 +53,7 @@
   .checkout-banner{background:linear-gradient(90deg,rgba(0,255,163,.12) 0%,rgba(0,255,163,0) 100%);border-bottom:1px solid var(--line);padding:14px 5vw;text-align:center;font-size:.85rem;color:var(--accent);font-weight:700;letter-spacing:.5px;}
   .checkout-banner span{color:var(--dim);font-weight:400;margin-left:6px;}
 
-  .wrap{flex:1;max-width:1000px;margin:0 auto;padding:40px 5vw 80px;width:100%;display:grid;grid-template-columns:1.3fr 1fr;gap:32px;}
+  .wrap{flex:1;max-width:1280px;margin:0 auto;padding:40px 5vw 80px;width:100%;display:grid;grid-template-columns:1.3fr 1fr;gap:32px;}
   @media(max-width:880px){.wrap{grid-template-columns:1fr;}}
 
   h1{font-size:1.6rem;font-weight:900;margin-bottom:8px;}
@@ -461,6 +461,7 @@
 </script>
 <script src="./analytics.js" defer></script>
 <script type="module" src="./nav-auth.js"></script>
+<script src="./site-config.js"></script>
 <script src="./footer.js" defer></script>
 </body>
 </html>

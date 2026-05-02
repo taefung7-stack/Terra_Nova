@@ -55,11 +55,14 @@
   --tn-cursor-pointer: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><circle cx='8' cy='8' r='5' fill='%2300FFA3'/></svg>") 8 8, pointer;
 }
 
-/* ── 전역 커서 적용 (모든 영역, 모든 요소) ────────────────────────
-   페이지별 인라인 cursor:pointer/cursor:none 등을 !important로 덮어씀. */
+/* ── 전역 커서 적용 (비활성화 — 시스템 기본 커서 사용) ────────────
+   --tn-cursor-default/-pointer 변수는 :root에 보존되어 있음.
+   필요 시 아래 블록 주석을 풀면 즉시 커스텀 커서로 복귀. */
+/*
 *, *::before, *::after {
   cursor: var(--tn-cursor-default) !important;
 }
+*/
 
 /* ── 스크린 리더 전용 텍스트 ─────────────────────────────────── */
 .sr-only,
