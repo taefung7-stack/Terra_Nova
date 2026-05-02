@@ -1,0 +1,912 @@
+{
+  "schema_version": "2.2",
+  "id": "2026-06-Sun-12",
+  "meta": {
+    "month": "2026-06-Sun",
+    "sequence": 12,
+    "subject": "수학",
+    "linked_unit": "미적분II II-3 도함수의 응용",
+    "part_ko": "한 순간의 변화",
+    "achievement_standard": "12미II02-03",
+    "achievement_verified": true,
+    "difficulty": "어려움",
+    "cognitive_skill": "함의 추론",
+    "lexile": "1180L",
+    "ar_level": 8,
+    "key_concepts": [
+      "도함수",
+      "순간 변화율",
+      "최적화",
+      "물리·경제 응용"
+    ]
+  },
+  "page1": {
+    "title": "Reading the World One Instant at a Time",
+    "subtitle": "Calculus turns blurry change into a sharp, single number.",
+    "body": "Look at a graph of how something changes over time and most days the line just rises or falls in vague ways. We can sense whether a stock is climbing or a fever is dropping, but the words \"climbing\" and \"dropping\" hide a lot. How fast at this exact moment? How fast compared with five minutes earlier? Older mathematics could only answer such questions by averaging over an interval. Calculus, in contrast, learned to zoom in until the interval shrinks toward zero, leaving behind a single, clean number it calls the <u>derivative</u>.\n\nThe derivative reads change at one instant. On a position graph, it is the speed at this exact second. On a temperature graph, it is the rate of cooling right now. On a profit graph, it is how much one extra unit sold would add. Behind every textbook formula sits the same simple idea: take two points on the curve, draw the line between them, and slide them closer and closer together until the line becomes a tangent that just touches the curve at one point. The slope of that tangent line is the derivative at that point.\n\nThis is why calculus is everywhere outside the math classroom. Engineers use it to find the moment a bridge cable carries the largest force; biologists use it to track how quickly a population grows; data scientists use it to <mark>tune the parameters of a model</mark> by following the derivative downhill until error shrinks. Each of these very different scientific tasks ultimately reduces, at heart, to one shared and remarkably simple question: at this one exact and fleeting instant in time, in which precise direction, and how steeply, and how rapidly, is the world right around us about to <blank>? Modern weather forecasts, electric-grid balancing systems, and even insulin-delivery pumps now run versions of this same calculation hundreds of times per second. The classroom tangent line, drawn slowly with a ruler, is the calm older cousin of every fast decision a connected device makes today.",
+    "illustration": "../../assets/illustrations/2026-06-Sun/12.jpg",
+    "illustration_caption": "A line that just touches the curve — and tells us where it is heading right now."
+  },
+  "page2": {
+    "questions": [
+      {
+        "type": "mock_objective",
+        "style": "요지",
+        "stem": "다음 글의 요지로 가장 적절한 것은?",
+        "choices": [
+          "Modern calculus is purely abstract and has produced no useful tools for sciences or industries.",
+          "The derivative captures change at one instant, unifying physics, biology, economics, and data science.",
+          "Older mathematics already answered every question about motion, so calculus was only a simplification.",
+          "Average rates over an interval are always enough for practical problems, making instant rates unnecessary.",
+          "Engineers and biologists use entirely different mathematical languages, so a unified concept cannot exist."
+        ],
+        "answer_index": 1
+      },
+      {
+        "type": "mock_objective",
+        "style": "빈칸 추론",
+        "stem": "윗글의 밑줄 친 빈칸에 들어갈 말로 가장 적절한 것은?",
+        "choices": [
+          "remain frozen in its current position because nothing measurable has happened on the graph yet",
+          "change next, so engineers, biologists, and data scientists can act on a precise local direction",
+          "vanish from the graph without leaving any quantitative trace for any future researcher",
+          "redraw itself in a different coordinate system unrelated to the original variables used",
+          "abandon any further interest in the changing variable because the derivative method is exhausted"
+        ],
+        "answer_index": 1
+      },
+      {
+        "type": "mock_objective",
+        "style": "함의 추론",
+        "stem": "윗글의 밑줄 친 표현 tune the parameters of a model 이 의미하는 바로 가장 적절한 것은?",
+        "choices": [
+          "physically tune a musical instrument according to a strict mathematical model in a journal",
+          "adjust internal numerical settings of a model in the direction the derivative indicates to reduce error",
+          "select between different model types by drawing names from a hat in a random way each weekend",
+          "delete every parameter so the algorithm starts from scratch each time new training data arrives",
+          "reduce the model to a single fixed parameter that never changes regardless of new data"
+        ],
+        "answer_index": 1
+      },
+      {
+        "type": "school_descriptive",
+        "style": "요약문 빈칸 완성",
+        "prompt": "다음은 본문의 요약문이다. 본문의 내용을 바탕으로 빈칸 (A), (B)에 들어갈 말을 <조건>에 맞게 영어 한 단어로 각각 쓰시오. <조건> 본문에서 제시된 단어를 그대로 활용할 것.",
+        "hints": [
+          "derivative",
+          "tangent",
+          "interval",
+          "slope",
+          "instant",
+          "change"
+        ],
+        "summary_template": "Calculus answers the question of how fast something changes at one <blank> (A) by shrinking an interval to zero; the resulting number is the slope of the <blank> (B) line that just touches the curve, and it is called the derivative.",
+        "model_answer": "(A) instant  (B) tangent"
+      }
+    ],
+    "textbook_tieback": {
+      "unit_label": "미적분II II-3 · 도함수의 응용",
+      "body_ko": "고3 진로선택 「미적분II」 도함수의 응용 영역은 평균 변화율의 한계를 짚고, 한 점에서의 순간 변화율(도함수)을 정의해 자연·사회 현상에 적용한다. 도함수는 곡선 위 두 점을 잇는 직선의 기울기에서 출발해, 두 점을 한없이 가까이 보내면서 얻는 접선의 기울기로 정의된다. 이는 속도·온도 변화율·한계 비용·인구 변동 같은 다양한 현상을 같은 개념으로 다룰 수 있게 한다. 최적화·머신러닝의 경사하강법도 이 도함수 위에서 작동한다.",
+      "tags": [
+        "도함수",
+        "순간 변화율",
+        "접선",
+        "최적화"
+      ],
+      "visual_aid": {
+        "type": "emoji_flow",
+        "title": "두 점 → 접선 → 도함수",
+        "steps": [
+          {
+            "emoji": "📍",
+            "label": "두 점",
+            "note": "평균 변화율"
+          },
+          {
+            "emoji": "📈",
+            "label": "한 점 접근",
+            "note": "구간 → 0"
+          },
+          {
+            "emoji": "✏️",
+            "label": "접선 기울기",
+            "note": "도함수"
+          }
+        ]
+      }
+    }
+  },
+  "page3": {
+    "sentences": [
+      {
+        "index": 1,
+        "segments": [
+          {
+            "role": "V",
+            "text": "Look",
+            "note": "명령문"
+          },
+          {
+            "role": "M",
+            "text": "at a graph of how something changes over time",
+            "note": "how 명사절"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "M",
+            "text": "most days"
+          },
+          {
+            "role": "S",
+            "text": "the line"
+          },
+          {
+            "role": "M",
+            "text": "just"
+          },
+          {
+            "role": "V",
+            "text": "rises or falls"
+          },
+          {
+            "role": "M",
+            "text": "in vague ways."
+          }
+        ],
+        "grammar_note": "명령문 + how 명사절 + and 등위 + 등위 동사"
+      },
+      {
+        "index": 2,
+        "segments": [
+          {
+            "role": "S",
+            "text": "We"
+          },
+          {
+            "role": "V",
+            "text": "can sense"
+          },
+          {
+            "role": "O",
+            "text": "whether a stock is climbing or a fever is dropping,",
+            "note": "whether 명사절"
+          },
+          {
+            "role": "CONJ",
+            "text": "but"
+          },
+          {
+            "role": "S",
+            "text": "the words \"climbing\" and \"dropping\""
+          },
+          {
+            "role": "V",
+            "text": "hide"
+          },
+          {
+            "role": "O",
+            "text": "a lot."
+          }
+        ],
+        "grammar_note": "whether 명사절 + but 등위"
+      },
+      {
+        "index": 3,
+        "segments": [
+          {
+            "role": "M",
+            "text": "How fast at this exact moment?",
+            "note": "수사 의문문"
+          }
+        ],
+        "grammar_note": "수사 의문문"
+      },
+      {
+        "index": 4,
+        "segments": [
+          {
+            "role": "M",
+            "text": "How fast compared with five minutes earlier?",
+            "note": "비교 의문문"
+          }
+        ],
+        "grammar_note": "비교 의문문"
+      },
+      {
+        "index": 5,
+        "segments": [
+          {
+            "role": "S",
+            "text": "Older mathematics"
+          },
+          {
+            "role": "V",
+            "text": "could only answer"
+          },
+          {
+            "role": "O",
+            "text": "such questions"
+          },
+          {
+            "role": "M",
+            "text": "by averaging over an interval.",
+            "note": "by + 동명사"
+          }
+        ],
+        "grammar_note": "조동사 could + by + 동명사"
+      },
+      {
+        "index": 6,
+        "segments": [
+          {
+            "role": "S",
+            "text": "Calculus,"
+          },
+          {
+            "role": "M",
+            "text": "in contrast,"
+          },
+          {
+            "role": "V",
+            "text": "learned"
+          },
+          {
+            "role": "C",
+            "text": "to zoom in",
+            "note": "learn + to-V"
+          },
+          {
+            "role": "M",
+            "text": "until the interval shrinks toward zero,",
+            "note": "until 시간절"
+          },
+          {
+            "role": "M",
+            "text": "leaving behind a single, clean number it calls the derivative.",
+            "note": "분사구문 leaving + 관계대명사 생략"
+          }
+        ],
+        "grammar_note": "learn to-V + until 시간절 + 분사구문 + 관계대명사 생략"
+      },
+      {
+        "index": 7,
+        "segments": [
+          {
+            "role": "S",
+            "text": "The derivative"
+          },
+          {
+            "role": "V",
+            "text": "reads"
+          },
+          {
+            "role": "O",
+            "text": "change"
+          },
+          {
+            "role": "M",
+            "text": "at one instant."
+          }
+        ],
+        "grammar_note": "3형식 + 전치사구"
+      },
+      {
+        "index": 8,
+        "segments": [
+          {
+            "role": "M",
+            "text": "On a position graph,"
+          },
+          {
+            "role": "S",
+            "text": "it"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "the speed at this exact second."
+          }
+        ],
+        "grammar_note": "2형식 + 전치사 한정"
+      },
+      {
+        "index": 9,
+        "segments": [
+          {
+            "role": "M",
+            "text": "On a temperature graph,"
+          },
+          {
+            "role": "S",
+            "text": "it"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "the rate of cooling right now."
+          }
+        ],
+        "grammar_note": "2형식 + 전치사 한정 평행"
+      },
+      {
+        "index": 10,
+        "segments": [
+          {
+            "role": "M",
+            "text": "On a profit graph,"
+          },
+          {
+            "role": "S",
+            "text": "it"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "how much one extra unit sold would add.",
+            "note": "how much 명사절 + 가정법"
+          }
+        ],
+        "grammar_note": "how much 명사절 + 분사 sold 후치 + 가정법"
+      },
+      {
+        "index": 11,
+        "segments": [
+          {
+            "role": "M",
+            "text": "Behind every textbook formula"
+          },
+          {
+            "role": "V",
+            "text": "sits",
+            "note": "도치"
+          },
+          {
+            "role": "S",
+            "text": "the same simple idea:"
+          },
+          {
+            "role": "V",
+            "text": "take",
+            "note": "명령문"
+          },
+          {
+            "role": "O",
+            "text": "two points on the curve,"
+          },
+          {
+            "role": "V",
+            "text": "draw"
+          },
+          {
+            "role": "O",
+            "text": "the line between them,"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "V",
+            "text": "slide"
+          },
+          {
+            "role": "O",
+            "text": "them"
+          },
+          {
+            "role": "M",
+            "text": "closer and closer together"
+          },
+          {
+            "role": "M",
+            "text": "until the line becomes a tangent that just touches the curve at one point.",
+            "note": "until 시간절 + 관계절"
+          }
+        ],
+        "grammar_note": "전치사구 도치 + 명령문 등위 + until 시간절 + 관계절"
+      },
+      {
+        "index": 12,
+        "segments": [
+          {
+            "role": "S",
+            "text": "The slope of that tangent line"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "the derivative at that point."
+          }
+        ],
+        "grammar_note": "2형식 + of 한정"
+      },
+      {
+        "index": 13,
+        "segments": [
+          {
+            "role": "S",
+            "text": "This"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "why calculus is everywhere outside the math classroom.",
+            "note": "why 명사절"
+          }
+        ],
+        "grammar_note": "why 명사절"
+      },
+      {
+        "index": 14,
+        "segments": [
+          {
+            "role": "S",
+            "text": "Engineers"
+          },
+          {
+            "role": "V",
+            "text": "use"
+          },
+          {
+            "role": "O",
+            "text": "it"
+          },
+          {
+            "role": "M",
+            "text": "to find the moment a bridge cable carries the largest force;",
+            "note": "to부정사 + 관계대명사 생략"
+          },
+          {
+            "role": "S",
+            "text": "biologists"
+          },
+          {
+            "role": "V",
+            "text": "use"
+          },
+          {
+            "role": "O",
+            "text": "it"
+          },
+          {
+            "role": "M",
+            "text": "to track how quickly a population grows;",
+            "note": "to부정사 + how 명사절"
+          },
+          {
+            "role": "S",
+            "text": "data scientists"
+          },
+          {
+            "role": "V",
+            "text": "use"
+          },
+          {
+            "role": "O",
+            "text": "it"
+          },
+          {
+            "role": "M",
+            "text": "to tune the parameters of a model by following the derivative downhill until error shrinks.",
+            "note": "to부정사 + by + 동명사 + until 시간절"
+          }
+        ],
+        "grammar_note": "to부정사 목적 3중 등위 + how 명사절 + by + 동명사 + until 시간절"
+      },
+      {
+        "index": 15,
+        "segments": [
+          {
+            "role": "S",
+            "text": "Each of these tasks"
+          },
+          {
+            "role": "V",
+            "text": "reduces,"
+          },
+          {
+            "role": "M",
+            "text": "at heart,"
+          },
+          {
+            "role": "M",
+            "text": "to a single question:"
+          },
+          {
+            "role": "M",
+            "text": "at this exact instant, in which direction"
+          },
+          {
+            "role": "V",
+            "text": "is the world about to ____ (= change next)?",
+            "note": "be about to-V"
+          }
+        ],
+        "grammar_note": "reduce to + be about to-V"
+      },
+      {
+        "index": 16,
+        "segments": [
+          {
+            "role": "S",
+            "text": "Modern weather forecasts, electric-grid balancing systems, and even insulin-delivery pumps"
+          },
+          {
+            "role": "M",
+            "text": "now"
+          },
+          {
+            "role": "V",
+            "text": "run"
+          },
+          {
+            "role": "O",
+            "text": "versions of this same calculation"
+          },
+          {
+            "role": "M",
+            "text": "hundreds of times per second."
+          }
+        ],
+        "grammar_note": "3중 등위 주어 + 3형식"
+      },
+      {
+        "index": 17,
+        "segments": [
+          {
+            "role": "S",
+            "text": "The classroom tangent line, drawn slowly with a ruler,",
+            "note": "분사 drawn 후치 수식"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "the calm older cousin of every fast decision a connected device makes today.",
+            "note": "관계대명사 생략"
+          }
+        ],
+        "grammar_note": "분사 후치 + 관계대명사 생략"
+      }
+    ],
+    "translation_ko": "[1] 무엇이 시간에 따라 어떻게 변하는지를 보여 주는 그래프를 보면, 대부분의 날에는 그 선이 그저 모호하게 오르거나 내릴 뿐이다. [2] 우리는 주가가 오르고 있는지, 열이 떨어지고 있는지를 직감할 수는 있지만, '오른다'·'떨어진다'는 말은 많은 것을 가린다. [3] 바로 이 순간 얼마나 빠른가? [4] 5분 전과 비교하면 얼마나 빠른가? [5] 옛 수학은 그런 질문에 한 구간을 평균 내는 방식으로만 답할 수 있었다. [6] 미적분은 그와 반대로, 구간을 한없이 0에 가깝게 줄여 들어가며 단 하나의 깔끔한 수를 남기는 법을 배웠고, 그 수를 '도함수(derivative)'라고 부른다. [7] 도함수는 한 순간의 변화를 읽어 낸다. [8] 위치 그래프에서는 바로 이 순간의 속력이고, [9] 온도 그래프에서는 지금 식어 가는 속도이며, [10] 이익 그래프에서는 한 단위를 더 팔았을 때 얼마가 더해지는지를 뜻한다. [11] 모든 교과서 공식 뒤에는 같은 단순한 발상이 자리한다 — 곡선 위 두 점을 잡고, 그 사이에 선을 긋고, 두 점을 점점 가까이 미끄러뜨려, 그 선이 한 점에서만 곡선에 닿는 접선이 될 때까지. [12] 그 접선의 기울기가 바로 그 점에서의 도함수이다. [13] 그래서 미적분은 수학 교실 바깥 어디에나 있다. [14] 공학자들은 다리 케이블이 가장 큰 힘을 받는 순간을 찾기 위해 도함수를 쓰고; 생물학자들은 인구가 얼마나 빨리 자라는지를 추적하기 위해 쓰며; 데이터 과학자들은 도함수를 따라 내리막을 걷듯 모델 매개변수를 조정해 오차가 줄어들 때까지 학습시킨다. [15] 이 모든 작업은 결국 한 가지 질문으로 환원된다 — 바로 이 순간 세상은 어느 방향으로 ____(다음에 변할까)? [16] 현대의 일기 예보, 전력망 균형 시스템, 심지어 인슐린 자동 주입기까지 모두 이 같은 계산을 초당 수백 번씩 다른 형태로 굴린다. [17] 자를 대고 천천히 그어 본 교실의 접선 한 줄은, 오늘날 연결된 장치가 매 순간 내리는 빠른 결정의 차분한 큰 사촌이다."
+  },
+  "page4": {
+    "vocab": [
+      {
+        "word": "graph",
+        "pos": "n.",
+        "meaning_ko": "그래프",
+        "synonyms": [
+          "chart"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "Look at a graph of how something changes over time.",
+            "ko": "무엇이 시간에 따라 변하는 그래프를 보라."
+          },
+          {
+            "en": "She drew a clear graph on the whiteboard.",
+            "ko": "그녀는 화이트보드에 깔끔한 그래프를 그렸다."
+          }
+        ]
+      },
+      {
+        "word": "interval",
+        "pos": "n.",
+        "meaning_ko": "구간, 간격",
+        "synonyms": [
+          "range"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "Older math averaged over an interval.",
+            "ko": "옛 수학은 한 구간을 평균 내었다."
+          },
+          {
+            "en": "Trains run at five-minute intervals.",
+            "ko": "기차는 5분 간격으로 운행한다."
+          }
+        ]
+      },
+      {
+        "word": "calculus",
+        "pos": "n.",
+        "meaning_ko": "미적분",
+        "synonyms": [],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "Calculus learned to zoom in toward zero.",
+            "ko": "미적분은 0으로 줄여 들어가는 법을 배웠다."
+          },
+          {
+            "en": "Engineering depends heavily on calculus.",
+            "ko": "공학은 미적분에 크게 의존한다."
+          }
+        ]
+      },
+      {
+        "word": "derivative",
+        "pos": "n.",
+        "meaning_ko": "도함수, 미분 계수",
+        "synonyms": [],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "The derivative reads change at one instant.",
+            "ko": "도함수는 한 순간의 변화를 읽는다."
+          },
+          {
+            "en": "He took the derivative of the velocity function.",
+            "ko": "그는 속도 함수의 도함수를 구했다."
+          }
+        ]
+      },
+      {
+        "word": "instant",
+        "pos": "n.",
+        "meaning_ko": "순간",
+        "synonyms": [
+          "moment"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "The derivative reads change at one instant.",
+            "ko": "도함수는 한 순간의 변화를 읽는다."
+          },
+          {
+            "en": "She decided in an instant to change her plan.",
+            "ko": "그녀는 순식간에 계획을 바꾸기로 했다."
+          }
+        ]
+      },
+      {
+        "word": "tangent",
+        "pos": "n.",
+        "meaning_ko": "접선",
+        "synonyms": [],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "The line becomes a tangent that touches the curve once.",
+            "ko": "그 선은 곡선에 한 번만 닿는 접선이 된다."
+          },
+          {
+            "en": "He drew a tangent through the marked point.",
+            "ko": "그는 표시된 점을 지나는 접선을 그었다."
+          }
+        ]
+      },
+      {
+        "word": "slope",
+        "pos": "n.",
+        "meaning_ko": "기울기, 경사",
+        "synonyms": [],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "The slope of that tangent is the derivative.",
+            "ko": "그 접선의 기울기가 도함수다."
+          },
+          {
+            "en": "The slope of the hill grew steeper near the top.",
+            "ko": "꼭대기 가까이서 언덕의 경사가 더 급해졌다."
+          }
+        ]
+      },
+      {
+        "word": "rate",
+        "pos": "n.",
+        "meaning_ko": "비율, 변화율",
+        "synonyms": [
+          "pace"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "On a temperature graph, it is the rate of cooling.",
+            "ko": "온도 그래프에서 그것은 식는 속도다."
+          },
+          {
+            "en": "The interest rate has slightly increased again.",
+            "ko": "이자율이 다시 약간 올랐다."
+          }
+        ]
+      },
+      {
+        "word": "parameter",
+        "pos": "n.",
+        "meaning_ko": "매개변수, 변수",
+        "synonyms": [],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "Data scientists tune the parameters of a model.",
+            "ko": "데이터 과학자는 모델의 매개변수를 조정한다."
+          },
+          {
+            "en": "Each parameter controls one aspect of the simulation.",
+            "ko": "각 매개변수가 시뮬레이션의 한 측면을 조절한다."
+          }
+        ]
+      },
+      {
+        "word": "shrink",
+        "pos": "v.",
+        "meaning_ko": "줄어들다, 축소되다",
+        "synonyms": [
+          "contract"
+        ],
+        "antonyms": [
+          "expand"
+        ],
+        "examples": [
+          {
+            "en": "The interval shrinks toward zero.",
+            "ko": "구간이 0을 향해 줄어든다."
+          },
+          {
+            "en": "Sweaters often shrink after a hot wash.",
+            "ko": "스웨터는 뜨거운 세탁 후 흔히 줄어든다."
+          }
+        ]
+      },
+      {
+        "word": "average",
+        "pos": "v.",
+        "meaning_ko": "평균을 내다",
+        "synonyms": [
+          "mean"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "Older math could only answer by averaging over an interval.",
+            "ko": "옛 수학은 구간 평균만 가능했다."
+          },
+          {
+            "en": "We averaged the test scores across the class.",
+            "ko": "우리는 학급 시험 점수를 평균 냈다."
+          }
+        ]
+      },
+      {
+        "word": "downhill",
+        "pos": "adv.",
+        "meaning_ko": "내리막으로",
+        "synonyms": [],
+        "antonyms": [
+          "uphill"
+        ],
+        "examples": [
+          {
+            "en": "Data scientists follow the derivative downhill.",
+            "ko": "데이터 과학자는 도함수를 따라 내리막을 걷는다."
+          },
+          {
+            "en": "The bicycle rolled gently downhill on its own.",
+            "ko": "자전거가 스스로 부드럽게 내리막을 굴렀다."
+          }
+        ]
+      }
+    ]
+  },
+  "answers": {
+    "explanations": [
+      {
+        "q_index": 0,
+        "q_style": "요지",
+        "correct": 1,
+        "evidence": "본문은 도함수가 한 순간의 변화율을 측정하는 단일 도구이며, 같은 발상이 공학·생물·데이터 과학을 가로질러 사용된다는 점을 일관되게 주장한다.",
+        "rationales": [
+          "본문은 미적분이 추상 영역이라고 말하지 않으며 폭넓은 응용을 명시한다.",
+          "(정답) 한 순간의 변화율 + 다양한 응용 통합이라는 본문 핵심을 그대로 옮겼다.",
+          "본문은 옛 수학이 모든 답을 했다고 말하지 않는다.",
+          "본문은 평균 변화율의 한계를 명시한다.",
+          "본문은 분야별 언어 분리를 주장하지 않는다."
+        ],
+        "key_terms": [
+          {
+            "en": "derivative",
+            "ko": "도함수"
+          },
+          {
+            "en": "instantaneous rate",
+            "ko": "순간 변화율"
+          }
+        ]
+      },
+      {
+        "q_index": 1,
+        "q_style": "빈칸 추론",
+        "correct": 1,
+        "evidence": "빈칸 직전 \"in which direction is the world about to ___?\" 의 결론 자리는 본문 전체의 '한 순간의 변화 방향 예측' 주제와 호응해야 한다.",
+        "rationales": [
+          "본문은 변화 정지 시나리오를 다루지 않는다.",
+          "(정답) 도함수가 다음 변화 방향을 알려 준다는 본문 결론과 일치한다.",
+          "본문은 그래프 소실을 다루지 않는다.",
+          "본문은 좌표계 재구성을 다루지 않는다.",
+          "본문은 도함수 무용론을 주장하지 않는다."
+        ],
+        "key_terms": [
+          {
+            "en": "change next",
+            "ko": "다음 변화"
+          },
+          {
+            "en": "local direction",
+            "ko": "국소 방향"
+          }
+        ]
+      },
+      {
+        "q_index": 2,
+        "q_style": "함의 추론",
+        "correct": 1,
+        "evidence": "tune the parameters of a model 직후 \"by following the derivative downhill until error shrinks\" 가 정의를 구체화한다. 즉 도함수가 가리키는 방향으로 매개변수를 조정해 오차를 줄이는 과정이다.",
+        "rationales": [
+          "본문은 음악 악기 조율을 다루지 않는다.",
+          "(정답) 도함수 방향으로 매개변수를 점진 조정해 오차를 줄인다는 본문 정의와 일치한다.",
+          "본문은 임의 모델 선택을 다루지 않는다.",
+          "본문은 매개변수 삭제를 다루지 않는다.",
+          "본문은 단일 고정 매개변수를 다루지 않는다."
+        ],
+        "key_terms": [
+          {
+            "en": "gradient descent",
+            "ko": "경사하강 (도함수 따라)"
+          },
+          {
+            "en": "tune parameters",
+            "ko": "매개변수 조정"
+          }
+        ]
+      },
+      {
+        "q_index": 3,
+        "q_style": "요약문 빈칸 완성",
+        "correct": null,
+        "model_answer_en": "(A) instant  (B) tangent",
+        "evidence": "(A)는 문장 7 \"The derivative reads change at one instant\" 가 직접 근거다. (B)는 문장 11·12 \"a tangent that just touches the curve\"·\"the slope of that tangent line\" 이 직접 근거다.",
+        "rationales": [
+          "(A) instant — 본문은 도함수가 한 \"instant\" 의 변화를 읽는다고 명시한다.",
+          "(B) tangent — 본문은 도함수를 \"tangent\" 의 기울기로 정의한다."
+        ],
+        "key_terms": [
+          {
+            "en": "one instant",
+            "ko": "한 순간"
+          },
+          {
+            "en": "tangent line",
+            "ko": "접선"
+          }
+        ]
+      }
+    ]
+  }
+}

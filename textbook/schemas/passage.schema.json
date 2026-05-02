@@ -7,15 +7,15 @@
   "additionalProperties": false,
   "properties": {
     "schema_version": { "enum": ["2.1", "2.2"] },
-    "id": { "type": "string", "pattern": "^\\d{4}-\\d{2}(-[A-Z])?-\\d{2}$" },
+    "id": { "type": "string", "pattern": "^\\d{4}-\\d{2}(-[A-Z][a-zA-Z]*)?-\\d{2}$" },
     "meta": {
       "type": "object",
       "required": ["month", "sequence", "subject", "linked_unit", "part_ko", "achievement_standard", "difficulty", "cognitive_skill", "lexile", "ar_level", "key_concepts"],
       "additionalProperties": false,
       "properties": {
-        "month": { "type": "string", "pattern": "^\\d{4}-\\d{2}(-[A-Z])?$" },
+        "month": { "type": "string", "pattern": "^\\d{4}-\\d{2}(-[A-Z][a-zA-Z]*)?$" },
         "sequence": { "type": "integer", "minimum": 1, "maximum": 20 },
-        "subject": { "enum": ["통합과학", "통합사회", "공통수학", "공통국어", "공통영어", "한국사", "정보", "수학", "국어", "영어", "예체능·정보", "과학", "사회"] },
+        "subject": { "enum": ["통합과학", "통합사회", "공통수학", "공통국어", "공통영어", "한국사", "정보", "수학", "국어", "영어", "예체능·정보", "과학", "사회", "도덕"] },
         "linked_unit": { "type": "string", "minLength": 3, "maxLength": 120 },
         "part_ko": { "type": "string", "minLength": 2, "maxLength": 24 },
         "achievement_standard": { "type": "string", "pattern": "^(10(통과|통사|공국|공수|공영|한사)[12]-\\d{2}-\\d{2}|(9|10|12)[가-힣A-Z]{1,5}\\d{2}-\\d{2})$" },
@@ -35,7 +35,7 @@
         "title": { "type": "string", "minLength": 3, "maxLength": 80 },
         "subtitle": { "type": "string", "minLength": 3, "maxLength": 110 },
         "body": { "type": "string", "minLength": 1400, "maxLength": 3200 },
-        "illustration": { "type": "string", "pattern": "^\\.\\./\\.\\./assets/illustrations/\\d{4}-\\d{2}(-[A-Z])?/\\d{2}\\.(svg|png|jpg|webp)$" },
+        "illustration": { "type": "string", "pattern": "^\\.\\./\\.\\./assets/illustrations/\\d{4}-\\d{2}(-[A-Z][a-zA-Z]*)?/\\d{2}\\.(svg|png|jpg|webp)$" },
         "illustration_caption": { "type": "string", "minLength": 3, "maxLength": 100 },
         "illustration_max_height_mm": { "type": "number", "minimum": 10, "maximum": 100, "description": "본문이 길어 이미지가 페이지 하단을 침범할 때, 시각적으로 보일 최대 높이(mm). 파일은 그대로 두고 CSS overflow:hidden으로 아래쪽만 잘라 표시." }
       }

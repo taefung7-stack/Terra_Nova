@@ -1,0 +1,988 @@
+{
+  "schema_version": "2.2",
+  "id": "2026-06-Sun-17",
+  "meta": {
+    "month": "2026-06-Sun",
+    "sequence": 17,
+    "subject": "수학",
+    "linked_unit": "경제 수학 II-2 기댓값과 의사결정",
+    "part_ko": "평균이 이끄는 결정",
+    "achievement_standard": "12경수02-02",
+    "achievement_verified": true,
+    "difficulty": "중간",
+    "cognitive_skill": "함의 추론",
+    "lexile": "1140L",
+    "ar_level": 7.5,
+    "key_concepts": [
+      "기댓값",
+      "확률 가중 평균",
+      "위험 회피",
+      "보험 가격"
+    ]
+  },
+  "page1": {
+    "title": "How an Average Shapes a Decision",
+    "subtitle": "The expected value collapses many possible futures into one number.",
+    "body": "Imagine a small town festival where one stall offers a simple game: pay a thousand won, then roll a fair six-sided die. If you roll a six you win five thousand won; otherwise you walk away empty-handed. Should you play? The fastest answer is to compute the long-run average payoff per play, a single number known to mathematicians as the <u>expected value</u>. Here it is one-sixth of five thousand minus one thousand — about minus one hundred and seventeen won per play. Across many plays the stall earns; you slowly lose.\n\nExpected value is therefore a powerful starting tool. It collapses an unknown future of many outcomes into one weighted average, weighting each result by how likely it is. Insurance companies, hedge funds, and even ordinary households quietly run this same calculation when they decide whether a contract or an investment is worth taking. Modern economic mathematics formalizes the idea: the expected value equals the sum, over every possible outcome, of that outcome's probability times its payoff.\n\nYet the expected value alone never tells the full story, and economists know it. A coin flip that pays one billion or loses one billion has the same expected value as doing nothing, and yet most people would refuse the gamble. They would rather keep what they have than face a real chance of catastrophic loss. This <mark>asymmetry between gain and loss</mark> is why insurance exists at a price slightly above its raw expected value: the small loss of a premium is preferred to the rare disaster. So the next time you see an attractive lottery, multiply the prize by its actual odds, and then quietly ask yourself one further question: what would happen, in real life, if I really <blank>? Modern behavioral economists describe this gap between expected value and felt value as loss aversion, and they measure it with surprisingly stable numbers. Recognizing that gap is not a sign of weakness; it is one of the more practical pieces of mathematics you can carry into adulthood.",
+    "illustration": "../../assets/illustrations/2026-06-Sun/17.jpg",
+    "illustration_caption": "Many futures collapse into one weighted average — but the average alone is not enough."
+  },
+  "page2": {
+    "questions": [
+      {
+        "type": "mock_objective",
+        "style": "요지",
+        "stem": "다음 글의 요지로 가장 적절한 것은?",
+        "choices": [
+          "Expected value tells you the precise outcome of any coin flip, replacing intuition.",
+          "Expected value is a strong first tool for risky decisions, but losses also weigh asymmetrically.",
+          "Insurance companies operate without mathematical models and rely on the hunches of managers.",
+          "The mathematics of probability has nothing to teach about gambling, since games all return the same.",
+          "Modern economic theory has rejected expected value entirely because it cannot describe games."
+        ],
+        "answer_index": 1
+      },
+      {
+        "type": "mock_objective",
+        "style": "빈칸 추론",
+        "stem": "윗글의 밑줄 친 빈칸에 들어갈 말로 가장 적절한 것은?",
+        "choices": [
+          "lost the worst possible outcome instead of pocketing a small expected payoff each weekend",
+          "skipped this calculation entirely and trusted my gut feeling without any reflection on the numbers",
+          "publicly announced the expected-value formula at the stall so other visitors could memorize it",
+          "asked the festival organizer why the prize had been set so much lower than the ticket cost",
+          "always preferred the highest variance outcome regardless of how unlikely or catastrophic the loss"
+        ],
+        "answer_index": 0
+      },
+      {
+        "type": "mock_objective",
+        "style": "함의 추론",
+        "stem": "윗글의 밑줄 친 표현 asymmetry between gain and loss 가 의미하는 바로 가장 적절한 것은?",
+        "choices": [
+          "the simple claim that gains and losses must be calculated using two different formulas",
+          "the observation that people weigh a loss more than an equal gain, so expected value is insufficient",
+          "the historical fact that ancient gamblers used different dice for winning and losing rolls",
+          "the rule that any gain is automatically worth twice any loss when calculating profit",
+          "an old superstition that bad luck arrives in the morning and good luck in the afternoon"
+        ],
+        "answer_index": 1
+      },
+      {
+        "type": "school_descriptive",
+        "style": "요약문 빈칸 완성",
+        "prompt": "다음은 본문의 요약문이다. 본문의 내용을 바탕으로 빈칸 (A), (B)에 들어갈 말을 <조건>에 맞게 영어 한 단어로 각각 쓰시오. <조건> 본문에서 제시된 단어를 그대로 활용할 것.",
+        "hints": [
+          "expected",
+          "value",
+          "risk",
+          "probability",
+          "loss",
+          "gain"
+        ],
+        "summary_template": "Expected <blank> (A) collapses many possible futures into one weighted average, but real decisions also reflect the asymmetric weight of <blank> (B), which is why insurance is sold at a price slightly above its raw expected value.",
+        "model_answer": "(A) value  (B) loss"
+      }
+    ],
+    "textbook_tieback": {
+      "unit_label": "경제 수학 II-2 · 기댓값과 의사결정",
+      "body_ko": "고3 진로선택 「경제 수학」 두 번째 영역은 기댓값(확률가중평균)을 의사결정 도구로 다룬다. 기댓값은 가능한 결과 X와 그 확률 P(X)의 곱들의 합 Σ X·P(X)로 정의되며, 게임·투자·보험 등 다양한 의사결정의 1차 평가에 사용된다. 그러나 사람들은 동일한 기댓값이라도 큰 손실의 가능성을 회피하는 경향(위험 회피)을 보인다. 따라서 보험은 기대 손실보다 약간 높은 보험료에 거래되며, 같은 원리가 헤지펀드·투자 결정에도 적용된다. 학생은 기댓값과 분산을 함께 본다.",
+      "tags": [
+        "기댓값",
+        "확률 가중 평균",
+        "위험 회피",
+        "보험"
+      ],
+      "visual_aid": {
+        "type": "emoji_flow",
+        "title": "결과 → 확률 → 기댓값",
+        "steps": [
+          {
+            "emoji": "🎲",
+            "label": "확률 분포",
+            "note": "결과별 확률"
+          },
+          {
+            "emoji": "✖️",
+            "label": "곱·합",
+            "note": "Σ X·P(X)"
+          },
+          {
+            "emoji": "📏",
+            "label": "의사결정",
+            "note": "위험 회피 보정"
+          }
+        ]
+      }
+    }
+  },
+  "page3": {
+    "sentences": [
+      {
+        "index": 1,
+        "segments": [
+          {
+            "role": "V",
+            "text": "Imagine",
+            "note": "명령문"
+          },
+          {
+            "role": "O",
+            "text": "a small town festival"
+          },
+          {
+            "role": "REL",
+            "text": "where",
+            "note": "관계부사"
+          },
+          {
+            "role": "S",
+            "text": "one stall"
+          },
+          {
+            "role": "V",
+            "text": "offers"
+          },
+          {
+            "role": "O",
+            "text": "a simple game:"
+          },
+          {
+            "role": "M",
+            "text": "pay a thousand won, then roll a fair six-sided die.",
+            "note": "명령문 동격"
+          }
+        ],
+        "grammar_note": "명령문 + 관계부사 where + 동격 명령문"
+      },
+      {
+        "index": 2,
+        "segments": [
+          {
+            "role": "CONJ",
+            "text": "If"
+          },
+          {
+            "role": "S",
+            "text": "you"
+          },
+          {
+            "role": "V",
+            "text": "roll"
+          },
+          {
+            "role": "O",
+            "text": "a six"
+          },
+          {
+            "role": "S",
+            "text": "you"
+          },
+          {
+            "role": "V",
+            "text": "win"
+          },
+          {
+            "role": "O",
+            "text": "five thousand won;"
+          },
+          {
+            "role": "M",
+            "text": "otherwise"
+          },
+          {
+            "role": "S",
+            "text": "you"
+          },
+          {
+            "role": "V",
+            "text": "walk away"
+          },
+          {
+            "role": "C",
+            "text": "empty-handed."
+          }
+        ],
+        "grammar_note": "If 조건절 + 세미콜론 등위 + 1형식 walk + C"
+      },
+      {
+        "index": 3,
+        "segments": [
+          {
+            "role": "M",
+            "text": "Should you play?",
+            "note": "의문문"
+          }
+        ],
+        "grammar_note": "수사 의문문"
+      },
+      {
+        "index": 4,
+        "segments": [
+          {
+            "role": "S",
+            "text": "The fastest answer"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "to compute the long-run average payoff per play,",
+            "note": "to부정사 보어"
+          },
+          {
+            "role": "M",
+            "text": "a single number known to mathematicians as the expected value.",
+            "note": "동격 + 분사 known 후치"
+          }
+        ],
+        "grammar_note": "to부정사 보어 + 동격 + 분사 후치"
+      },
+      {
+        "index": 5,
+        "segments": [
+          {
+            "role": "M",
+            "text": "Here"
+          },
+          {
+            "role": "S",
+            "text": "it"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "one-sixth of five thousand minus one thousand"
+          },
+          {
+            "role": "M",
+            "text": "— about minus one hundred and seventeen won per play."
+          }
+        ],
+        "grammar_note": "2형식 + 동격 부연"
+      },
+      {
+        "index": 6,
+        "segments": [
+          {
+            "role": "M",
+            "text": "Across many plays"
+          },
+          {
+            "role": "S",
+            "text": "the stall"
+          },
+          {
+            "role": "V",
+            "text": "earns;"
+          },
+          {
+            "role": "S",
+            "text": "you"
+          },
+          {
+            "role": "M",
+            "text": "slowly"
+          },
+          {
+            "role": "V",
+            "text": "lose."
+          }
+        ],
+        "grammar_note": "세미콜론 등위 대조"
+      },
+      {
+        "index": 7,
+        "segments": [
+          {
+            "role": "S",
+            "text": "Expected value"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "M",
+            "text": "therefore"
+          },
+          {
+            "role": "C",
+            "text": "a powerful starting tool."
+          }
+        ],
+        "grammar_note": "2형식"
+      },
+      {
+        "index": 8,
+        "segments": [
+          {
+            "role": "S",
+            "text": "It"
+          },
+          {
+            "role": "V",
+            "text": "collapses"
+          },
+          {
+            "role": "O",
+            "text": "an unknown future of many outcomes"
+          },
+          {
+            "role": "M",
+            "text": "into one weighted average,"
+          },
+          {
+            "role": "M",
+            "text": "weighting each result by how likely it is.",
+            "note": "분사구문 + how 명사절"
+          }
+        ],
+        "grammar_note": "3형식 + 분사구문 + how 명사절"
+      },
+      {
+        "index": 9,
+        "segments": [
+          {
+            "role": "S",
+            "text": "Insurance companies, hedge funds, and even ordinary households"
+          },
+          {
+            "role": "M",
+            "text": "quietly"
+          },
+          {
+            "role": "V",
+            "text": "run"
+          },
+          {
+            "role": "O",
+            "text": "this same calculation"
+          },
+          {
+            "role": "M",
+            "text": "when they decide whether a contract or an investment is worth taking.",
+            "note": "when 시간절 + whether 명사절"
+          }
+        ],
+        "grammar_note": "when 시간절 + whether 명사절"
+      },
+      {
+        "index": 10,
+        "segments": [
+          {
+            "role": "S",
+            "text": "Modern economic mathematics"
+          },
+          {
+            "role": "V",
+            "text": "formalizes"
+          },
+          {
+            "role": "O",
+            "text": "the idea:"
+          },
+          {
+            "role": "S",
+            "text": "the expected value"
+          },
+          {
+            "role": "V",
+            "text": "equals"
+          },
+          {
+            "role": "O",
+            "text": "the sum, over every possible outcome, of that outcome's probability times its payoff."
+          }
+        ],
+        "grammar_note": "3형식 + 콜론 동격 정의"
+      },
+      {
+        "index": 11,
+        "segments": [
+          {
+            "role": "CONJ",
+            "text": "Yet"
+          },
+          {
+            "role": "S",
+            "text": "the expected value alone"
+          },
+          {
+            "role": "M",
+            "text": "never"
+          },
+          {
+            "role": "V",
+            "text": "tells"
+          },
+          {
+            "role": "O",
+            "text": "the full story,"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "S",
+            "text": "economists"
+          },
+          {
+            "role": "V",
+            "text": "know"
+          },
+          {
+            "role": "O",
+            "text": "it."
+          }
+        ],
+        "grammar_note": "Yet 양보 + and 등위"
+      },
+      {
+        "index": 12,
+        "segments": [
+          {
+            "role": "S",
+            "text": "A coin flip that pays one billion or loses one billion",
+            "note": "관계절 that"
+          },
+          {
+            "role": "V",
+            "text": "has"
+          },
+          {
+            "role": "O",
+            "text": "the same expected value as doing nothing,"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "M",
+            "text": "yet"
+          },
+          {
+            "role": "S",
+            "text": "most people"
+          },
+          {
+            "role": "V",
+            "text": "would refuse"
+          },
+          {
+            "role": "O",
+            "text": "the gamble."
+          }
+        ],
+        "grammar_note": "관계절 that + and yet 강조 + 가정법 would"
+      },
+      {
+        "index": 13,
+        "segments": [
+          {
+            "role": "S",
+            "text": "They"
+          },
+          {
+            "role": "V",
+            "text": "would rather keep"
+          },
+          {
+            "role": "O",
+            "text": "what they have",
+            "note": "what 명사절"
+          },
+          {
+            "role": "CONJ",
+            "text": "than"
+          },
+          {
+            "role": "V",
+            "text": "face"
+          },
+          {
+            "role": "O",
+            "text": "a real chance of catastrophic loss."
+          }
+        ],
+        "grammar_note": "would rather A than B"
+      },
+      {
+        "index": 14,
+        "segments": [
+          {
+            "role": "S",
+            "text": "This asymmetry between gain and loss"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "why insurance exists at a price slightly above its raw expected value:",
+            "note": "why 명사절"
+          },
+          {
+            "role": "S",
+            "text": "the small loss of a premium"
+          },
+          {
+            "role": "V",
+            "text": "is preferred",
+            "note": "수동태"
+          },
+          {
+            "role": "M",
+            "text": "to the rare disaster."
+          }
+        ],
+        "grammar_note": "why 명사절 + 수동태 prefer A to B"
+      },
+      {
+        "index": 15,
+        "segments": [
+          {
+            "role": "M",
+            "text": "So the next time you see an attractive lottery,",
+            "note": "the next time 시간절"
+          },
+          {
+            "role": "V",
+            "text": "multiply",
+            "note": "명령문"
+          },
+          {
+            "role": "O",
+            "text": "the prize"
+          },
+          {
+            "role": "M",
+            "text": "by the odds,"
+          },
+          {
+            "role": "CONJ",
+            "text": "and then"
+          },
+          {
+            "role": "V",
+            "text": "ask"
+          },
+          {
+            "role": "O",
+            "text": "yourself"
+          },
+          {
+            "role": "O",
+            "text": "one further question:"
+          },
+          {
+            "role": "M",
+            "text": "what would happen if I really ____ (= lost the worst case).",
+            "note": "what 명사절 + 가정법 if"
+          }
+        ],
+        "grammar_note": "the next time 시간절 + 명령문 + what 명사절 + 가정법 if"
+      },
+      {
+        "index": 16,
+        "segments": [
+          {
+            "role": "S",
+            "text": "Modern behavioral economists"
+          },
+          {
+            "role": "V",
+            "text": "describe"
+          },
+          {
+            "role": "O",
+            "text": "this gap between expected value and felt value"
+          },
+          {
+            "role": "C",
+            "text": "as loss aversion,",
+            "note": "describe A as B"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "S",
+            "text": "they"
+          },
+          {
+            "role": "V",
+            "text": "measure"
+          },
+          {
+            "role": "O",
+            "text": "it"
+          },
+          {
+            "role": "M",
+            "text": "with surprisingly stable numbers."
+          }
+        ],
+        "grammar_note": "describe A as B + and 등위"
+      },
+      {
+        "index": 17,
+        "segments": [
+          {
+            "role": "S",
+            "text": "Recognizing that gap",
+            "note": "동명사 주어"
+          },
+          {
+            "role": "V",
+            "text": "is not"
+          },
+          {
+            "role": "C",
+            "text": "a sign of weakness;"
+          },
+          {
+            "role": "S",
+            "text": "it"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "one of the more practical pieces of mathematics you can carry into adulthood.",
+            "note": "관계대명사 생략"
+          }
+        ],
+        "grammar_note": "동명사 주어 + 세미콜론 등위 + 관계대명사 생략"
+      }
+    ],
+    "translation_ko": "[1] 어느 작은 마을 축제에서 한 가게가 단순한 게임을 제안한다고 상상해 보자 — 천 원을 내고 정육면체 주사위를 한 번 던진다. [2] 만약 6이 나오면 5,000원을 받고; 그렇지 않으면 빈손으로 돌아간다. [3] 게임을 해야 할까? [4] 가장 빠른 답은 한 번의 게임당 장기 평균 보상을 계산하는 것 — 수학자들이 '기댓값(expected value)' 이라 부르는 한 숫자다. [5] 여기서 그 값은 5,000원의 1/6에서 1,000원을 뺀 — 한 번에 약 -117원이다. [6] 많은 게임을 거치면 가게는 벌고, 우리는 천천히 잃는다. [7] 따라서 기댓값은 강력한 출발 도구다. [8] 기댓값은 결과들이 알려지지 않은 미래를 하나의 가중 평균으로 압축하며, 각 결과를 그것이 일어날 확률로 가중한다. [9] 보험사·헤지펀드, 심지어 보통의 가구들도 어떤 계약이나 투자가 받을 만한지를 결정할 때 이 같은 계산을 조용히 굴린다. [10] 현대 경제 수학은 이 발상을 형식화한다 — 기댓값은 가능한 모든 결과에 대해 그 결과의 확률과 보수의 곱을 더한 합과 같다. [11] 그러나 기댓값 하나만으로는 결코 전체 이야기를 알 수 없으며, 경제학자들은 그 사실을 안다. [12] 10억을 따거나 잃는 동전 던지기는 아무것도 하지 않는 경우와 같은 기댓값을 갖지만, 대부분의 사람은 그 도박을 거절할 것이다. [13] 그들은 파국적 손실의 진짜 가능성을 마주하기보다 가진 것을 지키고 싶어 한다. [14] 이득과 손실 사이의 이 비대칭이 보험이 원초적 기댓값보다 약간 높은 가격에 존재하는 이유다 — 작은 보험료의 손실이 드문 재난보다 선호된다. [15] 그래서 다음에 매혹적인 복권을 볼 때, 상금에 확률을 곱해 보고, 다시 한 번 자신에게 이렇게 물어 보라 — 만약 내가 정말 ____(최악의 결과를 잃었다면) 어떻게 될까? [16] 현대 행동경제학자들은 기댓값과 체감 가치 사이의 이 차이를 '손실 회피'라 부르며, 놀라울 만큼 안정된 수치로 측정한다. [17] 그 차이를 인식하는 일은 약점이 아니다 — 그것은 우리가 어른이 되는 길에 들고 갈 수 있는 보다 실용적인 수학 한 조각이다."
+  },
+  "page4": {
+    "vocab": [
+      {
+        "word": "festival",
+        "pos": "n.",
+        "meaning_ko": "축제",
+        "synonyms": [],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "A small town festival hosts many stalls.",
+            "ko": "작은 마을 축제는 여러 가게를 연다."
+          },
+          {
+            "en": "The autumn festival lasted three quiet days.",
+            "ko": "가을 축제는 조용히 사흘 동안 이어졌다."
+          }
+        ]
+      },
+      {
+        "word": "stall",
+        "pos": "n.",
+        "meaning_ko": "가판대, 가게",
+        "synonyms": [
+          "booth"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "One stall offers a simple dice game.",
+            "ko": "한 가게가 단순한 주사위 게임을 제안한다."
+          },
+          {
+            "en": "The market stall sold warm bread at dawn.",
+            "ko": "시장 가게는 새벽에 따뜻한 빵을 팔았다."
+          }
+        ]
+      },
+      {
+        "word": "die",
+        "pos": "n.",
+        "meaning_ko": "주사위",
+        "synonyms": [
+          "dice"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "Roll a fair six-sided die once.",
+            "ko": "공정한 정육면체 주사위를 한 번 던진다."
+          },
+          {
+            "en": "He held a small wooden die in his hand.",
+            "ko": "그는 손에 작은 나무 주사위를 들고 있었다."
+          }
+        ]
+      },
+      {
+        "word": "payoff",
+        "pos": "n.",
+        "meaning_ko": "보상, 수익",
+        "synonyms": [
+          "reward"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "Compute the long-run average payoff per play.",
+            "ko": "한 번의 게임당 장기 평균 보상을 계산하라."
+          },
+          {
+            "en": "Years of practice finally produced a real payoff.",
+            "ko": "여러 해의 연습이 마침내 진짜 보상을 가져왔다."
+          }
+        ]
+      },
+      {
+        "word": "expected",
+        "pos": "adj.",
+        "meaning_ko": "기대되는",
+        "synonyms": [],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "Mathematicians call it the expected value.",
+            "ko": "수학자들은 그것을 기댓값이라 부른다."
+          },
+          {
+            "en": "The expected delivery time was three days.",
+            "ko": "기대 배송 시간은 사흘이었다."
+          }
+        ]
+      },
+      {
+        "word": "outcome",
+        "pos": "n.",
+        "meaning_ko": "결과",
+        "synonyms": [
+          "result"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "Expected value collapses many outcomes into one number.",
+            "ko": "기댓값은 여러 결과를 한 수로 압축한다."
+          },
+          {
+            "en": "Each outcome carried its own quiet weight.",
+            "ko": "각 결과는 자기 무게를 조용히 지녔다."
+          }
+        ]
+      },
+      {
+        "word": "weighted",
+        "pos": "adj.",
+        "meaning_ko": "가중된",
+        "synonyms": [],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "It collapses outcomes into one weighted average.",
+            "ko": "결과들을 하나의 가중 평균으로 압축한다."
+          },
+          {
+            "en": "The class used a weighted average of homework and exams.",
+            "ko": "그 학급은 숙제와 시험의 가중 평균을 썼다."
+          }
+        ]
+      },
+      {
+        "word": "probability",
+        "pos": "n.",
+        "meaning_ko": "확률",
+        "synonyms": [
+          "chance"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "Each outcome's probability times its payoff is summed.",
+            "ko": "각 결과의 확률과 보수의 곱을 더한다."
+          },
+          {
+            "en": "There was a small probability of light rain.",
+            "ko": "약간의 비 올 확률이 있었다."
+          }
+        ]
+      },
+      {
+        "word": "premium",
+        "pos": "n.",
+        "meaning_ko": "보험료, 할증료",
+        "synonyms": [],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "The small loss of a premium is preferred to the rare disaster.",
+            "ko": "작은 보험료의 손실이 드문 재난보다 선호된다."
+          },
+          {
+            "en": "She paid a higher premium for express delivery.",
+            "ko": "그녀는 빠른 배송을 위해 더 높은 할증료를 냈다."
+          }
+        ]
+      },
+      {
+        "word": "gamble",
+        "pos": "n./v.",
+        "meaning_ko": "도박; 도박하다",
+        "synonyms": [
+          "bet"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "Most people would refuse the gamble.",
+            "ko": "대부분의 사람은 그 도박을 거절할 것이다."
+          },
+          {
+            "en": "He took a gamble on the new business.",
+            "ko": "그는 새 사업에 모험을 걸었다."
+          }
+        ]
+      },
+      {
+        "word": "asymmetry",
+        "pos": "n.",
+        "meaning_ko": "비대칭",
+        "synonyms": [],
+        "antonyms": [
+          "symmetry"
+        ],
+        "examples": [
+          {
+            "en": "An asymmetry between gain and loss shapes decisions.",
+            "ko": "이득과 손실의 비대칭이 결정을 빚는다."
+          },
+          {
+            "en": "The painting's asymmetry caught the visitor's eye.",
+            "ko": "그 그림의 비대칭이 방문객 눈을 끌었다."
+          }
+        ]
+      },
+      {
+        "word": "lottery",
+        "pos": "n.",
+        "meaning_ko": "복권, 추첨",
+        "synonyms": [],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "Multiply the prize of a lottery by its odds.",
+            "ko": "복권 상금에 그 확률을 곱하라."
+          },
+          {
+            "en": "She bought a single lottery ticket on a whim.",
+            "ko": "그녀는 즉흥으로 복권 한 장을 샀다."
+          }
+        ]
+      }
+    ]
+  },
+  "answers": {
+    "explanations": [
+      {
+        "q_index": 0,
+        "q_style": "요지",
+        "correct": 1,
+        "evidence": "본문은 기댓값이 의사결정의 강력한 출발 도구지만, 사람들은 큰 손실을 비대칭적으로 무겁게 여기기 때문에 보험·투자 결정에는 추가 보정이 필요하다는 점을 일관되게 주장한다.",
+        "rationales": [
+          "본문은 기댓값이 직관을 완전히 대체한다고 말하지 않는다.",
+          "(정답) 기댓값 + 위험 회피의 비대칭이라는 본문 핵심을 그대로 옮겼다.",
+          "본문은 보험사가 모델 없이 운영된다고 말하지 않는다.",
+          "본문은 도박이 모두 같은 장기 수익을 준다고 말하지 않는다.",
+          "본문은 기댓값을 폐기한다고 말하지 않는다."
+        ],
+        "key_terms": [
+          {
+            "en": "expected value",
+            "ko": "기댓값"
+          },
+          {
+            "en": "asymmetry of loss",
+            "ko": "손실 비대칭"
+          }
+        ]
+      },
+      {
+        "q_index": 1,
+        "q_style": "빈칸 추론",
+        "correct": 0,
+        "evidence": "빈칸 직전 \"what would happen if I really ___?\" 의 결론 자리는 본문 전체의 '최악의 손실 가능성을 직시한다' 주제(문장 12·13·14)와 호응해야 한다.",
+        "rationales": [
+          "(정답) 최악의 결과를 잃었을 때를 자문하는 것이 비대칭 위험을 점검하는 본문 결론과 일치한다.",
+          "본문은 직감 신뢰를 권하지 않는다.",
+          "본문은 공식 공개를 다루지 않는다.",
+          "본문은 주최자에게 항의하는 시나리오를 다루지 않는다.",
+          "본문은 분산이 큰 결과 선호를 권하지 않는다."
+        ],
+        "key_terms": [
+          {
+            "en": "worst-case loss",
+            "ko": "최악 손실"
+          },
+          {
+            "en": "risk aversion",
+            "ko": "위험 회피"
+          }
+        ]
+      },
+      {
+        "q_index": 2,
+        "q_style": "함의 추론",
+        "correct": 1,
+        "evidence": "asymmetry between gain and loss 직전·직후 \"the same expected value as doing nothing, and yet most people would refuse\"·\"the small loss of a premium is preferred to the rare disaster\" 가 정의를 구체화한다.",
+        "rationales": [
+          "본문은 별개 공식을 다루지 않는다.",
+          "(정답) 같은 크기의 손실을 같은 크기의 이득보다 무겁게 느낀다는 본문 의미와 일치한다.",
+          "본문은 고대 도박 관행을 다루지 않는다.",
+          "본문은 2:1 자동 환산 규칙을 말하지 않는다.",
+          "본문은 시간 미신을 다루지 않는다."
+        ],
+        "key_terms": [
+          {
+            "en": "loss aversion",
+            "ko": "손실 회피"
+          },
+          {
+            "en": "asymmetric weight",
+            "ko": "비대칭 가중"
+          }
+        ]
+      },
+      {
+        "q_index": 3,
+        "q_style": "요약문 빈칸 완성",
+        "correct": null,
+        "model_answer_en": "(A) value  (B) loss",
+        "evidence": "(A)는 문장 4·7 \"the expected value\" 가 직접 근거다. (B)는 문장 13·14 \"a real chance of catastrophic loss\"·\"the small loss of a premium\" 가 직접 근거다.",
+        "rationales": [
+          "(A) value — 본문은 도구의 이름을 \"expected value\" 로 명시한다.",
+          "(B) loss — 본문은 비대칭의 핵심을 큰 \"loss\" 회피로 명시한다."
+        ],
+        "key_terms": [
+          {
+            "en": "expected value",
+            "ko": "기댓값"
+          },
+          {
+            "en": "loss",
+            "ko": "손실"
+          }
+        ]
+      }
+    ]
+  }
+}
