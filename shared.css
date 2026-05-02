@@ -189,3 +189,36 @@ iframe[loading="lazy"] {
   animation: tn-pulse 1.4s ease-in-out infinite;
   pointer-events: none;
 }
+
+/* ── 통일 NAV CTA 버튼 (landing.html .site-nav .nav-cta와 동일) ──────────
+   landing은 <nav class="site-nav">, 다른 페이지는 <nav>(class 없음)이라
+   `nav:not(.site-nav)` 셀렉터로 서브 페이지에만 적용 → 두 곳 모두 동일한
+   민트 글로우 pill 버튼이 됨. */
+nav:not(.site-nav) .nav-cta,
+nav:not(.site-nav) .nav-signup {
+  position:relative;
+  color:var(--tn-brand) !important;
+  background:rgba(10,10,10,.45) !important;
+  padding:9px 22px !important;
+  border-radius:999px !important;
+  font-weight:600 !important;
+  border:1.5px solid rgba(45,212,191,.55) !important;
+  box-shadow:0 0 8px rgba(45,212,191,.30), inset 0 0 8px rgba(45,212,191,.06);
+  animation: tnCtaGlow 2.6s ease-in-out infinite;
+  transition: background .55s ease, color .55s ease, border-color .55s ease !important;
+}
+@keyframes tnCtaGlow {
+  0%, 100% { box-shadow:0 0 6px rgba(45,212,191,.22), inset 0 0 6px rgba(45,212,191,.05); border-color:rgba(45,212,191,.55) !important; }
+  50%      { box-shadow:0 0 22px rgba(45,212,191,.65), inset 0 0 14px rgba(45,212,191,.12); border-color:rgba(45,212,191,1) !important; }
+}
+nav:not(.site-nav) .nav-cta:hover,
+nav:not(.site-nav) .nav-signup:hover {
+  background:var(--tn-brand) !important;
+  color:#0A0A0A !important;
+  animation-play-state: paused;
+}
+
+/* 서브 페이지 nav 메뉴 간격 통일 (landing와 동일하게 32px) */
+nav:not(.site-nav) .nav-links {
+  gap: 32px !important;
+}

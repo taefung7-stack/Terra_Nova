@@ -299,10 +299,11 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   z-index:0;
   pointer-events:none;
   opacity:0;
-  /* Was 1.4s — too slow: warp was still fading in (47-70% opacity) DURING the flash
-     and burst peak, so the explosion and starfield felt disconnected. 0.4s makes warp
-     fully visible by t=400ms, well before the flash at t=660ms → continuous transition. */
-  transition:opacity .4s ease;
+  /* Was .4s — burst fires at CLIMAX_MS=780ms but is-bigbang triggers at
+     CONVERGE_MS=700ms, leaving only 80ms for warp to fade in → stars visible
+     through a 20%-opacity canvas, feels delayed. Cut to .12s so warp is fully
+     visible by t=820ms (40ms after burst) → stars connect to explosion. */
+  transition:opacity .12s ease;
 }
 .hero.is-bigbang #hero-warp,
 .hero.is-post    #hero-warp { opacity:1; }
@@ -318,7 +319,7 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   z-index:2;                /* above #hero-warp(0) and #bg-canvas(1), below #mouse-halo(3) */
   pointer-events:none;
   opacity:0;
-  transition:opacity .4s ease;   /* match warp fade-in (was 1.4s) */
+  transition:opacity .12s ease;  /* match warp fade-in — see #hero-warp note */
   overflow:hidden;
   mix-blend-mode:screen;
   /* Subtle hot pinpoint at vanishing point — slightly bumped from .14 → .22 */
@@ -386,9 +387,9 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   height:100%;
   display:block;
   z-index:1;
-  cursor: var(--tn-cursor-default);
+  cursor: auto;
 }
-#bg-canvas.is-hover-target { cursor: var(--tn-cursor-pointer); }
+#bg-canvas.is-hover-target { cursor: pointer; }
 #mouse-halo {
   position:absolute;
   width:360px;
@@ -1962,9 +1963,9 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   position:relative;
   padding:150px 5vw 150px;
   overflow:hidden;
+  /* Soft mint section background — black cards stand out distinctly. */
   background:
-    linear-gradient(145deg, rgba(3,4,9,.98) 0%, rgba(11,15,22,.96) 44%, rgba(14,7,12,.98) 100%),
-    var(--bg);
+    linear-gradient(145deg, #DDF1E6 0%, #E8F5EE 50%, #D9EFE3 100%);
 }
 .level-orbit::before {
   content:"";
@@ -1972,10 +1973,10 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   inset:0;
   pointer-events:none;
   background:
-    linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px),
-    linear-gradient(0deg, rgba(255,255,255,.026) 1px, transparent 1px);
+    linear-gradient(90deg, rgba(3,34,33,.06) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(3,34,33,.05) 1px, transparent 1px);
   background-size:72px 72px;
-  opacity:.28;
+  opacity:.5;
   mask-image:linear-gradient(180deg, transparent 0, #000 18%, #000 82%, transparent 100%);
 }
 .level-orbit::after {
@@ -2004,7 +2005,7 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   margin-bottom:18px;
   font-size:1rem;
   letter-spacing:.34em;
-  color:rgba(0,255,163,.86);
+  color:#03624C;
   /* Mirror .orbit-title's blur-up entrance so the kicker breathes in/out
      with the headline as the section enters/leaves the viewport. Slightly
      shorter blur radius + lift than the title since the kicker is smaller. */
@@ -2030,7 +2031,7 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   line-height:1.02;
   font-weight:900;
   letter-spacing:0;
-  color:#fff;
+  color:#032221;
   margin:0;
   text-transform:none;
   opacity:0;
@@ -2066,7 +2067,7 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   font-family:'Pretendard', 'Noto Sans KR', sans-serif;
   font-size:clamp(1rem, 1.15vw, 1.12rem);
   line-height:1.75;
-  color:rgba(226,232,240,.82);
+  color:#06302B;
   font-weight:500;
 }
 .orbit-console {
