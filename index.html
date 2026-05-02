@@ -1963,10 +1963,14 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   position:relative;
   padding:150px 5vw 150px;
   overflow:hidden;
-  /* Saturated mint section — clearly readable against the solid-black cards
-     while keeping the black cards as the primary anchor. */
+  /* Layered mint gradient — radial highlights on top of a diagonal base
+     give the section depth instead of a flat tacky tint. Cool aqua hint at
+     top-left, warmer pistachio at bottom-right. */
   background:
-    linear-gradient(145deg, #8DCFB1 0%, #A4DCC2 50%, #82C8A6 100%);
+    radial-gradient(ellipse 80% 60% at 12% 18%, rgba(193,242,221,.95) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 55% at 88% 82%, rgba(132,200,168,.92) 0%, transparent 58%),
+    radial-gradient(ellipse 55% 45% at 75% 18%, rgba(168,228,205,.55) 0%, transparent 60%),
+    linear-gradient(145deg, #9CD7BC 0%, #B0DEC8 45%, #88CCAB 100%);
 }
 .level-orbit::before {
   content:"";
@@ -2081,21 +2085,27 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   position:relative;
   min-height:660px;
   padding:28px;
-  border:1px solid rgba(0,0,0,.85);
-  border-radius:8px;
-  /* Solid black panel — planet PNG black backgrounds blend seamlessly. */
-  background:#000;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:14px;
+  /* Smoky dark glass — mint bleeds through faintly while staying dark
+     enough that the planet PNG's edge still merges into the panel. */
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.06), rgba(255,255,255,.012)),
+    rgba(6,16,12,.78);
+  backdrop-filter:blur(22px) saturate(155%);
+  -webkit-backdrop-filter:blur(22px) saturate(155%);
   box-shadow:
-    0 30px 110px rgba(3,34,33,.18),
-    0 0 0 1px rgba(0,255,163,.06);
+    0 32px 90px rgba(3,34,33,.28),
+    inset 0 1px 0 rgba(255,255,255,.14),
+    inset 0 0 0 1px rgba(0,255,163,.06);
   overflow:hidden;
 }
 .orbit-preview::before {
   content:"";
   position:absolute;
   inset:18px;
-  border:1px solid rgba(255,255,255,.06);
-  border-radius:6px;
+  border:1px solid rgba(255,255,255,.05);
+  border-radius:10px;
   pointer-events:none;
 }
 .preview-topline,
@@ -2221,12 +2231,18 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
 .orbit-selector {
   min-height:660px;
   padding:18px;
-  border:1px solid rgba(0,0,0,.85);
-  border-radius:8px;
-  background:#000;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:14px;
+  /* Same smoky dark glass as the preview panel for visual unity. */
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.06), rgba(255,255,255,.012)),
+    rgba(6,16,12,.78);
+  backdrop-filter:blur(22px) saturate(155%);
+  -webkit-backdrop-filter:blur(22px) saturate(155%);
   box-shadow:
-    0 22px 70px rgba(3,34,33,.18),
-    0 0 0 1px rgba(0,255,163,.06);
+    0 24px 70px rgba(3,34,33,.24),
+    inset 0 1px 0 rgba(255,255,255,.12),
+    inset 0 0 0 1px rgba(0,255,163,.06);
 }
 .selector-topline {
   padding:7px 8px 18px;
@@ -2245,36 +2261,44 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   min-height:116px;
   width:100%;
   padding:14px 18px;
-  /* Slightly brighter inner separator + soft inner top highlight so adjacent
-     cards on the black panel still read as discrete units. */
-  border:1px solid rgba(255,255,255,.14);
-  border-radius:8px;
-  /* Solid black card — planet PNG black backgrounds blend in. */
-  background:#000;
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:10px;
+  /* Smoky dark glass card — top-light gradient over a near-black tint.
+     Stays dark enough to merge with the planet PNG's edge while reading
+     as glass against the mint section behind. */
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.085), rgba(255,255,255,.018)),
+    rgba(8,18,14,.72);
+  backdrop-filter:blur(18px) saturate(160%);
+  -webkit-backdrop-filter:blur(18px) saturate(160%);
   color:#fff;
   text-align:left;
   cursor:pointer;
   box-shadow:
-    0 12px 24px rgba(3,34,33,.18),
-    inset 0 1px 0 rgba(255,255,255,.06),
-    0 0 0 1px rgba(0,255,163,.05);
-  transition:transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+    0 14px 28px rgba(3,34,33,.22),
+    inset 0 1px 0 rgba(255,255,255,.16),
+    inset 0 -1px 0 rgba(0,255,163,.05);
+  transition:transform .2s ease, border-color .2s ease, box-shadow .2s ease, background .2s ease;
 }
 .level-card:hover,
 .level-card:focus-visible {
   transform:translateY(-2px);
-  border-color:rgba(0,255,163,.55);
+  border-color:rgba(0,255,163,.5);
   box-shadow:
-    0 18px 36px rgba(3,34,33,.22),
-    0 0 0 1px rgba(0,255,163,.32);
+    0 22px 42px rgba(3,34,33,.32),
+    inset 0 1px 0 rgba(255,255,255,.22),
+    0 0 0 1px rgba(0,255,163,.28);
   outline:none;
 }
 .level-card.is-active {
-  border-color:rgba(0,255,163,.85);
-  background:#000;
+  border-color:rgba(0,255,163,.78);
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.115), rgba(255,255,255,.025)),
+    rgba(6,22,16,.82);
   box-shadow:
-    0 18px 38px rgba(3,34,33,.22),
-    0 0 0 2px rgba(0,255,163,.55);
+    0 22px 44px rgba(3,34,33,.34),
+    inset 0 1px 0 rgba(255,255,255,.26),
+    0 0 0 2px rgba(0,255,163,.5);
 }
 .planet-thumb {
   width:74px;
