@@ -299,10 +299,11 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   z-index:0;
   pointer-events:none;
   opacity:0;
-  /* Was 1.4s — too slow: warp was still fading in (47-70% opacity) DURING the flash
-     and burst peak, so the explosion and starfield felt disconnected. 0.4s makes warp
-     fully visible by t=400ms, well before the flash at t=660ms → continuous transition. */
-  transition:opacity .4s ease;
+  /* Instant pop: is-bigbang fires at CLIMAX_MS same frame as star burst.
+     Any transition delay = stars rendered through partially-transparent canvas
+     → "fade-in lag". With opacity:0→1 instant, the climax flash masks the
+     abrupt change and the starfield reads as the bang itself. */
+  transition:none;
 }
 .hero.is-bigbang #hero-warp,
 .hero.is-post    #hero-warp { opacity:1; }
@@ -318,7 +319,7 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   z-index:2;                /* above #hero-warp(0) and #bg-canvas(1), below #mouse-halo(3) */
   pointer-events:none;
   opacity:0;
-  transition:opacity .4s ease;   /* match warp fade-in (was 1.4s) */
+  transition:none;  /* instant pop — see #hero-warp note */
   overflow:hidden;
   mix-blend-mode:screen;
   /* Subtle hot pinpoint at vanishing point — slightly bumped from .14 → .22 */
@@ -1962,9 +1963,10 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   position:relative;
   padding:150px 5vw 150px;
   overflow:hidden;
-  /* Soft mint section background — black cards stand out distinctly. */
+  /* Deeper mint section — more saturated than the cream-mint, still light
+     enough that the solid-black cards read as strong contrast anchors. */
   background:
-    linear-gradient(145deg, #DDF1E6 0%, #E8F5EE 50%, #D9EFE3 100%);
+    linear-gradient(145deg, #B5E8D2 0%, #C2EBDC 50%, #ADE2CB 100%);
 }
 .level-orbit::before {
   content:"";
@@ -2133,14 +2135,13 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   width:clamp(176px, 18vw, 270px);
   aspect-ratio:1;
   position:relative;
-  /* No clip-path / no border-radius — full planet PNG (with its black backdrop)
-     blends into the surrounding black card, leaving only the planet visible. */
+  /* Drop-shadow filter removed: the colored glow exposed the rectangular PNG
+     edge against the surrounding black panel, breaking the seamless blend. */
   background-image:var(--planet-image);
   background-size:contain;
   background-position:50% 50%;
   background-repeat:no-repeat;
-  filter:drop-shadow(0 0 44px color-mix(in srgb, var(--level-accent) 22%, transparent));
-  transition:background-image .25s ease, filter .25s ease;
+  transition:background-image .25s ease;
 }
 .preview-planet::before,
 .planet-thumb::before {
@@ -2244,7 +2245,8 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   min-height:116px;
   width:100%;
   padding:14px 18px;
-  border:1px solid #000;
+  /* Subtle separator between adjacent cards — visible but understated. */
+  border:1px solid rgba(255,255,255,.08);
   border-radius:8px;
   /* Solid black card — planet PNG black backgrounds blend in. */
   background:#000;
@@ -2280,7 +2282,8 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   background-size:contain;
   background-position:50% 50%;
   background-repeat:no-repeat;
-  filter:drop-shadow(0 0 20px color-mix(in srgb, var(--level-accent) 22%, transparent));
+  /* Drop-shadow removed — colored glow exposes the rectangular PNG bounds
+     and makes the planet look like a pasted photo on the black card. */
 }
 .level-card-meta {
   min-width:0;
@@ -2466,11 +2469,16 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
 .plans-h2 {
   font-family:'Space Grotesk', 'Pretendard', 'Noto Sans KR', sans-serif;
   font-weight:900;
-  font-size:clamp(2.4rem, 6.4vw, 5.8rem);
-  line-height:.96;
+  /* Cap reduced 5.8rem → 4.6rem so the headline stays on a single line. */
+  font-size:clamp(2.4rem, 5.4vw, 4.6rem);
+  line-height:1;
   letter-spacing:-.04em;
   margin-bottom:24px;
   color:#fff;
+  white-space:nowrap;
+}
+@media (max-width:720px) {
+  .plans-h2 { white-space:normal; }
 }
 .plans-h2 .accent {
   color:var(--accent);
@@ -3815,7 +3823,7 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   <section id="plans" class="plans reveal">
     <div class="plans-head">
       <span class="plans-kicker">CHOOSE YOUR FIRST MONTH</span>
-      <h2 class="plans-h2">첫 달, <span class="accent">11,900원</span>으로 시작합니다.</h2>
+      <h2 class="plans-h2">첫 달, 단돈 <span class="accent">11,900원</span>.</h2>
       <p class="plans-lede">언제든 해지 · 레벨 변경 자유 · 실물 교재 배송비 무료. 부담 없이 한 달부터.</p>
     </div>
 
@@ -3935,13 +3943,28 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   if ('scrollRestoration' in history) {
     history.scrollRestoration = 'manual';
   }
-  if (location.hash) {
+  // Skip bigbang animation when navigating BACK to landing from a subsidiary
+  // page (홈 button click). Reload always shows full intro per prior decision.
+  var __tnBigbangSeen = false;
+  try { __tnBigbangSeen = sessionStorage.getItem('tn-bigbang-seen') === '1'; }
+  catch (e) {}
+  var __tnNavType = null;
+  try {
+    var __tnNav = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
+    if (__tnNav) __tnNavType = __tnNav.type;
+  } catch (e) {}
+  var __tnIsReload = __tnNavType === 'reload';
+  if (location.hash || (__tnBigbangSeen && !__tnIsReload)) {
     document.body.classList.add('bigbang-done');
     var deepLinkedHero = document.getElementById('hero');
     if (deepLinkedHero) {
       deepLinkedHero.classList.remove('is-pre');
       deepLinkedHero.classList.add('is-post');
     }
+    window.__tnSkipBigbang = true;
+  }
+  if (__tnIsReload) {
+    try { sessionStorage.removeItem('tn-bigbang-seen'); } catch (e) {}
   }
   if (!location.hash) {
     window.scrollTo(0, 0);
@@ -4742,13 +4765,14 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
         }
       }, CLIMAX_MS - 40);
 
-      // Warp + rays fade-in starts at CONVERGE_MS (right after crosses gather).
-      // The 0.4s CSS transition means they're partially visible during the 130ms
-      // hold and ready to fully appear AT the bang — eliminating the previous
-      // gap where users saw a brief light orb before stars finally streamed.
+      // Warp + rays activation moved from CONVERGE_MS to CLIMAX_MS — they pop on
+      // exactly when the burst fires (synced same-frame). Previously is-bigbang
+      // fired at CONVERGE_MS=700ms with a .4s transition, leaving warp at ~20%
+      // opacity when burst started at 780ms — stars appeared faded/delayed.
+      // Now warp + stars + flash all peak together for a true "펑" moment.
       setTimeout(function () {
         hero.classList.add('is-bigbang');
-      }, CONVERGE_MS);
+      }, CLIMAX_MS);
       // Star burst at the bang ("펑") — synchronized with cross dissolve so
       // stars rush outward exactly as the point-crosses vanish. No delay.
       setTimeout(function () {
@@ -4837,6 +4861,8 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
       hero.classList.add('is-post');
       // Reveal site nav + unlock body scroll (CSS hooks on body.bigbang-done)
       document.body.classList.add('bigbang-done');
+      // Persist for same-tab navigation skip (홈 button on subsidiary pages).
+      try { sessionStorage.setItem('tn-bigbang-seen', '1'); } catch (e) {}
       if (window.location.hash) {
         setTimeout(function () {
           var target = document.querySelector(window.location.hash);
@@ -4873,6 +4899,19 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
 
     var t0 = performance.now();
     var rafId = 0;
+
+    // Fast-forward when navigating back to landing within the same session.
+    if (window.__tnSkipBigbang) {
+      bigBangTriggered = true;
+      crossesGone = true;
+      for (var __ci = 0; __ci < crosses.length; __ci++) {
+        scene.remove(crosses[__ci]);
+      }
+      terraNova.position.set(0, 0, 0);
+      terraNova.material.opacity = 0.95;
+      terraNova.userData.targetOpacity = 0.95;
+      terraNova.visible = true;
+    }
 
     function loop() {
       if (!running || !heroVisible) return;

@@ -46,23 +46,28 @@
   --tn-warn:#FBBF24;
 
   /* ── 커스텀 커서 (사이트 전역, 단일 톤) ─────────────────────────
-     사용자 요청: "작은 원 하나만". 16×16 SVG, r=5 filled mint dot,
-     hotspot 8,8 (정중앙). default/pointer 둘 다 같은 모양 — 호버 변형 없음.
-     적용 범위: body 포함 모든 요소 (* 셀렉터 + !important로 페이지별
-     기존 cursor:pointer 등을 덮어씀). 터치 디바이스는 아래쪽
-     @media (hover:none) 블록에서 자동 비활성화됨. */
-  --tn-cursor-default: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><circle cx='8' cy='8' r='5' fill='%2300FFA3'/></svg>") 8 8, auto;
-  --tn-cursor-pointer: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><circle cx='8' cy='8' r='5' fill='%2300FFA3'/></svg>") 8 8, pointer;
+     v2: 사용자 피드백으로 가시성 개선 — 24×24 SVG, r=7 mint fill +
+     1.5px 흰색 외곽선으로 어떤 배경(다크/민트/흰색 카드)에서도 보임.
+     hotspot 12,12 (정중앙). default/pointer 같은 모양. 터치 디바이스는
+     아래쪽 @media (hover:none) 블록에서 자동 비활성화됨.
+     pointer 변형: 호버 시 r=10으로 확장 → 클릭 가능 영역 명확. */
+  --tn-cursor-default: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><circle cx='12' cy='12' r='7' fill='%2300FFA3' stroke='%23ffffff' stroke-width='1.5'/></svg>") 12 12, auto;
+  --tn-cursor-pointer: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'><circle cx='14' cy='14' r='10' fill='%2300FFA3' stroke='%23ffffff' stroke-width='2'/></svg>") 14 14, pointer;
 }
 
-/* ── 전역 커서 적용 (비활성화 — 시스템 기본 커서 사용) ────────────
-   --tn-cursor-default/-pointer 변수는 :root에 보존되어 있음.
-   필요 시 아래 블록 주석을 풀면 즉시 커스텀 커서로 복귀. */
-/*
+/* ── 전역 커서 적용 (활성화 v2 — 가시성 개선) ────────────────────
+   사용자 피드백: 모든 페이지에 동일한 커스텀 커서가 보여야 한다.
+   v2 SVG (24×24, 흰색 외곽선)로 어떤 배경에서도 가시. 페이지별 인라인
+   cursor:pointer/none 등을 !important로 덮어씀. */
 *, *::before, *::after {
   cursor: var(--tn-cursor-default) !important;
 }
-*/
+/* Pointer 변형: 클릭 가능 요소 위에서 더 큰 dot로 확장 */
+a, a *, button, button *, [role="button"], [role="button"] *,
+[onclick], [onclick] *, input[type="submit"], input[type="button"],
+.cursor-pointer, .cursor-pointer *, summary {
+  cursor: var(--tn-cursor-pointer) !important;
+}
 
 /* ── 스크린 리더 전용 텍스트 ─────────────────────────────────── */
 .sr-only,
@@ -221,4 +226,12 @@ nav:not(.site-nav) .nav-signup:hover {
 /* 서브 페이지 nav 메뉴 간격 통일 (landing와 동일하게 32px) */
 nav:not(.site-nav) .nav-links {
   gap: 32px !important;
+}
+
+/* 인접 pill 버튼 (구독신청 + 로그인) 사이 시각 간격 보정.
+   pill 버튼은 좌우 padding 22px씩이라 32px gap에 padding이 더해져
+   메뉴 텍스트 사이 간격(54px)보다 22px 더 벌어져 보임 → -22px로 보정. */
+.site-nav .nav-links li:has(.nav-cta) + li,
+nav:not(.site-nav) .nav-links li:has(.nav-cta) + li {
+  margin-left: -22px;
 }
