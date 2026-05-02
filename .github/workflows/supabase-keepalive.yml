@@ -1,0 +1,50 @@
+# Supabase Free 플랜 자동 정지 방지
+# Free 프로젝트는 7일 비활성 시 자동 pause되어 DNS 자체가 응답 안 함.
+# 매일 한국시간 새벽 4시에 한 번 ping을 날려 활성 상태 유지.
+#
+# 별도 secret 등록 불필요 — REST 헬스체크 endpoint 사용.
+
+name: Supabase Keepalive
+
+on:
+  schedule:
+    - cron: '0 19 * * *'   # UTC 19:00 = KST 04:00 (다음날)
+  workflow_dispatch:        # 수동 실행 버튼 (Actions 탭에서)
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Ping Supabase REST endpoint
+        run: |
+          set -e
+          URL="https://betkydmxrnlhgmnprbca.supabase.co/rest/v1/"
+          echo "Pinging $URL ..."
+          # 200 또는 401 (anon key 없이 호출했으니 401이 정상 — 도메인이 살아있다는 뜻)
+          STATUS=$(curl -s -o /tmp/body -w "%{http_code}" "$URL")
+          echo "HTTP status: $STATUS"
+          cat /tmp/body | head -c 500
+          if [ "$STATUS" = "200" ] || [ "$STATUS" = "401" ] || [ "$STATUS" = "404" ]; then
+            echo "✓ Supabase project is alive"
+            exit 0
+          fi
+          echo "✗ Unexpected status: $STATUS"
+          exit 1
+
+      - name: Ping Auth endpoint (extra liveness signal)
+        run: |
+          set -e
+          URL="https://betkydmxrnlhgmnprbca.supabase.co/auth/v1/health"
+          echo "Pinging $URL ..."
+          STATUS=$(curl -s -o /tmp/body -w "%{http_code}" "$URL")
+          echo "HTTP status: $STATUS"
+          cat /tmp/body | head -c 500
+          # health endpoint은 200 OK가 정상
+          if [ "$STATUS" = "200" ]; then
+            echo "✓ Auth healthy"
+            exit 0
+          fi
+          # 200이 아니어도 도메인이 살아있다면 fail로 보지 않음 (DNS resolve가 핵심)
+          echo "Note: auth health returned $STATUS — DNS is alive though, so keepalive succeeded."
+          exit 0
