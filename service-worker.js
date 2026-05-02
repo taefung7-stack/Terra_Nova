@@ -1,14 +1,13 @@
-// Terra Nova · Service Worker (v2)
-// 목적: 항상 최신 자원 우선 제공, 캐시는 오프라인 폴백으로만 사용.
+// Terra Nova 쨌 Service Worker (v2)
+// 紐⑹쟻: ??긽 理쒖떊 ?먯썝 ?곗꽑 ?쒓났, 罹먯떆???ㅽ봽?쇱씤 ?대갚?쇰줈留??ъ슜.
 //
-// v1 (cache-first) 문제: 사용자가 사이트 들어가면 옛날 shared.css/JS 그대로 보여서
-// 매번 Ctrl+Shift+R로 강제 새로고침해야 했음. v2는 network-first 전략으로 항상
-// 최신 받음. 네트워크 2.5s 안에 응답 없으면 캐시 폴백.
+// v1 (cache-first) 臾몄젣: ?ъ슜?먭? ?ъ씠???ㅼ뼱媛硫??쏅궇 shared.css/JS 洹몃?濡?蹂댁뿬??// 留ㅻ쾲 Ctrl+Shift+R濡?媛뺤젣 ?덈줈怨좎묠?댁빞 ?덉쓬. v2??network-first ?꾨왂?쇰줈 ??긽
+// 理쒖떊 諛쏆쓬. ?ㅽ듃?뚰겕 2.5s ?덉뿉 ?묐떟 ?놁쑝硫?罹먯떆 ?대갚.
 //
-// CACHE_VERSION은 deploy.bat이 매 배포마다 timestamp로 자동 갱신 (yyyyMMdd-HHmm).
-// 새 버전이 install되면 activate 단계에서 옛 캐시 일괄 삭제.
+// CACHE_VERSION? deploy.bat??留?諛고룷留덈떎 timestamp濡??먮룞 媛깆떊 (yyyyMMdd-HHmm).
+// ??踰꾩쟾??install?섎㈃ activate ?④퀎?먯꽌 ??罹먯떆 ?쇨큵 ??젣.
 
-const CACHE_VERSION = 'tn-v2-20260503-2300';
+const CACHE_VERSION = 'tn-v2-20260503-0733';
 const CORE_ASSETS = [
   './',
   './index.html',
@@ -64,10 +63,10 @@ async function networkFirst(request) {
 self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
 
-  // Cross-origin (Google Fonts, Supabase, jsdelivr) — pass through to network.
+  // Cross-origin (Google Fonts, Supabase, jsdelivr) ??pass through to network.
   if (url.origin !== location.origin) return;
 
-  // Supabase API paths — always network (auth/data integrity).
+  // Supabase API paths ??always network (auth/data integrity).
   if (
     url.pathname.includes('/auth/') ||
     url.pathname.includes('/rest/v1/') ||
