@@ -1962,9 +1962,9 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   position:relative;
   padding:150px 5vw 150px;
   overflow:hidden;
+  /* Soft mint section background — black cards stand out distinctly. */
   background:
-    linear-gradient(145deg, rgba(3,4,9,.98) 0%, rgba(11,15,22,.96) 44%, rgba(14,7,12,.98) 100%),
-    var(--bg);
+    linear-gradient(145deg, #DDF1E6 0%, #E8F5EE 50%, #D9EFE3 100%);
 }
 .level-orbit::before {
   content:"";
@@ -1972,10 +1972,10 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   inset:0;
   pointer-events:none;
   background:
-    linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px),
-    linear-gradient(0deg, rgba(255,255,255,.026) 1px, transparent 1px);
+    linear-gradient(90deg, rgba(3,34,33,.06) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(3,34,33,.05) 1px, transparent 1px);
   background-size:72px 72px;
-  opacity:.28;
+  opacity:.5;
   mask-image:linear-gradient(180deg, transparent 0, #000 18%, #000 82%, transparent 100%);
 }
 .level-orbit::after {
@@ -2004,7 +2004,7 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   margin-bottom:18px;
   font-size:1rem;
   letter-spacing:.34em;
-  color:rgba(0,255,163,.86);
+  color:#03624C;
   /* Mirror .orbit-title's blur-up entrance so the kicker breathes in/out
      with the headline as the section enters/leaves the viewport. Slightly
      shorter blur radius + lift than the title since the kicker is smaller. */
@@ -2030,7 +2030,7 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   line-height:1.02;
   font-weight:900;
   letter-spacing:0;
-  color:#fff;
+  color:#032221;
   margin:0;
   text-transform:none;
   opacity:0;
@@ -2066,7 +2066,7 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   font-family:'Pretendard', 'Noto Sans KR', sans-serif;
   font-size:clamp(1rem, 1.15vw, 1.12rem);
   line-height:1.75;
-  color:rgba(226,232,240,.82);
+  color:#06302B;
   font-weight:500;
 }
 .orbit-console {
@@ -2079,25 +2079,20 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   position:relative;
   min-height:660px;
   padding:28px;
-  border:1px solid rgba(0,255,163,.18);
+  border:1px solid rgba(0,0,0,.85);
   border-radius:8px;
-  background:
-    linear-gradient(145deg, rgba(255,255,255,.13), rgba(255,255,255,.04)),
-    radial-gradient(ellipse at 16% 18%, rgba(0,255,163,.16), transparent 58%),
-    rgba(8,18,18,.42);
-  backdrop-filter:blur(18px) saturate(150%);
-  -webkit-backdrop-filter:blur(18px) saturate(150%);
+  /* Solid black panel — planet PNG black backgrounds blend seamlessly. */
+  background:#000;
   box-shadow:
-    0 30px 110px rgba(0,0,0,.52),
-    inset 0 1px 0 rgba(255,255,255,.22),
-    inset 0 -1px 0 rgba(0,255,163,.08);
+    0 30px 110px rgba(3,34,33,.18),
+    0 0 0 1px rgba(0,255,163,.06);
   overflow:hidden;
 }
 .orbit-preview::before {
   content:"";
   position:absolute;
   inset:18px;
-  border:1px solid rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.06);
   border-radius:6px;
   pointer-events:none;
 }
@@ -2138,50 +2133,26 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   width:clamp(176px, 18vw, 270px);
   aspect-ratio:1;
   position:relative;
-  border-radius:50%;
+  /* No clip-path / no border-radius — full planet PNG (with its black backdrop)
+     blends into the surrounding black card, leaving only the planet visible. */
   background-image:var(--planet-image);
-  background-size:var(--planet-bg-size, 138%);
-  background-position:28% 50%;
+  background-size:contain;
+  background-position:50% 50%;
   background-repeat:no-repeat;
-  overflow:hidden;
-  clip-path:circle(49.5% at 50% 50%);
-  image-rendering:auto;
-  filter:
-    drop-shadow(0 24px 52px rgba(0,0,0,.5))
-    drop-shadow(0 0 44px color-mix(in srgb, var(--level-accent) 34%, transparent));
-  box-shadow:
-    inset -42px -26px 52px rgba(0,0,0,.56),
-    inset 18px 12px 30px rgba(255,255,255,.16);
-  transform:rotateX(10deg) rotateY(-24deg) translateZ(0);
-  transform-style:preserve-3d;
-  transition:background-image .25s ease, filter .25s ease, transform .35s cubic-bezier(.16,1,.3,1);
-  animation:planetSurfaceTurn 5.2s linear infinite, planetDepthDrift 4.8s ease-in-out infinite alternate;
+  filter:drop-shadow(0 0 44px color-mix(in srgb, var(--level-accent) 22%, transparent));
+  transition:background-image .25s ease, filter .25s ease;
 }
 .preview-planet::before,
 .planet-thumb::before {
-  content:"";
-  position:absolute;
-  inset:0;
-  border-radius:50%;
-  pointer-events:none;
-  z-index:3;
-  background:
-    radial-gradient(circle at 30% 22%, rgba(255,255,255,.42), transparent 20%),
-    radial-gradient(circle at 66% 58%, transparent 32%, rgba(0,0,0,.62) 78%),
-    linear-gradient(90deg, rgba(0,0,0,.46), transparent 32%, transparent 62%, rgba(0,0,0,.66));
-  mix-blend-mode:soft-light;
+  content:none;
 }
 .preview-planet::after,
 .planet-thumb::after {
-  content:"";
-  position:absolute;
-  inset:0;
-  border-radius:50%;
-  pointer-events:none;
-  z-index:4;
+  content:none;
 }
 .orbit-preview:hover .preview-planet {
-  transform:rotateX(8deg) rotateY(-16deg) translateY(-8px) translateZ(0);
+  transform:translateY(-6px);
+  transition:transform .35s cubic-bezier(.16,1,.3,1);
 }
 .preview-meta {
   position:relative;
@@ -2249,17 +2220,12 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
 .orbit-selector {
   min-height:660px;
   padding:18px;
-  border:1px solid rgba(0,255,163,.14);
+  border:1px solid rgba(0,0,0,.85);
   border-radius:8px;
-  background:
-    linear-gradient(145deg, rgba(255,255,255,.105), rgba(255,255,255,.032)),
-    radial-gradient(ellipse at 18% 10%, rgba(0,255,163,.09), transparent 52%),
-    rgba(8,14,18,.34);
-  backdrop-filter:blur(18px) saturate(150%);
-  -webkit-backdrop-filter:blur(18px) saturate(150%);
+  background:#000;
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.16),
-    0 22px 70px rgba(0,0,0,.34);
+    0 22px 70px rgba(3,34,33,.18),
+    0 0 0 1px rgba(0,255,163,.06);
 }
 .selector-topline {
   padding:7px 8px 18px;
@@ -2278,59 +2244,43 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   min-height:116px;
   width:100%;
   padding:14px 18px;
-  border:1px solid rgba(0,255,163,.13);
+  border:1px solid #000;
   border-radius:8px;
-  background:
-    linear-gradient(145deg, rgba(255,255,255,.12), rgba(255,255,255,.035)),
-    radial-gradient(ellipse at 8% 12%, rgba(0,255,163,.13), transparent 58%),
-    rgba(9,18,19,.36);
-  backdrop-filter:blur(16px) saturate(155%);
-  -webkit-backdrop-filter:blur(16px) saturate(155%);
+  /* Solid black card — planet PNG black backgrounds blend in. */
+  background:#000;
   color:#fff;
   text-align:left;
   cursor:pointer;
   box-shadow:
-    0 16px 38px rgba(0,0,0,.26),
-    inset 0 1px 0 rgba(255,255,255,.2),
-    inset 0 -1px 0 rgba(0,255,163,.06);
-  transition:transform .2s ease, border-color .2s ease, background .2s ease, box-shadow .2s ease;
+    0 14px 28px rgba(3,34,33,.14),
+    0 0 0 1px rgba(0,255,163,.04);
+  transition:transform .2s ease, border-color .2s ease, box-shadow .2s ease;
 }
 .level-card:hover,
 .level-card:focus-visible {
   transform:translateY(-2px);
-  border-color:rgba(0,255,163,.38);
+  border-color:rgba(0,255,163,.55);
   box-shadow:
-    0 22px 48px rgba(0,0,0,.34),
-    0 0 0 1px rgba(0,255,163,.16),
-    inset 0 1px 0 rgba(255,255,255,.26);
+    0 18px 36px rgba(3,34,33,.22),
+    0 0 0 1px rgba(0,255,163,.32);
   outline:none;
 }
 .level-card.is-active {
-  border-color:rgba(0,255,163,.55);
-  background:
-    linear-gradient(145deg, rgba(255,255,255,.18), rgba(255,255,255,.055)),
-    radial-gradient(ellipse at 8% 12%, rgba(0,255,163,.22), transparent 58%),
-    rgba(9,20,20,.44);
+  border-color:rgba(0,255,163,.85);
+  background:#000;
+  box-shadow:
+    0 18px 38px rgba(3,34,33,.22),
+    0 0 0 2px rgba(0,255,163,.55);
 }
 .planet-thumb {
-  width:62px;
+  width:74px;
   aspect-ratio:1;
   position:relative;
-  border-radius:50%;
   background-image:var(--planet-image);
-  background-size:var(--planet-bg-size, 138%);
-  background-position:28% 50%;
+  background-size:contain;
+  background-position:50% 50%;
   background-repeat:no-repeat;
-  overflow:hidden;
-  clip-path:circle(49.5% at 50% 50%);
-  image-rendering:auto;
-  filter:drop-shadow(0 12px 22px rgba(0,0,0,.5)) drop-shadow(0 0 20px color-mix(in srgb, var(--level-accent) 34%, transparent));
-  box-shadow:
-    inset -16px -10px 22px rgba(0,0,0,.52),
-    inset 7px 5px 13px rgba(255,255,255,.16);
-  transform:rotateX(8deg) rotateY(-22deg) translateZ(0);
-  transform-style:preserve-3d;
-  animation:planetSurfaceTurn 4.8s linear infinite, planetDepthDrift 4.4s ease-in-out infinite alternate;
+  filter:drop-shadow(0 0 20px color-mix(in srgb, var(--level-accent) 22%, transparent));
 }
 .level-card-meta {
   min-width:0;
@@ -2413,35 +2363,8 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   --planet-image:url('assets/3d/planets-normalized/sun.png');
   --planet-bg-size:186%;
 }
-.planet-uranus .preview-planet,
-.planet-saturn .preview-planet,
-.planet-uranus .planet-thumb,
-.planet-saturn .planet-thumb {
-  border-radius:0;
-  clip-path:none;
-  overflow:visible;
-  background-position:center;
-  box-shadow:none;
-  animation:ringPhotoTurn 5.8s ease-in-out infinite alternate;
-}
-.planet-uranus .preview-planet::before,
-.planet-uranus .planet-thumb::before,
-.planet-saturn .preview-planet::before,
-.planet-saturn .planet-thumb::before {
-  content:none;
-}
-.orbit-preview.planet-uranus:hover .preview-planet,
-.orbit-preview.planet-saturn:hover .preview-planet {
-  transform:rotateX(3deg) rotateY(-6deg) translateY(-8px);
-}
-.planet-uranus .preview-planet::after,
-.planet-uranus .planet-thumb::after {
-  content:none;
-}
-.planet-saturn .preview-planet::after,
-.planet-saturn .planet-thumb::after {
-  content:none;
-}
+/* Saturn/Uranus rings already render correctly with no clip-path now;
+   no extra overrides needed. */
 @keyframes planetSurfaceTurn {
   from { background-position:28% 50%; }
   to { background-position:72% 50%; }

@@ -2152,7 +2152,8 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   content:none;
 }
 .orbit-preview:hover .preview-planet {
-  transform:rotateX(8deg) rotateY(-16deg) translateY(-8px) translateZ(0);
+  transform:translateY(-6px);
+  transition:transform .35s cubic-bezier(.16,1,.3,1);
 }
 .preview-meta {
   position:relative;
