@@ -2,7 +2,24 @@
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('./service-worker.js', { scope: './' })
-      .then((reg) => console.info('[pwa] SW registered:', reg.scope))
+      .then((reg) => {
+        console.info('[pwa] SW registered:', reg.scope);
+        // 매 페이지 진입마다 SW 업데이트 강제 체크 — 새 service-worker.js가
+        // 배포되면 즉시 install 트리거 → 새 CACHE_VERSION → 옛 캐시 폐기.
+        // 브라우저 기본 24h 자동 체크 주기를 우회해 사용자가 항상 최신 받음.
+        reg.update().catch(() => {});
+        // 새 SW가 활성화되면 콘솔 로그 (디버그용 — 페이지 강제 reload는 안 함).
+        reg.addEventListener('updatefound', () => {
+          const newSW = reg.installing;
+          if (newSW) {
+            newSW.addEventListener('statechange', () => {
+              if (newSW.state === 'activated') {
+                console.info('[pwa] SW updated to new version');
+              }
+            });
+          }
+        });
+      })
       .catch((err) => console.warn('[pwa] SW registration failed:', err));
   });
 }
