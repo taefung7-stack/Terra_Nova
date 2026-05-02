@@ -152,6 +152,28 @@ function renderTemplate(type: string, d: Record<string, any>): { subject: string
     };
   }
 
+  if (type === 'sample_request') {
+    const { level, levelDisplay, downloadUrl } = d;
+    const lvlText = String(levelDisplay || level || '').toUpperCase();
+    return {
+      subject: `[Terra Nova] ${lvlText} 레벨 무료 샘플 PDF`,
+      html: baseWrap(`
+        <h2 style="font-size:18px;margin:0 0 16px;color:#0A0A0A;">${lvlText} 레벨 샘플이 준비되었습니다 ✦</h2>
+        <p style="margin:0 0 12px;">요청하신 <strong>${lvlText}</strong> 레벨 영어 독해 샘플 PDF입니다. 일주일치 지문 + 풀이가 들어 있습니다.</p>
+        <p style="margin:0 0 16px;">아래 버튼을 눌러 <strong>1시간 안에</strong> 다운로드해 주세요.</p>
+        <div style="margin:24px 0;text-align:center;">
+          <a href="${String(downloadUrl)}" style="display:inline-block;padding:13px 32px;background:#2DD4BF;color:#0A0A0A;text-decoration:none;font-weight:800;border-radius:6px;font-size:14px;letter-spacing:.5px;">PDF 다운로드 →</a>
+        </div>
+        <p style="margin:16px 0 0;color:#666;font-size:12px;line-height:1.7;">
+          링크는 발송 시점부터 1시간 동안 유효합니다. 만료되었다면 <a href="https://terra-nova.kr/sample.html" style="color:#2DD4BF;">샘플 페이지</a>에서 다시 요청하실 수 있습니다.
+        </p>
+        <p style="margin:8px 0 0;color:#666;font-size:12px;">
+          매월 새 지문으로 학습하고 싶다면 → <a href="https://terra-nova.kr/order.html" style="color:#2DD4BF;font-weight:700;">월 11,900원 구독</a>
+        </p>
+      `),
+    };
+  }
+
   if (type === 'custom') {
     const { subject, html } = d;
     if (!subject || !html) return null;

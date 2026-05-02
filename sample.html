@@ -913,7 +913,7 @@
     <p class="free-desc">이메일로 샘플 PDF를 <br>무료로 받아보세요.<br>원하는 레벨의 일주일치 지문을 <br>미리 확인할 수 있습니다.</p>
     <div class="free-form">
       <input type="email" class="free-input" placeholder="이메일 주소 입력">
-      <button class="free-btn" onclick="requestSample()">샘플 받기</button>
+      <button class="free-btn" onclick="requestSample(this)">샘플 받기</button>
     </div>
     <p class="free-note">스팸 없음 · 언제든지 구독 취소 가능 · PDF 즉시 발송</p>
     <div style="margin-top:24px;padding-top:24px;border-top:1px solid rgba(255,255,255,.08);">
@@ -952,12 +952,57 @@
     document.getElementById('sec-'+level).classList.add('active');
     tab.classList.add('active');
   }
-  function requestSample() {
+  // 샘플 PDF 자동 발송 (Supabase Edge Function: send-sample 호출)
+  // 현재 활성 탭의 레벨을 자동으로 감지 → 사용자가 보고 있던 레벨 PDF가 발송됨.
+  const SUPABASE_FUNC_URL = 'https://betkydmxrnlhgmnprbca.supabase.co/functions/v1/send-sample';
+  async function requestSample(btn) {
     const inp = document.querySelector('.free-input');
-    if(!inp.value || !inp.value.includes('@')) { alert('올바른 이메일 주소를 입력해주세요.'); return; }
-    alert('샘플 PDF를 발송했습니다!\n입력하신 이메일을 확인해주세요.\n(' + inp.value + ')');
-    inp.value = '';
+    const email = (inp?.value || '').trim();
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+      alert('올바른 이메일 주소를 입력해 주세요.');
+      inp?.focus();
+      return;
+    }
+    // 현재 활성 레벨 감지
+    const activeSection = document.querySelector('.level-section.active');
+    const sectionId = activeSection?.id || '';
+    const level = sectionId.replace(/^sec-/, '');
+    if (!level) {
+      alert('레벨을 선택해 주세요.');
+      return;
+    }
+
+    btn.disabled = true;
+    const origText = btn.textContent;
+    btn.textContent = '발송 중...';
+
+    try {
+      const res = await fetch(SUPABASE_FUNC_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, level }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        console.error('[sample] send failed:', res.status, data);
+        alert('샘플 발송에 실패했습니다.\n\n' + (data?.error || '잠시 후 다시 시도해 주세요.'));
+        return;
+      }
+      alert(
+        `${level.toUpperCase()} 레벨 샘플 PDF를\n${email} 주소로 발송했습니다!\n\n` +
+        '메일함을 확인해 주세요. (스팸함도 한 번 확인 권장)\n' +
+        '다운로드 링크는 1시간 동안 유효합니다.'
+      );
+      inp.value = '';
+    } catch (err) {
+      console.error('[sample] network error:', err);
+      alert('네트워크 오류로 발송에 실패했습니다.\n잠시 후 다시 시도해 주세요.');
+    } finally {
+      btn.disabled = false;
+      btn.textContent = origText;
+    }
   }
+  window.requestSample = requestSample;
   // URL param: auto-switch level tab
   const lvlParam = new URLSearchParams(location.search).get('level');
   if (lvlParam) {
