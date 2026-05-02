@@ -443,29 +443,42 @@
 
     const { supabase } = await import('./supabase-client.js');
 
-    const { data, error } = await supabase.auth.signUp({
-      email,
-      password: pw,
-      options: {
-        data: {
-          display_name: name,
-          phone,
-          grade_label: grade,
-          shipping_zipcode: zip,
-          shipping_address: addrMain,
-          shipping_detail: addrDetail
-        },
-        emailRedirectTo: location.origin + location.pathname.replace(/signup\.html$/, 'login.html')
-      }
-    });
+    let data, error;
+    try {
+      ({ data, error } = await supabase.auth.signUp({
+        email,
+        password: pw,
+        options: {
+          data: {
+            display_name: name,
+            phone,
+            grade_label: grade,
+            shipping_zipcode: zip,
+            shipping_address: addrMain,
+            shipping_detail: addrDetail
+          },
+          emailRedirectTo: location.origin + location.pathname.replace(/signup\.html$/, 'login.html')
+        }
+      }));
+    } catch (networkErr) {
+      console.error('[auth] signup network error:', networkErr);
+      if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = '회원가입'; }
+      alert('네트워크 오류로 가입에 실패했습니다.\n인터넷 연결 또는 광고 차단기를 확인해 주세요.\n\n상세: ' + (networkErr?.message || networkErr));
+      return;
+    }
 
     if (error) {
+      console.error('[auth] signup error:', error);
       if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = '회원가입'; }
       if (error.message.includes('already registered') || error.message.includes('User already')) {
         alert('이미 가입된 이메일입니다. 로그인 페이지로 이동합니다.');
         location.href = 'login.html';
+      } else if (error.message.includes('Password') || error.message.includes('password')) {
+        alert('비밀번호 오류: ' + error.message + '\n\n비밀번호는 8자 이상이어야 하며 일부 환경에서는 영문·숫자·특수문자 조합을 요구합니다.');
+      } else if (error.message.includes('rate limit') || error.status === 429) {
+        alert('가입 시도가 너무 많습니다. 1분 후에 다시 시도해 주세요.');
       } else {
-        alert('회원가입 실패: ' + error.message);
+        alert('회원가입 실패: ' + error.message + '\n\n[디버그 — 개발자 도구 Console 탭에서 자세한 내용 확인 가능]');
       }
       return;
     }

@@ -266,15 +266,26 @@
 
     if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = '로그인 중...'; }
 
-    const { data, error } = await supabase.auth.signInWithPassword({ email, password: pw });
+    let data, error;
+    try {
+      ({ data, error } = await supabase.auth.signInWithPassword({ email, password: pw }));
+    } catch (networkErr) {
+      console.error('[auth] login network error:', networkErr);
+      if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = '로그인'; }
+      alert('네트워크 오류로 로그인에 실패했습니다.\n인터넷 연결 또는 광고 차단기를 확인해 주세요.\n\n상세: ' + (networkErr?.message || networkErr));
+      return;
+    }
     if (error) {
+      console.error('[auth] login error:', error);
       if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = '로그인'; }
       if (error.message.includes('Invalid login credentials')) {
         showFieldErr('login-password', '이메일 또는 비밀번호가 일치하지 않습니다.');
       } else if (error.message.includes('Email not confirmed')) {
-        alert('이메일 인증이 완료되지 않았습니다. 메일함을 확인해주세요.');
+        alert('이메일 인증이 완료되지 않았습니다.\n가입 시 받으신 메일에서 인증 링크를 클릭해 주세요.\n메일이 안 보이면 스팸함을 확인해 주세요.');
+      } else if (error.message.includes('rate limit') || error.status === 429) {
+        alert('로그인 시도가 너무 많습니다. 1분 후에 다시 시도해 주세요.');
       } else {
-        alert('로그인 실패: ' + error.message);
+        alert('로그인 실패: ' + error.message + '\n\n[디버그 — 개발자 도구 Console 탭에서 자세한 내용 확인 가능]');
       }
       return;
     }

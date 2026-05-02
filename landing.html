@@ -1964,10 +1964,10 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   position:relative;
   padding:150px 5vw 150px;
   overflow:hidden;
-  /* Deeper mint section — more saturated than the cream-mint, still light
-     enough that the solid-black cards read as strong contrast anchors. */
+  /* Saturated mint section — clearly readable against the solid-black cards
+     while keeping the black cards as the primary anchor. */
   background:
-    linear-gradient(145deg, #B5E8D2 0%, #C2EBDC 50%, #ADE2CB 100%);
+    linear-gradient(145deg, #8DCFB1 0%, #A4DCC2 50%, #82C8A6 100%);
 }
 .level-orbit::before {
   content:"";
@@ -2237,7 +2237,7 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
 .orbit-grid {
   display:grid;
   grid-template-columns:repeat(2, minmax(0, 1fr));
-  gap:12px;
+  gap:16px;
 }
 .level-card {
   --level-accent:#00ffa3;
@@ -2248,8 +2248,9 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   min-height:116px;
   width:100%;
   padding:14px 18px;
-  /* Subtle separator between adjacent cards — visible but understated. */
-  border:1px solid rgba(255,255,255,.08);
+  /* Slightly brighter inner separator + soft inner top highlight so adjacent
+     cards on the black panel still read as discrete units. */
+  border:1px solid rgba(255,255,255,.14);
   border-radius:8px;
   /* Solid black card — planet PNG black backgrounds blend in. */
   background:#000;
@@ -2257,8 +2258,9 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   text-align:left;
   cursor:pointer;
   box-shadow:
-    0 14px 28px rgba(3,34,33,.14),
-    0 0 0 1px rgba(0,255,163,.04);
+    0 12px 24px rgba(3,34,33,.18),
+    inset 0 1px 0 rgba(255,255,255,.06),
+    0 0 0 1px rgba(0,255,163,.05);
   transition:transform .2s ease, border-color .2s ease, box-shadow .2s ease;
 }
 .level-card:hover,
@@ -2903,6 +2905,15 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
 .hero.is-pre  .scroll-cue { opacity:0; }
 .hero.is-post .hero-ui,
 .hero.is-post .scroll-cue { opacity:1; }
+
+/* When bigbang has already played (skip-flag, deep link, or post-reveal),
+   suppress the "CLICK TERRA NOVA" hint entirely — it would otherwise still
+   trigger via its 4s delayed animation and confuse a returning visitor. */
+body.bigbang-done .terra-hint,
+.hero.is-post .terra-hint {
+  display:none !important;
+  animation:none !important;
+}
 
 @media (max-width: 720px) {
   .terra-hint, .bigbang-flash { display:none; }
