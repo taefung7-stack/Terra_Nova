@@ -2538,19 +2538,22 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
    top/bottom fades the cards as they enter and leave. */
 .review-rain {
   position:relative;
-  padding:96px 5vw 48px;
+  padding:80px 3vw 60px;
   background:#0A0A0A;
   overflow:hidden;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
 }
 .review-rain-head {
-  width:min(1100px, 100%);
-  margin:0 auto 56px;
+  width:min(1400px, 100%);
+  margin:0 auto 48px;
   text-align:center;
 }
 .review-rain-title {
   margin:0;
   font-family:'Space Grotesk', 'Pretendard', 'Noto Sans KR', sans-serif;
-  font-size:clamp(3.2rem, 8vw, 7.2rem);
+  font-size:clamp(3.6rem, 9vw, 8rem);
   font-weight:900;
   line-height:1.05;
   letter-spacing:-.012em;
@@ -2566,13 +2569,14 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   position:relative;
   display:grid;
   grid-template-columns:repeat(3, 1fr);
-  gap:24px;
-  width:min(1480px, 100%);
-  height:740px;
+  gap:28px;
+  width:min(1800px, 100%);
+  flex:1;
+  min-height:calc(100vh - 260px);
   margin:0 auto;
   /* Fade-mask top/bottom so reviews drift in/out instead of hard-cutting. */
-  -webkit-mask-image:linear-gradient(180deg, transparent 0, #000 12%, #000 88%, transparent 100%);
-          mask-image:linear-gradient(180deg, transparent 0, #000 12%, #000 88%, transparent 100%);
+  -webkit-mask-image:linear-gradient(180deg, transparent 0, #000 10%, #000 90%, transparent 100%);
+          mask-image:linear-gradient(180deg, transparent 0, #000 10%, #000 90%, transparent 100%);
 }
 .review-col {
   position:relative;
@@ -2581,40 +2585,40 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
 .review-col-track {
   display:flex;
   flex-direction:column;
-  gap:20px;
+  gap:24px;
   will-change:transform;
 }
-.review-col:nth-child(1) .review-col-track { animation:rainScroll 36s linear infinite; }
-.review-col:nth-child(2) .review-col-track { animation:rainScroll 44s linear infinite; animation-delay:-12s; }
-.review-col:nth-child(3) .review-col-track { animation:rainScroll 30s linear infinite; animation-delay:-6s; }
+.review-col:nth-child(1) .review-col-track { animation:rainScroll 90s linear infinite; }
+.review-col:nth-child(2) .review-col-track { animation:rainScroll 110s linear infinite; animation-delay:-32s; }
+.review-col:nth-child(3) .review-col-track { animation:rainScroll 78s linear infinite; animation-delay:-18s; }
 @keyframes rainScroll {
   from { transform:translateY(0); }
   to   { transform:translateY(-50%); }
 }
 .review-card {
   flex-shrink:0;
-  padding:26px 28px;
+  padding:36px 36px;
   border:1px solid rgba(255,255,255,.10);
-  border-radius:18px;
-  background:linear-gradient(145deg, rgba(255,255,255,.055), rgba(255,255,255,.014));
+  border-radius:22px;
+  background:linear-gradient(145deg, rgba(255,255,255,.06), rgba(255,255,255,.014));
   color:#fff;
-  box-shadow:0 18px 36px rgba(0,0,0,.28);
+  box-shadow:0 22px 44px rgba(0,0,0,.32);
 }
 .review-card-stars {
   display:flex;
   align-items:center;
-  gap:2px;
-  margin-bottom:12px;
-  font-size:1.05rem;
+  gap:3px;
+  margin-bottom:18px;
+  font-size:1.3rem;
   line-height:1;
   letter-spacing:1px;
   color:#FFC83D;
   text-shadow:0 0 14px rgba(255,200,61,.28);
 }
 .review-card-quote {
-  margin:0 0 16px;
+  margin:0 0 22px;
   font-family:'Pretendard', 'Noto Sans KR', sans-serif;
-  font-size:1.18rem;
+  font-size:1.34rem;
   line-height:1.55;
   color:rgba(255,255,255,.96);
   font-weight:600;
@@ -2624,39 +2628,39 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:10px;
+  gap:12px;
   font-family:'Space Grotesk', 'Pretendard', sans-serif;
-  font-size:.86rem;
+  font-size:.96rem;
   font-weight:700;
   letter-spacing:.04em;
-  color:rgba(255,255,255,.6);
+  color:rgba(255,255,255,.62);
   text-transform:uppercase;
 }
 .review-card-tag {
-  padding:5px 12px;
+  padding:7px 16px;
   border:1px solid rgba(0,255,163,.32);
   background:rgba(0,255,163,.08);
   color:var(--accent);
   border-radius:999px;
-  font-size:.74rem;
+  font-size:.84rem;
   font-weight:800;
   letter-spacing:.06em;
 }
-@media (max-width:1100px) {
-  .review-rain-stage { gap:18px; height:680px; }
-  .review-card { padding:22px 22px; }
-  .review-card-quote { font-size:1.08rem; }
+@media (max-width:1280px) {
+  .review-rain-stage { gap:20px; }
+  .review-card { padding:28px 26px; }
+  .review-card-quote { font-size:1.18rem; }
 }
 @media (max-width:900px) {
-  .review-rain-stage { grid-template-columns:repeat(2, 1fr); height:620px; }
+  .review-rain-stage { grid-template-columns:repeat(2, 1fr); }
   .review-col:nth-child(3) { display:none; }
 }
 @media (max-width:560px) {
-  .review-rain { padding:72px 16px 36px; }
-  .review-rain-stage { grid-template-columns:1fr; height:520px; }
+  .review-rain { padding:64px 16px 36px; min-height:auto; }
+  .review-rain-stage { grid-template-columns:1fr; min-height:600px; }
   .review-col:nth-child(2) { display:none; }
-  .review-card-quote { font-size:1rem; }
-  .review-card { padding:20px 20px; }
+  .review-card-quote { font-size:1.06rem; }
+  .review-card { padding:24px 22px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .review-col-track { animation:none; }
@@ -2667,13 +2671,16 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
    font + per-row dot makes the inheritance ladder (LIGHT → STANDARD → PREMIUM)
    easy to read without leaving the card. */
 .plan-checklist {
+  /* No top border / padding — .plan-price-block already paints the
+     divider line below the price. Stacking another border-top here
+     produced a double-line on the LIGHT card (where the inheritance
+     row is absent so the gap was visible). */
   margin:18px 0 0;
-  padding:18px 0 0;
+  padding:0;
   list-style:none;
   display:flex;
   flex-direction:column;
   gap:12px;
-  border-top:1px solid rgba(255,255,255,.08);
 }
 .plan-checklist li {
   position:relative;
@@ -2738,6 +2745,20 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   padding:6px 14px;
   border:1px solid rgba(0,255,163,.32);
   background:rgba(0,255,163,.05);
+  /* Scroll-triggered entrance — mirrors .level-orbit's title-in pattern.
+     Initially blurred + slightly lifted; lands when the section enters the
+     viewport (.plans.title-in). Exits the same way when scrolled out so it
+     re-animates every time the section re-enters. */
+  opacity:0;
+  filter:blur(10px);
+  transform:translateY(14px);
+  transition:opacity .8s ease, filter .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1);
+}
+.plans.title-in .plans-kicker {
+  opacity:1;
+  filter:blur(0);
+  transform:translateY(0);
+  transition-delay:0s;
 }
 .plans-h2 {
   font-family:'Space Grotesk', 'Pretendard', 'Noto Sans KR', sans-serif;
@@ -2751,6 +2772,23 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   margin-bottom:24px;
   color:#fff;
   white-space:nowrap;
+  /* Same blur-up entrance as the kicker, slightly heavier blur radius
+     because the headline is larger. Staggered 80ms after the kicker. */
+  opacity:0;
+  filter:blur(16px);
+  transform:translateY(26px) scale(.98);
+  transition:opacity .9s ease, filter 1s cubic-bezier(.16,1,.3,1), transform 1s cubic-bezier(.16,1,.3,1);
+}
+.plans.title-in .plans-h2 {
+  opacity:1;
+  filter:blur(0);
+  transform:translateY(0) scale(1);
+  transition-delay:.08s;
+}
+@media (prefers-reduced-motion: reduce) {
+  .plans-kicker, .plans-h2 {
+    opacity:1; filter:none; transform:none; transition:none;
+  }
 }
 @media (max-width:720px) {
   .plans-h2 { white-space:normal; }
@@ -3023,8 +3061,10 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   flex-direction:column;
   align-items:center;
   justify-content:center;
-  gap:32px;
-  padding:120px 8vw;
+  /* Wider gap between kicker / headline / CTA / sublink so the four
+     elements breathe instead of crowding around the headline. */
+  gap:64px;
+  padding:160px 8vw;
   background:var(--bg);
   text-align:center;
 }
@@ -3036,11 +3076,14 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   color:var(--accent);
 }
 .final h2 {
-  font-family:'Space Grotesk', 'Pretendard', 'Noto Sans KR', sans-serif;
+  font-family:'Pretendard', 'Noto Sans KR', sans-serif;
+  font-weight:900;
+  /* Heavier weight + 2px stroke so Korean glyphs read as confident as
+     the original English mono-words at this scale. */
+  -webkit-text-stroke:2px currentColor;
   font-size:clamp(3rem, 12vw, 10rem);
-  line-height:.86;
-  letter-spacing:-.05em;
-  text-transform:uppercase;
+  line-height:1.05;
+  letter-spacing:-.035em;
   max-width:1120px;
 }
 .final-btn {
@@ -6030,6 +6073,24 @@ document.addEventListener('DOMContentLoaded', function () {
       titleObserver.observe(orbitSection);
     } else {
       orbitSection.classList.add('title-in');
+    }
+  }
+
+  // Same scroll-triggered title-in pattern for the #plans section so the
+  // CHOOSE YOUR FIRST MONTH kicker + headline blur-up every time the
+  // section re-enters the viewport.
+  var plansSection = document.getElementById('plans');
+  if (plansSection) {
+    if ('IntersectionObserver' in window) {
+      var plansTitleObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) plansSection.classList.add('title-in');
+          else plansSection.classList.remove('title-in');
+        });
+      }, { threshold: 0.18, rootMargin: '0px 0px -10% 0px' });
+      plansTitleObserver.observe(plansSection);
+    } else {
+      plansSection.classList.add('title-in');
     }
   }
 })();
