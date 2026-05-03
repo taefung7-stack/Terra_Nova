@@ -208,26 +208,41 @@ body { font-size: var(--fs-body); line-height: var(--lh-body); }
   border-radius: 2pt;
 }
 .p1-illustration {
-  margin-top: 6pt;
-  /* No fixed height, no aspect-ratio declaration — the <img> inside
-     decides the container height using its own natural aspect ratio.
-     With the image being width: 100% + height: auto below, the
-     illustration slot ends up exactly as tall as the source PNG needs
-     (≈56mm for a 3904×1216 file placed at the 180mm body width),
-     and NO cropping happens on any edge. */
+  /* margin: 0 — kill the user-agent <figure> default of `margin: 1em 40px`
+     which was silently insetting the image by ~21mm horizontally and breaking
+     the full-180mm-body-width spec. Apply only the 6pt top breathing space. */
+  margin: 6pt 0 0 0;
+  width: 100%;
+  /* When the body text leaves a full 56mm of vertical slack, the container
+     grows to the image's natural height (180×56mm at 3.21:1, no crop). When
+     the body is long and slack is tight, the container falls back toward the
+     48mm floor and the <img> crops from the TOP via object-position below —
+     keeps the bottom of the illustration (where the action usually sits)
+     visible and prevents caption/image from spilling into the page footer. */
+  flex: 1 0 48mm;
+  min-height: 48mm;
+  max-height: 56mm;
   overflow: hidden;
   border-radius: 3pt;
   background: var(--tn-theme-soft);
   position: relative;
-  flex-shrink: 0;
 }
 .p1-illustration img, .p1-illustration svg {
-  /* width: 100% + height: auto lets the image display at the container's
-     full 180mm width and take whatever natural height that implies. No
-     object-fit needed — the image is shown in its entirety, every pixel. */
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  /* object-fit: cover + center bottom — fills the container exactly and,
+     when the container is shorter than natural, the crop comes off the TOP.
+     The bottom of every illustration always stays visible. */
+  object-fit: cover;
+  object-position: center bottom;
+}
+/* Caption hidden globally — the figcaption was rendered as a sibling to
+   the figure (HTML5-noncompliant) and on long passages it overflowed into
+   the page footer (e.g. p.79 passage 18). The caption text is preserved
+   in JSON for future use; visual rendering is suppressed here. */
+.p1-caption {
+  display: none;
 }
 /* Empty-image placeholder shown when the illustration file is missing
    (e.g. waiting for a Midjourney-generated PNG to drop in). */

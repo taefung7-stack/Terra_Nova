@@ -1,0 +1,503 @@
+{
+  "schema_version": "2.2",
+  "id": "2026-06-J-02",
+  "meta": {
+    "month": "2026-06-J",
+    "sequence": 2,
+    "subject": "수학",
+    "linked_unit": "미적분 I-1 함수의 극한",
+    "part_ko": "다가가는 길의 수학",
+    "achievement_standard": "12미적01-01",
+    "difficulty": "중간",
+    "cognitive_skill": "빈칸추론",
+    "lexile": "1180L",
+    "ar_level": 7.8,
+    "key_concepts": [
+      "극한",
+      "수렴",
+      "연속",
+      "도함수"
+    ]
+  },
+  "page1": {
+    "title": "What the Limit of a Function Really Means",
+    "subtitle": "Heading toward something is not the same as arriving.",
+    "body": "Imagine a runner sprinting toward a tall white wall and slowing down a little more with every single step she takes. She never quite touches the painted line on the wall, and yet you can see exactly where her path is heading. In mathematics, this everyday idea of \"heading toward but never arriving\" is captured by the small but powerful word <u>limit</u>. When we write that the limit of a function f(x) as x approaches three is five, we are not saying that f always equals five at three. We are saying instead that f(x) gets as close to five as anyone could ever demand, just by pushing x close enough to three. The function may even be undefined at the exact point three, and the limit can still exist all around it. This careful separation between behavior near a point and the value at the point is the central insight of calculus.\n\nLimits become especially powerful when we are forced to examine fractions that look like 0/0 or formulas that seem to head toward infinity. Such expressions appear broken at first glance, but the limit lets us trade them for a cleaner equivalent expression. We can simplify, factor, or apply more delicate tools, all while staying perfectly consistent with the original problem. Out of this single small trick comes the entire modern machinery of derivatives, integrals, and continuous change.\n\nWithout limits, we could never give a precise meaning to the idea of an instantaneous speed or a slope on a smooth curve. We would be stuck with crude average rates between two distant moments, never able to ask what truly happens at one single moment. In other words, the limit is a <mark>quiet promise</mark>: even where direct calculation breaks down, we can still describe behavior precisely, simply because mathematics agrees to <blank>.\n\nToday, the same trick is hidden quietly inside every GPS receiver and every weather model running on a phone. Each of those programs leans on a thousand small limits whenever it pretends a continuous world has just become a clean digital number.",
+    "illustration": "../../assets/illustrations/2026-06-J/02.jpg",
+    "illustration_caption": "Approaching a value without ever needing to arrive there."
+  },
+  "page2": {
+    "questions": [
+      {
+        "type": "mock_objective",
+        "style": "빈칸 추론",
+        "stem": "윗글의 밑줄 친 빈칸에 들어갈 말로 가장 적절한 것은?",
+        "choices": [
+          "ignore broken arithmetic and accept any answer that seems convenient at the moment",
+          "abandon any function that briefly fails to evaluate at a single isolated point",
+          "let us speak about behavior near a point even when the value there cannot be computed",
+          "require every expression to remain perfectly continuous from one end to the other",
+          "measure functions only at the exact points where they are clearly well-defined"
+        ],
+        "answer_index": 2
+      },
+      {
+        "type": "mock_objective",
+        "style": "요지",
+        "stem": "다음 글의 요지로 가장 적절한 것은?",
+        "choices": [
+          "Calculus is mainly about adding many small numbers carefully to recover total quantities of energy.",
+          "The concept of a limit replaces direct calculation with educated guessing whenever a formula misbehaves.",
+          "Limits let us describe how a function behaves near a point even when the function itself fails there, opening the door to derivatives and integrals.",
+          "Functions can be safely studied only when they are explicitly defined and continuous at every input value.",
+          "Average rates of change are sufficient for most physical problems and rarely need any further refinement."
+        ],
+        "answer_index": 2
+      },
+      {
+        "type": "mock_objective",
+        "style": "함의 추론",
+        "stem": "윗글의 밑줄 친 표현 quiet promise 가 의미하는 바로 가장 적절한 것은?",
+        "choices": [
+          "an unwritten contract between mathematicians forbidding them ever to use undefined values",
+          "an emotional commitment that limits will eventually be replaced by simpler tools",
+          "a guarantee that we can still describe how a function behaves near a point even if exact evaluation fails there",
+          "a temporary arrangement that holds only until a function is fully defined everywhere",
+          "a polite recommendation that calculus students should memorize the rule rather than fully understand it"
+        ],
+        "answer_index": 2
+      },
+      {
+        "type": "school_descriptive",
+        "style": "요약문 빈칸 완성",
+        "prompt": "다음은 본문의 요약문이다. 본문의 내용을 바탕으로 빈칸 (A), (B)에 들어갈 말을 <조건>에 맞게 영어 한 단어로 각각 쓰시오. <조건> 본문에서 제시된 단어를 그대로 활용할 것.",
+        "hints": [
+          "near",
+          "value",
+          "limit",
+          "behavior",
+          "point"
+        ],
+        "summary_template": "A limit describes how a function f(x) behaves <blank> (A) a point, not necessarily what its <blank> (B) is at that point itself, and this separation makes calculus possible.",
+        "model_answer": "(A) near  (B) value"
+      }
+    ],
+    "textbook_tieback": {
+      "unit_label": "미적분 I-1 · 함수의 극한",
+      "body_ko": "고2 미적분 첫 단원에서 극한은 함수가 어떤 값에 '한없이 가까워진다'는 직관을 엄밀하게 정리한 개념이다. 'x → a일 때 f(x) → L'은 f가 a에서 정의되어 있느냐와 무관하게, a 근처에서 f(x)가 L에 임의로 가까워질 수 있다는 의미다. 이 분리 덕분에 0/0이나 ∞/∞ 같은 부정형 처리, 연속성의 정의, 그리고 도함수와 적분으로 가는 길이 모두 열린다.",
+      "tags": [
+        "극한",
+        "수렴",
+        "연속",
+        "도함수"
+      ],
+      "visual_aid": {
+        "type": "emoji_flow",
+        "title": "x → a 일 때 f(x)는 어디로 향하나",
+        "steps": [
+          {
+            "emoji": "🏃",
+            "label": "근접",
+            "note": "x가 a로 가까워짐"
+          },
+          {
+            "emoji": "🎯",
+            "label": "수렴",
+            "note": "f(x)가 L로 다가감"
+          },
+          {
+            "emoji": "🚪",
+            "label": "도착 무관",
+            "note": "f(a) 미정의여도 OK"
+          }
+        ]
+      }
+    }
+  },
+  "page3": {
+    "sentences": [
+      {
+        "index": 1,
+        "segments": [
+          { "role": "V", "text": "Imagine", "note": "명령문" },
+          { "role": "O", "text": "a runner sprinting toward a tall white wall and slowing down a little more with every single step she takes.", "note": "분사 sprinting, slowing 병렬" }
+        ],
+        "grammar_note": "명령문 + 분사 두 개 병렬 후치 수식"
+      },
+      {
+        "index": 2,
+        "segments": [
+          { "role": "S", "text": "She" },
+          { "role": "V", "text": "never quite touches" },
+          { "role": "O", "text": "the painted line on the wall," },
+          { "role": "CONJ", "text": "and yet", "note": "양보 접속" },
+          { "role": "S", "text": "you" },
+          { "role": "V", "text": "can see" },
+          { "role": "O", "text": "exactly where her path is heading.", "note": "where 명사절" }
+        ],
+        "grammar_note": "yet 양보 + where 명사절 목적어"
+      },
+      {
+        "index": 3,
+        "segments": [
+          { "role": "M", "text": "In mathematics," },
+          { "role": "S", "text": "this everyday idea of \"heading toward but never arriving\"" },
+          { "role": "V", "text": "is captured", "note": "수동태" },
+          { "role": "M", "text": "by the small but powerful word limit." }
+        ],
+        "grammar_note": "수동태 be + p.p."
+      },
+      {
+        "index": 4,
+        "segments": [
+          { "role": "M", "text": "When we write that the limit of a function f(x) as x approaches three is five,", "note": "When 시간절 + that 명사절" },
+          { "role": "S", "text": "we" },
+          { "role": "V", "text": "are not saying" },
+          { "role": "O", "text": "that f always equals five at three.", "note": "that 명사절 목적어" }
+        ],
+        "grammar_note": "When 시간절 안에 that 명사절 두 번 중첩"
+      },
+      {
+        "index": 5,
+        "segments": [
+          { "role": "S", "text": "We" },
+          { "role": "V", "text": "are saying" },
+          { "role": "M", "text": "instead" },
+          { "role": "O", "text": "that f(x) gets as close to five as anyone could ever demand,", "note": "as ~ as 비교" },
+          { "role": "M", "text": "just by pushing x close enough to three.", "note": "by -ing 수단" }
+        ],
+        "grammar_note": "as ~ as 비교 + by -ing 수단"
+      },
+      {
+        "index": 6,
+        "segments": [
+          { "role": "S", "text": "The function" },
+          { "role": "V", "text": "may even be undefined", "note": "조동사 + 수동" },
+          { "role": "M", "text": "at the exact point three," },
+          { "role": "CONJ", "text": "and" },
+          { "role": "S", "text": "the limit" },
+          { "role": "V", "text": "can still exist" },
+          { "role": "M", "text": "all around it." }
+        ],
+        "grammar_note": "조동사 may/can 병렬 두 절"
+      },
+      {
+        "index": 7,
+        "segments": [
+          { "role": "S", "text": "This careful separation between behavior near a point and the value at the point" },
+          { "role": "V", "text": "is" },
+          { "role": "C", "text": "the central insight of calculus." }
+        ],
+        "grammar_note": "긴 주어 + 2형식 보어"
+      },
+      {
+        "index": 8,
+        "segments": [
+          { "role": "S", "text": "Limits" },
+          { "role": "V", "text": "become especially powerful", "note": "2형식 동사 become" },
+          { "role": "M", "text": "when we are forced to examine fractions that look like 0/0 or formulas that seem to head toward infinity.", "note": "when 시간절 + 두 관계절" }
+        ],
+        "grammar_note": "force O to-V 5형식의 수동 + 관계절 두 개"
+      },
+      {
+        "index": 9,
+        "segments": [
+          { "role": "S", "text": "Such expressions" },
+          { "role": "V", "text": "appear", "note": "2형식" },
+          { "role": "C", "text": "broken at first glance," },
+          { "role": "CONJ", "text": "but" },
+          { "role": "S", "text": "the limit" },
+          { "role": "V", "text": "lets" },
+          { "role": "O", "text": "us" },
+          { "role": "C", "text": "trade them for a cleaner equivalent expression.", "note": "let O 동사원형" }
+        ],
+        "grammar_note": "사역동사 let + O + 동사원형"
+      },
+      {
+        "index": 10,
+        "segments": [
+          { "role": "S", "text": "We" },
+          { "role": "V", "text": "can simplify, factor, or apply", "note": "조동사 + 동사 병렬" },
+          { "role": "O", "text": "more delicate tools," },
+          { "role": "M", "text": "all while staying perfectly consistent with the original problem.", "note": "while -ing 분사구문" }
+        ],
+        "grammar_note": "동사 세 개 병렬 + while -ing"
+      },
+      {
+        "index": 11,
+        "segments": [
+          { "role": "M", "text": "Out of this single small trick" },
+          { "role": "V", "text": "comes", "note": "도치된 V" },
+          { "role": "S", "text": "the entire modern machinery of derivatives, integrals, and continuous change." }
+        ],
+        "grammar_note": "전치사구 도치 + V S 어순"
+      },
+      {
+        "index": 12,
+        "segments": [
+          { "role": "M", "text": "Without limits," },
+          { "role": "S", "text": "we" },
+          { "role": "V", "text": "could never give" },
+          { "role": "O", "text": "a precise meaning to the idea of an instantaneous speed or a slope on a smooth curve." }
+        ],
+        "grammar_note": "가정법 could + 4형식 give A to B"
+      },
+      {
+        "index": 13,
+        "segments": [
+          { "role": "S", "text": "We" },
+          { "role": "V", "text": "would be stuck", "note": "가정법 수동" },
+          { "role": "M", "text": "with crude average rates between two distant moments," },
+          { "role": "M", "text": "never able to ask what truly happens at one single moment.", "note": "분사구문 + what 명사절" }
+        ],
+        "grammar_note": "가정법 would + be stuck + 분사구문 + what 명사절"
+      },
+      {
+        "index": 14,
+        "segments": [
+          { "role": "M", "text": "In other words," },
+          { "role": "S", "text": "the limit" },
+          { "role": "V", "text": "is" },
+          { "role": "C", "text": "a quiet promise:" },
+          { "role": "M", "text": "even where direct calculation breaks down,", "note": "양보 부사절" },
+          { "role": "S", "text": "we" },
+          { "role": "V", "text": "can still describe" },
+          { "role": "O", "text": "behavior" },
+          { "role": "M", "text": "precisely," },
+          { "role": "CONJ", "text": "simply because", "note": "이유 부사절" },
+          { "role": "S", "text": "mathematics" },
+          { "role": "V", "text": "agrees to ____ (= let us describe near-point behavior)." }
+        ],
+        "grammar_note": "even where 양보절 + simply because 이유절"
+      },
+      {
+        "index": 15,
+        "segments": [
+          { "role": "M", "text": "Today," },
+          { "role": "S", "text": "the same trick" },
+          { "role": "V", "text": "is hidden", "note": "수동" },
+          { "role": "M", "text": "quietly inside every GPS receiver and every weather model" },
+          { "role": "M", "text": "running on a phone.", "note": "분사 running 후치" }
+        ],
+        "grammar_note": "수동 + 분사 running 후치"
+      },
+      {
+        "index": 16,
+        "segments": [
+          { "role": "S", "text": "Each of those programs" },
+          { "role": "V", "text": "leans on" },
+          { "role": "O", "text": "a thousand small limits" },
+          { "role": "M", "text": "whenever it pretends a continuous world has just become a clean digital number.", "note": "Whenever 부사절" }
+        ],
+        "grammar_note": "lean on 숙어 + Whenever 부사절"
+      }
+    ],
+    "translation_ko": "[1] 큰 흰 벽을 향해 한 걸음 한 걸음 더 천천히 줄여 가며 달려가는 한 주자를 떠올려 보자. [2] 그녀는 결코 벽 위의 칠해진 선에 닿지는 않지만, 그녀의 길이 어디로 향하는지는 정확히 알 수 있다. [3] 수학에서는 \"다가가지만 결코 도착하지 않는다\"는 일상적 관념이 작지만 강력한 단어인 극한으로 담긴다. [4] x가 3으로 다가갈 때 함수 f(x)의 극한이 5라고 쓸 때, 우리는 f가 x = 3에서 항상 5와 같다고 말하는 것이 아니다. [5] 다만 누구든 원하는 만큼 5에 가까워지도록 만들 수 있다는 뜻이다 — x를 3에 충분히 가까이 밀어 넣기만 하면. [6] 함수가 정확히 x = 3에서 정의되지 않을 수 있어도, 극한은 그 주변에 그대로 존재할 수 있다. [7] 한 점에서의 값과 그 점 근처의 행동을 이렇게 신중하게 분리해 보는 것이 바로 미적분의 핵심 통찰이다. [8] 극한은 0/0처럼 보이는 분수나 무한대로 향하는 식처럼 어딘가 깨져 보이는 표현을 다뤄야 할 때 특히 강력해진다. [9] 그런 식들은 첫눈에 깨진 듯 보이지만, 극한은 우리에게 그것을 더 깔끔한 동치 표현과 바꿔 쓰게 해 준다. [10] 우리는 식을 단순화하거나 인수분해하거나 더 정밀한 도구를 적용할 수 있고, 그 과정 내내 원래 문제와 완벽히 일관성을 유지한다. [11] 이 작은 한 가지 기교에서 도함수, 적분, 그리고 연속적 변화의 현대 기계 전체가 자라난다. [12] 극한이 없다면 우리는 매끄러운 곡선 위 한 점에서의 순간 속도나 기울기 같은 개념에 정확한 의미를 부여할 수 없을 것이다. [13] 우리는 멀리 떨어진 두 시점 사이의 거친 평균 변화율에만 머물고, 한 순간에 무엇이 진짜 일어나는지를 결코 물을 수 없을 것이다. [14] 다른 말로 하면, 극한은 조용한 약속이다 — 직접 계산이 무너진 곳에서도 우리는 그 행동을 정확히 묘사할 수 있다, 단지 수학이 그렇게 하기로 동의했기 때문에. [15] 오늘날 같은 기교는 휴대폰 안의 GPS 수신기와 일기예보 모델 속에 조용히 숨어 있다. [16] 그 프로그램들은 연속적인 세계를 깔끔한 디지털 숫자로 바꾸어 내는 척할 때마다 수천 개의 작은 극한에 의지한다."
+  },
+  "page4": {
+    "vocab": [
+      {
+        "word": "limit",
+        "pos": "n.",
+        "meaning_ko": "극한, 한계",
+        "synonyms": ["bound", "boundary"],
+        "antonyms": [],
+        "examples": [
+          { "en": "The limit of f(x) as x approaches three equals five.", "ko": "x가 3으로 다가갈 때 f(x)의 극한은 5이다." },
+          { "en": "There is no clear limit to how creative people can be.", "ko": "사람이 얼마나 창의적일 수 있는지에는 분명한 한계가 없다." }
+        ]
+      },
+      {
+        "word": "approach",
+        "pos": "v.",
+        "meaning_ko": "다가가다, 접근하다",
+        "synonyms": ["draw near"],
+        "antonyms": ["retreat"],
+        "examples": [
+          { "en": "As x approaches three, f(x) approaches five.", "ko": "x가 3으로 다가갈 때, f(x)는 5로 다가간다." },
+          { "en": "The boat slowly approached the dock at sunset.", "ko": "보트는 해질녘에 서서히 부두로 다가갔다." }
+        ]
+      },
+      {
+        "word": "demand",
+        "pos": "v.",
+        "meaning_ko": "요구하다",
+        "synonyms": ["require", "insist on"],
+        "antonyms": [],
+        "examples": [
+          { "en": "f(x) gets as close to five as anyone could demand.", "ko": "누구든 요구하는 만큼 f(x)는 5에 가까워진다." },
+          { "en": "The teacher demanded a clearer explanation from the student.", "ko": "선생님은 학생에게 더 분명한 설명을 요구했다." }
+        ]
+      },
+      {
+        "word": "undefined",
+        "pos": "adj.",
+        "meaning_ko": "정의되지 않은",
+        "synonyms": [],
+        "antonyms": ["defined"],
+        "examples": [
+          { "en": "The function may be undefined at the exact point three.", "ko": "함수는 정확히 x = 3에서 정의되지 않을 수도 있다." },
+          { "en": "Some words remain undefined in casual everyday speech.", "ko": "어떤 단어들은 일상 회화에서 정의되지 않은 채로 남아 있다." }
+        ]
+      },
+      {
+        "word": "separation",
+        "pos": "n.",
+        "meaning_ko": "분리, 구별",
+        "synonyms": ["distinction"],
+        "antonyms": ["union"],
+        "examples": [
+          { "en": "The separation between behavior near a point and the value there is the key insight.", "ko": "한 점 근처의 행동과 그 점에서의 값을 분리하는 것이 핵심 통찰이다." },
+          { "en": "A clear separation of duties helps a team work smoothly.", "ko": "역할의 명확한 분리는 팀이 매끄럽게 일하게 해 준다." }
+        ]
+      },
+      {
+        "word": "insight",
+        "pos": "n.",
+        "meaning_ko": "통찰, 통찰력",
+        "synonyms": ["understanding"],
+        "antonyms": [],
+        "examples": [
+          { "en": "This is the central insight of calculus.", "ko": "이것이 미적분의 핵심 통찰이다." },
+          { "en": "Her essay offers a fresh insight into modern poetry.", "ko": "그녀의 에세이는 현대시에 대한 신선한 통찰을 제공한다." }
+        ]
+      },
+      {
+        "word": "fraction",
+        "pos": "n.",
+        "meaning_ko": "분수, 일부",
+        "synonyms": ["portion"],
+        "antonyms": ["whole"],
+        "examples": [
+          { "en": "Limits help us handle fractions that look like 0/0.", "ko": "극한은 0/0처럼 보이는 분수를 다루도록 돕는다." },
+          { "en": "Only a small fraction of the audience left early.", "ko": "관객 중 극히 일부만 일찍 자리를 떴다." }
+        ]
+      },
+      {
+        "word": "infinity",
+        "pos": "n.",
+        "meaning_ko": "무한, 무한대",
+        "synonyms": [],
+        "antonyms": [],
+        "examples": [
+          { "en": "Some formulas seem to head toward infinity.", "ko": "어떤 식은 무한대로 향하는 듯 보인다." },
+          { "en": "Mirrors facing each other create the illusion of infinity.", "ko": "서로 마주 보는 거울은 무한대의 환상을 만들어 낸다." }
+        ]
+      },
+      {
+        "word": "simplify",
+        "pos": "v.",
+        "meaning_ko": "단순화하다",
+        "synonyms": ["streamline"],
+        "antonyms": ["complicate"],
+        "examples": [
+          { "en": "We can simplify or factor the expression after taking the limit.", "ko": "극한을 취한 뒤 식을 단순화하거나 인수분해할 수 있다." },
+          { "en": "This new app simplifies the way we share photos.", "ko": "이 새 앱은 우리가 사진을 공유하는 방식을 단순화한다." }
+        ]
+      },
+      {
+        "word": "factor",
+        "pos": "v.",
+        "meaning_ko": "인수분해하다",
+        "synonyms": [],
+        "antonyms": [],
+        "examples": [
+          { "en": "Factor the numerator before substituting the limit value.", "ko": "극한값을 대입하기 전에 분자를 인수분해하라." },
+          { "en": "Students learn to factor polynomials in middle school.", "ko": "학생들은 중학교에서 다항식을 인수분해하는 법을 배운다." }
+        ]
+      },
+      {
+        "word": "derivative",
+        "pos": "n.",
+        "meaning_ko": "도함수",
+        "synonyms": [],
+        "antonyms": [],
+        "examples": [
+          { "en": "Limits give rise to the entire machinery of derivatives.", "ko": "극한에서 도함수의 모든 체계가 자라난다." },
+          { "en": "The derivative of x² is 2x.", "ko": "x²의 도함수는 2x이다." }
+        ]
+      },
+      {
+        "word": "instantaneous",
+        "pos": "adj.",
+        "meaning_ko": "순간의, 즉각적인",
+        "synonyms": ["immediate"],
+        "antonyms": ["gradual"],
+        "examples": [
+          { "en": "Without limits, instantaneous speed would have no meaning.", "ko": "극한이 없다면 순간 속도는 아무 의미도 갖지 못한다." },
+          { "en": "Modern messaging gives almost instantaneous replies.", "ko": "현대의 메시지 앱은 거의 즉각적인 응답을 제공한다." }
+        ]
+      }
+    ]
+  },
+  "answers": {
+    "explanations": [
+      {
+        "q_index": 0,
+        "q_style": "빈칸 추론",
+        "correct": 2,
+        "evidence": "본문 마지막 문장 \"even where direct calculation breaks down, we can still describe behavior precisely\"가 빈칸의 핵심 근거. 극한은 직접 계산이 안 되는 점 근처의 행동을 정확히 묘사하게 해 준다.",
+        "rationales": [
+          "본문은 \"perfectly consistent with the original problem\"이라며 임의 답을 허용하지 않는다.",
+          "본문은 정의되지 않은 점에서도 극한이 존재할 수 있다고 명시 (sentence 6).",
+          "(정답) 본문이 반복 강조한 '점에서의 값과 점 근처의 행동을 분리'하는 극한의 본질을 정확히 일반화.",
+          "본문은 모든 식이 연속이어야 한다고 요구하지 않는다. 0/0 같은 불연속도 다룬다.",
+          "정반대 진술. 본문은 \"undefined at the exact point\"에서도 극한이 존재할 수 있다고 한다."
+        ],
+        "key_terms": [
+          { "en": "behavior near a point", "ko": "점 근처의 행동" },
+          { "en": "undefined", "ko": "정의되지 않은" }
+        ]
+      },
+      {
+        "q_index": 1,
+        "q_style": "요지",
+        "correct": 2,
+        "evidence": "본문은 극한이 점 근처 행동과 점에서의 값을 분리해 주며, 이로부터 도함수와 적분의 현대 기계가 자라난다고 일관되게 주장한다 (sentence 7, 11).",
+        "rationales": [
+          "본문은 적분만 다루지 않으며 극한 자체에 초점이 있다.",
+          "본문은 '추측'이 아니라 '엄밀한 묘사'를 제공한다.",
+          "(정답) 점 근처 행동의 정밀 묘사 → 도함수·적분의 문 열림이라는 글의 흐름을 정확히 요약.",
+          "본문은 정의되지 않은 점에서도 극한이 존재한다고 강조한다.",
+          "본문은 평균 변화율이 부족하다고 명시한다 (sentence 13)."
+        ],
+        "key_terms": [
+          { "en": "central insight", "ko": "핵심 통찰" },
+          { "en": "machinery of derivatives", "ko": "도함수의 체계" }
+        ]
+      },
+      {
+        "q_index": 2,
+        "q_style": "함의 추론",
+        "correct": 2,
+        "evidence": "밑줄 직후 콜론 뒤 문장이 \"even where direct calculation breaks down, we can still describe behavior precisely\"로 직접 부연. quiet promise는 직접 계산 실패 지점에서도 묘사가 가능하다는 보장이다.",
+        "rationales": [
+          "본문은 '계약/금지'를 다루지 않는다.",
+          "본문은 극한을 '대체될 도구'로 보지 않는다. 오히려 도함수·적분의 토대다.",
+          "(정답) 직접 계산이 무너져도 점 근처 행동을 정밀 묘사할 수 있다는 보장이 quiet promise의 의미다.",
+          "본문은 함수 전체가 정의되어야 한다고 말하지 않는다.",
+          "본문은 학습 태도를 권장하지 않는다."
+        ],
+        "key_terms": [
+          { "en": "breaks down", "ko": "무너지다" },
+          { "en": "describe behavior precisely", "ko": "행동을 정확히 묘사하다" }
+        ]
+      },
+      {
+        "q_index": 3,
+        "q_style": "요약문 빈칸 완성",
+        "correct": null,
+        "model_answer_en": "(A) near  (B) value",
+        "evidence": "(A)는 sentence 7 \"behavior near a point\"가 직접 근거. (B)는 sentence 7 \"the value at the point\"가 직접 근거.",
+        "rationales": [
+          "(A) near — 본문이 반복 사용하는 \"behavior near a point\" 구문에서 그대로 가져옴.",
+          "(B) value — 본문 \"the value at the point\"에서 직접 인용된 본문 어휘."
+        ],
+        "key_terms": [
+          { "en": "near", "ko": "근처에서" },
+          { "en": "value", "ko": "값" }
+        ]
+      }
+    ]
+  }
+}

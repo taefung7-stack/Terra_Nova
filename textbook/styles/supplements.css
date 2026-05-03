@@ -1,0 +1,638 @@
+/* ===================================================================
+   Terra Nova supplements — answer book, wordbook, wordtest
+   Shared rules:
+     - Per-month theme color comes from tokens.css [data-month=YYYY-MM]
+     - Odd  pages: page-num LEFT,  brand RIGHT, no foot-day
+     - Even pages: foot-day LEFT,  page-num RIGHT, no brand
+   ================================================================= */
+
+/* ---------- shared head ----------
+   The default .section-label in layout.css already matches PASSAGE
+   (font-serif-display, 700, 13pt, theme-deep). Do NOT override it
+   for answer pages — they should look identical to textbook headers.
+   Only the wordbook/wordtest section uses the larger .supp-section-label. */
+
+/* Larger, prominent header used by wordbook/wordtest/key */
+.supp .supp-head {
+  border-bottom: 1.2pt solid var(--tn-theme-deep);
+  padding-bottom: 4pt;
+  margin-bottom: 6pt;
+}
+.supp .supp-section-label {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 18pt;
+  letter-spacing: 0.06em;
+  color: var(--tn-theme-deep);
+  text-transform: uppercase;
+}
+.supp .supp-scope-label {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 18pt;
+  letter-spacing: 0.06em;
+  color: var(--tn-theme-deep);
+  text-transform: uppercase;
+}
+
+/* ---------- shared foot ---------- */
+.supp .page-foot {
+  display: flex; align-items: center; justify-content: space-between;
+  font-family: var(--font-display);
+  font-size: var(--fs-meta);
+  color: var(--tn-muted);
+  padding-top: var(--space-xs);
+  border-top: 0.7pt solid var(--tn-divider);
+  gap: 6pt;
+}
+.supp .page-foot .page-num {
+  display: inline-flex;
+  align-items: center; justify-content: center;
+  min-width: 16pt; height: 16pt;
+  padding: 0 5pt;
+  border-radius: 999px;
+  background: var(--tn-theme-deep);
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 9pt;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+.supp .page-foot .brand {
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--tn-theme-deep);
+  font-size: 10pt;
+  letter-spacing: 0.08em;
+}
+.supp .page-foot .brand .brand-dot { color: var(--tn-theme); }
+.supp .page-foot .brand .brand-sub {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 10pt;
+  color: var(--tn-theme-deep);
+  margin-left: 4pt;
+  letter-spacing: 0.06em;
+}
+.supp .page-foot .foot-day {
+  /* Same visual weight as brand, used in even-page LEFT slot */
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--tn-theme-deep);
+  font-size: 10pt;
+  letter-spacing: 0.08em;
+}
+
+/* Odd pages: page-num | brand   (no foot-day) */
+.supp.page.left-page .page-foot .foot-day { display: none; }
+.supp.page.left-page .page-foot .page-num { order: 1; }
+.supp.page.left-page .page-foot .brand    { order: 2; margin-left: auto; }
+
+/* Even pages: foot-day | page-num   (no brand) */
+.supp.page.right-page .page-foot .brand    { display: none; }
+.supp.page.right-page .page-foot .foot-day { order: 1; }
+.supp.page.right-page .page-foot .page-num { order: 2; margin-left: auto; }
+
+/* ===================================================================
+   ANSWER BOOK — 2 questions per page (DAY = 1 passage = 2 pages)
+   ================================================================= */
+.supp-answer .ans-meta {
+  display: flex; gap: 5pt; align-items: center; flex-wrap: wrap;
+  margin-bottom: 5pt;
+}
+.supp-answer .ans-meta .chip {
+  background: var(--tn-theme-soft);
+  color: var(--tn-theme-deep);
+  font-family: var(--font-ko);
+  font-weight: 600;
+  font-size: 8pt;
+  padding: 1.5pt 8pt;
+  border-radius: 999px;
+}
+.supp-answer .ans-meta .chip.part { background: #fff; border: 0.7pt solid var(--tn-theme); }
+.supp-answer .ans-meta .chip.seq {
+  background: transparent; border: 0.5pt dashed var(--tn-muted);
+  color: var(--tn-ink-soft); font-family: var(--font-display);
+  font-weight: 500; letter-spacing: 0.04em; font-size: 7.5pt;
+}
+
+.supp-answer .ans-pair {
+  display: flex;
+  flex-direction: column;
+  gap: 6pt;
+  flex: 1;
+  min-height: 0;
+}
+.supp-answer .ans-q {
+  display: flex; flex-direction: column;
+  gap: 3pt;
+  border-left: 2.5pt solid var(--tn-theme);
+  padding: 3pt 8pt 5pt;
+  flex: 1 1 0;            /* equal vertical distribution across 4 questions */
+  min-height: 0;
+  overflow: hidden;
+}
+.supp-answer .ans-q-title {
+  display: flex; align-items: baseline; gap: 5pt;
+  font-family: var(--font-ko);
+  font-weight: 700;
+  font-size: 10pt;
+  line-height: 1.4;
+  color: var(--tn-ink);
+  margin: 0;
+}
+.supp-answer .ans-q-num {
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--tn-theme-deep);
+  font-size: 11pt;
+  flex-shrink: 0;
+}
+.supp-answer .ans-q-style {
+  background: var(--tn-theme-deep);
+  color: #fff;
+  font-family: var(--font-ko);
+  font-weight: 700;
+  font-size: 7.5pt;
+  padding: 1pt 6pt;
+  border-radius: 999px;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  flex-shrink: 0;
+}
+.supp-answer .ans-q-stem {
+  flex: 1;
+  word-break: keep-all;
+}
+
+.supp-answer .ans-correct,
+.supp-answer .ans-model {
+  background: var(--tn-theme-soft);
+  border-left: 2.5pt solid var(--tn-theme-deep);
+  padding: 4pt 7pt;
+  display: flex; align-items: baseline; gap: 6pt;
+  border-radius: 2pt;
+  font-size: 9pt;
+}
+.supp-answer .ans-correct-label,
+.supp-answer .ans-model-label {
+  font-family: var(--font-ko);
+  font-weight: 700;
+  font-size: 9pt;
+  color: var(--tn-theme-deep);
+  flex-shrink: 0;
+}
+.supp-answer .ans-correct-circle {
+  font-size: 13pt;
+  font-weight: 800;
+  color: var(--tn-theme-deep);
+  flex-shrink: 0;
+}
+.supp-answer .ans-correct-text {
+  font-size: 9pt;
+  line-height: 1.4;
+  color: var(--tn-ink);
+  font-family: var(--font-body);
+}
+.supp-answer .ans-model-text {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 11pt;
+  color: var(--tn-ink);
+}
+
+.supp-answer .ans-block {
+  display: flex; gap: 5pt; align-items: flex-start;
+  font-size: 9pt;
+}
+.supp-answer .ans-block-h {
+  font-family: var(--font-ko);
+  font-weight: 700;
+  font-size: 9pt;
+  color: var(--tn-theme-deep);
+  flex-shrink: 0;
+  min-width: 50pt;
+  border-left: 2pt solid var(--tn-theme);
+  padding-left: 5pt;
+  line-height: 1.5;
+}
+.supp-answer .ans-block-body {
+  flex: 1;
+  font-family: var(--font-ko);
+  font-size: 9pt;
+  line-height: 1.5;
+  text-align: justify;
+  word-break: keep-all;
+  color: var(--tn-ink);
+}
+.supp-answer .ans-rationale-list {
+  list-style: none;
+  padding: 0; margin: 0;
+  display: flex; flex-direction: column;
+  gap: 1.5pt;
+}
+.supp-answer .ans-rationale-list .rationale {
+  display: flex; gap: 4pt; align-items: flex-start;
+  font-family: var(--font-ko);
+  font-size: 9pt;
+  line-height: 1.45;
+  color: var(--tn-ink);
+  word-break: keep-all;
+}
+.supp-answer .ans-rationale-list .rationale.is-correct {
+  color: var(--tn-theme-deep);
+  font-weight: 600;
+}
+.supp-answer .ans-rationale-list .rationale-mark {
+  font-weight: 700;
+  color: var(--tn-theme-deep);
+  flex-shrink: 0;
+  min-width: 12pt;
+}
+.supp-answer .ans-rationale-list .rationale-body { flex: 1; }
+
+.supp-answer .ans-keyterm-list {
+  display: flex; flex-wrap: wrap; gap: 3pt;
+}
+.supp-answer .ans-keyterm-list .keyterm {
+  font-size: 8pt;
+  padding: 1pt 6pt;
+  border: 0.5pt solid var(--tn-divider);
+  border-radius: 999px;
+  background: #fff;
+  font-family: var(--font-ko);
+  color: var(--tn-ink);
+}
+.supp-answer .ans-keyterm-list .keyterm b {
+  color: var(--tn-theme-deep);
+  font-family: var(--font-body);
+  font-weight: 700;
+  margin-right: 3pt;
+}
+
+/* ===================================================================
+   WORDBOOK — table that stretches to fill the entire page-body
+   ================================================================= */
+.supp-wordbook .wb-table {
+  width: 100%;
+  height: 100%;       /* stretch with flex parent */
+  border-collapse: collapse;
+  font-size: 9pt;
+  table-layout: fixed;
+}
+.supp-wordbook .wb-table thead th {
+  background: var(--tn-theme-deep);
+  color: #fff;
+  font-family: var(--font-ko);
+  font-weight: 700;
+  font-size: 9pt;
+  padding: 5pt 4pt;
+  text-align: left;
+  letter-spacing: 0.02em;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  height: 1pt;   /* fix header height; remaining flows to rows */
+}
+.supp-wordbook .wb-table tbody {
+  /* nothing — default table-row-group */
+}
+.supp-wordbook .wb-table tbody tr {
+  /* equal row distribution: setting an explicit height lets the table
+     engine grow each row proportionally to fill remaining table height */
+  height: 1px;
+}
+.supp-wordbook .wb-table tbody td {
+  padding: 2pt 4pt;
+  border-bottom: 0.4pt solid var(--tn-divider);
+  vertical-align: middle;
+  line-height: 1.2;
+  font-size: 8.5pt;          /* tighter so 2-line wraps still fit */
+}
+.supp-wordbook .wb-table tbody tr:nth-child(even) td {
+  background: var(--tn-theme-soft);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+.supp-wordbook .col-n { width: 6%;  text-align: center; font-family: var(--font-display); color: var(--tn-muted); }
+.supp-wordbook .col-w { width: 22%; }
+.supp-wordbook .col-p { width: 8%;  font-style: italic; color: var(--tn-theme-deep); font-size: 8pt; }
+.supp-wordbook .col-m { width: 30%; font-family: var(--font-ko); font-size: 8.5pt; }
+.supp-wordbook .col-s { width: 34%; font-size: 7.5pt; color: var(--tn-ink-soft); line-height: 1.2; }
+.supp-wordbook .wb-word {
+  font-family: var(--font-serif-display);
+  font-weight: 700;
+  font-size: 10pt;
+  color: var(--tn-ink);
+}
+.supp-wordbook .col-s .syn { color: var(--tn-theme-deep); }
+.supp-wordbook .col-s .ant { color: var(--tn-ink-soft); margin-left: 5pt; }
+.supp-wordbook .col-s .muted { color: var(--tn-muted); }
+
+/* ===================================================================
+   WORDTEST
+   ================================================================= */
+.supp-wordtest .wt-header {
+  margin-bottom: 7pt;
+  padding-bottom: 6pt;
+  border-bottom: 1pt solid var(--tn-theme-deep);
+  display: flex; justify-content: space-between; align-items: baseline;
+  gap: 12pt;
+}
+.supp-wordtest .wt-student {
+  font-family: var(--font-ko);
+  font-size: 12pt;
+  font-weight: 600;
+  color: var(--tn-ink);
+}
+.supp-wordtest .wt-blank {
+  display: inline-block;
+  min-width: 70pt;
+  border-bottom: 0.8pt solid var(--tn-ink-soft);
+  margin: 0 5pt;
+}
+.supp-wordtest .wt-blank.small { min-width: 26pt; }
+.supp-wordtest .wt-scope {
+  font-family: var(--font-ko);
+  font-size: 12pt;
+  font-weight: 700;
+  color: var(--tn-theme-deep);
+}
+
+.supp-wordtest .wt-section-h {
+  font-family: var(--font-ko);
+  font-weight: 700;
+  font-size: 10.5pt;
+  color: var(--tn-theme-deep);
+  margin: 4pt 0 5pt;
+  border-left: 3pt solid var(--tn-theme-deep);
+  padding-left: 6pt;
+}
+.supp-wordtest .wt-section-h .wt-sec-num {
+  font-family: var(--font-display);
+  font-size: 9pt;
+  background: var(--tn-theme-deep);
+  color: #fff;
+  padding: 1pt 6pt;
+  border-radius: 999px;
+  margin-right: 6pt;
+  vertical-align: 1.5pt;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+.supp-wordtest .wt-section-h .wt-point {
+  font-weight: 500;
+  font-size: 9pt;
+  color: var(--tn-muted);
+  margin-left: 5pt;
+}
+
+/* Part A — 60 words in 2 columns × 30 rows (column-first), filling page */
+.supp-wordtest .wt-partA {
+  list-style: none;
+  padding: 0; margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(30, 1fr);
+  grid-auto-flow: column;     /* fill column-first: 1..30 left, 31..60 right */
+  column-gap: 12pt;
+  row-gap: 0;
+  flex: 1;                     /* stretch to fill page-body */
+  min-height: 0;
+}
+.supp-wordtest .wt-partA li {
+  display: flex; align-items: center; gap: 4pt;
+  font-size: 9pt;
+  padding: 0 0;
+  border-bottom: 0.3pt solid var(--tn-divider);
+}
+.supp-wordtest .wt-partA .wt-n {
+  color: var(--tn-theme-deep);
+  font-family: var(--font-display);
+  font-weight: 700;
+  min-width: 14pt;
+  font-size: 8pt;
+}
+.supp-wordtest .wt-partA .wt-word {
+  font-family: var(--font-body);
+  display: inline-flex; align-items: baseline; gap: 2pt;
+  flex-shrink: 0;
+}
+.supp-wordtest .wt-partA .wt-word b {
+  font-family: var(--font-serif-display);
+  font-weight: 700;
+  font-size: 9.5pt;
+  color: var(--tn-ink);
+}
+.supp-wordtest .wt-partA .wt-word .wt-pos {
+  font-style: italic;
+  font-size: 7pt;
+  color: var(--tn-theme-deep);
+}
+.supp-wordtest .wt-partA .wt-answer-line {
+  flex: 1;
+  border-bottom: 0.5pt solid var(--tn-ink-soft);
+  min-height: 9pt;
+  margin-left: 3pt;
+}
+
+/* Part B — 20 multiple-choice in 2 columns × 10 rows, stretched to fill */
+.supp-wordtest .wt-partB {
+  list-style: none;
+  padding: 0; margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(10, 1fr);
+  grid-auto-flow: column;
+  column-gap: 12pt;
+  row-gap: 0;
+  flex: 1;
+  min-height: 0;
+}
+.supp-wordtest .wt-partB > li {
+  border-left: 2pt solid var(--tn-theme);
+  padding: 2pt 0 2pt 7pt;
+  break-inside: avoid;
+  display: flex; flex-direction: column;
+  justify-content: center;
+}
+.supp-wordtest .wt-partB .wt-b-stem {
+  font-size: 9pt;
+  line-height: 1.4;
+  margin-bottom: 1pt;
+}
+.supp-wordtest .wt-partB .wt-b-stem .wt-n {
+  color: var(--tn-theme-deep);
+  font-family: var(--font-display);
+  font-weight: 700;
+  margin-right: 3pt;
+  font-size: 8.5pt;
+}
+.supp-wordtest .wt-partB .wt-b-blank {
+  font-family: var(--font-mono);
+  letter-spacing: 0.05em;
+  color: var(--tn-theme-deep);
+  font-weight: 700;
+  border-bottom: 0.8pt solid var(--tn-theme-deep);
+  padding: 0 18pt;
+  margin: 0 1pt;
+}
+.supp-wordtest .wt-partB .wt-b-choices {
+  list-style: none;
+  padding: 0 0 0 12pt;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 5pt;
+  font-size: 8.5pt;
+  line-height: 1.4;
+}
+.supp-wordtest .wt-partB .wt-b-choices li {
+  padding: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.supp-wordtest .wt-partB .wt-b-mark {
+  font-weight: 700;
+  color: var(--tn-theme-deep);
+  margin-right: 2pt;
+}
+
+/* ===================================================================
+   WORDTEST KEY — 80 answers per page (60 Part A + 20 Part B)
+   ================================================================= */
+.supp-wordtest-key .wtk-h {
+  font-family: var(--font-ko);
+  font-weight: 700;
+  color: var(--tn-theme-deep);
+  font-size: 11pt;
+  margin: 5pt 0 3pt;
+  border-left: 3pt solid var(--tn-theme-deep);
+  padding-left: 6pt;
+}
+.supp-wordtest-key .wtk-h-sub {
+  font-weight: 500;
+  font-size: 9pt;
+  color: var(--tn-muted);
+  margin-left: 5pt;
+}
+.supp-wordtest-key .wtk-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 8.5pt;
+  display: grid;
+  row-gap: 0;
+}
+.supp-wordtest-key .wtk-list li {
+  padding: 0.8pt 0;
+  font-family: var(--font-ko);
+  display: flex; align-items: center; gap: 3pt;
+  border-bottom: 0.3pt solid var(--tn-divider);
+}
+.supp-wordtest-key .wtk-list .k-n {
+  color: var(--tn-theme-deep);
+  font-weight: 700;
+  font-family: var(--font-display);
+  font-size: 7.5pt;
+  min-width: 14pt;
+}
+.supp-wordtest-key .wtk-list .k-word {
+  font-family: var(--font-serif-display);
+  font-weight: 700;
+  font-size: 9pt;
+  color: var(--tn-ink);
+}
+.supp-wordtest-key .wtk-list .k-meaning {
+  font-size: 8.5pt;
+  color: var(--tn-ink-soft);
+}
+/* Part A: 3-col × 20-row grid, fills 4× the height of Part B */
+.supp-wordtest-key .wtk-a {
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: repeat(20, 1fr);
+  grid-auto-flow: column;
+  column-gap: 10pt;
+  flex: 4;                /* 20 rows : 5 rows ratio */
+  min-height: 0;
+}
+/* Part B: 4-col × 5-row grid */
+.supp-wordtest-key .wtk-b {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: repeat(5, 1fr);
+  grid-auto-flow: column;
+  column-gap: 10pt;
+  flex: 1;
+  min-height: 0;
+}
+.supp-wordtest-key .wtk-b li b {
+  color: var(--tn-theme-deep);
+  font-family: var(--font-body);
+  font-weight: 700;
+}
+.supp-wordtest-key .wtk-b .k-circ {
+  font-size: 10pt;
+  color: var(--tn-theme-deep);
+  font-weight: 700;
+  margin-right: 2pt;
+}
+
+/* ===================================================================
+   SECTION DIVIDER — 2-page spread (interleaf, like week dividers)
+     LEFT  page: big EN + KO titles centered
+     RIGHT page: blank with bottom-right TERRA·NOVA
+   ================================================================= */
+.supp-divider {
+  display: flex !important;       /* override .page grid */
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 22mm;
+  background: linear-gradient(180deg, #FFFFFF 0%, var(--tn-theme-soft) 100%);
+  position: relative;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+/* Suppress the page-top theme bar inherited from layout.css .page::before */
+.supp-divider::before { content: none !important; }
+
+/* --- LEFT page (titles) --- */
+.supp-divider-left .div-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 4mm;
+}
+.supp-divider-left .div-title-en {
+  font-family: var(--font-serif-display);
+  font-weight: 700;
+  font-size: 72pt;
+  line-height: 1.05;
+  color: var(--tn-ink);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+.supp-divider-left .div-title-ko {
+  font-family: var(--font-ko);
+  font-weight: 700;
+  font-size: 32pt;
+  line-height: 1.2;
+  color: var(--tn-theme-deep);
+  margin: 2mm 0 0;
+  letter-spacing: -0.01em;
+}
+
+/* --- RIGHT page (blank with brand) --- */
+.supp-divider-right {
+  /* nothing in the centered flex stack — the brand is positioned absolutely */
+}
+.supp-divider-right .div-foot-brand {
+  position: absolute;
+  bottom: 14mm;
+  right: 22mm;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 11pt;
+  letter-spacing: 0.06em;
+  color: var(--tn-theme-deep);
+}
+.supp-divider-right .div-foot-brand .brand-dot { color: var(--tn-theme); }

@@ -1,0 +1,523 @@
+{
+  "schema_version": "2.2",
+  "id": "2026-06-J-17",
+  "meta": {
+    "month": "2026-06-J",
+    "sequence": 17,
+    "subject": "수학",
+    "linked_unit": "미적분 II-1 미분계수와 도함수",
+    "part_ko": "한 순간의 속도",
+    "achievement_standard": "12미적02-01",
+    "difficulty": "중간",
+    "cognitive_skill": "함의추론",
+    "lexile": "1200L",
+    "ar_level": 8.0,
+    "key_concepts": [
+      "도함수",
+      "변화율",
+      "접선의 기울기",
+      "순간 변화"
+    ]
+  },
+  "page1": {
+    "title": "What \"Rate of Change\" Really Tells You",
+    "subtitle": "An average smooths over the very moments that mattered most.",
+    "body": "When a long-distance runner finishes a tough marathon, you can divide her total distance by her total elapsed time and politely call the result her average speed. But that single average number hides almost everything that actually made the race itself interesting. At one moment she may have been gliding effortlessly downhill, while at another moment she was fighting a stubbornly steep uphill stretch instead. Calculus quietly describes that finer story with a single, deceptively simple idea called the <u>derivative</u>. A derivative tells you exactly how fast a quantity is changing at one specific instant, not just on average over a long interval.\n\nYou can build the same idea step by careful step in your own mind. Pick two moments very close together, divide the small change in distance by the small change in time, and you immediately get a near-instantaneous speed. Now squeeze those two moments closer and closer together until the gap between them almost disappears, and the answer settles down quietly to a single clean number. That settled number is exactly the derivative at that one specific instant. On a graph, it is precisely the slope of the tangent line, the line that just barely kisses the curve at that point.\n\nOnce you actually have that tool in your hand, the same simple trick applies to far more than running races. The same definition lets economists describe how revenue changes per dollar invested and biologists describe how a population grows per single day. Each of these examples is really just a derivative under a slightly different name, quietly asking the same question in a different professional language. In short, calculus pays its keep mainly because <mark>instantaneous behavior</mark> is what reality itself actually <blank> on closer inspection.\n\nSelf-driving cars depend on this idea so heavily that the entire program would be useless without it operating quietly in the background. Each tiny camera reading is fed into a pile of derivatives that estimate how fast a pedestrian, a truck, or a stop sign is approaching at this very instant.",
+    "illustration": "../../assets/illustrations/2026-06-J/17.jpg",
+    "illustration_caption": "Squeeze two moments together until you can hear one instant's voice."
+  },
+  "page2": {
+    "questions": [
+      {
+        "type": "mock_objective",
+        "style": "함의 추론",
+        "stem": "윗글의 밑줄 친 표현 instantaneous behavior 가 의미하는 바로 가장 적절한 것은?",
+        "choices": [
+          "the long-run average performance of a system over an entire year of measurements",
+          "how a quantity is actually changing in a single specific moment, not over a stretched-out interval",
+          "the total distance a runner covers during a single training month measured in kilometers",
+          "the speed at which advertising changes a consumer's mood inside a crowded shop",
+          "the historical accident that led to the invention of stopwatches in the early 1900s"
+        ],
+        "answer_index": 1
+      },
+      {
+        "type": "mock_objective",
+        "style": "빈칸 추론",
+        "stem": "윗글의 밑줄 친 빈칸에 들어갈 말로 가장 적절한 것은?",
+        "choices": [
+          "tries to ignore at any meaningful timescale that an honest observer ever encounters",
+          "happens at every instant, even when ordinary averages quietly hide that fact from us",
+          "stops occurring whenever a measurement is taken across a long enough total interval",
+          "depends entirely on chance and therefore cannot be modeled by mathematicians at all",
+          "remains identical for every quantity in nature regardless of context or units involved"
+        ],
+        "answer_index": 1
+      },
+      {
+        "type": "mock_objective",
+        "style": "주제",
+        "stem": "다음 글의 주제로 가장 적절한 것은?",
+        "choices": [
+          "the lifestyle of professional marathon runners and the diets they prefer during training",
+          "how the derivative captures change at a single instant and lets many fields ask similar questions",
+          "the practical history of pocket calculators sold in twentieth-century Korean classrooms",
+          "the statistical proof that average speed always equals the maximum speed of a runner",
+          "a competitive review of free graphing applications used by high school mathematics students"
+        ],
+        "answer_index": 1
+      },
+      {
+        "type": "school_descriptive",
+        "style": "요약문 빈칸 완성",
+        "prompt": "다음은 본문의 요약문이다. 본문의 내용을 바탕으로 빈칸 (A), (B)에 들어갈 말을 <조건>에 맞게 영어 한 단어로 각각 쓰시오. <조건> 본문에서 제시된 단어를 그대로 활용할 것.",
+        "hints": [
+          "instant",
+          "average",
+          "derivative",
+          "tangent",
+          "rate"
+        ],
+        "summary_template": "A <blank> (A) tells how fast a quantity is changing at one specific <blank> (B), so it captures details that an ordinary average quietly smooths over.",
+        "model_answer": "(A) derivative  (B) instant"
+      }
+    ],
+    "textbook_tieback": {
+      "unit_label": "미적분 II-1 · 미분계수와 도함수",
+      "body_ko": "고2 미적분 II 단원에서 미분계수는 함수 f(x)의 한 점 x = a에서의 순간변화율로 정의된다. 평균변화율 [f(b) − f(a)] / (b − a)에서 b가 a로 한없이 가까워질 때 그 극한이 미분계수 f′(a)이며, (a, f(a))에서의 접선의 기울기와 같다. 이를 모든 점에 일반화한 것이 도함수 f′(x)다. 평균은 구간을 평탄화하지만 도함수는 한 순간의 결을 보존해, 물리·경제·생물이 변화를 같은 언어로 다루게 해 준다.",
+      "tags": [
+        "미분계수",
+        "평균변화율",
+        "접선의 기울기",
+        "도함수"
+      ],
+      "visual_aid": {
+        "type": "emoji_flow",
+        "title": "평균 → 순간 → 도함수",
+        "steps": [
+          {
+            "emoji": "📏",
+            "label": "평균변화율",
+            "note": "구간 전체를 평탄화"
+          },
+          {
+            "emoji": "🎯",
+            "label": "순간 변화율",
+            "note": "두 점을 한 점으로 수렴"
+          },
+          {
+            "emoji": "📐",
+            "label": "접선 기울기",
+            "note": "도함수 f′(a)"
+          }
+        ]
+      }
+    }
+  },
+  "page3": {
+    "sentences": [
+      {
+        "index": 1,
+        "segments": [
+          { "role": "M", "text": "When a long-distance runner finishes a tough marathon,", "note": "When 시간절" },
+          { "role": "S", "text": "you" },
+          { "role": "V", "text": "can divide" },
+          { "role": "O", "text": "her total distance by her total elapsed time" },
+          { "role": "CONJ", "text": "and" },
+          { "role": "M", "text": "politely" },
+          { "role": "V", "text": "call" },
+          { "role": "O", "text": "the result" },
+          { "role": "C", "text": "her average speed.", "note": "call O C 5형식" }
+        ],
+        "grammar_note": "When 시간절 + 동사 두 개 병렬 + call O C"
+      },
+      {
+        "index": 2,
+        "segments": [
+          { "role": "CONJ", "text": "But" },
+          { "role": "S", "text": "that single average number" },
+          { "role": "V", "text": "hides" },
+          { "role": "O", "text": "almost everything that actually made the race itself interesting.", "note": "관계대명사 that" }
+        ],
+        "grammar_note": "But 대조 + 관계대명사 that"
+      },
+      {
+        "index": 3,
+        "segments": [
+          { "role": "M", "text": "At one moment" },
+          { "role": "S", "text": "she" },
+          { "role": "V", "text": "may have been gliding", "note": "조동사 + 완료진행" },
+          { "role": "M", "text": "effortlessly downhill," },
+          { "role": "CONJ", "text": "while" },
+          { "role": "M", "text": "at another moment" },
+          { "role": "S", "text": "she" },
+          { "role": "V", "text": "was fighting" },
+          { "role": "O", "text": "a stubbornly steep uphill stretch" },
+          { "role": "M", "text": "instead." }
+        ],
+        "grammar_note": "may have been -ing + while 대조"
+      },
+      {
+        "index": 4,
+        "segments": [
+          { "role": "S", "text": "Calculus" },
+          { "role": "M", "text": "quietly" },
+          { "role": "V", "text": "describes" },
+          { "role": "O", "text": "that finer story" },
+          { "role": "M", "text": "with a single, deceptively simple idea called the derivative.", "note": "분사 called 후치" }
+        ],
+        "grammar_note": "3형식 + 분사 called 후치"
+      },
+      {
+        "index": 5,
+        "segments": [
+          { "role": "S", "text": "A derivative" },
+          { "role": "V", "text": "tells" },
+          { "role": "O", "text": "you" },
+          { "role": "M", "text": "exactly" },
+          { "role": "O", "text": "how fast a quantity is changing at one specific instant,", "note": "how 명사절" },
+          { "role": "M", "text": "not just on average over a long interval." }
+        ],
+        "grammar_note": "tell O O + how 명사절 + not A but B 함의"
+      },
+      {
+        "index": 6,
+        "segments": [
+          { "role": "S", "text": "You" },
+          { "role": "V", "text": "can build" },
+          { "role": "O", "text": "the same idea" },
+          { "role": "M", "text": "step by careful step in your own mind." }
+        ],
+        "grammar_note": "3형식 + 관용 부사구"
+      },
+      {
+        "index": 7,
+        "segments": [
+          { "role": "V", "text": "Pick", "note": "명령문" },
+          { "role": "O", "text": "two moments very close together," },
+          { "role": "V", "text": "divide" },
+          { "role": "O", "text": "the small change in distance by the small change in time," },
+          { "role": "CONJ", "text": "and" },
+          { "role": "S", "text": "you" },
+          { "role": "M", "text": "immediately" },
+          { "role": "V", "text": "get" },
+          { "role": "O", "text": "a near-instantaneous speed." }
+        ],
+        "grammar_note": "명령문 둘 + and 결과절"
+      },
+      {
+        "index": 8,
+        "segments": [
+          { "role": "M", "text": "Now" },
+          { "role": "V", "text": "squeeze", "note": "명령문" },
+          { "role": "O", "text": "those two moments" },
+          { "role": "M", "text": "closer and closer together until the gap between them almost disappears,", "note": "until 시간절" },
+          { "role": "CONJ", "text": "and" },
+          { "role": "S", "text": "the answer" },
+          { "role": "V", "text": "settles down" },
+          { "role": "M", "text": "quietly to a single clean number." }
+        ],
+        "grammar_note": "명령문 + until 시간절 + and 결과절"
+      },
+      {
+        "index": 9,
+        "segments": [
+          { "role": "S", "text": "That settled number" },
+          { "role": "V", "text": "is" },
+          { "role": "M", "text": "exactly" },
+          { "role": "C", "text": "the derivative at that one specific instant." }
+        ],
+        "grammar_note": "2형식 + 강조 부사"
+      },
+      {
+        "index": 10,
+        "segments": [
+          { "role": "M", "text": "On a graph," },
+          { "role": "S", "text": "it" },
+          { "role": "V", "text": "is" },
+          { "role": "M", "text": "precisely" },
+          { "role": "C", "text": "the slope of the tangent line, the line that just barely kisses the curve at that point.", "note": "동격 + 관계절" }
+        ],
+        "grammar_note": "2형식 + 동격 + 관계절"
+      },
+      {
+        "index": 11,
+        "segments": [
+          { "role": "M", "text": "Once you actually have that tool in your hand,", "note": "Once 시간절" },
+          { "role": "S", "text": "the same simple trick" },
+          { "role": "V", "text": "applies" },
+          { "role": "M", "text": "to far more than running races." }
+        ],
+        "grammar_note": "Once 시간절 + 비교 표현"
+      },
+      {
+        "index": 12,
+        "segments": [
+          { "role": "S", "text": "The same definition" },
+          { "role": "V", "text": "lets" },
+          { "role": "O", "text": "economists" },
+          { "role": "C", "text": "describe how revenue changes per dollar invested", "note": "let O 동사원형 + how 명사절" },
+          { "role": "CONJ", "text": "and" },
+          { "role": "O", "text": "biologists" },
+          { "role": "C", "text": "describe how a population grows per single day.", "note": "let O 동사원형 + how 명사절" }
+        ],
+        "grammar_note": "사역 let O 동사원형 두 절 병렬"
+      },
+      {
+        "index": 13,
+        "segments": [
+          { "role": "S", "text": "Each of these examples" },
+          { "role": "V", "text": "is" },
+          { "role": "M", "text": "really" },
+          { "role": "C", "text": "just a derivative under a slightly different name," },
+          { "role": "M", "text": "quietly asking the same question in a different professional language.", "note": "분사구문 asking" }
+        ],
+        "grammar_note": "2형식 + 분사구문 asking"
+      },
+      {
+        "index": 14,
+        "segments": [
+          { "role": "M", "text": "In short," },
+          { "role": "S", "text": "calculus" },
+          { "role": "V", "text": "pays" },
+          { "role": "O", "text": "its keep" },
+          { "role": "M", "text": "mainly" },
+          { "role": "CONJ", "text": "because" },
+          { "role": "S", "text": "instantaneous behavior" },
+          { "role": "V", "text": "is" },
+          { "role": "C", "text": "what reality actually ____ (= happens at every moment).", "note": "what 명사절" }
+        ],
+        "grammar_note": "because 이유절 + what 명사절 보어"
+      },
+      {
+        "index": 15,
+        "segments": [
+          { "role": "S", "text": "Self-driving cars" },
+          { "role": "V", "text": "depend on" },
+          { "role": "O", "text": "this idea" },
+          { "role": "M", "text": "so heavily that the entire program would be useless without it operating quietly in the background.", "note": "so ~ that 결과 + without -ing" }
+        ],
+        "grammar_note": "depend on + so ~ that 결과 + without -ing"
+      },
+      {
+        "index": 16,
+        "segments": [
+          { "role": "S", "text": "Each tiny camera reading" },
+          { "role": "V", "text": "is fed", "note": "수동" },
+          { "role": "M", "text": "into a pile of derivatives" },
+          { "role": "REL", "text": "that", "note": "주격 관계대명사" },
+          { "role": "V", "text": "estimate" },
+          { "role": "O", "text": "how fast a pedestrian, a truck, or a stop sign is approaching at this very instant.", "note": "how 명사절" }
+        ],
+        "grammar_note": "수동 feed into + 관계대명사 that + how 명사절"
+      }
+    ],
+    "translation_ko": "[1] 장거리 주자가 힘든 마라톤을 끝낼 때, 우리는 그녀의 총 거리를 총 경과 시간으로 나누어 그 결과를 정중하게 평균 속도라 부를 수 있다. [2] 하지만 그 한 개의 평균 숫자는 그 경기를 흥미롭게 만든 거의 모든 것을 가린다. [3] 어떤 순간 그녀는 내리막을 힘들이지 않고 미끄러져 내리고 있었을 수 있고, 또 다른 순간에는 끈질긴 가파른 오르막과 싸우고 있었을 수 있다. [4] 미적분은 그 더 결 고운 이야기를 도함수라 불리는 단순해 보이지만 깊은 한 가지 발상으로 조용히 묘사한다. [5] 도함수는 어떤 양이 정확히 어떤 한 순간에 얼마나 빨리 변하고 있는지를 — 긴 구간의 평균이 아니라 — 알려 준다. [6] 이 발상은 머릿속에서 한 단계씩 차근차근 만들어 낼 수 있다. [7] 매우 가까운 두 시점을 골라 거리의 작은 변화량을 시간의 작은 변화량으로 나누면, 거의 순간적인 속도를 곧바로 얻는다. [8] 이제 그 두 시점을 점점 더 가까이 붙여 둘 사이 간격이 거의 사라질 때까지 좁히면, 답은 단 하나의 깔끔한 숫자로 조용히 가라앉는다. [9] 그 가라앉은 숫자가 바로 그 한 특정 순간에서의 도함수다. [10] 그래프 위에서 그 숫자는 곡선을 그 지점에서 살짝 입맞추듯 닿는 직선, 곧 접선의 기울기와 정확히 같다. [11] 손 안에 그 도구가 들어오는 순간, 같은 기교가 마라톤보다 훨씬 더 많은 분야에 적용된다. [12] 같은 정의는 경제학자에게 1달러 투자당 매출이 어떻게 변하는지를, 생물학자에게 하루 동안 개체수가 얼마나 자라는지를 묘사하게 해 준다. [13] 이 예시들은 사실 이름만 조금 다른 도함수일 뿐이며, 같은 질문을 서로 다른 전문 언어로 조용히 던지고 있다. [14] 요컨대 미적분이 값을 하는 까닭은, 순간적 행동이 실제로 ____(= 매 순간 일어나는 일)이기 때문이다. [15] 자율주행차는 이 발상에 너무 깊이 의존해서, 그것이 배경에서 조용히 작동하지 않으면 전체 프로그램이 쓸모를 잃는다. [16] 작은 카메라 한 컷 한 컷이 도함수 더미로 들어가, 보행자·트럭·정지 신호가 바로 이 순간 얼마나 빠르게 다가오는지를 추정한다."
+  },
+  "page4": {
+    "vocab": [
+      {
+        "word": "average",
+        "pos": "n.",
+        "meaning_ko": "평균",
+        "synonyms": ["mean"],
+        "antonyms": [],
+        "examples": [
+          { "en": "Average speed hides almost everything interesting.", "ko": "평균 속도는 흥미로운 것을 거의 다 가린다." },
+          { "en": "His grade was just above the class average.", "ko": "그의 성적은 학급 평균보다 약간 높았다." }
+        ]
+      },
+      {
+        "word": "elapsed",
+        "pos": "adj.",
+        "meaning_ko": "경과한",
+        "synonyms": ["passed"],
+        "antonyms": [],
+        "examples": [
+          { "en": "Divide distance by total elapsed time for an average.", "ko": "평균을 위해 거리에 총 경과 시간을 나눈다." },
+          { "en": "The clock showed thirty minutes had elapsed already.", "ko": "시계는 이미 30분이 경과했음을 보여 주었다." }
+        ]
+      },
+      {
+        "word": "glide",
+        "pos": "v.",
+        "meaning_ko": "미끄러지다",
+        "synonyms": ["slide"],
+        "antonyms": [],
+        "examples": [
+          { "en": "She may have been gliding effortlessly downhill.", "ko": "그녀는 힘들이지 않고 내리막을 미끄러지고 있었을 수 있다." },
+          { "en": "Skaters glide across the ice in long curves.", "ko": "스케이터는 긴 곡선을 그리며 얼음 위를 미끄러진다." }
+        ]
+      },
+      {
+        "word": "stretch",
+        "pos": "n.",
+        "meaning_ko": "구간, 일정 거리",
+        "synonyms": ["section"],
+        "antonyms": [],
+        "examples": [
+          { "en": "She fought a stubbornly steep uphill stretch.", "ko": "그녀는 끈질긴 가파른 오르막 구간과 싸웠다." },
+          { "en": "There is a quiet stretch of road past the bridge.", "ko": "다리를 지나면 조용한 도로 구간이 있다." }
+        ]
+      },
+      {
+        "word": "derivative",
+        "pos": "n.",
+        "meaning_ko": "도함수",
+        "synonyms": [],
+        "antonyms": [],
+        "examples": [
+          { "en": "Calculus describes change with the idea called derivative.", "ko": "미적분은 변화를 도함수라는 발상으로 묘사한다." },
+          { "en": "The derivative of x squared is two x.", "ko": "x²의 도함수는 2x이다." }
+        ]
+      },
+      {
+        "word": "instant",
+        "pos": "n.",
+        "meaning_ko": "순간",
+        "synonyms": ["moment"],
+        "antonyms": [],
+        "examples": [
+          { "en": "A derivative tells how fast change happens at one instant.", "ko": "도함수는 한 순간의 변화 속도를 알려 준다." },
+          { "en": "For an instant, the room fell completely silent.", "ko": "한 순간 방이 완전히 조용해졌다." }
+        ]
+      },
+      {
+        "word": "interval",
+        "pos": "n.",
+        "meaning_ko": "구간, 간격",
+        "synonyms": ["gap"],
+        "antonyms": [],
+        "examples": [
+          { "en": "Average smooths data over a long interval.", "ko": "평균은 긴 구간의 데이터를 평탄화한다." },
+          { "en": "Trains run at fifteen-minute intervals on weekdays.", "ko": "평일에는 열차가 15분 간격으로 운행한다." }
+        ]
+      },
+      {
+        "word": "squeeze",
+        "pos": "v.",
+        "meaning_ko": "압축하다, 좁히다",
+        "synonyms": ["compress"],
+        "antonyms": [],
+        "examples": [
+          { "en": "Squeeze two moments closer until the gap disappears.", "ko": "두 시점이 거의 붙을 때까지 좁히라." },
+          { "en": "He squeezed the lemon over the salad.", "ko": "그는 샐러드 위로 레몬을 짰다." }
+        ]
+      },
+      {
+        "word": "tangent",
+        "pos": "n.",
+        "meaning_ko": "접선",
+        "synonyms": [],
+        "antonyms": [],
+        "examples": [
+          { "en": "It is the slope of the tangent line at that point.", "ko": "그것은 그 지점 접선의 기울기다." },
+          { "en": "He went off on a tangent during the meeting.", "ko": "그는 회의 중에 본론을 벗어난 이야기를 했다." }
+        ]
+      },
+      {
+        "word": "trick",
+        "pos": "n.",
+        "meaning_ko": "기교, 묘책",
+        "synonyms": ["technique"],
+        "antonyms": [],
+        "examples": [
+          { "en": "The same simple trick applies far beyond running races.", "ko": "같은 단순한 기교가 마라톤 너머로 적용된다." },
+          { "en": "There is a small trick to opening this old lock.", "ko": "이 오래된 자물쇠를 여는 데 작은 묘책이 있다." }
+        ]
+      },
+      {
+        "word": "revenue",
+        "pos": "n.",
+        "meaning_ko": "매출, 수익",
+        "synonyms": ["income"],
+        "antonyms": [],
+        "examples": [
+          { "en": "Economists describe how revenue changes per dollar invested.", "ko": "경제학자는 1달러 투자당 매출이 어떻게 변하는지를 묘사한다." },
+          { "en": "The new policy boosted yearly revenue by ten percent.", "ko": "새 정책이 연간 수익을 10퍼센트 끌어올렸다." }
+        ]
+      },
+      {
+        "word": "instantaneous",
+        "pos": "adj.",
+        "meaning_ko": "순간의",
+        "synonyms": ["immediate"],
+        "antonyms": [],
+        "examples": [
+          { "en": "Calculus pays its keep because instantaneous behavior matters.", "ko": "순간적 행동이 중요하기에 미적분은 값을 한다." },
+          { "en": "Modern apps deliver almost instantaneous translations.", "ko": "현대 앱은 거의 즉각적인 번역을 제공한다." }
+        ]
+      }
+    ]
+  },
+  "answers": {
+    "explanations": [
+      {
+        "q_index": 0,
+        "q_style": "함의 추론",
+        "correct": 1,
+        "evidence": "본문은 도함수가 \"how fast a quantity is changing at one specific instant, not just on average\"를 알려 준다고 명시 (sentence 5). instantaneous behavior는 그 한 순간의 변화율을 가리킨다.",
+        "rationales": [
+          "본문은 평균과 정반대 개념으로 순간을 강조한다.",
+          "(정답) '평균이 가린 한 순간의 변화'를 정확히 옮김.",
+          "본문은 거리를 다루지만 함의는 한 순간의 변화율이다.",
+          "본문은 광고나 소비자 심리를 다루지 않는다.",
+          "본문은 스톱워치 발명사를 다루지 않는다."
+        ],
+        "key_terms": [
+          { "en": "single instant", "ko": "한 순간" },
+          { "en": "rate of change", "ko": "변화율" }
+        ]
+      },
+      {
+        "q_index": 1,
+        "q_style": "빈칸 추론",
+        "correct": 1,
+        "evidence": "본문은 평균이 한 순간의 변화를 가린다고 강조 (sentence 2-3) + 도함수가 그 순간을 잡아낸다고 명시 (sentence 5). 빈칸은 '실제로는 매 순간에 변화가 일어난다'는 결론에 해당한다.",
+        "rationales": [
+          "본문은 무시를 비판한다.",
+          "(정답) '매 순간 일어나는 변화'라는 본문 결론과 정확히 일치.",
+          "본문은 정반대 — 긴 구간이 가린다고 한다.",
+          "본문은 우연 의존을 다루지 않는다.",
+          "본문은 다양한 분야의 예시 차이를 강조한다."
+        ],
+        "key_terms": [
+          { "en": "every instant", "ko": "매 순간" },
+          { "en": "smoothed over", "ko": "평탄화된" }
+        ]
+      },
+      {
+        "q_index": 2,
+        "q_style": "주제",
+        "correct": 1,
+        "evidence": "본문은 (i) 마라톤 비유로 평균의 한계, (ii) 도함수의 정의, (iii) 다른 분야 응용이라는 단일 주제로 일관 전개된다.",
+        "rationales": [
+          "본문은 마라톤 라이프스타일을 다루지 않는다.",
+          "(정답) '한 순간의 변화 + 다양한 분야 응용'이 글의 정확한 주제.",
+          "본문은 계산기 역사를 다루지 않는다.",
+          "본문은 평균=최대속도라 하지 않는다.",
+          "본문은 그래픽 앱 비교를 다루지 않는다."
+        ],
+        "key_terms": [
+          { "en": "single instant", "ko": "한 순간" },
+          { "en": "many fields", "ko": "여러 분야" }
+        ]
+      },
+      {
+        "q_index": 3,
+        "q_style": "요약문 빈칸 완성",
+        "correct": null,
+        "model_answer_en": "(A) derivative  (B) instant",
+        "evidence": "(A)는 sentence 4 \"a single, deceptively simple idea called the derivative\"가 직접 근거. (B)는 sentence 5 \"at one specific instant\"가 직접 근거.",
+        "rationales": [
+          "(A) derivative — 본문의 핵심 어휘를 그대로 가져옴.",
+          "(B) instant — 본문 sentence 5·9에서 강조되는 본문 어휘."
+        ],
+        "key_terms": [
+          { "en": "derivative", "ko": "도함수" },
+          { "en": "instant", "ko": "순간" }
+        ]
+      }
+    ]
+  }
+}
