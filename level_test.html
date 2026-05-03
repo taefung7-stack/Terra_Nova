@@ -97,10 +97,14 @@
 
   /* ===== Circular orbit grade selector ===== */
   /* 10 planet cards arranged on a fixed-radius circle. Center shows the
-     currently-selected planet (defaults to 고1 SATURN, updates on click). */
+     currently-selected planet (defaults to 고1 SATURN, updates on click).
+     orbit-size capped at 100% of parent so it always fits within quiz-area's
+     padded content box and stays centered (margin:auto). orbit-radius
+     computed from card half-size to guarantee cards never overflow. */
   .options.grade-orbit{
-    --orbit-size:min(1080px, 96vw);
-    --orbit-radius:calc(var(--orbit-size) * 0.40);
+    --orbit-size:min(1000px, 100%);
+    --card-half:100px;
+    --orbit-radius:calc(var(--orbit-size) / 2 - var(--card-half) - 4px);
     display:block;
     position:relative;
     width:var(--orbit-size);
@@ -143,6 +147,7 @@
   .grade-orbit .orbit-card .grade-label{font-weight:800;font-size:1.34rem;color:#fff;line-height:1;}
   .grade-orbit .orbit-card .grade-sub{font-size:.78rem;font-weight:700;letter-spacing:.04em;color:rgba(255,255,255,.6);}
   @media(max-width:1100px){
+    .options.grade-orbit{--card-half:74px;}
     .grade-orbit .orbit-card{width:148px;height:148px;padding:14px 10px;gap:6px;}
     .grade-orbit .orbit-card .planet-img{width:72px;}
     .grade-orbit .orbit-card .grade-label{font-size:1.08rem;}
@@ -153,6 +158,7 @@
     .grade-orbit .orbit-center .grade-sub{font-size:.78rem;}
   }
   @media(max-width:560px){
+    .options.grade-orbit{--card-half:54px;}
     .grade-orbit .orbit-card{width:108px;height:108px;padding:8px 5px;gap:3px;}
     .grade-orbit .orbit-card .planet-img{width:48px;}
     .grade-orbit .orbit-card .grade-label{font-size:.84rem;}
@@ -799,6 +805,20 @@
 const answers = {};
 let cur = 1;
 const TOTAL = 20;
+
+/* Pre-select grade/planet from ?level=N URL param (when arriving from landing
+   page's planet picker). level=1→MOON(초3), 2→MERCURY(초4), … 10→SUN(고3).
+   Cards are rendered in that exact order, so 1-based index lookup works. */
+(function preselectFromUrl() {
+  const lv = parseInt(new URLSearchParams(location.search).get('level'), 10);
+  if (!(lv >= 1 && lv <= 10)) return;
+  // Defer until orbit cards exist in DOM; this script runs at end of body so
+  // they should already be parsed, but use queueMicrotask to be safe.
+  queueMicrotask(() => {
+    const cards = document.querySelectorAll('.grade-orbit .orbit-card');
+    if (cards[lv - 1]) cards[lv - 1].click();
+  });
+})();
 
 /* Orbit card click → 중앙 디스플레이 갱신 + sel() 호출 */
 function selOrbit(btn, grade, name, lv, planet) {
