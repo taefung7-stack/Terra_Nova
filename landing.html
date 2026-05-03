@@ -1964,14 +1964,14 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   position:relative;
   padding:150px 5vw 150px;
   overflow:hidden;
-  /* Layered mint gradient — radial highlights on top of a diagonal base
-     give the section depth instead of a flat tacky tint. Cool aqua hint at
-     top-left, warmer pistachio at bottom-right. */
+  /* Slightly lifted near-black — bumped from var(--bg) #0A0A0A to #131918
+     so the section reads a touch brighter than the .exam-match section
+     above while still keeping the dark canvas feel. Mint radial halos
+     boosted proportionally for a softer ambient glow. */
   background:
-    radial-gradient(ellipse 80% 60% at 12% 18%, rgba(193,242,221,.95) 0%, transparent 55%),
-    radial-gradient(ellipse 70% 55% at 88% 82%, rgba(132,200,168,.92) 0%, transparent 58%),
-    radial-gradient(ellipse 55% 45% at 75% 18%, rgba(168,228,205,.55) 0%, transparent 60%),
-    linear-gradient(145deg, #9CD7BC 0%, #B0DEC8 45%, #88CCAB 100%);
+    radial-gradient(circle at 50% 12%, rgba(0,255,163,.16), transparent 33%),
+    radial-gradient(circle at 50% 72%, rgba(45,212,191,.08), transparent 36%),
+    #131918;
 }
 .level-orbit::before {
   content:"";
@@ -2011,7 +2011,7 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   margin-bottom:18px;
   font-size:1rem;
   letter-spacing:.34em;
-  color:#03624C;
+  color:#fff;
   /* Mirror .orbit-title's blur-up entrance so the kicker breathes in/out
      with the headline as the section enters/leaves the viewport. Slightly
      shorter blur radius + lift than the title since the kicker is smaller. */
@@ -2037,7 +2037,7 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   line-height:1.02;
   font-weight:900;
   letter-spacing:0;
-  color:#032221;
+  color:#fff;
   margin:0;
   text-transform:none;
   opacity:0;
@@ -2073,7 +2073,7 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   font-family:'Pretendard', 'Noto Sans KR', sans-serif;
   font-size:clamp(1rem, 1.15vw, 1.12rem);
   line-height:1.75;
-  color:#06302B;
+  color:#fff;
   font-weight:500;
 }
 .orbit-console {
@@ -2086,27 +2086,37 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   position:relative;
   min-height:660px;
   padding:28px;
-  border:1px solid rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.06);
   border-radius:14px;
-  /* Smoky dark glass — mint bleeds through faintly while staying dark
-     enough that the planet PNG's edge still merges into the panel. */
-  background:
-    linear-gradient(145deg, rgba(255,255,255,.06), rgba(255,255,255,.012)),
-    rgba(6,16,12,.78);
-  backdrop-filter:blur(22px) saturate(155%);
-  -webkit-backdrop-filter:blur(22px) saturate(155%);
+  /* Pure black — the planet PNG's black backdrop merges seamlessly into
+     the panel, leaving only the planet visible against the card. */
+  background:#000;
   box-shadow:
-    0 32px 90px rgba(3,34,33,.28),
-    inset 0 1px 0 rgba(255,255,255,.14),
-    inset 0 0 0 1px rgba(0,255,163,.06);
+    0 32px 90px rgba(3,34,33,.32),
+    inset 0 1px 0 rgba(255,255,255,.08);
   overflow:hidden;
 }
 .orbit-preview::before {
+  /* Glass rim — 1px gradient stroke painted only on the perimeter via
+     mask-composite. Brighter at top-left and bottom-right corners to read
+     as a polished glass edge against the dark mint section behind. */
   content:"";
   position:absolute;
-  inset:18px;
-  border:1px solid rgba(255,255,255,.05);
-  border-radius:10px;
+  inset:0;
+  padding:1px;
+  border-radius:inherit;
+  background:linear-gradient(135deg,
+    rgba(255,255,255,.28) 0%,
+    rgba(255,255,255,.06) 16%,
+    transparent 42%,
+    transparent 58%,
+    rgba(255,255,255,.06) 84%,
+    rgba(255,255,255,.22) 100%);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;
+          mask-composite:exclude;
   pointer-events:none;
 }
 .preview-topline,
@@ -2232,20 +2242,38 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   border-color:color-mix(in srgb, var(--level-accent) 78%, #fff);
 }
 .orbit-selector {
+  position:relative;
   min-height:660px;
   padding:18px;
-  border:1px solid rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.06);
   border-radius:14px;
-  /* Same smoky dark glass as the preview panel for visual unity. */
-  background:
-    linear-gradient(145deg, rgba(255,255,255,.06), rgba(255,255,255,.012)),
-    rgba(6,16,12,.78);
-  backdrop-filter:blur(22px) saturate(155%);
-  -webkit-backdrop-filter:blur(22px) saturate(155%);
+  /* Pure black — matches the preview panel and lets the small planet
+     thumbnails inside each card blend in cleanly. */
+  background:#000;
   box-shadow:
-    0 24px 70px rgba(3,34,33,.24),
-    inset 0 1px 0 rgba(255,255,255,.12),
-    inset 0 0 0 1px rgba(0,255,163,.06);
+    0 24px 70px rgba(3,34,33,.28),
+    inset 0 1px 0 rgba(255,255,255,.08);
+}
+.orbit-selector::before {
+  /* Glass rim — same corner-gradient stroke as .orbit-preview. */
+  content:"";
+  position:absolute;
+  inset:0;
+  padding:1px;
+  border-radius:inherit;
+  background:linear-gradient(135deg,
+    rgba(255,255,255,.26) 0%,
+    rgba(255,255,255,.06) 16%,
+    transparent 42%,
+    transparent 58%,
+    rgba(255,255,255,.06) 84%,
+    rgba(255,255,255,.20) 100%);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;
+          mask-composite:exclude;
+  pointer-events:none;
 }
 .selector-topline {
   padding:7px 8px 18px;
@@ -2257,6 +2285,7 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
 }
 .level-card {
   --level-accent:#00ffa3;
+  position:relative;
   display:grid;
   grid-template-columns:90px minmax(0, 1fr);
   gap:18px;
@@ -2264,44 +2293,80 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   min-height:116px;
   width:100%;
   padding:14px 18px;
-  border:1px solid rgba(255,255,255,.16);
+  border:1px solid rgba(255,255,255,.06);
   border-radius:10px;
-  /* Smoky dark glass card — top-light gradient over a near-black tint.
-     Stays dark enough to merge with the planet PNG's edge while reading
-     as glass against the mint section behind. */
-  background:
-    linear-gradient(145deg, rgba(255,255,255,.085), rgba(255,255,255,.018)),
-    rgba(8,18,14,.72);
-  backdrop-filter:blur(18px) saturate(160%);
-  -webkit-backdrop-filter:blur(18px) saturate(160%);
+  /* Pure black — planet thumbnail's black PNG backdrop blends straight
+     into the card so only the planet body reads. The glass-rim ::after
+     below carries all the "glass" feel via a 1px corner gradient. */
+  background:#000;
   color:#fff;
   text-align:left;
   cursor:pointer;
   box-shadow:
-    0 14px 28px rgba(3,34,33,.22),
-    inset 0 1px 0 rgba(255,255,255,.16),
-    inset 0 -1px 0 rgba(0,255,163,.05);
+    0 14px 28px rgba(3,34,33,.24),
+    inset 0 1px 0 rgba(255,255,255,.06);
   transition:transform .2s ease, border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+.level-card::after {
+  /* Glass rim — 1px gradient stroke on the perimeter, brightest at the
+     top-left and bottom-right corners. Mask-composite paints only the
+     padding ring so the card interior stays pure black. */
+  content:"";
+  position:absolute;
+  inset:0;
+  padding:1px;
+  border-radius:inherit;
+  background:linear-gradient(135deg,
+    rgba(255,255,255,.30) 0%,
+    rgba(255,255,255,.06) 18%,
+    transparent 44%,
+    transparent 56%,
+    rgba(255,255,255,.06) 82%,
+    rgba(255,255,255,.22) 100%);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;
+          mask-composite:exclude;
+  pointer-events:none;
+  transition:background .2s ease;
 }
 .level-card:hover,
 .level-card:focus-visible {
   transform:translateY(-2px);
-  border-color:rgba(0,255,163,.5);
+  border-color:rgba(0,255,163,.4);
   box-shadow:
-    0 22px 42px rgba(3,34,33,.32),
-    inset 0 1px 0 rgba(255,255,255,.22),
-    0 0 0 1px rgba(0,255,163,.28);
+    0 22px 42px rgba(3,34,33,.36),
+    inset 0 1px 0 rgba(255,255,255,.10),
+    0 0 0 1px rgba(0,255,163,.22);
   outline:none;
 }
+.level-card:hover::after,
+.level-card:focus-visible::after {
+  background:linear-gradient(135deg,
+    rgba(0,255,163,.42) 0%,
+    rgba(255,255,255,.06) 22%,
+    transparent 48%,
+    transparent 52%,
+    rgba(255,255,255,.06) 78%,
+    rgba(0,255,163,.32) 100%);
+}
 .level-card.is-active {
-  border-color:rgba(0,255,163,.78);
-  background:
-    linear-gradient(145deg, rgba(255,255,255,.115), rgba(255,255,255,.025)),
-    rgba(6,22,16,.82);
+  border-color:rgba(0,255,163,.6);
+  background:#000;
   box-shadow:
-    0 22px 44px rgba(3,34,33,.34),
-    inset 0 1px 0 rgba(255,255,255,.26),
+    0 22px 44px rgba(3,34,33,.38),
+    inset 0 1px 0 rgba(255,255,255,.10),
     0 0 0 2px rgba(0,255,163,.5);
+}
+.level-card.is-active::after {
+  background:linear-gradient(135deg,
+    rgba(0,255,163,.5) 0%,
+    rgba(255,255,255,.08) 22%,
+    transparent 46%,
+    transparent 54%,
+    rgba(255,255,255,.08) 78%,
+    rgba(0,255,163,.4) 100%);
 }
 .planet-thumb {
   width:74px;
@@ -2576,18 +2641,17 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
 }
 .plan-name {
   font-family:'Space Grotesk', sans-serif;
-  font-size:.92rem;
-  font-weight:700;
-  letter-spacing:.32em;
-  color:rgba(255,255,255,.72);
+  font-size:1.9rem;
+  font-weight:800;
+  letter-spacing:.28em;
+  color:#fff;
 }
 .plan-tag {
   font-family:'Space Grotesk', 'Pretendard', sans-serif;
-  font-size:.66rem;
-  font-weight:600;
-  letter-spacing:.18em;
-  text-transform:uppercase;
-  padding:5px 10px;
+  font-size:1.05rem;
+  font-weight:700;
+  letter-spacing:.12em;
+  padding:10px 18px;
   border-radius:999px;
   white-space:nowrap;
 }
@@ -2614,8 +2678,8 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
 }
 .plan-price {
   font-family:'Space Grotesk', sans-serif;
-  font-weight:700;
-  font-size:clamp(2.2rem, 4.4vw, 3.2rem);
+  font-weight:800;
+  font-size:clamp(3.2rem, 6vw, 4.6rem);
   letter-spacing:-.025em;
   color:var(--txt);
   line-height:1;
@@ -2706,42 +2770,6 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
 }
 .plan:hover .plan-cta { color:var(--txt); }
 .plan:hover .plan-cta .cta-arrow { transform:translateX(6px); }
-
-.plan-featured {
-  border-color:var(--line3);
-  background:linear-gradient(180deg, rgba(0,255,163,.07), var(--bg2) 60%);
-  box-shadow:0 16px 48px -28px rgba(0,255,163,.42);
-}
-.plan-featured::before {
-  background:linear-gradient(180deg, transparent 0%, var(--accent) 50%, transparent 100%);
-  width:3px;
-}
-.plan-featured::after {
-  content:"RECOMMENDED";
-  position:absolute;
-  top:0; right:0;
-  background:var(--accent);
-  color:#000;
-  font-family:'Space Grotesk', sans-serif;
-  font-size:.66rem;
-  font-weight:800;
-  letter-spacing:.24em;
-  padding:7px 14px;
-}
-.plan-featured:hover {
-  background:linear-gradient(180deg, rgba(0,255,163,.10), var(--bg2) 60%);
-  box-shadow:
-    0 36px 90px -30px rgba(0,255,163,.65),
-    0 4px 18px rgba(0,0,0,.35);
-}
-
-.plan-premium {
-  /* Subtle warm glow on PREMIUM so it reads as the "next tier up" without
-     out-shouting the recommended STANDARD card. */
-  background:
-    radial-gradient(circle at 90% 0%, rgba(45,212,191,.06), transparent 50%),
-    var(--bg2);
-}
 
 .plans-foot {
   display:flex;
@@ -3752,14 +3780,12 @@ body.bigbang-done .terra-hint,
       <div class="orbit-console" id="orbit-picker">
         <div class="orbit-preview planet-moon" id="orbit-preview" style="--level-accent:#cdd7e3;">
           <div class="preview-topline">
-            <span>Selected level</span>
             <span class="preview-chip" id="preview-chip">지름 3,474 km</span>
           </div>
           <div class="preview-planet-wrap" aria-hidden="true">
             <div class="preview-planet" id="preview-planet"></div>
           </div>
           <div class="preview-meta">
-            <span class="preview-level" id="preview-level">LV 01.</span>
             <h3 class="preview-name" id="preview-name">MOON</h3>
             <p class="preview-grade" id="preview-grade">초3 교과연계</p>
             <p class="preview-desc" id="preview-desc">과학의 동식물 한살이와 물질의 성질, 사회의 우리 고장과 지도 읽기, 수학의 분수·길이·도형 개념을 쉬운 영어 지문으로 연결합니다.</p>
@@ -3768,10 +3794,6 @@ body.bigbang-done .terra-hint,
         </div>
 
         <div class="orbit-selector" aria-label="10개 레벨 행성 선택">
-          <div class="selector-topline">
-            <span>Level presets</span>
-            <span class="selector-chip">초3부터 고3까지</span>
-          </div>
           <div class="orbit-grid">
             <button class="level-card planet-moon is-active" type="button" aria-pressed="true" data-level="1" data-name="MOON" data-grade="초3 교과연계" data-size="지름 3,474 km" data-desc="과학의 동식물 한살이와 물질의 성질, 사회의 우리 고장과 지도 읽기, 수학의 분수·길이·도형 개념을 쉬운 영어 지문으로 연결합니다.">
               <span class="planet-thumb" aria-hidden="true"></span>
@@ -3863,8 +3885,7 @@ body.bigbang-done .terra-hint,
   <section id="plans" class="plans reveal">
     <div class="plans-head">
       <span class="plans-kicker">CHOOSE YOUR FIRST MONTH</span>
-      <h2 class="plans-h2">첫 달, 단돈 <span class="accent">11,900원</span>.</h2>
-      <p class="plans-lede">언제든 해지 · 레벨 변경 자유 · 실물 교재 배송비 무료. 부담 없이 한 달부터.</p>
+      <h2 class="plans-h2">오늘 한 지문이, <span class="accent">내일의 시험지</span>를 바꿉니다.</h2>
     </div>
 
     <div class="plans-grid">
@@ -3872,67 +3893,34 @@ body.bigbang-done .terra-hint,
       <a class="plan" href="order.html?plan=light&ref=earlybird">
         <div class="plan-head">
           <span class="plan-name">LIGHT</span>
-          <span class="plan-tag plan-tag-soft">가볍게 시작</span>
+          <span class="plan-tag plan-tag-pro">PDF 교재</span>
         </div>
         <div class="plan-price-block">
           <div class="plan-price"><span class="krw">₩</span>11,900<span class="won">/월</span></div>
-          <div class="plan-price-sub">첫 달 <strong>5,950원</strong> · 얼리버드 50%</div>
         </div>
-        <p class="plan-sub">집에서 출력해 바로 풀 수 있는 PDF 학습지.</p>
-        <ul class="plan-features">
-          <li><span class="pf-dot">●</span> 월 20지문 PDF · 교과 연계 독해</li>
-          <li><span class="pf-dot">●</span> 어휘 정리 · 한글 해설 포함</li>
-          <li><span class="pf-dot">●</span> 모바일·태블릿 PDF 열람 가능</li>
-          <li class="pf-muted"><span class="pf-dot pf-dot-mute">○</span> 실물 교재·모의고사 미포함</li>
-        </ul>
-        <div class="plan-cta">선택 <span class="cta-arrow">→</span></div>
       </a>
 
-      <!-- STANDARD (Featured) -->
-      <a class="plan plan-featured" href="order.html?plan=standard">
+      <!-- STANDARD -->
+      <a class="plan" href="order.html?plan=standard">
         <div class="plan-head">
           <span class="plan-name">STANDARD</span>
+          <span class="plan-tag plan-tag-pro">실물 교재</span>
         </div>
         <div class="plan-price-block">
           <div class="plan-price"><span class="krw">₩</span>24,900<span class="won">/월</span></div>
-          <div class="plan-price-sub">실물 교재 + 모의고사 · <strong>배송비 무료</strong></div>
         </div>
-        <p class="plan-sub">매달 책 한 권 + 모의고사 2회. 입시까지 가는 표준 트랙.</p>
-        <ul class="plan-features">
-          <li><span class="pf-dot">●</span> 실물 교재 1권</li>
-          <li><span class="pf-dot">●</span> 실전 모의고사 2회 + 답안지</li>
-          <li><span class="pf-dot">●</span> 단어 암기장 · 시험지 별책</li>
-          <li><span class="pf-dot">●</span> LIGHT의 PDF 모두 포함</li>
-        </ul>
-        <div class="plan-cta">선택 <span class="cta-arrow">→</span></div>
       </a>
 
       <!-- PREMIUM -->
-      <a class="plan plan-premium" href="order.html?plan=premium">
+      <a class="plan" href="order.html?plan=premium">
         <div class="plan-head">
           <span class="plan-name">PREMIUM</span>
-          <span class="plan-tag plan-tag-pro">코칭 포함</span>
+          <span class="plan-tag plan-tag-pro">해설 강의</span>
         </div>
         <div class="plan-price-block">
           <div class="plan-price"><span class="krw">₩</span>58,900<span class="won">/월</span></div>
-          <div class="plan-price-sub">해설 강의</div>
         </div>
-        <p class="plan-sub">이해 안되는 지문을 해설 강의를 통해 해결.</p>
-        <ul class="plan-features">
-          <li><span class="pf-dot">●</span> 매월 해설 강의 영상 (지문 20편)</li>
-          <li><span class="pf-dot">●</span> 모의고사 분석지, 해설지 자유이용</li>
-          <li><span class="pf-dot">●</span> STANDARD의 모든 구성 포함</li>
-        </ul>
-        <div class="plan-cta">선택 <span class="cta-arrow">→</span></div>
       </a>
-    </div>
-
-    <div class="plans-foot">
-      <div class="plans-foot-left">
-        <span class="badge"><span class="badge-dot" aria-hidden="true"></span>런칭 멤버 100명 · 첫 달 50% 할인</span>
-        <span class="plans-foot-meta">언제든 해지 · 레벨 변경 자유</span>
-      </div>
-      <a class="plans-foot-link" href="subscription_detail_complete.html#plans">자세한 비교 <span aria-hidden="true">→</span></a>
     </div>
   </section>
 

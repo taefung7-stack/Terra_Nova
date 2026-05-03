@@ -73,7 +73,7 @@
   /* HERO (통일 스타일) */
   .hero{padding:90px 5vw 50px;text-align:center;max-width:1180px;margin:0 auto;}
   .hero-badge{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(0,255,163,.35);color:rgba(224,255,251,.9);background:rgba(0,255,163,.07);font-family:'Space Grotesk',sans-serif;font-size:.7rem;font-weight:600;letter-spacing:3px;padding:6px 14px;margin-bottom:26px;text-transform:uppercase;border-radius:2px;}
-  .hero-title{font-family:'Space Grotesk',sans-serif;font-weight:900;font-size:clamp(3rem,9vw,6.5rem);letter-spacing:.04em;color:rgba(240,247,244,.92);line-height:1;margin-bottom:16px;text-shadow:0 0 24px rgba(255,255,255,.12);-webkit-text-stroke:1px currentColor;}
+  .hero-title{font-family:'Space Grotesk',sans-serif;font-weight:900;font-size:clamp(5rem,16vw,12rem);letter-spacing:.04em;color:rgba(240,247,244,.96);line-height:1;margin-bottom:16px;text-shadow:0 0 32px rgba(255,255,255,.16);-webkit-text-stroke:2px currentColor;}
   .hero-sub{font-size:clamp(.88rem,1.8vw,1.02rem);color:var(--dim);line-height:1.9;}
   /* Landing-style hero fade-up */
   @keyframes tnHeroFadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
@@ -91,7 +91,7 @@
   .cat-btn.active{background:var(--accent);color:#0A0A0A;border-color:var(--accent);font-weight:800;}
 
   /* CATEGORY PANEL */
-  .cat-panel{display:none;padding:60px 5vw 60px;max-width:1280px;margin:0 auto;width:100%;}
+  .cat-panel{display:none;padding:60px 3vw 60px;max-width:1600px;margin:0 auto;width:100%;}
   .cat-panel.active{display:block;animation:fadeIn .35s ease;}
   @keyframes fadeIn{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
 
@@ -109,25 +109,25 @@
   .pdetail-tag.limited{background:rgba(255,167,38,.15);color:#FFD08A;border-color:rgba(255,167,38,.4);}
   .pdetail-tag.pdf{background:rgba(79,195,247,.12);color:#4FC3F7;border-color:rgba(79,195,247,.35);}
 
-  .pdetail-body{padding:34px 32px;display:flex;flex-direction:column;gap:12px;}
-  .pdetail-cat{font-size:.88rem;color:var(--mint);font-weight:700;letter-spacing:1.5px;text-transform:uppercase;}
-  .pdetail-name{font-size:1.55rem;font-weight:900;color:#fff;line-height:1.3;}
-  .pdetail-desc{font-size:.92rem;color:var(--dim);line-height:1.75;margin:6px 0 10px;}
-  .feature-list{list-style:none;margin:4px 0 12px;display:flex;flex-direction:column;gap:8px;}
-  .feature-list li{font-size:.85rem;color:var(--txt);padding-left:22px;position:relative;line-height:1.55;}
-  .feature-list li::before{content:"✓";position:absolute;left:0;top:0;color:var(--accent);font-weight:900;}
-  .spec-table{width:100%;border-collapse:collapse;margin:10px 0 16px;font-size:.82rem;}
-  .spec-table td{padding:8px 10px;border-bottom:1px solid rgba(0,255,163,.1);}
+  .pdetail-body{padding:46px 44px;display:flex;flex-direction:column;gap:16px;}
+  .pdetail-cat{font-size:1.05rem;color:var(--mint);font-weight:700;letter-spacing:1.6px;text-transform:uppercase;}
+  .pdetail-name{font-size:2.2rem;font-weight:900;color:#fff;line-height:1.25;}
+  .pdetail-desc{font-size:1.12rem;color:var(--dim);line-height:1.75;margin:8px 0 12px;}
+  .feature-list{list-style:none;margin:6px 0 14px;display:flex;flex-direction:column;gap:11px;}
+  .feature-list li{font-size:1.05rem;color:var(--txt);padding-left:26px;position:relative;line-height:1.55;}
+  .feature-list li::before{content:"✓";position:absolute;left:0;top:0;color:var(--accent);font-weight:900;font-size:1.15rem;}
+  .spec-table{width:100%;border-collapse:collapse;margin:10px 0 16px;font-size:1rem;}
+  .spec-table td{padding:11px 12px;border-bottom:1px solid rgba(0,255,163,.1);}
   .spec-table td:first-child{color:var(--dim);width:30%;font-weight:600;}
   .spec-table td:last-child{color:var(--txt);}
-  .price-row{display:flex;align-items:baseline;gap:10px;margin:8px 0 4px;}
-  .price-num{font-size:2rem;font-weight:900;color:var(--accent);}
-  .price-unit{font-size:.9rem;color:var(--dim);}
-  .price-orig{font-size:.9rem;color:rgba(240,240,240,.4);text-decoration:line-through;}
-  .btns-row{display:flex;gap:10px;margin-top:auto;padding-top:10px;}
-  .btn-add{flex:1;background:transparent;color:var(--accent);border:1.5px solid var(--accent);border-radius:4px;padding:13px;font-family:inherit;font-size:.88rem;font-weight:800;cursor:pointer;transition:all .15s;}
+  .price-row{display:flex;align-items:baseline;gap:12px;margin:10px 0 6px;}
+  .price-num{font-size:2.8rem;font-weight:900;color:var(--accent);}
+  .price-unit{font-size:1.1rem;color:var(--dim);}
+  .price-orig{font-size:1.05rem;color:rgba(240,240,240,.4);text-decoration:line-through;}
+  .btns-row{display:flex;gap:12px;margin-top:auto;padding-top:14px;}
+  .btn-add{flex:1;background:transparent;color:var(--accent);border:1.5px solid var(--accent);border-radius:6px;padding:17px;font-family:inherit;font-size:1.05rem;font-weight:800;cursor:pointer;transition:all .15s;}
   .btn-add:hover{background:rgba(0,255,163,.08);}
-  .btn-buy{flex:1.3;background:var(--accent);color:#0A0A0A;border:none;border-radius:4px;padding:13px;font-family:inherit;font-size:.88rem;font-weight:900;cursor:pointer;transition:transform .15s,box-shadow .15s;}
+  .btn-buy{flex:1.3;background:var(--accent);color:#0A0A0A;border:none;border-radius:6px;padding:17px;font-family:inherit;font-size:1.1rem;font-weight:900;cursor:pointer;transition:transform .15s,box-shadow .15s;}
   .btn-buy:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(0,255,163,.35);}
 
   /* MOCK FILTER (년도/학년/월) */
@@ -261,7 +261,6 @@
 <section class="hero">
   <div class="hero-badge">✦ Terra Nova Market</div>
   <h1 class="hero-title">MARKET</h1>
-  <p class="hero-sub">구독 외 단품으로 구매 가능한 <br><em>단어장·모의고사 분석지·플래너</em>.<br>결제는 구독과 별도로 처리됩니다.</p>
 </section>
 
 <div class="cat-wrap">
@@ -272,11 +271,6 @@
 
 <!-- ================ 단어장 ================ -->
 <section class="cat-panel active" id="panel-vocab">
-  <div class="cat-head">
-    <div class="cat-label">VOCABULARY SERIES</div>
-    <div class="cat-title">TERRA NOVA 단어장<br>기출 예문 중심 3단계 시리즈</div>
-    <div class="cat-sub">실제 수능·모의고사 기출 예문 2~3개씩 수록.<br> 단순 암기가 아닌 문맥 속에서 어휘를 익히는 단어책. <br> BASIC / ADVANCED / MASTER 3단계로<br> 학년·수준에 맞게 선택할 수 있습니다.</div>
-  </div>
 
   <div class="pdetail">
     <div class="pdetail-img">
@@ -330,11 +324,6 @@
 
 <!-- ================ 모의고사 ================ -->
 <section class="cat-panel" id="panel-mock">
-  <div class="cat-head">
-    <div class="cat-label">MOCK EXAM SERIES</div>
-    <div class="cat-title">모의고사 분석지 & 워크북<br>PDF 즉시 다운로드</div>
-    <div class="cat-sub">최신 수능·평가원 모의고사를 기반으로 Terra Nova 강사진이 직접 제작한 분석지와 변형문제 워크북.<br> 결제 즉시 다운로드 가능합니다.</div>
-  </div>
 
   <!-- 회차 선택 드롭다운 -->
   <div class="mock-filter">
@@ -435,11 +424,6 @@
 
 <!-- ================ 플래너 ================ -->
 <section class="cat-panel" id="panel-planner">
-  <div class="cat-head">
-    <div class="cat-label">LIMITED EDITION</div>
-    <div class="cat-title">초대형 연간 플랜 달력<br>포스터형 입시 플래너</div>
-    <div class="cat-sub">가로 2m × 세로 1m의 초대형 포스터형 플래너.<br> 한 해 입시 일정, D-day, 학습 목표를 한눈에 보며<br> 관리할 수 있는 한정판 제품입니다.</div>
-  </div>
 
   <div class="pdetail">
     <div class="pdetail-img">

@@ -72,9 +72,13 @@
   .tabs{display:grid;grid-template-columns:repeat(10,1fr);gap:5px;}
   @media(max-width:900px){.tabs{grid-template-columns:repeat(5,1fr);}}
   @media(max-width:500px){.tabs{grid-template-columns:repeat(3,1fr);}}
-  .tab{padding:10px 8px;border-radius:6px;border:1px solid var(--line);background:var(--card);color:var(--dim);font-size:.72rem;font-weight:600;cursor:pointer;transition:all .18s;letter-spacing:.5px;text-align:center;white-space:nowrap;}
-  .tab:hover{border-color:rgba(0,255,163,.3);color:#fff;}
-  .tab.active{background:var(--accent);color:#0A0A0A;border-color:var(--accent);}
+  /* Planet level tabs — solid black card with planet image + name + grade. */
+  .tab{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:6px;padding:14px 8px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.16);background:#000;color:#fff;font-size:.78rem;font-weight:700;cursor:pointer;transition:all .18s;letter-spacing:.4px;text-align:center;white-space:nowrap;min-height:130px;}
+  .tab:hover{border-color:rgba(0,255,163,.5);color:#fff;box-shadow:0 0 0 1px rgba(0,255,163,.28),0 12px 22px rgba(0,0,0,.5);}
+  .tab.active{background:#000;color:#fff;border-color:rgba(0,255,163,.85);box-shadow:0 0 0 2px rgba(0,255,163,.55),0 16px 30px rgba(0,0,0,.55);}
+  .tab .tab-planet{width:48px;aspect-ratio:1;background-image:var(--planet-image);background-size:contain;background-position:center;background-repeat:no-repeat;}
+  .tab .tab-name{font-size:.86rem;font-weight:800;color:#fff;}
+  .tab .tab-grade{font-size:.7rem;font-weight:700;color:rgba(255,255,255,.62);margin-top:2px;}
 
   /* CONTENT */
   .content{max-width:1500px;margin:0 auto;padding:40px 3vw 100px;}
@@ -119,9 +123,9 @@
   .curriculum-table tr:hover td{background:rgba(0,255,163,.03);}
 
   /* FREE SAMPLE FORM */
-  .free-sample-section{background:var(--card);border:1px solid rgba(0,255,163,.2);border-radius:12px;padding:40px;text-align:center;margin-top:48px;}
-  .free-title{font-family:'Space Grotesk',sans-serif;font-weight:900;font-size:clamp(1.8rem,4vw,3rem);letter-spacing:.02em;color:#fff;margin-bottom:12px;-webkit-text-stroke:0.6px currentColor;}
-  .free-desc{font-size:.88rem;color:var(--dim);margin-bottom:32px;line-height:1.8;}
+  .free-sample-section{background:var(--card);border:1px solid rgba(0,255,163,.2);border-radius:12px;padding:56px 40px;text-align:center;margin-top:48px;}
+  .free-title{font-family:'Space Grotesk',sans-serif;font-weight:900;font-size:clamp(2.4rem,5vw,3.6rem);letter-spacing:.02em;color:#fff;margin-bottom:18px;-webkit-text-stroke:0.6px currentColor;}
+  .free-desc{font-size:1.25rem;color:rgba(255,255,255,.78);margin-bottom:32px;line-height:1.7;max-width:760px;margin-left:auto;margin-right:auto;}
   .free-form{display:flex;gap:10px;max-width:480px;margin:0 auto;flex-wrap:wrap;justify-content:center;}
   .free-input{flex:1;min-width:200px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:6px;padding:12px 18px;color:var(--txt);font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:.88rem;outline:none;transition:border-color .18s;}
   .free-input:focus{border-color:rgba(0,255,163,.5);}
@@ -180,16 +184,16 @@
         "name": "레벨별 무료 샘플",
         "numberOfItems": 10,
         "itemListElement": [
-          {"@type": "ListItem", "position": 1, "item": {"@type": "LearningResource", "name": "MOON 레벨 샘플 · 초3 영어 독해", "educationalLevel": "Elementary 3rd Grade", "learningResourceType": "Reading passage sample", "inLanguage": "en", "isAccessibleForFree": true, "url": "https://terra-nova.kr/sample.html#sec-moon"}},
-          {"@type": "ListItem", "position": 2, "item": {"@type": "LearningResource", "name": "MERCURY 레벨 샘플 · 초4 영어 독해", "educationalLevel": "Elementary 4th Grade", "learningResourceType": "Reading passage sample", "inLanguage": "en", "isAccessibleForFree": true, "url": "https://terra-nova.kr/sample.html#sec-mercury"}},
-          {"@type": "ListItem", "position": 3, "item": {"@type": "LearningResource", "name": "MARS 레벨 샘플 · 초5 영어 독해", "educationalLevel": "Elementary 5th Grade", "learningResourceType": "Reading passage sample", "inLanguage": "en", "isAccessibleForFree": true, "url": "https://terra-nova.kr/sample.html#sec-mars"}},
-          {"@type": "ListItem", "position": 4, "item": {"@type": "LearningResource", "name": "VENUS 레벨 샘플 · 초6 영어 독해", "educationalLevel": "Elementary 6th Grade", "learningResourceType": "Reading passage sample", "inLanguage": "en", "isAccessibleForFree": true, "url": "https://terra-nova.kr/sample.html#sec-venus"}},
-          {"@type": "ListItem", "position": 5, "item": {"@type": "LearningResource", "name": "TERRA 레벨 샘플 · 중1 영어 독해", "educationalLevel": "Middle School 1st Grade", "learningResourceType": "Reading passage sample", "inLanguage": "en", "isAccessibleForFree": true, "url": "https://terra-nova.kr/sample.html#sec-terra"}},
-          {"@type": "ListItem", "position": 6, "item": {"@type": "LearningResource", "name": "NEPTUNE 레벨 샘플 · 중2 영어 독해", "educationalLevel": "Middle School 2nd Grade", "learningResourceType": "Reading passage sample", "inLanguage": "en", "isAccessibleForFree": true, "url": "https://terra-nova.kr/sample.html#sec-neptune"}},
-          {"@type": "ListItem", "position": 7, "item": {"@type": "LearningResource", "name": "URANUS 레벨 샘플 · 중3 영어 독해", "educationalLevel": "Middle School 3rd Grade", "learningResourceType": "Reading passage sample", "inLanguage": "en", "isAccessibleForFree": true, "url": "https://terra-nova.kr/sample.html#sec-uranus"}},
-          {"@type": "ListItem", "position": 8, "item": {"@type": "LearningResource", "name": "SATURN 레벨 샘플 · 고1 영어 독해", "educationalLevel": "High School 1st Grade", "learningResourceType": "Reading passage sample", "inLanguage": "en", "isAccessibleForFree": true, "url": "https://terra-nova.kr/sample.html#sec-saturn"}},
-          {"@type": "ListItem", "position": 9, "item": {"@type": "LearningResource", "name": "JUPITER 레벨 샘플 · 고2 영어 독해", "educationalLevel": "High School 2nd Grade", "learningResourceType": "Reading passage sample", "inLanguage": "en", "isAccessibleForFree": true, "url": "https://terra-nova.kr/sample.html#sec-jupiter"}},
-          {"@type": "ListItem", "position": 10, "item": {"@type": "LearningResource", "name": "SUN 레벨 샘플 · 고3/수능 영어 독해", "educationalLevel": "High School 3rd Grade / CSAT", "learningResourceType": "Reading passage sample", "inLanguage": "en", "isAccessibleForFree": true, "url": "https://terra-nova.kr/sample.html#sec-sun"}}
+          {"@type": "ListItem", "position": 1, "item": {"@type": "LearningResource", "name": "MOON 레벨 샘플 · 초3 교과 연계", "educationalLevel": "Elementary 3rd Grade", "learningResourceType": "Reading passage sample", "inLanguage": "en", "isAccessibleForFree": true, "url": "https://terra-nova.kr/sample.html#sec-moon"}},
+          {"@type": "ListItem", "position": 2, "item": {"@type": "LearningResource", "name": "MERCURY 레벨 샘플 · 초4 교과 연계", "educationalLevel": "Elementary 4th Grade", "learningResourceType": "Reading passage sample", "inLanguage": "en", "isAccessibleForFree": true, "url": "https://terra-nova.kr/sample.html#sec-mercury"}},
+          {"@type": "ListItem", "position": 3, "item": {"@type": "LearningResource", "name": "MARS 레벨 샘플 · 초5 교과 연계", "educationalLevel": "Elementary 5th Grade", "learningResourceType": "Reading passage sample", "inLanguage": "en", "isAccessibleForFree": true, "url": "https://terra-nova.kr/sample.html#sec-mars"}},
+          {"@type": "ListItem", "position": 4, "item": {"@type": "LearningResource", "name": "VENUS 레벨 샘플 · 초6 교과 연계", "educationalLevel": "Elementary 6th Grade", "learningResourceType": "Reading passage sample", "inLanguage": "en", "isAccessibleForFree": true, "url": "https://terra-nova.kr/sample.html#sec-venus"}},
+          {"@type": "ListItem", "position": 5, "item": {"@type": "LearningResource", "name": "TERRA 레벨 샘플 · 중1 교과 연계", "educationalLevel": "Middle School 1st Grade", "learningResourceType": "Reading passage sample", "inLanguage": "en", "isAccessibleForFree": true, "url": "https://terra-nova.kr/sample.html#sec-terra"}},
+          {"@type": "ListItem", "position": 6, "item": {"@type": "LearningResource", "name": "NEPTUNE 레벨 샘플 · 중2 교과 연계", "educationalLevel": "Middle School 2nd Grade", "learningResourceType": "Reading passage sample", "inLanguage": "en", "isAccessibleForFree": true, "url": "https://terra-nova.kr/sample.html#sec-neptune"}},
+          {"@type": "ListItem", "position": 7, "item": {"@type": "LearningResource", "name": "URANUS 레벨 샘플 · 중3 교과 연계", "educationalLevel": "Middle School 3rd Grade", "learningResourceType": "Reading passage sample", "inLanguage": "en", "isAccessibleForFree": true, "url": "https://terra-nova.kr/sample.html#sec-uranus"}},
+          {"@type": "ListItem", "position": 8, "item": {"@type": "LearningResource", "name": "SATURN 레벨 샘플 · 고1 교과 연계", "educationalLevel": "High School 1st Grade", "learningResourceType": "Reading passage sample", "inLanguage": "en", "isAccessibleForFree": true, "url": "https://terra-nova.kr/sample.html#sec-saturn"}},
+          {"@type": "ListItem", "position": 9, "item": {"@type": "LearningResource", "name": "JUPITER 레벨 샘플 · 고2 교과 연계", "educationalLevel": "High School 2nd Grade", "learningResourceType": "Reading passage sample", "inLanguage": "en", "isAccessibleForFree": true, "url": "https://terra-nova.kr/sample.html#sec-jupiter"}},
+          {"@type": "ListItem", "position": 10, "item": {"@type": "LearningResource", "name": "SUN 레벨 샘플 · 고3/수능 교과 연계", "educationalLevel": "High School 3rd Grade / CSAT", "learningResourceType": "Reading passage sample", "inLanguage": "en", "isAccessibleForFree": true, "url": "https://terra-nova.kr/sample.html#sec-sun"}}
         ]
       }
     }
@@ -230,16 +234,16 @@
 <!-- TABS -->
 <div class="tabs-wrap">
   <div class="tabs">
-    <div class="tab active" onclick="showLevel('moon',this)">MOON<br><span style="font-size:.82rem;font-weight:700;opacity:.85;margin-top:3px;display:inline-block;">초3</span></div>
-    <div class="tab" onclick="showLevel('mercury',this)">MERCURY<br><span style="font-size:.82rem;font-weight:700;opacity:.85;margin-top:3px;display:inline-block;">초4</span></div>
-    <div class="tab" onclick="showLevel('mars',this)">MARS<br><span style="font-size:.82rem;font-weight:700;opacity:.85;margin-top:3px;display:inline-block;">초5</span></div>
-    <div class="tab" onclick="showLevel('venus',this)">VENUS<br><span style="font-size:.82rem;font-weight:700;opacity:.85;margin-top:3px;display:inline-block;">초6</span></div>
-    <div class="tab" onclick="showLevel('terra',this)">TERRA<br><span style="font-size:.82rem;font-weight:700;opacity:.85;margin-top:3px;display:inline-block;">중1</span></div>
-    <div class="tab" onclick="showLevel('neptune',this)">NEPTUNE<br><span style="font-size:.82rem;font-weight:700;opacity:.85;margin-top:3px;display:inline-block;">중2</span></div>
-    <div class="tab" onclick="showLevel('uranus',this)">URANUS<br><span style="font-size:.82rem;font-weight:700;opacity:.85;margin-top:3px;display:inline-block;">중3</span></div>
-    <div class="tab" onclick="showLevel('saturn',this)">SATURN<br><span style="font-size:.82rem;font-weight:700;opacity:.85;margin-top:3px;display:inline-block;">고1</span></div>
-    <div class="tab" onclick="showLevel('jupiter',this)">JUPITER<br><span style="font-size:.82rem;font-weight:700;opacity:.85;margin-top:3px;display:inline-block;">고2</span></div>
-    <div class="tab" onclick="showLevel('sun',this)">SUN<br><span style="font-size:.82rem;font-weight:700;opacity:.85;margin-top:3px;display:inline-block;">고3</span></div>
+    <div class="tab active" onclick="showLevel('moon',this)" style="--planet-image:url('assets/3d/planets-normalized/moon.png');"><div class="tab-planet"></div><div class="tab-name">MOON</div><div class="tab-grade">초3</div></div>
+    <div class="tab" onclick="showLevel('mercury',this)" style="--planet-image:url('assets/3d/planets-normalized/mercury.png');"><div class="tab-planet"></div><div class="tab-name">MERCURY</div><div class="tab-grade">초4</div></div>
+    <div class="tab" onclick="showLevel('mars',this)" style="--planet-image:url('assets/3d/planets-normalized/mars.png');"><div class="tab-planet"></div><div class="tab-name">MARS</div><div class="tab-grade">초5</div></div>
+    <div class="tab" onclick="showLevel('venus',this)" style="--planet-image:url('assets/3d/planets-normalized/venus.png');"><div class="tab-planet"></div><div class="tab-name">VENUS</div><div class="tab-grade">초6</div></div>
+    <div class="tab" onclick="showLevel('terra',this)" style="--planet-image:url('assets/3d/planets-normalized/terra.png');"><div class="tab-planet"></div><div class="tab-name">TERRA</div><div class="tab-grade">중1</div></div>
+    <div class="tab" onclick="showLevel('neptune',this)" style="--planet-image:url('assets/3d/planets-normalized/neptune.png');"><div class="tab-planet"></div><div class="tab-name">NEPTUNE</div><div class="tab-grade">중2</div></div>
+    <div class="tab" onclick="showLevel('uranus',this)" style="--planet-image:url('assets/3d/planets-normalized/uranus.png');"><div class="tab-planet"></div><div class="tab-name">URANUS</div><div class="tab-grade">중3</div></div>
+    <div class="tab" onclick="showLevel('saturn',this)" style="--planet-image:url('assets/3d/planets-normalized/saturn.png');"><div class="tab-planet"></div><div class="tab-name">SATURN</div><div class="tab-grade">고1</div></div>
+    <div class="tab" onclick="showLevel('jupiter',this)" style="--planet-image:url('assets/3d/planets-normalized/jupiter.png');"><div class="tab-planet"></div><div class="tab-name">JUPITER</div><div class="tab-grade">고2</div></div>
+    <div class="tab" onclick="showLevel('sun',this)" style="--planet-image:url('assets/3d/planets-normalized/sun.png');"><div class="tab-planet"></div><div class="tab-name">SUN</div><div class="tab-grade">고3</div></div>
   </div>
 </div>
 
@@ -250,9 +254,7 @@
     <div class="level-header">
       <div class="level-badge">MOON</div>
       <div class="level-info">
-        <div class="level-title">MOON 레벨 · 초3 영어 독해</div>
-        <div class="level-target">초등학교 3학년 · MOON Level 1</div>
-        <div class="level-desc">영어 독해의 첫 출발점입니다. 짧고 명확한 문장으로 교과서 기초 개념을 영어로 접하며, 하루 10~15분 학습으로 영어에 대한 자신감을 키웁니다.</div>
+        <div class="level-title">MOON 레벨 · 초3 교과 연계</div>
       </div>
     </div>
 
@@ -316,9 +318,7 @@
     <div class="level-header">
       <div class="level-badge">MERCURY</div>
       <div class="level-info">
-        <div class="level-title">MERCURY 레벨 · 초4 영어 독해</div>
-        <div class="level-target">초등학교 4학년 · MERCURY Level 2</div>
-        <div class="level-desc">기초 어휘를 확장하고 주요 문장 패턴을 익히는 단계입니다. 3~4문장 단락 이해와 영어로 된 지식 축적을 시작합니다.</div>
+        <div class="level-title">MERCURY 레벨 · 초4 교과 연계</div>
       </div>
     </div>
 
@@ -382,9 +382,7 @@
     <div class="level-header">
       <div class="level-badge">MARS</div>
       <div class="level-info">
-        <div class="level-title">MARS 레벨 · 초5 영어 독해</div>
-        <div class="level-target">초등학교 5학년 · MARS Level 3</div>
-        <div class="level-desc">문장 구조 이해가 시작되는 단계입니다. 주어·동사·목적어를 구분하고 단락 단위 읽기 전략을 익히며 중학 진학 전 기초를 다집니다.</div>
+        <div class="level-title">MARS 레벨 · 초5 교과 연계</div>
       </div>
     </div>
 
@@ -448,9 +446,7 @@
     <div class="level-header">
       <div class="level-badge">VENUS</div>
       <div class="level-info">
-        <div class="level-title">VENUS 레벨 · 초6 영어 독해</div>
-        <div class="level-target">초등학교 6학년 · VENUS Level 4</div>
-        <div class="level-desc">중학 진학 직전 심화 단계입니다. 중학 1학년 어휘를 선행하고 복잡한 문장 구조를 분석하기 시작합니다. 상급 어휘 1,500개 기반.</div>
+        <div class="level-title">VENUS 레벨 · 초6 교과 연계</div>
       </div>
     </div>
 
@@ -514,9 +510,7 @@
     <div class="level-header">
       <div class="level-badge">TERRA</div>
       <div class="level-info">
-        <div class="level-title">TERRA 레벨 · 중1 영어 독해</div>
-        <div class="level-target">중학교 1학년 · TERRA Level 5</div>
-        <div class="level-desc">본격적인 독해 훈련이 시작됩니다. 주제·요지 파악과 논리 구조를 학습하며 중학 내신 1등급과 수능 기초를 동시에 준비합니다.</div>
+        <div class="level-title">TERRA 레벨 · 중1 교과 연계</div>
       </div>
     </div>
 
@@ -580,9 +574,7 @@
     <div class="level-header">
       <div class="level-badge">NEPTUNE</div>
       <div class="level-info">
-        <div class="level-title">NEPTUNE 레벨 · 중2 영어 독해</div>
-        <div class="level-target">중학교 2학년 · NEPTUNE Level 6</div>
-        <div class="level-desc">독해 속도와 정확도를 동시에 끌어올립니다. 다양한 지문 유형과 문법 포인트를 결합하여 내신·학평 대비를 완성합니다.</div>
+        <div class="level-title">NEPTUNE 레벨 · 중2 교과 연계</div>
       </div>
     </div>
 
@@ -646,9 +638,7 @@
     <div class="level-header">
       <div class="level-badge">URANUS</div>
       <div class="level-info">
-        <div class="level-title">URANUS 레벨 · 중3 영어 독해</div>
-        <div class="level-target">중학교 3학년 · URANUS Level 7</div>
-        <div class="level-desc">수능 유형 입문 단계입니다. 빈칸·순서·삽입 등 핵심 유형을 단계적으로 훈련하며 고등학교 진학 전 필수 수능 독해 스킬을 탑재합니다.</div>
+        <div class="level-title">URANUS 레벨 · 중3 교과 연계</div>
       </div>
     </div>
 
@@ -712,9 +702,7 @@
     <div class="level-header">
       <div class="level-badge">SATURN</div>
       <div class="level-info">
-        <div class="level-title">SATURN 레벨 · 고1 영어 독해</div>
-        <div class="level-target">고등학교 1학년 · SATURN Level 8</div>
-        <div class="level-desc">고등학교 내신과 모의고사를 동시에 대비합니다. 지문 난도 상승 구간을 체계적으로 돌파하며 수능 실전 감각을 쌓습니다.</div>
+        <div class="level-title">SATURN 레벨 · 고1 교과 연계</div>
       </div>
     </div>
 
@@ -778,9 +766,7 @@
     <div class="level-header">
       <div class="level-badge">JUPITER</div>
       <div class="level-info">
-        <div class="level-title">JUPITER 레벨 · 고2 영어 독해</div>
-        <div class="level-target">고등학교 2학년 · JUPITER Level 9</div>
-        <div class="level-desc">수능 실전 대비 본격 단계입니다. 모든 유형을 균형 있게 훈련하며 고득점을 목표로 2~3등급에서 1등급으로 도약하는 결정적 시기입니다.</div>
+        <div class="level-title">JUPITER 레벨 · 고2 교과 연계</div>
       </div>
     </div>
 
@@ -844,9 +830,7 @@
     <div class="level-header">
       <div class="level-badge">SUN</div>
       <div class="level-info">
-        <div class="level-title">SUN 레벨 · 고3 / N수생 영어 독해</div>
-        <div class="level-target">고등학교 3학년 / N수생 · SUN Level 10</div>
-        <div class="level-desc">수능 1등급 완성을 위한 최고난도 훈련입니다. 킬러 문항 대비와 시간 단축 전략으로 안정적 고득점을 목표로 합니다.</div>
+        <div class="level-title">SUN 레벨 · 고3 / N수생 교과 연계</div>
       </div>
     </div>
 
@@ -910,24 +894,10 @@
   <!-- FREE SAMPLE FORM -->
   <div class="free-sample-section">
     <div class="free-title">FREE SAMPLE</div>
-    <p class="free-desc">이메일로 샘플 PDF를 <br>무료로 받아보세요.<br>원하는 레벨의 일주일치 지문을 <br>미리 확인할 수 있습니다.</p>
+    <p class="free-desc">이메일로 샘플 PDF를 무료로 받아보세요.<br>원하는 레벨의 일주일치 지문을 미리 확인할 수 있습니다.</p>
     <div class="free-form">
       <input type="email" class="free-input" placeholder="이메일 주소 입력">
       <button class="free-btn" onclick="requestSample(this)">샘플 받기</button>
-    </div>
-    <p class="free-note">스팸 없음 · 언제든지 구독 취소 가능 · PDF 즉시 발송</p>
-    <div style="margin-top:24px;padding-top:24px;border-top:1px solid rgba(255,255,255,.08);">
-      <p style="font-size:.78rem;color:var(--dim);margin-bottom:14px;">계정을 만들면 레벨별 학습 기록을 저장하고 <br>맞춤 추천을 받을 수 있어요.</p>
-      <a href="signup.html" style="display:inline-block;background:transparent;border:1.5px solid rgba(0,255,163,.5);color:var(--accent);padding:11px 32px;border-radius:6px;font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:.85rem;font-weight:700;text-decoration:none;transition:background .2s;" onmouseover="this.style.background='rgba(0,255,163,.08)'" onmouseout="this.style.background='transparent'">무료 회원가입 →</a>
-    </div>
-  </div>
-
-  <!-- CTA -->
-  <div class="cta-wrap">
-    <div class="cta-title">마음에 드셨나요?</div>
-    <div class="cta-btns">
-      <a href="subscription_detail_complete.html" class="btn-primary">구독 상세 보기</a>
-      <a href="level_test.html" class="btn-outline">레벨 테스트 하기</a>
     </div>
   </div>
 

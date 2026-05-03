@@ -2571,18 +2571,17 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
 }
 .plan-name {
   font-family:'Space Grotesk', sans-serif;
-  font-size:.92rem;
-  font-weight:700;
-  letter-spacing:.32em;
-  color:rgba(255,255,255,.72);
+  font-size:1.9rem;
+  font-weight:800;
+  letter-spacing:.28em;
+  color:#fff;
 }
 .plan-tag {
   font-family:'Space Grotesk', 'Pretendard', sans-serif;
-  font-size:.66rem;
-  font-weight:600;
-  letter-spacing:.18em;
-  text-transform:uppercase;
-  padding:5px 10px;
+  font-size:1.05rem;
+  font-weight:700;
+  letter-spacing:.12em;
+  padding:10px 18px;
   border-radius:999px;
   white-space:nowrap;
 }
@@ -2609,8 +2608,8 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
 }
 .plan-price {
   font-family:'Space Grotesk', sans-serif;
-  font-weight:700;
-  font-size:clamp(2.2rem, 4.4vw, 3.2rem);
+  font-weight:800;
+  font-size:clamp(3.2rem, 6vw, 4.6rem);
   letter-spacing:-.025em;
   color:var(--txt);
   line-height:1;
@@ -3738,14 +3737,12 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
       <div class="orbit-console" id="orbit-picker">
         <div class="orbit-preview planet-moon" id="orbit-preview" style="--level-accent:#cdd7e3;">
           <div class="preview-topline">
-            <span>Selected level</span>
             <span class="preview-chip" id="preview-chip">지름 3,474 km</span>
           </div>
           <div class="preview-planet-wrap" aria-hidden="true">
             <div class="preview-planet" id="preview-planet"></div>
           </div>
           <div class="preview-meta">
-            <span class="preview-level" id="preview-level">LV 01.</span>
             <h3 class="preview-name" id="preview-name">MOON</h3>
             <p class="preview-grade" id="preview-grade">초3 교과연계</p>
             <p class="preview-desc" id="preview-desc">과학의 동식물 한살이와 물질의 성질, 사회의 우리 고장과 지도 읽기, 수학의 분수·길이·도형 개념을 쉬운 영어 지문으로 연결합니다.</p>
@@ -3754,10 +3751,6 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
         </div>
 
         <div class="orbit-selector" aria-label="10개 레벨 행성 선택">
-          <div class="selector-topline">
-            <span>Level presets</span>
-            <span class="selector-chip">초3부터 고3까지</span>
-          </div>
           <div class="orbit-grid">
             <button class="level-card planet-moon is-active" type="button" aria-pressed="true" data-level="1" data-name="MOON" data-grade="초3 교과연계" data-size="지름 3,474 km" data-desc="과학의 동식물 한살이와 물질의 성질, 사회의 우리 고장과 지도 읽기, 수학의 분수·길이·도형 개념을 쉬운 영어 지문으로 연결합니다.">
               <span class="planet-thumb" aria-hidden="true"></span>
@@ -3855,69 +3848,41 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
 
     <div class="plans-grid">
       <!-- LIGHT -->
-      <a class="plan" href="order.html?plan=light&ref=earlybird">
+      <a class="plan" href="order.html?plan=light">
         <div class="plan-head">
           <span class="plan-name">LIGHT</span>
-          <span class="plan-tag plan-tag-soft">가볍게 시작</span>
+          <span class="plan-tag plan-tag-pro">PDF 교재</span>
         </div>
         <div class="plan-price-block">
           <div class="plan-price"><span class="krw">₩</span>11,900<span class="won">/월</span></div>
-          <div class="plan-price-sub">첫 달 <strong>5,950원</strong> · 얼리버드 50%</div>
         </div>
-        <p class="plan-sub">집에서 출력해 바로 풀 수 있는 PDF 학습지.</p>
-        <ul class="plan-features">
-          <li><span class="pf-dot">●</span> 월 20지문 PDF · 교과 연계 독해</li>
-          <li><span class="pf-dot">●</span> 어휘 정리 · 한글 해설 포함</li>
-          <li><span class="pf-dot">●</span> 모바일·태블릿 PDF 열람 가능</li>
-          <li class="pf-muted"><span class="pf-dot pf-dot-mute">○</span> 실물 교재·모의고사 미포함</li>
-        </ul>
-        <div class="plan-cta">선택 <span class="cta-arrow">→</span></div>
       </a>
 
-      <!-- STANDARD (Featured) -->
-      <a class="plan plan-featured" href="order.html?plan=standard">
+      <!-- STANDARD -->
+      <a class="plan" href="order.html?plan=standard">
         <div class="plan-head">
           <span class="plan-name">STANDARD</span>
+          <span class="plan-tag plan-tag-pro">실물 교재</span>
         </div>
         <div class="plan-price-block">
           <div class="plan-price"><span class="krw">₩</span>24,900<span class="won">/월</span></div>
-          <div class="plan-price-sub">실물 교재 + 모의고사 · <strong>배송비 무료</strong></div>
         </div>
-        <p class="plan-sub">매달 책 한 권 + 모의고사 2회. 입시까지 가는 표준 트랙.</p>
-        <ul class="plan-features">
-          <li><span class="pf-dot">●</span> 실물 교재 1권</li>
-          <li><span class="pf-dot">●</span> 실전 모의고사 2회 + 답안지</li>
-          <li><span class="pf-dot">●</span> 단어 암기장 · 시험지 별책</li>
-          <li><span class="pf-dot">●</span> LIGHT의 PDF 모두 포함</li>
-        </ul>
-        <div class="plan-cta">선택 <span class="cta-arrow">→</span></div>
       </a>
 
       <!-- PREMIUM -->
-      <a class="plan plan-premium" href="order.html?plan=premium">
+      <a class="plan" href="order.html?plan=premium">
         <div class="plan-head">
           <span class="plan-name">PREMIUM</span>
-          <span class="plan-tag plan-tag-pro">코칭 포함</span>
+          <span class="plan-tag plan-tag-pro">해설 강의</span>
         </div>
         <div class="plan-price-block">
           <div class="plan-price"><span class="krw">₩</span>58,900<span class="won">/월</span></div>
-          <div class="plan-price-sub">해설 강의</div>
         </div>
-        <p class="plan-sub">이해 안되는 지문을 해설 강의를 통해 해결.</p>
-        <ul class="plan-features">
-          <li><span class="pf-dot">●</span> 매월 해설 강의 영상 (지문 20편)</li>
-          <li><span class="pf-dot">●</span> 모의고사 분석지, 해설지 자유이용</li>
-          <li><span class="pf-dot">●</span> STANDARD의 모든 구성 포함</li>
-        </ul>
-        <div class="plan-cta">선택 <span class="cta-arrow">→</span></div>
       </a>
     </div>
 
     <div class="plans-foot">
-      <div class="plans-foot-left">
-        <span class="badge"><span class="badge-dot" aria-hidden="true"></span>런칭 멤버 100명 · 첫 달 50% 할인</span>
-        <span class="plans-foot-meta">언제든 해지 · 레벨 변경 자유</span>
-      </div>
+      <div class="plans-foot-left"></div>
       <a class="plans-foot-link" href="subscription_detail_complete.html#plans">자세한 비교 <span aria-hidden="true">→</span></a>
     </div>
   </section>

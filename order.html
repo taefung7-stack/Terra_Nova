@@ -55,7 +55,7 @@
 
   /* LAYOUT */
   .page-wrap{padding-top:80px;min-height:100vh;}
-  .page-inner{max-width:1320px;margin:0 auto;padding:60px 5vw 120px;display:grid;grid-template-columns:1fr 420px;gap:48px;align-items:start;}
+  .page-inner{max-width:1720px;margin:0 auto;padding:60px 5vw 120px;display:grid;grid-template-columns:1fr 460px;gap:64px;align-items:start;}
   @media(max-width:900px){.page-inner{grid-template-columns:1fr;}}
 
   /* SECTION TITLE */
@@ -132,27 +132,16 @@
   .plan-card.selected .plan-features li{color:rgba(255,255,255,.85);}
 
   /* ── LEVEL BUTTONS ── */
-  .level-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:16px;}
+  .level-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:16px;}
   @media(max-width:768px){.level-grid{grid-template-columns:repeat(3,1fr);}}
   @media(max-width:480px){.level-grid{grid-template-columns:repeat(2,1fr);}}
-  .level-btn{border:1px solid var(--line);border-radius:8px;padding:14px 10px;cursor:pointer;text-align:center;background:var(--card);transition:all .18s;font-family:'Pretendard','Noto Sans KR',sans-serif;position:relative;overflow:hidden;}
-  .level-btn::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .18s;pointer-events:none;}
-  .level-btn:hover{border-color:rgba(0,255,163,.5);transform:translateY(-2px);}
-  .level-btn:hover::before{opacity:.1;}
-  .level-btn.selected{border-color:var(--accent);background:rgba(0,255,163,.12);box-shadow:0 4px 20px rgba(0,255,163,.2);}
-  /* Galaxy-specific accents (glow on hover/select) */
-  .level-btn.lv-1::before{background:radial-gradient(circle at center,rgba(59,130,246,.6) 0%,transparent 70%);}
-  .level-btn.lv-2::before{background:radial-gradient(circle at center,rgba(236,72,153,.6) 0%,transparent 70%);}
-  .level-btn.lv-3::before{background:radial-gradient(circle at center,rgba(168,85,247,.6) 0%,transparent 70%);}
-  .level-btn.lv-4::before{background:radial-gradient(circle at center,rgba(20,184,166,.6) 0%,transparent 70%);}
-  .level-btn.lv-5::before{background:radial-gradient(circle at center,rgba(14,165,233,.6) 0%,transparent 70%);}
-  .level-btn.lv-6::before{background:radial-gradient(circle at center,rgba(234,179,8,.6) 0%,transparent 70%);}
-  .level-btn.lv-7::before{background:radial-gradient(circle at center,rgba(203,213,225,.6) 0%,transparent 70%);}
-  .level-btn.lv-8::before{background:radial-gradient(circle at center,rgba(239,68,68,.6) 0%,transparent 70%);}
-  .level-btn.lv-9::before{background:radial-gradient(circle at center,rgba(139,92,246,.6) 0%,transparent 70%);}
-  .level-btn.lv-10::before{background:radial-gradient(circle at center,rgba(217,70,239,.6) 0%,transparent 70%);}
-  .level-name{font-size:1rem;font-weight:700;color:#fff;}
-  .level-target{font-size:.78rem;color:var(--dim);margin-top:3px;}
+  /* Solid black level cards with planet PNG. */
+  .level-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;border:1px solid rgba(255,255,255,.16);border-radius:10px;padding:14px 10px;cursor:pointer;text-align:center;background:#000;transition:all .18s;font-family:'Pretendard','Noto Sans KR',sans-serif;}
+  .level-btn:hover{border-color:rgba(0,255,163,.5);transform:translateY(-2px);box-shadow:0 0 0 1px rgba(0,255,163,.28),0 12px 22px rgba(0,0,0,.5);}
+  .level-btn.selected{border-color:rgba(0,255,163,.85);background:#000;box-shadow:0 0 0 2px rgba(0,255,163,.55),0 16px 30px rgba(0,0,0,.55);}
+  .level-planet{width:46px;aspect-ratio:1;background-image:var(--planet-image);background-size:contain;background-position:center;background-repeat:no-repeat;}
+  .level-name{font-size:.95rem;font-weight:800;color:#fff;}
+  .level-target{font-size:.72rem;color:rgba(255,255,255,.62);margin-top:1px;}
 
   /* ── ADDRESS MATCH ── */
   .addr-match-row{display:flex;align-items:center;gap:12px;margin-bottom:18px;padding:14px 16px;background:var(--card2);border:1px solid var(--line);border-radius:8px;}
@@ -347,9 +336,6 @@
 
         <!-- 미로그인 상태 -->
         <div id="auth-form-wrap" class="auth-block">
-          <div class="auth-block-title">계정으로 구독 관리가 편리해집니다.</div>
-          <div class="auth-block-sub">로그인하거나 회원가입하면 레벨 변경, 배송 관리, 결제 내역을 마이페이지에서 한 번에 관리할 수 있습니다.계정 없이도 구독 신청은 가능합니다.</div>
-
           <div class="auth-tabs">
             <button class="auth-tab active" onclick="switchAuthTab('login')">로그인</button>
             <button class="auth-tab" onclick="switchAuthTab('signup')">회원가입</button>
@@ -460,11 +446,8 @@
             </ul>
           </div>
 
-          <!-- STANDARD (POPULAR) -->
+          <!-- STANDARD -->
           <div class="plan-card" id="card-standard" onclick="selectPlan(this,'STANDARD','24900','249000')">
-            <div class="plan-badge-wrap">
-              <div class="plan-badge-popular">인기</div>
-            </div>
             <div class="plan-tier">STANDARD</div>
             <div class="plan-name">PDF + 실물</div>
             <div class="plan-price-wrap">
@@ -498,8 +481,7 @@
             <div class="plan-annual-saving"></div>
             <ul class="plan-features">
               <li>PDF+실물 모두 포함</li>
-              <li>입시뉴스 카톡방</li>
-              <li>해설강의 (준비중)</li>
+              <li>해설 강의</li>
             </ul>
           </div>
         </div>
@@ -509,45 +491,55 @@
       <div class="form-section">
         <div class="form-section-title">03 — 레벨 선택</div>
         <div class="level-grid">
-          <div class="level-btn lv-1" onclick="selectLevel(this,'MOON')">
+          <div class="level-btn lv-1" onclick="selectLevel(this,'MOON')" style="--planet-image:url('assets/3d/planets-normalized/moon.png');">
+            <div class="level-planet"></div>
             <div class="level-name">MOON</div>
-            <div class="level-target">초3학년 · 🌑 달</div>
+            <div class="level-target">초3학년 · 달</div>
           </div>
-          <div class="level-btn lv-2" onclick="selectLevel(this,'MERCURY')">
+          <div class="level-btn lv-2" onclick="selectLevel(this,'MERCURY')" style="--planet-image:url('assets/3d/planets-normalized/mercury.png');">
+            <div class="level-planet"></div>
             <div class="level-name">MERCURY</div>
-            <div class="level-target">초4학년 · ⚫ 수성</div>
+            <div class="level-target">초4학년 · 수성</div>
           </div>
-          <div class="level-btn lv-3" onclick="selectLevel(this,'MARS')">
+          <div class="level-btn lv-3" onclick="selectLevel(this,'MARS')" style="--planet-image:url('assets/3d/planets-normalized/mars.png');">
+            <div class="level-planet"></div>
             <div class="level-name">MARS</div>
-            <div class="level-target">초5학년 · 🔴 화성</div>
+            <div class="level-target">초5학년 · 화성</div>
           </div>
-          <div class="level-btn lv-4" onclick="selectLevel(this,'VENUS')">
+          <div class="level-btn lv-4" onclick="selectLevel(this,'VENUS')" style="--planet-image:url('assets/3d/planets-normalized/venus.png');">
+            <div class="level-planet"></div>
             <div class="level-name">VENUS</div>
-            <div class="level-target">초6학년 · 🟡 금성</div>
+            <div class="level-target">초6학년 · 금성</div>
           </div>
-          <div class="level-btn lv-5" onclick="selectLevel(this,'TERRA')">
+          <div class="level-btn lv-5" onclick="selectLevel(this,'TERRA')" style="--planet-image:url('assets/3d/planets-normalized/terra.png');">
+            <div class="level-planet"></div>
             <div class="level-name">TERRA</div>
-            <div class="level-target">중1학년 · 🌍 지구</div>
+            <div class="level-target">중1학년 · 지구</div>
           </div>
-          <div class="level-btn lv-6" onclick="selectLevel(this,'NEPTUNE')">
+          <div class="level-btn lv-6" onclick="selectLevel(this,'NEPTUNE')" style="--planet-image:url('assets/3d/planets-normalized/neptune.png');">
+            <div class="level-planet"></div>
             <div class="level-name">NEPTUNE</div>
-            <div class="level-target">중2학년 · 🔵 해왕성</div>
+            <div class="level-target">중2학년 · 해왕성</div>
           </div>
-          <div class="level-btn lv-7" onclick="selectLevel(this,'URANUS')">
+          <div class="level-btn lv-7" onclick="selectLevel(this,'URANUS')" style="--planet-image:url('assets/3d/planets-normalized/uranus.png');">
+            <div class="level-planet"></div>
             <div class="level-name">URANUS</div>
-            <div class="level-target">중3학년 · 💠 천왕성</div>
+            <div class="level-target">중3학년 · 천왕성</div>
           </div>
-          <div class="level-btn lv-8" onclick="selectLevel(this,'SATURN')">
+          <div class="level-btn lv-8" onclick="selectLevel(this,'SATURN')" style="--planet-image:url('assets/3d/planets-normalized/saturn.png');">
+            <div class="level-planet"></div>
             <div class="level-name">SATURN</div>
-            <div class="level-target">고1학년 · 🪐 토성</div>
+            <div class="level-target">고1학년 · 토성</div>
           </div>
-          <div class="level-btn lv-9" onclick="selectLevel(this,'JUPITER')">
+          <div class="level-btn lv-9" onclick="selectLevel(this,'JUPITER')" style="--planet-image:url('assets/3d/planets-normalized/jupiter.png');">
+            <div class="level-planet"></div>
             <div class="level-name">JUPITER</div>
-            <div class="level-target">고2학년 · 🟠 목성</div>
+            <div class="level-target">고2학년 · 목성</div>
           </div>
-          <div class="level-btn lv-10" onclick="selectLevel(this,'SUN')">
+          <div class="level-btn lv-10" onclick="selectLevel(this,'SUN')" style="--planet-image:url('assets/3d/planets-normalized/sun.png');">
+            <div class="level-planet"></div>
             <div class="level-name">SUN</div>
-            <div class="level-target">고3학년 · ☀️ 태양</div>
+            <div class="level-target">고3학년 · 태양</div>
           </div>
         </div>
         <a href="level_test.html" style="font-size:.75rem;color:var(--accent);text-decoration:none;display:inline-flex;align-items:center;gap:4px;margin-top:4px;opacity:.8;">
@@ -684,15 +676,6 @@
           </div>
         </div>
         <button class="btn-order" onclick="submitOrder()">구독 신청하기</button>
-        <button class="btn-kakao-order" onclick="alert('카카오 채널로 연결됩니다.')">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.477 3 2 6.477 2 10.5c0 2.624 1.608 4.934 4.063 6.297L5 21l4.938-2.656c.668.094 1.353.156 2.062.156 5.523 0 10-3.477 10-7.5S17.523 3 12 3z"/></svg>
-          카카오로 구독 문의
-        </button>
-        <div class="summary-trust">
-          <div class="trust-item"><span class="trust-icon">🔒</span> 결제 정보 암호화 보호</div>
-          <div class="trust-item"><span class="trust-icon">✅</span> 언제든지 해지 가능</div>
-          <div class="trust-item"><span class="trust-icon">📦</span> 배송비 무료 (실물 플랜)</div>
-        </div>
       </div>
     </div>
 

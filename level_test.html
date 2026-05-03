@@ -84,8 +84,6 @@
   .step-hint{font-size:.78rem;color:var(--dim);margin-bottom:24px;line-height:1.6;}
 
   .options{display:grid;gap:10px;}
-  .options.grade-grid{grid-template-columns:repeat(3,1fr);}
-  @media(max-width:500px){.options.grade-grid{grid-template-columns:repeat(2,1fr);}}
   .option-btn{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:14px 18px;color:var(--dim);font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:.86rem;font-weight:500;text-align:left;cursor:pointer;transition:all .18s;display:flex;align-items:center;gap:12px;}
   .option-btn:hover{border-color:rgba(0,255,163,.4);color:#fff;background:rgba(0,255,163,.05);}
   .option-btn.selected{border-color:var(--accent);background:rgba(0,255,163,.1);color:#fff;}
@@ -93,10 +91,72 @@
   .option-btn.selected .opt-dot::after{opacity:1;}
   .opt-dot{width:16px;height:16px;border-radius:50%;border:1.5px solid rgba(255,255,255,.2);flex-shrink:0;position:relative;transition:all .18s;}
   .opt-dot::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:6px;height:6px;border-radius:50%;background:#0A0A0A;opacity:0;transition:opacity .15s;}
-  .grade-grid .option-btn{flex-direction:column;text-align:center;padding:18px 10px;gap:6px;}
-  .grade-emoji{font-size:1.3rem;}
-  .grade-label{font-weight:700;font-size:.82rem;color:#fff;}
-  .grade-sub{font-size:.65rem;color:var(--dim);}
+
+  /* ===== Circular orbit grade selector ===== */
+  /* 10 planet cards arranged on a fixed-radius circle. Center shows the
+     currently-selected planet (defaults to 고1 SATURN, updates on click). */
+  .options.grade-orbit{
+    --orbit-size:min(680px, 94vw);
+    --orbit-radius:calc(var(--orbit-size) * 0.38);
+    display:block;
+    position:relative;
+    width:var(--orbit-size);
+    height:var(--orbit-size);
+    margin:36px auto 24px;
+  }
+  .grade-orbit .orbit-center{
+    position:absolute;
+    left:50%;top:50%;
+    transform:translate(-50%,-50%);
+    width:170px;height:170px;
+    z-index:2;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+    padding:14px;
+    background:#000;
+    border:1px solid rgba(0,255,163,.55);
+    border-radius:18px;
+    box-shadow:0 0 0 2px rgba(0,255,163,.32),0 22px 44px rgba(0,0,0,.55);
+    pointer-events:none;
+  }
+  .grade-orbit .orbit-center .planet-img{width:78px;aspect-ratio:1;background-image:var(--planet-image);background-size:contain;background-position:center;background-repeat:no-repeat;}
+  .grade-orbit .orbit-center .grade-label{font-weight:800;font-size:1.18rem;color:#fff;line-height:1;}
+  .grade-orbit .orbit-center .grade-sub{font-size:.7rem;font-weight:700;letter-spacing:.06em;color:rgba(255,255,255,.7);}
+  .grade-orbit .orbit-card{
+    position:absolute;
+    left:50%;top:50%;
+    width:118px;height:118px;
+    flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:4px;
+    padding:10px 8px;
+    background:#000;
+    border:1px solid rgba(255,255,255,.16);
+    border-radius:14px;
+    color:#fff;
+    /* Place each card on the orbit ring at --angle, kept upright via double rotate */
+    transform:translate(-50%,-50%) rotate(var(--angle)) translateY(calc(-1 * var(--orbit-radius))) rotate(calc(-1 * var(--angle)));
+  }
+  .grade-orbit .orbit-card:hover{border-color:rgba(0,255,163,.5);background:#000;box-shadow:0 0 0 1px rgba(0,255,163,.28),0 14px 28px rgba(0,0,0,.5);}
+  .grade-orbit .orbit-card.selected{border-color:rgba(0,255,163,.85);background:#000;box-shadow:0 0 0 2px rgba(0,255,163,.55),0 18px 36px rgba(0,0,0,.55);}
+  .grade-orbit .orbit-card .planet-img{width:54px;aspect-ratio:1;background-image:var(--planet-image);background-size:contain;background-position:center;background-repeat:no-repeat;}
+  .grade-orbit .orbit-card .grade-label{font-weight:800;font-size:.92rem;color:#fff;line-height:1;}
+  .grade-orbit .orbit-card .grade-sub{font-size:.6rem;font-weight:700;letter-spacing:.04em;color:rgba(255,255,255,.6);}
+  @media(max-width:560px){
+    .grade-orbit .orbit-card{width:90px;height:90px;padding:6px 4px;gap:2px;}
+    .grade-orbit .orbit-card .planet-img{width:38px;}
+    .grade-orbit .orbit-card .grade-label{font-size:.74rem;}
+    .grade-orbit .orbit-card .grade-sub{font-size:.5rem;}
+    .grade-orbit .orbit-center{width:130px;height:130px;}
+    .grade-orbit .orbit-center .planet-img{width:58px;}
+    .grade-orbit .orbit-center .grade-label{font-size:1rem;}
+    .grade-orbit .orbit-center .grade-sub{font-size:.6rem;}
+  }
+
+  /* ===== 추천 원칙 — 페이지 하단 안내 박스 ===== */
+  .recommendation-principle{max-width:860px;margin:60px auto 80px;padding:28px 32px;background:linear-gradient(145deg,rgba(0,255,163,.07),rgba(0,255,163,.02));border:1px solid rgba(0,255,163,.22);border-radius:14px;line-height:1.85;}
+  .recommendation-principle .rp-kicker{font-size:.74rem;font-weight:800;letter-spacing:3px;color:var(--accent);margin-bottom:14px;}
+  .recommendation-principle p{margin:0 0 12px;font-size:.96rem;color:rgba(255,255,255,.88);}
+  .recommendation-principle p:last-child{margin-bottom:0;}
+  .recommendation-principle .rp-dim{color:rgba(255,255,255,.7);}
+  .recommendation-principle strong{color:#fff;}
 
   /* PASSAGE */
   .passage-box{background:var(--card);border:1px solid var(--line);border-left:3px solid rgba(0,255,163,.4);border-radius:8px;padding:22px 24px;margin-bottom:20px;}
@@ -257,17 +317,6 @@
   <div class="hero-badge">✦ Level Diagnosis</div>
   <h1 class="hero-title">LEVEL TEST</h1>
   <p class="hero-sub">20문항 정밀 진단으로 <br><em>나에게 맞는 정확한 레벨</em>을 찾습니다.<br>소요시간 약 10분 · 어휘·독해·문법·추론 종합 분석</p>
-
-  <!-- 철학 설명 카드 -->
-  <div style="max-width:680px;margin:36px auto 0;padding:24px 26px;background:linear-gradient(145deg,rgba(0,255,163,.06),rgba(0,255,163,.02));border:1px solid rgba(0,255,163,.25);border-radius:12px;text-align:left;line-height:1.85;">
-    <div style="font-size:.72rem;font-weight:800;letter-spacing:3px;color:var(--accent);margin-bottom:12px;">📐 추천 원칙</div>
-    <p style="font-size:.96rem;color:rgba(255,255,255,.88);margin-bottom:12px;">
-      Terra Nova는 기본적으로 <strong style="color:#fff;">학년에 맞는 레벨을 우선 추천</strong>합니다. 교과 연계 학습의 특성상 학년별 교과 진도와 동기화된 커리큘럼이 가장 효과적이기 때문입니다.
-    </p>
-    <p style="font-size:.96rem;color:rgba(255,255,255,.75);">
-      다만 영어 실력은 학년과 정확히 일치하지 않습니다. 이 테스트는 <strong style="color:var(--accent);">실제 어휘·독해·문법·추론 능력을 측정</strong>하여 학년 기반 추천보다 더 정확한 레벨을 제시합니다. 결과에 따라 <strong style="color:#fff;">선행 또는 보충</strong>을 선택할 수 있습니다.
-    </p>
-  </div>
 </div>
 
 <div class="progress-wrap">
@@ -287,17 +336,24 @@
   <div style="font-size:.85rem;color:var(--dim);margin-bottom:18px;line-height:1.7;">
     학년은 기본 추천의 출발점입니다. 이후 20문항 진단을 통해 <strong style="color:var(--accent);">실제 영어 능력</strong>에 맞는 정확한 레벨이 결정됩니다.
   </div>
-  <div class="options grade-grid">
-    <button class="option-btn" onclick="sel(this,'grade','초3')"><div class="grade-emoji">🌑</div><div class="grade-label">초3</div><div class="grade-sub">MOON · Level 1</div></button>
-    <button class="option-btn" onclick="sel(this,'grade','초4')"><div class="grade-emoji">⚫</div><div class="grade-label">초4</div><div class="grade-sub">MERCURY · Level 2</div></button>
-    <button class="option-btn" onclick="sel(this,'grade','초5')"><div class="grade-emoji">🔴</div><div class="grade-label">초5</div><div class="grade-sub">MARS · Level 3</div></button>
-    <button class="option-btn" onclick="sel(this,'grade','초6')"><div class="grade-emoji">🟡</div><div class="grade-label">초6</div><div class="grade-sub">VENUS · Level 4</div></button>
-    <button class="option-btn" onclick="sel(this,'grade','중1')"><div class="grade-emoji">🌍</div><div class="grade-label">중1</div><div class="grade-sub">TERRA · Level 5</div></button>
-    <button class="option-btn" onclick="sel(this,'grade','중2')"><div class="grade-emoji">🔵</div><div class="grade-label">중2</div><div class="grade-sub">NEPTUNE · Level 6</div></button>
-    <button class="option-btn" onclick="sel(this,'grade','중3')"><div class="grade-emoji">💠</div><div class="grade-label">중3</div><div class="grade-sub">URANUS · Level 7</div></button>
-    <button class="option-btn" onclick="sel(this,'grade','고1')"><div class="grade-emoji">🪐</div><div class="grade-label">고1</div><div class="grade-sub">SATURN · Level 8</div></button>
-    <button class="option-btn" onclick="sel(this,'grade','고2')"><div class="grade-emoji">🟠</div><div class="grade-label">고2</div><div class="grade-sub">JUPITER · Level 9</div></button>
-    <button class="option-btn" onclick="sel(this,'grade','고3')"><div class="grade-emoji">☀️</div><div class="grade-label">고3·N수생</div><div class="grade-sub">SUN · Level 10</div></button>
+  <div class="options grade-orbit">
+    <!-- 중앙 디스플레이 — 클릭한 행성/레벨이 표시되며 기본은 고1 SATURN -->
+    <div class="orbit-center" id="orbit-center" style="--planet-image:url('assets/3d/planets-normalized/saturn.png');">
+      <div class="planet-img"></div>
+      <div class="grade-label" id="orbit-center-label">고1</div>
+      <div class="grade-sub" id="orbit-center-sub">SATURN · LV 8</div>
+    </div>
+    <!-- 10개 외곽 카드 — 0°(상단)부터 시계방향 36° 간격, MOON → SUN -->
+    <button class="option-btn orbit-card" onclick="selOrbit(this,'초3','MOON','LV 1','moon')" style="--angle:0deg;--planet-image:url('assets/3d/planets-normalized/moon.png');"><div class="planet-img"></div><div class="grade-label">초3</div></button>
+    <button class="option-btn orbit-card" onclick="selOrbit(this,'초4','MERCURY','LV 2','mercury')" style="--angle:36deg;--planet-image:url('assets/3d/planets-normalized/mercury.png');"><div class="planet-img"></div><div class="grade-label">초4</div></button>
+    <button class="option-btn orbit-card" onclick="selOrbit(this,'초5','MARS','LV 3','mars')" style="--angle:72deg;--planet-image:url('assets/3d/planets-normalized/mars.png');"><div class="planet-img"></div><div class="grade-label">초5</div></button>
+    <button class="option-btn orbit-card" onclick="selOrbit(this,'초6','VENUS','LV 4','venus')" style="--angle:108deg;--planet-image:url('assets/3d/planets-normalized/venus.png');"><div class="planet-img"></div><div class="grade-label">초6</div></button>
+    <button class="option-btn orbit-card" onclick="selOrbit(this,'중1','TERRA','LV 5','terra')" style="--angle:144deg;--planet-image:url('assets/3d/planets-normalized/terra.png');"><div class="planet-img"></div><div class="grade-label">중1</div></button>
+    <button class="option-btn orbit-card" onclick="selOrbit(this,'중2','NEPTUNE','LV 6','neptune')" style="--angle:180deg;--planet-image:url('assets/3d/planets-normalized/neptune.png');"><div class="planet-img"></div><div class="grade-label">중2</div></button>
+    <button class="option-btn orbit-card" onclick="selOrbit(this,'중3','URANUS','LV 7','uranus')" style="--angle:216deg;--planet-image:url('assets/3d/planets-normalized/uranus.png');"><div class="planet-img"></div><div class="grade-label">중3</div></button>
+    <button class="option-btn orbit-card" onclick="selOrbit(this,'고1','SATURN','LV 8','saturn')" style="--angle:252deg;--planet-image:url('assets/3d/planets-normalized/saturn.png');"><div class="planet-img"></div><div class="grade-label">고1</div></button>
+    <button class="option-btn orbit-card" onclick="selOrbit(this,'고2','JUPITER','LV 9','jupiter')" style="--angle:288deg;--planet-image:url('assets/3d/planets-normalized/jupiter.png');"><div class="planet-img"></div><div class="grade-label">고2</div></button>
+    <button class="option-btn orbit-card" onclick="selOrbit(this,'고3','SUN','LV 10','sun')" style="--angle:324deg;--planet-image:url('assets/3d/planets-normalized/sun.png');"><div class="planet-img"></div><div class="grade-label">고3·N수생</div></button>
   </div>
   <div class="btn-row"><button class="btn-next" id="btn1" onclick="next(2)">다음 →</button></div>
 </div>
@@ -711,6 +767,13 @@
 
 </div><!-- quiz-area -->
 
+<!-- 추천 원칙 — 페이지 하단 안내 (한국 학년 추천 원칙 + 진단 정밀도 설명) -->
+<aside class="recommendation-principle">
+  <div class="rp-kicker">📐 추천 원칙</div>
+  <p>Terra Nova는 기본적으로 <strong>학년에 맞는 레벨을 우선 추천</strong>합니다. 교과 연계 학습의 특성상 학년별 교과 진도와 동기화된 커리큘럼이 가장 효과적이기 때문입니다.</p>
+  <p class="rp-dim">다만 영어 실력은 학년과 정확히 일치하지 않습니다. 이 테스트는 <strong style="color:var(--accent);">실제 어휘·독해·문법·추론 능력을 측정</strong>하여 학년 기반 추천보다 더 정확한 레벨을 제시합니다. 결과에 따라 <strong>선행 또는 보충</strong>을 선택할 수 있습니다.</p>
+</aside>
+
 <!-- FLOATING CIRCLE BUTTONS (sample/faq 통일 스타일) -->
 <div class="float-group">
   <a href="https://pf.kakao.com/_aLExdX" target="_blank" class="float-btn float-kakao" style="position:relative;">
@@ -727,6 +790,17 @@
 const answers = {};
 let cur = 1;
 const TOTAL = 20;
+
+/* Orbit card click → 중앙 디스플레이 갱신 + sel() 호출 */
+function selOrbit(btn, grade, name, lv, planet) {
+  const center = document.getElementById('orbit-center');
+  if (center) {
+    center.style.setProperty('--planet-image', `url('assets/3d/planets-normalized/${planet}.png')`);
+    document.getElementById('orbit-center-label').textContent = grade;
+    document.getElementById('orbit-center-sub').textContent = `${name} · ${lv}`;
+  }
+  sel(btn, 'grade', grade);
+}
 
 function sel(btn, key, val) {
   btn.closest('.options').querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
