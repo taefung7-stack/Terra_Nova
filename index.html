@@ -2662,15 +2662,51 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   .review-col-track { animation:none; }
 }
 
-/* Plan card descriptions — short blurb under the price so each plan reads
-   as a complete card without forcing the user into the order page first. */
-.plan-blurb {
-  margin:14px 0 0;
+/* Plan card mini-comparison list — bullet rows with mint glow dots so each
+   plan reads as a quick-scan checklist instead of a prose blurb. Larger
+   font + per-row dot makes the inheritance ladder (LIGHT → STANDARD → PREMIUM)
+   easy to read without leaving the card. */
+.plan-checklist {
+  margin:18px 0 0;
+  padding:18px 0 0;
+  list-style:none;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  border-top:1px solid rgba(255,255,255,.08);
+}
+.plan-checklist li {
+  position:relative;
+  padding-left:22px;
   font-family:'Pretendard', 'Noto Sans KR', sans-serif;
-  font-size:.94rem;
-  line-height:1.65;
-  color:rgba(255,255,255,.72);
+  font-size:1.06rem;
+  font-weight:600;
+  color:#fff;
+  letter-spacing:-.005em;
+  line-height:1.45;
+}
+.plan-checklist li::before {
+  content:"";
+  position:absolute;
+  left:0;
+  top:.5em;
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  background:var(--accent);
+  box-shadow:0 0 14px rgba(0,255,163,.55);
+}
+/* Base inheritance row ("LIGHT 전체 포함") — softer color + hollow dot
+   so the eye reads it as "carry-over" rather than a fresh new feature. */
+.plan-checklist li.is-base {
+  color:rgba(255,255,255,.6);
   font-weight:500;
+  font-size:1rem;
+}
+.plan-checklist li.is-base::before {
+  background:transparent;
+  border:1.5px solid rgba(0,255,163,.55);
+  box-shadow:none;
 }
 
 /* =============== PLANS =============== */
@@ -4094,7 +4130,11 @@ body.bigbang-done .terra-hint,
         <div class="plan-price-block">
           <div class="plan-price"><span class="krw">₩</span>11,900<span class="won">/월</span></div>
         </div>
-        <p class="plan-blurb">집에서 출력해 바로 푸는 월 20지문 PDF.<br>어휘 정리 · 한글 해설 포함.</p>
+        <ul class="plan-checklist">
+          <li>월 20지문 PDF · 교과 연계</li>
+          <li>어휘 정리 · 한글 해설</li>
+          <li>모바일 · 태블릿 열람</li>
+        </ul>
       </a>
 
       <!-- STANDARD -->
@@ -4106,7 +4146,12 @@ body.bigbang-done .terra-hint,
         <div class="plan-price-block">
           <div class="plan-price"><span class="krw">₩</span>24,900<span class="won">/월</span></div>
         </div>
-        <p class="plan-blurb">매달 실물 교재 1권 + 모의고사 2회 + 단어 별책.<br>LIGHT의 PDF 모두 포함.</p>
+        <ul class="plan-checklist">
+          <li class="is-base">LIGHT 전체 포함</li>
+          <li>실물 교재 1권 (매월)</li>
+          <li>모의고사 2회 + 답안지</li>
+          <li>단어 시험지 별책</li>
+        </ul>
       </a>
 
       <!-- PREMIUM -->
@@ -4118,7 +4163,11 @@ body.bigbang-done .terra-hint,
         <div class="plan-price-block">
           <div class="plan-price"><span class="krw">₩</span>58,900<span class="won">/월</span></div>
         </div>
-        <p class="plan-blurb">매월 지문 20편 해설 강의 영상.<br>STANDARD의 모든 구성 포함.</p>
+        <ul class="plan-checklist">
+          <li class="is-base">STANDARD 전체 포함</li>
+          <li>해설 강의 영상 (지문 20편)</li>
+          <li>모의고사 분석지 · 해설지</li>
+        </ul>
       </a>
     </div>
   </section>
@@ -4126,7 +4175,7 @@ body.bigbang-done .terra-hint,
   <!-- =============== FINAL CTA =============== -->
   <section class="final reveal">
     <div class="final-kicker">Terra Nova English</div>
-    <h2>One passage.<br>One unit.</h2>
+    <h2>영어로 전과목 학습</h2>
     <a class="final-btn" href="order.html?plan=light&ref=earlybird">지금 시작하기</a>
     <a class="final-link" href="subscription_detail_complete.html">더 자세한 안내 →</a>
   </section>
