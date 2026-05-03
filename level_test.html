@@ -52,9 +52,12 @@
     .nav-links.open .nav-cta{border:none!important;padding:14px 0!important;color:var(--accent)!important;}
   }
 
-  .hero{padding:120px 5vw 60px;text-align:center;max-width:1120px;margin:0 auto;}
+  .hero{padding:120px 2vw 60px;text-align:center;max-width:1920px;margin:0 auto;}
   .hero-badge{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(0,255,163,.35);color:rgba(224,255,251,.9);background:rgba(0,255,163,.07);font-family:'Space Grotesk',sans-serif;font-size:.7rem;font-weight:600;letter-spacing:3px;padding:6px 14px;margin-bottom:28px;text-transform:uppercase;border-radius:2px;}
-  .hero-title{font-family:'Space Grotesk',sans-serif;font-weight:900;font-size:clamp(5rem,16vw,12rem);letter-spacing:.04em;color:rgba(240,247,244,.96);line-height:1;margin-bottom:12px;text-shadow:0 0 32px rgba(255,255,255,.16);-webkit-text-stroke:2px currentColor;}
+  /* Single-line lock — long phrase "LEVEL TEST" must NEVER wrap. white-space:nowrap
+     keeps it on one row; the clamp middle term stays at 13vw so the text auto-shrinks
+     on narrow viewports rather than pushing the layout horizontally. */
+  .hero-title{font-family:'Space Grotesk',sans-serif;font-weight:900;font-size:clamp(3.4rem,13vw,11rem);letter-spacing:.02em;color:rgba(240,247,244,.96);line-height:1;margin-bottom:12px;text-shadow:0 0 32px rgba(255,255,255,.16);-webkit-text-stroke:2px currentColor;white-space:nowrap;}
   .hero-sub{font-size:clamp(.88rem,1.8vw,1rem);color:var(--dim);line-height:1.9;}
   /* Landing-style hero fade-up */
   @keyframes tnHeroFadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
@@ -96,8 +99,8 @@
   /* 10 planet cards arranged on a fixed-radius circle. Center shows the
      currently-selected planet (defaults to 고1 SATURN, updates on click). */
   .options.grade-orbit{
-    --orbit-size:min(840px, 96vw);
-    --orbit-radius:calc(var(--orbit-size) * 0.39);
+    --orbit-size:min(1080px, 96vw);
+    --orbit-radius:calc(var(--orbit-size) * 0.40);
     display:block;
     position:relative;
     width:var(--orbit-size);
@@ -108,37 +111,47 @@
     position:absolute;
     left:50%;top:50%;
     transform:translate(-50%,-50%);
-    width:210px;height:210px;
+    width:280px;height:280px;
     z-index:2;
-    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
-    padding:18px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
+    padding:22px;
     background:#000;
     border:1px solid rgba(0,255,163,.55);
-    border-radius:20px;
+    border-radius:22px;
     box-shadow:0 0 0 2px rgba(0,255,163,.32),0 22px 44px rgba(0,0,0,.55);
     pointer-events:none;
   }
-  .grade-orbit .orbit-center .planet-img{width:100px;aspect-ratio:1;background-image:var(--planet-image);background-size:contain;background-position:center;background-repeat:no-repeat;}
-  .grade-orbit .orbit-center .grade-label{font-weight:800;font-size:1.42rem;color:#fff;line-height:1;}
-  .grade-orbit .orbit-center .grade-sub{font-size:.78rem;font-weight:700;letter-spacing:.06em;color:rgba(255,255,255,.7);}
+  .grade-orbit .orbit-center .planet-img{width:140px;aspect-ratio:1;background-image:var(--planet-image);background-size:contain;background-position:center;background-repeat:no-repeat;}
+  .grade-orbit .orbit-center .grade-label{font-weight:800;font-size:1.78rem;color:#fff;line-height:1;}
+  .grade-orbit .orbit-center .grade-sub{font-size:.92rem;font-weight:700;letter-spacing:.06em;color:rgba(255,255,255,.7);}
   .grade-orbit .orbit-card{
     position:absolute;
     left:50%;top:50%;
-    width:148px;height:148px;
-    flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:6px;
-    padding:14px 10px;
+    width:200px;height:200px;
+    flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:8px;
+    padding:18px 12px;
     background:#000;
     border:1px solid rgba(255,255,255,.16);
-    border-radius:16px;
+    border-radius:18px;
     color:#fff;
     /* Place each card on the orbit ring at --angle, kept upright via double rotate */
     transform:translate(-50%,-50%) rotate(var(--angle)) translateY(calc(-1 * var(--orbit-radius))) rotate(calc(-1 * var(--angle)));
   }
   .grade-orbit .orbit-card:hover{border-color:rgba(0,255,163,.5);background:#000;box-shadow:0 0 0 1px rgba(0,255,163,.28),0 14px 28px rgba(0,0,0,.5);}
   .grade-orbit .orbit-card.selected{border-color:rgba(0,255,163,.85);background:#000;box-shadow:0 0 0 2px rgba(0,255,163,.55),0 18px 36px rgba(0,0,0,.55);}
-  .grade-orbit .orbit-card .planet-img{width:72px;aspect-ratio:1;background-image:var(--planet-image);background-size:contain;background-position:center;background-repeat:no-repeat;}
-  .grade-orbit .orbit-card .grade-label{font-weight:800;font-size:1.08rem;color:#fff;line-height:1;}
-  .grade-orbit .orbit-card .grade-sub{font-size:.68rem;font-weight:700;letter-spacing:.04em;color:rgba(255,255,255,.6);}
+  .grade-orbit .orbit-card .planet-img{width:104px;aspect-ratio:1;background-image:var(--planet-image);background-size:contain;background-position:center;background-repeat:no-repeat;}
+  .grade-orbit .orbit-card .grade-label{font-weight:800;font-size:1.34rem;color:#fff;line-height:1;}
+  .grade-orbit .orbit-card .grade-sub{font-size:.78rem;font-weight:700;letter-spacing:.04em;color:rgba(255,255,255,.6);}
+  @media(max-width:1100px){
+    .grade-orbit .orbit-card{width:148px;height:148px;padding:14px 10px;gap:6px;}
+    .grade-orbit .orbit-card .planet-img{width:72px;}
+    .grade-orbit .orbit-card .grade-label{font-size:1.08rem;}
+    .grade-orbit .orbit-card .grade-sub{font-size:.68rem;}
+    .grade-orbit .orbit-center{width:210px;height:210px;}
+    .grade-orbit .orbit-center .planet-img{width:100px;}
+    .grade-orbit .orbit-center .grade-label{font-size:1.42rem;}
+    .grade-orbit .orbit-center .grade-sub{font-size:.78rem;}
+  }
   @media(max-width:560px){
     .grade-orbit .orbit-card{width:108px;height:108px;padding:8px 5px;gap:3px;}
     .grade-orbit .orbit-card .planet-img{width:48px;}
@@ -332,10 +345,6 @@
 <div class="step active" id="step-1">
   <div class="step-num">Step 01 · 기본 정보</div>
   <div class="step-q">현재 학년을 선택해주세요.</div>
-  <div style="font-size:.92rem;color:var(--dim);margin-bottom:18px;line-height:1.75;">
-    학년은 기본 추천의 출발점일 뿐, 20문항 정밀 진단이 <strong style="color:var(--accent);">실제 영어 능력</strong>에 맞는 정확한 레벨을 결정합니다.<br>
-    어휘·독해·문법·추론 종합 분석 · 약 10분 소요
-  </div>
   <div class="options grade-orbit">
     <!-- 중앙 디스플레이 — 클릭한 행성/레벨이 표시되며 기본은 고1 SATURN -->
     <div class="orbit-center" id="orbit-center" style="--planet-image:url('assets/3d/planets-normalized/saturn.png');">
