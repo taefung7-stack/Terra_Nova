@@ -2971,6 +2971,22 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   justify-content:space-between;
   gap:12px;
 }
+.plan-head-left {
+  display:flex;
+  align-items:center;
+  gap:14px;
+  flex-wrap:wrap;
+  min-width:0;
+}
+.plan-icon-img {
+  width:72px;
+  height:72px;
+  border-radius:14px;
+  object-fit:cover;
+  flex-shrink:0;
+  border:1px solid rgba(255,255,255,.10);
+  box-shadow:0 6px 18px rgba(0,0,0,.35);
+}
 .plan-name {
   font-family:'Space Grotesk', sans-serif;
   font-size:1.9rem;
@@ -4325,8 +4341,11 @@ body.bigbang-done .terra-hint,
       <!-- LIGHT -->
       <a class="plan" href="order.html?plan=light&ref=earlybird">
         <div class="plan-head">
-          <span class="plan-name">LIGHT</span>
-          <span class="plan-tag plan-tag-pro">PDF 교재</span>
+          <div class="plan-head-left">
+            <span class="plan-name">LIGHT</span>
+            <span class="plan-tag plan-tag-pro">PDF 교재</span>
+          </div>
+          <img class="plan-icon-img" src="assets/3d/accb5a03-f66f-4068-a146-375bc850e3d2.jpg" alt="LIGHT plan icon" loading="lazy">
         </div>
         <div class="plan-price-block">
           <div class="plan-price"><span class="krw">₩</span>11,900<span class="won">/월</span></div>
@@ -4341,8 +4360,11 @@ body.bigbang-done .terra-hint,
       <!-- STANDARD -->
       <a class="plan" href="order.html?plan=standard">
         <div class="plan-head">
-          <span class="plan-name">STANDARD</span>
-          <span class="plan-tag plan-tag-pro">실물 교재</span>
+          <div class="plan-head-left">
+            <span class="plan-name">STANDARD</span>
+            <span class="plan-tag plan-tag-pro">실물 교재</span>
+          </div>
+          <img class="plan-icon-img" src="assets/3d/99c93f57-36c9-457b-8f57-ee2ec95e6a0d.jpg" alt="STANDARD plan icon" loading="lazy">
         </div>
         <div class="plan-price-block">
           <div class="plan-price"><span class="krw">₩</span>24,900<span class="won">/월</span></div>
@@ -4358,8 +4380,11 @@ body.bigbang-done .terra-hint,
       <!-- PREMIUM -->
       <a class="plan" href="order.html?plan=premium">
         <div class="plan-head">
-          <span class="plan-name">PREMIUM</span>
-          <span class="plan-tag plan-tag-pro">해설 강의</span>
+          <div class="plan-head-left">
+            <span class="plan-name">PREMIUM</span>
+            <span class="plan-tag plan-tag-pro">해설 강의</span>
+          </div>
+          <img class="plan-icon-img" src="assets/3d/16fa255b-14ce-42ca-b573-a928eb9c7127.jpg" alt="PREMIUM plan icon" loading="lazy">
         </div>
         <div class="plan-price-block">
           <div class="plan-price"><span class="krw">₩</span>58,900<span class="won">/월</span></div>
