@@ -6285,5 +6285,10 @@ document.addEventListener('DOMContentLoaded', function () {
   io.observe(section);
 })();
 </script>
+
+<!-- Review feed: replace hardcoded "쏟아지는 후기들" cards with approved 5★
+     reviews from Supabase. Falls back silently to the hardcoded copy when
+     no real reviews exist or the fetch fails. -->
+<script type="module" src="./review-feed.js"></script>
 </body>
 </html>
