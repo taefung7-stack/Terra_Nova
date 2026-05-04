@@ -194,6 +194,7 @@
     <li><a href="level_test.html">레벨테스트</a></li>
     <li><a href="sample.html">무료샘플</a></li>
     <li><a href="market.html">마켓</a></li>
+    <li><a href="event.html">이벤트</a></li>
     <li><a href="faq.html">FAQ</a></li>
     <li><a href="mypage.html" style="color:var(--accent);"><strong id="nav-user-name">회원</strong> 님</a></li>
     <li><a href="#" id="btn-logout">로그아웃</a></li>
@@ -479,6 +480,21 @@
       <h2 class="page-title">REVIEWS</h2>
       <p class="page-sub">Terra Nova 수강 후기 · 관리자 검토 후 공개됩니다</p>
 
+      <!-- 이벤트 안내 배너 -->
+      <div class="section-block" style="border:1px solid rgba(0,255,163,.35);background:linear-gradient(135deg,rgba(0,255,163,.06),rgba(0,255,163,.02));margin-bottom:24px;">
+        <div style="display:flex;align-items:flex-start;gap:18px;flex-wrap:wrap;">
+          <div style="flex:1;min-width:240px;">
+            <div style="font-family:'Space Grotesk',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:3px;color:var(--accent);text-transform:uppercase;margin-bottom:8px;">⭐ Review Event</div>
+            <div style="font-weight:900;font-size:1.05rem;color:#fff;line-height:1.5;margin-bottom:8px;">SNS에 후기 올리고 인증하면 <span style="color:var(--accent);">다음 달 PDF 1개월 무료</span></div>
+            <p style="font-size:.78rem;color:var(--dim);line-height:1.7;margin:0;">
+              아래 폼에 후기를 등록하고, Instagram/블로그/네이버카페 등에 같은 후기를 올린 뒤 게시물 URL과 캡처를 첨부해주세요.<br>
+              관리자 인증이 완료되면 LIGHT 1개월 무료 쿠폰이 자동 발급됩니다.
+            </p>
+          </div>
+          <a href="event.html" style="flex-shrink:0;font-size:.78rem;color:var(--accent);text-decoration:none;border:1px solid rgba(0,255,163,.4);padding:10px 18px;border-radius:6px;font-weight:600;align-self:center;">자세히 →</a>
+        </div>
+      </div>
+
       <!-- 새 리뷰 작성 -->
       <div class="section-block">
         <div class="section-block-title">새 후기 작성</div>
@@ -514,12 +530,54 @@
               style="width:100%;background:var(--card2);border:1px solid rgba(255,255,255,.1);border-radius:6px;padding:11px 14px;color:var(--txt);font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:.88rem;outline:none;resize:vertical;min-height:120px;transition:border-color .18s;"
               required></textarea>
           </div>
-          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:8px;">
+
+          <!-- ─── SNS 인증 (이벤트 참여, 선택) ─────────────── -->
+          <div style="margin-top:24px;padding:18px;background:rgba(0,255,163,.04);border:1px dashed rgba(0,255,163,.28);border-radius:8px;">
+            <div style="font-size:.78rem;font-weight:700;color:var(--accent);margin-bottom:10px;letter-spacing:.5px;">⭐ SNS 인증 (선택 · 쿠폰 자동 발급)</div>
+            <p style="font-size:.72rem;color:var(--dim);margin-bottom:14px;line-height:1.7;">
+              SNS에 같은 내용으로 후기를 올린 뒤 링크와 캡처를 첨부하면, 관리자 인증 후 <strong style="color:var(--accent);">LIGHT 1개월 무료 쿠폰</strong>이 발급됩니다. 비워두고 등록해도 됩니다.
+            </p>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="review-sns-platform">플랫폼</label>
+                <select id="review-sns-platform" name="sns_platform">
+                  <option value="">선택 안 함</option>
+                  <option value="instagram">Instagram</option>
+                  <option value="blog">블로그 (네이버/티스토리/브런치)</option>
+                  <option value="naver_cafe">네이버 카페</option>
+                  <option value="threads">Threads</option>
+                  <option value="x">X (트위터)</option>
+                  <option value="other">기타</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="review-sns-url">게시물 URL</label>
+                <input type="url" id="review-sns-url" name="sns_url" placeholder="https://www.instagram.com/p/...">
+              </div>
+            </div>
+            <div class="form-group" style="margin-top:6px;">
+              <label for="review-sns-screenshot">게시물 캡처 (PNG/JPG, 5MB 이하)</label>
+              <input type="file" id="review-sns-screenshot" name="sns_screenshot" accept="image/png,image/jpeg,image/webp"
+                style="font-size:.78rem;color:var(--dim);">
+            </div>
+          </div>
+
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:14px;">
             <p style="font-size:.72rem;color:var(--dim);margin:0;">작성자 이름은 프로필의 이름에서 자동으로 가져옵니다.</p>
             <button type="button" class="btn-save" id="btn-submit-review">후기 등록</button>
           </div>
           <div id="review-form-msg" style="margin-top:12px;font-size:.78rem;display:none;"></div>
         </form>
+      </div>
+
+      <!-- 내 쿠폰함 -->
+      <div class="section-block">
+        <div class="section-block-title">내 쿠폰함</div>
+        <div id="my-coupons-list">
+          <div id="my-coupons-empty" style="text-align:center;padding:24px;color:var(--dim);font-size:.82rem;line-height:1.7;">
+            아직 발급받은 쿠폰이 없습니다.<br>SNS 인증 후 관리자 승인이 완료되면 쿠폰이 발급됩니다.
+          </div>
+        </div>
       </div>
 
       <!-- 내가 작성한 리뷰 목록 -->
@@ -949,6 +1007,11 @@
     const reviewSubmitBtn = $('btn-submit-review');
     const reviewFormMsg = $('review-form-msg');
     const myReviewsList = $('my-reviews-list');
+    // SNS 인증 (이벤트) 필드
+    const reviewSnsPlatform = $('review-sns-platform');
+    const reviewSnsUrl = $('review-sns-url');
+    const reviewSnsScreenshot = $('review-sns-screenshot');
+    const myCouponsList = $('my-coupons-list');
 
     // 별점 선택기 렌더
     if (reviewStarPicker) {
@@ -1041,8 +1104,38 @@
       if (!title) { showReviewMsg('제목을 입력해주세요.', 'error'); return; }
       if (content.length < 20) { showReviewMsg('내용을 20자 이상 입력해주세요.', 'error'); return; }
 
+      // ── SNS 인증 처리 (선택) ──────────────────────────
+      // 1) URL이 입력되었는데 캡처 미첨부 → 그래도 진행 (admin이 URL만으로도 검증 가능)
+      // 2) 캡처가 있으면 review-proofs 버킷에 업로드 후 경로를 같이 저장
+      const snsPlatform = reviewSnsPlatform?.value || null;
+      const snsUrlVal = reviewSnsUrl?.value?.trim() || null;
+      const snsFile = reviewSnsScreenshot?.files?.[0] || null;
+      let snsScreenshotPath = null;
+
       reviewSubmitBtn.disabled = true;
       reviewSubmitBtn.textContent = '등록 중...';
+
+      if (snsFile) {
+        if (snsFile.size > 5 * 1024 * 1024) {
+          showReviewMsg('캡처 파일은 5MB 이하여야 합니다.', 'error');
+          reviewSubmitBtn.disabled = false;
+          reviewSubmitBtn.textContent = '후기 등록';
+          return;
+        }
+        const ext = (snsFile.name.split('.').pop() || 'png').toLowerCase();
+        const path = `${user.id}/${Date.now()}-${Math.random().toString(36).slice(2,8)}.${ext}`;
+        const { error: upErr } = await supabase.storage.from('review-proofs').upload(path, snsFile, {
+          contentType: snsFile.type,
+          upsert: false
+        });
+        if (upErr) {
+          console.warn('[review-event] screenshot upload failed:', upErr.message);
+          showReviewMsg('캡처 업로드 실패: ' + upErr.message + ' (리뷰는 등록을 계속합니다)', 'error');
+        } else {
+          snsScreenshotPath = path;
+        }
+      }
+
       const { error } = await supabase.from('reviews').insert({
         user_id: user.id,
         author_name: authorName,
@@ -1052,7 +1145,10 @@
         title,
         content,
         is_published: false,
-        is_verified: false
+        is_verified: false,
+        sns_platform: snsPlatform,
+        sns_url: snsUrlVal,
+        sns_screenshot: snsScreenshotPath
       });
       reviewSubmitBtn.disabled = false;
       reviewSubmitBtn.textContent = '후기 등록';
@@ -1066,12 +1162,87 @@
       reviewTitleInput.value = '';
       reviewContentInput.value = '';
       reviewLevelSelect.value = '';
-      showReviewMsg('✓ 후기가 등록되었습니다. 관리자 검토 후 공개됩니다.', 'ok');
+      if (reviewSnsPlatform) reviewSnsPlatform.value = '';
+      if (reviewSnsUrl) reviewSnsUrl.value = '';
+      if (reviewSnsScreenshot) reviewSnsScreenshot.value = '';
+      const okMsg = snsUrlVal
+        ? '✓ 후기 + SNS 인증 정보가 등록되었습니다. 관리자 인증 후 쿠폰이 발급됩니다.'
+        : '✓ 후기가 등록되었습니다. 관리자 검토 후 공개됩니다.';
+      showReviewMsg(okMsg, 'ok');
       loadMyReviews();
+      loadMyCoupons();
     });
 
-    // 초기 리뷰 목록 로드
+    // ── 내 쿠폰함 (DOM 빌드, XSS-safe) ──────────────────
+    async function loadMyCoupons() {
+      if (!myCouponsList) return;
+      const { data: coupons, error } = await supabase
+        .from('coupons')
+        .select('*')
+        .eq('user_id', user.id)
+        .order('created_at', { ascending: false });
+      if (error) {
+        // coupons 테이블이 아직 없는 환경에서도 mypage가 깨지지 않도록 silent fail
+        console.warn('[coupons] load failed:', error.message);
+        return;
+      }
+      myCouponsList.replaceChildren();
+      if (!coupons || coupons.length === 0) {
+        const empty = document.createElement('div');
+        empty.id = 'my-coupons-empty';
+        empty.style.cssText = 'text-align:center;padding:24px;color:var(--dim);font-size:.82rem;line-height:1.7;';
+        empty.append('아직 발급받은 쿠폰이 없습니다.', document.createElement('br'), 'SNS 인증 후 관리자 승인이 완료되면 쿠폰이 발급됩니다.');
+        myCouponsList.appendChild(empty);
+        return;
+      }
+      const rewardLabel = (kind, value) => {
+        if (kind === 'free_month_light') return 'LIGHT 1개월 무료';
+        if (kind === 'percent_off') return (value || 0) + '% 할인';
+        if (kind === 'fixed_off') return won(value || 0) + ' 할인';
+        return '쿠폰';
+      };
+      const now = Date.now();
+      coupons.forEach(c => {
+        const expired = c.valid_until && new Date(c.valid_until).getTime() < now;
+        const used = !!c.used_at;
+        const status = used ? { label: '사용 완료', color: '#94A3B8', bg: 'rgba(148,163,184,.1)' }
+                            : expired ? { label: '만료', color: '#F87171', bg: 'rgba(248,113,113,.08)' }
+                            : { label: '사용 가능', color: '#4ADE80', bg: 'rgba(74,222,128,.1)' };
+        const row = document.createElement('div');
+        row.style.cssText = `padding:18px;background:${used||expired?'rgba(255,255,255,.02)':'linear-gradient(135deg,rgba(0,255,163,.05),rgba(0,255,163,.01))'};border:1px solid ${used||expired?'var(--line)':'rgba(0,255,163,.3)'};border-radius:10px;margin-bottom:10px;opacity:${used||expired?'.6':'1'};`;
+
+        const head = document.createElement('div');
+        head.style.cssText = 'display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px;';
+        const headLeft = document.createElement('div');
+        const kicker = document.createElement('div');
+        kicker.style.cssText = "font-family:'Space Grotesk',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:3px;color:var(--accent);text-transform:uppercase;margin-bottom:6px;";
+        kicker.textContent = '⭐ ' + (c.type || 'coupon');
+        const reward = document.createElement('div');
+        reward.style.cssText = 'font-weight:900;font-size:1rem;color:#fff;';
+        reward.textContent = rewardLabel(c.reward_kind, c.reward_value);
+        headLeft.append(kicker, reward);
+        const badge = document.createElement('span');
+        badge.style.cssText = `font-size:.65rem;font-weight:700;letter-spacing:.5px;padding:4px 10px;background:${status.bg};color:${status.color};border-radius:999px;`;
+        badge.textContent = status.label;
+        head.append(headLeft, badge);
+
+        const foot = document.createElement('div');
+        foot.style.cssText = 'display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;font-size:.74rem;color:var(--dim);';
+        const code = document.createElement('code');
+        code.style.cssText = "font-family:'Space Grotesk','Courier New',monospace;color:#fff;background:rgba(0,0,0,.3);padding:3px 8px;border-radius:4px;letter-spacing:1px;";
+        code.textContent = c.code || '';
+        const meta = document.createElement('span');
+        meta.textContent = '~ ' + ymd(c.valid_until) + (used ? ' · 사용일 ' + ymd(c.used_at) : '');
+        foot.append(code, meta);
+
+        row.append(head, foot);
+        myCouponsList.appendChild(row);
+      });
+    }
+
+    // 초기 리뷰 목록 + 쿠폰 로드
     loadMyReviews();
+    loadMyCoupons();
   })();
 </script>
 

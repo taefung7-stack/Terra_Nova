@@ -390,31 +390,51 @@
       list.innerHTML = '<div class="empty">해당 필터에 리뷰가 없습니다.</div>';
       return;
     }
-    list.innerHTML = filtered.map(r => `
-      <div class="review-item" data-id="${r.id}">
-        <div class="review-meta">
-          <div>
-            <span class="review-stars">${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}</span>
-            <span class="review-author" style="margin-left:10px;">${esc(r.author_name)} · ${esc(r.author_grade || '')} · ${esc(r.level || '')} · ${ymdhm(r.created_at)}</span>
-          </div>
-          <div style="display:flex;gap:6px;align-items:center;">
-            ${r.is_verified ? '<span style="font-size:.62rem;padding:3px 8px;background:rgba(0,255,163,.1);border:1px solid rgba(0,255,163,.3);border-radius:3px;color:var(--accent);font-weight:700;">✓ 인증</span>' : ''}
-            <span class="review-status ${r.is_published ? 'published' : 'pending'}">${r.is_published ? '공개 중' : '검토 중'}</span>
-          </div>
-        </div>
-        <div class="review-title">${esc(r.title)}</div>
-        <div class="review-content">${esc(r.content)}</div>
-        <div class="review-actions">
-          ${r.is_published
-            ? `<button class="btn-admin btn-unpublish" data-act="unpublish" data-id="${r.id}">비공개 처리</button>`
-            : `<button class="btn-admin btn-approve" data-act="approve" data-id="${r.id}">승인 · 공개</button>`}
-          <button class="btn-admin btn-verify" data-act="toggle-verify" data-id="${r.id}" data-verified="${r.is_verified}">
-            ${r.is_verified ? '인증 해제' : '구독 인증'}
-          </button>
-          <button class="btn-admin btn-delete" data-act="delete" data-id="${r.id}">삭제</button>
-        </div>
-      </div>
-    `).join('');
+    list.innerHTML = filtered.map(r => {
+      const hasSns = r.sns_url || r.sns_screenshot;
+      const couponIssued = !!r.coupon_issued_at;
+      const snsLines = [];
+      if (r.sns_platform) snsLines.push('<div style="color:var(--dim);"><strong style="color:#fff;">플랫폼</strong> · ' + esc(r.sns_platform) + '</div>');
+      if (r.sns_url) snsLines.push('<div style="word-break:break-all;"><strong style="color:#fff;">URL</strong> · <a href="' + esc(r.sns_url) + '" target="_blank" rel="noopener noreferrer" style="color:var(--accent);text-decoration:underline;">' + esc(r.sns_url) + '</a></div>');
+      if (r.sns_screenshot) snsLines.push('<div style="margin-top:6px;"><button type="button" class="btn-admin" data-act="view-proof" data-path="' + esc(r.sns_screenshot) + '" style="font-size:.7rem;padding:4px 10px;">캡처 보기</button></div>');
+      if (couponIssued) snsLines.push('<div style="margin-top:8px;color:#4ADE80;font-weight:700;">✓ 쿠폰 발급 완료 (' + ymdhm(r.coupon_issued_at) + ')</div>');
+      const snsBlock = hasSns
+        ? '<div style="margin:10px 0 12px;padding:12px 14px;background:rgba(0,255,163,.05);border:1px dashed rgba(0,255,163,.3);border-radius:6px;font-size:.78rem;line-height:1.7;">' +
+          '<div style="font-size:.66rem;font-weight:700;color:var(--accent);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;">⭐ Review Event · SNS 인증</div>' +
+          snsLines.join('') +
+          '</div>'
+        : '';
+      const couponBtn = (hasSns && !couponIssued)
+        ? '<button class="btn-admin btn-approve" data-act="issue-coupon" data-id="' + r.id + '" style="background:rgba(0,255,163,.18);border:1px solid var(--accent);color:var(--accent);">⭐ SNS 인증 + 쿠폰 발급</button>'
+        : '';
+
+      return '' +
+      '<div class="review-item" data-id="' + r.id + '">' +
+        '<div class="review-meta">' +
+          '<div>' +
+            '<span class="review-stars">' + '★'.repeat(r.rating) + '☆'.repeat(5 - r.rating) + '</span>' +
+            '<span class="review-author" style="margin-left:10px;">' + esc(r.author_name) + ' · ' + esc(r.author_grade || '') + ' · ' + esc(r.level || '') + ' · ' + ymdhm(r.created_at) + '</span>' +
+          '</div>' +
+          '<div style="display:flex;gap:6px;align-items:center;">' +
+            (r.is_verified ? '<span style="font-size:.62rem;padding:3px 8px;background:rgba(0,255,163,.1);border:1px solid rgba(0,255,163,.3);border-radius:3px;color:var(--accent);font-weight:700;">✓ 인증</span>' : '') +
+            '<span class="review-status ' + (r.is_published ? 'published' : 'pending') + '">' + (r.is_published ? '공개 중' : '검토 중') + '</span>' +
+          '</div>' +
+        '</div>' +
+        '<div class="review-title">' + esc(r.title) + '</div>' +
+        '<div class="review-content">' + esc(r.content) + '</div>' +
+        snsBlock +
+        '<div class="review-actions">' +
+          couponBtn +
+          (r.is_published
+            ? '<button class="btn-admin btn-unpublish" data-act="unpublish" data-id="' + r.id + '">비공개 처리</button>'
+            : '<button class="btn-admin btn-approve" data-act="approve" data-id="' + r.id + '">승인 · 공개</button>') +
+          '<button class="btn-admin btn-verify" data-act="toggle-verify" data-id="' + r.id + '" data-verified="' + r.is_verified + '">' +
+            (r.is_verified ? '인증 해제' : '구독 인증') +
+          '</button>' +
+          '<button class="btn-admin btn-delete" data-act="delete" data-id="' + r.id + '">삭제</button>' +
+        '</div>' +
+      '</div>';
+    }).join('');
 
     list.querySelectorAll('[data-act]').forEach(btn => {
       btn.addEventListener('click', onReviewAction);
@@ -437,6 +457,20 @@
       } else if (act === 'delete') {
         if (!confirm('리뷰를 영구 삭제하시겠습니까?')) { btn.disabled = false; return; }
         await supabase.from('reviews').delete().eq('id', id);
+      } else if (act === 'view-proof') {
+        // SNS 캡처 미리보기 — review-proofs 버킷의 signed URL을 1분 짜리로 발급해서 새 탭에서 열어줌
+        const path = btn.dataset.path;
+        if (!path) return;
+        const { data, error: signErr } = await supabase.storage.from('review-proofs').createSignedUrl(path, 60);
+        if (signErr || !data?.signedUrl) {
+          alert('캡처를 불러올 수 없습니다: ' + (signErr?.message || 'unknown'));
+        } else {
+          window.open(data.signedUrl, '_blank', 'noopener,noreferrer');
+        }
+        btn.disabled = false;
+        return; // loadReviews 재호출 안 함
+      } else if (act === 'issue-coupon') {
+        await issueReviewCoupon(id);
       }
       await loadReviews();
       await loadStats();
@@ -444,6 +478,51 @@
       alert('작업 실패: ' + err.message);
       btn.disabled = false;
     }
+  }
+
+  // ⭐ SNS 인증 + 쿠폰 발급 — 리뷰를 공개·인증 상태로 올리고 LIGHT 1개월 무료 쿠폰을 발급한다.
+  // 코드 형식: TN-RV-XXXX-XXXX (16자리, 대문자 + 숫자)
+  async function issueReviewCoupon(reviewId) {
+    if (!confirm('이 리뷰의 SNS 인증을 승인하고 LIGHT 1개월 무료 쿠폰을 발급하시겠습니까?\n\n동시에 리뷰는 공개 상태로 전환됩니다.')) return;
+
+    // 1) 리뷰 행 가져오기 (user_id 필요)
+    const { data: rev, error: revErr } = await supabase.from('reviews').select('id, user_id, coupon_issued_at').eq('id', reviewId).single();
+    if (revErr) { alert('리뷰 조회 실패: ' + revErr.message); return; }
+    if (rev.coupon_issued_at) { alert('이미 쿠폰이 발급된 리뷰입니다.'); return; }
+
+    // 2) 고유 쿠폰 코드 생성 (TN-RV-XXXX-XXXX)
+    const seg = () => Math.random().toString(36).toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 4).padEnd(4, 'X');
+    const code = `TN-RV-${seg()}-${seg()}`;
+    const validUntil = new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toISOString();  // 90일
+
+    // 3) 쿠폰 INSERT
+    const { error: couponErr } = await supabase.from('coupons').insert({
+      user_id: rev.user_id,
+      code,
+      type: 'review_sns_free_month',
+      reward_kind: 'free_month_light',
+      reward_value: null,
+      source_review_id: reviewId,
+      valid_from: new Date().toISOString(),
+      valid_until: validUntil
+    });
+    if (couponErr) {
+      alert('쿠폰 발급 실패: ' + couponErr.message + '\n(coupons 테이블이 생성되었는지, RLS 정책이 admin INSERT를 허용하는지 확인하세요. docs/REVIEW_EVENT_SETUP.md 참조)');
+      return;
+    }
+
+    // 4) 리뷰 상태 업데이트 — 인증 + 공개 + 발급 시각
+    const { error: updErr } = await supabase.from('reviews').update({
+      is_verified: true,
+      is_published: true,
+      coupon_issued_at: new Date().toISOString()
+    }).eq('id', reviewId);
+    if (updErr) {
+      alert('리뷰 업데이트 실패: ' + updErr.message + '\n쿠폰은 발급되었으니 SQL Editor에서 수동 보정 필요.');
+      return;
+    }
+
+    alert(`✓ 쿠폰 발급 완료\n\n코드: ${code}\n혜택: LIGHT 1개월 무료\n유효기간: 90일`);
   }
 
   window.filterReviews = function(btn, filter) {
