@@ -152,6 +152,43 @@
   @media(max-width:420px){.planet-grid{grid-template-columns:repeat(2,1fr);}}
 
   /* ═══════════════════════════════════════════════════════
+     ③·5 BOOK PREVIEW — actual textbook pages from real PDFs
+     Tab-switch between 4 sample levels, show the canonical 4-page
+     spread (Passage / Practice / Syntax / Vocab) for each.
+     ═══════════════════════════════════════════════════════ */
+  .book{padding-bottom:160px;}
+  .book .head{text-align:center;margin-bottom:48px;}
+  .book h2{font-weight:900;font-size:clamp(2rem,5vw,3.6rem);color:#fff;letter-spacing:-.02em;line-height:1.15;}
+  .book h2 .mint{color:var(--accent);}
+  .book .head p{margin-top:18px;color:var(--dim);font-size:clamp(.92rem,1.2vw,1rem);}
+  /* Tab pills */
+  .book-tabs{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:48px;}
+  .book-tab{padding:11px 22px;border:1px solid var(--line);background:#000;color:var(--dim);font-family:'Space Grotesk','Pretendard',sans-serif;font-size:.86rem;font-weight:700;letter-spacing:1.5px;border-radius:999px;cursor:pointer;transition:all .25s cubic-bezier(.22,.8,.36,1);text-transform:uppercase;}
+  .book-tab:hover{color:#fff;border-color:rgba(0,255,163,.35);}
+  .book-tab.active{background:var(--accent);color:#0A0A0A;border-color:var(--accent);box-shadow:0 0 0 4px rgba(0,255,163,.18);}
+  .book-tab .grade{display:inline-block;margin-left:8px;font-size:.7rem;opacity:.7;letter-spacing:1px;}
+  /* Page grid — horizontal book-spread feel */
+  .book-stage{position:relative;}
+  .book-pages{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;max-width:1280px;margin:0 auto;perspective:1400px;}
+  .book-set{display:contents;}
+  .book-set:not(.is-active){display:none;}
+  .book-page{position:relative;aspect-ratio:2/2.83;background:#fff;border-radius:6px;overflow:hidden;box-shadow:0 30px 60px -20px rgba(0,0,0,.65),0 14px 30px rgba(0,0,0,.35);transform-style:preserve-3d;transition:transform .4s cubic-bezier(.22,.8,.36,1),box-shadow .4s;animation:bookPageIn .65s cubic-bezier(.22,.8,.36,1) backwards;}
+  .book-page:nth-child(1){animation-delay:.05s;}
+  .book-page:nth-child(2){animation-delay:.13s;}
+  .book-page:nth-child(3){animation-delay:.21s;}
+  .book-page:nth-child(4){animation-delay:.29s;}
+  @keyframes bookPageIn{from{opacity:0;transform:translateY(40px) rotateY(12deg) scale(.9);}to{opacity:1;transform:translateY(0) rotateY(0) scale(1);}}
+  .book-page:hover{transform:translateY(-12px) rotateY(-3deg);box-shadow:0 40px 80px -20px rgba(0,255,163,.3),0 20px 40px rgba(0,0,0,.5);z-index:2;}
+  .book-page img{width:100%;height:100%;object-fit:cover;display:block;}
+  /* Page label badge */
+  .book-page .badge{position:absolute;top:12px;left:12px;padding:4px 10px;background:rgba(10,10,10,.85);color:var(--accent);font-family:'Space Grotesk',sans-serif;font-size:.6rem;font-weight:800;letter-spacing:1.5px;border-radius:999px;text-transform:uppercase;backdrop-filter:blur(8px);z-index:1;}
+  /* "Real book" caption strip */
+  .book-meta{display:flex;justify-content:space-between;align-items:center;max-width:1280px;margin:36px auto 0;padding:0 6px;font-size:.78rem;color:var(--mute);font-family:'Space Grotesk','Pretendard',sans-serif;letter-spacing:1px;}
+  .book-meta .real{color:var(--accent);}
+  @media(max-width:1024px){.book-pages{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:560px){.book-pages{grid-template-columns:1fr;max-width:340px;}.book-tab{padding:9px 16px;font-size:.78rem;}}
+
+  /* ═══════════════════════════════════════════════════════
      ④ PLANS — 3 visually-loaded cards
      ═══════════════════════════════════════════════════════ */
   .plans{position:relative;}
@@ -349,6 +386,61 @@
     </div>
   </section>
 
+  <!-- ═════════ ③·5 BOOK PREVIEW — actual textbook pages ═════════ -->
+  <section class="section book">
+    <div class="inner reveal">
+      <div class="head">
+        <span class="label">Real Book</span>
+        <h2>실제로 받아보는<br><span class="mint">책 한 권</span>.</h2>
+        <p>샘플이 아니라, 매월 그대로 인쇄돼 도착하는 페이지입니다.</p>
+      </div>
+
+      <div class="book-tabs" role="tablist">
+        <button class="book-tab active" data-level="mars" role="tab" aria-selected="true">MARS<span class="grade">초5</span></button>
+        <button class="book-tab" data-level="saturn" role="tab" aria-selected="false">SATURN<span class="grade">고1</span></button>
+        <button class="book-tab" data-level="jupiter" role="tab" aria-selected="false">JUPITER<span class="grade">고2</span></button>
+        <button class="book-tab" data-level="sun" role="tab" aria-selected="false">SUN<span class="grade">고3·N수생</span></button>
+      </div>
+
+      <div class="book-stage">
+        <div class="book-pages">
+          <!-- Mars set (active by default) -->
+          <div class="book-set is-active" data-level="mars">
+            <div class="book-page"><span class="badge">P1 · Passage</span><img src="assets/textbook-previews/mars-p1.jpg" alt="MARS 초5 — Passage 페이지" loading="lazy"></div>
+            <div class="book-page"><span class="badge">P2 · Practice</span><img src="assets/textbook-previews/mars-p2.jpg" alt="MARS 초5 — Practice 페이지" loading="lazy"></div>
+            <div class="book-page"><span class="badge">P3 · Syntax</span><img src="assets/textbook-previews/mars-p3.jpg" alt="MARS 초5 — Syntax 페이지" loading="lazy"></div>
+            <div class="book-page"><span class="badge">P4 · Vocab</span><img src="assets/textbook-previews/mars-p4.jpg" alt="MARS 초5 — Vocab 페이지" loading="lazy"></div>
+          </div>
+
+          <div class="book-set" data-level="saturn">
+            <div class="book-page"><span class="badge">P1 · Passage</span><img src="assets/textbook-previews/saturn-p1.jpg" alt="SATURN 고1 — Passage 페이지" loading="lazy"></div>
+            <div class="book-page"><span class="badge">P2 · Practice</span><img src="assets/textbook-previews/saturn-p2.jpg" alt="SATURN 고1 — Practice 페이지" loading="lazy"></div>
+            <div class="book-page"><span class="badge">P3 · Syntax</span><img src="assets/textbook-previews/saturn-p3.jpg" alt="SATURN 고1 — Syntax 페이지" loading="lazy"></div>
+            <div class="book-page"><span class="badge">P4 · Vocab</span><img src="assets/textbook-previews/saturn-p4.jpg" alt="SATURN 고1 — Vocab 페이지" loading="lazy"></div>
+          </div>
+
+          <div class="book-set" data-level="jupiter">
+            <div class="book-page"><span class="badge">P1 · Passage</span><img src="assets/textbook-previews/jupiter-p1.jpg" alt="JUPITER 고2 — Passage 페이지" loading="lazy"></div>
+            <div class="book-page"><span class="badge">P2 · Practice</span><img src="assets/textbook-previews/jupiter-p2.jpg" alt="JUPITER 고2 — Practice 페이지" loading="lazy"></div>
+            <div class="book-page"><span class="badge">P3 · Syntax</span><img src="assets/textbook-previews/jupiter-p3.jpg" alt="JUPITER 고2 — Syntax 페이지" loading="lazy"></div>
+            <div class="book-page"><span class="badge">P4 · Vocab</span><img src="assets/textbook-previews/jupiter-p4.jpg" alt="JUPITER 고2 — Vocab 페이지" loading="lazy"></div>
+          </div>
+
+          <div class="book-set" data-level="sun">
+            <div class="book-page"><span class="badge">P1 · Passage</span><img src="assets/textbook-previews/sun-p1.jpg" alt="SUN 고3·N수생 — Passage 페이지" loading="lazy"></div>
+            <div class="book-page"><span class="badge">P2 · Practice</span><img src="assets/textbook-previews/sun-p2.jpg" alt="SUN 고3·N수생 — Practice 페이지" loading="lazy"></div>
+            <div class="book-page"><span class="badge">P3 · Syntax</span><img src="assets/textbook-previews/sun-p3.jpg" alt="SUN 고3·N수생 — Syntax 페이지" loading="lazy"></div>
+            <div class="book-page"><span class="badge">P4 · Vocab</span><img src="assets/textbook-previews/sun-p4.jpg" alt="SUN 고3·N수생 — Vocab 페이지" loading="lazy"></div>
+          </div>
+        </div>
+        <div class="book-meta">
+          <span>1 지문 = 4 페이지 (본문 / 문제 / 구문 / 단어)</span>
+          <span class="real">● 실제 PDF에서 발췌</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ═════════ ④ PLANS — 3 visually-loaded cards ═════════ -->
   <section class="section plans" id="plans">
     <div class="inner reveal">
@@ -504,6 +596,26 @@
       });
     }, { threshold: 0.4 });
     nums.forEach(function(n){ io.observe(n); });
+  })();
+
+  // ─── Book preview — tab switcher ───
+  (function(){
+    var tabs = document.querySelectorAll('.book-tab');
+    var sets = document.querySelectorAll('.book-set');
+    if (!tabs.length || !sets.length) return;
+    tabs.forEach(function(tab){
+      tab.addEventListener('click', function(){
+        var level = tab.dataset.level;
+        tabs.forEach(function(t){
+          var on = t === tab;
+          t.classList.toggle('active', on);
+          t.setAttribute('aria-selected', on ? 'true' : 'false');
+        });
+        sets.forEach(function(s){
+          s.classList.toggle('is-active', s.dataset.level === level);
+        });
+      });
+    });
   })();
 
   // ─── Floating CTA — auto-hide when #plans is in view ───
