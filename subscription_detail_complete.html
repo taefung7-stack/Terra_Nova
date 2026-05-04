@@ -141,9 +141,8 @@
   @media(max-width:760px){.levels h2{white-space:normal;}}
   .planet-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;max-width:1620px;margin:0 auto;}
   .planet-card{position:relative;display:flex;flex-direction:column;align-items:center;padding:48px 28px 38px;background:#000;border:1px solid var(--line);border-radius:22px;transition:transform .3s cubic-bezier(.22,.8,.36,1),border-color .3s;overflow:hidden;min-height:280px;}
-  .planet-card::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 30%,rgba(0,255,163,.12) 0%,transparent 60%);opacity:0;transition:opacity .3s;pointer-events:none;}
+  /* No inner glow on hover (per user). Keep card lift + mint border only. */
   .planet-card:hover{transform:translateY(-6px);border-color:rgba(0,255,163,.42);}
-  .planet-card:hover::before{opacity:1;}
   .planet-card:hover .pcard-img{animation-play-state:paused;transform:scale(1.08) rotate(8deg);}
   .pcard-img{width:128px;aspect-ratio:1;background-image:var(--p-img);background-size:contain;background-position:center;background-repeat:no-repeat;animation:planetFloat 5s ease-in-out infinite;transition:transform .4s cubic-bezier(.22,.8,.36,1);filter:drop-shadow(0 8px 22px rgba(0,0,0,.55));}
   .planet-card:nth-child(2n) .pcard-img{animation-delay:-1.6s;}

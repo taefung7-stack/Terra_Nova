@@ -2282,7 +2282,9 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
 .orbit-grid {
   display:grid;
   grid-template-columns:repeat(2, minmax(0, 1fr));
+  grid-auto-rows:1fr;            /* 8 cards split the column height evenly */
   gap:16px;
+  height:100%;                   /* fill the orbit-preview height on the left */
 }
 .level-card {
   --level-accent:#00ffa3;
@@ -4135,7 +4137,7 @@ body.bigbang-done .terra-hint,
             <button class="level-card planet-mars is-active" type="button" aria-pressed="true" data-level="1" data-name="MARS" data-grade="초5 교과연계" data-size="지름 6,779 km" data-desc="과학의 태양계와 용해·용액, 사회의 역사 인물과 환경, 수학의 약수·배수·비와 비율을 주제문과 세부 정보 독해로 다룹니다.">
               <span class="planet-thumb" aria-hidden="true"></span>
               <span class="level-card-meta">
-                <span class="level-card-num">LV 03.</span>
+                <span class="level-card-num">LV 01.</span>
                 <span class="level-card-name">MARS : 초5 교과연계</span>
                 <span class="level-card-size">지름 6,779 km</span>
               </span>
@@ -4143,7 +4145,7 @@ body.bigbang-done .terra-hint,
             <button class="level-card planet-venus" type="button" aria-pressed="false" data-level="2" data-name="VENUS" data-grade="초6 교과연계" data-size="지름 12,104 km" data-desc="과학의 에너지와 생태계, 사회의 세계 지리와 민주 시민, 수학의 비례식·원·자료 표현을 원인과 결과 중심 지문으로 연결합니다.">
               <span class="planet-thumb" aria-hidden="true"></span>
               <span class="level-card-meta">
-                <span class="level-card-num">LV 04.</span>
+                <span class="level-card-num">LV 02.</span>
                 <span class="level-card-name">VENUS : 초6 교과연계</span>
                 <span class="level-card-size">지름 12,104 km</span>
               </span>
@@ -4151,7 +4153,7 @@ body.bigbang-done .terra-hint,
             <button class="level-card planet-terra" type="button" aria-pressed="false" data-level="3" data-name="TERRA" data-grade="중1 교과연계" data-size="지름 12,742 km" data-desc="과학의 힘과 운동·생물 다양성, 사회의 지리와 역사 기초, 수학의 정수·방정식·자료 단원을 영어 개념 설명과 비교 지문으로 읽습니다.">
               <span class="planet-thumb" aria-hidden="true"></span>
               <span class="level-card-meta">
-                <span class="level-card-num">LV 05.</span>
+                <span class="level-card-num">LV 03.</span>
                 <span class="level-card-name">TERRA : 중1 교과연계</span>
                 <span class="level-card-size">지름 12,742 km</span>
               </span>
@@ -4159,7 +4161,7 @@ body.bigbang-done .terra-hint,
             <button class="level-card planet-neptune" type="button" aria-pressed="false" data-level="4" data-name="NEPTUNE" data-grade="중2 교과연계" data-size="지름 49,244 km" data-desc="과학의 전기와 자기·물질 변화, 사회의 세계사와 사회 문제, 수학의 일차함수·확률을 전개 순서와 근거 찾기 지문으로 확장합니다.">
               <span class="planet-thumb" aria-hidden="true"></span>
               <span class="level-card-meta">
-                <span class="level-card-num">LV 06.</span>
+                <span class="level-card-num">LV 04.</span>
                 <span class="level-card-name">NEPTUNE : 중2 교과연계</span>
                 <span class="level-card-size">지름 49,244 km</span>
               </span>
@@ -4167,7 +4169,7 @@ body.bigbang-done .terra-hint,
             <button class="level-card planet-uranus" type="button" aria-pressed="false" data-level="5" data-name="URANUS" data-grade="중3 교과연계" data-size="지름 50,724 km" data-desc="과학의 유전·화학 반응·천체, 사회의 현대 사회와 시민 참여, 수학의 이차함수와 통계를 고등 영어식 문장 구조로 예열합니다.">
               <span class="planet-thumb" aria-hidden="true"></span>
               <span class="level-card-meta">
-                <span class="level-card-num">LV 07.</span>
+                <span class="level-card-num">LV 05.</span>
                 <span class="level-card-name">URANUS : 중3 교과연계</span>
                 <span class="level-card-size">지름 50,724 km</span>
               </span>
@@ -4175,7 +4177,7 @@ body.bigbang-done .terra-hint,
             <button class="level-card planet-saturn" type="button" aria-pressed="false" data-level="6" data-name="SATURN" data-grade="고1 교과연계" data-size="지름 116,460 km" data-desc="통합과학의 물질·시스템·변화, 통합사회의 인간·공간·시장, 공통수학의 함수와 자료 해석을 내신형·모의고사형 지문으로 묶습니다.">
               <span class="planet-thumb" aria-hidden="true"></span>
               <span class="level-card-meta">
-                <span class="level-card-num">LV 08.</span>
+                <span class="level-card-num">LV 06.</span>
                 <span class="level-card-name">SATURN : 고1 교과연계</span>
                 <span class="level-card-size">지름 116,460 km</span>
               </span>
@@ -4183,7 +4185,7 @@ body.bigbang-done .terra-hint,
             <button class="level-card planet-jupiter" type="button" aria-pressed="false" data-level="7" data-name="JUPITER" data-grade="고2 교과연계" data-size="지름 139,820 km" data-desc="생명과학·지구과학·물리·화학 선택 과목, 사회문화·경제·생활과 윤리 소재를 수능형 자료 해석과 복합 문항으로 다룹니다.">
               <span class="planet-thumb" aria-hidden="true"></span>
               <span class="level-card-meta">
-                <span class="level-card-num">LV 09.</span>
+                <span class="level-card-num">LV 07.</span>
                 <span class="level-card-name">JUPITER : 고2 교과연계</span>
                 <span class="level-card-size">지름 139,820 km</span>
               </span>
@@ -4191,7 +4193,7 @@ body.bigbang-done .terra-hint,
             <button class="level-card planet-sun" type="button" aria-pressed="false" data-level="8" data-name="SUN" data-grade="고3·N수생 교과연계" data-size="지름 1,392,700 km" data-desc="고등 전 과목의 과학·사회·인문 소재를 수능 영어 지문으로 통합하고, 빈칸·순서·삽입·요약 유형에서 교과 개념을 빠르게 판단합니다.">
               <span class="planet-thumb" aria-hidden="true"></span>
               <span class="level-card-meta">
-                <span class="level-card-num">LV 10.</span>
+                <span class="level-card-num">LV 08.</span>
                 <span class="level-card-name">SUN : 고3·N수생 교과연계</span>
                 <span class="level-card-size">지름 1,392,700 km</span>
               </span>
