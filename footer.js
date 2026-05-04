@@ -6,9 +6,19 @@
 (function() {
   if (document.querySelector('footer.tn-footer') || document.querySelector('footer[data-shared]')) return;
 
-  // index.html은 이미 전용 footer 보유 → 스킵
-  if (location.pathname.endsWith('/index.html') || location.pathname.endsWith('/Terra_Nova/') || location.pathname === '/') {
-    if (document.querySelector('footer')) return;
+  // 사용자 피드백(2026-05-04): 홈(index.html / landing.html)에도 약관·사업자
+  // 정보 풀 푸터가 보여야 함. 기존엔 home에 짧은 <footer class="site-footer">
+  // (카피라이트만)이 있어 footer.js가 스킵 → 홈에서 약관/연락처 못 봄.
+  // 정책 변경: site-footer는 "미니멀 카피라이트 placeholder"로 간주하고
+  // 제거한 뒤 풀 푸터를 주입한다. 다른 형태의 <footer>(예: tn-footer,
+  // data-shared, 커스텀 클래스)는 그대로 살린다.
+  const existingFooter = document.querySelector('footer');
+  if (existingFooter) {
+    if (existingFooter.classList.contains('site-footer')) {
+      existingFooter.remove();
+    } else {
+      return; // 별도 커스텀 footer는 존중
+    }
   }
 
   const isLightTheme = document.body.classList.contains('light-theme') ||

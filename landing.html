@@ -6161,5 +6161,11 @@ document.addEventListener('DOMContentLoaded', function () {
 })();
 </script>
 
+<!-- Shared footer with full business info (terms · refund · 사업자정보 etc.).
+     site-config.js exposes window.BUSINESS_INFO; footer.js detects the minimal
+     <footer class="site-footer"> placeholder above and replaces it with the
+     full version (same one used on every other page). -->
+<script src="./site-config.js"></script>
+<script src="./footer.js" defer></script>
 </body>
 </html>
