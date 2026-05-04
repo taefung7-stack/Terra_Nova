@@ -230,6 +230,32 @@
     .bar-value{font-size:.88rem;}
   }
 
+  /* ───── Subjects-covered card (replaces 월 학습 시간) ───── */
+  .subj-row{display:grid;grid-template-columns:140px 1fr 80px;align-items:center;gap:18px;padding:22px 0;border-bottom:1px solid var(--line);}
+  .subj-row:last-of-type{border-bottom:none;}
+  .subj-name{font-family:'Space Grotesk','Pretendard',sans-serif;font-size:.96rem;font-weight:700;color:var(--dim);letter-spacing:.5px;line-height:1.2;text-align:right;}
+  .subj-row.is-tn .subj-name{color:#fff;}
+  .subj-pills{display:flex;flex-wrap:wrap;gap:8px;}
+  .subj-pill{padding:8px 16px;border-radius:999px;font-size:.92rem;font-weight:700;letter-spacing:-.005em;line-height:1;white-space:nowrap;opacity:0;transform:translateY(8px);transition:opacity .5s cubic-bezier(.22,.8,.36,1),transform .5s cubic-bezier(.22,.8,.36,1);}
+  .subj-row.is-tn .subj-pill{background:linear-gradient(135deg,rgba(0,255,163,.18) 0%,rgba(0,255,163,.08) 100%);border:1px solid rgba(0,255,163,.45);color:var(--accent);box-shadow:0 0 14px rgba(0,255,163,.18);}
+  .subj-row.is-aca .subj-pill{background:rgba(255,255,255,.04);border:1px solid var(--line);color:var(--mute);}
+  /* Stagger the pill entrance once .compare gets .in-view */
+  .compare.in-view .subj-row.is-tn .subj-pill:nth-child(1){opacity:1;transform:translateY(0);transition-delay:.05s;}
+  .compare.in-view .subj-row.is-tn .subj-pill:nth-child(2){opacity:1;transform:translateY(0);transition-delay:.18s;}
+  .compare.in-view .subj-row.is-tn .subj-pill:nth-child(3){opacity:1;transform:translateY(0);transition-delay:.31s;}
+  .compare.in-view .subj-row.is-tn .subj-pill:nth-child(4){opacity:1;transform:translateY(0);transition-delay:.44s;}
+  .compare.in-view .subj-row.is-tn .subj-pill:nth-child(5){opacity:1;transform:translateY(0);transition-delay:.57s;}
+  .compare.in-view .subj-row.is-aca .subj-pill{opacity:1;transform:translateY(0);transition-delay:.7s;}
+  .subj-count{font-family:'Space Grotesk','Pretendard',sans-serif;font-size:1.6rem;font-weight:900;letter-spacing:-.02em;color:#fff;text-align:right;line-height:1;}
+  .subj-row.is-tn .subj-count{color:var(--accent);text-shadow:0 0 24px rgba(0,255,163,.32);}
+  .subj-row.is-aca .subj-count{color:var(--mute);}
+  .subj-count::after{content:"과목";font-size:.62em;font-weight:700;color:var(--mute);margin-left:4px;text-shadow:none;letter-spacing:0;}
+  @media(max-width:560px){
+    .subj-row{grid-template-columns:1fr;gap:10px;text-align:left;}
+    .subj-name{text-align:left;}
+    .subj-count{text-align:left;}
+  }
+
   .compare-table{position:relative;z-index:1;max-width:1480px;margin:0 auto;border:1px solid var(--line);border-radius:20px;overflow:hidden;background:var(--card);}
   .compare-row{display:grid;grid-template-columns:1.1fr 1.4fr 1.4fr;border-bottom:1px solid var(--line);transition:background .25s;}
   .compare-row:last-child{border-bottom:none;}
@@ -305,11 +331,76 @@
   @keyframes arrowPulse{0%,100%{transform:translateX(0);opacity:1;}50%{transform:translateX(8px);opacity:.6;}}
   .tf-after{color:#fff;}
   .tf-after .mint{color:var(--accent);}
-  .tf-ctas{position:relative;z-index:1;display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
-  .btn-pri{display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:#0A0A0A;padding:20px 44px;border-radius:999px;font-weight:800;font-size:1rem;text-decoration:none;letter-spacing:.5px;transition:transform .2s cubic-bezier(.22,.8,.36,1),box-shadow .2s;box-shadow:0 14px 32px rgba(0,255,163,.28);}
-  .btn-pri:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 22px 50px rgba(0,255,163,.45);}
-  .btn-sec{display:inline-flex;align-items:center;gap:10px;background:transparent;color:#fff;padding:20px 36px;border-radius:999px;border:1px solid rgba(255,255,255,.22);font-weight:600;font-size:1rem;text-decoration:none;transition:border-color .2s,color .2s;}
+  .tf-ctas{position:relative;z-index:1;display:flex;gap:18px;justify-content:center;flex-wrap:wrap;}
+  /* Both buttons share identical geometry — pill, same padding, same font.
+     Glass treatment: a thin specular highlight strip rolls across the
+     surface continuously (overflow:hidden + ::after sweep + alpha mask)
+     while a soft inner glow pulses, so the buttons read like polished
+     glass with light reflecting through them. */
+  .btn-pri,.btn-sec{
+    position:relative;
+    display:inline-flex;align-items:center;justify-content:center;gap:12px;
+    min-width:240px;padding:22px 48px;
+    font-family:'Pretendard','Noto Sans KR',sans-serif;
+    font-weight:800;font-size:1.04rem;letter-spacing:1.6px;
+    text-decoration:none;border-radius:999px;
+    overflow:hidden;isolation:isolate;
+    transition:transform .2s cubic-bezier(.22,.8,.36,1);
+  }
+  .btn-pri{
+    background:linear-gradient(135deg, #00FFA3 0%, #3DDFA8 50%, #00FFA3 100%);
+    color:#0A0A0A;
+    box-shadow:0 14px 32px rgba(0,255,163,.42), inset 0 0 28px rgba(255,255,255,.32);
+    animation:btnGlowMint 2.6s ease-in-out infinite;
+  }
+  .btn-sec{
+    background:linear-gradient(135deg, rgba(255,255,255,.06) 0%, rgba(255,255,255,.12) 50%, rgba(255,255,255,.06) 100%);
+    color:#fff;
+    border:1px solid rgba(255,255,255,.32);
+    box-shadow:0 14px 28px rgba(0,0,0,.4), inset 0 0 22px rgba(255,255,255,.08);
+    animation:btnGlowGlass 3s ease-in-out infinite;
+    animation-delay:-.6s;
+  }
+  /* Continuous specular sweep — diagonal gleam slides left → right forever.
+     Uses ::after pinned over the button, masked by a 3-stop linear gradient. */
+  .btn-pri::after,.btn-sec::after{
+    content:"";
+    position:absolute;
+    top:-50%;left:-100%;
+    width:60%;height:200%;
+    background:linear-gradient(110deg,
+      transparent 0%,
+      rgba(255,255,255,.0) 35%,
+      rgba(255,255,255,.55) 50%,
+      rgba(255,255,255,.0) 65%,
+      transparent 100%);
+    transform:skewX(-22deg);
+    animation:btnShine 2.4s ease-in-out infinite;
+    pointer-events:none;
+    z-index:1;
+  }
+  .btn-sec::after{animation-delay:-1.2s;}
+  /* Make sure the label text sits above the gleam */
+  .btn-pri > *, .btn-sec > *{position:relative;z-index:2;}
+  @keyframes btnShine{
+    0%   { left:-100%; }
+    60%  { left:160%; }
+    100% { left:160%; }
+  }
+  @keyframes btnGlowMint{
+    0%,100% { box-shadow:0 14px 32px rgba(0,255,163,.38), inset 0 0 24px rgba(255,255,255,.28); }
+    50%     { box-shadow:0 18px 44px rgba(0,255,163,.62), inset 0 0 40px rgba(255,255,255,.5); }
+  }
+  @keyframes btnGlowGlass{
+    0%,100% { box-shadow:0 14px 28px rgba(0,0,0,.4), inset 0 0 18px rgba(255,255,255,.06); }
+    50%     { box-shadow:0 14px 28px rgba(0,0,0,.4), inset 0 0 32px rgba(255,255,255,.18); }
+  }
+  .btn-pri:hover,.btn-sec:hover{transform:translateY(-3px) scale(1.03);}
   .btn-sec:hover{border-color:var(--accent);color:var(--accent);}
+  @media (prefers-reduced-motion: reduce){
+    .btn-pri,.btn-sec{animation:none;}
+    .btn-pri::after,.btn-sec::after{display:none;}
+  }
 
   /* ═══════════════════════════════════════════════════════
      Floating "📊 플랜 비교" — sticky bottom-right
@@ -525,7 +616,7 @@
     <div class="inner reveal">
       <div class="head">
         <span class="label">vs 학원</span>
-        <h2>학원 1주 비용으로 <span class="mint">한 달을 끝낸다</span>.</h2>
+        <h2>학원 30분 비용으로 <span class="mint">한 달을 끝낸다</span>.</h2>
       </div>
 
       <!-- ─── Bar graphs — price + time advantage ─── -->
@@ -558,21 +649,31 @@
           </div>
         </div>
 
-        <div class="graph-card">
+        <div class="graph-card subjects-card">
           <div class="graph-title">
-            <h3>월 학습 시간</h3>
-            <span class="unit">시간 · HOUR</span>
+            <h3>커버하는 교과</h3>
+            <span class="unit">과목 · SUBJECTS</span>
           </div>
-          <p class="graph-tagline">통원 시간 <span class="pop">0분</span> — 공부 시간을 효율적으로 관리합니다.</p>
-          <div class="bar is-tn">
-            <span class="bar-label">Terra Nova</span>
-            <div class="bar-track"><span class="bar-fill" style="--w:14%;"></span></div>
-            <span class="bar-value">5시간</span>
+          <p class="graph-tagline">영어 한 권으로 <span class="pop">5과목</span>을 동시에 복습합니다.</p>
+
+          <div class="subj-row is-tn">
+            <span class="subj-name">Terra Nova</span>
+            <div class="subj-pills">
+              <span class="subj-pill">과학</span>
+              <span class="subj-pill">수학</span>
+              <span class="subj-pill">사회</span>
+              <span class="subj-pill">국어</span>
+              <span class="subj-pill">도덕</span>
+            </div>
+            <span class="subj-count">5</span>
           </div>
-          <div class="bar is-aca">
-            <span class="bar-label">학원 평균</span>
-            <div class="bar-track"><span class="bar-fill" style="--w:100%;"></span></div>
-            <span class="bar-value">36시간</span>
+
+          <div class="subj-row is-aca">
+            <span class="subj-name">학원 평균</span>
+            <div class="subj-pills">
+              <span class="subj-pill">영어</span>
+            </div>
+            <span class="subj-count">1</span>
           </div>
         </div>
       </div>
@@ -677,8 +778,8 @@
   <section class="transform reveal">
     <div class="inner">
       <div class="tf-ctas">
-        <a href="level_test.html" class="btn-pri">레벨 테스트 <span style="font-size:1.1em;">→</span></a>
-        <a href="sample.html" class="btn-sec">샘플 받기</a>
+        <a href="level_test.html" class="btn-pri"><span>LEVEL TEST</span></a>
+        <a href="sample.html" class="btn-sec"><span>SAMPLE</span></a>
       </div>
     </div>
   </section>
