@@ -339,7 +339,11 @@
   .plan:hover::before{background-position:100% 0;}
   .plan-head-row{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:32px;}
   .plan-head-text{display:flex;flex-direction:column;gap:8px;min-width:0;flex:1;}
-  .plan-icon-img{width:96px;height:96px;object-fit:contain;flex-shrink:0;mix-blend-mode:lighten;background:transparent;}
+  /* Plan icon — inline SVG glyph (no box, no background, no border).
+     True transparent cutout floating on the card surface, mint stroke
+     with a soft drop-shadow for depth. Bumped 72→104px per user. */
+  .plan-icon-img{width:104px;height:104px;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:var(--accent);filter:drop-shadow(0 6px 18px rgba(0,255,163,.32));}
+  .plan-icon-img svg{width:100%;height:100%;display:block;}
   .plan-name{font-family:'Space Grotesk',sans-serif;font-weight:900;font-size:1.1rem;letter-spacing:3px;color:#fff;}
   .plan-tag{font-size:.74rem;color:var(--accent);font-weight:700;letter-spacing:1.5px;text-transform:uppercase;}
   .plan-price{font-family:'Space Grotesk',sans-serif;font-weight:900;font-size:2.6rem;color:#fff;letter-spacing:-.025em;line-height:1;display:flex;align-items:baseline;gap:4px;}
@@ -776,7 +780,13 @@
               <div class="plan-name">LIGHT</div>
               <div class="plan-tag">PDF 교재</div>
             </div>
-            <img class="plan-icon-img" src="assets/3d/accb5a03-f66f-4068-a146-375bc850e3d2.jpg" alt="LIGHT plan icon" loading="lazy">
+            <span class="plan-icon-img" role="img" aria-label="LIGHT — PDF document">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 6h22l14 14v34a4 4 0 0 1-4 4H14a4 4 0 0 1-4-4V10a4 4 0 0 1 4-4z"/>
+                <path d="M36 6v14h14"/>
+                <text x="32" y="46" font-family="'Space Grotesk', sans-serif" font-size="11" font-weight="900" text-anchor="middle" fill="currentColor" stroke="none">PDF</text>
+              </svg>
+            </span>
           </div>
           <div class="plan-price">₩11,900<span class="won">/월</span></div>
           <div class="plan-divider"></div>
@@ -794,7 +804,14 @@
               <div class="plan-name">STANDARD</div>
               <div class="plan-tag">실물 교재 + PDF</div>
             </div>
-            <img class="plan-icon-img" src="assets/3d/99c93f57-36c9-457b-8f57-ee2ec95e6a0d.jpg" alt="STANDARD plan icon" loading="lazy">
+            <span class="plan-icon-img" role="img" aria-label="STANDARD — open book">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M32 18v34"/>
+                <path d="M6 18c8 0 17 1.6 26 6 9-4.4 18-6 26-6v32c-8 0-17 1.6-26 6-9-4.4-18-6-26-6V18z"/>
+                <path d="M14 26h12"/><path d="M14 32h10"/><path d="M14 38h12"/>
+                <path d="M38 26h12"/><path d="M40 32h10"/><path d="M38 38h12"/>
+              </svg>
+            </span>
           </div>
           <div class="plan-price">₩24,900<span class="won">/월</span></div>
           <div class="plan-divider"></div>
@@ -813,7 +830,13 @@
               <div class="plan-name">PREMIUM</div>
               <div class="plan-tag">+ 해설 강의</div>
             </div>
-            <img class="plan-icon-img" src="assets/3d/16fa255b-14ce-42ca-b573-a928eb9c7127.jpg" alt="PREMIUM plan icon" loading="lazy">
+            <span class="plan-icon-img" role="img" aria-label="PREMIUM — video lecture">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="6" y="14" width="52" height="36" rx="6"/>
+                <path d="M28 24l14 8-14 8z" fill="currentColor" stroke="none"/>
+                <path d="M16 56h32"/>
+              </svg>
+            </span>
           </div>
           <div class="plan-price">₩58,900<span class="won">/월</span></div>
           <div class="plan-divider"></div>
