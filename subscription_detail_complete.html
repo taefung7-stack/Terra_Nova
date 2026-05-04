@@ -103,7 +103,10 @@
   /* The Terra planet itself — gentle bob + glow */
   .hero-planet{position:absolute;inset:22%;background-image:url('assets/3d/planets-normalized/terra.png');background-size:contain;background-position:center;background-repeat:no-repeat;animation:planetBob 6s ease-in-out infinite;filter:drop-shadow(0 0 60px rgba(0,255,163,.32)) drop-shadow(0 30px 80px rgba(0,0,0,.6));}
   @keyframes planetBob{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
-  .hero-headline{font-family:'Pretendard','Noto Sans KR',sans-serif;font-weight:900;font-size:clamp(3rem,8vw,7rem);line-height:1;letter-spacing:-.03em;color:#fff;margin-bottom:24px;-webkit-text-stroke:1.5px currentColor;}
+  /* Hero headline — 사용자 피드백(2026-05-04): 한 줄 + 더 크게.
+     <br>은 HTML에서 제거, white-space:nowrap으로 자동 줄바꿈 차단,
+     clamp 상한을 7rem → 12rem으로 끌어올려 와이드 모니터에서 압도적 크기. */
+  .hero-headline{font-family:'Pretendard','Noto Sans KR',sans-serif;font-weight:900;font-size:clamp(2rem,11vw,12rem);line-height:1;letter-spacing:-.03em;color:#fff;margin-bottom:24px;-webkit-text-stroke:1.5px currentColor;white-space:nowrap;}
   .hero-headline .mint{color:var(--accent);text-shadow:0 0 48px rgba(0,255,163,.42);}
   .hero-tagline{font-size:clamp(.95rem,1.4vw,1.15rem);color:var(--dim);letter-spacing:1px;}
   .hero-scroll{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);font-family:'Space Grotesk',sans-serif;font-size:.66rem;letter-spacing:5px;color:var(--mute);text-transform:uppercase;animation:scrollHint 2.4s ease-in-out infinite;}
@@ -450,7 +453,7 @@
         <div class="hero-orbit2"></div>
         <div class="hero-planet"></div>
       </div>
-      <h1 class="hero-headline">한 지문에,<br><span class="mint">한 단원.</span></h1>
+      <h1 class="hero-headline">한 지문에, <span class="mint">한 단원.</span></h1>
       <p class="hero-tagline">매월 영어 지문 20편 — 학년 교과를 영어로 끝내다.</p>
     </div>
     <div class="hero-scroll">SCROLL</div>
