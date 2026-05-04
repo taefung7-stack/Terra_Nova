@@ -159,11 +159,10 @@
      each page render bigger than a tab-swap layout would allow.
      ═══════════════════════════════════════════════════════ */
   .book{padding-bottom:180px;}
-  .book .head{text-align:center;margin-bottom:80px;}
-  .book h2{font-weight:900;font-size:clamp(2.4rem,6vw,4.6rem);color:#fff;letter-spacing:-.02em;line-height:1.1;white-space:nowrap;}
+  .book .head{text-align:center;margin-bottom:96px;}
+  .book h2{font-weight:900;font-size:clamp(2.4rem,7.4vw,6rem);color:#fff;letter-spacing:-.025em;line-height:1.05;white-space:nowrap;}
   .book h2 .mint{color:var(--accent);}
-  .book .head p{margin-top:22px;color:var(--dim);font-size:clamp(1rem,1.4vw,1.18rem);}
-  @media(max-width:760px){.book h2{white-space:normal;}}
+  @media(max-width:980px){.book h2{white-space:normal;font-size:clamp(2.2rem,6vw,4.2rem);}}
   /* Per-level row — wider container so the 4 pages render bigger */
   .book-row{max-width:1720px;margin:0 auto 96px;}
   .book-row:last-of-type{margin-bottom:32px;}
@@ -450,8 +449,7 @@
     <div class="inner reveal">
       <div class="head">
         <span class="label">Real Book</span>
-        <h2>실제로 받아보는<br><span class="mint">책 한 권</span>.</h2>
-        <p>샘플이 아니라, 매월 그대로 인쇄돼 도착하는 페이지입니다.</p>
+        <h2>각 학년 <span class="mint">교과서</span>를 영어로 읽습니다.</h2>
       </div>
 
       <!-- 4 levels stacked, each level shows its full 4-page spread -->
@@ -459,7 +457,7 @@
         <div class="book-row-head">
           <span class="book-row-name">MARS</span>
           <span class="book-row-grade">초5</span>
-          <span class="book-row-curriculum"><span class="subj">과학</span>에너지의 형태와 변환 · 에너지와 생활</span>
+          <span class="book-row-curriculum"><span class="subj">사회</span>개화기 조선의 변화 · 근대화의 시작</span>
           <span class="book-row-line"></span>
         </div>
         <div class="book-pages">
@@ -474,7 +472,7 @@
         <div class="book-row-head">
           <span class="book-row-name">SATURN</span>
           <span class="book-row-grade">고1</span>
-          <span class="book-row-curriculum"><span class="subj">통합과학</span>I-2 생명의 진화와 탄소 · 원소·화합물과 생명</span>
+          <span class="book-row-curriculum"><span class="subj">공통수학1</span>경우의 수 — 곱의 법칙·순열·조합</span>
           <span class="book-row-line"></span>
         </div>
         <div class="book-pages">
@@ -516,7 +514,7 @@
       </div>
 
       <div class="book-meta">
-        <span>1 지문 = 4 페이지 (본문 / 문제 / 구문 / 단어) · 4 지문 위 견본</span>
+        <span></span>
         <span class="real">● 실제 PDF에서 그대로 발췌</span>
       </div>
     </div>
@@ -540,25 +538,24 @@
           <p class="graph-tagline">학원의 <span class="pop">1/30 가격</span>으로 시작합니다.</p>
           <div class="bar is-tn">
             <span class="bar-label">LIGHT</span>
-            <div class="bar-track"><span class="bar-fill" style="--w:2%;"></span></div>
+            <div class="bar-track"><span class="bar-fill" style="--w:3%;"></span></div>
             <span class="bar-value">₩11,900</span>
           </div>
           <div class="bar is-tn">
             <span class="bar-label">STANDARD</span>
-            <div class="bar-track"><span class="bar-fill" style="--w:4.2%;"></span></div>
+            <div class="bar-track"><span class="bar-fill" style="--w:6.2%;"></span></div>
             <span class="bar-value">₩24,900</span>
           </div>
           <div class="bar is-tn">
             <span class="bar-label">PREMIUM</span>
-            <div class="bar-track"><span class="bar-fill" style="--w:9.8%;"></span></div>
+            <div class="bar-track"><span class="bar-fill" style="--w:14.7%;"></span></div>
             <span class="bar-value">₩58,900</span>
           </div>
           <div class="bar is-aca">
             <span class="bar-label">학원 평균</span>
             <div class="bar-track"><span class="bar-fill" style="--w:100%;"></span></div>
-            <span class="bar-value">₩600,000</span>
+            <span class="bar-value">₩400,000</span>
           </div>
-          <p class="graph-foot">PREMIUM 1년 = 학원 <strong>약 1.2개월</strong> 비용. 같은 시간에 더 많은 지문, 더 다양한 레벨.</p>
         </div>
 
         <div class="graph-card">
@@ -566,7 +563,7 @@
             <h3>월 학습 시간</h3>
             <span class="unit">시간 · HOUR</span>
           </div>
-          <p class="graph-tagline">통원 시간 <span class="pop">0분</span> — 가족과 보내는 시간이 늘어납니다.</p>
+          <p class="graph-tagline">통원 시간 <span class="pop">0분</span> — 공부 시간을 효율적으로 관리합니다.</p>
           <div class="bar is-tn">
             <span class="bar-label">Terra Nova</span>
             <div class="bar-track"><span class="bar-fill" style="--w:14%;"></span></div>
@@ -577,7 +574,6 @@
             <div class="bar-track"><span class="bar-fill" style="--w:100%;"></span></div>
             <span class="bar-value">36시간</span>
           </div>
-          <p class="graph-foot">학원 = 수업 24h + 통원 12h. <br>Terra Nova = 하루 10분 × 30일 = <strong>5시간</strong>, 가족 시간 +31시간.</p>
         </div>
       </div>
 
@@ -589,8 +585,8 @@
         </div>
         <div class="compare-row">
           <div class="compare-cell criteria">월 비용</div>
-          <div class="compare-cell tn">₩11,900부터 — 학원 1주 비용</div>
-          <div class="compare-cell aca">월 ₩400,000~₩800,000</div>
+          <div class="compare-cell tn">₩11,900부터 — 학원 30분 비용</div>
+          <div class="compare-cell aca">월 ₩300,000~₩400,000</div>
         </div>
         <div class="compare-row">
           <div class="compare-cell criteria">교과 연계</div>
