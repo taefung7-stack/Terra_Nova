@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <title>TERRA NOVA - 영어로 전과목 학습</title>
-<meta name="description" content="20문항 정밀 레벨 진단으로 나에게 맞는 영어 학습 레벨을 10분 만에 확인하세요. MOON부터 SUN까지 10단계 · 어휘·독해·문법·논리 종합 분석 · 학년 ceiling 자동 조정.">
+<meta name="description" content="20문항 정밀 레벨 진단으로 나에게 맞는 영어 학습 레벨을 10분 만에 확인하세요. MARS부터 SUN까지 8단계 · 어휘·독해·문법·논리 종합 분석 · 학년 ceiling 자동 조정.">
 <link rel="canonical" href="https://terra-nova.kr/level_test.html">
 <meta property="og:type" content="website"><meta property="og:site_name" content="TERRA NOVA ENGLISH"><meta property="og:locale" content="ko_KR">
 <meta property="og:title" content="10분 영어 레벨 정밀 테스트 · TERRA NOVA">
@@ -96,14 +96,13 @@
   .opt-dot{width:16px;height:16px;border-radius:50%;border:1.5px solid rgba(255,255,255,.2);flex-shrink:0;position:relative;transition:all .18s;}
   .opt-dot::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:6px;height:6px;border-radius:50%;background:#0A0A0A;opacity:0;transition:opacity .15s;}
 
-  /* ===== Flat 5×2 grade grid =====
-     User feedback (2026-05-04): the circular orbit clustered all 10 planets
-     into one visual blob. Switched to a clean 5-column / 2-row grid so each
-     grade card is independently scannable. Top row = 초3-중1, bottom = 중2-고3. */
+  /* ===== Flat 4×2 grade grid =====
+     8 planets arranged in a 4-column / 2-row grid so each grade card is
+     independently scannable. Top row = 초5-중2, bottom = 중3-고3. */
   .options.grade-grid{
     display:grid;
-    grid-template-columns:repeat(5, 1fr);
-    gap:14px;
+    grid-template-columns:repeat(4, 1fr);
+    gap:16px;
     max-width:1080px;
     margin:36px auto 24px;
   }
@@ -257,7 +256,7 @@
       "@type": "Quiz",
       "@id": "https://terra-nova.kr/level_test.html#quiz",
       "name": "Terra Nova 영어 레벨 정밀 진단",
-      "description": "20문항으로 나에게 맞는 학습 레벨(MOON ~ SUN)을 10분 만에 확인하는 영어 진단 테스트. 어휘·독해·문법·논리 종합 분석, 학년 ceiling 자동 조정.",
+      "description": "20문항으로 나에게 맞는 학습 레벨(MARS ~ SUN)을 10분 만에 확인하는 영어 진단 테스트. 어휘·독해·문법·논리 종합 분석, 학년 ceiling 자동 조정.",
       "url": "https://terra-nova.kr/level_test.html",
       "inLanguage": "ko",
       "isAccessibleForFree": true,
@@ -322,17 +321,15 @@
   <div class="step-num">Step 01 · 기본 정보</div>
   <div class="step-q">현재 학년을 선택해주세요.</div>
   <div class="options grade-grid">
-    <!-- 5×2 그리드: 위 5칸 = 초3-중1, 아래 5칸 = 중2-고3 -->
-    <button class="option-btn grade-card" onclick="selOrbit(this,'초3','MOON','LV 1','moon')" style="--planet-image:url('assets/3d/planets-normalized/moon.png');"><div class="planet-img"></div><div class="grade-label">초3</div><div class="grade-sub">MOON · LV 1</div></button>
-    <button class="option-btn grade-card" onclick="selOrbit(this,'초4','MERCURY','LV 2','mercury')" style="--planet-image:url('assets/3d/planets-normalized/mercury.png');"><div class="planet-img"></div><div class="grade-label">초4</div><div class="grade-sub">MERCURY · LV 2</div></button>
-    <button class="option-btn grade-card" onclick="selOrbit(this,'초5','MARS','LV 3','mars')" style="--planet-image:url('assets/3d/planets-normalized/mars.png');"><div class="planet-img"></div><div class="grade-label">초5</div><div class="grade-sub">MARS · LV 3</div></button>
-    <button class="option-btn grade-card" onclick="selOrbit(this,'초6','VENUS','LV 4','venus')" style="--planet-image:url('assets/3d/planets-normalized/venus.png');"><div class="planet-img"></div><div class="grade-label">초6</div><div class="grade-sub">VENUS · LV 4</div></button>
-    <button class="option-btn grade-card" onclick="selOrbit(this,'중1','TERRA','LV 5','terra')" style="--planet-image:url('assets/3d/planets-normalized/terra.png');"><div class="planet-img"></div><div class="grade-label">중1</div><div class="grade-sub">TERRA · LV 5</div></button>
-    <button class="option-btn grade-card" onclick="selOrbit(this,'중2','NEPTUNE','LV 6','neptune')" style="--planet-image:url('assets/3d/planets-normalized/neptune.png');"><div class="planet-img"></div><div class="grade-label">중2</div><div class="grade-sub">NEPTUNE · LV 6</div></button>
-    <button class="option-btn grade-card" onclick="selOrbit(this,'중3','URANUS','LV 7','uranus')" style="--planet-image:url('assets/3d/planets-normalized/uranus.png');"><div class="planet-img"></div><div class="grade-label">중3</div><div class="grade-sub">URANUS · LV 7</div></button>
-    <button class="option-btn grade-card" onclick="selOrbit(this,'고1','SATURN','LV 8','saturn')" style="--planet-image:url('assets/3d/planets-normalized/saturn.png');"><div class="planet-img"></div><div class="grade-label">고1</div><div class="grade-sub">SATURN · LV 8</div></button>
-    <button class="option-btn grade-card" onclick="selOrbit(this,'고2','JUPITER','LV 9','jupiter')" style="--planet-image:url('assets/3d/planets-normalized/jupiter.png');"><div class="planet-img"></div><div class="grade-label">고2</div><div class="grade-sub">JUPITER · LV 9</div></button>
-    <button class="option-btn grade-card" onclick="selOrbit(this,'고3','SUN','LV 10','sun')" style="--planet-image:url('assets/3d/planets-normalized/sun.png');"><div class="planet-img"></div><div class="grade-label">고3·N수생</div><div class="grade-sub">SUN · LV 10</div></button>
+    <!-- 4×2 그리드: 위 4칸 = 초5-중2, 아래 4칸 = 중3-고3 -->
+    <button class="option-btn grade-card" onclick="selOrbit(this,'초5','MARS','LV 1','mars')" style="--planet-image:url('assets/3d/planets-normalized/mars.png');"><div class="planet-img"></div><div class="grade-label">초5</div><div class="grade-sub">MARS · LV 1</div></button>
+    <button class="option-btn grade-card" onclick="selOrbit(this,'초6','VENUS','LV 2','venus')" style="--planet-image:url('assets/3d/planets-normalized/venus.png');"><div class="planet-img"></div><div class="grade-label">초6</div><div class="grade-sub">VENUS · LV 2</div></button>
+    <button class="option-btn grade-card" onclick="selOrbit(this,'중1','TERRA','LV 3','terra')" style="--planet-image:url('assets/3d/planets-normalized/terra.png');"><div class="planet-img"></div><div class="grade-label">중1</div><div class="grade-sub">TERRA · LV 3</div></button>
+    <button class="option-btn grade-card" onclick="selOrbit(this,'중2','NEPTUNE','LV 4','neptune')" style="--planet-image:url('assets/3d/planets-normalized/neptune.png');"><div class="planet-img"></div><div class="grade-label">중2</div><div class="grade-sub">NEPTUNE · LV 4</div></button>
+    <button class="option-btn grade-card" onclick="selOrbit(this,'중3','URANUS','LV 5','uranus')" style="--planet-image:url('assets/3d/planets-normalized/uranus.png');"><div class="planet-img"></div><div class="grade-label">중3</div><div class="grade-sub">URANUS · LV 5</div></button>
+    <button class="option-btn grade-card" onclick="selOrbit(this,'고1','SATURN','LV 6','saturn')" style="--planet-image:url('assets/3d/planets-normalized/saturn.png');"><div class="planet-img"></div><div class="grade-label">고1</div><div class="grade-sub">SATURN · LV 6</div></button>
+    <button class="option-btn grade-card" onclick="selOrbit(this,'고2','JUPITER','LV 7','jupiter')" style="--planet-image:url('assets/3d/planets-normalized/jupiter.png');"><div class="planet-img"></div><div class="grade-label">고2</div><div class="grade-sub">JUPITER · LV 7</div></button>
+    <button class="option-btn grade-card" onclick="selOrbit(this,'고3','SUN','LV 8','sun')" style="--planet-image:url('assets/3d/planets-normalized/sun.png');"><div class="planet-img"></div><div class="grade-label">고3·N수생</div><div class="grade-sub">SUN · LV 8</div></button>
   </div>
   <div class="btn-row"><button class="btn-next" id="btn1" onclick="next(2)">다음 →</button></div>
 </div>
@@ -771,7 +768,7 @@ let cur = 1;
 const TOTAL = 20;
 
 /* Pre-select grade/planet from ?level=N URL param (when arriving from landing
-   page's planet picker). level=1→MOON(초3), 2→MERCURY(초4), … 10→SUN(고3).
+   page's planet picker). level=1→MARS(초5), 2→VENUS(초6), … 8→SUN(고3).
    Cards are rendered in that exact order, so 1-based index lookup works. */
 (function preselectFromUrl() {
   const lv = parseInt(new URLSearchParams(location.search).get('level'), 10);
@@ -895,34 +892,32 @@ function calcConfidence() {
 function calcLevel(sc) {
   const avg = (sc.vocab + sc.read + sc.gram + sc.logic) / 4;
   const minDomain = Math.min(sc.vocab, sc.read, sc.gram, sc.logic);
-  // 10-레벨 학년 매핑 (0~9)
-  const gradeBase = {'초3':0,'초4':1,'초5':2,'초6':3,'중1':4,'중2':5,'중3':6,'고1':7,'고2':8,'고3':9}[answers.grade] || 0;
+  // 8-레벨 학년 매핑 (0~7)
+  const gradeBase = {'초5':0,'초6':1,'중1':2,'중2':3,'중3':4,'고1':5,'고2':6,'고3':7}[answers.grade] || 0;
 
-  // 점수 기반 레벨 (0~9, 10개 버킷)
+  // 점수 기반 레벨 (0~7, 8개 버킷)
   let scoreLvl;
-  if (avg < 20) scoreLvl = 0;
-  else if (avg < 30) scoreLvl = 1;
-  else if (avg < 40) scoreLvl = 2;
-  else if (avg < 50) scoreLvl = 3;
-  else if (avg < 60) scoreLvl = 4;
-  else if (avg < 68) scoreLvl = 5;
-  else if (avg < 76) scoreLvl = 6;
-  else if (avg < 84) scoreLvl = 7;
-  else if (avg < 92) scoreLvl = 8;
-  else scoreLvl = 9;
+  if (avg < 25) scoreLvl = 0;
+  else if (avg < 38) scoreLvl = 1;
+  else if (avg < 50) scoreLvl = 2;
+  else if (avg < 62) scoreLvl = 3;
+  else if (avg < 72) scoreLvl = 4;
+  else if (avg < 80) scoreLvl = 5;
+  else if (avg < 90) scoreLvl = 6;
+  else scoreLvl = 7;
 
   // SUN(최고) 추가 요건: 최저 영역 ≥ 70 (영역 간 균형 필수)
-  if (scoreLvl === 9 && minDomain < 70) scoreLvl = 8;
+  if (scoreLvl === 7 && minDomain < 70) scoreLvl = 6;
 
   // 최종 = 학년 베이스 40% + 점수 60% 가중 평균
   let finalLvl = Math.round(gradeBase * 0.4 + scoreLvl * 0.6);
-  finalLvl = Math.max(0, Math.min(9, finalLvl));
+  finalLvl = Math.max(0, Math.min(7, finalLvl));
 
   // 학년 ceiling: 학년+2 레벨까지만 선행 허용
-  const maxAllowed = Math.min(9, gradeBase + 2);
+  const maxAllowed = Math.min(7, gradeBase + 2);
   if (finalLvl > maxAllowed) finalLvl = maxAllowed;
 
-  const levels = ['MOON','MERCURY','MARS','VENUS','TERRA','NEPTUNE','URANUS','SATURN','JUPITER','SUN'];
+  const levels = ['MARS','VENUS','TERRA','NEPTUNE','URANUS','SATURN','JUPITER','SUN'];
   return {lvl: levels[finalLvl], idx: finalLvl, avg, scoreLvl, gradeBase, minDomain};
 }
 
@@ -936,26 +931,8 @@ function letterGrade(score) {
 }
 
 const levelData = {
-  MOON: {
-    name:'레벨 1 · MOON', target:'초등학교 3학년',
-    main:'영어 독해의 첫 출발점입니다. 기초 어휘와 짧은 문장으로 읽기 습관을 만들며 영어에 대한 자신감을 키웁니다.',
-    detail:'하루 10~15분이면 충분합니다. 초등 3학년 교과와 연계된 친숙한 주제로 영어가 "재미있다"는 감각부터 만들어봅시다.',
-    strengths:['🌑 기초 어휘 시작', '📖 짧은 문장 독해', '✨ 초3 교과 연계 친숙 주제'],
-    sample:'🌱 사회 연계 — 우리 동네와 자연환경 (초3 사회)',
-    sampleText:'"Our neighborhood has many places. There is a school, a park, and a library. People work together to keep it clean and safe."',
-    bench:{vocab:18,read:20,gram:16,logic:18}
-  },
-  MERCURY: {
-    name:'레벨 2 · MERCURY', target:'초등학교 4학년',
-    main:'기초 어휘를 확장하고 주요 문장 패턴을 익히는 단계입니다. 간단한 단락 이해와 영어로 된 지식 축적을 시작합니다.',
-    detail:'주어·동사 기본 패턴을 문장 안에서 자연스럽게 익히세요. 짧은 문단을 완주하며 독해의 기본기를 다집니다.',
-    strengths:['☿️ 기초~중급 어휘', '🔤 주요 문장 패턴', '🧪 초4 교과 연계 지식'],
-    sample:'🔬 과학 연계 — 물의 상태 변화 (초4 과학)',
-    sampleText:'"Water exists in three states: solid, liquid, and gas. When water is cold enough, it freezes into ice. When heated, it turns into steam and rises into the air."',
-    bench:{vocab:28,read:28,gram:24,logic:25}
-  },
   MARS: {
-    name:'레벨 3 · MARS', target:'초등학교 5학년',
+    name:'레벨 1 · MARS', target:'초등학교 5학년',
     main:'문장 구조 이해가 시작되는 단계입니다. 주어·동사·목적어를 구분하고 단락 단위 읽기 전략을 익히며 중학 진학 전 기초를 다집니다.',
     detail:'단어는 알지만 문단 수준 독해가 어려운 구간입니다. 주제별 지문으로 배경지식과 독해력을 함께 쌓으세요.',
     strengths:['♂️ 중급 어휘 확장', '🔍 단락 단위 독해', '🌍 초5 교과 연계'],
@@ -964,7 +941,7 @@ const levelData = {
     bench:{vocab:38,read:36,gram:33,logic:33}
   },
   VENUS: {
-    name:'레벨 4 · VENUS', target:'초등학교 6학년',
+    name:'레벨 2 · VENUS', target:'초등학교 6학년',
     main:'중학 진학 직전 심화 단계입니다. 중학 1학년 어휘를 선행하고 복잡한 문장 구조를 분석하기 시작합니다.',
     detail:'1,500개 이상 어휘를 확보하고 복문·접속사 연결 구조를 읽어내는 훈련이 핵심입니다. 중학 내신 대비가 본격 시작됩니다.',
     strengths:['♀️ 중학 선행 어휘 1,500+', '📐 복문 구조 분석', '📚 초6 교과 심화'],
@@ -973,7 +950,7 @@ const levelData = {
     bench:{vocab:45,read:43,gram:42,logic:40}
   },
   TERRA: {
-    name:'레벨 5 · TERRA', target:'중학교 1학년',
+    name:'레벨 3 · TERRA', target:'중학교 1학년',
     main:'본격적인 독해 훈련이 시작됩니다. 주제·요지 파악과 논리 구조를 학습하며 중학 내신 1등급과 수능 기초를 동시에 준비합니다.',
     detail:'관계대명사·to부정사는 이해하지만 긴 지문에서 주제 잡기가 어려운 구간입니다. 주제문 찾기 훈련을 체계적으로 해보세요.',
     strengths:['🌍 중학 문법 강화', '🎯 주제·요지 파악', '🧬 중1 교과 연계 독해'],
@@ -982,7 +959,7 @@ const levelData = {
     bench:{vocab:52,read:50,gram:50,logic:46}
   },
   NEPTUNE: {
-    name:'레벨 6 · NEPTUNE', target:'중학교 2학년',
+    name:'레벨 4 · NEPTUNE', target:'중학교 2학년',
     main:'독해 속도와 정확도를 동시에 끌어올리는 단계입니다. 다양한 지문 유형과 문법 포인트를 결합해 내신·학평 대비를 완성합니다.',
     detail:'관계대명사·분사구문·수동태를 지문 속에서 구분해내는 훈련이 필요합니다. 빈칸 추론 입문이 시작되는 중요한 구간입니다.',
     strengths:['🔵 고급 중학 문법', '⏱ 독해 속도·정확도', '📊 중2 내신·학평 완성'],
@@ -991,7 +968,7 @@ const levelData = {
     bench:{vocab:60,read:58,gram:56,logic:52}
   },
   URANUS: {
-    name:'레벨 7 · URANUS', target:'중학교 3학년',
+    name:'레벨 5 · URANUS', target:'중학교 3학년',
     main:'수능 유형 입문 단계입니다. 빈칸·순서·삽입 등 핵심 유형을 단계적으로 훈련하며 고등학교 진학 전 필수 수능 독해 스킬을 탑재합니다.',
     detail:'어휘력과 독해력은 갖췄지만 지문 간 논리 관계 파악 능력이 더 필요합니다. 수능 유형별 접근 전략을 익히세요.',
     strengths:['💠 수능 유형 입문', '🔗 논리 구조 파악', '📘 중3 교과 + 수능 기초'],
@@ -1000,7 +977,7 @@ const levelData = {
     bench:{vocab:66,read:64,gram:61,logic:58}
   },
   SATURN: {
-    name:'레벨 8 · SATURN', target:'고등학교 1학년',
+    name:'레벨 6 · SATURN', target:'고등학교 1학년',
     main:'고등 내신과 모의고사를 동시에 대비하는 단계입니다. 지문 난도 상승 구간을 체계적으로 돌파하며 수능 실전 감각을 쌓습니다.',
     detail:'고1 지문은 체감 난도가 급상승하는 구간입니다. 시제·일치·도치 같은 고급 문법과 긴 지문 해석 능력이 핵심입니다.',
     strengths:['🪐 고급 문법 심화', '📚 학평 기출 대응', '🧠 고1 교과 연계'],
@@ -1009,7 +986,7 @@ const levelData = {
     bench:{vocab:72,read:70,gram:68,logic:65}
   },
   JUPITER: {
-    name:'레벨 9 · JUPITER', target:'고등학교 2학년',
+    name:'레벨 7 · JUPITER', target:'고등학교 2학년',
     main:'수능 실전 대비 본격 단계입니다. 모든 유형을 균형 있게 훈련하며 고득점을 목표로 2~3등급에서 1등급으로 도약하는 결정적 시기입니다.',
     detail:'기본적인 독해와 유형 파악은 가능하지만 고난도 추론·킬러 문항에서 실수가 있는 구간입니다. 시간 단축과 오답 분석이 핵심입니다.',
     strengths:['🟠 수능 전 유형 균형', '⏳ 시간 단축 전략', '🧠 추론·비판적 사고'],
@@ -1018,7 +995,7 @@ const levelData = {
     bench:{vocab:80,read:78,gram:76,logic:72}
   },
   SUN: {
-    name:'레벨 10 · SUN', target:'고등학교 3학년 / N수생',
+    name:'레벨 8 · SUN', target:'고등학교 3학년 / N수생',
     main:'수능 영어 1등급 완성을 위한 최고난도 훈련입니다. 킬러 문항 대비와 시간 단축 전략으로 안정적 고득점을 목표로 합니다.',
     detail:'거의 모든 문법·어휘를 갖춘 상태입니다. 킬러 문항 대비와 심리적 안정감, 실전 시간 관리에 집중하세요.',
     strengths:['☀️ 킬러 문항 완전 정복', '🎯 실전 시간 관리', '💡 철학·경제·과학 고난도'],
@@ -1036,18 +1013,6 @@ const weakAdviceMap = {
 };
 
 const studyPlanMap = {
-  MOON: [
-    {day:'월·목', task:'기초 어휘 12단어 + 예문 소리내어 읽기'},
-    {day:'화·금', task:'짧은 지문 1편 독해 (주제 파악)'},
-    {day:'수·토', task:'be동사·현재시제 문법 1단원'},
-    {day:'일', task:'주간 단어 테스트 + 오답 재암기'}
-  ],
-  MERCURY: [
-    {day:'월·목', task:'기초 어휘 15단어 + 문장 패턴 3개'},
-    {day:'화·금', task:'짧은 지문 2편 (주제 + 순서)'},
-    {day:'수·토', task:'일반동사 3단 변화 + 기초 의문문'},
-    {day:'일', task:'주간 복습 + 받아쓰기'}
-  ],
   MARS: [
     {day:'월·목', task:'중급 어휘 20단어 + 영영 정의 확인'},
     {day:'화·금', task:'지문 2편 (주제·요지 집중)'},
@@ -1216,18 +1181,6 @@ function showResult() {
 
 // 레벨별 교과 연계 커리큘럼 (첫 달 4주 예시)
 const curriculumMap = {
-  MOON: [
-    {week:'Week 1',days:'월~금',subject:'🌱 과학',unit:'초3 · 동식물의 한살이',topic:'The Life of a Butterfly',preview:'Butterflies start as tiny eggs. They become caterpillars, then pupae, then beautiful butterflies.'},
-    {week:'Week 2',days:'월~금',subject:'🏘️ 사회',unit:'초3 · 우리 고장',topic:'My Town',preview:'My town has a school, a park, and a library. People help each other every day.'},
-    {week:'Week 3',days:'월~금',subject:'🔢 수학',unit:'초3 · 시각과 시간',topic:'Telling Time',preview:'The big hand points to 12. The small hand points to 3. It is 3 oclock.'},
-    {week:'Week 4',days:'월~금',subject:'📖 국어',unit:'초3 · 느낌을 살려 읽기',topic:'Reading with Feeling',preview:'When we read a happy story, our voice sounds cheerful. When sad, our voice is soft.'}
-  ],
-  MERCURY: [
-    {week:'Week 1',days:'월~금',subject:'💧 과학',unit:'초4 · 물의 상태 변화',topic:'Water Changes State',preview:'Water becomes ice when it is very cold. It becomes steam when heated. These changes are all around us.'},
-    {week:'Week 2',days:'월~금',subject:'🗺️ 사회',unit:'초4 · 우리 지역의 지리',topic:'Land and Rivers',preview:'Rivers flow from mountains to the sea. People build cities near rivers because water is essential for life.'},
-    {week:'Week 3',days:'월~금',subject:'🍰 수학',unit:'초4 · 분수와 소수',topic:'Fractions in Daily Life',preview:'Half a pizza is 1/2. A quarter of an apple is 1/4. Fractions help us share equally.'},
-    {week:'Week 4',days:'월~금',subject:'✍️ 국어',unit:'초4 · 사실과 의견',topic:'Fact vs. Opinion',preview:'A fact can be proven. An opinion is what someone thinks. Good writers know the difference.'}
-  ],
   MARS: [
     {week:'Week 1',days:'월~금',subject:'🌌 과학',unit:'초5 · 태양계와 별',topic:'Our Solar System',preview:'The solar system has eight planets orbiting the Sun. Earth is the only planet where we know life exists.'},
     {week:'Week 2',days:'월~금',subject:'🏛️ 사회',unit:'초5 · 우리나라의 역사',topic:'Ancient Korea',preview:'Long ago, Koreans built the Goryeo and Joseon dynasties. They invented hangul, our writing system.'},
@@ -1278,7 +1231,7 @@ const curriculumMap = {
   ]
 };
 
-const LEVEL_NUM = { MOON: 1, MERCURY: 2, MARS: 3, VENUS: 4, TERRA: 5, NEPTUNE: 6, URANUS: 7, SATURN: 8, JUPITER: 9, SUN: 10 };
+const LEVEL_NUM = { MARS: 1, VENUS: 2, TERRA: 3, NEPTUNE: 4, URANUS: 5, SATURN: 6, JUPITER: 7, SUN: 8 };
 
 async function saveLevelResult(lvl, sc, conf) {
   const { supabase } = await import('./supabase-client.js');
