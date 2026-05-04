@@ -205,10 +205,44 @@
   /* ───── Animated bar graphs (price + time) ───── */
   .graphs{position:relative;z-index:1;display:grid;grid-template-columns:repeat(2,1fr);gap:28px;max-width:1480px;margin:0 auto 80px;}
   @media(max-width:980px){.graphs{grid-template-columns:1fr;}}
-  .graph-card{padding:48px 44px;background:var(--card);border:1px solid var(--line);border-radius:20px;}
-  .graph-title{display:flex;align-items:baseline;gap:14px;margin-bottom:8px;}
+  /* Glass material — translucent gradient surface, subtle inner highlight,
+     soft backdrop blur, mint-tinted bottom shadow. Specular ::before strip
+     hugs the top-left corner so the card reads as polished glass under
+     ambient light. */
+  .graph-card{
+    position:relative;
+    padding:56px 48px;
+    background:linear-gradient(150deg,
+      rgba(255,255,255,.07) 0%,
+      rgba(255,255,255,.025) 38%,
+      rgba(255,255,255,.012) 100%),
+      rgba(20,20,20,.55);
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:24px;
+    backdrop-filter:blur(18px) saturate(135%);
+    -webkit-backdrop-filter:blur(18px) saturate(135%);
+    box-shadow:
+      0 26px 60px rgba(0,0,0,.45),
+      inset 0 1px 0 rgba(255,255,255,.18),
+      inset 0 0 32px rgba(255,255,255,.025);
+    overflow:hidden;
+  }
+  /* Top-left specular gleam — fades out within ~40% of the card. */
+  .graph-card::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    background:
+      radial-gradient(ellipse 60% 50% at 8% 0%, rgba(255,255,255,.10) 0%, transparent 55%),
+      radial-gradient(ellipse 80% 60% at 100% 100%, rgba(0,255,163,.06) 0%, transparent 60%);
+    border-radius:inherit;
+  }
+  .graph-card > *{position:relative;z-index:1;}
+  .graph-title{display:flex;align-items:baseline;gap:14px;margin-bottom:10px;}
   .graph-title h3{font-family:'Pretendard','Noto Sans KR',sans-serif;font-weight:900;font-size:clamp(1.5rem,2.4vw,2rem);color:#fff;letter-spacing:-.015em;line-height:1.2;}
-  .graph-title .unit{font-family:'Space Grotesk','Pretendard',sans-serif;font-size:.82rem;font-weight:700;color:var(--mute);letter-spacing:1.5px;text-transform:uppercase;}
+  /* .unit mini-label hidden per user — the h3 title already conveys context. */
+  .graph-title .unit{display:none;}
   .graph-tagline{margin-bottom:32px;font-size:1rem;color:var(--dim);line-height:1.5;}
   .graph-tagline .pop{color:var(--accent);font-weight:800;}
   .bar{display:grid;grid-template-columns:140px 1fr 110px;align-items:center;gap:16px;margin-bottom:14px;}
