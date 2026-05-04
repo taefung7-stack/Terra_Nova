@@ -90,13 +90,13 @@
   .level-badge{font-family:'Space Grotesk',sans-serif;font-weight:900;font-size:3.5rem;letter-spacing:.04em;color:#0A0A0A;background:var(--accent);padding:12px 32px;border-radius:8px;flex-shrink:0;line-height:1;-webkit-text-stroke:0.6px currentColor;}
   .level-info{flex:1;min-width:240px;}
   /* Grade-tier label that sits next to the level badge — short and
-     scannable. The bold grade is the focal point; "교과연계" gives context. */
-  .level-grade{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:2rem;font-weight:900;color:#fff;letter-spacing:-.01em;line-height:1.1;display:flex;align-items:baseline;gap:12px;}
-  .level-grade .grade-tier{color:var(--accent);}
-  .level-grade .grade-link{font-size:1.32rem;font-weight:600;color:rgba(240,240,240,.72);letter-spacing:.01em;}
+     scannable. Both the grade ("초3") and the "교과연계" suffix share the
+     same size/weight/color so they read as one unified label. */
+  .level-grade{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:2rem;font-weight:900;color:var(--accent);letter-spacing:-.01em;line-height:1.1;display:flex;align-items:baseline;gap:12px;}
+  .level-grade .grade-tier,
+  .level-grade .grade-link{color:var(--accent);font-size:inherit;font-weight:inherit;letter-spacing:inherit;}
   @media(max-width:560px){
     .level-grade{font-size:1.5rem;gap:8px;}
-    .level-grade .grade-link{font-size:1rem;}
   }
   .level-title{font-size:1.5rem;font-weight:900;color:#fff;margin-bottom:8px;}
   .level-target{font-size:.82rem;color:var(--accent);font-weight:700;margin-bottom:12px;letter-spacing:1px;}
