@@ -136,21 +136,20 @@
   .levels h2{font-weight:900;font-size:clamp(2.4rem,6vw,4.6rem);color:#fff;letter-spacing:-.02em;line-height:1.1;white-space:nowrap;}
   .levels h2 .mint{color:var(--accent);}
   @media(max-width:760px){.levels h2{white-space:normal;}}
-  .planet-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:22px;max-width:1480px;margin:0 auto;}
-  .planet-card{position:relative;display:flex;flex-direction:column;align-items:center;padding:28px 18px 22px;background:#000;border:1px solid var(--line);border-radius:16px;transition:transform .3s cubic-bezier(.22,.8,.36,1),border-color .3s;overflow:hidden;}
+  .planet-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;max-width:1620px;margin:0 auto;}
+  .planet-card{position:relative;display:flex;flex-direction:column;align-items:center;padding:48px 28px 38px;background:#000;border:1px solid var(--line);border-radius:22px;transition:transform .3s cubic-bezier(.22,.8,.36,1),border-color .3s;overflow:hidden;min-height:280px;}
   .planet-card::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 30%,rgba(0,255,163,.12) 0%,transparent 60%);opacity:0;transition:opacity .3s;pointer-events:none;}
   .planet-card:hover{transform:translateY(-6px);border-color:rgba(0,255,163,.42);}
   .planet-card:hover::before{opacity:1;}
   .planet-card:hover .pcard-img{animation-play-state:paused;transform:scale(1.08) rotate(8deg);}
-  .pcard-img{width:88px;aspect-ratio:1;background-image:var(--p-img);background-size:contain;background-position:center;background-repeat:no-repeat;animation:planetFloat 5s ease-in-out infinite;transition:transform .4s cubic-bezier(.22,.8,.36,1);filter:drop-shadow(0 8px 22px rgba(0,0,0,.55));}
+  .pcard-img{width:128px;aspect-ratio:1;background-image:var(--p-img);background-size:contain;background-position:center;background-repeat:no-repeat;animation:planetFloat 5s ease-in-out infinite;transition:transform .4s cubic-bezier(.22,.8,.36,1);filter:drop-shadow(0 8px 22px rgba(0,0,0,.55));}
   .planet-card:nth-child(2n) .pcard-img{animation-delay:-1.6s;}
   .planet-card:nth-child(3n) .pcard-img{animation-delay:-3s;}
   @keyframes planetFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
-  .pcard-name{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:.96rem;letter-spacing:1.5px;color:#fff;margin-top:18px;}
-  .pcard-grade{font-size:.74rem;color:var(--accent);font-weight:700;margin-top:6px;letter-spacing:1px;}
-  @media(max-width:880px){.planet-grid{grid-template-columns:repeat(4,1fr);}}
-  @media(max-width:600px){.planet-grid{grid-template-columns:repeat(3,1fr);gap:12px;}.pcard-img{width:64px;}.pcard-name{font-size:.84rem;}.pcard-grade{font-size:.66rem;}}
-  @media(max-width:420px){.planet-grid{grid-template-columns:repeat(2,1fr);}}
+  .pcard-name{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:1.4rem;letter-spacing:2px;color:#fff;margin-top:30px;}
+  .pcard-grade{font-size:1.1rem;color:var(--accent);font-weight:700;margin-top:10px;letter-spacing:1.4px;}
+  @media(max-width:980px){.planet-grid{grid-template-columns:repeat(2,1fr);gap:20px;}.planet-card{min-height:240px;padding:36px 22px 30px;}.pcard-img{width:104px;}.pcard-name{font-size:1.2rem;}.pcard-grade{font-size:.96rem;}}
+  @media(max-width:420px){.pcard-img{width:84px;}.pcard-name{font-size:1.05rem;}.pcard-grade{font-size:.86rem;}}
 
   /* ═══════════════════════════════════════════════════════
      ③·5 BOOK PREVIEW — actual textbook pages from real PDFs
@@ -457,16 +456,16 @@
     <div class="hero-scroll">SCROLL</div>
   </section>
 
-  <!-- ═════════ ② PROOF — animated stats ═════════ -->
+  <!-- ═════════ ② RECORD — animated stats ═════════ -->
   <section class="section proof">
     <div class="inner reveal">
       <div style="text-align:center;margin-bottom:64px;">
-        <span class="label">Proof</span>
+        <span class="label">Record</span>
       </div>
       <div class="proof-grid">
         <div class="stat">
-          <div class="stat-num"><span class="cu" data-target="10">0</span></div>
-          <div class="stat-label">레벨</div>
+          <div class="stat-num"><span class="cu" data-target="96">0</span><span class="unit">권</span></div>
+          <div class="stat-label">교재</div>
           <span class="stat-line"></span>
         </div>
         <div class="stat">
@@ -475,8 +474,8 @@
           <span class="stat-line"></span>
         </div>
         <div class="stat">
-          <div class="stat-num"><span class="cu" data-target="4">0</span></div>
-          <div class="stat-label">연계 교과</div>
+          <div class="stat-num"><span class="cu" data-target="8">0</span></div>
+          <div class="stat-label">학년 연계</div>
           <span class="stat-line"></span>
         </div>
       </div>
