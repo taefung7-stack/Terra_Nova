@@ -337,9 +337,11 @@
   .plan::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--accent),transparent);background-size:200% 100%;background-position:-100% 0;transition:background-position .6s ease;}
   .plan:hover{transform:translateY(-8px);border-color:rgba(0,255,163,.42);box-shadow:0 30px 60px -20px rgba(0,255,163,.18),0 14px 30px rgba(0,0,0,.4);}
   .plan:hover::before{background-position:100% 0;}
-  .plan-icon{width:64px;height:64px;display:flex;align-items:center;justify-content:center;border-radius:14px;background:rgba(0,255,163,.08);border:1px solid var(--line2);margin-bottom:24px;font-size:1.6rem;}
-  .plan-name{font-family:'Space Grotesk',sans-serif;font-weight:900;font-size:1.1rem;letter-spacing:3px;color:#fff;margin-bottom:8px;}
-  .plan-tag{font-size:.74rem;color:var(--accent);font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:32px;}
+  .plan-head-row{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:32px;}
+  .plan-head-text{display:flex;flex-direction:column;gap:8px;min-width:0;flex:1;}
+  .plan-icon-img{width:72px;height:72px;border-radius:14px;object-fit:cover;flex-shrink:0;border:1px solid var(--line2);box-shadow:0 6px 18px rgba(0,0,0,.35);}
+  .plan-name{font-family:'Space Grotesk',sans-serif;font-weight:900;font-size:1.1rem;letter-spacing:3px;color:#fff;}
+  .plan-tag{font-size:.74rem;color:var(--accent);font-weight:700;letter-spacing:1.5px;text-transform:uppercase;}
   .plan-price{font-family:'Space Grotesk',sans-serif;font-weight:900;font-size:2.6rem;color:#fff;letter-spacing:-.025em;line-height:1;display:flex;align-items:baseline;gap:4px;}
   .plan-price .won{font-size:.96rem;font-weight:600;color:var(--mute);}
   .plan-divider{width:100%;height:1px;background:var(--line);margin:28px 0;}
@@ -769,9 +771,13 @@
       <div class="plans-grid">
 
         <a class="plan" href="order.html?plan=light&ref=earlybird">
-          <div class="plan-icon">📄</div>
-          <div class="plan-name">LIGHT</div>
-          <div class="plan-tag">PDF 교재</div>
+          <div class="plan-head-row">
+            <div class="plan-head-text">
+              <div class="plan-name">LIGHT</div>
+              <div class="plan-tag">PDF 교재</div>
+            </div>
+            <img class="plan-icon-img" src="assets/3d/accb5a03-f66f-4068-a146-375bc850e3d2.jpg" alt="LIGHT plan icon" loading="lazy">
+          </div>
           <div class="plan-price">₩11,900<span class="won">/월</span></div>
           <div class="plan-divider"></div>
           <ul class="plan-feats">
@@ -783,9 +789,13 @@
         </a>
 
         <a class="plan" href="order.html?plan=standard">
-          <div class="plan-icon">📚</div>
-          <div class="plan-name">STANDARD</div>
-          <div class="plan-tag">실물 교재 + PDF</div>
+          <div class="plan-head-row">
+            <div class="plan-head-text">
+              <div class="plan-name">STANDARD</div>
+              <div class="plan-tag">실물 교재 + PDF</div>
+            </div>
+            <img class="plan-icon-img" src="assets/3d/99c93f57-36c9-457b-8f57-ee2ec95e6a0d.jpg" alt="STANDARD plan icon" loading="lazy">
+          </div>
           <div class="plan-price">₩24,900<span class="won">/월</span></div>
           <div class="plan-divider"></div>
           <ul class="plan-feats">
@@ -798,9 +808,13 @@
         </a>
 
         <a class="plan" href="order.html?plan=premium">
-          <div class="plan-icon">🎬</div>
-          <div class="plan-name">PREMIUM</div>
-          <div class="plan-tag">+ 해설 강의</div>
+          <div class="plan-head-row">
+            <div class="plan-head-text">
+              <div class="plan-name">PREMIUM</div>
+              <div class="plan-tag">+ 해설 강의</div>
+            </div>
+            <img class="plan-icon-img" src="assets/3d/16fa255b-14ce-42ca-b573-a928eb9c7127.jpg" alt="PREMIUM plan icon" loading="lazy">
+          </div>
           <div class="plan-price">₩58,900<span class="won">/월</span></div>
           <div class="plan-divider"></div>
           <ul class="plan-feats">
