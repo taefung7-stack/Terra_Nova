@@ -446,11 +446,11 @@
   /* ═══════════════════════════════════════════════════════
      Floating "📊 플랜 비교" — sticky bottom-right
      ═══════════════════════════════════════════════════════ */
-  /* Warm coral-rose — sits comfortably next to the mint accent on the
-     dark canvas instead of clashing the way the prior bright red did.
-     Subtle linear gradient + matching colored drop shadow. */
-  .float-cta{position:fixed;right:28px;bottom:28px;z-index:90;display:inline-flex;align-items:center;gap:10px;padding:14px 22px;background:linear-gradient(135deg,#FF6B6B 0%,#F43F5E 100%);color:#fff;font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:.96rem;font-weight:800;text-decoration:none;border-radius:999px;box-shadow:0 14px 32px rgba(244,63,94,.38),0 4px 10px rgba(0,0,0,.22);transition:transform .2s,box-shadow .2s,opacity .25s;}
-  .float-cta:hover{transform:translateY(-3px);box-shadow:0 22px 44px rgba(244,63,94,.55);}
+  /* Crimson red — classic #DC143C bleeding into deeper #A8132F so the
+     pill reads as a rich, saturated red instead of pink coral. Matching
+     crimson drop shadow at moderate alpha. */
+  .float-cta{position:fixed;right:28px;bottom:28px;z-index:90;display:inline-flex;align-items:center;gap:10px;padding:14px 22px;background:linear-gradient(135deg,#DC143C 0%,#A8132F 100%);color:#fff;font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:.96rem;font-weight:800;text-decoration:none;border-radius:999px;box-shadow:0 14px 32px rgba(220,20,60,.42),0 4px 10px rgba(0,0,0,.24);transition:transform .2s,box-shadow .2s,opacity .25s;}
+  .float-cta:hover{transform:translateY(-3px);box-shadow:0 22px 44px rgba(220,20,60,.6);}
   .float-cta.is-hidden{opacity:0;pointer-events:none;transform:translateY(8px);}
   @media(max-width:600px){.float-cta{right:16px;bottom:16px;padding:12px 18px;font-size:.88rem;}}
 
