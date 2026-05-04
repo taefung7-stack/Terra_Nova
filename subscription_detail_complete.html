@@ -856,17 +856,22 @@
     holder.appendChild(frag);
   })();
 
-  // ─── Reveal-on-scroll ───
+  // ─── Reveal-on-scroll (repeating) ───
+  // 사용자 피드백(2026-05-04): 스크롤로 들어올 때마다 다시 fade-in,
+  // 빠질 때 다시 hidden 상태로. unobserve 제거 → toggle('show', isIntersecting).
   (function(){
     var els = document.querySelectorAll('.reveal');
     if (!('IntersectionObserver' in window)){ els.forEach(function(e){e.classList.add('show');}); return; }
     var io = new IntersectionObserver(function(es){
-      es.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target); }});
+      es.forEach(function(e){ e.target.classList.toggle('show', e.isIntersecting); });
     }, { threshold: 0.15 });
     els.forEach(function(el){ io.observe(el); });
   })();
 
-  // ─── Animated count-up for stat numbers ───
+  // ─── Animated count-up (repeating) ───
+  // 들어올 때마다 0 → target으로 카운트업, 나갈 때 0으로 리셋.
+  // 진행 중인 rAF는 dataset.rafId로 추적해서 재진입 시 cancel → 동시 두 개
+  // 애니메이션 안 돌게 함.
   (function(){
     var nums = document.querySelectorAll('.cu');
     if (!nums.length) return;
@@ -874,29 +879,35 @@
       nums.forEach(function(n){ n.textContent = n.dataset.target; });
       return;
     }
+    function animate(el){
+      if (el._rafId) cancelAnimationFrame(el._rafId);
+      var target = parseInt(el.dataset.target, 10);
+      var dur = 1100;
+      var t0 = performance.now();
+      function tick(now){
+        var t = Math.min(1, (now - t0) / dur);
+        var eased = 1 - Math.pow(1 - t, 3);  // ease-out cubic
+        el.textContent = Math.round(target * eased);
+        if (t < 1) el._rafId = requestAnimationFrame(tick);
+        else { el.textContent = target; el._rafId = null; }
+      }
+      el._rafId = requestAnimationFrame(tick);
+    }
     var io = new IntersectionObserver(function(es){
       es.forEach(function(e){
-        if (!e.isIntersecting) return;
         var el = e.target;
-        var target = parseInt(el.dataset.target, 10);
-        var dur = 1100;
-        var t0 = performance.now();
-        function tick(now){
-          var t = Math.min(1, (now - t0) / dur);
-          // ease-out cubic
-          var eased = 1 - Math.pow(1 - t, 3);
-          el.textContent = Math.round(target * eased);
-          if (t < 1) requestAnimationFrame(tick);
-          else el.textContent = target;
+        if (e.isIntersecting) {
+          animate(el);
+        } else {
+          if (el._rafId) { cancelAnimationFrame(el._rafId); el._rafId = null; }
+          el.textContent = '0';
         }
-        requestAnimationFrame(tick);
-        io.unobserve(el);
       });
     }, { threshold: 0.4 });
     nums.forEach(function(n){ io.observe(n); });
   })();
 
-  // ─── Book preview — per-row stagger reveal on scroll-in ───
+  // ─── Book preview rows — stagger in/out on scroll ───
   (function(){
     var rows = document.querySelectorAll('.book-row');
     if (!rows.length) return;
@@ -906,16 +917,13 @@
     }
     var io = new IntersectionObserver(function(entries){
       entries.forEach(function(entry){
-        if (entry.isIntersecting){
-          entry.target.classList.add('in-view');
-          io.unobserve(entry.target);
-        }
+        entry.target.classList.toggle('in-view', entry.isIntersecting);
       });
     }, { threshold: 0.18 });
     rows.forEach(function(r){ io.observe(r); });
   })();
 
-  // ─── Bar graphs — fill bars when .compare scrolls into view ───
+  // ─── Bar graphs — bars fill/retract as .compare enters/leaves ───
   (function(){
     var section = document.querySelector('.compare');
     if (!section) return;
@@ -925,10 +933,7 @@
     }
     var io = new IntersectionObserver(function(entries){
       entries.forEach(function(entry){
-        if (entry.isIntersecting){
-          section.classList.add('in-view');
-          io.unobserve(section);
-        }
+        section.classList.toggle('in-view', entry.isIntersecting);
       });
     }, { threshold: 0.25 });
     io.observe(section);
