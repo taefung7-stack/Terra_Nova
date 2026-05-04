@@ -106,7 +106,7 @@
   /* Hero headline — 사용자 피드백(2026-05-04): 한 줄 + 더 크게.
      <br>은 HTML에서 제거, white-space:nowrap으로 자동 줄바꿈 차단,
      clamp 상한을 7rem → 12rem으로 끌어올려 와이드 모니터에서 압도적 크기. */
-  .hero-headline{font-family:'Pretendard','Noto Sans KR',sans-serif;font-weight:900;font-size:clamp(2rem,11vw,12rem);line-height:1;letter-spacing:-.03em;color:#fff;margin-bottom:24px;-webkit-text-stroke:1.5px currentColor;white-space:nowrap;}
+  .hero-headline{font-family:'Pretendard','Noto Sans KR',sans-serif;font-weight:900;font-size:clamp(2rem,7.2vw,7.6rem);line-height:1.1;letter-spacing:-.025em;color:#fff;margin:0 auto 24px;-webkit-text-stroke:1px currentColor;white-space:nowrap;max-width:100%;text-align:center;}
   .hero-headline .mint{color:var(--accent);text-shadow:0 0 48px rgba(0,255,163,.42);}
   .hero-tagline{font-size:clamp(.95rem,1.4vw,1.15rem);color:var(--dim);letter-spacing:1px;}
   .hero-scroll{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);font-family:'Space Grotesk',sans-serif;font-size:.66rem;letter-spacing:5px;color:var(--mute);text-transform:uppercase;animation:scrollHint 2.4s ease-in-out infinite;}
@@ -126,7 +126,7 @@
   .stat:last-child{border-right:none;}
   .stat-num{font-family:'Space Grotesk',sans-serif;font-weight:900;font-size:clamp(4rem,11vw,9rem);line-height:1;color:var(--accent);letter-spacing:-.04em;text-shadow:0 0 56px rgba(0,255,163,.32);}
   .stat-num .unit{font-size:.36em;font-weight:700;color:var(--dim);margin-left:6px;text-shadow:none;}
-  .stat-label{font-size:.84rem;color:var(--dim);margin-top:18px;letter-spacing:3px;font-weight:600;text-transform:uppercase;}
+  .stat-label{font-size:1.05rem;color:var(--dim);margin-top:22px;letter-spacing:3px;font-weight:700;text-transform:uppercase;}
   .stat-line{position:absolute;left:50%;bottom:0;height:2px;width:0;background:var(--accent);transform:translateX(-50%);box-shadow:0 0 12px var(--accent);transition:width .9s cubic-bezier(.22,.8,.36,1);}
   .reveal.show .stat-line{width:60%;}
   @media(max-width:680px){.proof-grid{grid-template-columns:1fr;}.stat{border-right:none;border-bottom:1px solid var(--line);padding:60px 24px;}.stat:last-child{border-bottom:none;}}
@@ -440,8 +440,8 @@
   /* ═══════════════════════════════════════════════════════
      Floating "📊 플랜 비교" — sticky bottom-right
      ═══════════════════════════════════════════════════════ */
-  .float-cta{position:fixed;right:28px;bottom:28px;z-index:90;display:inline-flex;align-items:center;gap:10px;padding:14px 22px;background:#4F46E5;color:#fff;font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:.96rem;font-weight:800;text-decoration:none;border-radius:999px;box-shadow:0 14px 32px rgba(79,70,229,.42),0 4px 10px rgba(0,0,0,.18);transition:transform .2s,box-shadow .2s,opacity .25s;}
-  .float-cta:hover{transform:translateY(-3px);box-shadow:0 22px 44px rgba(79,70,229,.55);}
+  .float-cta{position:fixed;right:28px;bottom:28px;z-index:90;display:inline-flex;align-items:center;gap:10px;padding:14px 22px;background:#E11D48;color:#fff;font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:.96rem;font-weight:800;text-decoration:none;border-radius:999px;box-shadow:0 14px 32px rgba(225,29,72,.42),0 4px 10px rgba(0,0,0,.18);transition:transform .2s,box-shadow .2s,opacity .25s;}
+  .float-cta:hover{transform:translateY(-3px);box-shadow:0 22px 44px rgba(225,29,72,.55);}
   .float-cta.is-hidden{opacity:0;pointer-events:none;transform:translateY(8px);}
   @media(max-width:600px){.float-cta{right:16px;bottom:16px;padding:12px 18px;font-size:.88rem;}}
 
@@ -509,8 +509,8 @@
           <span class="stat-line"></span>
         </div>
         <div class="stat">
-          <div class="stat-num"><span class="cu" data-target="8">0</span></div>
-          <div class="stat-label">학년 연계</div>
+          <div class="stat-num"><span class="cu" data-target="8">0</span><span class="unit">학년</span></div>
+          <div class="stat-label">교과 연계</div>
           <span class="stat-line"></span>
         </div>
       </div>
