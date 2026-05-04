@@ -95,78 +95,46 @@
   .opt-dot{width:16px;height:16px;border-radius:50%;border:1.5px solid rgba(255,255,255,.2);flex-shrink:0;position:relative;transition:all .18s;}
   .opt-dot::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:6px;height:6px;border-radius:50%;background:#0A0A0A;opacity:0;transition:opacity .15s;}
 
-  /* ===== Circular orbit grade selector ===== */
-  /* 10 planet cards arranged on a fixed-radius circle. Center shows the
-     currently-selected planet (defaults to 고1 SATURN, updates on click).
-     orbit-size capped at 100% of parent so it always fits within quiz-area's
-     padded content box and stays centered (margin:auto). orbit-radius
-     computed from card half-size to guarantee cards never overflow. */
-  .options.grade-orbit{
-    --orbit-size:min(1000px, 100%);
-    --card-half:100px;
-    --orbit-radius:calc(var(--orbit-size) / 2 - var(--card-half) - 4px);
-    display:block;
-    position:relative;
-    width:var(--orbit-size);
-    height:var(--orbit-size);
+  /* ===== Flat 5×2 grade grid =====
+     User feedback (2026-05-04): the circular orbit clustered all 10 planets
+     into one visual blob. Switched to a clean 5-column / 2-row grid so each
+     grade card is independently scannable. Top row = 초3-중1, bottom = 중2-고3. */
+  .options.grade-grid{
+    display:grid;
+    grid-template-columns:repeat(5, 1fr);
+    gap:14px;
+    max-width:1080px;
     margin:36px auto 24px;
   }
-  .grade-orbit .orbit-center{
-    position:absolute;
-    left:50%;top:50%;
-    transform:translate(-50%,-50%);
-    width:280px;height:280px;
-    z-index:2;
-    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
-    padding:22px;
-    background:#000;
-    border:1px solid rgba(0,255,163,.55);
-    border-radius:22px;
-    box-shadow:0 0 0 2px rgba(0,255,163,.32),0 22px 44px rgba(0,0,0,.55);
-    pointer-events:none;
-  }
-  .grade-orbit .orbit-center .planet-img{width:140px;aspect-ratio:1;background-image:var(--planet-image);background-size:contain;background-position:center;background-repeat:no-repeat;}
-  .grade-orbit .orbit-center .grade-label{font-weight:800;font-size:1.78rem;color:#fff;line-height:1;}
-  .grade-orbit .orbit-center .grade-sub{font-size:.92rem;font-weight:700;letter-spacing:.06em;color:rgba(255,255,255,.7);}
-  .grade-orbit .orbit-card{
-    position:absolute;
-    left:50%;top:50%;
-    width:200px;height:200px;
-    flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:8px;
-    padding:18px 12px;
+  .grade-grid .grade-card{
+    display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
+    text-align:center;gap:10px;
+    padding:22px 12px 18px;
     background:#000;
     border:1px solid rgba(255,255,255,.16);
-    border-radius:18px;
+    border-radius:14px;
     color:#fff;
-    /* Place each card on the orbit ring at --angle, kept upright via double rotate */
-    transform:translate(-50%,-50%) rotate(var(--angle)) translateY(calc(-1 * var(--orbit-radius))) rotate(calc(-1 * var(--angle)));
+    cursor:pointer;
+    transition:border-color .18s, box-shadow .18s, transform .18s;
   }
-  .grade-orbit .orbit-card:hover{border-color:rgba(0,255,163,.5);background:#000;box-shadow:0 0 0 1px rgba(0,255,163,.28),0 14px 28px rgba(0,0,0,.5);}
-  .grade-orbit .orbit-card.selected{border-color:rgba(0,255,163,.85);background:#000;box-shadow:0 0 0 2px rgba(0,255,163,.55),0 18px 36px rgba(0,0,0,.55);}
-  .grade-orbit .orbit-card .planet-img{width:104px;aspect-ratio:1;background-image:var(--planet-image);background-size:contain;background-position:center;background-repeat:no-repeat;}
-  .grade-orbit .orbit-card .grade-label{font-weight:800;font-size:1.34rem;color:#fff;line-height:1;}
-  .grade-orbit .orbit-card .grade-sub{font-size:.78rem;font-weight:700;letter-spacing:.04em;color:rgba(255,255,255,.6);}
+  .grade-grid .grade-card:hover{border-color:rgba(0,255,163,.5);box-shadow:0 0 0 1px rgba(0,255,163,.28),0 14px 28px rgba(0,0,0,.5);transform:translateY(-2px);}
+  .grade-grid .grade-card.selected{border-color:rgba(0,255,163,.85);box-shadow:0 0 0 2px rgba(0,255,163,.55),0 18px 36px rgba(0,0,0,.55);}
+  .grade-grid .grade-card .planet-img{width:88px;aspect-ratio:1;background-image:var(--planet-image);background-size:contain;background-position:center;background-repeat:no-repeat;}
+  .grade-grid .grade-card .grade-label{font-weight:800;font-size:1.18rem;color:#fff;line-height:1.1;}
+  .grade-grid .grade-card .grade-sub{font-size:.66rem;font-weight:700;letter-spacing:.08em;color:rgba(255,255,255,.55);text-transform:uppercase;}
   @media(max-width:1100px){
-    .options.grade-orbit{--card-half:74px;}
-    .grade-orbit .orbit-card{width:148px;height:148px;padding:14px 10px;gap:6px;}
-    .grade-orbit .orbit-card .planet-img{width:72px;}
-    .grade-orbit .orbit-card .grade-label{font-size:1.08rem;}
-    .grade-orbit .orbit-card .grade-sub{font-size:.68rem;}
-    .grade-orbit .orbit-center{width:210px;height:210px;}
-    .grade-orbit .orbit-center .planet-img{width:100px;}
-    .grade-orbit .orbit-center .grade-label{font-size:1.42rem;}
-    .grade-orbit .orbit-center .grade-sub{font-size:.78rem;}
+    .options.grade-grid{gap:10px;}
+    .grade-grid .grade-card{padding:18px 8px 14px;gap:8px;}
+    .grade-grid .grade-card .planet-img{width:64px;}
+    .grade-grid .grade-card .grade-label{font-size:1rem;}
+    .grade-grid .grade-card .grade-sub{font-size:.58rem;}
   }
-  @media(max-width:560px){
-    .options.grade-orbit{--card-half:54px;}
-    .grade-orbit .orbit-card{width:108px;height:108px;padding:8px 5px;gap:3px;}
-    .grade-orbit .orbit-card .planet-img{width:48px;}
-    .grade-orbit .orbit-card .grade-label{font-size:.84rem;}
-    .grade-orbit .orbit-card .grade-sub{font-size:.56rem;}
-    .grade-orbit .orbit-center{width:158px;height:158px;}
-    .grade-orbit .orbit-center .planet-img{width:72px;}
-    .grade-orbit .orbit-center .grade-label{font-size:1.12rem;}
-    .grade-orbit .orbit-center .grade-sub{font-size:.66rem;}
+  @media(max-width:680px){
+    .options.grade-grid{grid-template-columns:repeat(5, 1fr);gap:6px;}
+    .grade-grid .grade-card{padding:12px 4px 10px;gap:6px;border-radius:10px;}
+    .grade-grid .grade-card .planet-img{width:42px;}
+    .grade-grid .grade-card .grade-label{font-size:.82rem;}
+    .grade-grid .grade-card .grade-sub{font-size:.5rem;letter-spacing:.04em;}
   }
 
   /* ===== 추천 원칙 — 페이지 하단 안내 박스 ===== */
@@ -351,24 +319,18 @@
 <div class="step active" id="step-1">
   <div class="step-num">Step 01 · 기본 정보</div>
   <div class="step-q">현재 학년을 선택해주세요.</div>
-  <div class="options grade-orbit">
-    <!-- 중앙 디스플레이 — 클릭한 행성/레벨이 표시되며 기본은 고1 SATURN -->
-    <div class="orbit-center" id="orbit-center" style="--planet-image:url('assets/3d/planets-normalized/saturn.png');">
-      <div class="planet-img"></div>
-      <div class="grade-label" id="orbit-center-label">고1</div>
-      <div class="grade-sub" id="orbit-center-sub">SATURN · LV 8</div>
-    </div>
-    <!-- 10개 외곽 카드 — 0°(상단)부터 시계방향 36° 간격, MOON → SUN -->
-    <button class="option-btn orbit-card" onclick="selOrbit(this,'초3','MOON','LV 1','moon')" style="--angle:0deg;--planet-image:url('assets/3d/planets-normalized/moon.png');"><div class="planet-img"></div><div class="grade-label">초3</div></button>
-    <button class="option-btn orbit-card" onclick="selOrbit(this,'초4','MERCURY','LV 2','mercury')" style="--angle:36deg;--planet-image:url('assets/3d/planets-normalized/mercury.png');"><div class="planet-img"></div><div class="grade-label">초4</div></button>
-    <button class="option-btn orbit-card" onclick="selOrbit(this,'초5','MARS','LV 3','mars')" style="--angle:72deg;--planet-image:url('assets/3d/planets-normalized/mars.png');"><div class="planet-img"></div><div class="grade-label">초5</div></button>
-    <button class="option-btn orbit-card" onclick="selOrbit(this,'초6','VENUS','LV 4','venus')" style="--angle:108deg;--planet-image:url('assets/3d/planets-normalized/venus.png');"><div class="planet-img"></div><div class="grade-label">초6</div></button>
-    <button class="option-btn orbit-card" onclick="selOrbit(this,'중1','TERRA','LV 5','terra')" style="--angle:144deg;--planet-image:url('assets/3d/planets-normalized/terra.png');"><div class="planet-img"></div><div class="grade-label">중1</div></button>
-    <button class="option-btn orbit-card" onclick="selOrbit(this,'중2','NEPTUNE','LV 6','neptune')" style="--angle:180deg;--planet-image:url('assets/3d/planets-normalized/neptune.png');"><div class="planet-img"></div><div class="grade-label">중2</div></button>
-    <button class="option-btn orbit-card" onclick="selOrbit(this,'중3','URANUS','LV 7','uranus')" style="--angle:216deg;--planet-image:url('assets/3d/planets-normalized/uranus.png');"><div class="planet-img"></div><div class="grade-label">중3</div></button>
-    <button class="option-btn orbit-card" onclick="selOrbit(this,'고1','SATURN','LV 8','saturn')" style="--angle:252deg;--planet-image:url('assets/3d/planets-normalized/saturn.png');"><div class="planet-img"></div><div class="grade-label">고1</div></button>
-    <button class="option-btn orbit-card" onclick="selOrbit(this,'고2','JUPITER','LV 9','jupiter')" style="--angle:288deg;--planet-image:url('assets/3d/planets-normalized/jupiter.png');"><div class="planet-img"></div><div class="grade-label">고2</div></button>
-    <button class="option-btn orbit-card" onclick="selOrbit(this,'고3','SUN','LV 10','sun')" style="--angle:324deg;--planet-image:url('assets/3d/planets-normalized/sun.png');"><div class="planet-img"></div><div class="grade-label">고3·N수생</div></button>
+  <div class="options grade-grid">
+    <!-- 5×2 그리드: 위 5칸 = 초3-중1, 아래 5칸 = 중2-고3 -->
+    <button class="option-btn grade-card" onclick="selOrbit(this,'초3','MOON','LV 1','moon')" style="--planet-image:url('assets/3d/planets-normalized/moon.png');"><div class="planet-img"></div><div class="grade-label">초3</div><div class="grade-sub">MOON · LV 1</div></button>
+    <button class="option-btn grade-card" onclick="selOrbit(this,'초4','MERCURY','LV 2','mercury')" style="--planet-image:url('assets/3d/planets-normalized/mercury.png');"><div class="planet-img"></div><div class="grade-label">초4</div><div class="grade-sub">MERCURY · LV 2</div></button>
+    <button class="option-btn grade-card" onclick="selOrbit(this,'초5','MARS','LV 3','mars')" style="--planet-image:url('assets/3d/planets-normalized/mars.png');"><div class="planet-img"></div><div class="grade-label">초5</div><div class="grade-sub">MARS · LV 3</div></button>
+    <button class="option-btn grade-card" onclick="selOrbit(this,'초6','VENUS','LV 4','venus')" style="--planet-image:url('assets/3d/planets-normalized/venus.png');"><div class="planet-img"></div><div class="grade-label">초6</div><div class="grade-sub">VENUS · LV 4</div></button>
+    <button class="option-btn grade-card" onclick="selOrbit(this,'중1','TERRA','LV 5','terra')" style="--planet-image:url('assets/3d/planets-normalized/terra.png');"><div class="planet-img"></div><div class="grade-label">중1</div><div class="grade-sub">TERRA · LV 5</div></button>
+    <button class="option-btn grade-card" onclick="selOrbit(this,'중2','NEPTUNE','LV 6','neptune')" style="--planet-image:url('assets/3d/planets-normalized/neptune.png');"><div class="planet-img"></div><div class="grade-label">중2</div><div class="grade-sub">NEPTUNE · LV 6</div></button>
+    <button class="option-btn grade-card" onclick="selOrbit(this,'중3','URANUS','LV 7','uranus')" style="--planet-image:url('assets/3d/planets-normalized/uranus.png');"><div class="planet-img"></div><div class="grade-label">중3</div><div class="grade-sub">URANUS · LV 7</div></button>
+    <button class="option-btn grade-card" onclick="selOrbit(this,'고1','SATURN','LV 8','saturn')" style="--planet-image:url('assets/3d/planets-normalized/saturn.png');"><div class="planet-img"></div><div class="grade-label">고1</div><div class="grade-sub">SATURN · LV 8</div></button>
+    <button class="option-btn grade-card" onclick="selOrbit(this,'고2','JUPITER','LV 9','jupiter')" style="--planet-image:url('assets/3d/planets-normalized/jupiter.png');"><div class="planet-img"></div><div class="grade-label">고2</div><div class="grade-sub">JUPITER · LV 9</div></button>
+    <button class="option-btn grade-card" onclick="selOrbit(this,'고3','SUN','LV 10','sun')" style="--planet-image:url('assets/3d/planets-normalized/sun.png');"><div class="planet-img"></div><div class="grade-label">고3·N수생</div><div class="grade-sub">SUN · LV 10</div></button>
   </div>
   <div class="btn-row"><button class="btn-next" id="btn1" onclick="next(2)">다음 →</button></div>
 </div>
@@ -815,19 +777,16 @@ const TOTAL = 20;
   // Defer until orbit cards exist in DOM; this script runs at end of body so
   // they should already be parsed, but use queueMicrotask to be safe.
   queueMicrotask(() => {
-    const cards = document.querySelectorAll('.grade-orbit .orbit-card');
+    const cards = document.querySelectorAll('.grade-grid .grade-card');
     if (cards[lv - 1]) cards[lv - 1].click();
   });
 })();
 
-/* Orbit card click → 중앙 디스플레이 갱신 + sel() 호출 */
+/* Grade card click — kept the legacy `selOrbit` name + 5-arg signature so the
+   inline onclick attributes still work after the orbit→flat-grid refactor.
+   The flat 5×2 grid no longer has a central display element, so we just
+   delegate to sel() to set selection state and unlock the next button. */
 function selOrbit(btn, grade, name, lv, planet) {
-  const center = document.getElementById('orbit-center');
-  if (center) {
-    center.style.setProperty('--planet-image', `url('assets/3d/planets-normalized/${planet}.png')`);
-    document.getElementById('orbit-center-label').textContent = grade;
-    document.getElementById('orbit-center-sub').textContent = `${name} · ${lv}`;
-  }
   sel(btn, 'grade', grade);
 }
 

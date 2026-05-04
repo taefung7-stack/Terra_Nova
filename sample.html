@@ -86,9 +86,18 @@
   .level-section.active{display:block;}
 
   /* LEVEL HEADER */
-  .level-header{display:flex;align-items:flex-start;gap:32px;margin-bottom:48px;flex-wrap:wrap;}
+  .level-header{display:flex;align-items:center;gap:32px;margin-bottom:48px;flex-wrap:wrap;}
   .level-badge{font-family:'Space Grotesk',sans-serif;font-weight:900;font-size:3.5rem;letter-spacing:.04em;color:#0A0A0A;background:var(--accent);padding:12px 32px;border-radius:8px;flex-shrink:0;line-height:1;-webkit-text-stroke:0.6px currentColor;}
   .level-info{flex:1;min-width:240px;}
+  /* Grade-tier label that sits next to the level badge — short and
+     scannable. The bold grade is the focal point; "교과연계" gives context. */
+  .level-grade{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:2rem;font-weight:900;color:#fff;letter-spacing:-.01em;line-height:1.1;display:flex;align-items:baseline;gap:12px;}
+  .level-grade .grade-tier{color:var(--accent);}
+  .level-grade .grade-link{font-size:1.32rem;font-weight:600;color:rgba(240,240,240,.72);letter-spacing:.01em;}
+  @media(max-width:560px){
+    .level-grade{font-size:1.5rem;gap:8px;}
+    .level-grade .grade-link{font-size:1rem;}
+  }
   .level-title{font-size:1.5rem;font-weight:900;color:#fff;margin-bottom:8px;}
   .level-target{font-size:.82rem;color:var(--accent);font-weight:700;margin-bottom:12px;letter-spacing:1px;}
   .level-desc{font-size:.88rem;color:var(--dim);line-height:1.9;max-width:560px;}
@@ -252,9 +261,7 @@
   <div class="level-section active" id="sec-moon">
     <div class="level-header">
       <div class="level-badge">MOON</div>
-      <div class="level-info">
-        
-      </div>
+      <div class="level-info"><div class="level-grade"><span class="grade-tier">초3</span><span class="grade-link">교과연계</span></div></div>
     </div>
 
     <div class="sample-grid">
@@ -316,9 +323,7 @@
   <div class="level-section" id="sec-mercury">
     <div class="level-header">
       <div class="level-badge">MERCURY</div>
-      <div class="level-info">
-        
-      </div>
+      <div class="level-info"><div class="level-grade"><span class="grade-tier">초4</span><span class="grade-link">교과연계</span></div></div>
     </div>
 
     <div class="sample-grid">
@@ -380,9 +385,7 @@
   <div class="level-section" id="sec-mars">
     <div class="level-header">
       <div class="level-badge">MARS</div>
-      <div class="level-info">
-        
-      </div>
+      <div class="level-info"><div class="level-grade"><span class="grade-tier">초5</span><span class="grade-link">교과연계</span></div></div>
     </div>
 
     <div class="sample-grid">
@@ -444,9 +447,7 @@
   <div class="level-section" id="sec-venus">
     <div class="level-header">
       <div class="level-badge">VENUS</div>
-      <div class="level-info">
-        
-      </div>
+      <div class="level-info"><div class="level-grade"><span class="grade-tier">초6</span><span class="grade-link">교과연계</span></div></div>
     </div>
 
     <div class="sample-grid">
@@ -508,9 +509,7 @@
   <div class="level-section" id="sec-terra">
     <div class="level-header">
       <div class="level-badge">TERRA</div>
-      <div class="level-info">
-        
-      </div>
+      <div class="level-info"><div class="level-grade"><span class="grade-tier">중1</span><span class="grade-link">교과연계</span></div></div>
     </div>
 
     <div class="sample-grid">
@@ -572,9 +571,7 @@
   <div class="level-section" id="sec-neptune">
     <div class="level-header">
       <div class="level-badge">NEPTUNE</div>
-      <div class="level-info">
-        
-      </div>
+      <div class="level-info"><div class="level-grade"><span class="grade-tier">중2</span><span class="grade-link">교과연계</span></div></div>
     </div>
 
     <div class="sample-grid">
@@ -636,9 +633,7 @@
   <div class="level-section" id="sec-uranus">
     <div class="level-header">
       <div class="level-badge">URANUS</div>
-      <div class="level-info">
-        
-      </div>
+      <div class="level-info"><div class="level-grade"><span class="grade-tier">중3</span><span class="grade-link">교과연계</span></div></div>
     </div>
 
     <div class="sample-grid">
@@ -700,9 +695,7 @@
   <div class="level-section" id="sec-saturn">
     <div class="level-header">
       <div class="level-badge">SATURN</div>
-      <div class="level-info">
-        
-      </div>
+      <div class="level-info"><div class="level-grade"><span class="grade-tier">고1</span><span class="grade-link">교과연계</span></div></div>
     </div>
 
     <div class="sample-grid">
@@ -764,9 +757,7 @@
   <div class="level-section" id="sec-jupiter">
     <div class="level-header">
       <div class="level-badge">JUPITER</div>
-      <div class="level-info">
-        
-      </div>
+      <div class="level-info"><div class="level-grade"><span class="grade-tier">고2</span><span class="grade-link">교과연계</span></div></div>
     </div>
 
     <div class="sample-grid">
@@ -828,9 +819,7 @@
   <div class="level-section" id="sec-sun">
     <div class="level-header">
       <div class="level-badge">SUN</div>
-      <div class="level-info">
-        
-      </div>
+      <div class="level-info"><div class="level-grade"><span class="grade-tier">고3·N수생</span><span class="grade-link">교과연계</span></div></div>
     </div>
 
     <div class="sample-grid">
