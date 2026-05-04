@@ -487,8 +487,8 @@
             <div style="font-family:'Space Grotesk',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:3px;color:var(--accent);text-transform:uppercase;margin-bottom:8px;">⭐ Review Event</div>
             <div style="font-weight:900;font-size:1.05rem;color:#fff;line-height:1.5;margin-bottom:8px;">SNS에 후기 올리고 인증하면 <span style="color:var(--accent);">다음 달 PDF 1개월 무료</span></div>
             <p style="font-size:.78rem;color:var(--dim);line-height:1.7;margin:0;">
-              아래 폼에 후기를 등록하고, Instagram/블로그/네이버카페 등에 같은 후기를 올린 뒤 게시물 URL과 캡처를 첨부해주세요.<br>
-              관리자 인증이 완료되면 LIGHT 1개월 무료 쿠폰이 자동 발급됩니다.
+              후기를 등록하고 SNS에 함께 공유한 게시물 URL을 남겨주세요.<br>
+              관리자 확인 후 LIGHT 1개월 무료 쿠폰이 발급됩니다.
             </p>
           </div>
           <a href="event.html" style="flex-shrink:0;font-size:.78rem;color:var(--accent);text-decoration:none;border:1px solid rgba(0,255,163,.4);padding:10px 18px;border-radius:6px;font-weight:600;align-self:center;">자세히 →</a>
@@ -531,11 +531,11 @@
               required></textarea>
           </div>
 
-          <!-- ─── SNS 인증 (이벤트 참여, 선택) ─────────────── -->
+          <!-- ─── SNS 공유 (이벤트 참여, 선택) ─────────────── -->
           <div style="margin-top:24px;padding:18px;background:rgba(0,255,163,.04);border:1px dashed rgba(0,255,163,.28);border-radius:8px;">
-            <div style="font-size:.78rem;font-weight:700;color:var(--accent);margin-bottom:10px;letter-spacing:.5px;">⭐ SNS 인증 (선택 · 쿠폰 자동 발급)</div>
+            <div style="font-size:.78rem;font-weight:700;color:var(--accent);margin-bottom:10px;letter-spacing:.5px;">⭐ SNS 공유 (선택 · 쿠폰 자동 발급)</div>
             <p style="font-size:.72rem;color:var(--dim);margin-bottom:14px;line-height:1.7;">
-              SNS에 같은 내용으로 후기를 올린 뒤 링크와 캡처를 첨부하면, 관리자 인증 후 <strong style="color:var(--accent);">LIGHT 1개월 무료 쿠폰</strong>이 발급됩니다. 비워두고 등록해도 됩니다.
+              SNS에 같은 내용으로 후기를 올린 뒤 게시물 링크를 남겨주세요. 관리자 확인 후 <strong style="color:var(--accent);">LIGHT 1개월 무료 쿠폰</strong>이 발급됩니다. 비워두고 등록해도 됩니다.
             </p>
             <div class="form-row">
               <div class="form-group">
@@ -555,8 +555,9 @@
                 <input type="url" id="review-sns-url" name="sns_url" placeholder="https://www.instagram.com/p/...">
               </div>
             </div>
+            <!-- 캡처 업로드는 보조 수단 — 라벨 차분하게, 부가 안내 없음 -->
             <div class="form-group" style="margin-top:6px;">
-              <label for="review-sns-screenshot">게시물 캡처 (PNG/JPG, 5MB 이하)</label>
+              <label for="review-sns-screenshot" style="font-size:.7rem;color:var(--dim);">참고 이미지 (선택, 5MB 이하)</label>
               <input type="file" id="review-sns-screenshot" name="sns_screenshot" accept="image/png,image/jpeg,image/webp"
                 style="font-size:.78rem;color:var(--dim);">
             </div>
