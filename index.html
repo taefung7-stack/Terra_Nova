@@ -2282,7 +2282,9 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
 .orbit-grid {
   display:grid;
   grid-template-columns:repeat(2, minmax(0, 1fr));
+  grid-auto-rows:1fr;            /* 8 cards split the column height evenly */
   gap:16px;
+  height:100%;                   /* fill the orbit-preview height on the left */
 }
 .level-card {
   --level-accent:#00ffa3;
