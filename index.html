@@ -2979,13 +2979,15 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   min-width:0;
 }
 .plan-icon-img {
-  width:72px;
-  height:72px;
-  border-radius:14px;
-  object-fit:cover;
+  width:96px;
+  height:96px;
+  object-fit:contain;
   flex-shrink:0;
-  border:1px solid rgba(255,255,255,.10);
-  box-shadow:0 6px 18px rgba(0,0,0,.35);
+  /* mix-blend-mode:lighten lets the icon's dark JPG background drop out
+     against the page (#0A0A0A), giving an instant cutout look without
+     re-exporting the assets as PNG. */
+  mix-blend-mode:lighten;
+  background:transparent;
 }
 .plan-name {
   font-family:'Space Grotesk', sans-serif;
