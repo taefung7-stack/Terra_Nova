@@ -144,7 +144,7 @@
   /* No inner glow on hover (per user). Keep card lift + mint border only. */
   .planet-card:hover{transform:translateY(-6px);border-color:rgba(0,255,163,.42);}
   .planet-card:hover .pcard-img{animation-play-state:paused;transform:scale(1.08) rotate(8deg);}
-  .pcard-img{width:128px;aspect-ratio:1;background-image:var(--p-img);background-size:contain;background-position:center;background-repeat:no-repeat;animation:planetFloat 5s ease-in-out infinite;transition:transform .4s cubic-bezier(.22,.8,.36,1);filter:drop-shadow(0 8px 22px rgba(0,0,0,.55));}
+  .pcard-img{width:128px;aspect-ratio:1;background-image:var(--p-img);background-size:contain;background-position:center;background-repeat:no-repeat;animation:planetFloat 5s ease-in-out infinite;transition:transform .4s cubic-bezier(.22,.8,.36,1);}
   .planet-card:nth-child(2n) .pcard-img{animation-delay:-1.6s;}
   .planet-card:nth-child(3n) .pcard-img{animation-delay:-3s;}
   @keyframes planetFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
