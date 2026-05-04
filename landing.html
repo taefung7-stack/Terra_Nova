@@ -2567,6 +2567,29 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   color:var(--accent);
   text-shadow:0 0 44px rgba(0,255,163,.36);
 }
+/* Character-by-character bounce-in. JS wraps each visible char in <span class="ch">
+   with a per-char --i index. .in-view class is toggled by IntersectionObserver so
+   the effect replays each time the section re-enters the viewport. */
+.review-rain-title .ch {
+  display:inline-block;
+  opacity:0;
+  transform:translateY(64px) scale(0.4);
+  transition:opacity .5s ease, transform .55s ease-out;
+  will-change:transform, opacity;
+}
+.review-rain-title.in-view .ch {
+  animation:chPop .75s cubic-bezier(.34,1.56,.64,1) forwards;
+  animation-delay:calc(var(--i, 0) * 55ms);
+}
+@keyframes chPop {
+  0%   { opacity:0; transform:translateY(64px) scale(0.4); }
+  55%  { opacity:1; transform:translateY(-14px) scale(1.18); }
+  78%  { transform:translateY(5px) scale(0.94); }
+  100% { opacity:1; transform:translateY(0) scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .review-rain-title .ch { opacity:1; transform:none; animation:none; transition:none; }
+}
 .review-rain-stage {
   position:relative;
   display:grid;
@@ -6168,5 +6191,48 @@ document.addEventListener('DOMContentLoaded', function () {
      full version (same one used on every other page). -->
 <script src="./site-config.js"></script>
 <script src="./footer.js" defer></script>
+
+<!-- Character-by-character bouncy popup for "쏟아지는 후기들" headline. -->
+<script>
+(function () {
+  'use strict';
+  const title = document.querySelector('.review-rain-title');
+  if (!title) return;
+
+  // Walk the DOM and wrap every visible character (incl. those nested inside
+  // .accent) in a <span class="ch"> with an incrementing --i so the staggered
+  // animation pops them one-by-one.
+  let idx = 0;
+  function wrap(node) {
+    if (node.nodeType === Node.TEXT_NODE) {
+      const txt = node.textContent;
+      const frag = document.createDocumentFragment();
+      for (const ch of txt) {
+        if (ch === ' ' || ch === ' ' || ch === '\n' || ch === '\t') {
+          frag.appendChild(document.createTextNode(ch));
+        } else {
+          const s = document.createElement('span');
+          s.className = 'ch';
+          s.textContent = ch;
+          s.style.setProperty('--i', idx++);
+          frag.appendChild(s);
+        }
+      }
+      node.replaceWith(frag);
+    } else if (node.nodeType === Node.ELEMENT_NODE) {
+      [...node.childNodes].forEach(wrap);
+    }
+  }
+  [...title.childNodes].forEach(wrap);
+
+  // Toggle .in-view class as the section enters/exits the viewport so the
+  // bounce replays on every return.
+  const section = title.closest('.review-rain') || title;
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => title.classList.toggle('in-view', e.isIntersecting));
+  }, { threshold: 0.25 });
+  io.observe(section);
+})();
+</script>
 </body>
 </html>
