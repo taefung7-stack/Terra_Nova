@@ -2981,7 +2981,12 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
 /* Plan icon — original 3D-rendered PNG (watermark erased in-place from
    the source files). Fixed 132×132 box on every plan so all three icons
    sit at identical heights regardless of the source PNG aspect ratio.
-   object-fit: contain preserves the natural shape inside the box. */
+   object-fit: contain preserves the natural shape inside the box.
+   Filter chain pushes existing mint hues to a deeper, richer mint:
+   saturate(1.45) — richer mint
+   brightness(.93) — slightly darker overall
+   contrast(1.06) — adds a touch of depth
+   plus a subtle mint drop-shadow for grounding on the dark card. */
 .plan-icon-img {
   width:132px;
   height:132px;
@@ -2990,6 +2995,7 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   display:block;
   flex-shrink:0;
   background:transparent;
+  filter:saturate(1.45) brightness(.93) contrast(1.06) drop-shadow(0 6px 18px rgba(0,255,163,.18));
 }
 /* STANDARD (middle plan) — book icon rendered slightly larger per user.
    Box stays the same height so card alignment isn't disturbed; the
@@ -4142,7 +4148,7 @@ body.bigbang-done .terra-hint,
         <div>
           <h2 class="orbit-title">
             <span class="title-line">내 수준에 맞는</span>
-            <span class="title-line"><span class="mint">레벨</span>을 고르세요</span>
+            <span class="title-line"><span class="mint">레벨</span>을 고르세요.</span>
           </h2>
         </div>
         <p class="orbit-copy">각 레벨마다 학년교과가 연계되어 있습니다. <br>레벨 테스트로 실제 독해 출발점을 확인해 보세요.</p>
