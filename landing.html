@@ -2991,6 +2991,14 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   flex-shrink:0;
   background:transparent;
 }
+/* STANDARD (middle plan) — book icon rendered slightly larger per user.
+   Box stays the same height so card alignment isn't disturbed; the
+   contain-fit just lets the icon use more of the box. */
+.plan:nth-of-type(2) .plan-icon-img {
+  width:170px;
+  height:170px;
+  margin:-19px 0;   /* offset extra height so card layout stays aligned */
+}
 .plan-name {
   font-family:'Space Grotesk', sans-serif;
   font-size:1.9rem;
