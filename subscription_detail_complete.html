@@ -320,6 +320,46 @@
     .compare-head{display:none;}
   }
 
+  /* ───── Terra Nova feature grid (self-focused — no comparison) ───── */
+  .tn-feature-grid{
+    position:relative;z-index:1;display:grid;
+    grid-template-columns:repeat(3,1fr);gap:20px;
+    max-width:1480px;margin:0 auto;
+  }
+  @media(max-width:980px){.tn-feature-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:560px){.tn-feature-grid{grid-template-columns:1fr;}}
+  .tn-feature{
+    position:relative;padding:36px 32px 32px;
+    background:linear-gradient(155deg,
+      rgba(255,255,255,.06) 0%,
+      rgba(255,255,255,.02) 50%,
+      rgba(255,255,255,.012) 100%),
+      rgba(20,20,20,.55);
+    border:1px solid rgba(255,255,255,.10);
+    border-radius:18px;
+    backdrop-filter:blur(16px) saturate(125%);
+    -webkit-backdrop-filter:blur(16px) saturate(125%);
+    box-shadow:
+      0 18px 38px rgba(0,0,0,.32),
+      inset 0 1px 0 rgba(255,255,255,.14);
+    transition:transform .35s cubic-bezier(.22,.8,.36,1),border-color .3s,box-shadow .3s;
+  }
+  .tn-feature:hover{
+    transform:translateY(-4px);
+    border-color:rgba(0,255,163,.36);
+    box-shadow:0 24px 48px rgba(0,255,163,.18),inset 0 1px 0 rgba(255,255,255,.18);
+  }
+  .tnf-icon{
+    width:54px;height:54px;display:flex;align-items:center;justify-content:center;
+    border-radius:14px;background:rgba(0,255,163,.10);
+    border:1px solid rgba(0,255,163,.32);font-size:1.6rem;margin-bottom:20px;
+  }
+  .tn-feature h4{
+    font-family:'Pretendard','Noto Sans KR',sans-serif;font-weight:900;
+    font-size:1.25rem;color:#fff;letter-spacing:-.012em;margin-bottom:10px;line-height:1.3;
+  }
+  .tn-feature p{font-size:.96rem;color:var(--dim);line-height:1.65;letter-spacing:-.005em;}
+
   /* ═══════════════════════════════════════════════════════
      ④ PLANS — 3 visually-loaded cards
      ═══════════════════════════════════════════════════════ */
@@ -658,50 +698,53 @@
     </div>
   </section>
 
-  <!-- ═════════ ③·8 COMPARISON — Terra Nova vs 학원 ═════════ -->
+  <!-- ═════════ ③·8 TERRA NOVA WAY — self-focused differentiators ═════════ -->
   <section class="section compare">
     <div class="inner reveal">
       <div class="head">
-        <span class="label">vs 학원</span>
+        <span class="label">Our Way</span>
         <h2>한 권에, <span class="mint">한 학기</span>가 담깁니다.</h2>
       </div>
 
-      <!-- ─── Bar graphs — price + time advantage ─── -->
+      <!-- ─── Glass cards: cumulative progress + 4-subject coverage ─── -->
       <div class="graphs">
+        <!-- Card 1: 1년 누적 학습량 -->
         <div class="graph-card">
           <div class="graph-title">
-            <h3>월 비용</h3>
-            <span class="unit">원 · KRW</span>
+            <h3>쌓이는 1년</h3>
           </div>
-          <p class="graph-tagline">학원의 <span class="pop">1/30 가격</span>으로 시작합니다.</p>
+          <p class="graph-tagline">매일 한 지문이, 1년이면 <span class="pop">240지문</span>으로 책상에 쌓입니다.</p>
           <div class="bar is-tn">
-            <span class="bar-label">LIGHT</span>
-            <div class="bar-track"><span class="bar-fill" style="--w:3%;"></span></div>
-            <span class="bar-value">₩11,900</span>
-          </div>
-          <div class="bar is-tn">
-            <span class="bar-label">STANDARD</span>
-            <div class="bar-track"><span class="bar-fill" style="--w:6.2%;"></span></div>
-            <span class="bar-value">₩24,900</span>
+            <span class="bar-label">1개월</span>
+            <div class="bar-track"><span class="bar-fill" style="--w:8.3%;"></span></div>
+            <span class="bar-value">20지문</span>
           </div>
           <div class="bar is-tn">
-            <span class="bar-label">PREMIUM</span>
-            <div class="bar-track"><span class="bar-fill" style="--w:14.7%;"></span></div>
-            <span class="bar-value">₩58,900</span>
+            <span class="bar-label">3개월</span>
+            <div class="bar-track"><span class="bar-fill" style="--w:25%;"></span></div>
+            <span class="bar-value">60지문</span>
           </div>
-          <div class="bar is-aca">
-            <span class="bar-label">학원 평균</span>
+          <div class="bar is-tn">
+            <span class="bar-label">6개월</span>
+            <div class="bar-track"><span class="bar-fill" style="--w:50%;"></span></div>
+            <span class="bar-value">120지문</span>
+          </div>
+          <div class="bar is-tn">
+            <span class="bar-label">12개월</span>
             <div class="bar-track"><span class="bar-fill" style="--w:100%;"></span></div>
-            <span class="bar-value">₩400,000</span>
+            <span class="bar-value">240지문</span>
+          </div>
+          <div class="graph-foot">
+            1년이면 <strong>240지문 · 240단원</strong>의 교과 매칭 학습 분량.
           </div>
         </div>
 
+        <!-- Card 2: 4 subjects covered -->
         <div class="graph-card subjects-card">
           <div class="graph-title">
-            <h3>커버하는 교과</h3>
-            <span class="unit">과목 · SUBJECTS</span>
+            <h3>한 권으로 4과목</h3>
           </div>
-          <p class="graph-tagline">영어 한 권으로 <span class="pop">4과목</span>을 동시에 복습합니다.</p>
+          <p class="graph-tagline">영어 한 권으로 학교 <span class="pop">4교과</span>를 동시에 정리합니다.</p>
 
           <div class="subj-row is-tn">
             <span class="subj-name">Terra Nova</span>
@@ -714,51 +757,43 @@
             <span class="subj-count">4</span>
           </div>
 
-          <div class="subj-row is-aca">
-            <span class="subj-name">학원 평균</span>
-            <div class="subj-pills">
-              <span class="subj-pill">영어</span>
-            </div>
-            <span class="subj-count">1</span>
+          <div class="graph-foot">
+            학교에서 배운 단원이 <strong>그대로 영어 지문</strong>으로 와서, 한 번 풀면 네 과목이 같이 살아납니다.
           </div>
         </div>
       </div>
 
-      <div class="compare-table">
-        <div class="compare-row compare-head">
-          <div class="compare-cell criteria">기준</div>
-          <div class="compare-cell tn tn-label">Terra Nova</div>
-          <div class="compare-cell aca aca-label">일반 학원</div>
+      <!-- ─── Feature grid: 6 self-focused cards ─── -->
+      <div class="tn-feature-grid">
+        <div class="tn-feature">
+          <div class="tnf-icon">📚</div>
+          <h4>학교 단원 직결</h4>
+          <p>학교에서 배운 단원이 그대로 영어 지문이 됩니다. 영어 풀이가 그날의 복습이 되고, 시험 범위와 학습 범위가 일치합니다.</p>
         </div>
-        <div class="compare-row">
-          <div class="compare-cell criteria">월 비용</div>
-          <div class="compare-cell tn">₩11,900부터 — 학원 30분 비용</div>
-          <div class="compare-cell aca">월 ₩300,000~₩400,000</div>
+        <div class="tn-feature">
+          <div class="tnf-icon">⏰</div>
+          <h4>본인 페이스</h4>
+          <p>새벽이든 자정이든, 책상 앞에 앉으면 바로 시작합니다. 정해진 시간이 없고, 그룹 진도에 끌려가지 않습니다.</p>
         </div>
-        <div class="compare-row">
-          <div class="compare-cell criteria">교과 연계</div>
-          <div class="compare-cell tn">학교 단원이 그대로 영어 지문</div>
-          <div class="compare-cell aca">교과서와 별개, 학원 자체 커리큘럼</div>
+        <div class="tn-feature">
+          <div class="tnf-icon">🏠</div>
+          <h4>통원 시간 0분</h4>
+          <p>집·도서관·카페 어디든 책 한 권만 펴면 즉시 학습이 시작됩니다. 이동에 쓰던 시간이 그대로 학습 시간이 됩니다.</p>
         </div>
-        <div class="compare-row">
-          <div class="compare-cell criteria">진도 조절</div>
-          <div class="compare-cell tn">본인 페이스 — 어느 시간이든</div>
-          <div class="compare-cell aca">정해진 수업 시간, 그룹 페이스</div>
+        <div class="tn-feature">
+          <div class="tnf-icon">📦</div>
+          <h4>매월 신간 1권</h4>
+          <p>매달 새 지문 20편이 자동 배송됩니다. 같은 자료를 두 번 풀 일 없이, 매월 새로운 단원과 만납니다.</p>
         </div>
-        <div class="compare-row">
-          <div class="compare-cell criteria">통원 시간</div>
-          <div class="compare-cell tn">0분 — 집에서 바로 시작</div>
-          <div class="compare-cell aca">왕복 1시간 이상</div>
+        <div class="tn-feature">
+          <div class="tnf-icon">🎯</div>
+          <h4>레벨 자동 매칭</h4>
+          <p>Lexile + AR 진단으로 8레벨 중 본인 학년에 가장 잘 맞는 책이 매칭됩니다. 너무 쉽지도, 너무 어렵지도 않은 한 권.</p>
         </div>
-        <div class="compare-row">
-          <div class="compare-cell criteria">자료 신선도</div>
-          <div class="compare-cell tn">매월 신간 1권 자동 도착</div>
-          <div class="compare-cell aca">강사 의존 · 같은 자료 재사용</div>
-        </div>
-        <div class="compare-row">
-          <div class="compare-cell criteria">해지·환불</div>
-          <div class="compare-cell tn">언제든 1클릭 해지</div>
-          <div class="compare-cell aca">위약금·잔여 수업료 분쟁 흔함</div>
+        <div class="tn-feature">
+          <div class="tnf-icon">🔓</div>
+          <h4>1클릭 해지</h4>
+          <p>위약금·잔여 수업료 분쟁이 없습니다. 다음 달부터 결제 정지 — 그뿐. 부담 없이 시작하고 부담 없이 멈출 수 있습니다.</p>
         </div>
       </div>
     </div>
