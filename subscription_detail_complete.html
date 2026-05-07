@@ -342,27 +342,26 @@
   .graph-title .unit{display:none;}
   .graph-tagline{margin-bottom:32px;font-size:1rem;color:var(--dim);line-height:1.5;}
   .graph-tagline .pop{color:var(--accent);font-weight:800;}
-  .bar{display:grid;grid-template-columns:140px 1fr 110px;align-items:center;gap:16px;margin-bottom:14px;}
+  .bar{display:grid;grid-template-columns:140px 1fr 110px;align-items:center;gap:18px;margin-bottom:24px;}
   .bar:last-child{margin-bottom:0;}
-  .bar-label{font-family:'Space Grotesk','Pretendard',sans-serif;font-size:.92rem;font-weight:700;color:var(--dim);letter-spacing:.5px;text-align:right;line-height:1.2;}
+  .bar-label{font-family:'Space Grotesk','Pretendard',sans-serif;font-size:1rem;font-weight:700;color:var(--dim);letter-spacing:.5px;text-align:right;line-height:1.2;}
   .bar.is-tn .bar-label{color:#fff;}
-  .bar-track{position:relative;height:34px;background:rgba(255,255,255,.04);border-radius:8px;overflow:hidden;}
-  .bar-fill{position:absolute;inset:0 auto 0 0;width:0;background:linear-gradient(90deg,var(--accent) 0%,#3DDFA8 100%);border-radius:8px;box-shadow:0 0 24px rgba(0,255,163,.32);transition:width 1.4s cubic-bezier(.22,.8,.36,1);}
+  /* Taller track so the bars dominate the card vertically — fills the
+     left card to roughly the same height as the right curve card. */
+  .bar-track{position:relative;height:52px;background:rgba(255,255,255,.04);border-radius:10px;overflow:hidden;}
+  .bar-fill{position:absolute;inset:0 auto 0 0;width:0;background:linear-gradient(90deg,var(--accent) 0%,#3DDFA8 100%);border-radius:10px;box-shadow:0 0 24px rgba(0,255,163,.32);transition:width 1.4s cubic-bezier(.22,.8,.36,1);}
   .bar.is-aca .bar-fill{background:linear-gradient(90deg,#5A5A5A 0%,#7F7F7F 100%);box-shadow:none;}
   .compare.in-view .bar-fill{width:var(--w);}
-  .bar-value{font-family:'Space Grotesk','Pretendard',sans-serif;font-size:1.04rem;font-weight:900;color:#fff;letter-spacing:-.01em;line-height:1.2;text-align:right;}
+  .bar-value{font-family:'Space Grotesk','Pretendard',sans-serif;font-size:1.18rem;font-weight:900;color:#fff;letter-spacing:-.01em;line-height:1.2;text-align:right;}
   .bar.is-aca .bar-value{color:var(--mute);}
   .bar.is-tn .bar-value{color:var(--accent);}
   .graph-foot{margin-top:28px;padding-top:24px;border-top:1px solid var(--line);font-size:.92rem;color:var(--dim);line-height:1.6;}
   .graph-foot strong{color:var(--accent);font-weight:800;}
 
   /* ───── Review-compounding graph (red rising curve) ───── */
-  .review-graph-card{display:flex;flex-direction:column;}
   .review-graph-card .graph-tagline .pop{color:#FF4757;}
-  /* rg-wrap fills remaining vertical space so the curve always reaches
-     the bottom of the card no matter how tall the sibling card is. */
-  .rg-wrap{position:relative;margin-top:24px;flex:1;display:flex;flex-direction:column;justify-content:flex-end;}
-  .rg-graph{width:100%;flex:1;min-height:340px;display:block;overflow:visible;}
+  .rg-wrap{position:relative;margin-top:18px;}
+  .rg-graph{width:100%;height:220px;display:block;overflow:visible;}
   .rg-graph .rg-line{stroke-dasharray:680;stroke-dashoffset:680;transition:stroke-dashoffset 1.8s cubic-bezier(.22,.8,.36,1);filter:drop-shadow(0 0 10px rgba(255,71,87,.55));}
   .compare.in-view .rg-graph .rg-line{stroke-dashoffset:0;}
   .rg-graph .rg-area{opacity:0;transition:opacity 1.2s ease-out .3s;}
