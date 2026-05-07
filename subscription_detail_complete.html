@@ -355,6 +355,24 @@
   .bar.is-tn .bar-value{color:var(--accent);}
   .graph-foot{margin-top:28px;padding-top:24px;border-top:1px solid var(--line);font-size:.92rem;color:var(--dim);line-height:1.6;}
   .graph-foot strong{color:var(--accent);font-weight:800;}
+
+  /* ───── Review-compounding graph (red rising curve) ───── */
+  .review-graph-card .graph-tagline .pop{color:#FF4757;}
+  .rg-wrap{position:relative;margin-top:18px;}
+  .rg-graph{width:100%;height:220px;display:block;overflow:visible;}
+  .rg-graph .rg-line{stroke-dasharray:680;stroke-dashoffset:680;transition:stroke-dashoffset 1.8s cubic-bezier(.22,.8,.36,1);filter:drop-shadow(0 0 10px rgba(255,71,87,.55));}
+  .compare.in-view .rg-graph .rg-line{stroke-dashoffset:0;}
+  .rg-graph .rg-area{opacity:0;transition:opacity 1.2s ease-out .3s;}
+  .compare.in-view .rg-graph .rg-area{opacity:1;}
+  .rg-graph .rg-end{opacity:0;transition:opacity .5s ease-out 1.5s,transform .5s ease-out 1.5s;transform-origin:center;filter:drop-shadow(0 0 16px rgba(255,71,87,.9));animation:rgEndPulse 2s ease-in-out infinite 2.2s;}
+  .compare.in-view .rg-graph .rg-end{opacity:1;}
+  @keyframes rgEndPulse{0%,100%{filter:drop-shadow(0 0 14px rgba(255,71,87,.7));}50%{filter:drop-shadow(0 0 22px rgba(255,71,87,1));}}
+  .rg-axis{display:flex;justify-content:space-between;margin-top:18px;padding:0 4px;font-family:'Space Grotesk','Pretendard',sans-serif;font-size:.82rem;font-weight:700;color:var(--mute);letter-spacing:1.5px;}
+  @media (prefers-reduced-motion: reduce){
+    .rg-graph .rg-line{stroke-dashoffset:0;transition:none;}
+    .rg-graph .rg-area,.rg-graph .rg-end{opacity:1;transition:none;}
+    .rg-graph .rg-end{animation:none;}
+  }
   @media(max-width:560px){
     .graph-card{padding:36px 24px;}
     .bar{grid-template-columns:88px 1fr 86px;gap:10px;}
@@ -839,7 +857,7 @@
           <div class="graph-title">
             <h3>쌓이는 1년</h3>
           </div>
-          <p class="graph-tagline">매일 한 지문이, 1년이면 <span class="pop">240지문</span>으로 책상에 쌓입니다.</p>
+          <p class="graph-tagline">매일 한 지문, 1년이면 <span class="pop">240지문</span>.</p>
           <div class="bar is-tn">
             <span class="bar-label">1개월</span>
             <div class="bar-track"><span class="bar-fill" style="--w:8.3%;"></span></div>
@@ -860,31 +878,41 @@
             <div class="bar-track"><span class="bar-fill" style="--w:100%;"></span></div>
             <span class="bar-value">240지문</span>
           </div>
-          <div class="graph-foot">
-            1년이면 <strong>240지문 · 240단원</strong>의 교과 매칭 학습 분량.
-          </div>
         </div>
 
-        <!-- Card 2: 4 subjects covered -->
-        <div class="graph-card subjects-card">
+        <!-- Card 2: Compounding review — red rising curve -->
+        <div class="graph-card review-graph-card">
           <div class="graph-title">
-            <h3>한 권으로 4과목</h3>
+            <h3>복습이 쌓입니다</h3>
           </div>
-          <p class="graph-tagline">영어 한 권으로 학교 <span class="pop">4교과</span>를 동시에 정리합니다.</p>
-
-          <div class="subj-row is-tn">
-            <span class="subj-name">Terra Nova</span>
-            <div class="subj-pills">
-              <span class="subj-pill">과학</span>
-              <span class="subj-pill">수학</span>
-              <span class="subj-pill">사회</span>
-              <span class="subj-pill">국어</span>
+          <p class="graph-tagline">한 번이 끝이 아닙니다 — <span class="pop">매주 다시 돌아옵니다</span>.</p>
+          <div class="rg-wrap">
+            <svg class="rg-graph" viewBox="0 0 360 200" preserveAspectRatio="none" aria-hidden="true">
+              <defs>
+                <linearGradient id="rgRedFill" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#FF4757" stop-opacity="0.42"/>
+                  <stop offset="100%" stop-color="#FF4757" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <!-- Subtle grid lines -->
+              <g stroke="rgba(255,255,255,.05)" stroke-dasharray="2 4">
+                <line x1="0" y1="40" x2="360" y2="40"/>
+                <line x1="0" y1="90" x2="360" y2="90"/>
+                <line x1="0" y1="140" x2="360" y2="140"/>
+              </g>
+              <!-- Filled area under curve (compounding shape) -->
+              <path class="rg-area" d="M0 192 C 30 188, 60 182, 90 172 C 120 158, 150 138, 180 116 C 210 92, 240 66, 270 44 C 300 26, 330 16, 354 12 L 354 200 L 0 200 Z" fill="url(#rgRedFill)"/>
+              <!-- Curve itself -->
+              <path class="rg-line" d="M0 192 C 30 188, 60 182, 90 172 C 120 158, 150 138, 180 116 C 210 92, 240 66, 270 44 C 300 26, 330 16, 354 12" fill="none" stroke="#FF4757" stroke-width="3.5" stroke-linecap="round"/>
+              <!-- Endpoint glowing dot -->
+              <circle class="rg-end" cx="354" cy="12" r="7" fill="#FF4757"/>
+            </svg>
+            <div class="rg-axis">
+              <span>1개월</span>
+              <span>3개월</span>
+              <span>6개월</span>
+              <span>12개월</span>
             </div>
-            <span class="subj-count">4</span>
-          </div>
-
-          <div class="graph-foot">
-            학교에서 배운 단원이 <strong>그대로 영어 지문</strong>으로 와서, 한 번 풀면 네 과목이 같이 살아납니다.
           </div>
         </div>
       </div>
@@ -894,32 +922,32 @@
         <div class="tn-feature">
           <div class="tnf-icon">📚</div>
           <h4>학교 단원 직결</h4>
-          <p>학교에서 배운 단원이 그대로 영어 지문이 됩니다. 영어 풀이가 그날의 복습이 되고, 시험 범위와 학습 범위가 일치합니다.</p>
+          <p>학교 단원 = 영어 지문.</p>
         </div>
         <div class="tn-feature">
           <div class="tnf-icon">⏰</div>
           <h4>본인 페이스</h4>
-          <p>새벽이든 자정이든, 책상 앞에 앉으면 바로 시작합니다. 정해진 시간이 없고, 그룹 진도에 끌려가지 않습니다.</p>
+          <p>정해진 시간 없음.</p>
         </div>
         <div class="tn-feature">
           <div class="tnf-icon">🏠</div>
           <h4>통원 시간 0분</h4>
-          <p>집·도서관·카페 어디든 책 한 권만 펴면 즉시 학습이 시작됩니다. 이동에 쓰던 시간이 그대로 학습 시간이 됩니다.</p>
+          <p>집에서 바로 시작.</p>
         </div>
         <div class="tn-feature">
           <div class="tnf-icon">📦</div>
           <h4>매월 신간 1권</h4>
-          <p>매달 새 지문 20편이 자동 배송됩니다. 같은 자료를 두 번 풀 일 없이, 매월 새로운 단원과 만납니다.</p>
+          <p>매달 새 지문 20편, 자동 배송.</p>
         </div>
         <div class="tn-feature">
           <div class="tnf-icon">🎯</div>
           <h4>레벨 자동 매칭</h4>
-          <p>Lexile + AR 진단으로 8레벨 중 본인 학년에 가장 잘 맞는 책이 매칭됩니다. 너무 쉽지도, 너무 어렵지도 않은 한 권.</p>
+          <p>Lexile + AR로 본인 학년에 매칭.</p>
         </div>
         <div class="tn-feature">
           <div class="tnf-icon">🔓</div>
           <h4>1클릭 해지</h4>
-          <p>위약금·잔여 수업료 분쟁이 없습니다. 다음 달부터 결제 정지 — 그뿐. 부담 없이 시작하고 부담 없이 멈출 수 있습니다.</p>
+          <p>위약금 없음. 다음 달 결제 정지.</p>
         </div>
       </div>
     </div>
