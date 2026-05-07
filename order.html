@@ -132,17 +132,18 @@
   .plan-features li::before{content:'✓';color:var(--accent);flex-shrink:0;font-weight:700;}
   .plan-card.selected .plan-features li{color:rgba(255,255,255,.85);}
 
-  /* ── LEVEL BUTTONS ── */
-  .level-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:16px;}
+  /* ── LEVEL BUTTONS ── 4 columns × 2 rows for 8 levels ── */
+  .level-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:16px;}
   @media(max-width:768px){.level-grid{grid-template-columns:repeat(3,1fr);}}
   @media(max-width:480px){.level-grid{grid-template-columns:repeat(2,1fr);}}
-  /* Solid black level cards with planet PNG. */
-  .level-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;border:1px solid rgba(255,255,255,.16);border-radius:10px;padding:14px 10px;cursor:pointer;text-align:center;background:#000;transition:all .18s;font-family:'Pretendard','Noto Sans KR',sans-serif;}
-  .level-btn:hover{border-color:rgba(0,255,163,.5);transform:translateY(-2px);box-shadow:0 0 0 1px rgba(0,255,163,.28),0 12px 22px rgba(0,0,0,.5);}
-  .level-btn.selected{border-color:rgba(0,255,163,.85);background:#000;box-shadow:0 0 0 2px rgba(0,255,163,.55),0 16px 30px rgba(0,0,0,.55);}
-  .level-planet{width:46px;aspect-ratio:1;background-image:var(--planet-image);background-size:contain;background-position:center;background-repeat:no-repeat;}
-  .level-name{font-size:.95rem;font-weight:800;color:#fff;}
-  .level-target{font-size:.72rem;color:rgba(255,255,255,.62);margin-top:1px;}
+  /* Solid black level cards with planet PNG — bumped up so each card
+     reads bigger and the planet image dominates. */
+  .level-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:24px 14px 20px;cursor:pointer;text-align:center;background:#000;transition:all .18s;font-family:'Pretendard','Noto Sans KR',sans-serif;}
+  .level-btn:hover{border-color:rgba(0,255,163,.5);transform:translateY(-3px);box-shadow:0 0 0 1px rgba(0,255,163,.28),0 14px 26px rgba(0,0,0,.55);}
+  .level-btn.selected{border-color:rgba(0,255,163,.85);background:#000;box-shadow:0 0 0 2px rgba(0,255,163,.55),0 18px 34px rgba(0,0,0,.6);}
+  .level-planet{width:78px;aspect-ratio:1;background-image:var(--planet-image);background-size:contain;background-position:center;background-repeat:no-repeat;}
+  .level-name{font-size:1.1rem;font-weight:800;color:#fff;letter-spacing:.5px;}
+  .level-target{font-size:.82rem;color:rgba(255,255,255,.62);margin-top:2px;}
 
   /* ── ADDRESS MATCH ── */
   .addr-match-row{display:flex;align-items:center;gap:12px;margin-bottom:18px;padding:14px 16px;background:var(--card2);border:1px solid var(--line);border-radius:8px;}
