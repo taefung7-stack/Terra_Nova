@@ -236,18 +236,19 @@
   .levels h2{font-weight:900;font-size:clamp(2.4rem,6vw,4.6rem);color:#fff;letter-spacing:-.02em;line-height:1.1;white-space:nowrap;}
   .levels h2 .mint{color:var(--accent);}
   @media(max-width:760px){.levels h2{white-space:normal;}}
-  .planet-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;max-width:1620px;margin:0 auto;}
-  .planet-card{position:relative;display:flex;flex-direction:column;align-items:center;padding:48px 28px 38px;background:#000;border:1px solid var(--line);border-radius:22px;transition:transform .3s cubic-bezier(.22,.8,.36,1),border-color .3s;overflow:hidden;min-height:280px;}
+  .planet-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:36px;max-width:1820px;margin:0 auto;}
+  .planet-card{position:relative;display:flex;flex-direction:column;align-items:center;padding:64px 32px 48px;background:#000;border:1px solid var(--line);border-radius:24px;transition:transform .3s cubic-bezier(.22,.8,.36,1),border-color .3s;overflow:hidden;min-height:360px;}
   /* No inner glow on hover (per user). Keep card lift + mint border only. */
   .planet-card:hover{transform:translateY(-6px);border-color:rgba(0,255,163,.42);}
   .planet-card:hover .pcard-img{animation-play-state:paused;transform:scale(1.08) rotate(8deg);}
-  .pcard-img{width:128px;aspect-ratio:1;background-image:var(--p-img);background-size:contain;background-position:center;background-repeat:no-repeat;animation:planetFloat 5s ease-in-out infinite;transition:transform .4s cubic-bezier(.22,.8,.36,1);}
+  .pcard-img{width:188px;aspect-ratio:1;background-image:var(--p-img);background-size:contain;background-position:center;background-repeat:no-repeat;animation:planetFloat 5s ease-in-out infinite;transition:transform .4s cubic-bezier(.22,.8,.36,1);}
   .planet-card:nth-child(2n) .pcard-img{animation-delay:-1.6s;}
   .planet-card:nth-child(3n) .pcard-img{animation-delay:-3s;}
   @keyframes planetFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
-  .pcard-name{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:1.4rem;letter-spacing:2px;color:#fff;margin-top:30px;}
-  .pcard-grade{font-size:1.1rem;color:var(--accent);font-weight:700;margin-top:10px;letter-spacing:1.4px;}
-  @media(max-width:980px){.planet-grid{grid-template-columns:repeat(2,1fr);gap:20px;}.planet-card{min-height:240px;padding:36px 22px 30px;}.pcard-img{width:104px;}.pcard-name{font-size:1.2rem;}.pcard-grade{font-size:.96rem;}}
+  .pcard-name{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:1.6rem;letter-spacing:2px;color:#fff;margin-top:36px;}
+  .pcard-grade{font-size:1.22rem;color:var(--accent);font-weight:700;margin-top:12px;letter-spacing:1.4px;}
+  @media(max-width:1280px){.pcard-img{width:148px;}.planet-card{min-height:320px;padding:52px 24px 40px;}}
+  @media(max-width:980px){.planet-grid{grid-template-columns:repeat(2,1fr);gap:20px;}.planet-card{min-height:260px;padding:40px 22px 32px;}.pcard-img{width:120px;}.pcard-name{font-size:1.25rem;margin-top:24px;}.pcard-grade{font-size:1rem;}}
   @media(max-width:420px){.pcard-img{width:84px;}.pcard-name{font-size:1.05rem;}.pcard-grade{font-size:.86rem;}}
 
   /* ═══════════════════════════════════════════════════════
@@ -262,7 +263,9 @@
   .book h2 .mint{color:var(--accent);}
   @media(max-width:980px){.book h2{white-space:normal;font-size:clamp(2.2rem,6vw,4.2rem);}}
   /* Per-level row — wider container so the 4 pages render bigger */
-  .book-row{max-width:1720px;margin:0 auto 96px;}
+  .section.book{padding:160px 1.4vw;}
+  .section.book .inner{max-width:1880px;}
+  .book-row{max-width:1880px;margin:0 auto 112px;}
   .book-row:last-of-type{margin-bottom:32px;}
   .book-row-head{display:flex;align-items:center;gap:16px;margin-bottom:32px;padding:0 8px;flex-wrap:wrap;}
   .book-row-name{font-family:'Space Grotesk',sans-serif;font-weight:900;font-size:clamp(2rem,3.4vw,3rem);letter-spacing:.04em;color:#fff;}
@@ -271,7 +274,7 @@
   .book-row-curriculum .subj{color:#fff;font-weight:700;margin-right:6px;}
   .book-row-line{flex:1;height:1px;background:linear-gradient(90deg,var(--line) 0%,transparent 100%);min-width:40px;}
   /* 4-page row — bigger pages now that there's no tab swap */
-  .book-pages{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;perspective:1600px;}
+  .book-pages{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;perspective:1600px;}
   .book-page{position:relative;aspect-ratio:2/2.83;background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 32px 64px -22px rgba(0,0,0,.7),0 16px 36px rgba(0,0,0,.4);transform-style:preserve-3d;transition:transform .4s cubic-bezier(.22,.8,.36,1),box-shadow .4s;}
   .book-row.in-view .book-page{animation:bookPageIn .65s cubic-bezier(.22,.8,.36,1) backwards;}
   .book-row.in-view .book-page:nth-child(1){animation-delay:.05s;}
@@ -752,85 +755,7 @@
 
 <main id="m">
 
-  <!-- ═════════ ① RECORD — animated stats (was ②; hero removed per user) ═════════ -->
-  <section class="section proof">
-    <div class="inner reveal">
-      <div style="text-align:center;margin-bottom:64px;">
-        <span class="label">Record</span>
-      </div>
-      <div class="proof-grid">
-        <div class="stat">
-          <div class="stat-num"><span class="cu" data-target="96">0</span><span class="unit">권</span></div>
-          <div class="stat-label">교재</div>
-          <span class="stat-line"></span>
-        </div>
-        <div class="stat">
-          <div class="stat-num"><span class="cu" data-target="20">0</span><span class="unit">편</span></div>
-          <div class="stat-label">매월 지문</div>
-          <span class="stat-line"></span>
-        </div>
-        <div class="stat">
-          <div class="stat-num"><span class="cu" data-target="8">0</span><span class="unit">학년</span></div>
-          <div class="stat-label">교과 연계</div>
-          <span class="stat-line"></span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═════════ ③ LEVELS — 8 planets ═════════ -->
-  <section class="section levels">
-    <div class="inner reveal">
-      <div class="head">
-        <span class="label">8 Levels</span>
-        <h2>초5부터 N수생까지,<br><span class="mint">학년별 매칭</span>.</h2>
-      </div>
-      <div class="planet-grid">
-        <div class="planet-card" style="--p-img:url('assets/3d/planets-normalized/mars.png');">
-          <div class="pcard-img"></div>
-          <div class="pcard-name">MARS</div>
-          <div class="pcard-grade">초5</div>
-        </div>
-        <div class="planet-card" style="--p-img:url('assets/3d/planets-normalized/venus.png');">
-          <div class="pcard-img"></div>
-          <div class="pcard-name">VENUS</div>
-          <div class="pcard-grade">초6</div>
-        </div>
-        <div class="planet-card" style="--p-img:url('assets/3d/planets-normalized/terra.png');">
-          <div class="pcard-img"></div>
-          <div class="pcard-name">TERRA</div>
-          <div class="pcard-grade">중1</div>
-        </div>
-        <div class="planet-card" style="--p-img:url('assets/3d/planets-normalized/neptune.png');">
-          <div class="pcard-img"></div>
-          <div class="pcard-name">NEPTUNE</div>
-          <div class="pcard-grade">중2</div>
-        </div>
-        <div class="planet-card" style="--p-img:url('assets/3d/planets-normalized/uranus.png');">
-          <div class="pcard-img"></div>
-          <div class="pcard-name">URANUS</div>
-          <div class="pcard-grade">중3</div>
-        </div>
-        <div class="planet-card" style="--p-img:url('assets/3d/planets-normalized/saturn.png');">
-          <div class="pcard-img"></div>
-          <div class="pcard-name">SATURN</div>
-          <div class="pcard-grade">고1</div>
-        </div>
-        <div class="planet-card" style="--p-img:url('assets/3d/planets-normalized/jupiter.png');">
-          <div class="pcard-img"></div>
-          <div class="pcard-name">JUPITER</div>
-          <div class="pcard-grade">고2</div>
-        </div>
-        <div class="planet-card" style="--p-img:url('assets/3d/planets-normalized/sun.png');">
-          <div class="pcard-img"></div>
-          <div class="pcard-name">SUN</div>
-          <div class="pcard-grade">고3·N수생</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═════════ ③·5 BOOK PREVIEW — actual textbook pages ═════════ -->
+  <!-- ═════════ ① REAL BOOK — actual textbook pages (moved to top per user) ═════════ -->
   <section class="section book">
     <div class="inner reveal">
       <div class="head">
@@ -906,7 +831,33 @@
     </div>
   </section>
 
-  <!-- ═════════ ③·8 TERRA NOVA WAY — self-focused differentiators ═════════ -->
+  <!-- ═════════ ② RECORD — animated stats ═════════ -->
+  <section class="section proof">
+    <div class="inner reveal">
+      <div style="text-align:center;margin-bottom:64px;">
+        <span class="label">Record</span>
+      </div>
+      <div class="proof-grid">
+        <div class="stat">
+          <div class="stat-num"><span class="cu" data-target="96">0</span><span class="unit">권</span></div>
+          <div class="stat-label">교재</div>
+          <span class="stat-line"></span>
+        </div>
+        <div class="stat">
+          <div class="stat-num"><span class="cu" data-target="20">0</span><span class="unit">편</span></div>
+          <div class="stat-label">매월 지문</div>
+          <span class="stat-line"></span>
+        </div>
+        <div class="stat">
+          <div class="stat-num"><span class="cu" data-target="8">0</span><span class="unit">학년</span></div>
+          <div class="stat-label">교과 연계</div>
+          <span class="stat-line"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════ ③ TERRA NOVA WAY — self-focused differentiators ═════════ -->
   <section class="section compare">
     <div class="inner reveal">
       <div class="head">
@@ -1092,7 +1043,59 @@
     </div>
   </section>
 
-  <!-- ═════════ ④ PLANS — 3 visually-loaded cards ═════════ -->
+  <!-- ═════════ ④ LEVELS — 8 planets ═════════ -->
+  <section class="section levels">
+    <div class="inner reveal">
+      <div class="head">
+        <span class="label">8 Levels</span>
+        <h2>초5부터 N수생까지,<br><span class="mint">학년별 매칭</span>.</h2>
+      </div>
+      <div class="planet-grid">
+        <div class="planet-card" style="--p-img:url('assets/3d/planets-normalized/mars.png');">
+          <div class="pcard-img"></div>
+          <div class="pcard-name">MARS</div>
+          <div class="pcard-grade">초5</div>
+        </div>
+        <div class="planet-card" style="--p-img:url('assets/3d/planets-normalized/venus.png');">
+          <div class="pcard-img"></div>
+          <div class="pcard-name">VENUS</div>
+          <div class="pcard-grade">초6</div>
+        </div>
+        <div class="planet-card" style="--p-img:url('assets/3d/planets-normalized/terra.png');">
+          <div class="pcard-img"></div>
+          <div class="pcard-name">TERRA</div>
+          <div class="pcard-grade">중1</div>
+        </div>
+        <div class="planet-card" style="--p-img:url('assets/3d/planets-normalized/neptune.png');">
+          <div class="pcard-img"></div>
+          <div class="pcard-name">NEPTUNE</div>
+          <div class="pcard-grade">중2</div>
+        </div>
+        <div class="planet-card" style="--p-img:url('assets/3d/planets-normalized/uranus.png');">
+          <div class="pcard-img"></div>
+          <div class="pcard-name">URANUS</div>
+          <div class="pcard-grade">중3</div>
+        </div>
+        <div class="planet-card" style="--p-img:url('assets/3d/planets-normalized/saturn.png');">
+          <div class="pcard-img"></div>
+          <div class="pcard-name">SATURN</div>
+          <div class="pcard-grade">고1</div>
+        </div>
+        <div class="planet-card" style="--p-img:url('assets/3d/planets-normalized/jupiter.png');">
+          <div class="pcard-img"></div>
+          <div class="pcard-name">JUPITER</div>
+          <div class="pcard-grade">고2</div>
+        </div>
+        <div class="planet-card" style="--p-img:url('assets/3d/planets-normalized/sun.png');">
+          <div class="pcard-img"></div>
+          <div class="pcard-name">SUN</div>
+          <div class="pcard-grade">고3·N수생</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════ ⑤ PLANS — 3 visually-loaded cards ═════════ -->
   <section class="section plans" id="plans">
     <div class="inner reveal">
       <div class="head">
