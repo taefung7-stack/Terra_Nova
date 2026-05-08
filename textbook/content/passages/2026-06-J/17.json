@@ -11,13 +11,14 @@
     "difficulty": "중간",
     "cognitive_skill": "함의추론",
     "lexile": "1200L",
-    "ar_level": 8.0,
+    "ar_level": 8,
     "key_concepts": [
       "도함수",
       "변화율",
       "접선의 기울기",
       "순간 변화"
-    ]
+    ],
+    "achievement_verified": true
   },
   "page1": {
     "title": "What \"Rate of Change\" Really Tells You",
@@ -119,195 +120,511 @@
       {
         "index": 1,
         "segments": [
-          { "role": "M", "text": "When a long-distance runner finishes a tough marathon,", "note": "When 시간절" },
-          { "role": "S", "text": "you" },
-          { "role": "V", "text": "can divide" },
-          { "role": "O", "text": "her total distance by her total elapsed time" },
-          { "role": "CONJ", "text": "and" },
-          { "role": "M", "text": "politely" },
-          { "role": "V", "text": "call" },
-          { "role": "O", "text": "the result" },
-          { "role": "C", "text": "her average speed.", "note": "call O C 5형식" }
+          {
+            "role": "M",
+            "text": "When a long-distance runner finishes a tough marathon,",
+            "note": "When 시간절"
+          },
+          {
+            "role": "S",
+            "text": "you"
+          },
+          {
+            "role": "V",
+            "text": "can divide"
+          },
+          {
+            "role": "O",
+            "text": "her total distance by her total elapsed time"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "M",
+            "text": "politely"
+          },
+          {
+            "role": "V",
+            "text": "call"
+          },
+          {
+            "role": "O",
+            "text": "the result"
+          },
+          {
+            "role": "C",
+            "text": "her average speed.",
+            "note": "call O C 5형식"
+          }
         ],
         "grammar_note": "When 시간절 + 동사 두 개 병렬 + call O C"
       },
       {
         "index": 2,
         "segments": [
-          { "role": "CONJ", "text": "But" },
-          { "role": "S", "text": "that single average number" },
-          { "role": "V", "text": "hides" },
-          { "role": "O", "text": "almost everything that actually made the race itself interesting.", "note": "관계대명사 that" }
+          {
+            "role": "CONJ",
+            "text": "But"
+          },
+          {
+            "role": "S",
+            "text": "that single average number"
+          },
+          {
+            "role": "V",
+            "text": "hides"
+          },
+          {
+            "role": "O",
+            "text": "almost everything that actually made the race itself interesting.",
+            "note": "관계대명사 that"
+          }
         ],
         "grammar_note": "But 대조 + 관계대명사 that"
       },
       {
         "index": 3,
         "segments": [
-          { "role": "M", "text": "At one moment" },
-          { "role": "S", "text": "she" },
-          { "role": "V", "text": "may have been gliding", "note": "조동사 + 완료진행" },
-          { "role": "M", "text": "effortlessly downhill," },
-          { "role": "CONJ", "text": "while" },
-          { "role": "M", "text": "at another moment" },
-          { "role": "S", "text": "she" },
-          { "role": "V", "text": "was fighting" },
-          { "role": "O", "text": "a stubbornly steep uphill stretch" },
-          { "role": "M", "text": "instead." }
+          {
+            "role": "M",
+            "text": "At one moment"
+          },
+          {
+            "role": "S",
+            "text": "she"
+          },
+          {
+            "role": "V",
+            "text": "may have been gliding",
+            "note": "조동사 + 완료진행"
+          },
+          {
+            "role": "M",
+            "text": "effortlessly downhill,"
+          },
+          {
+            "role": "CONJ",
+            "text": "while"
+          },
+          {
+            "role": "M",
+            "text": "at another moment"
+          },
+          {
+            "role": "S",
+            "text": "she"
+          },
+          {
+            "role": "V",
+            "text": "was fighting"
+          },
+          {
+            "role": "O",
+            "text": "a stubbornly steep uphill stretch"
+          },
+          {
+            "role": "M",
+            "text": "instead."
+          }
         ],
         "grammar_note": "may have been -ing + while 대조"
       },
       {
         "index": 4,
         "segments": [
-          { "role": "S", "text": "Calculus" },
-          { "role": "M", "text": "quietly" },
-          { "role": "V", "text": "describes" },
-          { "role": "O", "text": "that finer story" },
-          { "role": "M", "text": "with a single, deceptively simple idea called the derivative.", "note": "분사 called 후치" }
+          {
+            "role": "S",
+            "text": "Calculus"
+          },
+          {
+            "role": "M",
+            "text": "quietly"
+          },
+          {
+            "role": "V",
+            "text": "describes"
+          },
+          {
+            "role": "O",
+            "text": "that finer story"
+          },
+          {
+            "role": "M",
+            "text": "with a single, deceptively simple idea called the derivative.",
+            "note": "분사 called 후치"
+          }
         ],
         "grammar_note": "3형식 + 분사 called 후치"
       },
       {
         "index": 5,
         "segments": [
-          { "role": "S", "text": "A derivative" },
-          { "role": "V", "text": "tells" },
-          { "role": "O", "text": "you" },
-          { "role": "M", "text": "exactly" },
-          { "role": "O", "text": "how fast a quantity is changing at one specific instant,", "note": "how 명사절" },
-          { "role": "M", "text": "not just on average over a long interval." }
+          {
+            "role": "S",
+            "text": "A derivative"
+          },
+          {
+            "role": "V",
+            "text": "tells"
+          },
+          {
+            "role": "O",
+            "text": "you"
+          },
+          {
+            "role": "M",
+            "text": "exactly"
+          },
+          {
+            "role": "O",
+            "text": "how fast a quantity is changing at one specific instant,",
+            "note": "how 명사절"
+          },
+          {
+            "role": "M",
+            "text": "not just on average over a long interval."
+          }
         ],
         "grammar_note": "tell O O + how 명사절 + not A but B 함의"
       },
       {
         "index": 6,
         "segments": [
-          { "role": "S", "text": "You" },
-          { "role": "V", "text": "can build" },
-          { "role": "O", "text": "the same idea" },
-          { "role": "M", "text": "step by careful step in your own mind." }
+          {
+            "role": "S",
+            "text": "You"
+          },
+          {
+            "role": "V",
+            "text": "can build"
+          },
+          {
+            "role": "O",
+            "text": "the same idea"
+          },
+          {
+            "role": "M",
+            "text": "step by careful step in your own mind."
+          }
         ],
         "grammar_note": "3형식 + 관용 부사구"
       },
       {
         "index": 7,
         "segments": [
-          { "role": "V", "text": "Pick", "note": "명령문" },
-          { "role": "O", "text": "two moments very close together," },
-          { "role": "V", "text": "divide" },
-          { "role": "O", "text": "the small change in distance by the small change in time," },
-          { "role": "CONJ", "text": "and" },
-          { "role": "S", "text": "you" },
-          { "role": "M", "text": "immediately" },
-          { "role": "V", "text": "get" },
-          { "role": "O", "text": "a near-instantaneous speed." }
+          {
+            "role": "V",
+            "text": "Pick",
+            "note": "명령문"
+          },
+          {
+            "role": "O",
+            "text": "two moments very close together,"
+          },
+          {
+            "role": "V",
+            "text": "divide"
+          },
+          {
+            "role": "O",
+            "text": "the small change in distance by the small change in time,"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "S",
+            "text": "you"
+          },
+          {
+            "role": "M",
+            "text": "immediately"
+          },
+          {
+            "role": "V",
+            "text": "get"
+          },
+          {
+            "role": "O",
+            "text": "a near-instantaneous speed."
+          }
         ],
         "grammar_note": "명령문 둘 + and 결과절"
       },
       {
         "index": 8,
         "segments": [
-          { "role": "M", "text": "Now" },
-          { "role": "V", "text": "squeeze", "note": "명령문" },
-          { "role": "O", "text": "those two moments" },
-          { "role": "M", "text": "closer and closer together until the gap between them almost disappears,", "note": "until 시간절" },
-          { "role": "CONJ", "text": "and" },
-          { "role": "S", "text": "the answer" },
-          { "role": "V", "text": "settles down" },
-          { "role": "M", "text": "quietly to a single clean number." }
+          {
+            "role": "M",
+            "text": "Now"
+          },
+          {
+            "role": "V",
+            "text": "squeeze",
+            "note": "명령문"
+          },
+          {
+            "role": "O",
+            "text": "those two moments"
+          },
+          {
+            "role": "M",
+            "text": "closer and closer together until the gap between them almost disappears,",
+            "note": "until 시간절"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "S",
+            "text": "the answer"
+          },
+          {
+            "role": "V",
+            "text": "settles down"
+          },
+          {
+            "role": "M",
+            "text": "quietly to a single clean number."
+          }
         ],
         "grammar_note": "명령문 + until 시간절 + and 결과절"
       },
       {
         "index": 9,
         "segments": [
-          { "role": "S", "text": "That settled number" },
-          { "role": "V", "text": "is" },
-          { "role": "M", "text": "exactly" },
-          { "role": "C", "text": "the derivative at that one specific instant." }
+          {
+            "role": "S",
+            "text": "That settled number"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "M",
+            "text": "exactly"
+          },
+          {
+            "role": "C",
+            "text": "the derivative at that one specific instant."
+          }
         ],
         "grammar_note": "2형식 + 강조 부사"
       },
       {
         "index": 10,
         "segments": [
-          { "role": "M", "text": "On a graph," },
-          { "role": "S", "text": "it" },
-          { "role": "V", "text": "is" },
-          { "role": "M", "text": "precisely" },
-          { "role": "C", "text": "the slope of the tangent line, the line that just barely kisses the curve at that point.", "note": "동격 + 관계절" }
+          {
+            "role": "M",
+            "text": "On a graph,"
+          },
+          {
+            "role": "S",
+            "text": "it"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "M",
+            "text": "precisely"
+          },
+          {
+            "role": "C",
+            "text": "the slope of the tangent line, the line that just barely kisses the curve at that point.",
+            "note": "동격 + 관계절"
+          }
         ],
         "grammar_note": "2형식 + 동격 + 관계절"
       },
       {
         "index": 11,
         "segments": [
-          { "role": "M", "text": "Once you actually have that tool in your hand,", "note": "Once 시간절" },
-          { "role": "S", "text": "the same simple trick" },
-          { "role": "V", "text": "applies" },
-          { "role": "M", "text": "to far more than running races." }
+          {
+            "role": "M",
+            "text": "Once you actually have that tool in your hand,",
+            "note": "Once 시간절"
+          },
+          {
+            "role": "S",
+            "text": "the same simple trick"
+          },
+          {
+            "role": "V",
+            "text": "applies"
+          },
+          {
+            "role": "M",
+            "text": "to far more than running races."
+          }
         ],
         "grammar_note": "Once 시간절 + 비교 표현"
       },
       {
         "index": 12,
         "segments": [
-          { "role": "S", "text": "The same definition" },
-          { "role": "V", "text": "lets" },
-          { "role": "O", "text": "economists" },
-          { "role": "C", "text": "describe how revenue changes per dollar invested", "note": "let O 동사원형 + how 명사절" },
-          { "role": "CONJ", "text": "and" },
-          { "role": "O", "text": "biologists" },
-          { "role": "C", "text": "describe how a population grows per single day.", "note": "let O 동사원형 + how 명사절" }
+          {
+            "role": "S",
+            "text": "The same definition"
+          },
+          {
+            "role": "V",
+            "text": "lets"
+          },
+          {
+            "role": "O",
+            "text": "economists"
+          },
+          {
+            "role": "C",
+            "text": "describe how revenue changes per dollar invested",
+            "note": "let O 동사원형 + how 명사절"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "O",
+            "text": "biologists"
+          },
+          {
+            "role": "C",
+            "text": "describe how a population grows per single day.",
+            "note": "let O 동사원형 + how 명사절"
+          }
         ],
         "grammar_note": "사역 let O 동사원형 두 절 병렬"
       },
       {
         "index": 13,
         "segments": [
-          { "role": "S", "text": "Each of these examples" },
-          { "role": "V", "text": "is" },
-          { "role": "M", "text": "really" },
-          { "role": "C", "text": "just a derivative under a slightly different name," },
-          { "role": "M", "text": "quietly asking the same question in a different professional language.", "note": "분사구문 asking" }
+          {
+            "role": "S",
+            "text": "Each of these examples"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "M",
+            "text": "really"
+          },
+          {
+            "role": "C",
+            "text": "just a derivative under a slightly different name,"
+          },
+          {
+            "role": "M",
+            "text": "quietly asking the same question in a different professional language.",
+            "note": "분사구문 asking"
+          }
         ],
         "grammar_note": "2형식 + 분사구문 asking"
       },
       {
         "index": 14,
         "segments": [
-          { "role": "M", "text": "In short," },
-          { "role": "S", "text": "calculus" },
-          { "role": "V", "text": "pays" },
-          { "role": "O", "text": "its keep" },
-          { "role": "M", "text": "mainly" },
-          { "role": "CONJ", "text": "because" },
-          { "role": "S", "text": "instantaneous behavior" },
-          { "role": "V", "text": "is" },
-          { "role": "C", "text": "what reality actually ____ (= happens at every moment).", "note": "what 명사절" }
+          {
+            "role": "M",
+            "text": "In short,"
+          },
+          {
+            "role": "S",
+            "text": "calculus"
+          },
+          {
+            "role": "V",
+            "text": "pays"
+          },
+          {
+            "role": "O",
+            "text": "its keep"
+          },
+          {
+            "role": "M",
+            "text": "mainly"
+          },
+          {
+            "role": "CONJ",
+            "text": "because"
+          },
+          {
+            "role": "S",
+            "text": "instantaneous behavior"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "what reality actually ____ (= happens at every moment).",
+            "note": "what 명사절"
+          }
         ],
         "grammar_note": "because 이유절 + what 명사절 보어"
       },
       {
         "index": 15,
         "segments": [
-          { "role": "S", "text": "Self-driving cars" },
-          { "role": "V", "text": "depend on" },
-          { "role": "O", "text": "this idea" },
-          { "role": "M", "text": "so heavily that the entire program would be useless without it operating quietly in the background.", "note": "so ~ that 결과 + without -ing" }
+          {
+            "role": "S",
+            "text": "Self-driving cars"
+          },
+          {
+            "role": "V",
+            "text": "depend on"
+          },
+          {
+            "role": "O",
+            "text": "this idea"
+          },
+          {
+            "role": "M",
+            "text": "so heavily that the entire program would be useless without it operating quietly in the background.",
+            "note": "so ~ that 결과 + without -ing"
+          }
         ],
         "grammar_note": "depend on + so ~ that 결과 + without -ing"
       },
       {
         "index": 16,
         "segments": [
-          { "role": "S", "text": "Each tiny camera reading" },
-          { "role": "V", "text": "is fed", "note": "수동" },
-          { "role": "M", "text": "into a pile of derivatives" },
-          { "role": "REL", "text": "that", "note": "주격 관계대명사" },
-          { "role": "V", "text": "estimate" },
-          { "role": "O", "text": "how fast a pedestrian, a truck, or a stop sign is approaching at this very instant.", "note": "how 명사절" }
+          {
+            "role": "S",
+            "text": "Each tiny camera reading"
+          },
+          {
+            "role": "V",
+            "text": "is fed",
+            "note": "수동"
+          },
+          {
+            "role": "M",
+            "text": "into a pile of derivatives"
+          },
+          {
+            "role": "REL",
+            "text": "that",
+            "note": "주격 관계대명사"
+          },
+          {
+            "role": "V",
+            "text": "estimate"
+          },
+          {
+            "role": "O",
+            "text": "how fast a pedestrian, a truck, or a stop sign is approaching at this very instant.",
+            "note": "how 명사절"
+          }
         ],
         "grammar_note": "수동 feed into + 관계대명사 that + how 명사절"
       }
@@ -320,44 +637,76 @@
         "word": "average",
         "pos": "n.",
         "meaning_ko": "평균",
-        "synonyms": ["mean"],
+        "synonyms": [
+          "mean"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "Average speed hides almost everything interesting.", "ko": "평균 속도는 흥미로운 것을 거의 다 가린다." },
-          { "en": "His grade was just above the class average.", "ko": "그의 성적은 학급 평균보다 약간 높았다." }
+          {
+            "en": "Average speed hides almost everything interesting.",
+            "ko": "평균 속도는 흥미로운 것을 거의 다 가린다."
+          },
+          {
+            "en": "His grade was just above the class average.",
+            "ko": "그의 성적은 학급 평균보다 약간 높았다."
+          }
         ]
       },
       {
         "word": "elapsed",
         "pos": "adj.",
         "meaning_ko": "경과한",
-        "synonyms": ["passed"],
+        "synonyms": [
+          "passed"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "Divide distance by total elapsed time for an average.", "ko": "평균을 위해 거리에 총 경과 시간을 나눈다." },
-          { "en": "The clock showed thirty minutes had elapsed already.", "ko": "시계는 이미 30분이 경과했음을 보여 주었다." }
+          {
+            "en": "Divide distance by total elapsed time for an average.",
+            "ko": "평균을 위해 거리에 총 경과 시간을 나눈다."
+          },
+          {
+            "en": "The clock showed thirty minutes had elapsed already.",
+            "ko": "시계는 이미 30분이 경과했음을 보여 주었다."
+          }
         ]
       },
       {
         "word": "glide",
         "pos": "v.",
         "meaning_ko": "미끄러지다",
-        "synonyms": ["slide"],
+        "synonyms": [
+          "slide"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "She may have been gliding effortlessly downhill.", "ko": "그녀는 힘들이지 않고 내리막을 미끄러지고 있었을 수 있다." },
-          { "en": "Skaters glide across the ice in long curves.", "ko": "스케이터는 긴 곡선을 그리며 얼음 위를 미끄러진다." }
+          {
+            "en": "She may have been gliding effortlessly downhill.",
+            "ko": "그녀는 힘들이지 않고 내리막을 미끄러지고 있었을 수 있다."
+          },
+          {
+            "en": "Skaters glide across the ice in long curves.",
+            "ko": "스케이터는 긴 곡선을 그리며 얼음 위를 미끄러진다."
+          }
         ]
       },
       {
         "word": "stretch",
         "pos": "n.",
         "meaning_ko": "구간, 일정 거리",
-        "synonyms": ["section"],
+        "synonyms": [
+          "section"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "She fought a stubbornly steep uphill stretch.", "ko": "그녀는 끈질긴 가파른 오르막 구간과 싸웠다." },
-          { "en": "There is a quiet stretch of road past the bridge.", "ko": "다리를 지나면 조용한 도로 구간이 있다." }
+          {
+            "en": "She fought a stubbornly steep uphill stretch.",
+            "ko": "그녀는 끈질긴 가파른 오르막 구간과 싸웠다."
+          },
+          {
+            "en": "There is a quiet stretch of road past the bridge.",
+            "ko": "다리를 지나면 조용한 도로 구간이 있다."
+          }
         ]
       },
       {
@@ -367,41 +716,71 @@
         "synonyms": [],
         "antonyms": [],
         "examples": [
-          { "en": "Calculus describes change with the idea called derivative.", "ko": "미적분은 변화를 도함수라는 발상으로 묘사한다." },
-          { "en": "The derivative of x squared is two x.", "ko": "x²의 도함수는 2x이다." }
+          {
+            "en": "Calculus describes change with the idea called derivative.",
+            "ko": "미적분은 변화를 도함수라는 발상으로 묘사한다."
+          },
+          {
+            "en": "The derivative of x squared is two x.",
+            "ko": "x²의 도함수는 2x이다."
+          }
         ]
       },
       {
         "word": "instant",
         "pos": "n.",
         "meaning_ko": "순간",
-        "synonyms": ["moment"],
+        "synonyms": [
+          "moment"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "A derivative tells how fast change happens at one instant.", "ko": "도함수는 한 순간의 변화 속도를 알려 준다." },
-          { "en": "For an instant, the room fell completely silent.", "ko": "한 순간 방이 완전히 조용해졌다." }
+          {
+            "en": "A derivative tells how fast change happens at one instant.",
+            "ko": "도함수는 한 순간의 변화 속도를 알려 준다."
+          },
+          {
+            "en": "For an instant, the room fell completely silent.",
+            "ko": "한 순간 방이 완전히 조용해졌다."
+          }
         ]
       },
       {
         "word": "interval",
         "pos": "n.",
         "meaning_ko": "구간, 간격",
-        "synonyms": ["gap"],
+        "synonyms": [
+          "gap"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "Average smooths data over a long interval.", "ko": "평균은 긴 구간의 데이터를 평탄화한다." },
-          { "en": "Trains run at fifteen-minute intervals on weekdays.", "ko": "평일에는 열차가 15분 간격으로 운행한다." }
+          {
+            "en": "Average smooths data over a long interval.",
+            "ko": "평균은 긴 구간의 데이터를 평탄화한다."
+          },
+          {
+            "en": "Trains run at fifteen-minute intervals on weekdays.",
+            "ko": "평일에는 열차가 15분 간격으로 운행한다."
+          }
         ]
       },
       {
         "word": "squeeze",
         "pos": "v.",
         "meaning_ko": "압축하다, 좁히다",
-        "synonyms": ["compress"],
+        "synonyms": [
+          "compress"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "Squeeze two moments closer until the gap disappears.", "ko": "두 시점이 거의 붙을 때까지 좁히라." },
-          { "en": "He squeezed the lemon over the salad.", "ko": "그는 샐러드 위로 레몬을 짰다." }
+          {
+            "en": "Squeeze two moments closer until the gap disappears.",
+            "ko": "두 시점이 거의 붙을 때까지 좁히라."
+          },
+          {
+            "en": "He squeezed the lemon over the salad.",
+            "ko": "그는 샐러드 위로 레몬을 짰다."
+          }
         ]
       },
       {
@@ -411,41 +790,71 @@
         "synonyms": [],
         "antonyms": [],
         "examples": [
-          { "en": "It is the slope of the tangent line at that point.", "ko": "그것은 그 지점 접선의 기울기다." },
-          { "en": "He went off on a tangent during the meeting.", "ko": "그는 회의 중에 본론을 벗어난 이야기를 했다." }
+          {
+            "en": "It is the slope of the tangent line at that point.",
+            "ko": "그것은 그 지점 접선의 기울기다."
+          },
+          {
+            "en": "He went off on a tangent during the meeting.",
+            "ko": "그는 회의 중에 본론을 벗어난 이야기를 했다."
+          }
         ]
       },
       {
         "word": "trick",
         "pos": "n.",
         "meaning_ko": "기교, 묘책",
-        "synonyms": ["technique"],
+        "synonyms": [
+          "technique"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "The same simple trick applies far beyond running races.", "ko": "같은 단순한 기교가 마라톤 너머로 적용된다." },
-          { "en": "There is a small trick to opening this old lock.", "ko": "이 오래된 자물쇠를 여는 데 작은 묘책이 있다." }
+          {
+            "en": "The same simple trick applies far beyond running races.",
+            "ko": "같은 단순한 기교가 마라톤 너머로 적용된다."
+          },
+          {
+            "en": "There is a small trick to opening this old lock.",
+            "ko": "이 오래된 자물쇠를 여는 데 작은 묘책이 있다."
+          }
         ]
       },
       {
         "word": "revenue",
         "pos": "n.",
         "meaning_ko": "매출, 수익",
-        "synonyms": ["income"],
+        "synonyms": [
+          "income"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "Economists describe how revenue changes per dollar invested.", "ko": "경제학자는 1달러 투자당 매출이 어떻게 변하는지를 묘사한다." },
-          { "en": "The new policy boosted yearly revenue by ten percent.", "ko": "새 정책이 연간 수익을 10퍼센트 끌어올렸다." }
+          {
+            "en": "Economists describe how revenue changes per dollar invested.",
+            "ko": "경제학자는 1달러 투자당 매출이 어떻게 변하는지를 묘사한다."
+          },
+          {
+            "en": "The new policy boosted yearly revenue by ten percent.",
+            "ko": "새 정책이 연간 수익을 10퍼센트 끌어올렸다."
+          }
         ]
       },
       {
         "word": "instantaneous",
         "pos": "adj.",
         "meaning_ko": "순간의",
-        "synonyms": ["immediate"],
+        "synonyms": [
+          "immediate"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "Calculus pays its keep because instantaneous behavior matters.", "ko": "순간적 행동이 중요하기에 미적분은 값을 한다." },
-          { "en": "Modern apps deliver almost instantaneous translations.", "ko": "현대 앱은 거의 즉각적인 번역을 제공한다." }
+          {
+            "en": "Calculus pays its keep because instantaneous behavior matters.",
+            "ko": "순간적 행동이 중요하기에 미적분은 값을 한다."
+          },
+          {
+            "en": "Modern apps deliver almost instantaneous translations.",
+            "ko": "현대 앱은 거의 즉각적인 번역을 제공한다."
+          }
         ]
       }
     ]
@@ -465,8 +874,14 @@
           "본문은 스톱워치 발명사를 다루지 않는다."
         ],
         "key_terms": [
-          { "en": "single instant", "ko": "한 순간" },
-          { "en": "rate of change", "ko": "변화율" }
+          {
+            "en": "single instant",
+            "ko": "한 순간"
+          },
+          {
+            "en": "rate of change",
+            "ko": "변화율"
+          }
         ]
       },
       {
@@ -482,8 +897,14 @@
           "본문은 다양한 분야의 예시 차이를 강조한다."
         ],
         "key_terms": [
-          { "en": "every instant", "ko": "매 순간" },
-          { "en": "smoothed over", "ko": "평탄화된" }
+          {
+            "en": "every instant",
+            "ko": "매 순간"
+          },
+          {
+            "en": "smoothed over",
+            "ko": "평탄화된"
+          }
         ]
       },
       {
@@ -499,8 +920,14 @@
           "본문은 그래픽 앱 비교를 다루지 않는다."
         ],
         "key_terms": [
-          { "en": "single instant", "ko": "한 순간" },
-          { "en": "many fields", "ko": "여러 분야" }
+          {
+            "en": "single instant",
+            "ko": "한 순간"
+          },
+          {
+            "en": "many fields",
+            "ko": "여러 분야"
+          }
         ]
       },
       {
@@ -514,8 +941,14 @@
           "(B) instant — 본문 sentence 5·9에서 강조되는 본문 어휘."
         ],
         "key_terms": [
-          { "en": "derivative", "ko": "도함수" },
-          { "en": "instant", "ko": "순간" }
+          {
+            "en": "derivative",
+            "ko": "도함수"
+          },
+          {
+            "en": "instant",
+            "ko": "순간"
+          }
         ]
       }
     ]

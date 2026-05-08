@@ -11,13 +11,14 @@
     "difficulty": "중간",
     "cognitive_skill": "어휘추론",
     "lexile": "1200L",
-    "ar_level": 8.0,
+    "ar_level": 8,
     "key_concepts": [
       "효소",
       "활성화 에너지",
       "기질",
       "촉매"
-    ]
+    ],
+    "achievement_verified": true
   },
   "page1": {
     "title": "How Enzymes Bend the Rules of Time",
@@ -84,7 +85,7 @@
     ],
     "textbook_tieback": {
       "unit_label": "생명과학I II-2 · 물질대사와 에너지",
-      "body_ko": "고2 생명과학I 대사 단원에서 효소는 생체 촉매다. 모든 화학 반응은 일정한 활성화 에너지(Eₐ)를 넘어야 진행되는데, 효소는 자신은 변하지 않으면서 반응 경로의 산을 낮춰 같은 양의 반응물이 같은 시간 안에 훨씬 더 많이 반응하도록 한다. 효소의 활성 부위는 입체적으로 기질과 들어맞아 특정 반응만 촉진하고(기질 특이성), 온도·pH·기질 농도에 따라 활성이 달라진다. 이 덕분에 한 세포 안에서 수천 가지 반응이 서로 간섭 없이 동시 진행될 수 있다.",
+      "body_ko": "고2 생명과학I 대사 단원에서 효소는 생체 촉매다. 모든 화학 반응은 일정한 활성화 에너지(Eₐ)를 넘어야 진행되는데, 효소는 자신은 변하지 않으면서 반응 경로의 산을 낮춰 같은 양의 반응물이 같은 시간 안에 훨씬 더 많이 반응하도록 한다. 효소의 활성 부위는 입체적으로 기질과 들어맞아 특정 반응만 촉진한다(기질 특이성). 이 덕분에 한 세포 안에서 수천 가지 반응이 서로 간섭 없이 동시 진행될 수 있다.",
       "tags": [
         "효소",
         "활성화 에너지",
@@ -119,176 +120,437 @@
       {
         "index": 1,
         "segments": [
-          { "role": "CONJ", "text": "If you left a piece of bread alone on a kitchen counter at room temperature,", "note": "가정법 If 절" },
-          { "role": "S", "text": "the starch molecules inside it" },
-          { "role": "V", "text": "would eventually break down" },
-          { "role": "M", "text": "into smaller sugars." }
+          {
+            "role": "CONJ",
+            "text": "If you left a piece of bread alone on a kitchen counter at room temperature,",
+            "note": "가정법 If 절"
+          },
+          {
+            "role": "S",
+            "text": "the starch molecules inside it"
+          },
+          {
+            "role": "V",
+            "text": "would eventually break down"
+          },
+          {
+            "role": "M",
+            "text": "into smaller sugars."
+          }
         ],
         "grammar_note": "가정법 과거 If + would V"
       },
       {
         "index": 2,
         "segments": [
-          { "role": "S", "text": "The trouble" },
-          { "role": "V", "text": "is" },
-          { "role": "C", "text": "that, without help, this reaction would still be running long after you and your descendants were gone.", "note": "that 명사절 + 가정법" }
+          {
+            "role": "S",
+            "text": "The trouble"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "that, without help, this reaction would still be running long after you and your descendants were gone.",
+            "note": "that 명사절 + 가정법"
+          }
         ],
         "grammar_note": "that 명사절 보어 + 가정법 would"
       },
       {
         "index": 3,
         "segments": [
-          { "role": "M", "text": "Inside your saliva, however," },
-          { "role": "S", "text": "an enzyme called amylase, produced quietly by the salivary glands,", "note": "분사 called + 분사 produced 동격" },
-          { "role": "V", "text": "carries out" },
-          { "role": "O", "text": "the very same chemistry" },
-          { "role": "M", "text": "in less than one minute." }
+          {
+            "role": "M",
+            "text": "Inside your saliva, however,"
+          },
+          {
+            "role": "S",
+            "text": "an enzyme called amylase, produced quietly by the salivary glands,",
+            "note": "분사 called + 분사 produced 동격"
+          },
+          {
+            "role": "V",
+            "text": "carries out"
+          },
+          {
+            "role": "O",
+            "text": "the very same chemistry"
+          },
+          {
+            "role": "M",
+            "text": "in less than one minute."
+          }
         ],
         "grammar_note": "분사 두 개(called, produced) 후치 동격"
       },
       {
         "index": 4,
         "segments": [
-          { "role": "S", "text": "The enzyme" },
-          { "role": "V", "text": "does not change" },
-          { "role": "O", "text": "which products appear,", "note": "which 명사절" },
-          { "role": "CONJ", "text": "and" },
-          { "role": "S", "text": "it" },
-          { "role": "V", "text": "does not violate" },
-          { "role": "O", "text": "any physical law on the way." }
+          {
+            "role": "S",
+            "text": "The enzyme"
+          },
+          {
+            "role": "V",
+            "text": "does not change"
+          },
+          {
+            "role": "O",
+            "text": "which products appear,",
+            "note": "which 명사절"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "S",
+            "text": "it"
+          },
+          {
+            "role": "V",
+            "text": "does not violate"
+          },
+          {
+            "role": "O",
+            "text": "any physical law on the way."
+          }
         ],
         "grammar_note": "두 부정문 병렬 + which 명사절"
       },
       {
         "index": 5,
         "segments": [
-          { "role": "S", "text": "It" },
-          { "role": "M", "text": "simply" },
-          { "role": "V", "text": "lowers" },
-          { "role": "O", "text": "the activation energy" },
-          { "role": "M", "text": "needed for the reaction to begin and to keep going in the first place.", "note": "분사 needed + to부정사 두 개 병렬" }
+          {
+            "role": "S",
+            "text": "It"
+          },
+          {
+            "role": "M",
+            "text": "simply"
+          },
+          {
+            "role": "V",
+            "text": "lowers"
+          },
+          {
+            "role": "O",
+            "text": "the activation energy"
+          },
+          {
+            "role": "M",
+            "text": "needed for the reaction to begin and to keep going in the first place.",
+            "note": "분사 needed + to부정사 두 개 병렬"
+          }
         ],
         "grammar_note": "분사 needed 후치 + for + to부정사 의미상 주어"
       },
       {
         "index": 6,
         "segments": [
-          { "role": "S", "text": "Every chemical reaction" },
-          { "role": "V", "text": "has to climb over" },
-          { "role": "O", "text": "an invisible energy hill" },
-          { "role": "M", "text": "before it can roll down toward the products.", "note": "before 시간 부사절" }
+          {
+            "role": "S",
+            "text": "Every chemical reaction"
+          },
+          {
+            "role": "V",
+            "text": "has to climb over"
+          },
+          {
+            "role": "O",
+            "text": "an invisible energy hill"
+          },
+          {
+            "role": "M",
+            "text": "before it can roll down toward the products.",
+            "note": "before 시간 부사절"
+          }
         ],
         "grammar_note": "have to V + before 시간절"
       },
       {
         "index": 7,
         "segments": [
-          { "role": "S", "text": "The hill" },
-          { "role": "V", "text": "represents" },
-          { "role": "O", "text": "the moment when old bonds must twist and stretch before new bonds can settle in.", "note": "관계부사 when + 두 절 병렬" }
+          {
+            "role": "S",
+            "text": "The hill"
+          },
+          {
+            "role": "V",
+            "text": "represents"
+          },
+          {
+            "role": "O",
+            "text": "the moment when old bonds must twist and stretch before new bonds can settle in.",
+            "note": "관계부사 when + 두 절 병렬"
+          }
         ],
         "grammar_note": "관계부사 when + 동사 두 개 병렬"
       },
       {
         "index": 8,
         "segments": [
-          { "role": "M", "text": "Without help," },
-          { "role": "S", "text": "only a few molecules at room temperature" },
-          { "role": "V", "text": "have" },
-          { "role": "O", "text": "enough kinetic energy" },
-          { "role": "M", "text": "to make it over that hill.", "note": "to부정사 형용사적" }
+          {
+            "role": "M",
+            "text": "Without help,"
+          },
+          {
+            "role": "S",
+            "text": "only a few molecules at room temperature"
+          },
+          {
+            "role": "V",
+            "text": "have"
+          },
+          {
+            "role": "O",
+            "text": "enough kinetic energy"
+          },
+          {
+            "role": "M",
+            "text": "to make it over that hill.",
+            "note": "to부정사 형용사적"
+          }
         ],
         "grammar_note": "without 가정법 + to부정사 형용사적"
       },
       {
         "index": 9,
         "segments": [
-          { "role": "M", "text": "By cradling the reacting molecules in a precisely shaped pocket,", "note": "by -ing 수단" },
-          { "role": "S", "text": "an enzyme" },
-          { "role": "V", "text": "reshapes" },
-          { "role": "O", "text": "the path" },
-          { "role": "M", "text": "so that the same hill becomes a much gentler slope.", "note": "so that 결과 부사절" }
+          {
+            "role": "M",
+            "text": "By cradling the reacting molecules in a precisely shaped pocket,",
+            "note": "by -ing 수단"
+          },
+          {
+            "role": "S",
+            "text": "an enzyme"
+          },
+          {
+            "role": "V",
+            "text": "reshapes"
+          },
+          {
+            "role": "O",
+            "text": "the path"
+          },
+          {
+            "role": "M",
+            "text": "so that the same hill becomes a much gentler slope.",
+            "note": "so that 결과 부사절"
+          }
         ],
         "grammar_note": "by -ing 수단 + so that 결과절"
       },
       {
         "index": 10,
         "segments": [
-          { "role": "S", "text": "The molecules" },
-          { "role": "M", "text": "now" },
-          { "role": "V", "text": "fit together" },
-          { "role": "M", "text": "at a kinder angle," },
-          { "role": "CONJ", "text": "and" },
-          { "role": "S", "text": "the activation energy" },
-          { "role": "V", "text": "drops" },
-          { "role": "M", "text": "far below what raw chemistry alone would demand.", "note": "비교 + what 명사절" }
+          {
+            "role": "S",
+            "text": "The molecules"
+          },
+          {
+            "role": "M",
+            "text": "now"
+          },
+          {
+            "role": "V",
+            "text": "fit together"
+          },
+          {
+            "role": "M",
+            "text": "at a kinder angle,"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "S",
+            "text": "the activation energy"
+          },
+          {
+            "role": "V",
+            "text": "drops"
+          },
+          {
+            "role": "M",
+            "text": "far below what raw chemistry alone would demand.",
+            "note": "비교 + what 명사절"
+          }
         ],
         "grammar_note": "두 절 병렬 + what 명사절 비교"
       },
       {
         "index": 11,
         "segments": [
-          { "role": "S", "text": "This" },
-          { "role": "V", "text": "is" },
-          { "role": "C", "text": "what biologists mean when they describe enzymes as catalysts of life.", "note": "what 명사절 + describe O as C" }
+          {
+            "role": "S",
+            "text": "This"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "what biologists mean when they describe enzymes as catalysts of life.",
+            "note": "what 명사절 + describe O as C"
+          }
         ],
         "grammar_note": "what 명사절 보어 + describe O as C 5형식"
       },
       {
         "index": 12,
         "segments": [
-          { "role": "S", "text": "Each enzyme" },
-          { "role": "V", "text": "is matched", "note": "수동" },
-          { "role": "M", "text": "to one or two specific reactions," },
-          { "role": "M", "text": "with a pocket so finely tuned that the wrong substrate simply slides off without reacting.", "note": "so ~ that 결과절" }
+          {
+            "role": "S",
+            "text": "Each enzyme"
+          },
+          {
+            "role": "V",
+            "text": "is matched",
+            "note": "수동"
+          },
+          {
+            "role": "M",
+            "text": "to one or two specific reactions,"
+          },
+          {
+            "role": "M",
+            "text": "with a pocket so finely tuned that the wrong substrate simply slides off without reacting.",
+            "note": "so ~ that 결과절"
+          }
         ],
         "grammar_note": "수동 be matched + so ~ that 결과절"
       },
       {
         "index": 13,
         "segments": [
-          { "role": "S", "text": "That precision" },
-          { "role": "V", "text": "lets" },
-          { "role": "O", "text": "a single living cell" },
-          { "role": "C", "text": "run thousands of different reactions side by side,", "note": "let O 동사원형" },
-          { "role": "M", "text": "none of them interfering with the others.", "note": "분사구문 (with 절 변형)" }
+          {
+            "role": "S",
+            "text": "That precision"
+          },
+          {
+            "role": "V",
+            "text": "lets"
+          },
+          {
+            "role": "O",
+            "text": "a single living cell"
+          },
+          {
+            "role": "C",
+            "text": "run thousands of different reactions side by side,",
+            "note": "let O 동사원형"
+          },
+          {
+            "role": "M",
+            "text": "none of them interfering with the others.",
+            "note": "분사구문 (with 절 변형)"
+          }
         ],
         "grammar_note": "let O 원형 + 분사구문 (with 절)"
       },
       {
         "index": 14,
         "segments": [
-          { "role": "M", "text": "Stripped of enzymes,", "note": "분사구문" },
-          { "role": "S", "text": "your body" },
-          { "role": "V", "text": "would still obey", "note": "가정법 would" },
-          { "role": "O", "text": "the same chemistry," },
-          { "role": "CONJ", "text": "but" },
-          { "role": "S", "text": "every necessary step" },
-          { "role": "V", "text": "would ____ (= take far too long)." }
+          {
+            "role": "M",
+            "text": "Stripped of enzymes,",
+            "note": "분사구문"
+          },
+          {
+            "role": "S",
+            "text": "your body"
+          },
+          {
+            "role": "V",
+            "text": "would still obey",
+            "note": "가정법 would"
+          },
+          {
+            "role": "O",
+            "text": "the same chemistry,"
+          },
+          {
+            "role": "CONJ",
+            "text": "but"
+          },
+          {
+            "role": "S",
+            "text": "every necessary step"
+          },
+          {
+            "role": "V",
+            "text": "would ____ (= take far too long)."
+          }
         ],
         "grammar_note": "Stripped 분사구문 + 가정법 두 절 병렬"
       },
       {
         "index": 15,
         "segments": [
-          { "role": "S", "text": "Modern industries" },
-          { "role": "V", "text": "have learned to hire", "note": "현재완료" },
-          { "role": "O", "text": "enzymes" },
-          { "role": "M", "text": "for jobs that once needed dangerous heat or strong acid in a busy factory.", "note": "관계대명사 that" }
+          {
+            "role": "S",
+            "text": "Modern industries"
+          },
+          {
+            "role": "V",
+            "text": "have learned to hire",
+            "note": "현재완료"
+          },
+          {
+            "role": "O",
+            "text": "enzymes"
+          },
+          {
+            "role": "M",
+            "text": "for jobs that once needed dangerous heat or strong acid in a busy factory.",
+            "note": "관계대명사 that"
+          }
         ],
         "grammar_note": "현재완료 + 관계대명사 that"
       },
       {
         "index": 16,
         "segments": [
-          { "role": "S", "text": "Bread" },
-          { "role": "V", "text": "rises faster," },
-          { "role": "S", "text": "jeans" },
-          { "role": "V", "text": "look softer," },
-          { "role": "CONJ", "text": "and" },
-          { "role": "S", "text": "cheaper antibiotics" },
-          { "role": "V", "text": "flow" },
-          { "role": "M", "text": "through pipes because a tiny pocket has agreed to do the work for us.", "note": "because 이유절" }
+          {
+            "role": "S",
+            "text": "Bread"
+          },
+          {
+            "role": "V",
+            "text": "rises faster,"
+          },
+          {
+            "role": "S",
+            "text": "jeans"
+          },
+          {
+            "role": "V",
+            "text": "look softer,"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "S",
+            "text": "cheaper antibiotics"
+          },
+          {
+            "role": "V",
+            "text": "flow"
+          },
+          {
+            "role": "M",
+            "text": "through pipes because a tiny pocket has agreed to do the work for us.",
+            "note": "because 이유절"
+          }
         ],
         "grammar_note": "병렬 세 절 + because 이유절"
       }
@@ -304,30 +566,54 @@
         "synonyms": [],
         "antonyms": [],
         "examples": [
-          { "en": "Bread is mostly starch and water.", "ko": "빵은 대부분 녹말과 물이다." },
-          { "en": "Starch breaks down into sugars during digestion.", "ko": "녹말은 소화 중에 당으로 분해된다." }
+          {
+            "en": "Bread is mostly starch and water.",
+            "ko": "빵은 대부분 녹말과 물이다."
+          },
+          {
+            "en": "Starch breaks down into sugars during digestion.",
+            "ko": "녹말은 소화 중에 당으로 분해된다."
+          }
         ]
       },
       {
         "word": "enzyme",
         "pos": "n.",
         "meaning_ko": "효소",
-        "synonyms": ["biocatalyst"],
+        "synonyms": [
+          "biocatalyst"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "The enzyme amylase digests starch in saliva.", "ko": "효소 아밀레이스는 침 속에서 녹말을 분해한다." },
-          { "en": "Each enzyme is matched to a specific reaction.", "ko": "각 효소는 특정 반응에 맞춰져 있다." }
+          {
+            "en": "The enzyme amylase digests starch in saliva.",
+            "ko": "효소 아밀레이스는 침 속에서 녹말을 분해한다."
+          },
+          {
+            "en": "Each enzyme is matched to a specific reaction.",
+            "ko": "각 효소는 특정 반응에 맞춰져 있다."
+          }
         ]
       },
       {
         "word": "violate",
         "pos": "v.",
         "meaning_ko": "위반하다, 어기다",
-        "synonyms": ["break"],
-        "antonyms": ["obey"],
+        "synonyms": [
+          "break"
+        ],
+        "antonyms": [
+          "obey"
+        ],
         "examples": [
-          { "en": "Enzymes do not violate any physical law.", "ko": "효소는 어떤 물리 법칙도 위반하지 않는다." },
-          { "en": "It is wrong to violate someone's privacy in this way.", "ko": "이렇게 누군가의 사생활을 침해하는 것은 잘못이다." }
+          {
+            "en": "Enzymes do not violate any physical law.",
+            "ko": "효소는 어떤 물리 법칙도 위반하지 않는다."
+          },
+          {
+            "en": "It is wrong to violate someone's privacy in this way.",
+            "ko": "이렇게 누군가의 사생활을 침해하는 것은 잘못이다."
+          }
         ]
       },
       {
@@ -335,10 +621,18 @@
         "pos": "n.",
         "meaning_ko": "활성화",
         "synonyms": [],
-        "antonyms": ["deactivation"],
+        "antonyms": [
+          "deactivation"
+        ],
         "examples": [
-          { "en": "Enzymes lower the activation energy of a reaction.", "ko": "효소는 반응의 활성화 에너지를 낮춘다." },
-          { "en": "Activation of the alarm sent everyone outside.", "ko": "알람이 활성화되자 모두 밖으로 나갔다." }
+          {
+            "en": "Enzymes lower the activation energy of a reaction.",
+            "ko": "효소는 반응의 활성화 에너지를 낮춘다."
+          },
+          {
+            "en": "Activation of the alarm sent everyone outside.",
+            "ko": "알람이 활성화되자 모두 밖으로 나갔다."
+          }
         ]
       },
       {
@@ -346,43 +640,77 @@
         "pos": "adj.",
         "meaning_ko": "운동의, 동적인",
         "synonyms": [],
-        "antonyms": ["potential"],
+        "antonyms": [
+          "potential"
+        ],
         "examples": [
-          { "en": "Few molecules have enough kinetic energy at room temperature.", "ko": "실온에서는 충분한 운동 에너지를 가진 분자가 적다." },
-          { "en": "Kinetic art uses motion as part of the design.", "ko": "키네틱 아트는 움직임을 디자인의 일부로 쓴다." }
+          {
+            "en": "Few molecules have enough kinetic energy at room temperature.",
+            "ko": "실온에서는 충분한 운동 에너지를 가진 분자가 적다."
+          },
+          {
+            "en": "Kinetic art uses motion as part of the design.",
+            "ko": "키네틱 아트는 움직임을 디자인의 일부로 쓴다."
+          }
         ]
       },
       {
         "word": "cradle",
         "pos": "v.",
         "meaning_ko": "감싸 안다",
-        "synonyms": ["hold"],
-        "antonyms": ["release"],
+        "synonyms": [
+          "hold"
+        ],
+        "antonyms": [
+          "release"
+        ],
         "examples": [
-          { "en": "An enzyme cradles reacting molecules in its pocket.", "ko": "효소는 반응 분자를 자신의 주머니로 감싸 안는다." },
-          { "en": "She cradled the kitten gently in her arms.", "ko": "그녀는 새끼 고양이를 부드럽게 두 팔로 감쌌다." }
+          {
+            "en": "An enzyme cradles reacting molecules in its pocket.",
+            "ko": "효소는 반응 분자를 자신의 주머니로 감싸 안는다."
+          },
+          {
+            "en": "She cradled the kitten gently in her arms.",
+            "ko": "그녀는 새끼 고양이를 부드럽게 두 팔로 감쌌다."
+          }
         ]
       },
       {
         "word": "pocket",
         "pos": "n.",
         "meaning_ko": "(효소의) 활성 부위, 주머니",
-        "synonyms": ["cavity"],
+        "synonyms": [
+          "cavity"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "Each enzyme has a precisely shaped pocket.", "ko": "각 효소에는 정밀한 모양의 주머니가 있다." },
-          { "en": "He pulled a coin out of his coat pocket.", "ko": "그는 외투 주머니에서 동전 하나를 꺼냈다." }
+          {
+            "en": "Each enzyme has a precisely shaped pocket.",
+            "ko": "각 효소에는 정밀한 모양의 주머니가 있다."
+          },
+          {
+            "en": "He pulled a coin out of his coat pocket.",
+            "ko": "그는 외투 주머니에서 동전 하나를 꺼냈다."
+          }
         ]
       },
       {
         "word": "slope",
         "pos": "n.",
         "meaning_ko": "비탈, 경사",
-        "synonyms": ["incline"],
+        "synonyms": [
+          "incline"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "The energy hill becomes a much gentler slope.", "ko": "에너지 언덕은 훨씬 완만한 비탈이 된다." },
-          { "en": "We hiked up a steep slope behind the temple.", "ko": "우리는 절 뒤편 가파른 비탈을 올랐다." }
+          {
+            "en": "The energy hill becomes a much gentler slope.",
+            "ko": "에너지 언덕은 훨씬 완만한 비탈이 된다."
+          },
+          {
+            "en": "We hiked up a steep slope behind the temple.",
+            "ko": "우리는 절 뒤편 가파른 비탈을 올랐다."
+          }
         ]
       },
       {
@@ -392,8 +720,14 @@
         "synonyms": [],
         "antonyms": [],
         "examples": [
-          { "en": "Enzymes are described as catalysts of life.", "ko": "효소는 생명의 촉매로 묘사된다." },
-          { "en": "Her speech became the catalyst for real change.", "ko": "그녀의 연설은 진정한 변화의 촉매가 되었다." }
+          {
+            "en": "Enzymes are described as catalysts of life.",
+            "ko": "효소는 생명의 촉매로 묘사된다."
+          },
+          {
+            "en": "Her speech became the catalyst for real change.",
+            "ko": "그녀의 연설은 진정한 변화의 촉매가 되었다."
+          }
         ]
       },
       {
@@ -403,30 +737,52 @@
         "synonyms": [],
         "antonyms": [],
         "examples": [
-          { "en": "The wrong substrate slides off without reacting.", "ko": "잘못된 기질은 반응하지 않은 채 미끄러진다." },
-          { "en": "Each enzyme accepts only its specific substrate.", "ko": "각 효소는 자신만의 특정 기질만 받는다." }
+          {
+            "en": "The wrong substrate slides off without reacting.",
+            "ko": "잘못된 기질은 반응하지 않은 채 미끄러진다."
+          },
+          {
+            "en": "Each enzyme accepts only its specific substrate.",
+            "ko": "각 효소는 자신만의 특정 기질만 받는다."
+          }
         ]
       },
       {
         "word": "precision",
         "pos": "n.",
         "meaning_ko": "정밀함",
-        "synonyms": ["accuracy"],
+        "synonyms": [
+          "accuracy"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "That precision lets a cell run thousands of reactions.", "ko": "그 정밀함이 세포에 수천 가지 반응을 가능케 한다." },
-          { "en": "The watchmaker worked with stunning precision.", "ko": "그 시계공은 놀라운 정밀함으로 작업했다." }
+          {
+            "en": "That precision lets a cell run thousands of reactions.",
+            "ko": "그 정밀함이 세포에 수천 가지 반응을 가능케 한다."
+          },
+          {
+            "en": "The watchmaker worked with stunning precision.",
+            "ko": "그 시계공은 놀라운 정밀함으로 작업했다."
+          }
         ]
       },
       {
         "word": "interfere",
         "pos": "v.",
         "meaning_ko": "간섭하다, 방해하다",
-        "synonyms": ["disturb"],
+        "synonyms": [
+          "disturb"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "Reactions run side by side without interfering with each other.", "ko": "반응들은 서로 간섭 없이 나란히 진행된다." },
-          { "en": "Loud music interfered with my concentration.", "ko": "시끄러운 음악이 내 집중을 방해했다." }
+          {
+            "en": "Reactions run side by side without interfering with each other.",
+            "ko": "반응들은 서로 간섭 없이 나란히 진행된다."
+          },
+          {
+            "en": "Loud music interfered with my concentration.",
+            "ko": "시끄러운 음악이 내 집중을 방해했다."
+          }
         ]
       }
     ]
@@ -446,8 +802,14 @@
           "효소는 부산물이 아니다."
         ],
         "key_terms": [
-          { "en": "lower activation energy", "ko": "활성화 에너지를 낮추다" },
-          { "en": "not consumed", "ko": "소비되지 않는" }
+          {
+            "en": "lower activation energy",
+            "ko": "활성화 에너지를 낮추다"
+          },
+          {
+            "en": "not consumed",
+            "ko": "소비되지 않는"
+          }
         ]
       },
       {
@@ -463,8 +825,14 @@
           "본문은 끓는점 이상 온도를 다루지 않는다."
         ],
         "key_terms": [
-          { "en": "timescale", "ko": "시간 척도" },
-          { "en": "without help", "ko": "도움 없이" }
+          {
+            "en": "timescale",
+            "ko": "시간 척도"
+          },
+          {
+            "en": "without help",
+            "ko": "도움 없이"
+          }
         ]
       },
       {
@@ -480,8 +848,14 @@
           "본문은 산업용 금속 촉매를 다루지 않는다."
         ],
         "key_terms": [
-          { "en": "livable timescale", "ko": "살 수 있는 시간 척도" },
-          { "en": "lower activation energy", "ko": "활성화 에너지 낮춤" }
+          {
+            "en": "livable timescale",
+            "ko": "살 수 있는 시간 척도"
+          },
+          {
+            "en": "lower activation energy",
+            "ko": "활성화 에너지 낮춤"
+          }
         ]
       },
       {
@@ -495,8 +869,14 @@
           "(B) activation — 본문 \"activation energy\"가 핵심 개념으로 두 번 등장."
         ],
         "key_terms": [
-          { "en": "pocket", "ko": "활성 부위(주머니)" },
-          { "en": "activation energy", "ko": "활성화 에너지" }
+          {
+            "en": "pocket",
+            "ko": "활성 부위(주머니)"
+          },
+          {
+            "en": "activation energy",
+            "ko": "활성화 에너지"
+          }
         ]
       }
     ]
