@@ -169,10 +169,20 @@ async function handlePayment(data: { paymentId: string; txId: string }) {
     return new Response(JSON.stringify({ status: 'not_paid_yet', payment_status: payment.status }), { status: 200 });
   }
 
-  // 2. customData에서 메타정보 복원
+  // 2. customData에서 메타정보 복원 (구·신 네이밍 모두 호환)
   const customData = typeof payment.customData === 'string'
     ? JSON.parse(payment.customData) : (payment.customData || {});
-  const { userId, items = [], shipping = {}, planCode, billingCycle } = customData;
+  const {
+    userId, items = [], shipping = {},
+    // 구버전 (planCode/billingCycle) 또는 신버전 (plan/cycle/level)
+    planCode: planCodeV1,
+    billingCycle: billingCycleV1,
+    plan: planV2,
+    cycle: cycleV2,
+    level,
+  } = customData;
+  const planCode = planV2 || planCodeV1 || null;
+  const billingCycle = cycleV2 || billingCycleV1 || null;
 
   // 3. 이미 처리된 payment_id인지 확인 (멱등성)
   const { data: existing } = await supabase
@@ -185,7 +195,7 @@ async function handlePayment(data: { paymentId: string; txId: string }) {
 
   // 4. 구독 결제인지 일반 결제인지 분기
   if (planCode) {
-    await activateSubscription(userId, planCode, billingCycle, payment);
+    await activateSubscription(userId, planCode, billingCycle, level, payment);
   } else {
     await createOrder(userId, payment, items, shipping);
   }
@@ -240,35 +250,53 @@ async function createOrder(userId: string, payment: any, items: any[], shipping:
   }
 }
 
-async function activateSubscription(userId: string, planCode: string, billingCycle: string, payment: any) {
+async function activateSubscription(userId: string, planCode: string, billingCycle: string, level: string | null, payment: any) {
   const expiresAt = new Date();
   if (billingCycle === 'annual') expiresAt.setFullYear(expiresAt.getFullYear() + 1);
   else expiresAt.setMonth(expiresAt.getMonth() + 1);
 
-  // 1. 첫 결제 주문을 먼저 기록하고 id 확보
-  const { data: order, error: orderErr } = await supabase.from('orders').insert({
-    user_id: userId,
-    status: 'paid',
-    total_amount: payment.amount?.total || 0,
-    payment_method: payment.method?.type || 'CARD',
-    portone_payment_id: payment.id,
-    portone_tx_id: payment.transactionId,
-    paid_at: payment.paidAt || new Date().toISOString()
-  }).select('id').single();
+  // 1. 기존 pending order 가 있는지 확인 (create-order 가 미리 만든 row)
+  const { data: existing } = await supabase
+    .from('orders').select('id, status')
+    .eq('portone_payment_id', payment.id).maybeSingle();
 
-  if (orderErr) throw orderErr;
+  let orderId: string;
+  if (existing) {
+    // UPDATE — pending → paid
+    await supabase.from('orders').update({
+      status: 'paid',
+      payment_method: payment.method?.type || 'CARD',
+      portone_tx_id: payment.transactionId,
+      paid_at: payment.paidAt || new Date().toISOString(),
+    }).eq('id', existing.id);
+    orderId = existing.id;
+  } else {
+    // 레거시 경로: order가 없으면 새로 INSERT (create-order 안 거친 결제)
+    const { data: order, error: orderErr } = await supabase.from('orders').insert({
+      user_id: userId,
+      status: 'paid',
+      total_amount: payment.amount?.total || 0,
+      payment_method: payment.method?.type || 'CARD',
+      portone_payment_id: payment.id,
+      portone_tx_id: payment.transactionId,
+      paid_at: payment.paidAt || new Date().toISOString(),
+    }).select('id').single();
+    if (orderErr) throw orderErr;
+    orderId = order.id;
+  }
 
-  // 2. subscriptions에 last_order_id 연결 — 조회 시 "마지막 결제 주문"을 즉시 추적 가능
+  // 2. subscriptions에 level 포함해서 INSERT
   const { error: subErr } = await supabase.from('subscriptions').insert({
     user_id: userId,
     plan_code: planCode,
     billing_cycle: billingCycle,
+    level: level || null,
     status: 'active',
     started_at: new Date().toISOString(),
     expires_at: expiresAt.toISOString(),
     auto_renew: true,
     portone_billing_key: payment.billingKey || null,
-    last_order_id: order.id
+    last_order_id: orderId,
   });
 
   if (subErr) throw subErr;

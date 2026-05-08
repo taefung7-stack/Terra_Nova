@@ -19,3 +19,7 @@ verify_jwt = false
 # verify_jwt = true (default; 명시적으로 적어둠)
 [functions.create-order]
 verify_jwt = true
+
+# dispatch-monthly-pdf: cron + admin 호출. 자체 Authorization 검증 (INTERNAL_EMAIL_SECRET or admin JWT).
+[functions.dispatch-monthly-pdf]
+verify_jwt = false

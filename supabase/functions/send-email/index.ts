@@ -174,6 +174,34 @@ function renderTemplate(type: string, d: Record<string, any>): { subject: string
     };
   }
 
+  if (type === 'monthly_pdf') {
+    const { month, level, signedUrl, ttlDays, planCode } = d;
+    const lvlText = String(level || '').toUpperCase();
+    const monthText = String(month || '').replace(/^(\d{4})-(\d{2})$/, '$1년 $2월호');
+    const planText = planKo[planCode] || planCode || '';
+    return {
+      subject: `[Terra Nova] ${monthText} ${lvlText} PDF가 도착했습니다`,
+      html: baseWrap(`
+        <h2 style="font-size:18px;margin:0 0 16px;color:#0A0A0A;">${monthText} 학습지가 준비됐습니다 ✦</h2>
+        <p style="margin:0 0 12px;">이번 달 <strong>${lvlText}</strong> 레벨 PDF (지문 20편 + 어휘 + 한글 해설)이 발행되었습니다.</p>
+        <p style="margin:0 0 16px;">아래 버튼을 눌러 다운로드 후 학습을 시작해 주세요.</p>
+        <div style="margin:24px 0;text-align:center;">
+          <a href="${String(signedUrl)}" style="display:inline-block;padding:14px 36px;background:#2DD4BF;color:#0A0A0A;text-decoration:none;font-weight:800;border-radius:6px;font-size:14px;letter-spacing:.5px;">${monthText} PDF 다운로드 →</a>
+        </div>
+        <table role="presentation" width="100%" cellpadding="8" cellspacing="0" style="background:#F7F7F6;border-radius:8px;margin:16px 0;font-size:13px;">
+          <tr><td style="color:#888;width:90px;">플랜</td><td><strong>${planText}</strong></td></tr>
+          <tr><td style="color:#888;">레벨</td><td><strong>${lvlText}</strong></td></tr>
+          <tr><td style="color:#888;">분량</td><td>지문 20편 · 매주 5편 권장</td></tr>
+          <tr><td style="color:#888;">링크 유효기간</td><td>${Number(ttlDays) || 30}일</td></tr>
+        </table>
+        <p style="margin:16px 0 0;color:#666;font-size:12px;line-height:1.7;">
+          링크가 만료되었거나 다른 기기에서 다시 받고 싶다면 → <a href="https://terra-nova.kr/mypage.html" style="color:#2DD4BF;font-weight:700;">마이페이지 학습 자료</a>
+        </p>
+        <p style="margin:8px 0 0;color:#666;font-size:12px;">레벨 변경은 마이페이지 → 레벨에서 다음 달 발송분부터 적용됩니다.</p>
+      `),
+    };
+  }
+
   if (type === 'custom') {
     const { subject, html } = d;
     if (!subject || !html) return null;
