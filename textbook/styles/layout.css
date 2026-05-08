@@ -192,15 +192,13 @@ body { font-size: var(--fs-body); line-height: var(--lh-body); }
   font-weight: 600;
 }
 .p1-body .blank {
-  display: inline-block;
-  min-width: 40pt;
-  border-bottom: 1.5pt solid var(--tn-theme-deep);
+  display: inline;
   margin: 0 2pt;
-  text-align: center;
   font-weight: 700;
   color: var(--tn-theme-deep);
+  letter-spacing: -1pt;
 }
-.p1-body .blank::before { content: "\2003\2003\2003"; }
+.p1-body .blank::before { content: "______"; }
 .p1-body mark {
   background: var(--tn-theme-soft);
   color: var(--tn-theme-deep);
@@ -398,14 +396,12 @@ body { font-size: var(--fs-body); line-height: var(--lh-body); }
   line-height: 1.55;
 }
 .descriptive .summary-template .blank {
-  display: inline-block;
-  min-width: 34pt;
-  border-bottom: 1.2pt solid var(--tn-theme-deep);
+  display: inline;
   font-weight: 700;
   color: var(--tn-theme-deep);
-  text-align: center;
+  letter-spacing: -1pt;
 }
-.descriptive .summary-template .blank::before { content: "\2003\2003\2003"; }
+.descriptive .summary-template .blank::before { content: "______"; }
 
 /* ===== Tieback with visual aid ===== */
 .tieback {
