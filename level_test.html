@@ -1233,46 +1233,56 @@ const curriculumMap = {
 
 const LEVEL_NUM = { MARS: 1, VENUS: 2, TERRA: 3, NEPTUNE: 4, URANUS: 5, SATURN: 6, JUPITER: 7, SUN: 8 };
 
+// Build the guest-save CTA via safe DOM (no innerHTML — avoids XSS hook).
+function buildGuestSaveCta(message) {
+  const cta = document.createElement('div');
+  cta.id = 'guest-save-cta';
+  cta.style.cssText = 'margin-top:12px;padding:14px 16px;background:rgba(0,255,163,.06);border:1px solid rgba(0,255,163,.25);border-radius:8px;font-size:.8rem;color:var(--dim);line-height:1.6;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;';
+  const msg = document.createElement('span');
+  msg.textContent = message;
+  const btnWrap = document.createElement('span');
+  btnWrap.style.cssText = 'display:flex;gap:8px;';
+  const loginA = document.createElement('a');
+  loginA.href = 'login.html?redirect=' + encodeURIComponent(location.pathname);
+  loginA.textContent = '로그인';
+  loginA.style.cssText = 'padding:6px 14px;border:1px solid rgba(0,255,163,.4);border-radius:4px;color:var(--accent);text-decoration:none;font-weight:700;font-size:.76rem;';
+  const signupA = document.createElement('a');
+  signupA.href = 'signup.html';
+  signupA.textContent = '회원가입';
+  signupA.style.cssText = 'padding:6px 14px;background:var(--accent);color:#0A0A0A;border-radius:4px;text-decoration:none;font-weight:700;font-size:.76rem;';
+  btnWrap.append(loginA, signupA);
+  cta.append(msg, btnWrap);
+  return cta;
+}
+
 async function saveLevelResult(lvl, sc, conf) {
   const { supabase } = await import('./supabase-client.js');
   const { data: { user } } = await supabase.auth.getUser();
-  if (!user) {
-    console.info('[level_test] 비로그인 상태 — 결과 저장 건너뜀. 로그인 후 재응시 시 저장됩니다.');
-    // 비로그인 사용자에게 결과 보존 유도 CTA 표시
-    const note = document.getElementById('accuracy-note');
-    if (note && !document.getElementById('guest-save-cta')) {
-      const cta = document.createElement('div');
-      cta.id = 'guest-save-cta';
-      cta.style.cssText = 'margin-top:12px;padding:14px 16px;background:rgba(0,255,163,.06);border:1px solid rgba(0,255,163,.25);border-radius:8px;font-size:.8rem;color:var(--dim);line-height:1.6;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;';
-      cta.innerHTML = '<span>💡 로그인하면 결과를 저장하고 마이페이지에서 이력을 볼 수 있어요.</span>' +
-        '<span style="display:flex;gap:8px;">' +
-          '<a href="login.html?redirect=' + encodeURIComponent(location.pathname) + '" style="padding:6px 14px;border:1px solid rgba(0,255,163,.4);border-radius:4px;color:var(--accent);text-decoration:none;font-weight:700;font-size:.76rem;">로그인</a>' +
-          '<a href="signup.html" style="padding:6px 14px;background:var(--accent);color:#0A0A0A;border-radius:4px;text-decoration:none;font-weight:700;font-size:.76rem;">회원가입</a>' +
-        '</span>';
-      note.after(cta);
-    }
-    return;
-  }
   const levelNum = LEVEL_NUM[lvl] || 4;
   const avgScore = Math.round((sc.vocab + sc.read + sc.gram + sc.logic) / 4);
-  const { error } = await supabase.from('level_test_results').insert({
-    user_id: user.id,
-    level: levelNum,
-    score: avgScore,
-    total_questions: 20,
-    details: {
-      level_label: lvl,
-      scores: { vocab: sc.vocab, read: sc.read, gram: sc.gram, logic: sc.logic },
-      confidence: conf.level,
-      dk_count: conf.dkCount,
-      weakness_self: answers.weakness || null,
-      study_time: answers.time || null
+  const details = {
+    level_label: lvl,
+    scores: { vocab: sc.vocab, read: sc.read, gram: sc.gram, logic: sc.logic },
+    confidence: conf.level,
+    dk_count: conf.dkCount,
+    weakness_self: answers.weakness || null,
+    study_time: answers.time || null
+  };
+
+  // ── A. 로그인 사용자: user_id로 직접 저장 ──
+  if (user) {
+    const { error } = await supabase.from('level_test_results').insert({
+      user_id: user.id,
+      level: levelNum,
+      score: avgScore,
+      total_questions: 20,
+      recommended_planet: lvl,
+      details
+    });
+    if (error) {
+      console.warn('[level_test] 저장 실패:', error.message);
+      return;
     }
-  });
-  if (error) {
-    console.warn('[level_test] 저장 실패:', error.message);
-  } else {
-    // 결과 페이지 상단에 저장 안내 뱃지
     const note = document.getElementById('accuracy-note');
     if (note && !document.getElementById('saved-badge')) {
       const badge = document.createElement('div');
@@ -1281,6 +1291,35 @@ async function saveLevelResult(lvl, sc, conf) {
       badge.textContent = '✓ 결과가 마이페이지에 저장되었습니다.';
       note.after(badge);
     }
+    return;
+  }
+
+  // ── B. 비로그인: 익명 토큰으로 저장 + localStorage 보관 (가입 후 linkup) ──
+  let anonToken = localStorage.getItem('tn_anon_token');
+  if (!anonToken) {
+    anonToken = (crypto && crypto.randomUUID) ? crypto.randomUUID()
+      : 'a' + Math.random().toString(36).slice(2) + Date.now().toString(36);
+    localStorage.setItem('tn_anon_token', anonToken);
+  }
+  const { error } = await supabase.from('level_test_results').insert({
+    user_id: null,
+    anon_token: anonToken,
+    level: levelNum,
+    score: avgScore,
+    total_questions: 20,
+    recommended_planet: lvl,
+    details
+  });
+  if (error) {
+    console.warn('[level_test] 익명 저장 실패:', error.message);
+  } else {
+    console.info('[level_test] 익명 저장 완료 — 가입/로그인 시 자동 연결됩니다.');
+  }
+
+  // 비로그인 사용자에게 결과 보존 유도 CTA 표시
+  const note = document.getElementById('accuracy-note');
+  if (note && !document.getElementById('guest-save-cta')) {
+    note.after(buildGuestSaveCta('✓ 결과가 임시 저장됐어요. 가입하면 마이페이지에 자동 연결됩니다.'));
   }
 }
 
