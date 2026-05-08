@@ -361,7 +361,51 @@
   .graph-foot{margin-top:28px;padding-top:24px;border-top:1px solid var(--line);font-size:.92rem;color:var(--dim);line-height:1.6;}
   .graph-foot strong{color:var(--accent);font-weight:800;}
 
-  /* ───── Review-compounding graph (red rising curve) ───── */
+  /* ───── Red accent variant for top hero cards ───── */
+  .graph-card.is-red{
+    border-color:rgba(255,71,87,.28);
+    box-shadow:
+      0 26px 60px rgba(0,0,0,.45),
+      0 0 32px rgba(255,71,87,.10),
+      inset 0 1px 0 rgba(255,255,255,.18);
+  }
+  .graph-card.is-red::before{
+    background:
+      radial-gradient(ellipse 60% 50% at 8% 0%, rgba(255,255,255,.10) 0%, transparent 55%),
+      radial-gradient(ellipse 80% 60% at 100% 100%, rgba(255,71,87,.10) 0%, transparent 60%);
+  }
+  .graph-card.is-red .graph-tagline .pop{color:#FF4757;}
+  .graph-card.is-red .bar-fill{
+    background:linear-gradient(90deg,#FF4757 0%,#FF6B7A 100%);
+    box-shadow:0 0 24px rgba(255,71,87,.36);
+  }
+  .graph-card.is-red .bar-value{color:#FF6B7A;}
+
+  /* ───── Transform card: 단원 → English mapping ───── */
+  .transform-card .tc-rows{display:flex;flex-direction:column;gap:14px;}
+  .transform-card .tc-row{display:grid;grid-template-columns:1fr 36px 1fr;align-items:stretch;gap:10px;}
+  .transform-card .tc-side{
+    padding:14px 16px;border-radius:10px;
+    font-family:'Pretendard','Noto Sans KR',sans-serif;
+    display:flex;flex-direction:column;justify-content:center;
+  }
+  .transform-card .tc-ko{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.10);}
+  .transform-card .tc-en{background:rgba(255,71,87,.08);border:1px solid rgba(255,71,87,.42);box-shadow:0 0 16px rgba(255,71,87,.16);}
+  .transform-card .tc-label{font-family:'Space Grotesk','Pretendard',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--mute);margin-bottom:4px;}
+  .transform-card .tc-text{font-size:.96rem;font-weight:800;color:#fff;letter-spacing:-.01em;line-height:1.25;}
+  .transform-card .tc-en .tc-text{color:#FF6B7A;}
+  .transform-card .tc-arrow{
+    display:flex;align-items:center;justify-content:center;
+    color:#FF4757;font-size:1.3rem;font-weight:900;
+    animation:tcArrow 1.8s ease-in-out infinite;
+  }
+  @keyframes tcArrow{0%,100%{transform:translateX(0);opacity:.7;}50%{transform:translateX(4px);opacity:1;}}
+  @media(max-width:560px){
+    .transform-card .tc-row{grid-template-columns:1fr;}
+    .transform-card .tc-arrow{transform:rotate(90deg);height:24px;}
+  }
+
+  /* ───── Review-compounding graph (red rising curve) — kept for any leftover refs ───── */
   .review-graph-card .graph-tagline .pop{color:#FF4757;}
   .rg-wrap{position:relative;margin-top:18px;}
   .rg-graph{width:100%;height:180px;display:block;overflow:visible;}
@@ -855,10 +899,10 @@
         </div>
       </div>
 
-      <!-- ─── Glass cards: cumulative progress + 4-subject coverage ─── -->
+      <!-- ─── Top row: 2 big red-accent cards ─── -->
       <div class="graphs">
-        <!-- Card 1: 1년 누적 학습량 -->
-        <div class="graph-card">
+        <!-- Card A: 1년 누적 학습량 (red accent) -->
+        <div class="graph-card is-red">
           <div class="graph-title">
             <h3>쌓이는 1년</h3>
           </div>
@@ -885,83 +929,35 @@
           </div>
         </div>
 
-        <!-- Card 2: Compounding review — red rising curve -->
-        <div class="graph-card review-graph-card">
+        <!-- Card B: 학교 단원이 곧 영어 지문 (promoted to big card, red accent) -->
+        <div class="graph-card is-red transform-card">
           <div class="graph-title">
-            <h3>복습이 쌓입니다</h3>
+            <h3>학교 단원이 곧 영어 지문</h3>
           </div>
-          <p class="graph-tagline">한 번이 끝이 아닙니다 — <span class="pop">매주 다시 돌아옵니다</span>.</p>
-          <div class="rg-wrap">
-            <svg class="rg-graph" viewBox="0 0 360 200" preserveAspectRatio="none" aria-hidden="true">
-              <defs>
-                <linearGradient id="rgRedFill" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#FF4757" stop-opacity="0.42"/>
-                  <stop offset="100%" stop-color="#FF4757" stop-opacity="0"/>
-                </linearGradient>
-              </defs>
-              <!-- Subtle grid lines -->
-              <g stroke="rgba(255,255,255,.05)" stroke-dasharray="2 4">
-                <line x1="0" y1="40" x2="360" y2="40"/>
-                <line x1="0" y1="90" x2="360" y2="90"/>
-                <line x1="0" y1="140" x2="360" y2="140"/>
-              </g>
-              <!-- Filled area under curve (compounding shape) -->
-              <path class="rg-area" d="M0 192 C 30 188, 60 182, 90 172 C 120 158, 150 138, 180 116 C 210 92, 240 66, 270 44 C 300 26, 330 16, 354 12 L 354 200 L 0 200 Z" fill="url(#rgRedFill)"/>
-              <!-- Curve itself -->
-              <path class="rg-line" d="M0 192 C 30 188, 60 182, 90 172 C 120 158, 150 138, 180 116 C 210 92, 240 66, 270 44 C 300 26, 330 16, 354 12" fill="none" stroke="#FF4757" stroke-width="3.5" stroke-linecap="round"/>
-              <!-- Endpoint glowing dot -->
-              <circle class="rg-end" cx="354" cy="12" r="7" fill="#FF4757"/>
-            </svg>
-            <div class="rg-axis">
-              <span>1개월</span>
-              <span>3개월</span>
-              <span>6개월</span>
-              <span>12개월</span>
+          <p class="graph-tagline">영어 공부가 곧 그날의 <span class="pop">과학·사회 복습</span>입니다.</p>
+          <div class="tc-rows">
+            <div class="tc-row">
+              <div class="tc-side tc-ko"><div class="tc-label">학교 단원</div><div class="tc-text">생명의 진화</div></div>
+              <div class="tc-arrow">→</div>
+              <div class="tc-side tc-en"><div class="tc-label">English</div><div class="tc-text">RNA &amp; Life</div></div>
+            </div>
+            <div class="tc-row">
+              <div class="tc-side tc-ko"><div class="tc-label">학교 단원</div><div class="tc-text">조선 후기 사회</div></div>
+              <div class="tc-arrow">→</div>
+              <div class="tc-side tc-en"><div class="tc-label">English</div><div class="tc-text">Late Joseon Society</div></div>
+            </div>
+            <div class="tc-row">
+              <div class="tc-side tc-ko"><div class="tc-label">학교 단원</div><div class="tc-text">화학 반응식</div></div>
+              <div class="tc-arrow">→</div>
+              <div class="tc-side tc-en"><div class="tc-label">English</div><div class="tc-text">Chemical Equations</div></div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- ─── Feature grid: 6 self-focused cards ─── -->
+      <!-- ─── Feature grid: 3 self-focused cards (green accent) ─── -->
       <div class="tn-feature-grid">
-        <!-- Card 1: 교과 단원 → 영어 지문 변환 -->
-        <div class="tn-feature">
-          <div class="tn-viz" aria-hidden="true">
-            <div class="viz-transform">
-              <div class="vt-side vt-ko">
-                <div class="vt-label">학교 단원</div>
-                <div class="vt-text">생명의 진화</div>
-              </div>
-              <div class="vt-arrow">→</div>
-              <div class="vt-side vt-en">
-                <div class="vt-label">English</div>
-                <div class="vt-text">RNA & Life</div>
-              </div>
-            </div>
-          </div>
-          <h4>학교 단원이 곧 영어 지문</h4>
-          <p>영어 공부가 곧 그날의 과학, 사회 복습입니다.</p>
-        </div>
-
-        <!-- Card 2: 1권 = 4과목 multiplier -->
-        <div class="tn-feature">
-          <div class="tn-viz" aria-hidden="true">
-            <div class="viz-multiplier">
-              <div class="vm-one"></div>
-              <div class="vm-eq">=</div>
-              <div class="vm-subjects">
-                <div class="vm-subj">과학</div>
-                <div class="vm-subj">수학</div>
-                <div class="vm-subj">사회</div>
-                <div class="vm-subj">국어</div>
-              </div>
-            </div>
-          </div>
-          <h4>한 권으로 4과목 복습</h4>
-          <p>영어 지문 한 권에 과학·수학·사회·국어가 동시에 담깁니다.</p>
-        </div>
-
-        <!-- Card 3: 8단계 레벨 ladder -->
+        <!-- Card 1: 8단계 레벨 ladder -->
         <div class="tn-feature">
           <div class="tn-viz" aria-hidden="true">
             <div class="viz-ladder">
@@ -1001,24 +997,7 @@
           <p>같은 자료를 두 번 풀 일 없이, 12달 12권의 새 지문을 풉니다.</p>
         </div>
 
-        <!-- Card 5: 4-step pipeline -->
-        <div class="tn-feature">
-          <div class="tn-viz" aria-hidden="true">
-            <div class="viz-pipeline">
-              <div class="vp-node">지문</div>
-              <span class="vp-arrow">›</span>
-              <div class="vp-node">모의<br>고사</div>
-              <span class="vp-arrow">›</span>
-              <div class="vp-node">단어<br>시험</div>
-              <span class="vp-arrow">›</span>
-              <div class="vp-node">해설</div>
-            </div>
-          </div>
-          <h4>학습-시험-해설 한 번에</h4>
-          <p>지문·모의고사·단어 시험·해설지가 매월 한 권에 함께 옵니다.</p>
-        </div>
-
-        <!-- Card 6: ₩0 위약금 -->
+        <!-- Card 3: ₩0 위약금 -->
         <div class="tn-feature">
           <div class="tn-viz" aria-hidden="true">
             <div class="viz-zero">
