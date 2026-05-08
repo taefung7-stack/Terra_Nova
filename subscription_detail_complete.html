@@ -303,7 +303,7 @@
   @media(max-width:760px){.compare h2{white-space:normal;}}
 
   /* ───── Animated bar graphs (price + time) ───── */
-  .graphs{position:relative;z-index:1;display:grid;grid-template-columns:repeat(2,1fr);gap:28px;max-width:1720px;margin:0 auto 80px;}
+  .graphs{position:relative;z-index:1;display:grid;grid-template-columns:repeat(2,1fr);gap:24px;max-width:1340px;margin:0 auto 64px;}
   @media(max-width:980px){.graphs{grid-template-columns:1fr;}}
   /* Glass material — translucent gradient surface, subtle inner highlight,
      soft backdrop blur, mint-tinted bottom shadow. Specular ::before strip
@@ -311,7 +311,7 @@
      ambient light. */
   .graph-card{
     position:relative;
-    padding:56px 48px;
+    padding:42px 36px;
     background:linear-gradient(150deg,
       rgba(255,255,255,.07) 0%,
       rgba(255,255,255,.025) 38%,
@@ -340,22 +340,22 @@
   }
   .graph-card > *{position:relative;z-index:1;}
   .graph-title{display:flex;align-items:baseline;gap:14px;margin-bottom:10px;}
-  .graph-title h3{font-family:'Pretendard','Noto Sans KR',sans-serif;font-weight:900;font-size:clamp(1.5rem,2.4vw,2rem);color:#fff;letter-spacing:-.015em;line-height:1.2;}
+  .graph-title h3{font-family:'Pretendard','Noto Sans KR',sans-serif;font-weight:900;font-size:clamp(1.3rem,1.9vw,1.65rem);color:#fff;letter-spacing:-.015em;line-height:1.2;}
   /* .unit mini-label hidden per user — the h3 title already conveys context. */
   .graph-title .unit{display:none;}
-  .graph-tagline{margin-bottom:32px;font-size:1rem;color:var(--dim);line-height:1.5;}
+  .graph-tagline{margin-bottom:24px;font-size:.92rem;color:var(--dim);line-height:1.5;}
   .graph-tagline .pop{color:var(--accent);font-weight:800;}
-  .bar{display:grid;grid-template-columns:140px 1fr 110px;align-items:center;gap:18px;margin-bottom:24px;}
+  .bar{display:grid;grid-template-columns:96px 1fr 88px;align-items:center;gap:14px;margin-bottom:18px;}
   .bar:last-child{margin-bottom:0;}
-  .bar-label{font-family:'Space Grotesk','Pretendard',sans-serif;font-size:1rem;font-weight:700;color:var(--dim);letter-spacing:.5px;text-align:right;line-height:1.2;}
+  .bar-label{font-family:'Space Grotesk','Pretendard',sans-serif;font-size:.92rem;font-weight:700;color:var(--dim);letter-spacing:.5px;text-align:right;line-height:1.2;}
   .bar.is-tn .bar-label{color:#fff;}
   /* Taller track so the bars dominate the card vertically — fills the
      left card to roughly the same height as the right curve card. */
-  .bar-track{position:relative;height:52px;background:rgba(255,255,255,.04);border-radius:10px;overflow:hidden;}
-  .bar-fill{position:absolute;inset:0 auto 0 0;width:0;background:linear-gradient(90deg,var(--accent) 0%,#3DDFA8 100%);border-radius:10px;box-shadow:0 0 24px rgba(0,255,163,.32);transition:width 1.4s cubic-bezier(.22,.8,.36,1);}
+  .bar-track{position:relative;height:40px;background:rgba(255,255,255,.04);border-radius:8px;overflow:hidden;}
+  .bar-fill{position:absolute;inset:0 auto 0 0;width:0;background:linear-gradient(90deg,var(--accent) 0%,#3DDFA8 100%);border-radius:8px;box-shadow:0 0 24px rgba(0,255,163,.32);transition:width 1.4s cubic-bezier(.22,.8,.36,1);}
   .bar.is-aca .bar-fill{background:linear-gradient(90deg,#5A5A5A 0%,#7F7F7F 100%);box-shadow:none;}
   .compare.in-view .bar-fill{width:var(--w);}
-  .bar-value{font-family:'Space Grotesk','Pretendard',sans-serif;font-size:1.18rem;font-weight:900;color:#fff;letter-spacing:-.01em;line-height:1.2;text-align:right;}
+  .bar-value{font-family:'Space Grotesk','Pretendard',sans-serif;font-size:1.02rem;font-weight:900;color:#fff;letter-spacing:-.01em;line-height:1.2;text-align:right;}
   .bar.is-aca .bar-value{color:var(--mute);}
   .bar.is-tn .bar-value{color:var(--accent);}
   .graph-foot{margin-top:28px;padding-top:24px;border-top:1px solid var(--line);font-size:.92rem;color:var(--dim);line-height:1.6;}
@@ -364,7 +364,7 @@
   /* ───── Review-compounding graph (red rising curve) ───── */
   .review-graph-card .graph-tagline .pop{color:#FF4757;}
   .rg-wrap{position:relative;margin-top:18px;}
-  .rg-graph{width:100%;height:220px;display:block;overflow:visible;}
+  .rg-graph{width:100%;height:180px;display:block;overflow:visible;}
   .rg-graph .rg-line{stroke-dasharray:680;stroke-dashoffset:680;transition:stroke-dashoffset 1.8s cubic-bezier(.22,.8,.36,1);filter:drop-shadow(0 0 10px rgba(255,71,87,.55));}
   .compare.in-view .rg-graph .rg-line{stroke-dashoffset:0;}
   .rg-graph .rg-area{opacity:0;transition:opacity 1.2s ease-out .3s;}
@@ -831,38 +831,28 @@
     </div>
   </section>
 
-  <!-- ═════════ ② RECORD — animated stats ═════════ -->
-  <section class="section proof">
-    <div class="inner reveal">
-      <div style="text-align:center;margin-bottom:64px;">
-        <span class="label">Record</span>
-      </div>
-      <div class="proof-grid">
-        <div class="stat">
-          <div class="stat-num"><span class="cu" data-target="96">0</span><span class="unit">권</span></div>
-          <div class="stat-label">교재</div>
-          <span class="stat-line"></span>
-        </div>
-        <div class="stat">
-          <div class="stat-num"><span class="cu" data-target="20">0</span><span class="unit">편</span></div>
-          <div class="stat-label">매월 지문</div>
-          <span class="stat-line"></span>
-        </div>
-        <div class="stat">
-          <div class="stat-num"><span class="cu" data-target="8">0</span><span class="unit">학년</span></div>
-          <div class="stat-label">교과 연계</div>
-          <span class="stat-line"></span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═════════ ③ TERRA NOVA WAY — self-focused differentiators ═════════ -->
+  <!-- ═════════ ② TERRA NOVA WAY — Record stats now lead this section ═════════ -->
   <section class="section compare">
     <div class="inner reveal">
-      <div class="head">
-        <span class="label">Our Way</span>
-        <h2>Terra Nova만의 <span class="mint">차별점!</span> 이런 점이 다릅니다.</h2>
+      <div class="head" style="margin-bottom:96px;">
+        <span class="label" style="display:inline-block;margin-bottom:48px;">Record</span>
+        <div class="proof-grid">
+          <div class="stat">
+            <div class="stat-num"><span class="cu" data-target="96">0</span><span class="unit">권</span></div>
+            <div class="stat-label">교재</div>
+            <span class="stat-line"></span>
+          </div>
+          <div class="stat">
+            <div class="stat-num"><span class="cu" data-target="20">0</span><span class="unit">편</span></div>
+            <div class="stat-label">매월 지문</div>
+            <span class="stat-line"></span>
+          </div>
+          <div class="stat">
+            <div class="stat-num"><span class="cu" data-target="8">0</span><span class="unit">학년</span></div>
+            <div class="stat-label">교과 연계</div>
+            <span class="stat-line"></span>
+          </div>
+        </div>
       </div>
 
       <!-- ─── Glass cards: cumulative progress + 4-subject coverage ─── -->
