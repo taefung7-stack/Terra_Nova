@@ -219,11 +219,11 @@
     background-size:60px 60px;mask-image:radial-gradient(ellipse 60% 50% at 50% 50%,#000 0%,transparent 80%);
     pointer-events:none;}
   .proof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
-  .stat{position:relative;padding:80px 32px;border-right:1px solid var(--line);text-align:center;}
+  .stat{position:relative;padding:64px 28px;border-right:1px solid var(--line);text-align:center;}
   .stat:last-child{border-right:none;}
-  .stat-num{font-family:'Space Grotesk',sans-serif;font-weight:900;font-size:clamp(4rem,11vw,9rem);line-height:1;color:var(--accent);letter-spacing:-.04em;text-shadow:0 0 56px rgba(0,255,163,.32);}
+  .stat-num{font-family:'Space Grotesk',sans-serif;font-weight:900;font-size:clamp(3.4rem,8.6vw,7.2rem);line-height:1;color:var(--accent);letter-spacing:-.04em;text-shadow:0 0 48px rgba(0,255,163,.28);}
   .stat-num .unit{font-size:.36em;font-weight:700;color:var(--dim);margin-left:6px;text-shadow:none;}
-  .stat-label{font-size:1.05rem;color:var(--dim);margin-top:22px;letter-spacing:3px;font-weight:700;text-transform:uppercase;}
+  .stat-label{font-size:.96rem;color:var(--dim);margin-top:18px;letter-spacing:3px;font-weight:700;text-transform:uppercase;}
   .stat-line{position:absolute;left:50%;bottom:0;height:2px;width:0;background:var(--accent);transform:translateX(-50%);box-shadow:0 0 12px var(--accent);transition:width .9s cubic-bezier(.22,.8,.36,1);}
   .reveal.show .stat-line{width:60%;}
   @media(max-width:680px){.proof-grid{grid-template-columns:1fr;}.stat{border-right:none;border-bottom:1px solid var(--line);padding:60px 24px;}.stat:last-child{border-bottom:none;}}
@@ -518,7 +518,7 @@
   /* ───── Per-card visualizations (each card carries its own mini chart) ───── */
   .tn-viz{
     display:flex;align-items:center;justify-content:center;
-    width:100%;height:140px;
+    width:100%;height:172px;
     margin-bottom:24px;border-radius:12px;
     background:rgba(0,0,0,.32);
     border:1px solid rgba(255,255,255,.04);
@@ -583,7 +583,7 @@
   .viz-ladder .vl-step:nth-child(8){height:100%;}
 
   /* Card 4: 12-month calendar grid */
-  .viz-calendar{display:grid;grid-template-columns:repeat(6,1fr);grid-template-rows:repeat(2,1fr);gap:6px;width:100%;padding:0 22px;}
+  .viz-calendar{display:grid;grid-template-columns:repeat(6,1fr);grid-template-rows:repeat(2,1fr);gap:8px;width:100%;padding:14px 28px;box-sizing:border-box;height:100%;}
   .viz-calendar .vc-month{
     aspect-ratio:1;border-radius:6px;
     background:linear-gradient(135deg,rgba(0,255,163,.18) 0%,rgba(0,255,163,.06) 100%);
