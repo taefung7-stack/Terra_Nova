@@ -28,15 +28,22 @@ async function loadPortoneSDK() {
 }
 
 /**
- * 단건 결제 (일반 상품 주문)
+ * 단건 결제 (일반 상품 주문) — 서버 검증 가격 사용
+ *
+ * 보안 흐름:
+ *   1) Edge Function 'create-order'를 호출해 서버사이드에서 가격 재계산.
+ *      클라이언트가 보낸 totalAmount는 절대 신뢰하지 않음.
+ *   2) Function이 orders + order_items 행을 pending 상태로 INSERT 후
+ *      payment_id + verified_total을 반환.
+ *   3) 그 verified_total로만 PortOne 결제 호출. 클라이언트가 JS를 변조해서
+ *      금액을 줄여도 webhook이 다시 검증하므로 결제 통과 안 됨.
+ *
  * @param {object} params
- * @param {string} params.orderName    - "Terra Nova 단어장 BASIC 외 2건"
- * @param {number} params.totalAmount  - 결제 금액 (원)
- * @param {Array}  params.items        - [{product_id, quantity, unit_price, name}]
- * @param {string} params.method       - 'CARD' | 'EASY_PAY' | 'TRANSFER' | 'VIRTUAL_ACCOUNT'
- * @param {object} params.shipping     - {name, phone, zipcode, address, detail}
+ * @param {Array}  params.items     - [{product_id, quantity}] (단가는 서버에서 결정)
+ * @param {string} params.method    - 'CARD' | 'EASY_PAY' | 'TRANSFER' | 'VIRTUAL_ACCOUNT'
+ * @param {object} params.shipping  - {name, phone, zipcode, address, detail}
  */
-export async function requestPayment({ orderName, totalAmount, items, method = 'CARD', shipping }) {
+export async function requestPayment({ items, method = 'CARD', shipping }) {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) {
     alert('로그인이 필요합니다.');
@@ -44,25 +51,25 @@ export async function requestPayment({ orderName, totalAmount, items, method = '
     return { success: false, reason: 'auth_required' };
   }
 
-  // 1. 주문 선생성 (pending 상태) — Edge Function 또는 직접 insert
-  const paymentId = `tn_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+  // 1. 서버사이드에서 가격 검증 + 주문 INSERT
+  const { data: order, error: orderErr } = await supabase.functions.invoke('create-order', {
+    body: { kind: 'market', items, shipping }
+  });
+  if (orderErr || !order?.ok) {
+    const reason = order?.error || orderErr?.message || 'create-order failed';
+    console.error('[portone] order create failed:', reason);
+    return { success: false, reason };
+  }
 
-  // TODO: 주문 레코드 생성은 실제로는 Edge Function으로 이관 필요 (RLS로 client insert 막혀 있음)
-  //       현재는 스켈레톤이라 생략. Edge Function 배포 시 아래 supabase.functions.invoke 로 교체.
-  //
-  // const { data: order, error: orderErr } = await supabase.functions.invoke('create-order', {
-  //   body: { items, shipping, payment_id: paymentId }
-  // });
-
-  // 2. 포트원 SDK 호출
+  // 2. PortOne SDK 호출 — 서버가 검증한 금액만 사용
   try {
     const PortOne = await loadPortoneSDK();
     const response = await PortOne.requestPayment({
       storeId: STORE_ID,
       channelKey: CHANNEL_KEY,
-      paymentId,
-      orderName,
-      totalAmount,
+      paymentId: order.payment_id,
+      orderName: order.order_name,
+      totalAmount: order.verified_total,    // ← 서버 검증 금액
       currency: 'CURRENCY_KRW',
       payMethod: method,
       customer: {
@@ -71,22 +78,20 @@ export async function requestPayment({ orderName, totalAmount, items, method = '
         phoneNumber: shipping?.phone || user.user_metadata?.phone,
         email: user.email,
       },
-      // 배송 주소는 customData로 전달 — webhook이 order에 기록
       customData: {
         userId: user.id,
-        items: items,
-        shipping: shipping
+        orderId: order.order_id,
+        orderNumber: order.order_number,
       }
     });
 
     if (response.code) {
-      // 결제 실패
+      // 결제 실패 (사용자 취소, 카드 거절 등)
       return { success: false, reason: response.message, code: response.code };
     }
 
-    // 3. webhook이 서버에서 결제 검증 후 orders 상태를 paid로 변경
-    //    클라이언트는 성공 페이지로 이동만 수행
-    return { success: true, paymentId, txId: response.txId };
+    // 3. webhook이 서버에서 결제 재검증 후 orders 상태를 paid로 변경
+    return { success: true, paymentId: order.payment_id, txId: response.txId, orderId: order.order_id };
 
   } catch (err) {
     console.error('[portone] payment error:', err);
@@ -96,8 +101,16 @@ export async function requestPayment({ orderName, totalAmount, items, method = '
 
 /**
  * 정기결제 (구독) — 빌링키 발급 후 최초 결제
+ *
+ * 동일하게 create-order 함수에서 plan/cycle/level 검증 후 서버 가격으로만 결제.
+ *
+ * @param {object} params
+ * @param {string} params.plan      - 'LIGHT' | 'STANDARD' | 'PREMIUM'
+ * @param {string} params.cycle     - 'monthly' | 'annual'
+ * @param {string} params.level     - 'MARS' | 'VENUS' | ... | 'SUN'
+ * @param {object} [params.shipping] - 실물 교재 발송 주소 (STANDARD/PREMIUM)
  */
-export async function requestSubscription({ planCode, billingCycle, totalAmount }) {
+export async function requestSubscription({ plan, cycle = 'monthly', level, shipping }) {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) {
     alert('로그인이 필요합니다.');
@@ -105,16 +118,25 @@ export async function requestSubscription({ planCode, billingCycle, totalAmount 
     return { success: false };
   }
 
-  const paymentId = `tn_sub_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+  // 1. 서버사이드 가격 검증 + pending order
+  const { data: order, error: orderErr } = await supabase.functions.invoke('create-order', {
+    body: { kind: 'subscription', plan, cycle, level, shipping }
+  });
+  if (orderErr || !order?.ok) {
+    const reason = order?.error || orderErr?.message || 'create-order failed';
+    console.error('[portone] subscription order create failed:', reason);
+    return { success: false, reason };
+  }
 
+  // 2. 빌링키 발급 SDK 호출
   try {
     const PortOne = await loadPortoneSDK();
     const response = await PortOne.requestIssueBillingKey({
       storeId: STORE_ID,
       channelKey: CHANNEL_KEY,
       billingKeyMethod: 'CARD',
-      issueId: paymentId,
-      issueName: `${planCode} ${billingCycle === 'annual' ? '연간' : '월간'} 구독`,
+      issueId: order.payment_id,
+      issueName: order.order_name,
       customer: {
         customerId: user.id,
         fullName: user.user_metadata?.display_name || user.email,
@@ -122,9 +144,11 @@ export async function requestSubscription({ planCode, billingCycle, totalAmount 
       },
       customData: {
         userId: user.id,
-        planCode,
-        billingCycle,
-        totalAmount
+        orderId: order.order_id,
+        plan,
+        cycle,
+        level,
+        verifiedTotal: order.verified_total,  // webhook이 첫 결제 시 사용
       }
     });
 
@@ -133,9 +157,15 @@ export async function requestSubscription({ planCode, billingCycle, totalAmount 
     }
 
     // 빌링키는 webhook이 받아서 subscriptions에 저장하고 최초 결제 실행
-    return { success: true, billingKeyId: response.billingKey };
+    return {
+      success: true,
+      billingKeyId: response.billingKey,
+      paymentId: order.payment_id,
+      orderId: order.order_id,
+    };
 
   } catch (err) {
+    console.error('[portone] subscription error:', err);
     return { success: false, reason: err.message };
   }
 }

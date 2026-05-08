@@ -14,3 +14,8 @@ verify_jwt = false
 
 [functions.send-email]
 verify_jwt = false
+
+# create-order: 사용자 JWT 검증 필수 (서버사이드 가격 검증)
+# verify_jwt = true (default; 명시적으로 적어둠)
+[functions.create-order]
+verify_jwt = true
