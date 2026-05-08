@@ -592,6 +592,10 @@ body { font-size: var(--fs-body); line-height: var(--lh-body); }
   margin-left: 2pt;
   opacity: 0.7;
 }
+/* Bracket the role label so it can never be misread as a trailing letter
+   of the preceding word (e.g. "atom" + S tag reading as "atoms"). */
+.p3-sentence .seg .seg-tag::before { content: "["; }
+.p3-sentence .seg .seg-tag::after  { content: "]"; }
 
 /* per-segment grammar note: native ruby + ruby-align: start so the
    note sits as ONE block under the segment (not word-distributed). */
