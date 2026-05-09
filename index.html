@@ -36,7 +36,7 @@
 <meta name="twitter:image" content="https://terra-nova.kr/og-cover.svg">
 <meta name="twitter:image:alt" content="Terra Nova English">
 
-<!-- Honest minimal JSON-LD: Organization + Product + AggregateOffer (NO ratings) -->
+<!-- JSON-LD: Organization (full business info) + WebSite (SearchAction) + Product (AggregateOffer) -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -45,22 +45,64 @@
       "@type": "Organization",
       "@id": "https://terra-nova.kr/#organization",
       "name": "Terra Nova English",
+      "alternateName": "테라노바 잉글리시",
       "url": "https://terra-nova.kr/",
       "logo": "https://terra-nova.kr/og-cover.svg",
-      "description": "교과 연계 수능영어 월간 구독 학습지"
+      "description": "교과 연계 영어 독해 월간 구독 학습지 — 학년 교과를 영어로 끝냅니다.",
+      "founder": {"@type": "Person", "name": "강성엽"},
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "백범로31길 8 (공덕동)",
+        "addressLocality": "마포구",
+        "addressRegion": "서울특별시",
+        "postalCode": "04156",
+        "addressCountry": "KR"
+      },
+      "contactPoint": [{
+        "@type": "ContactPoint",
+        "contactType": "customer support",
+        "telephone": "+82-10-8248-6428",
+        "email": "support@terra-nova.kr",
+        "areaServed": "KR",
+        "availableLanguage": ["Korean", "English"]
+      }],
+      "sameAs": [
+        "https://www.instagram.com/terra_nova_english/",
+        "https://pf.kakao.com/_aLExdX"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://terra-nova.kr/#website",
+      "url": "https://terra-nova.kr/",
+      "name": "Terra Nova English",
+      "description": "한 지문에, 한 단원이 들어 있습니다. 매월 영어 독해 학습지.",
+      "inLanguage": "ko-KR",
+      "publisher": {"@id": "https://terra-nova.kr/#organization"},
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://terra-nova.kr/sitemap.html?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
     },
     {
       "@type": "Product",
+      "@id": "https://terra-nova.kr/#product",
       "name": "Terra Nova 월간 독해 학습지",
-      "description": "초5부터 고3까지 8단계 레벨별 교과 연계 영어 독해 학습지.",
+      "description": "초5부터 고3·N수생까지 8단계 레벨별 교과 연계 영어 독해 학습지. 한 지문에 한 단원이 들어 있습니다.",
       "image": ["https://terra-nova.kr/og-cover.svg"],
-      "brand": {"@type": "Brand", "name": "Terra Nova English"},
+      "brand": {"@id": "https://terra-nova.kr/#organization"},
+      "category": "Education > Learning materials > English subscription",
       "offers": {
         "@type": "AggregateOffer",
         "priceCurrency": "KRW",
         "lowPrice": "11900",
         "highPrice": "58900",
-        "offerCount": 3
+        "offerCount": 3,
+        "seller": {"@id": "https://terra-nova.kr/#organization"}
       }
     }
   ]
