@@ -145,6 +145,10 @@
       <button class="tab-btn" onclick="switchAdminTab('coupons',this)">🎟️ 쿠폰</button>
       <button class="tab-btn" onclick="switchAdminTab('newsletter',this)">📧 뉴스레터</button>
       <button class="tab-btn" onclick="switchAdminTab('orders',this)">💳 최근 주문</button>
+      <button class="tab-btn" onclick="switchAdminTab('users',this)">👤 사용자</button>
+      <button class="tab-btn" onclick="switchAdminTab('subs',this)">🔁 구독 관리</button>
+      <button class="tab-btn" onclick="switchAdminTab('shipping',this)">📦 배송</button>
+      <button class="tab-btn" onclick="switchAdminTab('leveltests',this)">🪐 레벨 테스트</button>
       <button class="tab-btn" onclick="switchAdminTab('revenue',this)">📊 매출</button>
     </div>
 
@@ -248,6 +252,76 @@
         <div id="orders-table-wrap">
           <div class="empty">불러오는 중…</div>
         </div>
+      </div>
+    </div>
+
+    <!-- 사용자 검색/관리 -->
+    <div class="tab-view" id="tab-users">
+      <div class="section">
+        <div class="section-title">
+          <span>사용자 검색</span>
+          <span class="count" id="users-count">—</span>
+        </div>
+        <div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;">
+          <input type="search" id="users-search" placeholder="이메일 일부 (예: gmail)" style="flex:1;min-width:240px;background:var(--card2);border:1px solid var(--line);border-radius:6px;padding:9px 12px;color:var(--txt);font-family:inherit;">
+          <button type="button" class="btn-admin btn-approve" onclick="searchUsers()">검색</button>
+          <button type="button" class="btn-admin" onclick="loadUsersRecent()" style="border:1px solid var(--line);color:var(--dim);background:rgba(255,255,255,.03);padding:9px 14px;border-radius:6px;cursor:pointer;font-size:.78rem;">최근 가입 30명</button>
+        </div>
+        <div id="users-table-wrap"><div class="empty" id="users-empty">검색어를 입력하거나 "최근 가입 30명" 클릭</div></div>
+      </div>
+    </div>
+
+    <!-- 구독 관리 -->
+    <div class="tab-view" id="tab-subs">
+      <div class="section">
+        <div class="section-title">
+          <span>구독 목록</span>
+          <span class="count" id="subs-count">—</span>
+        </div>
+        <div class="filter-row">
+          <button class="filter-btn active" data-filter="active" onclick="filterSubs(this,'active')">활성</button>
+          <button class="filter-btn" data-filter="expiring" onclick="filterSubs(this,'expiring')">7일 내 만료</button>
+          <button class="filter-btn" data-filter="cancelled" onclick="filterSubs(this,'cancelled')">취소</button>
+          <button class="filter-btn" data-filter="all" onclick="filterSubs(this,'all')">전체</button>
+        </div>
+        <div id="subs-table-wrap"><div class="empty">불러오는 중…</div></div>
+      </div>
+    </div>
+
+    <!-- 배송 워크플로우 -->
+    <div class="tab-view" id="tab-shipping">
+      <div class="section">
+        <div class="section-title">
+          <span>발송 대기 (paid · 운송장 미입력)</span>
+          <span class="count" id="shipping-pending-count">—</span>
+        </div>
+        <div id="shipping-pending-wrap"><div class="empty">불러오는 중…</div></div>
+      </div>
+      <div class="section">
+        <div class="section-title">
+          <span>발송 완료 (shipped · 최근 30개)</span>
+          <span class="count" id="shipping-shipped-count">—</span>
+        </div>
+        <div id="shipping-shipped-wrap"><div class="empty">불러오는 중…</div></div>
+      </div>
+    </div>
+
+    <!-- 레벨 테스트 결과 dashboard -->
+    <div class="tab-view" id="tab-leveltests">
+      <div class="section">
+        <div class="section-title"><span>레벨 분포</span></div>
+        <div id="lvl-distribution" class="stats-row" style="margin-bottom:0;"><div class="empty">불러오는 중…</div></div>
+      </div>
+      <div class="section">
+        <div class="section-title"><span>가입 전환율 (익명 → 회원)</span></div>
+        <div id="lvl-conversion"><div class="empty">불러오는 중…</div></div>
+      </div>
+      <div class="section">
+        <div class="section-title">
+          <span>최근 30개 결과</span>
+          <span class="count" id="lvl-recent-count">—</span>
+        </div>
+        <div id="lvl-recent-wrap"><div class="empty">불러오는 중…</div></div>
       </div>
     </div>
 
@@ -854,6 +928,12 @@
     btn.classList.add('active');
     $('tab-' + tab).classList.add('active');
   };
+
+  // admin-extras.js 가 사용할 helpers 노출
+  window.supabase = supabase;
+  window.__adminHelpers = { supabase, $, esc, ymd, ymdhm, won, currentUser: user };
 </script>
+<!-- v9 admin 강화 (사용자 검색·구독·배송·레벨 dashboard) -->
+<script src="./admin-extras.js" defer></script>
 </body>
 </html>
