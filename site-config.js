@@ -3,6 +3,31 @@
 // 사용법: 모든 HTML <head> 안에 `<script src="./site-config.js"></script>` 추가
 
 window.NAVER_CLIENT_ID = 'jrpqX5SMmUskZT2AuJvE';
+
+// ─────────────────────────────────────────────────────────────
+// PortOne (포트원) V2 결제 SDK
+// ⚠️ storeId / channelKey 는 클라이언트 노출 가능 (공개값).
+//    API Secret / Webhook Secret 은 Supabase Edge Function Secrets 에만 보관.
+// 설정 방법:
+//   1. https://admin.portone.io 로그인 → 결제 연동 → 결제 연동 정보
+//   2. "Store ID" 복사 → 아래 PORTONE_STORE_ID 에 붙여넣기 (예: 'store-xxxxxxxx-xxxx-...')
+//   3. PG 심사 통과 후 채널별 "Channel Key" 발급되면 아래 항목 채우기
+//   4. 미설정 채널은 빈 문자열 유지 → 결제창에서 자동으로 비활성화
+// ─────────────────────────────────────────────────────────────
+window.PORTONE_STORE_ID = '';                // 예: 'store-xxxxxxxx-xxxx-...'
+window.PORTONE_CHANNEL_KEYS = {
+  kakaopay: '',   // 카카오페이 채널 키 (예: 'channel-key-...')
+  naverpay: '',   // 네이버페이 채널 키
+  card_kcp: '',   // KCP 신용카드 채널 키 (선택)
+  card_inicis: '' // 이니시스 신용카드 채널 키 (선택)
+};
+window.PORTONE_PAY_METHODS = {
+  // 사용자 결제수단 선택 → PortOne payMethod 매핑
+  kakaopay: 'EASY_PAY',
+  naverpay: 'EASY_PAY',
+  card: 'CARD'
+};
+
   // 설정 방법:
   // 1. https://developers.naver.com 로그인 → 애플리케이션 등록
   // 2. 서비스 URL: https://terra-nova.kr

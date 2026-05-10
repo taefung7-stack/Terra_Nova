@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="naver-site-verification" content="406494bbc7a05534675e3fdb6d67818d864c03c6" />
+<title>결제 완료 — TERRA NOVA ENGLISH</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="canonical" href="https://terra-nova.kr/payment-complete.html">
+<link rel="stylesheet" href="shared.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+KR:wght@400;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="./logo.png">
+<style>
+  :root{
+    --dark:#0A0A0A;--mid:#111;--card:#1C1C1C;--card2:#222;
+    --accent:#00FFA3;--txt:#F0F0F0;--dim:rgba(240,240,240,.72);
+    --line:rgba(255,255,255,.07);--err:#F87171;--warn:#F59E0B;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{font-size:20px;}
+  body{background:var(--dark);color:var(--txt);font-family:'Pretendard','Noto Sans KR',sans-serif;min-height:100vh;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;}
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;height:80px;background:rgba(6,6,15,.92);backdrop-filter:blur(24px);border-bottom:1px solid var(--line);}
+  .logo-wrap{display:flex;flex-direction:column;gap:2px;text-decoration:none;}
+  .logo-main{font-family:'Space Grotesk',sans-serif;font-weight:900;font-size:1.4rem;letter-spacing:.14em;color:#fff;line-height:1;}
+  .logo-eng{font-size:.5rem;font-weight:500;letter-spacing:5px;color:rgba(0,255,163,.35);text-transform:uppercase;}
+  main{flex:1;display:flex;align-items:center;justify-content:center;padding:128px 5vw 64px;}
+  .box{width:100%;max-width:520px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:48px 36px;text-align:center;}
+  .icon{font-size:3.4rem;margin-bottom:18px;line-height:1;}
+  h1{font-family:'Pretendard','Noto Sans KR',sans-serif;font-weight:900;font-size:1.6rem;margin-bottom:10px;color:#fff;letter-spacing:-.02em;}
+  .sub{color:var(--dim);font-size:.92rem;line-height:1.6;margin-bottom:24px;}
+  .order-info{background:var(--card2);border-radius:10px;padding:18px;text-align:left;font-size:.82rem;line-height:1.8;margin-bottom:24px;}
+  .order-info .row{display:flex;justify-content:space-between;}
+  .order-info .label{color:var(--dim);}
+  .order-info .value{color:#fff;font-weight:600;}
+  .actions{display:flex;flex-direction:column;gap:10px;}
+  .btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 20px;border-radius:8px;font-size:.92rem;font-weight:700;text-decoration:none;cursor:pointer;border:none;transition:transform .15s,background .15s;font-family:inherit;}
+  .btn-primary{background:var(--accent);color:#0A0A0A;}
+  .btn-primary:hover{transform:translateY(-2px);}
+  .btn-secondary{background:transparent;border:1px solid var(--line);color:var(--dim);}
+  .btn-secondary:hover{color:#fff;border-color:rgba(0,255,163,.3);}
+  .spinner{display:inline-block;width:42px;height:42px;border:3px solid rgba(0,255,163,.2);border-top-color:var(--accent);border-radius:50%;animation:spin 1s linear infinite;margin-bottom:18px;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .state-pending h1{color:var(--accent);}
+  .state-success .icon{color:var(--accent);}
+  .state-fail h1{color:var(--err);}
+  .state-fail .icon{color:var(--err);}
+  footer{padding:20px 5vw;border-top:1px solid var(--line);text-align:center;font-size:.7rem;color:rgba(255,255,255,.3);}
+</style>
+<script src="./site-config.js"></script>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo-wrap">
+    <div class="logo-main">TERRA NOVA</div>
+    <div class="logo-eng">ENGLISH</div>
+  </a>
+</nav>
+
+<main>
+  <div class="box" id="result-box">
+    <div class="spinner" id="spinner"></div>
+    <h1 id="title">결제 확인 중...</h1>
+    <p class="sub" id="message">결제 정보를 확인하고 있습니다. 잠시만 기다려 주세요.</p>
+    <div class="order-info" id="order-info" style="display:none;">
+      <div class="row"><span class="label">주문번호</span><span class="value" id="info-order-number">—</span></div>
+      <div class="row"><span class="label">플랜</span><span class="value" id="info-plan">—</span></div>
+      <div class="row"><span class="label">결제 주기</span><span class="value" id="info-cycle">—</span></div>
+      <div class="row"><span class="label">결제 금액</span><span class="value" id="info-amount">—</span></div>
+      <div class="row"><span class="label">결제 일시</span><span class="value" id="info-paid-at">—</span></div>
+    </div>
+    <!-- success 시 표시 -->
+    <div class="actions" id="actions-success" style="display:none;">
+      <a href="mypage.html" class="btn btn-primary">마이페이지로 이동 →</a>
+      <a href="index.html" class="btn btn-secondary">홈으로</a>
+    </div>
+    <!-- 실패 시 표시 -->
+    <div class="actions" id="actions-fail" style="display:none;">
+      <a href="order.html" class="btn btn-primary">다시 시도</a>
+      <a href="index.html" class="btn btn-secondary">홈으로</a>
+    </div>
+    <!-- pending 시간초과 시 표시 -->
+    <div class="actions" id="actions-pending" style="display:none;">
+      <a href="mypage.html" class="btn btn-primary">마이페이지에서 확인</a>
+      <a href="index.html" class="btn btn-secondary">홈으로</a>
+    </div>
+  </div>
+</main>
+
+<footer>© 2026 Terra Nova English</footer>
+
+<script type="module">
+  import { supabase } from './supabase-client.js';
+
+  const params = new URLSearchParams(location.search);
+  const paymentId = params.get('payment_id');
+
+  // PortOne 모바일 redirect 시 code/message 파라미터 동반될 수 있음
+  const ptCode = params.get('code');
+  const ptMessage = params.get('message');
+
+  const $ = id => document.getElementById(id);
+  function setState(state, title, message) {
+    $('result-box').className = 'box state-' + state;
+    if (state !== 'pending') {
+      const sp = $('spinner'); if (sp) sp.style.display = 'none';
+    }
+    if (title) $('title').textContent = title;
+    if (message) $('message').textContent = message;
+  }
+
+  function addIcon(text) {
+    const icon = document.createElement('div');
+    icon.className = 'icon';
+    icon.textContent = text;
+    $('result-box').insertBefore(icon, $('title'));
+  }
+
+  function showFail(reason) {
+    setState('fail', '결제 실패', reason || '결제에 실패했습니다. 다시 시도해 주세요.');
+    addIcon('✕');
+    $('actions-fail').style.display = 'flex';
+  }
+
+  function showSuccess(order) {
+    setState('success', '결제가 완료되었습니다 🎉', '구독이 활성화되었습니다. 마이페이지에서 학습을 시작하세요.');
+    addIcon('✓');
+
+    if (order) {
+      $('info-order-number').textContent = order.order_number || '—';
+      const memo = order.memo || '';
+      const planMatch = memo.match(/plan=(\w+)/);
+      const cycleMatch = memo.match(/cycle=(\w+)/);
+      $('info-plan').textContent = planMatch ? planMatch[1] : '—';
+      $('info-cycle').textContent = cycleMatch ? (cycleMatch[1] === 'annual' ? '연간' : '월간') : '—';
+      $('info-amount').textContent = order.total_amount ? order.total_amount.toLocaleString() + '원' : '—';
+      $('info-paid-at').textContent = order.paid_at ? new Date(order.paid_at).toLocaleString('ko-KR') : '—';
+      $('order-info').style.display = 'block';
+    }
+    $('actions-success').style.display = 'flex';
+  }
+
+  function showPending() {
+    setState('pending', '결제 처리 지연', '결제는 정상 접수되었으나 확정 처리가 지연되고 있습니다. 마이페이지에서 잠시 후 다시 확인해 주세요.');
+    $('actions-pending').style.display = 'flex';
+  }
+
+  async function poll() {
+    // PortOne 모바일 redirect 실패 케이스
+    if (ptCode) {
+      showFail(decodeURIComponent(ptMessage || ptCode));
+      return;
+    }
+    if (!paymentId) {
+      showFail('결제 정보가 없습니다. 다시 신청해 주세요.');
+      return;
+    }
+
+    // webhook이 처리할 때까지 최대 ~30초 폴링
+    const maxAttempts = 15;
+    const intervalMs = 2000;
+
+    for (let i = 0; i < maxAttempts; i++) {
+      const { data: order, error } = await supabase
+        .from('orders')
+        .select('id, order_number, status, total_amount, memo, paid_at')
+        .eq('portone_payment_id', paymentId)
+        .maybeSingle();
+
+      if (error) {
+        console.warn('[poll] orders fetch error:', error.message);
+      } else if (order) {
+        if (order.status === 'paid') {
+          showSuccess(order);
+          return;
+        }
+        if (order.status === 'cancelled' || order.status === 'failed') {
+          showFail('결제가 취소되었거나 실패했습니다.');
+          return;
+        }
+      }
+      await new Promise(r => setTimeout(r, intervalMs));
+    }
+
+    // 시간초과: webhook이 늦거나 미수신
+    showPending();
+  }
+
+  poll();
+</script>
+</body>
+</html>
