@@ -14,7 +14,7 @@ window.NAVER_CLIENT_ID = 'jrpqX5SMmUskZT2AuJvE';
 //   3. PG 심사 통과 후 채널별 "Channel Key" 발급되면 아래 항목 채우기
 //   4. 미설정 채널은 빈 문자열 유지 → 결제창에서 자동으로 비활성화
 // ─────────────────────────────────────────────────────────────
-window.PORTONE_STORE_ID = '';                // 예: 'store-xxxxxxxx-xxxx-...'
+window.PORTONE_STORE_ID = 'store-bb4f1ef9-bd0f-444c-9315-5c5608a3c281';
 window.PORTONE_CHANNEL_KEYS = {
   kakaopay: '',   // 카카오페이 채널 키 (예: 'channel-key-...')
   naverpay: '',   // 네이버페이 채널 키
