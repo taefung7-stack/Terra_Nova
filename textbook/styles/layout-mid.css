@@ -1,0 +1,527 @@
+/* Layout overrides specific to MID-school textbook (TERRA / NEPTUNE / URANUS).
+   layout.css is loaded first; this file overrides only page2/page3/page4
+   structures. page1 stays identical to standard layout. */
+
+/* ===== Page 1 — extra meta chip for grade ===== */
+.p1-meta .chip.grade {
+  background: var(--tn-theme-deep);
+  color: #fff;
+  border: none;
+}
+
+/* ============================================================
+   Page 2 — School-style Practice
+   ============================================================ */
+.mid-p2 .page-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8pt;
+}
+.mid-p2 .mid-questions {
+  display: flex;
+  flex-direction: column;
+  gap: 7pt;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+.mid-p2 .question.mid-q {
+  border: 0.7pt solid var(--tn-divider);
+  border-left: 2.5pt solid var(--tn-theme);
+  border-radius: 3pt;
+  padding: 5pt 8pt 6pt;
+  background: #fff;
+  font-size: 9.5pt;
+  line-height: 1.45;
+}
+.mid-p2 .question .stem {
+  display: flex;
+  gap: 5pt;
+  align-items: baseline;
+  margin-bottom: 4pt;
+  font-family: var(--font-ko);
+}
+.mid-p2 .q-num {
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--tn-theme-deep);
+  font-size: 10.5pt;
+  letter-spacing: 0.02em;
+}
+.mid-p2 .q-style {
+  display: inline-block;
+  background: var(--tn-theme-soft);
+  color: var(--tn-theme-deep);
+  font-size: 7.5pt;
+  font-weight: 700;
+  padding: 1pt 6pt;
+  border-radius: 999px;
+  margin-right: 5pt;
+  font-family: var(--font-ko);
+  vertical-align: 1pt;
+}
+.mid-p2 .stem-rest {
+  flex: 1 1 auto;
+  font-size: 9.5pt;
+  font-weight: 500;
+  color: var(--tn-ink);
+}
+
+/* T/F + evidence */
+.mid-p2 .tf-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-ko);
+  font-size: 9pt;
+}
+.mid-p2 .tf-table td {
+  padding: 3pt 4pt;
+  border-bottom: 0.4pt dashed var(--tn-divider);
+  vertical-align: middle;
+}
+.mid-p2 .tf-table tr:last-child td { border-bottom: 0; }
+.mid-p2 .tf-no {
+  width: 18pt;
+  font-weight: 700;
+  color: var(--tn-theme-deep);
+}
+.mid-p2 .tf-text {
+  font-family: var(--font-body);
+  color: var(--tn-ink);
+}
+.mid-p2 .tf-cell { width: 50pt; text-align: center; }
+.mid-p2 .tf-pill {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 8.5pt;
+  padding: 1pt 7pt;
+  border: 0.7pt solid var(--tn-theme);
+  border-radius: 999px;
+  color: var(--tn-theme-deep);
+  letter-spacing: 0.06em;
+}
+.mid-p2 .tf-line {
+  width: 80pt;
+  font-size: 8pt;
+  color: var(--tn-ink-soft);
+  text-align: right;
+  letter-spacing: 0.02em;
+}
+
+/* Match: SYN/ANT */
+.mid-p2 .match-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 10pt;
+  margin-top: 2pt;
+}
+.mid-p2 .match-words, .mid-p2 .match-pool {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-body);
+  font-size: 9pt;
+  display: flex;
+  flex-direction: column;
+  gap: 3pt;
+}
+.mid-p2 .match-pool {
+  background: var(--tn-theme-soft);
+  border-radius: 3pt;
+  padding: 5pt 8pt;
+  font-family: var(--font-ko);
+  color: var(--tn-theme-deep);
+  font-size: 8.8pt;
+}
+.mid-p2 .match-words li {
+  display: flex;
+  gap: 4pt;
+  align-items: baseline;
+}
+.mid-p2 .m-no { font-weight: 700; color: var(--tn-theme-deep); }
+.mid-p2 .m-word { font-weight: 600; color: var(--tn-ink); }
+.mid-p2 .m-kind {
+  display: inline-block;
+  width: 14pt;
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--tn-theme);
+}
+.mid-p2 .m-blank {
+  flex: 1 1 auto;
+  border-bottom: 0.5pt solid var(--tn-muted);
+  color: transparent;
+}
+.mid-p2 .m-roman {
+  display: inline-block;
+  width: 13pt;
+  font-weight: 700;
+}
+
+/* Short translate */
+.mid-p2 .tr-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 5pt;
+}
+.mid-p2 .tr-item {
+  border-top: 0.5pt dashed var(--tn-divider);
+  padding-top: 3pt;
+}
+.mid-p2 .tr-item:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+.mid-p2 .tr-head {
+  font-family: var(--font-display);
+  font-size: 8pt;
+  font-weight: 700;
+  color: var(--tn-theme-deep);
+  margin-bottom: 2pt;
+}
+.mid-p2 .tr-dir {
+  display: inline-block;
+  background: var(--tn-theme-deep);
+  color: #fff;
+  font-size: 7pt;
+  padding: 1pt 5pt;
+  border-radius: 2pt;
+  margin-left: 4pt;
+  letter-spacing: 0.06em;
+}
+.mid-p2 .tr-source {
+  font-size: 9pt;
+  font-style: italic;
+  color: var(--tn-ink);
+  margin-bottom: 3pt;
+}
+.mid-p2 .tr-blank {
+  height: 18pt;
+  border-bottom: 0.5pt solid var(--tn-muted);
+}
+
+/* Short answer */
+.mid-p2 .short-meta {
+  font-family: var(--font-ko);
+  font-size: 8.5pt;
+  color: var(--tn-ink-soft);
+  margin: 3pt 0 4pt;
+}
+.mid-p2 .short-meta strong { color: var(--tn-theme-deep); }
+.mid-p2 .short-blank {
+  height: 16pt;
+  border-bottom: 0.6pt solid var(--tn-muted);
+}
+
+/* Tieback aside (compact, sits below questions) */
+.mid-p2 .mid-tieback {
+  margin-top: auto;
+  background: var(--tn-theme-soft);
+  border-radius: 3pt;
+  padding: 6pt 9pt 7pt;
+  font-family: var(--font-ko);
+  font-size: 8.5pt;
+  line-height: 1.5;
+  color: var(--tn-ink);
+  border-left: 2.5pt solid var(--tn-theme-deep);
+}
+.mid-p2 .mid-tieback .unit-label {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 8.5pt;
+  color: var(--tn-theme-deep);
+  letter-spacing: 0.06em;
+  margin-bottom: 3pt;
+  text-transform: none;
+}
+.mid-p2 .mid-tieback .body-ko {
+  font-size: 8.5pt;
+  margin-bottom: 4pt;
+}
+.mid-p2 .mid-tieback .tags { display: flex; gap: 4pt; flex-wrap: wrap; }
+.mid-p2 .mid-tieback .tag {
+  font-family: var(--font-display);
+  font-size: 7.5pt;
+  font-weight: 600;
+  color: var(--tn-theme-deep);
+  background: #fff;
+  padding: 1pt 6pt;
+  border-radius: 999px;
+}
+
+/* ============================================================
+   Page 3 — Reading Strategy + Mind Map
+   ============================================================ */
+.mid-p3 .page-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8pt;
+}
+.mid-section-h {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 10.5pt;
+  color: var(--tn-theme-deep);
+  letter-spacing: 0.04em;
+  margin: 0 0 4pt;
+  text-transform: none;
+}
+.mid-section-h.compact { font-size: 9.5pt; margin-bottom: 3pt; }
+
+.mid-p3-grid {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 10pt;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+.mid-strategies {
+  display: flex;
+  flex-direction: column;
+  gap: 5pt;
+}
+.strategy-card {
+  display: grid;
+  grid-template-columns: 22pt 1fr;
+  gap: 6pt;
+  padding: 5pt 7pt;
+  background: #fff;
+  border: 0.6pt solid var(--tn-divider);
+  border-left: 2.5pt solid var(--tn-theme);
+  border-radius: 3pt;
+}
+.strategy-num {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 14pt;
+  color: var(--tn-theme);
+  line-height: 1;
+}
+.strategy-title {
+  font-family: var(--font-ko);
+  font-weight: 800;
+  font-size: 9.5pt;
+  color: var(--tn-ink);
+  margin-bottom: 2pt;
+}
+.strategy-tip {
+  font-family: var(--font-ko);
+  font-size: 8.6pt;
+  line-height: 1.5;
+  color: var(--tn-ink);
+  margin-bottom: 3pt;
+}
+.strategy-source {
+  font-family: var(--font-display);
+  font-size: 7.6pt;
+  color: var(--tn-theme-deep);
+  background: var(--tn-theme-soft);
+  display: inline-block;
+  padding: 1pt 6pt;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+/* Mind Map — radial-ish via flex */
+.mid-mindmap {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+.mindmap-wrap {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mindmap {
+  position: relative;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 8pt 14pt;
+  align-items: center;
+  justify-items: center;
+  padding: 6pt 4pt;
+}
+.mm-central {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--tn-theme-deep);
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 13pt;
+  letter-spacing: 0.06em;
+  padding: 8pt 14pt;
+  border-radius: 999px;
+  z-index: 2;
+  box-shadow: 0 0 0 4pt var(--tn-theme-soft), 0 0 0 5pt var(--tn-theme);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+.mm-branches {
+  display: contents;
+}
+.branch {
+  position: relative;
+  background: #fff;
+  border: 0.7pt solid var(--tn-theme);
+  border-radius: 4pt;
+  padding: 5pt 8pt;
+  width: 100%;
+  max-width: 96pt;
+  text-align: center;
+  z-index: 1;
+}
+.branch-1 { justify-self: end;   align-self: start; }
+.branch-2 { justify-self: start; align-self: start; }
+.branch-3 { justify-self: end;   align-self: end; }
+.branch-4 { justify-self: start; align-self: end; }
+.branch::before {
+  content: "";
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 30pt;
+  height: 0.7pt;
+  background: var(--tn-theme);
+  z-index: -1;
+}
+.branch-1::before { transform-origin: 0 50%; transform: translate(0,-50%) rotate(  20deg); left: 100%; }
+.branch-2::before { transform-origin: 100% 50%; transform: translate(-100%,-50%) rotate(-20deg); left: 0; }
+.branch-3::before { transform-origin: 0 50%; transform: translate(0,-50%) rotate( -20deg); left: 100%; }
+.branch-4::before { transform-origin: 100% 50%; transform: translate(-100%,-50%) rotate(  20deg); left: 0; }
+
+.branch-label {
+  font-family: var(--font-ko);
+  font-weight: 800;
+  font-size: 9pt;
+  color: var(--tn-theme-deep);
+  margin-bottom: 2pt;
+}
+.branch-summary {
+  font-family: var(--font-ko);
+  font-size: 7.8pt;
+  line-height: 1.4;
+  color: var(--tn-ink);
+}
+
+/* Compact translation strip at bottom of page 3 */
+.mid-translation {
+  background: var(--tn-theme-soft);
+  border-radius: 3pt;
+  padding: 6pt 9pt;
+  font-family: var(--font-ko);
+}
+.mid-translation .body {
+  font-size: 9pt;
+  line-height: 1.6;
+  color: var(--tn-ink);
+}
+.mid-translation .tr-num {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--tn-theme-deep);
+  font-size: 8pt;
+  margin-right: 1pt;
+}
+
+/* ============================================================
+   Page 4 — Collocations (8 cards)
+   ============================================================ */
+.mid-p4 .page-body {
+  display: flex;
+  flex-direction: column;
+}
+.mid-collocations {
+  flex: 1 1 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 1fr;
+  gap: 6pt;
+  min-height: 0;
+}
+.collocation-card {
+  border: 0.7pt solid var(--tn-divider);
+  border-left: 2.5pt solid var(--tn-theme);
+  border-radius: 3pt;
+  padding: 5pt 8pt 6pt;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 3pt;
+  min-height: 0;
+}
+.collocation-card .head {
+  display: flex;
+  align-items: baseline;
+  gap: 6pt;
+  flex-wrap: wrap;
+}
+.collocation-card .phrase {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 11pt;
+  color: var(--tn-ink);
+  letter-spacing: 0.01em;
+}
+.collocation-card .pattern {
+  font-family: var(--font-mono);
+  font-size: 7.5pt;
+  font-weight: 600;
+  color: var(--tn-theme-deep);
+  background: var(--tn-theme-soft);
+  padding: 1pt 5pt;
+  border-radius: 2pt;
+  letter-spacing: 0.02em;
+}
+.collocation-card .meaning {
+  font-family: var(--font-ko);
+  font-size: 8.8pt;
+  font-weight: 600;
+  color: var(--tn-theme-deep);
+}
+.collocation-card .examples {
+  display: flex;
+  flex-direction: column;
+  gap: 3pt;
+  margin-top: auto;
+}
+.collocation-card .example-item {
+  font-family: var(--font-ko);
+  font-size: 8.2pt;
+  line-height: 1.4;
+  border-top: 0.4pt dashed var(--tn-divider);
+  padding-top: 3pt;
+}
+.collocation-card .example-item:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+.collocation-card .example-item .en {
+  color: var(--tn-ink);
+  font-style: italic;
+  margin-bottom: 1pt;
+}
+.collocation-card .example-item .ko {
+  color: var(--tn-ink-soft);
+  font-size: 7.8pt;
+}
+
+/* ===== Overflow warning marker ===== */
+.overflow-warning {
+  position: absolute;
+  bottom: 2pt;
+  right: 2pt;
+  background: var(--tn-warn);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  padding: 1pt 4pt;
+  border-radius: 2pt;
+  z-index: 10;
+}

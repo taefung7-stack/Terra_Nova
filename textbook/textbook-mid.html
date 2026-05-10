@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Terra Nova Textbook · MID</title>
+<link rel="stylesheet" href="styles/tokens.css" />
+<link rel="stylesheet" href="styles/layout.css" />
+<link rel="stylesheet" href="styles/layout-mid.css" />
+<link rel="stylesheet" href="styles/print.css" />
+</head>
+<body>
+
+<template id="tpl-passage-mid">
+  <article class="passage" data-slot="root">
+
+    <!-- Page 1 — Passage (same as standard) -->
+    <section class="page page-1" data-page="1">
+      <header class="page-head">
+        <span class="section-label">PASSAGE</span>
+        <span class="chapter-tag" data-slot="chapter-tag"></span>
+      </header>
+      <div class="page-body">
+        <div class="p1-meta">
+          <span class="chip" data-slot="subject"></span>
+          <span class="chip part" data-slot="part"></span>
+          <span class="chip level" data-slot="lexile"></span>
+          <span class="chip level" data-slot="ar"></span>
+          <span class="chip part" data-slot="grade"></span>
+        </div>
+        <h1 class="p1-title" data-slot="title"></h1>
+        <p class="p1-subtitle" data-slot="subtitle"></p>
+        <div class="p1-body" data-slot="body"></div>
+        <figure class="p1-illustration">
+          <img data-slot="illustration" alt="" />
+        </figure>
+        <figcaption class="p1-caption" data-slot="illustration-caption"></figcaption>
+      </div>
+      <footer class="page-foot">
+        <span class="foot-day"></span>
+        <span class="page-num" data-slot="page-num-1"></span>
+        <span class="brand">TERRA<span class="brand-dot">·</span>NOVA</span>
+      </footer>
+    </section>
+
+    <!-- Page 2 — School-style Practice (mid) -->
+    <section class="page page-2 mid-p2" data-page="2">
+      <header class="page-head">
+        <span class="section-label">PRACTICE</span>
+        <span class="chapter-tag" data-slot="chapter-tag-2"></span>
+      </header>
+      <div class="page-body">
+        <div class="mid-questions" data-slot="questions"></div>
+        <aside class="mid-tieback">
+          <div class="unit-label" data-slot="tieback-unit"></div>
+          <div class="body-ko" data-slot="tieback-body"></div>
+          <div class="tags" data-slot="tieback-tags"></div>
+        </aside>
+      </div>
+      <footer class="page-foot">
+        <span class="foot-day"></span>
+        <span class="page-num" data-slot="page-num-2"></span>
+        <span class="brand">TERRA<span class="brand-dot">·</span>NOVA</span>
+      </footer>
+    </section>
+
+    <!-- Page 3 — Reading Strategy + Mind Map (mid) -->
+    <section class="page page-3 mid-p3" data-page="3">
+      <header class="page-head">
+        <span class="section-label">READING</span>
+        <span class="chapter-tag" data-slot="chapter-tag-3"></span>
+      </header>
+      <div class="page-body">
+        <div class="mid-p3-grid">
+          <div class="mid-strategies">
+            <h4 class="mid-section-h">📍 Reading Strategy</h4>
+            <div data-slot="strategies"></div>
+          </div>
+          <div class="mid-mindmap">
+            <h4 class="mid-section-h">🧠 Mind Map</h4>
+            <div class="mindmap-wrap" data-slot="mindmap"></div>
+          </div>
+        </div>
+        <div class="mid-translation">
+          <h4 class="mid-section-h compact">📖 우리말 핵심</h4>
+          <div class="body" data-slot="translation"></div>
+        </div>
+      </div>
+      <footer class="page-foot">
+        <span class="foot-day"></span>
+        <span class="page-num" data-slot="page-num-3"></span>
+        <span class="brand">TERRA<span class="brand-dot">·</span>NOVA</span>
+      </footer>
+    </section>
+
+    <!-- Page 4 — Collocations (mid) -->
+    <section class="page page-4 mid-p4" data-page="4">
+      <header class="page-head">
+        <span class="section-label">PHRASES</span>
+        <span class="chapter-tag" data-slot="chapter-tag-4"></span>
+      </header>
+      <div class="page-body">
+        <div class="mid-collocations" data-slot="collocations"></div>
+      </div>
+      <footer class="page-foot">
+        <span class="foot-day"></span>
+        <span class="page-num" data-slot="page-num-4"></span>
+        <span class="brand">TERRA<span class="brand-dot">·</span>NOVA</span>
+      </footer>
+    </section>
+
+  </article>
+</template>
+
+<main id="stage"></main>
+
+<script type="module" src="scripts/render-mid.js"></script>
+</body>
+</html>
