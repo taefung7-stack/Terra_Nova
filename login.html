@@ -291,6 +291,32 @@
       }
       return;
     }
+
+    // 로그인 성공 후 admin 여부 확인 → admin이면 admin.html, 아니면 redirect 또는 mypage
+    // (RLS recursion 같은 부수 문제로 hang되어도 setTimeout fallback이 강제 이동)
+    const safetyTimer = setTimeout(() => {
+      console.warn('[auth] post-login redirect timeout, forcing redirect');
+      location.href = getRedirect();
+    }, 1500);
+
+    try {
+      const userId = data?.user?.id;
+      if (userId) {
+        const { data: prof } = await supabase
+          .from('profiles')
+          .select('is_admin')
+          .eq('id', userId)
+          .maybeSingle();
+        clearTimeout(safetyTimer);
+        if (prof?.is_admin === true) {
+          location.href = 'admin.html';
+          return;
+        }
+      }
+    } catch (e) {
+      console.warn('[auth] post-login profile check failed:', e?.message);
+    }
+    clearTimeout(safetyTimer);
     location.href = getRedirect();
   }
 
