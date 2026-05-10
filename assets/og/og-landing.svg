@@ -1,81 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- OG cover for landing.html (1200×630) -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="Terra Nova 랜딩 OG 커버">
+<!-- OG cover for landing.html (1200×630) — minimalist dark + mint -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="Terra Nova English landing">
   <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%"   stop-color="#0B0A2E"/>
-      <stop offset="55%"  stop-color="#0A0A14"/>
-      <stop offset="100%" stop-color="#050512"/>
-    </linearGradient>
-    <linearGradient id="title" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%"   stop-color="#A78BFA"/>
-      <stop offset="60%"  stop-color="#38BDF8"/>
-      <stop offset="100%" stop-color="#22D3EE"/>
-    </linearGradient>
-    <linearGradient id="orbit" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%"   stop-color="rgba(167,139,250,.6)"/>
-      <stop offset="100%" stop-color="rgba(34,211,238,.6)"/>
-    </linearGradient>
-    <radialGradient id="glow" cx="50%" cy="50%" r="55%">
-      <stop offset="0%"  stop-color="rgba(56,189,248,.18)"/>
-      <stop offset="100%" stop-color="rgba(56,189,248,0)"/>
+    <radialGradient id="halo" cx="50%" cy="50%" r="60%">
+      <stop offset="0%"  stop-color="rgba(0,255,163,.18)"/>
+      <stop offset="60%" stop-color="rgba(0,255,163,.04)"/>
+      <stop offset="100%" stop-color="rgba(0,255,163,0)"/>
     </radialGradient>
   </defs>
 
-  <rect width="1200" height="630" fill="url(#bg)"/>
-  <rect width="1200" height="630" fill="url(#glow)"/>
+  <rect width="1200" height="630" fill="#0A0A0A"/>
+  <rect width="1200" height="630" fill="url(#halo)"/>
 
-  <g fill="#fff" opacity=".42">
-    <circle cx="120" cy="80" r="1.2"/><circle cx="320" cy="60" r="1.4"/>
-    <circle cx="600" cy="40" r="1"/><circle cx="900" cy="80" r="1.2"/>
-    <circle cx="1080" cy="60" r="1.4"/><circle cx="200" cy="560" r="1.2"/>
-    <circle cx="800" cy="580" r="1.2"/><circle cx="1100" cy="500" r="1.4"/>
+  <g fill="#00FFA3" opacity=".22">
+    <circle cx="180" cy="120" r="1.2"/>
+    <circle cx="980" cy="100" r="1.5"/>
+    <circle cx="240" cy="520" r="1.2"/>
+    <circle cx="940" cy="540" r="1.4"/>
   </g>
 
-  <!-- 8 planets on orbit (right) -->
-  <g transform="translate(900,315)">
-    <ellipse cx="0" cy="0" rx="240" ry="60" fill="none" stroke="url(#orbit)" stroke-width="1.4"/>
-    <circle cx="-220" cy="0" r="9" fill="#FF6B4A"/>
-    <circle cx="-160" cy="-30" r="11" fill="#FBBF24"/>
-    <circle cx="-90" cy="-46" r="13" fill="#34D399"/>
-    <circle cx="0" cy="-50" r="14" fill="#06B6D4"/>
-    <circle cx="90" cy="-46" r="14" fill="#A78BFA"/>
-    <circle cx="160" cy="-30" r="13" fill="#F472B6"/>
-    <circle cx="220" cy="0" r="11" fill="#FBBF24"/>
-    <circle cx="240" cy="40" r="16" fill="#FFE066"/>
-  </g>
+  <!-- Hero -->
+  <text x="600" y="290" text-anchor="middle"
+        font-family="'Space Grotesk','Arial Black',sans-serif" font-weight="900"
+        font-size="120" letter-spacing="14" fill="#FFFFFF">TERRA NOVA</text>
+  <text x="600" y="336" text-anchor="middle"
+        font-family="'Space Grotesk','Arial',sans-serif" font-weight="500"
+        font-size="22" letter-spacing="22" fill="#00FFA3">ENGLISH</text>
 
-  <!-- Eyebrow -->
-  <text x="80" y="200"
-        font-family="'Noto Sans KR','Arial',sans-serif" font-weight="700"
-        font-size="22" letter-spacing="6" fill="#22D3EE">✦ 8 LEVELS · 12 MONTHS</text>
+  <!-- Single tagline -->
+  <text x="600" y="416" text-anchor="middle"
+        font-family="'Pretendard','Noto Sans KR','Arial',sans-serif" font-weight="800"
+        font-size="34" fill="#F0F0F0">초5부터 N수생까지, 8단계 정밀 매칭</text>
 
-  <!-- Title -->
-  <text x="80" y="306"
-        font-family="'Bebas Neue','Arial Black',sans-serif" font-weight="700"
-        font-size="100" letter-spacing="4" fill="url(#title)">TERRA NOVA</text>
-  <text x="80" y="358"
-        font-family="'Noto Sans KR','Arial',sans-serif" font-weight="500"
-        font-size="30" letter-spacing="14" fill="rgba(200,200,230,.78)">ENGLISH</text>
+  <line x1="540" y1="456" x2="660" y2="456" stroke="#00FFA3" stroke-width="2"/>
 
-  <!-- Tagline -->
-  <text x="80" y="432"
-        font-family="'Noto Sans KR','Arial',sans-serif" font-weight="800"
-        font-size="32" fill="#F0F0F0">초5부터 N수생까지 · 8단계 정밀 매칭</text>
-  <text x="80" y="472"
-        font-family="'Noto Sans KR','Arial',sans-serif" font-weight="500"
-        font-size="22" fill="rgba(240,240,240,.7)">매달 새 신간 12권 · 위약금 0원 · 1클릭 해지</text>
-
-  <!-- CTA pill -->
-  <g transform="translate(80,508)">
-    <rect width="320" height="56" rx="28" fill="#22D3EE"/>
-    <text x="160" y="38" text-anchor="middle"
-          font-family="'Noto Sans KR','Arial',sans-serif" font-weight="900"
-          font-size="20" fill="#0A0A14">월 11,900원부터 →</text>
-  </g>
-
-  <!-- Domain -->
-  <text x="80" y="592"
-        font-family="'Noto Sans KR','Arial',sans-serif" font-weight="600"
-        font-size="18" letter-spacing="4" fill="rgba(180,180,220,.55)">terra-nova.kr</text>
+  <text x="600" y="510" text-anchor="middle"
+        font-family="'Space Grotesk','Arial',sans-serif" font-weight="500"
+        font-size="18" letter-spacing="6" fill="rgba(240,240,240,.5)">terra-nova.kr</text>
 </svg>
