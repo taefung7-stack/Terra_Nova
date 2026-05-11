@@ -630,11 +630,12 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   50%     { transform:translateY(6px); opacity:1; }
 }
 
-/* Static hero content (BigBang disabled — always visible) */
+/* Static hero content (always visible above the starfield canvas) */
 .hero-fallback {
   display:flex;
   position:absolute;
   inset:0;
+  z-index:4;          /* above #hero-warp(0), #bg-canvas(1), .hero-rays(2), #mouse-halo(3) */
   align-items:center;
   justify-content:center;
   padding:0 24px;
@@ -3474,9 +3475,13 @@ body.bigbang-done .terra-hint,
 </nav>
 
 <!-- =============== HERO =============== -->
-<!-- BigBang WebGL canvases removed (backup: assets/bigbang/index-bigbang-script.html.txt).
-     Hero now uses the static fallback only — lighter, no JS init. -->
+<!-- BigBang cross-particle Three.js scene removed (backup: assets/bigbang/index-bigbang-script.html.txt).
+     The lightweight 2D starfield warp canvas is kept — it's pure Canvas2D,
+     auto-disables on mobile (<720px) and reduced-motion, and runs only while
+     #hero is in viewport. -->
 <section id="hero" class="hero is-post" aria-label="Terra Nova hero">
+  <canvas id="hero-warp" aria-hidden="true"></canvas>
+
   <div class="hero-fallback" aria-hidden="false">
     <h1>영어 한 지문에<br><span class="accent">수학 한 단원</span><br>이 들어 있습니다.</h1>
   </div>
@@ -4466,28 +4471,201 @@ body.bigbang-done .terra-hint,
   <span>© Terra Nova English · 2026</span>
 </footer>
 
-<!-- =============== Three.js BigBang intro — DISABLED =============== -->
-<!--
-  The Big Bang intro animation (Three.js cross-particle convergence + flash + WebGL warp)
-  has been TEMPORARILY DISABLED to reduce page weight / lag on lower-end devices.
+<!-- =============== Hero starfield (Canvas2D only — no Three.js, no GLTF) ===============
+  The 3D cross-particle BigBang scene was removed for page-weight reasons
+  (backup at assets/bigbang/index-bigbang-script.html.txt). The standalone
+  2D warp starfield is kept because it's lightweight (pure Canvas2D, ~5KB,
+  auto-disabled on <720px width and prefers-reduced-motion) and provides
+  ambient motion behind the static headline.
 
-  Backup of the full original block (1656 lines including importmap, Three.js module
-  imports, cross-gltf-data.js loader, and the bigbang IIFE) is stored at:
-
-      assets/bigbang/index-bigbang-script.html.txt
-
-  To re-enable later: replace this block (and re-add the bigbang HTML elements
-  inside <section id="hero">) with the contents of that backup file, and also
-  restore the cross-gltf-data.js <script> tag that was inside the backup.
-
-  Hero now uses the static .hero-fallback markup (already designed for
-  reduced-motion / mobile users) — no JS init required.
--->
+  Mark body as bigbang-done so all .bigbang-done-gated CSS reveals content
+  immediately (nav, footer, etc.). The hero is pre-set to .is-post in markup
+  so the #hero-warp opacity:1 rule applies without any climax-flash timing. -->
 <script>
-  // Mark bigbang as "done" so all .bigbang-done-gated CSS reveals content immediately.
   document.body.classList.add('bigbang-done');
-  var __tnHero = document.getElementById('hero');
-  if (__tnHero) { __tnHero.classList.remove('is-pre'); __tnHero.classList.add('is-post'); }
+</script>
+<script>
+(function () {
+  'use strict';
+
+  // 2D warp starfield — ambient mode only (no burst, no Three.js dependency).
+  // Auto-skipped on mobile / reduced-motion / missing canvas — falls back to
+  // the static .hero-fallback headline which is already visible above.
+  function initWarpField() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return null;
+    if (window.innerWidth < 720) return null;
+    var canvas = document.getElementById('hero-warp');
+    if (!canvas) return null;
+    var ctx = canvas.getContext('2d');
+    var hero = document.getElementById('hero');
+    var stars = [];
+    var running = false;
+    var rafId = 0;
+
+    function resize() {
+      var dpr = Math.min(window.devicePixelRatio || 1, 1.25);
+      var w = hero.clientWidth, h = hero.clientHeight;
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      canvas.style.width = w + 'px';
+      canvas.style.height = h + 'px';
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.scale(dpr, dpr);
+      canvas.lw = w; canvas.lh = h;
+    }
+    function init() {
+      stars = [];
+      var cx = canvas.lw / 2, cy = canvas.lh / 2;
+      var md = Math.min(canvas.lw, canvas.lh) * 0.3;
+      var n = 2600;
+      for (var i = 0; i < n; i++) {
+        var angle = Math.random() * Math.PI * 2;
+        var dist = md + Math.random() * Math.max(canvas.lw, canvas.lh);
+        stars.push({
+          x: cx + Math.cos(angle) * dist,
+          y: cy + Math.sin(angle) * dist,
+          z: Math.random() * 1450 + 50,
+          r: Math.random() * 2 + 0.8,
+          a: Math.random() * 0.5 + 0.5,
+          tw: Math.random() * Math.PI * 2,
+          sp: Math.random() * 0.003 + 0.001,
+          mint: Math.random() < 0.10  // 10% mint, 90% white
+        });
+      }
+    }
+    resize(); init();
+    var resizeTimer = null;
+    window.addEventListener('resize', function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function () { resize(); init(); }, 250);
+    });
+
+    // Mouse-driven vanishing point shift (warp tilts toward cursor for parallax feel)
+    var mShiftX = 0, mShiftY = 0;
+    var mTargetX = 0, mTargetY = 0;
+    var SHIFT_AMP = 90;
+    hero.addEventListener('mousemove', function (e) {
+      var rect = hero.getBoundingClientRect();
+      var nx = (e.clientX - rect.left) / rect.width - 0.5;
+      var ny = (e.clientY - rect.top) / rect.height - 0.5;
+      mTargetX = nx * 2 * SHIFT_AMP;
+      mTargetY = ny * 2 * SHIFT_AMP;
+    });
+    hero.addEventListener('mouseleave', function () {
+      mTargetX = 0; mTargetY = 0;
+    });
+
+    // Hold left-click → speed-boost the star rain. Release → ease back to normal.
+    var boostMul = 1.0;
+    var boostTarget = 1.0;
+    hero.addEventListener('mousedown', function (e) {
+      if (e.button === 0) boostTarget = 2.6;
+    });
+    window.addEventListener('mouseup', function (e) {
+      if (e.button === 0) boostTarget = 1.0;
+    });
+    window.addEventListener('blur', function () { boostTarget = 1.0; });
+
+    function draw() {
+      if (!running) return;
+      mShiftX += (mTargetX - mShiftX) * 0.06;
+      mShiftY += (mTargetY - mShiftY) * 0.06;
+      boostMul += (boostTarget - boostMul) * 0.10;
+      var w = canvas.lw, h = canvas.lh, cx = w/2 + mShiftX, cy = h/2 + mShiftY;
+      var dpr = Math.min(window.devicePixelRatio || 1, 1.25);
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.scale(dpr, dpr);
+      var effSpeed = boostMul;
+      var trailAlpha = Math.max(0.07, 0.15 / boostMul);
+      ctx.fillStyle = 'rgba(4,4,12,' + trailAlpha + ')';
+      ctx.fillRect(0, 0, w, h);
+      stars.forEach(function (s) {
+        s.z -= 1.3 * effSpeed;
+        if (s.z <= 0) {
+          s.z = 400 + Math.random() * 1100;
+          var angle = Math.random() * Math.PI * 2;
+          var md = Math.min(w, h) * 0.3;
+          var dist = md + Math.random() * Math.max(w, h);
+          s.x = cx + Math.cos(angle) * dist;
+          s.y = cy + Math.sin(angle) * dist;
+        }
+        var k = 128 / s.z;
+        var px = (s.x - cx) * k + cx;
+        var py = (s.y - cy) * k + cy;
+        var size = s.r * k * 2;
+        s.tw += s.sp;
+        var alpha = s.a * (0.5 + 0.5 * Math.sin(s.tw)) * Math.min(1, k);
+        var rgb = s.mint ? '94,234,212' : '255,255,255';
+        var glow = s.mint ? '45,212,191' : '79,195,247';
+        if (size > 0.5) {
+          ctx.beginPath();
+          ctx.moveTo(px, py);
+          ctx.lineTo(px + (cx - s.x) * k * 0.1, py + (cy - s.y) * k * 0.1);
+          ctx.strokeStyle = 'rgba(' + rgb + ',' + (alpha * 0.3) + ')';
+          ctx.lineWidth = size * 0.5;
+          ctx.stroke();
+        }
+        ctx.beginPath();
+        ctx.arc(px, py, size, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(' + rgb + ',' + alpha + ')';
+        ctx.fill();
+        if (size > 1.5) {
+          ctx.shadowBlur = size * 3;
+          ctx.shadowColor = 'rgba(' + glow + ',' + (alpha * 0.8) + ')';
+          ctx.beginPath();
+          ctx.arc(px, py, size, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(' + rgb + ',' + alpha + ')';
+          ctx.fill();
+          ctx.shadowBlur = 0;
+        }
+      });
+      rafId = requestAnimationFrame(draw);
+    }
+
+    return {
+      start: function () {
+        if (running) return;
+        running = true;
+        rafId = requestAnimationFrame(draw);
+      },
+      stop: function () {
+        running = false;
+        cancelAnimationFrame(rafId);
+      }
+    };
+  }
+
+  function ready(fn) {
+    if (document.readyState !== 'loading') fn();
+    else document.addEventListener('DOMContentLoaded', fn);
+  }
+
+  ready(function () {
+    var warpField = initWarpField();
+    if (!warpField) return;  // mobile / reduced-motion / no canvas → static hero only
+
+    // Gate the rAF loop on hero visibility + page visibility so the canvas
+    // doesn't burn CPU while the user has scrolled past it or hidden the tab.
+    var heroEl = document.getElementById('hero');
+    var heroVisible = true;
+    if (heroEl && 'IntersectionObserver' in window) {
+      document.addEventListener('visibilitychange', function () {
+        if (document.hidden) warpField.stop();
+        else if (heroVisible) warpField.start();
+      });
+      var io = new IntersectionObserver(function (ents) {
+        ents.forEach(function (e) {
+          heroVisible = e.isIntersecting;
+          if (e.isIntersecting && !document.hidden) warpField.start();
+          else warpField.stop();
+        });
+      }, { threshold: 0 });
+      io.observe(heroEl);
+    } else {
+      warpField.start();
+    }
+  });
+})();
 </script>
 
 <!-- =============== SITE NAV: scroll-aware bg + mobile hamburger =============== -->
