@@ -188,17 +188,14 @@ function renderSegment(seg) {
   return `<span class="seg" data-role="${role}">${safeText}${tagHtml}</span>`;
 }
 
-function renderHighlights(list, sentenceIndex) {
+function renderHighlights(list) {
   if (!list || !list.length) return '';
   const ROLE_LABEL = { S: 'S', V: 'V', O: 'O', C: 'C', M: 'M', CONJ: '접', REL: '관' };
   const chips = list.map(h => {
     const label = ROLE_LABEL[h.role] || h.role;
     return `<span class="hl-chip" data-role="${h.role}"><span class="hl-tag">${label}</span><span class="hl-ko">${renderRichInline(h.ko)}</span></span>`;
   }).join('');
-  const lead = sentenceIndex != null
-    ? `<span class="hl-lead">[${sentenceIndex}]</span>`
-    : '';
-  return `<div class="mid-sent-explain">${lead}${chips}</div>`;
+  return `<div class="mid-sent-explain">${chips}</div>`;
 }
 
 function renderSentences(list) {
@@ -206,7 +203,7 @@ function renderSentences(list) {
     const segs = s.segments.map(renderSegment).join(' ');
     return `<div class="p3-sentence">
       <div class="en-row"><span class="num">[${s.index}]</span>${segs}</div>
-      ${renderHighlights(s.highlights, s.index)}
+      ${renderHighlights(s.highlights)}
     </div>`;
   }).join('');
 }
