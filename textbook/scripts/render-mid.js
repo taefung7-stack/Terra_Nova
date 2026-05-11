@@ -198,18 +198,6 @@ function renderSentences(list) {
   }).join('');
 }
 
-/* ---------- Page 3: compact reading-strategy strip (above 우리말 해석) ---------- */
-function renderStrategyStrip(list) {
-  if (!list || !list.length) return '';
-  const items = list.map(s => `
-    <div class="strip-item">
-      <span class="strip-title">${escapeHTML(s.title)}</span>
-      <span class="strip-tip">${renderRichInline(s.tip)}</span>
-    </div>
-  `).join('');
-  return `<div class="strip-head">💡 Reading Strategy</div><div class="strip-grid">${items}</div>`;
-}
-
 function renderTranslation(text) {
   const safe = escapeHTML(text);
   return safe.replace(/\[(\d+)\]/g, (_, n) => `<span class="tr-num">[${n}]</span>`);
@@ -345,7 +333,6 @@ async function main() {
   setSafe(root, 'tieback-visual', renderVisualAid(data.page2.textbook_tieback.visual_aid));
 
   setSafe(root, 'sentences', renderSentences(data.page3.sentences));
-  setSafe(root, 'strategies', renderStrategyStrip(data.page3.strategies));
   setSafe(root, 'translation', renderTranslation(data.page3.translation_ko));
 
   setSafe(root, 'vocab', renderVocab(data.page4.vocab));
