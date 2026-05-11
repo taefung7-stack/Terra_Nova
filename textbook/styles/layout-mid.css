@@ -15,25 +15,26 @@
 .mid-p2 .page-body {
   display: flex;
   flex-direction: column;
-  gap: 5pt;
+  gap: 8pt;
 }
 .mid-p2 .mid-questions {
   display: flex;
   flex-direction: column;
-  gap: 4pt;
+  gap: 8pt;
   flex: 1 1 auto;
   min-height: 0;
   min-width: 0;
   width: 100%;
+  justify-content: space-between;
 }
 .mid-p2 .question.mid-q {
   border: 0.7pt solid var(--tn-divider);
   border-left: 2.5pt solid var(--tn-theme);
   border-radius: 3pt;
-  padding: 3pt 7pt 4pt;
+  padding: 6pt 10pt 7pt;
   background: #fff;
-  font-size: 9pt;
-  line-height: 1.4;
+  font-size: 10pt;
+  line-height: 1.5;
   width: 100%;
   min-width: 0;
 }
@@ -41,22 +42,22 @@
   display: flex;
   gap: 5pt;
   align-items: baseline;
-  margin-bottom: 2pt;
+  margin-bottom: 4pt;
   font-family: var(--font-ko);
 }
 .mid-p2 .q-num {
   font-family: var(--font-display);
   font-weight: 800;
   color: var(--tn-theme-deep);
-  font-size: 10.5pt;
+  font-size: 11.5pt;
 }
 .mid-p2 .q-style {
   display: inline-block;
   background: var(--tn-theme-soft);
   color: var(--tn-theme-deep);
-  font-size: 7.5pt;
+  font-size: 8pt;
   font-weight: 700;
-  padding: 1pt 6pt;
+  padding: 1pt 7pt;
   border-radius: 999px;
   margin-right: 5pt;
   font-family: var(--font-ko);
@@ -64,7 +65,7 @@
 }
 .mid-p2 .stem-rest {
   flex: 1 1 auto;
-  font-size: 9.5pt;
+  font-size: 10.5pt;
   font-weight: 500;
   color: var(--tn-ink);
 }
@@ -84,11 +85,11 @@
 }
 .mid-p2 .question.mock .choices li {
   position: relative;
-  padding: 1pt 0 1pt 16pt !important;
+  padding: 1.5pt 0 1.5pt 18pt !important;
   margin: 0 !important;
   font-family: var(--font-body);
-  font-size: 8.6pt;
-  line-height: 1.42;
+  font-size: 9.8pt;
+  line-height: 1.5;
   color: var(--tn-ink);
   display: block !important;
   width: 100%;
@@ -103,14 +104,14 @@
 .mid-p2 .question.mock .choices li::before {
   position: absolute !important;
   left: 0 !important;
-  top: 0pt !important;
+  top: 1.5pt !important;
   width: auto !important;
   height: auto !important;
   background: transparent !important;
   border-radius: 0 !important;
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 9pt;
+  font-size: 10pt;
   color: var(--tn-theme-deep);
   display: inline !important;
   counter-increment: none !important;
@@ -121,32 +122,32 @@
   width: 100%;
   border-collapse: collapse;
   font-family: var(--font-ko);
-  font-size: 9pt;
+  font-size: 9.5pt;
 }
 .mid-p2 .tf-table td {
-  padding: 2pt 4pt;
+  padding: 3.5pt 5pt;
   border-bottom: 0.4pt dashed var(--tn-divider);
   vertical-align: middle;
-  font-size: 8.6pt;
+  font-size: 9.5pt;
 }
 .mid-p2 .tf-table tr:last-child td { border-bottom: 0; }
-.mid-p2 .tf-no { width: 18pt; font-weight: 700; color: var(--tn-theme-deep); }
+.mid-p2 .tf-no { width: 20pt; font-weight: 700; color: var(--tn-theme-deep); }
 .mid-p2 .tf-text { font-family: var(--font-body); color: var(--tn-ink); }
-.mid-p2 .tf-cell { width: 50pt; text-align: center; }
+.mid-p2 .tf-cell { width: 56pt; text-align: center; }
 .mid-p2 .tf-pill {
   display: inline-block;
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 8.5pt;
-  padding: 1pt 7pt;
+  font-size: 9pt;
+  padding: 1.5pt 8pt;
   border: 0.7pt solid var(--tn-theme);
   border-radius: 999px;
   color: var(--tn-theme-deep);
   letter-spacing: 0.06em;
 }
 .mid-p2 .tf-line {
-  width: 80pt;
-  font-size: 8pt;
+  width: 86pt;
+  font-size: 8.6pt;
   color: var(--tn-ink-soft);
   text-align: right;
 }
@@ -163,33 +164,33 @@
 .mid-p2 .m-roman { display: inline-block; width: 13pt; font-weight: 700; }
 
 /* Short translate */
-.mid-p2 .tr-grid { display: flex; flex-direction: column; gap: 5pt; }
-.mid-p2 .tr-item { border-top: 0.5pt dashed var(--tn-divider); padding-top: 3pt; }
+.mid-p2 .tr-grid { display: flex; flex-direction: column; gap: 7pt; }
+.mid-p2 .tr-item { border-top: 0.5pt dashed var(--tn-divider); padding-top: 5pt; }
 .mid-p2 .tr-item:first-child { border-top: 0; padding-top: 0; }
 .mid-p2 .tr-head {
   font-family: var(--font-display);
-  font-size: 8pt;
+  font-size: 8.6pt;
   font-weight: 700;
   color: var(--tn-theme-deep);
-  margin-bottom: 2pt;
+  margin-bottom: 3pt;
 }
 .mid-p2 .tr-dir {
   display: inline-block;
   background: var(--tn-theme-deep);
   color: #fff;
-  font-size: 7pt;
-  padding: 1pt 5pt;
+  font-size: 7.6pt;
+  padding: 1pt 6pt;
   border-radius: 2pt;
   margin-left: 4pt;
   letter-spacing: 0.06em;
 }
-.mid-p2 .tr-source { font-size: 9pt; font-style: italic; color: var(--tn-ink); margin-bottom: 3pt; }
-.mid-p2 .tr-blank { height: 12pt; border-bottom: 0.5pt solid var(--tn-muted); }
+.mid-p2 .tr-source { font-size: 9.8pt; font-style: italic; color: var(--tn-ink); margin-bottom: 4pt; }
+.mid-p2 .tr-blank { height: 16pt; border-bottom: 0.5pt solid var(--tn-muted); }
 
 /* Short answer */
-.mid-p2 .short-meta { font-family: var(--font-ko); font-size: 8.5pt; color: var(--tn-ink-soft); margin: 2pt 0 3pt; }
+.mid-p2 .short-meta { font-family: var(--font-ko); font-size: 9pt; color: var(--tn-ink-soft); margin: 3pt 0 4pt; }
 .mid-p2 .short-meta strong { color: var(--tn-theme-deep); }
-.mid-p2 .short-blank { height: 11pt; border-bottom: 0.6pt solid var(--tn-muted); }
+.mid-p2 .short-blank { height: 16pt; border-bottom: 0.6pt solid var(--tn-muted); }
 
 /* Tieback aside with emoji visual aid */
 .mid-p2 .mid-tieback {
@@ -300,7 +301,31 @@
 
 /* ============================================================
    Page 3 — SYNTAX (uses standard p3 styles from layout.css)
+   + per-sentence Korean explanation (mid-school only)
    ============================================================ */
+.page-3 .p3-sentence { margin-bottom: 0; padding-bottom: 1.5pt; }
+.page-3 .p3-sentence .en-row { font-size: 8.2pt; }
+.mid-sent-explain {
+  font-family: var(--font-ko);
+  font-size: 7.6pt;
+  line-height: 1.45;
+  color: var(--tn-ink);
+  background: var(--tn-theme-soft);
+  border-left: 1.5pt solid var(--tn-theme);
+  border-radius: 0 2pt 2pt 0;
+  padding: 2pt 7pt 3pt 8pt;
+  margin: 1pt 0 0 2pt;
+  text-indent: 0;
+}
+.mid-sent-explain::before {
+  content: "↳ ";
+  color: var(--tn-theme-deep);
+  font-weight: 700;
+  margin-right: 2pt;
+}
+.page-3 .p3-translation { margin-top: 3pt; }
+.page-3 .p3-translation h4 { font-size: 9pt; margin: 0 0 2pt; }
+.page-3 .p3-translation .body { font-size: 8.4pt; line-height: 1.5; }
 
 /* ============================================================
    Page 4 — Vocab Mix (12 cards: collocation / word_root / word)
@@ -319,11 +344,11 @@
   border: 0.7pt solid var(--tn-divider);
   border-left: 2.2pt solid var(--tn-theme);
   border-radius: 2pt;
-  padding: 3pt 6pt 3pt;
+  padding: 4pt 7pt 4pt;
   background: #fff;
   display: flex;
   flex-direction: column;
-  gap: 1pt;
+  gap: 2pt;
   min-height: 0;
   overflow: hidden;
 }
@@ -351,12 +376,12 @@
   align-items: baseline;
   gap: 4pt;
   flex-wrap: wrap;
-  padding-right: 32pt;
+  padding-right: 36pt;
 }
 .mid-p4 .vocab-card.mid-vc .phrase {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: 9.5pt;
+  font-size: 11pt;
   color: var(--tn-ink);
   letter-spacing: 0.01em;
   line-height: 1.15;
@@ -373,7 +398,7 @@
 .mid-p4 .vocab-card.word-root .pattern { color: #6B3F11; background: #FAE9D2; }
 .mid-p4 .vocab-card.mid-vc .meaning {
   font-family: var(--font-ko);
-  font-size: 7.8pt;
+  font-size: 8.6pt;
   font-weight: 600;
   color: var(--tn-theme-deep);
   line-height: 1.3;

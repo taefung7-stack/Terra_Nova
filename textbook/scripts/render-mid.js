@@ -192,8 +192,12 @@ function renderSegment(seg) {
 function renderSentences(list) {
   return list.map(s => {
     const segs = s.segments.map(renderSegment).join(' ');
+    const explanation = s.explanation_ko
+      ? `<div class="mid-sent-explain">${renderRichInline(s.explanation_ko)}</div>`
+      : '';
     return `<div class="p3-sentence">
       <div class="en-row"><span class="num">[${s.index}]</span>${segs}</div>
+      ${explanation}
     </div>`;
   }).join('');
 }
