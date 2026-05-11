@@ -8,11 +8,12 @@
 ## 🔴 1순위 — 통판 신고 처리 직후 (D-day ~ +3일)
 
 ### 1.1 신고증 수령 및 보관
-- [ ] **통신판매업 신고증** 수리 알림 수령 (정부24 메시지함)
+
+- [x] **통신판매업 신고증** 수리 알림 수령 (정부24 메시지함) — 2026-05-12, 번호 **제2026-서울마포-1110호**
 - [ ] PDF/JPG로 다운로드 → 안전한 곳에 보관 (드라이브 + 로컬 + 출력본)
-- [ ] **통판신고번호** 메모 → `site-config.js`의 `BUSINESS_INFO.ecommerceNumber` 입력
-- [ ] 사업자등록번호도 `BUSINESS_INFO.businessNumber` 입력
-- [ ] 사업장 주소 `BUSINESS_INFO.address` 입력
+- [x] **통판신고번호** 메모 → `site-config.js`의 `BUSINESS_INFO.ecommerceNumber` 입력 (2026-05-12)
+- [x] 사업자등록번호도 `BUSINESS_INFO.businessNumber` 입력
+- [x] 사업장 주소 `BUSINESS_INFO.address` 입력
 
 ### 1.2 사이트 사업자정보 표시 검증
 - [ ] index.html 푸터 사업자정보 정상 표시 확인
