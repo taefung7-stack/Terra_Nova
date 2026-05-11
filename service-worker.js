@@ -7,7 +7,7 @@
 // CACHE_VERSION? deploy.bat??留?諛고룷留덈떎 timestamp濡??먮룞 媛깆떊 (yyyyMMdd-HHmm).
 // ??踰꾩쟾??install?섎㈃ activate ?④퀎?먯꽌 ??罹먯떆 ?쇨큵 ??젣.
 
-const CACHE_VERSION = 'tn-v2-20260511-0600';
+const CACHE_VERSION = 'tn-v2-20260511-0700';
 const CORE_ASSETS = [
   './',
   './index.html',

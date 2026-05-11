@@ -1988,7 +1988,7 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   }
   .exam-match-grid {
     grid-template-columns:1fr;
-    gap:24px;
+    gap:18px;
   }
   .exam-card.mock-card,
   .exam-card.book-card { transform:none; }
@@ -2002,6 +2002,93 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   .exam-match-pair.in .exam-match-arrow svg { transform:rotate(90deg) scaleX(1); }
   .exam-card-num { font-size:1.55rem; }
   .exam-key-shared .key-curr { margin-left:0; }
+}
+
+/* Mobile compaction — pairs were ~3000px each (5 pairs = 15000px+ section).
+   Shrink padding, fonts, and intra-card gaps so each pair fits in ~1500px. */
+@media (max-width: 720px) {
+  .exam-match { padding:64px 16px 80px; }
+  .exam-match-stack { gap:40px; }
+  .exam-match-pair { gap:14px; }
+  .exam-pair-label {
+    font-size:.78rem;
+    letter-spacing:.12em;
+    padding:9px 16px;
+    gap:10px;
+  }
+  .exam-pair-label .pair-num { font-size:.95rem; }
+  .exam-pair-label .pair-divider { display:none; }
+  .exam-card {
+    padding:20px 18px 16px;
+    border-radius:18px;
+    box-shadow:
+      0 14px 36px rgba(0,0,0,.5),
+      0 2px 8px rgba(0,0,0,.28),
+      inset 0 1px 0 rgba(255,255,255,.14);
+  }
+  .exam-card-tag {
+    font-size:.72rem;
+    letter-spacing:.14em;
+    margin-bottom:8px;
+  }
+  .exam-card-num {
+    font-size:1.32rem;
+    margin:0 0 14px;
+    padding-bottom:12px;
+    line-height:1.25;
+  }
+  .exam-card-body {
+    font-size:.96rem;
+    line-height:1.6;
+  }
+  .exam-stem { margin:0 0 12px; }
+  .exam-mol {
+    gap:14px;
+    margin:12px 0;
+    padding:14px 8px;
+  }
+  .exam-mol svg { transform:scale(1); }
+  .exam-mol figcaption { font-size:.82rem; }
+  .exam-stem-sm { font-size:.86rem; margin:6px 0 10px; }
+  .exam-choices { font-size:.95rem; }
+  .exam-choices li { padding:5px 0 5px 22px; }
+  .exam-choices li::before { top:5px; }
+  .exam-key-shared {
+    margin-top:14px;
+    padding:12px 14px;
+    border-radius:10px;
+    font-size:.92rem;
+    gap:4px 10px;
+  }
+  .exam-key-shared .key-label { font-size:.7rem; letter-spacing:.16em; }
+  .exam-key-shared strong { font-size:1.02rem; }
+  .exam-key-shared .key-curr { font-size:.78rem; }
+  .book-card .exam-passage {
+    font-size:1.08rem;
+    line-height:1.56;
+    margin:0 0 12px;
+  }
+  .book-card .exam-passage-ko-min {
+    font-size:.92rem;
+    line-height:1.58;
+    margin:0 0 12px;
+    padding-left:10px;
+  }
+  .exam-comprehension {
+    font-size:.96rem;
+    padding:10px 12px;
+    margin-top:10px;
+  }
+  .exam-card-foot {
+    font-size:.68rem;
+    margin-top:10px;
+    padding-top:8px;
+  }
+  .exam-match-arrow svg {
+    width:36px;
+    height:auto;
+  }
+  .exam-match-arrow .arrow-label { font-size:.72rem; }
 }
 
 /* =============== LEVEL ORBIT (Leonardo-style level picker) ============ */
@@ -3418,6 +3505,35 @@ body.bigbang-done .terra-hint,
   .story-section, .proof, .plans, .final { padding-left:24px; padding-right:24px; }
   .story-section { padding-top:88px; padding-bottom:88px; }
   .statement { gap:34px; }
+  /* Story display headline — desktop clamp(3rem,8.4vw,8.8rem) leaves the
+     3rem floor in effect on phones, which produces a 48px headline that
+     eats a third of the viewport and breaks mid-word. Override with a
+     phone-tuned clamp keyed on vw. */
+  .story-title { font-size:clamp(1.9rem, 8.6vw, 2.6rem); line-height:1.05; letter-spacing:-.03em; }
+  .story-kicker { font-size:.78rem; letter-spacing:.28em; margin-bottom:14px; }
+  .story-copy { font-size:.96rem; line-height:1.65; }
+  /* Same floor-blowout patches across the remaining display headlines. */
+  .proof .story-title,
+  .proof-headline-card .story-title { font-size:clamp(1.9rem, 8.6vw, 2.6rem); line-height:1.06; letter-spacing:-.03em; }
+  .plans-head .story-title { font-size:clamp(1.8rem, 8vw, 2.4rem); line-height:1.08; }
+  .review-rain-head .story-title { font-size:clamp(1.9rem, 8.6vw, 2.6rem); line-height:1.06; }
+  .concerns-head .story-title { font-size:clamp(1.7rem, 7vw, 2.2rem); line-height:1.15; }
+  /* Plan card pricing — desktop clamp(3.2rem,6vw,4.6rem) renders at 51px
+     on phones (floor wins), eating most of the card. */
+  .plan-price { font-size:clamp(2.2rem, 10vw, 3rem); }
+  .plan-name { font-size:1.32rem; letter-spacing:.18em; }
+  .plan-tag { font-size:.82rem; padding:7px 12px; }
+  .plan-sub { font-size:.88rem; min-height:auto; }
+  .plan-features { gap:9px; }
+  .plan-features li { font-size:.92rem; }
+  /* Plan illustrations — desktop 132/170/118 box overflows on a 327px-wide
+     card and crashes into the plan name. Shrink to a phone-sized footprint
+     and let plan-head-left wrap cleanly. */
+  .plan-icon-img { width:84px; height:84px; }
+  .plan:nth-of-type(2) .plan-icon-img { width:96px; height:96px; margin:-6px 0; }
+  .plan:nth-of-type(1) .plan-icon-img { width:78px; height:78px; margin:3px 0; }
+  .plan-head { gap:8px; }
+  .plan-head-left { gap:10px; }
   .worry-line, .concern-card, .solution-panel { min-height:auto; padding:26px 22px; }
   .concern-grid, .solution-side { gap:16px; }
   .meshy-transition { height:40vh; min-height:260px; }
