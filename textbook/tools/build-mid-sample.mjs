@@ -69,8 +69,11 @@ async function main() {
     const page = await browser.newPage();
     const url = `http://127.0.0.1:${port}/textbook-mid.html?month=${month}&passage=${passage}&startPage=${startPage}`;
     console.log(`[render-mid] ${url}`);
-    await page.goto(url, { waitUntil: 'networkidle0', timeout: 90000 });
-    await page.waitForSelector('.page', { timeout: 15000 });
+    // domcontentloaded first to get script running, then wait for .page nodes that render-mid.js inserts.
+    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 90000 });
+    await page.waitForSelector('.page', { timeout: 30000 });
+    // Now let images settle.
+    await page.evaluate(() => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r))));
     await page.pdf({
       path: outPath,
       format: 'A4',

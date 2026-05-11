@@ -1,7 +1,7 @@
 /* Renderer for Terra Nova MID-school passages (TERRA / NEPTUNE / URANUS).
    Same XSS-safe pattern as scripts/render.js: escapeHTML + a tiny markup
    whitelist (<u>, <mark>, <blank>) before assigning into the DOM. Inputs
-   come from a static JSON authored in-repo. */
+   come from static JSON authored in-repo. */
 
 const params = new URLSearchParams(location.search);
 const month = params.get('month') || '2026-06-N';
@@ -59,6 +59,13 @@ function renderQuestion(q, i) {
   const qNum = Q_LABEL[i];
   const styleTag = q.style ? `<span class="q-style">${escapeHTML(q.style)}</span>` : '';
   const head = `<div class="stem"><span class="q-num">${qNum}</span><span class="stem-rest">${styleTag}${renderRichInline(q.stem)}</span></div>`;
+
+  if (q.type === 'mock_objective') {
+    const choices = q.choices.map(c => `<li>${renderRichInline(c)}</li>`).join('');
+    return `<div class="question mid-q mock">${head}
+      <ol class="choices">${choices}</ol>
+    </div>`;
+  }
 
   if (q.type === 'tf_evidence') {
     const rows = q.statements.map((s, idx) => `
@@ -119,31 +126,88 @@ function renderTags(tags) {
   return tags.map(t => `<span class="tag">#${escapeHTML(t)}</span>`).join('');
 }
 
-function renderStrategies(list) {
-  return list.map((s, i) => `
-    <div class="strategy-card">
-      <div class="strategy-num">0${i + 1}</div>
-      <div class="strategy-body">
-        <div class="strategy-title">${escapeHTML(s.title)}</div>
-        <div class="strategy-tip">${renderRichInline(s.tip)}</div>
-        <div class="strategy-source">📌 ${escapeHTML(s.source)}</div>
-      </div>
-    </div>
-  `).join('');
+function renderVisualAid(va) {
+  if (!va) return '';
+  const type = va.type;
+  const safeTitle = escapeHTML(va.title || '');
+  const stepIcon = type === 'compare' ? '⚖️' : type === 'timeline' ? '⏳' : type === 'mindmap' ? '🧠' : '🧭';
+  if (type === 'emoji_flow' || type === 'timeline') {
+    const parts = [];
+    va.steps.forEach((s, i) => {
+      parts.push(
+        `<div class="va-step">
+          <span class="va-emoji">${escapeHTML(s.emoji)}</span>
+          <span class="va-label">${escapeHTML(s.label || '')}</span>
+          ${s.note ? `<span class="va-note">${escapeHTML(s.note)}</span>` : ''}
+        </div>`
+      );
+      if (i < va.steps.length - 1) {
+        parts.push(`<span class="va-arrow">➜</span>`);
+      }
+    });
+    return `<div class="visual-aid ${type}">
+      <div class="va-title">${stepIcon} ${safeTitle}</div>
+      <div class="va-steps">${parts.join('')}</div>
+    </div>`;
+  }
+  if (type === 'compare') {
+    const cells = va.steps.map(s =>
+      `<div class="va-step">
+        <div class="va-emoji">${escapeHTML(s.emoji)}</div>
+        <div class="va-label">${escapeHTML(s.label || '')}</div>
+        ${s.note ? `<div class="va-note">${escapeHTML(s.note)}</div>` : ''}
+      </div>`
+    ).join('');
+    return `<div class="visual-aid compare">
+      <div class="va-title">${stepIcon} ${safeTitle}</div>
+      <div class="va-steps">${cells}</div>
+    </div>`;
+  }
+  if (type === 'mindmap') {
+    const cells = va.steps.map(s =>
+      `<div class="va-step"><span class="va-emoji">${escapeHTML(s.emoji)}</span> <strong>${escapeHTML(s.label || '')}</strong>${s.note ? ` — ${escapeHTML(s.note)}` : ''}</div>`
+    ).join('');
+    return `<div class="visual-aid mindmap">
+      <div class="va-title">${stepIcon} ${safeTitle}</div>
+      <div class="va-steps">${cells}</div>
+    </div>`;
+  }
+  return '';
 }
 
-function renderMindMap(mm) {
-  if (!mm) return '';
-  const branches = mm.branches.map((b, i) => `
-    <div class="branch branch-${i + 1}">
-      <div class="branch-label">${escapeHTML(b.label)}</div>
-      <div class="branch-summary">${escapeHTML(b.summary)}</div>
+/* ---------- Page 3: Sentence syntax breakdown (same as standard) ---------- */
+const ROLE_TAG = { S: 'S', V: 'V', O: 'O', C: 'C', M: 'M', CONJ: '접', REL: '관', '': '' };
+
+function renderSegment(seg) {
+  const role = seg.role || '';
+  const tag = ROLE_TAG[role] || '';
+  const tagHtml = tag ? `<span class="seg-tag">${tag}</span>` : '';
+  const safeText = renderRichInline(seg.text);
+  if (seg.note) {
+    return `<span class="seg" data-role="${role}"><ruby><rb>${safeText}${tagHtml}</rb><rt><span class="rt-note">${escapeHTML(seg.note)}</span></rt></ruby></span>`;
+  }
+  return `<span class="seg" data-role="${role}">${safeText}${tagHtml}</span>`;
+}
+
+function renderSentences(list) {
+  return list.map(s => {
+    const segs = s.segments.map(renderSegment).join(' ');
+    return `<div class="p3-sentence">
+      <div class="en-row"><span class="num">[${s.index}]</span>${segs}</div>
+    </div>`;
+  }).join('');
+}
+
+/* ---------- Page 3: compact reading-strategy strip (above 우리말 해석) ---------- */
+function renderStrategyStrip(list) {
+  if (!list || !list.length) return '';
+  const items = list.map(s => `
+    <div class="strip-item">
+      <span class="strip-title">${escapeHTML(s.title)}</span>
+      <span class="strip-tip">${renderRichInline(s.tip)}</span>
     </div>
   `).join('');
-  return `<div class="mindmap">
-    <div class="mm-central">${escapeHTML(mm.central)}</div>
-    <div class="mm-branches">${branches}</div>
-  </div>`;
+  return `<div class="strip-head">💡 Reading Strategy</div><div class="strip-grid">${items}</div>`;
 }
 
 function renderTranslation(text) {
@@ -151,23 +215,70 @@ function renderTranslation(text) {
   return safe.replace(/\[(\d+)\]/g, (_, n) => `<span class="tr-num">[${n}]</span>`);
 }
 
-function renderCollocations(list) {
-  return list.map(c => {
-    const examples = (c.examples || []).map(ex =>
+/* ---------- Page 4: 3-type vocab (collocation / word_root / word) ---------- */
+function renderVocabCard(v) {
+  if (v.card_type === 'collocation') {
+    const examples = (v.examples || []).map(ex =>
       `<div class="example-item">
         <div class="en">📘 ${escapeHTML(ex.en)}</div>
         <div class="ko">${escapeHTML(ex.ko)}</div>
       </div>`
     ).join('');
-    return `<div class="collocation-card">
+    return `<div class="vocab-card mid-vc collocation">
+      <div class="vc-tag">콜로케이션</div>
       <div class="head">
-        <span class="phrase">${escapeHTML(c.phrase)}</span>
-        <span class="pattern">${escapeHTML(c.pattern)}</span>
+        <span class="phrase">${escapeHTML(v.phrase)}</span>
+        <span class="pattern">${escapeHTML(v.pattern)}</span>
       </div>
-      <div class="meaning">${escapeHTML(c.meaning_ko)}</div>
+      <div class="meaning">${escapeHTML(v.meaning_ko)}</div>
       <div class="examples">${examples}</div>
     </div>`;
-  }).join('');
+  }
+  if (v.card_type === 'word_root') {
+    const kin = (v.kin || []).map(k =>
+      `<span class="kin-item"><strong>${escapeHTML(k.en)}</strong> <span class="kin-ko">${escapeHTML(k.ko)}</span></span>`
+    ).join('');
+    const example = v.example
+      ? `<div class="example-item">
+          <div class="en">📘 ${escapeHTML(v.example.en)}</div>
+          <div class="ko">${escapeHTML(v.example.ko)}</div>
+        </div>`
+      : '';
+    return `<div class="vocab-card mid-vc word-root">
+      <div class="vc-tag">어근 분석</div>
+      <div class="head">
+        <span class="phrase">${escapeHTML(v.word)}</span>
+        <span class="pattern">root: ${escapeHTML(v.root)} · ${escapeHTML(v.root_meaning)}</span>
+      </div>
+      <div class="meaning">${escapeHTML(v.meaning_ko)}</div>
+      <div class="kin-row">${kin}</div>
+      <div class="examples">${example}</div>
+    </div>`;
+  }
+  // word (regular)
+  const examples = (v.examples || []).map(ex =>
+    `<div class="example-item">
+      <div class="en">📘 ${escapeHTML(ex.en)}</div>
+      <div class="ko">${escapeHTML(ex.ko)}</div>
+    </div>`
+  ).join('');
+  const syn = v.synonyms && v.synonyms.length ? `<span class="sa-label">≈</span>${v.synonyms.map(escapeHTML).join(', ')}` : '';
+  const ant = v.antonyms && v.antonyms.length ? `<span class="sa-label">↔</span>${v.antonyms.map(escapeHTML).join(', ')}` : '';
+  const synAnt = [syn, ant].filter(Boolean).join(' &nbsp;·&nbsp; ');
+  return `<div class="vocab-card mid-vc word">
+    <div class="vc-tag">단어</div>
+    <div class="head">
+      <span class="phrase">${escapeHTML(v.word)}</span>
+      <span class="pattern">${escapeHTML(v.pos)}</span>
+    </div>
+    <div class="meaning">${escapeHTML(v.meaning_ko)}</div>
+    ${synAnt ? `<div class="syn-ant">${synAnt}</div>` : ''}
+    <div class="examples">${examples}</div>
+  </div>`;
+}
+
+function renderVocab(list) {
+  return list.map(renderVocabCard).join('');
 }
 
 function detectOverflow(root) {
@@ -231,12 +342,13 @@ async function main() {
   setText(root, 'tieback-unit', data.page2.textbook_tieback.unit_label);
   setText(root, 'tieback-body', data.page2.textbook_tieback.body_ko);
   setSafe(root, 'tieback-tags', renderTags(data.page2.textbook_tieback.tags));
+  setSafe(root, 'tieback-visual', renderVisualAid(data.page2.textbook_tieback.visual_aid));
 
-  setSafe(root, 'strategies', renderStrategies(data.page3.strategies));
-  setSafe(root, 'mindmap', renderMindMap(data.page3.mindmap));
-  setSafe(root, 'translation', renderTranslation(data.page3.translation_compact));
+  setSafe(root, 'sentences', renderSentences(data.page3.sentences));
+  setSafe(root, 'strategies', renderStrategyStrip(data.page3.strategies));
+  setSafe(root, 'translation', renderTranslation(data.page3.translation_ko));
 
-  setSafe(root, 'collocations', renderCollocations(data.page4.collocations));
+  setSafe(root, 'vocab', renderVocab(data.page4.vocab));
 
   const dayLabel = `DAY ${String(parseInt(passage, 10)).padStart(2, '0')}`;
   const pageEls = root.querySelectorAll('.page');
