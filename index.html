@@ -449,7 +449,8 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   transition:opacity .4s ease;
   will-change:left, top, opacity;
 }
-.hero.is-pre #mouse-halo.active { opacity:1; }
+.hero.is-pre #mouse-halo.active,
+.hero.is-post #mouse-halo.active { opacity:1; }
 @media (max-width: 720px) {
   #hero-warp, #mouse-halo { display:none; }
 }
@@ -630,12 +631,11 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   50%     { transform:translateY(6px); opacity:1; }
 }
 
-/* Static hero content (always visible above the starfield canvas) */
+/* Mobile static fallback inside hero */
 .hero-fallback {
-  display:flex;
+  display:none;
   position:absolute;
   inset:0;
-  z-index:4;          /* above #hero-warp(0), #bg-canvas(1), .hero-rays(2), #mouse-halo(3) */
   align-items:center;
   justify-content:center;
   padding:0 24px;
@@ -3475,16 +3475,25 @@ body.bigbang-done .terra-hint,
 </nav>
 
 <!-- =============== HERO =============== -->
-<!-- BigBang cross-particle Three.js scene removed (backup: assets/bigbang/index-bigbang-script.html.txt).
-     The lightweight 2D starfield warp canvas is kept — it's pure Canvas2D,
-     auto-disables on mobile (<720px) and reduced-motion, and runs only while
-     #hero is in viewport. -->
+<!-- Hero renders in post-bigbang state directly: 3D cross-particle scene and
+     "펑" climax removed, but every other element is preserved exactly as
+     before (warp starfield, hero-rays, mouse-halo, TERRA NOVA Sprite,
+     tagline + ENGLISH, all reveals). The "CLICK TERRA NOVA" hint and the
+     bigbang-flash overlay are dropped since there's no ceremony left. -->
 <section id="hero" class="hero is-post" aria-label="Terra Nova hero">
   <canvas id="hero-warp" aria-hidden="true"></canvas>
+  <canvas id="bg-canvas" aria-hidden="true"></canvas>
+  <div class="hero-rays" aria-hidden="true"></div>
+  <div id="mouse-halo" aria-hidden="true"></div>
 
+  <!-- Static fallback for mobile / reduced-motion -->
   <div class="hero-fallback" aria-hidden="false">
     <h1>영어 한 지문에<br><span class="accent">수학 한 단원</span><br>이 들어 있습니다.</h1>
   </div>
+
+  <!-- Center overlay: kicker pill above + ENGLISH below the WebGL TERRA NOVA -->
+  <div class="hero-tagline" aria-hidden="true">영어로 전과목 학습</div>
+  <div class="hero-english" aria-hidden="true">ENGLISH</div>
 
   <div class="scroll-cue" aria-hidden="true">SCROLL <span class="arrow">↓</span></div>
 </section>
@@ -4471,26 +4480,564 @@ body.bigbang-done .terra-hint,
   <span>© Terra Nova English · 2026</span>
 </footer>
 
-<!-- =============== Hero starfield (Canvas2D only — no Three.js, no GLTF) ===============
-  The 3D cross-particle BigBang scene was removed for page-weight reasons
-  (backup at assets/bigbang/index-bigbang-script.html.txt). The standalone
-  2D warp starfield is kept because it's lightweight (pure Canvas2D, ~5KB,
-  auto-disabled on <720px width and prefers-reduced-motion) and provides
-  ambient motion behind the static headline.
-
-  Mark body as bigbang-done so all .bigbang-done-gated CSS reveals content
-  immediately (nav, footer, etc.). The hero is pre-set to .is-post in markup
-  so the #hero-warp opacity:1 rule applies without any climax-flash timing. -->
-<script>
-  document.body.classList.add('bigbang-done');
+<!-- =============== Three.js mouse-reactive hero =============== -->
+<!-- 3D cross-particle scene removed; only the TERRA NOVA Sprite + camera
+     parallax remain (Three.js core), plus the 2D Canvas starfield (no deps).
+     GLTFLoader + cross-gltf-data.js are no longer needed. -->
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js"
+  }
+}
+</script>
+<script type="module">
+  import * as THREE from 'three';
+  window.THREE = THREE;
 </script>
 <script>
 (function () {
   'use strict';
 
-  // 2D warp starfield — ambient mode only (no burst, no Three.js dependency).
-  // Auto-skipped on mobile / reduced-motion / missing canvas — falls back to
-  // the static .hero-fallback headline which is already visible above.
+  // ---------- Scroll restoration ----------
+  // Landing pages should always open at the hero on refresh, not at the
+  // user's previous scroll position. Browser default is to auto-restore;
+  // we opt out and reset to top — but only if no URL hash anchor is set
+  // (so /index.html#plans still jumps to the plans section).
+  //
+  // The old bigbang-seen sessionStorage gate is gone because there's no
+  // climax ceremony left to skip — every page entry is the same static
+  // post-bigbang state (body.bigbang-done + hero.is-post set in markup).
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+  if (!location.hash) {
+    window.scrollTo(0, 0);
+  }
+  window.addEventListener('load', function () {
+    if (!location.hash) window.scrollTo(0, 0);
+  });
+
+  // ---------- Reveal observers (always run; cheap) ----------
+  function initReveals() {
+    var io = ('IntersectionObserver' in window) ? new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.18, rootMargin: '0px 0px -8% 0px' }) : null;
+
+    document.querySelectorAll('.reveal:not(.exam-match):not(.statement)').forEach(function (el) {
+      if (io) io.observe(el); else el.classList.add('in');
+    });
+
+    // Bidirectional reveal for .exam-match — the two comparison cards scatter
+    // when scrolled out of the viewport center band, and re-assemble when
+    // scrolled back in. The opening .statement section is also bidirectional
+    // (handled in its own block below) per explicit user request — every
+    // re-entry should replay the cinematic split-text headline + concern
+    // stagger, not just the first scroll-in. All other sections keep one-shot
+    // reveal because re-running their entrances on every scroll feels gimmicky;
+    // exam-match and statement are the visual punchlines, so the replay
+    // reinforces the message.
+    //
+    // We observe the *card grid* (not the whole section). rootMargin trims
+    // the viewport — the grid must intersect the trimmed region to be "in".
+    // Trigger geometry:
+    //   • IN  — grid has any pixel inside the viewport's central 76% band
+    //   • OUT — grid fully outside that band (above or below)
+    //
+    // -12% (vs the earlier -38%) means the grid triggers IN almost as soon
+    // as it enters the viewport from the bottom — users no longer have to
+    // scroll deep into the section to see the cards assemble. Trade-off:
+    // scatter (OUT) fires later when scrolling away, but the central band
+    // ── PER-PAIR ENTRANCE — keyframe animations + bidirectional ────
+    // Cards/labels/arrows are visible by default (CSS keyframes only
+    // fire when .in is on the pair). Each scroll-into-view re-triggers
+    // the entrance via the classic remove → reflow → add pattern, so
+    // the user sees the fly-in EVERY time a pair returns to viewport.
+    // No timing race possible with animations: frame 0 always plays.
+    var examMatchPairs = document.querySelectorAll('.exam-match-pair');
+    if (examMatchPairs.length) {
+      if ('IntersectionObserver' in window) {
+        function playPair(p) {
+          // Restart the animation by stripping .in, forcing reflow, re-adding.
+          p.classList.remove('in');
+          void p.offsetWidth;
+          p.classList.add('in');
+        }
+        function resetPair(p) {
+          p.classList.remove('in');
+        }
+        var pairIO = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) playPair(e.target);
+            else                  resetPair(e.target);
+          });
+        }, { threshold: 0, rootMargin: '0px 0px -10% 0px' });
+        examMatchPairs.forEach(function (p) { pairIO.observe(p); });
+      } else {
+        examMatchPairs.forEach(function (p) { p.classList.add('in'); });
+      }
+    }
+
+    // ── EXAM-MATCH HEADLINE — bidirectional split-text re-trigger ──
+    // "실제 시험 그대로" + "수학·과학·사회 시험에 나온 그 개념을…"
+    // Plays the per-char fade-up stagger every time the section enters
+    // the viewport center band. Mirrors the .statement reset pattern:
+    // disable per-char transitions → snap .in off → flush layout →
+    // restore transitions → flush again → add .in. Without the dance,
+    // late-index chars (with delay 1400ms+) sit in the *delay phase*
+    // during exit and never re-trigger on re-entry.
+    var examMatchSection = document.querySelector('.exam-match');
+    var examMatchHead = examMatchSection ? examMatchSection.querySelector('.exam-match-head') : null;
+    if (examMatchHead) {
+      var emHeadSplits = examMatchHead.querySelectorAll('[data-split]');
+      function playExamHead() {
+        emHeadSplits.forEach(function (el) {
+          var chars = el.querySelectorAll('.char');
+          chars.forEach(function (c) { c.style.transitionProperty = 'none'; });
+          el.classList.remove('in');
+          void el.offsetWidth;
+          chars.forEach(function (c) { c.style.transitionProperty = ''; });
+          void el.offsetWidth;
+          el.classList.add('in');
+        });
+      }
+      function resetExamHead() {
+        emHeadSplits.forEach(function (el) {
+          var chars = el.querySelectorAll('.char');
+          chars.forEach(function (c) { c.style.transitionProperty = 'none'; });
+          el.classList.remove('in');
+          void el.offsetWidth;
+          chars.forEach(function (c) { c.style.transitionProperty = ''; });
+        });
+      }
+      if ('IntersectionObserver' in window) {
+        var emHeadIO = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) playExamHead();
+            else                  resetExamHead();
+          });
+        }, { threshold: 0, rootMargin: '0px 0px -20% 0px' });
+        emHeadIO.observe(examMatchHead);
+      } else {
+        emHeadSplits.forEach(function (el) { el.classList.add('in'); });
+      }
+    }
+
+    // Card stagger inside the post-hero story sections
+    function staggerIn(parentSelector, childSelector, delayStep) {
+      var parent = document.querySelector(parentSelector);
+      if (!parent) return;
+      var cards = parent.querySelectorAll(childSelector);
+      var pio = ('IntersectionObserver' in window) ? new IntersectionObserver(function (ents) {
+        ents.forEach(function (e) {
+          if (e.isIntersecting) {
+            cards.forEach(function (c, i) {
+              setTimeout(function () { c.classList.add('in'); }, i * delayStep);
+            });
+            pio.unobserve(parent);
+          }
+        });
+      }, { threshold: 0.2 }) : null;
+      if (pio) pio.observe(parent); else cards.forEach(function (c) { c.classList.add('in'); });
+    }
+    staggerIn('.proof', '.solution-panel', 120);
+    staggerIn('.plans', '.plan', 130);
+
+    // Split-text reveal for elements marked [data-split]
+    document.querySelectorAll('[data-split]').forEach(function (el) {
+      // Preserve <br> and <span class="accent"> structure: walk children
+      var html = '';
+      var nodes = Array.from(el.childNodes);
+      var charIndex = 0;
+      function wrapText(txt) {
+        var out = '';
+        for (var i = 0; i < txt.length; i++) {
+          var ch = txt[i];
+          if (ch === ' ') { out += ' '; continue; }
+          out += '<span class="char" style="transition-delay:' + (charIndex * 70) + 'ms">' + ch + '</span>';
+          charIndex++;
+        }
+        return out;
+      }
+      nodes.forEach(function (n) {
+        if (n.nodeType === 3) {
+          html += wrapText(n.nodeValue);
+        } else if (n.nodeType === 1) {
+          if (n.tagName === 'BR') {
+            html += '<br>';
+          } else {
+            // Wrap inner text but keep wrapper class (e.g. .accent)
+            var cls = n.className ? ' class="' + n.className + '"' : '';
+            html += '<' + n.tagName.toLowerCase() + cls + '>' + wrapText(n.textContent) + '</' + n.tagName.toLowerCase() + '>';
+          }
+        }
+      });
+      el.innerHTML = html;
+
+      // .statement and .exam-match descendants are driven by their own
+      // bidirectional observers below (replay every scroll-in). Skip the
+      // one-shot observer so the two don't fight on first scroll-in.
+      if (el.closest('.statement')) return;
+      if (el.closest('.exam-match')) return;
+
+      var sio = ('IntersectionObserver' in window) ? new IntersectionObserver(function (ents) {
+        ents.forEach(function (e) {
+          if (e.isIntersecting) {
+            el.classList.add('in');
+            sio.unobserve(el);
+          }
+        });
+      }, { threshold: 0.3 }) : null;
+      if (sio) sio.observe(el); else el.classList.add('in');
+    });
+
+    // Bidirectional reveal for .statement (opening pain section).
+    // Replays the kicker fade, split-text headline (per-char stagger),
+    // section-level translateY, and Concern 01/02/03 stagger every time the
+    // section scrolls back into the viewport center band.
+    //
+    // Why the transition-property dance below: each .char carries an inline
+    // `transition-delay: ${i*70}ms` (set during the wrap step). On re-entry,
+    // a naive `remove('in') + reflow + add('in')` only restarts chars that
+    // are already at the invisible target — late-index chars (e.g. delay
+    // 1400ms) sit in the *delay phase* during exit, never actually moving;
+    // when .in returns their current value already equals the new target
+    // (visible), so the browser elides the transition. Result: the first
+    // few chars animate every cycle, the late ones never re-animate.
+    //
+    // Fix: temporarily set inline `transition-property: none` on each char,
+    // remove .in (chars snap invisible without playing the delayed reverse),
+    // flush layout, restore transition-property, flush again, then add .in.
+    // Now every char starts from a hard-invisible base and the inline delay
+    // drives a clean forward stagger — every entry, every char, every time.
+    var statement = document.querySelector('.statement');
+    if (statement) {
+      var statementSplits = statement.querySelectorAll('[data-split]');
+      var statementWorries = statement.querySelectorAll('.worry-line');
+      function applyStatementIn() {
+        statement.classList.add('in');
+        statementSplits.forEach(function (el) {
+          var chars = el.querySelectorAll('.char');
+          // 1. Disable per-char transitions (preserves inline transition-delay)
+          chars.forEach(function (c) { c.style.transitionProperty = 'none'; });
+          // 2. Snap to invisible — no animation because property is "none"
+          el.classList.remove('in');
+          void el.offsetWidth;
+          // 3. Restore transitions
+          chars.forEach(function (c) { c.style.transitionProperty = ''; });
+          void el.offsetWidth;
+          // 4. Trigger forward stagger
+          el.classList.add('in');
+        });
+        statementWorries.forEach(function (c, i) {
+          c.classList.remove('in');
+          setTimeout(function () { c.classList.add('in'); }, i * 110);
+        });
+      }
+      function applyStatementOut() {
+        statement.classList.remove('in');
+        statementSplits.forEach(function (el) {
+          var chars = el.querySelectorAll('.char');
+          // Snap to invisible without playing the delayed reverse (so the
+          // next entry has a clean base — see comment above).
+          chars.forEach(function (c) { c.style.transitionProperty = 'none'; });
+          el.classList.remove('in');
+          void el.offsetWidth;
+          chars.forEach(function (c) { c.style.transitionProperty = ''; });
+        });
+        statementWorries.forEach(function (c) { c.classList.remove('in'); });
+      }
+      if ('IntersectionObserver' in window) {
+        var stIO = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) applyStatementIn();
+            else                  applyStatementOut();
+          });
+        }, { threshold: 0, rootMargin: '-15% 0px -15% 0px' });
+        stIO.observe(statement);
+      } else {
+        statement.classList.add('in');
+        statementSplits.forEach(function (el) { el.classList.add('in'); });
+        statementWorries.forEach(function (c) { c.classList.add('in'); });
+      }
+    }
+
+    // Proof-headline cinematic reveal — BIDIRECTIONAL: replays the
+    // blur-in + scale-up + stagger every time the headline card scrolls
+    // back into the viewport (user requested per-section replay rather
+    // than one-shot). Uses the same transition-property:none snap-reset
+    // pattern as .statement so the staggered transition-delays don't
+    // get stuck in the delay phase across rapid scroll cycles. Observer
+    // is dedicated (not the global .reveal one) because adding .reveal
+    // to the section would put a transform on the sticky-pin parent and
+    // ripple into the horizontal track's translate3d.
+    var proofHeadline = document.querySelector('.proof-headline-card');
+    if (proofHeadline) {
+      var phElements = [
+        proofHeadline.querySelector('.story-kicker'),
+        proofHeadline.querySelector('.story-title'),
+        proofHeadline.querySelector('.story-copy'),
+        proofHeadline.querySelector('.track-hint')
+      ].filter(Boolean);
+
+      function applyHeadlineIn() {
+        // 1. Disable transitions to snap to hidden state cleanly
+        phElements.forEach(function (el) { el.style.transitionProperty = 'none'; });
+        proofHeadline.classList.remove('revealed');
+        void proofHeadline.offsetWidth;
+        // 2. Restore transitions
+        phElements.forEach(function (el) { el.style.transitionProperty = ''; });
+        void proofHeadline.offsetWidth;
+        // 3. Trigger forward stagger (kicker .15s, title 0s, copy 1s, hint 1.4s)
+        proofHeadline.classList.add('revealed');
+      }
+      function applyHeadlineOut() {
+        // Snap back to hidden state without playing the delayed reverse,
+        // so the next entry has a clean baseline.
+        phElements.forEach(function (el) { el.style.transitionProperty = 'none'; });
+        proofHeadline.classList.remove('revealed');
+        void proofHeadline.offsetWidth;
+        phElements.forEach(function (el) { el.style.transitionProperty = ''; });
+      }
+
+      if ('IntersectionObserver' in window) {
+        var phio = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) applyHeadlineIn();
+            else                  applyHeadlineOut();
+          });
+        }, { threshold: 0.25, rootMargin: '0px 0px -8% 0px' });
+        phio.observe(proofHeadline);
+      } else {
+        proofHeadline.classList.add('revealed');
+      }
+    }
+  }
+
+  // ---------- Hero fallback activator ----------
+  // Desktop hero headline is rendered by Three.js. If WebGL fails to init
+  // (Chrome's WebGL context limit, hardware accel off, script load error,
+  // refresh storms exhausting contexts), the user sees only the static
+  // tagline + "ENGLISH" + "CLICK TERRA NOVA" hint with no actual headline —
+  // visually broken. This activator force-displays the static h1 fallback
+  // and hides the WebGL-dependent overlay text so the page is always
+  // legible regardless of WebGL state.
+  function activateHeroFallback() {
+    var hero = document.getElementById('hero');
+    if (!hero) return;
+    hero.classList.add('webgl-failed');
+    var fb = document.querySelector('.hero-fallback');
+    if (fb) fb.style.display = 'flex';
+    ['.hero-tagline', '.hero-english'].forEach(function (sel) {
+      var el = document.querySelector(sel);
+      if (el) el.style.display = 'none';
+    });
+  }
+
+  // ---------- Three.js scene — TERRA NOVA Sprite + camera parallax only ----------
+  // The 51 cross-particle layer and BigBang climax were removed for page-weight
+  // reasons. What remains: the TERRA NOVA brand Sprite at world origin, mouse
+  // parallax for the camera, and the DOM .hero-tagline / .hero-english labels
+  // that move in lockstep with the Sprite (so the three layers feel like one
+  // 3D group). Hover near the center brightens the Sprite.
+  function initScene() {
+    if (typeof THREE === 'undefined') { activateHeroFallback(); return; }
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (window.innerWidth < 720) return;
+
+    var canvas = document.getElementById('bg-canvas');
+    if (!canvas) { activateHeroFallback(); return; }
+
+    var hero = document.getElementById('hero');
+    var haloEl = document.getElementById('mouse-halo');
+    var taglineEl = document.querySelector('.hero-tagline');
+    var englishEl = document.querySelector('.hero-english');
+
+    var w = hero.clientWidth;
+    var h = hero.clientHeight;
+
+    var renderer;
+    try {
+      renderer = new THREE.WebGLRenderer({
+        canvas: canvas,
+        antialias: false,
+        alpha: true,
+        powerPreference: 'high-performance'
+      });
+    } catch (e) {
+      activateHeroFallback();
+      return;
+    }
+    if (!renderer || !renderer.getContext()) {
+      activateHeroFallback();
+      return;
+    }
+    canvas.addEventListener('webglcontextlost', function (ev) {
+      ev.preventDefault();
+      activateHeroFallback();
+    }, { once: true });
+
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.25));
+    renderer.setSize(w, h, false);
+    renderer.setClearColor(0x000000, 0);
+
+    var scene = new THREE.Scene();
+    var camera = new THREE.PerspectiveCamera(50, w / h, 0.1, 100);
+    camera.position.set(0, 0, 12);
+    camera.lookAt(0, 0, 0);
+
+    // ---- TERRA NOVA: canvas-rendered Sprite at world origin ----
+    function buildTerraTexture() {
+      var c = document.createElement('canvas');
+      c.width = 2048; c.height = 384;
+      var ctx = c.getContext('2d');
+      ctx.clearRect(0, 0, 2048, 384);
+      ctx.fillStyle = 'rgba(240, 247, 244, 0.92)';
+      ctx.font = '700 280px "Space Grotesk", system-ui, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('TERRA NOVA', 1024, 200);
+      var tex = new THREE.CanvasTexture(c);
+      tex.minFilter = THREE.LinearFilter;
+      tex.magFilter = THREE.LinearFilter;
+      tex.needsUpdate = true;
+      return tex;
+    }
+
+    var terraTex = buildTerraTexture();
+    var terraMat = new THREE.SpriteMaterial({
+      map: terraTex,
+      transparent: true,
+      opacity: 0.95,
+      depthTest: false,
+      depthWrite: false
+    });
+    var terraNova = new THREE.Sprite(terraMat);
+    terraNova.scale.set(9.0, 1.7, 1);
+    terraNova.position.set(0, 0, 0);
+    terraNova.userData.targetOpacity = 0.95;
+    scene.add(terraNova);
+
+    // Rebuild texture once Space Grotesk is fully loaded (font swap).
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(function () {
+        var newTex = buildTerraTexture();
+        terraNova.material.map.dispose();
+        terraNova.material.map = newTex;
+        terraNova.material.needsUpdate = true;
+      }).catch(function () {});
+    }
+
+    // ---- Mouse tracking ----
+    var mouseX = 0, mouseY = 0;
+    var targetMouseX = 0, targetMouseY = 0;
+
+    function onMove(e) {
+      var rect = canvas.getBoundingClientRect();
+      targetMouseX = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+      targetMouseY = -(((e.clientY - rect.top) / rect.height) * 2 - 1);
+
+      if (haloEl) {
+        haloEl.style.left = (e.clientX - rect.left) + 'px';
+        haloEl.style.top  = (e.clientY - rect.top) + 'px';
+        if (!haloEl.classList.contains('active')) haloEl.classList.add('active');
+      }
+
+      // Subtle hover bump on TERRA NOVA when cursor is near the center.
+      var inCenterZone = (targetMouseX * targetMouseX + targetMouseY * targetMouseY) < 0.18 * 0.18;
+      if (inCenterZone) {
+        canvas.classList.add('is-hover-target');
+        terraNova.userData.targetOpacity = 1.0;
+      } else {
+        canvas.classList.remove('is-hover-target');
+        terraNova.userData.targetOpacity = 0.95;
+      }
+    }
+    window.addEventListener('mousemove', onMove, { passive: true });
+    if (haloEl) {
+      hero.addEventListener('mouseleave', function () { haloEl.classList.remove('active'); });
+    }
+    window.addEventListener('touchmove', function (e) {
+      if (!e.touches[0]) return;
+      onMove(e.touches[0]);
+    }, { passive: true });
+
+    // ---- Resize / visibility ----
+    function resize() {
+      var nw = hero.clientWidth, nh = hero.clientHeight;
+      renderer.setSize(nw, nh, false);
+      camera.aspect = nw / nh;
+      camera.updateProjectionMatrix();
+    }
+    window.addEventListener('resize', resize);
+
+    var running = true, heroVisible = true;
+    document.addEventListener('visibilitychange', function () {
+      running = document.visibilityState === 'visible';
+      if (running) loop();
+    });
+    if ('IntersectionObserver' in window) {
+      var hio = new IntersectionObserver(function (ents) {
+        ents.forEach(function (e) { heroVisible = e.isIntersecting; });
+        if (heroVisible && running) loop();
+      }, { threshold: 0 });
+      hio.observe(hero);
+    }
+
+    var rafId = 0;
+
+    function loop() {
+      if (!running || !heroVisible) return;
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(tick);
+    }
+
+    function tick() {
+      // Tight mouse follow.
+      mouseX += (targetMouseX - mouseX) * 0.20;
+      mouseY += (targetMouseY - mouseY) * 0.20;
+
+      // TERRA NOVA hover opacity easing.
+      var cur = terraNova.material.opacity;
+      var tgt = terraNova.userData.targetOpacity;
+      terraNova.material.opacity += (tgt - cur) * 0.12;
+
+      // Camera + Sprite parallax. PerspectiveCamera FOV=50 at z=12 means the
+      // visible world height ≈ 11.19 units. We convert the Sprite's world
+      // offset back to pixels so the DOM .hero-tagline + .hero-english labels
+      // can move in exact lockstep — keeping the three layers visually fused.
+      var tnDx = -mouseX * 0.5;
+      var tnDy = -mouseY * 0.32;
+      terraNova.position.x = tnDx;
+      terraNova.position.y = tnDy;
+      var pxPerUnit = hero.clientHeight / 11.19;
+      var domDx = (tnDx * pxPerUnit).toFixed(1) + 'px';
+      var domDy = (-tnDy * pxPerUnit).toFixed(1) + 'px';
+      if (taglineEl) {
+        taglineEl.style.setProperty('--para-x', domDx);
+        taglineEl.style.setProperty('--para-y', domDy);
+      }
+      if (englishEl) {
+        englishEl.style.setProperty('--para-x', domDx);
+        englishEl.style.setProperty('--para-y', domDy);
+      }
+
+      renderer.render(scene, camera);
+      if (running && heroVisible) rafId = requestAnimationFrame(tick);
+    }
+
+    loop();
+  }
+
+  // ---------- 2D warp starfield (ported from index.html) ----------
+  // Background canvas that fades in during/after big-bang to create hyperspace warp.
+  // White-dominant (~90%) with mint accent (~10%) per user feedback.
+  var warpField = null;
   function initWarpField() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return null;
     if (window.innerWidth < 720) return null;
@@ -4501,6 +5048,14 @@ body.bigbang-done .terra-hint,
     var stars = [];
     var running = false;
     var rafId = 0;
+    var speedMul = 1.0;     // ambient speed
+    var burstActive = false;
+    var burstT0 = 0;
+    var BURST_MS = 2200;
+    // Peak warp speed bumped 4.2 → 6.0 for a more violent "빵 터지는"
+    // outward rush. Stars at near-z reach the edges in a single frame
+    // → reads as a true explosion rather than a fast pan.
+    var BURST_PEAK = 6.0;
 
     function resize() {
       var dpr = Math.min(window.devicePixelRatio || 1, 1.25);
@@ -4517,10 +5072,14 @@ body.bigbang-done .terra-hint,
       stars = [];
       var cx = canvas.lw / 2, cy = canvas.lh / 2;
       var md = Math.min(canvas.lw, canvas.lh) * 0.3;
-      var n = 2600;
+      var n = 2600; // bumped 2200 → 2600 for a denser steady-state stream
       for (var i = 0; i < n; i++) {
         var angle = Math.random() * Math.PI * 2;
         var dist = md + Math.random() * Math.max(canvas.lw, canvas.lh);
+        // Initial z range narrowed 500-2000 → 50-1500 so the very first frame
+        // already shows stars at every depth (including near-camera). Result:
+        // the page opens mid-stream — bright streaks visible immediately
+        // instead of starting from a sparse far-field that takes ~1s to fill.
         stars.push({
           x: cx + Math.cos(angle) * dist,
           y: cy + Math.sin(angle) * dist,
@@ -4543,10 +5102,10 @@ body.bigbang-done .terra-hint,
     // Mouse-driven vanishing point shift (warp tilts toward cursor for parallax feel)
     var mShiftX = 0, mShiftY = 0;
     var mTargetX = 0, mTargetY = 0;
-    var SHIFT_AMP = 90;
+    var SHIFT_AMP = 90; // max px shift of vanishing point
     hero.addEventListener('mousemove', function (e) {
       var rect = hero.getBoundingClientRect();
-      var nx = (e.clientX - rect.left) / rect.width - 0.5;
+      var nx = (e.clientX - rect.left) / rect.width - 0.5;  // -0.5..0.5
       var ny = (e.clientY - rect.top) / rect.height - 0.5;
       mTargetX = nx * 2 * SHIFT_AMP;
       mTargetY = ny * 2 * SHIFT_AMP;
@@ -4556,11 +5115,12 @@ body.bigbang-done .terra-hint,
     });
 
     // Hold left-click → speed-boost the star rain. Release → ease back to normal.
-    var boostMul = 1.0;
-    var boostTarget = 1.0;
+    var boostMul = 1.0;       // smoothed
+    var boostTarget = 1.0;    // target (1.0 normal, 2.6 while holding)
     hero.addEventListener('mousedown', function (e) {
       if (e.button === 0) boostTarget = 2.6;
     });
+    // Listen on window for mouseup so dragging out of hero still releases
     window.addEventListener('mouseup', function (e) {
       if (e.button === 0) boostTarget = 1.0;
     });
@@ -4568,20 +5128,41 @@ body.bigbang-done .terra-hint,
 
     function draw() {
       if (!running) return;
+      // Ease vanishing-point toward target mouse position
       mShiftX += (mTargetX - mShiftX) * 0.06;
       mShiftY += (mTargetY - mShiftY) * 0.06;
+      // Ease boost (mouse held = faster star rain)
       boostMul += (boostTarget - boostMul) * 0.10;
       var w = canvas.lw, h = canvas.lh, cx = w/2 + mShiftX, cy = h/2 + mShiftY;
       var dpr = Math.min(window.devicePixelRatio || 1, 1.25);
       ctx.setTransform(1, 0, 0, 1, 0, 0);
       ctx.scale(dpr, dpr);
-      var effSpeed = boostMul;
-      var trailAlpha = Math.max(0.07, 0.15 / boostMul);
+      // Burst speed: HOLD at peak for first 35%, then ease-out cubic to 1.0 over remaining 65%.
+      // The hold makes the "fast streaming" feel last longer before stars settle.
+      if (burstActive) {
+        var bt = (performance.now() - burstT0) / BURST_MS;
+        if (bt >= 1) { speedMul = 1.0; burstActive = false; }
+        else if (bt < 0.35) {
+          speedMul = BURST_PEAK;  // hold at peak
+        } else {
+          var nt = (bt - 0.35) / 0.65; // remap remaining 65% to 0..1
+          var eo = 1 - Math.pow(1 - nt, 3); // ease-out cubic
+          speedMul = BURST_PEAK + (1.0 - BURST_PEAK) * eo;
+        }
+      }
+      // Effective speed combines burst (or ambient) with click-hold boost
+      var effSpeed = speedMul * boostMul;
+      // Trail alpha scales with effective speed → streaks lengthen on boost
+      var trailAlpha = burstActive ? Math.max(0.06, 0.15 / effSpeed)
+                                   : Math.max(0.07, 0.15 / boostMul);
       ctx.fillStyle = 'rgba(4,4,12,' + trailAlpha + ')';
       ctx.fillRect(0, 0, w, h);
       stars.forEach(function (s) {
-        s.z -= 1.3 * effSpeed;
+        s.z -= 1.3 * effSpeed;   // 1.0 → 1.3 (~30% faster ambient flow per user request)
         if (s.z <= 0) {
+          // Stagger respawn depths but keep the whole range packed (no big
+          // far-field gap) so the steady-state density matches the initial
+          // frame and the stream feels continuous without thinning.
           s.z = 400 + Math.random() * 1100;
           var angle = Math.random() * Math.PI * 2;
           var md = Math.min(w, h) * 0.3;
@@ -4595,8 +5176,9 @@ body.bigbang-done .terra-hint,
         var size = s.r * k * 2;
         s.tw += s.sp;
         var alpha = s.a * (0.5 + 0.5 * Math.sin(s.tw)) * Math.min(1, k);
-        var rgb = s.mint ? '94,234,212' : '255,255,255';
-        var glow = s.mint ? '45,212,191' : '79,195,247';
+        var rgb = s.mint ? '94,234,212' : '255,255,255';   // mint accent or white
+        var glow = s.mint ? '45,212,191' : '79,195,247';   // mint glow or cool blue
+        // Streak (warp tail)
         if (size > 0.5) {
           ctx.beginPath();
           ctx.moveTo(px, py);
@@ -4605,10 +5187,12 @@ body.bigbang-done .terra-hint,
           ctx.lineWidth = size * 0.5;
           ctx.stroke();
         }
+        // Star body
         ctx.beginPath();
         ctx.arc(px, py, size, 0, Math.PI * 2);
         ctx.fillStyle = 'rgba(' + rgb + ',' + alpha + ')';
         ctx.fill();
+        // Glow for big stars
         if (size > 1.5) {
           ctx.shadowBlur = size * 3;
           ctx.shadowColor = 'rgba(' + glow + ',' + (alpha * 0.8) + ')';
@@ -4628,6 +5212,37 @@ body.bigbang-done .terra-hint,
         running = true;
         rafId = requestAnimationFrame(draw);
       },
+      startWithBurst: function () {
+        // Hybrid: 85% of stars reset to NEAR-Z + outer XY → "burst from center" feel.
+        // Remaining 15% keep their varied z positions → continuous flow during/after burst.
+        // (Was 60/40 — bumped to 85/15 for a much denser initial outward rush
+        // matching the "빵 터지는" intent.) Result: explosive bang AND uninterrupted stream.
+        var cx = canvas.lw / 2, cy = canvas.lh / 2;
+        var burstQty = Math.floor(stars.length * 0.85);
+        for (var i = 0; i < burstQty; i++) {
+          var s = stars[i];
+          // Initial z range tightened from 150-1250 → 25-220 so stars are
+          // even closer to camera on the first draw → streaks read as
+          // instantaneous explosion rather than "stars take a moment".
+          s.z = 25 + Math.random() * 195;
+          var angle = Math.random() * Math.PI * 2;
+          var md = Math.min(canvas.lw, canvas.lh) * 0.25;
+          var dist = md + Math.random() * Math.max(canvas.lw, canvas.lh) * 0.5;
+          s.x = cx + Math.cos(angle) * dist;
+          s.y = cy + Math.sin(angle) * dist;
+        }
+        speedMul = BURST_PEAK;
+        burstActive = true;
+        burstT0 = performance.now();
+        if (!running) {
+          running = true;
+          // Force immediate first frame instead of waiting for the next rAF
+          // (~16ms gap). Combined with near-z star reset, streaks are visible
+          // synchronously with the call → bang and burst feel unified.
+          draw();
+          rafId = requestAnimationFrame(draw);
+        }
+      },
       stop: function () {
         running = false;
         cancelAnimationFrame(rafId);
@@ -4635,34 +5250,55 @@ body.bigbang-done .terra-hint,
     };
   }
 
+  // ---------- Boot ----------
   function ready(fn) {
     if (document.readyState !== 'loading') fn();
     else document.addEventListener('DOMContentLoaded', fn);
   }
 
   ready(function () {
-    var warpField = initWarpField();
-    if (!warpField) return;  // mobile / reduced-motion / no canvas → static hero only
+    initReveals();
 
-    // Gate the rAF loop on hero visibility + page visibility so the canvas
-    // doesn't burn CPU while the user has scrolled past it or hidden the tab.
-    var heroEl = document.getElementById('hero');
-    var heroVisible = true;
-    if (heroEl && 'IntersectionObserver' in window) {
-      document.addEventListener('visibilitychange', function () {
-        if (document.hidden) warpField.stop();
-        else if (heroVisible) warpField.start();
-      });
-      var io = new IntersectionObserver(function (ents) {
-        ents.forEach(function (e) {
-          heroVisible = e.isIntersecting;
-          if (e.isIntersecting && !document.hidden) warpField.start();
-          else warpField.stop();
+    // 2D ambient starfield — pause/resume on hero visibility + tab visibility
+    // so the rAF doesn't burn CPU once the user scrolls past or hides the tab.
+    warpField = initWarpField();
+    if (warpField) {
+      var _heroForWarp = document.getElementById('hero');
+      if (_heroForWarp && 'IntersectionObserver' in window) {
+        var _warpHeroVisible = true;
+        document.addEventListener('visibilitychange', function () {
+          if (document.hidden) warpField.stop();
+          else if (_warpHeroVisible) warpField.start();
         });
-      }, { threshold: 0 });
-      io.observe(heroEl);
-    } else {
-      warpField.start();
+        var wfio = new IntersectionObserver(function (ents) {
+          ents.forEach(function (e) {
+            _warpHeroVisible = e.isIntersecting;
+            if (e.isIntersecting && !document.hidden) warpField.start();
+            else warpField.stop();
+          });
+        }, { threshold: 0 });
+        wfio.observe(_heroForWarp);
+      } else {
+        warpField.start();
+      }
+    }
+
+    // Defer Three.js scene boot until the ESM import has executed.
+    // (GLTF loading is gone — there's no cross mesh to wait for.)
+    function tryBoot() {
+      if (typeof window.THREE === 'undefined') return false;
+      initScene();
+      return true;
+    }
+    if (!tryBoot()) {
+      var maxTries = 60;
+      var iv = setInterval(function () {
+        if (tryBoot()) clearInterval(iv);
+        else if (--maxTries <= 0) {
+          clearInterval(iv);
+          activateHeroFallback();
+        }
+      }, 100);
     }
   });
 })();
