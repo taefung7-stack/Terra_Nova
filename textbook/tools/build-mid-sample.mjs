@@ -12,9 +12,9 @@
  *   node tools/build-mid-sample.mjs --month 2026-06-N --passage 01 --out my.pdf
  */
 import puppeteer from 'puppeteer';
-import { spawn } from 'node:child_process';
-import { mkdirSync, existsSync } from 'node:fs';
-import { dirname, resolve, join } from 'node:path';
+import { createServer } from 'node:http';
+import { mkdirSync, existsSync, readFileSync, statSync } from 'node:fs';
+import { dirname, resolve, join, extname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parseArgs } from 'node:util';
 
@@ -59,20 +59,47 @@ async function main() {
   }
 
   const port = 4186;
-  const server = spawn('npx', ['sirv', '.', '--port', String(port), '--host', '127.0.0.1', '--quiet'], {
-    cwd: root, stdio: 'pipe', shell: process.platform === 'win32'
+  // Built-in static server. Read entire file body once, send full buffer with
+  // exact Content-Length. Avoids the sirv-cli truncation race on Windows.
+  const MIME = {
+    '.html': 'text/html; charset=utf-8',
+    '.js':   'text/javascript; charset=utf-8',
+    '.mjs':  'text/javascript; charset=utf-8',
+    '.css':  'text/css; charset=utf-8',
+    '.json': 'application/json; charset=utf-8',
+    '.png':  'image/png',
+    '.jpg':  'image/jpeg',
+    '.jpeg': 'image/jpeg',
+    '.svg':  'image/svg+xml',
+    '.webp': 'image/webp'
+  };
+  const server = createServer((req, res) => {
+    try {
+      const safe = req.url.split('?')[0].replace(/^\/+/, '');
+      const filePath = join(root, safe);
+      if (!filePath.startsWith(root) || !existsSync(filePath) || !statSync(filePath).isFile()) {
+        res.writeHead(404); res.end('not found'); return;
+      }
+      const buf = readFileSync(filePath);
+      const ct = MIME[extname(filePath).toLowerCase()] || 'application/octet-stream';
+      res.writeHead(200, { 'Content-Type': ct, 'Content-Length': buf.length, 'Cache-Control': 'no-store' });
+      res.end(buf);
+    } catch (e) {
+      res.writeHead(500); res.end(String(e));
+    }
   });
-  await waitFor(`http://127.0.0.1:${port}/textbook-mid.html`);
+  await new Promise(r => server.listen(port, '127.0.0.1', r));
 
   const browser = await puppeteer.launch({ headless: 'new' });
   try {
     const page = await browser.newPage();
+    await page.setCacheEnabled(false);
+    page.on('pageerror', e => console.log('[browser pageerror]', e.message));
     const url = `http://127.0.0.1:${port}/textbook-mid.html?month=${month}&passage=${passage}&startPage=${startPage}`;
     console.log(`[render-mid] ${url}`);
-    // domcontentloaded first to get script running, then wait for .page nodes that render-mid.js inserts.
-    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 90000 });
+    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 60000 });
     await page.waitForSelector('.page', { timeout: 30000 });
-    // Now let images settle.
+    // Let layout settle (two RAFs).
     await page.evaluate(() => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r))));
     await page.pdf({
       path: outPath,
@@ -84,7 +111,7 @@ async function main() {
     await page.close();
   } finally {
     await browser.close();
-    server.kill();
+    await new Promise(r => server.close(() => r()));
   }
 
   console.log(`OK: ${outPath}`);

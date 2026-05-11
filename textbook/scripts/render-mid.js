@@ -73,7 +73,6 @@ function renderQuestion(q, i) {
         <td class="tf-no">(${idx + 1})</td>
         <td class="tf-text">${renderRichInline(s.text)}</td>
         <td class="tf-cell"><span class="tf-pill">T / F</span></td>
-        <td class="tf-line">근거 단락 ____</td>
       </tr>`).join('');
     return `<div class="question mid-q tf">${head}
       <table class="tf-table"><tbody>${rows}</tbody></table>
@@ -189,14 +188,17 @@ function renderSegment(seg) {
   return `<span class="seg" data-role="${role}">${safeText}${tagHtml}</span>`;
 }
 
-function renderHighlights(list) {
+function renderHighlights(list, sentenceIndex) {
   if (!list || !list.length) return '';
   const ROLE_LABEL = { S: 'S', V: 'V', O: 'O', C: 'C', M: 'M', CONJ: '접', REL: '관' };
   const chips = list.map(h => {
     const label = ROLE_LABEL[h.role] || h.role;
     return `<span class="hl-chip" data-role="${h.role}"><span class="hl-tag">${label}</span><span class="hl-ko">${renderRichInline(h.ko)}</span></span>`;
   }).join('');
-  return `<div class="mid-sent-explain">${chips}</div>`;
+  const lead = sentenceIndex != null
+    ? `<span class="hl-lead">[${sentenceIndex}]</span>`
+    : '';
+  return `<div class="mid-sent-explain">${lead}${chips}</div>`;
 }
 
 function renderSentences(list) {
@@ -204,7 +206,7 @@ function renderSentences(list) {
     const segs = s.segments.map(renderSegment).join(' ');
     return `<div class="p3-sentence">
       <div class="en-row"><span class="num">[${s.index}]</span>${segs}</div>
-      ${renderHighlights(s.highlights)}
+      ${renderHighlights(s.highlights, s.index)}
     </div>`;
   }).join('');
 }

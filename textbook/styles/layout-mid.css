@@ -15,19 +15,15 @@
 .mid-p2 .page-body {
   display: flex;
   flex-direction: column;
-  gap: 6pt;
+  /* page-body의 직접 자식 5개(Q1·Q2·Q3·Q4·tieback)에 균등 간격을 주려고
+     mid-questions wrapper를 display:contents로 풀어 — 자식들이 page-body의
+     direct flex child처럼 취급되게 한다. space-between으로 첫 자식은 맨 위,
+     마지막(tieback)은 맨 아래, 사이는 균등 분배된다. */
+  justify-content: space-between;
+  gap: 0;
 }
 .mid-p2 .mid-questions {
-  display: flex;
-  flex-direction: column;
-  /* Spread questions so the empty area above the tieback never appears.
-     Each question still keeps its content height; the gap soaks up slack. */
-  justify-content: space-between;
-  gap: 6pt;
-  flex: 1 1 auto;
-  min-height: 0;
-  min-width: 0;
-  width: 100%;
+  display: contents;
 }
 .mid-p2 .question.mid-q {
   border: 0.7pt solid var(--tn-divider);
@@ -196,7 +192,6 @@
 
 /* Tieback aside with emoji visual aid */
 .mid-p2 .mid-tieback {
-  margin-top: auto;
   background: var(--tn-theme-soft);
   border-radius: 3pt;
   padding: 4pt 7pt 5pt;
@@ -327,10 +322,18 @@
 .mid-sent-explain {
   display: flex;
   flex-wrap: wrap;
+  align-items: baseline;
   gap: 3pt 4pt;
-  margin: 2pt 0 0 16pt;
+  margin: 2pt 0 0 0;
   text-indent: 0;
   font-family: var(--font-ko);
+}
+.mid-sent-explain .hl-lead {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 8pt;
+  color: var(--tn-theme-deep);
+  min-width: 14pt;
 }
 .mid-sent-explain .hl-chip {
   display: inline-flex;
@@ -413,10 +416,14 @@
   -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
 }
-/* 세 가지 유형 색만 차별 (배경·글자색). 카드 본체 색은 위에서 theme로 동일. */
+/* 세 가지 유형 색만 차별 (배경·글자색). 카드 본체 색은 위에서 theme로 동일.
+   page3의 segment 색 시스템과 시각적으로 통일:
+     · 콜로케이션 → theme purple (옅은 배경)
+     · 어근 분석  → 하늘색 (page3의 V 색)
+     · 단어       → 분홍   (page3의 S 색) */
 .mid-p4 .vocab-card.collocation .vc-tag { color: var(--tn-theme-deep); background: var(--tn-theme-soft); }
-.mid-p4 .vocab-card.word-root .vc-tag   { color: #fff; background: #C97A2E; }
-.mid-p4 .vocab-card.word .vc-tag        { color: #fff; background: var(--tn-theme-deep); }
+.mid-p4 .vocab-card.word-root .vc-tag   { color: var(--role-V-ink); background: var(--role-V); }
+.mid-p4 .vocab-card.word .vc-tag        { color: var(--role-S-ink); background: var(--role-S); }
 
 .mid-p4 .vocab-card.mid-vc .head {
   display: flex;
