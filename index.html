@@ -3544,6 +3544,160 @@ body.bigbang-done .terra-hint,
   .site-footer { padding:24px; }
 }
 
+/* =============================================================
+   MOBILE COMPACTION v2 — aggressive shrink + Korean word-unit wrap
+   =============================================================
+   This block lives AFTER all earlier mobile rules so its declarations
+   win. Scope is strictly @media (max-width:720px) — desktop stays
+   untouched per user directive. Patches three classes of problem:
+
+   (A) Korean text broke MID-WORD on phones because the default
+       word-break is `normal` which treats CJK like English (any char
+       can be a wrap point). word-break:keep-all + overflow-wrap:
+       break-word switches to word-unit wrapping for Korean while
+       still allowing long English tokens to break gracefully.
+
+   (B) Several display headlines still rendered 33–78px on a 390px
+       viewport because earlier clamp() floors win on small widths.
+       Re-clamp to phone-tuned ranges.
+
+   (C) Solution-panel cards put illustration + headline side-by-side
+       via flex, squeezing the headline into a ~130px column that
+       wrapped every 2–3 chars. Stack vertically on phones so the
+       headline gets full card width.
+
+   Plus optional decorative copy is hidden on phones (display:none)
+   to reduce visual noise without touching the HTML. */
+@media (max-width: 720px) {
+  /* (A) Korean word-unit wrap — applied to display + body text. We
+     intentionally do NOT target every element (would affect English
+     code blocks etc); only the families that contain Korean copy. */
+  .story-title,
+  .story-kicker,
+  .story-copy,
+  .hero-fallback h1,
+  .hero-tagline,
+  .orbit-title,
+  .preview-name,
+  .level-card-name,
+  .plan-name,
+  .plan-sub,
+  .plan-features li,
+  .solution-panel h2,
+  .solution-panel h3,
+  .solution-panel p,
+  .worry-line,
+  .concern-card h3,
+  .concern-card p,
+  .exam-pair-label,
+  .exam-card-num,
+  .exam-stem,
+  .exam-stem-sm,
+  .exam-choices li,
+  .exam-key-shared,
+  .book-card .exam-passage-ko-min,
+  .exam-comprehension,
+  .final h1,
+  .final h2,
+  .final p,
+  .site-footer,
+  .nav-links li a {
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+
+  /* (B) Headline shrink pass 2 — values below override the floor that
+     was still firing from earlier clamp() rules on this viewport. */
+  .hero-fallback h1 { font-size:1.55rem; line-height:1.22; letter-spacing:-.02em; }
+  .story-title { font-size:clamp(1.55rem, 7.4vw, 2rem); line-height:1.18; letter-spacing:-.02em; }
+  .proof .story-title,
+  .proof-headline-card .story-title { font-size:clamp(1.55rem, 7.4vw, 2rem); line-height:1.18; }
+  .concerns-head .story-title { font-size:clamp(1.45rem, 6.4vw, 1.85rem); line-height:1.2; }
+  .orbit-title { font-size:clamp(1.95rem, 9.5vw, 2.6rem); line-height:1.1; letter-spacing:-.02em; }
+  .preview-name { font-size:clamp(1.85rem, 10vw, 2.6rem); line-height:1.05; }
+  .final h1, .final h2 { font-size:clamp(1.55rem, 7.4vw, 2rem); line-height:1.18; letter-spacing:-.02em; }
+  .story-kicker { font-size:.7rem; letter-spacing:.22em; margin-bottom:10px; }
+  .story-copy { font-size:.88rem; line-height:1.6; }
+
+  /* Solution panel headline shrink + don't allow it to break mid-word.
+     Two earlier rules need overriding: .proof.proof-cinematic .solution-
+     panel h3 sets a clamp(2rem,..) floor AND a max-width that subtracts
+     140-240px to dodge the 3D icon — both must be unset on phones
+     because we restack the head vertically (icon no longer overlaps). */
+  .solution-panel h2,
+  .solution-panel h3,
+  .proof.proof-cinematic .solution-panel h3 {
+    font-size:1.28rem;
+    line-height:1.24;
+    letter-spacing:-.01em;
+    max-width: 100%;
+    margin-top: 4px;
+  }
+
+  /* (C) Solution-panel head: stack illustration above headline so the
+     text gets the full card width instead of fighting the icon. */
+  .solution-panel .solution-head {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .solution-panel .solution-head > * { width: 100%; max-width: 100%; }
+  .solution-panel .solution-head img,
+  .solution-panel .solution-head svg,
+  .solution-panel .solution-head .solution-illust,
+  .solution-panel .solution-head [class*="icon"] {
+    width: 56px;
+    height: auto;
+    flex-shrink: 0;
+  }
+  /* The 3D icon in proof-cinematic panels is absolute-positioned to
+     overlap the headline area. On phones we hide it because the head
+     is now stacked and the icon would crash into the text. */
+  .proof.proof-cinematic .solution-panel .panel-illust,
+  .proof.proof-cinematic .solution-panel [class*="3d"],
+  .proof.proof-cinematic .solution-panel img[src*="solution"] {
+    display:none;
+  }
+
+  /* Plan-card minor tightening (the prior pass already reduced these,
+     this pass shaves another 1-2 levels to match the rest). */
+  .plan-name { font-size:1.18rem; letter-spacing:.14em; }
+  .plan-price { font-size:clamp(2rem, 9vw, 2.6rem); }
+  .plan-tag { font-size:.74rem; padding:5px 10px; }
+  .plan-sub { font-size:.84rem; line-height:1.5; }
+  .plan-features li { font-size:.88rem; }
+
+  /* Concern + worry card text density. */
+  .concern-card h3 { font-size:1.02rem; line-height:1.3; }
+  .concern-card p { font-size:.88rem; line-height:1.5; }
+  .worry-line { font-size:1rem; line-height:1.45; padding:18px 18px; min-height:auto; }
+
+  /* Mid-nav and footer tighten. */
+  .site-nav { padding:14px 16px; }
+  .logo-text .logo-main { font-size:.92rem; letter-spacing:.16em; }
+  .logo-text .logo-eng { font-size:.62rem; letter-spacing:.18em; }
+  .logo-mark { width:36px; height:auto; }
+
+  /* (D) Hide decorative/duplicate copy on phones — content lives in
+     the DOM but is visually removed. No HTML changes. */
+  /* Statement: keep the headline + the 3 concern cards; drop the
+     paragraph lead that just rephrases the headline. The lede class
+     lives directly on the <p> (it's both .story-copy AND .statement-
+     lede), so target the class itself, not a descendant. */
+  .statement p.statement-lede { display:none; }
+  /* Orbit: keep the title + the level grid; drop the redundant
+     subtitle copy ("각 레벨마다 학년교과가 연계되어 있습니다 / 레벨
+     테스트로...") — the level cards themselves convey the same thing. */
+  .orbit-head .story-copy,
+  .orbit-copy .story-copy { display:none; }
+  /* Plan card extra "전체 포함" tagline duplicates info already in
+     the bullet list above it on the next plan — drop on phone. */
+  .plan-sub { display:none; }
+  /* Hide secondary text on solution panels' deep body copy if a
+     short summary is available. */
+  .solution-panel .solution-body p:nth-of-type(n+2) { display:none; }
+}
+
 /* =============== Reduced motion =============== */
 @media (prefers-reduced-motion: reduce) {
   #bg-canvas { display:none; }
