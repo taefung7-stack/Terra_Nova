@@ -1,0 +1,262 @@
+/*
+ * Terra Nova — Mobile Compact Override
+ *
+ * Applies only to viewports ≤ 680px. Desktop & tablet are untouched.
+ * Loaded by subscription_detail_complete.html and order.html.
+ *
+ * Philosophy ("극심플"):
+ *   1. Cut hero size — no double-vh sections.
+ *   2. Flat color, no big gradients / shadows / decorative chrome.
+ *   3. One font scale: 14px body / 18px section-h / 22px page-h.
+ *   4. Remove or hide non-essential decorations (counters, scroll cues,
+ *      animated planet bubbles, floating CTAs that overlap content).
+ *   5. Stack everything to single column; never side-by-side on phones.
+ *
+ * Use !important sparingly but freely here — these rules INTENTIONALLY win
+ * over each page's inline @media so we get one consistent mobile UI without
+ * touching 2,500+ lines of existing markup.
+ */
+
+@media (max-width: 680px) {
+
+  /* ── Global typography reset for phone ── */
+  html { font-size: 17px !important; }
+  body { line-height: 1.55 !important; }
+
+  /* ── Section spacing: pull everything tight ── */
+  section,
+  .section,
+  main > section,
+  main > div { padding-left: 14px !important; padding-right: 14px !important; }
+  section { padding-top: 24px !important; padding-bottom: 24px !important; }
+
+  /* ── Hero / oversized titles ── */
+  .hero, .hero-inner, .hero-wrap, .hero-section {
+    padding: 80px 14px 20px !important;  /* top space for fixed nav, but no 100vh */
+    min-height: auto !important;
+  }
+  .hero-headline, .hero-title, .hero h1, h1.hero-title,
+  section h1, main h1 {
+    font-size: clamp(1.5rem, 6vw, 1.85rem) !important;
+    line-height: 1.25 !important;
+    letter-spacing: 0 !important;
+    margin-bottom: 12px !important;
+  }
+  .hero-tagline, .hero-sub, .hero p, section .sub, .lede {
+    font-size: 0.92rem !important;
+    line-height: 1.55 !important;
+    margin-bottom: 18px !important;
+  }
+  .hero-stats, .stats-row { gap: 14px !important; flex-wrap: wrap !important; justify-content: flex-start !important; }
+  .hero-kicker, .kicker {
+    font-size: 0.62rem !important;
+    padding: 3px 8px !important;
+    letter-spacing: 1px !important;
+    gap: 6px !important;
+    border-width: 0.5px !important;
+    transform: none !important;
+  }
+  .hero-kicker .dot, .kicker .dot { width: 5px !important; height: 5px !important; }
+  .hero-kicker { display: inline-flex !important; align-self: flex-start !important; }
+
+  /* Real markup used by subscription page: ".label" chip and ".head" wrappers.
+     These were the actual giants taking ~120px each on phone. */
+  .label, .section .label, .head .label {
+    font-size: 0.62rem !important;
+    letter-spacing: 1px !important;
+    padding: 4px 10px !important;
+    margin-bottom: 12px !important;
+    gap: 6px !important;
+  }
+  .head, .section .head {
+    text-align: center !important;
+    margin-bottom: 20px !important;   /* was 80-96px */
+  }
+  .section.book, .section.compare, .section.levels, .section.plans {
+    padding: 28px 14px !important;     /* was 160px 1.4vw */
+  }
+  .section.book .inner, .section .inner { max-width: 100% !important; padding: 0 !important; }
+  /* All h2 inside .head — already covered by global but make extra-tight */
+  .head h2 { font-size: 1.32rem !important; line-height: 1.3 !important; }
+
+  /* ── Section headings ── */
+  h2, section h2 {
+    font-size: 1.25rem !important;
+    line-height: 1.3 !important;
+    letter-spacing: 0 !important;
+    margin: 0 0 14px !important;
+    white-space: normal !important;
+  }
+  h3, section h3 { font-size: 1.02rem !important; margin: 16px 0 8px !important; }
+  p, li { font-size: 0.92rem !important; }
+
+  /* ── Grids → single column ── */
+  .planet-grid, .plans-grid, .plan-grid,
+  .book-pages, .graphs, .tn-feature-grid,
+  .compare-grid, .proof-grid, .levels-grid,
+  .page-inner, .form-row, .level-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+    max-width: 100% !important;
+  }
+
+  /* ── Cards: flat, no oversized chrome ── */
+  .planet-card, .plan-card, .plan, .book-page, .stat,
+  .compare-col, .feature, .level-card, .pcard, .graph-card {
+    min-height: auto !important;
+    padding: 18px 16px !important;
+    border-radius: 8px !important;
+    box-shadow: none !important;
+    transform: none !important;
+  }
+  .planet-card:hover, .plan-card:hover, .plan:hover { transform: none !important; }
+
+  /* ── Imagery: tame anything wider than the screen ── */
+  .pcard-img, .planet-img, .hero-img, .book-img, .graph-img {
+    width: clamp(80px, 28vw, 110px) !important;
+    height: auto !important;
+    max-width: 100% !important;
+  }
+
+  /* ── Buttons / CTAs ── */
+  .btn, .cta, .nav-cta, .primary-cta, .hero-cta,
+  button[type="submit"], a.btn {
+    font-size: 0.96rem !important;
+    padding: 12px 18px !important;
+    border-radius: 6px !important;
+    letter-spacing: 0 !important;
+  }
+  .hero-cta-row, .cta-row { flex-direction: column !important; gap: 8px !important; }
+  .hero-cta-row > *, .cta-row > * { width: 100% !important; text-align: center !important; }
+
+  /* ── Hide decorative bits that clutter phone screens ── */
+  .scroll-cue, .scroll-arrow, .marquee, .planet-orbit,
+  .hero-stat-bar, .pcard-flag, .ribbon,
+  .planet-card .pcard-grade-badge {
+    display: none !important;
+  }
+
+  /* ── Floating CTA: shrink to small chip ── */
+  .float-cta, .floating-cta {
+    bottom: 10px !important;
+    right: 10px !important;
+    padding: 8px 12px !important;
+    font-size: 0.74rem !important;
+    border-radius: 999px !important;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25) !important;
+    gap: 6px !important;
+  }
+  .float-cta svg, .floating-cta svg { width: 14px !important; height: 14px !important; }
+  .float-group {
+    bottom: 10px !important;
+    right: 10px !important;
+    gap: 6px !important;
+    /* 폼이 활성화되어 있을 때 입력란을 가리지 않게 좀 더 컴팩트하게 */
+  }
+  .float-btn { width: 36px !important; height: 36px !important; }
+  .float-btn svg { width: 18px !important; height: 18px !important; }
+  .float-label { display: none !important; }
+
+  /* ── Tables: hide horizontal scroll, stack rows ── */
+  table { font-size: 0.82rem !important; }
+  th, td { padding: 6px 8px !important; }
+
+  /* ── Forms (order.html) ── */
+  input, select, textarea {
+    font-size: 16px !important;     /* prevents iOS zoom-on-focus */
+    padding: 11px 12px !important;
+    border-radius: 6px !important;
+  }
+  label { font-size: 0.82rem !important; }
+  fieldset { padding: 14px !important; border-radius: 8px !important; }
+
+  /* ── Nav hamburger: keep only logo + hamburger ── */
+  .nav-links { display: none !important; }
+  nav { height: 56px !important; padding: 0 16px !important; }
+  .logo-main { font-size: 1rem !important; letter-spacing: 0.08em !important; }
+  .logo-eng { font-size: 0.42rem !important; letter-spacing: 3px !important; }
+
+  /* ── Animations: kill anything that moves on phone ── */
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal { opacity: 1 !important; transform: none !important; }
+}
+
+/* ─── Subscription detail page-specific tweaks ─── */
+@media (max-width: 680px) {
+  /* Book preview section: shrink the giant "교재 미리보기" headline */
+  .book h2 { font-size: clamp(1.2rem, 5.5vw, 1.45rem) !important; }
+  .book-pages { gap: 8px !important; }
+  .book-page { padding: 8px !important; }
+  /* Image needs enough room to actually READ the textbook preview */
+  .book-page img { max-height: 280px !important; height: auto !important; width: 100% !important; object-fit: contain !important; }
+  /* Row head (MARS · 초5 · 사회 chip strip): compact but readable */
+  .book-row-head { gap: 8px !important; margin-bottom: 14px !important; padding: 0 !important; }
+  .book-row-name { font-size: clamp(1.3rem, 6vw, 1.6rem) !important; letter-spacing: 0.02em !important; }
+  .book-row-grade { font-size: 0.72rem !important; padding: 4px 10px !important; letter-spacing: 1px !important; }
+  .book-row-subject { font-size: 0.78rem !important; padding: 5px 12px !important; }
+  .book-page-label { font-size: 0.7rem !important; padding: 3px 8px !important; }
+  /* Levels (planet grid) — 2-col grid, compact card */
+  .planet-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 8px !important; }
+  .planet-card { padding: 12px 8px !important; min-height: auto !important; }
+  .pcard-img { width: 56px !important; height: 56px !important; }
+  .pcard-name { font-size: 0.78rem !important; margin-top: 6px !important; letter-spacing: 0 !important; }
+  .pcard-grade { font-size: 0.62rem !important; }
+  /* Levels title also smaller */
+  .levels h2 { font-size: clamp(1.2rem, 5.5vw, 1.45rem) !important; }
+  /* Compare graphs: stack tightly */
+  .compare h2 { font-size: clamp(1.3rem, 6vw, 1.6rem) !important; }
+  .graphs { gap: 12px !important; }
+  /* Plans: tall cards → compact */
+  .plans h2 { font-size: clamp(1.2rem, 5.5vw, 1.45rem) !important; }
+  .plan-card { padding: 14px !important; min-height: auto !important; }
+  .plan-name { font-size: 1rem !important; }
+  .plan-price { font-size: 1.35rem !important; margin: 6px 0 !important; }
+  .plan-period { font-size: 0.7rem !important; }
+  .plan-feature-list li { font-size: 0.82rem !important; padding: 4px 0 !important; line-height: 1.4 !important; }
+  .plan-feature-list { gap: 0 !important; }
+  .plan-badge, .plan-tag { font-size: 0.62rem !important; padding: 2px 6px !important; }
+  /* "Transform" closing section */
+  .transform { padding: 24px 14px !important; }
+  .transform h2 { font-size: 1.2rem !important; line-height: 1.3 !important; }
+  .transform p { font-size: 0.88rem !important; }
+  /* Generic catch-all: any tall hero/section using >100vh becomes content-sized */
+  section[style*="100vh"], section[style*="min-height"] { min-height: auto !important; }
+}
+
+/* ─── Order page-specific tweaks ─── */
+@media (max-width: 680px) {
+  .page-wrap { padding-top: 64px !important; min-height: 0 !important; }
+  .page-inner { padding: 16px 14px 60px !important; gap: 18px !important; grid-template-columns: 1fr !important; }
+  .section-title { font-size: 1.4rem !important; margin-bottom: 4px !important; letter-spacing: 0 !important; }
+  .section-sub { font-size: 0.82rem !important; margin-bottom: 18px !important; }
+  .form-section { margin-bottom: 18px !important; }
+  .form-section-title { font-size: 0.96rem !important; margin-bottom: 10px !important; gap: 6px !important; }
+  .form-section-title::after { display: none !important; }
+  .auth-block, .auth-status { padding: 14px !important; border-radius: 8px !important; }
+  .auth-tabs { gap: 6px !important; margin-bottom: 10px !important; }
+  .auth-tab { padding: 10px 0 !important; font-size: 0.92rem !important; }
+  .social-login-row, .social-grid { gap: 6px !important; }
+  .social-btn { padding: 10px !important; font-size: 0.92rem !important; }
+  .order-summary, .order-form-col, .summary-card { padding: 14px !important; border-radius: 8px !important; }
+  .order-summary h2, .order-form-col h2 { font-size: 1rem !important; }
+  .plan-grid { gap: 8px !important; }
+  /* Level chooser: 3-column compact */
+  .level-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 6px !important; }
+  .level-card { padding: 10px 6px !important; font-size: 0.78rem !important; }
+  /* Payment method buttons */
+  .pay-method-grid { grid-template-columns: 1fr 1fr !important; gap: 8px !important; }
+  .pay-method { padding: 12px 8px !important; font-size: 0.82rem !important; }
+  /* Total line */
+  .order-total { font-size: 1.05rem !important; padding: 12px 0 !important; }
+  /* Float kakao/insta dots: keep tiny but stagger so they sit above the
+     dock submit button rather than overlapping the password field. */
+  .float-group {
+    bottom: 70px !important;     /* above mobile submit area */
+    right: 8px !important;
+    flex-direction: column !important;
+    gap: 6px !important;
+  }
+}
