@@ -3,25 +3,14 @@ import { createServer } from 'node:http';
 import { existsSync, readFileSync, statSync, mkdirSync } from 'node:fs';
 import { join, extname, resolve } from 'node:path';
 
-// Site root is the parent of the textbook folder (where the public HTML lives).
 const root = resolve('..');
 const outDir = resolve('../dist/mobile-snap');
 mkdirSync(outDir, { recursive: true });
 
 const MIME = {
-  '.html': 'text/html; charset=utf-8',
-  '.js':   'text/javascript; charset=utf-8',
-  '.mjs':  'text/javascript; charset=utf-8',
-  '.css':  'text/css; charset=utf-8',
-  '.json': 'application/json; charset=utf-8',
-  '.png':  'image/png',
-  '.jpg':  'image/jpeg',
-  '.jpeg': 'image/jpeg',
-  '.svg':  'image/svg+xml',
-  '.webp': 'image/webp',
-  '.ico':  'image/x-icon',
-  '.woff': 'font/woff',
-  '.woff2':'font/woff2'
+  '.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.mjs':'text/javascript; charset=utf-8',
+  '.css':'text/css; charset=utf-8','.json':'application/json; charset=utf-8','.png':'image/png','.jpg':'image/jpeg',
+  '.jpeg':'image/jpeg','.svg':'image/svg+xml','.webp':'image/webp','.ico':'image/x-icon','.woff':'font/woff','.woff2':'font/woff2'
 };
 const port = 4291;
 const server = createServer((req, res) => {
@@ -35,15 +24,17 @@ const server = createServer((req, res) => {
     const ct = MIME[extname(filePath).toLowerCase()] || 'application/octet-stream';
     res.writeHead(200, { 'Content-Type': ct, 'Content-Length': buf.length, 'Cache-Control': 'no-store' });
     res.end(buf);
-  } catch (e) {
-    res.writeHead(500); res.end(String(e));
-  }
+  } catch (e) { res.writeHead(500); res.end(String(e)); }
 });
 await new Promise(r => server.listen(port, '127.0.0.1', r));
 
 const targets = [
+  { name: 'landing', url: 'landing.html' },
+  { name: 'index', url: 'index.html' },
   { name: 'subscription', url: 'subscription_detail_complete.html' },
-  { name: 'order', url: 'order.html' }
+  { name: 'order', url: 'order.html' },
+  { name: 'sample', url: 'sample.html' },
+  { name: 'level_test', url: 'level_test.html' }
 ];
 
 const browser = await puppeteer.launch({ headless: 'new' });
@@ -58,7 +49,8 @@ try {
     await new Promise(r => setTimeout(r, 2200));
     await bp.screenshot({ path: join(outDir, t.name + '-fold.png') });
     await bp.screenshot({ path: join(outDir, t.name + '-full.png'), fullPage: true });
-    console.log('captured', t.name);
+    const h = await bp.evaluate(() => document.documentElement.scrollHeight);
+    console.log(t.name + ': height=' + h + 'px');
     await bp.close();
   }
 } finally {

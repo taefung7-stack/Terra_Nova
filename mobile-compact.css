@@ -19,33 +19,33 @@
 
 @media (max-width: 680px) {
 
-  /* ── Global typography reset for phone ── */
-  html { font-size: 17px !important; }
-  body { line-height: 1.55 !important; }
+  /* ── Global typography reset for phone (더 작게) ── */
+  html { font-size: 15px !important; }      /* was 17px */
+  body { line-height: 1.5 !important; }
 
-  /* ── Section spacing: pull everything tight ── */
+  /* ── Section spacing: pull everything VERY tight ── */
   section,
   .section,
   main > section,
   main > div { padding-left: 14px !important; padding-right: 14px !important; }
-  section { padding-top: 24px !important; padding-bottom: 24px !important; }
+  section { padding-top: 18px !important; padding-bottom: 18px !important; }
 
   /* ── Hero / oversized titles ── */
   .hero, .hero-inner, .hero-wrap, .hero-section {
-    padding: 80px 14px 20px !important;  /* top space for fixed nav, but no 100vh */
+    padding: 70px 14px 16px !important;
     min-height: auto !important;
   }
   .hero-headline, .hero-title, .hero h1, h1.hero-title,
   section h1, main h1 {
-    font-size: clamp(1.5rem, 6vw, 1.85rem) !important;
+    font-size: clamp(1.25rem, 5.2vw, 1.55rem) !important;
     line-height: 1.25 !important;
     letter-spacing: 0 !important;
-    margin-bottom: 12px !important;
+    margin-bottom: 8px !important;
   }
   .hero-tagline, .hero-sub, .hero p, section .sub, .lede {
-    font-size: 0.92rem !important;
-    line-height: 1.55 !important;
-    margin-bottom: 18px !important;
+    font-size: 0.84rem !important;
+    line-height: 1.5 !important;
+    margin-bottom: 12px !important;
   }
   .hero-stats, .stats-row { gap: 14px !important; flex-wrap: wrap !important; justify-content: flex-start !important; }
   .hero-kicker, .kicker {
@@ -79,16 +79,17 @@
   /* All h2 inside .head — already covered by global but make extra-tight */
   .head h2 { font-size: 1.32rem !important; line-height: 1.3 !important; }
 
-  /* ── Section headings ── */
+  /* ── Section headings (더 작게) ── */
   h2, section h2 {
-    font-size: 1.25rem !important;
+    font-size: 1.08rem !important;
     line-height: 1.3 !important;
     letter-spacing: 0 !important;
-    margin: 0 0 14px !important;
+    margin: 0 0 8px !important;
     white-space: normal !important;
   }
-  h3, section h3 { font-size: 1.02rem !important; margin: 16px 0 8px !important; }
-  p, li { font-size: 0.92rem !important; }
+  h3, section h3 { font-size: 0.94rem !important; margin: 10px 0 5px !important; }
+  p, li { font-size: 0.84rem !important; line-height: 1.5 !important; }
+  ul, ol { margin-left: 16px !important; margin-bottom: 8px !important; }
 
   /* ── Grids → single column ── */
   .planet-grid, .plans-grid, .plan-grid,
@@ -96,26 +97,71 @@
   .compare-grid, .proof-grid, .levels-grid,
   .page-inner, .form-row, .level-grid {
     grid-template-columns: 1fr !important;
-    gap: 12px !important;
+    gap: 10px !important;
     max-width: 100% !important;
   }
+  /* Level test grade grid 4-col → 2-col (행성 이미지 시각적으로 좋음) */
+  .options.grade-grid, .grade-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+    max-width: 100% !important;
+  }
+  .grade-grid .grade-card { padding: 12px 6px 10px !important; gap: 6px !important; }
+  .grade-grid .grade-card .planet-img { width: 56px !important; }
+  .grade-grid .grade-card .grade-label { font-size: 1rem !important; }
+  .grade-grid .grade-card .grade-sub { font-size: 0.6rem !important; }
 
-  /* ── Cards: flat, no oversized chrome ── */
+  /* ── Cards: flat, compact ── */
   .planet-card, .plan-card, .plan, .book-page, .stat,
   .compare-col, .feature, .level-card, .pcard, .graph-card {
     min-height: auto !important;
-    padding: 18px 16px !important;
-    border-radius: 8px !important;
+    padding: 12px 14px !important;
+    border-radius: 6px !important;
     box-shadow: none !important;
     transform: none !important;
   }
   .planet-card:hover, .plan-card:hover, .plan:hover { transform: none !important; }
 
-  /* ── Imagery: tame anything wider than the screen ── */
-  .pcard-img, .planet-img, .hero-img, .book-img, .graph-img {
-    width: clamp(80px, 28vw, 110px) !important;
+  /* ── Imagery: tame general images BUT preserve impactful ones below ── */
+  .pcard-img, .planet-img, .graph-img {
+    width: clamp(60px, 22vw, 88px) !important;
     height: auto !important;
     max-width: 100% !important;
+  }
+
+  /* ── IMPACT ZONE: 이미지·증명은 임팩트 유지 ──────────────────
+     사용자가 보고 싶은 핵심 콘텐츠는 phone에서도 충분히 크게 보존. */
+  /* 1) 교재 미리보기 이미지 — 가독을 위해 크게 */
+  .book-page img, .book-img, .hero-img, .textbook-preview img,
+  img.preview, .sample-img {
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: none !important;
+    height: auto !important;
+    display: block !important;
+  }
+  /* 2) 큰 수치 통계 ("95%" 같은) */
+  .stat-num, .big-num, .proof-number, .stat-value,
+  .hero-stat-value, .metric-value {
+    font-size: clamp(2rem, 9vw, 2.6rem) !important;
+    font-weight: 900 !important;
+    line-height: 1 !important;
+    letter-spacing: -0.02em !important;
+    color: var(--accent, #00FFA3) !important;
+  }
+  .stat-label, .big-num-label, .proof-label, .stat-caption, .metric-label {
+    font-size: 0.78rem !important;
+    color: var(--dim, rgba(255,255,255,0.7)) !important;
+  }
+  /* 3) 인용·후기 임팩트 카드 — 보통 .quote, .testimonial */
+  .quote, .testimonial, .review-card {
+    padding: 16px !important;
+    border-radius: 8px !important;
+  }
+  .quote p, .testimonial p, .testimonial-body {
+    font-size: 0.95rem !important;
+    line-height: 1.55 !important;
+    font-weight: 500 !important;
   }
 
   /* ── Buttons / CTAs ── */
