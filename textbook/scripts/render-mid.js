@@ -326,6 +326,34 @@ async function main() {
   setAttr(root, 'illustration', 'alt', data.page1.illustration_caption);
   setText(root, 'illustration-caption', data.page1.illustration_caption);
 
+  /* ----- Junior side rail (page 1): big number / Think! / mascot / words ----- */
+  const passageNum = parseInt(passage, 10) || 1;
+  setText(root, 'jr-num', String(passageNum));
+  const thinkText = data.page1.think || data.page1.think_question
+    || (data.meta.subject ? `${data.meta.subject}? ${data.page1.title}?` : '');
+  setText(root, 'jr-think-q', thinkText);
+
+  /* Word count uses the body's plain-text word count (strip tags + non-word chars) */
+  const plainBody = (data.page1.body || '')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/[^A-Za-z'\-\s]/g, ' ');
+  const wc = plainBody.split(/\s+/).filter(Boolean).length;
+  setText(root, 'jr-wordcount', `${wc} words`);
+
+  /* Words pocket dictionary — accepts data.page1.words = [{en, ko}, ...] (up to 9) */
+  const wordsList = (data.page1.words || []).slice(0, 9);
+  const wordsWrap = root.querySelector('[data-slot="jr-words-wrap"]');
+  if (wordsList.length === 0) {
+    if (wordsWrap) wordsWrap.style.display = 'none';
+  } else {
+    const wordsHTML = wordsList.map(w =>
+      `<div class="jr-word-item">
+        <span class="jr-word-en">${escapeHTML(w.en)}</span><span class="jr-word-dot">·</span>${escapeHTML(w.ko)}
+      </div>`
+    ).join('');
+    setSafe(root, 'jr-words', wordsHTML);
+  }
+
   const imgEl = root.querySelector('[data-slot="illustration"]');
   if (imgEl) {
     imgEl.addEventListener('error', () => {
