@@ -46,7 +46,25 @@ try {
     await bp.setUserAgent('Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1');
     const cb = '?cb=' + Date.now();
     await bp.goto('http://127.0.0.1:' + port + '/' + t.url + cb, { waitUntil: 'domcontentloaded', timeout: 30000 });
-    await new Promise(r => setTimeout(r, 2200));
+    await new Promise(r => setTimeout(r, 2500));
+    const diag = await bp.evaluate(() => {
+      // Walk up the DOM and find any ancestor that creates a containing block
+      // for position:fixed (transform/filter/will-change/perspective).
+      const tab = document.getElementById('m-tabbar');
+      if (!tab) return { hasTabbar: false };
+      const r = tab.getBoundingClientRect();
+      const offenders = [];
+      let n = tab.parentElement;
+      while (n && n !== document.documentElement) {
+        const cs = getComputedStyle(n);
+        if (cs.transform !== 'none' || cs.filter !== 'none' || cs.perspective !== 'none' || cs.willChange !== 'auto' || cs.contain === 'paint' || cs.contain === 'layout' || cs.contain.indexOf('strict') !== -1) {
+          offenders.push((n.tagName.toLowerCase()) + (n.id ? '#' + n.id : '') + (n.className ? '.' + String(n.className).split(' ').slice(0,2).join('.') : '') + ' [' + cs.transform.slice(0,30) + '|' + cs.filter.slice(0,20) + '|' + cs.willChange + ']');
+        }
+        n = n.parentElement;
+      }
+      return { top: Math.round(r.top), position: getComputedStyle(tab).position, offenders };
+    });
+    console.log('  tabbar:', JSON.stringify(diag));
     await bp.screenshot({ path: join(outDir, t.name + '-fold.png') });
     await bp.screenshot({ path: join(outDir, t.name + '-full.png'), fullPage: true });
     const h = await bp.evaluate(() => document.documentElement.scrollHeight);
