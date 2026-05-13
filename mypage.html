@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="shared.css">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+KR:wght@300;400;500;700;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --dark:#0A0A0A; --mid:#111111; --card:#1C1C1C; --card2:#222222;
@@ -29,7 +29,7 @@
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;font-size:20px;}
-  body{background:var(--dark);color:var(--txt);font-family:'Pretendard','Noto Sans KR',sans-serif;min-height:100vh;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+  body{background:var(--dark);color:var(--txt);font-family:'Pretendard',sans-serif;min-height:100vh;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
 
   /* NAV */
   nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;height:80px;background:rgba(6,6,15,.95);backdrop-filter:blur(24px);border-bottom:1px solid var(--line);}
@@ -102,7 +102,7 @@
   .sub-info-value{font-size:.9rem;font-weight:700;color:#fff;}
   .sub-info-value.accent{color:var(--accent);}
   .sub-actions{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap;}
-  .btn-sm{padding:9px 18px;border-radius:6px;font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:.78rem;font-weight:600;cursor:pointer;transition:all .15s;}
+  .btn-sm{padding:9px 18px;border-radius:6px;font-family:'Pretendard',sans-serif;font-size:.78rem;font-weight:600;cursor:pointer;transition:all .15s;}
   .btn-sm-primary{background:var(--accent);color:#0A0A0A;border:none;}
   .btn-sm-primary:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,255,163,.3);}
   .btn-sm-outline{background:transparent;color:var(--dim);border:1px solid var(--line);}
@@ -126,7 +126,7 @@
   .passage-block.empty{background:rgba(255,255,255,.04);color:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.06);}
   .progress-stats{display:flex;gap:24px;margin-top:20px;padding-top:16px;border-top:1px solid var(--line);}
   .prog-stat{text-align:center;}
-  .prog-stat-num{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:2px;color:var(--accent);}
+  .prog-stat-num{font-family:'Space Grotesk',sans-serif;font-size:1.6rem;letter-spacing:2px;color:var(--accent);}
   .prog-stat-label{font-size:.65rem;color:var(--dim);}
 
   /* CONTENT SECTIONS */
@@ -137,19 +137,19 @@
   /* FORM IN SECTION */
   .form-group{margin-bottom:14px;}
   .form-group label{display:block;font-size:.72rem;font-weight:600;color:rgba(255,255,255,.6);margin-bottom:6px;letter-spacing:.5px;}
-  .form-group input, .form-group select{width:100%;background:var(--card2);border:1px solid rgba(255,255,255,.1);border-radius:6px;padding:11px 14px;color:var(--txt);font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:.88rem;outline:none;transition:border-color .18s;}
+  .form-group input, .form-group select{width:100%;background:var(--card2);border:1px solid rgba(255,255,255,.1);border-radius:6px;padding:11px 14px;color:var(--txt);font-family:'Pretendard',sans-serif;font-size:.88rem;outline:none;transition:border-color .18s;}
   .form-group input:focus, .form-group select:focus{border-color:rgba(0,255,163,.4);}
   .form-group input::placeholder{color:rgba(255,255,255,.25);}
   .form-group select option{background:#1C1C1C;}
   .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
   @media(max-width:480px){.form-row{grid-template-columns:1fr;}}
-  .btn-save{background:var(--accent);color:#0A0A0A;border:none;padding:11px 24px;border-radius:6px;font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:.82rem;font-weight:700;cursor:pointer;transition:transform .15s;}
+  .btn-save{background:var(--accent);color:#0A0A0A;border:none;padding:11px 24px;border-radius:6px;font-family:'Pretendard',sans-serif;font-size:.82rem;font-weight:700;cursor:pointer;transition:transform .15s;}
   .btn-save:hover{transform:translateY(-1px);}
 
   /* LEVEL SELECT */
   .level-grid-sm{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px;}
   @media(max-width:400px){.level-grid-sm{grid-template-columns:repeat(2,1fr);}}
-  .level-btn-sm{border:1px solid var(--line);border-radius:6px;padding:12px 8px;cursor:pointer;text-align:center;background:transparent;transition:all .18s;font-family:'Pretendard','Noto Sans KR',sans-serif;}
+  .level-btn-sm{border:1px solid var(--line);border-radius:6px;padding:12px 8px;cursor:pointer;text-align:center;background:transparent;transition:all .18s;font-family:'Pretendard',sans-serif;}
   .level-btn-sm:hover{border-color:rgba(0,255,163,.3);}
   .level-btn-sm.current{border-color:var(--accent);background:rgba(0,255,163,.08);}
   .level-btn-sm.selected{border-color:#A78BFA;background:rgba(167,139,250,.08);}
@@ -528,7 +528,7 @@
           <div class="form-group">
             <label for="review-content">내용 <span style="color:#F87171;">*</span></label>
             <textarea id="review-content" name="content" maxlength="1000" rows="5" placeholder="Terra Nova를 통한 학습 경험과 변화를 자유롭게 작성해주세요. (20자 이상)"
-              style="width:100%;background:var(--card2);border:1px solid rgba(255,255,255,.1);border-radius:6px;padding:11px 14px;color:var(--txt);font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:.88rem;outline:none;resize:vertical;min-height:120px;transition:border-color .18s;"
+              style="width:100%;background:var(--card2);border:1px solid rgba(255,255,255,.1);border-radius:6px;padding:11px 14px;color:var(--txt);font-family:'Pretendard',sans-serif;font-size:.88rem;outline:none;resize:vertical;min-height:120px;transition:border-color .18s;"
               required></textarea>
           </div>
 

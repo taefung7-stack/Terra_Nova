@@ -56,10 +56,10 @@
 
   const footer = document.createElement('footer');
   footer.className = 'tn-footer';
-  footer.style.cssText = `background:${bg};padding:40px 5vw 60px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;border-top:${borderTop};font-family:'Noto Sans KR',sans-serif;`;
+  footer.style.cssText = `background:${bg};padding:40px 5vw 60px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;border-top:${borderTop};font-family:'Pretendard',sans-serif;`;
   footer.innerHTML = `
     <div>
-      <div style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:7px;color:${fgStrong};">TERRA NOVA</div>
+      <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.1rem;letter-spacing:7px;color:${fgStrong};">TERRA NOVA</div>
       <div style="font-size:.5rem;letter-spacing:3px;color:${fg};margin-top:4px;text-transform:uppercase;">ENGLISH · 수능영어 전문 학습자료</div>
     </div>
     <div style="display:flex;gap:20px;flex-wrap:wrap;justify-content:center;margin-top:8px;">

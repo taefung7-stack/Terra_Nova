@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="shared.css">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+KR:wght@300;400;500;700;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --dark:#0A0A0A;--mid:#111111;--card:#1C1C1C;--card2:#222222;
@@ -29,7 +29,7 @@
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;font-size:20px;}
-  body{background:var(--dark);color:var(--txt);font-family:'Pretendard','Noto Sans KR',sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+  body{background:var(--dark);color:var(--txt);font-family:'Pretendard',sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
 
   nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;height:80px;background:rgba(6,6,15,.92);backdrop-filter:blur(24px);border-bottom:1px solid var(--line);}
   .logo-wrap{display:flex;flex-direction:column;gap:2px;text-decoration:none;}
@@ -84,12 +84,12 @@
   .step.active{display:block;}
   @keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
 
-  .step-num{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:clamp(1.1rem,2vw,1.35rem);font-weight:900;color:#fff;margin-bottom:16px;letter-spacing:-.01em;}
+  .step-num{font-family:'Pretendard',sans-serif;font-size:clamp(1.1rem,2vw,1.35rem);font-weight:900;color:#fff;margin-bottom:16px;letter-spacing:-.01em;}
   .step-q{font-size:clamp(1.1rem,2.8vw,1.6rem);font-weight:900;color:#fff;line-height:1.4;margin-bottom:8px;}
   .step-hint{font-size:.78rem;color:var(--dim);margin-bottom:24px;line-height:1.6;}
 
   .options{display:grid;gap:10px;}
-  .option-btn{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:14px 18px;color:var(--dim);font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:.86rem;font-weight:500;text-align:left;cursor:pointer;transition:all .18s;display:flex;align-items:center;gap:12px;}
+  .option-btn{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:14px 18px;color:var(--dim);font-family:'Pretendard',sans-serif;font-size:.86rem;font-weight:500;text-align:left;cursor:pointer;transition:all .18s;display:flex;align-items:center;gap:12px;}
   .option-btn:hover{border-color:rgba(0,255,163,.4);color:#fff;background:rgba(0,255,163,.05);}
   .option-btn.selected{border-color:var(--accent);background:rgba(0,255,163,.1);color:#fff;}
   .option-btn.selected .opt-dot{background:var(--accent);border-color:var(--accent);}
@@ -148,7 +148,7 @@
 
   /* PASSAGE */
   .passage-box{background:var(--card);border:1px solid var(--line);border-left:3px solid rgba(0,255,163,.4);border-radius:8px;padding:22px 24px;margin-bottom:20px;}
-  .passage-label{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:clamp(1rem,1.7vw,1.18rem);font-weight:800;color:#fff;margin-bottom:12px;letter-spacing:-.005em;}
+  .passage-label{font-family:'Pretendard',sans-serif;font-size:clamp(1rem,1.7vw,1.18rem);font-weight:800;color:#fff;margin-bottom:12px;letter-spacing:-.005em;}
   .passage-text{font-size:.88rem;color:rgba(255,255,255,.88);line-height:2;font-style:italic;}
   .passage-vocab{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
   .vocab-chip{font-size:.88rem;padding:4px 10px;border-radius:4px;background:rgba(0,255,163,.08);border:1px solid rgba(0,255,163,.2);color:var(--accent);}
@@ -156,10 +156,10 @@
 
   /* NAV BUTTONS */
   .btn-row{display:flex;gap:10px;margin-top:28px;justify-content:flex-end;align-items:center;}
-  .btn-next{background:var(--accent);color:#0A0A0A;border:none;padding:13px 32px;border-radius:6px;font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:.86rem;font-weight:700;cursor:pointer;transition:transform .15s,box-shadow .15s,opacity .15s;opacity:.35;pointer-events:none;}
+  .btn-next{background:var(--accent);color:#0A0A0A;border:none;padding:13px 32px;border-radius:6px;font-family:'Pretendard',sans-serif;font-size:.86rem;font-weight:700;cursor:pointer;transition:transform .15s,box-shadow .15s,opacity .15s;opacity:.35;pointer-events:none;}
   .btn-next.ready{opacity:1;pointer-events:auto;}
   .btn-next.ready:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,255,163,.3);}
-  .btn-prev{background:transparent;color:var(--dim);border:1px solid var(--line);padding:13px 32px;border-radius:6px;font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:.86rem;cursor:pointer;transition:color .2s,border-color .2s;}
+  .btn-prev{background:transparent;color:var(--dim);border:1px solid var(--line);padding:13px 32px;border-radius:6px;font-family:'Pretendard',sans-serif;font-size:.86rem;cursor:pointer;transition:color .2s,border-color .2s;}
   .btn-prev:hover{color:#fff;border-color:rgba(255,255,255,.2);}
   .opt-skip{border-style:dashed;opacity:.6;}
   .opt-skip:hover{opacity:1;border-color:rgba(255,255,255,.25);color:var(--dim);}
@@ -167,14 +167,14 @@
 
   /* RESULT */
   .result-wrap{text-align:center;}
-  .result-level-box{display:inline-block;background:var(--accent);color:#0A0A0A;font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,7vw,4.5rem);letter-spacing:6px;padding:14px 44px;border-radius:10px;margin-bottom:14px;}
+  .result-level-box{display:inline-block;background:var(--accent);color:#0A0A0A;font-family:'Space Grotesk',sans-serif;font-size:clamp(2.5rem,7vw,4.5rem);letter-spacing:6px;padding:14px 44px;border-radius:10px;margin-bottom:14px;}
   .result-level-name{font-size:1.2rem;font-weight:900;color:#fff;margin-bottom:4px;}
   .result-level-target{font-size:.85rem;color:var(--accent);font-weight:600;margin-bottom:24px;}
 
   /* 점수 바 */
   .score-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin:28px 0;}
   .score-item{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:16px 18px;}
-  .score-label{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:clamp(.95rem,1.5vw,1.08rem);font-weight:700;color:rgba(255,255,255,.7);margin-bottom:10px;letter-spacing:.3px;}
+  .score-label{font-family:'Pretendard',sans-serif;font-size:clamp(.95rem,1.5vw,1.08rem);font-weight:700;color:rgba(255,255,255,.7);margin-bottom:10px;letter-spacing:.3px;}
   .score-bar-bg{background:rgba(255,255,255,.06);height:6px;border-radius:999px;overflow:hidden;margin-bottom:6px;}
   .score-bar-fill{height:100%;border-radius:999px;transition:width .6s ease;}
   .score-row{display:flex;justify-content:space-between;align-items:center;}
@@ -182,7 +182,7 @@
   .domain-grade{font-size:.95rem;font-weight:900;letter-spacing:1px;}
 
   .result-analysis{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:24px 28px;text-align:left;margin:16px 0;}
-  .result-analysis-title{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:clamp(1.05rem,1.8vw,1.25rem);font-weight:800;color:#fff;margin-bottom:16px;letter-spacing:-.01em;}
+  .result-analysis-title{font-family:'Pretendard',sans-serif;font-size:clamp(1.05rem,1.8vw,1.25rem);font-weight:800;color:#fff;margin-bottom:16px;letter-spacing:-.01em;}
   .result-analysis p{font-size:.86rem;color:var(--dim);line-height:1.9;margin-bottom:10px;}
   .result-analysis p:last-child{margin-bottom:0;}
   .result-strengths{margin-top:16px;display:flex;flex-direction:column;gap:6px;}
@@ -221,11 +221,11 @@
   .sample-card-text{font-size:.8rem;color:var(--dim);line-height:1.85;font-style:italic;}
 
   .result-cta{display:flex;gap:12px;justify-content:center;margin-top:36px;flex-wrap:wrap;}
-  .btn-primary{background:var(--accent);color:#0A0A0A;padding:15px 40px;border-radius:4px;font-family:'Pretendard','Noto Sans KR',sans-serif;font-weight:700;font-size:.92rem;text-decoration:none;transition:transform .15s,box-shadow .15s;display:inline-block;}
+  .btn-primary{background:var(--accent);color:#0A0A0A;padding:15px 40px;border-radius:4px;font-family:'Pretendard',sans-serif;font-weight:700;font-size:.92rem;text-decoration:none;transition:transform .15s,box-shadow .15s;display:inline-block;}
   .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,255,163,.28);}
-  .btn-outline{background:transparent;color:var(--txt);padding:14px 32px;border-radius:4px;border:1px solid rgba(255,255,255,.15);font-family:'Pretendard','Noto Sans KR',sans-serif;font-weight:600;font-size:.92rem;text-decoration:none;transition:border-color .2s,background .2s;display:inline-block;}
+  .btn-outline{background:transparent;color:var(--txt);padding:14px 32px;border-radius:4px;border:1px solid rgba(255,255,255,.15);font-family:'Pretendard',sans-serif;font-weight:600;font-size:.92rem;text-decoration:none;transition:border-color .2s,background .2s;display:inline-block;}
   .btn-outline:hover{border-color:rgba(255,255,255,.35);background:rgba(255,255,255,.04);}
-  .retry-btn{background:none;border:none;color:var(--accent);font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:.8rem;cursor:pointer;text-decoration:underline;margin-top:14px;display:block;text-align:center;}
+  .retry-btn{background:none;border:none;color:var(--accent);font-family:'Pretendard',sans-serif;font-size:.8rem;cursor:pointer;text-decoration:underline;margin-top:14px;display:block;text-align:center;}
 
   /* 정확도 주의 */
   .accuracy-note{background:rgba(251,191,36,.07);border:1px solid rgba(251,191,36,.25);border-radius:8px;padding:14px 18px;font-size:.75rem;color:rgba(251,191,36,.9);line-height:1.7;margin-top:20px;text-align:left;}
@@ -1157,7 +1157,7 @@ function showResult() {
   const curriculum = curriculumMap[lvl] || curriculumMap.URANUS;
   let planHtml = `<div style="font-size:.75rem;color:var(--accent);font-weight:700;margin-bottom:6px;letter-spacing:.5px;">${info.target} · 월 4주 커리큘럼</div>`;
   planHtml += `<div style="font-size:.82rem;color:var(--dim);margin-bottom:18px;line-height:1.6;">${info.name} 레벨의 학생이 첫 달에 접하는 <strong style="color:#fff;">교과 연계 영어 지문</strong> 주제입니다.</div>`;
-  planHtml += '<div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-family:\'Noto Sans KR\',sans-serif;font-size:.85rem;">';
+  planHtml += '<div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-family:\'Pretendard\',sans-serif;font-size:.85rem;">';
   planHtml += '<thead><tr style="border-bottom:1px solid rgba(0,255,163,.25);"><th style="text-align:left;padding:10px 8px;font-size:.72rem;font-weight:700;letter-spacing:1px;color:var(--accent);text-transform:uppercase;width:18%;">주차</th><th style="text-align:left;padding:10px 8px;font-size:.72rem;font-weight:700;letter-spacing:1px;color:var(--accent);text-transform:uppercase;width:24%;">교과 연계</th><th style="text-align:left;padding:10px 8px;font-size:.72rem;font-weight:700;letter-spacing:1px;color:var(--accent);text-transform:uppercase;">학습 주제</th></tr></thead><tbody>';
   planHtml += curriculum.map((w,i)=>`<tr style="border-bottom:1px solid var(--line);"><td style="padding:14px 8px;vertical-align:top;"><div style="font-weight:800;color:#fff;">${w.week}</div><div style="font-size:.7rem;color:var(--dim);margin-top:2px;">${w.days}</div></td><td style="padding:14px 8px;vertical-align:top;"><div style="display:inline-block;padding:3px 10px;border:1px solid rgba(0,255,163,.3);border-radius:3px;font-size:.72rem;color:var(--accent);font-weight:600;">${w.subject}</div><div style="font-size:.7rem;color:var(--dim);margin-top:6px;">${w.unit}</div></td><td style="padding:14px 8px;vertical-align:top;"><div style="color:#fff;font-weight:700;margin-bottom:4px;">${w.topic}</div><div style="font-size:.76rem;color:var(--dim);line-height:1.6;font-style:italic;">"${w.preview}"</div></td></tr>`).join('');
   planHtml += '</tbody></table></div>';

@@ -83,7 +83,7 @@ if ('serviceWorker' in navigator) {
       'padding:14px 16px',
       'box-shadow:0 8px 28px rgba(0,0,0,.45)',
       'color:#F0F0F0',
-      'font-family:"Noto Sans KR",sans-serif',
+      'font-family:"Pretendard",sans-serif',
       'font-size:.85rem',
       'line-height:1.55',
       'z-index:9999',
