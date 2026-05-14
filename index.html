@@ -756,21 +756,25 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   max-width:1720px;
   margin:0 auto;
   padding:0;
+}
+.declaration-stack {
+  margin:0;
+  padding:0;
   font-size:inherit;
   font-weight:inherit;
 }
 .mega-line {
   display:block;
   width:100%;
-  max-width:1720px;
+  max-width:none;
   margin:0 auto;
   font-family:'Pretendard Variable','Pretendard',sans-serif;
   font-weight:900;
-  font-size:clamp(3.2rem, 9.4vw, 11rem);
-  line-height:1.04;
+  font-size:clamp(2.6rem, 6.4vw, 8.4rem);
+  line-height:1.06;
   letter-spacing:-0.03em;
   word-break:keep-all;
-  white-space:normal;
+  white-space:nowrap;
   color:#fff;
 }
 .mega-line + .mega-line {
@@ -781,7 +785,7 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   text-shadow:0 0 56px rgba(0,255,163,.28);
 }
 .mega-line-solution {
-  font-size:clamp(3.4rem, 10.6vw, 12.4rem);
+  font-size:clamp(3rem, 7.2vw, 9.2rem);
   letter-spacing:-0.035em;
 }
 .mega-line-solution.mint {
@@ -1023,24 +1027,111 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
 }
 .planet-card {
   position:relative;
+  min-height:360px;
+  border-radius:24px;
+  perspective:1400px;
+  cursor:pointer;
+  transition:transform .3s cubic-bezier(.22,.8,.36,1);
+}
+.planet-card:hover { transform:translateY(-6px); }
+.pcard-flip {
+  position:relative;
+  width:100%;
+  height:100%;
+  min-height:inherit;
+  transform-style:preserve-3d;
+  transition:transform .7s cubic-bezier(.4,.0,.2,1);
+}
+.planet-card.is-flipped .pcard-flip { transform:rotateY(180deg); }
+.pcard-front,
+.pcard-back {
+  position:absolute;
+  inset:0;
   display:flex;
   flex-direction:column;
-  align-items:center;
-  min-height:360px;
-  padding:64px 32px 48px;
-  background:#000;
   border:1px solid var(--line);
   border-radius:24px;
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
   overflow:hidden;
-  transition:transform .3s cubic-bezier(.22,.8,.36,1), border-color .3s;
 }
-.planet-card:hover {
-  transform:translateY(-6px);
-  border-color:rgba(0,255,163,.42);
+.pcard-front {
+  align-items:center;
+  padding:64px 32px 48px;
+  background:#000;
+  transition:border-color .3s;
 }
+.planet-card:hover .pcard-front { border-color:rgba(0,255,163,.42); }
 .planet-card:hover .pcard-img {
   animation-play-state:paused;
   transform:scale(1.08) rotate(8deg);
+}
+.pcard-back {
+  background:linear-gradient(160deg,#fafafa 0%,#eef2f0 100%);
+  color:#0a1414;
+  padding:28px 26px 26px;
+  transform:rotateY(180deg);
+  text-align:left;
+  gap:14px;
+}
+.pcard-back-head {
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  border-bottom:1.5px solid rgba(0,0,0,.12);
+  padding-bottom:12px;
+}
+.pcard-back-name {
+  font-family:'Space Grotesk',sans-serif;
+  font-weight:700;
+  font-size:1.3rem;
+  letter-spacing:0;
+  color:#0a1414;
+}
+.pcard-back-grade {
+  font-size:1rem;
+  font-weight:700;
+  color:#00a86b;
+}
+.pcard-back-list {
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:grid;
+  gap:10px;
+  font-size:.95rem;
+  line-height:1.4;
+  word-break:keep-all;
+}
+.pcard-back-list li {
+  display:grid;
+  grid-template-columns:54px 1fr;
+  gap:10px;
+  align-items:baseline;
+}
+.pcard-back-subj {
+  font-weight:700;
+  color:#00a86b;
+  font-size:.78rem;
+  letter-spacing:.02em;
+  background:rgba(0,168,107,.1);
+  border:1px solid rgba(0,168,107,.25);
+  border-radius:6px;
+  padding:3px 7px;
+  text-align:center;
+  white-space:nowrap;
+}
+.pcard-back-items {
+  color:rgba(10,20,20,.78);
+  font-weight:500;
+}
+.pcard-back-hint {
+  margin-top:auto;
+  font-size:.72rem;
+  color:rgba(10,20,20,.45);
+  text-align:right;
+  letter-spacing:.05em;
+  text-transform:uppercase;
 }
 .pcard-img {
   width:188px;
@@ -1082,12 +1173,13 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
 }
 @media(max-width:980px) {
   .mega-line {
-    font-size:clamp(2.6rem, 12vw, 6.2rem);
-    line-height:1.08;
+    font-size:clamp(1.8rem, 8.5vw, 4.4rem);
+    line-height:1.1;
+    white-space:normal;
   }
   .mega-line-solution {
-    font-size:clamp(3rem, 14vw, 7.4rem);
-    line-height:1.04;
+    font-size:clamp(2rem, 9.8vw, 5.2rem);
+    line-height:1.06;
   }
   .declaration-sub {
     margin-top:24px;
@@ -1905,20 +1997,15 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
 }
 .exam-match-head .story-title {
   width:fit-content;
-  max-width:min(1700px, 100%);   /* widened 1360 → 1700 to fit the longer
-                                     "수학·과학·사회 시험에 나온…" headline
-                                     on one line at large viewports. */
+  max-width:min(1820px, 100%);
   margin:0 auto;
   text-align:center;
-  font-size:clamp(2.2rem, 4vw, 4.4rem);   /* trimmed from
-                                     clamp(2.45, 4.45, 5rem) so the longer
-                                     ~24-char headline fits the content
-                                     area (~1325px at 1440 viewport)
-                                     without overflow. */
+  font-size:clamp(2.6rem, 5.6vw, 6.4rem);
   margin-bottom:0;
-  line-height:1.18;
+  line-height:1.12;
   white-space:nowrap;
   text-wrap:balance;
+  letter-spacing:-0.025em;
   filter:drop-shadow(0 18px 36px rgba(0,0,0,.4));
 }
 /* Stack of paired comparisons — one pair per grade level. Each pair is its
@@ -2321,17 +2408,9 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
 }
 .exam-comprehension em { font-style:italic; color:#fff; font-weight:600; }
 
-.exam-card-foot {
-  margin-top:22px;
-  padding-top:16px;
-  border-top:1px dashed rgba(255,255,255,.12);
-  font-family:'Space Grotesk', 'Pretendard', sans-serif;
-  font-size:.96rem;
-  font-weight:500;
-  letter-spacing:.1em;
-  text-transform:uppercase;
-  color:rgba(240,240,240,.74);
-}
+.exam-card-foot { display:none; }
+.exam-comprehension { display:none; }
+.exam-card.book-card .exam-card-tag { display:none; }
 
 /* Center connector — desktop arrow & "같은 개념" pill */
 .exam-match-arrow {
@@ -2376,7 +2455,8 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   .exam-match-head .story-title {
     white-space:normal;
     width:100%;
-    font-size:clamp(2.1rem, 6.2vw, 3.1rem);
+    font-size:clamp(2.4rem, 8vw, 4rem);
+    line-height:1.12;
   }
   .exam-match-grid {
     grid-template-columns:1fr;
@@ -3429,7 +3509,8 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   50%      { text-shadow:0 0 64px rgba(0,255,163,.85), 0 0 18px rgba(0,255,163,.55); }
 }
 .transform {
-  padding:160px 5vw;
+  padding:64px 5vw 110px;
+  margin-top:-40px;
   text-align:center;
   position:relative;
 }
@@ -3454,12 +3535,12 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  min-width:240px;
-  padding:22px 48px;
+  min-width:340px;
+  padding:32px 72px;
   font-family:"Pretendard", sans-serif;
   font-weight:800;
-  font-size:1.04rem;
-  letter-spacing:1.6px;
+  font-size:1.5rem;
+  letter-spacing:2px;
   text-decoration:none;
   border-radius:999px;
   overflow:hidden;
@@ -4233,9 +4314,7 @@ body.bigbang-done .terra-hint,
     </div>
   </a>
   <ul class="nav-links">
-    <li><a href="index.html">홈</a></li>
-    <li><a href="index.html#plans">구독안내</a></li>
-    <li><a href="level_test.html">레벨테스트</a></li>
+    <li><a href="index.html">홈</a></li>    <li><a href="level_test.html">레벨테스트</a></li>
     <li><a href="sample.html">무료샘플</a></li>
     <li><a href="market.html">마켓</a></li>
     <li><a href="event.html" style="color:#00FFA3;">이벤트</a></li>
@@ -4278,20 +4357,24 @@ body.bigbang-done .terra-hint,
 
   <!-- =============== PAIN OPENING =============== -->
   <section id="language-question" class="statement statement-single story-section reveal">
-    <h1 class="declaration-wrap">
-      <span class="mega-line mint">영어는 언어입니다.</span>
-      <span class="mega-line">영어로 영어만 공부 해야 할까요?</span>
-    </h1>
+    <div class="declaration-wrap">
+      <h1 class="declaration-stack">
+        <span class="mega-line mint">영어는 언어입니다.</span>
+        <span class="mega-line">영어로 영어만 공부 해야 할까요?</span>
+      </h1>
+    </div>
   </section>
 
   <!-- =============== CURRICULUM DECLARATION =============== -->
   <section id="proof" class="curriculum-declaration story-section reveal">
-    <h2 class="declaration-wrap">
-      <span class="mega-line mega-line-solution">우리는</span>
-      <span class="mega-line mega-line-solution mint">전학년, 전과목을</span>
-      <span class="mega-line mega-line-solution">영어로 공부합니다.</span>
-    </h2>
-    <p class="declaration-sub">전 학년 교과과정 그대로 영어로 복습합니다.</p>
+    <div class="declaration-wrap">
+      <h2 class="declaration-stack">
+        <span class="mega-line mega-line-solution">우리는</span>
+        <span class="mega-line mega-line-solution mint">전학년, 전과목을</span>
+        <span class="mega-line mega-line-solution">영어로 공부합니다.</span>
+      </h2>
+      <p class="declaration-sub">전 학년 교과과정 그대로 영어로 복습합니다.</p>
+    </div>
   </section>
 
   <!-- =============== REAL BOOK SAMPLES =============== -->
@@ -4378,7 +4461,7 @@ body.bigbang-done .terra-hint,
   <section id="exam-match" class="exam-match reveal" aria-label="모의고사와 Terra Nova 교재 내용 비교">
     <div class="exam-match-head">
       <span class="story-kicker split" data-split>실제 시험 그대로</span>
-      <h2 class="story-title split" data-split>수학·과학·사회 시험에 나온 그 개념을, <span class="accent">영어 지문</span>으로.</h2>
+      <h2 class="story-title split" data-split><span class="accent">수학·과학·사회 시험</span>에 나온 그 개념을, <span class="accent">영어 지문</span>으로.</h2>
     </div>
 
     <div class="exam-match-stack">
@@ -4832,45 +4915,157 @@ body.bigbang-done .terra-hint,
         <h2>초5부터 N수생까지,<br><span class="mint">학년별 매칭</span>.</h2>
       </div>
       <div class="planet-grid">
-        <div class="planet-card" style="--p-img:url('assets/3d/planets-normalized/mars.png');">
-          <div class="pcard-img"></div>
-          <div class="pcard-name">MARS</div>
-          <div class="pcard-grade">초5</div>
+        <div class="planet-card" style="--p-img:url('assets/3d/planets-normalized/mars.png');" tabindex="0" role="button" aria-pressed="false">
+          <div class="pcard-flip">
+            <div class="pcard-front">
+              <div class="pcard-img"></div>
+              <div class="pcard-name">MARS</div>
+              <div class="pcard-grade">초5</div>
+            </div>
+            <div class="pcard-back">
+              <div class="pcard-back-head"><span class="pcard-back-name">MARS</span><span class="pcard-back-grade">초5</span></div>
+              <ul class="pcard-back-list">
+                <li><span class="pcard-back-subj">사회</span><span class="pcard-back-items">개화기 조선·근대화의 시작</span></li>
+                <li><span class="pcard-back-subj">과학</span><span class="pcard-back-items">식물의 한살이·날씨와 우리 생활</span></li>
+                <li><span class="pcard-back-subj">수학</span><span class="pcard-back-items">분수의 덧셈·약수와 배수</span></li>
+                <li><span class="pcard-back-subj">국어</span><span class="pcard-back-items">짧은 이야기글·시 감상</span></li>
+              </ul>
+              <div class="pcard-back-hint">다시 클릭 · 닫기</div>
+            </div>
+          </div>
         </div>
-        <div class="planet-card" style="--p-img:url('assets/3d/planets-normalized/venus.png');">
-          <div class="pcard-img"></div>
-          <div class="pcard-name">VENUS</div>
-          <div class="pcard-grade">초6</div>
+        <div class="planet-card" style="--p-img:url('assets/3d/planets-normalized/venus.png');" tabindex="0" role="button" aria-pressed="false">
+          <div class="pcard-flip">
+            <div class="pcard-front">
+              <div class="pcard-img"></div>
+              <div class="pcard-name">VENUS</div>
+              <div class="pcard-grade">초6</div>
+            </div>
+            <div class="pcard-back">
+              <div class="pcard-back-head"><span class="pcard-back-name">VENUS</span><span class="pcard-back-grade">초6</span></div>
+              <ul class="pcard-back-list">
+                <li><span class="pcard-back-subj">사회</span><span class="pcard-back-items">민주주의·인권과 시민의 권리</span></li>
+                <li><span class="pcard-back-subj">과학</span><span class="pcard-back-items">빛과 렌즈·전기의 이용</span></li>
+                <li><span class="pcard-back-subj">수학</span><span class="pcard-back-items">비와 비율·원의 넓이</span></li>
+                <li><span class="pcard-back-subj">국어</span><span class="pcard-back-items">주장하는 글·기행문</span></li>
+              </ul>
+              <div class="pcard-back-hint">다시 클릭 · 닫기</div>
+            </div>
+          </div>
         </div>
-        <div class="planet-card" style="--p-img:url('assets/3d/planets-normalized/terra.png');">
-          <div class="pcard-img"></div>
-          <div class="pcard-name">TERRA</div>
-          <div class="pcard-grade">중1</div>
+        <div class="planet-card" style="--p-img:url('assets/3d/planets-normalized/terra.png');" tabindex="0" role="button" aria-pressed="false">
+          <div class="pcard-flip">
+            <div class="pcard-front">
+              <div class="pcard-img"></div>
+              <div class="pcard-name">TERRA</div>
+              <div class="pcard-grade">중1</div>
+            </div>
+            <div class="pcard-back">
+              <div class="pcard-back-head"><span class="pcard-back-name">TERRA</span><span class="pcard-back-grade">중1</span></div>
+              <ul class="pcard-back-list">
+                <li><span class="pcard-back-subj">사회</span><span class="pcard-back-items">자유민주주의·문화의 다양성</span></li>
+                <li><span class="pcard-back-subj">과학</span><span class="pcard-back-items">지권의 변화·힘과 운동</span></li>
+                <li><span class="pcard-back-subj">수학</span><span class="pcard-back-items">정수와 유리수·일차방정식</span></li>
+                <li><span class="pcard-back-subj">국어</span><span class="pcard-back-items">문학의 갈래·설명문 구조</span></li>
+              </ul>
+              <div class="pcard-back-hint">다시 클릭 · 닫기</div>
+            </div>
+          </div>
         </div>
-        <div class="planet-card" style="--p-img:url('assets/3d/planets-normalized/neptune.png');">
-          <div class="pcard-img"></div>
-          <div class="pcard-name">NEPTUNE</div>
-          <div class="pcard-grade">중2</div>
+        <div class="planet-card" style="--p-img:url('assets/3d/planets-normalized/neptune.png');" tabindex="0" role="button" aria-pressed="false">
+          <div class="pcard-flip">
+            <div class="pcard-front">
+              <div class="pcard-img"></div>
+              <div class="pcard-name">NEPTUNE</div>
+              <div class="pcard-grade">중2</div>
+            </div>
+            <div class="pcard-back">
+              <div class="pcard-back-head"><span class="pcard-back-name">NEPTUNE</span><span class="pcard-back-grade">중2</span></div>
+              <ul class="pcard-back-list">
+                <li><span class="pcard-back-subj">사회</span><span class="pcard-back-items">인구 변화와 도시·세계의 자연환경</span></li>
+                <li><span class="pcard-back-subj">과학</span><span class="pcard-back-items">동물과 에너지·물질의 특성</span></li>
+                <li><span class="pcard-back-subj">수학</span><span class="pcard-back-items">일차함수·확률</span></li>
+                <li><span class="pcard-back-subj">국어</span><span class="pcard-back-items">시의 운율·매체와 표현</span></li>
+              </ul>
+              <div class="pcard-back-hint">다시 클릭 · 닫기</div>
+            </div>
+          </div>
         </div>
-        <div class="planet-card" style="--p-img:url('assets/3d/planets-normalized/uranus.png');">
-          <div class="pcard-img"></div>
-          <div class="pcard-name">URANUS</div>
-          <div class="pcard-grade">중3</div>
+        <div class="planet-card" style="--p-img:url('assets/3d/planets-normalized/uranus.png');" tabindex="0" role="button" aria-pressed="false">
+          <div class="pcard-flip">
+            <div class="pcard-front">
+              <div class="pcard-img"></div>
+              <div class="pcard-name">URANUS</div>
+              <div class="pcard-grade">중3</div>
+            </div>
+            <div class="pcard-back">
+              <div class="pcard-back-head"><span class="pcard-back-name">URANUS</span><span class="pcard-back-grade">중3</span></div>
+              <ul class="pcard-back-list">
+                <li><span class="pcard-back-subj">사회</span><span class="pcard-back-items">글로벌 경제·국제기구와 외교</span></li>
+                <li><span class="pcard-back-subj">과학</span><span class="pcard-back-items">화학반응과 에너지·유전</span></li>
+                <li><span class="pcard-back-subj">수학</span><span class="pcard-back-items">이차방정식·이차함수</span></li>
+                <li><span class="pcard-back-subj">국어</span><span class="pcard-back-items">비평·논증의 글쓰기</span></li>
+              </ul>
+              <div class="pcard-back-hint">다시 클릭 · 닫기</div>
+            </div>
+          </div>
         </div>
-        <div class="planet-card" style="--p-img:url('assets/3d/planets-normalized/saturn.png');">
-          <div class="pcard-img"></div>
-          <div class="pcard-name">SATURN</div>
-          <div class="pcard-grade">고1</div>
+        <div class="planet-card" style="--p-img:url('assets/3d/planets-normalized/saturn.png');" tabindex="0" role="button" aria-pressed="false">
+          <div class="pcard-flip">
+            <div class="pcard-front">
+              <div class="pcard-img"></div>
+              <div class="pcard-name">SATURN</div>
+              <div class="pcard-grade">고1</div>
+            </div>
+            <div class="pcard-back">
+              <div class="pcard-back-head"><span class="pcard-back-name">SATURN</span><span class="pcard-back-grade">고1</span></div>
+              <ul class="pcard-back-list">
+                <li><span class="pcard-back-subj">통합사회</span><span class="pcard-back-items">정의·시민·세계화</span></li>
+                <li><span class="pcard-back-subj">통합과학</span><span class="pcard-back-items">공유결합·에너지 전환</span></li>
+                <li><span class="pcard-back-subj">공통수학</span><span class="pcard-back-items">집합과 명제·함수·도형의 방정식</span></li>
+                <li><span class="pcard-back-subj">통합국어</span><span class="pcard-back-items">독서와 작문·문학</span></li>
+              </ul>
+              <div class="pcard-back-hint">다시 클릭 · 닫기</div>
+            </div>
+          </div>
         </div>
-        <div class="planet-card" style="--p-img:url('assets/3d/planets-normalized/jupiter.png');">
-          <div class="pcard-img"></div>
-          <div class="pcard-name">JUPITER</div>
-          <div class="pcard-grade">고2</div>
+        <div class="planet-card" style="--p-img:url('assets/3d/planets-normalized/jupiter.png');" tabindex="0" role="button" aria-pressed="false">
+          <div class="pcard-flip">
+            <div class="pcard-front">
+              <div class="pcard-img"></div>
+              <div class="pcard-name">JUPITER</div>
+              <div class="pcard-grade">고2</div>
+            </div>
+            <div class="pcard-back">
+              <div class="pcard-back-head"><span class="pcard-back-name">JUPITER</span><span class="pcard-back-grade">고2</span></div>
+              <ul class="pcard-back-list">
+                <li><span class="pcard-back-subj">사회</span><span class="pcard-back-items">사회·문화·한국사 (근현대)</span></li>
+                <li><span class="pcard-back-subj">과학</span><span class="pcard-back-items">물리·화학·생명과학 기초</span></li>
+                <li><span class="pcard-back-subj">수학Ⅱ</span><span class="pcard-back-items">미분·적분·수열의 극한</span></li>
+                <li><span class="pcard-back-subj">국어</span><span class="pcard-back-items">독서·문학·언어와 매체</span></li>
+              </ul>
+              <div class="pcard-back-hint">다시 클릭 · 닫기</div>
+            </div>
+          </div>
         </div>
-        <div class="planet-card" style="--p-img:url('assets/3d/planets-normalized/sun.png');">
-          <div class="pcard-img"></div>
-          <div class="pcard-name">SUN</div>
-          <div class="pcard-grade">고3·N수생</div>
+        <div class="planet-card" style="--p-img:url('assets/3d/planets-normalized/sun.png');" tabindex="0" role="button" aria-pressed="false">
+          <div class="pcard-flip">
+            <div class="pcard-front">
+              <div class="pcard-img"></div>
+              <div class="pcard-name">SUN</div>
+              <div class="pcard-grade">고3·N수생</div>
+            </div>
+            <div class="pcard-back">
+              <div class="pcard-back-head"><span class="pcard-back-name">SUN</span><span class="pcard-back-grade">고3·N수생</span></div>
+              <ul class="pcard-back-list">
+                <li><span class="pcard-back-subj">탐구</span><span class="pcard-back-items">수능 사회·과학탐구 전 영역</span></li>
+                <li><span class="pcard-back-subj">국어</span><span class="pcard-back-items">수능 독서·문학·화법과 작문</span></li>
+                <li><span class="pcard-back-subj">수학</span><span class="pcard-back-items">미적분·확률과 통계·기하</span></li>
+                <li><span class="pcard-back-subj">영어</span><span class="pcard-back-items">EBS 연계·수능 기출 변형</span></li>
+              </ul>
+              <div class="pcard-back-hint">다시 클릭 · 닫기</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -5320,6 +5515,40 @@ body.bigbang-done .terra-hint,
       } else {
         megaSections.forEach(function (s) { applyMegaIn(s); });
       }
+    })();
+
+    // Planet-card flip — click toggles a single card open; clicking elsewhere
+    // (or pressing Escape) closes any open card. Only one card flipped at a time.
+    (function initPlanetFlip() {
+      var cards = document.querySelectorAll('.planet-card');
+      if (!cards.length) return;
+      function closeAll(except) {
+        cards.forEach(function (c) {
+          if (c !== except) {
+            c.classList.remove('is-flipped');
+            c.setAttribute('aria-pressed', 'false');
+          }
+        });
+      }
+      cards.forEach(function (card) {
+        card.addEventListener('click', function (e) {
+          e.stopPropagation();
+          var willOpen = !card.classList.contains('is-flipped');
+          closeAll(card);
+          card.classList.toggle('is-flipped', willOpen);
+          card.setAttribute('aria-pressed', willOpen ? 'true' : 'false');
+        });
+        card.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            card.click();
+          }
+        });
+      });
+      document.addEventListener('click', function () { closeAll(null); });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeAll(null);
+      });
     })();
 
     // Proof-headline cinematic reveal — BIDIRECTIONAL: replays the
@@ -6092,7 +6321,7 @@ document.addEventListener('DOMContentLoaded', function () {
      <footer class="site-footer"> placeholder above and replaces it with the
      full version (same one used on every other page). -->
 <script src="./site-config.js"></script>
-<script src="./footer.js" defer></script>
+<script src="./floating-actions.js" defer></script><script src="./footer.js" defer></script>
 
 <!-- Character-by-character bouncy popup for "쏟아지는 후기들" headline. -->
 <script>
