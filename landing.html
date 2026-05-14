@@ -732,7 +732,7 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:120px 3vw;
+  padding:120px 4vw;
   text-align:center;
 }
 .statement-single.reveal,
@@ -752,37 +752,64 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
 }
 .declaration-wrap {
   width:100%;
+  max-width:1720px;
+  margin:0 auto;
 }
 .mega-line {
-  width:134%;
-  max-width:none;
+  width:100%;
+  max-width:1640px;
   margin:0 auto;
-  font-family:'Pretendard', sans-serif;
-  font-weight:1000;
-  font-size:clamp(2.55rem, 4.25vw, 5.7rem);
-  line-height:1;
-  letter-spacing:0;
-  white-space:nowrap;
+  font-family:'Pretendard Variable','Pretendard',sans-serif;
+  font-weight:900;
+  font-size:clamp(2.6rem, 7.2vw, 8.4rem);
+  line-height:1.05;
+  letter-spacing:-0.025em;
+  word-break:keep-all;
+  white-space:normal;
   color:#fff;
-  position:relative;
-  left:50%;
-  transform:translateX(-50%) scaleX(.74);
-  transform-origin:center;
 }
 .mega-line-solution {
-  width:128%;
-  font-size:clamp(2.75rem, 4.75vw, 6.5rem);
+  font-size:clamp(2.9rem, 8.4vw, 9.6rem);
   color:var(--accent);
-  text-shadow:0 0 44px rgba(0,255,163,.22);
-  transform:translateX(-50%) scaleX(.78);
+  text-shadow:0 0 56px rgba(0,255,163,.32);
+  letter-spacing:-0.03em;
 }
 .declaration-sub {
-  margin-top:28px;
-  font-size:clamp(1.1rem, 1.55vw, 2rem);
-  line-height:1.35;
+  margin-top:36px;
+  font-size:clamp(1.15rem, 1.8vw, 2.2rem);
+  line-height:1.4;
   font-weight:700;
-  letter-spacing:0;
-  color:rgba(240,240,240,.78);
+  letter-spacing:-0.01em;
+  color:rgba(240,240,240,.82);
+  word-break:keep-all;
+}
+
+/* Per-character entrance animation for mega lines */
+.mega-line .char,
+.declaration-sub .char {
+  display:inline-block;
+  opacity:0;
+  transform:translateY(0.55em) rotateX(-35deg) scale(.92);
+  transform-origin:50% 100%;
+  filter:blur(14px);
+  transition:
+    opacity .7s cubic-bezier(.2,.8,.2,1),
+    transform .9s cubic-bezier(.2,.8,.2,1),
+    filter .7s ease;
+  will-change:opacity,transform,filter;
+}
+.mega-line .char.space,
+.declaration-sub .char.space {
+  width:0.28em;
+}
+.mega-line.in .char,
+.declaration-sub.in .char {
+  opacity:1;
+  transform:translateY(0) rotateX(0) scale(1);
+  filter:blur(0);
+}
+.mega-line-solution.in .char {
+  text-shadow:0 0 56px rgba(0,255,163,.32);
 }
 
 /* =============== SUBSCRIPTION BLOCKS MOVED INTO LANDING =============== */
@@ -1041,14 +1068,17 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   .book-pages { grid-template-columns:repeat(2, 1fr); gap:16px; }
 }
 @media(max-width:980px) {
-  .mega-line,
+  .mega-line {
+    font-size:clamp(2.1rem, 9.5vw, 5rem);
+    line-height:1.1;
+  }
   .mega-line-solution {
-    font-size:clamp(1.9rem, 6.5vw, 4.2rem);
-    white-space:normal;
-    line-height:1.08;
-    width:100%;
-    left:auto;
-    transform:none;
+    font-size:clamp(2.4rem, 11vw, 6rem);
+    line-height:1.05;
+  }
+  .declaration-sub {
+    margin-top:24px;
+    font-size:clamp(1rem, 3.6vw, 1.5rem);
   }
   .book h2,
   .levels h2 {
@@ -3894,6 +3924,7 @@ body.bigbang-done .terra-hint,
   .scroll-cue .arrow { animation:none; }
   .reveal, .reveal.in { opacity:1; transform:none; transition:none; }
   .split .char { opacity:1; transform:none; transition:none; }
+  .mega-line .char, .declaration-sub .char { opacity:1; transform:none; filter:none; transition:none; }
   .worry-line, .concern-card, .solution-panel, .exam-card, .plan { opacity:1; filter:none; transform:none; transition:none; }
   .exam-card::before { display:none; }
   .exam-match-arrow svg,
@@ -4973,6 +5004,70 @@ body.bigbang-done .terra-hint,
         statementWorries.forEach(function (c) { c.classList.add('in'); });
       }
     }
+
+    // Mega-line per-character entrance (used by #language-question and #proof
+    // declaration headlines). Splits each .mega-line into per-char spans once,
+    // then drives a bidirectional IntersectionObserver that re-plays the
+    // stagger every time the section scrolls back into view. The same
+    // transition-property:none snap-reset pattern as the .statement handler
+    // is used so the staggered delays don't get stuck across rapid scroll.
+    (function initMegaLines() {
+      var megaLines = document.querySelectorAll('.mega-line, .declaration-sub');
+      if (!megaLines.length) return;
+
+      megaLines.forEach(function (el) {
+        if (el.dataset.megaSplit === '1') return;
+        var text = el.textContent;
+        el.textContent = '';
+        var i = 0;
+        for (var ch of text) {
+          var span = document.createElement('span');
+          span.className = 'char' + (ch === ' ' ? ' space' : '');
+          span.textContent = ch === ' ' ? ' ' : ch;
+          span.style.transitionDelay = (i * 0.035) + 's';
+          el.appendChild(span);
+          i++;
+        }
+        el.dataset.megaSplit = '1';
+      });
+
+      function applyMegaIn(section) {
+        var lines = section.querySelectorAll('.mega-line, .declaration-sub');
+        lines.forEach(function (line, lineIdx) {
+          var chars = line.querySelectorAll('.char');
+          chars.forEach(function (c) { c.style.transitionProperty = 'none'; });
+          line.classList.remove('in');
+          void line.offsetWidth;
+          chars.forEach(function (c) { c.style.transitionProperty = ''; });
+          void line.offsetWidth;
+          // Per-line stagger so .mega-line-solution starts a moment after .mega-line
+          setTimeout(function () { line.classList.add('in'); }, lineIdx * 220);
+        });
+      }
+      function applyMegaOut(section) {
+        var lines = section.querySelectorAll('.mega-line, .declaration-sub');
+        lines.forEach(function (line) {
+          var chars = line.querySelectorAll('.char');
+          chars.forEach(function (c) { c.style.transitionProperty = 'none'; });
+          line.classList.remove('in');
+          void line.offsetWidth;
+          chars.forEach(function (c) { c.style.transitionProperty = ''; });
+        });
+      }
+
+      var megaSections = document.querySelectorAll('#language-question, #proof.curriculum-declaration');
+      if ('IntersectionObserver' in window) {
+        var mlIO = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) applyMegaIn(e.target);
+            else                  applyMegaOut(e.target);
+          });
+        }, { threshold: 0.25, rootMargin: '0px 0px -10% 0px' });
+        megaSections.forEach(function (s) { mlIO.observe(s); });
+      } else {
+        megaSections.forEach(function (s) { applyMegaIn(s); });
+      }
+    })();
 
     // Proof-headline cinematic reveal — BIDIRECTIONAL: replays the
     // blur-in + scale-up + stagger every time the headline card scrolls
