@@ -201,8 +201,9 @@
     <li><a href="market.html">마켓</a></li>
     <li><a href="event.html">이벤트</a></li>
     <li><a href="faq.html">FAQ</a></li>
-    <li><a href="mypage.html" style="color:var(--accent);"><strong id="nav-user-name">회원</strong> 님</a></li>
-    <li><a href="#" id="btn-logout">로그아웃</a></li>
+    <li data-auth="guest"><a href="login.html">로그인</a></li>
+    <li data-auth="user" style="display:none;"><a href="mypage.html" style="color:var(--accent);">마이페이지</a></li>
+    <li data-auth="user" style="display:none;"><a href="#" data-action="logout" id="btn-logout">로그아웃</a></li>
     <li><a href="order.html" class="nav-cta">구독 신청</a></li>
   </ul>
   <button class="nav-hamburger" id="nav-hamburger" onclick="toggleNav()" aria-label="메뉴"><span></span><span></span><span></span></button>
@@ -762,15 +763,36 @@
   };
 
   (async () => {
-    const user = await requireAuth('login.html');
-    if (!user) return;
+    console.log('[mypage] init start');
+    let user;
+    try {
+      user = await requireAuth('login.html');
+    } catch (e) {
+      console.error('[mypage] requireAuth threw', e);
+      return;
+    }
+    if (!user) { console.warn('[mypage] no user — redirecting'); return; }
+    console.log('[mypage] auth ok', user.email);
 
     const meta = user.user_metadata || {};
-    const profile = (await getProfile(user.id)) || {};
-    const sub = await getActiveSubscription(user.id);
+    let profile = null;
+    try {
+      profile = await getProfile(user.id);
+    } catch (e) {
+      console.error('[mypage] getProfile threw', e);
+    }
+    if (!profile) profile = {};
 
-    const name = profile.display_name || meta.display_name || user.email.split('@')[0];
-    const gradeLabel = meta.grade_label || '-';
+    let sub = null;
+    try {
+      sub = await getActiveSubscription(user.id);
+    } catch (e) {
+      console.error('[mypage] getActiveSubscription threw', e);
+    }
+
+    const emailLocal = (user.email || '').split('@')[0] || '회원';
+    const name = profile.display_name || meta.display_name || meta.name || emailLocal;
+    const gradeLabel = profile.grade || meta.grade_label || meta.grade || '-';
     const initial = (name || '?').slice(0, 1);
 
     // 관리자 링크 노출 여부 — 캐시/undefined 방지용으로 is_admin을 명시적으로 재조회
@@ -794,11 +816,11 @@
 
     // ── 내 정보 요약 (대시보드 상단) ───────
     setText('info-name', name);
-    setText('info-grade', gradeLabel);
+    setText('info-grade', gradeLabel || '미입력');
     setText('info-school', profile.school || '미입력');
     setText('info-target', profile.target_score ? profile.target_score + '점' : '미설정');
     setText('info-phone', profile.phone || meta.phone || '미입력');
-    setText('info-email', user.email);
+    setText('info-email', user.email || '미입력');
     const fullAddr = meta.shipping_zipcode
       ? `(${meta.shipping_zipcode}) ${meta.shipping_address || ''} ${meta.shipping_detail || ''}`.trim()
       : '주소 미등록 — 계정 설정에서 입력하세요';
