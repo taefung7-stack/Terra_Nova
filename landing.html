@@ -754,25 +754,37 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   width:100%;
   max-width:1720px;
   margin:0 auto;
+  padding:0;
+  font-size:inherit;
+  font-weight:inherit;
 }
 .mega-line {
+  display:block;
   width:100%;
-  max-width:1640px;
+  max-width:1720px;
   margin:0 auto;
   font-family:'Pretendard Variable','Pretendard',sans-serif;
   font-weight:900;
-  font-size:clamp(2.6rem, 7.2vw, 8.4rem);
-  line-height:1.05;
-  letter-spacing:-0.025em;
+  font-size:clamp(3.2rem, 9.4vw, 11rem);
+  line-height:1.04;
+  letter-spacing:-0.03em;
   word-break:keep-all;
   white-space:normal;
   color:#fff;
 }
-.mega-line-solution {
-  font-size:clamp(2.9rem, 8.4vw, 9.6rem);
+.mega-line + .mega-line {
+  margin-top:0.12em;
+}
+.mega-line.mint {
   color:var(--accent);
-  text-shadow:0 0 56px rgba(0,255,163,.32);
-  letter-spacing:-0.03em;
+  text-shadow:0 0 56px rgba(0,255,163,.28);
+}
+.mega-line-solution {
+  font-size:clamp(3.4rem, 10.6vw, 12.4rem);
+  letter-spacing:-0.035em;
+}
+.mega-line-solution.mint {
+  text-shadow:0 0 64px rgba(0,255,163,.34);
 }
 .declaration-sub {
   margin-top:36px;
@@ -1069,12 +1081,12 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
 }
 @media(max-width:980px) {
   .mega-line {
-    font-size:clamp(2.1rem, 9.5vw, 5rem);
-    line-height:1.1;
+    font-size:clamp(2.6rem, 12vw, 6.2rem);
+    line-height:1.08;
   }
   .mega-line-solution {
-    font-size:clamp(2.4rem, 11vw, 6rem);
-    line-height:1.05;
+    font-size:clamp(3rem, 14vw, 7.4rem);
+    line-height:1.04;
   }
   .declaration-sub {
     margin-top:24px;
@@ -3995,15 +4007,20 @@ body.bigbang-done .terra-hint,
 
   <!-- =============== PAIN OPENING =============== -->
   <section id="language-question" class="statement statement-single story-section reveal">
-    <h1 class="mega-line">영어는 언어입니다. 영어로 영어만 공부 해야 할까요?</h1>
+    <h1 class="declaration-wrap">
+      <span class="mega-line mint">영어는 언어입니다.</span>
+      <span class="mega-line">영어로 영어만 공부 해야 할까요?</span>
+    </h1>
   </section>
 
   <!-- =============== CURRICULUM DECLARATION =============== -->
   <section id="proof" class="curriculum-declaration story-section reveal">
-    <div class="declaration-wrap">
-      <h2 class="mega-line mega-line-solution">우리는 전학년, 전과목을 영어로 공부합니다.</h2>
-      <p class="declaration-sub">전 학년 교과과정 그대로 영어로 복습합니다.</p>
-    </div>
+    <h2 class="declaration-wrap">
+      <span class="mega-line mega-line-solution">우리는</span>
+      <span class="mega-line mega-line-solution mint">전학년, 전과목을</span>
+      <span class="mega-line mega-line-solution">영어로 공부합니다.</span>
+    </h2>
+    <p class="declaration-sub">전 학년 교과과정 그대로 영어로 복습합니다.</p>
   </section>
 
   <!-- =============== REAL BOOK SAMPLES =============== -->
