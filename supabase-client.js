@@ -16,13 +16,24 @@ export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
 
 /* ── 공용 헬퍼 ───────────────────────────────────────── */
 
+// getUser() 가 종종 hang/느린 케이스 대비 — getSession() 캐시를 먼저 시도하고,
+// 둘 다 race 해서 빠른 쪽 결과를 사용. timeout 7초.
 export async function getCurrentUser() {
-  const { data: { user }, error } = await supabase.auth.getUser();
-  if (error) {
-    console.warn('[auth] getUser error:', error.message);
+  const sessP = supabase.auth.getSession()
+    .then(r => r.data?.session?.user || null)
+    .catch(err => { console.warn('[auth] getSession err', err); return null; });
+  const userP = supabase.auth.getUser()
+    .then(r => r.data?.user || null)
+    .catch(err => { console.warn('[auth] getUser err', err); return null; });
+  const timeoutP = new Promise(res => setTimeout(() => res('__TIMEOUT__'), 7000));
+  const first = await Promise.race([sessP, userP, timeoutP]);
+  if (first === '__TIMEOUT__') {
+    console.error('[auth] resolveUser timeout');
     return null;
   }
-  return user;
+  if (first) return first;
+  const [s, u] = await Promise.all([sessP, userP]);
+  return s || u;
 }
 
 export async function requireAuth(redirectTo = 'login.html') {
@@ -36,26 +47,72 @@ export async function requireAuth(redirectTo = 'login.html') {
 }
 
 export async function signOut() {
-  const { error } = await supabase.auth.signOut();
-  if (error) {
-    alert('로그아웃 실패: ' + error.message);
-    return false;
+  try {
+    const { error } = await supabase.auth.signOut();
+    if (error) console.warn('[auth] signOut err', error);
+  } catch (e) {
+    console.warn('[auth] signOut threw', e);
   }
+  // scope=local 추가로 client-side 토큰 강제 제거
+  try { await supabase.auth.signOut({ scope: 'local' }); } catch {}
+  // 어떤 경우든 홈으로 이동
   location.href = 'index.html';
   return true;
 }
 
+// profile row 가 없는 신규 가입자도 정상 동작하도록 .maybeSingle() 사용 + 자동 생성.
 export async function getProfile(userId) {
   const { data, error } = await supabase
     .from('profiles')
     .select('*')
     .eq('id', userId)
-    .single();
+    .maybeSingle();
   if (error) {
     console.warn('[profile] fetch error:', error.message);
     return null;
   }
+  // row 없으면 빈 row 자동 생성 시도 (RLS 가 본인 INSERT 허용한다는 전제)
+  if (!data) {
+    try {
+      const { data: user } = await supabase.auth.getUser();
+      const meta = user?.user?.user_metadata || {};
+      const insertPayload = {
+        id: userId,
+        display_name: meta.display_name || meta.name || null,
+        phone: meta.phone || null,
+      };
+      const { data: created, error: insErr } = await supabase
+        .from('profiles')
+        .insert(insertPayload)
+        .select('*')
+        .maybeSingle();
+      if (insErr) {
+        console.warn('[profile] auto-create failed:', insErr.message);
+        return null;
+      }
+      return created;
+    } catch (e) {
+      console.warn('[profile] auto-create threw', e);
+      return null;
+    }
+  }
   return data;
+}
+
+// 사용자가 관리자인지 확인 (mypage / nav 양쪽에서 사용)
+export async function isAdmin(userId) {
+  if (!userId) return false;
+  try {
+    const { data } = await supabase
+      .from('profiles')
+      .select('is_admin')
+      .eq('id', userId)
+      .maybeSingle();
+    return data?.is_admin === true;
+  } catch (e) {
+    console.warn('[isAdmin] err', e);
+    return false;
+  }
 }
 
 export async function getActiveSubscription(userId) {
