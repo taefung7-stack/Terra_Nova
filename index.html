@@ -727,6 +727,356 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   max-width:680px;
   margin-top:34px;
 }
+.statement-single,
+.curriculum-declaration {
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:120px 3vw;
+  text-align:center;
+}
+.statement-single.reveal,
+.curriculum-declaration.reveal {
+  opacity:1;
+  transform:none;
+}
+.statement-single {
+  background:
+    radial-gradient(circle at 84% 18%, rgba(0,255,163,.13), transparent 30%),
+    var(--bg);
+}
+.curriculum-declaration {
+  background:
+    radial-gradient(ellipse 58% 42% at 50% 54%, rgba(0,255,163,.13), transparent 64%),
+    var(--bg);
+}
+.declaration-wrap {
+  width:100%;
+}
+.mega-line {
+  width:134%;
+  max-width:none;
+  margin:0 auto;
+  font-family:'Pretendard', sans-serif;
+  font-weight:1000;
+  font-size:clamp(2.55rem, 4.25vw, 5.7rem);
+  line-height:1;
+  letter-spacing:0;
+  white-space:nowrap;
+  color:#fff;
+  position:relative;
+  left:50%;
+  transform:translateX(-50%) scaleX(.74);
+  transform-origin:center;
+}
+.mega-line-solution {
+  width:128%;
+  font-size:clamp(2.75rem, 4.75vw, 6.5rem);
+  color:var(--accent);
+  text-shadow:0 0 44px rgba(0,255,163,.22);
+  transform:translateX(-50%) scaleX(.78);
+}
+.declaration-sub {
+  margin-top:28px;
+  font-size:clamp(1.1rem, 1.55vw, 2rem);
+  line-height:1.35;
+  font-weight:700;
+  letter-spacing:0;
+  color:rgba(240,240,240,.78);
+}
+
+/* =============== SUBSCRIPTION BLOCKS MOVED INTO LANDING =============== */
+.section {
+  position:relative;
+  padding:160px 2vw;
+  overflow:hidden;
+}
+.inner {
+  max-width:1720px;
+  width:100%;
+  margin:0 auto;
+}
+.section .head {
+  text-align:center;
+}
+.section .label {
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  border:1px solid var(--line3);
+  background:rgba(0,255,163,.12);
+  color:var(--accent);
+  font-family:'Space Grotesk', sans-serif;
+  font-size:.86rem;
+  font-weight:700;
+  letter-spacing:0;
+  text-transform:uppercase;
+  padding:8px 18px;
+  border-radius:999px;
+  margin-bottom:36px;
+}
+.section .label::before {
+  content:"";
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:var(--accent);
+  box-shadow:0 0 12px var(--accent);
+  animation:labelPulse 1.6s ease-in-out infinite;
+}
+@keyframes labelPulse {
+  0%,100% { transform:scale(1); opacity:1; }
+  50% { transform:scale(1.4); opacity:.6; }
+}
+.section .mint { color:var(--accent); }
+
+.book {
+  padding:160px 1.4vw 180px;
+  background:linear-gradient(180deg, var(--bg) 0%, #050505 100%);
+}
+.book .inner { max-width:1880px; }
+.book .head { margin-bottom:96px; }
+.book h2,
+.levels h2 {
+  font-weight:900;
+  font-size:clamp(2.4rem, 6vw, 5.6rem);
+  color:#fff;
+  letter-spacing:0;
+  line-height:1.08;
+}
+.book h2 { white-space:nowrap; }
+.book-row {
+  max-width:1880px;
+  margin:0 auto 156px;
+}
+.book-row:last-of-type { margin-bottom:32px; }
+.book-row-head {
+  display:flex;
+  align-items:center;
+  gap:16px;
+  margin-bottom:32px;
+  padding:0 8px;
+  flex-wrap:wrap;
+}
+.book-row-name {
+  font-family:'Space Grotesk', sans-serif;
+  font-weight:700;
+  font-size:clamp(2rem, 3.4vw, 3rem);
+  letter-spacing:0;
+  color:#fff;
+}
+.book-row-grade {
+  padding:8px 18px;
+  border:1px solid var(--line3);
+  background:rgba(0,255,163,.12);
+  color:var(--accent);
+  font-family:'Space Grotesk','Pretendard',sans-serif;
+  font-size:.92rem;
+  font-weight:700;
+  letter-spacing:0;
+  border-radius:999px;
+  text-transform:uppercase;
+}
+.book-row-curriculum {
+  padding:8px 18px;
+  background:rgba(255,255,255,.04);
+  border:1px solid var(--line);
+  color:var(--dim);
+  font-size:.92rem;
+  font-weight:600;
+  border-radius:999px;
+  letter-spacing:0;
+}
+.book-row-curriculum .subj {
+  color:#fff;
+  font-weight:700;
+  margin-right:6px;
+}
+.book-row-line {
+  flex:1;
+  height:1px;
+  min-width:40px;
+  background:linear-gradient(90deg, var(--line) 0%, transparent 100%);
+}
+.book-pages {
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  gap:28px;
+  perspective:1600px;
+}
+.book-page {
+  position:relative;
+  aspect-ratio:2/2.83;
+  background:#fff;
+  border-radius:8px;
+  overflow:hidden;
+  box-shadow:0 32px 64px -22px rgba(0,0,0,.7), 0 16px 36px rgba(0,0,0,.4);
+  transform-style:preserve-3d;
+  transition:transform .4s cubic-bezier(.22,.8,.36,1), box-shadow .4s;
+}
+.book-row.in-view .book-page {
+  animation:bookPageIn .65s cubic-bezier(.22,.8,.36,1) backwards;
+}
+.book-row.in-view .book-page:nth-child(1) { animation-delay:.05s; }
+.book-row.in-view .book-page:nth-child(2) { animation-delay:.14s; }
+.book-row.in-view .book-page:nth-child(3) { animation-delay:.23s; }
+.book-row.in-view .book-page:nth-child(4) { animation-delay:.32s; }
+@keyframes bookPageIn {
+  from { opacity:0; transform:translateY(50px) rotateY(14deg) scale(.88); }
+  to { opacity:1; transform:translateY(0) rotateY(0) scale(1); }
+}
+.book-page:hover {
+  transform:translateY(-14px) rotateY(-3deg);
+  box-shadow:0 44px 88px -22px rgba(0,255,163,.3), 0 22px 44px rgba(0,0,0,.55);
+  z-index:2;
+}
+.book-page img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+.book-page .badge {
+  position:absolute;
+  top:14px;
+  left:14px;
+  z-index:1;
+  padding:5px 12px;
+  background:rgba(10,10,10,.85);
+  color:var(--accent);
+  font-family:'Space Grotesk', sans-serif;
+  font-size:.66rem;
+  font-weight:700;
+  letter-spacing:0;
+  border-radius:999px;
+  text-transform:uppercase;
+  backdrop-filter:blur(8px);
+}
+.book-meta {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  max-width:1480px;
+  margin:48px auto 0;
+  padding:0 8px;
+  font-size:.82rem;
+  color:var(--dim2);
+  font-family:'Space Grotesk','Pretendard',sans-serif;
+  letter-spacing:0;
+  flex-wrap:wrap;
+  gap:12px;
+}
+.book-meta .real { color:var(--accent); }
+
+.levels {
+  padding-bottom:180px;
+  background:var(--bg);
+}
+.levels .head { margin-bottom:96px; }
+.levels h2 { white-space:nowrap; }
+.planet-grid {
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  gap:36px;
+  max-width:1820px;
+  margin:0 auto;
+}
+.planet-card {
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  min-height:360px;
+  padding:64px 32px 48px;
+  background:#000;
+  border:1px solid var(--line);
+  border-radius:24px;
+  overflow:hidden;
+  transition:transform .3s cubic-bezier(.22,.8,.36,1), border-color .3s;
+}
+.planet-card:hover {
+  transform:translateY(-6px);
+  border-color:rgba(0,255,163,.42);
+}
+.planet-card:hover .pcard-img {
+  animation-play-state:paused;
+  transform:scale(1.08) rotate(8deg);
+}
+.pcard-img {
+  width:188px;
+  aspect-ratio:1;
+  background-image:var(--p-img);
+  background-size:contain;
+  background-position:center;
+  background-repeat:no-repeat;
+  animation:planetFloat 5s ease-in-out infinite;
+  transition:transform .4s cubic-bezier(.22,.8,.36,1);
+}
+.planet-card:nth-child(2n) .pcard-img { animation-delay:-1.6s; }
+.planet-card:nth-child(3n) .pcard-img { animation-delay:-3s; }
+@keyframes planetFloat {
+  0%,100% { transform:translateY(0); }
+  50% { transform:translateY(-6px); }
+}
+.pcard-name {
+  font-family:'Space Grotesk', sans-serif;
+  font-weight:700;
+  font-size:1.6rem;
+  letter-spacing:0;
+  color:#fff;
+  margin-top:36px;
+}
+.pcard-grade {
+  font-size:1.22rem;
+  color:var(--accent);
+  font-weight:700;
+  margin-top:12px;
+  letter-spacing:0;
+}
+@media(max-width:1280px) {
+  .pcard-img { width:148px; }
+  .planet-card { min-height:320px; padding:52px 24px 40px; }
+}
+@media(max-width:1024px) {
+  .book-pages { grid-template-columns:repeat(2, 1fr); gap:16px; }
+}
+@media(max-width:980px) {
+  .mega-line,
+  .mega-line-solution {
+    font-size:clamp(1.9rem, 6.5vw, 4.2rem);
+    white-space:normal;
+    line-height:1.08;
+    width:100%;
+    left:auto;
+    transform:none;
+  }
+  .book h2,
+  .levels h2 {
+    white-space:normal;
+    font-size:clamp(2.2rem, 8vw, 4.2rem);
+  }
+  .planet-grid { grid-template-columns:repeat(2, 1fr); gap:20px; }
+  .planet-card { min-height:260px; padding:40px 22px 32px; }
+  .pcard-img { width:120px; }
+  .pcard-name { font-size:1.25rem; margin-top:24px; }
+  .pcard-grade { font-size:1rem; }
+}
+@media(max-width:560px) {
+  .statement-single,
+  .curriculum-declaration { padding:96px 16px; }
+  .declaration-sub { font-size:1rem; }
+  .book { padding-left:16px; padding-right:16px; }
+  .book-pages { grid-template-columns:1fr; max-width:360px; margin:0 auto; }
+  .book-row { margin-bottom:96px; }
+  .book-row-head { flex-wrap:wrap; }
+  .planet-grid { grid-template-columns:1fr; }
+}
+@media(max-width:420px) {
+  .pcard-img { width:84px; }
+  .pcard-name { font-size:1.05rem; }
+  .pcard-grade { font-size:.86rem; }
+}
 .worry-stack {
   display:grid;
   gap:16px;
@@ -2906,8 +3256,9 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   position:relative;
 }
 .plans-head {
-  margin-bottom:74px;
-  max-width:980px;
+  margin:0 auto 74px;
+  max-width:none;
+  text-align:center;
   perspective:900px;     /* enables 3D rotateX on the h2 */
 }
 
@@ -2920,7 +3271,9 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
    Re-fires every time .title-in is re-added (each scroll-in).
    =========================================================================== */
 .plans-kicker {
-  display:inline-block;
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
   font-family:'Space Grotesk', sans-serif;
   font-size:.82rem;
   font-weight:700;
@@ -2928,15 +3281,24 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   text-transform:uppercase;
   color:var(--accent);
   margin-bottom:22px;
-  padding:6px 14px;
+  padding:8px 18px;
   border:1px solid rgba(0,255,163,.32);
   background:rgba(0,255,163,.05);
+  border-radius:999px;
   /* Hidden idle state — what the kicker reverts to on scroll-out. */
   opacity:0;
   letter-spacing:1.6em;
   transform:translateX(-60px);
   filter:blur(8px);
   will-change:transform, letter-spacing, filter;
+}
+.plans-kicker::before {
+  content:"";
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:var(--accent);
+  box-shadow:0 0 12px var(--accent);
 }
 .plans.title-in .plans-kicker {
   animation:plansKickerEnter .7s cubic-bezier(.34, 1.56, .64, 1) forwards;
@@ -2950,12 +3312,12 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
 
 .plans-h2 {
   position:relative;
-  display:inline-block;
-  font-family:'Space Grotesk', 'Pretendard', sans-serif;
+  display:block;
+  font-family:'Pretendard', sans-serif;
   font-weight:900;
-  font-size:clamp(2.4rem, 5.4vw, 4.6rem);
+  font-size:clamp(3rem, 6.2vw, 5.6rem);
   line-height:1;
-  letter-spacing:-.04em;
+  letter-spacing:0;
   margin-bottom:24px;
   color:#fff;
   white-space:nowrap;
@@ -3023,6 +3385,104 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
 @keyframes plansAccentPulse {
   0%, 100% { text-shadow:0 0 24px rgba(0,255,163,.28); }
   50%      { text-shadow:0 0 64px rgba(0,255,163,.85), 0 0 18px rgba(0,255,163,.55); }
+}
+.transform {
+  padding:160px 5vw;
+  text-align:center;
+  position:relative;
+}
+.transform::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(ellipse 80% 50% at 50% 50%, rgba(0,255,163,.05) 0%, transparent 70%);
+  pointer-events:none;
+}
+.tf-ctas {
+  position:relative;
+  z-index:1;
+  display:flex;
+  gap:18px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+.btn-pri,
+.btn-sec {
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:240px;
+  padding:22px 48px;
+  font-family:"Pretendard", sans-serif;
+  font-weight:800;
+  font-size:1.04rem;
+  letter-spacing:1.6px;
+  text-decoration:none;
+  border-radius:999px;
+  overflow:hidden;
+  isolation:isolate;
+  transition:transform .2s cubic-bezier(.22,.8,.36,1);
+}
+.btn-pri {
+  background:linear-gradient(135deg, #00FFA3 0%, #3DDFA8 50%, #00FFA3 100%);
+  color:#0A0A0A;
+  box-shadow:0 14px 32px rgba(0,255,163,.42), inset 0 0 28px rgba(255,255,255,.32);
+  animation:btnGlowMint 2.6s ease-in-out infinite;
+}
+.btn-sec {
+  background:linear-gradient(135deg, rgba(255,255,255,.06) 0%, rgba(255,255,255,.12) 50%, rgba(255,255,255,.06) 100%);
+  color:#fff;
+  border:1px solid rgba(255,255,255,.32);
+  box-shadow:0 14px 28px rgba(0,0,0,.4), inset 0 0 22px rgba(255,255,255,.08);
+  animation:btnGlowGlass 3s ease-in-out infinite;
+  animation-delay:-.6s;
+}
+.btn-pri::after,
+.btn-sec::after {
+  content:"";
+  position:absolute;
+  top:-50%;
+  left:-100%;
+  width:60%;
+  height:200%;
+  background:linear-gradient(110deg, transparent 0%, rgba(255,255,255,0) 35%, rgba(255,255,255,.55) 50%, rgba(255,255,255,0) 65%, transparent 100%);
+  transform:skewX(-22deg);
+  animation:btnShine 2.4s ease-in-out infinite;
+  z-index:1;
+}
+.btn-sec::after { animation-delay:-1.2s; }
+.btn-pri > *,
+.btn-sec > * {
+  position:relative;
+  z-index:2;
+}
+@keyframes btnShine {
+  0% { left:-100%; opacity:0; }
+  20% { opacity:1; }
+  55%, 100% { left:140%; opacity:0; }
+}
+@keyframes btnGlowMint {
+  0%, 100% { box-shadow:0 14px 32px rgba(0,255,163,.42), inset 0 0 28px rgba(255,255,255,.32); }
+  50% { box-shadow:0 22px 48px rgba(0,255,163,.58), inset 0 0 38px rgba(255,255,255,.44); }
+}
+@keyframes btnGlowGlass {
+  0%, 100% { box-shadow:0 14px 28px rgba(0,0,0,.4), inset 0 0 22px rgba(255,255,255,.08); }
+  50% { box-shadow:0 20px 42px rgba(255,255,255,.12), inset 0 0 30px rgba(255,255,255,.16); }
+}
+.btn-pri:hover,
+.btn-sec:hover {
+  transform:translateY(-3px) scale(1.03);
+}
+.btn-sec:hover {
+  border-color:var(--accent);
+  color:var(--accent);
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn-pri,
+  .btn-sec { animation:none; }
+  .btn-pri::after,
+  .btn-sec::after { display:none; }
 }
 .plans-lede {
   font-size:clamp(1rem, 1.35vw, 1.18rem);
@@ -3717,7 +4177,7 @@ body.bigbang-done .terra-hint,
 <script src="mobile-app.js" defer></script>
 <script src="assets/js/clarity.js" async></script>
 </head>
-<body class="bigbang-done">
+<body class="bigbang-done light-theme">
 <a href="#main" class="skip-link">본문으로 건너뛰기</a>
 
 <!-- =============== SITE NAV (transparent → solid on scroll past hero) =============== -->
@@ -3731,7 +4191,7 @@ body.bigbang-done .terra-hint,
   </a>
   <ul class="nav-links">
     <li><a href="index.html">홈</a></li>
-    <li><a href="subscription_detail_complete.html">구독안내</a></li>
+    <li><a href="index.html#plans">구독안내</a></li>
     <li><a href="level_test.html">레벨테스트</a></li>
     <li><a href="sample.html">무료샘플</a></li>
     <li><a href="market.html">마켓</a></li>
@@ -3774,126 +4234,89 @@ body.bigbang-done .terra-hint,
 <main id="main">
 
   <!-- =============== PAIN OPENING =============== -->
-  <section class="statement story-section reveal">
-    <div>
-      <div class="story-kicker split" data-split>THE BEGINNING OF TERRA NOVA</div>
-      <h1 class="story-title split" data-split>영어는 언어입니다. 영어로<span class="accent"> 영어만 공부 <br> 해야 할까요?</span></h1>
-      <p class="story-copy statement-lede split" data-split>
-        영어 공부를 하면서 다른 과목도 같이 공부할 수는 없을까? 다른 과목을 <br> 공부하면서 영어 실력도 늘릴 수 없을까?
-        이 고민에서부터 시작했습니다.
-      </p>
-    </div>
-    <div class="worry-stack" aria-label="학부모의 주요 고민">
-      <div class="worry-line">
-        <span class="worry-tag">Concern 01</span>
-        <strong>원서 읽기에서 수능형 독해로 넘어갈 시기인데 뭘 해야하죠?</strong>
-      </div>
-      <div class="worry-line">
-        <span class="worry-tag">Concern 02</span>
-        <strong>영어 기초 없는 아이, 너무 다양한 영어 교재.. 선택이 너무 어려워요. </strong>
-      </div>
-      <div class="worry-line">
-        <span class="worry-tag">Concern 03</span>
-        <strong>고등학교를 올라가니 해야 할 과목이 너무 많아서 시간 배분이 힘들어요.</strong>
-      </div>
+  <section id="language-question" class="statement statement-single story-section reveal">
+    <h1 class="mega-line">영어는 언어입니다. 영어로 영어만 공부 해야 할까요?</h1>
+  </section>
+
+  <!-- =============== CURRICULUM DECLARATION =============== -->
+  <section id="proof" class="curriculum-declaration story-section reveal">
+    <div class="declaration-wrap">
+      <h2 class="mega-line mega-line-solution">우리는 전학년, 전과목을 영어로 공부합니다.</h2>
+      <p class="declaration-sub">전 학년 교과과정 그대로 영어로 복습합니다.</p>
     </div>
   </section>
 
-  <!-- =============== TERRA NOVA SOLUTION (cinematic horizontal pin) ===============
-       Headline panel + 4 subject cards (수학 / 과학 / 국어 / 정보·AI) on a
-       horizontally-scrolled cinematic track. Vertical scroll → horizontal
-       track translate (sticky-pin pattern). Each subject card features a
-       custom 3D icon (assets/3d/{math|science|korean|info-ai}.png).
-       Mobile (<900px) and prefers-reduced-motion fall back to a vertical stack. -->
-  <section id="proof" class="proof proof-cinematic">
-    <div class="proof-pin">
-      <div class="proof-stage">
-        <div class="proof-track">
+  <!-- =============== REAL BOOK SAMPLES =============== -->
+  <section id="book-samples" class="section book">
+    <div class="inner reveal">
+      <div class="head">
+        <span class="label">Real Book</span>
+        <h2>각 학년 <span class="mint">교과서</span>를 영어로 읽습니다.</h2>
+      </div>
 
-          <article class="proof-headline-card">
-            <div class="story-kicker">Terra Nova solution</div>
-            <h2 class="story-title">그래서 전과목을<br><span class="accent">영어로 만들었습니다.</span></h2>
-            <p class="story-copy">
-              수학·과학·국어 과목에서 배우는 핵심 개념을 영어 지문으로 다시 읽게 합니다.
-            </p>
-            <div class="track-hint" aria-hidden="true">
-              <span class="track-hint-dot"></span>
-              <span>Scroll →</span>
-            </div>
-          </article>
-
-          <a class="solution-panel" href="#plans">
-            <img class="solution-icon"
-                 src="assets/3d/math.png"
-                 alt="수학" loading="lazy" decoding="async">
-            <div class="solution-head">
-              <span class="label">Mathematics</span>
-              <h3>함수·미적분·확률,<br>영어로 다시 만납니다.</h3>
-            </div>
-            <div class="solution-proof">
-              <span class="solution-arrow" aria-hidden="true">↓</span>
-              <div class="solution-example">
-                <div class="example-line example-from"><span class="example-tag">KO</span>이차함수 그래프 단원</div>
-                <div class="example-line example-to"><span class="example-tag">EN</span>“A baseball thrown at 45° traces a parabolic arc — y = ax² + bx + c describes its path.”</div>
-              </div>
-            </div>
-          </a>
-
-          <a class="solution-panel" href="#plans">
-            <img class="solution-icon"
-                 src="assets/3d/science.png"
-                 alt="과학" loading="lazy" decoding="async">
-            <div class="solution-head">
-              <span class="label">Science</span>
-              <h3>광합성·화학결합·진화,<br>영어로 다시 읽습니다.</h3>
-            </div>
-            <div class="solution-proof">
-              <span class="solution-arrow" aria-hidden="true">↓</span>
-              <div class="solution-example">
-                <div class="example-line example-from"><span class="example-tag">KO</span>광합성과 엽록소 단원</div>
-                <div class="example-line example-to"><span class="example-tag">EN</span>“Chloroplasts capture sunlight and convert CO₂ into glucose, fueling every leaf cell.”</div>
-              </div>
-            </div>
-          </a>
-
-          <a class="solution-panel" href="#plans">
-            <img class="solution-icon"
-                 src="assets/3d/korean.png"
-                 alt="국어" loading="lazy" decoding="async">
-            <div class="solution-head">
-              <span class="label">Korean</span>
-              <h3>비문학 추론·구조 분석,<br>영어 지문에서도.</h3>
-            </div>
-            <div class="solution-proof">
-              <span class="solution-arrow" aria-hidden="true">↓</span>
-              <div class="solution-example">
-                <div class="example-line example-from"><span class="example-tag">KO</span>비문학 — 통념과 반박의 구조 분석</div>
-                <div class="example-line example-to"><span class="example-tag">EN</span>“Conventional wisdom holds creativity peaks in youth — yet longitudinal data reveal it often blooms in one's sixties.”</div>
-              </div>
-            </div>
-          </a>
-
-          <a class="solution-panel" href="#plans">
-            <img class="solution-icon"
-                 src="assets/3d/info-ai.png"
-                 alt="정보 AI" loading="lazy" decoding="async">
-            <div class="solution-head">
-              <span class="label">Computer &amp; AI</span>
-              <h3>알고리즘·데이터·AI,<br>영어 원문 그대로.</h3>
-            </div>
-            <div class="solution-proof">
-              <span class="solution-arrow" aria-hidden="true">↓</span>
-              <div class="solution-example">
-                <div class="example-line example-from"><span class="example-tag">KO</span>정렬 알고리즘 단원</div>
-                <div class="example-line example-to"><span class="example-tag">EN</span>“Quicksort recursively partitions an array around a pivot, averaging O(n log n) time.”</div>
-              </div>
-            </div>
-          </a>
-
+      <div class="book-row">
+        <div class="book-row-head">
+          <span class="book-row-name">MARS</span>
+          <span class="book-row-grade">초5</span>
+          <span class="book-row-curriculum"><span class="subj">사회</span>개화기 조선의 변화 · 근대화의 시작</span>
+          <span class="book-row-line"></span>
         </div>
-        <div class="proof-progress" aria-hidden="true">
-          <span class="proof-progress-fill"></span>
+        <div class="book-pages">
+          <div class="book-page"><span class="badge">P1 · Passage</span><img src="assets/textbook-previews/mars-p1.jpg" alt="MARS 초5 — Passage 페이지" loading="lazy"></div>
+          <div class="book-page"><span class="badge">P2 · Practice</span><img src="assets/textbook-previews/mars-p2.jpg" alt="MARS 초5 — Practice 페이지" loading="lazy"></div>
+          <div class="book-page"><span class="badge">P3 · Syntax</span><img src="assets/textbook-previews/mars-p3.jpg" alt="MARS 초5 — Syntax 페이지" loading="lazy"></div>
+          <div class="book-page"><span class="badge">P4 · Vocab</span><img src="assets/textbook-previews/mars-p4.jpg" alt="MARS 초5 — Vocab 페이지" loading="lazy"></div>
         </div>
+      </div>
+
+      <div class="book-row">
+        <div class="book-row-head">
+          <span class="book-row-name">SATURN</span>
+          <span class="book-row-grade">고1</span>
+          <span class="book-row-curriculum"><span class="subj">공통수학1</span>경우의 수 — 곱의 법칙·순열·조합</span>
+          <span class="book-row-line"></span>
+        </div>
+        <div class="book-pages">
+          <div class="book-page"><span class="badge">P1 · Passage</span><img src="assets/textbook-previews/saturn-p1.jpg" alt="SATURN 고1 — Passage 페이지" loading="lazy"></div>
+          <div class="book-page"><span class="badge">P2 · Practice</span><img src="assets/textbook-previews/saturn-p2.jpg" alt="SATURN 고1 — Practice 페이지" loading="lazy"></div>
+          <div class="book-page"><span class="badge">P3 · Syntax</span><img src="assets/textbook-previews/saturn-p3.jpg" alt="SATURN 고1 — Syntax 페이지" loading="lazy"></div>
+          <div class="book-page"><span class="badge">P4 · Vocab</span><img src="assets/textbook-previews/saturn-p4.jpg" alt="SATURN 고1 — Vocab 페이지" loading="lazy"></div>
+        </div>
+      </div>
+
+      <div class="book-row">
+        <div class="book-row-head">
+          <span class="book-row-name">JUPITER</span>
+          <span class="book-row-grade">고2</span>
+          <span class="book-row-curriculum"><span class="subj">화학Ⅰ</span>I-1 원자의 구조와 양자수 · 원자와 빛의 언어</span>
+          <span class="book-row-line"></span>
+        </div>
+        <div class="book-pages">
+          <div class="book-page"><span class="badge">P1 · Passage</span><img src="assets/textbook-previews/jupiter-p1.jpg" alt="JUPITER 고2 — Passage 페이지" loading="lazy"></div>
+          <div class="book-page"><span class="badge">P2 · Practice</span><img src="assets/textbook-previews/jupiter-p2.jpg" alt="JUPITER 고2 — Practice 페이지" loading="lazy"></div>
+          <div class="book-page"><span class="badge">P3 · Syntax</span><img src="assets/textbook-previews/jupiter-p3.jpg" alt="JUPITER 고2 — Syntax 페이지" loading="lazy"></div>
+          <div class="book-page"><span class="badge">P4 · Vocab</span><img src="assets/textbook-previews/jupiter-p4.jpg" alt="JUPITER 고2 — Vocab 페이지" loading="lazy"></div>
+        </div>
+      </div>
+
+      <div class="book-row">
+        <div class="book-row-head">
+          <span class="book-row-name">SUN</span>
+          <span class="book-row-grade">고3·N수생</span>
+          <span class="book-row-curriculum"><span class="subj">화학반응의 세계</span>I-1 산-염기 평형 · 평형이 결정하는 색</span>
+          <span class="book-row-line"></span>
+        </div>
+        <div class="book-pages">
+          <div class="book-page"><span class="badge">P1 · Passage</span><img src="assets/textbook-previews/sun-p1.jpg" alt="SUN 고3·N수생 — Passage 페이지" loading="lazy"></div>
+          <div class="book-page"><span class="badge">P2 · Practice</span><img src="assets/textbook-previews/sun-p2.jpg" alt="SUN 고3·N수생 — Practice 페이지" loading="lazy"></div>
+          <div class="book-page"><span class="badge">P3 · Syntax</span><img src="assets/textbook-previews/sun-p3.jpg" alt="SUN 고3·N수생 — Syntax 페이지" loading="lazy"></div>
+          <div class="book-page"><span class="badge">P4 · Vocab</span><img src="assets/textbook-previews/sun-p4.jpg" alt="SUN 고3·N수생 — Vocab 페이지" loading="lazy"></div>
+        </div>
+      </div>
+
+      <div class="book-meta">
+        <span></span>
+        <span class="real">● 실제 PDF에서 그대로 발췌</span>
       </div>
     </div>
   </section>
@@ -4024,115 +4447,6 @@ body.bigbang-done .terra-hint,
       </div><!-- /.exam-match-grid (고1 pair) -->
     </div><!-- /.exam-match-pair (고1) -->
 
-    <!-- ============== Pair 2: 고2 화학Ⅰ ↔ Jupiter (Lv 09) ============== -->
-    <div class="exam-match-pair" data-grade="g2">
-      <div class="exam-pair-label">
-        <span class="pair-num">02</span>
-        <span class="pair-grade">고2 · 화학Ⅰ</span>
-        <span class="pair-divider" aria-hidden="true"></span>
-        <span class="pair-level">Jupiter · Lv 09</span>
-      </div>
-      <div class="exam-match-grid">
-
-      <!-- LEFT — Mock exam capture -->
-      <article class="exam-card mock-card">
-        <div class="exam-role-badge mock-badge">
-          <span class="role-dot" aria-hidden="true"></span>
-          모의고사
-        </div>
-        <div class="exam-card-tag">2026학년도 6월 · 고2 전국연합학력평가</div>
-        <h3 class="exam-card-num">화학Ⅰ 7번</h3>
-        <div class="exam-card-body">
-          <p class="exam-stem">
-            그림은 어떤 원자에서 전자가 더 높은 에너지 준위에서 더 낮은 에너지 준위로 전이할 때
-            방출되는 빛의 <strong>분광 스펙트럼</strong>을 모식적으로 나타낸 것이다.
-          </p>
-          <div class="exam-mol exam-spectrum" aria-hidden="true">
-            <figure>
-              <svg width="220" height="92" viewBox="0 0 220 92" role="img" aria-label="원자 에너지 준위와 전이">
-                <!-- Energy ladder rungs -->
-                <line x1="14" y1="80" x2="120" y2="80" stroke="#cfd0d2" stroke-width="1.4"/>
-                <line x1="14" y1="64" x2="120" y2="64" stroke="#cfd0d2" stroke-width="1.4"/>
-                <line x1="14" y1="46" x2="120" y2="46" stroke="#cfd0d2" stroke-width="1.4"/>
-                <line x1="14" y1="22" x2="120" y2="22" stroke="#cfd0d2" stroke-width="1.4"/>
-                <text x="126" y="84" font-size="9.5" fill="#cfd0d2" font-family="Space Grotesk, sans-serif">n=1</text>
-                <text x="126" y="68" font-size="9.5" fill="#cfd0d2" font-family="Space Grotesk, sans-serif">n=2</text>
-                <text x="126" y="50" font-size="9.5" fill="#cfd0d2" font-family="Space Grotesk, sans-serif">n=3</text>
-                <text x="126" y="26" font-size="9.5" fill="#cfd0d2" font-family="Space Grotesk, sans-serif">n=4</text>
-                <!-- Photon transition arrow -->
-                <line x1="56" y1="22" x2="56" y2="78" stroke="#33d6ff" stroke-width="1.8" stroke-dasharray="3 3"/>
-                <path d="M52 76 L56 80 L60 76" stroke="#33d6ff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                <text x="62" y="52" font-size="10" font-weight="700" fill="#33d6ff" font-family="Space Grotesk, sans-serif">hν</text>
-                <!-- Spectrum bar -->
-                <rect x="160" y="20" width="50" height="56" fill="#0a0a0a" stroke="rgba(255,255,255,.18)" stroke-width="1"/>
-                <line x1="160" y1="32" x2="210" y2="32" stroke="#5cdfff" stroke-width="1.4"/>
-                <line x1="160" y1="44" x2="210" y2="44" stroke="#7df0aa" stroke-width="1.4"/>
-                <line x1="160" y1="56" x2="210" y2="56" stroke="#f4eb9a" stroke-width="1.4"/>
-                <line x1="160" y1="68" x2="210" y2="68" stroke="#ff8b6a" stroke-width="1.4"/>
-                <text x="185" y="13" text-anchor="middle" font-size="8" fill="#cfd0d2" font-family="Space Grotesk, sans-serif">분광선</text>
-              </svg>
-              <figcaption>에너지 준위 전이와 분광 스펙트럼</figcaption>
-            </figure>
-          </div>
-          <p class="exam-stem-sm">이에 대한 설명으로 옳은 것만을 &lt;보기&gt;에서 있는 대로 고른 것은? <span class="exam-points">[3점]</span></p>
-          <ul class="exam-choices">
-            <li>전자는 임의의 에너지를 가질 수 있다.</li>
-            <li>방출되는 빛의 색은 두 <mark>오비탈</mark> 사이의 에너지 차에 의해 결정된다.</li>
-            <li>같은 원자 안의 두 전자는 네 가지 <mark>양자수</mark>가 모두 같을 수 있다.</li>
-          </ul>
-        </div>
-        <div class="exam-key-shared">
-          <span class="key-label">핵심 개념</span>
-          <strong>양자수 · 오비탈 · 파울리 배타원리</strong>
-          <span class="key-curr">화학Ⅰ Ⅰ-1</span>
-        </div>
-        <div class="exam-card-foot">출처 한국교육과정평가원 · 시·도교육청 학력평가</div>
-      </article>
-
-      <!-- Center connector — "같은 개념" / arrow -->
-      <div class="exam-match-arrow" aria-hidden="true">
-        <svg viewBox="0 0 64 24" fill="none">
-          <path d="M2 12 H54" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          <path d="M48 5 L60 12 L48 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        </svg>
-        <span class="arrow-label">같은 개념</span>
-      </div>
-
-      <!-- RIGHT — Terra Nova textbook capture -->
-      <article class="exam-card book-card">
-        <div class="exam-role-badge book-badge">
-          <span class="role-dot" aria-hidden="true"></span>
-          Terra Nova 교재
-        </div>
-        <div class="exam-card-tag">Terra Nova English · 2026.06 · Lesson 2 (Jupiter)</div>
-        <h3 class="exam-card-num">Why Electrons Cannot Live Anywhere</h3>
-        <div class="exam-card-body">
-          <p class="exam-passage">
-            Electrons inside any normal atom can only occupy a small set of
-            <mark>discrete energy levels</mark>, like climbers stuck on numbered rungs.
-            When one drops to a lower rung, it releases the exact energy difference as a single photon.
-            Each element ends up showing its own <em>spectral fingerprint</em>, built from forbidden
-            gaps and allowed jumps — and astronomers read distant stars by it.
-          </p>
-          <p class="exam-passage-ko-min">
-            원자 안의 전자는 <strong>정해진 적은 수의 에너지 준위</strong>만 차지할 수 있고, 더 낮은 준위로 떨어질 때 그 정확한 에너지 차이를 광자 하나로 방출한다.
-            그 결과 모든 원소는 자신만의 분광 지문을 갖게 되어, 천문학자들은 이 지문으로 먼 별의 화학 조성을 읽어낸다.
-          </p>
-          <div class="exam-comprehension">
-            <span class="q-mark" aria-hidden="true">Q.</span>
-            Why does each element show its own pattern of <em>spectral lines</em>?
-          </div>
-        </div>
-        <div class="exam-key-shared">
-          <span class="key-label">핵심 개념</span>
-          <strong>양자수 · 오비탈 · 파울리 배타원리</strong>
-          <span class="key-curr">화학Ⅰ Ⅰ-1</span>
-        </div>
-        <div class="exam-card-foot">출처 Terra Nova Textbook · 2026.06 · Passage 02</div>
-      </article>
-      </div><!-- /.exam-match-grid (고2 pair) -->
-    </div><!-- /.exam-match-pair (고2) -->
-
     <!-- ============== Pair 3: 고1 공통수학 ↔ Saturn (Lv 08) ============== -->
     <div class="exam-match-pair" data-grade="g1-math">
       <div class="exam-pair-label">
@@ -4237,115 +4551,6 @@ body.bigbang-done .terra-hint,
       </article>
       </div><!-- /.exam-match-grid (수학 pair) -->
     </div><!-- /.exam-match-pair (수학) -->
-
-    <!-- ============== Pair 4: 고2 사회문화 ↔ Jupiter (Lv 09) ============== -->
-    <div class="exam-match-pair" data-grade="g2-society">
-      <div class="exam-pair-label">
-        <span class="pair-num">04</span>
-        <span class="pair-grade">고2 · 사회문화</span>
-        <span class="pair-divider" aria-hidden="true"></span>
-        <span class="pair-level">Jupiter · Lv 09</span>
-      </div>
-      <div class="exam-match-grid">
-
-      <!-- LEFT — Mock exam capture (머튼의 아노미 이론) -->
-      <article class="exam-card mock-card">
-        <div class="exam-role-badge mock-badge">
-          <span class="role-dot" aria-hidden="true"></span>
-          모의고사
-        </div>
-        <div class="exam-card-tag">2026학년도 6월 · 고2 전국연합학력평가</div>
-        <h3 class="exam-card-num">사회문화 14번</h3>
-        <div class="exam-card-body">
-          <p class="exam-stem">
-            표는 머튼(R. Merton)이 제시한 <strong>아노미 이론</strong>의 적응 양식을
-            <mark>문화적 목표</mark>의 수용 여부와 <mark>제도적 수단</mark>의 수용 여부로
-            구분한 것이다. (가)~(라)에 해당하는 사례로 옳은 것만을 고른 것은?
-          </p>
-          <div class="exam-mol exam-merton" aria-hidden="true">
-            <figure>
-              <svg width="240" height="100" viewBox="0 0 240 100" role="img" aria-label="머튼의 아노미 이론 적응 양식 표">
-                <!-- Axis labels -->
-                <text x="120" y="9" text-anchor="middle" font-size="8" fill="#cfd0d2" font-family="Space Grotesk, sans-serif">제도적 수단</text>
-                <text x="34" y="14" font-size="7.5" fill="#cfd0d2" font-family="Space Grotesk, sans-serif">수용 (+)</text>
-                <text x="146" y="14" font-size="7.5" fill="#cfd0d2" font-family="Space Grotesk, sans-serif">거부 (−)</text>
-                <text x="6" y="56" font-size="8" fill="#cfd0d2" font-family="Space Grotesk, sans-serif" transform="rotate(-90 6 56)">문화 목표</text>
-                <text x="22" y="50" font-size="7.5" fill="#cfd0d2" font-family="Space Grotesk, sans-serif">+</text>
-                <text x="22" y="86" font-size="7.5" fill="#cfd0d2" font-family="Space Grotesk, sans-serif">−</text>
-                <!-- 2×2 grid cells -->
-                <rect x="32" y="20" width="100" height="34" fill="#0f1a18" stroke="rgba(0,255,163,.45)" stroke-width="1"/>
-                <rect x="132" y="20" width="100" height="34" fill="#161616" stroke="rgba(255,255,255,.18)" stroke-width="1"/>
-                <rect x="32" y="54" width="100" height="34" fill="#161616" stroke="rgba(255,255,255,.18)" stroke-width="1"/>
-                <rect x="132" y="54" width="100" height="34" fill="#161616" stroke="rgba(255,255,255,.18)" stroke-width="1"/>
-                <!-- Cell labels -->
-                <text x="82" y="40" text-anchor="middle" font-size="9" font-weight="700" fill="#33d6ff" font-family="Space Grotesk, sans-serif">(가) 동조형</text>
-                <text x="182" y="40" text-anchor="middle" font-size="9" font-weight="700" fill="#fff" font-family="Space Grotesk, sans-serif">(나) 혁신형</text>
-                <text x="82" y="74" text-anchor="middle" font-size="9" font-weight="700" fill="#fff" font-family="Space Grotesk, sans-serif">(다) 의례형</text>
-                <text x="182" y="74" text-anchor="middle" font-size="9" font-weight="700" fill="#fff" font-family="Space Grotesk, sans-serif">(라) 도피형</text>
-              </svg>
-              <figcaption>머튼의 5가지 적응 양식 (반역형 제외)</figcaption>
-            </figure>
-          </div>
-          <p class="exam-stem-sm">위 표에 대한 설명으로 옳은 것만을 &lt;보기&gt;에서 있는 대로 고른 것은? <span class="exam-points">[3점]</span></p>
-          <ul class="exam-choices">
-            <li>(가)는 사회 통합에 가장 기여하는 적응 양식이다.</li>
-            <li>(나)는 <mark>목표는 받아들이되 정당한 수단을 거부</mark>하므로 일탈 행동의 주요 유형이다.</li>
-            <li>(다)는 목표는 포기했으나 <mark>제도적 수단은 따르는</mark> 형태이다.</li>
-          </ul>
-        </div>
-        <div class="exam-key-shared">
-          <span class="key-label">핵심 개념</span>
-          <strong>아노미 이론 · 문화 목표 · 제도적 수단</strong>
-          <span class="key-curr">사회문화 Ⅲ-2</span>
-        </div>
-        <div class="exam-card-foot">출처 한국교육과정평가원 · 시·도교육청 학력평가</div>
-      </article>
-
-      <!-- Center connector — "같은 개념" / arrow -->
-      <div class="exam-match-arrow" aria-hidden="true">
-        <svg viewBox="0 0 64 24" fill="none">
-          <path d="M2 12 H54" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          <path d="M48 5 L60 12 L48 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        </svg>
-        <span class="arrow-label">같은 개념</span>
-      </div>
-
-      <!-- RIGHT — Terra Nova textbook capture -->
-      <article class="exam-card book-card">
-        <div class="exam-role-badge book-badge">
-          <span class="role-dot" aria-hidden="true"></span>
-          Terra Nova 교재
-        </div>
-        <div class="exam-card-tag">Terra Nova English · 2026.06 · Lesson 4 (Jupiter)</div>
-        <h3 class="exam-card-num">Why People Break the Rules They Inherit</h3>
-        <div class="exam-card-body">
-          <p class="exam-passage">
-            Every society teaches its members a set of <mark>cultural goals</mark> — what counts as
-            success — and a set of <mark>institutional means</mark> — the rules you're allowed to use
-            to chase them. Robert Merton noticed that when those two halves drift apart, people quietly
-            sort themselves into <em>five strategies</em>: conform, innovate, ritualize, retreat, or rebel.
-            The street vendor who cheats the till and the monk who abandons ambition are reading the
-            <em>same</em> social map — they've simply chosen different exits.
-          </p>
-          <p class="exam-passage-ko-min">
-            모든 사회는 구성원에게 <strong>문화적 목표</strong>(무엇이 성공인가)와 <strong>제도적 수단</strong>(어떤 방법으로 그 목표를 좇을 수 있는가)을 가르친다.
-            머튼은 이 둘이 어긋날 때 사람들이 조용히 <em>다섯 가지 전략</em> — 동조·혁신·의례·도피·반역 — 으로 갈라진다고 보았다.
-            금고를 속이는 노점상과 야망을 버린 수도자는 같은 사회 지도를 읽고 있을 뿐, 서로 다른 출구를 고른 것이다.
-          </p>
-          <div class="exam-comprehension">
-            <span class="q-mark" aria-hidden="true">Q.</span>
-            What does Merton say happens when <em>goals</em> and <em>means</em> drift apart?
-          </div>
-        </div>
-        <div class="exam-key-shared">
-          <span class="key-label">핵심 개념</span>
-          <strong>아노미 이론 · 문화 목표 · 제도적 수단</strong>
-          <span class="key-curr">사회문화 Ⅲ-2</span>
-        </div>
-        <div class="exam-card-foot">출처 Terra Nova Textbook · 2026.06 · Passage 04</div>
-      </article>
-      </div><!-- /.exam-match-grid (사회 pair) -->
-    </div><!-- /.exam-match-pair (사회) -->
 
     <!-- ============== Pair 5: 고3 생활과 윤리 ↔ Sun (Lv 10) ============== -->
     <div class="exam-match-pair" data-grade="g3-ethics">
@@ -4458,110 +4663,9 @@ body.bigbang-done .terra-hint,
     </div><!-- /.exam-match-stack -->
   </section>
 
-  <!-- =============== LEVEL ORBIT (Leonardo-style 10 level picker) =============== -->
-  <section id="orbit" class="level-orbit reveal" aria-label="Terra Nova 10 레벨 선택">
-    <div class="orbit-shell">
-      <div class="orbit-head">
-        <div>
-          <h2 class="orbit-title">
-            <span class="title-line">내 수준에 맞는</span>
-            <span class="title-line"><span class="mint">레벨</span>을 고르세요.</span>
-          </h2>
-        </div>
-        <p class="orbit-copy">각 레벨마다 학년교과가 연계되어 있습니다. <br>레벨 테스트로 실제 독해 출발점을 확인해 보세요.</p>
-      </div>
-
-      <div class="orbit-console" id="orbit-picker">
-        <div class="orbit-preview planet-mars" id="orbit-preview" style="--level-accent:#E8704C;">
-          <div class="preview-topline">
-            <span class="preview-chip" id="preview-chip">지름 3,474 km</span>
-          </div>
-          <div class="preview-planet-wrap" aria-hidden="true">
-            <div class="preview-planet" id="preview-planet"></div>
-          </div>
-          <div class="preview-meta">
-            <h3 class="preview-name" id="preview-name">MARS</h3>
-            <p class="preview-grade" id="preview-grade">초5 교과연계</p>
-            <p class="preview-desc" id="preview-desc">과학의 동식물 한살이와 물질의 성질, 사회의 우리 고장과 지도 읽기, 수학의 분수·길이·도형 개념을 쉬운 영어 지문으로 연결합니다.</p>
-            <a href="level_test.html?level=1" class="preview-cta" id="preview-cta">이 행성으로 레벨 테스트</a>
-          </div>
-        </div>
-
-        <div class="orbit-selector" aria-label="10개 레벨 행성 선택">
-          <div class="orbit-grid">
-
-            <button class="level-card planet-mars is-active" type="button" aria-pressed="true" data-level="1" data-name="MARS" data-grade="초5 교과연계" data-size="지름 6,779 km" data-desc="과학의 태양계와 용해·용액, 사회의 역사 인물과 환경, 수학의 약수·배수·비와 비율을 주제문과 세부 정보 독해로 다룹니다.">
-              <span class="planet-thumb" aria-hidden="true"></span>
-              <span class="level-card-meta">
-                <span class="level-card-num">LV 01.</span>
-                <span class="level-card-name">MARS : 초5 교과연계</span>
-                <span class="level-card-size">지름 6,779 km</span>
-              </span>
-            </button>
-            <button class="level-card planet-venus" type="button" aria-pressed="false" data-level="2" data-name="VENUS" data-grade="초6 교과연계" data-size="지름 12,104 km" data-desc="과학의 에너지와 생태계, 사회의 세계 지리와 민주 시민, 수학의 비례식·원·자료 표현을 원인과 결과 중심 지문으로 연결합니다.">
-              <span class="planet-thumb" aria-hidden="true"></span>
-              <span class="level-card-meta">
-                <span class="level-card-num">LV 02.</span>
-                <span class="level-card-name">VENUS : 초6 교과연계</span>
-                <span class="level-card-size">지름 12,104 km</span>
-              </span>
-            </button>
-            <button class="level-card planet-terra" type="button" aria-pressed="false" data-level="3" data-name="TERRA" data-grade="중1 교과연계" data-size="지름 12,742 km" data-desc="과학의 힘과 운동·생물 다양성, 사회의 지리와 역사 기초, 수학의 정수·방정식·자료 단원을 영어 개념 설명과 비교 지문으로 읽습니다.">
-              <span class="planet-thumb" aria-hidden="true"></span>
-              <span class="level-card-meta">
-                <span class="level-card-num">LV 03.</span>
-                <span class="level-card-name">TERRA : 중1 교과연계</span>
-                <span class="level-card-size">지름 12,742 km</span>
-              </span>
-            </button>
-            <button class="level-card planet-neptune" type="button" aria-pressed="false" data-level="4" data-name="NEPTUNE" data-grade="중2 교과연계" data-size="지름 49,244 km" data-desc="과학의 전기와 자기·물질 변화, 사회의 세계사와 사회 문제, 수학의 일차함수·확률을 전개 순서와 근거 찾기 지문으로 확장합니다.">
-              <span class="planet-thumb" aria-hidden="true"></span>
-              <span class="level-card-meta">
-                <span class="level-card-num">LV 04.</span>
-                <span class="level-card-name">NEPTUNE : 중2 교과연계</span>
-                <span class="level-card-size">지름 49,244 km</span>
-              </span>
-            </button>
-            <button class="level-card planet-uranus" type="button" aria-pressed="false" data-level="5" data-name="URANUS" data-grade="중3 교과연계" data-size="지름 50,724 km" data-desc="과학의 유전·화학 반응·천체, 사회의 현대 사회와 시민 참여, 수학의 이차함수와 통계를 고등 영어식 문장 구조로 예열합니다.">
-              <span class="planet-thumb" aria-hidden="true"></span>
-              <span class="level-card-meta">
-                <span class="level-card-num">LV 05.</span>
-                <span class="level-card-name">URANUS : 중3 교과연계</span>
-                <span class="level-card-size">지름 50,724 km</span>
-              </span>
-            </button>
-            <button class="level-card planet-saturn" type="button" aria-pressed="false" data-level="6" data-name="SATURN" data-grade="고1 교과연계" data-size="지름 116,460 km" data-desc="통합과학의 물질·시스템·변화, 통합사회의 인간·공간·시장, 공통수학의 함수와 자료 해석을 내신형·모의고사형 지문으로 묶습니다.">
-              <span class="planet-thumb" aria-hidden="true"></span>
-              <span class="level-card-meta">
-                <span class="level-card-num">LV 06.</span>
-                <span class="level-card-name">SATURN : 고1 교과연계</span>
-                <span class="level-card-size">지름 116,460 km</span>
-              </span>
-            </button>
-            <button class="level-card planet-jupiter" type="button" aria-pressed="false" data-level="7" data-name="JUPITER" data-grade="고2 교과연계" data-size="지름 139,820 km" data-desc="생명과학·지구과학·물리·화학 선택 과목, 사회문화·경제·생활과 윤리 소재를 수능형 자료 해석과 복합 문항으로 다룹니다.">
-              <span class="planet-thumb" aria-hidden="true"></span>
-              <span class="level-card-meta">
-                <span class="level-card-num">LV 07.</span>
-                <span class="level-card-name">JUPITER : 고2 교과연계</span>
-                <span class="level-card-size">지름 139,820 km</span>
-              </span>
-            </button>
-            <button class="level-card planet-sun" type="button" aria-pressed="false" data-level="8" data-name="SUN" data-grade="고3·N수생 교과연계" data-size="지름 1,392,700 km" data-desc="고등 전 과목의 과학·사회·인문 소재를 수능 영어 지문으로 통합하고, 빈칸·순서·삽입·요약 유형에서 교과 개념을 빠르게 판단합니다.">
-              <span class="planet-thumb" aria-hidden="true"></span>
-              <span class="level-card-meta">
-                <span class="level-card-num">LV 08.</span>
-                <span class="level-card-name">SUN : 고3·N수생 교과연계</span>
-                <span class="level-card-size">지름 1,392,700 km</span>
-              </span>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- =============== REVIEW RAIN — sample/beta-test only =============== -->
-  <section class="review-rain reveal" aria-label="샘플·베타 테스트 후기">
+  <section id="reviews" class="review-rain reveal" aria-label="샘플·베타 테스트 후기">
     <div class="review-rain-head">
       <h2 class="review-rain-title">쏟아지는 <span class="accent">후기들</span></h2>
     </div>
@@ -4671,11 +4775,63 @@ body.bigbang-done .terra-hint,
     </div>
   </section>
 
+
+  <!-- =============== GRADE MATCHING =============== -->
+  <section id="grade-matching" class="section levels">
+    <div class="inner reveal">
+      <div class="head">
+        <span class="label">8 Levels</span>
+        <h2>초5부터 N수생까지,<br><span class="mint">학년별 매칭</span>.</h2>
+      </div>
+      <div class="planet-grid">
+        <div class="planet-card" style="--p-img:url('assets/3d/planets-normalized/mars.png');">
+          <div class="pcard-img"></div>
+          <div class="pcard-name">MARS</div>
+          <div class="pcard-grade">초5</div>
+        </div>
+        <div class="planet-card" style="--p-img:url('assets/3d/planets-normalized/venus.png');">
+          <div class="pcard-img"></div>
+          <div class="pcard-name">VENUS</div>
+          <div class="pcard-grade">초6</div>
+        </div>
+        <div class="planet-card" style="--p-img:url('assets/3d/planets-normalized/terra.png');">
+          <div class="pcard-img"></div>
+          <div class="pcard-name">TERRA</div>
+          <div class="pcard-grade">중1</div>
+        </div>
+        <div class="planet-card" style="--p-img:url('assets/3d/planets-normalized/neptune.png');">
+          <div class="pcard-img"></div>
+          <div class="pcard-name">NEPTUNE</div>
+          <div class="pcard-grade">중2</div>
+        </div>
+        <div class="planet-card" style="--p-img:url('assets/3d/planets-normalized/uranus.png');">
+          <div class="pcard-img"></div>
+          <div class="pcard-name">URANUS</div>
+          <div class="pcard-grade">중3</div>
+        </div>
+        <div class="planet-card" style="--p-img:url('assets/3d/planets-normalized/saturn.png');">
+          <div class="pcard-img"></div>
+          <div class="pcard-name">SATURN</div>
+          <div class="pcard-grade">고1</div>
+        </div>
+        <div class="planet-card" style="--p-img:url('assets/3d/planets-normalized/jupiter.png');">
+          <div class="pcard-img"></div>
+          <div class="pcard-name">JUPITER</div>
+          <div class="pcard-grade">고2</div>
+        </div>
+        <div class="planet-card" style="--p-img:url('assets/3d/planets-normalized/sun.png');">
+          <div class="pcard-img"></div>
+          <div class="pcard-name">SUN</div>
+          <div class="pcard-grade">고3·N수생</div>
+        </div>
+      </div>
+    </div>
+  </section>
   <!-- =============== PLANS =============== -->
-  <section id="plans" class="plans reveal">
+  <section id="plans" class="plans reveal title-in">
     <div class="plans-head">
-      <span class="plans-kicker">CHOOSE YOUR FIRST MONTH</span>
-      <h2 class="plans-h2">한 지문에, <span class="accent">한 단원</span>이 들어 있습니다.</h2>
+      <span class="plans-kicker">Plans</span>
+      <h2 class="plans-h2"><span class="accent">세가지 구독 플랜</span>.</h2>
     </div>
 
     <div class="plans-grid">
@@ -4740,11 +4896,13 @@ body.bigbang-done .terra-hint,
   </section>
 
   <!-- =============== FINAL CTA =============== -->
-  <section class="final reveal">
-    <div class="final-kicker">Terra Nova English</div>
-    <h2>영어로 전과목 학습</h2>
-    <a class="final-btn" href="order.html?plan=light&ref=earlybird">지금 시작하기</a>
-    <a class="final-link" href="subscription_detail_complete.html">더 자세한 안내 →</a>
+  <section id="final-cta" class="transform reveal">
+    <div class="inner">
+      <div class="tf-ctas">
+        <a href="level_test.html" class="btn-pri"><span>LEVEL TEST</span></a>
+        <a href="sample.html" class="btn-sec"><span>SAMPLE</span></a>
+      </div>
+    </div>
   </section>
 
 </main>
@@ -4787,9 +4945,21 @@ body.bigbang-done .terra-hint,
   if (!location.hash) {
     window.scrollTo(0, 0);
   }
+  function scrollToHashTarget() {
+    if (!location.hash) return;
+    try {
+      var target = document.querySelector(location.hash);
+      if (target) target.scrollIntoView();
+    } catch (_) {}
+  }
   window.addEventListener('load', function () {
     if (!location.hash) window.scrollTo(0, 0);
+    else {
+      setTimeout(scrollToHashTarget, 0);
+      setTimeout(scrollToHashTarget, 450);
+    }
   });
+  window.addEventListener('hashchange', scrollToHashTarget);
 
   // ---------- Reveal observers (always run; cheap) ----------
   function initReveals() {
@@ -5618,6 +5788,22 @@ document.addEventListener('DOMContentLoaded', function () {
       if (ul) ul.classList.remove('open');
     });
   });
+});
+
+// Real Book rows — replay the stagger as each sample row enters the viewport.
+document.addEventListener('DOMContentLoaded', function () {
+  var rows = document.querySelectorAll('.book-row');
+  if (!rows.length) return;
+  if (!('IntersectionObserver' in window)) {
+    rows.forEach(function (row) { row.classList.add('in-view'); });
+    return;
+  }
+  var rowIO = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      entry.target.classList.toggle('in-view', entry.isIntersecting);
+    });
+  }, { threshold: 0.18 });
+  rows.forEach(function (row) { rowIO.observe(row); });
 });
 </script>
 

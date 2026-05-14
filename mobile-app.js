@@ -22,7 +22,7 @@
     { href: 'sample.html',                      label: '샘플',   icon: '📖', aliases: ['sample.html'] },
     { href: 'level_test.html',                  label: '레벨',   icon: '🎯', aliases: ['level_test.html'] },
     { href: 'mypage.html',                      label: '마이',   icon: '👤', aliases: ['mypage.html', 'login.html', 'signup.html'] },
-    { href: 'subscription_detail_complete.html',label: '구독',   icon: '✨', aliases: ['subscription_detail_complete.html', 'order.html', 'market.html', 'market_checkout.html'] }
+    { href: 'index.html#plans',                 label: '구독',   icon: '✨', aliases: ['index.html#plans', 'order.html', 'market.html', 'market_checkout.html'] }
   ];
 
   // ── 2. Inject tab bar ────────────────────────────────────────

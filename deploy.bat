@@ -10,7 +10,7 @@ echo [Terra Nova] SW CACHE_VERSION → tn-v2-%CACHE_TS%
 powershell -Command "$c = Get-Content -Raw service-worker.js; $c = $c -replace 'tn-v\d+-[\d-]+', 'tn-v2-%CACHE_TS%'; [IO.File]::WriteAllText('service-worker.js', $c)"
 
 echo [Terra Nova] 변경 파일 확인 중...
-git add index.html order.html sample.html level_test.html faq.html subscription_detail_complete.html sitemap.html mypage.html login.html signup.html market.html market_checkout.html naver-callback.html privacy.html refund.html terms.html shared.css service-worker.js pwa-register.js
+git add index.html order.html sample.html level_test.html faq.html sitemap.html mypage.html login.html signup.html market.html market_checkout.html naver-callback.html privacy.html refund.html terms.html shared.css service-worker.js pwa-register.js
 
 git diff --cached --quiet
 if %errorlevel% == 0 (

@@ -21,8 +21,7 @@
     }
   }
 
-  const isLightTheme = document.body.classList.contains('light-theme') ||
-                       location.pathname.includes('subscription_detail_complete');
+  const isLightTheme = document.body.classList.contains('light-theme');
 
   const bg = isLightTheme ? '#fff' : '#03030A';
   const fg = isLightTheme ? 'rgba(0,0,0,.55)' : 'rgba(240,240,240,.45)';
