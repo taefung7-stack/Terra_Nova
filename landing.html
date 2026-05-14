@@ -4061,14 +4061,12 @@ body.bigbang-done .terra-hint,
     <li><a href="index.html">홈</a></li>    <li><a href="level_test.html">레벨테스트</a></li>
     <li><a href="sample.html">무료샘플</a></li>
     <li><a href="market.html">마켓</a></li>
-    <li><a href="event.html" style="color:#00FFA3;">이벤트</a></li>
+    <li><a href="event.html">이벤트</a></li>
     <li><a href="faq.html">FAQ</a></li>
-    <!-- 구독 신청 (CTA, sparkling pill) — left of login -->
+    <li data-auth="guest"><a href="login.html">로그인</a></li>
+    <li data-auth="user" style="display:none;"><a href="mypage.html" style="color:var(--accent);">마이페이지</a></li>
+    <li data-auth="user" style="display:none;"><a href="#" data-action="logout">로그아웃</a></li>
     <li><a href="order.html" class="nav-cta">구독 신청</a></li>
-    <!-- 로그인 (white pill, hover → mint) — right side -->
-    <li data-auth="guest"><a href="login.html" class="nav-login">로그인</a></li>
-    <li data-auth="user" style="display:none;"><a href="mypage.html" class="nav-login">마이페이지</a></li>
-    <li data-auth="user" style="display:none;"><a href="#" data-action="logout" class="nav-login">로그아웃</a></li>
   </ul>
   <button class="nav-hamburger" id="nav-hamburger" onclick="toggleNav()" aria-label="메뉴"><span></span><span></span><span></span></button>
 </nav>
@@ -6209,37 +6207,25 @@ body.bigbang-done .terra-hint,
       // Camera parallax — pre-bigbang only (gives crosses some motion).
       // POST-bigbang: camera locked at (0,0,12) so TERRA NOVA Sprite's offset is the
       // sole source of motion → DOM tagline/english can match it exactly (same mouseX).
-      var paraX = bigBangTriggered ? 0 : 0.6;
-      var paraY = bigBangTriggered ? 0 : 0.4;
+      // 사용자 요청: TERRA NOVA 텍스트/tagline/ENGLISH 는 마우스 이동에 반응하지 않고,
+      // 카메라(=별/배경 패럴랙스)만 마우스에 따라 살짝 움직임.
+      var paraX = bigBangTriggered ? 0.18 : 0.6;
+      var paraY = bigBangTriggered ? 0.12 : 0.4;
       camera.position.x += (mouseX * paraX - camera.position.x) * 0.04;
       camera.position.y += (mouseY * paraY - camera.position.y) * 0.04;
       camera.lookAt(0, 0, 0);
-      // Group parallax: TERRA NOVA Sprite + tagline pill + ENGLISH all driven by the
-      // SAME smoothed mouseX/Y → guaranteed in lockstep. No secondary easing on TN.
-      // DYNAMIC calibration (was hardcoded for viewport_h=900):
-      //   PerspectiveCamera FOV=50° at z=12, terraNova at z=0
-      //   → visible world height = 2 × 12 × tan(25°) ≈ 11.19 units
-      //   → 1 world unit = currentHeroHeight / 11.19 px
-      //   So DOM displacement (px) = WebGL displacement (world units) × pxPerUnit
-      //   This keeps lockstep exact at ANY viewport size (1080p, 720p, etc.)
+
+      // TN sprite + DOM 텍스트 고정 (마우스 이동 무관)
       if (bigBangTriggered && terraNova.visible) {
-        var tnDx = -mouseX * 0.5;   // world units
-        var tnDy = -mouseY * 0.32;  // world units
-        terraNova.position.x = tnDx;
-        terraNova.position.y = tnDy;
-        var pxPerUnit = hero.clientHeight / 11.19;
-        // X axis: Three.js world+X = screen right = CSS translateX(+) → SAME sign
-        // Y axis: Three.js world+Y = screen UP, but CSS translateY(+) = screen DOWN
-        //         → INVERT sign for DOM Y to keep visual lockstep with terraNova
-        var domDx = (tnDx * pxPerUnit).toFixed(1) + 'px';
-        var domDy = (-tnDy * pxPerUnit).toFixed(1) + 'px';
+        terraNova.position.x = 0;
+        terraNova.position.y = 0;
         if (taglineEl) {
-          taglineEl.style.setProperty('--para-x', domDx);
-          taglineEl.style.setProperty('--para-y', domDy);
+          taglineEl.style.setProperty('--para-x', '0px');
+          taglineEl.style.setProperty('--para-y', '0px');
         }
         if (englishEl) {
-          englishEl.style.setProperty('--para-x', domDx);
-          englishEl.style.setProperty('--para-y', domDy);
+          englishEl.style.setProperty('--para-x', '0px');
+          englishEl.style.setProperty('--para-y', '0px');
         }
       }
 
