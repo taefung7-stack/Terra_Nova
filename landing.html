@@ -783,6 +783,10 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   color:var(--accent);
   text-shadow:0 0 56px rgba(0,255,163,.28);
 }
+.mega-line .char.mint-char {
+  color:var(--accent);
+  text-shadow:0 0 48px rgba(0,255,163,.32);
+}
 .mega-line-solution {
   font-size:clamp(3rem, 7.2vw, 9.2rem);
   letter-spacing:-0.035em;
@@ -4098,8 +4102,7 @@ body.bigbang-done .terra-hint,
   <section id="proof" class="curriculum-declaration story-section reveal">
     <div class="declaration-wrap">
       <h2 class="declaration-stack">
-        <span class="mega-line mega-line-solution">우리는</span>
-        <span class="mega-line mega-line-solution mint">전학년, 전과목을</span>
+        <span class="mega-line mega-line-solution" data-mint-range="4-12">우리는 전학년, 전과목을</span>
         <span class="mega-line mega-line-solution">영어로 공부합니다.</span>
       </h2>
       <p class="declaration-sub">전 학년 교과과정 그대로 영어로 복습합니다.</p>
@@ -4190,7 +4193,7 @@ body.bigbang-done .terra-hint,
   <section id="exam-match" class="exam-match reveal" aria-label="모의고사와 Terra Nova 교재 내용 비교">
     <div class="exam-match-head">
       <span class="story-kicker split" data-split>실제 시험 그대로</span>
-      <h2 class="story-title split" data-split><span class="accent">수학·과학·사회 시험</span>에 나온 그 개념을, <span class="accent">영어 지문</span>으로.</h2>
+      <h2 class="story-title split" data-split><span class="accent">수학·과학·사회 시험</span>에 <br>나온 그 개념을, <span class="accent">영어 지문</span>으로.</h2>
     </div>
 
     <div class="exam-match-stack">
@@ -5230,11 +5233,16 @@ body.bigbang-done .terra-hint,
       megaLines.forEach(function (el) {
         if (el.dataset.megaSplit === '1') return;
         var text = el.textContent;
+        var range = (el.dataset.mintRange || '').split('-').map(function (n) { return parseInt(n, 10); });
+        var mintStart = range.length === 2 ? range[0] : -1;
+        var mintEnd   = range.length === 2 ? range[1] : -1;
         el.textContent = '';
         var i = 0;
         for (var ch of text) {
           var span = document.createElement('span');
-          span.className = 'char' + (ch === ' ' ? ' space' : '');
+          var cls = 'char' + (ch === ' ' ? ' space' : '');
+          if (i >= mintStart && i <= mintEnd) cls += ' mint-char';
+          span.className = cls;
           span.textContent = ch === ' ' ? ' ' : ch;
           span.style.transitionDelay = (i * 0.035) + 's';
           el.appendChild(span);
