@@ -297,32 +297,43 @@
       return;
     }
 
-    // 로그인 성공 후 admin 여부 확인 → admin이면 admin.html, 아니면 redirect 또는 mypage
-    // (RLS recursion 같은 부수 문제로 hang되어도 setTimeout fallback이 강제 이동)
+    // 로그인 성공 — admin 체크는 800ms 안에 끝나면 admin.html, 아니면 그냥 redirect(=home 또는 mypage)
+    // 사용자 피드백(2026-05-15): 로그인 후 "로그인 중" 멈춤 현상 → admin select 가 hang 하면
+    // 안전 타이머가 무조건 1초 안에 redirect 시키도록 더 짧게.
+    const userId = data?.user?.id;
+    let redirectedEarly = false;
     const safetyTimer = setTimeout(() => {
-      console.warn('[auth] post-login redirect timeout, forcing redirect');
-      location.href = getRedirect();
-    }, 1500);
+      if (redirectedEarly) return;
+      redirectedEarly = true;
+      console.warn('[auth] post-login safety redirect');
+      location.replace(getRedirect());
+    }, 1000);
 
     try {
-      const userId = data?.user?.id;
       if (userId) {
         const { data: prof } = await supabase
           .from('profiles')
           .select('is_admin')
           .eq('id', userId)
           .maybeSingle();
+        if (redirectedEarly) return;
+        redirectedEarly = true;
         clearTimeout(safetyTimer);
         if (prof?.is_admin === true) {
-          location.href = 'admin.html';
-          return;
+          location.replace('admin.html');
+        } else {
+          location.replace(getRedirect());
         }
+        return;
       }
     } catch (e) {
       console.warn('[auth] post-login profile check failed:', e?.message);
     }
-    clearTimeout(safetyTimer);
-    location.href = getRedirect();
+    if (!redirectedEarly) {
+      redirectedEarly = true;
+      clearTimeout(safetyTimer);
+      location.replace(getRedirect());
+    }
   }
 
   async function openForgotPassword(e) {

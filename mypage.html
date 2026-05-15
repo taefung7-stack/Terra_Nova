@@ -745,23 +745,9 @@
 
 <!-- Supabase 실데이터 연동 -->
 <script type="module">
-  import { supabase, requireAuth, getProfile, getActiveSubscription, signOut, isAdmin } from './supabase-client.js';
+  import { supabase, getSession, getProfile, getActiveSubscription, signOut, isAdmin } from './supabase-client.js';
 
-  // ── 로그아웃 즉시 바인딩 (IIFE 가 hang 해도 동작하도록 모듈 top-level 에서 등록) ──
-  document.addEventListener('click', async (e) => {
-    const btn = e.target.closest('#btn-logout, [data-action="logout"]');
-    if (!btn) return;
-    e.preventDefault();
-    if (!confirm('로그아웃 하시겠습니까?')) return;
-    try {
-      await signOut();
-    } catch (err) {
-      console.error('[logout] signOut failed', err);
-      // 폴백: 클라이언트 세션 강제 제거 + 홈으로
-      try { await supabase.auth.signOut({ scope: 'local' }); } catch {}
-      location.href = 'index.html';
-    }
-  }, true);
+  // 로그아웃은 nav-auth.js 가 capture phase 로 처리 — 별도 바인딩 불필요
 
   const $ = (id) => document.getElementById(id);
   const escapeHtml = (s) => String(s ?? '')
@@ -778,32 +764,15 @@
     cancelled: '취소됨', refunded: '환불됨'
   };
 
-  // user resolver: getSession() 이 getUser() 보다 빠르고 캐시 사용 → hang 회피.
-  // 5초 안에 둘 다 실패하면 login.html 로 redirect.
-  async function resolveUser() {
-    const sessP = supabase.auth.getSession().then(r => r.data?.session?.user || null).catch(() => null);
-    const userP = supabase.auth.getUser().then(r => r.data?.user || null).catch(() => null);
-    const timeoutP = new Promise(res => setTimeout(() => res('TIMEOUT'), 5000));
-    const winner = await Promise.race([sessP, userP, timeoutP]);
-    if (winner === 'TIMEOUT') {
-      console.error('[mypage] auth resolve timeout — falling back to redirect');
-      return null;
-    }
-    if (winner) return winner;
-    // 첫 번째가 null 이면 두 번째까지 끝나는 걸 기다림
-    const [s, u] = await Promise.all([sessP, userP]);
-    return s || u;
-  }
-
   (async () => {
     console.log('[mypage] init start');
-    let user = null;
-    try { user = await resolveUser(); }
-    catch (e) { console.error('[mypage] resolveUser threw', e); }
+    // 단일 진실 출처: getSession() — localStorage 의 sb-* 토큰만 읽음 (네트워크 호출 없음)
+    const session = await getSession();
+    const user = session?.user || null;
     if (!user) {
-      console.warn('[mypage] no user — redirecting');
+      console.warn('[mypage] no session — redirecting to login');
       const back = encodeURIComponent(location.pathname + location.search);
-      location.href = 'login.html?redirect=' + back;
+      location.replace('login.html?redirect=' + back);
       return;
     }
     console.log('[mypage] auth ok', user.email);
