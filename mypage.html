@@ -87,6 +87,30 @@
   .page-title{font-family:'Space Grotesk',sans-serif;font-weight:900;font-size:2.2rem;letter-spacing:.01em;color:#fff;margin-bottom:6px;-webkit-text-stroke:0.6px currentColor;}
   .page-sub{font-size:.82rem;color:var(--dim);margin-bottom:36px;}
 
+  /* data-auth 요소는 기본 hidden — nav-auth.js / mypage IIFE 가 권한 확인 후 노출 */
+  [data-auth="admin"], [data-auth="user"], [data-auth="guest"]{display:none;}
+
+  /* 관리자 배너 (대시보드 상단) */
+  .admin-banner{
+    display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
+    margin-bottom:20px;padding:14px 20px;
+    background:linear-gradient(90deg,rgba(245,158,11,.12),rgba(245,158,11,.04));
+    border:1px solid rgba(245,158,11,.35);border-radius:10px;
+    text-decoration:none;
+  }
+  .admin-banner:hover{background:linear-gradient(90deg,rgba(245,158,11,.18),rgba(245,158,11,.06));}
+  .admin-banner-left{display:flex;align-items:center;gap:12px;}
+  .admin-banner-icon{font-size:1.4rem;}
+  .admin-banner-title{color:#F59E0B;font-weight:800;font-size:.92rem;}
+  .admin-banner-sub{color:var(--dim);font-size:.74rem;margin-top:2px;}
+  .admin-banner-cta{color:#F59E0B;font-weight:700;font-size:.82rem;}
+
+  /* 사이드바 admin 링크 */
+  .admin-side-link{text-decoration:none;margin-top:8px;padding-top:12px;border-top:1px solid var(--line);}
+
+  /* 모바일 탭 admin */
+  .admin-mobile-tab{text-decoration:none;color:#F59E0B;}
+
   /* SUBSCRIPTION CARD */
   .sub-card{background:var(--card);border:1px solid rgba(0,255,163,.2);border-radius:12px;padding:28px;margin-bottom:24px;position:relative;overflow:hidden;}
   .sub-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),transparent);}
@@ -217,7 +241,7 @@
   <div class="mobile-tab" onclick="switchTab('history',this)">결제내역</div>
   <div class="mobile-tab" onclick="switchTab('reviews',this)">리뷰작성</div>
   <div class="mobile-tab" onclick="switchTab('account',this)">계정설정</div>
-  <a href="admin.html" class="mobile-tab" data-auth="admin" style="display:none;text-decoration:none;color:#F59E0B;">🛡️ 관리자</a>
+  <a href="admin.html" class="mobile-tab admin-mobile-tab" data-auth="admin" data-show-as="block">🛡️ 관리자</a>
 </div>
 
 <div class="page-wrap">
@@ -249,7 +273,7 @@
       <div class="nav-menu-item" onclick="switchTab('account',this)">
         <span class="nav-menu-icon">⚙️</span> 계정 설정
       </div>
-      <a href="admin.html" data-auth="admin" style="display:none;text-decoration:none;margin-top:8px;padding-top:12px;border-top:1px solid var(--line);">
+      <a href="admin.html" class="admin-side-link" data-auth="admin" data-show-as="block">
         <div class="nav-menu-item" style="color:#F59E0B;">
           <span class="nav-menu-icon">🛡️</span> 관리자
         </div>
@@ -264,15 +288,15 @@
     <div class="tab-view active" id="tab-dashboard">
 
       <!-- 관리자 전용 배너 (is_admin=true 인 경우에만 노출) -->
-      <a href="admin.html" data-auth="admin" style="display:none;text-decoration:none;margin-bottom:20px;padding:14px 20px;background:linear-gradient(90deg,rgba(245,158,11,.12),rgba(245,158,11,.04));border:1px solid rgba(245,158,11,.35);border-radius:10px;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;">
-        <div style="display:flex;align-items:center;gap:12px;">
-          <span style="font-size:1.4rem;">🛡️</span>
+      <a href="admin.html" class="admin-banner" data-auth="admin" data-show-as="flex">
+        <div class="admin-banner-left">
+          <span class="admin-banner-icon">🛡️</span>
           <div>
-            <div style="color:#F59E0B;font-weight:800;font-size:.92rem;">관리자 페이지</div>
-            <div style="color:var(--dim);font-size:.74rem;margin-top:2px;">리뷰 승인 · 뉴스레터 · 최근 주문 관리</div>
+            <div class="admin-banner-title">관리자 페이지</div>
+            <div class="admin-banner-sub">리뷰 승인 · 뉴스레터 · 최근 주문 관리</div>
           </div>
         </div>
-        <span style="color:#F59E0B;font-weight:700;font-size:.82rem;">바로가기 →</span>
+        <span class="admin-banner-cta">바로가기 →</span>
       </a>
 
       <h1 class="page-title">MY PAGE</h1>
@@ -806,7 +830,11 @@
     }
     console.log('[mypage] admin =', adminFlag);
     document.querySelectorAll('[data-auth="admin"]').forEach(el => {
-      el.style.display = adminFlag ? '' : 'none';
+      el.style.display = adminFlag ? (el.dataset.showAs || 'block') : 'none';
+    });
+    // data-auth="user" 도 노출 (mypage 는 user 전용 페이지)
+    document.querySelectorAll('[data-auth="user"]').forEach(el => {
+      el.style.display = el.dataset.showAs || '';
     });
 
     // ── 네비/사이드바 ────────────────────

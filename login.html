@@ -239,7 +239,8 @@
   import { supabase } from './supabase-client.js';
 
   function getRedirect() {
-    return new URLSearchParams(location.search).get('redirect') || 'mypage.html';
+    // 사용자 피드백(2026-05-15): 로그인 후 기본 이동지를 홈으로
+    return new URLSearchParams(location.search).get('redirect') || 'index.html';
   }
   function showFieldErr(id, msg) {
     const el = document.getElementById(id + '-err');
@@ -370,7 +371,7 @@
     const { error } = await supabase.auth.signInWithOAuth({
       provider,
       options: {
-        redirectTo: location.origin + location.pathname.replace(/login\.html$/, 'mypage.html')
+        redirectTo: location.origin + location.pathname.replace(/login\.html$/, 'index.html')
       }
     });
     if (error) alert(provider + ' 로그인 실패: ' + error.message);

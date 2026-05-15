@@ -4,13 +4,16 @@
 
 import { supabase, signOut, isAdmin, getSession } from './supabase-client.js';
 
+// 요소가 보여질 때 어떤 display 값을 쓸지 — data-show-as 속성 우선, 없으면 빈 문자열(=원래 CSS 값)
+function showVal(el) { return el.dataset.showAs || ''; }
+
 async function applyAuthState(session) {
   const loggedIn = !!session?.user;
   document.querySelectorAll('[data-auth="guest"]').forEach(el => {
-    el.style.display = loggedIn ? 'none' : '';
+    el.style.display = loggedIn ? 'none' : showVal(el);
   });
   document.querySelectorAll('[data-auth="user"]').forEach(el => {
-    el.style.display = loggedIn ? '' : 'none';
+    el.style.display = loggedIn ? showVal(el) : 'none';
   });
 
   if (loggedIn) {
@@ -21,7 +24,7 @@ async function applyAuthState(session) {
     let admin = false;
     try { admin = await isAdmin(session.user.id); } catch {}
     document.querySelectorAll('[data-auth="admin"]').forEach(el => {
-      el.style.display = admin ? '' : 'none';
+      el.style.display = admin ? showVal(el) : 'none';
     });
   } else {
     document.querySelectorAll('[data-auth="admin"]').forEach(el => {
