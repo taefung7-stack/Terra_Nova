@@ -298,43 +298,9 @@
       return;
     }
 
-    // 로그인 성공 — admin 체크는 800ms 안에 끝나면 admin.html, 아니면 그냥 redirect(=home 또는 mypage)
-    // 사용자 피드백(2026-05-15): 로그인 후 "로그인 중" 멈춤 현상 → admin select 가 hang 하면
-    // 안전 타이머가 무조건 1초 안에 redirect 시키도록 더 짧게.
-    const userId = data?.user?.id;
-    let redirectedEarly = false;
-    const safetyTimer = setTimeout(() => {
-      if (redirectedEarly) return;
-      redirectedEarly = true;
-      console.warn('[auth] post-login safety redirect');
-      location.replace(getRedirect());
-    }, 1000);
-
-    try {
-      if (userId) {
-        const { data: prof } = await supabase
-          .from('profiles')
-          .select('is_admin')
-          .eq('id', userId)
-          .maybeSingle();
-        if (redirectedEarly) return;
-        redirectedEarly = true;
-        clearTimeout(safetyTimer);
-        if (prof?.is_admin === true) {
-          location.replace('admin.html');
-        } else {
-          location.replace(getRedirect());
-        }
-        return;
-      }
-    } catch (e) {
-      console.warn('[auth] post-login profile check failed:', e?.message);
-    }
-    if (!redirectedEarly) {
-      redirectedEarly = true;
-      clearTimeout(safetyTimer);
-      location.replace(getRedirect());
-    }
+    // 로그인 성공 — 사용자 피드백(2026-05-15): 관리자 계정이어도 로그인 직후엔 홈으로.
+    // 관리자 페이지는 nav 의 🛡️ 관리자 링크 또는 mypage 의 관리자 배너에서 진입.
+    location.replace(getRedirect());
   }
 
   async function openForgotPassword(e) {
