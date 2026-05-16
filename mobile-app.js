@@ -90,13 +90,116 @@
     }, { passive: true });
   }
 
-  // ── 4. Boot ──────────────────────────────────────────────────
+  // ── 4. Link-in-bio mode (index.html / landing.html only) ───
+  // linktr.ee/litt.ly 감성 — 폰 홈 화면을 프로필 + 링크 카드 리스트로 대체.
+  // 웹/태블릿(>680px) 에서는 이 함수까지 도달하지도 않음 (파일 최상단 가드).
+  // 다른 페이지(sample, mypage 등)에서도 발동하지 않음 — path 화이트리스트.
+  var BIO_PAGES = ['', '/', 'index.html', 'landing.html'];
+
+  // 링크 카드 데이터. 순서 = 노출 순서.
+  var BIO_LINKS = [
+    { type: 'feature', icon: '📖', title: '무료 샘플 받기', sub: '한 지문에 한 단원 — 직접 보기', href: 'sample.html' },
+    { type: 'section', label: '시작하기' },
+    { type: 'link', icon: '🎯', title: '내 레벨 알아보기',   sub: '초5~고3 8단계 진단',          href: 'level_test.html' },
+    { type: 'link', icon: '✨', title: '월간 구독',          sub: 'PREMIUM 58,900원 / 월',       href: 'index.html#plans' },
+    { type: 'link', icon: '📚', title: '책 미리보기',         sub: '실제 134p 풀북 구성',          href: 'intro.html' },
+    { type: 'section', label: '소식' },
+    { type: 'link', icon: '🎁', title: '이번 달 이벤트',      sub: '신규 구독 혜택 보기',          href: 'event.html' },
+    { type: 'link', icon: '❓', title: '자주 묻는 질문',       sub: '구독·결제·환불 안내',           href: 'faq.html' },
+    { type: 'section', label: '내 계정' },
+    { type: 'link', icon: '👤', title: '마이페이지',          sub: '주문·구독 상태',               href: 'mypage.html' }
+  ];
+
+  // 안전한 DOM 빌더 — innerHTML 사용 안 함.
+  function el(tag, opts) {
+    var node = document.createElement(tag);
+    if (!opts) return node;
+    if (opts.cls)   node.className   = opts.cls;
+    if (opts.text)  node.textContent = opts.text;
+    if (opts.href)  node.href        = opts.href;
+    if (opts.target){node.target     = opts.target; node.rel = 'noopener'; }
+    if (opts.aria)  node.setAttribute('aria-label', opts.aria);
+    if (opts.ariaHidden) node.setAttribute('aria-hidden', 'true');
+    if (opts.id)    node.id          = opts.id;
+    return node;
+  }
+
+  function injectLinkInBio() {
+    var path = (location.pathname.split('/').pop() || '').toLowerCase();
+    if (BIO_PAGES.indexOf(path) === -1) return;
+    if (document.getElementById('m-bio')) return;
+
+    document.body.classList.add('m-bio-mode');
+
+    var bio = el('section', { id: 'm-bio', aria: 'Terra Nova 모바일 홈' });
+
+    // Profile header
+    var profile = el('header', { cls: 'm-bio-profile' });
+    profile.appendChild(el('div', { cls: 'm-bio-avatar', text: 'TN', ariaHidden: true }));
+    profile.appendChild(el('h1',  { cls: 'm-bio-name',   text: 'Terra Nova English' }));
+    profile.appendChild(el('div', { cls: 'm-bio-handle', text: '@terra_nova_english' }));
+    var bioP = el('p', { cls: 'm-bio-bio' });
+    bioP.appendChild(document.createTextNode('한 지문에, 한 단원이 들어 있습니다.'));
+    bioP.appendChild(el('br'));
+    bioP.appendChild(document.createTextNode('초5~고3 교과 연계 영어 독해 학습지.'));
+    profile.appendChild(bioP);
+    bio.appendChild(profile);
+
+    // Social row
+    var social = el('div', { cls: 'm-bio-social' });
+    social.appendChild(el('a', { href: 'https://www.instagram.com/terra_nova_english/', target: '_blank', aria: 'Instagram',     text: '📷' }));
+    social.appendChild(el('a', { href: 'https://pf.kakao.com/_aLExdX',                  target: '_blank', aria: '카카오톡 상담', text: '💬' }));
+    social.appendChild(el('a', { href: 'mailto:support@terra-nova.kr',                                    aria: '이메일 문의',    text: '✉️' }));
+    bio.appendChild(social);
+
+    // Link cards
+    BIO_LINKS.forEach(function (item) {
+      if (item.type === 'section') {
+        bio.appendChild(el('div', { cls: 'm-bio-section', text: item.label }));
+        return;
+      }
+      var isFeature = item.type === 'feature';
+      var a = el('a', { cls: isFeature ? 'm-bio-feature' : 'm-bio-link', href: item.href });
+      a.appendChild(el('span', {
+        cls: isFeature ? 'm-bio-feat-icon' : 'm-bio-icon',
+        text: item.icon,
+        ariaHidden: true
+      }));
+      var body = el('div', { cls: isFeature ? 'm-bio-feat-body' : 'm-bio-body' });
+      body.appendChild(el('div', { cls: isFeature ? 'm-bio-feat-title' : 'm-bio-title', text: item.title }));
+      body.appendChild(el('div', { cls: isFeature ? 'm-bio-feat-sub'   : 'm-bio-sub',   text: item.sub   }));
+      a.appendChild(body);
+      a.appendChild(el('span', {
+        cls: isFeature ? 'm-bio-feat-arrow' : 'm-bio-arrow',
+        text: '›',
+        ariaHidden: true
+      }));
+      bio.appendChild(a);
+    });
+
+    // Footer
+    var footer = el('footer', { cls: 'm-bio-footer' });
+    footer.appendChild(el('a', { href: 'privacy.html', text: '개인정보처리방침' }));
+    footer.appendChild(document.createTextNode(' · '));
+    footer.appendChild(el('a', { href: 'terms.html',   text: '이용약관' }));
+    footer.appendChild(document.createTextNode(' · '));
+    footer.appendChild(el('a', { href: 'refund.html',  text: '환불' }));
+    footer.appendChild(el('br'));
+    footer.appendChild(document.createTextNode('© Terra Nova English'));
+    bio.appendChild(footer);
+
+    document.body.insertBefore(bio, document.body.firstChild);
+  }
+
+  // ── 5. Boot ──────────────────────────────────────────────────
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function () {
+      injectLinkInBio();
       buildTabBar();
       attachSwipe();
     });
   } else {
+    injectLinkInBio();
     buildTabBar();
     attachSwipe();
   }
