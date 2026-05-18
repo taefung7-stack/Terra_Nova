@@ -709,7 +709,7 @@
     nav.appendChild(logo);
 
     var ul = el('ul', { cls: 'nav-links' });
-    // 7번 요청: '구독 신청' 항목은 nav-cta 네모 박스 없이 일반 링크로 (그리고 '구독 플랜 보기'로)
+    // 1번 요청: level_test 와 동일한 메뉴 (마이페이지/관리자/로그아웃 + 구독 신청 nav-cta)
     var ITEMS = [
       { href: 'index.html',          label: '홈' },
       { href: 'level_test.html',     label: '레벨테스트' },
@@ -717,12 +717,20 @@
       { href: 'market.html',         label: '마켓' },
       { href: 'event.html',          label: '이벤트' },
       { href: 'faq.html',            label: 'FAQ' },
-      { href: 'login.html',          label: '로그인' },
-      { href: 'subscription.html',   label: '구독 플랜 보기' }
+      { href: 'login.html',          label: '로그인',  auth: 'guest' },
+      { href: 'mypage.html',         label: '마이페이지', auth: 'user' },
+      { href: 'admin.html',          label: '🛡️ 관리자', auth: 'admin' },
+      { href: '#', logout: true,     label: '로그아웃', auth: 'user' },
+      { href: 'order.html',          label: '구독 신청', cta: true }
     ];
     ITEMS.forEach(function (item) {
       var li = el('li');
-      li.appendChild(el('a', { href: item.href, text: item.label }));
+      if (item.auth) li.setAttribute('data-auth', item.auth);
+      if (item.auth === 'user' || item.auth === 'admin') li.style.display = 'none';
+      var a = el('a', { href: item.href, text: item.label });
+      if (item.cta) a.className = 'nav-cta';
+      if (item.logout) a.setAttribute('data-action', 'logout');
+      li.appendChild(a);
       ul.appendChild(li);
     });
     nav.appendChild(ul);

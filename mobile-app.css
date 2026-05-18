@@ -41,6 +41,15 @@
 
   /* ───────── 2. Base reset ───────── */
   html { font-size: 15px !important; -webkit-text-size-adjust: 100% !important; }
+  /* 6번 요청: 전체 폰트 Pretendard 강제 — Space Grotesk 등 다른 폰트 모두 대체 */
+  body, body *,
+  body h1, body h2, body h3, body h4, body h5, body h6,
+  body p, body a, body span, body div, body button, body input, body select, body textarea,
+  body .hero-title, body .logo-main, body .section-title,
+  body [style*="Space Grotesk"], body [style*="space grotesk"] {
+    font-family: 'Pretendard',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif !important;
+  }
+
   body {
     background: var(--m-bg) !important;
     color: var(--m-txt) !important;
@@ -1032,12 +1041,7 @@
     padding: 2px 7px !important;
     margin-bottom: 6px !important;
   }
-  /* MARKET 제목은 살려두되 viewport 안에 들어오도록 */
-  body[data-page="market"] .hero-title {
-    font-size: 3.6rem !important;
-    margin-bottom: 4px !important;
-    -webkit-text-stroke: 1px currentColor !important;
-  }
+  /* MARKET 제목은 통일 사이즈(3.6rem) 그대로 사용 — 별도 override 없음 */
   body[data-page="market"] .hero-sub { font-size: 0.72rem !important; line-height: 1.45 !important; }
   /* 카테고리 버튼 + 이모지 한번 더 축소 */
   body[data-page="market"] .cat-wrap {
@@ -1061,8 +1065,48 @@
   /* 2번 요청: 카드 내부 폰트 한 단계 더 축소 */
   body[data-page="market"] .pdetail-name { font-size: 1.15rem !important; line-height: 1.3 !important; margin-bottom: 8px !important; }
   body[data-page="market"] .pdetail-desc { font-size: 0.78rem !important; line-height: 1.55 !important; margin-bottom: 12px !important; }
-  body[data-page="market"] .feature-list { margin: 8px 0 12px !important; }
-  body[data-page="market"] .feature-list li { font-size: 0.76rem !important; line-height: 1.5 !important; padding: 3px 0 !important; }
+  body[data-page="market"] .feature-list { margin: 8px 0 12px !important; padding-left: 0 !important; }
+  /* 2번 요청: 체크마크가 글자 가리지 않게 padding-left 키움 (26px → 32px), li 자체 padding 추가 */
+  body[data-page="market"] .feature-list li {
+    font-size: 0.76rem !important;
+    line-height: 1.5 !important;
+    padding: 3px 0 3px 32px !important;
+    position: relative !important;
+  }
+  body[data-page="market"] .feature-list li::before {
+    content: "✓" !important;
+    position: absolute !important;
+    left: 8px !important;
+    top: 3px !important;
+    color: var(--m-accent) !important;
+    font-weight: 900 !important;
+    font-size: 1rem !important;
+  }
+  /* 이모지 카드 (.pdetail-img) 4:3 → 정사각형으로 + 폰트 더 축소 */
+  body[data-page="market"] .pdetail-img {
+    aspect-ratio: auto !important;
+    height: 120px !important;
+    padding: 0 !important;
+    font-size: 2.4rem !important;
+  }
+  /* 레벨 칩 3개 한 줄 (BASIC/ADVANCED/MASTER) */
+  body[data-page="market"] .lv-row {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 5px !important;
+    flex-wrap: nowrap !important;
+  }
+  body[data-page="market"] .lv-chip {
+    padding: 6px 2px !important;
+    text-align: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 1px !important;
+    min-width: 0 !important;
+  }
+  body[data-page="market"] .lv-name { font-size: 0.68rem !important; letter-spacing: 0.02em !important; }
+  body[data-page="market"] .lv-target { font-size: 0.55rem !important; white-space: nowrap !important; }
   body[data-page="market"] .lv-row { gap: 6px !important; margin: 6px 0 12px !important; }
   body[data-page="market"] .lv-chip { padding: 6px 8px !important; }
   body[data-page="market"] .lv-name { font-size: 0.74rem !important; }
@@ -1086,13 +1130,20 @@
   body[data-page="market"] .mf-group label { font-size: 0.66rem !important; }
   body[data-page="market"] .mf-group select { font-size: 0.78rem !important; padding: 5px 8px !important; }
 
-  /* 6번 요청: order 페이지 헤더 — SUBSCRIPTION 가운데 + 크게 */
+  /* 6번 요청: order 페이지 헤더 — SUBSCRIPTION 가운데 + 통일 사이즈 */
   body[data-page="order"] .section-title {
     text-align: center !important;
-    font-size: 2.4rem !important;
+    font-family: 'Pretendard',-apple-system,sans-serif !important;
+    font-size: 3.6rem !important;
     font-weight: 900 !important;
-    letter-spacing: 0.08em !important;
+    letter-spacing: 0.04em !important;
+    line-height: 1 !important;
     margin: 8px 0 18px !important;
+    background: linear-gradient(180deg, #FFFFFF 0%, #D9F7EB 100%) !important;
+    -webkit-background-clip: text !important;
+            background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    text-shadow: 0 2px 28px rgba(0,255,163,0.12) !important;
   }
 
   /* 12번 요청: order.html 레벨 카드 컴팩트 (2-col 그대로, 카드 padding 축소) */
@@ -1167,12 +1218,24 @@
   body[data-page="event"] .hero { min-height: auto !important; padding: 32px 5vw 36px !important; }
   body[data-page="event"] .hero .kicker { margin-bottom: 18px !important; }
 
-  /* 3번 요청: FAQ 페이지 — 하단 4개 버튼 제거 + FAQ 타이틀 확대 */
-  body[data-page="faq"] .bottom-nav { display: none !important; }
-  body[data-page="faq"] .hero .hero-title {
-    font-size: 5.4rem !important;
-    -webkit-text-stroke: 1.5px currentColor !important;
+  /* 4번 요청: 로그인/회원가입 페이지 상단 여백 축소 (128px → fixed nav 보정만) */
+  body[data-page="login"] .auth-wrap,
+  body[data-page="signup"] .auth-wrap {
+    padding: 14px 5vw 32px !important;
   }
+  body[data-page="login"] .auth-logo,
+  body[data-page="signup"] .auth-logo { margin-top: 0 !important; margin-bottom: 18px !important; }
+
+  /* 3번 요청: FAQ 페이지 — 하단 4개 버튼 제거 + 하단 여백 축소 */
+  body[data-page="faq"] .bottom-nav { display: none !important; }
+  body[data-page="faq"] .contact-cta {
+    margin-top: 18px !important;
+    padding: 22px 16px !important;
+  }
+  body[data-page="faq"] .contact-cta h2 { font-size: 1.1rem !important; margin-bottom: 8px !important; }
+  body[data-page="faq"] .contact-cta p { font-size: 0.84rem !important; }
+  /* hero가 거대한 padding-bottom 가지지 않게 */
+  body[data-page="faq"] .hero { padding-bottom: 12px !important; min-height: auto !important; }
 
   /* fab 정리 — data-mobile-no-fab 속성으로 페이지별 제어
      'all'  → 두 버튼(top + plans) 모두 제거
@@ -1188,28 +1251,35 @@
     display: none !important;
   }
 
-  /* 5번 요청: level_test.html hero — LEVEL TEST 폰트 조금만 축소
-     기존 clamp(3.4rem,13vw,11rem) → 모바일에서 2.8rem로 축소 (좌우 overflow 방지)
-     기본 룰 (level_test 외 다른 페이지에는 영향 없도록 sample은 body[data-page]로 override) */
-  .hero .hero-title {
-    font-size: 2.8rem !important;
-    letter-spacing: 0.01em !important;
-    -webkit-text-stroke: 1.2px currentColor !important;
+  /* 5번 요청: 모든 페이지 hero-title 통일 (홈 워드마크와 동일 모양·크기·폰트)
+     Pretendard 900, 3.6rem, accent 그라데이션, 글자 굵게. 기존 다양한 폰트/크기 통일. */
+  body .hero .hero-title,
+  body .auth-logo .auth-logo-main {
+    font-family: 'Pretendard',-apple-system,BlinkMacSystemFont,sans-serif !important;
+    font-size: 3.6rem !important;
+    font-weight: 900 !important;
+    letter-spacing: 0.02em !important;
+    line-height: 1 !important;
+    margin: 4px 0 8px !important;
+    color: var(--m-txt) !important;
+    -webkit-text-stroke: 0 currentColor !important;
+    text-shadow: 0 2px 28px rgba(0,255,163,0.12) !important;
+    background: linear-gradient(180deg, #FFFFFF 0%, #D9F7EB 100%) !important;
+    -webkit-background-clip: text !important;
+            background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
   }
-
-  /* sample.html hero — 4번 요청: SAMPLE 더 크게 (data-page 우선) */
+  /* event 페이지는 .hero h1 — 본문 카피라 통일 룰 적용 안 함 (메시지 가독성 우선) */
+  /* hero-badge 통일 */
+  body .hero .hero-badge {
+    font-size: 0.66rem !important;
+    letter-spacing: 0.24em !important;
+    padding: 4px 11px !important;
+    margin-bottom: 14px !important;
+  }
+  /* sample 만 더 크게 (사용자 명시 요청) */
   body[data-page="sample"] .hero .hero-title {
     font-size: 4.2rem !important;
-    font-weight: 900 !important;
-    letter-spacing: 0.04em !important;
-    line-height: 1 !important;
-    margin: 4px 0 0 !important;
-    -webkit-text-stroke: 0 currentColor !important;
-  }
-  body[data-page="sample"] .hero .hero-badge {
-    font-size: 0.72rem !important;
-    letter-spacing: 0.28em !important;
-    padding: 5px 12px !important;
   }
 
   /* ───── Sub-page (exam-match.html / subscription.html) ───── */
@@ -1286,7 +1356,7 @@
   }
   .m-subpage-title {
     font-family: 'Pretendard',-apple-system,sans-serif !important;
-    font-size: 2.4rem !important;
+    font-size: 3.6rem !important;
     font-weight: 900 !important;
     line-height: 1.0 !important;
     letter-spacing: 0.02em !important;
@@ -1296,10 +1366,10 @@
     -webkit-background-clip: text;
             background-clip: text;
     -webkit-text-fill-color: transparent;
+    text-shadow: 0 2px 28px rgba(0,255,163,0.12);
   }
   .m-subpage-title-eng {
-    letter-spacing: 0.1em !important;
-    font-size: 2.3rem !important;
+    letter-spacing: 0.06em !important;
   }
   .m-subpage-subtitle {
     font-size: 0.96rem !important;
