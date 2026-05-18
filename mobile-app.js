@@ -668,8 +668,8 @@
     if (path === 'exam-match.html') {
       document.body.classList.add('m-bio-mode', 'm-subpage');
       var container = el('section', { id: 'm-bio', cls: 'm-subpage-wrap' });
+      // 2번 요청: 뒤로가기 ‹ 버튼 제거. 햄버거가 있으니 햄버거로 이동.
       var ph = el('header', { cls: 'm-page-head' });
-      ph.appendChild(el('a', { cls: 'm-page-back', href: 'index.html', aria: '뒤로', text: '‹' }));
       ph.appendChild(el('h1', { cls: 'm-page-title', text: 'TERRA NOVA = 수능지문' }));
       ph.appendChild(buildSubPageHamburger());
       container.appendChild(ph);
@@ -681,7 +681,6 @@
       document.body.classList.add('m-bio-mode', 'm-subpage');
       var container2 = el('section', { id: 'm-bio', cls: 'm-subpage-wrap' });
       var ph2 = el('header', { cls: 'm-page-head' });
-      ph2.appendChild(el('a', { cls: 'm-page-back', href: 'index.html', aria: '뒤로', text: '‹' }));
       ph2.appendChild(el('h1', { cls: 'm-page-title m-page-title-eng', text: 'SUBSCRIPTION' }));
       ph2.appendChild(buildSubPageHamburger());
       container2.appendChild(ph2);

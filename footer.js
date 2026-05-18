@@ -59,7 +59,7 @@
   footer.innerHTML = `
     <div>
       <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.1rem;letter-spacing:7px;color:${fgStrong};">TERRA NOVA</div>
-      <div style="font-size:.5rem;letter-spacing:3px;color:${fg};margin-top:4px;text-transform:uppercase;">ENGLISH · 수능영어 전문 학습자료</div>
+      <div style="font-size:.5rem;letter-spacing:3px;color:${fg};margin-top:4px;text-transform:uppercase;">ENGLISH · 영어로 전과목 학습</div>
     </div>
     <div style="display:flex;gap:20px;flex-wrap:wrap;justify-content:center;margin-top:8px;">
       <a href="terms.html" style="color:${fg};text-decoration:none;font-size:.72rem;">이용약관</a>

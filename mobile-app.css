@@ -56,12 +56,13 @@
   html { overflow-x: hidden !important; }
   * { -webkit-tap-highlight-color: transparent !important; }
 
-  /* ───────── 3. Sticky glass header (top) ───────── */
-  /* :not(#m-tabbar) 로 하단 탭바(<nav id="m-tabbar">) 와 충돌 방지 */
+  /* ───────── 3. Fixed glass header (top) ───────── */
+  /* 사용자 요청 5번: 스크롤해도 헤더(쓰리라인)가 따라다녀야 함 → fixed 사용.
+     :not(#m-tabbar) 로 하단 탭바(<nav id="m-tabbar">) 와 충돌 방지. */
   nav:not(#m-tabbar) {
-    position: sticky !important;
+    position: fixed !important;
     top: 0 !important;
-    left: 0; right: 0;
+    left: 0 !important; right: 0 !important;
     height: var(--m-header-h) !important;
     padding: 0 var(--m-pad) !important;
     background: rgba(10,10,15,0.82) !important;
@@ -73,9 +74,12 @@
     align-items: center !important;
     justify-content: space-between !important;
   }
+  /* fixed nav 공간 확보 — body padding-top */
+  body:not(.m-bio-mode) { padding-top: var(--m-header-h) !important; }
   .logo-main { font-size: 0.92rem !important; letter-spacing: 0.06em !important; }
   .logo-eng  { font-size: 0.38rem !important; letter-spacing: 3px !important; }
-  .nav-links { display: none !important; }
+  /* nav-links 기본 숨김 (햄버거 닫힌 상태). .open 시 .nav-links.open 룰이 표시 */
+  .nav-links:not(.open) { display: none !important; }
   .nav-hamburger { display: flex !important; }
 
   /* ───────── 4. Section spacing ───────── */
@@ -496,17 +500,22 @@
     transition: transform 0.2s var(--m-ease);
   }
   .m-bio-book:active { transform: scale(0.99); }
+  /* 1번: 교재 한 페이지(P1) 전체가 잘리지 않고 다 보이게 — contain 사용 */
   .m-bio-book-cover {
-    aspect-ratio: 4 / 3;
     background: var(--m-surface-2);
     overflow: hidden;
     border-bottom: 0.5px solid var(--m-line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
   }
   .m-bio-book-cover img {
     width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-    object-position: top center !important;
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: 60vh !important;
+    object-fit: contain !important;
     display: block;
   }
   .m-bio-book-meta {
@@ -961,7 +970,8 @@
      기존 페이지의 .nav-links.open 풀폭 룰을 모바일에서만 override.
      사용 페이지: sample, intro, faq, event 등 18개.
      html body prefix로 specificity 올려 페이지 자체 <style> override. */
-  html body nav .nav-links.open {
+  html body nav .nav-links.open,
+  html body .m-subpage-nav .nav-links.open {
     position: absolute !important;
     top: var(--m-header-h) !important;
     right: 8px !important;
@@ -983,23 +993,98 @@
     from { opacity: 0; transform: translateY(-6px); }
     to   { opacity: 1; transform: translateY(0); }
   }
-  html body nav .nav-links.open li { width: auto !important; }
-  html body nav .nav-links.open a {
+  html body nav .nav-links.open li,
+  html body .m-subpage-nav .nav-links.open li { width: auto !important; }
+  html body nav .nav-links.open a,
+  html body .m-subpage-nav .nav-links.open a {
     display: block !important;
-    /* 4번 요청: 세로 간격 한 번 더 축소 */
-    padding: 5px 12px !important;
+    /* 5번 요청: 세로 간격 한 번 더 축소 */
+    padding: 3px 12px !important;
     border-bottom: 0.5px solid var(--m-line-soft) !important;
     border-radius: 6px !important;
-    font-size: 0.8rem !important;
-    line-height: 1.2 !important;
+    font-size: 0.78rem !important;
+    line-height: 1.15 !important;
     color: var(--m-txt) !important;
     text-align: left !important;
   }
-  html body nav .nav-links.open li:last-child a { border-bottom: none !important; }
-  html body nav .nav-links.open a:active { background: rgba(255,255,255,0.06) !important; }
+  html body nav .nav-links.open li:last-child a,
+  html body .m-subpage-nav .nav-links.open li:last-child a { border-bottom: none !important; }
+  html body nav .nav-links.open a:active,
+  html body .m-subpage-nav .nav-links.open a:active { background: rgba(255,255,255,0.06) !important; }
 
-  /* 7번 요청: FAQ 페이지 — 우하단 fab에서 구독 메뉴 버튼만 제거, 위로 ↑ 버튼은 유지 */
-  body[data-page="faq"] .tn-fab-plans { display: none !important; }
+  /* 12번 요청: order.html 레벨 카드 컴팩트 (2-col 그대로, 카드 padding 축소) */
+  body[data-page="order"] .level-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+  body[data-page="order"] .level-btn {
+    padding: 14px 8px 12px !important;
+    gap: 6px !important;
+  }
+  body[data-page="order"] .level-planet { width: 56px !important; }
+  body[data-page="order"] .level-name { font-size: 0.95rem !important; }
+  body[data-page="order"] .level-target { font-size: 0.7rem !important; }
+
+  /* 7번 요청: event step 카드 — 이모지 옆에 텍스트 + 카드 소형화 */
+  body[data-page="event"] .steps-grid {
+    gap: 12px !important;
+  }
+  body[data-page="event"] .step {
+    padding: 14px 16px !important;
+    text-align: left !important;
+    position: relative !important;
+    display: grid !important;
+    grid-template-columns: 48px 1fr !important;
+    grid-template-rows: auto auto !important;
+    column-gap: 14px !important;
+    row-gap: 4px !important;
+    align-items: start !important;
+  }
+  body[data-page="event"] .step .num {
+    position: absolute !important;
+    top: 8px; right: 12px;
+    font-size: 0.72rem !important;
+    width: auto !important; height: auto !important;
+    padding: 2px 6px !important;
+  }
+  body[data-page="event"] .step .icon {
+    grid-row: 1 / span 2;
+    grid-column: 1;
+    font-size: 2.2rem !important;
+    margin: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  body[data-page="event"] .step h3 {
+    grid-column: 2; grid-row: 1;
+    font-size: 1rem !important;
+    margin: 0 !important;
+  }
+  body[data-page="event"] .step p {
+    grid-column: 2; grid-row: 2;
+    font-size: 0.78rem !important;
+    line-height: 1.5 !important;
+    margin: 0 !important;
+  }
+  /* 6번: hero h1 살짝 키우기 + CTA와 간격 */
+  body[data-page="event"] .hero h1 {
+    font-size: 1.78rem !important;
+    line-height: 1.25 !important;
+    margin-bottom: 38px !important;
+  }
+  body[data-page="event"] .hero .cta-row { margin-top: 8px !important; }
+  body[data-page="event"] .hero { min-height: auto !important; padding: 32px 5vw 36px !important; }
+  body[data-page="event"] .hero .kicker { margin-bottom: 18px !important; }
+
+  /* fab 정리 — data-mobile-no-fab 속성으로 페이지별 제어
+     'all'  → 두 버튼(top + plans) 모두 제거
+     'plans' → 구독 ≡ 버튼만 제거, 맨위로 ↑ 버튼은 유지 */
+  body[data-mobile-no-fab="plans"] .tn-fab-plans,
+  body[data-mobile-no-fab="all"]   .tn-fab-plans { display: none !important; }
+  body[data-mobile-no-fab="all"]   .tn-fab-top   { display: none !important; }
+  /* 빈 stack도 숨겨 클릭 영역 안 잡히게 */
+  body[data-mobile-no-fab="all"]   .tn-fab-stack { display: none !important; }
 
   /* 5번 요청: sample.html — 각 레벨당 4개 → 2개만 노출 (모바일) */
   .level-section .sample-grid .sample-card:nth-of-type(n+3) {
@@ -1033,16 +1118,29 @@
   /* ───── Sub-page (exam-match.html / subscription.html) ───── */
   body.m-subpage { padding-top: 0 !important; }
   .m-subpage-wrap {
-    padding-top: 16px !important;
+    padding-top: 0 !important;
     padding-bottom: calc(40px + var(--m-tabbar-h) + var(--m-safe-bottom)) !important;
   }
+  /* 2,5,6번 요청: 페이지 헤더(쓰리라인 포함)가 스크롤해도 따라다님 — fixed */
   .m-page-head {
-    position: relative;
-    padding: 6px 0 14px;
-    margin-bottom: 8px;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important; right: 0 !important;
+    z-index: 1000;
+    padding: 12px 50px;
+    height: var(--m-header-h);
+    box-sizing: border-box;
+    background: rgba(10,10,15,0.92);
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
     border-bottom: 0.5px solid var(--m-line);
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
+  /* fixed 헤더가 컨텐츠 가리지 않도록 wrap에 padding-top */
+  body.m-subpage .m-subpage-wrap { padding-top: calc(var(--m-header-h) + 8px) !important; }
   .m-page-back {
     position: absolute;
     left: 0; top: 0;
