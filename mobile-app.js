@@ -685,7 +685,7 @@
       document.body.insertBefore(buildStandardNav(), document.body.firstChild);
       var container2 = el('section', { id: 'm-bio', cls: 'm-subpage-wrap' });
       var heroBlock2 = el('div', { cls: 'm-subpage-hero' });
-      heroBlock2.appendChild(el('h1', { cls: 'm-subpage-title m-subpage-title-eng', text: 'SUBSCRIPTION' }));
+      heroBlock2.appendChild(el('h1', { cls: 'm-subpage-title m-subpage-title-eng', text: '3 PLANS' }));
       container2.appendChild(heroBlock2);
       buildPlansPage(container2);
       document.body.appendChild(container2);
