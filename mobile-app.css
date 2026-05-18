@@ -980,15 +980,20 @@
      사용 페이지: sample, intro, faq, event 등 18개.
      html body prefix로 specificity 올려 페이지 자체 <style> override. */
   html body nav .nav-links.open,
-  html body .m-subpage-nav .nav-links.open {
+  html body .m-subpage-nav .nav-links.open,
+  html body nav.m-subpage-stdnav .nav-links.open {
     /* fixed로 두어 m-page-head 우상단 기준 표시 (m-subpage-nav absolute 안에서도 일관) */
     position: fixed !important;
     top: var(--m-header-h) !important;
     right: 8px !important;
     left: auto !important;
-    width: auto !important;
+    width: 160px !important;
     min-width: 160px !important;
-    max-width: 60vw !important;
+    max-width: 160px !important;
+    box-sizing: border-box !important;
+    /* gap 강제 0 — 페이지 자체 .nav-links { gap: 28px } cascading 차단 */
+    gap: 0 !important;
+    row-gap: 0 !important;
     padding: 4px 4px !important;
     background: rgba(20,20,27,0.96) !important;
     backdrop-filter: blur(20px) saturate(160%) !important;
@@ -1006,31 +1011,36 @@
   html body nav .nav-links.open li,
   html body .m-subpage-nav .nav-links.open li { width: auto !important; }
   html body nav .nav-links.open a,
-  html body .m-subpage-nav .nav-links.open a {
+  html body .m-subpage-nav .nav-links.open a,
+  html body nav.m-subpage-stdnav .nav-links.open a {
     display: block !important;
-    /* 5번 요청: 세로 간격 한 번 더 축소 */
-    padding: 3px 12px !important;
-    border-bottom: 0.5px solid var(--m-line-soft) !important;
+    /* level_test와 동일: 가운데 정렬, 밑줄 없음, 항목별 padding 좀 더 */
+    padding: 8px 12px !important;
+    border-bottom: none !important;
     border-radius: 6px !important;
-    font-size: 0.78rem !important;
-    line-height: 1.15 !important;
+    font-size: 0.84rem !important;
+    line-height: 1.3 !important;
     color: var(--m-txt) !important;
-    text-align: left !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    font-weight: 500 !important;
   }
   html body nav .nav-links.open li:last-child a,
   html body .m-subpage-nav .nav-links.open li:last-child a { border-bottom: none !important; }
   html body nav .nav-links.open a:active,
   html body .m-subpage-nav .nav-links.open a:active { background: rgba(255,255,255,0.06) !important; }
-  /* 7번 요청: 드롭다운 내부 '구독 신청' 같은 nav-cta 네모 박스 제거 */
+  /* 7번 요청: 드롭다운 내부 '구독 신청' 같은 nav-cta 네모 박스 제거 — 다른 항목과 동일 padding */
   html body nav .nav-links.open a.nav-cta,
   html body .m-subpage-nav .nav-links.open a.nav-cta {
     background: transparent !important;
     border: none !important;
     color: var(--m-accent) !important;
     font-weight: 700 !important;
-    padding: 3px 12px !important;
+    padding: 8px 12px !important;
     border-radius: 6px !important;
     box-shadow: none !important;
+    text-align: center !important;
+    text-decoration: none !important;
   }
 
   /* 4번 요청(반복): market 헤더 — MARKET 제목 제외 모든 텍스트·이모지 한 번 더 축소 */
@@ -1130,15 +1140,17 @@
   body[data-page="market"] .mf-group label { font-size: 0.66rem !important; }
   body[data-page="market"] .mf-group select { font-size: 0.78rem !important; padding: 5px 8px !important; }
 
-  /* 6번 요청: order 페이지 헤더 — SUBSCRIPTION 가운데 + 통일 사이즈 */
+  /* 6번 요청: order 페이지 헤더 — SUBSCRIPTION 가운데 + viewport 안에 들어오는 크기
+     SUBSCRIPTION 12자 폰트 큰 거면 가로 overflow. 2.2rem + 0.02em letter-spacing으로 안전. */
   body[data-page="order"] .section-title {
     text-align: center !important;
     font-family: 'Pretendard',-apple-system,sans-serif !important;
-    font-size: 3.6rem !important;
+    font-size: 2.2rem !important;
     font-weight: 900 !important;
-    letter-spacing: 0.04em !important;
-    line-height: 1 !important;
+    letter-spacing: 0.02em !important;
+    line-height: 1.1 !important;
     margin: 8px 0 18px !important;
+    -webkit-text-stroke: 0 currentColor !important;
     background: linear-gradient(180deg, #FFFFFF 0%, #D9F7EB 100%) !important;
     -webkit-background-clip: text !important;
             background-clip: text !important;
@@ -1226,16 +1238,14 @@
   body[data-page="login"] .auth-logo,
   body[data-page="signup"] .auth-logo { margin-top: 0 !important; margin-bottom: 18px !important; }
 
-  /* 3번 요청: FAQ 페이지 — 하단 4개 버튼 제거 + 하단 여백 축소 */
+  /* 3번 요청: FAQ 페이지 — 하단 모든 여백 완전 제거 */
   body[data-page="faq"] .bottom-nav { display: none !important; }
-  body[data-page="faq"] .contact-cta {
-    margin-top: 18px !important;
-    padding: 22px 16px !important;
-  }
-  body[data-page="faq"] .contact-cta h2 { font-size: 1.1rem !important; margin-bottom: 8px !important; }
-  body[data-page="faq"] .contact-cta p { font-size: 0.84rem !important; }
-  /* hero가 거대한 padding-bottom 가지지 않게 */
+  body[data-page="faq"] .contact-cta { display: none !important; }
+  body[data-page="faq"] .faq-group { margin-bottom: 18px !important; }
+  body[data-page="faq"] .faq-group:last-of-type { margin-bottom: 0 !important; }
   body[data-page="faq"] .hero { padding-bottom: 12px !important; min-height: auto !important; }
+  /* .faq-content padding: 0 5vw 100px → 100px 하단 padding 제거 */
+  body[data-page="faq"] .faq-content { padding-bottom: 8px !important; }
 
   /* fab 정리 — data-mobile-no-fab 속성으로 페이지별 제어
      'all'  → 두 버튼(top + plans) 모두 제거
