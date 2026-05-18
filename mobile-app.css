@@ -972,7 +972,8 @@
      html body prefix로 specificity 올려 페이지 자체 <style> override. */
   html body nav .nav-links.open,
   html body .m-subpage-nav .nav-links.open {
-    position: absolute !important;
+    /* fixed로 두어 m-page-head 우상단 기준 표시 (m-subpage-nav absolute 안에서도 일관) */
+    position: fixed !important;
     top: var(--m-header-h) !important;
     right: 8px !important;
     left: auto !important;
@@ -1012,6 +1013,31 @@
   html body nav .nav-links.open a:active,
   html body .m-subpage-nav .nav-links.open a:active { background: rgba(255,255,255,0.06) !important; }
 
+  /* 6번 요청: market.html — 제목은 그대로, 나머지 이모지·글씨 축소 (스크롤 부담 ↓) */
+  body[data-page="market"] .hero { padding: 18px 5vw 12px !important; min-height: auto !important; }
+  body[data-page="market"] .hero-badge {
+    font-size: 0.58rem !important;
+    letter-spacing: 0.16em !important;
+    padding: 3px 9px !important;
+    margin-bottom: 10px !important;
+  }
+  /* MARKET 제목은 살려두되 viewport 안에 들어오도록 살짝만 조정 */
+  body[data-page="market"] .hero-title {
+    font-size: 3.8rem !important;
+    margin-bottom: 6px !important;
+    -webkit-text-stroke: 1.2px currentColor !important;
+  }
+  body[data-page="market"] .hero-sub { font-size: 0.78rem !important; line-height: 1.5 !important; }
+  /* 카테고리 버튼 축소 */
+  body[data-page="market"] .cat-wrap {
+    padding: 10px 5vw 4px !important;
+    gap: 6px !important;
+  }
+  body[data-page="market"] .cat-btn {
+    font-size: 0.78rem !important;
+    padding: 7px 12px !important;
+  }
+
   /* 12번 요청: order.html 레벨 카드 컴팩트 (2-col 그대로, 카드 padding 축소) */
   body[data-page="order"] .level-grid {
     grid-template-columns: repeat(2, 1fr) !important;
@@ -1040,12 +1066,18 @@
     row-gap: 4px !important;
     align-items: start !important;
   }
+  /* 2번 요청: 숫자 원이 글씨 가리지 않게 작은 원으로 */
   body[data-page="event"] .step .num {
     position: absolute !important;
-    top: 8px; right: 12px;
+    top: 8px !important;
+    right: 10px !important;
+    width: 22px !important;
+    height: 22px !important;
     font-size: 0.72rem !important;
-    width: auto !important; height: auto !important;
-    padding: 2px 6px !important;
+    line-height: 22px !important;
+    padding: 0 !important;
+    box-shadow: 0 0 0 2px var(--dark, #0A0A0F) !important;
+    border-radius: 50% !important;
   }
   body[data-page="event"] .step .icon {
     grid-row: 1 / span 2;
@@ -1154,11 +1186,12 @@
     background: rgba(255,255,255,0.04);
   }
   .m-page-back:active { background: rgba(255,255,255,0.10); }
-  /* 2,6번: 페이지 우상단 햄버거 */
+  /* 2,6번: 페이지 우상단 햄버거 — 1번 요청: level_test 햄버거와 같은 시각 크기로 */
   .m-subpage-nav {
     position: absolute;
-    right: 0; top: 0;
-    width: 38px; height: 38px;
+    right: 6px; top: 50%;
+    transform: translateY(-50%);
+    width: 44px; height: 44px;
     display: flex; align-items: center; justify-content: center;
   }
   .m-page-hamb {
@@ -1166,23 +1199,23 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 5px;
+    gap: 6px;
     background: none;
     border: none;
     cursor: pointer;
-    padding: 8px;
-    width: 38px; height: 38px;
+    padding: 8px 4px;
+    width: 44px; height: 44px;
   }
   .m-page-hamb span {
     display: block;
-    width: 22px; height: 2px;
+    width: 26px; height: 2.4px;
     background: #fff;
     border-radius: 2px;
     transition: all 0.28s var(--m-ease);
   }
-  .m-page-hamb.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .m-page-hamb.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
   .m-page-hamb.open span:nth-child(2) { opacity: 0; }
-  .m-page-hamb.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .m-page-hamb.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
   /* 5번 요청: 페이지 타이틀 크게 */
   .m-page-title {
     font-size: 1.6rem !important;

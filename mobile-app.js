@@ -22,7 +22,7 @@
     { href: 'sample.html',                      label: '샘플',   icon: '📖', aliases: ['sample.html'] },
     { href: 'level_test.html',                  label: '레벨',   icon: '🎯', aliases: ['level_test.html'] },
     { href: 'mypage.html',                      label: '마이',   icon: '👤', aliases: ['mypage.html', 'login.html', 'signup.html'] },
-    { href: 'subscription.html',                label: '구독',   icon: '✨', aliases: ['subscription.html', 'index.html#plans', 'order.html', 'market.html', 'market_checkout.html'] }
+    { href: 'order.html',                       label: '구독',   icon: '✨', aliases: ['order.html', 'subscription.html', 'index.html#plans', 'market.html', 'market_checkout.html'] }
   ];
 
   // ── 2. Inject tab bar ────────────────────────────────────────
@@ -113,8 +113,9 @@
     { type: 'feature-2', icon: '📖', title: '무료 샘플 받기',         href: 'sample.html' },
     { type: 'section', label: '시작하기' },
     { type: 'link', icon: '🧭', title: '내 레벨 알아보기',             href: 'level_test.html' },
-    { type: 'link', icon: '✨', title: '구독 플랜 보기',               modal: 'plans' },
+    { type: 'link', icon: '✨', title: '구독 신청',                    href: 'order.html' },
     { type: 'section', label: '소식' },
+    { type: 'link', icon: '🛍️', title: '마켓',                          href: 'market.html' },
     { type: 'link', icon: '🎁', title: '이번 달 이벤트',                href: 'event.html' },
     { type: 'link', icon: '❓', title: '자주 묻는 질문',                href: 'faq.html' },
     { type: 'section', label: '내 계정' },
