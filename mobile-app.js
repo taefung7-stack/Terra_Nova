@@ -18,11 +18,11 @@
   // ── 1. Tab definitions ────────────────────────────────────────
   // 순서가 그대로 좌→우 스와이프 인덱스가 된다.
   var TABS = [
-    { href: 'index.html',                       label: '홈',     icon: '🏠', aliases: ['index.html', 'landing.html', 'intro.html', '/'] },
+    { href: 'index.html',                       label: '홈',     icon: '🏠', aliases: ['index.html', 'landing.html', 'intro.html', 'exam-match.html', '/'] },
     { href: 'sample.html',                      label: '샘플',   icon: '📖', aliases: ['sample.html'] },
     { href: 'level_test.html',                  label: '레벨',   icon: '🎯', aliases: ['level_test.html'] },
     { href: 'mypage.html',                      label: '마이',   icon: '👤', aliases: ['mypage.html', 'login.html', 'signup.html'] },
-    { href: 'index.html#plans',                 label: '구독',   icon: '✨', aliases: ['index.html#plans', 'order.html', 'market.html', 'market_checkout.html'] }
+    { href: 'subscription.html',                label: '구독',   icon: '✨', aliases: ['subscription.html', 'index.html#plans', 'order.html', 'market.html', 'market_checkout.html'] }
   ];
 
   // ── 2. Inject tab bar ────────────────────────────────────────
@@ -110,15 +110,15 @@
   var BIO_LINKS = [
     { type: 'book-rail' },
     { type: 'feature', icon: '🎯', title: 'TERRA NOVA = 수능지문',  modal: 'books' },
-    { type: 'feature-2', icon: '📖', title: '무료 샘플 받기',                                          href: 'sample.html' },
+    { type: 'feature-2', icon: '📖', title: '무료 샘플 받기',         href: 'sample.html' },
     { type: 'section', label: '시작하기' },
-    { type: 'link', icon: '🧭', title: '내 레벨 알아보기',                                             href: 'level_test.html' },
-    { type: 'link', icon: '✨', title: '구독 플랜 보기',            sub: '월간 11,900원부터',           modal: 'plans' },
+    { type: 'link', icon: '🧭', title: '내 레벨 알아보기',             href: 'level_test.html' },
+    { type: 'link', icon: '✨', title: '구독 플랜 보기',               modal: 'plans' },
     { type: 'section', label: '소식' },
-    { type: 'link', icon: '🎁', title: '이번 달 이벤트',            sub: '신규 구독 혜택 보기',          href: 'event.html' },
-    { type: 'link', icon: '❓', title: '자주 묻는 질문',             sub: '구독·결제·환불 안내',           href: 'faq.html' },
+    { type: 'link', icon: '🎁', title: '이번 달 이벤트',                href: 'event.html' },
+    { type: 'link', icon: '❓', title: '자주 묻는 질문',                href: 'faq.html' },
     { type: 'section', label: '내 계정' },
-    { type: 'link', icon: '👤', title: '마이페이지',                sub: '주문·구독 상태',               href: 'mypage.html' }
+    { type: 'link', icon: '👤', title: '마이페이지',                    href: 'mypage.html' }
   ];
 
   // 홈 화면에 바로 보여줄 교재 4권 — Mars(초5), Saturn(고1), Jupiter(고2), Sun(고3).
@@ -166,10 +166,13 @@
           '(가)에서 모든 원자는 네온(Ne)과 같은 전자 배치를 가진다.',
           '공유하는 전자쌍의 수는 (가)와 (나)가 같다.'
         ],
+        examHighlight: ['공유하는 전자쌍의 수', '전자 배치'],
         figure: 'molecule',
         bookTitle: 'Why Carbon Can Build Almost Anything',
         bookBody: 'Carbon has four outer electrons, which means it can share bonds with four different neighbors at the same time — the small difference that quietly shapes the entire story of biology.',
+        bookHighlight: ['four outer electrons', 'share bonds'],
         bookBodyKo: '탄소는 가장 바깥쪽 전자가 4개라, 네 이웃 원자와 동시에 결합을 공유할 수 있다 — 그 작은 차이가 생물학 전체를 빚어낸다.',
+        bookHighlightKo: ['가장 바깥쪽 전자가 4개', '결합을 공유'],
         concept: '공유결합 · 전자쌍 공유',
         curriculum: '통합과학 I-2'
       },
@@ -184,10 +187,13 @@
           '최고점의 좌표는 −b/2a 에서 결정된다.',
           '판별식 b² − 4ac 는 x축과의 교점 개수를 결정한다.'
         ],
+        examHighlight: ['이차함수 y = ax² + bx + c', '포물선', '판별식 b² − 4ac', 'x축과의 교점'],
         figure: 'parabola',
         bookTitle: 'Why Parabolas Always Beat Straight Lines',
         bookBody: 'A baseball thrown at 45° never travels in a straight line — it traces a perfect parabolic arc, modeled by y = ax² + bx + c. The discriminant tells us, before the ball even leaves the hand, how many roots that path will share with the field.',
+        bookHighlight: ['parabolic arc', 'y = ax² + bx + c', 'discriminant', 'roots'],
         bookBodyKo: '45°로 던진 공은 직선이 아닌 완벽한 포물선으로 날아간다. 판별식은 공이 손을 떠나기도 전에 그 경로가 지면과 몇 점을 공유할지 알려준다.',
+        bookHighlightKo: ['포물선', '판별식', '지면과 몇 점을 공유'],
         concept: '이차함수 · 포물선 · 판별식',
         curriculum: '공통수학 Ⅱ-2'
       },
@@ -202,10 +208,13 @@
           '평등한 기본 자유의 원칙이 차등의 원칙보다 우선한다.',
           '사회·경제적 불평등은 최소 수혜자에게 이익이 될 때에만 정당화된다.'
         ],
+        examHighlight: ['자신의 우연적 조건을 모르는', '평등한 기본 자유의 원칙', '차등의 원칙', '최소 수혜자'],
         figure: 'veil',
         bookTitle: 'Justice Behind a Veil',
         bookBody: 'John Rawls asked a deceptively simple question: what rules would we choose if we didn\'t know who we\'d be in society? Behind this veil of ignorance, Rawls believed people would converge on two principles: equal basic liberties for all, and inequalities permitted only when they help the worst-off.',
+        bookHighlight: ['veil of ignorance', 'equal basic liberties', 'worst-off'],
         bookBodyKo: '존 롤스는 단순해 보이는 질문을 던졌다 — 우리가 사회에서 어떤 사람이 될지 모른 채 규칙을 정한다면 어떤 규칙을 고르겠는가? 롤스는 무지의 베일 뒤에서 사람들이 두 원칙으로 수렴한다 보았다 — 모두에게 평등한 기본 자유, 그리고 불평등은 최소 수혜자에게 도움이 될 때만 정당화된다.',
+        bookHighlightKo: ['무지의 베일', '평등한 기본 자유', '최소 수혜자'],
         concept: '무지의 베일 · 차등의 원칙',
         curriculum: '생활과 윤리 Ⅱ-3'
       }
@@ -282,14 +291,15 @@
     return wrap;
   }
 
-  // 구독 플랜 모달용 데이터 (landing.html 권도, 2026-04-27 기준)
+  // 구독 플랜 데이터 (landing.html 권도, 2026-04-27 기준)
+  // 9번 요청: features 정리 — 일부 항목 삭제·이름변경
   var PLANS_DATA = [
     {
       name: 'LIGHT',
       tag: 'PDF 구독',
       price: '11,900',
       annualNote: '연 119,000원 (2개월 무료)',
-      features: ['매월 1권 PDF 다운로드', '레벨별 134p 풀북', '해설·정답·번역 포함', '복습용 영구 보관'],
+      features: ['매월 1권 PDF 다운로드', '해설·정답·번역 포함', '복습용 영구 보관'],
       cta: '구독 신청',
       href: 'order.html?plan=light'
     },
@@ -298,7 +308,7 @@
       tag: 'PDF + 실물',
       price: '24,900',
       annualNote: '연 249,000원 (2개월 무료)',
-      features: ['LIGHT 전체 포함', '매월 실물 책 배송', '오프라인 학습 가능', '학습 진도 트래킹'],
+      features: ['LIGHT 전체 포함', '매월 실물 책 배송', '오프라인 학습 가능'],
       featured: true,
       cta: '구독 신청',
       href: 'order.html?plan=standard'
@@ -308,7 +318,7 @@
       tag: '올인원',
       price: '58,900',
       annualNote: '연 589,000원 (2개월 무료)',
-      features: ['STANDARD 전체 포함', '실시간 1:1 첨삭', '월간 라이브 클래스', '학부모 리포트 발송'],
+      features: ['STANDARD 전체 포함', '전 지문 해설강의'],
       badge: '준비중',
       cta: '사전 예약',
       href: 'order.html?plan=premium'
@@ -552,9 +562,9 @@
         var rail = el('div', { cls: 'm-bio-rail' });
         rail.setAttribute('data-no-page-swipe', '1');
         HOME_BOOKS.forEach(function (bk) {
-          var card = el('a', {
+          // 1번 요청: 클릭해도 아무 페이지로 안 넘어가게 div 컨테이너
+          var card = el('div', {
             cls: 'm-bio-book',
-            href: 'sample.html',
             aria: bk.code + ' ' + bk.grade + ' 교재 미리보기'
           });
           var imgWrap = el('div', { cls: 'm-bio-book-cover' });
@@ -609,15 +619,11 @@
       else if (isFeature2) rootCls = 'm-bio-feature m-bio-feature-2';
       else                rootCls = 'm-bio-link';
 
+      // 2번/8번 요청: modal → 실제 페이지로 navigate
       var clickHandler = null;
       var href = item.href || '#';
-      if (item.modal) {
-        clickHandler = function (e) {
-          e.preventDefault();
-          if (item.modal === 'books') openModal(buildBooksModal, 'TERRA NOVA = 수능지문');
-          else if (item.modal === 'plans') openModal(buildPlansModal, '구독 플랜 보기');
-        };
-      }
+      if (item.modal === 'books') href = 'exam-match.html';
+      else if (item.modal === 'plans') href = 'subscription.html';
 
       var a = el('a', { cls: rootCls, href: href, onclick: clickHandler });
       var bigIcon = isFeature || isFeature2;
@@ -654,16 +660,194 @@
     document.body.insertBefore(bio, document.body.firstChild);
   }
 
-  // ── 5. Boot ──────────────────────────────────────────────────
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function () {
-      injectLinkInBio();
-      buildTabBar();
-      attachSwipe();
+  // ── Sub page injectors (exam-match.html / subscription.html) ──
+  // 새 페이지에서 #m-page 컨테이너에 컨텐츠 inject. mobile-app.css의 m-bio-mode
+  // 룰을 재활용 (헤더/푸터 등 hide). 데스크탑(>680px)은 파일 최상단 가드로 미발동.
+  function injectSubPage() {
+    var path = (location.pathname.split('/').pop() || '').toLowerCase();
+    if (path === 'exam-match.html') {
+      document.body.classList.add('m-bio-mode', 'm-subpage');
+      var container = el('section', { id: 'm-bio', cls: 'm-subpage-wrap' });
+      // 페이지 헤더 (가운데정렬 큰 타이틀, 사용자 요청 3번의 헤더 영역)
+      var ph = el('header', { cls: 'm-page-head' });
+      var back = el('a', { cls: 'm-page-back', href: 'index.html', aria: '뒤로', text: '‹' });
+      ph.appendChild(back);
+      ph.appendChild(el('h1', { cls: 'm-page-title', text: 'TERRA NOVA = 수능지문' }));
+      container.appendChild(ph);
+      buildBooksPage(container);
+      document.body.insertBefore(container, document.body.firstChild);
+      return true;
+    }
+    if (path === 'subscription.html') {
+      document.body.classList.add('m-bio-mode', 'm-subpage');
+      var container2 = el('section', { id: 'm-bio', cls: 'm-subpage-wrap' });
+      var ph2 = el('header', { cls: 'm-page-head' });
+      var back2 = el('a', { cls: 'm-page-back', href: 'index.html', aria: '뒤로', text: '‹' });
+      ph2.appendChild(back2);
+      ph2.appendChild(el('h1', { cls: 'm-page-title m-page-title-eng', text: 'SUBSCRIPTION' }));
+      container2.appendChild(ph2);
+      buildPlansPage(container2);
+      document.body.insertBefore(container2, document.body.firstChild);
+      return true;
+    }
+    return false;
+  }
+
+  // 3번 요청: 각 문제 헤더 가운데정렬·크게 + 형광펜
+  // bookHighlight: bookBody 안에서 노란 형광펜 칠할 부분 (mark)
+  // examHighlight: examStem/choices 안에서 노란 형광펜 칠할 부분
+  function buildBooksPage(parent) {
+    BOOKS_DATA.matches.forEach(function (m) {
+      var pair = el('article', { cls: 'm-match-pair m-match-pair-page' });
+
+      // Centered big label
+      var label = el('div', { cls: 'm-match-label-center' });
+      var labelTop = el('div', { cls: 'm-match-label-top' });
+      labelTop.appendChild(el('span', { cls: 'm-match-num-big', text: m.pairNum }));
+      label.appendChild(labelTop);
+      label.appendChild(el('div', { cls: 'm-match-grade-big', text: m.gradeLabel }));
+      pair.appendChild(label);
+
+      // Exam card with highlight
+      var examCard = el('div', { cls: 'm-match-card m-match-exam' });
+      examCard.appendChild(el('div', { cls: 'm-match-role m-match-role-exam', text: '모의고사' }));
+      examCard.appendChild(el('div', { cls: 'm-match-tag', text: m.examTag }));
+      examCard.appendChild(el('h4', { cls: 'm-match-cardtitle', text: m.examTitle }));
+      if (m.figure) examCard.appendChild(buildExamFigure(m.figure));
+      examCard.appendChild(buildHighlighted('p', 'm-match-stem', m.examStem, m.examHighlight));
+      if (m.examChoices && m.examChoices.length) {
+        var ul = el('ul', { cls: 'm-match-choices' });
+        m.examChoices.forEach(function (c, i) {
+          var li = el('li');
+          li.appendChild(el('span', { cls: 'm-match-choice-num', text: ['①','②','③','④','⑤'][i] || ('' + (i+1)) }));
+          li.appendChild(buildHighlighted('span', 'm-match-choice-text', c, m.examHighlight));
+          ul.appendChild(li);
+        });
+        examCard.appendChild(ul);
+      }
+      pair.appendChild(examCard);
+
+      // Arrow
+      var arrow = el('div', { cls: 'm-match-arrow', ariaHidden: true });
+      arrow.appendChild(el('span', { cls: 'm-match-arrow-line' }));
+      arrow.appendChild(el('span', { cls: 'm-match-arrow-label', text: '같은 개념' }));
+      pair.appendChild(arrow);
+
+      // Book card with highlight
+      var bookCard = el('div', { cls: 'm-match-card m-match-book' });
+      bookCard.appendChild(el('div', { cls: 'm-match-role m-match-role-book', text: 'Terra Nova 교재' }));
+      bookCard.appendChild(el('h4', { cls: 'm-match-cardtitle', text: m.bookTitle }));
+      bookCard.appendChild(buildHighlighted('p', 'm-match-body m-match-body-en', m.bookBody, m.bookHighlight));
+      bookCard.appendChild(buildHighlighted('p', 'm-match-body m-match-body-ko', m.bookBodyKo, m.bookHighlightKo));
+      pair.appendChild(bookCard);
+
+      // Concept chip
+      var concept = el('div', { cls: 'm-match-concept' });
+      concept.appendChild(el('span', { cls: 'm-match-concept-label', text: '핵심 개념' }));
+      concept.appendChild(el('strong', { text: m.concept }));
+      concept.appendChild(el('span', { cls: 'm-match-concept-curr', text: m.curriculum }));
+      pair.appendChild(concept);
+
+      parent.appendChild(pair);
     });
-  } else {
-    injectLinkInBio();
+
+    var cta = el('a', { cls: 'm-modal-cta', href: 'sample.html', text: '무료 샘플 받아보기 →' });
+    parent.appendChild(cta);
+  }
+
+  // 텍스트 안에서 부분 문자열을 <mark>로 감싸 형광펜 처리.
+  // highlight 가 배열이면 모든 항목을 각각 형광펜.
+  function buildHighlighted(tag, cls, fullText, highlights) {
+    var wrap = el(tag, { cls: cls });
+    if (!fullText) { return wrap; }
+    if (!highlights || (Array.isArray(highlights) && highlights.length === 0)) {
+      wrap.appendChild(document.createTextNode(fullText));
+      return wrap;
+    }
+    var list = Array.isArray(highlights) ? highlights : [highlights];
+    // 모든 highlight 위치를 모아 정렬 후 분할 렌더
+    var spans = [];
+    for (var i = 0; i < list.length; i++) {
+      var needle = list[i];
+      var from = 0;
+      while (true) {
+        var pos = fullText.indexOf(needle, from);
+        if (pos < 0) break;
+        spans.push([pos, pos + needle.length]);
+        from = pos + needle.length;
+      }
+    }
+    if (spans.length === 0) {
+      wrap.appendChild(document.createTextNode(fullText));
+      return wrap;
+    }
+    spans.sort(function (a, b) { return a[0] - b[0]; });
+    // 겹침 병합
+    var merged = [spans[0].slice()];
+    for (var j = 1; j < spans.length; j++) {
+      var last = merged[merged.length - 1];
+      if (spans[j][0] <= last[1]) {
+        if (spans[j][1] > last[1]) last[1] = spans[j][1];
+      } else {
+        merged.push(spans[j].slice());
+      }
+    }
+    var cursor = 0;
+    merged.forEach(function (sp) {
+      if (sp[0] > cursor) wrap.appendChild(document.createTextNode(fullText.slice(cursor, sp[0])));
+      var mark = el('mark', { cls: 'm-hl', text: fullText.slice(sp[0], sp[1]) });
+      wrap.appendChild(mark);
+      cursor = sp[1];
+    });
+    if (cursor < fullText.length) wrap.appendChild(document.createTextNode(fullText.slice(cursor)));
+    return wrap;
+  }
+
+  function buildPlansPage(parent) {
+    PLANS_DATA.forEach(function (p) {
+      var card = el('section', { cls: 'm-plan-card' + (p.featured ? ' m-plan-featured' : '') });
+      var head = el('div', { cls: 'm-plan-head' });
+      var nameRow = el('div', { cls: 'm-plan-namerow' });
+      nameRow.appendChild(el('span', { cls: 'm-plan-name', text: p.name }));
+      if (p.featured) nameRow.appendChild(el('span', { cls: 'm-plan-pop', text: 'POPULAR' }));
+      if (p.badge)    nameRow.appendChild(el('span', { cls: 'm-plan-badge', text: p.badge }));
+      head.appendChild(nameRow);
+      head.appendChild(el('div', { cls: 'm-plan-tag', text: p.tag }));
+      card.appendChild(head);
+
+      var priceRow = el('div', { cls: 'm-plan-pricerow' });
+      priceRow.appendChild(el('span', { cls: 'm-plan-price', text: p.price }));
+      priceRow.appendChild(el('span', { cls: 'm-plan-unit', text: '원 / 월' }));
+      card.appendChild(priceRow);
+      card.appendChild(el('div', { cls: 'm-plan-annual', text: p.annualNote }));
+
+      var ul = el('ul', { cls: 'm-plan-features' });
+      p.features.forEach(function (f) {
+        var li = el('li');
+        li.appendChild(el('span', { cls: 'm-plan-check', text: '✓', ariaHidden: true }));
+        li.appendChild(el('span', { text: f }));
+        ul.appendChild(li);
+      });
+      card.appendChild(ul);
+
+      card.appendChild(el('a', { cls: 'm-plan-cta', href: p.href, text: p.cta + ' →' }));
+      parent.appendChild(card);
+    });
+
+    var note = el('p', { cls: 'm-plan-note', text: '※ PREMIUM은 2026 하반기 정식 출시 예정. 사전 예약 시 출시 알림을 받습니다.' });
+    parent.appendChild(note);
+  }
+
+  // ── 5. Boot ──────────────────────────────────────────────────
+  function boot() {
+    var isSubPage = injectSubPage();
+    if (!isSubPage) injectLinkInBio();
     buildTabBar();
     attachSwipe();
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot);
+  } else {
+    boot();
   }
 })();

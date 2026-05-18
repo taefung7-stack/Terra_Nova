@@ -29,12 +29,10 @@ const server = createServer((req, res) => {
 await new Promise(r => server.listen(port, '127.0.0.1', r));
 
 const targets = [
-  { name: 'landing', url: 'landing.html' },
   { name: 'index', url: 'index.html' },
-  { name: 'plans', url: 'index.html#plans' },
-  { name: 'order', url: 'order.html' },
-  { name: 'sample', url: 'sample.html' },
-  { name: 'level_test', url: 'level_test.html' }
+  { name: 'exam-match', url: 'exam-match.html' },
+  { name: 'subscription', url: 'subscription.html' },
+  { name: 'sample', url: 'sample.html' }
 ];
 
 const browser = await puppeteer.launch({ headless: 'new' });

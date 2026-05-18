@@ -951,6 +951,149 @@
     margin: 0 0 4px !important;
   }
 
+  /* 7번 요청: 햄버거 메뉴 — 풀폭 패널 → 우상단 작은 드롭다운
+     기존 페이지의 .nav-links.open 풀폭 룰을 모바일에서만 override.
+     사용 페이지: sample, intro, faq, event 등 18개.
+     html body prefix로 specificity 올려 페이지 자체 <style> override. */
+  html body nav .nav-links.open {
+    position: absolute !important;
+    top: var(--m-header-h) !important;
+    right: 8px !important;
+    left: auto !important;
+    width: auto !important;
+    min-width: 180px !important;
+    max-width: 70vw !important;
+    padding: 8px 4px !important;
+    background: rgba(20,20,27,0.96) !important;
+    backdrop-filter: blur(20px) saturate(160%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(160%) !important;
+    border: 0.5px solid var(--m-line) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 10px 32px rgba(0,0,0,0.5) !important;
+    z-index: 1001 !important;
+    animation: m-dropdown-in 0.18s var(--m-ease) both;
+  }
+  @keyframes m-dropdown-in {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  html body nav .nav-links.open li { width: auto !important; }
+  html body nav .nav-links.open a {
+    display: block !important;
+    padding: 10px 14px !important;
+    border-bottom: 0.5px solid var(--m-line-soft) !important;
+    border-radius: 8px !important;
+    font-size: 0.85rem !important;
+    color: var(--m-txt) !important;
+    text-align: left !important;
+  }
+  html body nav .nav-links.open li:last-child a { border-bottom: none !important; }
+  html body nav .nav-links.open a:active { background: rgba(255,255,255,0.06) !important; }
+
+  /* 5번 요청: sample.html — 각 레벨당 4개 → 2개만 노출 (모바일) */
+  .level-section .sample-grid .sample-card:nth-of-type(n+3) {
+    display: none !important;
+  }
+
+  /* sample.html hero — 4번 요청: SAMPLE 더 크게 */
+  .hero .hero-title {
+    font-size: 4.2rem !important;
+    font-weight: 900 !important;
+    letter-spacing: 0.04em !important;
+    line-height: 1 !important;
+    margin: 4px 0 0 !important;
+  }
+  .hero .hero-badge {
+    font-size: 0.72rem !important;
+    letter-spacing: 0.28em !important;
+    padding: 5px 12px !important;
+  }
+
+  /* ───── Sub-page (exam-match.html / subscription.html) ───── */
+  body.m-subpage { padding-top: 0 !important; }
+  .m-subpage-wrap {
+    padding-top: 16px !important;
+    padding-bottom: calc(40px + var(--m-tabbar-h) + var(--m-safe-bottom)) !important;
+  }
+  .m-page-head {
+    position: relative;
+    padding: 6px 0 14px;
+    margin-bottom: 8px;
+    border-bottom: 0.5px solid var(--m-line);
+    text-align: center;
+  }
+  .m-page-back {
+    position: absolute;
+    left: 0; top: 0;
+    width: 38px; height: 38px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--m-txt);
+    text-decoration: none;
+    font-size: 1.6rem;
+    line-height: 1;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+  .m-page-back:active { background: rgba(255,255,255,0.10); }
+  /* 5번 요청: 페이지 타이틀 크게 */
+  .m-page-title {
+    font-size: 1.6rem !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.01em;
+    color: var(--m-txt) !important;
+    margin: 8px 0 0 !important;
+    line-height: 1.2;
+  }
+  .m-page-title-eng {
+    font-size: 1.9rem !important;
+    letter-spacing: 0.12em !important;
+    font-weight: 900 !important;
+    background: linear-gradient(180deg, #FFFFFF 0%, #D9F7EB 100%);
+    -webkit-background-clip: text;
+            background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* 3번 요청: 문제 헤더 가운데정렬·크게 */
+  .m-match-pair-page { padding-top: 6px; margin-top: 18px; }
+  .m-match-label-center {
+    text-align: center;
+    margin-bottom: 14px;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+  .m-match-label-top { display: flex; justify-content: center; }
+  .m-match-num-big {
+    display: inline-block;
+    background: rgba(0,255,163,0.14);
+    color: var(--m-accent);
+    border: 0.5px solid rgba(0,255,163,0.32);
+    border-radius: 6px;
+    padding: 4px 12px;
+    font-weight: 800;
+    font-size: 0.86rem !important;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+  }
+  .m-match-grade-big {
+    font-size: 1.18rem !important;
+    font-weight: 800 !important;
+    color: var(--m-txt) !important;
+    letter-spacing: -0.005em;
+  }
+
+  /* 3번 요청: 형광펜 — 노랑 */
+  mark.m-hl {
+    background: linear-gradient(180deg, transparent 55%, #FFEB3B 55%, #FFD600 100%);
+    color: inherit;
+    padding: 0 2px;
+    border-radius: 2px;
+    font-weight: 700;
+  }
+  /* book-card (어두운 배경)에서는 노랑 그대로 + 글자색 진하게 */
+  .m-match-book mark.m-hl { color: #0A0A0F; }
+  .m-match-body-en mark.m-hl { color: #0A0A0F; font-style: normal; }
+
   /* 모의고사 발문/그림/보기 — 시험지 감성 */
   .m-match-figure {
     margin: 8px 0 10px;
