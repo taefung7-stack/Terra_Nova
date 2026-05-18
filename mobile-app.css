@@ -47,10 +47,13 @@
     font-family: 'Pretendard',-apple-system,BlinkMacSystemFont,sans-serif !important;
     line-height: 1.5 !important;
     -webkit-font-smoothing: antialiased !important;
-    overscroll-behavior-y: contain !important;
+    overscroll-behavior: contain !important;
+    /* 1번 요청: 가로 드래그 차단 — body 전체 가로 overflow 제거 */
+    overflow-x: hidden !important;
     /* 하단 탭바 공간 확보 */
     padding-bottom: calc(var(--m-tabbar-h) + var(--m-safe-bottom)) !important;
   }
+  html { overflow-x: hidden !important; }
   * { -webkit-tap-highlight-color: transparent !important; }
 
   /* ───────── 3. Sticky glass header (top) ───────── */
@@ -466,17 +469,20 @@
     /* 좌우 스와이프 동작이 carousel에 100% 흡수되도록 */
     touch-action: pan-x pan-y;
     overscroll-behavior-x: contain;
-    padding: 4px 18px 12px;
-    margin: 0 -18px;
+    padding: 4px 0 12px;
+    margin: 0;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
+    /* 음수 마진 트릭을 빼고 컨테이너 안에서만 스크롤 → body 가로 overflow 제거 */
+    max-width: 100%;
   }
   .m-bio-rail::-webkit-scrollbar { display: none; }
 
-  /* 한 카드가 거의 화면 전폭 = scroll-snap이 한 권씩 강제 정지 */
+  /* 한 카드가 화면 전폭 = scroll-snap이 한 권씩 강제 정지 */
   .m-bio-book {
     flex: 0 0 100%;
     width: 100%;
+    min-width: 100%;
     scroll-snap-align: center;
     scroll-snap-stop: always;
     text-decoration: none;
@@ -961,9 +967,9 @@
     right: 8px !important;
     left: auto !important;
     width: auto !important;
-    min-width: 180px !important;
-    max-width: 70vw !important;
-    padding: 8px 4px !important;
+    min-width: 160px !important;
+    max-width: 60vw !important;
+    padding: 4px 4px !important;
     background: rgba(20,20,27,0.96) !important;
     backdrop-filter: blur(20px) saturate(160%) !important;
     -webkit-backdrop-filter: blur(20px) saturate(160%) !important;
@@ -980,30 +986,45 @@
   html body nav .nav-links.open li { width: auto !important; }
   html body nav .nav-links.open a {
     display: block !important;
-    padding: 10px 14px !important;
+    /* 4번 요청: 세로 간격 한 번 더 축소 */
+    padding: 5px 12px !important;
     border-bottom: 0.5px solid var(--m-line-soft) !important;
-    border-radius: 8px !important;
-    font-size: 0.85rem !important;
+    border-radius: 6px !important;
+    font-size: 0.8rem !important;
+    line-height: 1.2 !important;
     color: var(--m-txt) !important;
     text-align: left !important;
   }
   html body nav .nav-links.open li:last-child a { border-bottom: none !important; }
   html body nav .nav-links.open a:active { background: rgba(255,255,255,0.06) !important; }
 
+  /* 7번 요청: FAQ 페이지 — 우하단 fab에서 구독 메뉴 버튼만 제거, 위로 ↑ 버튼은 유지 */
+  body[data-page="faq"] .tn-fab-plans { display: none !important; }
+
   /* 5번 요청: sample.html — 각 레벨당 4개 → 2개만 노출 (모바일) */
   .level-section .sample-grid .sample-card:nth-of-type(n+3) {
     display: none !important;
   }
 
-  /* sample.html hero — 4번 요청: SAMPLE 더 크게 */
+  /* 5번 요청: level_test.html hero — LEVEL TEST 폰트 조금만 축소
+     기존 clamp(3.4rem,13vw,11rem) → 모바일에서 2.8rem로 축소 (좌우 overflow 방지)
+     기본 룰 (level_test 외 다른 페이지에는 영향 없도록 sample은 body[data-page]로 override) */
   .hero .hero-title {
+    font-size: 2.8rem !important;
+    letter-spacing: 0.01em !important;
+    -webkit-text-stroke: 1.2px currentColor !important;
+  }
+
+  /* sample.html hero — 4번 요청: SAMPLE 더 크게 (data-page 우선) */
+  body[data-page="sample"] .hero .hero-title {
     font-size: 4.2rem !important;
     font-weight: 900 !important;
     letter-spacing: 0.04em !important;
     line-height: 1 !important;
     margin: 4px 0 0 !important;
+    -webkit-text-stroke: 0 currentColor !important;
   }
-  .hero .hero-badge {
+  body[data-page="sample"] .hero .hero-badge {
     font-size: 0.72rem !important;
     letter-spacing: 0.28em !important;
     padding: 5px 12px !important;
@@ -1035,6 +1056,35 @@
     background: rgba(255,255,255,0.04);
   }
   .m-page-back:active { background: rgba(255,255,255,0.10); }
+  /* 2,6번: 페이지 우상단 햄버거 */
+  .m-subpage-nav {
+    position: absolute;
+    right: 0; top: 0;
+    width: 38px; height: 38px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .m-page-hamb {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    width: 38px; height: 38px;
+  }
+  .m-page-hamb span {
+    display: block;
+    width: 22px; height: 2px;
+    background: #fff;
+    border-radius: 2px;
+    transition: all 0.28s var(--m-ease);
+  }
+  .m-page-hamb.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .m-page-hamb.open span:nth-child(2) { opacity: 0; }
+  .m-page-hamb.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
   /* 5번 요청: 페이지 타이틀 크게 */
   .m-page-title {
     font-size: 1.6rem !important;
@@ -1082,17 +1132,16 @@
     letter-spacing: -0.005em;
   }
 
-  /* 3번 요청: 형광펜 — 노랑 */
+  /* 2번 요청: 형광펜 — 글자 가리지 않는 음영 (반투명 노랑 배경)
+     글자색은 원래 상태(흰색/dim) 유지, 배경에 옅은 노란색 글로우만 깐다. */
   mark.m-hl {
-    background: linear-gradient(180deg, transparent 55%, #FFEB3B 55%, #FFD600 100%);
-    color: inherit;
-    padding: 0 2px;
-    border-radius: 2px;
+    background: rgba(255, 230, 0, 0.22);
+    box-shadow: 0 0 0 2px rgba(255, 230, 0, 0.10);
+    color: inherit !important;
+    padding: 0 3px;
+    border-radius: 3px;
     font-weight: 700;
   }
-  /* book-card (어두운 배경)에서는 노랑 그대로 + 글자색 진하게 */
-  .m-match-book mark.m-hl { color: #0A0A0F; }
-  .m-match-body-en mark.m-hl { color: #0A0A0F; font-style: normal; }
 
   /* 모의고사 발문/그림/보기 — 시험지 감성 */
   .m-match-figure {

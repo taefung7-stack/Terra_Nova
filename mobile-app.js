@@ -668,11 +668,10 @@
     if (path === 'exam-match.html') {
       document.body.classList.add('m-bio-mode', 'm-subpage');
       var container = el('section', { id: 'm-bio', cls: 'm-subpage-wrap' });
-      // 페이지 헤더 (가운데정렬 큰 타이틀, 사용자 요청 3번의 헤더 영역)
       var ph = el('header', { cls: 'm-page-head' });
-      var back = el('a', { cls: 'm-page-back', href: 'index.html', aria: '뒤로', text: '‹' });
-      ph.appendChild(back);
+      ph.appendChild(el('a', { cls: 'm-page-back', href: 'index.html', aria: '뒤로', text: '‹' }));
       ph.appendChild(el('h1', { cls: 'm-page-title', text: 'TERRA NOVA = 수능지문' }));
+      ph.appendChild(buildSubPageHamburger());
       container.appendChild(ph);
       buildBooksPage(container);
       document.body.insertBefore(container, document.body.firstChild);
@@ -682,15 +681,49 @@
       document.body.classList.add('m-bio-mode', 'm-subpage');
       var container2 = el('section', { id: 'm-bio', cls: 'm-subpage-wrap' });
       var ph2 = el('header', { cls: 'm-page-head' });
-      var back2 = el('a', { cls: 'm-page-back', href: 'index.html', aria: '뒤로', text: '‹' });
-      ph2.appendChild(back2);
+      ph2.appendChild(el('a', { cls: 'm-page-back', href: 'index.html', aria: '뒤로', text: '‹' }));
       ph2.appendChild(el('h1', { cls: 'm-page-title m-page-title-eng', text: 'SUBSCRIPTION' }));
+      ph2.appendChild(buildSubPageHamburger());
       container2.appendChild(ph2);
       buildPlansPage(container2);
       document.body.insertBefore(container2, document.body.firstChild);
       return true;
     }
     return false;
+  }
+
+  // 2,6번 요청: exam-match · subscription 페이지에도 우상단 햄버거 추가.
+  // 다른 페이지의 .nav-hamburger와 동일한 모양·동작 (드롭다운 메뉴).
+  function buildSubPageHamburger() {
+    var wrap = el('div', { cls: 'm-subpage-nav', role: 'navigation' });
+    var btn = el('button', { cls: 'nav-hamburger m-page-hamb', type: 'button', aria: '메뉴' });
+    btn.appendChild(el('span'));
+    btn.appendChild(el('span'));
+    btn.appendChild(el('span'));
+    var ul = el('ul', { cls: 'nav-links' });
+    var ITEMS = [
+      { href: 'index.html',       label: '홈' },
+      { href: 'level_test.html',  label: '레벨테스트' },
+      { href: 'sample.html',      label: '무료샘플' },
+      { href: 'event.html',       label: '이벤트' },
+      { href: 'faq.html',         label: 'FAQ' },
+      { href: 'login.html',       label: '로그인' },
+      { href: 'subscription.html',label: '구독 플랜', cta: true }
+    ];
+    ITEMS.forEach(function (item) {
+      var li = el('li');
+      var a = el('a', { href: item.href, text: item.label });
+      if (item.cta) a.className = 'nav-cta';
+      li.appendChild(a);
+      ul.appendChild(li);
+    });
+    btn.addEventListener('click', function () {
+      btn.classList.toggle('open');
+      ul.classList.toggle('open');
+    });
+    wrap.appendChild(btn);
+    wrap.appendChild(ul);
+    return wrap;
   }
 
   // 3번 요청: 각 문제 헤더 가운데정렬·크게 + 형광펜
