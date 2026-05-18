@@ -375,38 +375,42 @@
     pointer-events: none;
   }
 
-  /* Profile header */
-  .m-bio-profile { text-align: center; padding: 12px 0 6px; }
-  .m-bio-avatar {
-    width: 84px; height: 84px;
-    margin: 0 auto 12px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #00FFA3 0%, #00CC83 100%);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 2rem; font-weight: 900;
-    color: #0A0A0F;
-    letter-spacing: -0.04em;
-    box-shadow: 0 6px 24px rgba(0,255,163,0.25), 0 0 0 4px rgba(0,255,163,0.08);
+  /* Profile header — large Pretendard wordmark */
+  .m-bio-profile {
+    text-align: center;
+    padding: 18px 0 10px;
   }
-  .m-bio-name {
-    font-size: 1.18rem !important;
-    font-weight: 800 !important;
-    margin: 0 0 4px !important;
+  .m-bio-wordmark {
+    font-family: 'Pretendard',-apple-system,BlinkMacSystemFont,sans-serif !important;
+    font-size: 2.4rem !important;
+    font-weight: 900 !important;
+    line-height: 1.0 !important;
+    letter-spacing: 0.02em !important;
     color: var(--m-txt) !important;
-    letter-spacing: -0.01em;
+    margin: 0 !important;
+    /* 미세한 가독 그라데이션 */
+    background: linear-gradient(180deg, #FFFFFF 0%, #D9F7EB 100%);
+    -webkit-background-clip: text;
+            background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 2px 24px rgba(0,255,163,0.10);
   }
-  .m-bio-handle {
-    font-size: 0.78rem !important;
-    color: var(--m-txt-mute) !important;
-    margin: 0 0 8px !important;
-    letter-spacing: 0.02em;
+  .m-bio-eng {
+    font-family: 'Pretendard',-apple-system,BlinkMacSystemFont,sans-serif !important;
+    font-size: 0.72rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.42em !important;
+    color: var(--m-accent) !important;
+    margin: 4px 0 0 !important;
+    text-indent: 0.42em;
   }
-  .m-bio-bio {
-    font-size: 0.82rem !important;
+  .m-bio-tagline {
+    font-size: 0.86rem !important;
     color: var(--m-txt-dim) !important;
     line-height: 1.5 !important;
-    margin: 0 auto !important;
-    max-width: 280px;
+    margin: 22px auto 0 !important;
+    max-width: 320px;
+    letter-spacing: -0.005em;
   }
 
   /* Social row (small icon chips) */
@@ -417,19 +421,96 @@
     margin: 4px 0 6px;
   }
   .m-bio-social a {
-    width: 38px; height: 38px;
+    width: 42px; height: 42px;
     border-radius: 50%;
     background: rgba(255,255,255,0.06);
     border: 0.5px solid var(--m-line);
     display: flex; align-items: center; justify-content: center;
-    font-size: 1.05rem;
     text-decoration: none;
     color: var(--m-txt);
-    transition: transform 0.2s var(--m-ease), background 0.2s var(--m-ease);
+    transition: transform 0.2s var(--m-ease), background 0.2s var(--m-ease), color 0.2s var(--m-ease);
   }
+  .m-bio-social a:hover { color: var(--m-accent); }
   .m-bio-social a:active {
     transform: scale(0.92);
     background: rgba(255,255,255,0.10);
+    color: var(--m-accent);
+  }
+  .m-bio-social svg { display: block; }
+
+  /* Home book carousel — 4권 가로 스크롤 */
+  .m-bio-rail-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 4px 4px 0;
+    margin-top: 4px;
+  }
+  .m-bio-rail-title {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--m-txt);
+    letter-spacing: -0.005em;
+  }
+  .m-bio-rail-sub {
+    font-size: 0.66rem;
+    color: var(--m-txt-mute);
+    letter-spacing: 0.04em;
+  }
+  .m-bio-rail {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 4px 0 10px;
+    margin: 0 -18px;
+    padding-left: 18px;
+    padding-right: 18px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .m-bio-rail::-webkit-scrollbar { display: none; }
+  .m-bio-book {
+    flex: 0 0 44%;
+    scroll-snap-align: start;
+    text-decoration: none;
+    color: var(--m-txt);
+    background: var(--m-surface);
+    border: 0.5px solid var(--m-line);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s var(--m-ease);
+  }
+  .m-bio-book:active { transform: scale(0.98); }
+  .m-bio-book-cover {
+    aspect-ratio: 3 / 4;
+    background: var(--m-surface-2);
+    overflow: hidden;
+  }
+  .m-bio-book-cover img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block;
+  }
+  .m-bio-book-meta {
+    padding: 9px 11px 11px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 6px;
+  }
+  .m-bio-book-code {
+    font-size: 0.78rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.06em;
+    color: var(--m-txt) !important;
+  }
+  .m-bio-book-grade {
+    font-size: 0.68rem !important;
+    color: var(--m-txt-mute) !important;
   }
 
   /* Section label between groups */
@@ -538,20 +619,6 @@
     line-height: 1.6;
   }
   .m-bio-footer a { color: var(--m-txt-dim); text-decoration: none; }
-
-  /* Avatar with real logo image */
-  .m-bio-avatar img {
-    width: 100%; height: 100%;
-    object-fit: contain;
-    display: block;
-    padding: 8px;
-    border-radius: 50%;
-  }
-  /* 흰 배경 로고가 그라데이션 위에 자연스럽게 — bg를 흰색에 가깝게 */
-  .m-bio-avatar {
-    background: linear-gradient(135deg, rgba(0,255,163,0.18) 0%, rgba(0,204,131,0.10) 100%) !important;
-    border: 1px solid rgba(0,255,163,0.35);
-  }
 
   /* Secondary feature card (작은 feature, sub 없음) */
   .m-bio-feature-2 {
