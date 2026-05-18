@@ -49,8 +49,11 @@
   }
 
   // ── 3. Swipe gesture (이전/다음 페이지) ────────────────────
+  // bio 모드(=index/landing의 link-in-bio 홈)에서는 교재 carousel·모달과
+  // 충돌하므로 페이지 전환 스와이프 자체를 비활성. 다른 탭바 페이지에서만 동작.
   function attachSwipe() {
     var path = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
+    if (document.body.classList.contains('m-bio-mode')) return;  // bio 홈 = 스와이프 끔
     var idx = -1;
     for (var i = 0; i < TABS.length; i++) {
       if (TABS[i].aliases.indexOf(path) !== -1) { idx = i; break; }
@@ -63,6 +66,11 @@
 
     document.addEventListener('touchstart', function (e) {
       if (e.touches.length !== 1) return;
+      // carousel 같은 가로 스크롤러 안에서 시작한 터치는 페이지 전환에 사용 안 함
+      if (e.target && e.target.closest && e.target.closest('[data-no-page-swipe]')) {
+        tracking = false;
+        return;
+      }
       startX = e.touches[0].clientX;
       startY = e.touches[0].clientY;
       tracking = true;
@@ -101,7 +109,7 @@
   // modal: 'books' → TERRA NOVA = 수능지문, 'plans' → 구독 플랜 보기
   var BIO_LINKS = [
     { type: 'book-rail' },
-    { type: 'feature', icon: '🎯', title: 'TERRA NOVA = 수능지문',  sub: '모의고사 개념 ↔ Terra Nova 매핑 5선',  modal: 'books' },
+    { type: 'feature', icon: '🎯', title: 'TERRA NOVA = 수능지문',  modal: 'books' },
     { type: 'feature-2', icon: '📖', title: '무료 샘플 받기',                                          href: 'sample.html' },
     { type: 'section', label: '시작하기' },
     { type: 'link', icon: '🧭', title: '내 레벨 알아보기',                                             href: 'level_test.html' },
@@ -114,25 +122,51 @@
   ];
 
   // 홈 화면에 바로 보여줄 교재 4권 — Mars(초5), Saturn(고1), Jupiter(고2), Sun(고3).
-  // 표지 대신 P1 (Passage) 페이지 썸네일 사용. 클릭 시 books 모달로 점프.
+  // 표지 대신 P1 (Passage) 페이지 썸네일 사용. 클릭 시 sample.html.
+  // syllabus = 그 권이 다루는 교과 단원 — 큰 글씨로 carousel 카드에 노출.
   var HOME_BOOKS = [
-    { code: 'MARS',    grade: '초5', cover: 'assets/textbook-previews/mars-p1.jpg' },
-    { code: 'SATURN',  grade: '고1', cover: 'assets/textbook-previews/saturn-p1.jpg' },
-    { code: 'JUPITER', grade: '고2', cover: 'assets/textbook-previews/jupiter-p1.jpg' },
-    { code: 'SUN',     grade: '고3', cover: 'assets/textbook-previews/sun-p1.jpg' }
+    {
+      code: 'MARS', grade: '초5',
+      cover: 'assets/textbook-previews/mars-p1.jpg',
+      headline: '초5 교과서를 영어로',
+      syllabus: ['국어 5-2 · 우리말 어휘 확장', '사회 5-2 · 우리 역사의 시작', '과학 5-2 · 생물과 환경', '수학 5-2 · 약수와 배수']
+    },
+    {
+      code: 'SATURN', grade: '고1',
+      cover: 'assets/textbook-previews/saturn-p1.jpg',
+      headline: '고1 통합과학 · 공통수학을 영어로',
+      syllabus: ['통합과학 I-2 · 자연의 구성 물질 (탄소·공유결합)', '공통수학 Ⅱ-2 · 이차함수와 포물선', '통합사회 Ⅱ-1 · 인권 보장과 정의', '영어Ⅰ · 학력평가 어휘 1,800']
+    },
+    {
+      code: 'JUPITER', grade: '고2',
+      cover: 'assets/textbook-previews/jupiter-p1.jpg',
+      headline: '고2 선택과목 · 미적분의 길로',
+      syllabus: ['생명과학Ⅰ Ⅱ-1 · DNA 복제와 유전 정보', '미적분 · 함수의 극한과 연속', '영어 독해와 작문 · 모의고사 어법', '한국지리 · 자연환경과 인간생활']
+    },
+    {
+      code: 'SUN', grade: '고3',
+      cover: 'assets/textbook-previews/sun-p1.jpg',
+      headline: '고3 수능 직결 · 모의고사 깊이',
+      syllabus: ['한국사 Ⅲ-1 · 조선 통치 체제 (6조 직계제)', '생활과 윤리 Ⅱ-3 · 롤스의 정의론', '독서 · 수능 EBS 연계 지문 깊이', '영어 · 수능 빈출 어법·구문 패턴']
+    }
   ];
 
-  // 교재 보기 모달용 데이터 — 매핑 5개
+  // 교재 보기 모달용 데이터 — 매핑 3개 (figure 그림 포함, bookTag 없음)
+  // figure = 'molecule' (탄소·물·CO2) | 'parabola' (포물선) | 'veil' (무지의 베일)
   var BOOKS_DATA = {
     matches: [
       {
         pairNum: '01',
         gradeLabel: '고1 · 통합과학',
-        levelLabel: 'Saturn · Lv 08',
         examTag: '2026학년도 6월 · 고1 전국연합학력평가',
         examTitle: '통합과학 15번',
-        examBody: '물(H₂O)과 이산화 탄소(CO₂) 분자에서 모든 원자가 네온(Ne)과 같은 전자 배치를 가지는지, 공유하는 전자쌍의 수가 같은지를 묻는 문제.',
-        bookTag: 'Terra Nova · 2026.06 · Saturn L1',
+        examStem: '그림은 분자 (가)와 (나)를 화학 결합 모형으로 나타낸 것이다. (가)와 (나)는 각각 물(H₂O)과 이산화 탄소(CO₂) 중 하나이다. <보기>에서 옳은 것만을 있는 대로 고른 것은? [2점]',
+        examChoices: [
+          '(가)는 물(H₂O)이다.',
+          '(가)에서 모든 원자는 네온(Ne)과 같은 전자 배치를 가진다.',
+          '공유하는 전자쌍의 수는 (가)와 (나)가 같다.'
+        ],
+        figure: 'molecule',
         bookTitle: 'Why Carbon Can Build Almost Anything',
         bookBody: 'Carbon has four outer electrons, which means it can share bonds with four different neighbors at the same time — the small difference that quietly shapes the entire story of biology.',
         bookBodyKo: '탄소는 가장 바깥쪽 전자가 4개라, 네 이웃 원자와 동시에 결합을 공유할 수 있다 — 그 작은 차이가 생물학 전체를 빚어낸다.',
@@ -142,11 +176,15 @@
       {
         pairNum: '02',
         gradeLabel: '고1 · 공통수학',
-        levelLabel: 'Saturn · Lv 08',
         examTag: '2026학년도 6월 · 고1 전국연합학력평가',
         examTitle: '공통수학 24번',
-        examBody: '45° 각도로 던져 올린 야구공의 위치를 y = ax² + bx + c 로 모형화한 포물선 그래프에서, 볼록 방향·최고점 좌표·판별식과 x축 교점 수의 관계를 묻는 문제.',
-        bookTag: 'Terra Nova · 2026.06 · Saturn L3',
+        examStem: '45° 각도로 던져 올린 야구공의 위치 (가)는 이차함수 y = ax² + bx + c 로 모형화된다. 그래프는 시간에 따른 공의 높이를 나타낸 포물선이다. <보기>에서 옳은 것을 모두 고른 것은? [3점]',
+        examChoices: [
+          'a < 0 이므로 그래프는 위로 볼록한 포물선이다.',
+          '최고점의 좌표는 −b/2a 에서 결정된다.',
+          '판별식 b² − 4ac 는 x축과의 교점 개수를 결정한다.'
+        ],
+        figure: 'parabola',
         bookTitle: 'Why Parabolas Always Beat Straight Lines',
         bookBody: 'A baseball thrown at 45° never travels in a straight line — it traces a perfect parabolic arc, modeled by y = ax² + bx + c. The discriminant tells us, before the ball even leaves the hand, how many roots that path will share with the field.',
         bookBodyKo: '45°로 던진 공은 직선이 아닌 완벽한 포물선으로 날아간다. 판별식은 공이 손을 떠나기도 전에 그 경로가 지면과 몇 점을 공유할지 알려준다.',
@@ -155,48 +193,94 @@
       },
       {
         pairNum: '03',
-        gradeLabel: '고2 · 생명과학Ⅰ',
-        levelLabel: 'Jupiter · Lv 09',
-        examTag: '2026학년도 6월 · 고2 전국연합학력평가',
-        examTitle: '생명과학Ⅰ 11번',
-        examBody: 'DNA 이중나선의 상보적 염기쌍 (A–T, G–C) 결합과 반보존적 복제 모형에서 모(母) 가닥과 새 가닥의 비율을 추론하는 문제.',
-        bookTag: 'Terra Nova · 2026.06 · Jupiter L2',
-        bookTitle: 'The Ladder That Copies Itself',
-        bookBody: 'DNA is a twisted ladder whose rungs only fit in one way — A always with T, G always with C. When a cell divides, the ladder splits down the middle, and each half rebuilds its missing side from scratch. The copy is never random; it is dictated, base by base, by the strand that already exists.',
-        bookBodyKo: 'DNA는 사다리처럼 비틀려 있고, 그 가로대는 한 가지 방식으로만 맞물린다 — A는 항상 T와, G는 항상 C와. 세포가 분열할 때 사다리는 가운데서 갈라지고, 각 반쪽은 사라진 면을 처음부터 다시 짓는다. 복제는 결코 무작위가 아니다 — 이미 존재하는 가닥이 염기 하나하나를 받아쓴다.',
-        concept: '상보적 염기쌍 · 반보존적 복제',
-        curriculum: '생명과학Ⅰ Ⅱ-1'
-      },
-      {
-        pairNum: '04',
-        gradeLabel: '고3 · 한국사',
-        levelLabel: 'Sun · Lv 10',
-        examTag: '2026학년도 6월 · 고3 전국연합학력평가',
-        examTitle: '한국사 9번',
-        examBody: '조선 초기 의정부 서사제와 6조 직계제의 권력 구조를 비교하고, 태종·세조 대에 6조 직계제가 채택된 정치적 배경을 묻는 문제.',
-        bookTag: 'Terra Nova · 2026.06 · Sun L4',
-        bookTitle: 'Who Whispers to the King?',
-        bookBody: 'Joseon\'s early monarchs faced a quiet design choice: should ministers route every decision through a council, or report directly to the throne? The Council Route (Uijeongbu) softened royal power but slowed action; the Direct Route (Yukjo) concentrated speed and authority — at the cost of voices that disagreed. Taejong and Sejo chose speed.',
-        bookBodyKo: '조선 초기 군주들은 조용한 설계의 갈림길에 섰다 — 신하들이 모든 결정을 의정부를 통해 올릴 것인가, 아니면 6조가 곧장 임금에게 보고할 것인가. 의정부 서사제는 왕권을 누그러뜨렸지만 결정을 늦췄고, 6조 직계제는 속도와 권위를 한곳에 모았지만 반대 목소리는 사라졌다. 태종과 세조는 속도를 골랐다.',
-        concept: '6조 직계제 · 왕권 강화',
-        curriculum: '한국사 Ⅲ-1'
-      },
-      {
-        pairNum: '05',
         gradeLabel: '고3 · 생활과 윤리',
-        levelLabel: 'Sun · Lv 10',
         examTag: '2026학년도 6월 · 고3 전국연합학력평가',
         examTitle: '생활과 윤리 18번',
-        examBody: '롤스가 제시한 정의의 원칙 — 무지의 베일 뒤 원초적 입장, 평등한 기본 자유의 원칙, 차등의 원칙 (최소 수혜자에게 이익이 될 때만 불평등 정당화) — 에 부합하는 입장을 모두 고르는 문제.',
-        bookTag: 'Terra Nova · 2026.06 · Sun L5',
+        examStem: '다음은 어느 사상가의 입장이다. 이 사상가가 주장한 정의의 원칙으로 옳은 것만을 <보기>에서 있는 대로 고른 것은? [3점]',
+        examChoices: [
+          '정의의 원칙은 자신의 우연적 조건을 모르는 상태에서 도출된다.',
+          '평등한 기본 자유의 원칙이 차등의 원칙보다 우선한다.',
+          '사회·경제적 불평등은 최소 수혜자에게 이익이 될 때에만 정당화된다.'
+        ],
+        figure: 'veil',
         bookTitle: 'Justice Behind a Veil',
-        bookBody: 'John Rawls asked a deceptively simple question: what rules would we choose if we didn\'t know who we\'d be in society? Strip away your gender, your class, your talent — would you still vote for the same tax code? Behind this veil of ignorance, Rawls believed people would converge on two principles: equal basic liberties for all, and inequalities permitted only when they help the worst-off.',
-        bookBodyKo: '존 롤스는 단순해 보이는 질문을 던졌다 — 우리가 사회에서 어떤 사람이 될지 모른 채 규칙을 정한다면 어떤 규칙을 고르겠는가? 성별, 계층, 재능을 벗겨낸다면 같은 세제에 찬성하겠는가? 롤스는 무지의 베일 뒤에서 사람들이 두 원칙으로 수렴한다 보았다 — 모두에게 평등한 기본 자유, 그리고 불평등은 최소 수혜자에게 도움이 될 때만 정당화된다.',
+        bookBody: 'John Rawls asked a deceptively simple question: what rules would we choose if we didn\'t know who we\'d be in society? Behind this veil of ignorance, Rawls believed people would converge on two principles: equal basic liberties for all, and inequalities permitted only when they help the worst-off.',
+        bookBodyKo: '존 롤스는 단순해 보이는 질문을 던졌다 — 우리가 사회에서 어떤 사람이 될지 모른 채 규칙을 정한다면 어떤 규칙을 고르겠는가? 롤스는 무지의 베일 뒤에서 사람들이 두 원칙으로 수렴한다 보았다 — 모두에게 평등한 기본 자유, 그리고 불평등은 최소 수혜자에게 도움이 될 때만 정당화된다.',
         concept: '무지의 베일 · 차등의 원칙',
         curriculum: '생활과 윤리 Ⅱ-3'
       }
     ]
   };
+
+  // 모의고사 문제 도식 SVG — 인라인 빌더 (index.html 원본 그림 단순화 버전)
+  function buildExamFigure(kind) {
+    var wrap = el('div', { cls: 'm-match-figure', ariaHidden: true });
+    var svg;
+    if (kind === 'molecule') {
+      svg = svgEl('svg', { viewBox: '0 0 280 96', width: '100%', height: '96', role: 'img', 'aria-label': '물·이산화탄소 분자 모형' });
+      // H2O on left
+      var g1 = svgEl('g', {});
+      g1.appendChild(svgEl('line',   { x1: '38', y1: '76', x2: '64', y2: '36', stroke: '#cfd0d2', 'stroke-width': '2' }));
+      g1.appendChild(svgEl('line',   { x1: '64', y1: '36', x2: '90', y2: '76', stroke: '#cfd0d2', 'stroke-width': '2' }));
+      g1.appendChild(svgEl('circle', { cx: '64', cy: '36', r: '16', fill: '#33d6ff' }));
+      var oT = svgEl('text', { x: '64', y: '41', 'text-anchor': 'middle', 'font-size': '14', 'font-weight': '700', fill: '#001417' }); oT.textContent = 'O'; g1.appendChild(oT);
+      g1.appendChild(svgEl('circle', { cx: '38', cy: '76', r: '10', fill: '#fff' }));
+      var hT1 = svgEl('text', { x: '38', y: '80', 'text-anchor': 'middle', 'font-size': '11', 'font-weight': '700', fill: '#000' }); hT1.textContent = 'H'; g1.appendChild(hT1);
+      g1.appendChild(svgEl('circle', { cx: '90', cy: '76', r: '10', fill: '#fff' }));
+      var hT2 = svgEl('text', { x: '90', y: '80', 'text-anchor': 'middle', 'font-size': '11', 'font-weight': '700', fill: '#000' }); hT2.textContent = 'H'; g1.appendChild(hT2);
+      var cap1 = svgEl('text', { x: '64', y: '94', 'text-anchor': 'middle', 'font-size': '9', fill: '#cfd0d2' }); cap1.textContent = '(가) H₂O'; g1.appendChild(cap1);
+      svg.appendChild(g1);
+      // CO2 on right
+      var g2 = svgEl('g', { transform: 'translate(150,0)' });
+      g2.appendChild(svgEl('line', { x1: '8',  y1: '38', x2: '36',  y2: '38', stroke: '#cfd0d2', 'stroke-width': '1.6' }));
+      g2.appendChild(svgEl('line', { x1: '8',  y1: '46', x2: '36',  y2: '46', stroke: '#cfd0d2', 'stroke-width': '1.6' }));
+      g2.appendChild(svgEl('line', { x1: '76', y1: '38', x2: '104', y2: '38', stroke: '#cfd0d2', 'stroke-width': '1.6' }));
+      g2.appendChild(svgEl('line', { x1: '76', y1: '46', x2: '104', y2: '46', stroke: '#cfd0d2', 'stroke-width': '1.6' }));
+      g2.appendChild(svgEl('circle', { cx: '56', cy: '42', r: '14', fill: '#1f1f1f', stroke: '#fff', 'stroke-width': '1.2' }));
+      var cT = svgEl('text', { x: '56', y: '47', 'text-anchor': 'middle', 'font-size': '13', 'font-weight': '700', fill: '#fff' }); cT.textContent = 'C'; g2.appendChild(cT);
+      g2.appendChild(svgEl('circle', { cx: '8',   cy: '42', r: '11', fill: '#33d6ff' }));
+      var o1 = svgEl('text', { x: '8',   y: '47', 'text-anchor': 'middle', 'font-size': '12', 'font-weight': '700', fill: '#001417' }); o1.textContent = 'O'; g2.appendChild(o1);
+      g2.appendChild(svgEl('circle', { cx: '104', cy: '42', r: '11', fill: '#33d6ff' }));
+      var o2 = svgEl('text', { x: '104', y: '47', 'text-anchor': 'middle', 'font-size': '12', 'font-weight': '700', fill: '#001417' }); o2.textContent = 'O'; g2.appendChild(o2);
+      var cap2 = svgEl('text', { x: '56', y: '94', 'text-anchor': 'middle', 'font-size': '9', fill: '#cfd0d2' }); cap2.textContent = '(나) CO₂'; g2.appendChild(cap2);
+      svg.appendChild(g2);
+    } else if (kind === 'parabola') {
+      svg = svgEl('svg', { viewBox: '0 0 280 110', width: '100%', height: '110', role: 'img', 'aria-label': '이차함수 포물선 그래프' });
+      // axes
+      svg.appendChild(svgEl('line', { x1: '14', y1: '94', x2: '266', y2: '94', stroke: '#cfd0d2', 'stroke-width': '1.4' }));
+      svg.appendChild(svgEl('line', { x1: '24', y1: '14', x2: '24',  y2: '102', stroke: '#cfd0d2', 'stroke-width': '1.4' }));
+      var tt = svgEl('text', { x: '268', y: '98', 'font-size': '10', fill: '#cfd0d2' }); tt.textContent = 't'; svg.appendChild(tt);
+      var ty = svgEl('text', { x: '14',  y: '13', 'font-size': '10', fill: '#cfd0d2' }); ty.textContent = 'y'; svg.appendChild(ty);
+      // parabola
+      svg.appendChild(svgEl('path', { d: 'M 26 94 Q 140 -16 254 94', stroke: '#33d6ff', 'stroke-width': '2.4', fill: 'none' }));
+      // vertex
+      svg.appendChild(svgEl('circle', { cx: '140', cy: '24', r: '3.5', fill: '#33d6ff' }));
+      var vtxT = svgEl('text', { x: '146', y: '22', 'font-size': '10', fill: '#33d6ff' }); vtxT.textContent = '최고점 (−b/2a)'; svg.appendChild(vtxT);
+      // launch point
+      svg.appendChild(svgEl('circle', { cx: '26', cy: '94', r: '3', fill: '#fff' }));
+      var lpT = svgEl('text', { x: '30', y: '88', 'font-size': '9', fill: '#fff' }); lpT.textContent = '던진 점'; svg.appendChild(lpT);
+      // equation
+      var eqT = svgEl('text', { x: '150', y: '78', 'font-size': '11', 'font-weight': '700', fill: '#fff', 'font-style': 'italic' }); eqT.textContent = 'y = ax² + bx + c'; svg.appendChild(eqT);
+    } else if (kind === 'veil') {
+      svg = svgEl('svg', { viewBox: '0 0 280 110', width: '100%', height: '110', role: 'img', 'aria-label': '롤스의 무지의 베일 모형' });
+      // veil bar
+      svg.appendChild(svgEl('rect', { x: '24', y: '12', width: '232', height: '22', fill: '#0f1a18', stroke: 'rgba(0,255,163,.45)', 'stroke-width': '1' }));
+      var vT = svgEl('text', { x: '140', y: '27', 'text-anchor': 'middle', 'font-size': '10', 'font-weight': '700', fill: '#33d6ff' }); vT.textContent = 'VEIL OF IGNORANCE'; svg.appendChild(vT);
+      // drop lines
+      [70, 140, 210].forEach(function (x) {
+        svg.appendChild(svgEl('line', { x1: x, y1: '34', x2: x, y2: '58', stroke: 'rgba(255,255,255,.4)', 'stroke-width': '1', 'stroke-dasharray': '2,2' }));
+      });
+      // figures
+      var labels = ['A','B','C'];
+      [70, 140, 210].forEach(function (x, i) {
+        svg.appendChild(svgEl('circle', { cx: x, cy: '72', r: '12', fill: '#161616', stroke: 'rgba(255,255,255,.35)', 'stroke-width': '1' }));
+        var lt = svgEl('text', { x: x, y: '76', 'text-anchor': 'middle', 'font-size': '10', 'font-weight': '700', fill: '#fff' }); lt.textContent = labels[i]; svg.appendChild(lt);
+      });
+      var capV = svgEl('text', { x: '140', y: '102', 'text-anchor': 'middle', 'font-size': '9', fill: '#cfd0d2' }); capV.textContent = '원초적 입장 · Original Position'; svg.appendChild(capV);
+    }
+    if (svg) wrap.appendChild(svg);
+    return wrap;
+  }
 
   // 구독 플랜 모달용 데이터 (landing.html 권도, 2026-04-27 기준)
   var PLANS_DATA = [
@@ -320,26 +404,37 @@
   }
   function escClose(e) { if (e.key === 'Escape') closeModal(); }
 
-  // 교재 모달 콘텐츠 빌더 — 모의고사 ↔ Terra Nova 매핑 5선
+  // 교재 모달 콘텐츠 빌더 — 모의고사 ↔ Terra Nova 매핑 3선
+  // 모의고사 카드: figure 그림 + 발문 + 보기 ul (실제 시험지처럼)
+  // Terra Nova 카드: bookTag 없음 (사용자 요청)
   function buildBooksModal(body) {
-    var lead = el('p', { cls: 'm-modal-lead', text: '모의고사에 나온 그 개념. Terra Nova 영어 지문에서 같은 깊이로 만났습니다.' });
-    body.appendChild(lead);
-
     BOOKS_DATA.matches.forEach(function (m) {
       var pair = el('article', { cls: 'm-match-pair' });
 
       var label = el('div', { cls: 'm-match-label' });
       label.appendChild(el('span', { cls: 'm-match-num', text: m.pairNum }));
       label.appendChild(el('span', { cls: 'm-match-grade', text: m.gradeLabel }));
-      label.appendChild(el('span', { cls: 'm-match-level', text: m.levelLabel }));
       pair.appendChild(label);
 
-      // Exam side
+      // Exam side — 실제 시험지 느낌으로 강화
       var examCard = el('div', { cls: 'm-match-card m-match-exam' });
       examCard.appendChild(el('div', { cls: 'm-match-role m-match-role-exam', text: '모의고사' }));
       examCard.appendChild(el('div', { cls: 'm-match-tag', text: m.examTag }));
       examCard.appendChild(el('h4', { cls: 'm-match-cardtitle', text: m.examTitle }));
-      examCard.appendChild(el('p', { cls: 'm-match-body', text: m.examBody }));
+      if (m.figure) {
+        examCard.appendChild(buildExamFigure(m.figure));
+      }
+      examCard.appendChild(el('p', { cls: 'm-match-stem', text: m.examStem }));
+      if (m.examChoices && m.examChoices.length) {
+        var ul = el('ul', { cls: 'm-match-choices' });
+        m.examChoices.forEach(function (c, i) {
+          var li = el('li');
+          li.appendChild(el('span', { cls: 'm-match-choice-num', text: ['①','②','③','④','⑤'][i] || ('' + (i+1)) }));
+          li.appendChild(el('span', { cls: 'm-match-choice-text', text: c }));
+          ul.appendChild(li);
+        });
+        examCard.appendChild(ul);
+      }
       pair.appendChild(examCard);
 
       // Arrow
@@ -348,10 +443,9 @@
       arrow.appendChild(el('span', { cls: 'm-match-arrow-label', text: '같은 개념' }));
       pair.appendChild(arrow);
 
-      // Book side
+      // Book side — bookTag 제거
       var bookCard = el('div', { cls: 'm-match-card m-match-book' });
       bookCard.appendChild(el('div', { cls: 'm-match-role m-match-role-book', text: 'Terra Nova 교재' }));
-      bookCard.appendChild(el('div', { cls: 'm-match-tag', text: m.bookTag }));
       bookCard.appendChild(el('h4', { cls: 'm-match-cardtitle', text: m.bookTitle }));
       bookCard.appendChild(el('p', { cls: 'm-match-body m-match-body-en', text: m.bookBody }));
       bookCard.appendChild(el('p', { cls: 'm-match-body m-match-body-ko', text: m.bookBodyKo }));
@@ -451,10 +545,12 @@
       if (item.type === 'book-rail') {
         var head = el('div', { cls: 'm-bio-rail-head' });
         head.appendChild(el('span', { cls: 'm-bio-rail-title', text: '교재 미리보기' }));
-        head.appendChild(el('span', { cls: 'm-bio-rail-sub', text: '초5 · 고1 · 고2 · 고3' }));
+        head.appendChild(el('span', { cls: 'm-bio-rail-sub', text: '한 권씩 넘겨보기' }));
         bio.appendChild(head);
 
+        // data-no-page-swipe → 페이지 전환 스와이프 차단(이 안에서 시작한 터치는 무시)
         var rail = el('div', { cls: 'm-bio-rail' });
+        rail.setAttribute('data-no-page-swipe', '1');
         HOME_BOOKS.forEach(function (bk) {
           var card = el('a', {
             cls: 'm-bio-book',
@@ -464,13 +560,46 @@
           var imgWrap = el('div', { cls: 'm-bio-book-cover' });
           imgWrap.appendChild(el('img', { src: bk.cover, alt: bk.code + ' 교재 표지', loading: 'lazy' }));
           card.appendChild(imgWrap);
+
           var meta = el('div', { cls: 'm-bio-book-meta' });
-          meta.appendChild(el('div', { cls: 'm-bio-book-code',  text: bk.code }));
-          meta.appendChild(el('div', { cls: 'm-bio-book-grade', text: bk.grade }));
+          var topRow = el('div', { cls: 'm-bio-book-toprow' });
+          topRow.appendChild(el('div', { cls: 'm-bio-book-code',  text: bk.code }));
+          topRow.appendChild(el('div', { cls: 'm-bio-book-grade', text: bk.grade }));
+          meta.appendChild(topRow);
+          if (bk.headline) {
+            meta.appendChild(el('div', { cls: 'm-bio-book-headline', text: bk.headline }));
+          }
+          if (bk.syllabus && bk.syllabus.length) {
+            var ul = el('ul', { cls: 'm-bio-book-syllabus' });
+            bk.syllabus.forEach(function (s) {
+              var li = el('li');
+              li.appendChild(el('span', { cls: 'm-bio-book-dot', text: '•', ariaHidden: true }));
+              li.appendChild(el('span', { text: s }));
+              ul.appendChild(li);
+            });
+            meta.appendChild(ul);
+          }
           card.appendChild(meta);
           rail.appendChild(card);
         });
         bio.appendChild(rail);
+
+        // pager dots
+        var dots = el('div', { cls: 'm-bio-rail-dots', ariaHidden: true });
+        HOME_BOOKS.forEach(function (_, i) {
+          dots.appendChild(el('span', { cls: 'm-bio-dot' + (i === 0 ? ' is-active' : '') }));
+        });
+        bio.appendChild(dots);
+
+        // scroll-position → dot active 동기화
+        var dotsArr = dots.querySelectorAll('.m-bio-dot');
+        rail.addEventListener('scroll', function () {
+          var w = rail.clientWidth || 1;
+          var idx2 = Math.round(rail.scrollLeft / w);
+          for (var i2 = 0; i2 < dotsArr.length; i2++) {
+            dotsArr[i2].classList.toggle('is-active', i2 === idx2);
+          }
+        }, { passive: true });
         return;
       }
       var isFeature  = item.type === 'feature';

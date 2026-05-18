@@ -375,17 +375,18 @@
     pointer-events: none;
   }
 
-  /* Profile header — large Pretendard wordmark */
+  /* Profile header — large Pretendard wordmark (사용자 요청: 더 크게 + 상단 여백) */
+  #m-bio { padding-top: 44px !important; }   /* 상단 여백 ↑ (28 → 44) */
   .m-bio-profile {
     text-align: center;
-    padding: 18px 0 10px;
+    padding: 6px 0 12px;
   }
   .m-bio-wordmark {
     font-family: 'Pretendard',-apple-system,BlinkMacSystemFont,sans-serif !important;
-    font-size: 2.4rem !important;
+    font-size: 3.0rem !important;           /* 2.4 → 3.0 */
     font-weight: 900 !important;
     line-height: 1.0 !important;
-    letter-spacing: 0.02em !important;
+    letter-spacing: 0.015em !important;
     color: var(--m-txt) !important;
     margin: 0 !important;
     /* 미세한 가독 그라데이션 */
@@ -393,22 +394,22 @@
     -webkit-background-clip: text;
             background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 0 2px 24px rgba(0,255,163,0.10);
+    text-shadow: 0 2px 28px rgba(0,255,163,0.12);
   }
   .m-bio-eng {
     font-family: 'Pretendard',-apple-system,BlinkMacSystemFont,sans-serif !important;
-    font-size: 0.72rem !important;
+    font-size: 0.78rem !important;
     font-weight: 600 !important;
-    letter-spacing: 0.42em !important;
+    letter-spacing: 0.44em !important;
     color: var(--m-accent) !important;
-    margin: 4px 0 0 !important;
-    text-indent: 0.42em;
+    margin: 6px 0 0 !important;
+    text-indent: 0.44em;
   }
   .m-bio-tagline {
-    font-size: 0.86rem !important;
+    font-size: 0.88rem !important;
     color: var(--m-txt-dim) !important;
     line-height: 1.5 !important;
-    margin: 22px auto 0 !important;
+    margin: 26px auto 0 !important;
     max-width: 320px;
     letter-spacing: -0.005em;
   }
@@ -438,79 +439,143 @@
   }
   .m-bio-social svg { display: block; }
 
-  /* Home book carousel — 4권 가로 스크롤 */
+  /* Home book carousel — 한 권씩 풀폭 (사용자 요청) */
   .m-bio-rail-head {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
-    padding: 4px 4px 0;
+    padding: 4px 4px 8px;
     margin-top: 4px;
   }
   .m-bio-rail-title {
-    font-size: 0.82rem;
+    font-size: 0.94rem;
     font-weight: 700;
     color: var(--m-txt);
     letter-spacing: -0.005em;
   }
   .m-bio-rail-sub {
-    font-size: 0.66rem;
+    font-size: 0.68rem;
     color: var(--m-txt-mute);
     letter-spacing: 0.04em;
   }
   .m-bio-rail {
     display: flex;
-    gap: 10px;
+    gap: 12px;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    padding: 4px 0 10px;
+    /* 좌우 스와이프 동작이 carousel에 100% 흡수되도록 */
+    touch-action: pan-x pan-y;
+    overscroll-behavior-x: contain;
+    padding: 4px 18px 12px;
     margin: 0 -18px;
-    padding-left: 18px;
-    padding-right: 18px;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
   }
   .m-bio-rail::-webkit-scrollbar { display: none; }
+
+  /* 한 카드가 거의 화면 전폭 = scroll-snap이 한 권씩 강제 정지 */
   .m-bio-book {
-    flex: 0 0 44%;
-    scroll-snap-align: start;
+    flex: 0 0 100%;
+    width: 100%;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
     text-decoration: none;
     color: var(--m-txt);
     background: var(--m-surface);
     border: 0.5px solid var(--m-line);
-    border-radius: 12px;
+    border-radius: 14px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     transition: transform 0.2s var(--m-ease);
   }
-  .m-bio-book:active { transform: scale(0.98); }
+  .m-bio-book:active { transform: scale(0.99); }
   .m-bio-book-cover {
-    aspect-ratio: 3 / 4;
+    aspect-ratio: 4 / 3;
     background: var(--m-surface-2);
     overflow: hidden;
+    border-bottom: 0.5px solid var(--m-line);
   }
   .m-bio-book-cover img {
     width: 100% !important;
     height: 100% !important;
     object-fit: cover !important;
+    object-position: top center !important;
     display: block;
   }
   .m-bio-book-meta {
-    padding: 9px 11px 11px;
+    padding: 14px 16px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .m-bio-book-toprow {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
-    gap: 6px;
+    gap: 8px;
   }
   .m-bio-book-code {
-    font-size: 0.78rem !important;
-    font-weight: 800 !important;
+    font-size: 1.1rem !important;
+    font-weight: 900 !important;
     letter-spacing: 0.06em;
     color: var(--m-txt) !important;
   }
   .m-bio-book-grade {
-    font-size: 0.68rem !important;
+    font-size: 0.78rem !important;
     color: var(--m-txt-mute) !important;
+    font-weight: 600;
+  }
+  /* 교과 연계 헤드라인 — 크게 (사용자 요청) */
+  .m-bio-book-headline {
+    font-size: 1.0rem !important;
+    font-weight: 700 !important;
+    color: var(--m-accent) !important;
+    line-height: 1.35 !important;
+    letter-spacing: -0.005em;
+    margin: 2px 0 4px !important;
+  }
+  /* 교과 단원 리스트 */
+  .m-bio-book-syllabus {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .m-bio-book-syllabus li {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 0.86rem !important;
+    line-height: 1.5 !important;
+    color: var(--m-txt-dim) !important;
+  }
+  .m-bio-book-dot {
+    color: var(--m-accent);
+    font-weight: 800;
+    flex-shrink: 0;
+    line-height: 1.5;
+  }
+
+  /* Carousel pager dots */
+  .m-bio-rail-dots {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    padding: 2px 0 6px;
+  }
+  .m-bio-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.18);
+    transition: background 0.2s var(--m-ease), width 0.2s var(--m-ease);
+  }
+  .m-bio-dot.is-active {
+    background: var(--m-accent);
+    width: 18px;
+    border-radius: 3px;
   }
 
   /* Section label between groups */
@@ -688,12 +753,13 @@
     background: rgba(255,255,255,0.18);
   }
   .m-modal-title {
-    font-size: 1.02rem !important;
-    font-weight: 700 !important;
-    margin: 0 !important;
+    font-size: 1.36rem !important;          /* 더 크게 (사용자 요청) */
+    font-weight: 800 !important;
+    margin: 6px 0 4px !important;
     text-align: center;
     color: var(--m-txt) !important;
     letter-spacing: -0.01em;
+    line-height: 1.2;
   }
   .m-modal-close {
     position: absolute;
@@ -884,6 +950,46 @@
     line-height: 1.55 !important;
     margin: 0 0 4px !important;
   }
+
+  /* 모의고사 발문/그림/보기 — 시험지 감성 */
+  .m-match-figure {
+    margin: 8px 0 10px;
+    padding: 12px 10px 8px;
+    background: rgba(255,255,255,0.04);
+    border: 0.5px solid var(--m-line);
+    border-radius: 8px;
+    text-align: center;
+  }
+  .m-match-figure svg { display: block; margin: 0 auto; max-width: 100%; }
+  .m-match-stem {
+    font-size: 0.86rem !important;
+    color: var(--m-txt) !important;
+    line-height: 1.55 !important;
+    margin: 4px 0 8px !important;
+    font-weight: 500 !important;
+  }
+  .m-match-choices {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 6px 0 4px !important;
+  }
+  .m-match-choices li {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 5px 0;
+    font-size: 0.82rem !important;
+    color: var(--m-txt-dim) !important;
+    line-height: 1.5 !important;
+  }
+  .m-match-choice-num {
+    flex-shrink: 0;
+    color: var(--m-accent);
+    font-weight: 700;
+    font-size: 0.86rem;
+    width: 18px;
+  }
+  .m-match-choice-text { flex: 1; }
   .m-match-body-en {
     font-family: 'Inter', 'Pretendard', sans-serif !important;
     color: var(--m-txt) !important;
