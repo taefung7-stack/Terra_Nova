@@ -341,7 +341,7 @@
   /* ───────── 18. Link-in-bio home (index.html only) ─────────
      mobile-app.js 가 index.html 에서 <main> 을 hide 하고
      #m-bio 컨테이너를 body 첫 자식으로 inject. linktr.ee/litt.ly 감성. */
-  body.m-bio-mode > nav:not(#m-tabbar) { display: none !important; }
+  body.m-bio-mode:not(.m-subpage) > nav:not(#m-tabbar) { display: none !important; }
   body.m-bio-mode #main,
   body.m-bio-mode main,
   body.m-bio-mode footer,
@@ -1012,31 +1012,52 @@
   html body .m-subpage-nav .nav-links.open li:last-child a { border-bottom: none !important; }
   html body nav .nav-links.open a:active,
   html body .m-subpage-nav .nav-links.open a:active { background: rgba(255,255,255,0.06) !important; }
+  /* 7번 요청: 드롭다운 내부 '구독 신청' 같은 nav-cta 네모 박스 제거 */
+  html body nav .nav-links.open a.nav-cta,
+  html body .m-subpage-nav .nav-links.open a.nav-cta {
+    background: transparent !important;
+    border: none !important;
+    color: var(--m-accent) !important;
+    font-weight: 700 !important;
+    padding: 3px 12px !important;
+    border-radius: 6px !important;
+    box-shadow: none !important;
+  }
 
-  /* 6번 요청: market.html — 제목은 그대로, 나머지 이모지·글씨 축소 (스크롤 부담 ↓) */
-  body[data-page="market"] .hero { padding: 18px 5vw 12px !important; min-height: auto !important; }
+  /* 4번 요청(반복): market 헤더 — MARKET 제목 제외 모든 텍스트·이모지 한 번 더 축소 */
+  body[data-page="market"] .hero { padding: 12px 5vw 8px !important; min-height: auto !important; }
   body[data-page="market"] .hero-badge {
-    font-size: 0.58rem !important;
-    letter-spacing: 0.16em !important;
-    padding: 3px 9px !important;
-    margin-bottom: 10px !important;
-  }
-  /* MARKET 제목은 살려두되 viewport 안에 들어오도록 살짝만 조정 */
-  body[data-page="market"] .hero-title {
-    font-size: 3.8rem !important;
+    font-size: 0.5rem !important;
+    letter-spacing: 0.14em !important;
+    padding: 2px 7px !important;
     margin-bottom: 6px !important;
-    -webkit-text-stroke: 1.2px currentColor !important;
   }
-  body[data-page="market"] .hero-sub { font-size: 0.78rem !important; line-height: 1.5 !important; }
-  /* 카테고리 버튼 축소 */
+  /* MARKET 제목은 살려두되 viewport 안에 들어오도록 */
+  body[data-page="market"] .hero-title {
+    font-size: 3.6rem !important;
+    margin-bottom: 4px !important;
+    -webkit-text-stroke: 1px currentColor !important;
+  }
+  body[data-page="market"] .hero-sub { font-size: 0.72rem !important; line-height: 1.45 !important; }
+  /* 카테고리 버튼 + 이모지 한번 더 축소 */
   body[data-page="market"] .cat-wrap {
-    padding: 10px 5vw 4px !important;
-    gap: 6px !important;
+    padding: 6px 5vw 4px !important;
+    gap: 5px !important;
+    flex-wrap: wrap !important;
   }
   body[data-page="market"] .cat-btn {
-    font-size: 0.78rem !important;
-    padding: 7px 12px !important;
+    font-size: 0.7rem !important;
+    padding: 5px 9px !important;
+    border-radius: 5px !important;
   }
+  /* 상품 카드 안 거대 이모지(.pdetail-img 안) 축소 */
+  body[data-page="market"] .pdetail-img {
+    font-size: 3.2rem !important;
+    min-height: auto !important;
+    padding: 22px 0 !important;
+  }
+  body[data-page="market"] .pdetail-cat { font-size: 0.62rem !important; letter-spacing: 0.1em !important; }
+  body[data-page="market"] .pdetail-tag { font-size: 0.58rem !important; padding: 2px 6px !important; }
 
   /* 12번 요청: order.html 레벨 카드 컴팩트 (2-col 그대로, 카드 padding 축소) */
   body[data-page="order"] .level-grid {
@@ -1066,14 +1087,14 @@
     row-gap: 4px !important;
     align-items: start !important;
   }
-  /* 2번 요청: 숫자 원이 글씨 가리지 않게 작은 원으로 */
+  /* 5번 요청: 숫자 원이 이모지/제목 가리지 않게 — 카드 우상단 외곽 모서리에 작게 */
   body[data-page="event"] .step .num {
     position: absolute !important;
-    top: 8px !important;
-    right: 10px !important;
+    top: -8px !important;
+    right: -8px !important;
     width: 22px !important;
     height: 22px !important;
-    font-size: 0.72rem !important;
+    font-size: 0.7rem !important;
     line-height: 22px !important;
     padding: 0 !important;
     box-shadow: 0 0 0 2px var(--dark, #0A0A0F) !important;
@@ -1082,8 +1103,9 @@
   body[data-page="event"] .step .icon {
     grid-row: 1 / span 2;
     grid-column: 1;
-    font-size: 2.2rem !important;
-    margin: 0 !important;
+    font-size: 2rem !important;
+    /* 5번 요청: .num 원이 우상단에 있을 때 이모지를 살짝 아래로 내려 가리지 않게 */
+    margin-top: 6px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -1148,10 +1170,69 @@
   }
 
   /* ───── Sub-page (exam-match.html / subscription.html) ───── */
-  body.m-subpage { padding-top: 0 !important; }
+  /* 1번 요청: 일반 페이지 nav 패턴 사용. m-subpage-stdnav는 일반 nav와 동일 fixed 헤더. */
+  body.m-subpage { padding-top: var(--m-header-h) !important; }
   .m-subpage-wrap {
-    padding-top: 0 !important;
+    padding: 16px 18px 0 !important;
     padding-bottom: calc(40px + var(--m-tabbar-h) + var(--m-safe-bottom)) !important;
+  }
+  /* m-subpage-mode 에서도 nav:not(#m-tabbar) 룰이 적용되도록 .m-bio-mode 의 hide 룰 제외 */
+  body.m-subpage > nav.m-subpage-stdnav { display: flex !important; }
+
+  /* exam-match/subscription stdnav 로고 — 페이지 자체 CSS가 없으므로 색 직접 지정 */
+  nav.m-subpage-stdnav .logo-wrap {
+    text-decoration: none !important;
+    color: var(--m-txt) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 2px !important;
+  }
+  nav.m-subpage-stdnav .logo-main {
+    font-size: 0.92rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.06em !important;
+    color: #fff !important;
+    line-height: 1 !important;
+  }
+  nav.m-subpage-stdnav .logo-eng {
+    font-size: 0.38rem !important;
+    letter-spacing: 3px !important;
+    color: rgba(0,255,163,0.55) !important;
+    text-transform: uppercase !important;
+    line-height: 1 !important;
+  }
+
+  /* 페이지 본문 안 큰 2줄 타이틀 */
+  .m-subpage-hero {
+    text-align: center;
+    padding: 14px 0 18px;
+    margin-bottom: 8px;
+    border-bottom: 0.5px solid var(--m-line);
+  }
+  .m-subpage-title {
+    font-family: 'Pretendard',-apple-system,sans-serif !important;
+    font-size: 2.4rem !important;
+    font-weight: 900 !important;
+    line-height: 1.0 !important;
+    letter-spacing: 0.02em !important;
+    color: var(--m-txt) !important;
+    margin: 0 !important;
+    background: linear-gradient(180deg, #FFFFFF 0%, #D9F7EB 100%);
+    -webkit-background-clip: text;
+            background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .m-subpage-title-eng {
+    letter-spacing: 0.1em !important;
+    font-size: 2.3rem !important;
+  }
+  .m-subpage-subtitle {
+    font-size: 0.96rem !important;
+    color: var(--m-txt-dim) !important;
+    margin-top: 8px !important;
+    line-height: 1.4 !important;
+    letter-spacing: -0.005em;
+    font-weight: 600;
   }
   /* 2,5,6번 요청: 페이지 헤더(쓰리라인 포함)가 스크롤해도 따라다님 — fixed */
   .m-page-head {

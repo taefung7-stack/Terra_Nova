@@ -113,10 +113,10 @@
     { type: 'feature-2', icon: '📖', title: '무료 샘플 받기',         href: 'sample.html' },
     { type: 'section', label: '시작하기' },
     { type: 'link', icon: '🧭', title: '내 레벨 알아보기',             href: 'level_test.html' },
-    { type: 'link', icon: '✨', title: '구독 신청',                    href: 'order.html' },
+    { type: 'link', icon: '✨', title: '구독 플랜 보기',                href: 'subscription.html' },
     { type: 'section', label: '소식' },
     { type: 'link', icon: '🛍️', title: '마켓',                          href: 'market.html' },
-    { type: 'link', icon: '🎁', title: '이번 달 이벤트',                href: 'event.html' },
+    { type: 'link', icon: '🎁', title: '이벤트',                       href: 'event.html' },
     { type: 'link', icon: '❓', title: '자주 묻는 질문',                href: 'faq.html' },
     { type: 'section', label: '내 계정' },
     { type: 'link', icon: '👤', title: '마이페이지',                    href: 'mypage.html' }
@@ -668,62 +668,77 @@
     var path = (location.pathname.split('/').pop() || '').toLowerCase();
     if (path === 'exam-match.html') {
       document.body.classList.add('m-bio-mode', 'm-subpage');
+      // 1번 요청: 일반 페이지 nav 패턴 (좌측 TERRA NOVA 워드마크 + 우상단 햄버거)
+      document.body.insertBefore(buildStandardNav(), document.body.firstChild);
       var container = el('section', { id: 'm-bio', cls: 'm-subpage-wrap' });
-      // 2번 요청: 뒤로가기 ‹ 버튼 제거. 햄버거가 있으니 햄버거로 이동.
-      var ph = el('header', { cls: 'm-page-head' });
-      ph.appendChild(el('h1', { cls: 'm-page-title', text: 'TERRA NOVA = 수능지문' }));
-      ph.appendChild(buildSubPageHamburger());
-      container.appendChild(ph);
+      // 페이지 본문 안 큰 2줄 타이틀
+      var heroBlock = el('div', { cls: 'm-subpage-hero' });
+      heroBlock.appendChild(el('h1', { cls: 'm-subpage-title', text: 'TERRA NOVA' }));
+      heroBlock.appendChild(el('div', { cls: 'm-subpage-subtitle', text: '= 교과서 연계 수능지문' }));
+      container.appendChild(heroBlock);
       buildBooksPage(container);
-      document.body.insertBefore(container, document.body.firstChild);
+      document.body.appendChild(container);
       return true;
     }
     if (path === 'subscription.html') {
       document.body.classList.add('m-bio-mode', 'm-subpage');
+      document.body.insertBefore(buildStandardNav(), document.body.firstChild);
       var container2 = el('section', { id: 'm-bio', cls: 'm-subpage-wrap' });
-      var ph2 = el('header', { cls: 'm-page-head' });
-      ph2.appendChild(el('h1', { cls: 'm-page-title m-page-title-eng', text: 'SUBSCRIPTION' }));
-      ph2.appendChild(buildSubPageHamburger());
-      container2.appendChild(ph2);
+      var heroBlock2 = el('div', { cls: 'm-subpage-hero' });
+      heroBlock2.appendChild(el('h1', { cls: 'm-subpage-title m-subpage-title-eng', text: 'SUBSCRIPTION' }));
+      container2.appendChild(heroBlock2);
       buildPlansPage(container2);
-      document.body.insertBefore(container2, document.body.firstChild);
+      document.body.appendChild(container2);
       return true;
     }
     return false;
   }
 
-  // 2,6번 요청: exam-match · subscription 페이지에도 우상단 햄버거 추가.
-  // 다른 페이지의 .nav-hamburger와 동일한 모양·동작 (드롭다운 메뉴).
-  function buildSubPageHamburger() {
-    var wrap = el('div', { cls: 'm-subpage-nav', role: 'navigation' });
-    var btn = el('button', { cls: 'nav-hamburger m-page-hamb', type: 'button', aria: '메뉴' });
-    btn.appendChild(el('span'));
-    btn.appendChild(el('span'));
-    btn.appendChild(el('span'));
+  // 1번 요청: exam-match · subscription 페이지의 nav를 일반 페이지(sample 등) 패턴으로.
+  // 좌측 TERRA NOVA 워드마크 + 우상단 햄버거 + 동일 메뉴 항목.
+  function buildStandardNav() {
+    var nav = document.createElement('nav');
+    nav.setAttribute('aria-label', '주 메뉴');
+    nav.className = 'site-nav m-subpage-stdnav';
+
+    var logo = el('a', { cls: 'logo-wrap', href: 'index.html', aria: 'Terra Nova 홈' });
+    var logoText = el('div', { cls: 'logo-text' });
+    logoText.appendChild(el('div', { cls: 'logo-main', text: 'TERRA NOVA' }));
+    logoText.appendChild(el('div', { cls: 'logo-eng', text: 'ENGLISH' }));
+    logo.appendChild(logoText);
+    nav.appendChild(logo);
+
     var ul = el('ul', { cls: 'nav-links' });
+    // 7번 요청: '구독 신청' 항목은 nav-cta 네모 박스 없이 일반 링크로 (그리고 '구독 플랜 보기'로)
     var ITEMS = [
-      { href: 'index.html',       label: '홈' },
-      { href: 'level_test.html',  label: '레벨테스트' },
-      { href: 'sample.html',      label: '무료샘플' },
-      { href: 'event.html',       label: '이벤트' },
-      { href: 'faq.html',         label: 'FAQ' },
-      { href: 'login.html',       label: '로그인' },
-      { href: 'subscription.html',label: '구독 플랜', cta: true }
+      { href: 'index.html',          label: '홈' },
+      { href: 'level_test.html',     label: '레벨테스트' },
+      { href: 'sample.html',         label: '무료샘플' },
+      { href: 'market.html',         label: '마켓' },
+      { href: 'event.html',          label: '이벤트' },
+      { href: 'faq.html',            label: 'FAQ' },
+      { href: 'login.html',          label: '로그인' },
+      { href: 'subscription.html',   label: '구독 플랜 보기' }
     ];
     ITEMS.forEach(function (item) {
       var li = el('li');
-      var a = el('a', { href: item.href, text: item.label });
-      if (item.cta) a.className = 'nav-cta';
-      li.appendChild(a);
+      li.appendChild(el('a', { href: item.href, text: item.label }));
       ul.appendChild(li);
     });
+    nav.appendChild(ul);
+
+    var btn = el('button', { cls: 'nav-hamburger', type: 'button', aria: '메뉴' });
+    btn.id = 'nav-hamburger';
+    btn.appendChild(el('span'));
+    btn.appendChild(el('span'));
+    btn.appendChild(el('span'));
     btn.addEventListener('click', function () {
       btn.classList.toggle('open');
       ul.classList.toggle('open');
     });
-    wrap.appendChild(btn);
-    wrap.appendChild(ul);
-    return wrap;
+    nav.appendChild(btn);
+
+    return nav;
   }
 
   // 3번 요청: 각 문제 헤더 가운데정렬·크게 + 형광펜
