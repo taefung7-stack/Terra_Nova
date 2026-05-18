@@ -536,7 +536,7 @@
     var social = el('div', { cls: 'm-bio-social' });
     var SOC = [
       { href: 'https://www.instagram.com/terra_nova_english/', label: 'Instagram',  svg: 'instagram' },
-      { href: 'https://x.com/terra_nova_eng',                  label: 'X',          svg: 'x' },
+      { href: 'https://x.com/snowball8631',                    label: 'X',          svg: 'x' },
       { href: 'https://www.threads.net/@terra_nova_english',   label: 'Threads',    svg: 'threads' },
       { href: 'https://pf.kakao.com/_aLExdX',                  label: '카카오톡',   svg: 'kakao' }
     ];
