@@ -58,15 +58,24 @@ CREATE POLICY "level_test_results: 관리자 전체"
 
 -- ── 2. products (create-order / renew-subscriptions 참조) ─
 
+-- ⚠️ 이 Supabase 프로젝트는 이미 products 테이블이 다음 컬럼으로 존재함:
+--   id, sku, name, category(NOT NULL), level, price, description,
+--   requires_shipping, is_active, sort_order, created_at
+-- CREATE TABLE IF NOT EXISTS 는 이미 있으면 skip → 컬럼 변경 없음.
+-- INSERT 시 category 컬럼을 반드시 채워야 함 ('subscription' 등).
+
 CREATE TABLE IF NOT EXISTS public.products (
   id                uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-  sku               text NOT NULL UNIQUE,        -- 'SUB-LIGHT-MONTHLY', 'SUB-PREMIUM-ANNUAL' 등
+  sku               text NOT NULL UNIQUE,
   name              text NOT NULL,
-  price             integer NOT NULL,            -- 원화 정수
-  is_active         boolean NOT NULL DEFAULT true,
-  requires_shipping boolean NOT NULL DEFAULT false,
+  category          text NOT NULL,               -- 'subscription' | 'textbook' | 'merchandise'
+  level             text,                        -- 'MARS'..'SUN' 또는 NULL
+  price             integer NOT NULL,
   description       text,
-  created_at        timestamptz NOT NULL DEFAULT now(),
+  is_active         boolean DEFAULT true,
+  requires_shipping boolean DEFAULT false,
+  sort_order        integer DEFAULT 0,
+  created_at        timestamptz DEFAULT now(),
   updated_at        timestamptz NOT NULL DEFAULT now()
 );
 
