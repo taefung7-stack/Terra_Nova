@@ -253,7 +253,7 @@
         "lowPrice": "11900",
         "highPrice": "24900",
         "offerCount": 2,
-        "availability": "https://schema.org/InStock",
+        "availability": "https://schema.org/LimitedAvailability",
         "offers": [
           {
             "@type": "Offer",
@@ -274,7 +274,7 @@
           {
             "@type": "Offer",
             "name": "STANDARD (PDF + 실물)",
-            "description": "PDF 교재 + 실물 책 매월 배송 + 실전 모의고사 2회 + 단어 암기장 + 단어 시험지 (배송비 무료)",
+            "description": "PDF 교재 + 실물 책 매월 배송 + 실전 모의고사 2회 + 단어 암기장 + 단어 시험지 (배송비 무료) — 현재 준비중",
             "price": "24900",
             "priceCurrency": "KRW",
             "priceSpecification": {
@@ -284,7 +284,7 @@
               "billingDuration": "P1M",
               "unitText": "MONTH"
             },
-            "availability": "https://schema.org/InStock",
+            "availability": "https://schema.org/PreOrder",
             "url": "https://terra-nova.kr/order.html#card-standard"
           }
         ]
@@ -454,8 +454,11 @@
             </ul>
           </div>
 
-          <!-- STANDARD -->
-          <div class="plan-card" id="card-standard" onclick="selectPlan(this,'STANDARD','24900','249000')">
+          <!-- STANDARD (COMING SOON - click disabled) -->
+          <div class="plan-card disabled" id="card-standard" onclick="standardBlocked()" style="cursor:not-allowed;">
+            <div class="plan-badge-wrap">
+              <div class="plan-badge-coming">준비중</div>
+            </div>
             <div class="plan-tier">STANDARD</div>
             <div class="plan-name">PDF + 실물</div>
             <div class="plan-price-wrap">
@@ -463,7 +466,7 @@
               <div class="plan-price" id="price-standard">24,900</div>
             </div>
             <div class="plan-price-unit" id="unit-standard">원 / 월</div>
-            <div class="plan-annual-saving" id="saving-standard">연 49,800원 절약 (2개월 무료)</div>
+            <div class="plan-annual-saving" id="saving-standard"></div>
             <ul class="plan-features">
               <li>PDF 교재 포함</li>
               <li>실물 책 매월 배송</li>
@@ -834,7 +837,10 @@
   }
 
   function premiumBlocked() {
-    alert('PREMIUM 플랜은 현재 준비 중입니다.\n출시 알림을 원하시면 카카오톡 채널로 문의해주세요.');
+    alert('PREMIUM 플랜은 현재 준비 중입니다.\n지금은 LIGHT 플랜만 신청 가능합니다.');
+  }
+  function standardBlocked() {
+    alert('STANDARD 플랜은 현재 준비 중입니다.\n지금은 LIGHT 플랜만 신청 가능합니다.');
   }
 
   // ── Level select ──
@@ -1136,15 +1142,20 @@
     if (btn) selectLevel(btn, lvlParam);
   }
   if (planParam) {
-    const planMap = { PDF:'light', 'PDF+실물':'standard', LIGHT:'light', STANDARD:'standard' };
+    // 현재 LIGHT만 판매중. standard/premium 으로 들어오면 LIGHT로 강제 변경.
+    const planMap = { PDF:'light', LIGHT:'light' };
     const cardId  = planMap[planParam];
     if (cardId) {
       const card = document.getElementById('card-' + cardId);
       if (card) {
-        const prices = { light:['LIGHT','11900','119000'], standard:['STANDARD','24900','249000'] };
+        const prices = { light:['LIGHT','11900','119000'] };
         const p = prices[cardId];
         if (p) selectPlan(card, p[0], p[1], p[2]);
       }
+    } else if (planParam === 'standard' || planParam === 'premium' || planParam === 'PDF+실물') {
+      // 자동 LIGHT 선택 + 안내
+      const lightCard = document.getElementById('card-light');
+      if (lightCard) selectPlan(lightCard, 'LIGHT', '11900', '119000');
     }
   }
   // 연간 구독 자동 전환 (subscription_detail 페이지에서 "연간 구독 신청하기" 클릭 시)

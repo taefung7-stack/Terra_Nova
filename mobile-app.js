@@ -294,6 +294,7 @@
 
   // 구독 플랜 데이터 (landing.html 권도, 2026-04-27 기준)
   // 9번 요청: features 정리 — 일부 항목 삭제·이름변경
+  // 운영 정책: 현재 LIGHT만 판매중 (STANDARD/PREMIUM 준비중)
   var PLANS_DATA = [
     {
       name: 'LIGHT',
@@ -301,6 +302,7 @@
       price: '11,900',
       annualNote: '연 119,000원 (2개월 무료)',
       features: ['매월 1권 PDF 다운로드', '해설·정답·번역 포함', '복습용 영구 보관'],
+      featured: true,
       cta: '구독 신청',
       href: 'order.html?plan=light'
     },
@@ -310,9 +312,10 @@
       price: '24,900',
       annualNote: '연 249,000원 (2개월 무료)',
       features: ['LIGHT 전체 포함', '매월 실물 책 배송', '오프라인 학습 가능'],
-      featured: true,
-      cta: '구독 신청',
-      href: 'order.html?plan=standard'
+      badge: '준비중',
+      comingSoon: true,
+      cta: '준비중',
+      href: '#'
     },
     {
       name: 'PREMIUM',
@@ -321,8 +324,9 @@
       annualNote: '연 589,000원 (2개월 무료)',
       features: ['STANDARD 전체 포함', '전 지문 해설강의'],
       badge: '준비중',
-      cta: '사전 예약',
-      href: 'order.html?plan=premium'
+      comingSoon: true,
+      cta: '준비중',
+      href: '#'
     }
   ];
 
@@ -483,11 +487,14 @@
     body.appendChild(lead);
 
     PLANS_DATA.forEach(function (p) {
-      var card = el('section', { cls: 'm-plan-card' + (p.featured ? ' m-plan-featured' : '') });
+      var cls = 'm-plan-card';
+      if (p.featured)    cls += ' m-plan-featured';
+      if (p.comingSoon) cls += ' m-plan-coming-soon';
+      var card = el('section', { cls: cls });
       var head = el('div', { cls: 'm-plan-head' });
       var nameRow = el('div', { cls: 'm-plan-namerow' });
       nameRow.appendChild(el('span', { cls: 'm-plan-name', text: p.name }));
-      if (p.featured) nameRow.appendChild(el('span', { cls: 'm-plan-pop', text: 'POPULAR' }));
+      if (p.featured) nameRow.appendChild(el('span', { cls: 'm-plan-pop', text: 'RECOMMENDED' }));
       if (p.badge)    nameRow.appendChild(el('span', { cls: 'm-plan-badge', text: p.badge }));
       head.appendChild(nameRow);
       head.appendChild(el('div', { cls: 'm-plan-tag', text: p.tag }));
@@ -508,11 +515,18 @@
       });
       card.appendChild(ul);
 
-      card.appendChild(el('a', { cls: 'm-plan-cta', href: p.href, text: p.cta + ' →' }));
+      var ctaOpts = { cls: 'm-plan-cta', href: p.href, text: p.cta + (p.comingSoon ? '' : ' →') };
+      if (p.comingSoon) {
+        ctaOpts.onclick = function (e) {
+          e.preventDefault();
+          alert(p.name + ' 플랜은 현재 준비중입니다.\n지금은 LIGHT 플랜만 신청 가능합니다.');
+        };
+      }
+      card.appendChild(el('a', ctaOpts));
       body.appendChild(card);
     });
 
-    var note = el('p', { cls: 'm-plan-note', text: '※ PREMIUM은 2026 하반기 정식 출시 예정. 사전 예약 시 출시 알림을 받습니다.' });
+    var note = el('p', { cls: 'm-plan-note', text: '※ STANDARD · PREMIUM은 현재 준비중입니다. 정식 출시 시 알려드립니다.' });
     body.appendChild(note);
   }
 
@@ -861,11 +875,14 @@
 
   function buildPlansPage(parent) {
     PLANS_DATA.forEach(function (p) {
-      var card = el('section', { cls: 'm-plan-card' + (p.featured ? ' m-plan-featured' : '') });
+      var cls = 'm-plan-card';
+      if (p.featured)   cls += ' m-plan-featured';
+      if (p.comingSoon) cls += ' m-plan-coming-soon';
+      var card = el('section', { cls: cls });
       var head = el('div', { cls: 'm-plan-head' });
       var nameRow = el('div', { cls: 'm-plan-namerow' });
       nameRow.appendChild(el('span', { cls: 'm-plan-name', text: p.name }));
-      if (p.featured) nameRow.appendChild(el('span', { cls: 'm-plan-pop', text: 'POPULAR' }));
+      if (p.featured) nameRow.appendChild(el('span', { cls: 'm-plan-pop', text: 'RECOMMENDED' }));
       if (p.badge)    nameRow.appendChild(el('span', { cls: 'm-plan-badge', text: p.badge }));
       head.appendChild(nameRow);
       head.appendChild(el('div', { cls: 'm-plan-tag', text: p.tag }));
@@ -886,11 +903,18 @@
       });
       card.appendChild(ul);
 
-      card.appendChild(el('a', { cls: 'm-plan-cta', href: p.href, text: p.cta + ' →' }));
+      var ctaOpts = { cls: 'm-plan-cta', href: p.href, text: p.cta + (p.comingSoon ? '' : ' →') };
+      if (p.comingSoon) {
+        ctaOpts.onclick = function (e) {
+          e.preventDefault();
+          alert(p.name + ' 플랜은 현재 준비중입니다.\n지금은 LIGHT 플랜만 신청 가능합니다.');
+        };
+      }
+      card.appendChild(el('a', ctaOpts));
       parent.appendChild(card);
     });
 
-    var note = el('p', { cls: 'm-plan-note', text: '※ PREMIUM은 2026 하반기 정식 출시 예정. 사전 예약 시 출시 알림을 받습니다.' });
+    var note = el('p', { cls: 'm-plan-note', text: '※ STANDARD · PREMIUM은 현재 준비중입니다. 정식 출시 시 알려드립니다.' });
     parent.appendChild(note);
   }
 

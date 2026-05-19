@@ -1805,6 +1805,17 @@
     background: linear-gradient(180deg, rgba(0,255,163,0.04) 0%, var(--m-surface) 50%);
     box-shadow: 0 6px 20px rgba(0,255,163,0.08);
   }
+  /* 준비중 카드 — 흐리게 + cursor disabled */
+  .m-plan-coming-soon {
+    opacity: 0.6 !important;
+    filter: grayscale(0.35);
+  }
+  .m-plan-coming-soon .m-plan-cta {
+    background: rgba(255,255,255,0.06) !important;
+    color: var(--m-txt-mute) !important;
+    cursor: not-allowed !important;
+    border: 1px solid var(--m-line) !important;
+  }
   .m-plan-head { margin-bottom: 10px; }
   .m-plan-namerow {
     display: flex;

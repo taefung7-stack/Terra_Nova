@@ -111,6 +111,13 @@ export async function requestPayment({ items, method = 'CARD', shipping }) {
  * @param {object} [params.shipping] - 실물 교재 발송 주소 (STANDARD/PREMIUM)
  */
 export async function requestSubscription({ plan, cycle = 'monthly', level, shipping }) {
+  // 운영 정책: 현재 LIGHT 만 판매중. STANDARD / PREMIUM 은 차단.
+  const ACTIVE_PLANS = ['LIGHT'];
+  if (!ACTIVE_PLANS.includes((plan || '').toUpperCase())) {
+    alert((plan || '선택한') + ' 플랜은 현재 준비중입니다.\n지금은 LIGHT 플랜만 신청 가능합니다.');
+    return { success: false, error: 'plan_not_active' };
+  }
+
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) {
     alert('로그인이 필요합니다.');

@@ -101,8 +101,9 @@
         "@type": "AggregateOffer",
         "priceCurrency": "KRW",
         "lowPrice": "11900",
-        "highPrice": "58900",
-        "offerCount": 3,
+        "highPrice": "11900",
+        "offerCount": 1,
+        "availability": "https://schema.org/InStock",
         "seller": {"@id": "https://terra-nova.kr/#organization"}
       }
     }
@@ -3707,6 +3708,43 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
   flex-wrap:wrap;
   min-width:0;
 }
+/* Plan status badges (RECOMMENDED / 준비중) */
+.plan-status-badge {
+  display: inline-block;
+  font-family: 'Pretendard', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  padding: 4px 10px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+.plan-status-recommended {
+  background: var(--accent);
+  color: #0A0A0A;
+  box-shadow: 0 0 16px rgba(0, 255, 163, 0.4);
+}
+.plan-status-soon {
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  letter-spacing: 0.06em;
+}
+/* 준비중 카드 — 살짝 흐리게 + cursor not-allowed */
+.plan.is-coming-soon {
+  opacity: 0.62;
+  cursor: not-allowed;
+  filter: grayscale(0.3);
+}
+.plan.is-coming-soon:hover {
+  transform: none !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+/* 추천 카드 — accent 보더로 강조 */
+.plan.is-recommended {
+  border-color: rgba(0, 255, 163, 0.55) !important;
+  box-shadow: 0 0 0 1px rgba(0, 255, 163, 0.35), 0 18px 38px rgba(0, 255, 163, 0.12);
+}
 /* Plan icon — original 3D-rendered PNG (watermark erased in-place from
    the source files). Fixed 132×132 box on every plan so all three icons
    sit at identical heights regardless of the source PNG aspect ratio.
@@ -5083,12 +5121,13 @@ body.bigbang-done .terra-hint,
     </div>
 
     <div class="plans-grid">
-      <!-- LIGHT -->
-      <a class="plan" href="order.html?plan=light&ref=earlybird">
+      <!-- LIGHT (현재 유일하게 판매중 — 추천) -->
+      <a class="plan is-recommended" href="order.html?plan=light&ref=earlybird">
         <div class="plan-head">
           <div class="plan-head-left">
             <span class="plan-name">LIGHT</span>
             <span class="plan-tag plan-tag-pro">PDF 교재</span>
+            <span class="plan-status-badge plan-status-recommended">RECOMMENDED</span>
           </div>
           <img class="plan-icon-img" src="assets/3d/plan-light.png" alt="LIGHT plan icon" loading="lazy">
         </div>
@@ -5102,12 +5141,13 @@ body.bigbang-done .terra-hint,
         </ul>
       </a>
 
-      <!-- STANDARD -->
-      <a class="plan" href="order.html?plan=standard">
+      <!-- STANDARD (준비중) -->
+      <a class="plan is-coming-soon" href="#plans" data-coming-soon="STANDARD" aria-disabled="true">
         <div class="plan-head">
           <div class="plan-head-left">
             <span class="plan-name">STANDARD</span>
             <span class="plan-tag plan-tag-pro">실물 교재</span>
+            <span class="plan-status-badge plan-status-soon">준비중</span>
           </div>
           <img class="plan-icon-img" src="assets/3d/plan-standard.png" alt="STANDARD plan icon" loading="lazy">
         </div>
@@ -5122,12 +5162,13 @@ body.bigbang-done .terra-hint,
         </ul>
       </a>
 
-      <!-- PREMIUM -->
-      <a class="plan" href="order.html?plan=premium">
+      <!-- PREMIUM (준비중) -->
+      <a class="plan is-coming-soon" href="#plans" data-coming-soon="PREMIUM" aria-disabled="true">
         <div class="plan-head">
           <div class="plan-head-left">
             <span class="plan-name">PREMIUM</span>
             <span class="plan-tag plan-tag-pro">해설 강의</span>
+            <span class="plan-status-badge plan-status-soon">준비중</span>
           </div>
           <img class="plan-icon-img" src="assets/3d/plan-premium.png" alt="PREMIUM plan icon" loading="lazy">
         </div>
@@ -5141,6 +5182,18 @@ body.bigbang-done .terra-hint,
         </ul>
       </a>
     </div>
+
+    <!-- 준비중 카드 클릭 시 알림 -->
+    <script>
+      (function () {
+        document.querySelectorAll('.plan.is-coming-soon[data-coming-soon]').forEach(function (a) {
+          a.addEventListener('click', function (e) {
+            e.preventDefault();
+            alert(a.getAttribute('data-coming-soon') + ' 플랜은 현재 준비중입니다.\\n지금은 LIGHT 플랜만 신청 가능합니다.');
+          });
+        });
+      })();
+    </script>
 
     <div class="plans-ctas tf-ctas">
       <a href="level_test.html" class="btn-pri"><span>LEVEL TEST</span></a>
