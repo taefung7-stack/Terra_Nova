@@ -1162,14 +1162,41 @@
   body[data-page="order"] .level-grid {
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 10px !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
   }
   body[data-page="order"] .level-btn {
     padding: 14px 8px 12px !important;
     gap: 6px !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
   }
   body[data-page="order"] .level-planet { width: 56px !important; }
   body[data-page="order"] .level-name { font-size: 0.95rem !important; }
   body[data-page="order"] .level-target { font-size: 0.7rem !important; }
+  /* order 전체 가로 overflow 완전 차단 — page-inner + 자식 모두 viewport 안에 가둠 */
+  body[data-page="order"] .page-inner {
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+  body[data-page="order"] .form-section,
+  body[data-page="order"] .plan-grid,
+  body[data-page="order"] .form-row {
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  /* grid·flex 자식들이 자기 콘텐츠로 viewport 밀어내지 않게 */
+  body[data-page="order"] .plan-card,
+  body[data-page="order"] .form-section input,
+  body[data-page="order"] .form-section select,
+  body[data-page="order"] .form-section textarea {
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
 
   /* 7번 요청: event step 카드 — 이모지 옆에 텍스트 + 카드 소형화 */
   body[data-page="event"] .steps-grid {
