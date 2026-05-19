@@ -1006,7 +1006,31 @@
     if (name.trim().length < 2) { alert('학생 이름을 입력해 주세요.'); (document.getElementById('subscriber-name')||{}).focus?.(); return; }
     if (!grade) { alert('학년을 선택해 주세요.'); (document.getElementById('subscriber-grade')||{}).focus?.(); return; }
     if (!/^01[0-9]-?\d{3,4}-?\d{4}$/.test(phone.replace(/\s/g,''))) { alert('올바른 휴대폰 번호를 입력해 주세요 (예: 010-1234-5678).'); (document.getElementById('subscriber-phone')||{}).focus?.(); return; }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.trim())) { alert('올바른 이메일 주소를 입력해 주세요.'); (document.getElementById('subscriber-email')||{}).focus?.(); return; }
+    // 이메일 형식 엄격 검증 — 회원가입 시 이메일 인증을 안 받으므로 결제 시점에 마지막 방어선
+    const emailTrim = email.trim();
+    const emailRe = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+    if (!emailRe.test(emailTrim) || emailTrim.length > 254) {
+      alert(
+        '이메일 주소를 다시 확인해주세요.\n\n' +
+        '⚠️ 영수증·PDF 발송에 사용되는 이메일입니다.\n' +
+        '잘못 입력하면 자료가 도착하지 않습니다.\n' +
+        '(예: example@gmail.com)\n\n' +
+        '입력한 값: "' + emailTrim + '"'
+      );
+      (document.getElementById('subscriber-email')||{}).focus?.();
+      return;
+    }
+
+    // 최종 확인 — 이메일이 정말 받을 수 있는 주소인지 사용자에게 다시 묻기
+    if (!confirm(
+      '📧 다음 이메일로 영수증 · PDF 교재를 보냅니다.\n\n' +
+      emailTrim + '\n\n' +
+      '이 이메일이 맞나요?\n' +
+      '(잘못 입력하면 자료가 도착하지 않습니다)'
+    )) {
+      (document.getElementById('subscriber-email')||{}).focus?.();
+      return;
+    }
 
     // 결제수단 선택
     const pmRadio = document.querySelector('input[name=paymethod]:checked');

@@ -498,8 +498,16 @@
       }).eq('id', data.user.id);
     }
 
-    alert('회원가입이 완료되었습니다!\n\n입력하신 이메일로 인증 메일이 발송되었습니다.\n메일 인증 후 로그인해주세요.');
-    window.location.href = 'login.html';
+    // Supabase Auth 'Confirm email' 가 OFF 인 경우 signUp 응답에 session 이 즉시 포함됨
+    // → 별도 로그인 단계 없이 바로 mypage 로 이동.
+    // Confirm email 이 ON 인 경우 session 이 null → login.html 안내.
+    if (data?.session) {
+      alert('회원가입 완료! Terra Nova 에 오신 것을 환영합니다.');
+      window.location.href = 'mypage.html';
+    } else {
+      alert('회원가입이 완료되었습니다.\n로그인 화면으로 이동합니다.');
+      window.location.href = 'login.html';
+    }
   }
 </script>
 

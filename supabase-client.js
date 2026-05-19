@@ -176,3 +176,32 @@ supabase.auth.onAuthStateChange((event) => {
     linkAnonLevelTest().catch(err => console.warn('[auto-linkup]', err?.message));
   }
 });
+
+/* ── Email 형식 검증 헬퍼 (결제·샘플 시점에서 사용) ────────
+   회원가입 시 이메일 인증은 받지 않음 (Supabase Confirm email = OFF).
+   대신 결제·샘플 발송 등 메일이 실제로 가야 하는 시점에 형식만 빠르게 확인.
+   - 빈 값 / @ 없음 / 도메인 마침표 없음 = 거절
+   - 너무 긴 값 (RFC 5321 인코딩 254자 한계) = 거절
+   - 한글·공백·특수문자 (간단한 잘못 입력) = 거절
+   ※ 실제 메일 도달 여부는 보장 X — 사용자 책임. 단 명백한 오타는 차단. */
+export function isValidEmail(value) {
+  if (typeof value !== 'string') return false;
+  const v = value.trim();
+  if (v.length < 5 || v.length > 254) return false;
+  // RFC 5322 단순화 패턴 — 로컬@도메인.tld
+  const re = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+  return re.test(v);
+}
+
+/* 결제·샘플 시점에서 호출. 잘못된 이메일이면 alert + false 반환. */
+export function assertValidEmail(value, context) {
+  if (isValidEmail(value)) return true;
+  const ctx = context ? `${context}을(를) ` : '';
+  alert(
+    `이메일 주소를 다시 확인해주세요.\n\n` +
+    `${ctx}받으실 이메일이 잘못되면 자료가 도착하지 않습니다.\n` +
+    `(예: example@gmail.com)\n\n` +
+    `입력한 값: "${value || ''}"`
+  );
+  return false;
+}
