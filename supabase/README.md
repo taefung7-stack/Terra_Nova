@@ -152,19 +152,21 @@ Supabase 대시보드 → Settings → Edge Functions Secrets 에서 설정:
 
 ## products 테이블 초기 데이터
 
-마이그레이션 완료 후 products 테이블에 플랜 데이터 삽입 (renew-subscriptions에서 SKU로 조회).
+마이그레이션 완료 후 products 테이블에 플랜 데이터 삽입.
 
 ⚠️ 실제 컬럼: `sku, name, category(NOT NULL), level, price, description, requires_shipping, is_active, sort_order` — category는 'subscription' 같은 값 필수.
+
+⚠️ SKU 명명 규칙: `SUB-{PLAN}-{CYCLE}` (예: `SUB-LIGHT-MONTHLY`). renew-subscriptions Edge Function이 `\`SUB-\${plan_code}-\${cycle}\`` 형식으로 조회하므로 이 패턴 반드시 유지.
 
 ```sql
 INSERT INTO public.products (sku, name, category, description, price, requires_shipping, is_active, sort_order)
 VALUES
-  ('LIGHT_MONTHLY',    'LIGHT 월간 구독',    'subscription', '매월 1권 PDF · 해설·정답·번역 포함',     11900,  false, true,  1),
-  ('LIGHT_ANNUAL',     'LIGHT 연간 구독',    'subscription', '연 12권 PDF (2개월 무료)',              119000, false, true,  2),
-  ('STANDARD_MONTHLY', 'STANDARD 월간 구독', 'subscription', 'PDF + 실물 책 매월 배송',               24900,  true,  true,  3),
-  ('STANDARD_ANNUAL',  'STANDARD 연간 구독', 'subscription', 'PDF + 실물 12권 (2개월 무료)',          249000, true,  true,  4),
-  ('PREMIUM_MONTHLY',  'PREMIUM 월간 구독',  'subscription', 'STANDARD + 전 지문 해설강의',            58900,  true,  false, 5),
-  ('PREMIUM_ANNUAL',   'PREMIUM 연간 구독',  'subscription', 'PREMIUM 12개월 (2개월 무료)',           589000, true,  false, 6)
+  ('SUB-LIGHT-MONTHLY',    'LIGHT 월간 구독',    'subscription', '매월 1권 PDF · 해설·정답·번역 포함',     11900,  false, true,  1),
+  ('SUB-LIGHT-ANNUAL',     'LIGHT 연간 구독',    'subscription', '연 12권 PDF (2개월 무료)',              119000, false, true,  2),
+  ('SUB-STANDARD-MONTHLY', 'STANDARD 월간 구독', 'subscription', 'PDF + 실물 책 매월 배송',               24900,  true,  true,  3),
+  ('SUB-STANDARD-ANNUAL',  'STANDARD 연간 구독', 'subscription', 'PDF + 실물 12권 (2개월 무료)',          249000, true,  true,  4),
+  ('SUB-PREMIUM-MONTHLY',  'PREMIUM 월간 구독',  'subscription', 'STANDARD + 전 지문 해설강의 (준비중)',  58900,  true,  false, 5),
+  ('SUB-PREMIUM-ANNUAL',   'PREMIUM 연간 구독',  'subscription', 'PREMIUM 12개월 (2개월 무료, 준비중)',   589000, true,  false, 6)
 ON CONFLICT (sku) DO UPDATE SET
   name              = EXCLUDED.name,
   category          = EXCLUDED.category,
@@ -174,8 +176,6 @@ ON CONFLICT (sku) DO UPDATE SET
   is_active         = EXCLUDED.is_active,
   sort_order        = EXCLUDED.sort_order;
 ```
-
-> SKU 명명 규칙은 `LIGHT_MONTHLY` 처럼 underscore. Edge Functions 코드도 이 패턴으로 조회하므로 일관성 유지.
 
 ---
 
