@@ -26,10 +26,13 @@
  */
 import muhammara from 'muhammara';
 import { PDFDocument } from 'pdf-lib';
-import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
+import puppeteer from 'puppeteer';
+import { spawn } from 'node:child_process';
+import { readFileSync, writeFileSync, existsSync, mkdirSync, rmSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parseArgs } from 'node:util';
+import { setTimeout as wait } from 'node:timers/promises';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = resolve(here, '..');
@@ -57,40 +60,82 @@ if (!process.env.TN_PDF_OWNER_PW) {
   console.warn('   운영 환경에서는 반드시 강력한 비밀번호로 설정하세요.');
 }
 
-const SAMPLE_PAGES = 12; // 표지 포함 1~12p
+const SAMPLE_PAGES = 12; // 샘플: cover(1) + body p1..p11 = 12p (콜로폰은 풀북에만 포함)
 
-async function mergeCoverAndBody(coverPath, bodyPath, outPath) {
-  const coverBytes = readFileSync(coverPath);
-  const bodyBytes = readFileSync(bodyPath);
+// ─── Static-file server for puppeteer ────────────────────────
+async function startStaticServer(port = 4527) {
+  // sirv-cli is already a dependency; run it as child process serving textbook/ root
+  const proc = spawn(process.execPath, [
+    resolve(root, 'node_modules', 'sirv-cli', 'bin.js'),
+    '.', '--port', String(port), '--host', '127.0.0.1', '--single', 'false', '--quiet'
+  ], { cwd: root, stdio: ['ignore', 'pipe', 'pipe'] });
+  proc.stdout.on('data', () => {});
+  proc.stderr.on('data', () => {});
+  // wait a moment for server to bind
+  for (let i = 0; i < 30; i++) {
+    try {
+      const r = await fetch(`http://127.0.0.1:${port}/colophon.html`);
+      if (r.ok) return { proc, port };
+    } catch { /* not ready */ }
+    await wait(150);
+  }
+  proc.kill('SIGTERM');
+  throw new Error('static server failed to start');
+}
 
+async function renderColophonPdf(browser, port, level, outPath) {
+  const page = await browser.newPage();
+  await page.goto(`http://127.0.0.1:${port}/colophon.html?level=${level}&month=${month}`, { waitUntil: 'networkidle0' });
+  await page.pdf({
+    path: outPath,
+    format: 'A4',
+    printBackground: true,
+    margin: { top: '0', bottom: '0', left: '0', right: '0' },
+    preferCSSPageSize: true,
+  });
+  await page.close();
+}
+
+async function mergeCoverColophonAndBody(coverPath, colophonPath, bodyPath, outPath) {
   const merged = await PDFDocument.create();
-  const cover = await PDFDocument.load(coverBytes);
-  const body  = await PDFDocument.load(bodyBytes);
+  const cover     = await PDFDocument.load(readFileSync(coverPath));
+  const colophon  = await PDFDocument.load(readFileSync(colophonPath));
+  const body      = await PDFDocument.load(readFileSync(bodyPath));
 
-  const coverPages = await merged.copyPages(cover, cover.getPageIndices());
-  coverPages.forEach(p => merged.addPage(p));
-  const bodyPages = await merged.copyPages(body, body.getPageIndices());
-  bodyPages.forEach(p => merged.addPage(p));
+  const cp1 = await merged.copyPages(cover, cover.getPageIndices());
+  cp1.forEach(p => merged.addPage(p));
+  const cp2 = await merged.copyPages(colophon, colophon.getPageIndices());
+  cp2.forEach(p => merged.addPage(p));
+  const cp3 = await merged.copyPages(body, body.getPageIndices());
+  cp3.forEach(p => merged.addPage(p));
 
-  // Set metadata
-  merged.setTitle(`Terra Nova ${month} ${outPath.includes('sample') ? 'Sample' : 'Fullbook'}`);
+  merged.setTitle(`Terra Nova ${month}`);
   merged.setProducer('Terra Nova English');
   merged.setCreator('Terra Nova Build Pipeline');
 
-  const out = await merged.save();
-  writeFileSync(outPath, out);
+  writeFileSync(outPath, await merged.save());
   return merged.getPageCount();
 }
 
-function extractFirstNPages(srcPath, outPath, n) {
-  // Use muhammara low-level to extract first N pages (kept unencrypted; encrypt step follows)
-  const writer = muhammara.createWriter(outPath);
-  const cpy = writer.createPDFCopyingContext(srcPath);
-  const total = cpy.getSourceDocumentParser().getPagesCount();
-  const limit = Math.min(n, total);
-  for (let i = 0; i < limit; i++) cpy.appendPDFPageFromPDF(i);
-  writer.end();
-  return limit;
+async function mergeCoverAndBodyForSample(coverPath, bodyPath, bodyPageLimit, outPath) {
+  // Sample = cover (all pages) + first N pages of body
+  const merged = await PDFDocument.create();
+  const cover = await PDFDocument.load(readFileSync(coverPath));
+  const body  = await PDFDocument.load(readFileSync(bodyPath));
+
+  const cp1 = await merged.copyPages(cover, cover.getPageIndices());
+  cp1.forEach(p => merged.addPage(p));
+  const limit = Math.min(bodyPageLimit, body.getPageCount());
+  const indices = Array.from({ length: limit }, (_, i) => i);
+  const cp2 = await merged.copyPages(body, indices);
+  cp2.forEach(p => merged.addPage(p));
+
+  merged.setTitle(`Terra Nova ${month} Sample`);
+  merged.setProducer('Terra Nova English');
+  merged.setCreator('Terra Nova Build Pipeline');
+
+  writeFileSync(outPath, await merged.save());
+  return merged.getPageCount();
 }
 
 function protectPdf(srcPath, outPath, { ownerPassword, allowPrint }) {
@@ -117,49 +162,63 @@ const distDir = resolve(root, 'dist');
 const tmpDir  = resolve(root, 'dist', '_protected-tmp');
 if (!existsSync(tmpDir)) mkdirSync(tmpDir, { recursive: true });
 
+// Start static server + headless browser for colophon rendering
+const { proc: srvProc, port: srvPort } = await startStaticServer();
+const browser = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox'] });
+
 const results = [];
-for (const lvl of levels) {
-  const dir = resolve(distDir, `${month}-${lvl}`);
-  const bodyPath  = resolve(dir, `${month}-${lvl}.pdf`);
-  const coverPath = resolve(dir, `${lvl.toUpperCase()} 6월 표지.pdf`);
-  if (!existsSync(bodyPath)) {
-    console.error(`  [${lvl}] 본문 없음: ${bodyPath} — skip`);
-    continue;
+try {
+  for (const lvl of levels) {
+    const dir = resolve(distDir, `${month}-${lvl}`);
+    const bodyPath  = resolve(dir, `${month}-${lvl}.pdf`);
+    const coverPath = resolve(dir, `${lvl.toUpperCase()} 6월 표지.pdf`);
+    if (!existsSync(bodyPath)) {
+      console.error(`  [${lvl}] 본문 없음: ${bodyPath} — skip`);
+      continue;
+    }
+    if (!existsSync(coverPath)) {
+      console.error(`  [${lvl}] 표지 없음: ${coverPath} — skip`);
+      continue;
+    }
+
+    console.log(`\n=== ${lvl} ===`);
+    const tmpColophon = resolve(tmpDir, `${month}-${lvl}-colophon.pdf`);
+    const tmpMerged   = resolve(tmpDir, `${month}-${lvl}-merged.pdf`);
+    const tmpSample   = resolve(tmpDir, `${month}-${lvl}-sample-plain.pdf`);
+    const outFull     = resolve(dir, `${month}-${lvl}-fullbook.pdf`);
+    const outSample   = resolve(dir, `${month}-${lvl}-sample.pdf`);
+
+    // 0. Render colophon page (level-specific) via puppeteer
+    await renderColophonPdf(browser, srvPort, lvl.toLowerCase(), tmpColophon);
+    console.log(`  0/4 colophon rendered: ${tmpColophon}`);
+
+    // 1. Fullbook merge: cover + colophon + body  (unencrypted, intermediate)
+    const mergedPages = await mergeCoverColophonAndBody(coverPath, tmpColophon, bodyPath, tmpMerged);
+    console.log(`  1/4 fullbook merge done (${mergedPages}p)`);
+
+    // 2. Sample merge: cover + first 11 pages of body = 12 pages (no colophon, max content)
+    const sampPlainPages = await mergeCoverAndBodyForSample(coverPath, bodyPath, SAMPLE_PAGES - 1, tmpSample);
+    console.log(`  2/4 sample merge done (${sampPlainPages}p, cover + body 1..${SAMPLE_PAGES - 1})`);
+
+    // 3. Protect fullbook (print allowed, copy/extract blocked)
+    const fullPages = protectPdf(tmpMerged, outFull, {
+      ownerPassword: OWNER_PW,
+      allowPrint: true,
+    });
+    console.log(`  3/4 fullbook protected (${fullPages}p, print=allow): ${outFull}`);
+
+    // 4. Protect sample (all blocked)
+    const sampPages = protectPdf(tmpSample, outSample, {
+      ownerPassword: OWNER_PW,
+      allowPrint: false,
+    });
+    console.log(`  4/4 sample protected (${sampPages}p, print=block): ${outSample}`);
+
+    results.push({ level: lvl, fullbook: outFull, sample: outSample, fullPages, samplePages: sampPages });
   }
-  if (!existsSync(coverPath)) {
-    console.error(`  [${lvl}] 표지 없음: ${coverPath} — skip`);
-    continue;
-  }
-
-  console.log(`\n=== ${lvl} ===`);
-  const tmpMerged = resolve(tmpDir, `${month}-${lvl}-merged.pdf`);
-  const tmpSample = resolve(tmpDir, `${month}-${lvl}-sample-plain.pdf`);
-  const outFull   = resolve(dir, `${month}-${lvl}-fullbook.pdf`);
-  const outSample = resolve(dir, `${month}-${lvl}-sample.pdf`);
-
-  // 1. Merge cover + body (unencrypted, intermediate)
-  const mergedPages = await mergeCoverAndBody(coverPath, bodyPath, tmpMerged);
-  console.log(`  1/3 merge done (${mergedPages}p): ${tmpMerged}`);
-
-  // 2. Extract first 12 pages for sample (unencrypted)
-  const samplePages = extractFirstNPages(tmpMerged, tmpSample, SAMPLE_PAGES);
-  console.log(`  2/3 sample extract done (${samplePages}p): ${tmpSample}`);
-
-  // 3a. Protect fullbook (print allowed)
-  const fullPages = protectPdf(tmpMerged, outFull, {
-    ownerPassword: OWNER_PW,
-    allowPrint: true,
-  });
-  console.log(`  3a/3 fullbook protected (${fullPages}p, print=allow): ${outFull}`);
-
-  // 3b. Protect sample (all blocked)
-  const sampPages = protectPdf(tmpSample, outSample, {
-    ownerPassword: OWNER_PW,
-    allowPrint: false,
-  });
-  console.log(`  3b/3 sample protected (${sampPages}p, print=block): ${outSample}`);
-
-  results.push({ level: lvl, fullbook: outFull, sample: outSample, fullPages, samplePages });
+} finally {
+  await browser.close().catch(() => {});
+  srvProc.kill('SIGTERM');
 }
 
 console.log('\n=== Summary ===');

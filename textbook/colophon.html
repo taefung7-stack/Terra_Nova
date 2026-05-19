@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<title>Terra Nova · 판권</title>
+<link rel="stylesheet" href="styles/tokens.css" />
+<style>
+  @page { size: A4; margin: 0; }
+  html, body { margin: 0; padding: 0; background: #fff; color: var(--tn-ink); }
+  body {
+    font-family: var(--font-ko);
+    font-feature-settings: "kern", "liga";
+    -webkit-font-smoothing: antialiased;
+  }
+  .page {
+    width: 210mm; height: 297mm;
+    padding: 36mm 28mm 28mm 28mm;
+    box-sizing: border-box;
+    display: flex; flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Decorative top bar — month theme color */
+  .page::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 10mm;
+    background: linear-gradient(90deg, var(--tn-theme, var(--tn-accent)) 0%, var(--tn-theme-deep, var(--tn-accent-2)) 100%);
+  }
+
+  .brand-row {
+    display: flex; align-items: baseline; gap: 14pt;
+    margin-bottom: 4mm;
+  }
+  .brand-mark {
+    font-family: var(--font-serif-display);
+    font-size: 13pt;
+    letter-spacing: 0.32em;
+    color: var(--tn-ink);
+  }
+  .brand-rule {
+    flex: 1; height: 0.4pt; background: var(--tn-ink); opacity: 0.35;
+  }
+  .brand-locale {
+    font-family: var(--font-body);
+    font-size: 8.5pt; letter-spacing: 0.18em;
+    color: var(--tn-ink-soft);
+    text-transform: uppercase;
+  }
+
+  h1.title {
+    font-family: var(--font-serif-display);
+    font-size: 28pt;
+    line-height: 1.15;
+    margin: 0 0 2mm 0;
+    color: var(--tn-ink);
+    font-weight: 600;
+    letter-spacing: -0.005em;
+  }
+  .subtitle {
+    font-family: var(--font-body);
+    font-size: 11pt;
+    color: var(--tn-ink-soft);
+    letter-spacing: 0.04em;
+    margin-bottom: 14mm;
+  }
+
+  /* Bibliographic table */
+  table.colophon {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 10pt;
+    line-height: 1.55;
+  }
+  table.colophon tr { border-bottom: 0.3pt solid var(--tn-divider); }
+  table.colophon tr:last-child { border-bottom: 0.3pt solid var(--tn-divider); }
+  table.colophon th, table.colophon td {
+    padding: 5.5pt 0;
+    text-align: left;
+    vertical-align: top;
+  }
+  table.colophon th {
+    width: 36mm;
+    font-weight: 600;
+    font-size: 9pt;
+    letter-spacing: 0.06em;
+    color: var(--tn-ink-soft);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  table.colophon td {
+    color: var(--tn-ink);
+    font-size: 10pt;
+  }
+  table.colophon td .ko { color: var(--tn-ink); }
+  table.colophon td .meta { color: var(--tn-ink-soft); font-size: 9pt; margin-top: 2pt; }
+
+  .notice {
+    margin-top: auto;
+    padding-top: 10mm;
+    font-size: 8.5pt;
+    color: var(--tn-ink-soft);
+    line-height: 1.6;
+    border-top: 0.3pt solid var(--tn-divider);
+  }
+  .notice strong { color: var(--tn-ink); font-weight: 600; }
+  .notice .copyright {
+    display: block;
+    margin-top: 6pt;
+    font-size: 8pt;
+    letter-spacing: 0.04em;
+    color: var(--tn-ink);
+  }
+  .notice ul {
+    margin: 4pt 0 0 0;
+    padding-left: 12pt;
+    list-style: disc;
+  }
+  .notice ul li { margin-bottom: 2pt; }
+
+  /* Theme palette (per level color hint) */
+  body[data-level="saturn"] { --tn-theme: #C29B5C; --tn-theme-deep: #8C6428; }   /* 토성 — 골드 */
+  body[data-level="sun"]    { --tn-theme: #F4B53F; --tn-theme-deep: #C97A16; }   /* 태양 — 앰버 */
+  body[data-level="jupiter"]{ --tn-theme: #B6804A; --tn-theme-deep: #7A4F22; }   /* 목성 — 카퍼 */
+</style>
+</head>
+<body data-level="">
+
+<section class="page">
+  <div class="brand-row">
+    <span class="brand-mark">TERRA · NOVA</span>
+    <span class="brand-rule"></span>
+    <span class="brand-locale">English Monthly · Korea</span>
+  </div>
+
+  <h1 class="title" id="title-ko">제목</h1>
+  <div class="subtitle" id="title-en">subtitle</div>
+
+  <table class="colophon">
+    <tbody>
+      <tr><th>발행일</th>           <td id="r-pubdate">2026년 6월 1일</td></tr>
+      <tr><th>호수</th>             <td id="r-issue">2026년 6월호 · 통권 제6호</td></tr>
+      <tr><th>판차</th>             <td id="r-edition">초판 1쇄 발행</td></tr>
+      <tr><th>대상 레벨</th>         <td id="r-level">—</td></tr>
+
+      <tr><th>발행인 · 편집인</th>   <td id="r-editor">강성엽</td></tr>
+      <tr><th>발행처</th>            <td>
+        <span class="ko">테라노바 잉글리시 <span class="meta">Terra Nova English</span></span>
+      </td></tr>
+      <tr><th>주소</th>              <td>서울특별시 마포구 백범로31길 8, 202동 2003호 (공덕동, 공덕SK리더스뷰)</td></tr>
+      <tr><th>연락처</th>            <td>대표전화 010-8248-6428 · 이메일 support@terra-nova.kr</td></tr>
+      <tr><th>홈페이지</th>          <td>https://terra-nova.kr</td></tr>
+
+      <tr><th>사업자등록</th>        <td>160-50-01039</td></tr>
+      <tr><th>통신판매업</th>        <td>제2026-서울마포-1110호</td></tr>
+
+      <tr><th>분류</th>              <td>온라인 학습지 · 영어 독해 정기간행물 (월간)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="notice">
+    <strong>저작권 및 이용 안내</strong>
+    <ul>
+      <li>본 PDF의 모든 본문, 삽화, 디자인, 편집 저작권은 <strong>테라노바 잉글리시(Terra Nova English)</strong>에 있습니다.</li>
+      <li>본 PDF는 정기구독자 개인 학습 용도로만 제공됩니다. 무단 <strong>복제 · 배포 · 전송 · 공유 · 2차 가공 · AI 학습 데이터 활용</strong>을 금합니다.</li>
+      <li>본 파일은 보안 PDF로 발행되었으며, 텍스트 복사 · 페이지 추출 · 내용 편집이 제한됩니다. 보호 해제 시도는 저작권법 제136조에 따라 처벌될 수 있습니다.</li>
+      <li>오·탈자 및 콘텐츠 문의: <strong>support@terra-nova.kr</strong></li>
+    </ul>
+    <span class="copyright">Copyright © 2026 Terra Nova English. All rights reserved.</span>
+  </div>
+</section>
+
+<script>
+(function(){
+  const u = new URL(location.href);
+  const level = (u.searchParams.get('level') || '').toLowerCase();
+  const month = u.searchParams.get('month') || '2026-06';
+
+  const LEVEL_META = {
+    saturn:  { ko: 'SATURN',  display: '고등 1학년 (Saturn)',  desc: 'Senior Grade 1 — Advanced Reading' },
+    sun:     { ko: 'SUN',     display: '고등 3학년 (Sun)',     desc: 'Senior Grade 3 — Mastery Reading' },
+    jupiter: { ko: 'JUPITER', display: '고등 2학년 (Jupiter)', desc: 'Senior Grade 2 — Advanced Reading' },
+    mars:    { ko: 'MARS',    display: '초등 5학년 (Mars)',    desc: 'Elementary 5 — Reading' },
+    venus:   { ko: 'VENUS',   display: '초등 6학년 (Venus)',   desc: 'Elementary 6 — Reading' },
+    terra:   { ko: 'TERRA',   display: '중학교 1학년 (Terra)', desc: 'Middle 1 — Reading' },
+    neptune: { ko: 'NEPTUNE', display: '중학교 2학년 (Neptune)', desc: 'Middle 2 — Reading' },
+    uranus:  { ko: 'URANUS',  display: '중학교 3학년 (Uranus)', desc: 'Middle 3 — Reading' },
+  };
+  const m = LEVEL_META[level] || { ko: level.toUpperCase(), display: level.toUpperCase(), desc: '' };
+
+  // Parse YYYY-MM → "YYYY년 M월"
+  const [y, mo] = month.split('-');
+  const moNum = parseInt(mo, 10);
+  const yNum  = parseInt(y, 10);
+
+  // 통권: 2026-01 = 통권 1호, 2026-06 = 통권 6호 (assumes 2026-01 launch).
+  // Change here if launch date differs.
+  const LAUNCH_YEAR = 2026;
+  const LAUNCH_MONTH = 1;
+  const issueNum = (yNum - LAUNCH_YEAR) * 12 + (moNum - LAUNCH_MONTH) + 1;
+
+  // Publication date — 1st of the month (covered month)
+  const pubDate = `${yNum}년 ${moNum}월 1일`;
+  const issueText = `${yNum}년 ${moNum}월호 · 통권 제${issueNum}호`;
+
+  document.body.setAttribute('data-level', level);
+  document.getElementById('title-ko').textContent = `Terra Nova English · ${m.ko}`;
+  document.getElementById('title-en').textContent = `${m.desc}  ·  ${yNum}.${String(moNum).padStart(2,'0')}`;
+  document.getElementById('r-pubdate').textContent = pubDate;
+  document.getElementById('r-issue').textContent   = issueText;
+  document.getElementById('r-level').textContent   = m.display;
+})();
+</script>
+</body>
+</html>
