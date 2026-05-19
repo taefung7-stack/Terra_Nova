@@ -118,10 +118,18 @@
   }
   .notice ul li { margin-bottom: 2pt; }
 
-  /* Theme palette (per level color hint) */
-  body[data-level="saturn"] { --tn-theme: #C29B5C; --tn-theme-deep: #8C6428; }   /* 토성 — 골드 */
-  body[data-level="sun"]    { --tn-theme: #F4B53F; --tn-theme-deep: #C97A16; }   /* 태양 — 앰버 */
-  body[data-level="jupiter"]{ --tn-theme: #B6804A; --tn-theme-deep: #7A4F22; }   /* 목성 — 카퍼 */
+  /* Theme palette is driven by month, matching textbook/styles/tokens.css.
+     2026-06 = purple (Majorelle Blue / Persian Indigo) — unified across all levels. */
+  body[data-month="2026-06"] {
+    --tn-theme:      #7546E8;   /* Majorelle Blue */
+    --tn-theme-deep: #2D1C7F;   /* Persian Indigo */
+    --tn-theme-soft: #E8E2FA;
+  }
+  body[data-month="2026-05"] { --tn-theme: #6EA8FF; --tn-theme-deep: #2B5FC4; --tn-theme-soft: #E3ECFD; }
+  body[data-month="2026-07"] { --tn-theme: #E29B54; --tn-theme-deep: #8A4B0F; --tn-theme-soft: #FAE9D2; }
+  body[data-month="2026-08"] { --tn-theme: #A06EE0; --tn-theme-deep: #5A2E9C; --tn-theme-soft: #ECDEFA; }
+  body[data-month="2026-09"] { --tn-theme: #F06A8F; --tn-theme-deep: #B02555; --tn-theme-soft: #FCDBE4; }
+  body[data-month="2026-10"] { --tn-theme: #4FD1C5; --tn-theme-deep: #0F7B72; --tn-theme-soft: #D6F3EF; }
 </style>
 </head>
 <body data-level="">
@@ -148,7 +156,7 @@
         <span class="ko">테라노바 잉글리시 <span class="meta">Terra Nova English</span></span>
       </td></tr>
       <tr><th>주소</th>              <td>서울특별시 마포구 백범로31길 8, 202동 2003호 (공덕동, 공덕SK리더스뷰)</td></tr>
-      <tr><th>연락처</th>            <td>대표전화 010-8248-6428 · 이메일 support@terra-nova.kr</td></tr>
+      <tr><th>연락처</th>            <td>이메일 taefung7@naver.com</td></tr>
       <tr><th>홈페이지</th>          <td>https://terra-nova.kr</td></tr>
 
       <tr><th>사업자등록</th>        <td>160-50-01039</td></tr>
@@ -164,7 +172,7 @@
       <li>본 PDF의 모든 본문, 삽화, 디자인, 편집 저작권은 <strong>테라노바 잉글리시(Terra Nova English)</strong>에 있습니다.</li>
       <li>본 PDF는 정기구독자 개인 학습 용도로만 제공됩니다. 무단 <strong>복제 · 배포 · 전송 · 공유 · 2차 가공 · AI 학습 데이터 활용</strong>을 금합니다.</li>
       <li>본 파일은 보안 PDF로 발행되었으며, 텍스트 복사 · 페이지 추출 · 내용 편집이 제한됩니다. 보호 해제 시도는 저작권법 제136조에 따라 처벌될 수 있습니다.</li>
-      <li>오·탈자 및 콘텐츠 문의: <strong>support@terra-nova.kr</strong></li>
+      <li>오·탈자 및 콘텐츠 문의: <strong>taefung7@naver.com</strong></li>
     </ul>
     <span class="copyright">Copyright © 2026 Terra Nova English. All rights reserved.</span>
   </div>
@@ -204,6 +212,7 @@
   const issueText = `${yNum}년 ${moNum}월호 · 통권 제${issueNum}호`;
 
   document.body.setAttribute('data-level', level);
+  document.body.setAttribute('data-month', month);
   document.getElementById('title-ko').textContent = `Terra Nova English · ${m.ko}`;
   document.getElementById('title-en').textContent = `${m.desc}  ·  ${yNum}.${String(moNum).padStart(2,'0')}`;
   document.getElementById('r-pubdate').textContent = pubDate;

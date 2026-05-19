@@ -60,7 +60,7 @@ if (!process.env.TN_PDF_OWNER_PW) {
   console.warn('   운영 환경에서는 반드시 강력한 비밀번호로 설정하세요.');
 }
 
-const SAMPLE_PAGES = 12; // 샘플: cover(1) + body p1..p11 = 12p (콜로폰은 풀북에만 포함)
+const SAMPLE_PAGES = 12; // 샘플: cover(1) + colophon(1) + body p1..p10 = 12p
 
 // ─── Static-file server for puppeteer ────────────────────────
 async function startStaticServer(port = 4527) {
@@ -117,18 +117,21 @@ async function mergeCoverColophonAndBody(coverPath, colophonPath, bodyPath, outP
   return merged.getPageCount();
 }
 
-async function mergeCoverAndBodyForSample(coverPath, bodyPath, bodyPageLimit, outPath) {
-  // Sample = cover (all pages) + first N pages of body
+async function mergeSample(coverPath, colophonPath, bodyPath, bodyPageLimit, outPath) {
+  // Sample = cover + colophon + first N pages of body
   const merged = await PDFDocument.create();
-  const cover = await PDFDocument.load(readFileSync(coverPath));
-  const body  = await PDFDocument.load(readFileSync(bodyPath));
+  const cover    = await PDFDocument.load(readFileSync(coverPath));
+  const colophon = await PDFDocument.load(readFileSync(colophonPath));
+  const body     = await PDFDocument.load(readFileSync(bodyPath));
 
   const cp1 = await merged.copyPages(cover, cover.getPageIndices());
   cp1.forEach(p => merged.addPage(p));
+  const cp2 = await merged.copyPages(colophon, colophon.getPageIndices());
+  cp2.forEach(p => merged.addPage(p));
   const limit = Math.min(bodyPageLimit, body.getPageCount());
   const indices = Array.from({ length: limit }, (_, i) => i);
-  const cp2 = await merged.copyPages(body, indices);
-  cp2.forEach(p => merged.addPage(p));
+  const cp3 = await merged.copyPages(body, indices);
+  cp3.forEach(p => merged.addPage(p));
 
   merged.setTitle(`Terra Nova ${month} Sample`);
   merged.setProducer('Terra Nova English');
@@ -196,9 +199,10 @@ try {
     const mergedPages = await mergeCoverColophonAndBody(coverPath, tmpColophon, bodyPath, tmpMerged);
     console.log(`  1/4 fullbook merge done (${mergedPages}p)`);
 
-    // 2. Sample merge: cover + first 11 pages of body = 12 pages (no colophon, max content)
-    const sampPlainPages = await mergeCoverAndBodyForSample(coverPath, bodyPath, SAMPLE_PAGES - 1, tmpSample);
-    console.log(`  2/4 sample merge done (${sampPlainPages}p, cover + body 1..${SAMPLE_PAGES - 1})`);
+    // 2. Sample merge: cover + colophon + first 10 pages of body = 12 pages
+    const bodyInSample = SAMPLE_PAGES - 2;
+    const sampPlainPages = await mergeSample(coverPath, tmpColophon, bodyPath, bodyInSample, tmpSample);
+    console.log(`  2/4 sample merge done (${sampPlainPages}p, cover + colophon + body 1..${bodyInSample})`);
 
     // 3. Protect fullbook (print allowed, copy/extract blocked)
     const fullPages = protectPdf(tmpMerged, outFull, {
