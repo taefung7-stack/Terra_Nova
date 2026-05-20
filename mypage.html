@@ -300,7 +300,15 @@
       </a>
 
       <h1 class="page-title">MY PAGE</h1>
-      <p class="page-sub">4월 학습 현황 · 구독 관리</p>
+      <p class="page-sub" id="page-sub-month">학습 현황 · 구독 관리</p>
+      <script>
+        // 현재 월을 동적으로 표시
+        (function(){
+          var m = new Date().getMonth() + 1;
+          var el = document.getElementById('page-sub-month');
+          if (el) el.textContent = m + '월 학습 현황 · 구독 관리';
+        })();
+      </script>
 
       <!-- 구독 카드: 실제 구독이 있으면 sub-card-active / 없으면 sub-card-empty 표시 -->
       <div class="sub-card" id="sub-card-active" style="display:none;">
@@ -978,29 +986,51 @@
     // ── 로그아웃은 모듈 top-level 의 document click 위임에서 처리됨 ──
 
     // ── 레벨 테스트 결과 로드 ────────────
-    const { data: lvlResults } = await supabase
+    const { data: lvlResults, error: lvlErr } = await supabase
       .from('level_test_results')
       .select('*')
       .eq('user_id', user.id)
       .order('created_at', { ascending: false })
       .limit(10);
+    if (lvlErr) console.warn('[mypage] level_test_results 조회 에러:', lvlErr.message);
+    console.info('[mypage] level_test_results count:', lvlResults?.length || 0, 'for user', user.id);
     if (lvlResults && lvlResults.length > 0) {
       // 최신 결과의 레벨 라벨로 info-level 업데이트 (구독 없을 때)
       if (!sub) {
-        const latestLabel = lvlResults[0].details?.level_label || ('LEVEL ' + lvlResults[0].level);
+        const latestLabel = lvlResults[0].recommended_planet || lvlResults[0].details?.level_label || ('LEVEL ' + lvlResults[0].level);
         setText('info-level', latestLabel);
       }
       const listEl = $('lvl-results-list');
-      $('lvl-results-empty').remove();
-      listEl.innerHTML = lvlResults.map(r => `
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:rgba(0,255,163,.04);border:1px solid rgba(0,255,163,.15);border-radius:8px;">
-          <div>
-            <div style="font-weight:800;color:#fff;font-size:.92rem;">LEVEL ${r.level} ${r.score !== null ? '· 점수 ' + r.score + (r.total_questions ? '/' + r.total_questions : '') : ''}</div>
-            <div style="font-size:.72rem;color:var(--dim);margin-top:4px;">${ymd(r.created_at)}</div>
-          </div>
-          <a href="level_test.html" style="font-size:.74rem;color:var(--accent);text-decoration:none;font-weight:700;">재응시 →</a>
-        </div>
-      `).join('');
+      const emptyEl = $('lvl-results-empty');
+      if (emptyEl) emptyEl.remove();
+      // DOM 빌더로 안전하게 렌더 (innerHTML 미사용)
+      listEl.replaceChildren();
+      lvlResults.forEach(r => {
+        const row = document.createElement('div');
+        row.style.cssText = 'display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:rgba(0,255,163,.04);border:1px solid rgba(0,255,163,.15);border-radius:8px;';
+        const left = document.createElement('div');
+        const titleLine = document.createElement('div');
+        titleLine.style.cssText = 'font-weight:800;color:#fff;font-size:.92rem;';
+        const planet = r.recommended_planet || r.details?.level_label || '';
+        if (planet) {
+          const planetSpan = document.createElement('span');
+          planetSpan.style.cssText = 'color:var(--accent);font-weight:800;margin-right:6px;';
+          planetSpan.textContent = planet;
+          titleLine.appendChild(planetSpan);
+        }
+        const lvlText = 'LEVEL ' + r.level + (r.score !== null ? ' · 점수 ' + r.score + (r.total_questions ? '/' + r.total_questions : '') : '');
+        titleLine.appendChild(document.createTextNode(lvlText));
+        const dateLine = document.createElement('div');
+        dateLine.style.cssText = 'font-size:.72rem;color:var(--dim);margin-top:4px;';
+        dateLine.textContent = ymd(r.created_at);
+        left.append(titleLine, dateLine);
+        const retakeA = document.createElement('a');
+        retakeA.href = 'level_test.html';
+        retakeA.style.cssText = 'font-size:.74rem;color:var(--accent);text-decoration:none;font-weight:700;';
+        retakeA.textContent = '재응시 →';
+        row.append(left, retakeA);
+        listEl.appendChild(row);
+      });
     }
 
     // ── 결제 내역 로드 ───────────────────
