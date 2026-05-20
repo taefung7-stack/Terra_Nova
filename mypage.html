@@ -29,6 +29,10 @@
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;font-size:20px;}
+  /* Phone: drop the 20px baseline back to 16px so all rem-based
+     UI sizes naturally to thumb scale. The mobile-app.css mypage
+     block depends on this. */
+  @media(max-width:680px){html{font-size:16px;}}
   body{background:var(--dark);color:var(--txt);font-family:'Pretendard',sans-serif;min-height:100vh;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
 
   /* NAV */
@@ -248,12 +252,6 @@
 
   <!-- SIDEBAR -->
   <div class="sidebar">
-    <div class="user-card">
-      <div class="user-avatar" id="side-user-initial">?</div>
-      <div class="user-name" id="side-user-name">...</div>
-      <div class="user-grade" id="side-user-grade">-</div>
-      <span class="user-level-badge" id="side-user-level" style="display:none;">-</span>
-    </div>
     <div class="nav-menu" role="navigation" aria-label="마이페이지 메뉴">
       <div class="nav-menu-item active" onclick="switchTab('dashboard',this)">
         <span class="nav-menu-icon">📊</span> 구독 현황
@@ -300,15 +298,6 @@
       </a>
 
       <h1 class="page-title">MY PAGE</h1>
-      <p class="page-sub" id="page-sub-month">학습 현황 · 구독 관리</p>
-      <script>
-        // 현재 월을 동적으로 표시
-        (function(){
-          var m = new Date().getMonth() + 1;
-          var el = document.getElementById('page-sub-month');
-          if (el) el.textContent = m + '월 학습 현황 · 구독 관리';
-        })();
-      </script>
 
       <!-- 구독 카드: 실제 구독이 있으면 sub-card-active / 없으면 sub-card-empty 표시 -->
       <div class="sub-card" id="sub-card-active" style="display:none;">
@@ -422,7 +411,6 @@
     <!-- 레벨 변경 -->
     <div class="tab-view" id="tab-level">
       <h2 class="page-title">LEVEL</h2>
-      <p class="page-sub" id="lvl-page-sub">현재 레벨 정보를 불러오는 중...</p>
 
       <div class="section-block">
         <div class="section-block-title">레벨 선택</div>
@@ -453,7 +441,6 @@
     <!-- 배송 관리 -->
     <div class="tab-view" id="tab-delivery">
       <h2 class="page-title">DELIVERY</h2>
-      <p class="page-sub">배송 현황 · 최근 주문 기준</p>
 
       <div class="section-block">
         <div class="section-block-title">최근 배송 현황</div>
@@ -469,7 +456,6 @@
     <!-- 결제 내역 -->
     <div class="tab-view" id="tab-history">
       <h2 class="page-title">PAYMENT</h2>
-      <p class="page-sub">결제 내역 · 전체</p>
 
       <div class="section-block">
         <div class="section-block-title">결제 내역</div>
@@ -484,7 +470,6 @@
     <!-- 리뷰 작성 -->
     <div class="tab-view" id="tab-reviews">
       <h2 class="page-title">REVIEWS</h2>
-      <p class="page-sub">Terra Nova 수강 후기 · 관리자 검토 후 공개됩니다</p>
 
       <!-- 이벤트 안내 배너 -->
       <div class="section-block" style="border:1px solid rgba(0,255,163,.35);background:linear-gradient(135deg,rgba(0,255,163,.06),rgba(0,255,163,.02));margin-bottom:24px;">
@@ -543,7 +528,7 @@
           <div style="margin-top:24px;padding:18px;background:rgba(0,255,163,.04);border:1px dashed rgba(0,255,163,.28);border-radius:8px;">
             <div style="font-size:.78rem;font-weight:700;color:var(--accent);margin-bottom:10px;letter-spacing:.5px;">⭐ SNS 공유 (선택 · 쿠폰 자동 발급)</div>
             <p style="font-size:.72rem;color:var(--dim);margin-bottom:14px;line-height:1.7;">
-              SNS에 같은 내용으로 후기를 올린 뒤 게시물 링크를 남겨주세요. 관리자 확인 후 <strong style="color:var(--accent);">LIGHT 1개월 무료 쿠폰</strong>이 발급됩니다. 비워두고 등록해도 됩니다.
+              SNS에 같은 내용으로 후기를 올린 뒤 게시물 링크를 남겨주세요. 관리자 확인 후 <strong style="color:var(--accent);">LIGHT 1개월 무료 쿠폰</strong>이 발급됩니다.
             </p>
             <div class="form-row">
               <div class="form-group">
@@ -603,7 +588,6 @@
     <!-- 계정 설정 -->
     <div class="tab-view" id="tab-account">
       <h2 class="page-title">ACCOUNT</h2>
-      <p class="page-sub">계정 정보 · 알림 설정</p>
 
       <div class="section-block">
         <div class="section-block-title">기본 정보</div>
@@ -649,7 +633,6 @@
 
       <div class="section-block">
         <div class="section-block-title">배송 기본 주소</div>
-        <p style="font-size:.78rem;color:var(--dim);margin-bottom:14px;line-height:1.7;">구독·주문 시 기본으로 사용되는 주소입니다.</p>
         <div class="form-row">
           <div class="form-group">
             <label for="acc-zip">우편번호</label>
@@ -689,26 +672,8 @@
         <button class="btn-save" onclick="alert('비밀번호가 변경되었습니다.')">변경</button>
       </div>
 
-      <div class="section-block">
-        <div class="section-block-title">알림 설정</div>
-        <div style="display:flex;flex-direction:column;gap:12px;">
-          <label style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;" for="notif-kakao">
-            <span style="font-size:.85rem;color:rgba(255,255,255,.85);">카카오톡 배송 알림</span>
-            <input type="checkbox" id="notif-kakao" name="notif_kakao" checked style="width:16px;height:16px;accent-color:var(--accent);">
-          </label>
-          <label style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;" for="notif-payment">
-            <span style="font-size:.85rem;color:rgba(255,255,255,.85);">결제 완료 알림</span>
-            <input type="checkbox" id="notif-payment" name="notif_payment" checked style="width:16px;height:16px;accent-color:var(--accent);">
-          </label>
-          <label style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;" for="notif-reminder">
-            <span style="font-size:.85rem;color:rgba(255,255,255,.85);">학습 리마인더 (매일 오후 6시)</span>
-            <input type="checkbox" id="notif-reminder" name="notif_reminder" style="width:16px;height:16px;accent-color:var(--accent);">
-          </label>
-          <label style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;" for="notif-marketing">
-            <span style="font-size:.85rem;color:rgba(255,255,255,.85);">마케팅 정보 수신</span>
-            <input type="checkbox" id="notif-marketing" name="notif_marketing" style="width:16px;height:16px;accent-color:var(--accent);">
-          </label>
-        </div>
+      <div class="section-block" style="text-align:center;">
+        <a href="#" data-action="logout" id="btn-logout-account" style="display:inline-block;color:var(--dim);font-size:.82rem;text-decoration:none;border:1px solid rgba(255,255,255,.18);padding:10px 28px;border-radius:6px;transition:all .2s;" onmouseover="this.style.color='#fff';this.style.borderColor='rgba(255,255,255,.4)';" onmouseout="this.style.color='var(--dim)';this.style.borderColor='rgba(255,255,255,.18)';">로그아웃</a>
       </div>
     </div>
 
@@ -1173,10 +1138,6 @@
     const activeLevelPlanet = (sub && sub.level) || latestPlanet || null;
     if (activeLevelPlanet && PLANET_META[activeLevelPlanet]) {
       const m2 = PLANET_META[activeLevelPlanet];
-      const subTitle = $('lvl-page-sub');
-      if (subTitle) {
-        subTitle.textContent = '현재 레벨 · ' + m2.name + ' (' + m2.grade + ') — 다음 달부터 변경 적용됩니다.';
-      }
       // 카드 active 표시
       document.querySelectorAll('#lvl-grid .level-btn-sm').forEach(card => {
         card.classList.remove('current');
