@@ -1248,8 +1248,9 @@ function buildGuestSaveCta(message) {
 }
 
 async function saveLevelResult(lvl, sc, conf) {
-  const { supabase } = await import('./supabase-client.js');
-  const { data: { user } } = await supabase.auth.getUser();
+  const { supabase, getSession } = await import('./supabase-client.js');
+  const session = await getSession();
+  const user = session?.user;
   const levelNum = LEVEL_NUM[lvl] || 4;
   const avgScore = Math.round((sc.vocab + sc.read + sc.gram + sc.logic) / 4);
   const details = {

@@ -274,8 +274,9 @@
   // ---- user (Supabase 세션 기반) ----
   async function getUser(){
     try {
-      const { supabase } = await import('./supabase-client.js');
-      const { data: { user } } = await supabase.auth.getUser();
+      const { supabase, getSession } = await import('./supabase-client.js');
+      const session = await getSession();
+      const user = session?.user;
       if (!user) return null;
       const meta = user.user_metadata || {};
       // profiles 테이블에서 추가 정보

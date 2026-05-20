@@ -1190,16 +1190,18 @@
   window.__setLoggedInFromSupabase = setLoggedIn;
 </script>
 
-<!-- Supabase 세션 체크: 로그인 상태면 auth 게이트 자동 건너뛰고 실제 주소 자동 입력 -->
+<!-- Supabase 세션 체크: 로그인 상태면 auth 게이트 자동 건너뛰고 실제 주소 자동 입력
+     ※ getSession() 만 사용 (supabase-client.js 원칙). getUser() 는 모바일에서 race 가능. -->
 <script type="module">
-  import { supabase } from './supabase-client.js';
+  import { supabase, getSession } from './supabase-client.js';
   (async () => {
-    const { data: { user } } = await supabase.auth.getUser();
+    const session = await getSession();
+    const user = session?.user;
     if (!user) return;
 
     const meta = user.user_metadata || {};
     const { data: profile } = await supabase.from('profiles').select('*').eq('id', user.id).maybeSingle();
-    const name = profile?.display_name || meta.display_name || user.email.split('@')[0];
+    const name = profile?.display_name || meta.display_name || (user.email || '').split('@')[0];
     const addrParts = [meta.shipping_address, meta.shipping_detail].filter(Boolean).join(' ').trim();
     const addrText = addrParts || '등록된 주소가 없습니다. 마이페이지에서 입력해주세요.';
 
