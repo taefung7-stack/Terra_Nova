@@ -1254,6 +1254,7 @@ async function saveLevelResult(lvl, sc, conf) {
   const avgScore = Math.round((sc.vocab + sc.read + sc.gram + sc.logic) / 4);
   const details = {
     level_label: lvl,
+    user_grade: answers.grade || null,  // "초5" / "중2" / "고1" 등 — 마이페이지 진단 문장에서 사용
     scores: { vocab: sc.vocab, read: sc.read, gram: sc.gram, logic: sc.logic },
     confidence: conf.level,
     dk_count: conf.dkCount,
