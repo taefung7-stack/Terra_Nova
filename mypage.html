@@ -986,6 +986,19 @@
     // ── 로그아웃은 모듈 top-level 의 document click 위임에서 처리됨 ──
 
     // ── 레벨 테스트 결과 로드 ────────────
+    // Terra Nova 8레벨 행성 시스템: MARS(초5)~SUN(고3)
+    const PLANET_META = {
+      MARS:    { name: 'MARS',    grade: '초5', desc: '교과 입문 — 기초 어휘 + 짧은 문장' },
+      VENUS:   { name: 'VENUS',   grade: '초6', desc: '교과 적응 — 단락 읽기 시작' },
+      TERRA:   { name: 'TERRA',   grade: '중1', desc: '중등 진입 — 200단어 지문' },
+      NEPTUNE: { name: 'NEPTUNE', grade: '중2', desc: '중등 심화 — 학교시험 대비' },
+      URANUS:  { name: 'URANUS',  grade: '중3', desc: '고등 준비 — 250단어 지문' },
+      SATURN:  { name: 'SATURN',  grade: '고1', desc: '고등 진입 — 교과 연계 지문' },
+      JUPITER: { name: 'JUPITER', grade: '고2', desc: '수능 준비 — 모의고사 어법' },
+      SUN:     { name: 'SUN',     grade: '고3', desc: '수능 직결 — 1등급 도전' }
+    };
+    const LEVEL_TO_PLANET = ['MARS','VENUS','TERRA','NEPTUNE','URANUS','SATURN','JUPITER','SUN']; // level 1=MARS
+
     const { data: lvlResults, error: lvlErr } = await supabase
       .from('level_test_results')
       .select('*')
@@ -995,41 +1008,97 @@
     if (lvlErr) console.warn('[mypage] level_test_results 조회 에러:', lvlErr.message);
     console.info('[mypage] level_test_results count:', lvlResults?.length || 0, 'for user', user.id);
     if (lvlResults && lvlResults.length > 0) {
-      // 최신 결과의 레벨 라벨로 info-level 업데이트 (구독 없을 때)
-      if (!sub) {
-        const latestLabel = lvlResults[0].recommended_planet || lvlResults[0].details?.level_label || ('LEVEL ' + lvlResults[0].level);
-        setText('info-level', latestLabel);
+      // 최신 결과 → 본인 행성 결정
+      // 우선순위: recommended_planet > LEVEL_TO_PLANET[level-1] > details.level_label
+      const latest = lvlResults[0];
+      const latestPlanet = latest.recommended_planet
+        || (latest.level >= 1 && latest.level <= 8 ? LEVEL_TO_PLANET[latest.level - 1] : null)
+        || latest.details?.level_label
+        || null;
+      const meta = latestPlanet && PLANET_META[latestPlanet];
+      if (!sub && meta) {
+        setText('info-level', meta.name + ' (' + meta.grade + ')');
       }
+
       const listEl = $('lvl-results-list');
       const emptyEl = $('lvl-results-empty');
       if (emptyEl) emptyEl.remove();
-      // DOM 빌더로 안전하게 렌더 (innerHTML 미사용)
       listEl.replaceChildren();
+
       lvlResults.forEach(r => {
-        const row = document.createElement('div');
-        row.style.cssText = 'display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:rgba(0,255,163,.04);border:1px solid rgba(0,255,163,.15);border-radius:8px;';
-        const left = document.createElement('div');
-        const titleLine = document.createElement('div');
-        titleLine.style.cssText = 'font-weight:800;color:#fff;font-size:.92rem;';
-        const planet = r.recommended_planet || r.details?.level_label || '';
-        if (planet) {
-          const planetSpan = document.createElement('span');
-          planetSpan.style.cssText = 'color:var(--accent);font-weight:800;margin-right:6px;';
-          planetSpan.textContent = planet;
-          titleLine.appendChild(planetSpan);
-        }
-        const lvlText = 'LEVEL ' + r.level + (r.score !== null ? ' · 점수 ' + r.score + (r.total_questions ? '/' + r.total_questions : '') : '');
-        titleLine.appendChild(document.createTextNode(lvlText));
-        const dateLine = document.createElement('div');
-        dateLine.style.cssText = 'font-size:.72rem;color:var(--dim);margin-top:4px;';
-        dateLine.textContent = ymd(r.created_at);
-        left.append(titleLine, dateLine);
+        const planet = r.recommended_planet
+          || (r.level >= 1 && r.level <= 8 ? LEVEL_TO_PLANET[r.level - 1] : null);
+        const m = planet && PLANET_META[planet];
+
+        const card = document.createElement('div');
+        card.style.cssText = 'padding:16px 18px;background:rgba(0,255,163,.05);border:1px solid rgba(0,255,163,.18);border-radius:10px;';
+
+        // 헤더 — 행성 이름 크게 + 학년 + 우측 재응시
+        const head = document.createElement('div');
+        head.style.cssText = 'display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:10px;';
+
+        const headLeft = document.createElement('div');
+        const planetName = document.createElement('div');
+        planetName.style.cssText = 'font-family:\'Space Grotesk\',sans-serif;font-weight:900;font-size:1.4rem;letter-spacing:.06em;color:var(--accent);line-height:1;';
+        planetName.textContent = m ? m.name : ('LEVEL ' + r.level);
+        const gradeLine = document.createElement('div');
+        gradeLine.style.cssText = 'font-size:.78rem;color:#fff;font-weight:700;margin-top:6px;';
+        gradeLine.textContent = m ? (m.grade + ' · 추천 레벨 ' + r.level + '/8') : '레벨 ' + r.level;
+        headLeft.append(planetName, gradeLine);
+
         const retakeA = document.createElement('a');
         retakeA.href = 'level_test.html';
-        retakeA.style.cssText = 'font-size:.74rem;color:var(--accent);text-decoration:none;font-weight:700;';
+        retakeA.style.cssText = 'font-size:.72rem;color:var(--accent);text-decoration:none;font-weight:700;padding:6px 12px;border:1px solid rgba(0,255,163,.4);border-radius:4px;flex-shrink:0;';
         retakeA.textContent = '재응시 →';
-        row.append(left, retakeA);
-        listEl.appendChild(row);
+        head.append(headLeft, retakeA);
+
+        // 설명
+        const descEl = document.createElement('div');
+        descEl.style.cssText = 'font-size:.76rem;color:var(--dim);line-height:1.6;margin-bottom:12px;';
+        descEl.textContent = m ? m.desc : '레벨테스트 결과';
+
+        // 점수 박스 (4영역)
+        const scoreBox = document.createElement('div');
+        scoreBox.style.cssText = 'display:grid;grid-template-columns:repeat(2,1fr);gap:8px;padding:12px;background:rgba(0,0,0,.25);border-radius:6px;margin-bottom:10px;';
+        const scores = r.details?.scores || {};
+        const SCORE_LABELS = {
+          vocab: '어휘',
+          read:  '독해',
+          gram:  '문법',
+          logic: '논리'
+        };
+        Object.keys(SCORE_LABELS).forEach(k => {
+          const v = scores[k];
+          const cell = document.createElement('div');
+          cell.style.cssText = 'display:flex;justify-content:space-between;align-items:center;font-size:.78rem;';
+          const lbl = document.createElement('span');
+          lbl.style.color = 'var(--dim)';
+          lbl.textContent = SCORE_LABELS[k];
+          const val = document.createElement('span');
+          val.style.cssText = 'color:#fff;font-weight:700;';
+          val.textContent = (typeof v === 'number') ? (v + ' / 100') : '-';
+          cell.append(lbl, val);
+          scoreBox.appendChild(cell);
+        });
+
+        // 평균/날짜
+        const footer = document.createElement('div');
+        footer.style.cssText = 'display:flex;justify-content:space-between;align-items:center;font-size:.72rem;color:var(--dim);';
+        const avgEl = document.createElement('span');
+        if (typeof r.score === 'number') {
+          const avgSpan = document.createElement('strong');
+          avgSpan.style.cssText = 'color:var(--accent);font-size:.92rem;';
+          avgSpan.textContent = r.score;
+          avgEl.append('평균 ', avgSpan, ' / 100점');
+        } else {
+          avgEl.textContent = '점수 없음';
+        }
+        const dateEl = document.createElement('span');
+        dateEl.textContent = ymd(r.created_at) + ' 응시';
+        footer.append(avgEl, dateEl);
+
+        card.append(head, descEl, scoreBox, footer);
+        listEl.appendChild(card);
       });
     }
 
