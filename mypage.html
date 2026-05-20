@@ -422,44 +422,20 @@
     <!-- 레벨 변경 -->
     <div class="tab-view" id="tab-level">
       <h2 class="page-title">LEVEL</h2>
-      <p class="page-sub">현재 레벨 · URANUS — 다음 달부터 변경 적용됩니다.</p>
+      <p class="page-sub" id="lvl-page-sub">현재 레벨 정보를 불러오는 중...</p>
 
       <div class="section-block">
         <div class="section-block-title">레벨 선택</div>
         <p class="level-change-note">레벨 변경은 <strong style="color:#fff;">다음 달 발송분</strong>부터 적용됩니다. 중간에 레벨이 너무 쉽거나 어렵다면 언제든 변경 가능합니다.</p>
-        <div class="level-grid-sm">
-          <div class="level-btn-sm" onclick="selectLvl(this,'MARS')">
-            <div class="lvl-name-sm">MARS</div>
-            <div class="lvl-target-sm">초5</div>
-          </div>
-          <div class="level-btn-sm" onclick="selectLvl(this,'VENUS')">
-            <div class="lvl-name-sm">VENUS</div>
-            <div class="lvl-target-sm">초6</div>
-          </div>
-          <div class="level-btn-sm" onclick="selectLvl(this,'TERRA')">
-            <div class="lvl-name-sm">TERRA</div>
-            <div class="lvl-target-sm">중1</div>
-          </div>
-          <div class="level-btn-sm" onclick="selectLvl(this,'NEPTUNE')">
-            <div class="lvl-name-sm">NEPTUNE</div>
-            <div class="lvl-target-sm">중2</div>
-          </div>
-          <div class="level-btn-sm current" onclick="selectLvl(this,'URANUS')">
-            <div class="lvl-name-sm">URANUS ✓</div>
-            <div class="lvl-target-sm">중3 (현재)</div>
-          </div>
-          <div class="level-btn-sm" onclick="selectLvl(this,'SATURN')">
-            <div class="lvl-name-sm">SATURN</div>
-            <div class="lvl-target-sm">고1</div>
-          </div>
-          <div class="level-btn-sm" onclick="selectLvl(this,'JUPITER')">
-            <div class="lvl-name-sm">JUPITER</div>
-            <div class="lvl-target-sm">고2</div>
-          </div>
-          <div class="level-btn-sm" onclick="selectLvl(this,'SUN')">
-            <div class="lvl-name-sm">SUN</div>
-            <div class="lvl-target-sm">고3</div>
-          </div>
+        <div class="level-grid-sm" id="lvl-grid">
+          <div class="level-btn-sm" data-lvl="MARS"    onclick="selectLvl(this,'MARS')"><div class="lvl-name-sm">MARS</div><div class="lvl-target-sm">초5</div></div>
+          <div class="level-btn-sm" data-lvl="VENUS"   onclick="selectLvl(this,'VENUS')"><div class="lvl-name-sm">VENUS</div><div class="lvl-target-sm">초6</div></div>
+          <div class="level-btn-sm" data-lvl="TERRA"   onclick="selectLvl(this,'TERRA')"><div class="lvl-name-sm">TERRA</div><div class="lvl-target-sm">중1</div></div>
+          <div class="level-btn-sm" data-lvl="NEPTUNE" onclick="selectLvl(this,'NEPTUNE')"><div class="lvl-name-sm">NEPTUNE</div><div class="lvl-target-sm">중2</div></div>
+          <div class="level-btn-sm" data-lvl="URANUS"  onclick="selectLvl(this,'URANUS')"><div class="lvl-name-sm">URANUS</div><div class="lvl-target-sm">중3</div></div>
+          <div class="level-btn-sm" data-lvl="SATURN"  onclick="selectLvl(this,'SATURN')"><div class="lvl-name-sm">SATURN</div><div class="lvl-target-sm">고1</div></div>
+          <div class="level-btn-sm" data-lvl="JUPITER" onclick="selectLvl(this,'JUPITER')"><div class="lvl-name-sm">JUPITER</div><div class="lvl-target-sm">고2</div></div>
+          <div class="level-btn-sm" data-lvl="SUN"     onclick="selectLvl(this,'SUN')"><div class="lvl-name-sm">SUN</div><div class="lvl-target-sm">고3</div></div>
         </div>
         <button class="btn-save" onclick="changeLevel()">레벨 변경 신청</button>
         <span style="font-size:.72rem;color:var(--dim);margin-left:12px;">변경은 무료입니다.</span>
@@ -1016,11 +992,11 @@
       .limit(10);
     if (lvlErr) console.warn('[mypage] level_test_results 조회 에러:', lvlErr.message);
     console.info('[mypage] level_test_results count:', lvlResults?.length || 0, 'for user', user.id);
+    // ── 최신 레벨테스트 결과의 추천 행성 추출 ──
+    let latestPlanet = null;
     if (lvlResults && lvlResults.length > 0) {
-      // 최신 결과 → 본인 행성 결정
-      // 우선순위: recommended_planet > LEVEL_TO_PLANET[level-1] > details.level_label
       const latest = lvlResults[0];
-      const latestPlanet = latest.recommended_planet
+      latestPlanet = latest.recommended_planet
         || (latest.level >= 1 && latest.level <= 8 ? LEVEL_TO_PLANET[latest.level - 1] : null)
         || latest.details?.level_label
         || null;
@@ -1028,7 +1004,48 @@
       if (!sub && meta) {
         setText('info-level', meta.name + ' (' + meta.grade + ')');
       }
+    }
 
+    // ── LEVEL 탭 동기화 (결과 0개여도 실행) ──
+    // 우선순위: 활성 구독의 level > 최신 레벨테스트 추천
+    const activeLevelPlanet = (sub && sub.level) || latestPlanet || null;
+    if (activeLevelPlanet && PLANET_META[activeLevelPlanet]) {
+      const m2 = PLANET_META[activeLevelPlanet];
+      const subTitle = $('lvl-page-sub');
+      if (subTitle) {
+        subTitle.textContent = '현재 레벨 · ' + m2.name + ' (' + m2.grade + ') — 다음 달부터 변경 적용됩니다.';
+      }
+      // 카드 active 표시
+      document.querySelectorAll('#lvl-grid .level-btn-sm').forEach(card => {
+        card.classList.remove('current');
+        const targetEl = card.querySelector('.lvl-target-sm');
+        if (targetEl) {
+          targetEl.textContent = (targetEl.textContent || '').replace(/\s*\(현재\)\s*$/, '');
+        }
+        const nameEl = card.querySelector('.lvl-name-sm');
+        if (nameEl) nameEl.textContent = (nameEl.textContent || '').replace(/\s*✓\s*$/, '');
+      });
+      const myCard = document.querySelector('#lvl-grid .level-btn-sm[data-lvl="' + activeLevelPlanet + '"]');
+      if (myCard) {
+        myCard.classList.add('current');
+        const nameEl = myCard.querySelector('.lvl-name-sm');
+        if (nameEl) nameEl.textContent = m2.name + ' ✓';
+        const targetEl = myCard.querySelector('.lvl-target-sm');
+        if (targetEl) targetEl.textContent = m2.grade + ' (현재)';
+      }
+    } else {
+      // 레벨 정보 없음 — 안내 + 카드 active 모두 제거
+      const subTitle = $('lvl-page-sub');
+      if (subTitle) {
+        subTitle.textContent = '아직 추천 레벨이 없습니다. 레벨 테스트를 받아주세요.';
+      }
+      document.querySelectorAll('#lvl-grid .level-btn-sm').forEach(card => {
+        card.classList.remove('current');
+      });
+    }
+
+    // ── 레벨테스트 결과 카드 렌더 (있을 때만) ──
+    if (lvlResults && lvlResults.length > 0) {
       const listEl = $('lvl-results-list');
       const emptyEl = $('lvl-results-empty');
       if (emptyEl) emptyEl.remove();
