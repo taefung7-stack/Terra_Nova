@@ -322,17 +322,12 @@
       return;
     }
     // Google, Kakao: Supabase 내장 OAuth
-    // Kakao는 비즈 앱 미등록 상태에선 account_email/profile_image 권한 미허용 → 닉네임만 요청
-    const oauthOpts = {
-      redirectTo: location.origin + location.pathname.replace(/login\.html$/, 'index.html')
-    };
-    if (provider === 'kakao') {
-      // openid 만 요청 → Supabase가 OpenID Connect ID 토큰으로 처리, 추가 scope 강요 X
-      oauthOpts.scopes = 'openid';
-    }
+    // Kakao: 비즈 앱 등록 + account_email 필수 동의 활성화됨 → 기본 scope 사용
     const { error } = await supabase.auth.signInWithOAuth({
       provider,
-      options: oauthOpts
+      options: {
+        redirectTo: location.origin + location.pathname.replace(/login\.html$/, 'index.html')
+      }
     });
     if (error) alert(provider + ' 로그인 실패: ' + error.message);
   }
