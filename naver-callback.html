@@ -88,10 +88,23 @@
     }
 
     // CSRF 방어: state 검증
-    const savedState = sessionStorage.getItem('naver_oauth_state');
+    // localStorage 우선, 구버전 호환을 위해 sessionStorage도 함께 확인
+    let savedState = localStorage.getItem('naver_oauth_state');
+    const savedTs = parseInt(localStorage.getItem('naver_oauth_state_ts') || '0', 10);
+    if (!savedState) {
+      savedState = sessionStorage.getItem('naver_oauth_state');
+    }
+    localStorage.removeItem('naver_oauth_state');
+    localStorage.removeItem('naver_oauth_state_ts');
     sessionStorage.removeItem('naver_oauth_state');
-    if (!savedState || savedState !== state) {
-      fail('보안 검증 실패', 'CSRF 방지 토큰(state)이 일치하지 않습니다. 다시 시도해주세요.');
+
+    // 10분 이상 지난 state는 만료 처리
+    const tooOld = savedTs && (Date.now() - savedTs) > 10 * 60 * 1000;
+
+    if (!savedState || savedState !== state || tooOld) {
+      fail('보안 검증 실패', tooOld
+        ? '인증 요청이 만료되었습니다(10분 초과). 다시 시도해주세요.'
+        : 'CSRF 방지 토큰(state)이 일치하지 않습니다. 다시 시도해주세요.');
       return;
     }
 
