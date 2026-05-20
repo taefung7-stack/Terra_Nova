@@ -183,10 +183,11 @@
   .trust-icon{color:var(--accent);flex-shrink:0;}
 
   /* ANNUAL HIGHLIGHT BANNER */
-  .annual-banner{background:linear-gradient(90deg,rgba(0,255,163,.1),rgba(79,70,229,.08));border:1px solid rgba(0,255,163,.25);border-radius:10px;padding:14px 18px;margin-bottom:24px;display:flex;align-items:center;gap:14px;}
-  .annual-banner-icon{font-size:1.4rem;flex-shrink:0;}
-  .annual-banner-text{font-size:.96rem;color:var(--dim);line-height:1.6;text-align:center;}
-  .annual-banner-text strong{color:#fff;}
+  .annual-banner{background:linear-gradient(90deg,rgba(0,255,163,.1),rgba(79,70,229,.08));border:1px solid rgba(0,255,163,.25);border-radius:10px;padding:10px 16px;margin-bottom:18px;display:flex;align-items:center;gap:14px;}
+  .annual-banner-icon{font-size:1.9rem;line-height:1;flex-shrink:0;display:flex;align-items:center;}
+  .annual-banner-text{font-size:.92rem;color:var(--dim);line-height:1.35;display:flex;flex-direction:column;gap:2px;text-align:left;}
+  .annual-banner-text strong{color:#fff;font-weight:700;}
+  .annual-banner-text span{display:block;}
   .annual-banner-text em{color:#4ade80;font-style:normal;font-weight:700;}
 
   /* NOTICE */
@@ -207,7 +208,9 @@
     .plan-price{font-size:1.75rem;}
     .level-btn{padding:11px 8px;}
     .addr-match-row{flex-wrap:wrap;gap:8px;}
-    .annual-banner{flex-direction:column;gap:8px;padding:14px;}
+    .annual-banner{padding:10px 14px;gap:12px;}
+    .annual-banner-text{font-size:.86rem;}
+    .annual-banner-icon{font-size:1.7rem;}
     .summary-box{padding:20px 16px;}
     .btn-order{font-size:.9rem;padding:15px;}
     .notice-list li,.trust-item{font-size:.75rem;}
@@ -430,9 +433,8 @@
         <div class="annual-banner" id="annual-banner" style="display:none;">
           <div class="annual-banner-icon">🎁</div>
           <div class="annual-banner-text">
-            <strong>연간 구독 이벤트 진행 중!</strong><br>
-            연간 결제 시 <em>2개월 무료</em><br>
-            STANDARD 기준 <em>연 49,800원 절감</em>
+            <strong>연간 구독 이벤트 진행 중!</strong>
+            <span>연간 결제 시 <em>2개월 무료</em></span>
           </div>
         </div>
 
