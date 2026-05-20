@@ -139,6 +139,8 @@
   .free-desc{font-size:1.25rem;color:rgba(255,255,255,.78);margin-bottom:32px;line-height:1.7;max-width:760px;margin-left:auto;margin-right:auto;}
   .free-form{display:flex;gap:10px;max-width:480px;margin:0 auto;flex-wrap:wrap;justify-content:center;}
   .free-input{flex:1;min-width:200px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:6px;padding:12px 18px;color:var(--txt);font-family:'Pretendard',sans-serif;font-size:.88rem;outline:none;transition:border-color .18s;}
+  /* iOS Safari: prevent auto-zoom on focus by forcing >=16px on touch devices */
+  @media(max-width:680px){.free-input{font-size:16px;padding:14px 18px;}}
   .free-input:focus{border-color:rgba(0,255,163,.5);}
   .free-input::placeholder{color:rgba(255,255,255,.28);}
   .free-btn{background:var(--accent);color:#0A0A0A;border:none;padding:12px 28px;border-radius:6px;font-family:'Pretendard',sans-serif;font-size:.88rem;font-weight:700;cursor:pointer;white-space:nowrap;transition:transform .15s,box-shadow .15s;min-width:120px;}
