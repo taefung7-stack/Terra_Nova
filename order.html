@@ -1034,7 +1034,7 @@
     let channelKey = '';
     if (paymethod === 'kakaopay') channelKey = keys.kakaopay;
     else if (paymethod === 'naverpay') channelKey = keys.naverpay;
-    else if (paymethod === 'card') channelKey = keys.card_kcp || keys.card_inicis;
+    else if (paymethod === 'card') channelKey = keys.card_inicis || keys.card_kcp;
     if (!storeId || !channelKey) {
       alert('해당 결제수단은 현재 준비중입니다.');
       return;

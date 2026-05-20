@@ -1,16 +1,42 @@
-// Terra Nova · 포트원 v2 결제 클라이언트 (스켈레톤)
-// 포트원 계정 심사 완료 후 아래 STORE_ID와 CHANNEL_KEY만 채우면 바로 작동합니다.
+// Terra Nova · 포트원 v2 결제 클라이언트
 //
-// 1. https://admin.portone.io > 결제 연동 > 상점 아이디 확인
-// 2. 채널 등록: 토스페이먼츠 / 카카오페이 / 네이버페이 / 계좌이체 각각 등록
-// 3. 각 채널의 "채널키" 복사 (v2)
-// 4. 아래 상수값 교체 + Supabase Edge Function(portone-webhook) 배포
+// 설정 단일 소스: site-config.js 의 window.PORTONE_STORE_ID / window.PORTONE_CHANNEL_KEYS
+// (모든 HTML <head>에 <script src="./site-config.js"></script> 가 먼저 로드되어야 함)
+//
+// 현재 운영 정책 (2026-05):
+//   - PG 심사 완료: KG이니시스 (신용카드 일반/정기) ← card_inicis 채널
+//   - 심사 진행중: 카카오페이, 토스페이먼츠, 다날 (휴대폰)
+//   - 따라서 기본 결제수단은 CARD(KG이니시스) 단독. 다른 PG는 통과 시 채널키 추가.
 
 import { supabase } from './supabase-client.js';
 
 const PORTONE_VERSION = 'v2';
-const STORE_ID   = 'store-REPLACE_AFTER_APPROVAL';       // 심사 후 교체
-const CHANNEL_KEY = 'channel-key-REPLACE_AFTER_APPROVAL'; // 심사 후 교체
+const STORE_ID = (typeof window !== 'undefined' && window.PORTONE_STORE_ID) || '';
+const CHANNEL_KEYS = (typeof window !== 'undefined' && window.PORTONE_CHANNEL_KEYS) || {};
+
+// 결제수단별 채널 키 선택 (KG이니시스 우선, 없으면 KCP fallback)
+function pickChannelKey(method) {
+  const m = (method || 'CARD').toUpperCase();
+  if (m === 'CARD') {
+    return CHANNEL_KEYS.card_inicis || CHANNEL_KEYS.card_kcp || '';
+  }
+  if (m === 'EASY_PAY') {
+    // 간편결제: 카카오페이 우선, 다음 네이버페이
+    return CHANNEL_KEYS.kakaopay || CHANNEL_KEYS.naverpay || '';
+  }
+  // TRANSFER / VIRTUAL_ACCOUNT 등은 이니시스 채널 재사용
+  return CHANNEL_KEYS.card_inicis || '';
+}
+
+function assertPortoneReady(channelKey) {
+  if (!STORE_ID || !channelKey) {
+    alert('결제 시스템 점검중입니다. 잠시 후 다시 시도해주세요.');
+    console.error('[portone] missing STORE_ID or channelKey', { STORE_ID, channelKey, CHANNEL_KEYS });
+    return false;
+  }
+  return true;
+}
+
 const PORTONE_SDK_URL = 'https://cdn.portone.io/v2/browser-sdk.js';
 
 let sdkLoaded = false;
@@ -63,10 +89,14 @@ export async function requestPayment({ items, method = 'CARD', shipping }) {
 
   // 2. PortOne SDK 호출 — 서버가 검증한 금액만 사용
   try {
+    const channelKey = pickChannelKey(method);
+    if (!assertPortoneReady(channelKey)) {
+      return { success: false, reason: 'portone_not_configured' };
+    }
     const PortOne = await loadPortoneSDK();
     const response = await PortOne.requestPayment({
       storeId: STORE_ID,
-      channelKey: CHANNEL_KEY,
+      channelKey,
       paymentId: order.payment_id,
       orderName: order.order_name,
       totalAmount: order.verified_total,    // ← 서버 검증 금액
@@ -135,12 +165,16 @@ export async function requestSubscription({ plan, cycle = 'monthly', level, ship
     return { success: false, reason };
   }
 
-  // 2. 빌링키 발급 SDK 호출
+  // 2. 빌링키 발급 SDK 호출 (정기결제 — KG이니시스 신용카드 채널)
   try {
+    const channelKey = pickChannelKey('CARD');
+    if (!assertPortoneReady(channelKey)) {
+      return { success: false, reason: 'portone_not_configured' };
+    }
     const PortOne = await loadPortoneSDK();
     const response = await PortOne.requestIssueBillingKey({
       storeId: STORE_ID,
-      channelKey: CHANNEL_KEY,
+      channelKey,
       billingKeyMethod: 'CARD',
       issueId: order.payment_id,
       issueName: order.order_name,
