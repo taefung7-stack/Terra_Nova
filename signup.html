@@ -322,9 +322,14 @@
         + '&state=' + encodeURIComponent(state);
       return;
     }
+    // Kakao는 비즈 앱 미등록 상태에선 account_email/profile_image 권한 미허용 → 최소 scope 만
+    const oauthOpts = { redirectTo: location.origin + '/mypage.html' };
+    if (provider === 'kakao') {
+      oauthOpts.scopes = 'openid';
+    }
     const { error } = await supabase.auth.signInWithOAuth({
       provider,
-      options: { redirectTo: location.origin + '/mypage.html' }
+      options: oauthOpts
     });
     if (error) alert(provider + ' 가입 실패: ' + error.message);
   };
