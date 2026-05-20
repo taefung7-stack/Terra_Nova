@@ -988,14 +988,23 @@
     // ── 레벨 테스트 결과 로드 ────────────
     // Terra Nova 8레벨 행성 시스템: MARS(초5)~SUN(고3)
     const PLANET_META = {
-      MARS:    { name: 'MARS',    grade: '초5', desc: '교과 입문 — 기초 어휘 + 짧은 문장' },
-      VENUS:   { name: 'VENUS',   grade: '초6', desc: '교과 적응 — 단락 읽기 시작' },
-      TERRA:   { name: 'TERRA',   grade: '중1', desc: '중등 진입 — 200단어 지문' },
-      NEPTUNE: { name: 'NEPTUNE', grade: '중2', desc: '중등 심화 — 학교시험 대비' },
-      URANUS:  { name: 'URANUS',  grade: '중3', desc: '고등 준비 — 250단어 지문' },
-      SATURN:  { name: 'SATURN',  grade: '고1', desc: '고등 진입 — 교과 연계 지문' },
-      JUPITER: { name: 'JUPITER', grade: '고2', desc: '수능 준비 — 모의고사 어법' },
-      SUN:     { name: 'SUN',     grade: '고3', desc: '수능 직결 — 1등급 도전' }
+      MARS:    { name: 'MARS',    grade: '초5', desc: '교과 입문 단계 — 100~150단어 지문, 기초 어휘 1,200, 단순 문장 위주.' },
+      VENUS:   { name: 'VENUS',   grade: '초6', desc: '교과 적응 단계 — 150~200단어 지문, 단락 읽기 시작, 어휘 1,500.' },
+      TERRA:   { name: 'TERRA',   grade: '중1', desc: '중등 진입 단계 — 200단어 지문, 교과서 본문 수준, 어휘 1,800.' },
+      NEPTUNE: { name: 'NEPTUNE', grade: '중2', desc: '중등 심화 단계 — 220단어 지문, 학교시험 출제 패턴 적용, 어휘 2,200.' },
+      URANUS:  { name: 'URANUS',  grade: '중3', desc: '고등 준비 단계 — 250단어 지문, 추론/주제 파악 문제, 어휘 2,800.' },
+      SATURN:  { name: 'SATURN',  grade: '고1', desc: '고등 진입 단계 — 280단어 교과 연계 지문, 학평 수준, 어휘 3,500.' },
+      JUPITER: { name: 'JUPITER', grade: '고2', desc: '수능 준비 단계 — 300단어 지문, 모의고사 어법·어휘, 빈출 구문 패턴.' },
+      SUN:     { name: 'SUN',     grade: '고3', desc: '수능 직결 단계 — 320단어 지문, EBS 연계, 1등급 대비 종합 훈련.' }
+    };
+    // 평균 점수 → 등급
+    const gradeOf = (s) => {
+      if (s == null) return { letter: '-', color: 'var(--dim)', label: '점수 없음' };
+      if (s >= 85)  return { letter: 'A', color: '#00FFA3', label: '우수' };
+      if (s >= 70)  return { letter: 'B', color: '#33D6FF', label: '양호' };
+      if (s >= 55)  return { letter: 'C', color: '#FFD93D', label: '보통' };
+      if (s >= 40)  return { letter: 'D', color: '#FFA500', label: '노력' };
+      return                                  { letter: 'E', color: '#F87171', label: '집중 보강' };
     };
     const LEVEL_TO_PLANET = ['MARS','VENUS','TERRA','NEPTUNE','URANUS','SATURN','JUPITER','SUN']; // level 1=MARS
 
@@ -1057,45 +1066,81 @@
         descEl.style.cssText = 'font-size:.76rem;color:var(--dim);line-height:1.6;margin-bottom:12px;';
         descEl.textContent = m ? m.desc : '레벨테스트 결과';
 
-        // 점수 박스 (4영역)
+        // 점수 박스 (4영역, 막대 그래프 + 점수)
         const scoreBox = document.createElement('div');
-        scoreBox.style.cssText = 'display:grid;grid-template-columns:repeat(2,1fr);gap:8px;padding:12px;background:rgba(0,0,0,.25);border-radius:6px;margin-bottom:10px;';
+        scoreBox.style.cssText = 'display:grid;grid-template-columns:repeat(2,1fr);gap:10px 14px;padding:14px;background:rgba(0,0,0,.28);border-radius:8px;margin-bottom:12px;';
         const scores = r.details?.scores || {};
         const SCORE_LABELS = {
-          vocab: '어휘',
-          read:  '독해',
-          gram:  '문법',
-          logic: '논리'
+          vocab: { ko: '어휘',  desc: '단어 의미·동의/반의어' },
+          read:  { ko: '독해',  desc: '본문 이해·주제 파악' },
+          gram:  { ko: '문법',  desc: '문장 구조·어법' },
+          logic: { ko: '논리',  desc: '추론·연결사·요지' }
         };
         Object.keys(SCORE_LABELS).forEach(k => {
           const v = scores[k];
           const cell = document.createElement('div');
-          cell.style.cssText = 'display:flex;justify-content:space-between;align-items:center;font-size:.78rem;';
+          cell.style.cssText = 'display:flex;flex-direction:column;gap:5px;';
+
+          // 라벨 + 점수 (한 줄)
+          const labelRow = document.createElement('div');
+          labelRow.style.cssText = 'display:flex;justify-content:space-between;align-items:baseline;gap:8px;';
           const lbl = document.createElement('span');
-          lbl.style.color = 'var(--dim)';
-          lbl.textContent = SCORE_LABELS[k];
+          lbl.style.cssText = 'font-size:.82rem;color:#fff;font-weight:700;';
+          lbl.textContent = SCORE_LABELS[k].ko;
           const val = document.createElement('span');
-          val.style.cssText = 'color:#fff;font-weight:700;';
+          val.style.cssText = 'font-size:.78rem;color:var(--accent);font-weight:800;';
           val.textContent = (typeof v === 'number') ? (v + ' / 100') : '-';
-          cell.append(lbl, val);
+          labelRow.append(lbl, val);
+
+          // 막대 그래프
+          const bar = document.createElement('div');
+          bar.style.cssText = 'height:5px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden;';
+          const fill = document.createElement('div');
+          const pct = (typeof v === 'number') ? Math.max(0, Math.min(100, v)) : 0;
+          fill.style.cssText = `height:100%;width:${pct}%;background:linear-gradient(90deg,#00FFA3 0%,#33D6FF 100%);transition:width .6s ease;`;
+          bar.appendChild(fill);
+
+          // 부 설명
+          const sub = document.createElement('span');
+          sub.style.cssText = 'font-size:.65rem;color:var(--dim);';
+          sub.textContent = SCORE_LABELS[k].desc;
+
+          cell.append(labelRow, bar, sub);
           scoreBox.appendChild(cell);
         });
 
-        // 평균/날짜
+        // 평균 + 등급 + 날짜 (한 박스)
         const footer = document.createElement('div');
-        footer.style.cssText = 'display:flex;justify-content:space-between;align-items:center;font-size:.72rem;color:var(--dim);';
-        const avgEl = document.createElement('span');
+        footer.style.cssText = 'display:flex;justify-content:space-between;align-items:center;padding:12px 14px;background:rgba(0,255,163,.04);border:1px solid rgba(0,255,163,.18);border-radius:6px;gap:12px;flex-wrap:wrap;';
+        const g = gradeOf(r.score);
+        const avgWrap = document.createElement('div');
+        avgWrap.style.cssText = 'display:flex;align-items:center;gap:10px;';
+        // 큰 등급 글자
+        const gradeEl = document.createElement('div');
+        gradeEl.style.cssText = `font-family:'Space Grotesk',sans-serif;font-weight:900;font-size:1.6rem;color:${g.color};line-height:1;letter-spacing:-.02em;`;
+        gradeEl.textContent = g.letter;
+        const avgTxt = document.createElement('div');
+        avgTxt.style.cssText = 'display:flex;flex-direction:column;gap:2px;';
+        const avgLine = document.createElement('div');
+        avgLine.style.cssText = 'font-size:.84rem;color:#fff;font-weight:700;';
         if (typeof r.score === 'number') {
-          const avgSpan = document.createElement('strong');
-          avgSpan.style.cssText = 'color:var(--accent);font-size:.92rem;';
-          avgSpan.textContent = r.score;
-          avgEl.append('평균 ', avgSpan, ' / 100점');
+          const strong = document.createElement('strong');
+          strong.style.cssText = 'color:var(--accent);font-size:1.05rem;';
+          strong.textContent = r.score;
+          avgLine.append('평균 ', strong, ' / 100점');
         } else {
-          avgEl.textContent = '점수 없음';
+          avgLine.textContent = '점수 없음';
         }
+        const gradeLabel = document.createElement('div');
+        gradeLabel.style.cssText = `font-size:.7rem;color:${g.color};font-weight:700;letter-spacing:.04em;`;
+        gradeLabel.textContent = g.label;
+        avgTxt.append(avgLine, gradeLabel);
+        avgWrap.append(gradeEl, avgTxt);
+
         const dateEl = document.createElement('span');
+        dateEl.style.cssText = 'font-size:.72rem;color:var(--dim);';
         dateEl.textContent = ymd(r.created_at) + ' 응시';
-        footer.append(avgEl, dateEl);
+        footer.append(avgWrap, dateEl);
 
         card.append(head, descEl, scoreBox, footer);
         listEl.appendChild(card);
@@ -1321,16 +1366,19 @@
     // ── 내 쿠폰함 (DOM 빌드, XSS-safe) ──────────────────
     async function loadMyCoupons() {
       if (!myCouponsList) return;
-      const { data: coupons, error } = await supabase
-        .from('coupons')
-        .select('*')
+      // 본인이 사용한/발급받은 쿠폰은 coupon_uses 를 통해 join
+      // coupons 테이블 자체는 글로벌 쿠폰 정의 (user_id 컬럼 없음)
+      const { data: uses, error } = await supabase
+        .from('coupon_uses')
+        .select('coupon_id, used_at, coupons(*)')
         .eq('user_id', user.id)
-        .order('created_at', { ascending: false });
+        .order('used_at', { ascending: false });
       if (error) {
-        // coupons 테이블이 아직 없는 환경에서도 mypage가 깨지지 않도록 silent fail
         console.warn('[coupons] load failed:', error.message);
         return;
       }
+      // coupon_uses → coupons 형태로 평탄화
+      const coupons = (uses || []).map(u => u.coupons).filter(Boolean);
       myCouponsList.replaceChildren();
       if (!coupons || coupons.length === 0) {
         const empty = document.createElement('div');
