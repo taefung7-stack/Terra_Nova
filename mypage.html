@@ -964,25 +964,138 @@
     // ── 레벨 테스트 결과 로드 ────────────
     // Terra Nova 8레벨 행성 시스템: MARS(초5)~SUN(고3)
     const PLANET_META = {
-      MARS:    { name: 'MARS',    grade: '초5', desc: '교과 입문 단계 — 100~150단어 지문, 기초 어휘 1,200, 단순 문장 위주.' },
-      VENUS:   { name: 'VENUS',   grade: '초6', desc: '교과 적응 단계 — 150~200단어 지문, 단락 읽기 시작, 어휘 1,500.' },
-      TERRA:   { name: 'TERRA',   grade: '중1', desc: '중등 진입 단계 — 200단어 지문, 교과서 본문 수준, 어휘 1,800.' },
-      NEPTUNE: { name: 'NEPTUNE', grade: '중2', desc: '중등 심화 단계 — 220단어 지문, 학교시험 출제 패턴 적용, 어휘 2,200.' },
-      URANUS:  { name: 'URANUS',  grade: '중3', desc: '고등 준비 단계 — 250단어 지문, 추론/주제 파악 문제, 어휘 2,800.' },
-      SATURN:  { name: 'SATURN',  grade: '고1', desc: '고등 진입 단계 — 280단어 교과 연계 지문, 학평 수준, 어휘 3,500.' },
-      JUPITER: { name: 'JUPITER', grade: '고2', desc: '수능 준비 단계 — 300단어 지문, 모의고사 어법·어휘, 빈출 구문 패턴.' },
-      SUN:     { name: 'SUN',     grade: '고3', desc: '수능 직결 단계 — 320단어 지문, EBS 연계, 1등급 대비 종합 훈련.' }
-    };
-    // 평균 점수 → 등급
-    const gradeOf = (s) => {
-      if (s == null) return { letter: '-', color: 'var(--dim)', label: '점수 없음' };
-      if (s >= 85)  return { letter: 'A', color: '#00FFA3', label: '우수' };
-      if (s >= 70)  return { letter: 'B', color: '#33D6FF', label: '양호' };
-      if (s >= 55)  return { letter: 'C', color: '#FFD93D', label: '보통' };
-      if (s >= 40)  return { letter: 'D', color: '#FFA500', label: '노력' };
-      return                                  { letter: 'E', color: '#F87171', label: '집중 보강' };
+      MARS:    { name: 'MARS',    grade: '초5', gradeLevel: 1, desc: '교과 입문 단계 — 100~150단어 지문, 기초 어휘 1,200, 단순 문장 위주.' },
+      VENUS:   { name: 'VENUS',   grade: '초6', gradeLevel: 2, desc: '교과 적응 단계 — 150~200단어 지문, 단락 읽기 시작, 어휘 1,500.' },
+      TERRA:   { name: 'TERRA',   grade: '중1', gradeLevel: 3, desc: '중등 진입 단계 — 200단어 지문, 교과서 본문 수준, 어휘 1,800.' },
+      NEPTUNE: { name: 'NEPTUNE', grade: '중2', gradeLevel: 4, desc: '중등 심화 단계 — 220단어 지문, 학교시험 출제 패턴 적용, 어휘 2,200.' },
+      URANUS:  { name: 'URANUS',  grade: '중3', gradeLevel: 5, desc: '고등 준비 단계 — 250단어 지문, 추론/주제 파악 문제, 어휘 2,800.' },
+      SATURN:  { name: 'SATURN',  grade: '고1', gradeLevel: 6, desc: '고등 진입 단계 — 280단어 교과 연계 지문, 학평 수준, 어휘 3,500.' },
+      JUPITER: { name: 'JUPITER', grade: '고2', gradeLevel: 7, desc: '수능 준비 단계 — 300단어 지문, 모의고사 어법·어휘, 빈출 구문 패턴.' },
+      SUN:     { name: 'SUN',     grade: '고3', gradeLevel: 8, desc: '수능 직결 단계 — 320단어 지문, EBS 연계, 1등급 대비 종합 훈련.' }
     };
     const LEVEL_TO_PLANET = ['MARS','VENUS','TERRA','NEPTUNE','URANUS','SATURN','JUPITER','SUN']; // level 1=MARS
+
+    // "초등 5학년" / "중학교 2학년" / "고등학교 1학년" → 1..8 (Terra Nova gradeLevel scale)
+    // 초3=below MARS, 초5=MARS(1), 초6=VENUS(2), 중1=TERRA(3) ... 고3=SUN(8)
+    const userGradeToLevel = (label) => {
+      if (!label || typeof label !== 'string') return null;
+      const m = label.match(/(초등|중학교|고등학교)\s*([1-6])학년/);
+      if (!m) return null;
+      const stage = m[1], n = parseInt(m[2], 10);
+      if (stage === '초등') return n === 5 ? 1 : n === 6 ? 2 : (n < 5 ? 0 : null);
+      if (stage === '중학교') return n + 2;        // 중1=3, 중2=4, 중3=5
+      if (stage === '고등학교') return n + 5;      // 고1=6, 고2=7, 고3=8
+      return null;
+    };
+
+    // 학년 + 추천 행성 비교 → 격려/안내 문장 생성
+    const narrativeFor = (userGradeLevel, recommendedPlanet) => {
+      const planetMeta = PLANET_META[recommendedPlanet];
+      if (!planetMeta) return { headline: '진단이 준비 중이에요.', body: '' };
+      const recLevel = planetMeta.gradeLevel;
+      const recName = planetMeta.name;
+      const recGrade = planetMeta.grade;
+
+      // 학년 정보 없음
+      if (userGradeLevel == null) {
+        return {
+          headline: `현재 실력에 맞는 추천 레벨은 ${recName} (${recGrade}) 입니다.`,
+          body: `이 레벨부터 시작하시면 무리 없이 학습 흐름을 따라가실 수 있어요. ` +
+                `프로필에 학년을 입력하시면 더 자세한 학습 가이드를 안내해 드립니다.`,
+          tone: 'neutral'
+        };
+      }
+
+      const gap = recLevel - userGradeLevel;
+
+      // 같은 학년대 (±0)
+      if (gap === 0) {
+        return {
+          headline: `현재 학년에 딱 맞는 수준이에요.`,
+          body: `${recName} (${recGrade}) 레벨이 본인 학년 교과 진도와 정확히 맞물립니다. ` +
+                `매월 새 콘텐츠로 꾸준히 학습하시면 학교 수업·내신 대비에 그대로 연결됩니다.`,
+          tone: 'on-target'
+        };
+      }
+
+      // 추천이 본인 학년보다 위 — 또래보다 앞서 있는 케이스
+      if (gap > 0) {
+        if (gap === 1) {
+          return {
+            headline: `또래보다 한 단계 앞서 있어요.`,
+            body: `현재 학년 수준은 이미 안정적입니다. ${recName} (${recGrade}) 레벨을 추천드려요. ` +
+                  `한 학년 위 콘텐츠로 학습하면 자연스럽게 선행 효과를 얻을 수 있어요.`,
+            tone: 'ahead'
+          };
+        }
+        return {
+          headline: `또래보다 ${gap}단계 앞서 있는 우수 학습자예요.`,
+          body: `현재 학년 수준은 이미 충분히 다져져 있습니다. ${recName} (${recGrade}) 레벨에서 ` +
+                `새로운 도전을 시작하시면 빠른 속도로 다음 단계까지 진입하실 수 있어요. ` +
+                `다만 너무 큰 점프는 흥미가 떨어질 수 있으니, 한 단계씩 차근차근 올리는 것도 좋습니다.`,
+          tone: 'ahead'
+        };
+      }
+
+      // 추천이 본인 학년보다 아래 — 기초를 다질 단계
+      // 초등학생이 응시한 경우 특별히 부드러운 톤
+      const isElementary = userGradeLevel <= 2;
+      if (gap === -1) {
+        return {
+          headline: isElementary
+            ? `기초를 한 번 더 다지면 더 단단해질 거예요.`
+            : `한 단계 앞 레벨에서 기초를 다지면 좋습니다.`,
+          body: `${recName} (${recGrade}) 레벨로 시작하시면 무리 없이 따라가실 수 있어요. ` +
+                `기본기를 탄탄히 한 다음 본인 학년 콘텐츠로 옮겨가시면 효과가 큽니다. ` +
+                `보통 2~3개월 안에 본인 학년 수준으로 올라오는 학생들이 많아요.`,
+          tone: 'build-foundation'
+        };
+      }
+
+      // 추천이 본인 학년보다 크게 아래 (gap <= -2)
+      // 특히 초등학생 → 고등 시험을 본 케이스는 절대 부정적으로 표현 안 함
+      if (isElementary) {
+        return {
+          headline: `초등 단계에 적합한 콘텐츠로 시작해요.`,
+          body: `Terra Nova는 초5부터 고3까지 8단계로 구성된 영어 독해 학습지예요. ` +
+                `초등학생이라면 ${recName} (${recGrade}) 레벨이 가장 잘 맞습니다. ` +
+                `현재 학년에 맞는 단어·문장 길이·주제로 구성되어 있어, 부담 없이 시작해 자연스럽게 다음 단계로 ` +
+                `올라갈 수 있어요. 영어 학습은 꾸준함이 가장 중요합니다.`,
+          tone: 'right-fit-elementary'
+        };
+      }
+
+      // 중·고등학생 + 큰 격차 → 격려 위주
+      return {
+        headline: `기초를 다시 다지는 단계에서 시작하시는 게 좋아요.`,
+        body: `${recName} (${recGrade}) 레벨부터 시작하시면 기본 어휘와 문장 구조를 안정적으로 익힐 수 있어요. ` +
+              `당장의 학년 수준이 아니라 본인이 편하게 이해할 수 있는 지점에서 출발하는 것이 ` +
+              `장기적으로 가장 빠른 길입니다. 한 단계씩 차근차근 올라가시면 됩니다.`,
+        tone: 'build-foundation'
+      };
+    };
+
+    // 점수 객체(scores) → 상대적 강점/약점 라벨 (절대 점수 표시 안 함)
+    const SCORE_LABELS_KO = { vocab: '어휘', read: '독해', gram: '문법', logic: '논리' };
+    const strengthAnalysisOf = (scores) => {
+      if (!scores || typeof scores !== 'object') return null;
+      const entries = Object.keys(SCORE_LABELS_KO)
+        .map(k => [k, typeof scores[k] === 'number' ? scores[k] : null])
+        .filter(([, v]) => v !== null);
+      if (entries.length === 0) return null;
+      entries.sort((a, b) => b[1] - a[1]);
+      const top = entries[0];
+      const bottom = entries[entries.length - 1];
+      const sameKey = top[0] === bottom[0];
+      return {
+        topKey: top[0],
+        topLabel: SCORE_LABELS_KO[top[0]],
+        bottomKey: bottom[0],
+        bottomLabel: SCORE_LABELS_KO[bottom[0]],
+        balanced: sameKey || (top[1] - bottom[1] < 12),  // 차이 작으면 균형형
+        rawScores: scores
+      };
+    };
 
     const { data: lvlResults, error: lvlErr } = await supabase
       .from('level_test_results')
@@ -1045,11 +1158,17 @@
     }
 
     // ── 레벨테스트 결과 카드 렌더 (있을 때만) ──
+    // v2 (2026-05): 학년 맥락 진단 — 점수/등급 표시 제거, 격려 톤 글로 변경
+    //   - 초등학생이 고등 시험을 본 케이스 → 부정적 표현 절대 안 함
+    //   - 평균 점수 + A~E 등급 라벨 제거
+    //   - 4영역 점수는 막대그래프로 상대 강약점만 시각화 (절대 수치는 숨김)
     if (lvlResults && lvlResults.length > 0) {
       const listEl = $('lvl-results-list');
       const emptyEl = $('lvl-results-empty');
       if (emptyEl) emptyEl.remove();
       listEl.replaceChildren();
+
+      const userGradeLevel = userGradeToLevel(gradeLabel);
 
       lvlResults.forEach(r => {
         const planet = r.recommended_planet
@@ -1057,19 +1176,19 @@
         const m = planet && PLANET_META[planet];
 
         const card = document.createElement('div');
-        card.style.cssText = 'padding:16px 18px;background:rgba(0,255,163,.05);border:1px solid rgba(0,255,163,.18);border-radius:10px;';
+        card.style.cssText = 'padding:18px 20px;background:rgba(0,255,163,.05);border:1px solid rgba(0,255,163,.18);border-radius:10px;';
 
-        // 헤더 — 행성 이름 크게 + 학년 + 우측 재응시
+        // 헤더 — 행성 이름 + 학년 + 재응시 버튼
         const head = document.createElement('div');
-        head.style.cssText = 'display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:10px;';
+        head.style.cssText = 'display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:12px;';
 
         const headLeft = document.createElement('div');
         const planetName = document.createElement('div');
-        planetName.style.cssText = 'font-family:\'Space Grotesk\',sans-serif;font-weight:900;font-size:1.4rem;letter-spacing:.06em;color:var(--accent);line-height:1;';
+        planetName.style.cssText = 'font-family:\'Space Grotesk\',sans-serif;font-weight:900;font-size:1.5rem;letter-spacing:.06em;color:var(--accent);line-height:1;';
         planetName.textContent = m ? m.name : ('LEVEL ' + r.level);
         const gradeLine = document.createElement('div');
         gradeLine.style.cssText = 'font-size:.78rem;color:#fff;font-weight:700;margin-top:6px;';
-        gradeLine.textContent = m ? (m.grade + ' · 추천 레벨 ' + r.level + '/8') : '레벨 ' + r.level;
+        gradeLine.textContent = m ? ('추천 레벨 · ' + m.grade) : ('레벨 ' + r.level);
         headLeft.append(planetName, gradeLine);
 
         const retakeA = document.createElement('a');
@@ -1078,88 +1197,97 @@
         retakeA.textContent = '재응시 →';
         head.append(headLeft, retakeA);
 
-        // 설명
+        // 진단 문장 (가장 중요한 부분 — 학년 맥락 반영)
+        const narrative = narrativeFor(userGradeLevel, planet);
+        const narrativeBox = document.createElement('div');
+        narrativeBox.style.cssText = 'padding:14px 16px;background:rgba(0,255,163,.04);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;margin-bottom:14px;';
+        const narrativeHead = document.createElement('div');
+        narrativeHead.style.cssText = 'font-size:.92rem;font-weight:800;color:#fff;line-height:1.5;margin-bottom:6px;';
+        narrativeHead.textContent = narrative.headline;
+        const narrativeBody = document.createElement('div');
+        narrativeBody.style.cssText = 'font-size:.8rem;color:rgba(255,255,255,.78);line-height:1.75;';
+        narrativeBody.textContent = narrative.body;
+        narrativeBox.append(narrativeHead, narrativeBody);
+
+        // 레벨 설명 (행성별 콘텐츠 안내)
         const descEl = document.createElement('div');
-        descEl.style.cssText = 'font-size:.76rem;color:var(--dim);line-height:1.6;margin-bottom:12px;';
+        descEl.style.cssText = 'font-size:.74rem;color:var(--dim);line-height:1.7;margin-bottom:14px;padding:0 4px;';
         descEl.textContent = m ? m.desc : '레벨테스트 결과';
 
-        // 점수 박스 (4영역, 막대 그래프 + 점수)
-        const scoreBox = document.createElement('div');
-        scoreBox.style.cssText = 'display:grid;grid-template-columns:repeat(2,1fr);gap:10px 14px;padding:14px;background:rgba(0,0,0,.28);border-radius:8px;margin-bottom:12px;';
+        // 영역별 상대 강약점 — 숫자/등급 없이 막대그래프만 (낮은 점수도 부정적으로 보이지 않게)
         const scores = r.details?.scores || {};
-        const SCORE_LABELS = {
-          vocab: { ko: '어휘',  desc: '단어 의미·동의/반의어' },
-          read:  { ko: '독해',  desc: '본문 이해·주제 파악' },
-          gram:  { ko: '문법',  desc: '문장 구조·어법' },
-          logic: { ko: '논리',  desc: '추론·연결사·요지' }
-        };
-        Object.keys(SCORE_LABELS).forEach(k => {
+        const analysis = strengthAnalysisOf(scores);
+
+        const areaBox = document.createElement('div');
+        areaBox.style.cssText = 'padding:14px 16px;background:rgba(0,0,0,.22);border-radius:8px;margin-bottom:10px;';
+
+        const areaTitle = document.createElement('div');
+        areaTitle.style.cssText = 'font-size:.72rem;color:var(--dim);font-weight:700;letter-spacing:.08em;margin-bottom:10px;text-transform:uppercase;';
+        areaTitle.textContent = '영역별 학습 균형';
+        areaBox.appendChild(areaTitle);
+
+        const areaGrid = document.createElement('div');
+        areaGrid.style.cssText = 'display:grid;grid-template-columns:repeat(2,1fr);gap:10px 18px;';
+        ['vocab','read','gram','logic'].forEach(k => {
           const v = scores[k];
-          const cell = document.createElement('div');
-          cell.style.cssText = 'display:flex;flex-direction:column;gap:5px;';
+          const row = document.createElement('div');
+          row.style.cssText = 'display:flex;flex-direction:column;gap:4px;';
 
-          // 라벨 + 점수 (한 줄)
-          const labelRow = document.createElement('div');
-          labelRow.style.cssText = 'display:flex;justify-content:space-between;align-items:baseline;gap:8px;';
+          // 영역 이름만 (절대 점수 숨김)
+          const labelLine = document.createElement('div');
+          labelLine.style.cssText = 'display:flex;justify-content:space-between;align-items:center;font-size:.78rem;color:#fff;font-weight:700;';
           const lbl = document.createElement('span');
-          lbl.style.cssText = 'font-size:.82rem;color:#fff;font-weight:700;';
-          lbl.textContent = SCORE_LABELS[k].ko;
-          const val = document.createElement('span');
-          val.style.cssText = 'font-size:.78rem;color:var(--accent);font-weight:800;';
-          val.textContent = (typeof v === 'number') ? (v + ' / 100') : '-';
-          labelRow.append(lbl, val);
+          lbl.textContent = SCORE_LABELS_KO[k] || k;
+          labelLine.appendChild(lbl);
 
-          // 막대 그래프
+          // 강점/약점 태그
+          if (analysis) {
+            const tag = document.createElement('span');
+            tag.style.cssText = 'font-size:.62rem;font-weight:800;letter-spacing:.04em;padding:2px 7px;border-radius:3px;';
+            if (!analysis.balanced && k === analysis.topKey) {
+              tag.textContent = '강점';
+              tag.style.cssText += 'color:#00FFA3;background:rgba(0,255,163,.12);border:1px solid rgba(0,255,163,.3);';
+              labelLine.appendChild(tag);
+            } else if (!analysis.balanced && k === analysis.bottomKey) {
+              tag.textContent = '더 다지기';
+              tag.style.cssText += 'color:#FFD93D;background:rgba(255,217,61,.1);border:1px solid rgba(255,217,61,.3);';
+              labelLine.appendChild(tag);
+            }
+          }
+
+          // 막대그래프 (시각만, 숫자 없음)
           const bar = document.createElement('div');
-          bar.style.cssText = 'height:5px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden;';
+          bar.style.cssText = 'height:6px;background:rgba(255,255,255,.07);border-radius:4px;overflow:hidden;';
           const fill = document.createElement('div');
-          const pct = (typeof v === 'number') ? Math.max(0, Math.min(100, v)) : 0;
+          const pct = (typeof v === 'number') ? Math.max(8, Math.min(100, v)) : 0;  // 최소 8%로 표시 (너무 짧지 않게)
           fill.style.cssText = `height:100%;width:${pct}%;background:linear-gradient(90deg,#00FFA3 0%,#33D6FF 100%);transition:width .6s ease;`;
           bar.appendChild(fill);
 
-          // 부 설명
-          const sub = document.createElement('span');
-          sub.style.cssText = 'font-size:.65rem;color:var(--dim);';
-          sub.textContent = SCORE_LABELS[k].desc;
-
-          cell.append(labelRow, bar, sub);
-          scoreBox.appendChild(cell);
+          row.append(labelLine, bar);
+          areaGrid.appendChild(row);
         });
+        areaBox.appendChild(areaGrid);
 
-        // 평균 + 등급 + 날짜 (한 박스)
-        const footer = document.createElement('div');
-        footer.style.cssText = 'display:flex;justify-content:space-between;align-items:center;padding:12px 14px;background:rgba(0,255,163,.04);border:1px solid rgba(0,255,163,.18);border-radius:6px;gap:12px;flex-wrap:wrap;';
-        const g = gradeOf(r.score);
-        const avgWrap = document.createElement('div');
-        avgWrap.style.cssText = 'display:flex;align-items:center;gap:10px;';
-        // 큰 등급 글자
-        const gradeEl = document.createElement('div');
-        gradeEl.style.cssText = `font-family:'Space Grotesk',sans-serif;font-weight:900;font-size:1.6rem;color:${g.color};line-height:1;letter-spacing:-.02em;`;
-        gradeEl.textContent = g.letter;
-        const avgTxt = document.createElement('div');
-        avgTxt.style.cssText = 'display:flex;flex-direction:column;gap:2px;';
-        const avgLine = document.createElement('div');
-        avgLine.style.cssText = 'font-size:.84rem;color:#fff;font-weight:700;';
-        if (typeof r.score === 'number') {
-          const strong = document.createElement('strong');
-          strong.style.cssText = 'color:var(--accent);font-size:1.05rem;';
-          strong.textContent = r.score;
-          avgLine.append('평균 ', strong, ' / 100점');
-        } else {
-          avgLine.textContent = '점수 없음';
+        // 영역 강약점 안내 (균형 잡혀 있으면 다른 메시지)
+        if (analysis) {
+          const areaHint = document.createElement('div');
+          areaHint.style.cssText = 'margin-top:10px;font-size:.72rem;color:var(--dim);line-height:1.65;';
+          if (analysis.balanced) {
+            areaHint.textContent = '네 영역이 고르게 발달되어 있어요. 균형 잡힌 학습을 이어가시면 됩니다.';
+          } else {
+            areaHint.textContent = analysis.topLabel + '이(가) 강점이고, ' + analysis.bottomLabel +
+              '은(는) 조금 더 다지면 좋아요. 추천 레벨 콘텐츠에 ' + analysis.bottomLabel +
+              ' 보강 단원이 포함되어 있습니다.';
+          }
+          areaBox.appendChild(areaHint);
         }
-        const gradeLabel = document.createElement('div');
-        gradeLabel.style.cssText = `font-size:.7rem;color:${g.color};font-weight:700;letter-spacing:.04em;`;
-        gradeLabel.textContent = g.label;
-        avgTxt.append(avgLine, gradeLabel);
-        avgWrap.append(gradeEl, avgTxt);
 
-        const dateEl = document.createElement('span');
-        dateEl.style.cssText = 'font-size:.72rem;color:var(--dim);';
+        // 응시일 (작게)
+        const dateEl = document.createElement('div');
+        dateEl.style.cssText = 'font-size:.7rem;color:var(--dim);text-align:right;margin-top:10px;';
         dateEl.textContent = ymd(r.created_at) + ' 응시';
-        footer.append(avgWrap, dateEl);
 
-        card.append(head, descEl, scoreBox, footer);
+        card.append(head, narrativeBox, descEl, areaBox, dateEl);
         listEl.appendChild(card);
       });
     }
