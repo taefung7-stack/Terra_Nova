@@ -1,12 +1,38 @@
 # 3종 이벤트 시스템 — Supabase 셋업 가이드
 
 > 2026-05-21 신설. 리뷰/SNS 후기/성적인증 3종 이벤트를 운영하기 위한
-> Supabase 스키마 확장과 RLS 정책. SQL Editor에서 순서대로 실행.
+> Supabase 스키마 확장과 RLS 정책.
 >
 > 기존 `reviews` + `coupons` 테이블은 그대로 유지하고,
 > 신규 `event_submissions` 테이블에서 모든 인증 제출을 통합 관리한다.
 
-## 0. 적용 순서
+## ⚡ 빠른 적용 (Recommended)
+
+아래 5단계가 통합된 단일 마이그레이션 파일을 그대로 실행하면 끝납니다:
+
+1. Supabase Studio → **SQL Editor** → **New query**
+2. `supabase/migrations/007_event_submissions.sql` 내용을 **통째로 붙여넣기**
+3. **Run** 클릭
+4. 성공 시 아래 검증 쿼리 실행:
+
+```sql
+-- 버킷 200MB 한도 확인
+SELECT id, file_size_limit/1024/1024 AS limit_mb FROM storage.buckets WHERE id = 'event-proofs';
+-- 테이블 생성 확인 (0 rows로 출력되면 OK)
+SELECT count(*) FROM public.event_submissions;
+-- RLS 정책 확인 (6개 정책 보여야 함)
+SELECT policyname, tablename FROM pg_policies
+  WHERE policyname LIKE 'ev_sub%' OR policyname LIKE 'event_proofs%'
+  ORDER BY tablename, policyname;
+```
+
+이게 정상이면 끝. **mypage.html 이벤트 인증 폼이 즉시 작동**합니다.
+
+---
+
+## 0. 수동 적용 (위 방식 안 통할 때)
+
+5단계로 나눠서 단계별 실행:
 
 1. SQL Editor에서 [1. `coupons` reward_kind 확장](#1-coupons-rewardkind-확장)
 2. SQL Editor에서 [2. `coupons.type` 확장](#2-couponstype-확장)
