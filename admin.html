@@ -142,6 +142,7 @@
     <!-- 탭 -->
     <div class="tab-row">
       <button class="tab-btn active" onclick="switchAdminTab('reviews',this)">⭐ 리뷰 관리</button>
+      <button class="tab-btn" onclick="switchAdminTab('events',this)">🎉 이벤트 제출</button>
       <button class="tab-btn" onclick="switchAdminTab('coupons',this)">🎟️ 쿠폰</button>
       <button class="tab-btn" onclick="switchAdminTab('newsletter',this)">📧 뉴스레터</button>
       <button class="tab-btn" onclick="switchAdminTab('orders',this)">💳 최근 주문</button>
@@ -166,6 +167,31 @@
         </div>
         <div id="reviews-list">
           <div class="empty" id="reviews-empty">불러오는 중…</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 이벤트 제출 (3종) -->
+    <div class="tab-view" id="tab-events">
+      <div class="section">
+        <div class="section-title">
+          <span>이벤트 제출 검토</span>
+          <span class="count" id="events-count">—</span>
+        </div>
+        <div class="filter-row">
+          <button class="filter-btn active" data-ev-filter="pending" onclick="filterEvents(this,'pending')">검토 대기</button>
+          <button class="filter-btn" data-ev-filter="approved" onclick="filterEvents(this,'approved')">승인됨</button>
+          <button class="filter-btn" data-ev-filter="rejected" onclick="filterEvents(this,'rejected')">반려됨</button>
+          <button class="filter-btn" data-ev-filter="all" onclick="filterEvents(this,'all')">전체</button>
+        </div>
+        <div class="filter-row" style="margin-top:8px;">
+          <button class="filter-btn active" data-ev-type-filter="all" onclick="filterEventType(this,'all')">전체 종류</button>
+          <button class="filter-btn" data-ev-type-filter="review" onclick="filterEventType(this,'review')">⭐ 리뷰</button>
+          <button class="filter-btn" data-ev-type-filter="sns" onclick="filterEventType(this,'sns')">📲 SNS</button>
+          <button class="filter-btn" data-ev-type-filter="grade" onclick="filterEventType(this,'grade')">📈 성적</button>
+        </div>
+        <div id="events-list" style="margin-top:14px;">
+          <div class="empty" id="events-empty">불러오는 중…</div>
         </div>
       </div>
     </div>
@@ -922,11 +948,264 @@
   loadCoupons();
   loadRevenue();
 
+  // ════════════════════════════════════════════════════════
+  // 이벤트 제출 검토 (review / sns / grade)
+  // ════════════════════════════════════════════════════════
+  const EVENT_META = {
+    review: { name: '⭐ 리뷰 이벤트',     reward: '다음 달 30% 할인',  type: 'event_review', kind: 'discount_30_next', codePrefix: 'TN-EV-RV' },
+    sns:    { name: '📲 SNS 후기 이벤트', reward: '다음 달 한 달 무료', type: 'event_sns',    kind: 'free_month_any',   codePrefix: 'TN-EV-SN' },
+    grade:  { name: '📈 성적인증 이벤트', reward: '6개월 무료',         type: 'event_grade',  kind: 'free_6months',     codePrefix: 'TN-EV-GR' }
+  };
+  let allEvents = [];
+  let eventStatusFilter = 'pending';
+  let eventTypeFilter = 'all';
+
+  async function loadEvents() {
+    const { data, error } = await supabase
+      .from('event_submissions')
+      .select('*')
+      .order('created_at', { ascending: false })
+      .limit(300);
+    if (error) {
+      $('events-list').textContent = '불러오기 실패: ' + error.message;
+      return;
+    }
+    allEvents = data || [];
+    renderEvents();
+  }
+
+  // XSS-safe render: textContent + appendChild only
+  function renderEvents() {
+    const list = $('events-list');
+    list.replaceChildren();
+    const filtered = allEvents.filter(s => {
+      if (eventStatusFilter !== 'all' && s.status !== eventStatusFilter) return false;
+      if (eventTypeFilter !== 'all' && s.event_type !== eventTypeFilter) return false;
+      return true;
+    });
+    $('events-count').textContent = filtered.length + ' / ' + allEvents.length;
+    if (filtered.length === 0) {
+      const empty = document.createElement('div');
+      empty.className = 'empty';
+      empty.textContent = '해당 조건의 제출이 없습니다.';
+      list.appendChild(empty);
+      return;
+    }
+    filtered.forEach(s => list.appendChild(buildEventRow(s)));
+  }
+
+  function buildEventRow(s) {
+    const meta = EVENT_META[s.event_type] || { name: s.event_type, reward: '' };
+    const STATUS_BADGE = {
+      pending:  { bg:'rgba(234,179,8,.1)',  border:'rgba(234,179,8,.3)',  color:'#FDE68A', label:'검토 중' },
+      approved: { bg:'rgba(74,222,128,.12)', border:'rgba(74,222,128,.3)', color:'#4ADE80', label:'승인됨' },
+      rejected: { bg:'rgba(248,113,113,.1)', border:'rgba(248,113,113,.3)', color:'#F87171', label:'반려됨' }
+    };
+    const sb = STATUS_BADGE[s.status] || STATUS_BADGE.pending;
+
+    const wrap = document.createElement('div');
+    wrap.className = 'review-item';
+    wrap.dataset.id = s.id;
+
+    const head = document.createElement('div');
+    head.className = 'review-meta';
+    const headLeft = document.createElement('div');
+    const titleStrong = document.createElement('strong');
+    titleStrong.style.cssText = 'color:#fff;';
+    titleStrong.textContent = meta.name;
+    const rewardEl = document.createElement('span');
+    rewardEl.style.cssText = 'color:var(--accent);font-size:.74rem;font-weight:600;margin-left:8px;';
+    rewardEl.textContent = meta.reward;
+    const dateEl = document.createElement('span');
+    dateEl.className = 'review-author';
+    dateEl.style.marginLeft = '10px';
+    dateEl.textContent = ymdhm(s.created_at) + ' · user ' + (s.user_id || '').slice(0,8);
+    headLeft.append(titleStrong, rewardEl, dateEl);
+    const badge = document.createElement('span');
+    badge.style.cssText = `font-size:.62rem;padding:3px 9px;background:${sb.bg};border:1px solid ${sb.border};border-radius:3px;color:${sb.color};font-weight:700;letter-spacing:.5px;`;
+    badge.textContent = sb.label;
+    head.append(headLeft, badge);
+    wrap.appendChild(head);
+
+    if (s.sns_platform || s.sns_url) {
+      const snsBox = document.createElement('div');
+      snsBox.style.cssText = 'background:rgba(0,255,163,.04);border:1px solid rgba(0,255,163,.2);border-radius:6px;padding:10px 14px;margin:10px 0;font-size:.78rem;line-height:1.7;';
+      if (s.sns_platform) {
+        const p = document.createElement('div');
+        const ps = document.createElement('strong');
+        ps.style.color = '#fff';
+        ps.textContent = '플랫폼';
+        const pv = document.createTextNode(' · ' + s.sns_platform);
+        p.append(ps, pv);
+        snsBox.appendChild(p);
+      }
+      if (s.sns_url) {
+        const u = document.createElement('div');
+        u.style.wordBreak = 'break-all';
+        const us = document.createElement('strong');
+        us.style.color = '#fff';
+        us.textContent = 'URL';
+        u.append(us, document.createTextNode(' · '));
+        const link = document.createElement('a');
+        link.href = s.sns_url;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        link.style.cssText = 'color:var(--accent);text-decoration:underline;';
+        link.textContent = s.sns_url;
+        u.appendChild(link);
+        snsBox.appendChild(u);
+      }
+      wrap.appendChild(snsBox);
+    }
+
+    if (s.message) {
+      const msg = document.createElement('div');
+      msg.style.cssText = 'font-size:.84rem;color:rgba(255,255,255,.8);line-height:1.7;white-space:pre-wrap;padding:8px 0;';
+      msg.textContent = s.message;
+      wrap.appendChild(msg);
+    }
+
+    // Proof viewers (event-proofs bucket signed URLs)
+    const proofRow = document.createElement('div');
+    proofRow.style.cssText = 'display:flex;gap:8px;flex-wrap:wrap;margin:6px 0;';
+    if (s.proof_path) {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'btn-admin';
+      b.style.cssText = 'font-size:.72rem;padding:5px 11px;';
+      b.textContent = s.event_type === 'grade' ? '학습 후 성적표 보기' : '첨부 캡처 보기';
+      b.addEventListener('click', () => openProof(s.proof_path));
+      proofRow.appendChild(b);
+    }
+    if (s.proof_path_2) {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'btn-admin';
+      b.style.cssText = 'font-size:.72rem;padding:5px 11px;';
+      b.textContent = '학습 전 성적표 보기';
+      b.addEventListener('click', () => openProof(s.proof_path_2));
+      proofRow.appendChild(b);
+    }
+    if (proofRow.children.length) wrap.appendChild(proofRow);
+
+    if (s.status === 'rejected' && s.rejection_note) {
+      const r = document.createElement('div');
+      r.style.cssText = 'margin-top:8px;padding:8px 12px;background:rgba(248,113,113,.06);border-radius:4px;font-size:.78rem;color:#F87171;line-height:1.6;';
+      r.textContent = '반려 사유: ' + s.rejection_note;
+      wrap.appendChild(r);
+    }
+    if (s.status === 'approved' && s.coupon_id) {
+      const r = document.createElement('div');
+      r.style.cssText = 'margin-top:8px;color:#4ADE80;font-weight:700;font-size:.8rem;';
+      r.textContent = '✓ 쿠폰 발급 완료 · ' + ymdhm(s.reviewed_at);
+      wrap.appendChild(r);
+    }
+
+    if (s.status === 'pending') {
+      const actions = document.createElement('div');
+      actions.className = 'review-actions';
+      const approveBtn = document.createElement('button');
+      approveBtn.className = 'btn-admin btn-approve';
+      approveBtn.style.cssText = 'background:rgba(0,255,163,.18);border:1px solid var(--accent);color:var(--accent);';
+      approveBtn.textContent = '승인 + 쿠폰 발급';
+      approveBtn.addEventListener('click', () => approveEventSubmission(s.id));
+      const rejectBtn = document.createElement('button');
+      rejectBtn.className = 'btn-admin btn-delete';
+      rejectBtn.textContent = '반려';
+      rejectBtn.addEventListener('click', () => rejectEventSubmission(s.id));
+      actions.append(approveBtn, rejectBtn);
+      wrap.appendChild(actions);
+    }
+    return wrap;
+  }
+
+  async function openProof(path) {
+    if (!path) return;
+    const { data, error } = await supabase.storage.from('event-proofs').createSignedUrl(path, 60);
+    if (error || !data?.signedUrl) {
+      alert('파일을 불러올 수 없습니다: ' + (error?.message || 'unknown'));
+      return;
+    }
+    window.open(data.signedUrl, '_blank', 'noopener,noreferrer');
+  }
+
+  function makeCouponCode(prefix) {
+    const seg = () => Math.random().toString(36).toUpperCase().replace(/[^A-Z0-9]/g,'').slice(0,4).padEnd(4,'X');
+    return `${prefix}-${seg()}-${seg()}`;
+  }
+
+  async function approveEventSubmission(id) {
+    const sub = allEvents.find(x => x.id === id);
+    if (!sub) return;
+    const meta = EVENT_META[sub.event_type];
+    if (!meta) { alert('알 수 없는 이벤트 유형'); return; }
+    if (!confirm(`이 제출을 승인하고 ${meta.reward} 쿠폰을 발급하시겠습니까?`)) return;
+
+    const code = makeCouponCode(meta.codePrefix);
+    const validUntil = new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toISOString();
+
+    const { data: coupon, error: couponErr } = await supabase.from('coupons').insert({
+      user_id: sub.user_id,
+      code,
+      type: meta.type,
+      reward_kind: meta.kind,
+      reward_value: null,
+      valid_from: new Date().toISOString(),
+      valid_until: validUntil
+    }).select('id').single();
+    if (couponErr) {
+      alert('쿠폰 발급 실패: ' + couponErr.message + '\n(docs/EVENTS_3_SETUP.md 참조)');
+      return;
+    }
+
+    const { error: updErr } = await supabase.from('event_submissions').update({
+      status: 'approved',
+      reviewed_at: new Date().toISOString(),
+      reviewed_by: user.id,
+      coupon_id: coupon.id
+    }).eq('id', id);
+    if (updErr) {
+      alert('제출 업데이트 실패: ' + updErr.message + '\n쿠폰은 발급되었으니 SQL Editor 에서 수동 보정 필요.');
+      return;
+    }
+    alert(`✓ 쿠폰 발급 완료\n\n코드: ${code}\n혜택: ${meta.reward}\n유효: 90일`);
+    await loadEvents();
+  }
+
+  async function rejectEventSubmission(id) {
+    const note = prompt('반려 사유를 입력해주세요 (사용자에게 표시됩니다):');
+    if (note === null) return;
+    const { error } = await supabase.from('event_submissions').update({
+      status: 'rejected',
+      reviewed_at: new Date().toISOString(),
+      reviewed_by: user.id,
+      rejection_note: note || '관리자가 반려했습니다.'
+    }).eq('id', id);
+    if (error) { alert('반려 실패: ' + error.message); return; }
+    await loadEvents();
+  }
+
+  window.filterEvents = function(btn, filter) {
+    eventStatusFilter = filter;
+    document.querySelectorAll('[data-ev-filter]').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderEvents();
+  };
+  window.filterEventType = function(btn, filter) {
+    eventTypeFilter = filter;
+    document.querySelectorAll('[data-ev-type-filter]').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderEvents();
+  };
+
+  loadEvents();
+
   window.switchAdminTab = function(tab, btn) {
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
     document.querySelectorAll('.tab-view').forEach(v => v.classList.remove('active'));
     btn.classList.add('active');
     $('tab-' + tab).classList.add('active');
+    if (tab === 'events') loadEvents();
   };
 
   // admin-extras.js 가 사용할 helpers 노출
