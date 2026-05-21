@@ -188,27 +188,13 @@
     <!-- 이메일 가입 폼 -->
     <form onsubmit="handleSignup(event)">
 
-      <div class="form-row">
-        <div class="form-group">
-          <label for="signup-name">학생 이름</label>
-          <input type="text" id="signup-name" name="name" placeholder="홍길동" required minlength="2" autocomplete="name" aria-required="true">
-        </div>
-        <div class="form-group">
-          <label for="signup-grade">학년</label>
-          <select id="signup-grade" name="grade" required aria-required="true">
-            <option value="">선택</option>
-            <option>초등 3학년</option><option>초등 4학년</option>
-            <option>초등 5학년</option><option>초등 6학년</option>
-            <option>중학교 1학년</option><option>중학교 2학년</option>
-            <option>중학교 3학년</option>
-            <option>고등학교 1학년</option><option>고등학교 2학년</option>
-            <option>고등학교 3학년</option>
-          </select>
-        </div>
+      <div class="form-group">
+        <label for="signup-name">이름</label>
+        <input type="text" id="signup-name" name="name" placeholder="홍길동" required minlength="2" autocomplete="name" aria-required="true">
       </div>
 
       <div class="form-group">
-        <label for="signup-phone">학부모 연락처</label>
+        <label for="signup-phone">연락처</label>
         <input type="tel" id="signup-phone" name="phone" placeholder="010-0000-0000" required pattern="01[0-9]-?[0-9]{3,4}-?[0-9]{4}" autocomplete="tel" aria-required="true" aria-describedby="phone-note" oninput="formatPhone(this);checkPhone(this)">
         <div class="input-note" id="phone-note">학습 관련 안내 및 배송 정보를 받을 번호입니다.</div>
       </div>
@@ -431,14 +417,12 @@
     const pw2 = document.getElementById('signup-pw2').value;
     const phone = document.getElementById('signup-phone').value;
     const name = document.getElementById('signup-name').value.trim();
-    const grade = document.getElementById('signup-grade').value;
     const zip = document.getElementById('addr-zip').value;
     const addrMain = document.getElementById('addr-main').value;
     const addrDetail = document.getElementById('addr-detail').value.trim();
     const requiredTerms = document.querySelectorAll('.term-check[required]');
 
-    if(name.length < 2){ alert('학생 이름을 2자 이상 입력해 주세요.'); document.getElementById('signup-name').focus(); return; }
-    if(!grade){ alert('학년을 선택해 주세요.'); document.getElementById('signup-grade').focus(); return; }
+    if(name.length < 2){ alert('이름을 2자 이상 입력해 주세요.'); document.getElementById('signup-name').focus(); return; }
     if(!/^01[0-9]-\d{3,4}-\d{4}$/.test(phone)){ alert('올바른 휴대폰 번호를 입력해 주세요 (예: 010-1234-5678).'); document.getElementById('signup-phone').focus(); return; }
     if(!zip){ alert('주소 검색 버튼으로 주소를 입력해 주세요.'); return; }
     if(!addrDetail){ alert('상세 주소를 입력해 주세요.'); document.getElementById('addr-detail').focus(); return; }
@@ -462,7 +446,6 @@
           data: {
             display_name: name,
             phone,
-            grade_label: grade,
             shipping_zipcode: zip,
             shipping_address: addrMain,
             shipping_detail: addrDetail
@@ -493,7 +476,7 @@
       return;
     }
 
-    // profile 기본 정보 업데이트 (grade_label은 auth.users.raw_user_meta_data에 보관)
+    // profile 기본 정보 업데이트
     if (data.user) {
       await supabase.from('profiles').update({
         display_name: name,

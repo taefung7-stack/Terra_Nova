@@ -497,7 +497,7 @@
         <div class="form-section-title">04 — 구독자 정보</div>
         <div class="form-row">
           <div class="form-group">
-            <label for="subscriber-name">학생 이름</label>
+            <label for="subscriber-name">이름</label>
             <input type="text" id="subscriber-name" placeholder="홍길동" required minlength="2" autocomplete="name">
           </div>
           <div class="form-group">
@@ -514,7 +514,7 @@
           </div>
         </div>
         <div class="form-group">
-          <label for="subscriber-phone">연락처 (학부모)</label>
+          <label for="subscriber-phone">연락처</label>
           <input type="tel" id="subscriber-phone" placeholder="010-0000-0000" required pattern="01[0-9]-?[0-9]{3,4}-?[0-9]{4}" autocomplete="tel" oninput="this.value=this.value.replace(/\D/g,'').replace(/^(\d{3})(\d{3,4})(\d{4}).*/,'$1-$2-$3').slice(0,13)">
         </div>
         <div class="form-group">
@@ -916,7 +916,7 @@
     const grade = (document.getElementById('subscriber-grade')||{}).value || '';
     const phone = (document.getElementById('subscriber-phone')||{}).value || '';
     const email = (document.getElementById('subscriber-email')||{}).value || '';
-    if (name.trim().length < 2) { alert('학생 이름을 입력해 주세요.'); (document.getElementById('subscriber-name')||{}).focus?.(); return; }
+    if (name.trim().length < 2) { alert('이름을 입력해 주세요.'); (document.getElementById('subscriber-name')||{}).focus?.(); return; }
     if (!grade) { alert('학년을 선택해 주세요.'); (document.getElementById('subscriber-grade')||{}).focus?.(); return; }
     if (!/^01[0-9]-?\d{3,4}-?\d{4}$/.test(phone.replace(/\s/g,''))) { alert('올바른 휴대폰 번호를 입력해 주세요 (예: 010-1234-5678).'); (document.getElementById('subscriber-phone')||{}).focus?.(); return; }
     // 이메일 형식 엄격 검증 — 회원가입 시 이메일 인증을 안 받으므로 결제 시점에 마지막 방어선
