@@ -16,35 +16,53 @@
 --     AND (policyname LIKE 'ev_sub%' OR policyname LIKE 'event_proofs%');
 -- ============================================================
 
--- ── 1. coupons.reward_kind 확장 (3종 이벤트 보상 추가) ──
+-- ── 1. coupons 테이블에 누락 컬럼 추가 ──
+-- 003 마이그레이션은 일반 할인 쿠폰 스키마(discount_type/discount_value 등)만
+-- 가지고 있어서 admin.html 의 이벤트 쿠폰 발급(user_id, type, reward_kind,
+-- reward_value) 흐름과 호환되지 않음. 두 흐름을 공존 가능하게 컬럼 보강.
+ALTER TABLE public.coupons
+  ADD COLUMN IF NOT EXISTS user_id      uuid REFERENCES auth.users(id) ON DELETE CASCADE;
+ALTER TABLE public.coupons
+  ADD COLUMN IF NOT EXISTS type         text;
+ALTER TABLE public.coupons
+  ADD COLUMN IF NOT EXISTS reward_kind  text;
+ALTER TABLE public.coupons
+  ADD COLUMN IF NOT EXISTS reward_value integer;
+ALTER TABLE public.coupons
+  ADD COLUMN IF NOT EXISTS used_at      timestamptz;
+
+CREATE INDEX IF NOT EXISTS coupons_user_idx ON public.coupons(user_id, valid_until DESC)
+  WHERE user_id IS NOT NULL;
+
+-- ── 2. coupons.reward_kind CHECK 제약 ──
 ALTER TABLE public.coupons
   DROP CONSTRAINT IF EXISTS coupons_reward_kind_check;
 
 ALTER TABLE public.coupons
   ADD CONSTRAINT coupons_reward_kind_check
-  CHECK (reward_kind IN (
-    'free_month_light',      -- 기존: LIGHT 1개월 무료
-    'percent_off',           -- 기존: % 할인
-    'fixed_off',             -- 기존: 정액 할인
-    'discount_30_next',      -- NEW: 다음달 30% 할인 (리뷰 이벤트)
-    'free_month_any',        -- NEW: 한 달 무료 (SNS 후기 이벤트)
-    'free_6months'           -- NEW: 6개월 무료 (성적인증 이벤트)
+  CHECK (reward_kind IS NULL OR reward_kind IN (
+    'free_month_light',      -- LIGHT 1개월 무료
+    'percent_off',           -- % 할인
+    'fixed_off',             -- 정액 할인
+    'discount_30_next',      -- 다음달 30% 할인 (리뷰 이벤트)
+    'free_month_any',        -- 한 달 무료 (SNS 후기 이벤트)
+    'free_6months'           -- 6개월 무료 (성적인증 이벤트)
   ));
 
--- ── 2. coupons.type 확장 (이벤트 출처 명시) ──
+-- ── 3. coupons.type CHECK 제약 ──
 ALTER TABLE public.coupons
   DROP CONSTRAINT IF EXISTS coupons_type_check;
 
 ALTER TABLE public.coupons
   ADD CONSTRAINT coupons_type_check
-  CHECK (type IN (
+  CHECK (type IS NULL OR type IN (
     'review_sns_free_month',   -- 기존 (점진 폐기 예정)
     'admin_grant',
     'signup_bonus',
     'other',
-    'event_review',            -- NEW: 리뷰 이벤트 (30% 할인)
-    'event_sns',               -- NEW: SNS 후기 이벤트 (한 달 무료)
-    'event_grade'              -- NEW: 성적인증 이벤트 (6개월 무료)
+    'event_review',            -- 리뷰 이벤트 (30% 할인)
+    'event_sns',               -- SNS 후기 이벤트 (한 달 무료)
+    'event_grade'              -- 성적인증 이벤트 (6개월 무료)
   ));
 
 -- ── 3. event_submissions 테이블 ──

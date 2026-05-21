@@ -62,49 +62,73 @@
 
   main{padding-top:80px;}
 
-  /* ─── HERO ─── */
-  /* hero + cards를 합쳐 첫 화면(100vh)에 균형있게 보이도록 컴팩트하게 */
-  .hero{display:flex;align-items:center;justify-content:center;text-align:center;padding:24px 5vw 8px;position:relative;overflow:hidden;}
-  .hero::before{content:"";position:absolute;inset:0;background:
+  /* ─── FIRST SCREEN (hero + cards) ───
+   * 페이지 진입 시 nav 80px 아래로 hero + 3카드가 정확히 100vh-80px 안에 균형있게.
+   * 자세히 보기는 스크롤로 진입.
+   */
+  .first-screen{
+    min-height:calc(100vh - 80px);
+    display:flex;flex-direction:column;justify-content:center;align-items:stretch;
+    padding:24px 5vw;position:relative;overflow:hidden;
+  }
+  .first-screen::before{content:"";position:absolute;inset:0;background:
     radial-gradient(ellipse 70% 60% at 50% 30%, rgba(0,255,163,.10) 0%, transparent 60%),
     radial-gradient(ellipse 60% 50% at 50% 90%, rgba(45,212,191,.05) 0%, transparent 55%);
     pointer-events:none;z-index:0;}
-  .hero-inner{position:relative;z-index:1;max-width:1180px;}
-  .hero .kicker{display:inline-flex;align-items:center;gap:10px;font-family:'Space Grotesk',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:5px;color:var(--accent);text-transform:uppercase;padding:8px 18px;border:1px solid rgba(0,255,163,.4);background:rgba(0,255,163,.07);border-radius:999px;margin-bottom:20px;}
+
+  .hero{position:relative;z-index:1;text-align:center;padding:0 0 28px;}
+  .hero-inner{max-width:1180px;margin:0 auto;}
+  .hero .kicker{display:inline-flex;align-items:center;gap:10px;font-family:'Space Grotesk',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:5px;color:var(--accent);text-transform:uppercase;padding:8px 18px;border:1px solid rgba(0,255,163,.4);background:rgba(0,255,163,.07);border-radius:999px;margin-bottom:18px;}
   .hero .kicker::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent);animation:pulse 1.6s ease-in-out infinite;}
   @keyframes pulse{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.4);opacity:.6;}}
-  .hero h1{font-weight:900;font-size:clamp(4rem,14vw,11rem);line-height:1.0;letter-spacing:-.04em;color:#fff;margin-bottom:0;-webkit-text-stroke:1px currentColor;}
+  .hero h1{font-weight:900;font-size:clamp(4rem,13vw,10rem);line-height:1.0;letter-spacing:-.04em;color:#fff;margin:0;-webkit-text-stroke:1px currentColor;}
   .hero h1 .mint{color:var(--accent);}
   .hero p.lede{font-size:clamp(.9rem,1.4vw,1.05rem);color:var(--dim);max-width:680px;margin:0 auto;line-height:1.85;}
 
-  /* ─── EVENT CARDS GRID ─── */
-  /* 위 padding 크게 줄여서 hero 바로 아래에 붙임 (첫 화면에 함께 보이게) */
-  .events{padding:12px 5vw 80px;}
+  /* ─── EVENT CARDS GRID (first-screen 안쪽) ─── */
+  .events{position:relative;z-index:1;padding:0;}
   .events-inner{max-width:1180px;margin:0 auto;}
-  .events-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
-  @media(max-width:980px){.events-grid{grid-template-columns:1fr;gap:20px;}}
+  .events-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  @media(max-width:980px){.events-grid{grid-template-columns:1fr;gap:14px;}}
 
   .ev-card{
     position:relative;
-    padding:36px 28px 28px;
+    padding:24px 22px 22px;
     background:linear-gradient(135deg,rgba(255,255,255,.06) 0%,rgba(255,255,255,.02) 100%);
     border:1px solid rgba(255,255,255,.10);
-    border-radius:18px;
+    border-radius:16px;
     backdrop-filter:blur(20px) saturate(150%);
     -webkit-backdrop-filter:blur(20px) saturate(150%);
     box-shadow:inset 0 1px 0 rgba(255,255,255,.08),inset 0 -1px 0 rgba(0,0,0,.2),0 12px 40px rgba(0,0,0,.32);
-    display:flex;flex-direction:column;gap:18px;
+    display:flex;flex-direction:column;gap:12px;
     transition:transform .25s cubic-bezier(.22,.8,.36,1),border-color .25s,box-shadow .25s;
   }
   .ev-card:hover{transform:translateY(-4px);border-color:rgba(0,255,163,.3);}
-  .ev-card .ev-icon{font-size:2.2rem;line-height:1;}
+  .ev-card .ev-head{display:flex;align-items:center;gap:12px;}
+  .ev-card .ev-icon{font-size:1.8rem;line-height:1;flex-shrink:0;}
+  .ev-card .ev-title{font-weight:900;font-size:1.15rem;color:#fff;line-height:1.3;margin:0;}
   .ev-card .ev-tier{font-family:'Space Grotesk',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:3px;color:var(--accent);text-transform:uppercase;}
-  .ev-card .ev-title{font-weight:900;font-size:1.25rem;color:#fff;line-height:1.4;}
-  .ev-card .ev-reward{font-weight:900;font-size:1.4rem;color:var(--accent);line-height:1.3;margin:4px 0 2px;}
-  .ev-card .ev-desc{font-size:.84rem;color:var(--dim);line-height:1.8;}
-  .ev-card .ev-cta{margin-top:auto;display:inline-block;background:var(--accent);color:#0A0A0A;padding:12px 22px;border-radius:8px;font-weight:700;font-size:.86rem;text-decoration:none;text-align:center;transition:transform .15s,box-shadow .2s;}
+  .ev-card .ev-reward{font-weight:900;font-size:1.3rem;color:var(--accent);line-height:1.3;margin:2px 0;}
+  .ev-card .ev-desc{font-size:.82rem;color:var(--dim);line-height:1.7;}
+  .ev-card .ev-cta{margin-top:auto;display:inline-block;background:var(--accent);color:#0A0A0A;padding:10px 18px;border-radius:8px;font-weight:700;font-size:.82rem;text-decoration:none;text-align:center;transition:transform .15s,box-shadow .2s;}
   .ev-card .ev-cta:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,255,163,.32);}
   /* (featured/BEST 강조 제거 — 셋 다 동등 취급) */
+
+  /* 모바일: 카드 컴팩트 + 가로 한 줄 헤더 + 3 EVENTS 글자 크게 + 영문 tier 숨김 */
+  @media(max-width:680px){
+    .first-screen{min-height:auto;padding:14px 4vw 20px;justify-content:flex-start;}
+    .hero{padding:0 0 14px;}
+    .hero .kicker{font-size:.62rem;padding:5px 12px;letter-spacing:2.5px;margin-bottom:10px;}
+    .hero h1{font-size:18vw;letter-spacing:-.05em;line-height:0.95;-webkit-text-stroke:1.5px currentColor;}
+    .events-grid{gap:10px;}
+    .ev-card{padding:11px 14px;gap:5px;border-radius:11px;}
+    .ev-card .ev-tier{display:none;}   /* REVIEW EVENT / SNS EVENT 영문 라벨 숨김 */
+    .ev-card .ev-head{gap:9px;}
+    .ev-card .ev-icon{font-size:1.35rem;}
+    .ev-card .ev-title{font-size:.96rem;}
+    .ev-card .ev-reward{font-size:1.0rem;margin:0;}
+    .ev-card .ev-cta{padding:7px 12px;font-size:.74rem;margin-top:2px;}
+  }
 
   /* ─── DETAIL SECTIONS ─── */
   .detail{padding:80px 5vw;border-top:1px solid var(--line);}
@@ -169,46 +193,54 @@
 
 <main id="m">
 
-  <!-- ─── HERO ─── -->
-  <section class="hero">
-    <div class="hero-inner">
-      <span class="kicker">3 Events Running</span>
-      <h1><span class="mint">3 EVENTS.</span></h1>
-    </div>
-  </section>
+  <!-- ─── FIRST SCREEN: hero + 3 cards 한 화면 안에 ─── -->
+  <section class="first-screen">
 
-  <!-- ─── EVENT CARDS GRID ─── -->
-  <section class="events reveal">
-    <div class="events-inner">
-      <div class="events-grid">
+    <div class="hero">
+      <div class="hero-inner">
+        <span class="kicker">3 Events Running</span>
+        <h1><span class="mint">3 EVENTS.</span></h1>
+      </div>
+    </div>
+
+    <div class="events">
+      <div class="events-inner">
+        <div class="events-grid">
 
         <!-- EV-1: 리뷰 이벤트 -->
         <a href="#ev-review" class="ev-card" style="text-decoration:none;color:inherit;">
-          <span class="ev-icon">⭐</span>
+          <div class="ev-head">
+            <span class="ev-icon">⭐</span>
+            <h3 class="ev-title">리뷰 이벤트</h3>
+          </div>
           <span class="ev-tier">Review Event</span>
-          <h3 class="ev-title">리뷰 이벤트</h3>
           <div class="ev-reward">다음 달 30% 할인</div>
           <span class="ev-cta">자세히 보기 →</span>
         </a>
 
         <!-- EV-2: SNS 후기 -->
         <a href="#ev-sns" class="ev-card" style="text-decoration:none;color:inherit;">
-          <span class="ev-icon">📲</span>
+          <div class="ev-head">
+            <span class="ev-icon">📲</span>
+            <h3 class="ev-title">SNS 후기 이벤트</h3>
+          </div>
           <span class="ev-tier">SNS Event</span>
-          <h3 class="ev-title">SNS 후기 이벤트</h3>
           <div class="ev-reward">다음 달 한 달 무료</div>
           <span class="ev-cta">자세히 보기 →</span>
         </a>
 
         <!-- EV-3: 성적인증 -->
         <a href="#ev-grade" class="ev-card" style="text-decoration:none;color:inherit;">
-          <span class="ev-icon">📈</span>
+          <div class="ev-head">
+            <span class="ev-icon">📈</span>
+            <h3 class="ev-title">성적인증 이벤트</h3>
+          </div>
           <span class="ev-tier">Grade Event</span>
-          <h3 class="ev-title">성적인증 이벤트</h3>
           <div class="ev-reward">6개월 무료</div>
           <span class="ev-cta">자세히 보기 →</span>
         </a>
 
+        </div>
       </div>
     </div>
   </section>
@@ -274,12 +306,11 @@
     <div class="rules-inner">
       <h2>공통 참여 규칙</h2>
       <ol>
-        <li>각 이벤트당 <strong>1인 1회</strong> · 한 사용자당 이벤트별 쿠폰 1개씩 발급됩니다.</li>
-        <li>SNS 게시물은 <strong>공개 상태</strong>여야 하며, 관리자가 확인할 수 있어야 합니다.</li>
-        <li>쿠폰은 <strong>발급일로부터 90일</strong> 유효하며, 다음 달 결제분부터 적용 가능합니다.</li>
-        <li>성적인증 이벤트는 학습 기간이 <strong>최소 1개월 이상</strong>인 회원에 한합니다.</li>
-        <li>허위·조작이 확인되면 쿠폰 회수 및 이벤트 참여가 제한됩니다.</li>
-        <li>이벤트는 사전 고지 없이 변경·종료될 수 있습니다. 발급된 쿠폰의 유효기간은 보장됩니다.</li>
+        <li>이벤트당 <strong>1인 1회</strong> 참여 가능.</li>
+        <li>SNS 게시물은 <strong>공개</strong> 상태로 유지.</li>
+        <li>쿠폰 유효기간 <strong>90일</strong>.</li>
+        <li>성적인증은 학습 <strong>1개월 이상</strong> 회원만.</li>
+        <li>허위 확인 시 쿠폰 회수.</li>
       </ol>
     </div>
   </section>

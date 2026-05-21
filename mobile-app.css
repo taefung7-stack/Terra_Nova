@@ -1399,15 +1399,17 @@
     line-height: 1.5 !important;
     margin: 0 !important;
   }
-  /* 6번: hero h1 살짝 키우기 + CTA와 간격 */
+  /* event.html: 3 EVENTS 임팩트 위해 viewport 폭 기준으로 크게.
+     공용 h1 룰(1.5rem)을 덮어씀. event.html의 자체 모바일 룰 보호. */
   body[data-page="event"] .hero h1 {
-    font-size: 1.78rem !important;
-    line-height: 1.25 !important;
-    margin-bottom: 38px !important;
+    font-size: 18vw !important;
+    line-height: 0.95 !important;
+    letter-spacing: -0.05em !important;
+    margin: 0 !important;
+    -webkit-text-stroke: 1.5px currentColor !important;
   }
-  body[data-page="event"] .hero .cta-row { margin-top: 8px !important; }
-  body[data-page="event"] .hero { min-height: auto !important; padding: 32px 5vw 36px !important; }
-  body[data-page="event"] .hero .kicker { margin-bottom: 18px !important; }
+  body[data-page="event"] .hero { min-height: auto !important; padding: 0 0 14px !important; }
+  body[data-page="event"] .hero .kicker { margin-bottom: 10px !important; }
 
   /* 4번 요청: 로그인/회원가입 페이지 상단 여백 축소 (128px → fixed nav 보정만) */
   body[data-page="login"] .auth-wrap,
