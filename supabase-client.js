@@ -93,8 +93,9 @@ export async function getProfile(userId) {
   }
   if (!data) {
     try {
-      const { data: u } = await supabase.auth.getUser();
-      const meta = u?.user?.user_metadata || {};
+      // 모바일 race 회피: getSession() 사용 (getUser() 금지 정책)
+      const { data: s } = await supabase.auth.getSession();
+      const meta = s?.session?.user?.user_metadata || {};
       const { data: created, error: insErr } = await supabase
         .from('profiles')
         .insert({
@@ -153,7 +154,9 @@ export async function getActiveSubscription(userId) {
 export async function linkAnonLevelTest() {
   const anonToken = localStorage.getItem('tn_anon_token');
   if (!anonToken) return { linked: 0 };
-  const { data: { user } } = await supabase.auth.getUser();
+  // 모바일 race 회피: getSession() 사용 (getUser() 금지 정책)
+  const { data: { session } } = await supabase.auth.getSession();
+  const user = session?.user || null;
   if (!user) return { linked: 0 };
   const { data, error } = await supabase
     .from('level_test_results')

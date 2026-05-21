@@ -67,14 +67,12 @@
       debug: false
     });
 
-    // 로그인된 사용자 태깅 (Supabase 연동 후)
+    // 로그인된 사용자 태깅 — getSession() 사용 (getUser() 금지 정책)
     if (window.supabase?.auth) {
-      window.supabase.auth.getUser().then(({ data }) => {
-        if (data?.user) {
-          Sentry.setUser({
-            id: data.user.id,
-            email: data.user.email
-          });
+      window.supabase.auth.getSession().then(({ data }) => {
+        const u = data?.session?.user;
+        if (u) {
+          Sentry.setUser({ id: u.id, email: u.email });
         }
       }).catch(() => {});
     }
