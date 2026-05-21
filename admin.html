@@ -151,6 +151,7 @@
       <button class="tab-btn" onclick="switchAdminTab('shipping',this)">📦 배송</button>
       <button class="tab-btn" onclick="switchAdminTab('leveltests',this)">🪐 레벨 테스트</button>
       <button class="tab-btn" onclick="switchAdminTab('revenue',this)">📊 매출</button>
+      <button class="tab-btn" onclick="switchAdminTab('dispatch',this)">📨 PDF 발송</button>
     </div>
 
     <!-- 리뷰 관리 -->
@@ -384,6 +385,27 @@
       </div>
     </div>
 
+    <!-- PDF 발송 -->
+    <div class="tab-view" id="tab-dispatch">
+      <div class="section">
+        <div class="section-title"><span>월간 PDF 수동 발송</span></div>
+        <p style="font-size:.82rem;color:var(--dim);margin-bottom:14px;line-height:1.7;">
+          매월 1일 KST 09:00 에 cron 으로 자동 발송됩니다. 아래는 <strong>수동 트리거</strong>로,
+          긴급 재발송 또는 신규 구독자 즉시 발송용입니다. 같은 월에 이미 <code>sent</code>로 기록된 사용자는 skip 되어 안전합니다.
+        </p>
+        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:14px;">
+          <label style="font-size:.78rem;color:var(--dim);">발송 월 (YYYY-MM):</label>
+          <input id="dispatch-month" type="text" placeholder="예: 2026-06" style="flex:0 0 140px;padding:8px 12px;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:6px;color:#fff;font-family:'Space Grotesk',sans-serif;font-size:.85rem;">
+          <button type="button" id="btn-dispatch" class="btn-admin btn-approve" onclick="triggerMonthlyDispatch()">📨 발송 시작</button>
+        </div>
+        <div id="dispatch-result" style="display:none;background:rgba(0,255,163,.05);border:1px solid rgba(0,255,163,.15);padding:14px 18px;border-radius:8px;font-size:.82rem;color:var(--dim);line-height:1.8;white-space:pre-wrap;font-family:'Space Grotesk',monospace;"></div>
+      </div>
+      <div class="section">
+        <div class="section-title"><span>최근 발송 이력 (최근 30건)</span></div>
+        <div id="dispatch-log"><div class="empty">불러오는 중…</div></div>
+      </div>
+    </div>
+
   </div>
 </main>
 
@@ -413,7 +435,9 @@
   let currentFilter = 'pending';
 
   // ── 권한 체크 ─────────────────────────
-  const { data: { user } } = await supabase.auth.getUser();
+  // 모바일 race 회피를 위해 getSession() 사용 (getUser() 직접 호출 금지)
+  const { data: { session } } = await supabase.auth.getSession();
+  const user = session?.user || null;
   if (!user) {
     $('gate-msg').textContent = '로그인이 필요합니다.';
     $('gate').style.display = 'block';
@@ -1206,7 +1230,107 @@
     btn.classList.add('active');
     $('tab-' + tab).classList.add('active');
     if (tab === 'events') loadEvents();
+    if (tab === 'dispatch') loadDispatchLog();
   };
+
+  // ── 월간 PDF 수동 발송 ─────────────────────
+  window.triggerMonthlyDispatch = async function() {
+    const monthInput = $('dispatch-month');
+    const resultBox = $('dispatch-result');
+    const btn = $('btn-dispatch');
+    const month = (monthInput.value || '').trim();
+    if (!/^\d{4}-\d{2}$/.test(month)) {
+      alert('YYYY-MM 형식으로 입력하세요. (예: 2026-06)');
+      monthInput.focus();
+      return;
+    }
+    if (!confirm(month + ' 월간 PDF 를 모든 활성 구독자에게 발송합니다.\n\n같은 월에 이미 발송된 사용자는 자동으로 skip됩니다.\n\n계속할까요?')) return;
+    btn.disabled = true; btn.textContent = '발송 중…';
+    resultBox.style.display = 'block';
+    resultBox.textContent = '⏳ 처리 중… (구독자 수에 따라 1-3분 소요)';
+    try {
+      const { data, error } = await supabase.functions.invoke('dispatch-monthly-pdf', { body: { month } });
+      if (error) throw error;
+      const errLines = (data?.errors?.length)
+        ? '\n\n에러 상세 (최대 20건):\n' + data.errors.map(e => '· ' + (e.user_id || '?') + ' — ' + (e.error || '')).join('\n')
+        : '';
+      resultBox.textContent =
+        '✅ 발송 완료\n\n' +
+        '월: ' + (data?.month || month) + '\n' +
+        '처리: ' + (data?.processed ?? 0) + '명\n' +
+        '발송: ' + (data?.sent ?? 0) + '명\n' +
+        'skip: ' + (data?.skipped ?? 0) + '명 (이미 발송됨)\n' +
+        '실패: ' + (data?.failed ?? 0) + '명' +
+        errLines;
+      loadDispatchLog();
+    } catch (err) {
+      resultBox.textContent = '❌ 발송 실패\n\n' + (err.message || err);
+    } finally {
+      btn.disabled = false; btn.textContent = '📨 발송 시작';
+    }
+  };
+
+  async function loadDispatchLog() {
+    const box = $('dispatch-log');
+    if (!box) return;
+    while (box.firstChild) box.removeChild(box.firstChild);
+
+    const setEmpty = (text) => {
+      const div = document.createElement('div');
+      div.className = 'empty';
+      div.textContent = text;
+      box.appendChild(div);
+    };
+
+    const { data, error } = await supabase
+      .from('monthly_pdf_dispatches')
+      .select('month, level, email, email_status, sent_at, error_message, updated_at')
+      .order('updated_at', { ascending: false })
+      .limit(30);
+    if (error) { setEmpty('로드 실패: ' + (error.message || '')); return; }
+    if (!data || !data.length) { setEmpty('발송 이력이 없습니다.'); return; }
+
+    // DOM builder (XSS-safe)
+    const table = document.createElement('table');
+    table.style.cssText = 'width:100%;border-collapse:collapse;font-size:.82rem;';
+    const thead = document.createElement('thead');
+    const trHead = document.createElement('tr');
+    trHead.style.borderBottom = '1px solid var(--line)';
+    ['월','레벨','이메일','상태','발송 시각','에러'].forEach(label => {
+      const th = document.createElement('th');
+      th.style.cssText = 'text-align:left;padding:8px;color:var(--dim);font-weight:600;';
+      th.textContent = label;
+      trHead.appendChild(th);
+    });
+    thead.appendChild(trHead);
+    table.appendChild(thead);
+
+    const tbody = document.createElement('tbody');
+    data.forEach(r => {
+      const tr = document.createElement('tr');
+      const addTd = (text, extraStyle) => {
+        const td = document.createElement('td');
+        td.style.cssText = 'padding:6px 8px;border-bottom:1px solid rgba(255,255,255,.03);' + (extraStyle || '');
+        td.textContent = text == null ? '' : String(text);
+        tr.appendChild(td);
+        return td;
+      };
+      addTd(r.month);
+      addTd(r.level || '—');
+      addTd(r.email, 'word-break:break-all;');
+      const statusTd = document.createElement('td');
+      statusTd.style.cssText = 'padding:6px 8px;border-bottom:1px solid rgba(255,255,255,.03);font-weight:700;';
+      const status = r.email_status || '?';
+      statusTd.textContent = status === 'sent' ? '✓ sent' : (status === 'failed' ? '✗ failed' : status);
+      statusTd.style.color = status === 'sent' ? 'var(--accent)' : (status === 'failed' ? '#FCA5A5' : 'var(--dim)');
+      tr.appendChild(statusTd);
+      addTd(r.sent_at ? ymdhm(r.sent_at) : '—');
+      addTd(r.error_message || '', 'color:#FCA5A5;font-size:.78rem;');
+      tbody.appendChild(tr);
+    });
+    table.appendChild(tbody);
+    box.appendChild(table);
+  }
 
   // admin-extras.js 가 사용할 helpers 노출
   window.supabase = supabase;
