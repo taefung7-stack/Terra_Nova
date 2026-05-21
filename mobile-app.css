@@ -1923,203 +1923,255 @@
   }
 
   /* ──────────────────────────────────────────────────────────
-   *  MYPAGE — Mobile-specific layout
-   *  Desktop: sidebar + main 2-column layout (untouched).
-   *  Mobile (<=680px): hide sidebar, show horizontal tab bar,
-   *  single-column / 2-col grids, larger touch targets,
-   *  proper spacing for thumb scroll.
+   *  MYPAGE — Mobile-specific layout (compact rev)
+   *  Desktop: untouched (sidebar + main 2-col).
+   *  Mobile (<=680px): hide sidebar, show 3×2 grid tabs (no h-scroll
+   *  → no accidental browser back-swipe), tighter typography,
+   *  narrower cards, minimal vertical gaps.
    * ────────────────────────────────────────────────────────── */
-  /* Root font-size is handled by mypage.html's own @media query
-     (drops from 20px → 16px on <=680px). No :has() needed here. */
+  /* html font-size baseline drop (20px → 16px) is in mypage.html itself. */
 
   body[data-page="mypage"] .page-wrap {
     flex-direction: column !important;
-    padding-top: 70px !important;
+    padding-top: var(--m-header-h) !important;  /* matches mobile nav height (52px) */
   }
-  /* Hide the desktop vertical sidebar on phones */
-  body[data-page="mypage"] .sidebar {
-    display: none !important;
-  }
-  /* Show the horizontal mobile tab bar (overrides desktop display:none) */
+  body[data-page="mypage"] .sidebar { display: none !important; }
+
+  /* ── Tab bar: 3-column grid that wraps to 2 rows (3×2). No h-scroll. ── */
   body[data-page="mypage"] .mobile-menu {
-    display: flex !important;
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 5px !important;
+    margin: 0 !important;
+    padding: 8px 10px !important;
     position: sticky !important;
-    top: 70px !important;
+    top: var(--m-header-h) !important;
     z-index: 50 !important;
-    margin-top: 0 !important;
-    padding: 10px 14px 8px !important;
-    gap: 6px !important;
-    overflow-x: auto !important;
-    overflow-y: hidden !important;
-    background: rgba(10, 10, 15, 0.92) !important;
+    background: rgba(10, 10, 15, 0.94) !important;
     backdrop-filter: blur(16px) !important;
     -webkit-backdrop-filter: blur(16px) !important;
     border-bottom: 1px solid var(--m-line) !important;
-    -webkit-overflow-scrolling: touch !important;
-    scrollbar-width: none !important;
   }
-  body[data-page="mypage"] .mobile-menu::-webkit-scrollbar { display: none !important; }
   body[data-page="mypage"] .mobile-tab {
-    flex: 0 0 auto !important;
-    padding: 8px 14px !important;
-    border-radius: 999px !important;
+    padding: 8px 4px !important;
+    border-radius: 8px !important;
     background: rgba(255, 255, 255, 0.04) !important;
     border: 1px solid var(--m-line) !important;
     color: var(--m-txt-dim) !important;
-    font-size: 0.82rem !important;
+    font-size: 0.74rem !important;
     font-weight: 600 !important;
     cursor: pointer !important;
-    white-space: nowrap !important;
-    transition: all 0.18s var(--m-ease) !important;
+    text-align: center !important;
     text-decoration: none !important;
+    white-space: nowrap !important;
+    line-height: 1.2 !important;
+    transition: all 0.15s var(--m-ease) !important;
   }
   body[data-page="mypage"] .mobile-tab.active {
     background: rgba(0, 255, 163, 0.12) !important;
-    border-color: rgba(0, 255, 163, 0.35) !important;
+    border-color: rgba(0, 255, 163, 0.4) !important;
     color: var(--m-accent) !important;
+    font-weight: 700 !important;
   }
   body[data-page="mypage"] .mobile-tab.admin-mobile-tab {
     background: rgba(245, 158, 11, 0.1) !important;
     border-color: rgba(245, 158, 11, 0.3) !important;
     color: #F59E0B !important;
+    grid-column: 1 / -1 !important;  /* 관리자 탭은 한 줄 전체 차지 */
+    font-size: 0.7rem !important;
   }
 
-  /* Main content — full width, comfortable padding */
+  /* ── Main content: compact padding, no top gap ── */
   body[data-page="mypage"] .main-content {
     flex: 1 1 100% !important;
     width: 100% !important;
     max-width: 100% !important;
-    padding: 18px 16px 110px !important;  /* bottom = room for 5-tab bar */
+    padding: 10px 12px 100px !important;
   }
 
-  /* Page title — smaller for phone */
+  /* ── Typography compression ── */
   body[data-page="mypage"] .page-title {
-    font-size: 1.6rem !important;
-    margin-bottom: 4px !important;
+    font-size: 1.25rem !important;
+    margin-bottom: 2px !important;
+    -webkit-text-stroke: 0.3px currentColor !important;
   }
   body[data-page="mypage"] .page-sub {
-    font-size: 0.78rem !important;
-    margin-bottom: 22px !important;
+    font-size: 0.68rem !important;
+    margin-bottom: 12px !important;
+  }
+  body[data-page="mypage"] .section-block-title {
+    font-size: 0.56rem !important;
+    letter-spacing: 1.6px !important;
+    margin-bottom: 10px !important;
   }
 
-  /* Cards — tighter padding */
+  /* ── Cards: tighter ── */
   body[data-page="mypage"] .sub-card,
   body[data-page="mypage"] .section-block,
   body[data-page="mypage"] .progress-section {
-    padding: 18px 16px !important;
-    margin-bottom: 14px !important;
-    border-radius: 12px !important;
+    padding: 14px 13px !important;
+    margin-bottom: 10px !important;
+    border-radius: 10px !important;
   }
   body[data-page="mypage"] .sub-card-header {
     flex-direction: column !important;
     align-items: flex-start !important;
-    gap: 10px !important;
+    gap: 6px !important;
+    margin-bottom: 12px !important;
+  }
+  body[data-page="mypage"] .sub-badge {
+    font-size: 0.56rem !important;
+    padding: 3px 9px !important;
   }
   body[data-page="mypage"] .sub-plan {
-    font-size: 1.05rem !important;
+    font-size: 0.95rem !important;
+    margin-top: 6px !important;
+  }
+  body[data-page="mypage"] .sub-level {
+    font-size: 0.7rem !important;
   }
 
-  /* Sub info grid — 2 columns on phone */
+  /* Sub info grid — keep 2 cols, tighter */
   body[data-page="mypage"] .sub-info-grid {
     grid-template-columns: repeat(2, 1fr) !important;
-    gap: 12px !important;
+    gap: 10px !important;
+    margin-top: 14px !important;
+    padding-top: 14px !important;
   }
   body[data-page="mypage"] .sub-info-label {
-    font-size: 0.6rem !important;
-    letter-spacing: 1.4px !important;
+    font-size: 0.55rem !important;
+    letter-spacing: 1.2px !important;
+    margin-bottom: 2px !important;
   }
   body[data-page="mypage"] .sub-info-value {
-    font-size: 0.82rem !important;
+    font-size: 0.76rem !important;
   }
 
-  /* Sub-actions buttons — full-width stacked */
+  /* Sub-actions — stacked full-width */
   body[data-page="mypage"] .sub-actions {
     flex-direction: column !important;
-    gap: 8px !important;
+    gap: 6px !important;
+    margin-top: 14px !important;
   }
   body[data-page="mypage"] .sub-actions .btn-sm {
     width: 100% !important;
-    padding: 12px 14px !important;
-    font-size: 0.86rem !important;
+    padding: 10px 12px !important;
+    font-size: 0.78rem !important;
   }
 
-  /* Info grid — 2 cols on phone */
+  /* Info grid (내 정보) */
   body[data-page="mypage"] .info-grid {
     grid-template-columns: repeat(2, 1fr) !important;
-    gap: 14px 16px !important;
+    gap: 10px 14px !important;
+  }
+  body[data-page="mypage"] .info-row > div:first-child {
+    font-size: 0.6rem !important;
+    margin-bottom: 2px !important;
+  }
+  body[data-page="mypage"] .info-row > div:last-child {
+    font-size: 0.78rem !important;
   }
 
-  /* Form fields — 16px to prevent iOS Safari auto-zoom */
+  /* Form fields — 16px to block iOS auto-zoom */
+  body[data-page="mypage"] .form-group {
+    margin-bottom: 10px !important;
+  }
+  body[data-page="mypage"] .form-group label {
+    font-size: 0.64rem !important;
+    margin-bottom: 4px !important;
+  }
   body[data-page="mypage"] .form-group input,
   body[data-page="mypage"] .form-group select {
     font-size: 16px !important;
-    padding: 12px 14px !important;
+    padding: 10px 12px !important;
   }
   body[data-page="mypage"] .form-row {
     grid-template-columns: 1fr !important;
-  }
-
-  /* Level grid — 2 cols on phone for readability */
-  body[data-page="mypage"] .level-grid-sm {
-    grid-template-columns: repeat(2, 1fr) !important;
     gap: 8px !important;
   }
+  body[data-page="mypage"] .btn-save {
+    padding: 10px 18px !important;
+    font-size: 0.78rem !important;
+  }
+
+  /* Level grid */
+  body[data-page="mypage"] .level-grid-sm {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 6px !important;
+  }
   body[data-page="mypage"] .level-btn-sm {
-    padding: 14px 8px !important;
+    padding: 10px 6px !important;
   }
   body[data-page="mypage"] .lvl-name-sm {
-    font-size: 0.82rem !important;
+    font-size: 0.76rem !important;
   }
   body[data-page="mypage"] .lvl-target-sm {
-    font-size: 0.66rem !important;
+    font-size: 0.62rem !important;
+  }
+  body[data-page="mypage"] .level-change-note {
+    font-size: 0.64rem !important;
+    margin-bottom: 10px !important;
   }
 
   /* Progress section */
   body[data-page="mypage"] .progress-stats {
-    gap: 14px !important;
+    gap: 10px !important;
+    padding-top: 12px !important;
+    margin-top: 14px !important;
   }
   body[data-page="mypage"] .prog-stat-num {
-    font-size: 1.3rem !important;
+    font-size: 1.15rem !important;
   }
   body[data-page="mypage"] .prog-stat-label {
-    font-size: 0.62rem !important;
+    font-size: 0.58rem !important;
+  }
+  body[data-page="mypage"] .progress-grid {
+    gap: 5px !important;
+  }
+  body[data-page="mypage"] .passage-block {
+    height: 26px !important;
+    font-size: 0.54rem !important;
   }
 
-  /* History list — date wraps to own line */
+  /* History */
   body[data-page="mypage"] .history-item {
     flex-wrap: wrap !important;
-    gap: 8px 12px !important;
-    padding: 12px 0 !important;
+    gap: 4px 10px !important;
+    padding: 10px 0 !important;
   }
   body[data-page="mypage"] .history-date {
     width: 100% !important;
-    font-size: 0.68rem !important;
+    font-size: 0.62rem !important;
   }
   body[data-page="mypage"] .history-desc {
-    font-size: 0.78rem !important;
-    flex-basis: 60% !important;
+    font-size: 0.74rem !important;
+    flex-basis: 55% !important;
   }
   body[data-page="mypage"] .history-amount {
-    font-size: 0.82rem !important;
+    font-size: 0.78rem !important;
+  }
+  body[data-page="mypage"] .history-status {
+    font-size: 0.58rem !important;
+    padding: 2px 6px !important;
   }
 
-  /* Section title — smaller letter-spacing for phone */
-  body[data-page="mypage"] .section-block-title {
-    font-size: 0.6rem !important;
-    letter-spacing: 2px !important;
-    margin-bottom: 14px !important;
-  }
-
-  /* Admin banner — full-width centered */
+  /* Admin banner */
   body[data-page="mypage"] .admin-banner {
     flex-direction: column !important;
     text-align: center !important;
-    gap: 8px !important;
-    padding: 14px !important;
+    gap: 4px !important;
+    padding: 10px 14px !important;
+    margin-bottom: 12px !important;
   }
+  body[data-page="mypage"] .admin-banner-title { font-size: 0.78rem !important; }
+  body[data-page="mypage"] .admin-banner-cta { font-size: 0.72rem !important; }
 
-  /* Empty state card */
+  /* Empty card */
   body[data-page="mypage"] #sub-card-empty {
-    padding: 32px 18px !important;
+    padding: 24px 16px !important;
+  }
+  body[data-page="mypage"] #sub-card-empty > div:first-child {
+    font-size: 1.8rem !important;
+    margin-bottom: 6px !important;
   }
 }
