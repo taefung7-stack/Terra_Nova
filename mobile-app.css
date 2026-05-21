@@ -1043,15 +1043,8 @@
     text-decoration: none !important;
   }
 
-  /* 4번 요청(반복): market 헤더 — MARKET 제목 제외 모든 텍스트·이모지 한 번 더 축소 */
+  /* market 페이지: hero padding만 페이지별 조정. hero-badge/title은 공용 통일 룰 적용. */
   body[data-page="market"] .hero { padding: 12px 5vw 8px !important; min-height: auto !important; }
-  body[data-page="market"] .hero-badge {
-    font-size: 0.5rem !important;
-    letter-spacing: 0.14em !important;
-    padding: 2px 7px !important;
-    margin-bottom: 6px !important;
-  }
-  /* MARKET 제목은 통일 사이즈(3.6rem) 그대로 사용 — 별도 override 없음 */
   body[data-page="market"] .hero-sub { font-size: 0.72rem !important; line-height: 1.45 !important; }
   /* 카테고리 버튼 + 이모지 한번 더 축소 */
   body[data-page="market"] .cat-wrap {
@@ -1399,17 +1392,9 @@
     line-height: 1.5 !important;
     margin: 0 !important;
   }
-  /* event.html: 3 EVENTS 임팩트 위해 viewport 폭 기준으로 크게.
-     공용 h1 룰(1.5rem)을 덮어씀. event.html의 자체 모바일 룰 보호. */
-  body[data-page="event"] .hero h1 {
-    font-size: 18vw !important;
-    line-height: 0.95 !important;
-    letter-spacing: -0.05em !important;
-    margin: 0 !important;
-    -webkit-text-stroke: 1.5px currentColor !important;
-  }
-  body[data-page="event"] .hero { min-height: auto !important; padding: 0 0 14px !important; }
-  body[data-page="event"] .hero .kicker { margin-bottom: 10px !important; }
+  /* event.html: hero-title 통일 룰이 적용되므로 별도 override 없음.
+     hero padding/badge margin만 페이지별 조정 유지. */
+  body[data-page="event"] .hero { min-height: auto !important; padding: 0 0 18px !important; }
 
   /* 4번 요청: 로그인/회원가입 페이지 상단 여백 축소 (128px → fixed nav 보정만) */
   body[data-page="login"] .auth-wrap,
@@ -1442,12 +1427,13 @@
     display: none !important;
   }
 
-  /* 5번 요청: 모든 페이지 hero-title 통일 (홈 워드마크와 동일 모양·크기·폰트)
-     Pretendard 900, 3.6rem, accent 그라데이션, 글자 굵게. 기존 다양한 폰트/크기 통일. */
+  /* 모든 페이지 hero-title 통일 (SAMPLE 기준).
+     Pretendard 900, 4.2rem, accent 그라데이션. 이전 페이지별 분기 제거 — 사용자 요청에 따라
+     LEVEL TEST / MARKET / SAMPLE / 3 EVENTS 모두 동일 폰트·크기·색·스타일. */
   body .hero .hero-title,
   body .auth-logo .auth-logo-main {
     font-family: 'Pretendard',-apple-system,BlinkMacSystemFont,sans-serif !important;
-    font-size: 3.6rem !important;
+    font-size: 4.2rem !important;
     font-weight: 900 !important;
     letter-spacing: 0.02em !important;
     line-height: 1 !important;
@@ -1460,17 +1446,17 @@
             background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
   }
-  /* event 페이지는 .hero h1 — 본문 카피라 통일 룰 적용 안 함 (메시지 가독성 우선) */
+  /* LEVEL TEST는 9자 + 공백이라 nowrap 시 화면 폭 초과. 공백 기준으로 두 줄 허용 */
+  body[data-page="level_test"] .hero .hero-title {
+    white-space: normal !important;
+    line-height: 1.0 !important;
+  }
   /* hero-badge 통일 */
   body .hero .hero-badge {
     font-size: 0.66rem !important;
     letter-spacing: 0.24em !important;
     padding: 4px 11px !important;
     margin-bottom: 14px !important;
-  }
-  /* sample 만 더 크게 (사용자 명시 요청) */
-  body[data-page="sample"] .hero .hero-title {
-    font-size: 4.2rem !important;
   }
 
   /* ───── Sub-page (exam-match.html / subscription.html) ───── */

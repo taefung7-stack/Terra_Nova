@@ -78,12 +78,9 @@
 
   .hero{position:relative;z-index:1;text-align:center;padding:0 0 60px;}
   .hero-inner{max-width:1180px;margin:0 auto;}
-  .hero .kicker{display:inline-flex;align-items:center;gap:10px;font-family:'Space Grotesk',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:5px;color:var(--accent);text-transform:uppercase;padding:8px 18px;border:1px solid rgba(0,255,163,.4);background:rgba(0,255,163,.07);border-radius:999px;margin-bottom:18px;}
-  .hero .kicker::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent);animation:pulse 1.6s ease-in-out infinite;}
-  @keyframes pulse{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.4);opacity:.6;}}
-  .hero h1{font-weight:900;font-size:clamp(4rem,13vw,10rem);line-height:1.0;letter-spacing:-.04em;color:#fff;margin:0;-webkit-text-stroke:1px currentColor;}
-  .hero h1 .mint{color:var(--accent);}
-  .hero p.lede{font-size:clamp(.9rem,1.4vw,1.05rem);color:var(--dim);max-width:680px;margin:0 auto;line-height:1.85;}
+  /* 통일 (SAMPLE 기준): hero-badge + hero-title 동일 스펙. 기존 .kicker / .hero h1 룰은 deprecated. */
+  .hero-badge{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(0,255,163,.35);color:rgba(224,255,251,.9);background:rgba(0,255,163,.07);font-family:'Space Grotesk',sans-serif;font-size:.7rem;font-weight:600;letter-spacing:3px;padding:6px 14px;margin-bottom:32px;text-transform:uppercase;border-radius:2px;}
+  .hero-title{font-family:'Space Grotesk',sans-serif;font-weight:900;font-size:clamp(5rem,16vw,12rem);letter-spacing:.04em;color:rgba(240,247,244,.96);line-height:1;margin-bottom:16px;text-shadow:0 0 32px rgba(255,255,255,.16);-webkit-text-stroke:2px currentColor;}
 
   /* ─── EVENT CARDS GRID (first-screen 안쪽) ─── */
   .events{position:relative;z-index:1;padding:0;}
@@ -117,9 +114,8 @@
   /* 모바일: 카드 컴팩트 + 가로 한 줄 헤더 + 3 EVENTS 글자 크게 + 영문 tier 숨김 */
   @media(max-width:680px){
     .first-screen{min-height:auto;padding:14px 4vw 20px;justify-content:flex-start;}
-    .hero{padding:0 0 14px;}
-    .hero .kicker{font-size:.62rem;padding:5px 12px;letter-spacing:2.5px;margin-bottom:10px;}
-    .hero h1{font-size:18vw;letter-spacing:-.05em;line-height:0.95;-webkit-text-stroke:1.5px currentColor;}
+    .hero{padding:0 0 18px;}
+    /* hero-badge / hero-title 은 mobile-app.css 공용 통일 룰로 처리 */
     .events-grid{gap:10px;}
     .ev-card{padding:11px 14px;gap:5px;border-radius:11px;}
     .ev-card .ev-head{gap:9px;}
@@ -197,8 +193,8 @@
 
     <div class="hero">
       <div class="hero-inner">
-        <span class="kicker">3 Events Running</span>
-        <h1><span class="mint">3 EVENTS.</span></h1>
+        <div class="hero-badge">✦ 3 EVENTS RUNNING</div>
+        <h1 class="hero-title">3 EVENTS</h1>
       </div>
     </div>
 

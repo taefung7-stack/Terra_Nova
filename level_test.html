@@ -55,12 +55,12 @@
   }
 
   .hero{padding:120px 2vw 60px;text-align:center;max-width:1920px;margin:0 auto;}
-  .hero-badge{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(0,255,163,.35);color:rgba(224,255,251,.9);background:rgba(0,255,163,.07);font-family:'Space Grotesk',sans-serif;font-size:.7rem;font-weight:600;letter-spacing:3px;padding:6px 14px;margin-bottom:28px;text-transform:uppercase;border-radius:2px;}
-  /* Single-line lock — long phrase "LEVEL TEST" must NEVER wrap. white-space:nowrap
-     keeps it on one row; the clamp middle term stays at 13vw so the text auto-shrinks
-     on narrow viewports rather than pushing the layout horizontally. */
-  .hero-title{font-family:'Space Grotesk',sans-serif;font-weight:900;font-size:clamp(3.4rem,13vw,11rem);letter-spacing:.02em;color:rgba(240,247,244,.96);line-height:1;margin-bottom:12px;text-shadow:0 0 32px rgba(255,255,255,.16);-webkit-text-stroke:2px currentColor;white-space:nowrap;}
-  .hero-sub{font-size:clamp(.88rem,1.8vw,1rem);color:var(--dim);line-height:1.9;}
+  .hero-badge{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(0,255,163,.35);color:rgba(224,255,251,.9);background:rgba(0,255,163,.07);font-family:'Space Grotesk',sans-serif;font-size:.7rem;font-weight:600;letter-spacing:3px;padding:6px 14px;margin-bottom:32px;text-transform:uppercase;border-radius:2px;}
+  /* 통일 (SAMPLE 기준): 모든 hero-title 동일 스펙. "LEVEL TEST" 한 줄 유지를 위해 white-space:nowrap 유지. */
+  .hero-title{font-family:'Space Grotesk',sans-serif;font-weight:900;font-size:clamp(5rem,16vw,12rem);letter-spacing:.04em;color:rgba(240,247,244,.96);line-height:1;margin-bottom:16px;text-shadow:0 0 32px rgba(255,255,255,.16);-webkit-text-stroke:2px currentColor;white-space:nowrap;}
+  /* 모바일에선 "LEVEL TEST" 두 줄 허용 (한 줄로 두면 폭 초과해 잘림) */
+  @media(max-width:680px){.hero-title{white-space:normal!important;}}
+  .hero-sub{font-size:clamp(.88rem,1.8vw,1.05rem);color:var(--dim);line-height:1.9;}
   /* Landing-style hero fade-up */
   @keyframes tnHeroFadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
   .hero-badge,.hero-title,.hero-sub{animation:tnHeroFadeUp 1s cubic-bezier(.2,.8,.2,1) both;}
