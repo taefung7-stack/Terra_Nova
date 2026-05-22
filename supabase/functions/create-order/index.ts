@@ -25,6 +25,11 @@ const PLAN_PRICES = {
   PREMIUM: { monthly: 58900, annual: 589000 },
 } as const;
 
+// ─── 운영 정책: 현재 활성화된 플랜 (Codex 3차 검수 발견) ──────
+// 프론트는 STANDARD/PREMIUM 차단했지만 API 직접 호출은 막지 않았음.
+// 실물 배송 파트너 계약 완료 시 ACTIVE_PLANS 에 'STANDARD', 'PREMIUM' 추가.
+const ACTIVE_PLANS = new Set(['LIGHT']);
+
 const PLAN_NAMES = {
   LIGHT: 'Terra Nova LIGHT (PDF 교재)',
   STANDARD: 'Terra Nova STANDARD (실물 교재 + PDF)',
@@ -104,6 +109,10 @@ Deno.serve(async (req) => {
 
     if (!(plan in PLAN_PRICES)) {
       return jsonError(`Invalid plan: ${plan}`, 400);
+    }
+    // 🛡️ 활성화된 플랜만 허용 (Codex 3차 검수 발견)
+    if (!ACTIVE_PLANS.has(plan)) {
+      return jsonError(`Plan currently unavailable: ${plan}. Only ${Array.from(ACTIVE_PLANS).join(', ')} is active.`, 403);
     }
     if (cycle !== 'monthly' && cycle !== 'annual') {
       return jsonError(`Invalid cycle: ${cycle}`, 400);

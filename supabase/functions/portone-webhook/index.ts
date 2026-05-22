@@ -185,17 +185,17 @@ async function handlePayment(data: { paymentId: string; txId: string }) {
   const billingCycle = cycleV2 || billingCycleV1 || null;
 
   // 3. create-order pending row 조회 — 모든 결제는 반드시 사전 등록되어야 함
+  // order_items.product_snapshot 도 함께 조회 (Codex 3차 검수 발견 — customData 대신 서버 스냅샷 신뢰)
   const { data: existing } = await supabase
-    .from('orders').select('id, status, total_amount, user_id')
+    .from('orders')
+    .select('id, status, total_amount, user_id, order_items(product_snapshot, quantity, unit_price)')
     .eq('portone_payment_id', data.paymentId).maybeSingle();
 
   if (existing && existing.status === 'paid') {
     return new Response(JSON.stringify({ duplicate: true }), { status: 200 });
   }
 
-  // 🛡️ 사전 등록되지 않은 결제 완전 거절 (Codex 재검수 발견 — 레거시 경로 차단)
-  // create-order Edge Function 이 pending row 를 미리 INSERT 한 경우만 허용.
-  // customData 기반 새 주문/구독 자동 생성 경로는 금액·사용자 검증 우회 가능하므로 폐쇄.
+  // 🛡️ 사전 등록되지 않은 결제 완전 거절 (Codex 2차 검수)
   if (!existing) {
     console.error('[webhook] orphan payment — no pending order', {
       paymentId: data.paymentId,
@@ -209,7 +209,7 @@ async function handlePayment(data: { paymentId: string; txId: string }) {
     }), { status: 200 });
   }
 
-  // 🛡️ 금액 검증 — 서버가 계산한 verified_total 과 PortOne 실제 결제 금액 비교
+  // 🛡️ 금액 검증
   const portoneAmount = payment.amount?.total || 0;
   if (existing.total_amount > 0 && portoneAmount !== existing.total_amount) {
     console.error('[webhook] amount mismatch', {
@@ -217,7 +217,6 @@ async function handlePayment(data: { paymentId: string; txId: string }) {
       expected: existing.total_amount,
       actual: portoneAmount,
     });
-    // orders 를 failed 로 마킹 (Migration 013 에서 CHECK 에 'failed' 추가됨)
     await supabase.from('orders').update({
       status: 'failed',
       memo: `amount_mismatch: expected ${existing.total_amount}, got ${portoneAmount}`,
@@ -229,7 +228,7 @@ async function handlePayment(data: { paymentId: string; txId: string }) {
     }), { status: 200 });
   }
 
-  // userId 검증: create-order pending row 의 user_id 와 webhook customData.userId 가 같은지
+  // userId 검증
   if (existing.user_id && userId && existing.user_id !== userId) {
     console.error('[webhook] userId mismatch', {
       paymentId: data.paymentId,
@@ -243,29 +242,62 @@ async function handlePayment(data: { paymentId: string; txId: string }) {
     return new Response(JSON.stringify({ error: 'user_mismatch' }), { status: 200 });
   }
 
-  // userId 누락 방어 (create-order 가 user_id 를 반드시 채워야 함)
   if (!existing.user_id) {
     console.error('[webhook] order has no user_id', { paymentId: data.paymentId });
     return new Response(JSON.stringify({ error: 'order_missing_user' }), { status: 200 });
   }
 
-  // 4. 구독 결제인지 일반 결제인지 분기 — existing.user_id 신뢰 (customData userId 가 아니라)
   const verifiedUserId = existing.user_id;
-  if (planCode) {
-    await activateSubscription(verifiedUserId, planCode, billingCycle, level, payment);
+
+  // 🛡️ plan/cycle/level 을 customData 대신 order_items.product_snapshot 에서 복원
+  // (Codex 3차 검수 발견 — customData 만 조작하여 STANDARD/PREMIUM 활성화 우회 차단)
+  let verifiedPlanCode: string | null = null;
+  let verifiedBillingCycle: string | null = null;
+  let verifiedLevel: string | null = null;
+  let isSubscription = false;
+
+  const orderItems = (existing as any).order_items || [];
+  for (const item of orderItems) {
+    const snap = item.product_snapshot || {};
+    if (snap.kind === 'subscription') {
+      isSubscription = true;
+      verifiedPlanCode = (snap.plan || '').toString().toUpperCase() || null;
+      verifiedBillingCycle = (snap.cycle || '').toString() || null;
+      verifiedLevel = (snap.level || '').toString().toUpperCase() || null;
+      break;
+    }
+  }
+
+  // customData 와 product_snapshot 이 다르면 cancel — 위조 시도 가능성
+  if (isSubscription && planCode && verifiedPlanCode && planCode.toUpperCase() !== verifiedPlanCode) {
+    console.error('[webhook] plan mismatch', {
+      paymentId: data.paymentId,
+      snapshotPlan: verifiedPlanCode,
+      customPlan: planCode,
+    });
+    await supabase.from('orders').update({
+      status: 'failed',
+      memo: `plan_mismatch: snapshot=${verifiedPlanCode}, custom=${planCode}`,
+    }).eq('id', existing.id);
+    return new Response(JSON.stringify({ error: 'plan_mismatch' }), { status: 200 });
+  }
+
+  // 4. 구독 결제인지 일반 결제인지 분기 — 모든 값은 server-side 스냅샷 신뢰
+  if (isSubscription) {
+    await activateSubscription(verifiedUserId, verifiedPlanCode!, verifiedBillingCycle, verifiedLevel, payment);
   } else {
     await createOrder(verifiedUserId, payment, items, shipping);
   }
 
-  // 5. 결제 확인 이메일 (best-effort)
+  // 5. 결제 확인 이메일 (best-effort) — verified 값 사용
   if (payment.customer?.email) {
     await sendEmail(payment.customer.email, 'payment_confirm', {
-      plan: planCode || null,
-      billingCycle: billingCycle || null,
+      plan: verifiedPlanCode || null,
+      billingCycle: verifiedBillingCycle || null,
       amount: payment.amount?.total || 0,
       orderNumber: payment.id,
-      nextBillingDate: planCode
-        ? new Date(Date.now() + (billingCycle === 'annual' ? 365 : 30) * 86400000).toLocaleDateString('ko-KR')
+      nextBillingDate: isSubscription
+        ? new Date(Date.now() + (verifiedBillingCycle === 'annual' ? 365 : 30) * 86400000).toLocaleDateString('ko-KR')
         : null
     });
   }

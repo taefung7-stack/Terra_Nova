@@ -80,7 +80,7 @@
   <h2>1. 수집하는 개인정보 항목</h2>
   <table>
     <tr><th>구분</th><th>수집 항목</th><th>수집 방법</th></tr>
-    <tr><td>회원가입</td><td>이메일, 비밀번호, 이름, 연락처, 배송 주소(우편번호·기본·상세)</td><td>온라인 가입 양식</td></tr>
+    <tr><td>회원가입</td><td>이메일, 비밀번호, 이름, 연락처, 배송 주소(선택 입력: 우편번호·기본·상세)</td><td>온라인 가입 양식</td></tr>
     <tr><td>마케팅 동의</td><td>마케팅 정보 수신 동의 여부, 동의 일시</td><td>회원가입 양식 (선택 항목)</td></tr>
     <tr><td>구독/주문</td><td>받는 분 이름, 결제 정보(카드 마지막 4자리, 결제수단, 결제 일시), 빌링키 식별자</td><td>구독 신청·주문 시 (포트원 SDK 경유)</td></tr>
     <tr><td>학습 서비스</td><td>레벨 테스트 답안·결과, 추천 레벨(MARS~SUN), 학습 이력, 학습 자료 다운로드 기록</td><td>서비스 이용 시</td></tr>
@@ -107,6 +107,9 @@
     <tr><td>결제 기록</td><td>5년</td><td>전자상거래법</td></tr>
     <tr><td>계약·청약철회 기록</td><td>5년</td><td>전자상거래법</td></tr>
     <tr><td>소비자 불만·분쟁 처리</td><td>3년</td><td>전자상거래법</td></tr>
+    <tr><td>이벤트 인증 자료 (성적표·SNS 캡처 등)</td><td>검증 완료 후 6개월</td><td>이벤트 분쟁 대응 및 부정 이용 방지</td></tr>
+    <tr><td>마케팅 동의 증적 (동의 일시·철회 일시)</td><td>회원 탈퇴 시까지</td><td>정보통신망법 제50조</td></tr>
+    <tr><td>이메일 발송 로그 (Resend)</td><td>발송 후 90일</td><td>서비스 운영 통계</td></tr>
     <tr><td>서비스 방문 기록</td><td>3개월</td><td>통신비밀보호법</td></tr>
   </table>
 
@@ -129,7 +132,15 @@
     <tr><td>Google LLC (미국)</td><td>Google Analytics 4 — 서비스 이용 통계, 가명 처리된 행태정보 분석. 광고 ID는 사용하지 않습니다.</td><td>최대 26개월</td></tr>
     <tr><td>Microsoft Corporation (미국)</td><td>Clarity — 페이지 클릭/스크롤 등 가명 처리된 행태정보로 UI 개선</td><td>최대 13개월</td></tr>
   </table>
-  <p style="font-size:.78rem;color:var(--dim);margin-top:8px;">※ 해외 위탁: 위 미국 사업자는 국외 이전이 포함됩니다. 이전 거부 시 일부 서비스(이메일 발송·통계 분석) 이용이 제한될 수 있습니다.</p>
+  <h2>5-1. 개인정보 국외 이전</h2>
+  <p style="font-size:.82rem;color:var(--dim);margin-bottom:10px;">회사는 아래와 같이 개인정보 처리 위탁 과정에서 국외 이전이 발생할 수 있습니다. 이용자는 국외 이전을 거부할 수 있으나, 거부 시 해당 수탁자가 수행하는 회원 인증, 이메일 발송, 통계 분석 등 일부 기능 이용이 제한될 수 있습니다. 거부 또는 문의는 개인정보 보호책임자 이메일로 요청할 수 있습니다.</p>
+  <table>
+    <tr><th>이전받는 자</th><th>이전 국가</th><th>이전 항목</th><th>이전 일시·방법</th><th>이용 목적·보유 기간</th></tr>
+    <tr><td>Supabase Inc.<br>privacy@supabase.io</td><td>미국</td><td>회원 계정 정보, 서비스 이용 기록, 이벤트 인증 자료</td><td>서비스 이용 시 암호화된 네트워크로 전송</td><td>회원 인증·데이터베이스·파일 저장소 운영, 회원 탈퇴 또는 위탁 종료 시까지</td></tr>
+    <tr><td>Resend Inc.<br>privacy@resend.com</td><td>미국</td><td>이메일 주소, 발송 내용 일부, 발송 결과 로그</td><td>이메일 발송 요청 시 암호화된 API로 전송</td><td>트랜잭셔널 이메일 발송, 발송 로그는 원칙적으로 90일 이내 보관</td></tr>
+    <tr><td>Google LLC<br>Google Privacy Team</td><td>미국</td><td>쿠키 식별자, IP 일부, 기기·브라우저 정보, 페이지 이용 통계</td><td>페이지 방문 시 SDK를 통해 전송</td><td>서비스 이용 통계 분석, 최대 26개월</td></tr>
+    <tr><td>Microsoft Corporation<br>Microsoft Privacy</td><td>미국</td><td>쿠키 식별자, 페이지 클릭·스크롤 등 가명 처리된 행태정보</td><td>페이지 방문 시 SDK를 통해 전송</td><td>사용성 분석 및 UI 개선, 최대 13개월</td></tr>
+  </table>
 
   <h2>6. 이용자 권리 및 행사 방법</h2>
   <ul>
