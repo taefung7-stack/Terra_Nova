@@ -560,10 +560,21 @@
       '</div>';
     }).join('');
 
-    list.querySelectorAll('[data-act]').forEach(btn => {
-      btn.addEventListener('click', onReviewAction);
-    });
+    // (이벤트 위임으로 변경 — list 컨테이너에서 한 번만 바인딩하므로 여기서 직접 바인딩하지 않음)
   }
+
+  // 이벤트 위임: reviews-list 컨테이너에 한 번만 click 리스너 부착.
+  // innerHTML 재렌더 후에도 리스너가 살아남음.
+  (function bindReviewsListDelegation(){
+    const list = document.getElementById('reviews-list');
+    if (!list || list.__reviewsBound) return;
+    list.__reviewsBound = true;
+    list.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-act]');
+      if (!btn || !list.contains(btn)) return;
+      onReviewAction({ currentTarget: btn });
+    });
+  })();
 
   async function onReviewAction(e) {
     const btn = e.currentTarget;
