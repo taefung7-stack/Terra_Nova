@@ -442,8 +442,14 @@
       document.getElementById('addr-detail').focus();
     });
   }
-  // PG 채널 가용성 체크 — order.html과 동일 패턴
+  // 🚫 마켓 단품 결제 전용 활성화 플래그 (Codex 재검수 발견)
+  // 구독 PG 키가 들어와도 마켓 단품 결제는 별도 검증/약관 필요하므로 독립 잠금.
+  // STANDARD/PREMIUM 실물 출시 + 마켓 전용 약관/배송 확정 후 true 로 변경.
+  const MARKET_PAYMENTS_ENABLED = false;
+
+  // PG 채널 가용성 체크
   function isPgReady(){
+    if (!MARKET_PAYMENTS_ENABLED) return false;  // 플래그가 false 면 PG 키와 무관하게 false
     const storeId = window.PORTONE_STORE_ID || '';
     const keys = window.PORTONE_CHANNEL_KEYS || {};
     return !!storeId && (!!keys.card_inicis || !!keys.card_kcp || !!keys.kakaopay || !!keys.naverpay);
@@ -453,16 +459,20 @@
     const btn = document.getElementById('btn-pay');
     const notice = document.getElementById('pay-notice');
     if (!ready){
-      if (btn){ btn.disabled = true; btn.style.opacity='.5'; btn.style.cursor='not-allowed'; btn.textContent='결제 시스템 준비중'; }
+      if (btn){ btn.disabled = true; btn.style.opacity='.5'; btn.style.cursor='not-allowed'; btn.textContent='마켓 단품 결제 준비중'; }
       if (notice){ notice.style.display='block'; }
       document.querySelectorAll('.pay-method').forEach(el=>{ el.style.opacity='.45'; el.style.cursor='not-allowed'; el.onclick=null; });
     }
   }
 
   function doPay(){
-    // 🛑 PG 미설정 시 결제 진행 차단 (Codex 검수 발견 — alert 후 false-positive 방지)
+    // 🛑 마켓 단품 결제는 별도 활성화 플래그로 잠금 (PG 가 켜져도 마켓은 별도)
+    if (!MARKET_PAYMENTS_ENABLED){
+      alert('마켓 단품 결제는 정식 오픈 전입니다.\n\n현재는 구독(LIGHT)만 신청 가능합니다.\n실물 상품 마켓은 STANDARD/PREMIUM 출시 시 함께 오픈됩니다.');
+      return;
+    }
     if (!isPgReady()){
-      alert('결제 시스템 점검 중입니다.\n\nPG사 심사 완료 후 정식 오픈 예정입니다.\n현재는 구독(LIGHT)만 신청 가능합니다.');
+      alert('결제 시스템 점검 중입니다.\n\nPG사 심사 완료 후 정식 오픈 예정입니다.');
       return;
     }
     const items = getItems();
@@ -477,8 +487,7 @@
       const detail = document.getElementById('addr-detail').value.trim();
       if (!zip||!addr||!detail){ alert('배송 주소를 모두 입력해주세요.'); return; }
     }
-    // PG 가 준비되면 여기서 portone-client.js 의 requestPayment() 호출.
-    // 현재는 PG 미설정이라 위 가드에서 차단됨.
+    // 정식 오픈 시 portone-client.js 의 requestPayment() 호출 구현.
     alert('결제 시스템 준비 중입니다.');
   }
 

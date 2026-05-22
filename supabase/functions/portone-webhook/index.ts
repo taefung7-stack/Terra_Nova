@@ -184,8 +184,7 @@ async function handlePayment(data: { paymentId: string; txId: string }) {
   const planCode = planV2 || planCodeV1 || null;
   const billingCycle = cycleV2 || billingCycleV1 || null;
 
-  // 3. 이미 처리된 payment_id인지 확인 (멱등성) + create-order pending row 조회
-  // create-order 가 미리 INSERT 한 pending row 의 total_amount 와 실제 결제 금액 비교
+  // 3. create-order pending row 조회 — 모든 결제는 반드시 사전 등록되어야 함
   const { data: existing } = await supabase
     .from('orders').select('id, status, total_amount, user_id')
     .eq('portone_payment_id', data.paymentId).maybeSingle();
@@ -194,44 +193,68 @@ async function handlePayment(data: { paymentId: string; txId: string }) {
     return new Response(JSON.stringify({ duplicate: true }), { status: 200 });
   }
 
-  // 🛡️ 금액 검증 (Codex 검수 발견 — false-positive payment 차단)
-  // create-order 에서 서버가 계산한 verified_total 과 PortOne 실제 결제 금액 비교
+  // 🛡️ 사전 등록되지 않은 결제 완전 거절 (Codex 재검수 발견 — 레거시 경로 차단)
+  // create-order Edge Function 이 pending row 를 미리 INSERT 한 경우만 허용.
+  // customData 기반 새 주문/구독 자동 생성 경로는 금액·사용자 검증 우회 가능하므로 폐쇄.
+  if (!existing) {
+    console.error('[webhook] orphan payment — no pending order', {
+      paymentId: data.paymentId,
+      portoneAmount: payment.amount?.total,
+      userId,
+    });
+    return new Response(JSON.stringify({
+      error: 'orphan_payment',
+      message: 'No pending order found. All payments must originate from create-order.',
+      paymentId: data.paymentId,
+    }), { status: 200 });
+  }
+
+  // 🛡️ 금액 검증 — 서버가 계산한 verified_total 과 PortOne 실제 결제 금액 비교
   const portoneAmount = payment.amount?.total || 0;
-  if (existing && existing.total_amount > 0) {
-    if (portoneAmount !== existing.total_amount) {
-      console.error('[webhook] amount mismatch', {
-        paymentId: data.paymentId,
-        expected: existing.total_amount,
-        actual: portoneAmount,
-      });
-      // orders 를 failed 로 마킹하고 webhook 은 200 으로 (PortOne 재시도 방지)
-      await supabase.from('orders').update({
-        status: 'failed',
-        memo: `amount_mismatch: expected ${existing.total_amount}, got ${portoneAmount}`,
-      }).eq('id', existing.id);
-      return new Response(JSON.stringify({
-        error: 'amount_mismatch',
-        expected: existing.total_amount,
-        actual: portoneAmount,
-      }), { status: 200 });
-    }
+  if (existing.total_amount > 0 && portoneAmount !== existing.total_amount) {
+    console.error('[webhook] amount mismatch', {
+      paymentId: data.paymentId,
+      expected: existing.total_amount,
+      actual: portoneAmount,
+    });
+    // orders 를 failed 로 마킹 (Migration 013 에서 CHECK 에 'failed' 추가됨)
+    await supabase.from('orders').update({
+      status: 'failed',
+      memo: `amount_mismatch: expected ${existing.total_amount}, got ${portoneAmount}`,
+    }).eq('id', existing.id);
+    return new Response(JSON.stringify({
+      error: 'amount_mismatch',
+      expected: existing.total_amount,
+      actual: portoneAmount,
+    }), { status: 200 });
   }
 
   // userId 검증: create-order pending row 의 user_id 와 webhook customData.userId 가 같은지
-  if (existing && existing.user_id && userId && existing.user_id !== userId) {
+  if (existing.user_id && userId && existing.user_id !== userId) {
     console.error('[webhook] userId mismatch', {
       paymentId: data.paymentId,
       orderUserId: existing.user_id,
       customUserId: userId,
     });
+    await supabase.from('orders').update({
+      status: 'failed',
+      memo: `user_mismatch: order_user=${existing.user_id}, custom_user=${userId}`,
+    }).eq('id', existing.id);
     return new Response(JSON.stringify({ error: 'user_mismatch' }), { status: 200 });
   }
 
-  // 4. 구독 결제인지 일반 결제인지 분기
+  // userId 누락 방어 (create-order 가 user_id 를 반드시 채워야 함)
+  if (!existing.user_id) {
+    console.error('[webhook] order has no user_id', { paymentId: data.paymentId });
+    return new Response(JSON.stringify({ error: 'order_missing_user' }), { status: 200 });
+  }
+
+  // 4. 구독 결제인지 일반 결제인지 분기 — existing.user_id 신뢰 (customData userId 가 아니라)
+  const verifiedUserId = existing.user_id;
   if (planCode) {
-    await activateSubscription(userId, planCode, billingCycle, level, payment);
+    await activateSubscription(verifiedUserId, planCode, billingCycle, level, payment);
   } else {
-    await createOrder(userId, payment, items, shipping);
+    await createOrder(verifiedUserId, payment, items, shipping);
   }
 
   // 5. 결제 확인 이메일 (best-effort)
