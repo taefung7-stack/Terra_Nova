@@ -184,13 +184,47 @@ async function handlePayment(data: { paymentId: string; txId: string }) {
   const planCode = planV2 || planCodeV1 || null;
   const billingCycle = cycleV2 || billingCycleV1 || null;
 
-  // 3. 이미 처리된 payment_id인지 확인 (멱등성)
+  // 3. 이미 처리된 payment_id인지 확인 (멱등성) + create-order pending row 조회
+  // create-order 가 미리 INSERT 한 pending row 의 total_amount 와 실제 결제 금액 비교
   const { data: existing } = await supabase
-    .from('orders').select('id, status')
+    .from('orders').select('id, status, total_amount, user_id')
     .eq('portone_payment_id', data.paymentId).maybeSingle();
 
   if (existing && existing.status === 'paid') {
     return new Response(JSON.stringify({ duplicate: true }), { status: 200 });
+  }
+
+  // 🛡️ 금액 검증 (Codex 검수 발견 — false-positive payment 차단)
+  // create-order 에서 서버가 계산한 verified_total 과 PortOne 실제 결제 금액 비교
+  const portoneAmount = payment.amount?.total || 0;
+  if (existing && existing.total_amount > 0) {
+    if (portoneAmount !== existing.total_amount) {
+      console.error('[webhook] amount mismatch', {
+        paymentId: data.paymentId,
+        expected: existing.total_amount,
+        actual: portoneAmount,
+      });
+      // orders 를 failed 로 마킹하고 webhook 은 200 으로 (PortOne 재시도 방지)
+      await supabase.from('orders').update({
+        status: 'failed',
+        memo: `amount_mismatch: expected ${existing.total_amount}, got ${portoneAmount}`,
+      }).eq('id', existing.id);
+      return new Response(JSON.stringify({
+        error: 'amount_mismatch',
+        expected: existing.total_amount,
+        actual: portoneAmount,
+      }), { status: 200 });
+    }
+  }
+
+  // userId 검증: create-order pending row 의 user_id 와 webhook customData.userId 가 같은지
+  if (existing && existing.user_id && userId && existing.user_id !== userId) {
+    console.error('[webhook] userId mismatch', {
+      paymentId: data.paymentId,
+      orderUserId: existing.user_id,
+      customUserId: userId,
+    });
+    return new Response(JSON.stringify({ error: 'user_mismatch' }), { status: 200 });
   }
 
   // 4. 구독 결제인지 일반 결제인지 분기

@@ -243,6 +243,7 @@
       <div class="sum-row" id="row-ship"><span>배송비</span><span id="sum-ship">0원</span></div>
       <div class="sum-row total"><span>총 결제금액</span><span class="amt" id="sum-total">0원</span></div>
       <button class="btn-pay" id="btn-pay" onclick="doPay()">결제하기</button>
+      <div id="pay-notice" style="display:none;margin-top:12px;padding:10px 14px;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.3);border-radius:6px;font-size:.75rem;color:#F59E0B;line-height:1.6;text-align:center;">⚠️ 마켓 결제는 PG사 심사 완료 후 정식 오픈됩니다.<br>현재는 <a href="order.html" style="color:var(--accent);text-decoration:underline;">구독 신청 (LIGHT)</a>만 가능합니다.</div>
       <p style="font-size:.7rem;color:rgba(240,240,240,.4);text-align:center;margin-top:12px;line-height:1.6;">주문 시 결제 및 배송 정보 제공에 동의합니다.<br>이 결제는 구독 결제와 별도로 처리됩니다.</p>
     </div>
   </div>
@@ -441,7 +442,29 @@
       document.getElementById('addr-detail').focus();
     });
   }
+  // PG 채널 가용성 체크 — order.html과 동일 패턴
+  function isPgReady(){
+    const storeId = window.PORTONE_STORE_ID || '';
+    const keys = window.PORTONE_CHANNEL_KEYS || {};
+    return !!storeId && (!!keys.card_inicis || !!keys.card_kcp || !!keys.kakaopay || !!keys.naverpay);
+  }
+  function refreshPayAvailability(){
+    const ready = isPgReady();
+    const btn = document.getElementById('btn-pay');
+    const notice = document.getElementById('pay-notice');
+    if (!ready){
+      if (btn){ btn.disabled = true; btn.style.opacity='.5'; btn.style.cursor='not-allowed'; btn.textContent='결제 시스템 준비중'; }
+      if (notice){ notice.style.display='block'; }
+      document.querySelectorAll('.pay-method').forEach(el=>{ el.style.opacity='.45'; el.style.cursor='not-allowed'; el.onclick=null; });
+    }
+  }
+
   function doPay(){
+    // 🛑 PG 미설정 시 결제 진행 차단 (Codex 검수 발견 — alert 후 false-positive 방지)
+    if (!isPgReady()){
+      alert('결제 시스템 점검 중입니다.\n\nPG사 심사 완료 후 정식 오픈 예정입니다.\n현재는 구독(LIGHT)만 신청 가능합니다.');
+      return;
+    }
     const items = getItems();
     if (!items.length) { alert('장바구니가 비어있습니다.'); return; }
     const name = document.getElementById('buyer-name').value.trim();
@@ -454,17 +477,13 @@
       const detail = document.getElementById('addr-detail').value.trim();
       if (!zip||!addr||!detail){ alert('배송 주소를 모두 입력해주세요.'); return; }
     }
-    const total = document.getElementById('sum-total').textContent;
-    const pdfOnly = !hasPhysical(items);
-    alert('마켓 단품 결제가 요청되었습니다.\n\n총 '+total+(pdfOnly ? '\n\n📧 결제 완료 후 주문자 이메일로 다운로드 링크가 발송됩니다.' : '\n\n📦 실물 상품은 2~3일 내 출고됩니다.')+'\n\n※ 실제 결제 연동은 PG사 연결 후 활성화됩니다.');
-    const params = new URLSearchParams(location.search);
-    if (params.get('mode') !== 'buynow') localStorage.removeItem(CART_KEY);
-    sessionStorage.removeItem(BUYNOW_KEY);
-    sessionStorage.removeItem('tn_guest');
-    location.href = 'market.html';
+    // PG 가 준비되면 여기서 portone-client.js 의 requestPayment() 호출.
+    // 현재는 PG 미설정이라 위 가드에서 차단됨.
+    alert('결제 시스템 준비 중입니다.');
   }
 
   init();
+  refreshPayAvailability();
   function toggleNav(){document.getElementById('nav-hamburger').classList.toggle('open');document.querySelector('.nav-links').classList.toggle('open');}
 </script>
 <script src="./analytics.js" defer></script>
