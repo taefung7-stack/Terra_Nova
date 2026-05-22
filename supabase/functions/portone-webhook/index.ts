@@ -305,38 +305,30 @@ async function handlePayment(data: { paymentId: string; txId: string }) {
   return new Response(JSON.stringify({ ok: true }), { status: 200 });
 }
 
+// 마켓 단품 결제: create-order 의 pending 주문을 paid 로 UPDATE
+// (Codex 4차 검수 발견 — 이전엔 새 INSERT 였어서 PG 켜면 중복 주문 + pending 잔류 위험)
+// 상위 handlePayment 에서 이미 existing/금액/userId/snapshot 모두 검증했으므로
+// 여기서는 단순 paid 마킹 + 배송 정보 갱신.
 async function createOrder(userId: string, payment: any, items: any[], shipping: any) {
-  // INSERT orders
-  const { data: order, error: orderErr } = await supabase
-    .from('orders').insert({
-      user_id: userId,
+  const { error: updErr } = await supabase
+    .from('orders')
+    .update({
       status: 'paid',
-      total_amount: payment.amount?.total || 0,
       payment_method: payment.method?.type || 'CARD',
-      portone_payment_id: payment.id,
       portone_tx_id: payment.transactionId,
-      shipping_name: shipping.name,
-      shipping_phone: shipping.phone,
-      shipping_address: shipping.address,
-      shipping_detail: shipping.detail,
-      shipping_zipcode: shipping.zipcode,
-      paid_at: payment.paidAt || new Date().toISOString()
-    }).select().single();
+      paid_at: payment.paidAt || new Date().toISOString(),
+      // shipping 정보는 create-order 시점 값을 우선하되, webhook 시 보강 가능
+      shipping_name: shipping.name ?? undefined,
+      shipping_phone: shipping.phone ?? undefined,
+      shipping_address: shipping.address ?? undefined,
+      shipping_detail: shipping.detail ?? undefined,
+      shipping_zipcode: shipping.zipcode ?? undefined,
+    })
+    .eq('portone_payment_id', payment.id)
+    .eq('user_id', userId);  // 이중 안전망
 
-  if (orderErr) throw orderErr;
-
-  // INSERT order_items
-  if (items.length > 0) {
-    const orderItems = items.map(it => ({
-      order_id: order.id,
-      product_id: it.product_id,
-      product_snapshot: it,
-      quantity: it.quantity || 1,
-      unit_price: it.unit_price,
-      subtotal: it.unit_price * (it.quantity || 1)
-    }));
-    await supabase.from('order_items').insert(orderItems);
-  }
+  if (updErr) throw updErr;
+  // order_items 는 create-order 시점에 이미 INSERT 됐으므로 추가 작업 없음.
 }
 
 async function activateSubscription(userId: string, planCode: string, billingCycle: string, level: string | null, payment: any) {
@@ -344,37 +336,23 @@ async function activateSubscription(userId: string, planCode: string, billingCyc
   if (billingCycle === 'annual') expiresAt.setFullYear(expiresAt.getFullYear() + 1);
   else expiresAt.setMonth(expiresAt.getMonth() + 1);
 
-  // 1. 기존 pending order 가 있는지 확인 (create-order 가 미리 만든 row)
-  const { data: existing } = await supabase
-    .from('orders').select('id, status')
-    .eq('portone_payment_id', payment.id).maybeSingle();
-
-  let orderId: string;
-  if (existing) {
-    // UPDATE — pending → paid
-    await supabase.from('orders').update({
+  // 상위 handlePayment 에서 existing 검증 완료 — 여기는 pending → paid UPDATE 만
+  const { data: updated, error: updErr } = await supabase
+    .from('orders')
+    .update({
       status: 'paid',
       payment_method: payment.method?.type || 'CARD',
       portone_tx_id: payment.transactionId,
       paid_at: payment.paidAt || new Date().toISOString(),
-    }).eq('id', existing.id);
-    orderId = existing.id;
-  } else {
-    // 레거시 경로: order가 없으면 새로 INSERT (create-order 안 거친 결제)
-    const { data: order, error: orderErr } = await supabase.from('orders').insert({
-      user_id: userId,
-      status: 'paid',
-      total_amount: payment.amount?.total || 0,
-      payment_method: payment.method?.type || 'CARD',
-      portone_payment_id: payment.id,
-      portone_tx_id: payment.transactionId,
-      paid_at: payment.paidAt || new Date().toISOString(),
-    }).select('id').single();
-    if (orderErr) throw orderErr;
-    orderId = order.id;
-  }
+    })
+    .eq('portone_payment_id', payment.id)
+    .eq('user_id', userId)
+    .select('id')
+    .single();
+  if (updErr) throw updErr;
+  const orderId = updated.id;
 
-  // 2. subscriptions에 level 포함해서 INSERT
+  // subscriptions INSERT (server-side 검증된 plan/cycle/level 사용)
   const { error: subErr } = await supabase.from('subscriptions').insert({
     user_id: userId,
     plan_code: planCode,
