@@ -261,7 +261,7 @@
           <a href="privacy.html" target="_blank" rel="noopener" class="terms-link">보기 ↗</a>
         </label>
         <label class="terms-item">
-          <input type="checkbox" class="term-check">
+          <input type="checkbox" class="term-check" id="marketing-consent">
           <span class="terms-item-text">[선택] 학습 관련 마케팅 정보 수신에 동의합니다.</span>
         </label>
       </div>
@@ -425,6 +425,10 @@
     const allTermsOk = Array.from(requiredTerms).every(cb => cb.checked);
     if(!allTermsOk){ alert('필수 약관에 모두 동의해 주세요.'); return; }
 
+    // 마케팅 동의 — 정보통신망법 제50조 따라 증적 보존 (Codex 검수 발견)
+    const marketingConsent = document.getElementById('marketing-consent')?.checked || false;
+    const consentTimestamp = new Date().toISOString();
+
     const submitBtn = e.target.querySelector('button[type="submit"]');
     if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = '가입 중...'; }
 
@@ -441,7 +445,11 @@
             phone,
             shipping_zipcode: zip,
             shipping_address: addrMain,
-            shipping_detail: addrDetail
+            shipping_detail: addrDetail,
+            marketing_consent: marketingConsent,
+            terms_agreed_at: consentTimestamp,
+            privacy_agreed_at: consentTimestamp,
+            marketing_agreed_at: marketingConsent ? consentTimestamp : null
           },
           emailRedirectTo: location.origin + location.pathname.replace(/signup\.html$/, 'login.html')
         }
@@ -469,11 +477,15 @@
       return;
     }
 
-    // profile 기본 정보 업데이트
+    // profile 기본 정보 업데이트 + 동의 증적
     if (data.user) {
       await supabase.from('profiles').update({
         display_name: name,
-        phone
+        phone,
+        marketing_consent: marketingConsent,
+        terms_agreed_at: consentTimestamp,
+        privacy_agreed_at: consentTimestamp,
+        marketing_agreed_at: marketingConsent ? consentTimestamp : null
       }).eq('id', data.user.id);
     }
 
