@@ -15,22 +15,13 @@ window.NAVER_CLIENT_ID = 'jrpqX5SMmUskZT2AuJvE';
 //   4. 미설정 채널은 빈 문자열 유지 → 결제창에서 자동으로 비활성화
 // ─────────────────────────────────────────────────────────────
 window.PORTONE_STORE_ID = 'store-bb4f1ef9-bd0f-444c-9315-5c5608a3c281';
-// 현재 운영 채널 (2026-05 기준):
-//   ✅ card_inicis  — KG이니시스 신용카드 (일반/정기 심사 완료)
-//   ⏳ kakaopay     — 카카오페이 (입점 심사중)
-//   ⏳ card_kcp     — KCP (반려, 재신청 검토중)
-//   ⏳ naverpay     — 네이버페이 (취소)
-// 빈 문자열 채널은 결제수단 선택 UI에서 자동 비활성화됨.
+// 운영 정책 (2026-05 기준): KG이니시스 단독 운영
+//   ✅ card_inicis  — KG이니시스 신용카드 (KG이니시스 결제창 안에서 카드 + 간편결제 모두 선택 가능)
+//   카카오페이/네이버페이 별도 PG 연동은 불필요 — KG이니시스 결제창이 통합 제공.
 window.PORTONE_CHANNEL_KEYS = {
-  kakaopay: '',                // 심사 통과 후 'channel-key-...' 입력
-  naverpay: '',                // 미사용
-  card_kcp: '',                // 미사용 (반려)
   card_inicis: ''              // 🔧 포트원 대시보드 → 결제 연동 → 채널 관리에서 KG이니시스 채널키 복사 후 입력
 };
 window.PORTONE_PAY_METHODS = {
-  // 사용자 결제수단 선택 → PortOne payMethod 매핑
-  kakaopay: 'EASY_PAY',
-  naverpay: 'EASY_PAY',
   card: 'CARD'
 };
 

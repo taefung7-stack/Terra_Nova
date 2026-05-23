@@ -622,28 +622,19 @@
           </div>
         </div>
 
-        <!-- 결제수단 선택 -->
+        <!-- 결제수단 — KG이니시스 단독 운영 (카드 + 결제창 내 간편결제 통합) -->
         <div id="paymethod-wrap" style="margin-top:14px;padding:12px;background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:8px;">
           <div style="font-size:.72rem;color:var(--dim);margin-bottom:8px;letter-spacing:1px;text-transform:uppercase;font-weight:700;">결제수단</div>
           <div id="paymethod-options" style="display:flex;flex-direction:column;gap:6px;">
-            <label class="pm-opt" data-pm="kakaopay" style="display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--line);border-radius:6px;cursor:pointer;">
-              <input type="radio" name="paymethod" value="kakaopay" style="accent-color:var(--accent);">
-              <span style="display:inline-block;width:22px;height:22px;background:#FEE500;border-radius:4px;text-align:center;line-height:22px;font-weight:900;color:#181600;font-size:.85rem;">K</span>
-              <span style="font-size:.88rem;font-weight:600;">카카오페이</span>
-              <span class="pm-status" style="margin-left:auto;font-size:.7rem;color:var(--dim);"></span>
-            </label>
-            <label class="pm-opt" data-pm="naverpay" style="display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--line);border-radius:6px;cursor:pointer;">
-              <input type="radio" name="paymethod" value="naverpay" style="accent-color:var(--accent);">
-              <span style="display:inline-block;width:22px;height:22px;background:#03C75A;border-radius:4px;text-align:center;line-height:22px;font-weight:900;color:#fff;font-size:.85rem;">N</span>
-              <span style="font-size:.88rem;font-weight:600;">네이버페이</span>
-              <span class="pm-status" style="margin-left:auto;font-size:.7rem;color:var(--dim);"></span>
-            </label>
-            <label class="pm-opt" data-pm="card" style="display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--line);border-radius:6px;cursor:pointer;">
-              <input type="radio" name="paymethod" value="card" style="accent-color:var(--accent);">
+            <label class="pm-opt" data-pm="card" style="display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--accent);background:rgba(0,255,163,.06);border-radius:6px;cursor:pointer;">
+              <input type="radio" name="paymethod" value="card" checked style="accent-color:var(--accent);">
               <span style="display:inline-block;width:22px;height:22px;background:#3b82f6;border-radius:4px;text-align:center;line-height:22px;font-weight:900;color:#fff;font-size:.85rem;">💳</span>
-              <span style="font-size:.88rem;font-weight:600;">신용카드</span>
+              <span style="font-size:.88rem;font-weight:600;">신용·체크카드 (KG이니시스)</span>
               <span class="pm-status" style="margin-left:auto;font-size:.7rem;color:var(--dim);"></span>
             </label>
+          </div>
+          <div style="margin-top:10px;padding:8px 12px;background:rgba(0,255,163,.04);border:1px solid rgba(0,255,163,.15);border-radius:6px;font-size:.72rem;color:var(--dim);line-height:1.6;">
+            💡 결제창에서 신용카드 외에 <strong style="color:var(--accent);">카카오페이·네이버페이·삼성페이·페이코</strong> 등 간편결제도 선택할 수 있습니다.
           </div>
           <div id="paymethod-notice" style="margin-top:8px;font-size:.72rem;color:#F59E0B;display:none;"></div>
         </div>
@@ -874,9 +865,8 @@
       const radio = label.querySelector('input[type=radio]');
       const status = label.querySelector('.pm-status');
       let available = false;
-      if (pm === 'kakaopay') available = !!storeId && !!keys.kakaopay;
-      else if (pm === 'naverpay') available = !!storeId && !!keys.naverpay;
-      else if (pm === 'card') available = !!storeId && (!!keys.card_kcp || !!keys.card_inicis);
+      // KG이니시스 단독 운영 — card 채널만 사용
+      if (pm === 'card') available = !!storeId && (!!keys.card_inicis || !!keys.card_kcp);
       if (available) {
         availableCount++;
         label.style.opacity = '1';
@@ -948,20 +938,15 @@
       return;
     }
 
-    // 결제수단 선택
-    const pmRadio = document.querySelector('input[name=paymethod]:checked');
-    if (!pmRadio) { alert('결제수단을 선택해 주세요.'); return; }
-    const paymethod = pmRadio.value;  // 'kakaopay' | 'naverpay' | 'card'
+    // 결제수단 — KG이니시스 단독 (card 만 사용)
+    const paymethod = 'card';
 
-    // PortOne 키 검증
+    // PortOne 키 검증 — card_inicis 우선, 없으면 card_kcp
     const storeId = window.PORTONE_STORE_ID || '';
     const keys = window.PORTONE_CHANNEL_KEYS || {};
-    let channelKey = '';
-    if (paymethod === 'kakaopay') channelKey = keys.kakaopay;
-    else if (paymethod === 'naverpay') channelKey = keys.naverpay;
-    else if (paymethod === 'card') channelKey = keys.card_inicis || keys.card_kcp;
+    const channelKey = keys.card_inicis || keys.card_kcp || '';
     if (!storeId || !channelKey) {
-      alert('해당 결제수단은 현재 준비중입니다.');
+      alert('결제 시스템이 준비중입니다.\n잠시 후 다시 시도해주세요.');
       return;
     }
     if (!window.PortOne) {
@@ -1022,19 +1007,15 @@
       subscriberPhone: phone,
       subscriberEmail: email
     };
-    const payMethod = (window.PORTONE_PAY_METHODS || {})[paymethod] || 'EASY_PAY';
-    const easyPayProvider =
-      paymethod === 'kakaopay' ? 'KAKAOPAY' :
-      paymethod === 'naverpay' ? 'NAVERPAY' : null;
-
-    let payRequest = {
+    // KG이니시스: payMethod='CARD' 로 결제창 열면 카드 + 간편결제 모두 선택 가능
+    const payRequest = {
       storeId,
       channelKey,
       paymentId: orderResp.payment_id,
       orderName: orderResp.order_name,
       totalAmount: orderResp.verified_total,
       currency: 'KRW',
-      payMethod,
+      payMethod: 'CARD',
       customer: {
         fullName: name,
         email: email,
@@ -1043,9 +1024,6 @@
       customData,
       redirectUrl: location.origin + '/payment-complete.html?payment_id=' + encodeURIComponent(orderResp.payment_id)
     };
-    if (easyPayProvider) {
-      payRequest.easyPay = { easyPayProvider };
-    }
 
     let result;
     try {
