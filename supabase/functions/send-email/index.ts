@@ -75,6 +75,15 @@ function won(n: number): string {
   return (n ?? 0).toLocaleString('ko-KR') + '원';
 }
 
+function escapeHtml(s: string): string {
+  return String(s ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 function baseWrap(innerHtml: string): string {
   return `<!doctype html><html lang="ko"><body style="margin:0;padding:0;background:#F7F7F6;font-family:'Noto Sans KR','Malgun Gothic',sans-serif;">
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F7F7F6;padding:32px 16px;">
@@ -198,6 +207,40 @@ function renderTemplate(type: string, d: Record<string, any>): { subject: string
           링크가 만료되었거나 다른 기기에서 다시 받고 싶다면 → <a href="https://terra-nova.kr/mypage.html" style="color:#2DD4BF;font-weight:700;">마이페이지 학습 자료</a>
         </p>
         <p style="margin:8px 0 0;color:#666;font-size:12px;">레벨 변경은 마이페이지 → 레벨에서 다음 달 발송분부터 적용됩니다.</p>
+      `),
+    };
+  }
+
+  if (type === 'order_pdf') {
+    // 마켓 단품 결제 완료 → 디지털 상품 다운로드 링크 발송
+    const { orderId, downloads, ttlDays } = d;
+    const list: Array<{ name: string; url: string }> = Array.isArray(downloads) ? downloads : [];
+    if (list.length === 0) return null;
+
+    const itemsHtml = list.map(item => `
+      <tr>
+        <td style="padding:12px 14px;border-bottom:1px solid #EEE;">
+          <div style="font-weight:700;color:#0A0A0A;margin-bottom:6px;">${escapeHtml(item.name)}</div>
+          <a href="${String(item.url)}" style="display:inline-block;padding:10px 22px;background:#2DD4BF;color:#0A0A0A;text-decoration:none;font-weight:800;border-radius:6px;font-size:13px;">다운로드 →</a>
+        </td>
+      </tr>
+    `).join('');
+
+    return {
+      subject: `[Terra Nova] 주문하신 PDF ${list.length}건이 도착했습니다`,
+      html: baseWrap(`
+        <h2 style="font-size:18px;margin:0 0 16px;color:#0A0A0A;">주문하신 디지털 상품이 준비됐습니다 ✦</h2>
+        <p style="margin:0 0 12px;">결제해 주셔서 감사합니다. 아래 각 상품의 다운로드 버튼을 눌러 받아주세요.</p>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F7F7F6;border-radius:8px;margin:16px 0;">
+          ${itemsHtml}
+        </table>
+        <table role="presentation" width="100%" cellpadding="8" cellspacing="0" style="background:#F7F7F6;border-radius:8px;margin:16px 0;font-size:13px;">
+          <tr><td style="color:#888;width:90px;">주문번호</td><td><strong>${escapeHtml(String(orderId || '').slice(0, 8))}</strong></td></tr>
+          <tr><td style="color:#888;">다운로드 링크 유효기간</td><td>${Number(ttlDays) || 30}일</td></tr>
+        </table>
+        <p style="margin:16px 0 0;color:#666;font-size:12px;line-height:1.7;">
+          링크가 만료되었거나 다른 기기에서 다시 받고 싶다면 → <a href="https://terra-nova.kr/mypage.html" style="color:#2DD4BF;font-weight:700;">마이페이지 주문 내역</a>
+        </p>
       `),
     };
   }

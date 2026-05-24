@@ -302,20 +302,32 @@ async function handlePayment(data: { paymentId: string; txId: string }) {
     });
   }
 
-  // 6. 구독 결제 성공 시 — 해당 사용자에게 그달치 PDF 즉시 발송 (결제일 기준 정책)
-  // (best-effort: 실패해도 webhook 자체는 200 OK 응답하여 PortOne 재시도 방지)
+  // 6. 결제 완료 직후 PDF 즉시 발송 (best-effort, 실패해도 webhook 은 200 OK)
+  const dispatchHeaders = {
+    'Authorization': `Bearer ${Deno.env.get('INTERNAL_EMAIL_SECRET')}`,
+    'Content-Type': 'application/json',
+  };
   if (isSubscription) {
+    // 구독 결제 → 그달치 월간 PDF 발송 (dispatch-monthly-pdf)
     try {
       await fetch(`${Deno.env.get('SUPABASE_URL')}/functions/v1/dispatch-monthly-pdf`, {
         method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${Deno.env.get('INTERNAL_EMAIL_SECRET')}`,
-          'Content-Type': 'application/json',
-        },
+        headers: dispatchHeaders,
         body: JSON.stringify({ userId: verifiedUserId }),
       });
     } catch (err) {
-      console.error('[webhook] post-payment dispatch failed (non-fatal):', err);
+      console.error('[webhook] post-subscription dispatch failed (non-fatal):', err);
+    }
+  } else {
+    // 마켓 단품 결제 → 주문 내 디지털 상품 PDF 발송 (dispatch-order-pdf)
+    try {
+      await fetch(`${Deno.env.get('SUPABASE_URL')}/functions/v1/dispatch-order-pdf`, {
+        method: 'POST',
+        headers: dispatchHeaders,
+        body: JSON.stringify({ orderId: existing.id }),
+      });
+    } catch (err) {
+      console.error('[webhook] post-market dispatch failed (non-fatal):', err);
     }
   }
 
