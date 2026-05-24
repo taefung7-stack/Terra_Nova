@@ -19,9 +19,10 @@ window.PORTONE_STORE_ID = 'store-bb4f1ef9-bd0f-444c-9315-5c5608a3c281';
 //   ✅ card_inicis  — KG이니시스 신용카드 (KG이니시스 결제창 안에서 카드 + 간편결제 모두 선택 가능)
 //   카카오페이/네이버페이 별도 PG 연동은 불필요 — KG이니시스 결제창이 통합 제공.
 window.PORTONE_CHANNEL_KEYS = {
-  // KG이니시스 메인 채널 (MOI5915678) — 카드 + 정기결제 + 가상계좌 + 계좌이체 통합
-  // 2026-05-24 발급, 이전 보조 MID(MOI2432342) 채널 대체
-  card_inicis: 'channel-key-9982c887-52f5-40cc-ba7e-3af5a8b64f1e'
+  // KG이니시스 채널 (2026-05-24 일시 롤백)
+  // MOI5915678 메인 MID 는 카드사 심사 0개 등록 상태로 'PG Sub 사업자 번호 없음' 에러 발생
+  // → MOI2432342 보조 MID 채널로 일시 롤백, 카드사 심사 완료 후 MOI5915678 채널로 재교체 예정
+  card_inicis: 'channel-key-bcea3c1d-7213-42ad-a549-e7c43ca80857'
 };
 window.PORTONE_PAY_METHODS = {
   card: 'CARD'
