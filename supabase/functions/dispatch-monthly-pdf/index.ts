@@ -1,21 +1,30 @@
 // Terra Nova · 월간 PDF 발송 Edge Function
 // 배포: supabase functions deploy dispatch-monthly-pdf --no-verify-jwt
+//
+// 운영 정책 (2026-05-24 정정):
+//   ❌ 이전: 매월 1일 09:00 cron 이 모든 활성 구독자에게 일괄 발송
+//   ✅ 현재: 결제일 기준 즉시 발송
+//          - 신규 결제 시 → portone-webhook 이 호출 (해당 user 만)
+//          - 자동 갱신 시 → renew-subscriptions 가 호출 (해당 user 만)
+//          - 안전망 cron → 매일 09:00, 같은 month 미발송 사용자만 retry
+//
 // 환경변수:
 //   SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY  — 자동 주입
 //   INTERNAL_EMAIL_SECRET                    — send-email 호출용 + cron 인증용
 //   SIGNED_URL_TTL_DAYS                      — 다운로드 링크 유효 기간 (default 30)
 //
-// 호출 방법 (둘 중 하나):
-//   1. pg_cron: HTTP POST + Authorization: Bearer <INTERNAL_EMAIL_SECRET>
-//   2. admin이 admin.html에서 수동 실행 (관리자 JWT)
+// 입력 (body):
+//   { userId?: 'uuid' }          — 특정 사용자만 발송 (webhook 트리거)
+//   { month?: 'YYYY-MM' }        — 발송할 월 (기본: 현재 월)
+//   { force?: boolean }          — 이미 발송된 사용자도 재발송 (admin 수동 트리거)
 //
-// 입력: { month?: 'YYYY-MM' } (기본: 현재 월)
 // 처리:
-//   1. month-{level}.pdf 가 textbook-pdfs 버킷에 있는지 확인
-//   2. status='active' AND expires_at>now() AND level NOT NULL 인 구독자 조회
-//   3. 같은 month로 이미 발송 완료(sent)된 사용자는 skip (멱등성)
+//   1. userId 지정 시 → 그 사용자만, 미지정 시 → 활성 구독자 전체
+//   2. month-{level}.pdf 가 textbook-pdfs 버킷에 있는지 확인
+//   3. 같은 month 로 이미 발송 완료(sent)된 사용자는 skip (멱등성, force=true 시 우회)
 //   4. 각 사용자에게 30일 signed URL 생성 → send-email 호출
 //   5. monthly_pdf_dispatches 로그 기록
+//
 // 응답: { processed, sent, skipped, failed, errors[] }
 
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.45.0';
@@ -68,30 +77,43 @@ Deno.serve(async (req) => {
   let body: any = {};
   try { body = await req.json(); } catch { /* 빈 body 허용 */ }
   const month: string = (body.month || nowMonthKey()).match(/^\d{4}-\d{2}$/) ? body.month || nowMonthKey() : nowMonthKey();
+  const targetUserId: string | null = body.userId || null;
+  const force: boolean = body.force === true;
 
-  // ── 3. 활성 구독자 조회 ──
-  // user_id, level, email은 auth.users 와 join 필요 — service role로 admin API 사용
-  const { data: subs, error: subsErr } = await sb
+  // ── 3. 활성 구독자 조회 (전체 또는 특정 user) ──
+  let subsQuery = sb
     .from('subscriptions')
     .select('user_id, level, expires_at, plan_code')
     .eq('status', 'active')
     .gt('expires_at', new Date().toISOString())
     .not('level', 'is', null);
 
-  if (subsErr) return jsonResp({ error: 'Subscription query failed: ' + subsErr.message }, 500);
-  if (!subs || subs.length === 0) {
-    return jsonResp({ ok: true, month, processed: 0, sent: 0, skipped: 0, failed: 0, message: 'No active subscribers' }, 200);
+  if (targetUserId) {
+    subsQuery = subsQuery.eq('user_id', targetUserId);
   }
 
-  // 이미 이번 month로 발송된 user 조회 (idempotency)
+  const { data: subs, error: subsErr } = await subsQuery;
+
+  if (subsErr) return jsonResp({ error: 'Subscription query failed: ' + subsErr.message }, 500);
+  if (!subs || subs.length === 0) {
+    return jsonResp({
+      ok: true, month, processed: 0, sent: 0, skipped: 0, failed: 0,
+      message: targetUserId ? `No active subscription for user ${targetUserId}` : 'No active subscribers',
+    }, 200);
+  }
+
+  // 이미 이번 month로 발송된 user 조회 (idempotency, force=true 시 무시)
   const userIds = subs.map(s => s.user_id);
-  const { data: alreadySent } = await sb
-    .from('monthly_pdf_dispatches')
-    .select('user_id')
-    .eq('month', month)
-    .eq('email_status', 'sent')
-    .in('user_id', userIds);
-  const sentSet = new Set((alreadySent || []).map(r => r.user_id));
+  let sentSet = new Set<string>();
+  if (!force) {
+    const { data: alreadySent } = await sb
+      .from('monthly_pdf_dispatches')
+      .select('user_id')
+      .eq('month', month)
+      .eq('email_status', 'sent')
+      .in('user_id', userIds);
+    sentSet = new Set((alreadySent || []).map(r => r.user_id));
+  }
 
   // ── 4. user별 처리 ──
   const errors: any[] = [];

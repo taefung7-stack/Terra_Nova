@@ -302,6 +302,23 @@ async function handlePayment(data: { paymentId: string; txId: string }) {
     });
   }
 
+  // 6. 구독 결제 성공 시 — 해당 사용자에게 그달치 PDF 즉시 발송 (결제일 기준 정책)
+  // (best-effort: 실패해도 webhook 자체는 200 OK 응답하여 PortOne 재시도 방지)
+  if (isSubscription) {
+    try {
+      await fetch(`${Deno.env.get('SUPABASE_URL')}/functions/v1/dispatch-monthly-pdf`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${Deno.env.get('INTERNAL_EMAIL_SECRET')}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ userId: verifiedUserId }),
+      });
+    } catch (err) {
+      console.error('[webhook] post-payment dispatch failed (non-fatal):', err);
+    }
+  }
+
   return new Response(JSON.stringify({ ok: true }), { status: 200 });
 }
 

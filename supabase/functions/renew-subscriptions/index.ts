@@ -197,6 +197,20 @@ async function renewOne(sub: {
     .eq('id', sub.id);
 
   if (updErr) throw updErr;
+
+  // 자동 갱신 성공 → 해당 사용자에게 그달치 PDF 즉시 발송 (결제일 기준 정책, best-effort)
+  try {
+    await fetch(`${Deno.env.get('SUPABASE_URL')}/functions/v1/dispatch-monthly-pdf`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${Deno.env.get('INTERNAL_EMAIL_SECRET')}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ userId: sub.user_id }),
+    });
+  } catch (err) {
+    console.error('[renew] post-renewal dispatch failed (non-fatal):', err);
+  }
 }
 
 async function markFailed(subId: string, reason: string) {

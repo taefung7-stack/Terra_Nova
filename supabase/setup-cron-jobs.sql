@@ -1,10 +1,16 @@
 -- ============================================================
--- Terra Nova English — pg_cron 자동화 설정
+-- Terra Nova English — pg_cron 자동화 설정 (2026-05-24 정책 정정)
 -- 실행 위치: Supabase Dashboard → SQL Editor (한 번 실행)
 --
+-- 운영 정책 (정정):
+--   ❌ 이전: 매월 1일에 모든 구독자 일괄 발송
+--   ✅ 현재: 결제일 기준 발송
+--          - 결제·자동갱신 직후 즉시 발송 (webhook에서 직접 호출)
+--          - 매일 09:00 안전망 cron 으로 누락분 자동 retry
+--
 -- 등록되는 cron 작업:
---   1. terra-monthly-pdf-dispatch — 매월 1일 KST 06:00 신간 PDF 발송
---   2. terra-renew-subscriptions  — 매일 KST 03:00 만료 임박 구독 자동 결제
+--   1. terra-monthly-pdf-safetynet — 매일 KST 09:00 안전망 (누락 사용자 발송)
+--   2. terra-renew-subscriptions   — 매일 KST 03:00 만료 임박 구독 자동 결제
 --
 -- 사전 준비:
 --   1. Supabase Dashboard → Database → Extensions 에서 `pg_cron`, `pg_net` 활성화
@@ -22,20 +28,19 @@ CREATE EXTENSION IF NOT EXISTS pg_net;
 SELECT cron.unschedule('terra-monthly-pdf-dispatch')
 WHERE EXISTS (SELECT 1 FROM cron.job WHERE jobname = 'terra-monthly-pdf-dispatch');
 
+SELECT cron.unschedule('terra-monthly-pdf-safetynet')
+WHERE EXISTS (SELECT 1 FROM cron.job WHERE jobname = 'terra-monthly-pdf-safetynet');
+
 SELECT cron.unschedule('terra-renew-subscriptions')
 WHERE EXISTS (SELECT 1 FROM cron.job WHERE jobname = 'terra-renew-subscriptions');
 
--- ── 2. 월간 PDF 발송 — 매월 1일 KST 06:00 (= UTC 21:00 전월 말일) ──
--- cron 표현식: 분 시 일 월 요일 (UTC 기준)
--- KST 06:00 = UTC 21:00 → 0 21 마지막날 * *  (월 단위라 1일 자정 발송이 가장 안전)
--- 여기서는 매월 1일 KST 06:00 = UTC 0일 21:00 으로 단순화: '0 21 1 * *'는 UTC 1일 21:00 = KST 2일 06:00
--- 따라서 KST 1일 06:00 발송: UTC 전월말일 21:00 → cron 으로 '0 21 L * *' L 미지원이라
--- 대안: '0 21 28-31 * *' + SQL 안에서 '내일이 1일?' 체크
--- 가장 안전: 매월 1일 KST 06:00 = UTC 0일 21:00 = '0 21 0 * *'는 invalid
--- → 단순하게 매월 1일 UTC 00:00 (= KST 09:00) 으로 변경
+-- ── 2. PDF 발송 안전망 — 매일 KST 09:00 ────────────────────
+-- 정상 흐름: 결제·자동갱신 webhook 이 즉시 PDF 발송 → 이 cron 은 누락분만 처리
+-- 멱등성: dispatch-monthly-pdf 가 month+userId 기준으로 중복 발송 자동 skip
+-- 결제일 기준 발송 정책: userId 미지정 시 active 구독 전체 중 그달 미발송자만 발송
 SELECT cron.schedule(
-  'terra-monthly-pdf-dispatch',
-  '0 0 1 * *',  -- 매월 1일 UTC 00:00 = KST 09:00
+  'terra-monthly-pdf-safetynet',
+  '0 0 * * *',  -- 매일 UTC 00:00 = KST 09:00
   $$
   SELECT net.http_post(
     url := 'https://_PROJECT_REF_.supabase.co/functions/v1/dispatch-monthly-pdf',
@@ -43,8 +48,9 @@ SELECT cron.schedule(
       'Authorization', 'Bearer _INTERNAL_EMAIL_SECRET_',
       'Content-Type', 'application/json'
     ),
+    -- body 비워두면 month=현재 월, userId 없음 → 활성 구독자 전체 중 미발송자만 발송
     body := jsonb_build_object('month', to_char(now() AT TIME ZONE 'Asia/Seoul', 'YYYY-MM')),
-    timeout_milliseconds := 600000  -- 10분 (구독자 많을 때 대비)
+    timeout_milliseconds := 600000
   );
   $$
 );

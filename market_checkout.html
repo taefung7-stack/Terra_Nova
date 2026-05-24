@@ -176,13 +176,13 @@
     <!-- LOGIN GATE (shown when not logged in) -->
     <div class="login-gate" id="login-gate" style="display:none;">
       <div class="icon">🔒</div>
-      <h3>로그인 후 결제를 진행해주세요</h3>
-      <p>회원이시면 배송·결제 정보가 자동으로 입력되어 빠르게 결제할 수 있습니다.<br>비회원 결제도 가능합니다.</p>
+      <h3>마켓 결제는 정식 오픈 예정입니다</h3>
+      <p>현재 마켓 단품 결제는 PG·배송 정책 확정 전으로 비활성화되어 있습니다.<br>정식 오픈 후에는 회원 주문을 우선 지원할 예정입니다.</p>
       <div class="btns">
         <a class="btn-gate-primary" id="gate-login">로그인</a>
         <a class="btn-gate-secondary" id="gate-signup">회원가입</a>
       </div>
-      <button class="btn-guest" onclick="useGuest()">비회원으로 계속 진행 →</button>
+      <button class="btn-guest" type="button" disabled style="opacity:.45;cursor:not-allowed;">비회원 주문 준비중</button>
     </div>
 
     <!-- CHECKOUT FORM (shown when logged in OR guest mode) -->
@@ -220,18 +220,9 @@
       <!-- PDF-only notice -->
       <div class="panel" id="panel-pdf-notice" style="display:none;">
         <h2><span class="num">2</span> 디지털 상품 발송</h2>
-        <p style="font-size:.88rem;color:var(--dim);line-height:1.7;">선택하신 상품은 모두 <strong style="color:var(--accent);">PDF 디지털 상품</strong>입니다. 결제 완료 즉시 주문자 이메일로 다운로드 링크가 발송되며, 배송지 입력은 필요하지 않습니다.</p>
+        <p style="font-size:.88rem;color:var(--dim);line-height:1.7;">선택하신 상품은 모두 <strong style="color:var(--accent);">PDF 디지털 상품</strong>입니다. 마켓 정식 오픈 후 결제가 완료되면 주문자 이메일로 다운로드 링크가 발송되며, 배송지 입력은 필요하지 않습니다.</p>
       </div>
 
-      <div class="panel">
-        <h2><span class="num" id="pay-num">3</span> 결제 수단</h2>
-        <div class="pay-methods">
-          <div class="pay-method active" data-pay="card" onclick="selectPay(this)">💳 신용/체크카드</div>
-          <div class="pay-method" data-pay="kakao" onclick="selectPay(this)">💛 카카오페이</div>
-          <div class="pay-method" data-pay="naver" onclick="selectPay(this)">💚 네이버페이</div>
-          <div class="pay-method" data-pay="bank" onclick="selectPay(this)">🏦 무통장입금</div>
-        </div>
-      </div>
     </div>
   </div>
 
@@ -243,8 +234,7 @@
       <div class="sum-row" id="row-ship"><span>배송비</span><span id="sum-ship">0원</span></div>
       <div class="sum-row total"><span>총 결제금액</span><span class="amt" id="sum-total">0원</span></div>
       <button class="btn-pay" id="btn-pay" onclick="doPay()">결제하기</button>
-      <div id="pay-notice" style="display:none;margin-top:12px;padding:10px 14px;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.3);border-radius:6px;font-size:.75rem;color:#F59E0B;line-height:1.6;text-align:center;">⚠️ 마켓 결제는 PG사 심사 완료 후 정식 오픈됩니다.<br>현재는 <a href="order.html" style="color:var(--accent);text-decoration:underline;">구독 신청 (LIGHT)</a>만 가능합니다.</div>
-      <p style="font-size:.7rem;color:rgba(240,240,240,.4);text-align:center;margin-top:12px;line-height:1.6;">주문 시 결제 및 배송 정보 제공에 동의합니다.<br>이 결제는 구독 결제와 별도로 처리됩니다.</p>
+      <p style="font-size:.7rem;color:rgba(240,240,240,.4);text-align:center;margin-top:12px;line-height:1.6;">마켓 단품 결제는 현재 준비중입니다.<br>정식 오픈 시 별도 결제·배송·환불 안내를 고지합니다.</p>
     </div>
   </div>
 </div>
