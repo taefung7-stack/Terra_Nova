@@ -1011,21 +1011,9 @@
     // customer.fullName 한글도 일부 PG 에서 거절 가능 → ASCII fallback (이메일 prefix)
     const safeName = (email && email.split('@')[0]) || 'customer';
 
-    // 결제수단별 PortOne payMethod + easyPay 옵션 결정 (KG이니시스 통합결제 V2)
-    const payMethodMap = {
-      card: 'CARD',
-      kakaopay: 'EASY_PAY',
-      naverpay: 'EASY_PAY',
-      payco: 'EASY_PAY'
-    };
-    const easyPayProviderMap = {
-      kakaopay: 'KAKAOPAY',
-      naverpay: 'NAVERPAY',
-      payco: 'PAYCO'
-    };
-    const payMethod = payMethodMap[paymethod] || 'CARD';
-    const easyPayProvider = easyPayProviderMap[paymethod] || null;
-
+    // KG이니시스 통합결제 V2 — payMethod='CARD' + bypass.inicis_v2.acceptmethod 로
+    // 결제창에서 카드 + 간편결제(카카오페이/네이버페이/페이코/삼성페이) 모두 노출
+    // 사용자가 선택한 paymethod 를 KG이니시스 결제창의 기본 탭으로 미리 선택
     const payRequest = {
       storeId,
       channelKey,
@@ -1033,18 +1021,21 @@
       orderName: orderResp.order_name,
       totalAmount: orderResp.verified_total,
       currency: 'KRW',
-      payMethod,
+      payMethod: 'CARD',  // KG이니시스는 CARD 로 시작 → 결제창에서 다른 탭 선택 가능
       customer: {
         fullName: safeName,
         email: email,
         phoneNumber: phone.replace(/-/g,'')
       },
       customData,
+      // KG이니시스 V2 전용 옵션: acceptmethod 로 노출할 결제수단 명시
+      bypass: {
+        inicis_v2: {
+          acceptmethod: ['HPP(1):Below1000', 'centerCd(Y)', 'BILLAUTH(Card)', 'kakaopay', 'naverpay', 'payco', 'samsungpay']
+        }
+      },
       redirectUrl: location.origin + '/payment-complete.html?payment_id=' + encodeURIComponent(orderResp.payment_id)
     };
-    if (easyPayProvider) {
-      payRequest.easyPay = { easyPayProvider };
-    }
 
     let result;
     try {
