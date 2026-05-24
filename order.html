@@ -610,39 +610,7 @@
           </div>
         </div>
 
-        <!-- 결제수단 선택 — 카드만 즉시 가능, 간편결제는 준비중 -->
-        <div id="paymethod-wrap" style="margin-top:14px;padding:12px;background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:8px;">
-          <div style="font-size:.72rem;color:var(--dim);margin-bottom:8px;letter-spacing:1px;text-transform:uppercase;font-weight:700;">결제수단</div>
-          <div id="paymethod-options" style="display:grid;grid-template-columns:repeat(2,1fr);gap:6px;">
-            <label class="pm-opt" data-pm="card" style="display:flex;align-items:center;gap:8px;padding:10px 12px;border:1px solid var(--accent);background:rgba(0,255,163,.06);border-radius:6px;cursor:pointer;">
-              <input type="radio" name="paymethod" value="card" checked style="accent-color:var(--accent);">
-              <span style="display:inline-block;width:22px;height:22px;background:#3b82f6;border-radius:4px;text-align:center;line-height:22px;font-weight:900;color:#fff;font-size:.85rem;">💳</span>
-              <span style="font-size:.85rem;font-weight:600;">신용·체크카드</span>
-            </label>
-            <label class="pm-opt is-soon" data-pm="kakaopay" title="간편결제 추가 신청 중 — 1~2주 후 활성화 예정" style="display:flex;align-items:center;gap:8px;padding:10px 12px;border:1px solid var(--line);border-radius:6px;cursor:not-allowed;opacity:.45;">
-              <input type="radio" name="paymethod" value="kakaopay" disabled style="accent-color:var(--accent);">
-              <span style="display:inline-block;width:22px;height:22px;background:#FEE500;border-radius:4px;text-align:center;line-height:22px;font-weight:900;color:#181600;font-size:.85rem;">K</span>
-              <span style="font-size:.85rem;font-weight:600;">카카오페이</span>
-              <span style="margin-left:auto;font-size:.65rem;color:#F59E0B;">준비중</span>
-            </label>
-            <label class="pm-opt is-soon" data-pm="naverpay" title="간편결제 추가 신청 중 — 1~2주 후 활성화 예정" style="display:flex;align-items:center;gap:8px;padding:10px 12px;border:1px solid var(--line);border-radius:6px;cursor:not-allowed;opacity:.45;">
-              <input type="radio" name="paymethod" value="naverpay" disabled style="accent-color:var(--accent);">
-              <span style="display:inline-block;width:22px;height:22px;background:#03C75A;border-radius:4px;text-align:center;line-height:22px;font-weight:900;color:#fff;font-size:.85rem;">N</span>
-              <span style="font-size:.85rem;font-weight:600;">네이버페이</span>
-              <span style="margin-left:auto;font-size:.65rem;color:#F59E0B;">준비중</span>
-            </label>
-            <label class="pm-opt is-soon" data-pm="payco" title="간편결제 추가 신청 중 — 1~2주 후 활성화 예정" style="display:flex;align-items:center;gap:8px;padding:10px 12px;border:1px solid var(--line);border-radius:6px;cursor:not-allowed;opacity:.45;">
-              <input type="radio" name="paymethod" value="payco" disabled style="accent-color:var(--accent);">
-              <span style="display:inline-block;width:22px;height:22px;background:#FF3F3F;border-radius:4px;text-align:center;line-height:22px;font-weight:900;color:#fff;font-size:.85rem;">P</span>
-              <span style="font-size:.85rem;font-weight:600;">페이코</span>
-              <span style="margin-left:auto;font-size:.65rem;color:#F59E0B;">준비중</span>
-            </label>
-          </div>
-          <div style="margin-top:10px;padding:8px 12px;background:rgba(0,255,163,.04);border:1px solid rgba(0,255,163,.15);border-radius:6px;font-size:.7rem;color:var(--dim);line-height:1.6;">
-            💡 현재는 <strong style="color:var(--accent);">신용·체크카드</strong> 결제로 진행됩니다. 카드 결제창에서 카드사별 앱카드/QR 간편결제도 선택 가능합니다. 간편결제(카카오페이·네이버페이·페이코) 직접 결제는 추가 PG 심사 완료 후 활성화 예정입니다.
-          </div>
-          <div id="paymethod-notice" style="margin-top:8px;font-size:.72rem;color:#F59E0B;display:none;"></div>
-        </div>
+        <div id="paymethod-notice" style="margin-top:14px;font-size:.72rem;color:#F59E0B;display:none;text-align:center;"></div>
 
         <button class="btn-order" id="btn-order" onclick="submitOrder()">구독 신청하기</button>
       </div>
@@ -858,48 +826,23 @@
   });
 
   // ── 결제수단 가용성 체크 (PortOne 키 설정 여부 기반) ──
+  // 결제수단 UI 는 제거됨. KG이니시스 단독 운영 — card 채널만 사용.
+  // 결제창에서 카드사별 앱카드/QR 간편결제(카카오·네이버·페이코 등) 자동 노출.
   function refreshPayMethodAvailability() {
     const storeId = window.PORTONE_STORE_ID || '';
     const keys = window.PORTONE_CHANNEL_KEYS || {};
-    const wrap = document.getElementById('paymethod-options');
+    const cardReady = !!storeId && (!!keys.card_inicis || !!keys.card_kcp);
     const notice = document.getElementById('paymethod-notice');
-    if (!wrap) return;
-    let availableCount = 0;
-    wrap.querySelectorAll('.pm-opt').forEach((label) => {
-      const pm = label.getAttribute('data-pm');
-      const radio = label.querySelector('input[type=radio]');
-      const status = label.querySelector('.pm-status');
-      let available = false;
-      // KG이니시스 단독 운영 — card 채널만 사용
-      if (pm === 'card') available = !!storeId && (!!keys.card_inicis || !!keys.card_kcp);
-      if (available) {
-        availableCount++;
-        label.style.opacity = '1';
-        label.style.cursor = 'pointer';
-        radio.disabled = false;
-        if (status) status.textContent = '';
-      } else {
-        label.style.opacity = '.45';
-        label.style.cursor = 'not-allowed';
-        radio.disabled = true;
-        radio.checked = false;
-        if (status) status.textContent = '준비중';
-      }
-    });
-    if (availableCount === 0) {
+    const btn = document.getElementById('btn-order');
+    if (!cardReady) {
       if (notice) {
         notice.style.display = 'block';
         notice.textContent = '⚠️ 결제 시스템 PG사 심사 진행 중입니다. 심사 완료 후 정식 오픈 예정입니다.';
       }
-      const btn = document.getElementById('btn-order');
       if (btn) { btn.disabled = true; btn.style.opacity = '.5'; btn.style.cursor = 'not-allowed'; btn.textContent = '결제 시스템 준비중'; }
     } else {
       if (notice) notice.style.display = 'none';
-      const btn = document.getElementById('btn-order');
       if (btn) { btn.disabled = false; btn.style.opacity = '1'; btn.style.cursor = 'pointer'; }
-      // 첫 가용 결제수단 자동 선택
-      const firstAvail = wrap.querySelector('input[type=radio]:not([disabled])');
-      if (firstAvail && !wrap.querySelector('input[type=radio]:checked')) firstAvail.checked = true;
     }
   }
   refreshPayMethodAvailability();
@@ -941,13 +884,8 @@
       return;
     }
 
-    // 결제수단: 현재는 카드만 활성화 (간편결제는 PG 심사 후 추가 예정)
-    const pmRadio = document.querySelector('input[name=paymethod]:checked');
-    const paymethod = (pmRadio && pmRadio.value) || 'card';
-    if (paymethod !== 'card') {
-      alert('해당 결제수단은 현재 준비중입니다.\n신용·체크카드로 결제 가능합니다.');
-      return;
-    }
+    // 결제수단: KG이니시스 카드 단독 (결제창에서 카드사 앱카드/QR/간편결제 선택 가능)
+    const paymethod = 'card';
 
     // PortOne 키 검증 — KG이니시스 채널
     const storeId = window.PORTONE_STORE_ID || '';
