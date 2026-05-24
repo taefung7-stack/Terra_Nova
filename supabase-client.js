@@ -134,12 +134,16 @@ export async function isAdmin(userId) {
 }
 
 export async function getActiveSubscription(userId) {
-  const { data, error } = await supabase
+  // 1차: status='active' AND expires_at >= now() — 정상 활성 구독
+  // 2차 폴백: status='active' 인 가장 최근 구독 (만료됐어도 자동갱신 대기 중일 수 있음)
+  // → 사용자가 마이페이지에서 항상 "구독 해지" 옵션을 찾을 수 있도록 보장
+  const nowIso = new Date().toISOString();
+  let { data, error } = await supabase
     .from('subscriptions')
     .select('*')
     .eq('user_id', userId)
     .eq('status', 'active')
-    .gte('expires_at', new Date().toISOString())
+    .gte('expires_at', nowIso)
     .order('expires_at', { ascending: false })
     .limit(1)
     .maybeSingle();
@@ -147,7 +151,22 @@ export async function getActiveSubscription(userId) {
     console.warn('[subscription] fetch error:', error.message);
     return null;
   }
-  return data;
+  if (data) return data;
+
+  // 폴백: 가장 최근 active(만료 무관) — 자동결제 대기/실패 상태도 노출
+  const { data: fallback, error: fbErr } = await supabase
+    .from('subscriptions')
+    .select('*')
+    .eq('user_id', userId)
+    .in('status', ['active', 'pending', 'payment_failed'])
+    .order('expires_at', { ascending: false })
+    .limit(1)
+    .maybeSingle();
+  if (fbErr) {
+    console.warn('[subscription] fallback fetch error:', fbErr.message);
+    return null;
+  }
+  return fallback || null;
 }
 
 /* ── 익명 레벨 테스트 결과 → 가입 유저 linkup ────────────── */
