@@ -9,12 +9,12 @@
 //     ├─ 2. 사용자 식별 (profiles.kakao_user_id 매칭)
 //     ├─ 3. 컨텍스트 수집 (구독·결제·최근 주문)
 //     ├─ 4. 최근 대화 5개 조회 (멀티턴 컨텍스트)
-//     ├─ 5. Claude API 호출
+//     ├─ 5. OpenAI Chat Completions API 호출 (gpt-4o-mini)
 //     ├─ 6. 응답 저장 + 비용 기록
 //     └─ 7. 카카오 응답 포맷 반환
 //
 // 환경변수:
-//   ANTHROPIC_API_KEY            — Anthropic Console 에서 발급
+//   OPENAI_API_KEY                — OpenAI Platform 에서 발급
 //   SUPABASE_URL, SERVICE_ROLE_KEY — 자동 주입
 //
 // 응답 형식: 카카오 i 오픈빌더 SkillResponse v2.0
@@ -24,14 +24,14 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.45.0';
 
 const SUPABASE_URL = Deno.env.get('SUPABASE_URL')!;
 const SERVICE_ROLE_KEY = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
-const ANTHROPIC_API_KEY = Deno.env.get('ANTHROPIC_API_KEY')!;
+const OPENAI_API_KEY = Deno.env.get('OPENAI_API_KEY')!;
 
-const MODEL = 'claude-haiku-4-5-20251001';
+const MODEL = 'gpt-4o-mini';
 const MAX_OUTPUT_TOKENS = 500;
 
-// Haiku 4.5 단가 (USD per million tokens)
-const PRICE_INPUT_PER_M = 1.00;
-const PRICE_OUTPUT_PER_M = 5.00;
+// gpt-4o-mini 단가 (USD per million tokens)
+const PRICE_INPUT_PER_M = 0.15;
+const PRICE_OUTPUT_PER_M = 0.60;
 
 const sb = createClient(SUPABASE_URL, SERVICE_ROLE_KEY);
 
@@ -147,46 +147,45 @@ Deno.serve(async (req) => {
     recentOrdersContext,
   });
 
-  // ── 7. Claude API 호출 ──
+  // ── 7. OpenAI Chat Completions API 호출 (gpt-4o-mini) ──
   let answer = '';
   let tokensIn = 0;
   let tokensOut = 0;
   let costUsd = 0;
 
   try {
-    const claudeRes = await fetch('https://api.anthropic.com/v1/messages', {
+    const openaiRes = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {
-        'x-api-key': ANTHROPIC_API_KEY,
-        'anthropic-version': '2023-06-01',
-        'content-type': 'application/json',
+        'Authorization': `Bearer ${OPENAI_API_KEY}`,
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         model: MODEL,
         max_tokens: MAX_OUTPUT_TOKENS,
-        system: systemPrompt,
         messages: [
+          { role: 'system', content: systemPrompt },
           ...conversationHistory,
           { role: 'user', content: utterance },
         ],
       }),
     });
 
-    if (!claudeRes.ok) {
-      const errText = await claudeRes.text();
-      console.error('[chatbot] Claude API failed:', claudeRes.status, errText);
+    if (!openaiRes.ok) {
+      const errText = await openaiRes.text();
+      console.error('[chatbot] OpenAI API failed:', openaiRes.status, errText);
       return kakaoTextResp('지금은 답변을 준비하지 못했어요. 잠시 후 다시 시도해주세요. 급하시면 support@terra-nova.kr 로 메일 주세요.');
     }
 
-    const claudeData = await claudeRes.json();
-    answer = claudeData?.content?.[0]?.text || '';
-    tokensIn = claudeData?.usage?.input_tokens || 0;
-    tokensOut = claudeData?.usage?.output_tokens || 0;
+    const openaiData = await openaiRes.json();
+    answer = openaiData?.choices?.[0]?.message?.content || '';
+    tokensIn = openaiData?.usage?.prompt_tokens || 0;
+    tokensOut = openaiData?.usage?.completion_tokens || 0;
     costUsd =
       (tokensIn / 1_000_000) * PRICE_INPUT_PER_M +
       (tokensOut / 1_000_000) * PRICE_OUTPUT_PER_M;
   } catch (err) {
-    console.error('[chatbot] Claude call threw:', err);
+    console.error('[chatbot] OpenAI call threw:', err);
     return kakaoTextResp('일시적인 오류가 있어요. 잠시 후 다시 시도해주세요.');
   }
 
