@@ -345,12 +345,45 @@
   }
 
   // ---- summary ----
+  function renderEmptyCart(box){
+    // 안전한 DOM API 로 빈 장바구니 안내 렌더링 (innerHTML 미사용)
+    box.textContent = '';
+    const wrap = document.createElement('div');
+    wrap.className = 'empty';
+    wrap.style.textAlign = 'center';
+    wrap.style.padding = '24px 16px';
+    const icon = document.createElement('div');
+    icon.textContent = '🛒';
+    icon.style.fontSize = '2.4rem';
+    icon.style.marginBottom = '8px';
+    const title = document.createElement('p');
+    title.textContent = '주문 내역이 비어있어요';
+    title.style.cssText = 'color:rgba(240,240,240,.7);font-weight:700;margin:0 0 4px;';
+    const desc = document.createElement('p');
+    desc.textContent = '마켓에서 상품을 선택하고 "바로 구매" 또는 "장바구니"를 누른 뒤 결제 페이지로 이동해 주세요.';
+    desc.style.cssText = 'color:rgba(240,240,240,.45);font-size:.78rem;line-height:1.6;margin:0 0 14px;';
+    const link = document.createElement('a');
+    link.textContent = '마켓 둘러보기 →';
+    link.href = 'market.html';
+    link.style.cssText = 'display:inline-block;background:var(--accent);color:#0A0A0A;padding:10px 22px;border-radius:6px;font-weight:800;text-decoration:none;font-size:.85rem;';
+    wrap.append(icon, title, desc, link);
+    box.appendChild(wrap);
+  }
   function renderSummary(){
     const items = getItems();
+    // 디버깅 — 진입 경로와 데이터 상태 확인용
+    const mode = new URLSearchParams(location.search).get('mode') || 'cart';
+    console.log('[checkout] mode=', mode,
+                'buynow=', sessionStorage.getItem(BUYNOW_KEY),
+                'cart=', localStorage.getItem(CART_KEY),
+                'items=', items);
     const box = document.getElementById('items');
     if (!items.length) {
-      box.innerHTML = '<div class="empty">장바구니가 비어있습니다.<br><a href="market.html">마켓 둘러보기 →</a></div>';
-      document.getElementById('btn-pay').disabled = true;
+      renderEmptyCart(box);
+      const btn = document.getElementById('btn-pay');
+      btn.disabled = true;
+      btn.style.opacity = '.4';
+      btn.style.cursor = 'not-allowed';
       document.getElementById('sum-sub').textContent = '0원';
       document.getElementById('sum-ship').textContent = '0원';
       document.getElementById('sum-total').textContent = '0원';
