@@ -128,10 +128,24 @@
   .pdetail.compact .price-row{margin:4px 0;}
   .pdetail.compact .price-num{font-size:2rem;}
   .pdetail.compact .btns-row{margin-top:6px;}
+  /* === Compact 카드 — 개별 상품용 라이트 액션 (장바구니 1개만, 작게) === */
+  .pdetail.compact .price-row{display:flex;align-items:baseline;justify-content:space-between;gap:14px;flex-wrap:wrap;}
+  .pdetail.compact .price-row .price-actions{display:flex;gap:6px;align-items:center;margin-left:auto;}
+  .pdetail.compact .btn-mini{background:transparent;color:var(--accent);border:1px solid rgba(0,255,163,.35);border-radius:6px;padding:6px 14px;font-family:inherit;font-size:.78rem;font-weight:700;cursor:pointer;letter-spacing:.4px;transition:all .15s;}
+  .pdetail.compact .btn-mini:hover{background:rgba(0,255,163,.08);border-color:var(--accent);}
+  .pdetail.compact .btn-mini.solid{background:var(--accent);color:#0A0A0A;border-color:var(--accent);}
+  .pdetail.compact .btn-mini.solid:hover{transform:translateY(-1px);box-shadow:0 3px 10px rgba(0,255,163,.3);}
+  /* 번들 카드는 강조 CTA 유지 — btns-row 그대로 사용 */
+  .pdetail.compact.bundle .btns-row{margin-top:12px;}
+  .pdetail.compact.bundle .btn-add,.pdetail.compact.bundle .btn-buy{padding:13px;font-size:.95rem;}
   @media(max-width:780px){
     .pdetail.compact .pdetail-body{padding:18px 20px;}
     .pdetail.compact .pdetail-name{font-size:1.3rem;}
     .pdetail.compact .price-num{font-size:1.7rem;}
+    /* 모바일에서 가격과 미니 버튼이 좁아 겹치면 줄바꿈 */
+    .pdetail.compact .price-row{gap:10px;}
+    .pdetail.compact .price-actions{width:100%;margin-left:0;justify-content:flex-end;}
+    .pdetail.compact .btn-mini{padding:7px 13px;font-size:.8rem;}
   }
   .pdetail-img{aspect-ratio:4/3;background:linear-gradient(135deg,var(--bg2) 0%,var(--card2) 100%);display:flex;align-items:center;justify-content:center;font-size:6rem;position:relative;overflow:hidden;}
   .pdetail-img::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at center,rgba(0,255,163,.1) 0%,transparent 70%);}
@@ -413,11 +427,12 @@
       <div class="pdetail-name"><span class="emoji">🔍</span>모의고사 분석지</div>
       <div class="pdetail-desc">지문별 논리구조·오답 원인·출제 포인트를 체계적으로 정리한 심층 해설 PDF.</div>
 
-      <div class="price-row"><span class="price-num">₩4,900</span><span class="price-unit">/ 회차</span></div>
-
-      <div class="btns-row">
-        <button class="btn-add" onclick="addMock('analysis','add')">장바구니</button>
-        <button class="btn-buy" onclick="addMock('analysis','buy')">바로 구매</button>
+      <div class="price-row">
+        <span class="price-num">₩4,900</span><span class="price-unit">/ 회차</span>
+        <span class="price-actions">
+          <button class="btn-mini" onclick="addMock('analysis','add')">＋ 장바구니</button>
+          <button class="btn-mini solid" onclick="addMock('analysis','buy')">바로 구매</button>
+        </span>
       </div>
     </div>
   </div>
@@ -429,11 +444,12 @@
       <div class="pdetail-name"><span class="emoji">✏️</span>모의고사 워크북</div>
       <div class="pdetail-desc">분석한 지문을 직접 풀이·체화하는 실전 워크북. 본문 빈칸·어휘 자가 점검·구문 연습으로 회독 효과를 극대화합니다.</div>
 
-      <div class="price-row"><span class="price-num">₩4,900</span><span class="price-unit">/ 회차</span></div>
-
-      <div class="btns-row">
-        <button class="btn-add" onclick="addMock('workbook','add')">장바구니</button>
-        <button class="btn-buy" onclick="addMock('workbook','buy')">바로 구매</button>
+      <div class="price-row">
+        <span class="price-num">₩4,900</span><span class="price-unit">/ 회차</span>
+        <span class="price-actions">
+          <button class="btn-mini" onclick="addMock('workbook','add')">＋ 장바구니</button>
+          <button class="btn-mini solid" onclick="addMock('workbook','buy')">바로 구매</button>
+        </span>
       </div>
     </div>
   </div>
@@ -445,11 +461,12 @@
       <div class="pdetail-name"><span class="emoji">🧩</span>모의고사 변형문제</div>
       <div class="pdetail-desc">원본 지문을 어휘 교체·빈칸 변경·순서 재구성으로 변형한 실전 문제집. 한 지문을 3~4배 재활용해 응용력을 키웁니다.</div>
 
-      <div class="price-row"><span class="price-num">₩4,900</span><span class="price-unit">/ 회차</span></div>
-
-      <div class="btns-row">
-        <button class="btn-add" onclick="addMock('variant','add')">장바구니</button>
-        <button class="btn-buy" onclick="addMock('variant','buy')">바로 구매</button>
+      <div class="price-row">
+        <span class="price-num">₩4,900</span><span class="price-unit">/ 회차</span>
+        <span class="price-actions">
+          <button class="btn-mini" onclick="addMock('variant','add')">＋ 장바구니</button>
+          <button class="btn-mini solid" onclick="addMock('variant','buy')">바로 구매</button>
+        </span>
       </div>
     </div>
   </div>
