@@ -176,13 +176,13 @@
     <!-- LOGIN GATE (shown when not logged in) -->
     <div class="login-gate" id="login-gate" style="display:none;">
       <div class="icon">🔒</div>
-      <h3>마켓 결제는 정식 오픈 예정입니다</h3>
-      <p>현재 마켓 단품 결제는 PG·배송 정책 확정 전으로 비활성화되어 있습니다.<br>정식 오픈 후에는 회원 주문을 우선 지원할 예정입니다.</p>
+      <h3>로그인하고 빠르게 주문하세요</h3>
+      <p>회원으로 결제하면 주문 내역과 다운로드 링크가 마이페이지에 자동 저장됩니다.<br>비회원으로도 이메일로 PDF를 받아보실 수 있습니다.</p>
       <div class="btns">
         <a class="btn-gate-primary" id="gate-login">로그인</a>
         <a class="btn-gate-secondary" id="gate-signup">회원가입</a>
       </div>
-      <button class="btn-guest" type="button" disabled style="opacity:.45;cursor:not-allowed;">비회원 주문 준비중</button>
+      <button class="btn-guest" type="button" id="gate-guest" onclick="useGuest()">비회원으로 주문하기</button>
     </div>
 
     <!-- CHECKOUT FORM (shown when logged in OR guest mode) -->
@@ -234,7 +234,7 @@
       <div class="sum-row" id="row-ship"><span>배송비</span><span id="sum-ship">0원</span></div>
       <div class="sum-row total"><span>총 결제금액</span><span class="amt" id="sum-total">0원</span></div>
       <button class="btn-pay" id="btn-pay" onclick="doPay()">결제하기</button>
-      <p style="font-size:.7rem;color:rgba(240,240,240,.4);text-align:center;margin-top:12px;line-height:1.6;">마켓 단품 결제는 현재 준비중입니다.<br>정식 오픈 시 별도 결제·배송·환불 안내를 고지합니다.</p>
+      <p style="font-size:.7rem;color:rgba(240,240,240,.5);text-align:center;margin-top:12px;line-height:1.6;">결제 완료 시 주문자 이메일로 PDF가 즉시 발송됩니다.<br>회원은 마이페이지에서도 다시 다운로드할 수 있어요.</p>
     </div>
   </div>
 </div>
@@ -432,10 +432,10 @@
       document.getElementById('addr-detail').focus();
     });
   }
-  // 🚫 마켓 단품 결제 전용 활성화 플래그 (Codex 재검수 발견)
-  // 구독 PG 키가 들어와도 마켓 단품 결제는 별도 검증/약관 필요하므로 독립 잠금.
-  // STANDARD/PREMIUM 실물 출시 + 마켓 전용 약관/배송 확정 후 true 로 변경.
-  const MARKET_PAYMENTS_ENABLED = false;
+  // ✅ 마켓 단품 결제 활성화 (2026-05-25)
+  // PortOne KG이니시스 채널 연동 완료 → PDF 디지털 상품 즉시 발송 정책으로 오픈.
+  // 비활성화가 필요할 경우 false 로 되돌리고 안내 문구 복원.
+  const MARKET_PAYMENTS_ENABLED = true;
 
   // PG 채널 가용성 체크
   function isPgReady(){
@@ -456,9 +456,9 @@
   }
 
   function doPay(){
-    // 🛑 마켓 단품 결제는 별도 활성화 플래그로 잠금 (PG 가 켜져도 마켓은 별도)
+    // 마켓 단품 결제 활성화 플래그 — false 면 차단 (운영자 수동 잠금용)
     if (!MARKET_PAYMENTS_ENABLED){
-      alert('마켓 단품 결제는 정식 오픈 전입니다.\n\n현재는 구독(LIGHT)만 신청 가능합니다.\n실물 상품 마켓은 STANDARD/PREMIUM 출시 시 함께 오픈됩니다.');
+      alert('마켓 단품 결제는 일시적으로 점검 중입니다. 잠시 후 다시 시도해주세요.');
       return;
     }
     if (!isPgReady()){
