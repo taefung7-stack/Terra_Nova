@@ -1,0 +1,471 @@
+#!/usr/bin/env node
+/**
+ * Terra Nova 모의고사 분석지 빌더
+ *
+ * 사용법:
+ *   node builder/build.mjs <data-dir> [<dist-dir>]
+ *   node builder/build.mjs 2026-march-grade2/data
+ *   node builder/build.mjs 2026-march-grade2/data 2026-march-grade2/dist
+ *
+ * data 디렉터리의 모든 *.json 을 읽어 HTML 분석지로 변환합니다.
+ * 각 JSON 파일은 sample-21.html 디자인과 동일한 4페이지 분석지로 출력됩니다.
+ */
+
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+// ─────────────────────────────────────────────────────────────
+// 유틸
+// ─────────────────────────────────────────────────────────────
+
+function esc(s) {
+  return String(s ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+/** JSON에서 en_html / ko_chunks / note / points[].text / paraphrasing은 HTML 그대로 신뢰. 그 외 텍스트는 escape. */
+function raw(s) { return s ?? ''; }
+
+const TAG_LABEL = {
+  title:  { cls: 'title-q',  emoji: '⭐', label: '제목·요지' },
+  write:  { cls: 'write-q',  emoji: '✍',  label: '서술형' },
+  order:  { cls: 'order-q',  emoji: '🔀', label: '순서배열' },
+  insert: { cls: 'insert-q', emoji: '📌', label: '문장삽입' },
+};
+
+const POINT_LABEL = {
+  grammar: '어법 P.',
+  vocab:   '어휘 P.',
+  reading: '리딩 P.',
+};
+
+const LV_LABEL = { high: '상', mid: '중', low: '하' };
+
+// ─────────────────────────────────────────────────────────────
+// 페이지 빌더
+// ─────────────────────────────────────────────────────────────
+
+function buildHeader(headTitle, tagText, tagColor) {
+  const style = tagColor ? ` style="background:${tagColor.bg};color:${tagColor.fg};border-color:${tagColor.bd}"` : '';
+  return `  <header class="page-head">
+    <div class="head-title">${esc(headTitle)}</div>
+    <div class="head-tag"${style}>${esc(tagText)}</div>
+  </header>`;
+}
+
+function buildFooter(pageNo) {
+  return `  <footer class="page-foot">
+    <span class="brand">Terra Nova · 모의고사 분석지</span>
+    <span class="pageno">${pageNo}</span>
+  </footer>`;
+}
+
+function buildExerciseBlock(data) {
+  return `    <div class="exercise">
+      <div class="ex-badge">
+        <div class="ex-label">Exercise</div>
+        <div class="ex-num">${esc(data.question_no)}</div>
+      </div>
+      <div class="ex-meta">
+        <div class="meta-row">
+          <div class="k">요약</div>
+          <div class="v">${esc(data.summary_ko)}</div>
+        </div>
+        <div class="meta-row">
+          <div class="k">요지</div>
+          <div class="v en">${esc(data.main_idea_en)}</div>
+        </div>
+        <div class="meta-row">
+          <div class="k">제목</div>
+          <div class="v en">${esc(data.title_en)}</div>
+        </div>
+      </div>
+    </div>`;
+}
+
+function buildIllustration(data) {
+  const file = data.illustration?.file || `assets/illust-${data.question_no}.png`;
+  return `    <figure class="illust">
+      <img src="${esc(file)}" alt="${esc(data.title_en || '삽화')}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="placeholder" style="display:none">[삽화 영역] ${esc(file)} · 미드저니 16:5 --v 7</div>
+    </figure>`;
+}
+
+function buildVocabTable(vocab) {
+  const rows = vocab.map((v, i) => `        <tr>
+          <td class="col-no">${i + 1}</td>
+          <td class="col-word">${esc(v.word)}</td>
+          <td class="col-pos">${esc(v.pos)}</td>
+          <td class="col-meaning">${esc(v.meaning)}</td>
+          <td class="col-syn"><span class="tag-syn">${esc(v.syn)}</span></td>
+          <td class="col-ant"><span class="tag-ant">${esc(v.ant)}</span></td>
+          <td class="col-deriv"><span class="tag-der">${esc(v.deriv)}</span></td>
+        </tr>`).join('\n');
+
+  return `    <div class="section-bar">
+      VOCABULARY · 단어 정리
+      <span class="bar-sub">동의어 ≈ · 반의어 ↔ · 파생어 →</span>
+    </div>
+
+    <table class="voca-table">
+      <thead>
+        <tr>
+          <th>No.</th><th>단어</th><th>품사</th><th>뜻</th>
+          <th>동의어 ≈</th><th>반의어 ↔</th><th>파생어 →</th>
+        </tr>
+      </thead>
+      <tbody>
+${rows}
+      </tbody>
+    </table>`;
+}
+
+// ─────────────────────────────────────────────────────────────
+// PAGE 1
+// ─────────────────────────────────────────────────────────────
+function buildPage1(data) {
+  return `<section class="page">
+${buildHeader(data.exam, 'INTRO')}
+  <div class="page-body">
+${buildExerciseBlock(data)}
+${buildIllustration(data)}
+${buildVocabTable(data.vocab || [])}
+  </div>
+${buildFooter(1)}
+</section>`;
+}
+
+// ─────────────────────────────────────────────────────────────
+// PAGE 2 — 본문 전문 + 정답·오답 분석 + 논리흐름
+// ─────────────────────────────────────────────────────────────
+function buildFulltext(passage, passageKo) {
+  const lines = passage.map((en, i) => `      <div class="line">
+        <span class="num">${i + 1}</span>
+        <div class="ft-en">${esc(en)}</div>
+        <div class="ft-ko">${esc(passageKo?.[i] || '')}</div>
+      </div>`).join('\n');
+
+  return `    <div class="section-bar alt">
+      PASSAGE · 본문 전문 (문장별 해석)
+      <span class="bar-sub">${data => data}</span>
+    </div>
+
+    <div class="fulltext">
+${lines}
+    </div>`;
+}
+
+function buildAnswerBlock(data) {
+  const ansNo = data.choices?.find(c => c.correct)?.no ?? '?';
+  const ansCircled = ['①','②','③','④','⑤'][ansNo - 1] || ansNo;
+
+  const items = (data.choices || []).map(c => {
+    const cls = c.correct ? ' correct' : '';
+    const circled = ['①','②','③','④','⑤'][c.no - 1] || c.no;
+    return `        <div class="wb-item${cls}">
+          <span class="wb-no">${circled}</span>
+          <div class="wb-body">
+            <div class="wb-en">${esc(c.en)}</div>
+            <div class="wb-ko">${esc(c.ko)} — ${raw(c.comment)}</div>
+          </div>
+        </div>`;
+  }).join('\n');
+
+  return `    <div class="section-bar" style="background:var(--c-coral-soft);color:var(--c-coral-deep);border-color:var(--c-coral)">
+      ANSWER · 정답 & 오답 분석
+      <span class="bar-sub">정답 ${ansCircled} · ${esc(data.type || '')} [${esc(data.score)}점]</span>
+    </div>
+
+    <div class="wrong-box">
+      <div class="wb-list">
+${items}
+      </div>
+    </div>`;
+}
+
+function buildFlow(flow) {
+  const steps = (flow || []).map((s, i) => `      <div class="step">
+        <span class="emoji">${esc(s.emoji)}</span>
+        <div class="num">STEP ${i + 1}</div>
+        <div class="title">${esc(s.title)}</div>
+        <div class="body">${raw(s.body)}</div>
+      </div>`).join('\n');
+
+  return `    <div class="section-bar">
+      LOGIC FLOW · 쉽게 이해하기
+      <span class="bar-sub">4단계 흐름</span>
+    </div>
+
+    <div class="flow-h">
+${steps}
+    </div>`;
+}
+
+function buildPage2(data) {
+  // 본문 fulltext
+  const passage = data.passage || [];
+  const passageKo = data.passage_ko || [];
+  const lines = passage.map((en, i) => `      <div class="line">
+        <span class="num">${i + 1}</span>
+        <div class="ft-en">${esc(en)}</div>
+        <div class="ft-ko">${esc(passageKo[i] || '')}</div>
+      </div>`).join('\n');
+
+  const fulltextBlock = `    <div class="section-bar alt">
+      PASSAGE · 본문 전문 (문장별 해석)
+      <span class="bar-sub">${esc(data.question_text || '')}</span>
+    </div>
+
+    <div class="fulltext">
+${lines}
+    </div>`;
+
+  return `<section class="page">
+${buildHeader(data.exam + ' · ' + data.question_no + '번', 'PASSAGE')}
+  <div class="page-body passage-layout">
+${fulltextBlock}
+${buildAnswerBlock(data)}
+${buildFlow(data.flow || [])}
+  </div>
+${buildFooter(2)}
+</section>`;
+}
+
+// ─────────────────────────────────────────────────────────────
+// PAGE 3, 4 — 문장별 분석
+// ─────────────────────────────────────────────────────────────
+function buildSentenceCard(s) {
+  const tags = (s.tags || []).map(t => {
+    const tt = TAG_LABEL[t];
+    if (!tt) return '';
+    return `<span class="tag ${tt.cls}">${tt.emoji} ${tt.label}</span>`;
+  }).join('\n        ');
+
+  const points = (s.points || []).map(p => {
+    const tagText = POINT_LABEL[p.kind] || '포인트';
+    return `        <div class="point ${esc(p.kind)}"><span class="pt-tag">${tagText}</span><span class="pt-text">${raw(p.text)}</span></div>`;
+  }).join('\n');
+
+  const noteHtml = s.note ? `      <div class="note">${raw(s.note)}</div>` : '';
+
+  let paraHtml = '';
+  if (s.paraphrasing && s.paraphrasing.length) {
+    const rows = s.paraphrasing.map(p => `        <div class="para-row lv-${esc(p.level)}">
+          <span class="lv">${LV_LABEL[p.level] || p.level}</span>
+          <span class="txt">
+            <span class="en">${esc(p.en)}</span>
+            ${esc(p.ko)}
+          </span>
+        </div>`).join('\n');
+    paraHtml = `      <div class="para-box">
+        <div class="para-title">PARAPHRASING — 상/중/하</div>
+${rows}
+      </div>`;
+  }
+
+  return `    <div class="sent">
+      <div class="sent-head">
+        <span class="sent-no">SENT ${s.no}</span>
+        ${tags}
+      </div>
+      <div class="en">
+        ${raw(s.en_html)}
+      </div>
+      <div class="ko">${raw(s.ko_chunks)}</div>
+      <div class="ko-bold">${esc(s.ko_full)}</div>
+${noteHtml}
+      <div class="point-grid">
+${points}
+      </div>
+${paraHtml}
+    </div>`;
+}
+
+function buildAnalysisPage(data, sentences, pageNo, label) {
+  const cards = sentences.map(buildSentenceCard).join('\n\n');
+
+  return `<section class="page">
+${buildHeader(data.exam + ' · ' + data.question_no + '번', label)}
+  <div class="page-body">
+    <div class="section-bar">
+      SENTENCE ANALYSIS · 문장별 분석
+      <span class="bar-sub">📝 어법 · 📚 어휘 · 🎯 리딩</span>
+    </div>
+
+${cards}
+  </div>
+${buildFooter(pageNo)}
+</section>`;
+}
+
+// ─────────────────────────────────────────────────────────────
+// 자동 페이지 분배: 분석 문장을 페이지 3, 4 (필요시 5...)에 나눠 담기
+// 기본 규칙: 페이지당 2~3문장. 패러프레이징 있는 카드는 분량 큼.
+// ─────────────────────────────────────────────────────────────
+function chunkSentences(sentences) {
+  // 분량 점수: 패러프레이징 있으면 큰 카드, 없으면 작은 카드
+  // 한 페이지에 큰 카드 2개 OR 큰 1개 + 작은 2개 OR 작은 3~4개
+  const scored = sentences.map(s => ({
+    s,
+    weight: (s.paraphrasing?.length ? 1.0 : 0.35) + (s.note ? 0.05 : 0)
+  }));
+
+  const pages = [];
+  let cur = [];
+  let curW = 0;
+  // 큰 카드 2개(2.0) + 작은 카드 1개(0.35) 가능 → 2.35 한계
+  // SENT 7(0.35) + SENT 8(0.35) + SENT 9(1.05) = 1.75 → 한 페이지 가능
+  const MAX_W = 2.35;
+
+  for (const { s, weight } of scored) {
+    if (cur.length > 0 && curW + weight > MAX_W) {
+      pages.push(cur);
+      cur = [];
+      curW = 0;
+    }
+    cur.push(s);
+    curW += weight;
+  }
+  if (cur.length) pages.push(cur);
+  return pages;
+}
+
+// ─────────────────────────────────────────────────────────────
+// 메인 빌드 함수
+// ─────────────────────────────────────────────────────────────
+function buildHtml(data, opts = {}) {
+  const stylesHref = opts.stylesHref || '../styles/analysis.css';
+
+  const pages = [buildPage1(data), buildPage2(data)];
+
+  const groups = chunkSentences(data.sentences || []);
+  groups.forEach((group, i) => {
+    const pageNo = 3 + i;
+    const label = `ANALYSIS · ${i + 1}/${groups.length}`;
+    pages.push(buildAnalysisPage(data, group, pageNo, label));
+  });
+
+  return `<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>${esc(data.exam)} · ${esc(data.question_no)}번 분석지 — Terra Nova</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="${esc(stylesHref)}">
+</head>
+<body>
+
+${pages.join('\n\n')}
+
+</body>
+</html>
+`;
+}
+
+// ─────────────────────────────────────────────────────────────
+// CLI
+// ─────────────────────────────────────────────────────────────
+async function main() {
+  const args = process.argv.slice(2);
+  if (args.length < 1) {
+    console.error('Usage: node builder/build.mjs <data-dir> [<dist-dir>]');
+    process.exit(1);
+  }
+
+  const cwd = process.cwd();
+  const dataDir = path.resolve(cwd, args[0]);
+  const distDir = path.resolve(cwd, args[1] || path.join(path.dirname(dataDir), 'dist'));
+
+  // 상대 경로 stylesHref 결정 (dist에서 styles까지)
+  const stylesAbs = path.resolve(path.dirname(dataDir), 'styles', 'analysis.css');
+  let stylesHref = path.relative(distDir, stylesAbs).replace(/\\/g, '/');
+  if (!stylesHref.startsWith('.')) stylesHref = './' + stylesHref;
+
+  await fs.mkdir(distDir, { recursive: true });
+
+  const files = (await fs.readdir(dataDir)).filter(f => f.endsWith('.json')).sort();
+  if (!files.length) {
+    console.error(`No JSON files in ${dataDir}`);
+    process.exit(1);
+  }
+
+  console.log(`📚 Building ${files.length} analysis page(s)...`);
+  console.log(`   data:   ${dataDir}`);
+  console.log(`   dist:   ${distDir}`);
+  console.log(`   styles: ${stylesHref}\n`);
+
+  const built = [];
+  for (const f of files) {
+    const jsonPath = path.join(dataDir, f);
+    const data = JSON.parse(await fs.readFile(jsonPath, 'utf8'));
+    const html = buildHtml(data, { stylesHref });
+    const outPath = path.join(distDir, f.replace(/\.json$/, '.html'));
+    await fs.writeFile(outPath, html, 'utf8');
+    console.log(`   ✓ ${f}  →  ${path.relative(cwd, outPath)}`);
+    built.push({ file: f, html: outPath, data });
+  }
+
+  // index.html (모든 분석지 링크 모음)
+  const indexHtml = buildIndex(built, stylesHref);
+  await fs.writeFile(path.join(distDir, 'index.html'), indexHtml, 'utf8');
+  console.log(`\n📄 index.html generated at ${path.relative(cwd, path.join(distDir, 'index.html'))}`);
+  console.log('✅ Done.');
+}
+
+function buildIndex(built, stylesHref) {
+  const examLabel = built[0]?.data?.exam || '모의고사 분석지';
+  const items = built.map(({ file, data }) => {
+    const href = file.replace(/\.json$/, '.html');
+    return `      <li>
+        <a class="card" href="${esc(href)}">
+          <div class="num">${esc(data.question_no)}</div>
+          <div class="meta">
+            <div class="type">${esc(data.type || '')}</div>
+            <div class="title">${esc(data.title_en || '')}</div>
+            <div class="ko">${esc(data.summary_ko || '')}</div>
+          </div>
+        </a>
+      </li>`;
+  }).join('\n');
+
+  return `<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>${esc(examLabel)} — 분석지 목차</title>
+<link rel="stylesheet" href="${esc(stylesHref)}">
+<style>
+  body { padding: 40px 24px; }
+  .wrap { max-width: 920px; margin: 0 auto; }
+  h1 { color: var(--c-mint-deep); border-bottom: 2px solid var(--c-mint); padding-bottom: 10px; margin: 0 0 24px; }
+  .list { list-style: none; padding: 0; display: grid; gap: 10px; }
+  .card { display: grid; grid-template-columns: 60px 1fr; gap: 14px; padding: 14px; background: #fff; border: 1px solid var(--c-mint); border-radius: 8px; text-decoration: none; color: inherit; transition: transform .12s; }
+  .card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+  .num { font-family: 'Inter'; font-size: 24pt; font-weight: 800; color: var(--c-mint-deep); text-align: center; }
+  .type { font-size: 9pt; font-weight: 700; color: var(--c-coral-deep); }
+  .title { font-family: 'Inter'; font-weight: 600; color: var(--c-text); margin-top: 2px; }
+  .ko { font-size: 9pt; color: var(--c-text-soft); margin-top: 3px; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>${esc(examLabel)} · 분석지 목차</h1>
+    <ul class="list">
+${items}
+    </ul>
+  </div>
+</body>
+</html>
+`;
+}
+
+main().catch(err => {
+  console.error(err);
+  process.exit(1);
+});
