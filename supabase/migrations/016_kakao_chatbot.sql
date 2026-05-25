@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS public.chatbot_conversations (
   tokens_input      integer DEFAULT 0,
   tokens_output     integer DEFAULT 0,
   cost_usd          numeric(10, 6) DEFAULT 0,
-  model             text DEFAULT 'gpt-4o-mini',
+  model             text DEFAULT 'gpt-4o',
   created_at        timestamptz NOT NULL DEFAULT now(),
 
   CONSTRAINT chk_role CHECK (role IN ('user', 'assistant', 'system'))
