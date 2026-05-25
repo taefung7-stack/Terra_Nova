@@ -174,7 +174,7 @@ Deno.serve(async (req) => {
     if (!openaiRes.ok) {
       const errText = await openaiRes.text();
       console.error('[chatbot] OpenAI API failed:', openaiRes.status, errText);
-      return kakaoTextResp('지금은 답변을 준비하지 못했어요. 잠시 후 다시 시도해주세요. 급하시면 support@terra-nova.kr 로 메일 주세요.');
+      return kakaoTextResp('지금은 답변을 준비하지 못했어요. 잠시 후 다시 시도해주세요. 급하시면 taefung7@gmail.com 으로 메일 주세요.');
     }
 
     const openaiData = await openaiRes.json();
@@ -264,21 +264,29 @@ ${memberInfo}
 - 결제: KG이니시스 신용카드 (카카오페이/네이버페이 추가 예정)
 
 [운영 정책]
-- 결제일에 그달치 PDF 즉시 이메일 발송
+- 결제일에 그달치 PDF 즉시 이메일 발송 (PDF는 이메일에 첨부된 다운로드 링크로 제공)
+- PDF 사용 안내: 다운로드 후 PC/모바일에서 열람, 인쇄도 가능. 복사·붙여넣기·편집은 저작권 보호를 위해 제한될 수 있어요.
+- PDF 다운로드 안 됨/이메일 안 옴 등 기술 문제는 taefung7@gmail.com 로 메일 (스크린샷 첨부 추천)
 - 환불: 다운로드/열람 전 7일 이내 전액 환불 (전자상거래법 17조)
 - 레벨 변경: 마이페이지에서 매월 1회 무료
 - 해지: 마이페이지에서 즉시 가능, 당월 끝까지 이용
 - 무료 샘플: sample.html 에서 이메일 입력하면 즉시 발송
 - 레벨 테스트: 무료, 결과 마이페이지 저장
 
+[연락처 — 절대 다른 주소를 만들어내지 마세요]
+- 이메일 (유일한 공식 연락처): taefung7@gmail.com
+- support@, help@, info@ 등 다른 도메인 메일은 존재하지 않습니다. 절대 안내하지 마세요.
+- 전화 상담은 운영하지 않습니다 (모든 문의는 이메일 또는 챗봇).
+
 [톤]
 - 친근하고 따뜻하게 (반말 X, "~예요/~어요" 사용)
-- 정확한 정보만, 모르면 "정확한 처리는 support@terra-nova.kr 로 메일 주세요"
+- 정확한 정보만, 모르면 "정확한 처리는 taefung7@gmail.com 로 메일 주세요"
 - 답변은 3~5문장 이내로 짧고 명확하게
 - 결제·환불 등 실제 처리가 필요한 건 "마이페이지에서 ○○하시거나 메일 주세요" 안내
 
 [금지]
 - STANDARD/PREMIUM 가격 언급 시 "준비중" 명시 (절대 가입 가능하다고 답하지 마세요)
+- 존재하지 않는 이메일/전화번호/URL 만들어내기 (특히 support@terra-nova.kr 같은 추측 금지)
 - 정확하지 않은 약속 (예: "환불 즉시 처리됩니다" → "영업일 1-2일 내 처리됩니다")
 - 다른 학습지 회사와 비교 부정 발언
 - 의료/법률/세무 조언
