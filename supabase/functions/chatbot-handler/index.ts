@@ -214,14 +214,19 @@ Deno.serve(async (req) => {
       },
     ]);
 
-    // 일별 집계 upsert
-    const today = new Date().toISOString().slice(0, 10);
-    await sb.rpc('upsert_chatbot_usage_daily', {
-      p_date: today,
-      p_tokens_in: tokensIn,
-      p_tokens_out: tokensOut,
-      p_cost_usd: costUsd,
-    }).catch(() => {}); // RPC 없으면 무시 (다음 마이그레이션에서 추가)
+    // 일별 집계 upsert (RPC 호출 — supabase-js 의 .rpc() 는 Promise 라 .catch() 가능하지만,
+    // 타입 안전성 위해 try-catch 로 감싸기)
+    try {
+      const today = new Date().toISOString().slice(0, 10);
+      await sb.rpc('upsert_chatbot_usage_daily', {
+        p_date: today,
+        p_tokens_in: tokensIn,
+        p_tokens_out: tokensOut,
+        p_cost_usd: costUsd,
+      });
+    } catch (rpcErr) {
+      console.warn('[chatbot] usage daily RPC failed (non-fatal):', rpcErr);
+    }
   } catch (err) {
     console.warn('[chatbot] conversation save failed (non-fatal):', err);
   }
