@@ -320,10 +320,11 @@
 
     // Shipping panel toggle based on cart
     const physical = hasPhysical(items);
-    document.getElementById('panel-shipping').style.display = physical ? 'block' : 'none';
-    document.getElementById('panel-pdf-notice').style.display = physical ? 'none' : 'block';
-    document.getElementById('pay-num').textContent = physical ? '3' : '3';
-    if (!physical) document.getElementById('pay-num').textContent = '3';
+    const panelShipping = document.getElementById('panel-shipping');
+    const panelPdfNotice = document.getElementById('panel-pdf-notice');
+    if (panelShipping) panelShipping.style.display = physical ? 'block' : 'none';
+    if (panelPdfNotice) panelPdfNotice.style.display = physical ? 'none' : 'block';
+    // (구버전 pay-num 단계 번호 동기화 코드 제거 — 해당 DOM 노드 없음)
 
     renderSummary();
   }
