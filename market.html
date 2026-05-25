@@ -135,9 +135,11 @@
   .pdetail.compact .btn-mini:hover{background:rgba(0,255,163,.08);border-color:var(--accent);}
   .pdetail.compact .btn-mini.solid{background:var(--accent);color:#0A0A0A;border-color:var(--accent);}
   .pdetail.compact .btn-mini.solid:hover{transform:translateY(-1px);box-shadow:0 3px 10px rgba(0,255,163,.3);}
-  /* 번들 카드는 강조 CTA 유지 — btns-row 그대로 사용 */
-  .pdetail.compact.bundle .btns-row{margin-top:12px;}
-  .pdetail.compact.bundle .btn-add,.pdetail.compact.bundle .btn-buy{padding:13px;font-size:.95rem;}
+  /* 번들 카드 — 미니 버튼 동일 적용. solid 버튼만 오렌지 톤으로 강조 */
+  .pdetail.compact.bundle .btn-mini{border-color:rgba(255,167,38,.55);color:#FFB347;}
+  .pdetail.compact.bundle .btn-mini:hover{background:rgba(255,167,38,.08);border-color:#FFB347;}
+  .pdetail.compact.bundle .btn-mini.solid{background:linear-gradient(135deg,#ff7a45 0%,#ffb347 100%);color:#fff;border-color:transparent;}
+  .pdetail.compact.bundle .btn-mini.solid:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(255,122,69,.45);}
   @media(max-width:780px){
     .pdetail.compact .pdetail-body{padding:18px 20px;}
     .pdetail.compact .pdetail-name{font-size:1.3rem;}
@@ -482,11 +484,10 @@
         <span class="price-orig">₩14,700</span>
         <span class="price-num bundle-price">₩11,760</span>
         <span class="price-unit">/ 회차 · 3종</span>
-      </div>
-
-      <div class="btns-row">
-        <button class="btn-add" onclick="addMock('bundle','add')">장바구니</button>
-        <button class="btn-buy" onclick="addMock('bundle','buy')">바로 구매</button>
+        <span class="price-actions">
+          <button class="btn-mini" onclick="addMock('bundle','add')">＋ 장바구니</button>
+          <button class="btn-mini solid" onclick="addMock('bundle','buy')">바로 구매</button>
+        </span>
       </div>
     </div>
   </div>
