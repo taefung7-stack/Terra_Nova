@@ -208,6 +208,7 @@ function renderStep2({ wb, headOpts, pageNum }) {
         <div class="qa-body">
           <div class="qa-en">${renderChoiceTemplate(g.en_template)}</div>
           <div class="qa-ko">${esc(g.ko_full)}</div>
+          <div class="qa-answer-line"></div>
         </div>
       </div>`).join('');
 
@@ -228,6 +229,7 @@ function renderStep3({ wb, headOpts, pageNum }) {
         <div class="qa-body">
           <div class="qa-en">${renderChoiceTemplate(g.en_template)}</div>
           <div class="qa-ko">${esc(g.ko_full)}</div>
+          <div class="qa-answer-line"></div>
         </div>
       </div>`).join('');
 
@@ -243,9 +245,7 @@ function renderStep3({ wb, headOpts, pageNum }) {
 
 function renderStep4({ data, wb, headOpts, pageNum }) {
   const items = wb.fill_first_letter.map(f => {
-    // ref_sentence 에서 본문 가져와 hints 위치에 빈칸 삽입
     const sentEn = data.passage[f.ref_sentence - 1] || '';
-    // 간단 전략: 본문 문장 통째로 보여주되, hints 단어를 첫글자+밑줄로 치환
     let rendered = esc(sentEn);
     f.hints.forEach((h, idx) => {
       const re = new RegExp(`\\b${h.answer}\\b`, 'i');
@@ -258,6 +258,7 @@ function renderStep4({ data, wb, headOpts, pageNum }) {
         <div class="qa-body">
           <div class="qa-en">${rendered}</div>
           <div class="qa-ko">${esc(f.ko_full)}</div>
+          <div class="qa-answer-line"></div>
         </div>
       </div>`;
   }).join('');
@@ -366,6 +367,7 @@ function renderStep8({ data, wb, headOpts, pageNum }) {
         <div class="qa-body">
           <div class="qa-en">${kindLabel}${renderChoiceTemplate(src.en_template)}</div>
           <div class="qa-ko">${esc(src.ko_full)}</div>
+          <div class="qa-answer-line"></div>
         </div>
       </div>`;
     }
@@ -382,6 +384,7 @@ function renderStep8({ data, wb, headOpts, pageNum }) {
         <div class="qa-body">
           <div class="qa-en">${kindLabel}${rendered}</div>
           <div class="qa-ko">${esc(src.ko_full)}</div>
+          <div class="qa-answer-line"></div>
         </div>
       </div>`;
     }
