@@ -132,35 +132,36 @@ html, body {
   justify-content: center;
 }
 
-/* === STEP 배너 (컴팩트화 — 한 줄 높이 줄임, 진도 표시 삭제) === */
+/* === STEP 배너 (영어 서브타이틀 제거, 컨텐츠와 간격 확대) === */
 .step-banner {
   display: grid;
-  grid-template-columns: 56px 1fr;
-  gap: 10px;
+  grid-template-columns: 58px 1fr;
+  gap: 12px;
   align-items: center;
-  margin-bottom: 10px;
-  padding: 7px 10px;
+  margin-bottom: 18px;          /* ★ 헤드 카드와 본문 간격 확대 */
+  padding: 9px 12px;
   background: var(--c-step-soft);
   border: 1px solid var(--c-step-line);
   border-left: 4px solid var(--c-step);
   border-radius: 6px;
+  flex-shrink: 0;
 }
 .step-banner .step-left {
   text-align: center;
   border-right: 1px dashed var(--c-step-line);
-  padding-right: 8px;
+  padding-right: 10px;
 }
 .step-banner .step-tag {
-  font-size: 6.7pt;
+  font-size: 7pt;
   font-weight: 700;
   color: var(--c-step);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   display: block;
   line-height: 1.2;
-  margin-bottom: 1px;
+  margin-bottom: 2px;
 }
 .step-banner .step-num {
-  font-size: 20pt;
+  font-size: 22pt;
   font-weight: 900;
   color: var(--c-step);
   line-height: 0.95;
@@ -168,18 +169,33 @@ html, body {
 }
 .step-banner .step-right { padding-left: 2px; }
 .step-banner .step-title {
-  font-size: 11pt;
+  font-size: 11.5pt;
   font-weight: 700;
   color: var(--c-ink);
   letter-spacing: -0.02em;
-  line-height: 1.2;
+  line-height: 1.25;
 }
 .step-banner .step-desc {
-  font-size: 8.5pt;
+  font-size: 8.7pt;
   color: var(--c-text-soft);
-  margin-top: 1px;
-  line-height: 1.3;
+  margin-top: 2px;
+  line-height: 1.4;
 }
+
+/* ====================================================================
+   ★ AUTO-FIT — 항목들을 페이지 본문에 균등 분배
+   page-body는 flex column. 컨텐트 컨테이너는 flex:1로 잔여 영역 채우고,
+   내부 항목들은 space-between으로 위↔아래 균등 배치.
+   ==================================================================== */
+.page-body { display: flex; flex-direction: column; }
+.auto-fit {
+  flex: 1;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 4px;
+}
+.auto-fit > * { flex-shrink: 0; }
 
 /* === 지시문 바 === */
 .directive {
@@ -336,6 +352,7 @@ html, body {
    STEP 2 / 3 / 8 — 양자택일 (컴팩트)
    ==================================================================== */
 .qa-list { display: grid; gap: 10px; }
+.qa-list.auto-fit { display: flex; flex-direction: column; justify-content: space-between; flex: 1; gap: 6px; }
 .qa-item {
   display: grid;
   grid-template-columns: 22px 1fr;
@@ -447,49 +464,49 @@ html, body {
    ==================================================================== */
 .jumble-item {
   display: grid;
-  grid-template-columns: 22px 1fr;
-  gap: 8px;
-  padding-bottom: 10px;
-  margin-bottom: 10px;
+  grid-template-columns: 20px 1fr;
+  gap: 6px;
+  padding-bottom: 5px;
   border-bottom: 1px dashed var(--c-line);
 }
-.jumble-item:last-child { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
+.jumble-item:last-child { border-bottom: none; padding-bottom: 0; }
 .jumble-item .ji-no {
-  font-size: 10pt;
+  font-size: 9pt;
   font-weight: 800;
   color: var(--c-step);
   text-align: right;
   padding-right: 3px;
+  line-height: 1.5;
 }
 .jumble-item .ji-words {
   background: var(--c-step-soft);
   border: 1px dashed var(--c-step);
-  border-radius: 5px;
-  padding: 6px 9px;
-  font-size: 8.5pt;
-  line-height: 1.6;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 7.8pt;
+  line-height: 1.5;
   color: var(--c-text);
   letter-spacing: 0.005em;
 }
 .jumble-item .ji-words .sep {
   color: var(--c-step);
   font-weight: 700;
-  margin: 0 4px;
+  margin: 0 3px;
 }
 .jumble-item .ji-ko {
-  margin-top: 5px;
-  font-size: 8.2pt;
+  margin-top: 3px;
+  font-size: 7.8pt;
   color: var(--c-text-soft);
-  line-height: 1.5;
+  line-height: 1.4;
 }
 .jumble-item .ji-answer-line {
   display: block;
   width: 100%;
-  margin-top: 6px;
+  margin-top: 4px;
   background: var(--c-step-soft);
   border: 1px solid var(--c-step-line);
-  border-radius: 4px;
-  height: 22px;
+  border-radius: 3px;
+  height: 18px;
 }
 
 /* ====================================================================
@@ -497,39 +514,39 @@ html, body {
    ==================================================================== */
 .trans-item {
   display: grid;
-  grid-template-columns: 22px 1fr;
-  gap: 8px;
-  padding-bottom: 11px;
-  margin-bottom: 9px;
+  grid-template-columns: 20px 1fr;
+  gap: 6px;
+  padding-bottom: 4px;
   border-bottom: 1px dashed var(--c-line);
 }
-.trans-item:last-child { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
+.trans-item:last-child { border-bottom: none; padding-bottom: 0; }
 .trans-item .ti-no {
-  font-size: 10pt;
+  font-size: 9pt;
   font-weight: 800;
   color: var(--c-step);
   text-align: right;
   padding-right: 3px;
+  line-height: 1.5;
 }
 .trans-item .ti-given {
-  font-size: 8.9pt;
-  line-height: 1.6;
+  font-size: 8.4pt;
+  line-height: 1.5;
   color: var(--c-text);
   font-weight: 500;
 }
 .trans-item .ti-given.ko {
-  font-size: 8.9pt;
+  font-size: 8.4pt;
   color: var(--c-text);
   font-weight: 500;
 }
 .trans-item .ti-answer-line {
   display: block;
   width: 100%;
-  margin-top: 6px;
+  margin-top: 4px;
   background: var(--c-step-soft);
   border: 1px solid var(--c-step-line);
-  border-radius: 4px;
-  height: 24px;
+  border-radius: 3px;
+  height: 18px;
 }
 
 /* ====================================================================
@@ -544,50 +561,50 @@ html, body {
   break-inside: avoid;
   page-break-inside: avoid;
 }
-.answer-section { margin-bottom: 8px; }
+.answer-section { margin-bottom: 6px; }
 .answer-section:last-child { margin-bottom: 0; }
 .answer-section .as-head {
   display: flex;
   align-items: center;
-  gap: 7px;
-  margin-bottom: 5px;
-  padding-bottom: 3px;
+  gap: 6px;
+  margin-bottom: 3px;
+  padding-bottom: 2px;
   border-bottom: 1.3px solid var(--c-step);
 }
 .answer-section .as-tag {
-  font-size: 7.8pt;
+  font-size: 7.3pt;
   font-weight: 800;
   color: #fff;
   background: var(--c-step);
-  padding: 1.5px 9px;
-  border-radius: 4px;
+  padding: 1px 8px;
+  border-radius: 3px;
   letter-spacing: 0.04em;
 }
 .answer-section .as-title {
-  font-size: 9.3pt;
+  font-size: 8.7pt;
   font-weight: 700;
   color: var(--c-step);
 }
 .answer-section .as-sub {
-  font-size: 7.8pt;
+  font-size: 7.3pt;
   color: var(--c-muted);
   margin-left: auto;
   font-weight: 500;
 }
-.answer-list { display: grid; gap: 3px; font-size: 8.2pt; }
+.answer-list { display: grid; gap: 2px; font-size: 7.6pt; }
 .answer-list .al-row {
   display: grid;
-  grid-template-columns: 20px 1fr;
-  gap: 6px;
-  padding: 3px 7px;
+  grid-template-columns: 16px 1fr;
+  gap: 5px;
+  padding: 2px 6px;
   background: var(--c-bg-soft);
-  border-radius: 4px;
-  line-height: 1.45;
+  border-radius: 3px;
+  line-height: 1.35;
 }
 .answer-list .al-no {
   font-weight: 800;
   color: var(--c-step);
-  font-size: 8pt;
+  font-size: 7.4pt;
 }
 .answer-list .al-body { color: var(--c-text); }
 .answer-list .al-body .en {
@@ -596,15 +613,15 @@ html, body {
 }
 .answer-list .al-body .ko-hint {
   color: var(--c-text-soft);
-  font-size: 7.7pt;
+  font-size: 7.2pt;
 }
 .answer-list .al-body .ans-hl {
   background: var(--c-step-soft);
   color: var(--c-step);
   font-weight: 700;
-  padding: 0 4px;
+  padding: 0 3px;
   border-radius: 3px;
-  font-size: 8.1pt;
+  font-size: 7.5pt;
 }
 
 /* === 인덱스 페이지 === */

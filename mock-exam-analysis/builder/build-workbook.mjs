@@ -37,15 +37,15 @@ function esc(s) {
 }
 
 const STEP_META = {
-  1: { tag: 'Passage Reading',   title: '본문과 해석',         desc: '본문 + 해석 + 핵심 어휘 정리',   color: 'mint'   },
-  2: { tag: 'Grammar Choice',    title: '어법 양자택일',       desc: '둘 중 어법상 알맞은 것을 고르시오.', color: 'sky'    },
-  3: { tag: 'Vocab Choice',      title: '어휘 양자택일',       desc: '둘 중 문맥상 알맞은 것을 고르시오.', color: 'butter' },
-  4: { tag: 'Fill in the Blank', title: '빈칸 첫글자 쓰기',    desc: '빈칸에 알맞은 단어를 첫 글자를 참고하여 쓰시오.', color: 'coral'  },
-  5: { tag: 'Korean Translation',title: '한글 해석 연습',      desc: '주어진 영문을 한글로 해석하시오.', color: 'sage'   },
-  6: { tag: 'Word Arrangement',  title: '영문 배열 연습',      desc: '주어진 단어를 배열하여 문장을 완성하시오.', color: 'sky'    },
-  7: { tag: 'Sentence Writing',  title: '통문장 영작',         desc: '주어진 한글을 영문으로 옮겨 쓰시오.', color: 'coral'  },
-  8: { tag: 'Mixed Review',      title: '종합 문제',           desc: 'STEP 2~7 유형을 모두 섞은 종합 점검입니다.', color: 'butter' },
-  9: { tag: 'Answer Key',        title: '정답 · 해설',         desc: '전 스텝 정답 모음.',              color: 'mint'   }
+  1: { title: '본문과 해석',         desc: '본문 + 해석 + 핵심 어휘 정리',                    color: 'mint'   },
+  2: { title: '어법 양자택일',       desc: '둘 중 어법상 알맞은 것을 고르시오.',                color: 'sky'    },
+  3: { title: '어휘 양자택일',       desc: '둘 중 문맥상 알맞은 것을 고르시오.',                color: 'butter' },
+  4: { title: '빈칸 첫글자 쓰기',    desc: '빈칸에 알맞은 단어를 첫 글자를 참고하여 쓰시오.',   color: 'coral'  },
+  5: { title: '한글 해석 연습',      desc: '주어진 영문을 한글로 해석하시오.',                  color: 'sage'   },
+  6: { title: '영문 배열 연습',      desc: '주어진 단어를 배열하여 문장을 완성하시오.',         color: 'sky'    },
+  7: { title: '통문장 영작',         desc: '주어진 한글을 영어 문장으로 옮겨 쓰시오.',          color: 'coral'  },
+  8: { title: '종합 문제',           desc: 'STEP 2~7 유형을 모두 섞은 종합 점검입니다.',        color: 'butter' },
+  9: { title: '정답 · 해설',         desc: '워크북 전체 정답과 핵심 해설입니다.',               color: 'mint'   }
 };
 
 // ─────────────────────────────────────────────────────────────
@@ -70,7 +70,7 @@ function stepBanner(stepNum) {
   const meta = STEP_META[stepNum];
   return `    <div class="step-banner">
       <div class="step-left">
-        <div class="step-tag">STEP ${String(stepNum).padStart(2, '0')} · ${esc(meta.tag)}</div>
+        <div class="step-tag">STEP ${String(stepNum).padStart(2, '0')}</div>
         <div class="step-num">${stepNum}</div>
       </div>
       <div class="step-right">
@@ -211,8 +211,7 @@ function renderStep2({ wb, headOpts, pageNum }) {
         </div>
       </div>`).join('');
 
-  const body = `${directive('어법 양자택일', '둘 중 어법상 알맞은 것을 고르시오.')}
-    <div class="qa-list">${items}
+  const body = `    <div class="qa-list auto-fit">${items}
     </div>`;
 
   return pageWrap({ stepNum: 2, headOpts, pageNum, body });
@@ -232,8 +231,7 @@ function renderStep3({ wb, headOpts, pageNum }) {
         </div>
       </div>`).join('');
 
-  const body = `${directive('어휘 양자택일', '둘 중 문맥상 알맞은 것을 고르시오.')}
-    <div class="qa-list">${items}
+  const body = `    <div class="qa-list auto-fit">${items}
     </div>`;
 
   return pageWrap({ stepNum: 3, headOpts, pageNum, body });
@@ -264,8 +262,7 @@ function renderStep4({ data, wb, headOpts, pageNum }) {
       </div>`;
   }).join('');
 
-  const body = `${directive('빈칸 첫글자 쓰기', '빈칸에 알맞은 단어를 첫 글자를 참고하여 쓰시오.')}
-    <div class="qa-list">${items}
+  const body = `    <div class="qa-list auto-fit">${items}
     </div>`;
 
   return pageWrap({ stepNum: 4, headOpts, pageNum, body });
@@ -288,8 +285,7 @@ function renderStep5({ data, wb, headOpts, pageNum }) {
       </div>`;
   }).join('');
 
-  const body = `${directive('한글 해석 연습', '주어진 영문을 우리말로 해석하시오.')}
-    <div>${items}
+  const body = `    <div class="trans-list auto-fit">${items}
     </div>`;
 
   return pageWrap({ stepNum: 5, headOpts, pageNum, body });
@@ -310,8 +306,7 @@ function renderStep6({ wb, headOpts, pageNum }) {
         </div>
       </div>`).join('');
 
-  const body = `${directive('영문 배열 연습', '주어진 단어를 배열하여 문장을 완성하시오.')}
-    <div>${items}
+  const body = `    <div class="jumble-list auto-fit">${items}
     </div>`;
 
   return pageWrap({ stepNum: 6, headOpts, pageNum, body });
@@ -330,13 +325,11 @@ function renderStep7({ data, wb, headOpts, pageNum }) {
         <div>
           <div class="ti-given ko">${esc(ko)}</div>
           <div class="ti-answer-line"></div>
-          <div class="ti-answer-line" style="margin-top:5px"></div>
         </div>
       </div>`;
   }).join('');
 
-  const body = `${directive('통문장 영작', '주어진 한글을 영어 문장으로 옮겨 쓰시오.')}
-    <div>${items}
+  const body = `    <div class="trans-list auto-fit">${items}
     </div>`;
 
   return pageWrap({ stepNum: 7, headOpts, pageNum, body });
@@ -428,8 +421,7 @@ function renderStep8({ data, wb, headOpts, pageNum }) {
     return '';
   }).join('');
 
-  const body = `${directive('종합 점검', 'STEP 2~7 유형을 모두 섞은 종합 문제입니다.')}
-    <div>${items}
+  const body = `    <div class="mixed-list auto-fit">${items}
     </div>`;
 
   return pageWrap({ stepNum: 8, headOpts, pageNum, body });
@@ -440,13 +432,13 @@ function renderStep8({ data, wb, headOpts, pageNum }) {
 // ─────────────────────────────────────────────────────────────
 
 function renderStep9({ data, wb, headOpts, pageNum }) {
-  // 어법 정답
+  // 어법/어휘 정답 — 해설 생략(공간 절약), 정답만 표시
   const grammarAns = wb.grammar_choice.map(g =>
-    `<div class="al-row"><div class="al-no">${g.no}</div><div class="al-body">${g.answers.map(a => `<span class="ans-hl">${esc(a)}</span>`).join(' / ')} <span class="ko-hint" style="margin-left:8px">— ${esc(g.explain.join(' / '))}</span></div></div>`
+    `<div class="al-row"><div class="al-no">${g.no}</div><div class="al-body">${g.answers.map(a => `<span class="ans-hl">${esc(a)}</span>`).join(' / ')}</div></div>`
   ).join('');
 
   const vocabAns = wb.vocab_choice.map(g =>
-    `<div class="al-row"><div class="al-no">${g.no}</div><div class="al-body">${g.answers.map(a => `<span class="ans-hl">${esc(a)}</span>`).join(' / ')} <span class="ko-hint" style="margin-left:8px">— ${esc(g.explain.join(' / '))}</span></div></div>`
+    `<div class="al-row"><div class="al-no">${g.no}</div><div class="al-body">${g.answers.map(a => `<span class="ans-hl">${esc(a)}</span>`).join(' / ')}</div></div>`
   ).join('');
 
   const fillAns = wb.fill_first_letter.map(f =>
@@ -467,8 +459,7 @@ function renderStep9({ data, wb, headOpts, pageNum }) {
     `<div class="al-row"><div class="al-no">${t.no}</div><div class="al-body"><span class="en">${esc(data.passage[t.ref_sentence - 1])}</span></div></div>`
   ).join('');
 
-  const body = `${directive('정답 · 해설', '워크북 전체 정답과 핵심 해설입니다.')}
-    <div class="answer-2col">
+  const body = `    <div class="answer-2col">
       <div class="answer-section">
         <div class="as-head">
           <span class="as-tag">STEP 2</span>
