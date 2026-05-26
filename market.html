@@ -757,14 +757,42 @@
   }
   function addMock(kind, mode){
     const { y, g, m } = getMockSel();
+    // sku = Supabase products 테이블의 canonical SKU (백엔드 가격 검증의 기준)
+    const SKU   = { analysis:'mock-analysis', workbook:'mock-workbook', variant:'mock-variant', bundle:'mock-bundle' };
     const LABEL = { analysis:'분석지', workbook:'워크북', variant:'변형문제', bundle:'3종 풀패키지' };
     const PRICE = { analysis:4900, workbook:4900, variant:4900, bundle:11760 };
-    const label = LABEL[kind] || kind;
-    const price = PRICE[kind] || 4900;
+    const sku   = SKU[kind];
+    if (!sku) { alert('알 수 없는 상품입니다.'); return; }
+    const label = LABEL[kind];
+    const price = PRICE[kind];
     const name  = `${y} ${g} ${m}월 모의고사 ${label}`;
     const id    = `mock-${kind}-${y}-${g}-${m}`;
-    if (mode === 'buy') buyNow(id, price, name, true);
-    else addCart(id, price, name, 'mock', true);
+    // round_meta: 회차 정보 — 결제 후 어느 회차 PDF 를 발송할지 dispatch-order-pdf 가 참조
+    const roundMeta = { year: y, grade: g, month: m, kind, label: `${y} ${g} ${m}월` };
+    const itemBase = { id, sku, price, name, digital: true, qty: 1, round_meta: roundMeta };
+    if (mode === 'buy') buyNowItem(itemBase);
+    else addCartItem(itemBase);
+  }
+  // 모의고사 전용 wrapper — 기존 addCart/buyNow 는 id+price만 받는 단순 시그니처라
+  // sku/round_meta 보존을 위해 별도 함수로 카트에 직접 넣는다.
+  function addCartItem(item){
+    const cart = getCart();
+    const ex = cart.find(i => i.id === item.id);
+    if (ex) ex.qty += 1; else cart.push(item);
+    setCart(cart);
+    showToast(item.name + ' 장바구니에 담았습니다.');
+    const bar = document.getElementById('cart-bar');
+    if (bar) {
+      delete bar.dataset.userClosed;
+      if (window.innerWidth >= 900) {
+        bar.classList.add('open');
+        document.querySelector('.cart-bar-summary')?.setAttribute('aria-expanded','true');
+      }
+    }
+  }
+  function buyNowItem(item){
+    sessionStorage.setItem(BUYNOW_KEY, JSON.stringify([item]));
+    location.href = 'market_checkout.html?mode=buynow';
   }
 
   renderCart();

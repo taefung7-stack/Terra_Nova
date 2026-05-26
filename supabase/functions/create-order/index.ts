@@ -131,41 +131,63 @@ Deno.serve(async (req) => {
       subtotal: totalAmount,
     }];
   }
-  // ─── 3b. 마켓 주문 (단어장 등) ─────────────────────────
+  // ─── 3b. 마켓 주문 (단어장·모의고사 등) ─────────────────────────
   else if (kind === 'market') {
     const items = Array.isArray(body.items) ? body.items : [];
     if (items.length === 0) return jsonError('items[] is required for market orders', 400);
     if (items.length > 50) return jsonError('items[] too long (max 50)', 400);
 
-    // products 테이블에서 canonical 가격 조회
-    const productIds = items.map((it: any) => String(it.product_id)).filter(Boolean);
-    if (productIds.length === 0) return jsonError('Invalid items[]: missing product_id', 400);
+    // products 테이블에서 canonical 가격 조회 — UUID(product_id) 또는 sku 둘 다 지원
+    const productIds = items.map((it: any) => String(it.product_id || '')).filter(Boolean);
+    const skus = items.map((it: any) => String(it.sku || '')).filter(Boolean);
+    if (productIds.length === 0 && skus.length === 0) {
+      return jsonError('Invalid items[]: each item must have product_id (UUID) or sku', 400);
+    }
 
-    const { data: products, error: prodErr } = await sb
-      .from('products')
-      .select('id,sku,name,price,is_active,requires_shipping')
-      .in('id', productIds);
+    let query = sb.from('products').select('id,sku,name,price,is_active,requires_shipping');
+    // UUID 또는 sku 어느 쪽이라도 매치되는 모든 상품 조회
+    if (productIds.length && skus.length) {
+      query = query.or(`id.in.(${productIds.join(',')}),sku.in.(${skus.join(',')})`);
+    } else if (productIds.length) {
+      query = query.in('id', productIds);
+    } else {
+      query = query.in('sku', skus);
+    }
+    const { data: products, error: prodErr } = await query;
     if (prodErr) return jsonError('Product lookup failed: ' + prodErr.message, 500);
 
-    const prodMap = new Map(products!.map(p => [p.id, p]));
+    const byId  = new Map(products!.map(p => [p.id,  p]));
+    const bySku = new Map(products!.map(p => [p.sku, p]));
     for (const it of items) {
-      const p = prodMap.get(String(it.product_id));
-      if (!p) return jsonError(`Product not found: ${it.product_id}`, 400);
+      const p = (it.product_id && byId.get(String(it.product_id)))
+             || (it.sku && bySku.get(String(it.sku)));
+      if (!p) return jsonError(`Product not found: ${it.product_id || it.sku}`, 400);
       if (!p.is_active) return jsonError(`Product not available: ${p.sku}`, 400);
       const qty = Math.max(1, Math.min(99, parseInt(String(it.quantity || 1), 10)));
       const subtotal = p.price * qty;
       totalAmount += subtotal;
+
+      // round_meta: 회차/학년/월 등 클라이언트가 보낸 부가 정보를 product_snapshot에 보존
+      // dispatch-order-pdf 가 이걸 읽어 어느 회차 PDF 를 보낼지 결정
+      const snapshot: Record<string, unknown> = { sku: p.sku, name: p.name, price: p.price };
+      if (it.round_meta && typeof it.round_meta === 'object') {
+        snapshot.round_meta = it.round_meta;
+        // 상품명에 회차 라벨 부가 (관리자/주문내역 가독성)
+        if (it.round_meta.label) snapshot.display_name = `${it.round_meta.label} · ${p.name}`;
+      }
       lineItems.push({
         product_id: p.id,
-        product_snapshot: { sku: p.sku, name: p.name, price: p.price },
+        product_snapshot: snapshot,
         quantity: qty,
         unit_price: p.price,
         subtotal,
       });
     }
+    const firstName = (lineItems[0].product_snapshot as any).display_name
+                   || (lineItems[0].product_snapshot as any).name;
     orderName = lineItems.length === 1
-      ? lineItems[0].product_snapshot.name
-      : `${lineItems[0].product_snapshot.name} 외 ${lineItems.length - 1}건`;
+      ? firstName
+      : `${firstName} 외 ${lineItems.length - 1}건`;
   }
   else {
     return jsonError(`Invalid kind: ${kind} (expected 'subscription' or 'market')`, 400);
