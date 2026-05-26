@@ -184,15 +184,15 @@ html, body {
 
 /* ====================================================================
    ★ AUTO-FIT — 항목들을 페이지 본문에 균등 분배
-   page-body는 flex column. 컨텐트 컨테이너는 flex:1로 잔여 영역 채우고,
-   내부 항목들은 space-between으로 위↔아래 균등 배치.
+   space-around: 첫 항목 위·마지막 항목 아래에도 여백 확보
+   (space-between은 마지막 항목을 푸터에 붙여버려 답 쓸 공간 사라짐)
    ==================================================================== */
 .page-body { display: flex; flex-direction: column; }
 .auto-fit {
   flex: 1;
   display: flex !important;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
   gap: 4px;
 }
 .auto-fit > * { flex-shrink: 0; }
@@ -352,7 +352,7 @@ html, body {
    STEP 2 / 3 / 8 — 양자택일 (컴팩트)
    ==================================================================== */
 .qa-list { display: grid; gap: 10px; }
-.qa-list.auto-fit { display: flex; flex-direction: column; justify-content: space-between; flex: 1; gap: 6px; }
+.qa-list.auto-fit { display: flex; flex-direction: column; justify-content: space-around; flex: 1; gap: 6px; }
 .qa-item {
   display: grid;
   grid-template-columns: 22px 1fr;
