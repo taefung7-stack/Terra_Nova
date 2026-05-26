@@ -175,11 +175,18 @@ npm run pdf:march
 본 빌더는 **분석지 + 워크북** 출력을 지원합니다. 변형문제는 추가 예정
 (market.html의 ₩4,900 × 3 = 번들 20% 할인 ₩11,760과 연동).
 
-### 워크북 빌드 (9-STEP)
+### 워크북 빌드 (9-STEP) — v1.0 LOCKED
+
+> 디자인 시스템은 2026-05-26 사용자 검수 완료 → v1.0 안정판 확정.
+> 새 회차 추가 시 JSON만 작성하면 동일 디자인으로 자동 생성됩니다.
+> CSS·빌더 코드는 수정 금지 (회차 확장 시 디자인 일관성 보장).
 
 ```bash
 # data/{N}.json + data/{N}-workbook.json 결합 → dist/workbook-{N}.html
 npm run workbook:march
+
+# 빌드 후 반드시 overflow 검증 (9/9 페이지 모두 NO 확인 필수)
+node builder/check-overflow.mjs 2026-march-grade2/dist/workbook-21.html
 ```
 
 워크북 9-STEP 구성:
@@ -209,3 +216,27 @@ npm run workbook:march
 | `mixed[]` | STEP 8 — `{kind, ref, no}` 로 다른 STEP 문항을 참조 |
 
 `{{N:A/B}}` 토큰은 빌더가 자동으로 `<span class="alt">A / B</span>` 박스로 변환합니다.
+
+#### 새 회차 추가 절차 (v1.0 표준)
+
+1. **회차 폴더 복사**
+   ```bash
+   cp -r 2026-march-grade2 2026-june-grade2
+   rm -rf 2026-june-grade2/data/* 2026-june-grade2/dist/*
+   ```
+2. **JSON 작성** — `data/21-workbook.json`을 템플릿으로 새 회차 작성
+3. **package.json scripts**에 빌드/워크북 명령 1줄씩 추가
+4. **빌드 + 검증**
+   ```bash
+   npm run workbook:june
+   node builder/check-overflow.mjs 2026-june-grade2/dist/workbook-{N}.html
+   # → 9/9 페이지 overflow=NO 확인 후 배포
+   ```
+
+#### v1.0 디자인 원칙 (잠금)
+
+- 페이지 컨텐트가 많아도 폰트·간격은 그대로 두고 컨텐트만 컴팩트화
+- 항목 사이 간격은 `auto-fit` (`justify-content: space-around`)이 자율 분배
+- 각 문항 위에 STEP 컬러 1px 가로 구분선 (`border-top`, `:first-child` 제외)
+- 답란 박스 없음 — 손글씨 공간은 auto-fit 분배 여백으로 자연 확보
+- 전 글씨 Pretendard, 분석지와 동일한 푸터 패턴

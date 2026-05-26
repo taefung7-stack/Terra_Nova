@@ -1,25 +1,39 @@
 #!/usr/bin/env node
-/**
- * Terra Nova 모의고사 워크북 빌더 (9-STEP)
+/* ===================================================================
+ * Terra Nova 모의고사 워크북 빌더 — v1.0 LOCKED (2026-05-26)
+ * ===================================================================
+ *
+ * 이 빌더의 디자인 시스템은 사용자 검수를 거쳐 v1.0으로 확정됨.
+ * 회차별 데이터(JSON)만 교체하면 동일 디자인으로 무한 확장.
+ *
+ * ── 설계 원칙 (변경 금지) ─────────────────────────────────────────
+ *   1. 9-STEP 구성 고정 (Passage → Grammar → Vocab → Fill →
+ *      Ko-Trans → Arrange → Sent-Trans → Mixed → Answers)
+ *   2. STEP별 컬러 코딩 — 페이지마다 다른 파스텔 톤
+ *      (1·9 Mint / 2·6 Sky / 3·8 Butter / 4·7 Coral / 5 Sage)
+ *   3. A4 297mm 절대 초과 금지 — auto-fit으로 항목 자율 분배
+ *      (justify-content: space-around: 첫 항목 위·마지막 아래 여백 보장)
+ *   4. 폰트 전부 Pretendard 통일 (Inter 사용 금지)
+ *   5. 푸터: 좌측 "Terra Nova · Workbook" / 우측 동그라미 페이지번호
+ *   6. 분석지와 동일한 패턴: page-head 컬러 보더 + 페이지번호 동그라미
+ *   7. 학습 페이지(2~8): 각 문항 위에 STEP 컬러 1px 가로선 구분
+ *      (border-top, :first-child 제외)
+ *   8. 답란은 컬러 박스 대신 항목 사이 auto-fit 여백으로 자연 확보
+ *   9. STEP 9 정답지: 2단 컬럼(column-count: 2)으로 한 페이지 수용
+ *
+ * ── 빌드 검증 ──────────────────────────────────────────────────────
+ *   node builder/check-overflow.mjs <html-file>
+ *   → 9/9 페이지 overflow=NO, hits_foot=NO 확인 후 배포
+ *
+ * ── 회차 확장 절차 ─────────────────────────────────────────────────
+ *   1) {새회차폴더}/data/{N}.json + {N}-workbook.json 작성
+ *   2) npm run workbook:{회차}  (package.json scripts에 1줄 추가)
+ *   3) check-overflow.mjs 로 9/9 통과 검증
  *
  * 사용법:
  *   node builder/build-workbook.mjs <data-dir> [<dist-dir>]
  *   node builder/build-workbook.mjs 2026-march-grade2/data
- *   node builder/build-workbook.mjs 2026-march-grade2/data 2026-march-grade2/dist
- *
- * data/{N}.json + data/{N}-workbook.json 을 결합해 workbook-{N}.html 생성.
- *
- * 9-STEP 구성:
- *   1. 본문 + 해석 + 단어 정리
- *   2. 어법 양자택일
- *   3. 어휘 양자택일
- *   4. 빈칸 첫글자 쓰기
- *   5. 한글 해석 (영문 → 한글)
- *   6. 영문 배열 (jumble)
- *   7. 통문장 영작 (한글 → 영문)
- *   8. 종합 문제 (mixed)
- *   9. 정답지
- */
+ * =================================================================== */
 
 import fs from 'node:fs/promises';
 import path from 'node:path';
