@@ -172,5 +172,40 @@ npm run pdf:march
 
 ## 3종 라인업 (분석지·워크북·변형문제)
 
-본 빌더는 **분석지** 출력 전용입니다. 워크북·변형문제는 같은 JSON 데이터를 다른 템플릿으로 렌더링하는
-별도 빌더로 추가 예정 (market.html의 ₩4,900 × 3 = 번들 20% 할인 ₩11,760과 연동).
+본 빌더는 **분석지 + 워크북** 출력을 지원합니다. 변형문제는 추가 예정
+(market.html의 ₩4,900 × 3 = 번들 20% 할인 ₩11,760과 연동).
+
+### 워크북 빌드 (9-STEP)
+
+```bash
+# data/{N}.json + data/{N}-workbook.json 결합 → dist/workbook-{N}.html
+npm run workbook:march
+```
+
+워크북 9-STEP 구성:
+1. **본문 + 해석 + 단어 정리** (Mint)
+2. **어법 양자택일** (Sky)
+3. **어휘 양자택일** (Butter)
+4. **빈칸 첫글자 쓰기** (Coral)
+5. **한글 해석 연습** (Sage)
+6. **영문 배열 (jumble)** (Sky)
+7. **통문장 영작** (Coral)
+8. **종합 점검 (Mixed)** (Butter)
+9. **정답 · 해설** (Mint)
+
+각 STEP은 Terra Nova 5색 파스텔 팔레트로 컬러 코딩되어 진도감을 시각화합니다.
+
+#### `21-workbook.json` 스키마 요약
+
+| 필드 | 설명 |
+|---|---|
+| `voca_check.{en_to_ko, ko_to_en, expressions, definitions}` | STEP 1 단어 보충 (영영풀이·핵심 표현 포함) |
+| `grammar_choice[]` | STEP 2 — `en_template` 안에 `{{N:A/B}}` 토큰 사용 |
+| `vocab_choice[]`   | STEP 3 — 위와 동일 토큰 |
+| `fill_first_letter[]` | STEP 4 — `hints: [{pos, letter, answer, after}]` |
+| `ko_translation[]` | STEP 5 — `ref_sentence`만 명시 (본문 자동 로드) |
+| `jumble[]` | STEP 6 — `words[]` 배열을 셔플하지 않고 그대로 표시 (출제자 의도 유지) |
+| `sentence_translation[]` | STEP 7 — `ref_sentence` 기반 |
+| `mixed[]` | STEP 8 — `{kind, ref, no}` 로 다른 STEP 문항을 참조 |
+
+`{{N:A/B}}` 토큰은 빌더가 자동으로 `<span class="alt">A / B</span>` 박스로 변환합니다.
