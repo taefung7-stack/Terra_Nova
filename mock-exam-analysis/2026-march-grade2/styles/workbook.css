@@ -1,24 +1,15 @@
-/* Terra Nova 모의고사 워크북 — 스타일 시트 v1
- * 9-STEP 학습 워크북 (Passage → Grammar → Vocab → Fill → Ko-Trans → Arrange → Sent-Trans → Mixed → Answers)
- * A4 (210×297mm) — 각 스텝별 컬러 코딩으로 진도감 시각화
+/* Terra Nova 모의고사 워크북 — 스타일 시트 v2 (피드백 반영)
+ * 9-STEP — A4 (210×297mm) 절대 넘침 금지, 전 글씨 Pretendard, 분석지 푸터 스타일 매칭
  *
  * STEP 컬러 매핑:
- *   STEP 1 Passage     — Mint  (#6b9c92) 입문
- *   STEP 2 Grammar     — Sky   (#6a9bb5) 어법
- *   STEP 3 Vocab       — Butter(#c69b4d) 어휘
- *   STEP 4 Fill        — Coral (#c97a6a) 빈칸
- *   STEP 5 Ko-Trans    — Sage  (#7ba87b) 해석
- *   STEP 6 Arrange     — Sky   (#6a9bb5) 배열
- *   STEP 7 Sent-Trans  — Coral (#c97a6a) 영작
- *   STEP 8 Mixed       — Butter(#c69b4d) 종합
- *   STEP 9 Answers     — Mint  (#6b9c92) 정답
+ *   1 Passage·Mint  / 2 Grammar·Sky  / 3 Vocab·Butter / 4 Fill·Coral
+ *   5 KoTrans·Sage  / 6 Arrange·Sky / 7 SentTrans·Coral / 8 Mixed·Butter
+ *   9 Answers·Mint
  */
 
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
 :root {
-  /* === 분석지와 동일한 컬러 토큰 (재사용) === */
   --c-mint:        #b8d8d0;  --c-mint-soft:   #e6f1ee;  --c-mint-deep:   #6b9c92;
   --c-sky:         #c4dde8;  --c-sky-soft:    #ecf4f8;  --c-sky-deep:    #6a9bb5;
   --c-sage:        #d4e7d4;  --c-sage-soft:   #eef6ee;  --c-sage-deep:   #7ba87b;
@@ -42,16 +33,16 @@ html, body {
   font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
   color: var(--c-text);
   background: #eef2f3;
-  font-size: 10pt;
-  line-height: 1.55;
-  letter-spacing: -0.012em;
+  font-size: 9.5pt;
+  line-height: 1.5;
+  letter-spacing: -0.015em;
 }
 
-/* === A4 페이지 === */
+/* === A4 페이지 (분석지와 동일 패딩) === */
 .page {
   width: 210mm;
   height: 297mm;
-  padding: 12mm 14mm 18mm 14mm;
+  padding: 12mm 14mm 16mm 14mm;
   margin: 12px auto;
   background: #fff;
   box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 8px 24px rgba(0,0,0,0.05);
@@ -64,75 +55,7 @@ html, body {
 .page:last-child { page-break-after: auto; }
 .page-body { flex: 1; min-height: 0; overflow: hidden; }
 
-/* === 페이지 헤더 === */
-.page-head {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding-bottom: 6px;
-  margin-bottom: 12px;
-  border-bottom: 1.5px solid var(--c-line);
-  font-size: 9pt;
-}
-.page-head .exam-tag {
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  color: var(--c-text-soft);
-  letter-spacing: 0.01em;
-}
-.page-head .sep { color: var(--c-line); font-weight: 400; }
-.page-head .grade-tag {
-  color: var(--c-step);
-  font-weight: 700;
-}
-.page-head .qno {
-  color: var(--c-text);
-  font-weight: 700;
-  font-family: 'Inter', 'Pretendard', sans-serif;
-}
-.page-head .step-subtitle {
-  color: var(--c-text-soft);
-  font-weight: 500;
-}
-.page-head .wb-chip {
-  margin-left: auto;
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  background: var(--c-step-soft);
-  color: var(--c-step);
-  border: 1px solid var(--c-step-line);
-  font-size: 8.5pt;
-  font-weight: 700;
-  padding: 3px 12px;
-  border-radius: 999px;
-  letter-spacing: 0.03em;
-  font-family: 'Inter', sans-serif;
-}
-.page-head .wb-chip::before {
-  content: "";
-  width: 5px; height: 5px;
-  background: var(--c-step);
-  border-radius: 50%;
-}
-
-/* === 푸터 === */
-.page-foot {
-  position: absolute;
-  left: 14mm; right: 14mm;
-  bottom: 7mm;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  font-size: 8.2pt;
-  color: var(--c-muted);
-  font-family: 'Inter', sans-serif;
-}
-.page-foot .pageno { font-weight: 600; color: var(--c-text-soft); }
-.page-foot .brand { letter-spacing: 0.04em; }
-
-/* === STEP 컬러 변수 주입 (페이지마다 다르게) === */
+/* === STEP 컬러 변수 (페이지마다 다르게) === */
 .page[data-step="1"] { --c-step: var(--c-mint-deep);   --c-step-soft: var(--c-mint-soft);   --c-step-line: var(--c-mint); }
 .page[data-step="2"] { --c-step: var(--c-sky-deep);    --c-step-soft: var(--c-sky-soft);    --c-step-line: var(--c-sky); }
 .page[data-step="3"] { --c-step: var(--c-butter-deep); --c-step-soft: var(--c-butter-soft); --c-step-line: var(--c-butter); }
@@ -143,58 +66,119 @@ html, body {
 .page[data-step="8"] { --c-step: var(--c-butter-deep); --c-step-soft: var(--c-butter-soft); --c-step-line: var(--c-butter); }
 .page[data-step="9"] { --c-step: var(--c-mint-deep);   --c-step-soft: var(--c-mint-soft);   --c-step-line: var(--c-mint); }
 
-/* === 스텝 인디케이터 (페이지 상단 좌측 — 큰 STEP n 텍스트) === */
-.step-banner {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 12px;
-  align-items: end;
-  margin-bottom: 14px;
-  padding-bottom: 10px;
-  border-bottom: 2px solid var(--c-step);
+/* === 페이지 헤더 (분석지처럼 컴팩트, STEP 컬러로 하단 보더) === */
+.page-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-bottom: 5px;
+  margin-bottom: 8px;
+  border-bottom: 1.5px solid var(--c-step);
+  font-size: 9pt;
 }
-.step-banner .step-tag {
-  font-family: 'Inter', sans-serif;
+.page-head .exam-tag { color: var(--c-step); font-weight: 700; letter-spacing: -0.01em; }
+.page-head .sep      { color: var(--c-line); font-weight: 400; }
+.page-head .grade-tag{ color: var(--c-step); font-weight: 700; }
+.page-head .qno      { color: var(--c-text); font-weight: 700; }
+.page-head .step-subtitle { color: var(--c-text-soft); font-weight: 500; }
+.page-head .wb-chip {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--c-step-soft);
+  color: var(--c-step);
+  border: 1px solid var(--c-step-line);
   font-size: 8.5pt;
   font-weight: 700;
+  padding: 3px 11px;
+  border-radius: 999px;
+  letter-spacing: 0.02em;
+}
+.page-head .wb-chip::before {
+  content: "";
+  width: 5px; height: 5px;
+  background: var(--c-step);
+  border-radius: 50%;
+}
+
+/* === 푸터 (분석지 매칭 — 좌측 brand, 우측 동그라미 페이지 번호) === */
+.page-foot {
+  position: absolute;
+  left: 14mm;
+  right: 14mm;
+  bottom: 6mm;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1.5px solid var(--c-step);
+  padding-top: 5px;
+}
+.page-foot .brand {
+  font-size: 8pt;
+  color: var(--c-muted);
+  font-weight: 500;
+}
+.page-foot .pageno {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--c-step);
+  color: #fff;
+  font-size: 9pt;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* === STEP 배너 (컴팩트화 — 한 줄 높이 줄임, 진도 표시 삭제) === */
+.step-banner {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 7px 10px;
+  background: var(--c-step-soft);
+  border: 1px solid var(--c-step-line);
+  border-left: 4px solid var(--c-step);
+  border-radius: 6px;
+}
+.step-banner .step-left {
+  text-align: center;
+  border-right: 1px dashed var(--c-step-line);
+  padding-right: 8px;
+}
+.step-banner .step-tag {
+  font-size: 6.7pt;
+  font-weight: 700;
   color: var(--c-step);
-  letter-spacing: 0.18em;
-  margin-bottom: 2px;
-  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  display: block;
+  line-height: 1.2;
+  margin-bottom: 1px;
 }
 .step-banner .step-num {
-  font-family: 'Inter', sans-serif;
-  font-size: 36pt;
+  font-size: 20pt;
   font-weight: 900;
   color: var(--c-step);
-  line-height: 0.9;
+  line-height: 0.95;
   letter-spacing: -0.04em;
 }
+.step-banner .step-right { padding-left: 2px; }
 .step-banner .step-title {
-  font-size: 14pt;
+  font-size: 11pt;
   font-weight: 700;
   color: var(--c-ink);
   letter-spacing: -0.02em;
+  line-height: 1.2;
 }
 .step-banner .step-desc {
-  font-size: 9pt;
-  color: var(--c-text-soft);
-  margin-top: 3px;
-}
-.step-banner .step-progress {
-  margin-left: auto;
-  font-family: 'Inter', sans-serif;
   font-size: 8.5pt;
-  font-weight: 600;
-  color: var(--c-muted);
-  letter-spacing: 0.04em;
-  align-self: end;
-  padding-bottom: 5px;
-}
-.step-banner .step-progress strong {
-  color: var(--c-step);
-  font-weight: 800;
-  font-size: 10pt;
+  color: var(--c-text-soft);
+  margin-top: 1px;
+  line-height: 1.3;
 }
 
 /* === 지시문 바 === */
@@ -202,14 +186,14 @@ html, body {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 9.5pt;
-  margin-bottom: 12px;
+  font-size: 9pt;
+  margin-bottom: 10px;
   color: var(--c-text);
 }
 .directive .di-mark {
   display: inline-block;
   width: 4px;
-  height: 14px;
+  height: 13px;
   background: var(--c-step);
   border-radius: 2px;
 }
@@ -220,205 +204,199 @@ html, body {
   background: var(--c-step-soft);
   border: 1px solid var(--c-step-line);
   border-radius: 4px;
-  font-size: 8.8pt;
+  font-size: 8.5pt;
   letter-spacing: 0.02em;
 }
 .directive .di-text { color: var(--c-text); font-weight: 500; }
 
 /* ====================================================================
-   STEP 1 — 본문 + 해석 + 단어 정리
+   STEP 1 — 본문 + 해석 (영문이 더 길므로 1.3:1 비율)
    ==================================================================== */
 .passage-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-bottom: 12px;
+  grid-template-columns: 1.3fr 1fr;   /* 영문 더 넓게 */
+  gap: 10px;
+  margin-bottom: 10px;
 }
 .passage-box {
   background: var(--c-coral-soft);
   border: 1px solid var(--c-coral);
-  border-radius: 8px;
-  padding: 12px 14px 12px;
+  border-radius: 7px;
+  padding: 10px 12px 9px;
   position: relative;
 }
 .passage-box.ko { background: var(--c-bg-soft); border-color: var(--c-line); }
 .passage-box .pb-label {
   position: absolute;
-  top: -10px;
-  left: 12px;
+  top: -9px;
+  left: 11px;
   background: var(--c-coral-deep);
   color: #fff;
-  font-size: 8pt;
+  font-size: 7.8pt;
   font-weight: 700;
-  padding: 2px 10px;
+  padding: 2px 9px;
   border-radius: 4px;
   letter-spacing: 0.04em;
 }
-.passage-box.ko .pb-label {
-  background: var(--c-text-soft);
-}
+.passage-box.ko .pb-label { background: var(--c-text-soft); }
 .passage-box .pb-body {
-  font-size: 9.3pt;
-  line-height: 1.7;
+  font-size: 8.6pt;
+  line-height: 1.55;
   color: var(--c-text);
-  font-family: 'Inter', 'Pretendard', sans-serif;
   font-weight: 500;
 }
 .passage-box.ko .pb-body {
-  font-family: 'Pretendard', sans-serif;
-  font-size: 9.2pt;
+  font-size: 8.7pt;
   color: var(--c-text-soft);
   font-weight: 400;
 }
 .passage-box .sent-mark {
   display: inline-block;
-  width: 13px;
-  height: 13px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   background: var(--c-coral-deep);
   color: #fff;
-  font-family: 'Inter', sans-serif;
-  font-size: 7pt;
+  font-size: 6.5pt;
   font-weight: 800;
   text-align: center;
-  line-height: 13px;
-  margin: 0 4px 0 0;
+  line-height: 12px;
+  margin: 0 3px 0 0;
   vertical-align: 2px;
 }
 .passage-box.ko .sent-mark { background: var(--c-text-soft); }
 
-/* 단어정리 — 4컬럼 그리드 (스텝1) */
+/* 단어 정리 — 컴팩트 */
 .voca-block {
   border: 1px solid var(--c-line);
-  border-radius: 8px;
-  padding: 10px 12px 10px;
-  margin-bottom: 9px;
+  border-radius: 7px;
+  padding: 8px 10px 8px;
+  margin-bottom: 7px;
 }
 .voca-block .vb-head {
   display: inline-block;
   background: var(--c-step-soft);
   color: var(--c-step);
   border: 1px solid var(--c-step-line);
-  font-size: 8.5pt;
+  font-size: 8pt;
   font-weight: 700;
-  padding: 2px 11px;
+  padding: 1.5px 10px;
   border-radius: 4px;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   letter-spacing: 0.02em;
 }
 .voca-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 4px 14px;
-  font-size: 8.6pt;
+  gap: 2px 12px;
+  font-size: 8.1pt;
 }
 .voca-grid .v-item {
   display: grid;
-  grid-template-columns: 18px 1fr;
-  gap: 4px;
+  grid-template-columns: 16px 1fr;
+  gap: 3px;
   align-items: baseline;
-  line-height: 1.5;
+  line-height: 1.4;
 }
 .voca-grid .v-item .v-no {
-  font-family: 'Inter', sans-serif;
-  font-size: 7.8pt;
+  font-size: 7.3pt;
   color: var(--c-muted);
   font-weight: 600;
   text-align: right;
 }
 .voca-grid .v-item .v-word {
-  font-family: 'Inter', sans-serif;
   font-weight: 700;
   color: var(--c-ink);
-  font-size: 8.7pt;
+  font-size: 8.2pt;
 }
 .voca-grid .v-item .v-pos {
   color: var(--c-muted);
-  font-size: 7.5pt;
+  font-size: 7.2pt;
   font-weight: 500;
   margin: 0 2px;
 }
 .voca-grid .v-item .v-meaning { color: var(--c-text); }
 
-/* 동의어/반의어/영영풀이/표현 2컬럼 */
 .voca-2col {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  margin-bottom: 9px;
+  gap: 7px;
+  margin-bottom: 7px;
 }
 .voca-2col .voca-block { margin-bottom: 0; }
 .voca-2col .voca-grid {
   grid-template-columns: 1fr;
-  gap: 3px;
+  gap: 2px;
 }
 .voca-2col .voca-grid .v-item {
-  grid-template-columns: 18px 1fr;
+  grid-template-columns: 16px 1fr;
 }
 
 /* ====================================================================
-   STEP 2 / STEP 8 어법 양자택일
+   STEP 2 / 3 / 8 — 양자택일 (컴팩트)
    ==================================================================== */
-.qa-list {
-  display: grid;
-  gap: 14px;
-}
+.qa-list { display: grid; gap: 10px; }
 .qa-item {
   display: grid;
-  grid-template-columns: 26px 1fr;
+  grid-template-columns: 22px 1fr;
   gap: 8px;
-  padding-bottom: 12px;
+  padding-bottom: 9px;
   border-bottom: 1px dashed var(--c-line);
 }
-.qa-item:last-child { border-bottom: none; }
+.qa-item:last-child { border-bottom: none; padding-bottom: 0; }
 .qa-item .qa-no {
-  font-family: 'Inter', sans-serif;
-  font-size: 11pt;
+  font-size: 10pt;
   font-weight: 800;
   color: var(--c-step);
   text-align: right;
-  padding-right: 4px;
+  padding-right: 3px;
+  line-height: 1.5;
 }
-.qa-item .qa-body { display: grid; gap: 5px; }
+.qa-item .qa-body { display: grid; gap: 4px; }
 .qa-item .qa-en {
-  font-family: 'Inter', 'Pretendard', sans-serif;
-  font-size: 9.4pt;
-  line-height: 1.75;
+  font-size: 9pt;
+  line-height: 1.7;
   color: var(--c-text);
 }
 .qa-item .qa-ko {
-  font-size: 8.5pt;
+  font-size: 8.3pt;
   color: var(--c-text-soft);
-  line-height: 1.55;
-  padding-top: 3px;
+  line-height: 1.5;
+  padding-top: 2px;
 }
 
-/* 양자택일 박스 — A / B */
+/* 양자택일 박스 */
 .alt {
   display: inline-block;
-  padding: 1.5px 8px;
+  padding: 1px 7px;
   margin: 0 2px;
-  border: 1.2px solid var(--c-step);
-  border-radius: 5px;
+  border: 1.1px solid var(--c-step);
+  border-radius: 4px;
   background: #fff;
-  font-family: 'Inter', sans-serif;
-  font-size: 8.7pt;
+  font-size: 8.4pt;
   font-weight: 600;
   color: var(--c-step);
   white-space: nowrap;
   vertical-align: 1px;
+  line-height: 1.5;
 }
 .alt .slash {
   color: var(--c-muted);
   font-weight: 400;
-  margin: 0 4px;
+  margin: 0 3px;
+}
+.alt .alt-idx {
+  font-size: 6.2pt;
+  color: var(--c-muted);
+  margin-right: 2px;
+  font-weight: 600;
+  vertical-align: 4px;
 }
 
-/* 어형변형 / 영작 빈칸 */
+/* 빈칸 라인 */
 .blank-paren {
   display: inline-block;
-  font-family: 'Inter', sans-serif;
-  font-size: 9pt;
+  font-size: 8.7pt;
   color: var(--c-step);
   font-weight: 700;
   font-style: italic;
@@ -426,29 +404,28 @@ html, body {
 }
 .blank-line {
   display: inline-block;
-  min-width: 90px;
-  border-bottom: 1.2px solid var(--c-text);
-  height: 14pt;
+  min-width: 80px;
+  border-bottom: 1.1px solid var(--c-text);
+  height: 13pt;
   vertical-align: -2px;
   margin: 0 3px;
 }
-.blank-line.short { min-width: 60px; }
-.blank-line.long { min-width: 160px; }
+.blank-line.short { min-width: 55px; }
+.blank-line.long  { min-width: 150px; }
 .blank-line.full {
   display: block;
   width: 100%;
-  margin-top: 8px;
+  margin-top: 6px;
   background: var(--c-step-soft);
   border: 1px solid var(--c-step-line);
-  border-radius: 5px;
-  height: 26px;
+  border-radius: 4px;
+  height: 22px;
 }
 
-/* 첫글자 힌트 — STEP 4 */
+/* 첫글자 힌트 */
 .first-hint {
   display: inline-block;
-  font-family: 'Inter', sans-serif;
-  font-size: 8.7pt;
+  font-size: 8.4pt;
   color: var(--c-step);
   font-weight: 700;
   margin: 0 2px;
@@ -456,213 +433,181 @@ html, body {
 .first-hint .fh-num {
   color: var(--c-muted);
   font-weight: 600;
-  font-size: 8pt;
+  font-size: 7.5pt;
   margin-right: 2px;
 }
 .first-hint .fh-letter {
-  border-bottom: 1.5px solid var(--c-step);
+  border-bottom: 1.3px solid var(--c-step);
   padding: 0 2px 1px;
-  font-size: 9pt;
+  font-size: 8.7pt;
 }
 
 /* ====================================================================
-   STEP 6 — 영문 배열 (단어 jumble 상자)
+   STEP 6 — 영문 배열
    ==================================================================== */
 .jumble-item {
   display: grid;
-  grid-template-columns: 26px 1fr;
+  grid-template-columns: 22px 1fr;
   gap: 8px;
-  padding-bottom: 14px;
-  margin-bottom: 14px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
   border-bottom: 1px dashed var(--c-line);
 }
-.jumble-item:last-child { margin-bottom: 0; border-bottom: none; }
+.jumble-item:last-child { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
 .jumble-item .ji-no {
-  font-family: 'Inter', sans-serif;
-  font-size: 11pt;
+  font-size: 10pt;
   font-weight: 800;
   color: var(--c-step);
   text-align: right;
-  padding-right: 4px;
+  padding-right: 3px;
 }
 .jumble-item .ji-words {
   background: var(--c-step-soft);
   border: 1px dashed var(--c-step);
   border-radius: 5px;
-  padding: 7px 10px;
-  font-family: 'Inter', sans-serif;
-  font-size: 9pt;
-  line-height: 1.7;
+  padding: 6px 9px;
+  font-size: 8.5pt;
+  line-height: 1.6;
   color: var(--c-text);
   letter-spacing: 0.005em;
 }
 .jumble-item .ji-words .sep {
   color: var(--c-step);
   font-weight: 700;
-  margin: 0 5px;
+  margin: 0 4px;
 }
 .jumble-item .ji-ko {
-  margin-top: 6px;
-  font-size: 8.5pt;
+  margin-top: 5px;
+  font-size: 8.2pt;
   color: var(--c-text-soft);
-  line-height: 1.55;
+  line-height: 1.5;
 }
 .jumble-item .ji-answer-line {
   display: block;
   width: 100%;
-  margin-top: 8px;
+  margin-top: 6px;
   background: var(--c-step-soft);
   border: 1px solid var(--c-step-line);
-  border-radius: 5px;
-  height: 26px;
+  border-radius: 4px;
+  height: 22px;
 }
 
 /* ====================================================================
-   STEP 5 / STEP 7 — 해석 / 영작
+   STEP 5 / 7 — 해석 / 영작
    ==================================================================== */
 .trans-item {
   display: grid;
-  grid-template-columns: 26px 1fr;
+  grid-template-columns: 22px 1fr;
   gap: 8px;
-  padding-bottom: 16px;
-  margin-bottom: 12px;
+  padding-bottom: 11px;
+  margin-bottom: 9px;
   border-bottom: 1px dashed var(--c-line);
 }
-.trans-item:last-child { margin-bottom: 0; border-bottom: none; }
+.trans-item:last-child { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
 .trans-item .ti-no {
-  font-family: 'Inter', sans-serif;
-  font-size: 11pt;
+  font-size: 10pt;
   font-weight: 800;
   color: var(--c-step);
   text-align: right;
-  padding-right: 4px;
+  padding-right: 3px;
 }
 .trans-item .ti-given {
-  font-family: 'Inter', 'Pretendard', sans-serif;
-  font-size: 9.3pt;
-  line-height: 1.7;
+  font-size: 8.9pt;
+  line-height: 1.6;
   color: var(--c-text);
   font-weight: 500;
 }
 .trans-item .ti-given.ko {
-  font-family: 'Pretendard', sans-serif;
-  font-size: 9.3pt;
+  font-size: 8.9pt;
   color: var(--c-text);
   font-weight: 500;
 }
 .trans-item .ti-answer-line {
   display: block;
   width: 100%;
-  margin-top: 8px;
+  margin-top: 6px;
   background: var(--c-step-soft);
   border: 1px solid var(--c-step-line);
-  border-radius: 5px;
-  height: 28px;
+  border-radius: 4px;
+  height: 24px;
 }
 
 /* ====================================================================
-   STEP 9 — 정답지
+   STEP 9 — 정답지 (2단 컬럼으로 A4 안에 수용)
    ==================================================================== */
-.answer-section {
-  margin-bottom: 14px;
+.answer-2col {
+  column-count: 2;
+  column-gap: 14px;
+  column-rule: 1px dashed var(--c-line);
 }
+.answer-2col .answer-section {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+.answer-section { margin-bottom: 8px; }
+.answer-section:last-child { margin-bottom: 0; }
 .answer-section .as-head {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 8px;
-  padding-bottom: 4px;
-  border-bottom: 1.5px solid var(--c-step);
+  gap: 7px;
+  margin-bottom: 5px;
+  padding-bottom: 3px;
+  border-bottom: 1.3px solid var(--c-step);
 }
 .answer-section .as-tag {
-  font-family: 'Inter', sans-serif;
-  font-size: 8.5pt;
+  font-size: 7.8pt;
   font-weight: 800;
   color: #fff;
   background: var(--c-step);
-  padding: 2px 10px;
+  padding: 1.5px 9px;
   border-radius: 4px;
   letter-spacing: 0.04em;
 }
 .answer-section .as-title {
-  font-size: 10pt;
+  font-size: 9.3pt;
   font-weight: 700;
   color: var(--c-step);
 }
 .answer-section .as-sub {
-  font-size: 8.3pt;
+  font-size: 7.8pt;
   color: var(--c-muted);
   margin-left: auto;
   font-weight: 500;
 }
-.answer-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 4px 10px;
-  font-size: 8.7pt;
-  font-family: 'Inter', sans-serif;
-}
-.answer-grid .ag-item {
-  display: grid;
-  grid-template-columns: 22px 1fr;
-  gap: 6px;
-  padding: 3px 6px;
-  background: var(--c-bg-soft);
-  border-radius: 4px;
-  line-height: 1.4;
-  align-items: baseline;
-}
-.answer-grid .ag-no {
-  font-weight: 700;
-  color: var(--c-muted);
-  text-align: right;
-  font-size: 7.8pt;
-}
-.answer-grid .ag-ans {
-  color: var(--c-step);
-  font-weight: 700;
-}
-.answer-grid .ag-ans.bold { color: var(--c-coral-deep); font-weight: 800; }
-.answer-list {
-  display: grid;
-  gap: 5px;
-  font-size: 8.7pt;
-}
+.answer-list { display: grid; gap: 3px; font-size: 8.2pt; }
 .answer-list .al-row {
   display: grid;
-  grid-template-columns: 24px 1fr;
-  gap: 8px;
-  padding: 4px 8px;
+  grid-template-columns: 20px 1fr;
+  gap: 6px;
+  padding: 3px 7px;
   background: var(--c-bg-soft);
   border-radius: 4px;
-  line-height: 1.5;
+  line-height: 1.45;
 }
 .answer-list .al-no {
-  font-family: 'Inter', sans-serif;
   font-weight: 800;
   color: var(--c-step);
-  font-size: 8.4pt;
+  font-size: 8pt;
 }
 .answer-list .al-body { color: var(--c-text); }
 .answer-list .al-body .en {
-  font-family: 'Inter', 'Pretendard', sans-serif;
   color: var(--c-ink);
   font-weight: 500;
 }
-.answer-list .al-body .ko-hint { color: var(--c-text-soft); font-size: 8.3pt; }
+.answer-list .al-body .ko-hint {
+  color: var(--c-text-soft);
+  font-size: 7.7pt;
+}
 .answer-list .al-body .ans-hl {
   background: var(--c-step-soft);
   color: var(--c-step);
   font-weight: 700;
   padding: 0 4px;
   border-radius: 3px;
-  font-family: 'Inter', sans-serif;
-  font-size: 8.6pt;
+  font-size: 8.1pt;
 }
 
-/* ====================================================================
-   인덱스 페이지
-   ==================================================================== */
+/* === 인덱스 페이지 === */
 .index-wrap {
   max-width: 900px;
   margin: 30px auto;
@@ -670,7 +615,6 @@ html, body {
   background: #fff;
   border-radius: 12px;
   box-shadow: 0 4px 16px rgba(0,0,0,0.06);
-  font-family: 'Pretendard', sans-serif;
 }
 .index-wrap h1 { font-size: 18pt; color: var(--c-mint-deep); margin: 0 0 18px; }
 .index-wrap a {

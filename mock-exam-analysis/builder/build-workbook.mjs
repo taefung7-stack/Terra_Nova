@@ -66,18 +66,17 @@ function pageHead({ exam, grade, qno, stepNum }) {
   </header>`;
 }
 
-function stepBanner(stepNum, totalSteps = 9) {
+function stepBanner(stepNum) {
   const meta = STEP_META[stepNum];
   return `    <div class="step-banner">
-      <div>
+      <div class="step-left">
         <div class="step-tag">STEP ${String(stepNum).padStart(2, '0')} · ${esc(meta.tag)}</div>
         <div class="step-num">${stepNum}</div>
       </div>
-      <div>
+      <div class="step-right">
         <div class="step-title">${esc(meta.title)}</div>
         <div class="step-desc">${esc(meta.desc)}</div>
       </div>
-      <div class="step-progress"><strong>${stepNum}</strong> / ${totalSteps}</div>
     </div>`;
 }
 
@@ -89,10 +88,10 @@ function directive(label, text) {
     </div>`;
 }
 
-function pageFoot(pageNum, brand = 'Terra Nova · Mock Exam Workbook') {
+function pageFoot(pageNum, brand = 'Terra Nova · Workbook') {
   return `  <footer class="page-foot">
     <span class="brand">${esc(brand)}</span>
-    <span class="pageno">— ${String(pageNum).padStart(2, '0')} —</span>
+    <span class="pageno">${pageNum}</span>
   </footer>`;
 }
 
@@ -194,7 +193,7 @@ function renderStep1({ data, wb, headOpts, pageNum }) {
 
 function renderChoiceTemplate(tmpl) {
   return esc(tmpl).replace(/\{\{(\d+):([^\/]+)\/([^}]+)\}\}/g, (_, n, a, b) => {
-    return `<span class="alt"><sup style="font-family:Inter;font-size:6.5pt;color:#97a5a8;margin-right:3px">${n}</sup>${a.trim()} <span class="slash">/</span> ${b.trim()}</span>`;
+    return `<span class="alt"><sup class="alt-idx">${n}</sup>${a.trim()} <span class="slash">/</span> ${b.trim()}</span>`;
   });
 }
 
@@ -469,59 +468,60 @@ function renderStep9({ data, wb, headOpts, pageNum }) {
   ).join('');
 
   const body = `${directive('정답 · 해설', '워크북 전체 정답과 핵심 해설입니다.')}
-
-    <div class="answer-section">
-      <div class="as-head">
-        <span class="as-tag">STEP 2</span>
-        <span class="as-title">어법 양자택일</span>
-        <span class="as-sub">${wb.grammar_choice.length}문항</span>
+    <div class="answer-2col">
+      <div class="answer-section">
+        <div class="as-head">
+          <span class="as-tag">STEP 2</span>
+          <span class="as-title">어법 양자택일</span>
+          <span class="as-sub">${wb.grammar_choice.length}문항</span>
+        </div>
+        <div class="answer-list">${grammarAns}</div>
       </div>
-      <div class="answer-list">${grammarAns}</div>
-    </div>
 
-    <div class="answer-section">
-      <div class="as-head">
-        <span class="as-tag">STEP 3</span>
-        <span class="as-title">어휘 양자택일</span>
-        <span class="as-sub">${wb.vocab_choice.length}문항</span>
+      <div class="answer-section">
+        <div class="as-head">
+          <span class="as-tag">STEP 3</span>
+          <span class="as-title">어휘 양자택일</span>
+          <span class="as-sub">${wb.vocab_choice.length}문항</span>
+        </div>
+        <div class="answer-list">${vocabAns}</div>
       </div>
-      <div class="answer-list">${vocabAns}</div>
-    </div>
 
-    <div class="answer-section">
-      <div class="as-head">
-        <span class="as-tag">STEP 4</span>
-        <span class="as-title">빈칸 첫글자 쓰기</span>
-        <span class="as-sub">${wb.fill_first_letter.length}문항</span>
+      <div class="answer-section">
+        <div class="as-head">
+          <span class="as-tag">STEP 4</span>
+          <span class="as-title">빈칸 첫글자 쓰기</span>
+          <span class="as-sub">${wb.fill_first_letter.length}문항</span>
+        </div>
+        <div class="answer-list">${fillAns}</div>
       </div>
-      <div class="answer-list">${fillAns}</div>
-    </div>
 
-    <div class="answer-section">
-      <div class="as-head">
-        <span class="as-tag">STEP 5</span>
-        <span class="as-title">한글 해석</span>
-        <span class="as-sub">${wb.ko_translation.length}문항</span>
+      <div class="answer-section">
+        <div class="as-head">
+          <span class="as-tag">STEP 5</span>
+          <span class="as-title">한글 해석</span>
+          <span class="as-sub">${wb.ko_translation.length}문항</span>
+        </div>
+        <div class="answer-list">${koAns}</div>
       </div>
-      <div class="answer-list">${koAns}</div>
-    </div>
 
-    <div class="answer-section">
-      <div class="as-head">
-        <span class="as-tag">STEP 6</span>
-        <span class="as-title">영문 배열</span>
-        <span class="as-sub">${wb.jumble.length}문항</span>
+      <div class="answer-section">
+        <div class="as-head">
+          <span class="as-tag">STEP 6</span>
+          <span class="as-title">영문 배열</span>
+          <span class="as-sub">${wb.jumble.length}문항</span>
+        </div>
+        <div class="answer-list">${jumbleAns}</div>
       </div>
-      <div class="answer-list">${jumbleAns}</div>
-    </div>
 
-    <div class="answer-section">
-      <div class="as-head">
-        <span class="as-tag">STEP 7</span>
-        <span class="as-title">통문장 영작</span>
-        <span class="as-sub">${wb.sentence_translation.length}문항</span>
+      <div class="answer-section">
+        <div class="as-head">
+          <span class="as-tag">STEP 7</span>
+          <span class="as-title">통문장 영작</span>
+          <span class="as-sub">${wb.sentence_translation.length}문항</span>
+        </div>
+        <div class="answer-list">${sentAns}</div>
       </div>
-      <div class="answer-list">${sentAns}</div>
     </div>`;
 
   return pageWrap({ stepNum: 9, headOpts, pageNum, body });

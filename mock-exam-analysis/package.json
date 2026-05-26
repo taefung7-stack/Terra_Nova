@@ -4,17 +4,18 @@
   "description": "Terra Nova 모의고사 분석지 빌더 — JSON 본문을 4페이지 분석지 HTML/PDF로 자동 생성",
   "type": "module",
   "private": true,
-  "engines": { "node": ">=20" },
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
-    "scaffold":  "node builder/scaffold.mjs",
-    "build":     "node builder/build.mjs",
-    "workbook":  "node builder/build-workbook.mjs",
-    "pdf":       "node builder/pdf.mjs",
-
-    "build:march":     "node builder/build.mjs 2026-march-grade2/data 2026-march-grade2/dist",
-    "workbook:march":  "node builder/build-workbook.mjs 2026-march-grade2/data 2026-march-grade2/dist",
-    "pdf:march":       "node builder/pdf.mjs 2026-march-grade2/dist",
-    "all:march":       "npm run build:march && npm run workbook:march && npm run pdf:march"
+    "scaffold": "node builder/scaffold.mjs",
+    "build": "node builder/build.mjs",
+    "workbook": "node builder/build-workbook.mjs",
+    "pdf": "node builder/pdf.mjs",
+    "build:march": "node builder/build.mjs 2026-march-grade2/data 2026-march-grade2/dist",
+    "workbook:march": "node builder/build-workbook.mjs 2026-march-grade2/data 2026-march-grade2/dist",
+    "pdf:march": "node builder/pdf.mjs 2026-march-grade2/dist",
+    "all:march": "npm run build:march && npm run workbook:march && npm run pdf:march"
   },
   "optionalDependencies": {
     "puppeteer": "^22.15.0"
