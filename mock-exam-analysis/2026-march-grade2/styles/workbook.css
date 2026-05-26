@@ -238,7 +238,7 @@ html, body {
   background: var(--c-coral-soft);
   border: 1px solid var(--c-coral);
   border-radius: 7px;
-  padding: 10px 12px 9px;
+  padding: 18px 12px 10px;   /* ★ 라벨↔본문 간격 확대 (10 → 18) */
   position: relative;
 }
 .passage-box.ko { background: var(--c-bg-soft); border-color: var(--c-line); }
@@ -256,15 +256,16 @@ html, body {
 }
 .passage-box.ko .pb-label { background: var(--c-text-soft); }
 .passage-box .pb-body {
-  font-size: 8.6pt;
-  line-height: 1.55;
+  font-size: 9.3pt;          /* ★ 영문 키움 (8.6 → 9.3) */
+  line-height: 1.6;
   color: var(--c-text);
   font-weight: 500;
 }
 .passage-box.ko .pb-body {
-  font-size: 8.7pt;
+  font-size: 8.9pt;
   color: var(--c-text-soft);
   font-weight: 400;
+  line-height: 1.55;
 }
 .passage-box .sent-mark {
   display: inline-block;
