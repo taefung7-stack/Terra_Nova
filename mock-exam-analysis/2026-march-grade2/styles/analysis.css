@@ -439,14 +439,12 @@ html, body {
 }
 .sent:last-child { margin-bottom: 0; }
 
-/* === 분석지 페이지 본문: flex column으로 잔여 공간 자동 분배 === */
+/* === 분석지 페이지 본문: 카드는 위에서부터 빼곡히 쌓임 === */
 .page-body { display: flex; flex-direction: column; }
 .sent-list {
-  flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-around; /* 카드 사이·위·아래 균등 분배 */
-  gap: 6px;
+  gap: 9px;
 }
 .sent-list > .sent { margin-bottom: 0; }
 .sent .sent-head {

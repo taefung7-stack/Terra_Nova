@@ -355,25 +355,59 @@ function estimateCardWeight(s) {
 }
 
 function chunkSentences(sentences) {
-  const scored = sentences.map(s => ({ s, weight: estimateCardWeight(s) }));
+  // weight는 임시 — measureCardHeights()가 실측값으로 교체
+  return [sentences]; // 일단 전체를 한 페이지에 (build 단계에서 실측 후 재분배)
+}
 
-  // 한 페이지 본문 가용 영역 (MAX_W=2.80 — page-body 976px, 안전 마진 포함)
-  const MAX_W = 2.80;
+// 측정 함수 — buildHtml 후 puppeteer로 각 .sent 카드 실제 높이를 측정해 페이지 분배
+async function measureAndChunk(stylesHref, data, dataDir) {
+  const puppeteer = (await import('puppeteer')).default;
+  // CSS 파일을 인라인으로 포함 (file:// 상대경로 문제 우회)
+  const cssAbsPath = path.resolve(path.dirname(dataDir), 'styles', 'analysis.css');
+  const cssContent = await fs.readFile(cssAbsPath, 'utf8');
+  const allOnOne = `<!doctype html><html><head><meta charset="utf-8"><style>${cssContent}</style></head><body>
+<section class="page"><div class="page-body">
+<div class="section-bar">SENTENCE ANALYSIS · 문장별 분석<span class="bar-sub">📝 어법 · 📚 어휘 · 🎯 리딩</span></div>
+<div class="sent-list">
+${(data.sentences || []).map(buildSentenceCard).join('\n')}
+</div>
+</div></section></body></html>`;
 
-  // 단순 First-Fit Decreasing 변형 X — 원래 순서 유지가 더 중요(SENT 번호순)
-  // greedy 분배: 다음 카드 넣어도 MAX_W 이내면 채우기, 초과하면 새 페이지
+  const tmpPath = path.join(process.cwd(), '.tmp-measure.html');
+  await fs.writeFile(tmpPath, allOnOne, 'utf8');
+
+  const browser = await puppeteer.launch({ headless: 'new' });
+  const page = await browser.newPage();
+  await page.setViewport({ width: 794, height: 1123 });
+  await page.goto('file://' + tmpPath.replace(/\\/g, '/'), { waitUntil: 'networkidle0' });
+  const heights = await page.evaluate(() => {
+    const cards = [...document.querySelectorAll('.sent')];
+    return cards.map(c => {
+      const r = c.getBoundingClientRect();
+      const cs = getComputedStyle(c);
+      return r.height + parseFloat(cs.marginTop) + parseFloat(cs.marginBottom);
+    });
+  });
+  // section-bar + gap 등을 고려한 가용 본문 높이 (헤더 30px·section-bar 38px·footer 50px·body padding 60px 차감 → 약 940px)
+  const AVAIL = 920;
+  const GAP = 9;
+  await browser.close();
+  try { await fs.unlink(tmpPath); } catch {}
+
+  // 그리디 분배: 다음 카드 + gap 추가 시 AVAIL 초과면 새 페이지
   const pages = [];
   let cur = [];
-  let curW = 0;
-
-  for (const { s, weight } of scored) {
-    if (cur.length > 0 && curW + weight > MAX_W) {
+  let curH = 0;
+  for (let i = 0; i < data.sentences.length; i++) {
+    const h = heights[i];
+    const addH = cur.length === 0 ? h : h + GAP;
+    if (cur.length > 0 && curH + addH > AVAIL) {
       pages.push(cur);
       cur = [];
-      curW = 0;
+      curH = 0;
     }
-    cur.push(s);
-    curW += weight;
+    cur.push(data.sentences[i]);
+    curH += (cur.length === 1 ? h : h + GAP);
   }
   if (cur.length) pages.push(cur);
   return pages;
@@ -382,12 +416,19 @@ function chunkSentences(sentences) {
 // ─────────────────────────────────────────────────────────────
 // 메인 빌드 함수
 // ─────────────────────────────────────────────────────────────
-function buildHtml(data, opts = {}) {
+async function buildHtml(data, opts = {}) {
   const stylesHref = opts.stylesHref || '../styles/analysis.css';
 
   const pages = [buildPage1(data), buildPage2(data)];
 
-  const groups = chunkSentences(data.sentences || []);
+  // 실측 기반 페이지 분배 (puppeteer 사용)
+  let groups;
+  try {
+    groups = await measureAndChunk(stylesHref, data, opts.dataDir);
+  } catch (err) {
+    console.warn(`   ⚠️  measureAndChunk failed for ${data.question_no}, falling back to estimate:`, err.message);
+    groups = chunkSentences(data.sentences || []);
+  }
   groups.forEach((group, i) => {
     const pageNo = 3 + i;
     const label = `ANALYSIS · ${i + 1}/${groups.length}`;
@@ -450,7 +491,7 @@ async function main() {
   for (const f of files) {
     const jsonPath = path.join(dataDir, f);
     const data = JSON.parse(await fs.readFile(jsonPath, 'utf8'));
-    const html = buildHtml(data, { stylesHref });
+    const html = await buildHtml(data, { stylesHref, dataDir });
     const outPath = path.join(distDir, f.replace(/\.json$/, '.html'));
     await fs.writeFile(outPath, html, 'utf8');
     console.log(`   ✓ ${f}  →  ${path.relative(cwd, outPath)}`);
