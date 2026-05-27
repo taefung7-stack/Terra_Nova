@@ -357,11 +357,14 @@ function estimateCardWeight(s) {
 function chunkSentences(sentences) {
   const scored = sentences.map(s => ({ s, weight: estimateCardWeight(s) }));
 
+  // 한 페이지 본문 가용 영역 (MAX_W=2.80 — page-body 976px, 안전 마진 포함)
+  const MAX_W = 2.80;
+
+  // 단순 First-Fit Decreasing 변형 X — 원래 순서 유지가 더 중요(SENT 번호순)
+  // greedy 분배: 다음 카드 넣어도 MAX_W 이내면 채우기, 초과하면 새 페이지
   const pages = [];
   let cur = [];
   let curW = 0;
-  // 한 페이지 본문 가용 영역 ≒ 2.20 (안전 마진 포함, 헤드/패딩 제외)
-  const MAX_W = 2.20;
 
   for (const { s, weight } of scored) {
     if (cur.length > 0 && curW + weight > MAX_W) {
