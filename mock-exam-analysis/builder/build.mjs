@@ -1,15 +1,39 @@
 #!/usr/bin/env node
-/**
- * Terra Nova 모의고사 분석지 빌더
+/* ===================================================================
+ * Terra Nova 모의고사 분석지 빌더 — v1.0 LOCKED (2026-05-27)
+ * ===================================================================
+ *
+ * 이 빌더의 디자인·분배 로직은 사용자 검수를 거쳐 v1.0으로 확정됨.
+ * 회차별 JSON만 추가하면 동일 디자인으로 자동 생성됨.
+ *
+ * ── 설계 원칙 (변경 금지) ─────────────────────────────────────────
+ *   1. 4단 구조 고정 (Intro → Passage → Analysis × N → ...)
+ *      p1: 인트로 + 삽화 + 단어 25개
+ *      p2: 본문 전문 + 정답·오답 + 4단 논리흐름
+ *      p3~: 모든 본문 문장의 어법·어휘·리딩 분석 (필요시 패러프레이징)
+ *   2. 컬러 시스템 — Mint(메인) / Sky(부) / Sage / Coral / Butter
+ *   3. 폰트 — Pretendard(본문) + Inter(영문·숫자)
+ *   4. A4 297mm 절대 초과 금지 — puppeteer 실측 기반 페이지 분배
+ *      (chunkSentences는 폴백, 실제 분배는 measureAndChunk가 수행)
+ *   5. AVAIL=920px, GAP=9px — page-body 가용 영역 실측 기준
+ *   6. .sent { break-inside: avoid } 로 카드 자체는 절대 분할 X
+ *   7. 카드는 위에서부터 빼곡히 쌓임 (justify-content 사용 X)
+ *   8. -workbook.json 등 다른 빌더용 데이터는 자동 스킵
+ *
+ * ── 빌드 검증 ──────────────────────────────────────────────────────
+ *   node builder/check-overflow.mjs <html-file>
+ *   → 전 페이지 overflow=NO, hits_foot=NO 확인 후 배포
+ *
+ * ── 새 회차 추가 절차 ──────────────────────────────────────────────
+ *   1) {새회차폴더}/data/{N}.json 작성 (21.json을 템플릿으로)
+ *   2) package.json scripts에 build:{회차} 1줄 추가
+ *   3) npm run build:{회차} → puppeteer가 카드 실측 후 자동 분배
+ *   4) check-overflow.mjs로 전 회차 검증
  *
  * 사용법:
  *   node builder/build.mjs <data-dir> [<dist-dir>]
  *   node builder/build.mjs 2026-march-grade2/data
- *   node builder/build.mjs 2026-march-grade2/data 2026-march-grade2/dist
- *
- * data 디렉터리의 모든 *.json 을 읽어 HTML 분석지로 변환합니다.
- * 각 JSON 파일은 sample-21.html 디자인과 동일한 4페이지 분석지로 출력됩니다.
- */
+ * =================================================================== */
 
 import fs from 'node:fs/promises';
 import path from 'node:path';

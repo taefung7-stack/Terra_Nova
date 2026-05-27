@@ -1,7 +1,7 @@
 {
   "name": "terra-nova-mock-analysis",
-  "version": "1.0.0",
-  "description": "Terra Nova 모의고사 빌더 — 분석지(4p) + 워크북(9p) HTML/PDF 자동 생성. 워크북 v1.0 LOCKED (2026-05-26).",
+  "version": "1.1.0",
+  "description": "Terra Nova 모의고사 빌더 — 분석지(자동분배) + 워크북(9p) HTML/PDF 자동 생성. 분석지 v1.0 LOCKED (2026-05-27) + 워크북 v1.0 LOCKED (2026-05-26).",
   "type": "module",
   "private": true,
   "engines": {
@@ -17,7 +17,7 @@
     "pdf:march": "node builder/pdf.mjs 2026-march-grade2/dist",
     "all:march": "npm run build:march && npm run workbook:march && npm run pdf:march"
   },
-  "optionalDependencies": {
+  "dependencies": {
     "puppeteer": "^22.15.0"
   }
 }
