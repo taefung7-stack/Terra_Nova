@@ -389,7 +389,10 @@ async function main() {
 
   await fs.mkdir(distDir, { recursive: true });
 
-  const files = (await fs.readdir(dataDir)).filter(f => f.endsWith('.json')).sort();
+  // 분석지 빌더는 {N}.json만 처리 — {N}-workbook.json 등 다른 빌더용 데이터는 스킵
+  const files = (await fs.readdir(dataDir))
+    .filter(f => f.endsWith('.json') && !f.includes('-'))
+    .sort((a, b) => parseInt(a) - parseInt(b));
   if (!files.length) {
     console.error(`No JSON files in ${dataDir}`);
     process.exit(1);
