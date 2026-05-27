@@ -298,30 +298,70 @@ ${buildHeader(data.exam + ' · ' + data.question_no + '번', label)}
       <span class="bar-sub">📝 어법 · 📚 어휘 · 🎯 리딩</span>
     </div>
 
+    <div class="sent-list">
 ${cards}
+    </div>
   </div>
 ${buildFooter(pageNo)}
 </section>`;
 }
 
 // ─────────────────────────────────────────────────────────────
-// 자동 페이지 분배: 분석 문장을 페이지 3, 4 (필요시 5...)에 나눠 담기
-// 기본 규칙: 페이지당 2~3문장. 패러프레이징 있는 카드는 분량 큼.
+// 자동 페이지 분배: 분석 문장을 페이지 3, 4, 5...에 나눠 담기
+//
+// 정밀 가중치 기반: en/ko_chunks/note/points/paraphrasing 분량을
+// 실측 비례 계수로 환산해 카드 높이를 추정. 한 페이지 가용 영역
+// (978px ≒ 가중치 2.20)을 넘기지 않도록 안전 마진 포함 분배.
+// 잘림이 의심되면 다음 페이지로 넘김.
 // ─────────────────────────────────────────────────────────────
+function estimateCardWeight(s) {
+  // 카드 기본 패딩/헤드: 0.18
+  let w = 0.18;
+
+  // 영어 본문 라인 (50자당 0.06)
+  const enLen = (s.en_html || '').replace(/<[^>]+>/g, '').length;
+  w += Math.ceil(enLen / 50) * 0.06;
+
+  // 한글 끊어읽기 (60자당 0.04)
+  const koChunkLen = (s.ko_chunks || '').replace(/<[^>]+>/g, '').length;
+  w += Math.ceil(koChunkLen / 60) * 0.04;
+
+  // 한글 매끄러운 해석 (50자당 0.05) + 박스 패딩
+  const koFullLen = (s.ko_full || '').length;
+  w += 0.08 + Math.ceil(koFullLen / 50) * 0.05;
+
+  // note 박스
+  if (s.note) {
+    const noteLen = s.note.replace(/<[^>]+>/g, '').length;
+    w += 0.10 + Math.ceil(noteLen / 70) * 0.05;
+  }
+
+  // points (각 0.10 + 텍스트 길이당 0.03/60자)
+  for (const p of (s.points || [])) {
+    const pLen = (p.text || '').replace(/<[^>]+>/g, '').length;
+    w += 0.10 + Math.ceil(pLen / 60) * 0.03;
+  }
+
+  // paraphrasing 박스 (헤드 0.18 + 각 row 0.18)
+  if (s.paraphrasing?.length) {
+    w += 0.18;
+    for (const p of s.paraphrasing) {
+      const len = (p.en?.length || 0) + (p.ko?.length || 0);
+      w += 0.14 + Math.ceil(len / 80) * 0.04;
+    }
+  }
+
+  return w;
+}
+
 function chunkSentences(sentences) {
-  // 분량 점수: 패러프레이징 있으면 큰 카드, 없으면 작은 카드
-  // 한 페이지에 큰 카드 2개 OR 큰 1개 + 작은 2개 OR 작은 3~4개
-  const scored = sentences.map(s => ({
-    s,
-    weight: (s.paraphrasing?.length ? 1.0 : 0.35) + (s.note ? 0.05 : 0)
-  }));
+  const scored = sentences.map(s => ({ s, weight: estimateCardWeight(s) }));
 
   const pages = [];
   let cur = [];
   let curW = 0;
-  // 큰 카드 2개(2.0) + 작은 카드 1개(0.35) 가능 → 2.35 한계
-  // SENT 7(0.35) + SENT 8(0.35) + SENT 9(1.05) = 1.75 → 한 페이지 가능
-  const MAX_W = 2.35;
+  // 한 페이지 본문 가용 영역 ≒ 2.20 (안전 마진 포함, 헤드/패딩 제외)
+  const MAX_W = 2.20;
 
   for (const { s, weight } of scored) {
     if (cur.length > 0 && curW + weight > MAX_W) {

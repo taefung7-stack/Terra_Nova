@@ -433,8 +433,22 @@ html, body {
   padding: 9px 12px 9px;
   margin-bottom: 9px;
   background: #fff;
+  /* 카드는 페이지 사이에서 절대 잘리지 않도록 보장 */
+  break-inside: avoid;
+  page-break-inside: avoid;
 }
 .sent:last-child { margin-bottom: 0; }
+
+/* === 분석지 페이지 본문: flex column으로 잔여 공간 자동 분배 === */
+.page-body { display: flex; flex-direction: column; }
+.sent-list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around; /* 카드 사이·위·아래 균등 분배 */
+  gap: 6px;
+}
+.sent-list > .sent { margin-bottom: 0; }
 .sent .sent-head {
   display: flex;
   align-items: center;
