@@ -300,8 +300,8 @@
       name: 'LIGHT',
       tag: 'PDF 구독',
       price: '11,900',
-      annualNote: '연 119,000원 (2개월 무료)',
-      features: ['매월 1권 PDF 다운로드', '해설·정답·번역 포함', '복습용 영구 보관'],
+      annualNote: '연간 119,000원 · 1회 결제로 12개월 제공 (2개월 무료)',
+      features: ['매월 1권 PDF 다운로드', '해설·정답·번역 포함', '다운로드 후 본인 기기 보관'],
       featured: true,
       cta: '구독 신청',
       href: 'order.html?plan=light'
@@ -310,7 +310,7 @@
       name: 'STANDARD',
       tag: 'PDF + 실물',
       price: '24,900',
-      annualNote: '연 249,000원 (2개월 무료)',
+      annualNote: '연간 249,000원 · 1회 결제로 12개월 제공 (2개월 무료)',
       features: ['LIGHT 전체 포함', '매월 실물 책 배송', '오프라인 학습 가능'],
       badge: '준비중',
       comingSoon: true,
@@ -321,7 +321,7 @@
       name: 'PREMIUM',
       tag: '올인원',
       price: '58,900',
-      annualNote: '연 589,000원 (2개월 무료)',
+      annualNote: '연간 589,000원 · 1회 결제로 12개월 제공 (2개월 무료)',
       features: ['STANDARD 전체 포함', '전 지문 해설강의'],
       badge: '준비중',
       comingSoon: true,
@@ -483,7 +483,7 @@
 
   // 플랜 모달 콘텐츠 빌더
   function buildPlansModal(body) {
-    var lead = el('p', { cls: 'm-modal-lead', text: '월간 구독으로 매월 새 교재를 받아보세요. 언제든 해지 가능.' });
+    var lead = el('p', { cls: 'm-modal-lead', text: '월간 구독(정기결제, 언제든 해지) 또는 연간(1회 결제로 12개월 제공)으로 새 교재를 받아보세요.' });
     body.appendChild(lead);
 
     PLANS_DATA.forEach(function (p) {
@@ -502,7 +502,7 @@
 
       var priceRow = el('div', { cls: 'm-plan-pricerow' });
       priceRow.appendChild(el('span', { cls: 'm-plan-price', text: p.price }));
-      priceRow.appendChild(el('span', { cls: 'm-plan-unit', text: '원 / 월' }));
+      priceRow.appendChild(el('span', { cls: 'm-plan-unit', text: '원 / 월 (월간 정기결제)' }));
       card.appendChild(priceRow);
       card.appendChild(el('div', { cls: 'm-plan-annual', text: p.annualNote }));
 
@@ -669,7 +669,7 @@
     footer.appendChild(document.createTextNode(' · '));
     footer.appendChild(el('a', { href: 'refund.html',  text: '환불' }));
     footer.appendChild(el('br'));
-    footer.appendChild(document.createTextNode('© Terra Nova English'));
+    footer.appendChild(document.createTextNode('© Terra Nova'));
     bio.appendChild(footer);
 
     document.body.insertBefore(bio, document.body.firstChild);
@@ -890,7 +890,7 @@
 
       var priceRow = el('div', { cls: 'm-plan-pricerow' });
       priceRow.appendChild(el('span', { cls: 'm-plan-price', text: p.price }));
-      priceRow.appendChild(el('span', { cls: 'm-plan-unit', text: '원 / 월' }));
+      priceRow.appendChild(el('span', { cls: 'm-plan-unit', text: '원 / 월 (월간 정기결제)' }));
       card.appendChild(priceRow);
       card.appendChild(el('div', { cls: 'm-plan-annual', text: p.annualNote }));
 
