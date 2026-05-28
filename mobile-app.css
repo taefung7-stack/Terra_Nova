@@ -367,12 +367,21 @@
   body.m-bio-mode .skip-link { display: none !important; }
   body.m-bio-mode { padding-top: 0 !important; }
 
-  /* m-bio 모드의 공용 푸터: 탭바에 가리지 않도록 하단 여백, 풀폭 표시 */
+  /* m-bio 모드의 공용 푸터: 탭바에 가리지 않도록 하단 여백, 풀폭 표시.
+     홈(index)은 body.light-theme 라 footer.js 가 흰 배경 푸터를 만든다.
+     모바일 m-bio 는 어두운 배경이므로 다크 푸터로 강제 오버라이드(인라인 스타일 덮어쓰기). */
   body.m-bio-mode .tn-footer {
     display: flex !important;
     margin-top: 8px;
     padding-bottom: calc(28px + var(--m-tabbar-h) + var(--m-safe-bottom)) !important;
+    background: #03030A !important;
+    border-top: 1px solid rgba(255,255,255,.07) !important;
   }
+  body.m-bio-mode .tn-footer,
+  body.m-bio-mode .tn-footer * {
+    color: rgba(240,240,240,.45) !important;
+  }
+  body.m-bio-mode .tn-footer a { color: rgba(240,240,240,.55) !important; }
 
   #m-bio {
     max-width: 460px;
