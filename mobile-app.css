@@ -353,7 +353,7 @@
   body.m-bio-mode:not(.m-subpage) > nav:not(#m-tabbar) { display: none !important; }
   body.m-bio-mode #main,
   body.m-bio-mode main,
-  body.m-bio-mode footer,
+  body.m-bio-mode > footer,
   body.m-bio-mode .site-footer,
   body.m-bio-mode > section:not(#m-bio),
   body.m-bio-mode > #hero,
@@ -701,6 +701,7 @@
 
   /* Footer (small print) */
   .m-bio-footer {
+    display: block !important;   /* m-bio-mode footer 숨김 룰에서 예외 보장 */
     text-align: center;
     font-size: 0.66rem;
     color: var(--m-txt-mute);
