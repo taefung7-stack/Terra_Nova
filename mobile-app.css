@@ -351,21 +351,28 @@
      mobile-app.js 가 index.html 에서 <main> 을 hide 하고
      #m-bio 컨테이너를 body 첫 자식으로 inject. linktr.ee/litt.ly 감성. */
   body.m-bio-mode:not(.m-subpage) > nav:not(#m-tabbar) { display: none !important; }
+  /* tn-footer(footer.js 공용 푸터)는 m-bio 모드에서도 표시 — 다른 페이지와 푸터 통일.
+     site-footer(미니멀 카피라이트 placeholder)는 footer.js가 제거하므로 숨김 유지. */
   body.m-bio-mode #main,
   body.m-bio-mode main,
-  body.m-bio-mode > footer,
   body.m-bio-mode .site-footer,
   body.m-bio-mode > section:not(#m-bio),
   body.m-bio-mode > #hero,
   body.m-bio-mode > .hero,
   body.m-bio-mode .tn-fab-stack,
-  body.m-bio-mode .tn-footer,
   body.m-bio-mode .floating-actions,
   body.m-bio-mode .fab,
   body.m-bio-mode #fab-menu,
   body.m-bio-mode #scroll-top,
   body.m-bio-mode .skip-link { display: none !important; }
   body.m-bio-mode { padding-top: 0 !important; }
+
+  /* m-bio 모드의 공용 푸터: 탭바에 가리지 않도록 하단 여백, 풀폭 표시 */
+  body.m-bio-mode .tn-footer {
+    display: flex !important;
+    margin-top: 8px;
+    padding-bottom: calc(28px + var(--m-tabbar-h) + var(--m-safe-bottom)) !important;
+  }
 
   #m-bio {
     max-width: 460px;
@@ -700,23 +707,6 @@
   }
 
   /* Footer (small print) */
-  .m-bio-footer {
-    display: block !important;   /* m-bio-mode footer 숨김 룰에서 예외 보장 */
-    text-align: center;
-    font-size: 0.66rem;
-    color: var(--m-txt-mute);
-    padding: 18px 0 6px;
-    line-height: 1.6;
-  }
-  .m-bio-footer a { color: var(--m-txt-dim); text-decoration: none; }
-  .m-bio-footer-biz {
-    margin-top: 10px;
-    font-size: 0.6rem;
-    color: var(--m-txt-mute);
-    opacity: 0.8;
-    line-height: 1.7;
-  }
-
   /* Secondary feature card (작은 feature, sub 없음) */
   .m-bio-feature-2 {
     background: var(--m-surface) !important;
