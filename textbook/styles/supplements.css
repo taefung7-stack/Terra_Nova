@@ -219,11 +219,13 @@
 }
 .supp-answer .ans-block-body {
   flex: 1;
+  min-width: 0;
   font-family: var(--font-ko);
   font-size: 9pt;
   line-height: 1.5;
-  text-align: justify;
+  text-align: left;
   word-break: keep-all;
+  overflow-wrap: anywhere;
   color: var(--tn-ink);
 }
 .supp-answer .ans-rationale-list {
@@ -239,6 +241,8 @@
   line-height: 1.45;
   color: var(--tn-ink);
   word-break: keep-all;
+  overflow-wrap: anywhere;
+  min-width: 0;
 }
 .supp-answer .ans-rationale-list .rationale.is-correct {
   color: var(--tn-theme-deep);
@@ -250,7 +254,7 @@
   flex-shrink: 0;
   min-width: 12pt;
 }
-.supp-answer .ans-rationale-list .rationale-body { flex: 1; }
+.supp-answer .ans-rationale-list .rationale-body { flex: 1; min-width: 0; overflow-wrap: anywhere; }
 
 .supp-answer .ans-keyterm-list {
   display: flex; flex-wrap: wrap; gap: 3pt;
