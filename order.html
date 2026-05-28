@@ -432,11 +432,11 @@
             <div class="plan-tier">PREMIUM</div>
             <div class="plan-name">올인원 플랜</div>
             <div class="plan-price-wrap">
-              <div class="plan-price-original"></div>
-              <div class="plan-price">58,900</div>
+              <div class="plan-price-original" id="orig-premium"></div>
+              <div class="plan-price" id="price-premium">58,900</div>
             </div>
-            <div class="plan-price-unit">원 / 월</div>
-            <div class="plan-annual-saving"></div>
+            <div class="plan-price-unit" id="unit-premium">원 / 월</div>
+            <div class="plan-annual-saving" id="saving-premium"></div>
             <ul class="plan-features">
               <li>PDF+실물 모두 포함</li>
               <li>해설 강의</li>
@@ -558,7 +558,7 @@
           <li><strong>해지 방법</strong> — <a href="mypage.html" style="color:var(--accent);">마이페이지</a> → 구독 관리에서 <strong>언제든 즉시 해지 가능</strong>합니다. 월간(정기결제)은 해지 시 차회 결제부터 청구되지 않으며, 현재 결제된 기간은 끝까지 이용 가능합니다. 연간은 1회 결제이므로 추가 청구가 없으며, 중도 해지 시 환불 정책에 따라 정산됩니다.</li>
           <li id="notice-billing-cycle"><strong>결제 주기 및 금액</strong> — 월간: 매월 같은 날 자동결제(정기결제) / 연간: <strong>1회 결제로 12개월 서비스 이용</strong>(자동갱신 없음). 금액은 주문 요약에 표시된 금액으로 부가세 포함입니다.</li>
           <li>레벨 변경은 마이페이지에서 다음 달부터 적용 가능합니다.</li>
-          <li><strong>PDF는 결제 완료 즉시</strong> 이메일로 다운로드 링크가 발송되며, 마이페이지에서도 다운로드할 수 있습니다.</li>
+          <li><strong>PDF 서비스 제공기간</strong> — 결제 완료 즉시 이메일로 다운로드 링크가 발송됩니다. 구독 주기에 따라 <strong>월간은 결제일로부터 1개월, 연간은 12개월간 다운로드 가능</strong>합니다(마이페이지에서 기간 내 재다운로드 가능).</li>
           <li><strong>환불 정책</strong> — 전자상거래법 제17조에 따라, PDF 등 디지털 콘텐츠는 <strong>다운로드·열람·이용하지 않은 경우 7일 이내 전액 환불</strong>됩니다. 다운로드/열람 이후에는 환불이 제한될 수 있습니다. 실물 포함 플랜(준비중)은 수령일 기준 7일 이내 미개봉 시 전액 환불. 자세한 내용은 <a href="refund.html" style="color:var(--accent);">환불·교환 정책</a>을 참조하세요.</li>
           <li><strong>연간 이용권</strong>은 자동갱신이 없는 <strong>1회 결제로 12개월간 서비스가 제공</strong>됩니다. 중도 환불 시 사용 월수 + 위약금 10% 차감 후 잔액 환불됩니다.</li>
           <li><strong>결제 진행 시</strong> <a href="terms.html" style="color:var(--accent);">이용약관</a> 및 <a href="privacy.html" style="color:var(--accent);">개인정보처리방침</a>에 동의한 것으로 간주됩니다.</li>
@@ -690,6 +690,7 @@
     const plans = [
       { id:'light',    monthly:11900, annual:119000 },
       { id:'standard', monthly:24900, annual:249000 },
+      { id:'premium',  monthly:58900, annual:589000 },
     ];
     plans.forEach(p => {
       const priceEl = document.getElementById('price-' + p.id);
@@ -704,7 +705,7 @@
         unitEl.textContent  = '원 / 12개월 (1회 결제)';
         saveEl.style.display = 'block';
         const saving = p.monthly * 12 - p.annual;
-        saveEl.textContent = '연간 ' + saving.toLocaleString() + '원 절약 (월 ' + Math.round(p.annual/12).toLocaleString() + '원 꼴)';
+        saveEl.textContent = '연간 ' + saving.toLocaleString() + '원 절약 (월 ' + Math.round(p.annual/12).toLocaleString() + '원)';
       } else {
         origEl.textContent  = '';
         priceEl.textContent = p.monthly.toLocaleString();
