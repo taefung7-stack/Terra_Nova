@@ -662,6 +662,17 @@
     });
 
     // Footer
+    bio.appendChild(buildMobileFooter());
+
+    document.body.insertBefore(bio, document.body.firstChild);
+  }
+
+  // 공용 모바일 푸터 — 홈(link-in-bio) + 서브페이지(exam-match·subscription) 공통.
+  // 사업자정보는 window.BUSINESS_INFO(site-config.js) 단일 소스 참조.
+  function buildMobileFooter() {
+    var B = window.BUSINESS_INFO || {};
+    var safe = function (v, fb) { return (v && String(v).trim() && String(v).indexOf('___') === -1) ? v : (fb || '—'); };
+
     var footer = el('footer', { cls: 'm-bio-footer' });
     footer.appendChild(el('a', { href: 'privacy.html', text: '개인정보처리방침' }));
     footer.appendChild(document.createTextNode(' · '));
@@ -669,10 +680,22 @@
     footer.appendChild(document.createTextNode(' · '));
     footer.appendChild(el('a', { href: 'refund.html',  text: '환불' }));
     footer.appendChild(el('br'));
-    footer.appendChild(document.createTextNode('© Terra Nova'));
-    bio.appendChild(footer);
 
-    document.body.insertBefore(bio, document.body.firstChild);
+    // 전자상거래법 제13조 사업자정보 (한 줄 요약)
+    var biz = el('div', { cls: 'm-bio-footer-biz' });
+    biz.appendChild(document.createTextNode(
+      safe(B.companyName, 'Terra Nova') + ' · 대표 ' + safe(B.representative) +
+      ' · 사업자등록번호 ' + safe(B.businessNumber)
+    ));
+    biz.appendChild(el('br'));
+    biz.appendChild(document.createTextNode(
+      '통신판매업 신고 ' + safe(B.ecommerceNumber) +
+      ' · Tel ' + safe(B.phone)
+    ));
+    footer.appendChild(biz);
+    footer.appendChild(el('br'));
+    footer.appendChild(document.createTextNode('© 2026 ' + safe(B.companyName, 'Terra Nova')));
+    return footer;
   }
 
   // ── Sub page injectors (exam-match.html / subscription.html) ──
@@ -691,6 +714,7 @@
       heroBlock.appendChild(el('div', { cls: 'm-subpage-subtitle', text: '= 교과서 연계 수능지문' }));
       container.appendChild(heroBlock);
       buildBooksPage(container);
+      container.appendChild(buildMobileFooter());
       document.body.appendChild(container);
       return true;
     }
@@ -702,6 +726,7 @@
       heroBlock2.appendChild(el('h1', { cls: 'm-subpage-title m-subpage-title-eng', text: '3 PLANS' }));
       container2.appendChild(heroBlock2);
       buildPlansPage(container2);
+      container2.appendChild(buildMobileFooter());
       document.body.appendChild(container2);
       return true;
     }
