@@ -698,13 +698,13 @@
       const saveEl  = document.getElementById('saving-' + p.id);
       if (!priceEl) return;
       if (showAnnual) {
-        const monthlyEquiv = Math.round(p.annual / 12);
-        origEl.textContent = p.monthly.toLocaleString() + '원';
-        priceEl.textContent = monthlyEquiv.toLocaleString();
-        unitEl.textContent  = '원 / 월 (연간 결제)';
+        // 연간 = 1회 결제로 12개월 서비스 제공 (정기결제 아님) → 월 단위 표기 금지, 연 총액 표기
+        origEl.textContent = (p.monthly * 12).toLocaleString() + '원';
+        priceEl.textContent = p.annual.toLocaleString();
+        unitEl.textContent  = '원 / 12개월 (1회 결제)';
         saveEl.style.display = 'block';
         const saving = p.monthly * 12 - p.annual;
-        saveEl.textContent = '연간 ' + saving.toLocaleString() + '원 절약';
+        saveEl.textContent = '연간 ' + saving.toLocaleString() + '원 절약 (월 ' + Math.round(p.annual/12).toLocaleString() + '원 꼴)';
       } else {
         origEl.textContent  = '';
         priceEl.textContent = p.monthly.toLocaleString();
@@ -768,8 +768,8 @@
     document.getElementById('sum-tier').textContent  = selectedPlan || '—';
     document.getElementById('sum-plan').textContent  = selectedPlan ? selectedPlanDisplay : '플랜을 선택해주세요';
     document.getElementById('sum-level').textContent = '레벨: ' + (selectedLevel || '—');
-    document.getElementById('sum-billing').textContent = isAnnual ? '연간' : '월간';
-    document.getElementById('sum-price-original').textContent = monthlyPrice ? monthlyPrice.toLocaleString() + '원/월' : '—';
+    document.getElementById('sum-billing').textContent = isAnnual ? '연간 (1회 결제·12개월 제공)' : '월간 (정기결제)';
+    document.getElementById('sum-price-original').textContent = monthlyPrice ? (isAnnual ? (monthlyPrice*12).toLocaleString() + '원 (월정가×12)' : monthlyPrice.toLocaleString() + '원/월') : '—';
     document.getElementById('sum-delivery').textContent = (!selectedPlan || selectedPlan==='LIGHT') ? '없음' : '무료';
 
     const savingRow = document.getElementById('sum-saving-row');
@@ -794,7 +794,7 @@
 
     if (finalPrice >= 0 && price) {
       document.getElementById('sum-total').textContent = finalPrice.toLocaleString();
-      document.getElementById('sum-total-unit').textContent = isAnnual ? '원 / 년' : '원 / 월';
+      document.getElementById('sum-total-unit').textContent = isAnnual ? '원 (1회 결제·12개월)' : '원 / 월';
     } else {
       document.getElementById('sum-total').textContent = '0';
       document.getElementById('sum-total-unit').textContent = '원';
