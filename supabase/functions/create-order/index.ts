@@ -122,7 +122,9 @@ Deno.serve(async (req) => {
     }
 
     totalAmount = PLAN_PRICES[plan as keyof typeof PLAN_PRICES][cycle as 'monthly' | 'annual'];
-    orderName = `${PLAN_NAMES[plan as keyof typeof PLAN_NAMES]} · ${cycle === 'annual' ? '연간' : '월간'} · ${level}`;
+    // 이니시스 입점조건: 연간은 1회성 일반결제이므로 "12개월 서비스 제공"을 상품명에 명시.
+    const cycleLabel = cycle === 'annual' ? '연간 (12개월 서비스 제공)' : '월간';
+    orderName = `${PLAN_NAMES[plan as keyof typeof PLAN_NAMES]} · ${cycleLabel} · ${level}`;
     paymentIdPrefix = 'tn_sub';
     lineItems = [{
       product_snapshot: { kind: 'subscription', plan, cycle, level, name: orderName, price: totalAmount },

@@ -18,11 +18,18 @@ window.PORTONE_STORE_ID = 'store-bb4f1ef9-bd0f-444c-9315-5c5608a3c281';
 // 운영 정책 (2026-05 기준): KG이니시스 단독 운영
 //   ✅ card_inicis  — KG이니시스 신용카드 (KG이니시스 결제창 안에서 카드 + 간편결제 모두 선택 가능)
 //   카카오페이/네이버페이 별도 PG 연동은 불필요 — KG이니시스 결제창이 통합 제공.
+// ── KG이니시스 MID 분리 (2026-05-28, 카드사 신규계약 입점조건 반영) ──
+//   이니시스 정책상 정기결제는 월간만 지원 → 연간은 1회성 일반결제로 처리.
+//   월간(정기결제)과 연간(일반결제)이 서로 다른 MID·채널을 사용한다.
+//   ▸ 월간 = 정기결제 MID MOI2432342  (channel: bcea3c1d…)
+//   ▸ 연간 = 일반결제 MID MOI5915678  (channel: 9982c887…)
 window.PORTONE_CHANNEL_KEYS = {
-  // KG이니시스 채널 (2026-05-24 일시 롤백)
-  // MOI5915678 메인 MID 는 카드사 심사 0개 등록 상태로 'PG Sub 사업자 번호 없음' 에러 발생
-  // → MOI2432342 보조 MID 채널로 일시 롤백, 카드사 심사 완료 후 MOI5915678 채널로 재교체 예정
-  card_inicis: 'channel-key-bcea3c1d-7213-42ad-a549-e7c43ca80857'
+  // 월간 정기결제 (MID MOI2432342)
+  card_monthly: 'channel-key-bcea3c1d-7213-42ad-a549-e7c43ca80857',
+  // 연간 일반결제 1회성 (MID MOI5915678)
+  card_annual:  'channel-key-9982c887-52f5-40cc-ba7e-3af5a8b64f1e',
+  // 하위호환: 기존 card_inicis 참조 코드용 (월간 채널을 기본으로)
+  card_inicis:  'channel-key-bcea3c1d-7213-42ad-a549-e7c43ca80857'
 };
 window.PORTONE_PAY_METHODS = {
   card: 'CARD'
@@ -44,7 +51,7 @@ window.PORTONE_PAY_METHODS = {
 // ─────────────────────────────────────────────────────────────
 window.BUSINESS_INFO = {
   // ── 기본 정보 ──
-  companyName: 'Terra Nova English',          // 상호 (사업자등록증과 동일하게)
+  companyName: 'Terra Nova',                   // 상호 (KG이니시스 카드심사 요청: 'English' 삭제 — 사업자등록증 상호 '테라노바'와 일치)
   companyNameKo: '테라노바 잉글리시',          // 한글 상호 (있으면)
   representative: '강성엽',                     // 대표자 성명
 
