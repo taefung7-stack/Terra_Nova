@@ -906,9 +906,11 @@
     const storeId = window.PORTONE_STORE_ID || '';
     const keys = window.PORTONE_CHANNEL_KEYS || {};
     const isAnnualPay = billingCycle === 'annual';
+    // 월간 정기결제: 카카오페이 빌링(앱카드 자동결제) 우선, 미설정 시 KG이니시스 카드 빌링 폴백.
+    const useKakaoBilling = !isAnnualPay && !!keys.card_kakao_billing;
     const channelKey = isAnnualPay
       ? (keys.card_annual || keys.card_inicis || '')
-      : (keys.card_monthly || keys.card_inicis || keys.card_kcp || '');
+      : (keys.card_kakao_billing || keys.card_monthly || keys.card_inicis || keys.card_kcp || '');
     if (!storeId || !channelKey) {
       alert('결제 시스템이 준비중입니다.\n잠시 후 다시 시도해주세요.');
       return;
@@ -1001,20 +1003,28 @@
           redirectUrl
         });
       } else {
-        // 월간 — 정기결제창 (빌링키 발급). issueName/금액을 노출해 사용자가 결제금액 확인.
-        result = await window.PortOne.requestIssueBillingKey({
+        // 월간 — 정기결제창 (빌링키 발급).
+        //   카카오페이 빌링(EASY_PAY): 앱카드 자동결제 — 카드번호 입력 없이 카카오 인증으로 결제.
+        //   폴백(KG이니시스 CARD): 카카오페이 채널키 미설정 시 카드 직접입력 빌링.
+        const billingReq = {
           storeId,
           channelKey,
-          billingKeyMethod: 'CARD',
           issueId: orderResp.payment_id,
-          // issueName 에 결제금액을 노출 (KG이니시스 입점조건: 정기결제창 결제금액 노출 필수)
+          // issueName 에 결제금액을 노출 (입점조건: 정기결제창 결제금액 노출 필수 / 카카오페이 필수 파라미터)
           issueName: orderResp.order_name + ' / 월 ' + Number(orderResp.verified_total).toLocaleString() + '원',
           displayAmount: orderResp.verified_total,
           currency: 'KRW',
           customer: { customerId: session.user.id, ...commonCustomer },
           customData,
           redirectUrl
-        });
+        };
+        if (useKakaoBilling) {
+          billingReq.billingKeyMethod = 'EASY_PAY';
+          billingReq.easyPay = { easyPayProvider: 'KAKAOPAY' };
+        } else {
+          billingReq.billingKeyMethod = 'CARD';
+        }
+        result = await window.PortOne.requestIssueBillingKey(billingReq);
       }
     } catch (err) {
       console.error('[PortOne] payment/billing request threw:', err);

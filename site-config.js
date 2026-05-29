@@ -23,8 +23,15 @@ window.PORTONE_STORE_ID = 'store-bb4f1ef9-bd0f-444c-9315-5c5608a3c281';
 //   월간(정기결제)과 연간(일반결제)이 서로 다른 MID·채널을 사용한다.
 //   ▸ 월간 = 정기결제 MID MOI2432342  (channel: bcea3c1d…)
 //   ▸ 연간 = 일반결제 MID MOI5915678  (channel: 9982c887…)
+// ── 월간 자동결제(빌링) 간편결제화 (2026-05-29) ──
+//   KG이니시스 빌링은 카드 직접입력만 지원(앱카드/간편결제 불가, PortOne 문서 확인).
+//   → 월간 정기결제를 '카카오페이 빌링(EASY_PAY)'으로 전환해 앱카드 자동결제 제공.
+//   카카오페이 채널키는 PortOne 콘솔에서 카카오페이 가맹 신청·심사 후 발급받아 입력.
+//   ▸ card_kakao_billing 값이 비어있으면 order.html 이 자동으로 KG이니시스 카드 빌링으로 폴백.
 window.PORTONE_CHANNEL_KEYS = {
-  // 월간 정기결제 (MID MOI2432342)
+  // 월간 정기결제 — 카카오페이 빌링(EASY_PAY, 앱카드 자동결제). ⬇️ 가맹 심사 후 채널키 입력
+  card_kakao_billing: '',
+  // 월간 정기결제 폴백 — KG이니시스 카드 빌링 (MID MOI2432342)
   card_monthly: 'channel-key-bcea3c1d-7213-42ad-a549-e7c43ca80857',
   // 연간 일반결제 1회성 (MID MOI5915678)
   card_annual:  'channel-key-9982c887-52f5-40cc-ba7e-3af5a8b64f1e',

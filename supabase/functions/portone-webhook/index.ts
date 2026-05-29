@@ -467,6 +467,8 @@ async function handleBillingKeyIssued(data: any) {
       body: JSON.stringify({
         billingKey,
         orderName: `Terra Nova ${planCode} · 월간 · ${level || ''}`.trim(),
+        // customer.id 는 카카오페이 등 간편결제 빌링에서 안정적 처리를 위해 포함 (선택 필드)
+        customer: { id: order.user_id },
         amount: { total: amount },
         currency: 'KRW',
       }),
