@@ -405,7 +405,110 @@ async function handleCancel(data: { paymentId: string }) {
   return new Response(JSON.stringify({ ok: true }), { status: 200 });
 }
 
+// 정기결제(월간) 빌링키 발급 이벤트 → 빌링키로 첫 달 즉시 결제 + 구독 활성화.
+// issueId = create-order 가 만든 payment_id (order.portone_payment_id).
+// 보안: plan/cycle/level/금액은 order_items.product_snapshot(서버 검증값)만 신뢰.
 async function handleBillingKeyIssued(data: any) {
-  // 정기결제 빌링키 발급 이벤트 — 필요 시 별도 처리
-  return new Response(JSON.stringify({ ok: true }), { status: 200 });
+  const billingKey: string | undefined = data?.billingKey;
+  const issueId: string | undefined = data?.issueId || data?.issue_id;
+  if (!billingKey || !issueId) {
+    console.error('[webhook] BillingKey.Issued missing billingKey/issueId', data);
+    return new Response(JSON.stringify({ error: 'missing_billing_fields' }), { status: 200 });
+  }
+
+  // 1. order 조회 (pending) + 스냅샷에서 plan/cycle/level 복원
+  const { data: order, error: orderErr } = await supabase
+    .from('orders')
+    .select('id, user_id, status, total_amount, order_items(product_snapshot)')
+    .eq('portone_payment_id', issueId)
+    .maybeSingle();
+  if (orderErr || !order) {
+    console.error('[webhook] BillingKey.Issued: order not found', { issueId, err: orderErr?.message });
+    return new Response(JSON.stringify({ error: 'order_not_found' }), { status: 200 });
+  }
+  if (order.status === 'paid') {
+    return new Response(JSON.stringify({ status: 'already_paid' }), { status: 200 });
+  }
+
+  let planCode: string | null = null, billingCycle: string | null = null, level: string | null = null;
+  for (const item of ((order as any).order_items || [])) {
+    const snap = item.product_snapshot || {};
+    if (snap.kind === 'subscription') {
+      planCode = (snap.plan || '').toString().toUpperCase() || null;
+      billingCycle = (snap.cycle || '').toString() || null;
+      level = (snap.level || '').toString().toUpperCase() || null;
+      break;
+    }
+  }
+  if (!planCode) {
+    console.error('[webhook] BillingKey.Issued: not a subscription order', { issueId });
+    return new Response(JSON.stringify({ error: 'not_subscription' }), { status: 200 });
+  }
+  // 이니시스 정책: 정기결제(빌링)는 월간만. 연간이 빌링으로 들어오면 거부.
+  if (billingCycle !== 'monthly') {
+    console.error('[webhook] BillingKey.Issued: billing only allowed for monthly', { issueId, billingCycle });
+    return new Response(JSON.stringify({ error: 'billing_cycle_not_monthly' }), { status: 200 });
+  }
+
+  const amount = Number(order.total_amount) || 0;
+  if (amount <= 0) {
+    return new Response(JSON.stringify({ error: 'invalid_amount' }), { status: 200 });
+  }
+
+  // 2. 빌링키로 첫 달 즉시 결제 (PortOne V2 API)
+  const payRes = await fetch(
+    `https://api.portone.io/payments/${encodeURIComponent(issueId)}/billing-key`,
+    {
+      method: 'POST',
+      headers: {
+        Authorization: `PortOne ${PORTONE_API_SECRET}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        billingKey,
+        orderName: `Terra Nova ${planCode} · 월간 · ${level || ''}`.trim(),
+        amount: { total: amount },
+        currency: 'KRW',
+      }),
+    }
+  );
+  if (!payRes.ok) {
+    const txt = await payRes.text().catch(() => '');
+    console.error('[webhook] billing-key payment failed', { issueId, status: payRes.status, body: txt });
+    await supabase.from('orders').update({
+      status: 'failed',
+      memo: `billing_first_charge_failed: ${payRes.status} ${txt.slice(0, 200)}`,
+    }).eq('id', order.id);
+    return new Response(JSON.stringify({ error: 'billing_charge_failed' }), { status: 200 });
+  }
+
+  // 3. 결제 검증 후 구독 활성화 (기존 activateSubscription 재사용)
+  const payment = await fetchPayment(issueId);
+  if (payment.status !== 'PAID') {
+    console.error('[webhook] billing charge not PAID after API call', { issueId, status: payment.status });
+    return new Response(JSON.stringify({ status: 'charge_not_paid', payment_status: payment.status }), { status: 200 });
+  }
+  // billingKey 를 subscriptions 에 저장하도록 payment 객체에 주입
+  payment.billingKey = billingKey;
+  await activateSubscription(order.user_id, planCode, billingCycle, level, payment);
+
+  // 첫 결제 확인 메일 + PDF 발송 (best-effort)
+  if (payment.customer?.email) {
+    await sendEmail(payment.customer.email, 'payment_confirm', {
+      plan: planCode, billingCycle, amount,
+      orderNumber: issueId,
+      nextBillingDate: new Date(Date.now() + 30 * 86400000).toLocaleDateString('ko-KR'),
+    });
+  }
+  try {
+    await fetch(`${SUPABASE_URL}/functions/v1/dispatch-monthly-pdf`, {
+      method: 'POST',
+      headers: { 'Authorization': `Bearer ${INTERNAL_EMAIL_SECRET}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ user_id: order.user_id, level }),
+    });
+  } catch (err) {
+    console.warn('[webhook] billing post-charge PDF dispatch failed (non-fatal):', (err as Error).message);
+  }
+
+  return new Response(JSON.stringify({ ok: true, charged: amount }), { status: 200 });
 }

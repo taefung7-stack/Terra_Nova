@@ -613,18 +613,7 @@
 
         <div id="paymethod-notice" style="margin-top:14px;font-size:.72rem;color:#F59E0B;display:none;text-align:center;"></div>
 
-        <!-- ⚠️ 결제 시스템 정식 오픈 전 임시 안내 (KG이니시스 카드사 심사 진행 중) -->
-        <div id="payment-soft-launch-notice" style="margin-top:14px;padding:14px 18px;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.35);border-radius:10px;font-size:.78rem;color:#F59E0B;line-height:1.7;">
-          <strong style="color:#FBBF24;display:block;margin-bottom:6px;">🔧 결제 시스템 최종 점검 중</strong>
-          카드사 등록 절차가 완료되는 대로 정식 결제가 오픈됩니다(예상 1주 이내). 사전 알림을 받으시려면 아래 이메일로 신청해 주세요.<br>
-          <strong style="color:#FBBF24;">먼저 무료 샘플</strong>로 학습 콘텐츠를 미리 확인하실 수 있습니다.
-          <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;">
-            <a href="sample.html" style="display:inline-block;padding:8px 14px;background:rgba(0,255,163,.15);border:1px solid var(--accent);border-radius:6px;color:var(--accent);text-decoration:none;font-weight:700;font-size:.78rem;">📩 무료 샘플 받기</a>
-            <a href="mailto:support@terra-nova.kr?subject=결제 오픈 사전 알림 신청&body=Terra Nova LIGHT 구독 결제 오픈 시 알림 받기를 신청합니다." style="display:inline-block;padding:8px 14px;background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:6px;color:var(--txt);text-decoration:none;font-weight:600;font-size:.78rem;">🔔 오픈 알림 신청</a>
-          </div>
-        </div>
-
-        <button class="btn-order" id="btn-order" onclick="submitOrder()" disabled style="opacity:.5;cursor:not-allowed;">결제 시스템 점검중</button>
+        <button class="btn-order" id="btn-order" onclick="submitOrder()">구독 신청하기</button>
       </div>
     </div>
 
@@ -866,7 +855,7 @@
 
   // ── Submit ── 진짜 결제 흐름
   // 결제 정식 오픈 플래그 (KG이니시스 카드사 심사 통과 후 true 로 변경)
-  const PAYMENTS_ENABLED = false;
+  const PAYMENTS_ENABLED = true;
 
   async function submitOrder() {
     if (!PAYMENTS_ENABLED) {
@@ -984,31 +973,51 @@
     // customer.fullName 한글도 일부 PG 에서 거절 가능 → ASCII fallback (이메일 prefix)
     const safeName = (email && email.split('@')[0]) || 'customer';
 
-    // KG이니시스 통합결제 V2 — 단순 카드 결제로 호출
-    // bypass.acceptmethod 옵션은 PortOne V2 검증에서 거절되므로 사용 안 함
-    // 카카오페이/네이버페이는 KG이니시스 6.간편결제 탭에서 별도 신청 후 자동 활성화 예정
-    const payRequest = {
-      storeId,
-      channelKey,
-      paymentId: orderResp.payment_id,
-      orderName: orderResp.order_name,
-      totalAmount: orderResp.verified_total,
-      currency: 'KRW',
-      payMethod: 'CARD',
-      customer: {
-        fullName: safeName,
-        email: email,
-        phoneNumber: phone.replace(/-/g,'')
-      },
-      customData,
-      redirectUrl: location.origin + '/payment-complete.html?payment_id=' + encodeURIComponent(orderResp.payment_id)
+    // 2. PortOne 결제창 호출 — KG이니시스 정책에 따라 주기별 분기
+    //   • 월간 = 정기결제창 (requestIssueBillingKey, 빌링키 발급 → webhook이 첫 달 즉시 결제)
+    //   • 연간 = 일반결제창 (requestPayment, 1회 결제로 12개월 서비스 제공)
+    // ⚠️ customData 한글 금지(V023). 한글 정보는 DB(orders/profiles)에 이미 저장됨.
+    const commonCustomer = {
+      fullName: safeName,
+      email: email,
+      phoneNumber: phone.replace(/-/g,'')
     };
+    const redirectUrl = location.origin + '/payment-complete.html?payment_id=' + encodeURIComponent(orderResp.payment_id);
 
     let result;
     try {
-      result = await window.PortOne.requestPayment(payRequest);
+      if (isAnnualPay) {
+        // 연간 — 일반결제창 (1회 결제). 금액은 결제창에 명확히 노출됨.
+        result = await window.PortOne.requestPayment({
+          storeId,
+          channelKey,
+          paymentId: orderResp.payment_id,
+          orderName: orderResp.order_name,
+          totalAmount: orderResp.verified_total,
+          currency: 'KRW',
+          payMethod: 'CARD',
+          customer: commonCustomer,
+          customData,
+          redirectUrl
+        });
+      } else {
+        // 월간 — 정기결제창 (빌링키 발급). issueName/금액을 노출해 사용자가 결제금액 확인.
+        result = await window.PortOne.requestIssueBillingKey({
+          storeId,
+          channelKey,
+          billingKeyMethod: 'CARD',
+          issueId: orderResp.payment_id,
+          // issueName 에 결제금액을 노출 (KG이니시스 입점조건: 정기결제창 결제금액 노출 필수)
+          issueName: orderResp.order_name + ' / 월 ' + Number(orderResp.verified_total).toLocaleString() + '원',
+          displayAmount: orderResp.verified_total,
+          currency: 'KRW',
+          customer: { customerId: session.user.id, ...commonCustomer },
+          customData,
+          redirectUrl
+        });
+      }
     } catch (err) {
-      console.error('[PortOne] requestPayment threw:', err);
+      console.error('[PortOne] payment/billing request threw:', err);
       alert('결제창 호출에 실패했습니다: ' + (err?.message || err));
       if (btn) { btn.disabled = false; btn.textContent = '구독 신청하기'; }
       return;
