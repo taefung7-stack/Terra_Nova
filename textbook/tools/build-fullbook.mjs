@@ -69,12 +69,22 @@ async function main() {
     : join(root, 'dist', month, `${month}-fullbook.pdf`);
 
   const port = 4185;
-  const server = spawn('npx', ['sirv', '.', '--port', String(port), '--host', '127.0.0.1', '--quiet'], {
-    cwd: root, stdio: 'pipe', shell: process.platform === 'win32'
+  const server = spawn(process.execPath, [
+    resolve(root, 'node_modules', 'sirv-cli', 'bin.js'),
+    '.', '--port', String(port), '--host', '127.0.0.1', '--quiet'
+  ], {
+    cwd: root,
+    stdio: ['ignore', 'ignore', 'ignore'],
+    windowsHide: true
   });
   await waitFor(`http://127.0.0.1:${port}/textbook.html`);
 
-  const browser = await puppeteer.launch({ headless: 'new' });
+  // proxy-bypass args: headless Chrome otherwise routes 127.0.0.1 through an
+  // auto-detected system proxy and times out connecting to the local sirv server.
+  const browser = await puppeteer.launch({
+    headless: 'new',
+    args: ['--proxy-server=direct://', '--proxy-bypass-list=*', '--no-sandbox', '--disable-gpu']
+  });
   const tmpDir = join(root, 'dist', '_fullbook-tmp');
   mkdirSync(tmpDir, { recursive: true });
   const collected = [];
