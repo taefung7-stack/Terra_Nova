@@ -848,7 +848,19 @@
     const frame = document.getElementById('preview-frame');
     try {
       const doc = frame.contentDocument || frame.contentWindow.document;
-      const h = Math.max(doc.documentElement.scrollHeight, doc.body.scrollHeight);
+      // 내부 문서 자체 스크롤바를 원천 차단 — iframe 을 콘텐츠 높이에 맞춰 늘릴 것이므로
+      // 내부 스크롤은 불필요하고, 이게 "스크롤 두 개" 의 원인이었다.
+      doc.documentElement.style.overflow = 'hidden';
+      if (doc.body) doc.body.style.overflow = 'hidden';
+      // A4 여러 장의 전체 높이를 가장 큰 지표로 측정 (마지막 .page 하단까지 포함)
+      const lastPage = doc.querySelector('.page:last-of-type');
+      const pagesBottom = lastPage ? Math.ceil(lastPage.getBoundingClientRect().bottom + (doc.documentElement.scrollTop||0)) : 0;
+      const h = Math.max(
+        doc.documentElement.scrollHeight,
+        doc.body ? doc.body.scrollHeight : 0,
+        doc.documentElement.offsetHeight,
+        pagesBottom
+      );
       if (h > 0) { frame.style.height = h + 'px'; frame.dataset.contentH = h; }
     } catch (e) { /* same-origin 이므로 정상 동작; 혹시 막히면 기본 높이 유지 */ }
     applyPreviewScale();
@@ -921,7 +933,7 @@
     <div class="preview-note">실제 판매 샘플입니다. 회차에 따라 내용이 달라질 수 있어요.</div>
     <div class="preview-frame-wrap" id="preview-frame-wrap">
       <div class="preview-scaler" id="preview-scaler">
-        <iframe id="preview-frame" class="preview-frame" title="샘플 미리보기" loading="lazy"></iframe>
+        <iframe id="preview-frame" class="preview-frame" title="샘플 미리보기" loading="lazy" scrolling="no"></iframe>
       </div>
     </div>
   </div>
