@@ -110,6 +110,20 @@
   .billing-btn{padding:11px 26px;border-radius:36px;border:none;font-family:'Pretendard',sans-serif;font-size:.96rem;font-weight:700;cursor:pointer;transition:all .2s;background:transparent;color:var(--dim);}
   .billing-btn.active{background:var(--accent);color:#0A0A0A;}
   .annual-badge{background:rgba(0,255,163,.12);border:1px solid rgba(0,255,163,.3);color:var(--accent);font-size:.76rem;font-weight:700;padding:3px 10px;border-radius:20px;margin-left:10px;letter-spacing:.5px;}
+  .paymethod-wrap{margin-top:14px;padding:12px;background:rgba(255,255,255,.035);border:1px solid var(--line);border-radius:8px;}
+  .paymethod-label{font-size:.72rem;color:var(--dim);font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;}
+  .paymethod-options{display:grid;gap:6px;}
+  .pm-opt{display:flex;align-items:center;gap:10px;min-height:42px;padding:8px 10px;background:rgba(255,255,255,.035);border:1px solid var(--line);border-radius:7px;color:var(--txt);cursor:pointer;transition:border-color .16s,background .16s,opacity .16s;}
+  .pm-opt:hover:not(.disabled){border-color:rgba(0,255,163,.35);}
+  .pm-opt.active{border-color:var(--accent);background:rgba(0,255,163,.08);}
+  .pm-opt.disabled{opacity:.45;cursor:not-allowed;}
+  .pm-opt input{accent-color:var(--accent);flex-shrink:0;}
+  .pm-mark{width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:rgba(0,255,163,.12);color:var(--accent);font-size:.72rem;font-weight:900;flex-shrink:0;}
+  .pm-copy{flex:1;min-width:0;}
+  .pm-title{display:block;font-size:.86rem;font-weight:800;line-height:1.25;}
+  .pm-sub{display:block;font-size:.68rem;color:var(--dim);line-height:1.25;margin-top:2px;}
+  .pm-status{font-size:.66rem;font-weight:800;color:var(--accent);white-space:nowrap;}
+  .pm-opt.disabled .pm-status{color:#F59E0B;}
 
   /* ── PLAN CARDS ── */
   .plan-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:24px;}
@@ -603,6 +617,7 @@
           </div>
           <div id="coupon-msg" style="margin-top:6px;font-size:.72rem;min-height:1em;"></div>
         </div>
+
         <div class="summary-total">
           <span class="summary-total-label">결제 금액</span>
           <div class="summary-total-right">
@@ -612,6 +627,39 @@
         </div>
 
         <div id="paymethod-notice" style="margin-top:14px;font-size:.72rem;color:#F59E0B;display:none;text-align:center;"></div>
+
+        <div class="paymethod-wrap" id="paymethod-wrap">
+          <div class="paymethod-label">월간 정기결제 수단</div>
+          <div class="paymethod-options" id="paymethod-options">
+            <label class="pm-opt" data-billing-provider="kakao">
+              <input type="radio" name="monthly-billing-provider" value="kakao" onchange="setMonthlyBillingProvider('kakao')">
+              <span class="pm-mark">K</span>
+              <span class="pm-copy">
+                <span class="pm-title">카카오페이</span>
+                <span class="pm-sub">카카오 인증으로 자동결제 등록</span>
+              </span>
+              <span class="pm-status"></span>
+            </label>
+            <label class="pm-opt" data-billing-provider="nice">
+              <input type="radio" name="monthly-billing-provider" value="nice" onchange="setMonthlyBillingProvider('nice')">
+              <span class="pm-mark">N</span>
+              <span class="pm-copy">
+                <span class="pm-title">카드(앱카드)</span>
+                <span class="pm-sub">NICE 카드 정기결제 · ISP/앱카드 인증</span>
+              </span>
+              <span class="pm-status"></span>
+            </label>
+            <label class="pm-opt" data-billing-provider="inicis_card">
+              <input type="radio" name="monthly-billing-provider" value="inicis_card" onchange="setMonthlyBillingProvider('inicis_card')">
+              <span class="pm-mark">C</span>
+              <span class="pm-copy">
+                <span class="pm-title">카드 직접입력</span>
+                <span class="pm-sub">KG이니시스 카드 빌링 폴백</span>
+              </span>
+              <span class="pm-status"></span>
+            </label>
+          </div>
+        </div>
 
         <button class="btn-order" id="btn-order" onclick="submitOrder()">구독 신청하기</button>
       </div>
@@ -630,6 +678,58 @@
   let isLoggedIn = false;
   let userEmail = '';
   let userAddr = '';
+  let monthlyBillingProvider = 'kakao';
+
+  const MONTHLY_BILLING_OPTIONS = [
+    {
+      id: 'kakao',
+      key: 'card_kakao_billing',
+      billingKeyMethod: 'EASY_PAY',
+      easyPayProvider: 'KAKAOPAY'
+    },
+    {
+      id: 'nice',
+      key: 'nice_card_billing',
+      billingKeyMethod: 'CARD'
+    },
+    {
+      id: 'inicis_card',
+      key: 'card_monthly',
+      fallbackKeys: ['card_inicis', 'card_kcp'],
+      billingKeyMethod: 'CARD'
+    }
+  ];
+
+  function resolveOptionChannelKey(option, keys) {
+    if (!option) return '';
+    const direct = keys[option.key] || '';
+    if (direct) return direct;
+    for (const key of (option.fallbackKeys || [])) {
+      if (keys[key]) return keys[key];
+    }
+    return '';
+  }
+
+  function getMonthlyBillingOptions(keys = window.PORTONE_CHANNEL_KEYS || {}) {
+    return MONTHLY_BILLING_OPTIONS.map(option => ({
+      ...option,
+      channelKey: resolveOptionChannelKey(option, keys)
+    }));
+  }
+
+  function getSelectedMonthlyBillingOption(keys = window.PORTONE_CHANNEL_KEYS || {}) {
+    const options = getMonthlyBillingOptions(keys);
+    const selected = options.find(option => option.id === monthlyBillingProvider && option.channelKey);
+    if (selected) return selected;
+    const firstReady = options.find(option => option.channelKey);
+    if (firstReady) monthlyBillingProvider = firstReady.id;
+    return firstReady || null;
+  }
+
+  function setMonthlyBillingProvider(provider) {
+    monthlyBillingProvider = provider;
+    refreshPayMethodAvailability();
+  }
 
   // ── Auth ──
   // 인증 단일 소스: login.html (Supabase signInWithPassword/OAuth).
@@ -704,6 +804,7 @@
     });
 
     if (selectedPlan) updateSummary();
+    refreshPayMethodAvailability();
   }
 
   // ── Plan select ──
@@ -832,23 +933,56 @@
   });
 
   // ── 결제수단 가용성 체크 (PortOne 키 설정 여부 기반) ──
-  // 결제수단 UI 는 제거됨. KG이니시스 단독 운영 — card 채널만 사용.
-  // 결제창에서 카드사별 앱카드/QR 간편결제(카카오·네이버·페이코 등) 자동 노출.
+  function refreshMonthlyBillingOptionsUI(keys = window.PORTONE_CHANNEL_KEYS || {}) {
+    const wrap = document.getElementById('paymethod-wrap');
+    if (!wrap) return;
+
+    const isMonthly = billingCycle === 'monthly';
+    wrap.style.display = isMonthly ? 'block' : 'none';
+    if (!isMonthly) return;
+
+    const selected = getSelectedMonthlyBillingOption(keys);
+    const selectedId = selected?.id || '';
+
+    getMonthlyBillingOptions(keys).forEach(option => {
+      const optEl = document.querySelector('[data-billing-provider="' + option.id + '"]');
+      if (!optEl) return;
+      const input = optEl.querySelector('input[type="radio"]');
+      const status = optEl.querySelector('.pm-status');
+      const ready = !!option.channelKey;
+
+      optEl.classList.toggle('disabled', !ready);
+      optEl.classList.toggle('active', ready && option.id === selectedId);
+      if (input) {
+        input.disabled = !ready;
+        input.checked = ready && option.id === selectedId;
+      }
+      if (status) status.textContent = ready ? '사용 가능' : '준비중';
+    });
+  }
+
   function refreshPayMethodAvailability() {
     const storeId = window.PORTONE_STORE_ID || '';
     const keys = window.PORTONE_CHANNEL_KEYS || {};
-    const cardReady = !!storeId && (!!keys.card_monthly || !!keys.card_annual || !!keys.card_inicis || !!keys.card_kcp);
+    const monthlyReady = !!storeId && !!getSelectedMonthlyBillingOption(keys);
+    const annualReady = !!storeId && (!!keys.card_annual || !!keys.card_inicis);
+    const ready = billingCycle === 'annual' ? annualReady : monthlyReady;
     const notice = document.getElementById('paymethod-notice');
     const btn = document.getElementById('btn-order');
-    if (!cardReady) {
+
+    refreshMonthlyBillingOptionsUI(keys);
+
+    if (!ready) {
       if (notice) {
         notice.style.display = 'block';
-        notice.textContent = '⚠️ 결제 시스템 PG사 심사 진행 중입니다. 심사 완료 후 정식 오픈 예정입니다.';
+        notice.textContent = billingCycle === 'annual'
+          ? '⚠️ 연간 일반결제 채널이 아직 준비되지 않았습니다.'
+          : '⚠️ 월간 정기결제 채널이 아직 준비되지 않았습니다.';
       }
       if (btn) { btn.disabled = true; btn.style.opacity = '.5'; btn.style.cursor = 'not-allowed'; btn.textContent = '결제 시스템 준비중'; }
     } else {
       if (notice) notice.style.display = 'none';
-      if (btn) { btn.disabled = false; btn.style.opacity = '1'; btn.style.cursor = 'pointer'; }
+      if (btn) { btn.disabled = false; btn.style.opacity = '1'; btn.style.cursor = 'pointer'; btn.textContent = '구독 신청하기'; }
     }
   }
   refreshPayMethodAvailability();
@@ -897,20 +1031,14 @@
       return;
     }
 
-    // 결제수단: KG이니시스 카드 단독 (결제창에서 카드사 앱카드/QR/간편결제 선택 가능)
-    const paymethod = 'card';
-
-    // PortOne 키 검증 — KG이니시스 채널 (MID 분리)
-    //   월간 = 정기결제 MID(MOI2432342) 채널 / 연간 = 일반결제 MID(MOI5915678) 채널
-    //   이니시스 정책: 정기결제는 월간만 가능, 연간은 1회성 일반결제.
+    // PortOne 키 검증 — 월간은 사용자가 고른 빌링 채널, 연간은 KG이니시스 일반결제 채널.
     const storeId = window.PORTONE_STORE_ID || '';
     const keys = window.PORTONE_CHANNEL_KEYS || {};
     const isAnnualPay = billingCycle === 'annual';
-    // 월간 정기결제: 카카오페이 빌링(앱카드 자동결제) 우선, 미설정 시 KG이니시스 카드 빌링 폴백.
-    const useKakaoBilling = !isAnnualPay && !!keys.card_kakao_billing;
+    const monthlyBillingOption = isAnnualPay ? null : getSelectedMonthlyBillingOption(keys);
     const channelKey = isAnnualPay
       ? (keys.card_annual || keys.card_inicis || '')
-      : (keys.card_kakao_billing || keys.card_monthly || keys.card_inicis || keys.card_kcp || '');
+      : (monthlyBillingOption?.channelKey || '');
     if (!storeId || !channelKey) {
       alert('결제 시스템이 준비중입니다.\n잠시 후 다시 시도해주세요.');
       return;
@@ -970,7 +1098,8 @@
       userId: session.user.id,
       plan: selectedPlan,
       cycle,
-      level: selectedLevel
+      level: selectedLevel,
+      billingProvider: isAnnualPay ? 'annual_card' : (monthlyBillingOption?.id || 'monthly')
     };
     // customer.fullName 한글도 일부 PG 에서 거절 가능 → ASCII fallback (이메일 prefix)
     const safeName = (email && email.split('@')[0]) || 'customer';
@@ -1004,8 +1133,8 @@
         });
       } else {
         // 월간 — 정기결제창 (빌링키 발급).
-        //   카카오페이 빌링(EASY_PAY): 앱카드 자동결제 — 카드번호 입력 없이 카카오 인증으로 결제.
-        //   폴백(KG이니시스 CARD): 카카오페이 채널키 미설정 시 카드 직접입력 빌링.
+        //   카카오페이/NICE 빌링(EASY_PAY): 카드번호 입력 없이 앱 인증으로 자동결제 등록.
+        //   폴백(KG이니시스 CARD): 카드 직접입력 빌링.
         const billingReq = {
           storeId,
           channelKey,
@@ -1018,9 +1147,9 @@
           customData,
           redirectUrl
         };
-        if (useKakaoBilling) {
+        if (monthlyBillingOption?.billingKeyMethod === 'EASY_PAY') {
           billingReq.billingKeyMethod = 'EASY_PAY';
-          billingReq.easyPay = { easyPayProvider: 'KAKAOPAY' };
+          billingReq.easyPay = { easyPayProvider: monthlyBillingOption.easyPayProvider || 'KAKAOPAY' };
         } else {
           billingReq.billingKeyMethod = 'CARD';
         }
