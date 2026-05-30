@@ -167,7 +167,12 @@ if (!existsSync(tmpDir)) mkdirSync(tmpDir, { recursive: true });
 
 // Start static server + headless browser for colophon rendering
 const { proc: srvProc, port: srvPort } = await startStaticServer();
-const browser = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox'] });
+// proxy-bypass args: headless Chrome otherwise routes 127.0.0.1 through an
+// auto-detected system proxy and times out connecting to the local sirv server.
+const browser = await puppeteer.launch({
+  headless: 'new',
+  args: ['--no-sandbox', '--proxy-server=direct://', '--proxy-bypass-list=*', '--disable-gpu'],
+});
 
 const results = [];
 try {
