@@ -479,7 +479,7 @@
     if (!MARKET_PAYMENTS_ENABLED) return false;  // 플래그가 false 면 PG 키와 무관하게 false
     const storeId = window.PORTONE_STORE_ID || '';
     const keys = window.PORTONE_CHANNEL_KEYS || {};
-    return !!storeId && (!!keys.card_inicis || !!keys.card_kcp || !!keys.kakaopay || !!keys.naverpay);
+    return !!storeId && (!!keys.card_annual || !!keys.card_inicis || !!keys.card_kcp || !!keys.kakaopay || !!keys.naverpay);
   }
   function refreshPayAvailability(){
     const ready = isPgReady();
@@ -561,8 +561,12 @@
     }
 
     // 4) PortOne 결제창 호출 (KG이니시스 V2)
+    //    마켓은 단건결제 → 일반결제 MID(MOI5915678, card_annual) 채널 사용.
+    //    정기결제 MID(card_inicis/card_monthly)는 카드번호 직접입력만 떠서
+    //    앱카드/간편결제 노출이 안 되므로 단건결제엔 부적합.
     const storeId = window.PORTONE_STORE_ID;
-    const channelKey = (window.PORTONE_CHANNEL_KEYS || {}).card_inicis;
+    const keys = window.PORTONE_CHANNEL_KEYS || {};
+    const channelKey = keys.card_annual || keys.card_inicis;
     const safeName = (email && email.split('@')[0]) || 'customer';
     const customData = {
       kind: 'market',
