@@ -1131,7 +1131,8 @@
         const annualFrom = new Date();
         const annualTo = new Date(annualFrom);
         annualTo.setFullYear(annualTo.getFullYear() + 1);
-        const isoDate = (d) => d.toISOString().slice(0, 10); // YYYY-MM-DD
+        // PortOne offerPeriod.range 는 시간·타임존 포함 ISO8601(YYYY-MM-DDTHH:mm:ssZ)만 허용 (날짜만 X)
+        const isoDateTime = (d) => d.toISOString().replace(/\.\d{3}Z$/, 'Z'); // YYYY-MM-DDTHH:mm:ssZ
         result = await window.PortOne.requestPayment({
           storeId,
           channelKey,
@@ -1143,7 +1144,7 @@
           customer: commonCustomer,
           customData,
           // 카드사 심사 요건: 서비스 제공기간 명시 (무제한 표기 금지)
-          offerPeriod: { range: { from: isoDate(annualFrom), to: isoDate(annualTo) } },
+          offerPeriod: { range: { from: isoDateTime(annualFrom), to: isoDateTime(annualTo) } },
           redirectUrl
         });
       } else {
