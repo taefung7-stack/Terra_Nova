@@ -1127,7 +1127,11 @@
     let result;
     try {
       if (isAnnualPay) {
-        // 연간 — 일반결제창 (1회 결제). 금액은 결제창에 명확히 노출됨.
+        // 연간 — 일반결제창 (1회 결제). 결제일~12개월 후까지 제공기간을 결제창에 노출.
+        const annualFrom = new Date();
+        const annualTo = new Date(annualFrom);
+        annualTo.setFullYear(annualTo.getFullYear() + 1);
+        const isoDate = (d) => d.toISOString().slice(0, 10); // YYYY-MM-DD
         result = await window.PortOne.requestPayment({
           storeId,
           channelKey,
@@ -1138,6 +1142,8 @@
           payMethod: 'CARD',
           customer: commonCustomer,
           customData,
+          // 카드사 심사 요건: 서비스 제공기간 명시 (무제한 표기 금지)
+          offerPeriod: { range: { from: isoDate(annualFrom), to: isoDate(annualTo) } },
           redirectUrl
         });
       } else {
@@ -1154,6 +1160,8 @@
           currency: 'KRW',
           customer: { customerId: session.user.id, ...commonCustomer },
           customData,
+          // 카드사 심사 요건: 서비스 제공기간 명시 (월 정기결제 — KG이니시스는 '1m' 만 허용)
+          offerPeriod: { interval: '1m' },
           redirectUrl
         };
         if (monthlyBillingOption?.billingKeyMethod === 'EASY_PAY') {
