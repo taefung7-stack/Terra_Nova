@@ -77,18 +77,18 @@ window.BUSINESS_INFO = {
   address: '서울특별시 마포구 백범로31길 8',    // 사업장 주소 (홈택스 공식 표기)
   addressDetail: '202동 2003호 (공덕동, 공덕SK리더스뷰)',  // 상세주소
   phone: '010-8248-6428',                       // 대표 연락처
-  email: 'support@terra-nova.kr',               // 대표 이메일
+  email: 'taefung7@gmail.com',               // 대표 이메일
   kakaoChannel: '@TerraNovaEnglish',            // 카카오채널 (선택)
 
   // ── 책임자 ──
   privacyOfficer: {
     name: '강성엽',
-    email: 'support@terra-nova.kr',
+    email: 'taefung7@gmail.com',
     phone: '010-8248-6428',
   },
   customerServiceOfficer: {                     // 소비자 분쟁/상담 책임자 (전상법 권장)
     name: '강성엽',
-    email: 'support@terra-nova.kr',
+    email: 'taefung7@gmail.com',
     phone: '010-8248-6428',
   },
 

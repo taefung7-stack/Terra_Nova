@@ -47,7 +47,7 @@
       </div>
       <div>
         Tel ${safe(B.phone)}
-        &nbsp;·&nbsp; Email <a href="mailto:${safe(B.email, 'support@terra-nova.kr')}" style="color:${fg};text-decoration:underline;">${safe(B.email, 'support@terra-nova.kr')}</a>
+        &nbsp;·&nbsp; Email <a href="mailto:${safe(B.email, 'taefung7@gmail.com')}" style="color:${fg};text-decoration:underline;">${safe(B.email, 'taefung7@gmail.com')}</a>
         ${B.customerServiceOfficer && B.customerServiceOfficer.name ? '&nbsp;·&nbsp; 개인정보보호책임자 ' + B.customerServiceOfficer.name : ''}
       </div>
     </div>
@@ -66,7 +66,7 @@
       <a href="privacy.html" style="color:${fg};text-decoration:none;font-size:.72rem;font-weight:700;">개인정보처리방침</a>
       <a href="refund.html" style="color:${fg};text-decoration:none;font-size:.72rem;">환불·교환 정책</a>
       <a href="faq.html" style="color:${fg};text-decoration:none;font-size:.72rem;">FAQ</a>
-      <a href="mailto:${safe(B.email, 'support@terra-nova.kr')}" style="color:${fg};text-decoration:none;font-size:.72rem;">문의</a>
+      <a href="mailto:${safe(B.email, 'taefung7@gmail.com')}" style="color:${fg};text-decoration:none;font-size:.72rem;">문의</a>
     </div>
     ${businessInfoHtml}
     <p style="font-size:.7rem;color:${fg};margin-top:14px;">© 2026 Terra Nova. All rights reserved.</p>

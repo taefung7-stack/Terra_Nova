@@ -98,7 +98,7 @@ function baseWrap(innerHtml: string): string {
           </td></tr>
           <tr><td style="background:#F7F7F6;padding:20px 32px;font-size:11px;color:#888;text-align:center;border-top:1px solid #eee;">
             이 이메일은 Terra Nova 구독/결제와 관련된 안내입니다.<br>
-            문의: <a href="mailto:support@terra-nova.kr" style="color:#2DD4BF;">support@terra-nova.kr</a>
+            문의: <a href="mailto:taefung7@gmail.com" style="color:#2DD4BF;">taefung7@gmail.com</a>
           </td></tr>
         </table>
       </td></tr>
