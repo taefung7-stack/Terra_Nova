@@ -628,7 +628,7 @@
 
         <div id="paymethod-notice" style="margin-top:14px;font-size:.72rem;color:#F59E0B;display:none;text-align:center;"></div>
 
-        <div class="paymethod-wrap" id="paymethod-wrap">
+        <div class="paymethod-wrap" id="paymethod-wrap" style="display:none;">
           <div class="paymethod-label">월간 정기결제 수단</div>
           <div class="paymethod-options" id="paymethod-options">
             <label class="pm-opt" data-billing-provider="kakao">
@@ -933,10 +933,19 @@
   });
 
   // ── 결제수단 가용성 체크 (PortOne 키 설정 여부 기반) ──
+  // 결제수단 선택 UI는 숨김 처리 — 우선순위(카카오>나이스>KG)로 자동 선택.
+  // 채널키가 들어와 사용자 선택을 다시 노출하려면:
+  //   1) HTML의 #paymethod-wrap 에서 style="display:none;" 제거
+  //   2) 아래 함수에서 early-return 제거하고 원래 로직 복원
   function refreshMonthlyBillingOptionsUI(keys = window.PORTONE_CHANNEL_KEYS || {}) {
+    // UI 숨김 모드 — 빌링 분기는 getSelectedMonthlyBillingOption() 우선순위로 자동 선택.
+    // UI 다시 노출하려면: ① HTML #paymethod-wrap 의 style="display:none;" 제거
+    //                    ② 아래 RESTORE_UI 를 true 로 변경
+    const RESTORE_UI = false;
+    if (!RESTORE_UI) return;
+
     const wrap = document.getElementById('paymethod-wrap');
     if (!wrap) return;
-
     const isMonthly = billingCycle === 'monthly';
     wrap.style.display = isMonthly ? 'block' : 'none';
     if (!isMonthly) return;
