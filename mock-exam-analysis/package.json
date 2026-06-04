@@ -17,7 +17,12 @@
     "workbook:march": "node builder/build-workbook.mjs 2026-march-grade2/data 2026-march-grade2/dist",
     "variant:march": "node builder/build-variant.mjs 2026-march-grade2/data 2026-march-grade2/dist",
     "pdf:march": "node builder/pdf.mjs 2026-march-grade2/dist",
-    "all:march": "npm run build:march && npm run workbook:march && npm run variant:march && npm run pdf:march"
+    "all:march": "npm run build:march && npm run workbook:march && npm run variant:march && npm run pdf:march",
+    "build:june": "node builder/build.mjs 2026-june-grade2/data 2026-june-grade2/dist",
+    "workbook:june": "node builder/build-workbook.mjs 2026-june-grade2/data 2026-june-grade2/dist",
+    "variant:june": "node builder/build-variant.mjs 2026-june-grade2/data 2026-june-grade2/dist",
+    "pdf:june": "node builder/pdf.mjs 2026-june-grade2/dist",
+    "all:june": "npm run build:june && npm run workbook:june && npm run variant:june && npm run pdf:june"
   },
   "dependencies": {
     "puppeteer": "^22.15.0"

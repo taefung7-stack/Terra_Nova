@@ -829,6 +829,13 @@
     workbook: { src: 'mock-exam-analysis/2026-march-grade2/dist/workbook-21.html',   title: '모의고사 워크북 · 샘플' },
     variant:  { src: 'mock-exam-analysis/2026-march-grade2/dist/variant-book.html',  title: '모의고사 변형문제 · 샘플' },
   };
+  // 회차별 미리보기 오버라이드 — 선택된 학년/월에 맞는 샘플로 교체.
+  // (없는 조합은 기본 PREVIEW[kind] 사용)
+  const PREVIEW_BY_ROUND = {
+    '고2-6': {
+      analysis: { src: 'mock-exam-analysis/2026-june-grade2/dist/20.html', title: '2026 6월 고2 모의고사 분석지 · 샘플' },
+    },
+  };
   function applyPreviewScale(){
     const wrap = document.getElementById('preview-frame-wrap');
     const scaler = document.getElementById('preview-scaler');
@@ -885,7 +892,9 @@
     setTimeout(measureFrame, 700);
   }
   function openPreview(kind){
-    const cfg = PREVIEW[kind];
+    const { g, m } = getMockSel();
+    const roundKey = `${g}-${m}`;
+    const cfg = (PREVIEW_BY_ROUND[roundKey] && PREVIEW_BY_ROUND[roundKey][kind]) || PREVIEW[kind];
     if (!cfg) return;
     const modal = document.getElementById('preview-modal');
     const frame = document.getElementById('preview-frame');

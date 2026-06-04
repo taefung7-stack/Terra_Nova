@@ -10,6 +10,9 @@
  *   1. 4단 구조 고정 (Intro → Passage → Analysis × N → ...)
  *      p1: 인트로 + 삽화 + 단어 25개
  *      p2: 본문 전문 + 정답·오답 + 4단 논리흐름
+ *         └ v1.1: 본문이 길어 1페이지를 넘기는 묶음 지문(41-42·43-45 등)은
+ *           measurePassageBlocks가 실측해 본문→자체 페이지, 정답+흐름→다음
+ *           페이지로 자동 분할. 짧은 단문은 기존대로 1페이지(회귀 없음).
  *      p3~: 모든 본문 문장의 어법·어휘·리딩 분석 (필요시 패러프레이징)
  *   2. 컬러 시스템 — Mint(메인) / Sky(부) / Sage / Coral / Butter
  *   3. 폰트 — Pretendard(본문) + Inter(영문·숫자)
@@ -231,34 +234,66 @@ ${steps}
     </div>`;
 }
 
-function buildPage2(data) {
-  // 본문 fulltext
+/**
+ * 본문 전문 블록. range=[start,end] (반열림)이면 해당 문장만 렌더(긴 본문 분할용).
+ * cont=true면 헤더 라벨에 "(이어서)" 표기. 문장 번호는 원본 인덱스 유지.
+ */
+function buildFulltextBlock(data, range = null, cont = false) {
   const passage = data.passage || [];
   const passageKo = data.passage_ko || [];
-  const lines = passage.map((en, i) => `      <div class="line">
+  const [s, e] = range || [0, passage.length];
+  const lines = passage.slice(s, e).map((en, k) => {
+    const i = s + k;
+    return `      <div class="line">
         <span class="num">${i + 1}</span>
         <div class="ft-en">${esc(en)}</div>
         <div class="ft-ko">${esc(passageKo[i] || '')}</div>
-      </div>`).join('\n');
+      </div>`;
+  }).join('\n');
 
-  const fulltextBlock = `    <div class="section-bar alt">
-      PASSAGE · 본문 전문 (문장별 해석)
-      <span class="bar-sub">${esc(data.question_text || '')}</span>
+  const label = cont ? 'PASSAGE · 본문 전문 (이어서)' : 'PASSAGE · 본문 전문 (문장별 해석)';
+  const sub = cont ? '' : esc(data.question_text || '');
+
+  return `    <div class="section-bar alt">
+      ${label}
+      <span class="bar-sub">${sub}</span>
     </div>
 
     <div class="fulltext">
 ${lines}
     </div>`;
+}
 
-  return `<section class="page">
+/**
+ * PASSAGE 페이지 빌드 — fulltext / answer / flow 3블록을 실측 후 자동 분배.
+ * 짧은 본문(기존 단문)은 1페이지에 그대로(회귀 없음), 긴 묶음 지문(41/43 등)은
+ * 본문→자체 페이지, 정답+흐름→다음 페이지로 자동 분할.
+ *
+ * @returns {string[]} 1개 이상의 <section class="page"> HTML. 페이지 번호는
+ *   호출부에서 startPageNo 기준으로 부여됨.
+ */
+/**
+ * blockGroups: 페이지별 블록 배열. 각 블록은
+ *   'answer' | 'flow' | { type:'fulltext', range:[s,e], cont:bool }
+ * @returns {string[]}
+ */
+function buildPassagePages(data, blockGroups, startPageNo) {
+  const render = (blk) => {
+    if (blk === 'answer') return buildAnswerBlock(data);
+    if (blk === 'flow') return buildFlow(data.flow || []);
+    if (blk && blk.type === 'fulltext') return buildFulltextBlock(data, blk.range, blk.cont);
+    return '';
+  };
+  return blockGroups.map((group, i) => {
+    const body = group.map(render).join('\n');
+    return `<section class="page">
 ${buildHeader(data.exam + ' · ' + data.question_no + '번', 'PASSAGE')}
   <div class="page-body passage-layout">
-${fulltextBlock}
-${buildAnswerBlock(data)}
-${buildFlow(data.flow || [])}
+${body}
   </div>
-${buildFooter(2)}
+${buildFooter(startPageNo + i)}
 </section>`;
+  });
 }
 
 // ─────────────────────────────────────────────────────────────
@@ -437,13 +472,139 @@ ${(data.sentences || []).map(buildSentenceCard).join('\n')}
   return pages;
 }
 
+// 측정 함수 — PASSAGE 페이지(fulltext/answer/flow 3블록) 실제 높이를 측정해
+// 1페이지에 다 들어가면 [['fulltext','answer','flow']], 넘치면 자동으로 페이지를
+// 쪼갠 블록 그룹 배열을 반환. 짧은 단문은 항상 1페이지(기존 동작 유지).
+async function measurePassageBlocks(data, dataDir) {
+  const puppeteer = (await import('puppeteer')).default;
+  const cssAbsPath = path.resolve(path.dirname(dataDir), 'styles', 'analysis.css');
+  const cssContent = await fs.readFile(cssAbsPath, 'utf8');
+
+  // 실제 .page 컨텍스트(헤더·푸터·패딩·flex)에서 측정 — check-overflow와 동일 조건.
+  // page-body 가용 높이(bodyH)와, 각 후보 본문 청크/answer/flow의 콘텐츠 높이를
+  // 같은 방식(realContentHeight)으로 잰다.
+  const header = buildHeader(data.exam + ' · ' + data.question_no + '번', 'PASSAGE');
+  const footer = buildFooter(2);
+  const wrap = (inner, id) => `<section class="page">${header}<div class="page-body passage-layout" data-m="${id}">${inner}</div>${footer}</section>`;
+
+  const nLines = (data.passage || []).length;
+  // 측정용 후보들: fulltext 전체, 각 라인 단독(barH 추정용으로 1줄/2줄 비교), answer, flow.
+  // 라인별 정확 높이를 위해 "헤더만" 과 "헤더+i번째 라인 1개"를 비교하기보다,
+  // 본문 전체를 한 번 렌더해 .line 들의 실측 높이 + section-bar 높이를 직접 읽는다.
+  const candidates = [
+    wrap(buildFulltextBlock(data), 'fulltext'),
+    wrap(buildAnswerBlock(data), 'answer'),
+    wrap(buildFlow(data.flow || []), 'flow'),
+  ];
+  const html = `<!doctype html><html><head><meta charset="utf-8"><style>${cssContent}</style></head><body>
+${candidates.join('\n')}
+</body></html>`;
+
+  const tmpPath = path.join(process.cwd(), '.tmp-measure-p2.html');
+  await fs.writeFile(tmpPath, html, 'utf8');
+
+  const browser = await puppeteer.launch({ headless: 'new' });
+  const page = await browser.newPage();
+  await page.setViewport({ width: 794, height: 1123 });
+  await page.goto('file://' + tmpPath.replace(/\\/g, '/'), { waitUntil: 'networkidle0' });
+  const measured = await page.evaluate(() => {
+    const sumChildren = (el) => {
+      let t = 0;
+      [...el.children].forEach(c => {
+        const r = c.getBoundingClientRect();
+        const cs = getComputedStyle(c);
+        t += r.height + parseFloat(cs.marginTop) + parseFloat(cs.marginBottom);
+      });
+      return t;
+    };
+    const byId = id => document.querySelector(`.page-body[data-m="${id}"]`);
+    const bodyH = Math.round(byId('fulltext').getBoundingClientRect().height); // 실제 가용 본문 높이
+    const ft = byId('fulltext');
+    const bar = ft.querySelector('.section-bar');
+    const barCs = getComputedStyle(bar);
+    const barH = bar.getBoundingClientRect().height + parseFloat(barCs.marginTop) + parseFloat(barCs.marginBottom);
+    const lineHs = [...ft.querySelectorAll('.fulltext .line')].map(l => {
+      const r = l.getBoundingClientRect();
+      const cs = getComputedStyle(l);
+      return r.height + parseFloat(cs.marginTop) + parseFloat(cs.marginBottom);
+    });
+    return {
+      bodyH,
+      barH,
+      lineHs,
+      answer: sumChildren(byId('answer')),
+      flow: sumChildren(byId('flow')),
+    };
+  });
+  await browser.close();
+  try { await fs.unlink(tmpPath); } catch {}
+
+  const { bodyH, barH, lineHs, answer: answerH, flow: flowH } = measured;
+  // 측정값은 결합 렌더보다 ~10% 가볍게 나온다(검증: 38번 측정 932 vs 실측 978,
+  // 43번 25줄 본문 청크). bodyH의 88%를 가용 한계로 잡아 안전 마진 확보.
+  const AVAIL = Math.round(bodyH * 0.88);
+  const GAP = 6; // passage-layout gap
+
+  // 본문을 가용 높이에 맞춰 [s,e) 청크로 분할 (각 청크 = section-bar barH + 라인들)
+  const fulltextBlocks = [];
+  {
+    let s = 0, curH = barH, e = 0, cont = false;
+    for (let i = 0; i < lineHs.length; i++) {
+      const lh = lineHs[i];
+      if (e > s && curH + lh > AVAIL) {
+        fulltextBlocks.push({ type: 'fulltext', range: [s, e], cont, h: curH });
+        s = e; curH = barH; cont = true;
+      }
+      curH += lh; e = i + 1;
+    }
+    if (e > s) fulltextBlocks.push({ type: 'fulltext', range: [s, e], cont, h: curH });
+  }
+  if (!fulltextBlocks.length) fulltextBlocks.push({ type: 'fulltext', range: [0, nLines], cont: false, h: barH });
+
+  // 전체 블록 시퀀스: 본문 청크들 → answer → flow
+  const seq = [
+    ...fulltextBlocks,
+    { type: 'answer', h: answerH },
+    { type: 'flow', h: flowH },
+  ];
+
+  // 그리디 패킹 (실측 높이 기반)
+  const groups = [];
+  let cur = [];
+  let curH = 0;
+  for (const blk of seq) {
+    const addH = cur.length === 0 ? blk.h : blk.h + GAP;
+    if (cur.length > 0 && curH + addH > AVAIL) {
+      groups.push(cur); cur = []; curH = 0;
+    }
+    cur.push(blk.type === 'fulltext' ? { type: 'fulltext', range: blk.range, cont: blk.cont } : blk.type);
+    curH += (cur.length === 1 ? blk.h : blk.h + GAP);
+  }
+  if (cur.length) groups.push(cur);
+  return groups;
+}
+
 // ─────────────────────────────────────────────────────────────
 // 메인 빌드 함수
 // ─────────────────────────────────────────────────────────────
 async function buildHtml(data, opts = {}) {
   const stylesHref = opts.stylesHref || '../styles/analysis.css';
 
-  const pages = [buildPage1(data), buildPage2(data)];
+  const pages = [buildPage1(data)];
+
+  // PASSAGE 페이지 — 실측 후 1페이지 또는 자동 분할 (긴 묶음 지문 대응)
+  let blockGroups;
+  try {
+    blockGroups = await measurePassageBlocks(data, opts.dataDir);
+  } catch (err) {
+    console.warn(`   ⚠️  measurePassageBlocks failed for ${data.question_no}, using single page:`, err.message);
+    blockGroups = [[{ type: 'fulltext', range: [0, (data.passage || []).length], cont: false }, 'answer', 'flow']];
+  }
+  const passagePages = buildPassagePages(data, blockGroups, 2);
+  pages.push(...passagePages);
+
+  // 분석 페이지 시작 번호 = 1(인트로) + passage 페이지 수 + 1
+  const analysisStart = 2 + passagePages.length;
 
   // 실측 기반 페이지 분배 (puppeteer 사용)
   let groups;
@@ -454,7 +615,7 @@ async function buildHtml(data, opts = {}) {
     groups = chunkSentences(data.sentences || []);
   }
   groups.forEach((group, i) => {
-    const pageNo = 3 + i;
+    const pageNo = analysisStart + i;
     const label = `ANALYSIS · ${i + 1}/${groups.length}`;
     pages.push(buildAnalysisPage(data, group, pageNo, label));
   });
