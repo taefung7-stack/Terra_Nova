@@ -303,12 +303,7 @@ ${buildFooter(startPageNo + i)}
 // ─────────────────────────────────────────────────────────────
 // PAGE 3, 4 — 문장별 분석
 // ─────────────────────────────────────────────────────────────
-/**
- * 분석 카드 빌드.
- * @param part 'full'(기본) | 'top'(paraphrasing 제외, 카드 상단부만, 여백 분리용)
- *             | 'para'(paraphrasing 박스만, 이어지는 페이지용)
- */
-function buildSentenceCard(s, part = 'full') {
+function buildSentenceCard(s) {
   const tags = (s.tags || []).map(t => {
     const tt = TAG_LABEL[t];
     if (!tt) return '';
@@ -322,9 +317,8 @@ function buildSentenceCard(s, part = 'full') {
 
   const noteHtml = s.note ? `      <div class="note">${raw(s.note)}</div>` : '';
 
-  const hasPara = s.paraphrasing && s.paraphrasing.length;
   let paraHtml = '';
-  if (hasPara) {
+  if (s.paraphrasing && s.paraphrasing.length) {
     const rows = s.paraphrasing.map(p => `        <div class="para-row lv-${esc(p.level)}">
           <span class="lv">${LV_LABEL[p.level] || p.level}</span>
           <span class="txt">
@@ -337,20 +331,6 @@ function buildSentenceCard(s, part = 'full') {
 ${rows}
       </div>`;
   }
-
-  // paraphrasing 박스만 (이어지는 페이지) — 어느 문장의 것인지 헤더로 표시
-  if (part === 'para') {
-    return `    <div class="sent sent-cont">
-      <div class="sent-head">
-        <span class="sent-no">SENT ${s.no}</span>
-        <span class="cont-label">(이어서) PARAPHRASING</span>
-      </div>
-${paraHtml}
-    </div>`;
-  }
-
-  // 카드 상단부 (paraphrasing은 다음 페이지로 분리) — 'top'
-  const tail = (part === 'top' && hasPara) ? '\n      <div class="para-more">▶ PARAPHRASING 다음 페이지에서 계속</div>' : (part === 'full' ? '\n' + paraHtml : '');
 
   return `    <div class="sent">
       <div class="sent-head">
@@ -365,16 +345,13 @@ ${paraHtml}
 ${noteHtml}
       <div class="point-grid">
 ${points}
-      </div>${tail}
+      </div>
+${paraHtml}
     </div>`;
 }
 
-function buildAnalysisPage(data, items, pageNo, label) {
-  // items: 문장 객체(s) 또는 {s, part:'top'|'para'|'full'}
-  const cards = items.map(it => {
-    if (it && it.s) return buildSentenceCard(it.s, it.part || 'full');
-    return buildSentenceCard(it);
-  }).join('\n\n');
+function buildAnalysisPage(data, sentences, pageNo, label) {
+  const cards = sentences.map(buildSentenceCard).join('\n\n');
 
   return `<section class="page">
 ${buildHeader(data.exam + ' · ' + data.question_no + '번', label)}
@@ -451,22 +428,11 @@ async function measureAndChunk(stylesHref, data, dataDir) {
   // CSS 파일을 인라인으로 포함 (file:// 상대경로 문제 우회)
   const cssAbsPath = path.resolve(path.dirname(dataDir), 'styles', 'analysis.css');
   const cssContent = await fs.readFile(cssAbsPath, 'utf8');
-  const sents = data.sentences || [];
-  // 각 문장의 'full'(전체)·'top'(para 제외)·'para'(para 박스만) 세 형태를 모두 렌더해 실측.
-  // data-k="full|top|para" data-i=인덱스 로 식별.
-  const blocks = [];
-  sents.forEach((s, i) => {
-    blocks.push(`<div data-k="full" data-i="${i}">${buildSentenceCard(s, 'full')}</div>`);
-    if (s.paraphrasing && s.paraphrasing.length) {
-      blocks.push(`<div data-k="top" data-i="${i}">${buildSentenceCard(s, 'top')}</div>`);
-      blocks.push(`<div data-k="para" data-i="${i}">${buildSentenceCard(s, 'para')}</div>`);
-    }
-  });
   const allOnOne = `<!doctype html><html><head><meta charset="utf-8"><style>${cssContent}</style></head><body>
 <section class="page"><div class="page-body">
 <div class="section-bar">SENTENCE ANALYSIS · 문장별 분석<span class="bar-sub">📝 어법 · 📚 어휘 · 🎯 리딩</span></div>
 <div class="sent-list">
-${blocks.join('\n')}
+${(data.sentences || []).map(buildSentenceCard).join('\n')}
 </div>
 </div></section></body></html>`;
 
@@ -477,60 +443,36 @@ ${blocks.join('\n')}
   const page = await browser.newPage();
   await page.setViewport({ width: 794, height: 1123 });
   await page.goto('file://' + tmpPath.replace(/\\/g, '/'), { waitUntil: 'networkidle0' });
-  const measured = await page.evaluate(() => {
-    const out = {};
-    document.querySelectorAll('[data-k]').forEach(wrap => {
-      const c = wrap.querySelector('.sent');
-      if (!c) return;
+  const heights = await page.evaluate(() => {
+    const cards = [...document.querySelectorAll('.sent')];
+    return cards.map(c => {
       const r = c.getBoundingClientRect();
       const cs = getComputedStyle(c);
-      const h = r.height + parseFloat(cs.marginTop) + parseFloat(cs.marginBottom);
-      out[wrap.getAttribute('data-k') + ':' + wrap.getAttribute('data-i')] = h;
+      return r.height + parseFloat(cs.marginTop) + parseFloat(cs.marginBottom);
     });
-    return out;
   });
+  // section-bar + gap 등을 고려한 가용 본문 높이 (헤더 30px·section-bar 38px·footer 50px·body padding 60px 차감 → 약 940px)
+  const AVAIL = 920;
+  const GAP = 9;
   await browser.close();
   try { await fs.unlink(tmpPath); } catch {}
 
-  const AVAIL = 920;
-  const GAP = 9;
-  // 분리 최소 이득: 카드를 쪼개 앞장에 top을 넣었을 때 최소 이만큼은 채워야 분리 (작은 여백엔 분리 안 함)
-  const SPLIT_MIN_GAIN = 120;
-
-  const fullH = i => measured['full:' + i] || 0;
-  const topH = i => measured['top:' + i] ?? fullH(i);
-  const paraH = i => measured['para:' + i] || 0;
-  const hasPara = i => (sents[i].paraphrasing && sents[i].paraphrasing.length) > 0;
-
-  // 그리디 분배 + 여백 시 카드 분리
+  // 그리디 분배: 다음 카드 + gap 추가 시 AVAIL 초과면 새 페이지
   const pages = [];
   let cur = [];
   let curH = 0;
-  const pushPage = () => { if (cur.length) { pages.push(cur); cur = []; curH = 0; } };
-
-  for (let i = 0; i < sents.length; i++) {
-    const h = fullH(i);
+  for (let i = 0; i < data.sentences.length; i++) {
+    const h = heights[i];
     const addH = cur.length === 0 ? h : h + GAP;
     if (cur.length > 0 && curH + addH > AVAIL) {
-      // 카드가 통째로 안 들어감 → 남은 공간 확인해 분리 시도
-      const remain = AVAIL - curH - GAP; // 이 페이지에 더 쓸 수 있는 높이
-      const th = topH(i);
-      if (hasPara(i) && remain >= th && (remain - th) <= AVAIL && th >= SPLIT_MIN_GAIN) {
-        // 상단부(top)는 현재 페이지, paraphrasing 은 다음 페이지로 분리
-        cur.push({ s: sents[i], part: 'top' });
-        pushPage();
-        // 다음 페이지 시작에 para 배치
-        cur.push({ s: sents[i], part: 'para' });
-        curH = paraH(i);
-        continue;
-      }
-      // 분리 불가 → 그냥 다음 페이지로
-      pushPage();
+      pages.push(cur);
+      cur = [];
+      curH = 0;
     }
-    cur.push({ s: sents[i], part: 'full' });
+    cur.push(data.sentences[i]);
     curH += (cur.length === 1 ? h : h + GAP);
   }
-  pushPage();
+  if (cur.length) pages.push(cur);
   return pages;
 }
 
@@ -733,6 +675,85 @@ ${buildPage1(data)}
   return fit;
 }
 
+// 마지막 PASSAGE 페이지(주로 flow)에 여백이 크면, 분석 첫 카드들을 그 밑에 채워
+// "쉽게 이해하기" 뒤부터 문장분석이 이어지도록 병합한다(여백 최소화 — 요구 #3).
+// 넘치지 않는 선에서만 카드를 끌어올리고, 남은 카드/그룹은 그대로 둔다.
+// @returns { lastPassageHtml, leadCards } — 병합된 마지막 passage 페이지 HTML과
+//           끌어올린 카드 수(분석 그룹에서 제거할 개수). 끌어올림 불가 시 null.
+async function measureFlowMerge(data, dataDir, lastGroup, firstAnalysisGroup, lastPageNo) {
+  if (!firstAnalysisGroup || !firstAnalysisGroup.length) return null;
+  const puppeteer = (await import('puppeteer')).default;
+  const cssAbsPath = path.resolve(path.dirname(dataDir), 'styles', 'analysis.css');
+  const cssContent = await fs.readFile(cssAbsPath, 'utf8');
+
+  const renderBlk = (blk) => {
+    if (blk === 'answer') return buildAnswerBlock(data);
+    if (blk === 'flow') return buildFlow(data.flow || []);
+    if (blk && blk.type === 'fulltext') return buildFulltextBlock(data, blk.range, blk.cont);
+    return '';
+  };
+  const passageInner = lastGroup.map(renderBlk).join('\n');
+  const ANALYSIS_BAR = `<div class="section-bar">SENTENCE ANALYSIS · 문장별 분석<span class="bar-sub">📝 어법 · 📚 어휘 · 🎯 리딩</span></div>`;
+
+  // 측정: 마지막 passage 페이지 본문 + 분석 bar + 각 후보 카드
+  const cards = firstAnalysisGroup.map((s, i) => `<div data-c="${i}">${buildSentenceCard(s)}</div>`).join('\n');
+  const html = `<!doctype html><html><head><meta charset="utf-8"><style>${cssContent}</style></head><body>
+<section class="page"><div class="page-body passage-layout" data-zone="passage">${passageInner}</div></section>
+<section class="page"><div class="page-body" data-zone="probe"><div data-c="bar">${ANALYSIS_BAR}</div>${cards}</div></section>
+</body></html>`;
+  const tmpPath = path.join(process.cwd(), `.tmp-merge-${process.pid}-${data.question_no}.html`);
+  await fs.writeFile(tmpPath, html, 'utf8');
+  const browser = await puppeteer.launch({ headless: 'new' });
+  const page = await browser.newPage();
+  await page.setViewport({ width: 794, height: 1123 });
+  await page.goto('file://' + tmpPath.replace(/\\/g, '/'), { waitUntil: 'networkidle0' });
+  const m = await page.evaluate(() => {
+    const sum = el => { let t = 0; [...el.children].forEach(c => { const r = c.getBoundingClientRect(); const cs = getComputedStyle(c); t += r.height + parseFloat(cs.marginTop) + parseFloat(cs.marginBottom); }); return t; };
+    const pz = document.querySelector('[data-zone="passage"]');
+    const bodyH = Math.round(pz.getBoundingClientRect().height);
+    const passageH = sum(pz);
+    const probe = document.querySelector('[data-zone="probe"]');
+    const barEl = probe.querySelector('[data-c="bar"] .section-bar');
+    const bcs = getComputedStyle(barEl);
+    const barH = barEl.getBoundingClientRect().height + parseFloat(bcs.marginTop) + parseFloat(bcs.marginBottom);
+    const cardHs = [...probe.querySelectorAll('[data-c]:not([data-c="bar"])')].map(w => { const e = w.firstElementChild; const cs = getComputedStyle(e); return e.getBoundingClientRect().height + parseFloat(cs.marginTop) + parseFloat(cs.marginBottom); });
+    return { bodyH, passageH: Math.round(passageH), barH, cardHs };
+  });
+  await browser.close();
+  try { await fs.unlink(tmpPath); } catch {}
+
+  // 마지막 passage 페이지에 남는 공간이 충분해야(카드 1개+bar 들어갈 만큼) 병합 의미 있음
+  const GAP = 9;
+  const SAFE = 40; // 보수 마진(결합 렌더 보정 — 빠듯한 페이지는 병합 생략해 overflow 방지)
+  let avail = m.bodyH - m.passageH - GAP - m.barH - SAFE;
+  if (avail < (m.cardHs[0] || Infinity)) return null; // 카드 1개도 못 넣으면 병합 안 함
+
+  let used = 0, n = 0;
+  for (let i = 0; i < m.cardHs.length; i++) {
+    const add = (n === 0 ? m.cardHs[i] : m.cardHs[i] + GAP);
+    if (used + add > avail) break;
+    used += add; n++;
+  }
+  if (n < 1) return null;
+
+  const leadHtml = firstAnalysisGroup.slice(0, n).map(buildSentenceCard).join('\n\n');
+  const lastPassageHtml = `<section class="page">
+${buildHeader(data.exam + ' · ' + data.question_no + '번', 'PASSAGE')}
+  <div class="page-body passage-layout">
+${passageInner}
+    <div class="section-bar">
+      SENTENCE ANALYSIS · 문장별 분석
+      <span class="bar-sub">📝 어법 · 📚 어휘 · 🎯 리딩</span>
+    </div>
+    <div class="sent-list">
+${leadHtml}
+    </div>
+  </div>
+${buildFooter(lastPageNo)}
+</section>`;
+  return { lastPassageHtml, leadCards: n };
+}
+
 // ─────────────────────────────────────────────────────────────
 // 메인 빌드 함수
 // ─────────────────────────────────────────────────────────────
@@ -760,12 +781,8 @@ async function buildHtml(data, opts = {}) {
     blockGroups = [[{ type: 'fulltext', range: [0, (data.passage || []).length], cont: false }, 'answer', 'flow']];
   }
   const passagePages = buildPassagePages(data, blockGroups, 2);
-  pages.push(...passagePages);
 
-  // 분석 페이지 시작 번호 = 1(인트로) + passage 페이지 수 + 1
-  const analysisStart = 2 + passagePages.length;
-
-  // 실측 기반 페이지 분배 (puppeteer 사용)
+  // 실측 기반 분석 페이지 분배 (puppeteer 사용)
   let groups;
   try {
     groups = await measureAndChunk(stylesHref, data, opts.dataDir);
@@ -773,11 +790,34 @@ async function buildHtml(data, opts = {}) {
     console.warn(`   ⚠️  measureAndChunk failed for ${data.question_no}, falling back to estimate:`, err.message);
     groups = chunkSentences(data.sentences || []);
   }
-  groups.forEach((group, i) => {
-    const pageNo = analysisStart + i;
-    const label = `ANALYSIS · ${i + 1}/${groups.length}`;
-    pages.push(buildAnalysisPage(data, group, pageNo, label));
-  });
+
+  // 요구 #3: 마지막 passage 페이지(주로 flow)에 여백이 크면 분석 첫 카드들을 그 밑에 병합
+  let mergedLast = null;
+  try {
+    const lastGroup = blockGroups[blockGroups.length - 1];
+    const lastPageNo = 2 + passagePages.length - 1;
+    mergedLast = await measureFlowMerge(data, opts.dataDir, lastGroup, groups[0] || [], lastPageNo);
+  } catch (err) {
+    console.warn(`   ⚠️  measureFlowMerge failed for ${data.question_no}:`, err.message);
+  }
+
+  if (mergedLast && mergedLast.leadCards > 0) {
+    // 마지막 passage 페이지를 병합본으로 교체
+    pages.push(...passagePages.slice(0, -1), mergedLast.lastPassageHtml);
+    // 첫 분석 그룹에서 끌어올린 카드 제거, 빈 그룹 제거
+    const remainingFirst = (groups[0] || []).slice(mergedLast.leadCards);
+    const remGroups = remainingFirst.length ? [remainingFirst, ...groups.slice(1)] : groups.slice(1);
+    const analysisStart = 2 + passagePages.length; // 병합으로 passage 페이지 수 동일
+    remGroups.forEach((group, i) => {
+      pages.push(buildAnalysisPage(data, group, analysisStart + i, `ANALYSIS · ${i + 2}/${remGroups.length + 1}`));
+    });
+  } else {
+    pages.push(...passagePages);
+    const analysisStart = 2 + passagePages.length;
+    groups.forEach((group, i) => {
+      pages.push(buildAnalysisPage(data, group, analysisStart + i, `ANALYSIS · ${i + 1}/${groups.length}`));
+    });
+  }
 
   return `<!doctype html>
 <html lang="ko">
