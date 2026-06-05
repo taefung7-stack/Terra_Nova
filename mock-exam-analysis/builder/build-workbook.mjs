@@ -539,7 +539,32 @@ function renderStep9({ data, wb, headOpts, pageNum }) {
 // 문서 빌드
 // ─────────────────────────────────────────────────────────────
 
+// 어법/어휘/지칭 유형 원본 지문에 박힌 보기 표식 (a)~(e) 제거.
+// 분석지(build.mjs)는 이 표식이 필요하지만 워크북 본문에는 깨끗한 문장이 들어가야 함.
+// (사용자 결정 2026-06-06: 워크북은 전부 제거 = 깨끗한 본문)
+function stripChoiceMarkers(s) {
+  return String(s ?? '').replace(/\(\s*[a-e]\s*\)/g, '');
+}
+
 function buildHtml({ data, wb }) {
+  // 본문·해석에서 문제지 보기 표식 (a)~(e) 제거 (원본 객체는 보존, 얕은 복제)
+  data = {
+    ...data,
+    passage: (data.passage || []).map(stripChoiceMarkers),
+    passage_ko: (data.passage_ko || []).map(stripChoiceMarkers)
+  };
+
+  // 워크북 데이터의 표시 텍스트(en_template / ko_full / jumble)에서도 (a)~(e) 제거.
+  // (어법·어휘·지칭 유형은 ko_full·en_template 에 표식이 섞여 들어옴 — 렌더 전 정제)
+  const cleanField = (obj, key) => { if (obj && typeof obj[key] === 'string') obj[key] = stripChoiceMarkers(obj[key]); };
+  for (const it of (wb.grammar_choice || [])) { cleanField(it, 'en_template'); cleanField(it, 'ko_full'); }
+  for (const it of (wb.vocab_choice   || [])) { cleanField(it, 'en_template'); cleanField(it, 'ko_full'); }
+  for (const it of (wb.fill_first_letter || [])) cleanField(it, 'ko_full');
+  for (const it of (wb.jumble || [])) {
+    cleanField(it, 'answer');
+    if (Array.isArray(it.words)) it.words = it.words.map(stripChoiceMarkers);
+  }
+
   const exam = data.exam || '';
   // exam 형식: "[2026] 3월 모의고사 2학년" → 학년 분리
   const gradeMatch = exam.match(/(\d학년)/);
