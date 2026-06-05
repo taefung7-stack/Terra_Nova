@@ -124,8 +124,9 @@ function buildIllustration(data) {
     </figure>`;
 }
 
-function buildVocabTable(vocab) {
-  const rows = vocab.map((v, i) => `        <tr>
+function buildVocabTable(vocab, limit) {
+  const list = (typeof limit === 'number') ? vocab.slice(0, limit) : vocab;
+  const rows = list.map((v, i) => `        <tr>
           <td class="col-no">${i + 1}</td>
           <td class="col-word">${esc(v.word)}</td>
           <td class="col-pos">${esc(v.pos)}</td>
@@ -154,15 +155,18 @@ ${rows}
 }
 
 // ─────────────────────────────────────────────────────────────
-// PAGE 1
+// PAGE 1 — 인트로 + 삽화(16:5 고정) + 단어표
+//   삽화가 단어표에 밀려 찌그러지지 않도록, 삽화의 자연 높이(폭×5/16)를
+//   확보한 뒤 남는 공간에 들어가는 단어 행만 표시(나머지는 자동 축소).
+//   vocabLimit는 measurePage1Vocab가 실측으로 결정.
 // ─────────────────────────────────────────────────────────────
-function buildPage1(data) {
+function buildPage1(data, vocabLimit) {
   return `<section class="page">
 ${buildHeader(data.exam, 'INTRO')}
   <div class="page-body">
 ${buildExerciseBlock(data)}
 ${buildIllustration(data)}
-${buildVocabTable(data.vocab || [])}
+${buildVocabTable(data.vocab || [], vocabLimit)}
   </div>
 ${buildFooter(1)}
 </section>`;
@@ -432,7 +436,7 @@ ${(data.sentences || []).map(buildSentenceCard).join('\n')}
 </div>
 </div></section></body></html>`;
 
-  const tmpPath = path.join(process.cwd(), '.tmp-measure.html');
+  const tmpPath = path.join(process.cwd(), `.tmp-measure-${process.pid}-${data.question_no}.html`);
   await fs.writeFile(tmpPath, allOnOne, 'utf8');
 
   const browser = await puppeteer.launch({ headless: 'new' });
@@ -491,7 +495,11 @@ async function measurePassageBlocks(data, dataDir) {
   // 측정용 후보들: fulltext 전체, 각 라인 단독(barH 추정용으로 1줄/2줄 비교), answer, flow.
   // 라인별 정확 높이를 위해 "헤더만" 과 "헤더+i번째 라인 1개"를 비교하기보다,
   // 본문 전체를 한 번 렌더해 .line 들의 실측 높이 + section-bar 높이를 직접 읽는다.
+  // 'all' = 3블록을 한 page-body에 함께 렌더 → 결합 실측 높이(check-overflow와 동일).
+  // 개별 블록(fulltext/answer/flow)은 청크 분할용 라인 높이 측정에만 사용.
+  const allInner = buildFulltextBlock(data) + buildAnswerBlock(data) + buildFlow(data.flow || []);
   const candidates = [
+    wrap(allInner, 'all'),
     wrap(buildFulltextBlock(data), 'fulltext'),
     wrap(buildAnswerBlock(data), 'answer'),
     wrap(buildFlow(data.flow || []), 'flow'),
@@ -500,7 +508,7 @@ async function measurePassageBlocks(data, dataDir) {
 ${candidates.join('\n')}
 </body></html>`;
 
-  const tmpPath = path.join(process.cwd(), '.tmp-measure-p2.html');
+  const tmpPath = path.join(process.cwd(), `.tmp-measure-p2-${process.pid}-${data.question_no}.html`);
   await fs.writeFile(tmpPath, html, 'utf8');
 
   const browser = await puppeteer.launch({ headless: 'new' });
@@ -518,7 +526,8 @@ ${candidates.join('\n')}
       return t;
     };
     const byId = id => document.querySelector(`.page-body[data-m="${id}"]`);
-    const bodyH = Math.round(byId('fulltext').getBoundingClientRect().height); // 실제 가용 본문 높이
+    const bodyH = Math.round(byId('all').getBoundingClientRect().height); // 실제 가용 본문 높이
+    const combinedH = sumChildren(byId('all'));                           // 3블록 결합 실측 높이
     const ft = byId('fulltext');
     const bar = ft.querySelector('.section-bar');
     const barCs = getComputedStyle(bar);
@@ -530,8 +539,10 @@ ${candidates.join('\n')}
     });
     return {
       bodyH,
+      combinedH,
       barH,
       lineHs,
+      fulltext: sumChildren(ft),
       answer: sumChildren(byId('answer')),
       flow: sumChildren(byId('flow')),
     };
@@ -539,19 +550,31 @@ ${candidates.join('\n')}
   await browser.close();
   try { await fs.unlink(tmpPath); } catch {}
 
-  const { bodyH, barH, lineHs, answer: answerH, flow: flowH } = measured;
-  // 측정값은 결합 렌더보다 ~10% 가볍게 나온다(검증: 38번 측정 932 vs 실측 978,
-  // 43번 25줄 본문 청크). bodyH의 88%를 가용 한계로 잡아 안전 마진 확보.
-  const AVAIL = Math.round(bodyH * 0.88);
+  const { bodyH, combinedH, barH, lineHs, fulltext: fulltextH, answer: answerH, flow: flowH } = measured;
   const GAP = 6; // passage-layout gap
+  // 'all' 결합 측정은 실제 .page 렌더와 동일(검증: march21=905, june38=978).
+  // 단일 페이지 유지 판정은 정확한 결합 높이로(회귀 0).
+  const LIMIT = bodyH - 6;
 
-  // 본문을 가용 높이에 맞춰 [s,e) 청크로 분할 (각 청크 = section-bar barH + 라인들)
+  // 3블록이 한 페이지에 들어가면 분할하지 않음 (기존 단문·march 동작 보존)
+  if (combinedH <= LIMIT) {
+    return [[{ type: 'fulltext', range: [0, nLines], cont: false }, 'answer', 'flow']];
+  }
+
+  // ── 분할 경로 ──
+  // 서로 다른 블록을 한 페이지에 합칠 때는 단독 측정값이 결합 렌더보다 ~10% 작게
+  // 나오므로(sibling margin·gap 누락), 패킹 한계는 보수적으로 bodyH×0.86 사용.
+  const PACK = Math.round(bodyH * 0.86);
+
+  // 본문이 단독으로 PACK 을 넘으면 라인 단위 청크.
   const fulltextBlocks = [];
-  {
+  if (fulltextH <= PACK) {
+    fulltextBlocks.push({ type: 'fulltext', range: [0, nLines], cont: false, h: fulltextH });
+  } else {
     let s = 0, curH = barH, e = 0, cont = false;
     for (let i = 0; i < lineHs.length; i++) {
       const lh = lineHs[i];
-      if (e > s && curH + lh > AVAIL) {
+      if (e > s && curH + lh > PACK) {
         fulltextBlocks.push({ type: 'fulltext', range: [s, e], cont, h: curH });
         s = e; curH = barH; cont = true;
       }
@@ -561,20 +584,19 @@ ${candidates.join('\n')}
   }
   if (!fulltextBlocks.length) fulltextBlocks.push({ type: 'fulltext', range: [0, nLines], cont: false, h: barH });
 
-  // 전체 블록 시퀀스: 본문 청크들 → answer → flow
   const seq = [
     ...fulltextBlocks,
     { type: 'answer', h: answerH },
     { type: 'flow', h: flowH },
   ];
 
-  // 그리디 패킹 (실측 높이 기반)
+  // 그리디 패킹 (보수적 PACK 한계)
   const groups = [];
   let cur = [];
   let curH = 0;
   for (const blk of seq) {
     const addH = cur.length === 0 ? blk.h : blk.h + GAP;
-    if (cur.length > 0 && curH + addH > AVAIL) {
+    if (cur.length > 0 && curH + addH > PACK) {
       groups.push(cur); cur = []; curH = 0;
     }
     cur.push(blk.type === 'fulltext' ? { type: 'fulltext', range: blk.range, cont: blk.cont } : blk.type);
@@ -584,13 +606,92 @@ ${candidates.join('\n')}
   return groups;
 }
 
+// 측정 함수 — PAGE 1 단어 행 자동 축소.
+// 삽화(16:5)의 자연 높이를 확보한 뒤 남는 공간에 들어가는 단어 행 수를 반환.
+// 25개가 다 들어가면 25, 삽화가 밀릴 정도면 행 수를 줄여 삽화 높이를 지킨다.
+async function measurePage1Vocab(data, dataDir) {
+  const vocab = data.vocab || [];
+  if (!vocab.length) return 0;
+  const puppeteer = (await import('puppeteer')).default;
+  const cssAbsPath = path.resolve(path.dirname(dataDir), 'styles', 'analysis.css');
+  const cssContent = await fs.readFile(cssAbsPath, 'utf8');
+
+  const html = `<!doctype html><html><head><meta charset="utf-8"><style>${cssContent}</style></head><body>
+${buildPage1(data)}
+</body></html>`;
+  const tmpPath = path.join(process.cwd(), `.tmp-measure-p1-${process.pid}-${data.question_no}.html`);
+  await fs.writeFile(tmpPath, html, 'utf8');
+
+  const browser = await puppeteer.launch({ headless: 'new' });
+  const page = await browser.newPage();
+  await page.setViewport({ width: 794, height: 1123 });
+  await page.goto('file://' + tmpPath.replace(/\\/g, '/'), { waitUntil: 'networkidle0' });
+  const m = await page.evaluate(() => {
+    const body = document.querySelector('.page-body');
+    const bodyH = body.getBoundingClientRect().height;
+    const fig = body.querySelector('.illust');
+    const rows = [...body.querySelectorAll('.voca-table tbody tr')];
+    // page-body 직속 자식들의 실제 콘텐츠 합 (check-overflow와 동일 방식)
+    let content = 0;
+    [...body.children].forEach(c => {
+      const r = c.getBoundingClientRect(); const cs = getComputedStyle(c);
+      content += r.height + parseFloat(cs.marginTop) + parseFloat(cs.marginBottom);
+    });
+    // 삽화 자연 높이(16:5): 폭 × 5/16. flex 압축 여부 판단 기준.
+    const figW = fig ? fig.getBoundingClientRect().width : 0;
+    const figH = fig ? fig.getBoundingClientRect().height : 0;
+    const illustNatural = figW * 5 / 16;
+    return {
+      bodyH,
+      content: Math.round(content),
+      figH: Math.round(figH),
+      illustNatural: Math.round(illustNatural),
+      rowHs: rows.map(r => r.getBoundingClientRect().height),
+    };
+  });
+  await browser.close();
+  try { await fs.unlink(tmpPath); } catch {}
+
+  const n = m.rowHs.length;
+  // 삽화가 자연높이를 유지(=눌리지 않음)하고 내용이 본문에 들어가면 그대로 유지.
+  // illustNatural(폭×5/16)은 반올림 오차로 실측 figH보다 몇 px 클 수 있으므로
+  // 12px 여유를 둔다. 실제 압축은 수십~수백 px 차이라 오탐 없음.
+  // (march 커밋본 content==bodyH==976, 삽화 215px 정상 → 25개 유지, 회귀 0)
+  const squished = m.figH < m.illustNatural - 12;
+  // check-overflow 와 동일하게 1px 허용오차(소수점 bodyH 975.7 vs content 976 대응).
+  const TOL = 1;
+  if (!squished && m.content <= m.bodyH + TOL) return n;
+
+  // 넘치거나 삽화가 눌린 경우에만 축소: 초과분 + 삽화 복원분을 행 단위로 제거
+  const overflow = Math.max(0, m.content - (m.bodyH + TOL));
+  const squeezeBack = Math.max(0, m.illustNatural - m.figH);
+  let need = overflow + squeezeBack + 2; // +2 안전 마진
+  let fit = n;
+  for (let i = n - 1; i >= 0 && need > 0; i--) {
+    need -= m.rowHs[i];
+    fit--;
+  }
+  if (fit < 1) fit = n;
+  return fit;
+}
+
 // ─────────────────────────────────────────────────────────────
 // 메인 빌드 함수
 // ─────────────────────────────────────────────────────────────
 async function buildHtml(data, opts = {}) {
   const stylesHref = opts.stylesHref || '../styles/analysis.css';
 
-  const pages = [buildPage1(data)];
+  // PAGE 1 — 삽화 자리 보호: 단어 행 자동 축소
+  let vocabLimit;
+  try {
+    vocabLimit = await measurePage1Vocab(data, opts.dataDir);
+  } catch (err) {
+    console.warn(`   ⚠️  measurePage1Vocab failed for ${data.question_no}, using all vocab:`, err.message);
+    vocabLimit = (data.vocab || []).length;
+  }
+  const droppedVocab = (data.vocab || []).length - vocabLimit;
+  if (droppedVocab > 0) console.log(`   ℹ️  ${data.question_no}: 단어 ${(data.vocab||[]).length}→${vocabLimit} (삽화 자리 보호로 ${droppedVocab}개 축소)`);
+  const pages = [buildPage1(data, vocabLimit)];
 
   // PASSAGE 페이지 — 실측 후 1페이지 또는 자동 분할 (긴 묶음 지문 대응)
   let blockGroups;

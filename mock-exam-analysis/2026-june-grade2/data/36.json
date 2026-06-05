@@ -5,16 +5,13 @@
   "type": "글의 순서",
   "score": 2,
   "question_text": "주어진 글 다음에 이어질 글의 순서로 가장 적절한 것을 고르시오.",
-
   "summary_ko": "대부분의 동물은 생존에 모든 시간을 쓰지만, 인간의 조상은 사냥 기술과 지능이 발달하며 여유와 번영을 누리게 되었어요.",
   "main_idea_en": "Unlike most animals consumed by survival, our hunting ancestors gained leisure and prosperity as their intelligence and skills advanced.",
   "title_en": "From Survival to Surplus: How Smarter Hunting Gave Our Ancestors Free Time",
-
   "illustration": {
     "file": "assets/illust-36.png",
     "prompt": "Early human ancestors evolving from exhausted survival hunters into skilled, intelligent hunters resting with abundant prey, a timeline of growing prosperity across a savanna landscape, soft pastel sage and coral tones, cinematic editorial + painterly 3D mix, --ar 16:5 --v 7"
   },
-
   "passage": [
     "For most animals the struggle to survive takes up all their time.",
     "Finding food and drink, keeping warm and clean, avoiding predators, migrating and reproducing use up all their energies.",
@@ -43,7 +40,6 @@
     "특정 지역에서, 한 해의 특정 시기에, 먹이가 충분히 풍부하고 그들의 사냥 기술이 충분히 발달하여 그들은 놀라운 정도의 번영을 경험할 수 있었다.",
     "그들은 시간이 남아돌았다."
   ],
-
   "choices": [
     {
       "no": 1,
@@ -81,124 +77,571 @@
       "correct": false
     }
   ],
-
   "vocab": [
-    { "word": "struggle",       "pos": "명", "meaning": "투쟁, 분투",       "syn": "fight, effort",         "ant": "ease",               "deriv": "struggle 애쓰다" },
-    { "word": "take up",        "pos": "구", "meaning": "(시간을) 차지하다","syn": "occupy, consume",       "ant": "free up",            "deriv": "take 가지다" },
-    { "word": "predator",       "pos": "명", "meaning": "포식자",           "syn": "hunter, carnivore",     "ant": "prey",               "deriv": "predatory 포식성의" },
-    { "word": "migrate",        "pos": "동", "meaning": "이주하다",         "syn": "move, relocate",        "ant": "settle",             "deriv": "migration / migratory" },
-    { "word": "reproduce",      "pos": "동", "meaning": "번식하다",         "syn": "breed, multiply",       "ant": "—",                  "deriv": "reproduction / reproductive" },
-    { "word": "use up",         "pos": "구", "meaning": "다 써 버리다",     "syn": "exhaust, deplete",      "ant": "save, conserve",     "deriv": "use 사용하다" },
-    { "word": "spare",          "pos": "형", "meaning": "여분의",           "syn": "extra, surplus",        "ant": "essential",          "deriv": "spare 아끼다" },
-    { "word": "surplus",        "pos": "명", "meaning": "여분, 잉여",       "syn": "excess, extra",         "ant": "deficit, shortage",  "deriv": "surplus 잉여의" },
-    { "word": "engage in",      "pos": "구", "meaning": "~에 참여·몰두하다","syn": "take part in",          "ant": "abstain from",       "deriv": "engagement 참여" },
-    { "word": "bout",           "pos": "명", "meaning": "한바탕, 한 차례",  "syn": "spell, session",        "ant": "—",                  "deriv": "bouts 여러 차례" },
-    { "word": "ancestor",       "pos": "명", "meaning": "조상",             "syn": "forefather, forebear",  "ant": "descendant",         "deriv": "ancestral 조상의" },
-    { "word": "constant",       "pos": "형", "meaning": "끊임없는",         "syn": "continual, ceaseless",  "ant": "occasional",         "deriv": "constantly 끊임없이" },
-    { "word": "demand",         "pos": "명", "meaning": "부담, 요구",       "syn": "burden, requirement",   "ant": "relief",             "deriv": "demanding 부담이 큰" },
-    { "word": "evolve into",    "pos": "구", "meaning": "~로 진화하다",     "syn": "develop into",          "ant": "regress",            "deriv": "evolution / evolved" },
-    { "word": "efficient",      "pos": "형", "meaning": "효율적인",         "syn": "effective, capable",    "ant": "inefficient",        "deriv": "efficiency / efficiently" },
-    { "word": "intelligence",   "pos": "명", "meaning": "지능",             "syn": "intellect, brainpower", "ant": "stupidity",          "deriv": "intelligent 지능적인" },
-    { "word": "brawn",          "pos": "명", "meaning": "(육체적) 힘",      "syn": "muscle, strength",      "ant": "brain, intellect",   "deriv": "brawny 근육질의" },
-    { "word": "prey",           "pos": "명", "meaning": "먹이감",           "syn": "quarry, game",          "ant": "predator",           "deriv": "prey on 잡아먹다" },
-    { "word": "era",            "pos": "명", "meaning": "시대",             "syn": "age, period, epoch",    "ant": "—",                  "deriv": "—" },
-    { "word": "turn to",        "pos": "구", "meaning": "~로 돌아서다·전환","syn": "switch to, resort to",  "ant": "abandon",            "deriv": "turn 돌리다" },
-    { "word": "affluence",      "pos": "명", "meaning": "풍요, 부유함",     "syn": "wealth, prosperity",    "ant": "poverty",            "deriv": "affluent 부유한" },
-    { "word": "particular",     "pos": "형", "meaning": "특정한",           "syn": "specific, certain",     "ant": "general",            "deriv": "particularly 특히" },
-    { "word": "plentiful",      "pos": "형", "meaning": "풍부한",           "syn": "abundant, ample",       "ant": "scarce",             "deriv": "plenty 풍부함" },
-    { "word": "remarkable",     "pos": "형", "meaning": "놀라운, 주목할 만한","syn": "striking, notable",    "ant": "ordinary",           "deriv": "remarkably 놀랍게도" },
-    { "word": "prosperity",     "pos": "명", "meaning": "번영",             "syn": "success, affluence",    "ant": "adversity, poverty", "deriv": "prosper / prosperous" }
+    {
+      "word": "struggle",
+      "pos": "명",
+      "meaning": "투쟁, 분투",
+      "syn": "fight, effort",
+      "ant": "ease",
+      "deriv": "struggle 애쓰다"
+    },
+    {
+      "word": "take up",
+      "pos": "구",
+      "meaning": "(시간을) 차지하다",
+      "syn": "occupy, consume",
+      "ant": "free up",
+      "deriv": "take 가지다"
+    },
+    {
+      "word": "predator",
+      "pos": "명",
+      "meaning": "포식자",
+      "syn": "hunter",
+      "ant": "prey",
+      "deriv": "predatory 포식성의"
+    },
+    {
+      "word": "migrate",
+      "pos": "동",
+      "meaning": "이주하다",
+      "syn": "move, relocate",
+      "ant": "settle",
+      "deriv": "migration"
+    },
+    {
+      "word": "reproduce",
+      "pos": "동",
+      "meaning": "번식하다",
+      "syn": "breed, multiply",
+      "ant": "—",
+      "deriv": "reproduction"
+    },
+    {
+      "word": "use up",
+      "pos": "구",
+      "meaning": "다 써 버리다",
+      "syn": "exhaust, deplete",
+      "ant": "save, conserve",
+      "deriv": "use 사용하다"
+    },
+    {
+      "word": "spare",
+      "pos": "형",
+      "meaning": "여분의",
+      "syn": "extra, surplus",
+      "ant": "essential",
+      "deriv": "spare 아끼다"
+    },
+    {
+      "word": "surplus",
+      "pos": "명",
+      "meaning": "여분, 잉여",
+      "syn": "excess, extra",
+      "ant": "deficit",
+      "deriv": "surplus 잉여의"
+    },
+    {
+      "word": "engage in",
+      "pos": "구",
+      "meaning": "~에 참여·몰두하다",
+      "syn": "take part in",
+      "ant": "abstain from",
+      "deriv": "engagement 참여"
+    },
+    {
+      "word": "bout",
+      "pos": "명",
+      "meaning": "한바탕, 한 차례",
+      "syn": "spell, session",
+      "ant": "—",
+      "deriv": "bouts 여러 차례"
+    },
+    {
+      "word": "ancestor",
+      "pos": "명",
+      "meaning": "조상",
+      "syn": "forefather",
+      "ant": "descendant",
+      "deriv": "ancestral 조상의"
+    },
+    {
+      "word": "constant",
+      "pos": "형",
+      "meaning": "끊임없는",
+      "syn": "continual",
+      "ant": "occasional",
+      "deriv": "constantly 끊임없이"
+    },
+    {
+      "word": "demand",
+      "pos": "명",
+      "meaning": "부담, 요구",
+      "syn": "burden",
+      "ant": "relief",
+      "deriv": "demanding 부담이 큰"
+    },
+    {
+      "word": "evolve into",
+      "pos": "구",
+      "meaning": "~로 진화하다",
+      "syn": "develop into",
+      "ant": "regress",
+      "deriv": "evolution"
+    },
+    {
+      "word": "efficient",
+      "pos": "형",
+      "meaning": "효율적인",
+      "syn": "effective",
+      "ant": "inefficient",
+      "deriv": "efficiency"
+    },
+    {
+      "word": "intelligence",
+      "pos": "명",
+      "meaning": "지능",
+      "syn": "intellect",
+      "ant": "stupidity",
+      "deriv": "intelligent 지능적인"
+    },
+    {
+      "word": "brawn",
+      "pos": "명",
+      "meaning": "(육체적) 힘",
+      "syn": "muscle, strength",
+      "ant": "brain, intellect",
+      "deriv": "brawny 근육질의"
+    },
+    {
+      "word": "prey",
+      "pos": "명",
+      "meaning": "먹이감",
+      "syn": "quarry, game",
+      "ant": "predator",
+      "deriv": "prey on 잡아먹다"
+    },
+    {
+      "word": "era",
+      "pos": "명",
+      "meaning": "시대",
+      "syn": "age",
+      "ant": "—",
+      "deriv": "—"
+    },
+    {
+      "word": "turn to",
+      "pos": "구",
+      "meaning": "~로 돌아서다·전환",
+      "syn": "switch to",
+      "ant": "abandon",
+      "deriv": "turn 돌리다"
+    },
+    {
+      "word": "affluence",
+      "pos": "명",
+      "meaning": "풍요, 부유함",
+      "syn": "wealth",
+      "ant": "poverty",
+      "deriv": "affluent 부유한"
+    },
+    {
+      "word": "particular",
+      "pos": "형",
+      "meaning": "특정한",
+      "syn": "specific",
+      "ant": "general",
+      "deriv": "particularly 특히"
+    },
+    {
+      "word": "plentiful",
+      "pos": "형",
+      "meaning": "풍부한",
+      "syn": "abundant, ample",
+      "ant": "scarce",
+      "deriv": "plenty 풍부함"
+    },
+    {
+      "word": "remarkable",
+      "pos": "형",
+      "meaning": "놀라운, 주목할 만한",
+      "syn": "striking",
+      "ant": "ordinary",
+      "deriv": "remarkably 놀랍게도"
+    },
+    {
+      "word": "prosperity",
+      "pos": "명",
+      "meaning": "번영",
+      "syn": "success",
+      "ant": "adversity",
+      "deriv": "prosper"
+    }
   ],
-
   "flow": [
-    { "emoji": "🐾", "title": "주어진 글: 동물=생존","body": "대부분의 동물은 먹이·포식자 회피 등 <strong>생존에 모든 시간</strong>을 씀." },
-    { "emoji": "👣", "title": "(B) 조상도 동일",    "body": "\"This was also true for our early ancestors\" — 조상도 <strong>먹이 탐색 부담</strong>에 시달림." },
-    { "emoji": "🧠", "title": "(A) But 전환",       "body": "<strong>But</strong> 효율적 사냥꾼으로 진화. 비결은 <strong>지능 발달</strong>(힘이 아닌 머리)." },
-    { "emoji": "🌾", "title": "(C) 여유와 번영",    "body": "먹이 풍부 + 기술 발달 → <strong>놀라운 번영</strong>, \"They had time on their hands.\"" }
+    {
+      "emoji": "🐾",
+      "title": "주어진 글: 동물=생존",
+      "body": "대부분의 동물은 먹이·포식자 회피 등 <strong>생존에 모든 시간</strong>을 씀."
+    },
+    {
+      "emoji": "👣",
+      "title": "(B) 조상도 동일",
+      "body": "\"This was also true for our early ancestors\" — 조상도 <strong>먹이 탐색 부담</strong>에 시달림."
+    },
+    {
+      "emoji": "🧠",
+      "title": "(A) But 전환",
+      "body": "<strong>But</strong> 효율적 사냥꾼으로 진화. 비결은 <strong>지능 발달</strong>(힘이 아닌 머리)."
+    },
+    {
+      "emoji": "🌾",
+      "title": "(C) 여유와 번영",
+      "body": "먹이 풍부 + 기술 발달 → <strong>놀라운 번영</strong>, \"They had time on their hands.\""
+    }
   ],
-
   "sentences": [
     {
       "no": 1,
-      "tags": ["order", "title"],
+      "tags": [
+        "order",
+        "title"
+      ],
       "en_html": "For most animals <span class=\"slash\">/</span> <span class=\"hl\">the struggle to survive</span> <span class=\"slash\">/</span> <span class=\"hl-r\">takes up all their time</span>.",
       "ko_chunks": "대부분의 동물에게 <span class=\"slash\">/</span> 생존을 위한 투쟁은 <span class=\"slash\">/</span> 그들의 모든 시간을 차지한다.",
       "ko_full": "대부분의 동물에게 생존을 위한 투쟁은 그들의 모든 시간을 차지한다.",
       "note": "<strong>해석 도움</strong> — 주어진 글의 <strong>대전제</strong>. 동물은 여유가 없다는 명제로, (B)의 \"조상도 마찬가지\"가 이를 받는다.",
       "points": [
-        { "kind": "grammar", "text": "<strong>the struggle to survive</strong> — to부정사의 형용사적 용법(struggle 수식)." },
-        { "kind": "vocab",   "text": "<strong>take up</strong>(시간을 차지하다) ≈ occupy, consume" },
-        { "kind": "reading", "text": "<strong>순서의 출발점</strong>: '동물=생존에 매임' 명제 제시." }
+        {
+          "kind": "grammar",
+          "text": "<strong>the struggle to survive</strong> — to부정사의 형용사적 용법(struggle 수식)."
+        },
+        {
+          "kind": "vocab",
+          "text": "<strong>take up</strong>(시간을 차지하다) ≈ occupy, consume"
+        },
+        {
+          "kind": "reading",
+          "text": "<strong>순서의 출발점</strong>: '동물=생존에 매임' 명제 제시."
+        }
       ],
       "paraphrasing": [
-        { "level": "high", "en": "For most animals, the fight for survival consumes their entire day.", "ko": "대부분의 동물에게 생존 투쟁은 하루 전부를 소모한다." },
-        { "level": "mid",  "en": "Most animals spend all their time trying to survive.", "ko": "대부분의 동물은 생존하려고 모든 시간을 쓴다." },
-        { "level": "low",  "en": "Most animals are busy surviving all day.", "ko": "대부분의 동물은 하루 종일 생존하느라 바쁘다." }
+        {
+          "level": "high",
+          "en": "For most animals, the fight for survival consumes their entire day.",
+          "ko": "대부분의 동물에게 생존 투쟁은 하루 전부를 소모한다."
+        },
+        {
+          "level": "mid",
+          "en": "Most animals spend all their time trying to survive.",
+          "ko": "대부분의 동물은 생존하려고 모든 시간을 쓴다."
+        },
+        {
+          "level": "low",
+          "en": "Most animals are busy surviving all day.",
+          "ko": "대부분의 동물은 하루 종일 생존하느라 바쁘다."
+        }
       ]
     },
     {
+      "no": 2,
+      "tags": [],
+      "en_html": "<span class=\"hl\">Finding food and drink, keeping warm and clean, avoiding predators, migrating and reproducing</span> <span class=\"slash\">/</span> <span class=\"hl-r\">use up all their energies</span>.",
+      "ko_chunks": "먹이와 마실 것을 찾고, 따뜻하고 깨끗하게 지내고, 포식자를 피하고, 이주하고 번식하는 일이 <span class=\"slash\">/</span> 그들의 모든 에너지를 써 버린다.",
+      "ko_full": "먹이와 마실 것을 찾고, 따뜻하고 깨끗하게 지내고, 포식자를 피하고, 이주하고 번식하는 일이 그들의 모든 에너지를 써 버린다.",
+      "note": "<strong>해석 도움</strong> — 동명사구 5개가 주어로 나란히 병렬되어 복수동사 use up을 받음.",
+      "points": [
+        {
+          "kind": "grammar",
+          "text": "<strong>동명사구 병렬 주어</strong> — Finding ~, keeping ~, avoiding ~ 등이 모두 주어."
+        },
+        {
+          "kind": "vocab",
+          "text": "<strong>use up</strong>(다 써 버리다) ≈ exhaust, deplete"
+        },
+        {
+          "kind": "reading",
+          "text": "앞 문장의 '생존 투쟁'을 <strong>구체적 활동</strong>으로 풀어 설명."
+        }
+      ],
+      "paraphrasing": []
+    },
+    {
+      "no": 3,
+      "tags": [],
+      "en_html": "If they do have any time to spare, <span class=\"slash\">/</span> they spend it <span class=\"hl\">resting or sleeping</span>.",
+      "ko_chunks": "만약 그들에게 여분의 시간이 조금이라도 있다면 <span class=\"slash\">/</span> 그들은 그것을 쉬거나 자는 데 쓴다.",
+      "ko_full": "만약 그들에게 여분의 시간이 조금이라도 있다면, 그들은 그것을 쉬거나 자는 데 쓴다.",
+      "note": null,
+      "points": [
+        {
+          "kind": "grammar",
+          "text": "<strong>do have</strong> — 동사 강조의 do(정말 ~하다)."
+        },
+        {
+          "kind": "grammar",
+          "text": "<strong>spend + 목적어 + V-ing</strong>(~하는 데 (시간을) 쓰다)."
+        },
+        {
+          "kind": "reading",
+          "text": "여유 시간조차 휴식뿐 — 동물에게 <strong>놀이의 여유가 없음</strong>을 부각."
+        }
+      ],
+      "paraphrasing": []
+    },
+    {
+      "no": 4,
+      "tags": [],
+      "en_html": "<span class=\"hl\">Only very young animals</span>, <span class=\"slash\">/</span> under the protection of their parents, <span class=\"slash\">/</span> have enough surplus energy <span class=\"slash\">/</span> to engage in <span class=\"hl-r\">lively bouts of play</span>.",
+      "ko_chunks": "오직 아주 어린 동물들만이 <span class=\"slash\">/</span> 부모의 보호를 받으며 <span class=\"slash\">/</span> 충분한 여분의 에너지를 가진다 <span class=\"slash\">/</span> 활기찬 놀이에 빠질 만큼.",
+      "ko_full": "오직 부모의 보호를 받는 아주 어린 동물들만이 활기찬 놀이에 빠질 만큼 충분한 여분의 에너지를 가진다.",
+      "note": "<strong>해석 도움</strong> — to engage는 enough energy를 수식하는 형용사적 to부정사(~할 만큼의).",
+      "points": [
+        {
+          "kind": "grammar",
+          "text": "<strong>enough + 명사 + to V</strong>(~할 만큼 충분한 …)."
+        },
+        {
+          "kind": "vocab",
+          "text": "<strong>surplus</strong>(여분의) ≈ extra ↔ deficit"
+        },
+        {
+          "kind": "reading",
+          "text": "주어진 글 마무리: <strong>예외(어린 동물)</strong>로 '여유=드묾'을 강조."
+        }
+      ],
+      "paraphrasing": []
+    },
+    {
       "no": 5,
-      "tags": ["order"],
+      "tags": [
+        "order"
+      ],
       "en_html": "<span class=\"hl-r\">This was also true</span> <span class=\"slash\">/</span> for our early ancestors.",
       "ko_chunks": "이것은 또한 마찬가지였다 <span class=\"slash\">/</span> 우리의 초기 조상들에게도.",
       "ko_full": "이것은 우리의 초기 조상들에게도 마찬가지였다.",
       "note": "<strong>해석 도움 (연결 핵심)</strong> — <strong>This</strong>는 주어진 글의 '동물=생존에 매임'을 가리킴. 그래서 (B)가 주어진 글 바로 뒤에 와야 함 → 정답 ②의 결정적 단서.",
       "points": [
-        { "kind": "reading", "text": "<strong>This = 주어진 글 전체</strong>(동물의 생존 투쟁)를 지시." },
-        { "kind": "reading", "text": "주어진 글 → <strong>(B)</strong> 연결의 핵심 연결사." },
-        { "kind": "vocab",   "text": "<strong>be true for ~</strong>(~에게 해당되다/사실이다)" }
+        {
+          "kind": "reading",
+          "text": "<strong>This = 주어진 글 전체</strong>(동물의 생존 투쟁)를 지시."
+        },
+        {
+          "kind": "reading",
+          "text": "주어진 글 → <strong>(B)</strong> 연결의 핵심 연결사."
+        },
+        {
+          "kind": "vocab",
+          "text": "<strong>be true for ~</strong>(~에게 해당되다/사실이다)"
+        }
+      ],
+      "paraphrasing": []
+    },
+    {
+      "no": 6,
+      "tags": [
+        "order"
+      ],
+      "en_html": "<span class=\"hl\">The constant search for food</span> <span class=\"slash\">/</span> <span class=\"hl-r\">would have put heavy demands upon them</span>.",
+      "ko_chunks": "끊임없는 먹이 탐색이 <span class=\"slash\">/</span> 그들에게 무거운 부담을 주었을 것이다.",
+      "ko_full": "끊임없는 먹이 탐색이 그들에게 무거운 부담을 주었을 것이다.",
+      "note": "<strong>해석 도움 (연결 핵심)</strong> — 이 '부담'이 (A)의 But이 뒤집는 전제. 즉 (B)의 끝부분이 (A) → 변화로 이어지는 다리.",
+      "points": [
+        {
+          "kind": "grammar",
+          "text": "<strong>would have p.p.</strong> — 과거 사실에 대한 추측('~했을 것이다')."
+        },
+        {
+          "kind": "vocab",
+          "text": "<strong>put demands upon</strong>(~에게 부담을 지우다)"
+        },
+        {
+          "kind": "reading",
+          "text": "조상의 <strong>먹이 부담</strong> 제시 → 뒤따르는 But(A)의 반전 전제."
+        }
       ],
       "paraphrasing": []
     },
     {
       "no": 7,
-      "tags": ["order", "title"],
+      "tags": [
+        "order",
+        "title"
+      ],
       "en_html": "<span class=\"hl-r\">But</span> as they slowly evolved into more and more efficient hunters, <span class=\"slash\">/</span> <span class=\"hl\">the situation changed</span>.",
       "ko_chunks": "그러나 그들이 점점 더 효율적인 사냥꾼으로 천천히 진화하면서 <span class=\"slash\">/</span> 상황이 바뀌었다.",
       "ko_full": "그러나 그들이 점점 더 효율적인 사냥꾼으로 천천히 진화하면서, 상황이 바뀌었다.",
       "note": "<strong>해석 도움 (연결 핵심)</strong> — <strong>But</strong>이 (B)의 '먹이 부담'을 반전시킴. 부담이라는 전제가 있어야 But이 자연스러우므로 (B) → (A) 순서.",
       "points": [
-        { "kind": "grammar", "text": "<strong>more and more</strong> + 형용사 — '점점 더 ~한'." },
-        { "kind": "reading", "text": "<strong>역접 But</strong> — (B)의 부담 ↔ 변화의 전환점." },
-        { "kind": "reading", "text": "(B) → <strong>(A)</strong> 연결의 핵심." }
+        {
+          "kind": "grammar",
+          "text": "<strong>more and more</strong> + 형용사 — '점점 더 ~한'."
+        },
+        {
+          "kind": "reading",
+          "text": "<strong>역접 But</strong> — (B)의 부담 ↔ 변화의 전환점."
+        },
+        {
+          "kind": "reading",
+          "text": "(B) → <strong>(A)</strong> 연결의 핵심."
+        }
       ],
       "paraphrasing": [
-        { "level": "high", "en": "But as they gradually became increasingly skilled hunters, things changed.", "ko": "그러나 그들이 점차 더 능숙한 사냥꾼이 되면서 상황이 달라졌다." },
-        { "level": "mid",  "en": "But when they became better hunters, the situation changed.", "ko": "그러나 그들이 더 나은 사냥꾼이 되자 상황이 바뀌었다." },
-        { "level": "low",  "en": "But better hunting changed things.", "ko": "그러나 더 나은 사냥이 상황을 바꿨다." }
+        {
+          "level": "high",
+          "en": "But as they gradually became increasingly skilled hunters, things changed.",
+          "ko": "그러나 그들이 점차 더 능숙한 사냥꾼이 되면서 상황이 달라졌다."
+        },
+        {
+          "level": "mid",
+          "en": "But when they became better hunters, the situation changed.",
+          "ko": "그러나 그들이 더 나은 사냥꾼이 되자 상황이 바뀌었다."
+        },
+        {
+          "level": "low",
+          "en": "But better hunting changed things.",
+          "ko": "그러나 더 나은 사냥이 상황을 바꿨다."
+        }
       ]
     },
     {
+      "no": 8,
+      "tags": [
+        "title"
+      ],
+      "en_html": "<span class=\"hl\">The secret of their success</span> <span class=\"slash\">/</span> was <span class=\"hl-r\">the development of much greater intelligence</span>.",
+      "ko_chunks": "그들의 성공 비결은 <span class=\"slash\">/</span> 훨씬 더 뛰어난 지능의 발달이었다.",
+      "ko_full": "그들의 성공 비결은 훨씬 더 뛰어난 지능의 발달이었다.",
+      "note": null,
+      "points": [
+        {
+          "kind": "grammar",
+          "text": "<strong>much + 비교급</strong>(much greater) — 비교급 강조('훨씬')."
+        },
+        {
+          "kind": "vocab",
+          "text": "<strong>the secret of ~</strong>(~의 비결)"
+        },
+        {
+          "kind": "reading",
+          "text": "(A)의 '효율적 사냥꾼으로의 변화' 원인을 <strong>지능 발달</strong>로 명시."
+        }
+      ],
+      "paraphrasing": []
+    },
+    {
       "no": 9,
-      "tags": ["write"],
+      "tags": [
+        "write"
+      ],
       "en_html": "They used <span class=\"hl\">brain not brawn</span> <span class=\"slash\">/</span> to kill their prey.",
       "ko_chunks": "그들은 힘이 아니라 머리를 썼다 <span class=\"slash\">/</span> 먹이를 잡기 위해.",
       "ko_full": "그들은 먹이를 잡기 위해 힘이 아니라 머리를 썼다.",
       "note": null,
       "points": [
-        { "kind": "vocab",   "text": "<strong>brain not brawn</strong>(힘이 아닌 머리) — 두운(b-) 대비 표현." },
-        { "kind": "grammar", "text": "<strong>to kill</strong> — 목적의 부사적 to부정사." },
-        { "kind": "reading", "text": "(A)의 '지능 발달' 비결을 구체화." }
+        {
+          "kind": "vocab",
+          "text": "<strong>brain not brawn</strong>(힘이 아닌 머리) — 두운(b-) 대비 표현."
+        },
+        {
+          "kind": "grammar",
+          "text": "<strong>to kill</strong> — 목적의 부사적 to부정사."
+        },
+        {
+          "kind": "reading",
+          "text": "(A)의 '지능 발달' 비결을 구체화."
+        }
+      ],
+      "paraphrasing": []
+    },
+    {
+      "no": 10,
+      "tags": [
+        "order"
+      ],
+      "en_html": "<span class=\"hl\">At the end of the long hunting era</span>, <span class=\"slash\">/</span> before they turned to farming, <span class=\"slash\">/</span> they were already <span class=\"hl-r\">enjoying some degree of affluence</span>.",
+      "ko_chunks": "긴 사냥 시대의 끝 무렵 <span class=\"slash\">/</span> 농경으로 전환하기 전에 <span class=\"slash\">/</span> 그들은 이미 어느 정도의 풍요를 누리고 있었다.",
+      "ko_full": "긴 사냥 시대의 끝 무렵, 농경으로 전환하기 전에, 그들은 이미 어느 정도의 풍요를 누리고 있었다.",
+      "note": "<strong>해석 도움 (연결 핵심)</strong> — 이 '풍요(affluence)'를 다음 문장(C 11번)이 prosperity로 구체화. (A)→(C) 흐름의 다리.",
+      "points": [
+        {
+          "kind": "grammar",
+          "text": "<strong>were enjoying</strong> — 과거진행으로 '이미 누리고 있던' 상태 강조."
+        },
+        {
+          "kind": "vocab",
+          "text": "<strong>affluence</strong>(풍요) ≈ wealth ↔ poverty"
+        },
+        {
+          "kind": "reading",
+          "text": "지능 발달의 <strong>결과=풍요</strong>를 제시 → 번영의 구체화로 연결."
+        }
       ],
       "paraphrasing": []
     },
     {
       "no": 11,
-      "tags": ["order", "title"],
+      "tags": [
+        "order",
+        "title"
+      ],
       "en_html": "In certain regions, at particular times of year, <span class=\"slash\">/</span> the prey was <span class=\"hl\">sufficiently plentiful</span> and their techniques <span class=\"hl\">sufficiently advanced</span> <span class=\"slash\">/</span> for them <span class=\"hl-r\">to experience a remarkable degree of prosperity</span>.",
       "ko_chunks": "특정 지역에서, 한 해의 특정 시기에 <span class=\"slash\">/</span> 먹이가 충분히 풍부하고 기술이 충분히 발달하여 <span class=\"slash\">/</span> 그들이 놀라운 정도의 번영을 경험할 만큼.",
       "ko_full": "특정 지역, 특정 시기에 먹이가 충분히 풍부하고 기술이 충분히 발달하여 그들은 놀라운 번영을 경험할 수 있었다.",
       "note": "<strong>해석 도움 (연결 핵심)</strong> — (A)의 '풍요(affluence)'를 받아 (C)가 그 번영을 <strong>구체적으로 설명</strong>. sufficiently ~ for ... to V는 'too~to'와 반대로 '충분히 ~해서 …할 만한'.",
       "points": [
-        { "kind": "grammar", "text": "<strong>sufficiently + 형용사 + for A to V</strong> — 'A가 ~할 만큼 충분히 …한'." },
-        { "kind": "reading", "text": "(A)의 affluence → <strong>(C)</strong>의 prosperity로 의미 확장." },
-        { "kind": "vocab",   "text": "<strong>plentiful</strong>(풍부한) ≈ abundant ↔ scarce" }
+        {
+          "kind": "grammar",
+          "text": "<strong>sufficiently + 형용사 + for A to V</strong> — 'A가 ~할 만큼 충분히 …한'."
+        },
+        {
+          "kind": "reading",
+          "text": "(A)의 affluence → <strong>(C)</strong>의 prosperity로 의미 확장."
+        },
+        {
+          "kind": "vocab",
+          "text": "<strong>plentiful</strong>(풍부한) ≈ abundant ↔ scarce"
+        }
       ],
       "paraphrasing": [
-        { "level": "high", "en": "In some areas at certain seasons, prey was abundant and their skills advanced enough to bring striking prosperity.", "ko": "특정 지역·계절에 먹이가 풍부하고 기술이 발달해 놀라운 번영을 가져올 정도였다." },
-        { "level": "mid",  "en": "Sometimes prey was plentiful and skills good enough to make them prosperous.", "ko": "때로는 먹이가 풍부하고 기술이 좋아 그들을 번영하게 했다." },
-        { "level": "low",  "en": "At times, food was plenty and they did well.", "ko": "때때로 먹이가 많아 그들은 잘 살았다." }
+        {
+          "level": "high",
+          "en": "In some areas at certain seasons, prey was abundant and their skills advanced enough to bring striking prosperity.",
+          "ko": "특정 지역·계절에 먹이가 풍부하고 기술이 발달해 놀라운 번영을 가져올 정도였다."
+        },
+        {
+          "level": "mid",
+          "en": "Sometimes prey was plentiful and skills good enough to make them prosperous.",
+          "ko": "때로는 먹이가 풍부하고 기술이 좋아 그들을 번영하게 했다."
+        },
+        {
+          "level": "low",
+          "en": "At times, food was plenty and they did well.",
+          "ko": "때때로 먹이가 많아 그들은 잘 살았다."
+        }
       ]
+    },
+    {
+      "no": 12,
+      "tags": [
+        "order"
+      ],
+      "en_html": "<span class=\"hl-r\">They had time on their hands</span>.",
+      "ko_chunks": "그들은 <span class=\"slash\">/</span> 시간이 남아돌았다.",
+      "ko_full": "그들은 시간이 남아돌았다.",
+      "note": null,
+      "points": [
+        {
+          "kind": "vocab",
+          "text": "<strong>have time on one's hands</strong>(시간이 남아돌다, 여유가 있다) — 관용 표현."
+        },
+        {
+          "kind": "reading",
+          "text": "(C)의 마무리이자 글 전체의 <strong>결론</strong>: 번영 → 여가 확보."
+        }
+      ],
+      "paraphrasing": []
     }
   ]
 }
