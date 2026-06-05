@@ -1,0 +1,393 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "26.json",
+  "_note": "26번 워크북 — 본문 8문장 풀커버.",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "painter",      "pos": "명" },
+      { "word": "vivid",        "pos": "형" },
+      { "word": "simplified",   "pos": "형" },
+      { "word": "masterpiece",  "pos": "명" },
+      { "word": "recognition",  "pos": "명" },
+      { "word": "serve",        "pos": "동" },
+      { "word": "produce",      "pos": "동" },
+      { "word": "honorary",     "pos": "형" },
+      { "word": "explore",      "pos": "동" },
+      { "word": "regard",       "pos": "동" }
+    ],
+    "ko_to_en": [
+      { "meaning": "화가",             "pos": "명", "answer": "painter" },
+      { "meaning": "생생한",           "pos": "형", "answer": "vivid" },
+      { "meaning": "이주하다",         "pos": "동", "answer": "move" },
+      { "meaning": "걸작",             "pos": "명", "answer": "masterpiece" },
+      { "meaning": "인정, 명성",       "pos": "명", "answer": "recognition" },
+      { "meaning": "복무하다",         "pos": "동", "answer": "serve" },
+      { "meaning": "분실된",           "pos": "형", "answer": "lost" },
+      { "meaning": "학위",             "pos": "명", "answer": "degree" },
+      { "meaning": "일생, 평생",       "pos": "명", "answer": "lifetime" },
+      { "meaning": "탐구하다",         "pos": "동", "answer": "explore" }
+    ],
+    "expressions": [
+      { "ko": "~로 알려진",           "answer": "known for" },
+      { "ko": "~로 여겨지는",         "answer": "regarded as" },
+      { "ko": "~을 포함하여",         "answer": "including" },
+      { "ko": "그중 대부분",          "answer": "most of them" },
+      { "ko": "평생에 걸쳐",          "answer": "throughout his lifetime" }
+    ],
+    "definitions": [
+      { "def": "an artist who creates pictures using paint",                          "answer": "painter" },
+      { "def": "a work of art that is the best one an artist has made",               "answer": "masterpiece" },
+      { "def": "the state of being known or accepted publicly for an achievement",   "answer": "recognition" },
+      { "def": "given as an honor, without the usual requirements",                  "answer": "honorary" },
+      { "def": "to study or examine something in order to learn more about it",       "answer": "explore" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Jacob Lawrence was an American painter {{1:known/knowing}} for vivid scenes of African-American history and daily {{2:life/lives}}.",
+      "ko_full": "Jacob Lawrence는 아프리카계 미국인의 역사와 일상의 생생한 장면으로 알려진 미국 화가였다.",
+      "answers": ["known", "life"],
+      "explain": [
+        "painter가 '알려지는' 대상 → 수동 의미의 과거분사 known (be known for).",
+        "daily life는 불가산 단수 표현 → life."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "{{1:Born/Bearing}} in Atlantic City in 1917, he {{2:moved/was moved}} to Harlem at 13 and studied art at Utopia Children's Center.",
+      "ko_full": "1917년 Atlantic City에서 태어나, 그는 13세에 Harlem으로 이주했고 Utopia Children's Center에서 미술을 공부했다.",
+      "answers": ["Born", "moved"],
+      "explain": [
+        "'태어나다'는 수동 분사구문 → Born (= Being born).",
+        "move(이주하다)는 자동사로 능동 → moved."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "He {{1:used/was used}} bright colors and {{2:simplified/simplifying}} shapes in his paintings.",
+      "ko_full": "그는 그림에 밝은 색채와 단순화된 형태를 사용했다.",
+      "answers": ["used", "simplified"],
+      "explain": [
+        "주어 He가 직접 '사용한' 능동 → used.",
+        "shapes가 '단순화된' 대상 → 과거분사 simplified."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "The Migration Series, widely {{1:regarded/regarding}} as Jacob Lawrence's masterpiece, {{2:brought/bringing}} him national recognition.",
+      "ko_full": "Jacob Lawrence의 걸작으로 널리 여겨지는 The Migration Series는 그에게 전국적인 명성을 가져다주었다.",
+      "answers": ["regarded", "brought"],
+      "explain": [
+        "The Migration Series가 '여겨지는' 대상 → 수동 과거분사 regarded.",
+        "문장의 본동사 자리 → 과거시제 brought."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "During World War II, he served in the U.S. Coast Guard and produced many paintings, but most of {{1:them/it}} {{2:were/was}} lost.",
+      "ko_full": "2차 세계대전 동안 그는 미국 해안경비대에서 복무했고 많은 그림을 그렸지만, 그중 대부분은 분실되었다.",
+      "answers": ["them", "were"],
+      "explain": [
+        "복수 명사 paintings를 받는 대명사 → them.",
+        "most of them(복수)이 주어 → 복수 동사 were."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "Later, he {{1:taught/teached}} at the University of Washington {{2:for/during}} 16 years.",
+      "ko_full": "이후 그는 Washington 대학교에서 16년 동안 가르쳤다.",
+      "answers": ["taught", "for"],
+      "explain": [
+        "teach의 불규칙 과거형 → taught.",
+        "수치 기간(16 years) 앞에는 → for."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "Throughout his lifetime, he received honorary degrees from several universities, {{1:including/included}} {{2:Harvard/Harvard's}}.",
+      "ko_full": "평생에 걸쳐 그는 Harvard를 포함한 여러 대학교로부터 명예 학위를 받았다.",
+      "answers": ["including", "Harvard"],
+      "explain": [
+        "'~을 포함하여'를 뜻하는 전치사 → including.",
+        "전치사 including의 목적어로 고유명사 → Harvard."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "Until a few weeks before his death, he continued {{1:to explore/explored}} the {{2:lives/life}} of African-Americans through his painting.",
+      "ko_full": "사망하기 몇 주 전까지 그는 그림을 통해 아프리카계 미국인의 삶을 계속 탐구했다.",
+      "answers": ["to explore", "lives"],
+      "explain": [
+        "continue + to V (또는 V-ing) → to explore.",
+        "여러 사람의 삶 → 복수 lives."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Jacob Lawrence was an American painter known for {{1:vivid/dull}} scenes of African-American history and {{2:daily/special}} life.",
+      "ko_full": "Jacob Lawrence는 아프리카계 미국인의 역사와 일상의 생생한 장면으로 알려진 미국 화가였다.",
+      "answers": ["vivid", "daily"],
+      "explain": [
+        "'생생한' 장면 — vivid ↔ dull.",
+        "'일상' 생활 — daily life."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "Born in Atlantic City in 1917, he {{1:moved/stayed}} to Harlem at 13 and {{2:studied/neglected}} art at Utopia Children's Center.",
+      "ko_full": "1917년 Atlantic City에서 태어나, 그는 13세에 Harlem으로 이주했고 Utopia Children's Center에서 미술을 공부했다.",
+      "answers": ["moved", "studied"],
+      "explain": [
+        "Harlem으로 '이주했다' — moved ↔ stayed.",
+        "미술을 '공부했다' — studied ↔ neglected."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "He used {{1:bright/dark}} colors and {{2:simplified/complicated}} shapes in his paintings.",
+      "ko_full": "그는 그림에 밝은 색채와 단순화된 형태를 사용했다.",
+      "answers": ["bright", "simplified"],
+      "explain": [
+        "'밝은' 색채 — bright ↔ dark.",
+        "'단순화된' 형태 — simplified ↔ complicated."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "The Migration Series, widely regarded as Jacob Lawrence's {{1:masterpiece/failure}}, brought him national {{2:recognition/obscurity}}.",
+      "ko_full": "Jacob Lawrence의 걸작으로 널리 여겨지는 The Migration Series는 그에게 전국적인 명성을 가져다주었다.",
+      "answers": ["masterpiece", "recognition"],
+      "explain": [
+        "'걸작' — masterpiece ↔ failure.",
+        "전국적 '명성' — recognition ↔ obscurity."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "During World War II, he {{1:served/deserted}} in the U.S. Coast Guard and {{2:produced/destroyed}} many paintings, but most of them were lost.",
+      "ko_full": "2차 세계대전 동안 그는 미국 해안경비대에서 복무했고 많은 그림을 그렸지만, 그중 대부분은 분실되었다.",
+      "answers": ["served", "produced"],
+      "explain": [
+        "해안경비대에서 '복무했다' — served ↔ deserted.",
+        "많은 그림을 '제작했다' — produced ↔ destroyed."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "Later, he {{1:taught/learned}} at the University of Washington for 16 years.",
+      "ko_full": "이후 그는 Washington 대학교에서 16년 동안 가르쳤다.",
+      "answers": ["taught"],
+      "explain": [
+        "대학교에서 '가르쳤다' — taught ↔ learned."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "Throughout his lifetime, he received {{1:honorary/earned}} degrees from several universities, {{2:including/excluding}} Harvard.",
+      "ko_full": "평생에 걸쳐 그는 Harvard를 포함한 여러 대학교로부터 명예 학위를 받았다.",
+      "answers": ["honorary", "including"],
+      "explain": [
+        "'명예' 학위 — honorary ↔ earned.",
+        "Harvard를 '포함하여' — including ↔ excluding."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "Until a few weeks before his death, he {{1:continued/stopped}} to {{2:explore/ignore}} the lives of African-Americans through his painting.",
+      "ko_full": "사망하기 몇 주 전까지 그는 그림을 통해 아프리카계 미국인의 삶을 계속 탐구했다.",
+      "answers": ["continued", "explore"],
+      "explain": [
+        "'계속했다' — continued ↔ stopped.",
+        "삶을 '탐구하다' — explore ↔ ignore."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "p", "answer": "painter", "after": "known for" },
+        { "pos": 2, "letter": "v", "answer": "vivid",   "after": "scenes of" },
+        { "pos": 3, "letter": "h", "answer": "history", "after": "and daily life" }
+      ],
+      "ko_full": "Jacob Lawrence는 아프리카계 미국인의 역사와 일상의 생생한 장면으로 알려진 미국 화가였다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "b", "answer": "born",    "after": "in Atlantic City" },
+        { "pos": 2, "letter": "m", "answer": "moved",   "after": "to Harlem at 13" },
+        { "pos": 3, "letter": "s", "answer": "studied", "after": "art at Utopia" }
+      ],
+      "ko_full": "1917년 Atlantic City에서 태어나, 그는 13세에 Harlem으로 이주했고 Utopia Children's Center에서 미술을 공부했다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "b", "answer": "bright",     "after": "colors and" },
+        { "pos": 2, "letter": "s", "answer": "simplified", "after": "shapes" },
+        { "pos": 3, "letter": "p", "answer": "paintings",  "after": "" }
+      ],
+      "ko_full": "그는 그림에 밝은 색채와 단순화된 형태를 사용했다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "r", "answer": "regarded",    "after": "as Jacob Lawrence's" },
+        { "pos": 2, "letter": "m", "answer": "masterpiece", "after": ", brought him" },
+        { "pos": 3, "letter": "r", "answer": "recognition", "after": "" }
+      ],
+      "ko_full": "Jacob Lawrence의 걸작으로 널리 여겨지는 The Migration Series는 그에게 전국적인 명성을 가져다주었다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "s", "answer": "served",   "after": "in the U.S. Coast Guard" },
+        { "pos": 2, "letter": "p", "answer": "produced", "after": "many paintings" },
+        { "pos": 3, "letter": "l", "answer": "lost",     "after": "" }
+      ],
+      "ko_full": "2차 세계대전 동안 그는 미국 해안경비대에서 복무했고 많은 그림을 그렸지만, 그중 대부분은 분실되었다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "t", "answer": "taught", "after": "at the University of Washington" },
+        { "pos": 2, "letter": "y", "answer": "years",  "after": "" }
+      ],
+      "ko_full": "이후 그는 Washington 대학교에서 16년 동안 가르쳤다."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "hints": [
+        { "pos": 1, "letter": "l", "answer": "lifetime",  "after": ", he received" },
+        { "pos": 2, "letter": "h", "answer": "honorary",  "after": "degrees" },
+        { "pos": 3, "letter": "u", "answer": "universities", "after": ", including Harvard" }
+      ],
+      "ko_full": "평생에 걸쳐 그는 Harvard를 포함한 여러 대학교로부터 명예 학위를 받았다."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "hints": [
+        { "pos": 1, "letter": "d", "answer": "death",    "after": ", he continued" },
+        { "pos": 2, "letter": "e", "answer": "explore",  "after": "the lives of" },
+        { "pos": 3, "letter": "p", "answer": "painting", "after": "" }
+      ],
+      "ko_full": "사망하기 몇 주 전까지 그는 그림을 통해 아프리카계 미국인의 삶을 계속 탐구했다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 },
+    { "no": 7, "ref_sentence": 7 },
+    { "no": 8, "ref_sentence": 8 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["Jacob", "Lawrence", "was", "an", "American", "painter", "known", "for", "vivid", "scenes", "of", "African-American", "history", "and", "daily", "life"],
+      "answer": "Jacob Lawrence was an American painter known for vivid scenes of African-American history and daily life."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["Born", "in", "Atlantic", "City", "in", "1917", "he", "moved", "to", "Harlem", "at", "13", "and", "studied", "art", "at", "Utopia", "Children's", "Center"],
+      "answer": "Born in Atlantic City in 1917, he moved to Harlem at 13 and studied art at Utopia Children's Center."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["He", "used", "bright", "colors", "and", "simplified", "shapes", "in", "his", "paintings"],
+      "answer": "He used bright colors and simplified shapes in his paintings."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["The", "Migration", "Series", "widely", "regarded", "as", "Jacob", "Lawrence's", "masterpiece", "brought", "him", "national", "recognition"],
+      "answer": "The Migration Series, widely regarded as Jacob Lawrence's masterpiece, brought him national recognition."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["During", "World", "War", "II", "he", "served", "in", "the", "U.S.", "Coast", "Guard", "and", "produced", "many", "paintings", "but", "most", "of", "them", "were", "lost"],
+      "answer": "During World War II, he served in the U.S. Coast Guard and produced many paintings, but most of them were lost."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["Later", "he", "taught", "at", "the", "University", "of", "Washington", "for", "16", "years"],
+      "answer": "Later, he taught at the University of Washington for 16 years."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "words": ["Throughout", "his", "lifetime", "he", "received", "honorary", "degrees", "from", "several", "universities", "including", "Harvard"],
+      "answer": "Throughout his lifetime, he received honorary degrees from several universities, including Harvard."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "words": ["Until", "a", "few", "weeks", "before", "his", "death", "he", "continued", "to", "explore", "the", "lives", "of", "African-Americans", "through", "his", "painting"],
+      "answer": "Until a few weeks before his death, he continued to explore the lives of African-Americans through his painting."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" },
+    { "no": 7, "ref_sentence": 7, "given": "ko" },
+    { "no": 8, "ref_sentence": 8, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 2, "no": 1 },
+    { "kind": "vocab",   "ref": 4, "no": 2 },
+    { "kind": "fill",    "ref": 5, "no": 3 },
+    { "kind": "ko",      "ref": 6, "no": 4 },
+    { "kind": "jumble",  "ref": 7, "no": 5 },
+    { "kind": "sent",    "ref": 8, "no": 6 },
+    { "kind": "grammar", "ref": 1, "no": 7 },
+    { "kind": "vocab",   "ref": 3, "no": 8 }
+  ]
+}

@@ -1,0 +1,565 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "41.json",
+  "_note": "41번 워크북 — 본문 13문장 풀커버.",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "consumer",     "pos": "명" },
+      { "word": "efficient",    "pos": "형" },
+      { "word": "consumption",  "pos": "명" },
+      { "word": "momentum",     "pos": "명" },
+      { "word": "prototype",    "pos": "명" },
+      { "word": "breakthrough", "pos": "명" },
+      { "word": "dramatically", "pos": "부" },
+      { "word": "threat",       "pos": "명" },
+      { "word": "alternative",  "pos": "형" },
+      { "word": "diversify",    "pos": "동" }
+    ],
+    "ko_to_en": [
+      { "meaning": "운송, 수송",          "pos": "명", "answer": "transport" },
+      { "meaning": "오염시키는",          "pos": "형", "answer": "polluting" },
+      { "meaning": "다국적 기업",         "pos": "명", "answer": "multinational" },
+      { "meaning": "성능, 성과",          "pos": "명", "answer": "performance" },
+      { "meaning": "이익, 수익",          "pos": "명", "answer": "profit" },
+      { "meaning": "수요",                "pos": "명", "answer": "demand" },
+      { "meaning": "공급",                "pos": "명", "answer": "supply" },
+      { "meaning": "배제하다",            "pos": "동", "answer": "exclude" },
+      { "meaning": "시급히, 긴급히",      "pos": "부", "answer": "urgently" },
+      { "meaning": "급격히, 극적으로",    "pos": "부", "answer": "dramatically" }
+    ],
+    "expressions": [
+      { "ko": "~에 달려 있다",       "answer": "depend upon" },
+      { "ko": "~하게 될 처지이다",   "answer": "stand to" },
+      { "ko": "~을 찾다, 모색하다",  "answer": "look for" },
+      { "ko": "~을 앞다투어 하다",   "answer": "race to" },
+      { "ko": "~와 전혀 같지 않다",  "answer": "not anything like" }
+    ],
+    "definitions": [
+      { "def": "a person or thing that uses up a product or resource",        "answer": "consumer" },
+      { "def": "working well without wasting time, energy, or fuel",          "answer": "efficient" },
+      { "def": "an important new discovery or sudden advance",                 "answer": "breakthrough" },
+      { "def": "a danger or possibility of harm",                              "answer": "threat" },
+      { "def": "to start to do a wider range of things or businesses",         "answer": "diversify" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "The major consumer of oil {{1:is/are}} transport.",
+      "ko_full": "석유의 주요 소비처는 운송이다.",
+      "answers": ["is"],
+      "explain": [
+        "주어 핵 = 단수 명사 'The major consumer' → is."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "But consider {{1:what/that}} has happened over the last 30 years or so to the technology {{2:involved/involving}} in producing the internal combustion engine.",
+      "ko_full": "그러나 지난 30여 년 동안 내연기관을 생산하는 데 관련된 기술에 무슨 일이 일어났는지 생각해 보라.",
+      "answers": ["what", "involved"],
+      "explain": [
+        "뒤에 주어가 빠진 불완전절 + consider의 목적어인 의문사절 → what.",
+        "technology가 '관련된' 대상 → 과거분사 involved (수동·완료 수식)."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "Because oil is expensive, car engines today are far {{1:more/most}} efficient in their consumption of fuel (and far less polluting) {{2:than/as}} they were in 1972.",
+      "ko_full": "석유가 비싸기 때문에, 오늘날 자동차 엔진은 1972년보다 연료 소비에서 훨씬 더 효율적이다(그리고 훨씬 덜 오염시킨다).",
+      "answers": ["more", "than"],
+      "explain": [
+        "뒤의 than과 호응하는 비교급 → more efficient.",
+        "비교 대상을 잇는 접속사 → than."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "The cars {{1:that/what}} Asia buys tomorrow will certainly not be anything like {{2:those/that}} Americans use today.",
+      "ko_full": "아시아가 내일 살 자동차는 분명히 오늘날 미국인이 쓰는 자동차와 전혀 같지 않을 것이다.",
+      "answers": ["that", "those"],
+      "explain": [
+        "선행사 The cars + 뒤 절의 목적어 역할 → 목적격 관계대명사 that.",
+        "복수 the cars를 받는 지시대명사 → those."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "Americans will not buy today's cars tomorrow {{1:either/too}}.",
+      "ko_full": "미국인들도 오늘날의 자동차를 내일 사지는 않을 것이다.",
+      "answers": ["either"],
+      "explain": [
+        "부정문에서 '~도 …아니다' → either (긍정문의 too에 대응)."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "In fact, if the price of oil does {{1:rise/raise}} much further then fuel cell technology ({{2:which/what}} produces energy from water!) will receive yet another momentum.",
+      "ko_full": "사실, 만약 유가가 훨씬 더 오른다면 (물에서 에너지를 만들어 내는!) 연료전지 기술은 또 한 번의 추진력을 받을 것이다.",
+      "answers": ["rise", "which"],
+      "explain": [
+        "주어(price)가 스스로 오름 → 자동사 rise (does가 강조 조동사).",
+        "선행사 technology를 부연하는 관계대명사 → which."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "The big car multinationals have already {{1:produced/produce}} the prototype motors — they are currently racing to try and {{2:get/getting}} prices down and engine performances up.",
+      "ko_full": "거대 자동차 다국적 기업들은 이미 시제품 모터를 만들었고, 가격을 낮추고 엔진 성능을 높이기 위해 현재 경쟁하고 있다.",
+      "answers": ["produced", "get"],
+      "explain": [
+        "have + 과거분사 (현재완료) → produced.",
+        "try and + 동사원형 (= try to V) → get."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "Their future profits {{1:depend/depends}} upon {{2:it/them}}.",
+      "ko_full": "그들의 미래 이익이 그것에 달려 있다.",
+      "answers": ["depend", "it"],
+      "explain": [
+        "주어 profits (복수) → depend.",
+        "앞 문장의 '경쟁·노력'(불가산 상황)을 받는 단수 대명사 → it."
+      ]
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "en_template": "Imagine now {{1:if/whether}} there {{2:is/are}} a breakthrough in fuel cell technology.",
+      "ko_full": "이제 연료전지 기술에 획기적 돌파구가 생긴다고 상상해 보라.",
+      "answers": ["if", "is"],
+      "explain": [
+        "'만약 ~라면'의 조건절을 이끄는 if.",
+        "There + 단수 주어 a breakthrough → is."
+      ]
+    },
+    {
+      "no": 10,
+      "ref_sentence": 10,
+      "en_template": "What {{1:would/will}} happen to oil prices?",
+      "ko_full": "유가에는 무슨 일이 일어날까?",
+      "answers": ["would"],
+      "explain": [
+        "앞 문장의 가정(돌파구 발생)에 호응하는 가정법 조동사 → would."
+      ]
+    },
+    {
+      "no": 11,
+      "ref_sentence": 11,
+      "en_template": "They would fall dramatically — {{1:signalling/signalled}} much less demand than supply — and oil companies and OPEC oil producers would stand {{2:to lose/losing}} much income.",
+      "ko_full": "유가는 급격히 떨어질 것이고 — 공급보다 수요가 훨씬 적음을 알리며 — 석유 회사들과 OPEC 석유 생산자들은 많은 수입을 잃게 될 것이다.",
+      "answers": ["signalling", "to lose"],
+      "explain": [
+        "능동·동시 상황을 나타내는 분사구문 → signalling.",
+        "stand to + 동사원형 ('~하게 될 처지이다') → to lose."
+      ]
+    },
+    {
+      "no": 12,
+      "ref_sentence": 12,
+      "en_template": "The fact {{1:that/which}} this threat is real is driving the producers {{2:to look/looking}} for alternative sources of income.",
+      "ko_full": "이 위협이 실재한다는 사실이 생산자들로 하여금 대체 수입원을 찾도록 몰아가고 있다.",
+      "answers": ["that", "to look"],
+      "explain": [
+        "The fact의 내용을 설명하는 완전한 절 → 동격 접속사 that.",
+        "drive A to V ('A가 ~하도록 몰아가다') → to look."
+      ]
+    },
+    {
+      "no": 13,
+      "ref_sentence": 13,
+      "en_template": "The 'oil majors' have diversified and are now {{1:more/most}} energy companies than oil companies these days and the OPEC countries are urgently attempting {{2:to exclude/excluding}} other industries.",
+      "ko_full": "'석유 메이저들'은 사업을 다각화하여 요즘은 석유 회사라기보다 에너지 회사가 되었고, OPEC 국가들은 다른 산업을 배제하려고(→개발하려고) 시급히 시도하고 있다.",
+      "answers": ["more", "to exclude"],
+      "explain": [
+        "뒤의 than과 호응하는 비교급 → more (... than ...).",
+        "attempt + to부정사 → to exclude."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "The major {{1:consumer/producer}} of oil is transport.",
+      "ko_full": "석유의 주요 소비처는 운송이다.",
+      "answers": ["consumer"],
+      "explain": ["운송은 석유를 '쓰는' 쪽 — consumer(소비처)."]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "But consider what has happened over the last 30 years to the technology {{1:involved in/free from}} producing the internal combustion engine.",
+      "ko_full": "그러나 지난 30여 년 동안 내연기관을 생산하는 데 관련된 기술에 무슨 일이 일어났는지 생각해 보라.",
+      "answers": ["involved in"],
+      "explain": ["생산에 '관련된' 기술 — involved in."]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "Because oil is expensive, car engines today are far more {{1:efficient/wasteful}} in their consumption of fuel and far less {{2:polluting/clean}} than they were in 1972.",
+      "ko_full": "석유가 비싸기 때문에, 오늘날 자동차 엔진은 1972년보다 연료 소비에서 훨씬 더 효율적이고 훨씬 덜 오염시킨다.",
+      "answers": ["efficient", "polluting"],
+      "explain": [
+        "연료를 적게 쓰는 맥락 — efficient(효율적).",
+        "'덜 ~한'의 대상은 오염 — polluting."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "The cars that Asia buys tomorrow will certainly not be anything {{1:like/unlike}} those Americans use today.",
+      "ko_full": "아시아가 내일 살 자동차는 분명히 오늘날 미국인이 쓰는 자동차와 전혀 같지 않을 것이다.",
+      "answers": ["like"],
+      "explain": ["not anything like: ~와 전혀 같지 않다 (관용)."]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "Americans will not buy {{1:today's/tomorrow's}} cars tomorrow either.",
+      "ko_full": "미국인들도 오늘날의 자동차를 내일 사지는 않을 것이다.",
+      "answers": ["today's"],
+      "explain": ["내일 사지 않을 대상은 '오늘날의' 자동차 — today's."]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "If the price of oil rises much further then fuel cell technology will receive yet another {{1:momentum/setback}}.",
+      "ko_full": "사실, 만약 유가가 훨씬 더 오른다면 (물에서 에너지를 만들어 내는!) 연료전지 기술은 또 한 번의 추진력을 받을 것이다.",
+      "answers": ["momentum"],
+      "explain": ["혁신 가속 맥락 — momentum(추진력)."]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "The big car multinationals have already produced the {{1:prototype/final}} motors — they are currently {{2:racing/lagging}} to get prices down and engine performances up.",
+      "ko_full": "거대 자동차 다국적 기업들은 이미 시제품 모터를 만들었고, 가격을 낮추고 엔진 성능을 높이기 위해 현재 경쟁하고 있다.",
+      "answers": ["prototype", "racing"],
+      "explain": [
+        "아직 상용 전 단계 — prototype(시제품).",
+        "앞다투어 노력 — racing(경쟁하다)."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "Their future profits {{1:depend upon/are independent of}} it.",
+      "ko_full": "그들의 미래 이익이 그것에 달려 있다.",
+      "answers": ["depend upon"],
+      "explain": ["이익이 '그것에 달려 있다' — depend upon."]
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "en_template": "Imagine now if there is a {{1:breakthrough/setback}} in fuel cell technology.",
+      "ko_full": "이제 연료전지 기술에 획기적 돌파구가 생긴다고 상상해 보라.",
+      "answers": ["breakthrough"],
+      "explain": ["기술 발전의 도약 — breakthrough(돌파구)."]
+    },
+    {
+      "no": 10,
+      "ref_sentence": 10,
+      "en_template": "What would happen to oil {{1:prices/profits}}?",
+      "ko_full": "유가에는 무슨 일이 일어날까?",
+      "answers": ["prices"],
+      "explain": ["다음 문장에서 급락하는 대상은 '유가' — prices."]
+    },
+    {
+      "no": 11,
+      "ref_sentence": 11,
+      "en_template": "They would fall {{1:dramatically/slightly}} — signalling much less {{2:demand/supply}} than supply — and oil companies and OPEC oil producers would stand to lose much income.",
+      "ko_full": "유가는 급격히 떨어질 것이고 — 공급보다 수요가 훨씬 적음을 알리며 — 석유 회사들과 OPEC 석유 생산자들은 많은 수입을 잃게 될 것이다.",
+      "answers": ["dramatically", "demand"],
+      "explain": [
+        "급락 — dramatically(급격히).",
+        "공급보다 적은 것은 '수요' — demand."
+      ]
+    },
+    {
+      "no": 12,
+      "ref_sentence": 12,
+      "en_template": "The fact that this {{1:threat/safety}} is real is driving the producers to look for {{2:alternative/conventional}} sources of income.",
+      "ko_full": "이 위협이 실재한다는 사실이 생산자들로 하여금 대체 수입원을 찾도록 몰아가고 있다.",
+      "answers": ["threat", "alternative"],
+      "explain": [
+        "수입을 위협하는 실재 — threat(위협).",
+        "새로 모색하는 '대체' 수입원 — alternative."
+      ]
+    },
+    {
+      "no": 13,
+      "ref_sentence": 13,
+      "en_template": "The 'oil majors' have {{1:diversified/specialized}} and are now more energy companies than oil companies, and the OPEC countries are urgently attempting to {{2:develop/exclude}} other industries.",
+      "ko_full": "'석유 메이저들'은 사업을 다각화하여 요즘은 석유 회사라기보다 에너지 회사가 되었고, OPEC 국가들은 다른 산업을 개발하려고 시급히 시도하고 있다.",
+      "answers": ["diversified", "develop"],
+      "explain": [
+        "사업 영역을 넓힘 — diversified(다각화).",
+        "다각화 흐름과 같은 방향 — develop(개발). 본문의 exclude는 문맥상 부적절(42번 정답)."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "m", "answer": "major",     "after": "consumer of oil" },
+        { "pos": 2, "letter": "c", "answer": "consumer",  "after": "of oil is" },
+        { "pos": 3, "letter": "t", "answer": "transport", "after": "" }
+      ],
+      "ko_full": "석유의 주요 소비처는 운송이다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "c", "answer": "consider",   "after": "what has happened" },
+        { "pos": 2, "letter": "t", "answer": "technology", "after": "involved in producing" },
+        { "pos": 3, "letter": "i", "answer": "internal",   "after": "combustion engine" }
+      ],
+      "ko_full": "그러나 지난 30여 년 동안 내연기관을 생산하는 데 관련된 기술에 무슨 일이 일어났는지 생각해 보라."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "e", "answer": "expensive",   "after": ", car engines today" },
+        { "pos": 2, "letter": "e", "answer": "efficient",   "after": "in their consumption" },
+        { "pos": 3, "letter": "c", "answer": "consumption", "after": "of fuel" },
+        { "pos": 4, "letter": "p", "answer": "polluting",   "after": ") than they were" }
+      ],
+      "ko_full": "석유가 비싸기 때문에, 오늘날 자동차 엔진은 1972년보다 연료 소비에서 훨씬 더 효율적이다(그리고 훨씬 덜 오염시킨다)."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "c", "answer": "cars",      "after": "that Asia buys" },
+        { "pos": 2, "letter": "c", "answer": "certainly", "after": "not be anything like" },
+        { "pos": 3, "letter": "a", "answer": "Americans", "after": "use today" }
+      ],
+      "ko_full": "아시아가 내일 살 자동차는 분명히 오늘날 미국인이 쓰는 자동차와 전혀 같지 않을 것이다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "b", "answer": "buy",      "after": "today's cars" },
+        { "pos": 2, "letter": "t", "answer": "tomorrow", "after": "either" }
+      ],
+      "ko_full": "미국인들도 오늘날의 자동차를 내일 사지는 않을 것이다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "r", "answer": "rise",     "after": "much further then" },
+        { "pos": 2, "letter": "e", "answer": "energy",   "after": "from water" },
+        { "pos": 3, "letter": "m", "answer": "momentum", "after": "" }
+      ],
+      "ko_full": "사실, 만약 유가가 훨씬 더 오른다면 (물에서 에너지를 만들어 내는!) 연료전지 기술은 또 한 번의 추진력을 받을 것이다."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "hints": [
+        { "pos": 1, "letter": "p", "answer": "prototype",   "after": "motors" },
+        { "pos": 2, "letter": "r", "answer": "racing",      "after": "to try and get" },
+        { "pos": 3, "letter": "p", "answer": "performances","after": "up" }
+      ],
+      "ko_full": "거대 자동차 다국적 기업들은 이미 시제품 모터를 만들었고, 가격을 낮추고 엔진 성능을 높이기 위해 현재 경쟁하고 있다."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "hints": [
+        { "pos": 1, "letter": "p", "answer": "profits", "after": "depend upon it" },
+        { "pos": 2, "letter": "d", "answer": "depend",  "after": "upon it" }
+      ],
+      "ko_full": "그들의 미래 이익이 그것에 달려 있다."
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "hints": [
+        { "pos": 1, "letter": "i", "answer": "imagine",     "after": "now if there" },
+        { "pos": 2, "letter": "b", "answer": "breakthrough","after": "in fuel cell technology" }
+      ],
+      "ko_full": "이제 연료전지 기술에 획기적 돌파구가 생긴다고 상상해 보라."
+    },
+    {
+      "no": 10,
+      "ref_sentence": 10,
+      "hints": [
+        { "pos": 1, "letter": "h", "answer": "happen", "after": "to oil prices" },
+        { "pos": 2, "letter": "p", "answer": "prices", "after": "" }
+      ],
+      "ko_full": "유가에는 무슨 일이 일어날까?"
+    },
+    {
+      "no": 11,
+      "ref_sentence": 11,
+      "hints": [
+        { "pos": 1, "letter": "d", "answer": "dramatically", "after": "— signalling" },
+        { "pos": 2, "letter": "d", "answer": "demand",       "after": "than supply" },
+        { "pos": 3, "letter": "i", "answer": "income",       "after": "" }
+      ],
+      "ko_full": "유가는 급격히 떨어질 것이고 — 공급보다 수요가 훨씬 적음을 알리며 — 석유 회사들과 OPEC 석유 생산자들은 많은 수입을 잃게 될 것이다."
+    },
+    {
+      "no": 12,
+      "ref_sentence": 12,
+      "hints": [
+        { "pos": 1, "letter": "t", "answer": "threat",      "after": "is real" },
+        { "pos": 2, "letter": "p", "answer": "producers",   "after": "to look for" },
+        { "pos": 3, "letter": "a", "answer": "alternative", "after": "sources of income" }
+      ],
+      "ko_full": "이 위협이 실재한다는 사실이 생산자들로 하여금 대체 수입원을 찾도록 몰아가고 있다."
+    },
+    {
+      "no": 13,
+      "ref_sentence": 13,
+      "hints": [
+        { "pos": 1, "letter": "d", "answer": "diversified", "after": "and are now" },
+        { "pos": 2, "letter": "u", "answer": "urgently",    "after": "attempting to" },
+        { "pos": 3, "letter": "i", "answer": "industries",  "after": "" }
+      ],
+      "ko_full": "'석유 메이저들'은 사업을 다각화하여 요즘은 석유 회사라기보다 에너지 회사가 되었고, OPEC 국가들은 다른 산업을 배제하려고(→개발하려고) 시급히 시도하고 있다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 },
+    { "no": 7, "ref_sentence": 7 },
+    { "no": 8, "ref_sentence": 8 },
+    { "no": 9, "ref_sentence": 9 },
+    { "no": 10, "ref_sentence": 10 },
+    { "no": 11, "ref_sentence": 11 },
+    { "no": 12, "ref_sentence": 12 },
+    { "no": 13, "ref_sentence": 13 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["The", "major", "consumer", "of", "oil", "is", "transport"],
+      "answer": "The major consumer of oil is transport."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["But", "consider", "what", "has", "happened", "over", "the", "last", "30", "years", "or", "so", "to", "the", "technology", "involved", "in", "producing", "the", "internal", "combustion", "engine"],
+      "answer": "But consider what has happened over the last 30 years or so to the technology involved in producing the internal combustion engine."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["Because", "oil", "is", "expensive", "car", "engines", "today", "are", "far", "more", "efficient", "in", "their", "consumption", "of", "fuel", "and", "far", "less", "polluting", "than", "they", "were", "in", "1972"],
+      "answer": "Because oil is expensive, car engines today are far more efficient in their consumption of fuel (and far less polluting) than they were in 1972."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["The", "cars", "that", "Asia", "buys", "tomorrow", "will", "certainly", "not", "be", "anything", "like", "those", "Americans", "use", "today"],
+      "answer": "The cars that Asia buys tomorrow will certainly not be anything like those Americans use today."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["Americans", "will", "not", "buy", "today's", "cars", "tomorrow", "either"],
+      "answer": "Americans will not buy today's cars tomorrow either."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["In", "fact", "if", "the", "price", "of", "oil", "does", "rise", "much", "further", "then", "fuel", "cell", "technology", "which", "produces", "energy", "from", "water", "will", "receive", "yet", "another", "momentum"],
+      "answer": "In fact, if the price of oil does rise much further then fuel cell technology (which produces energy from water!) will receive yet another momentum."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "words": ["The", "big", "car", "multinationals", "have", "already", "produced", "the", "prototype", "motors", "they", "are", "currently", "racing", "to", "try", "and", "get", "prices", "down", "and", "engine", "performances", "up"],
+      "answer": "The big car multinationals have already produced the prototype motors — they are currently racing to try and get prices down and engine performances up."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "words": ["Their", "future", "profits", "depend", "upon", "it"],
+      "answer": "Their future profits depend upon it."
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "words": ["Imagine", "now", "if", "there", "is", "a", "breakthrough", "in", "fuel", "cell", "technology"],
+      "answer": "Imagine now if there is a breakthrough in fuel cell technology."
+    },
+    {
+      "no": 10,
+      "ref_sentence": 10,
+      "words": ["What", "would", "happen", "to", "oil", "prices"],
+      "answer": "What would happen to oil prices?"
+    },
+    {
+      "no": 11,
+      "ref_sentence": 11,
+      "words": ["They", "would", "fall", "dramatically", "signalling", "much", "less", "demand", "than", "supply", "and", "oil", "companies", "and", "OPEC", "oil", "producers", "would", "stand", "to", "lose", "much", "income"],
+      "answer": "They would fall dramatically — signalling much less demand than supply — and oil companies and OPEC oil producers would stand to lose much income."
+    },
+    {
+      "no": 12,
+      "ref_sentence": 12,
+      "words": ["The", "fact", "that", "this", "threat", "is", "real", "is", "driving", "the", "producers", "to", "look", "for", "alternative", "sources", "of", "income"],
+      "answer": "The fact that this threat is real is driving the producers to look for alternative sources of income."
+    },
+    {
+      "no": 13,
+      "ref_sentence": 13,
+      "words": ["The", "oil", "majors", "have", "diversified", "and", "are", "now", "more", "energy", "companies", "than", "oil", "companies", "these", "days", "and", "the", "OPEC", "countries", "are", "urgently", "attempting", "to", "exclude", "other", "industries"],
+      "answer": "The 'oil majors' have diversified and are now more energy companies than oil companies these days and the OPEC countries are urgently attempting to exclude other industries."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" },
+    { "no": 7, "ref_sentence": 7, "given": "ko" },
+    { "no": 8, "ref_sentence": 8, "given": "ko" },
+    { "no": 9, "ref_sentence": 9, "given": "ko" },
+    { "no": 10, "ref_sentence": 10, "given": "ko" },
+    { "no": 11, "ref_sentence": 11, "given": "ko" },
+    { "no": 12, "ref_sentence": 12, "given": "ko" },
+    { "no": 13, "ref_sentence": 13, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 2,  "no": 1 },
+    { "kind": "vocab",   "ref": 3,  "no": 2 },
+    { "kind": "fill",    "ref": 6,  "no": 3 },
+    { "kind": "ko",      "ref": 9,  "no": 4 },
+    { "kind": "jumble",  "ref": 11, "no": 5 },
+    { "kind": "sent",    "ref": 13, "no": 6 },
+    { "kind": "grammar", "ref": 7,  "no": 7 },
+    { "kind": "vocab",   "ref": 12, "no": 8 }
+  ]
+}

@@ -1,0 +1,311 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "20.json",
+  "_note": "20번 워크북 — 본문 6문장 풀커버.",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "assume",        "pos": "동" },
+      { "word": "efficient",     "pos": "형" },
+      { "word": "logical",       "pos": "형" },
+      { "word": "fallacy",       "pos": "명" },
+      { "word": "composition",   "pos": "명" },
+      { "word": "interact",      "pos": "동" },
+      { "word": "collate",       "pos": "동" },
+      { "word": "doomed",        "pos": "형" },
+      { "word": "stable",        "pos": "형" },
+      { "word": "assemble",      "pos": "동" }
+    ],
+    "ko_to_en": [
+      { "meaning": "가정·추정하다",      "pos": "동", "answer": "assume" },
+      { "meaning": "생산적인",           "pos": "형", "answer": "productive" },
+      { "meaning": "관리자, 행정가",     "pos": "명", "answer": "administrator" },
+      { "meaning": "숙련된",             "pos": "형", "answer": "skilled" },
+      { "meaning": "시제품, 원형",       "pos": "명", "answer": "prototype" },
+      { "meaning": "부서, 단위",         "pos": "명", "answer": "unit" },
+      { "meaning": "전반적인, 전체의",   "pos": "형", "answer": "overall" },
+      { "meaning": "신생 기업",          "pos": "명", "answer": "startup" },
+      { "meaning": "오류, 그릇된 생각",  "pos": "명", "answer": "fallacy" },
+      { "meaning": "안정적인",           "pos": "형", "answer": "stable" }
+    ],
+    "expressions": [
+      { "ko": "~을 책임지는",          "answer": "in charge of" },
+      { "ko": "합류시키다, 영입하다",  "answer": "bring on board" },
+      { "ko": "그 결과",               "answer": "as a result" },
+      { "ko": "~을 고려하다",          "answer": "allow for" },
+      { "ko": "반드시 ~인 것은 아닌",  "answer": "not necessarily" }
+    ],
+    "definitions": [
+      { "def": "to think that something is true without proof",            "answer": "assume" },
+      { "def": "a false belief or mistaken idea",                         "answer": "fallacy" },
+      { "def": "to act on each other or have an effect on each other",    "answer": "interact" },
+      { "def": "certain to fail or end badly",                            "answer": "doomed" },
+      { "def": "to gather and combine things in proper order",            "answer": "collate" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "We can sometimes {{1:assume/assuming}} that the whole will be {{2:as/so}} good as each of its parts.",
+      "ko_full": "우리는 때때로 전체가 그 부분 각각만큼 좋을 것이라고 가정할 수 있다.",
+      "answers": ["assume", "as"],
+      "explain": [
+        "조동사 can 뒤에는 동사원형 → assume.",
+        "원급 비교 as ~ as 구문 → 앞에 as."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "Suppose, for example, you're in charge of a startup, and you know that everyone you've {{1:brought/bringing}} on board {{2:is/are}} productive and efficient.",
+      "ko_full": "예를 들어, 당신이 한 스타트업을 책임지고 있고, 당신이 합류시킨 모든 사람이 생산적이고 효율적이라는 것을 안다고 가정해 보라.",
+      "answers": ["brought", "is"],
+      "explain": [
+        "현재완료 have + 과거분사 → brought.",
+        "주어 everyone은 단수 취급 → is."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "It might seem logical {{1:to assume/assuming}} that, as a result, the startup will be productive and efficient, too — but this isn't {{2:necessarily/necessary}} true.",
+      "ko_full": "그 결과 그 스타트업도 생산적이고 효율적일 것이라고 가정하는 것이 논리적으로 보일 수 있지만, 이것이 반드시 사실인 것은 아니다.",
+      "answers": ["to assume", "necessarily"],
+      "explain": [
+        "가주어 It ~ 진주어 to V 구문 → to assume.",
+        "동사(be) true를 수식하는 부분 부정 부사 → necessarily."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "The fallacy of composition fails {{1:to allow/allowing}} for {{2:how/what}} the different \"parts\" interact with each other.",
+      "ko_full": "구성의 오류는 서로 다른 \"부분들\"이 어떻게 서로 상호작용하는지를 고려하지 못한다.",
+      "answers": ["to allow", "how"],
+      "explain": [
+        "fail + to V 구문 → to allow.",
+        "완전한 절을 이끄는 의문사절(명사절) → how."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "Equally, a unit {{1:composed/composing}} of good people can still be working on a doomed project, and a project composed of good ideas {{2:may/maying}} lack a stable center.",
+      "ko_full": "마찬가지로, 좋은 사람들로 구성된 부서가 여전히 실패할 운명의 프로젝트를 진행할 수 있고, 좋은 아이디어들로 구성된 프로젝트가 안정적인 중심을 결여할 수도 있다.",
+      "answers": ["composed", "may"],
+      "explain": [
+        "be composed of (~로 구성되다)의 과거분사구가 unit 수식 → composed.",
+        "가능성 조동사 + 동사원형(lack) → may."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "When {{1:assembling/assembled}} a team with a common goal, always {{2:check/checks}} the overall view as well as the individuals involved.",
+      "ko_full": "공동의 목표를 가진 팀을 구성할 때는, 관련된 개인들뿐만 아니라 전체적인 관점도 항상 확인하라.",
+      "answers": ["assembling", "check"],
+      "explain": [
+        "When + 분사(you are 생략)의 능동 의미 → assembling.",
+        "명령문 → 동사원형 check."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "We can sometimes {{1:assume/verify}} that the whole will be as good as each of its parts.",
+      "ko_full": "우리는 때때로 전체가 그 부분 각각만큼 좋을 것이라고 가정할 수 있다.",
+      "answers": ["assume"],
+      "explain": ["증거 없이 '가정하다'는 통념 제시 — assume(↔verify 입증하다)."]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "Suppose you're in charge of a startup, and everyone you've brought on board is {{1:productive/unproductive}} and {{2:efficient/inefficient}}.",
+      "ko_full": "예를 들어, 당신이 한 스타트업을 책임지고 있고, 당신이 합류시킨 모든 사람이 생산적이고 효율적이라는 것을 안다고 가정해 보라.",
+      "answers": ["productive", "efficient"],
+      "explain": [
+        "유능한 구성원 — '생산적인' productive.",
+        "유능한 구성원 — '효율적인' efficient."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "It might seem {{1:logical/illogical}} to assume the startup will be productive too — but this isn't {{2:necessarily/definitely}} true.",
+      "ko_full": "그 결과 그 스타트업도 생산적이고 효율적일 것이라고 가정하는 것이 논리적으로 보일 수 있지만, 이것이 반드시 사실인 것은 아니다.",
+      "answers": ["logical", "necessarily"],
+      "explain": [
+        "그렇게 보이는 것이 '논리적' — logical.",
+        "부분 부정 '반드시 ~은 아니다' — not necessarily(↔definitely)."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "The fallacy of composition fails to {{1:allow for/ignore}} how the different \"parts\" {{2:interact/isolate}} with each other.",
+      "ko_full": "구성의 오류는 서로 다른 \"부분들\"이 어떻게 서로 상호작용하는지를 고려하지 못한다.",
+      "answers": ["allow for", "interact"],
+      "explain": [
+        "'고려하다' allow for(↔ignore 무시하다).",
+        "부분들이 서로 '상호작용하다' interact(↔isolate 고립시키다)."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "A unit composed of good people can still be working on a {{1:doomed/promising}} project, and a project of good ideas may lack a {{2:stable/unstable}} center.",
+      "ko_full": "마찬가지로, 좋은 사람들로 구성된 부서가 여전히 실패할 운명의 프로젝트를 진행할 수 있고, 좋은 아이디어들로 구성된 프로젝트가 안정적인 중심을 결여할 수도 있다.",
+      "answers": ["doomed", "stable"],
+      "explain": [
+        "'실패할 운명의' doomed(↔promising 유망한).",
+        "'안정적인' 중심을 결여 — stable(↔unstable)."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "When {{1:assembling/dispersing}} a team with a common goal, always check the {{2:overall/partial}} view as well as the individuals involved.",
+      "ko_full": "공동의 목표를 가진 팀을 구성할 때는, 관련된 개인들뿐만 아니라 전체적인 관점도 항상 확인하라.",
+      "answers": ["assembling", "overall"],
+      "explain": [
+        "팀을 '구성하다' assemble(↔disperse 흩어지게 하다).",
+        "'전체적인' 관점 overall(↔partial 부분적인)."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "a", "answer": "assume", "after": "that the whole" },
+        { "pos": 2, "letter": "w", "answer": "whole",  "after": "will be as good as" },
+        { "pos": 3, "letter": "p", "answer": "parts",  "after": "" }
+      ],
+      "ko_full": "우리는 때때로 전체가 그 부분 각각만큼 좋을 것이라고 가정할 수 있다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "c", "answer": "charge",     "after": "of a startup" },
+        { "pos": 2, "letter": "p", "answer": "productive", "after": "and efficient" },
+        { "pos": 3, "letter": "e", "answer": "efficient",  "after": "" }
+      ],
+      "ko_full": "예를 들어, 당신이 한 스타트업을 책임지고 있고, 당신이 합류시킨 모든 사람이 생산적이고 효율적이라는 것을 안다고 가정해 보라."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "l", "answer": "logical",     "after": "to assume" },
+        { "pos": 2, "letter": "r", "answer": "result",      "after": ", the startup" },
+        { "pos": 3, "letter": "n", "answer": "necessarily", "after": "true" }
+      ],
+      "ko_full": "그 결과 그 스타트업도 생산적이고 효율적일 것이라고 가정하는 것이 논리적으로 보일 수 있지만, 이것이 반드시 사실인 것은 아니다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "f", "answer": "fallacy",     "after": "of composition" },
+        { "pos": 2, "letter": "c", "answer": "composition", "after": "fails to allow for" },
+        { "pos": 3, "letter": "i", "answer": "interact",    "after": "with each other" }
+      ],
+      "ko_full": "구성의 오류는 서로 다른 \"부분들\"이 어떻게 서로 상호작용하는지를 고려하지 못한다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "u", "answer": "unit",    "after": "composed of good people" },
+        { "pos": 2, "letter": "d", "answer": "doomed",  "after": "project" },
+        { "pos": 3, "letter": "s", "answer": "stable",  "after": "center" }
+      ],
+      "ko_full": "마찬가지로, 좋은 사람들로 구성된 부서가 여전히 실패할 운명의 프로젝트를 진행할 수 있고, 좋은 아이디어들로 구성된 프로젝트가 안정적인 중심을 결여할 수도 있다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "a", "answer": "assembling", "after": "a team" },
+        { "pos": 2, "letter": "o", "answer": "overall",    "after": "view" },
+        { "pos": 3, "letter": "i", "answer": "individuals", "after": "involved" }
+      ],
+      "ko_full": "공동의 목표를 가진 팀을 구성할 때는, 관련된 개인들뿐만 아니라 전체적인 관점도 항상 확인하라."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["We", "can", "sometimes", "assume", "that", "the", "whole", "will", "be", "as", "good", "as", "each", "of", "its", "parts"],
+      "answer": "We can sometimes assume that the whole will be as good as each of its parts."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["Suppose", "for", "example", "you're", "in", "charge", "of", "a", "startup", "and", "you", "know", "that", "everyone", "you've", "brought", "on", "board", "is", "productive", "and", "efficient"],
+      "answer": "Suppose, for example, you're in charge of a startup, and you know that everyone you've brought on board is productive and efficient."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["It", "might", "seem", "logical", "to", "assume", "that", "as", "a", "result", "the", "startup", "will", "be", "productive", "and", "efficient", "too", "but", "this", "isn't", "necessarily", "true"],
+      "answer": "It might seem logical to assume that, as a result, the startup will be productive and efficient, too — but this isn't necessarily true."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["The", "fallacy", "of", "composition", "fails", "to", "allow", "for", "how", "the", "different", "parts", "interact", "with", "each", "other", "if", "for", "example", "your", "efficient", "administrator", "and", "your", "highly", "skilled", "head", "of", "IT", "each", "assumes", "the", "other", "is", "in", "charge", "of", "collating", "prototype", "test", "results", "then", "you", "have", "a", "problem"],
+      "answer": "The fallacy of composition fails to allow for how the different \"parts\" interact with each other — if, for example, your efficient administrator and your highly skilled head of IT each assumes the other is in charge of collating prototype test results, then you have a problem."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["Equally", "a", "unit", "composed", "of", "good", "people", "can", "still", "be", "working", "on", "a", "doomed", "project", "and", "a", "project", "composed", "of", "good", "ideas", "may", "lack", "a", "stable", "center"],
+      "answer": "Equally, a unit composed of good people can still be working on a doomed project, and a project composed of good ideas may lack a stable center."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["When", "assembling", "a", "team", "with", "a", "common", "goal", "always", "check", "the", "overall", "view", "as", "well", "as", "the", "individuals", "involved"],
+      "answer": "When assembling a team with a common goal, always check the overall view as well as the individuals involved."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 1, "no": 1 },
+    { "kind": "vocab",   "ref": 4, "no": 2 },
+    { "kind": "fill",    "ref": 5, "no": 3 },
+    { "kind": "ko",      "ref": 6, "no": 4 },
+    { "kind": "jumble",  "ref": 2, "no": 5 },
+    { "kind": "sent",    "ref": 3, "no": 6 },
+    { "kind": "grammar", "ref": 6, "no": 7 }
+  ]
+}

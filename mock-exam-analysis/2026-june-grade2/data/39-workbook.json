@@ -1,0 +1,374 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "39.json",
+  "_note": "39번 워크북 — 본문 7문장 풀커버.",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "differentiation", "pos": "명" },
+      { "word": "broadcast",       "pos": "동" },
+      { "word": "reputation",      "pos": "명" },
+      { "word": "embrace",         "pos": "동" },
+      { "word": "authentic",       "pos": "형" },
+      { "word": "commitment",      "pos": "명" },
+      { "word": "publicity",       "pos": "명" },
+      { "word": "charade",         "pos": "명" },
+      { "word": "disrupt",         "pos": "동" },
+      { "word": "boost",           "pos": "동" }
+    ],
+    "ko_to_en": [
+      { "meaning": "깨닫다, 실현하다", "pos": "동", "answer": "realise" },
+      { "meaning": "실제의",          "pos": "형", "answer": "actual" },
+      { "meaning": "사회적 목적",      "pos": "구", "answer": "social purpose" },
+      { "meaning": "마케터",          "pos": "명", "answer": "marketer" },
+      { "meaning": "그렇지 않으면",    "pos": "부", "answer": "otherwise" },
+      { "meaning": "겉치레, 눈속임",   "pos": "명", "answer": "window-dressing" },
+      { "meaning": "홍보, 광고 효과",  "pos": "명", "answer": "publicity" },
+      { "meaning": "묘사하다",        "pos": "동", "answer": "describe" },
+      { "meaning": "조장·촉진하다",    "pos": "동", "answer": "further" },
+      { "meaning": "자리매김하다",     "pos": "동", "answer": "position" }
+    ],
+    "expressions": [
+      { "ko": "변화를 만들다",       "answer": "make a difference" },
+      { "ko": "결국 ~에 이르다",     "answer": "end up with" },
+      { "ko": "손해 보다, 뒤처지다", "answer": "lose out" },
+      { "ko": "~에서 비롯되다",      "answer": "follow from" },
+      { "ko": "잠깐 동안",          "answer": "for a short while" }
+    ],
+    "definitions": [
+      { "def": "to make something known to many people widely",            "answer": "broadcast" },
+      { "def": "real and genuine, not fake or copied",                     "answer": "authentic" },
+      { "def": "a strong dedication to a cause or activity",               "answer": "commitment" },
+      { "def": "the state of being known to the public, often for promotion", "answer": "publicity" },
+      { "def": "a pretense or false display meant to deceive",             "answer": "charade" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "{{1:Realising/Realised}} the benefits of differentiation, some brands broadcast their social purpose {{2:before/after}} they do much actual good.",
+      "ko_full": "차별화의 이점을 깨닫고, 일부 브랜드는 실제로 많은 선행을 하기도 전에 자신의 사회적 목적을 떠벌린다.",
+      "answers": ["Realising", "before"],
+      "answers_distractor": ["Realised", "after"],
+      "explain": [
+        "주절 주어(some brands)와 능동 관계인 분사구문 → 현재분사 Realising.",
+        "'선행을 하기 전에' 떠벌린다 — 접속사 before."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "Their marketers are using social purpose to boost the brand's reputation, rather than {{1:embracing/embrace}} the purpose {{2:itself/themselves}}.",
+      "ko_full": "그들의 마케터는 목적 자체를 받아들이기보다, 사회적 목적을 브랜드 평판을 높이는 데 이용하고 있다.",
+      "answers": ["embracing", "itself"],
+      "answers_distractor": ["embrace", "themselves"],
+      "explain": [
+        "rather than + 동명사 — 앞의 using과 병렬, embracing.",
+        "강조하는 대상 the purpose(단수) → 재귀대명사 itself."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "Making a real difference with social problems {{1:is/are}} hard enough; to succeed, it has to {{2:follow/be followed}} from an authentic, company-wide commitment to the purpose.",
+      "ko_full": "사회 문제로 실제 변화를 만드는 것은 그 자체로 충분히 어렵다. 성공하려면 그것은 진정한, 회사 전체 차원의 목적에 대한 헌신에서 나와야 한다.",
+      "answers": ["is", "follow"],
+      "answers_distractor": ["are", "be followed"],
+      "explain": [
+        "동명사 주어 Making ... 은 단수 취급 → is.",
+        "follow from(~에서 비롯되다)은 자동사 표현 — 수동태 불가, 능동 follow."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "Otherwise the mission is just window-dressing, or what we call \"purpose-washing\" — similar to green-washing, {{1:where/which}} purpose-driven activities {{2:serve/serves}} mainly for publicity purposes.",
+      "ko_full": "그렇지 않으면 그 사명은 그저 겉치레, 즉 우리가 \"목적 세탁\"이라 부르는 것 — 목적 지향 활동이 주로 홍보 목적에 쓰이는, 그린워싱과 유사한 것 — 에 불과하다.",
+      "answers": ["where", "serve"],
+      "answers_distractor": ["which", "serves"],
+      "explain": [
+        "뒤가 완전한 절이고 green-washing(상황)을 부연 → 관계부사 where.",
+        "주어 activities(복수) → serve."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "We end up with {{1:what/that}} Anand Giridhardas describes in Winners Take All: \"social purpose that just furthers the charade of elites {{2:disrupting/disrupted}} the old order without giving much back\".",
+      "ko_full": "우리는 결국 Anand Giridhardas가 『Winners Take All』에서 묘사한 것, 즉 \"많은 것을 되돌려주지 않으면서 기존 질서를 뒤흔드는 엘리트들의 가식을 그저 부추기는 사회적 목적\"에 이르게 된다.",
+      "answers": ["what", "disrupting"],
+      "answers_distractor": ["that", "disrupted"],
+      "explain": [
+        "선행사를 포함하고 describes의 목적어가 빠진 절 → 관계대명사 what.",
+        "elites가 능동으로 질서를 뒤흔드는 관계 → 현재분사 disrupting."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "Purpose-washing brands {{1:gain/gains}} one of the benefits of social purpose, differentiation, but only {{2:for/during}} a short while.",
+      "ko_full": "목적 세탁 브랜드는 사회적 목적의 이점 중 하나인 차별화를 얻지만, 잠깐 동안일 뿐이다.",
+      "answers": ["gain", "for"],
+      "answers_distractor": ["gains", "during"],
+      "explain": [
+        "주어 brands(복수) → gain.",
+        "기간의 길이(a short while) 앞에는 전치사 for."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "They lose out on positioning for future markets, and they might even make employees {{1:feel/to feel}} worse about {{2:working/work}} for them.",
+      "ko_full": "그들은 미래 시장을 위한 자리매김에서 손해를 보고, 심지어 직원들이 그들을 위해 일하는 것에 대해 더 나쁘게 느끼게 만들 수도 있다.",
+      "answers": ["feel", "working"],
+      "answers_distractor": ["to feel", "work"],
+      "explain": [
+        "사역동사 make + 목적어 + 동사원형 → feel.",
+        "전치사 about의 목적어 → 동명사 working."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Realising the benefits of {{1:differentiation/uniformity}}, some brands {{2:broadcast/conceal}} their social purpose before they do much actual good.",
+      "ko_full": "차별화의 이점을 깨닫고, 일부 브랜드는 실제로 많은 선행을 하기도 전에 자신의 사회적 목적을 떠벌린다.",
+      "answers": ["differentiation", "broadcast"],
+      "answers_distractor": ["uniformity", "conceal"],
+      "explain": [
+        "'차별화'의 이점 — differentiation.",
+        "목적을 '떠벌린다(널리 알린다)' — broadcast."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "Their marketers are using social purpose to {{1:boost/lower}} the brand's reputation, rather than {{2:embracing/rejecting}} the purpose itself.",
+      "ko_full": "그들의 마케터는 목적 자체를 받아들이기보다, 사회적 목적을 브랜드 평판을 높이는 데 이용하고 있다.",
+      "answers": ["boost", "embracing"],
+      "answers_distractor": ["lower", "rejecting"],
+      "explain": [
+        "평판을 '높이다' — boost.",
+        "목적 자체를 '받아들이다' — embrace."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "Making a real difference with social problems is hard enough; to succeed, it has to follow from an {{1:authentic/fake}}, company-wide {{2:commitment/indifference}} to the purpose.",
+      "ko_full": "사회 문제로 실제 변화를 만드는 것은 그 자체로 충분히 어렵다. 성공하려면 그것은 진정한, 회사 전체 차원의 목적에 대한 헌신에서 나와야 한다.",
+      "answers": ["authentic", "commitment"],
+      "answers_distractor": ["fake", "indifference"],
+      "explain": [
+        "'진정한' 헌신 — authentic.",
+        "목적에 대한 '헌신' — commitment."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "Otherwise the mission is just {{1:window-dressing/substance}}, or what we call \"purpose-washing,\" where purpose-driven activities serve mainly for {{2:publicity/secrecy}} purposes.",
+      "ko_full": "그렇지 않으면 그 사명은 그저 겉치레, 즉 우리가 \"목적 세탁\"이라 부르는 것 — 목적 지향 활동이 주로 홍보 목적에 쓰이는, 그린워싱과 유사한 것 — 에 불과하다.",
+      "answers": ["window-dressing", "publicity"],
+      "answers_distractor": ["substance", "secrecy"],
+      "explain": [
+        "그저 '겉치레' — window-dressing.",
+        "주로 '홍보' 목적 — publicity."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "We end up with what Anand Giridhardas describes: \"social purpose that just {{1:furthers/hinders}} the charade of elites disrupting the old order without giving much back\".",
+      "ko_full": "우리는 결국 Anand Giridhardas가 『Winners Take All』에서 묘사한 것, 즉 \"많은 것을 되돌려주지 않으면서 기존 질서를 뒤흔드는 엘리트들의 가식을 그저 부추기는 사회적 목적\"에 이르게 된다.",
+      "answers": ["furthers"],
+      "answers_distractor": ["hinders"],
+      "explain": [
+        "엘리트의 가식을 그저 '조장·부추기다' — further."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "Purpose-washing brands {{1:gain/lose}} one of the benefits of social purpose, {{2:differentiation/uniformity}}, but only for a short while.",
+      "ko_full": "목적 세탁 브랜드는 사회적 목적의 이점 중 하나인 차별화를 얻지만, 잠깐 동안일 뿐이다.",
+      "answers": ["gain", "differentiation"],
+      "answers_distractor": ["lose", "uniformity"],
+      "explain": [
+        "이점을 '얻다' — gain.",
+        "이점인 '차별화' — differentiation."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "They {{1:lose out/benefit}} on positioning for future markets, and they might even make employees feel {{2:worse/better}} about working for them.",
+      "ko_full": "그들은 미래 시장을 위한 자리매김에서 손해를 보고, 심지어 직원들이 그들을 위해 일하는 것에 대해 더 나쁘게 느끼게 만들 수도 있다.",
+      "answers": ["lose out", "worse"],
+      "answers_distractor": ["benefit", "better"],
+      "explain": [
+        "자리매김에서 '손해 보다' — lose out.",
+        "직원이 '더 나쁘게' 느끼다 — worse."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "b", "answer": "benefits",        "after": "of differentiation" },
+        { "pos": 2, "letter": "d", "answer": "differentiation", "after": ", some brands" },
+        { "pos": 3, "letter": "b", "answer": "broadcast",       "after": "their social purpose" },
+        { "pos": 4, "letter": "a", "answer": "actual",          "after": "good" }
+      ],
+      "ko_full": "차별화의 이점을 깨닫고, 일부 브랜드는 실제로 많은 선행을 하기도 전에 자신의 사회적 목적을 떠벌린다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "m", "answer": "marketers",  "after": "are using" },
+        { "pos": 2, "letter": "b", "answer": "boost",      "after": "the brand's reputation" },
+        { "pos": 3, "letter": "r", "answer": "reputation", "after": ", rather than" },
+        { "pos": 4, "letter": "e", "answer": "embracing",  "after": "the purpose itself" }
+      ],
+      "ko_full": "그들의 마케터는 목적 자체를 받아들이기보다, 사회적 목적을 브랜드 평판을 높이는 데 이용하고 있다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "d", "answer": "difference",  "after": "with social problems" },
+        { "pos": 2, "letter": "s", "answer": "succeed",     "after": ", it has to follow" },
+        { "pos": 3, "letter": "a", "answer": "authentic",   "after": ", company-wide" },
+        { "pos": 4, "letter": "c", "answer": "commitment",  "after": "to the purpose" }
+      ],
+      "ko_full": "사회 문제로 실제 변화를 만드는 것은 그 자체로 충분히 어렵다. 성공하려면 그것은 진정한, 회사 전체 차원의 목적에 대한 헌신에서 나와야 한다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "m", "answer": "mission",     "after": "is just window-dressing" },
+        { "pos": 2, "letter": "p", "answer": "purpose",     "after": "-washing" },
+        { "pos": 3, "letter": "g", "answer": "green",       "after": "-washing" },
+        { "pos": 4, "letter": "p", "answer": "publicity",   "after": "purposes" }
+      ],
+      "ko_full": "그렇지 않으면 그 사명은 그저 겉치레, 즉 우리가 \"목적 세탁\"이라 부르는 것 — 목적 지향 활동이 주로 홍보 목적에 쓰이는, 그린워싱과 유사한 것 — 에 불과하다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "d", "answer": "describes", "after": "in Winners Take All" },
+        { "pos": 2, "letter": "f", "answer": "furthers",  "after": "the charade" },
+        { "pos": 3, "letter": "c", "answer": "charade",   "after": "of elites" },
+        { "pos": 4, "letter": "d", "answer": "disrupting", "after": "the old order" }
+      ],
+      "ko_full": "우리는 결국 Anand Giridhardas가 『Winners Take All』에서 묘사한 것, 즉 \"많은 것을 되돌려주지 않으면서 기존 질서를 뒤흔드는 엘리트들의 가식을 그저 부추기는 사회적 목적\"에 이르게 된다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "b", "answer": "benefits",        "after": "of social purpose" },
+        { "pos": 2, "letter": "d", "answer": "differentiation", "after": ", but only" },
+        { "pos": 3, "letter": "s", "answer": "short",           "after": "while" }
+      ],
+      "ko_full": "목적 세탁 브랜드는 사회적 목적의 이점 중 하나인 차별화를 얻지만, 잠깐 동안일 뿐이다."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "hints": [
+        { "pos": 1, "letter": "p", "answer": "positioning", "after": "for future markets" },
+        { "pos": 2, "letter": "m", "answer": "markets",     "after": ", and they might" },
+        { "pos": 3, "letter": "e", "answer": "employees",   "after": "feel worse" },
+        { "pos": 4, "letter": "w", "answer": "worse",       "after": "about working" }
+      ],
+      "ko_full": "그들은 미래 시장을 위한 자리매김에서 손해를 보고, 심지어 직원들이 그들을 위해 일하는 것에 대해 더 나쁘게 느끼게 만들 수도 있다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 },
+    { "no": 7, "ref_sentence": 7 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["Realising", "the", "benefits", "of", "differentiation", "some", "brands", "broadcast", "their", "social", "purpose", "before", "they", "do", "much", "actual", "good"],
+      "answer": "Realising the benefits of differentiation, some brands broadcast their social purpose before they do much actual good."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["Their", "marketers", "are", "using", "social", "purpose", "to", "boost", "the", "brand's", "reputation", "rather", "than", "embracing", "the", "purpose", "itself"],
+      "answer": "Their marketers are using social purpose to boost the brand's reputation, rather than embracing the purpose itself."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["Making", "a", "real", "difference", "with", "social", "problems", "is", "hard", "enough", "to", "succeed", "it", "has", "to", "follow", "from", "an", "authentic", "company-wide", "commitment", "to", "the", "purpose"],
+      "answer": "Making a real difference with social problems is hard enough; to succeed, it has to follow from an authentic, company-wide commitment to the purpose."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["Otherwise", "the", "mission", "is", "just", "window-dressing", "or", "what", "we", "call", "purpose-washing", "similar", "to", "green-washing", "where", "purpose-driven", "activities", "serve", "mainly", "for", "publicity", "purposes"],
+      "answer": "Otherwise the mission is just window-dressing, or what we call \"purpose-washing\" — similar to green-washing, where purpose-driven activities serve mainly for publicity purposes."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["We", "end", "up", "with", "what", "Anand", "Giridhardas", "describes", "in", "Winners", "Take", "All", "social", "purpose", "that", "just", "furthers", "the", "charade", "of", "elites", "disrupting", "the", "old", "order", "without", "giving", "much", "back"],
+      "answer": "We end up with what Anand Giridhardas describes in Winners Take All: \"social purpose that just furthers the charade of elites disrupting the old order without giving much back\"."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["Purpose-washing", "brands", "gain", "one", "of", "the", "benefits", "of", "social", "purpose", "differentiation", "but", "only", "for", "a", "short", "while"],
+      "answer": "Purpose-washing brands gain one of the benefits of social purpose, differentiation, but only for a short while."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "words": ["They", "lose", "out", "on", "positioning", "for", "future", "markets", "and", "they", "might", "even", "make", "employees", "feel", "worse", "about", "working", "for", "them"],
+      "answer": "They lose out on positioning for future markets, and they might even make employees feel worse about working for them."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" },
+    { "no": 7, "ref_sentence": 7, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 1, "no": 1 },
+    { "kind": "vocab",   "ref": 3, "no": 2 },
+    { "kind": "fill",    "ref": 4, "no": 3 },
+    { "kind": "ko",      "ref": 5, "no": 4 },
+    { "kind": "jumble",  "ref": 6, "no": 5 },
+    { "kind": "sent",    "ref": 7, "no": 6 },
+    { "kind": "grammar", "ref": 5, "no": 7 },
+    { "kind": "vocab",   "ref": 2, "no": 8 }
+  ]
+}

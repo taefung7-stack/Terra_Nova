@@ -1,0 +1,432 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "34.json",
+  "_note": "34번 워크북 — 본문 9문장 풀커버.",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "metropolitan",   "pos": "형" },
+      { "word": "implication",    "pos": "명" },
+      { "word": "efficient",      "pos": "형" },
+      { "word": "resource",       "pos": "명" },
+      { "word": "supply",         "pos": "동" },
+      { "word": "capital",        "pos": "명" },
+      { "word": "entrepreneurial", "pos": "형" },
+      { "word": "suppose",        "pos": "동" },
+      { "word": "operate",        "pos": "동" },
+      { "word": "substitute",     "pos": "동" }
+    ],
+    "ko_to_en": [
+      { "meaning": "사용, 고용",         "pos": "명", "answer": "employment" },
+      { "meaning": "노점 수레",          "pos": "구", "answer": "vending cart" },
+      { "meaning": "인기 있는",          "pos": "형", "answer": "popular" },
+      { "meaning": "노동",               "pos": "명", "answer": "labor" },
+      { "meaning": "재료, 성분",         "pos": "명", "answer": "ingredient" },
+      { "meaning": "소매 공간",          "pos": "구", "answer": "retail space" },
+      { "meaning": "임대되다",           "pos": "동", "answer": "rent" },
+      { "meaning": "상업의",             "pos": "형", "answer": "commercial" },
+      { "meaning": "허가증",             "pos": "명", "answer": "permit" },
+      { "meaning": "값비싼",             "pos": "형", "answer": "costly" }
+    ],
+    "expressions": [
+      { "ko": "~에 함의를 갖다",   "answer": "have implications for" },
+      { "ko": "A부터 B까지",       "answer": "from A to B" },
+      { "ko": "최대 ~만큼",        "answer": "as much as" },
+      { "ko": "~을 제외하면",      "answer": "aside from" },
+      { "ko": "B 대신 A를 쓰다",   "answer": "substitute A for B" }
+    ],
+    "definitions": [
+      { "def": "relating to a large, busy city and its surrounding area",          "answer": "metropolitan" },
+      { "def": "working well without wasting time, money, or energy",              "answer": "efficient" },
+      { "def": "to give or provide something that is needed",                       "answer": "supply" },
+      { "def": "to run or manage a business or machine",                            "answer": "operate" },
+      { "def": "an official document that allows you to do something",              "answer": "permit" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "The high price of land in metropolitan areas {{1:has/have}} implications for the efficient {{2:employment/employ}} of resources.",
+      "ko_full": "대도시의 높은 땅값은 자원의 효율적 사용에 함의를 갖는다.",
+      "answers": ["has", "employment"],
+      "explain": [
+        "주어 핵 = The high price (단수) → has.",
+        "the efficient ___ of resources, 형용사 뒤 명사 자리 → employment."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "For example, in New York City, as in many large cities, sidewalk vending carts {{1:sell/sells}} everything from hot dogs {{2:to/for}} ice cream.",
+      "ko_full": "예를 들어, 많은 대도시에서처럼 뉴욕시에서도 보도 노점 수레는 핫도그부터 아이스크림까지 온갖 것을 판다.",
+      "answers": ["sell", "to"],
+      "explain": [
+        "주어 carts (복수) → 복수 동사 sell.",
+        "from A to B 상관 구문 → to."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "Why {{1:are/is}} these carts so popular, {{2:with/of}} over 3,000 in New York City alone?",
+      "ko_full": "뉴욕시에만 3,000개가 넘는 이 수레들은 왜 그토록 인기가 있을까?",
+      "answers": ["are", "with"],
+      "explain": [
+        "주어 these carts (복수) → are.",
+        "부대상황 '~을 가진 채' — 전치사 with."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "Consider the resources {{1:used/using}} to supply hot dogs: land, labor, capital, entrepreneurial ability, plus intermediate goods {{2:such as/as such}} hot dogs, buns, and other ingredients.",
+      "ko_full": "핫도그를 공급하는 데 쓰이는 자원, 즉 토지·노동·자본·기업가적 능력과 핫도그·빵·기타 재료 같은 중간재를 생각해 보라.",
+      "answers": ["used", "such as"],
+      "explain": [
+        "resources가 '쓰이는' 대상 → 수동 의미 과거분사 used.",
+        "예시 도입 '~와 같은' — such as."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "{{1:Which/What}} of these do you suppose {{2:is/are}} most expensive in New York City?",
+      "ko_full": "이 중에서 뉴욕시에서 가장 비싼 것은 무엇이라고 생각하는가?",
+      "answers": ["Which", "is"],
+      "explain": [
+        "정해진 보기 중 선택 'of these' → Which.",
+        "주어 Which(단수, 하나) → is."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "Retail space along Madison Avenue {{1:rents/is rented}} for an average of $550 a year {{2:per/by}} square foot.",
+      "ko_full": "매디슨 가를 따라 있는 소매 공간은 1제곱피트당 연평균 550달러에 임대된다.",
+      "answers": ["rents", "per"],
+      "explain": [
+        "rent for + 금액: 능동형으로 '~에 임대되다'(자동사 용법) → rents.",
+        "단가 '~당' — per."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "Because operating a hot dog cart {{1:requires/require}} about 4 square yards, it could cost as much as $20,000 a year {{2:to rent/renting}} that much commercial space.",
+      "ko_full": "핫도그 수레 운영에는 약 4제곱야드가 필요하므로, 그만큼의 상업 공간을 임대하는 데 연간 최대 2만 달러가 들 수 있다.",
+      "answers": ["requires", "to rent"],
+      "explain": [
+        "주어 동명사구 operating ... (단수 취급) → requires.",
+        "가주어 it ~ 진주어 to부정사 → to rent."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "Aside from the necessary public permits, however, space on the public sidewalk {{1:is/are}} {{2:free/freely}} to vendors.",
+      "ko_full": "그러나 필요한 공공 허가증을 제외하면, 공공 보도의 공간은 노점상에게 무료이다.",
+      "answers": ["is", "free"],
+      "explain": [
+        "주어 핵 = space (단수) → is.",
+        "be동사 보어 자리 형용사 → free."
+      ]
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "en_template": "Profit-maximizing street vendors {{1:substitute/substitution}} public sidewalks {{2:for/with}} costly commercial space.",
+      "ko_full": "이윤을 극대화하는 노점상은 값비싼 상업 공간 대신 공공 보도를 활용한다.",
+      "answers": ["substitute", "for"],
+      "explain": [
+        "주어 뒤 동사 자리 → substitute(동사).",
+        "substitute A for B 구문 → for."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "The high price of land in {{1:metropolitan/rural}} areas has {{2:implications/exemptions}} for the efficient employment of resources.",
+      "ko_full": "대도시의 높은 땅값은 자원의 효율적 사용에 함의를 갖는다.",
+      "answers": ["metropolitan", "implications"],
+      "explain": [
+        "높은 땅값은 '대도시'의 특징 — metropolitan.",
+        "자원 사용에 대한 '함의' — implications."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "In New York City, sidewalk {{1:vending/repairing}} carts sell everything from hot dogs to ice cream.",
+      "ko_full": "뉴욕시에서 보도 노점 수레는 핫도그부터 아이스크림까지 온갖 것을 판다.",
+      "answers": ["vending"],
+      "explain": ["물건을 '파는' 노점 수레 — vending cart."]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "Why are these carts so {{1:popular/unpopular}}, with over 3,000 in New York City {{2:alone/together}}?",
+      "ko_full": "뉴욕시에만 3,000개가 넘는 이 수레들은 왜 그토록 인기가 있을까?",
+      "answers": ["popular", "alone"],
+      "explain": [
+        "그토록 '인기 있는' — popular.",
+        "'~만/~에만'의 한정 — alone."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "Consider the resources used to {{1:supply/withhold}} hot dogs: land, labor, capital, entrepreneurial ability, plus {{2:intermediate/final}} goods such as buns and other ingredients.",
+      "ko_full": "핫도그를 공급하는 데 쓰이는 자원, 즉 토지·노동·자본·기업가적 능력과 빵·기타 재료 같은 중간재를 생각해 보라.",
+      "answers": ["supply", "intermediate"],
+      "explain": [
+        "핫도그를 '공급하는' — supply.",
+        "빵·재료는 '중간재' — intermediate goods."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "Which of these do you {{1:suppose/doubt}} is most {{2:expensive/cheap}} in New York City?",
+      "ko_full": "이 중에서 뉴욕시에서 가장 비싼 것은 무엇이라고 생각하는가?",
+      "answers": ["suppose", "expensive"],
+      "explain": [
+        "'생각하는가' — suppose.",
+        "가장 '비싼' 것 — expensive."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "{{1:Retail/Residential}} space along Madison Avenue {{2:rents/buys}} for an average of $550 a year per square foot.",
+      "ko_full": "매디슨 가를 따라 있는 소매 공간은 1제곱피트당 연평균 550달러에 임대된다.",
+      "answers": ["Retail", "rents"],
+      "explain": [
+        "상업용 '소매' 공간 — Retail space.",
+        "'~에 임대되다' — rents for."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "Because operating a hot dog cart {{1:requires/refuses}} about 4 square yards, it could cost as much as $20,000 a year to rent that much {{2:commercial/residential}} space.",
+      "ko_full": "핫도그 수레 운영에는 약 4제곱야드가 필요하므로, 그만큼의 상업 공간을 임대하는 데 연간 최대 2만 달러가 들 수 있다.",
+      "answers": ["requires", "commercial"],
+      "explain": [
+        "공간을 '필요로 한다' — requires.",
+        "임대 대상은 '상업' 공간 — commercial."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "{{1:Aside from/Including}} the necessary public permits, however, space on the public sidewalk is {{2:free/costly}} to vendors.",
+      "ko_full": "그러나 필요한 공공 허가증을 제외하면, 공공 보도의 공간은 노점상에게 무료이다.",
+      "answers": ["Aside from", "free"],
+      "explain": [
+        "허가증을 '제외하면' — Aside from.",
+        "보도 공간은 노점상에게 '무료' — free."
+      ]
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "en_template": "{{1:Profit-maximizing/Non-profit}} street vendors {{2:substitute/retain}} public sidewalks for costly commercial space.",
+      "ko_full": "이윤을 극대화하는 노점상은 값비싼 상업 공간 대신 공공 보도를 활용한다.",
+      "answers": ["Profit-maximizing", "substitute"],
+      "explain": [
+        "'이윤을 극대화하는' 노점상 — Profit-maximizing.",
+        "비싼 공간을 보도로 '대체하다' — substitute."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "p", "answer": "price",        "after": "of land" },
+        { "pos": 2, "letter": "m", "answer": "metropolitan", "after": "areas" },
+        { "pos": 3, "letter": "e", "answer": "efficient",    "after": "employment" },
+        { "pos": 4, "letter": "r", "answer": "resources",    "after": "" }
+      ],
+      "ko_full": "대도시의 높은 땅값은 자원의 효율적 사용에 함의를 갖는다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "s", "answer": "sidewalk",   "after": "vending carts" },
+        { "pos": 2, "letter": "v", "answer": "vending",    "after": "carts" },
+        { "pos": 3, "letter": "e", "answer": "everything", "after": "from hot dogs" }
+      ],
+      "ko_full": "예를 들어, 많은 대도시에서처럼 뉴욕시에서도 보도 노점 수레는 핫도그부터 아이스크림까지 온갖 것을 판다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "p", "answer": "popular", "after": ", with over 3,000" },
+        { "pos": 2, "letter": "a", "answer": "alone",   "after": "" }
+      ],
+      "ko_full": "뉴욕시에만 3,000개가 넘는 이 수레들은 왜 그토록 인기가 있을까?"
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "r", "answer": "resources",     "after": "used to supply" },
+        { "pos": 2, "letter": "c", "answer": "capital",       "after": ", entrepreneurial ability" },
+        { "pos": 3, "letter": "i", "answer": "intermediate",  "after": "goods" },
+        { "pos": 4, "letter": "i", "answer": "ingredients",   "after": "" }
+      ],
+      "ko_full": "핫도그를 공급하는 데 쓰이는 자원, 즉 토지·노동·자본·기업가적 능력과 핫도그·빵·기타 재료 같은 중간재를 생각해 보라."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "s", "answer": "suppose",   "after": "is most expensive" },
+        { "pos": 2, "letter": "e", "answer": "expensive", "after": "in New York City" }
+      ],
+      "ko_full": "이 중에서 뉴욕시에서 가장 비싼 것은 무엇이라고 생각하는가?"
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "r", "answer": "retail",  "after": "space along Madison Avenue" },
+        { "pos": 2, "letter": "r", "answer": "rents",   "after": "for an average" },
+        { "pos": 3, "letter": "a", "answer": "average", "after": "of $550 a year" }
+      ],
+      "ko_full": "매디슨 가를 따라 있는 소매 공간은 1제곱피트당 연평균 550달러에 임대된다."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "hints": [
+        { "pos": 1, "letter": "o", "answer": "operating",  "after": "a hot dog cart" },
+        { "pos": 2, "letter": "r", "answer": "requires",   "after": "about 4 square yards" },
+        { "pos": 3, "letter": "c", "answer": "commercial", "after": "space" }
+      ],
+      "ko_full": "핫도그 수레 운영에는 약 4제곱야드가 필요하므로, 그만큼의 상업 공간을 임대하는 데 연간 최대 2만 달러가 들 수 있다."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "hints": [
+        { "pos": 1, "letter": "p", "answer": "permits",  "after": ", however" },
+        { "pos": 2, "letter": "s", "answer": "sidewalk", "after": "is free" },
+        { "pos": 3, "letter": "f", "answer": "free",     "after": "to vendors" }
+      ],
+      "ko_full": "그러나 필요한 공공 허가증을 제외하면, 공공 보도의 공간은 노점상에게 무료이다."
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "hints": [
+        { "pos": 1, "letter": "v", "answer": "vendors",    "after": "substitute public sidewalks" },
+        { "pos": 2, "letter": "s", "answer": "substitute", "after": "public sidewalks" },
+        { "pos": 3, "letter": "c", "answer": "costly",     "after": "commercial space" }
+      ],
+      "ko_full": "이윤을 극대화하는 노점상은 값비싼 상업 공간 대신 공공 보도를 활용한다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 },
+    { "no": 7, "ref_sentence": 7 },
+    { "no": 8, "ref_sentence": 8 },
+    { "no": 9, "ref_sentence": 9 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["The", "high", "price", "of", "land", "in", "metropolitan", "areas", "has", "implications", "for", "the", "efficient", "employment", "of", "resources"],
+      "answer": "The high price of land in metropolitan areas has implications for the efficient employment of resources."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["For", "example", "in", "New", "York", "City", "as", "in", "many", "large", "cities", "sidewalk", "vending", "carts", "sell", "everything", "from", "hot", "dogs", "to", "ice", "cream"],
+      "answer": "For example, in New York City, as in many large cities, sidewalk vending carts sell everything from hot dogs to ice cream."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["Why", "are", "these", "carts", "so", "popular", "with", "over", "3,000", "in", "New", "York", "City", "alone"],
+      "answer": "Why are these carts so popular, with over 3,000 in New York City alone?"
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["Consider", "the", "resources", "used", "to", "supply", "hot", "dogs", "land", "labor", "capital", "entrepreneurial", "ability", "plus", "intermediate", "goods", "such", "as", "hot", "dogs", "buns", "and", "other", "ingredients"],
+      "answer": "Consider the resources used to supply hot dogs: land, labor, capital, entrepreneurial ability, plus intermediate goods such as hot dogs, buns, and other ingredients."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["Which", "of", "these", "do", "you", "suppose", "is", "most", "expensive", "in", "New", "York", "City"],
+      "answer": "Which of these do you suppose is most expensive in New York City?"
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["Retail", "space", "along", "Madison", "Avenue", "rents", "for", "an", "average", "of", "$550", "a", "year", "per", "square", "foot"],
+      "answer": "Retail space along Madison Avenue rents for an average of $550 a year per square foot."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "words": ["Because", "operating", "a", "hot", "dog", "cart", "requires", "about", "4", "square", "yards", "it", "could", "cost", "as", "much", "as", "$20,000", "a", "year", "to", "rent", "that", "much", "commercial", "space"],
+      "answer": "Because operating a hot dog cart requires about 4 square yards, it could cost as much as $20,000 a year to rent that much commercial space."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "words": ["Aside", "from", "the", "necessary", "public", "permits", "however", "space", "on", "the", "public", "sidewalk", "is", "free", "to", "vendors"],
+      "answer": "Aside from the necessary public permits, however, space on the public sidewalk is free to vendors."
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "words": ["Profit-maximizing", "street", "vendors", "substitute", "public", "sidewalks", "for", "costly", "commercial", "space"],
+      "answer": "Profit-maximizing street vendors substitute public sidewalks for costly commercial space."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" },
+    { "no": 7, "ref_sentence": 7, "given": "ko" },
+    { "no": 8, "ref_sentence": 8, "given": "ko" },
+    { "no": 9, "ref_sentence": 9, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 1, "no": 1 },
+    { "kind": "vocab",   "ref": 4, "no": 2 },
+    { "kind": "fill",    "ref": 6, "no": 3 },
+    { "kind": "ko",      "ref": 7, "no": 4 },
+    { "kind": "jumble",  "ref": 8, "no": 5 },
+    { "kind": "sent",    "ref": 9, "no": 6 },
+    { "kind": "grammar", "ref": 5, "no": 7 },
+    { "kind": "vocab",   "ref": 8, "no": 8 }
+  ]
+}

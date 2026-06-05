@@ -1,0 +1,389 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "21.json",
+  "_note": "21번 워크북 — 본문 8문장 풀커버.",
+  "_template_for_new_rounds": "이 파일을 새 회차의 {N}-workbook.json 작성 시 템플릿으로 사용. en_template의 {{N:A/B}} 토큰 = 양자택일 박스, hints 배열 = 빈칸 첫글자, jumble.words = 단어 배열 (셔플 X, 의도 유지).",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "excel",        "pos": "동" },
+      { "word": "rehearse",     "pos": "동" },
+      { "word": "forthcoming",  "pos": "형" },
+      { "word": "penalty",      "pos": "명" },
+      { "word": "authentic",    "pos": "형" },
+      { "word": "self-restraint","pos": "명" },
+      { "word": "substitute",   "pos": "명" },
+      { "word": "incentive",    "pos": "명" },
+      { "word": "starve",       "pos": "동" },
+      { "word": "appetite",     "pos": "명" }
+    ],
+    "ko_to_en": [
+      { "meaning": "시각적 심상",       "pos": "명구", "answer": "visual imagery" },
+      { "meaning": "진화하다",          "pos": "동",   "answer": "evolve" },
+      { "meaning": "내적인, 내부의",    "pos": "형",   "answer": "internal" },
+      { "meaning": "단서, 암시",        "pos": "명",   "answer": "hint" },
+      { "meaning": "영역, 부위",        "pos": "명",   "answer": "region" },
+      { "meaning": "표상, 재현",        "pos": "명",   "answer": "representation" },
+      { "meaning": "유전자",            "pos": "명",   "answer": "genes" },
+      { "meaning": "연회, 잔치",        "pos": "명",   "answer": "banquet" },
+      { "meaning": "먹다, 소비하다",    "pos": "동",   "answer": "consume" },
+      { "meaning": "물리게 하다",       "pos": "동",   "answer": "cloy" }
+    ],
+    "expressions": [
+      { "ko": "~에 뛰어나다",            "answer": "excel at" },
+      { "ko": "반드시 ~하도록 하다",     "answer": "see to it that" },
+      { "ko": "내부에서 만들어진",       "answer": "internally generated" },
+      { "ko": "굶어 죽다",               "answer": "starve to death" },
+      { "ko": "~측의, ~쪽에서 한",       "answer": "on one's part" }
+    ],
+    "definitions": [
+      { "def": "to be extremely good at something",                       "answer": "excel" },
+      { "def": "to practice something before doing it for real",          "answer": "rehearse" },
+      { "def": "real and genuine, not a copy",                            "answer": "authentic" },
+      { "def": "the act of controlling your own feelings or desires",     "answer": "self-restraint" },
+      { "def": "something that encourages you to do something",           "answer": "incentive" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Humans {{1:excel/excels}} at visual imagery.",
+      "ko_full": "인간은 시각적 심상에 매우 뛰어나다.",
+      "answers": ["excel"],
+      "explain": [
+        "주어 Humans(복수) → 동사 excel."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "Our brains evolved this ability to create an internal mental picture or model of the world {{1:in which/which}} we can rehearse forthcoming actions, without the risks or the penalties of {{2:doing/to do}} them in the real world.",
+      "ko_full": "우리 뇌는 실제 세계에서 행동할 때의 위험이나 대가 없이 다가올 행동을 미리 연습할 수 있는, 세계에 대한 내적 심상이나 모형을 만들어 내는 이 능력을 진화시켰다.",
+      "answers": ["in which", "doing"],
+      "explain": [
+        "뒤 절이 완전 → 전치사+관계대명사 in which (= where).",
+        "of(전치사)의 목적어 → 동명사 doing."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "There are even hints from brain-imaging studies by Harvard University psychologist Steve Kosslyn {{1:showing/shown}} that your brain uses the same regions to imagine a scene {{2:as/than}} when you actually view one.",
+      "ko_full": "심지어 하버드 대학교 심리학자 Steve Kosslyn의 뇌 영상 연구에서는 여러분의 뇌가 어떤 장면을 상상할 때 실제로 그것을 볼 때와 똑같은 영역을 사용한다는 단서까지 나온다.",
+      "answers": ["showing", "as"],
+      "explain": [
+        "studies가 '보여주는' 능동 → 현재분사 showing.",
+        "the same ~ as 동등 비교 → as."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "But evolution has {{1:seen/saw}} to it that such internally generated representations are never {{2:as/so}} authentic as the real thing.",
+      "ko_full": "그러나 진화는 그렇게 내부에서 만들어진 표상이 결코 실제만큼 진짜 같지는 않도록 해 두었다.",
+      "answers": ["seen", "as"],
+      "explain": [
+        "has + 과거분사(현재완료) → seen.",
+        "never as ~ as 원급 비교의 부정 → as."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "This {{1:is/are}} a wise bit of self-restraint on your {{2:genes'/genes}} part.",
+      "ko_full": "이것은 여러분의 유전자 쪽에서 발휘한 현명한 자기 절제이다.",
+      "answers": ["is", "genes'"],
+      "explain": [
+        "주어 This(단수) → is.",
+        "'유전자 쪽의' 소유격 → genes'."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "If your internal model of the world {{1:were/are}} a perfect substitute, then anytime you felt hungry you {{2:could/can}} simply imagine yourself at a banquet, {{3:consuming/consumed}} a feast.",
+      "ko_full": "만약 여러분의 내적 세계 모형이 완벽한 대체물이라면, 배가 고플 때마다 그저 잔치에 있는 자신을 상상하며 진수성찬을 먹는 것을 떠올릴 수 있을 것이다.",
+      "answers": ["were", "could", "consuming"],
+      "explain": [
+        "가정법 과거 If절 → were.",
+        "가정법 과거 주절 → could.",
+        "yourself를 의미상 주어로 하는 능동 분사구문 → consuming."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "You would have no incentive {{1:to find/finding}} real food and would soon {{2:starve/starved}} to death.",
+      "ko_full": "여러분은 진짜 음식을 찾을 동기가 전혀 없어져 곧 굶어 죽고 말 것이다.",
+      "answers": ["to find", "starve"],
+      "explain": [
+        "incentive를 수식하는 to부정사 → to find.",
+        "would 다음 동사원형 → starve."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "As the Bard said, \"You cannot cloy the hungry edge of appetite by bare {{1:imagination/imagine}} of a feast.\"",
+      "ko_full": "시인이 말했듯이, \"진수성찬을 그저 상상하는 것만으로는 굶주린 식욕의 날카로움을 물리게 할 수 없다.\"",
+      "answers": ["imagination"],
+      "explain": [
+        "전치사 by + 한정사 bare → 명사 imagination."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Humans {{1:excel/fail}} at visual imagery.",
+      "ko_full": "인간은 시각적 심상에 매우 뛰어나다.",
+      "answers": ["excel"],
+      "explain": ["'뛰어나다' — excel."]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "Our brains evolved this ability to create an internal mental model of the world in which we can {{1:rehearse/abandon}} forthcoming actions, without the {{2:risks/rewards}} of doing them in the real world.",
+      "ko_full": "우리 뇌는 실제 세계에서 행동할 때의 위험이나 대가 없이 다가올 행동을 미리 연습할 수 있는, 세계에 대한 내적 모형을 만들어 내는 이 능력을 진화시켰다.",
+      "answers": ["rehearse", "risks"],
+      "explain": [
+        "행동을 '미리 연습' — rehearse.",
+        "실제 행동의 '위험' 없이 — risks."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "There are even hints from brain-imaging studies showing that your brain uses the {{1:same/different}} regions to imagine a scene as when you actually {{2:view/avoid}} one.",
+      "ko_full": "심지어 뇌 영상 연구에서는 여러분의 뇌가 어떤 장면을 상상할 때 실제로 그것을 볼 때와 똑같은 영역을 사용한다는 단서까지 나온다.",
+      "answers": ["same", "view"],
+      "explain": [
+        "'똑같은' 영역 — same.",
+        "실제로 '볼' 때 — view."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "But evolution has seen to it that such internally generated representations are never as {{1:authentic/fake}} as the real thing.",
+      "ko_full": "그러나 진화는 그렇게 내부에서 만들어진 표상이 결코 실제만큼 진짜 같지는 않도록 해 두었다.",
+      "answers": ["authentic"],
+      "explain": ["실제만큼 '진짜 같은' — authentic."]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "This is a {{1:wise/foolish}} bit of self-{{2:restraint/indulgence}} on your genes' part.",
+      "ko_full": "이것은 여러분의 유전자 쪽에서 발휘한 현명한 자기 절제이다.",
+      "answers": ["wise", "restraint"],
+      "explain": [
+        "'현명한' 절제 — wise.",
+        "자기 '절제' — restraint."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "If your internal model of the world were a perfect {{1:substitute/obstacle}}, then anytime you felt hungry you could simply imagine yourself at a {{2:banquet/funeral}}, consuming a feast.",
+      "ko_full": "만약 여러분의 내적 세계 모형이 완벽한 대체물이라면, 배가 고플 때마다 그저 잔치에 있는 자신을 상상하며 진수성찬을 먹는 것을 떠올릴 수 있을 것이다.",
+      "answers": ["substitute", "banquet"],
+      "explain": [
+        "완벽한 '대체물' — substitute.",
+        "'잔치'에 있는 자신 — banquet."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "You would have no {{1:incentive/obstacle}} to find real food and would soon {{2:starve/thrive}} to death.",
+      "ko_full": "여러분은 진짜 음식을 찾을 동기가 전혀 없어져 곧 굶어 죽고 말 것이다.",
+      "answers": ["incentive", "starve"],
+      "explain": [
+        "음식을 찾을 '동기' — incentive.",
+        "곧 '굶어 죽다' — starve."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "As the Bard said, \"You cannot {{1:cloy/sharpen}} the hungry edge of {{2:appetite/boredom}} by bare imagination of a feast.\"",
+      "ko_full": "시인이 말했듯이, \"진수성찬을 그저 상상하는 것만으로는 굶주린 식욕의 날카로움을 물리게 할 수 없다.\"",
+      "answers": ["cloy", "appetite"],
+      "explain": [
+        "식욕을 '물리게 하다' — cloy.",
+        "굶주린 '식욕' — appetite."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "e", "answer": "excel",   "after": "at visual imagery" },
+        { "pos": 2, "letter": "v", "answer": "visual",  "after": "imagery" },
+        { "pos": 3, "letter": "i", "answer": "imagery", "after": "" }
+      ],
+      "ko_full": "인간은 시각적 심상에 매우 뛰어나다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "e", "answer": "evolved",  "after": "this ability" },
+        { "pos": 2, "letter": "i", "answer": "internal", "after": "mental picture" },
+        { "pos": 3, "letter": "r", "answer": "rehearse", "after": "forthcoming actions" },
+        { "pos": 4, "letter": "p", "answer": "penalties","after": "of doing them" }
+      ],
+      "ko_full": "우리 뇌는 실제 세계에서 행동할 때의 위험이나 대가 없이 다가올 행동을 미리 연습할 수 있는, 세계에 대한 내적 심상이나 모형을 만들어 내는 이 능력을 진화시켰다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "h", "answer": "hints",   "after": "from brain-imaging" },
+        { "pos": 2, "letter": "r", "answer": "regions", "after": "to imagine a scene" },
+        { "pos": 3, "letter": "v", "answer": "view",    "after": "one" }
+      ],
+      "ko_full": "심지어 하버드 대학교 심리학자 Steve Kosslyn의 뇌 영상 연구에서는 여러분의 뇌가 어떤 장면을 상상할 때 실제로 그것을 볼 때와 똑같은 영역을 사용한다는 단서까지 나온다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "e", "answer": "evolution",      "after": "has seen to it" },
+        { "pos": 2, "letter": "r", "answer": "representations", "after": "are never as authentic" },
+        { "pos": 3, "letter": "a", "answer": "authentic",      "after": "as the real thing" }
+      ],
+      "ko_full": "그러나 진화는 그렇게 내부에서 만들어진 표상이 결코 실제만큼 진짜 같지는 않도록 해 두었다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "w", "answer": "wise",  "after": "bit of self-restraint" },
+        { "pos": 2, "letter": "g", "answer": "genes", "after": "part" }
+      ],
+      "ko_full": "이것은 여러분의 유전자 쪽에서 발휘한 현명한 자기 절제이다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "s", "answer": "substitute", "after": ", then anytime" },
+        { "pos": 2, "letter": "h", "answer": "hungry",     "after": "you could simply" },
+        { "pos": 3, "letter": "b", "answer": "banquet",    "after": ", consuming a feast" },
+        { "pos": 4, "letter": "f", "answer": "feast",      "after": "" }
+      ],
+      "ko_full": "만약 여러분의 내적 세계 모형이 완벽한 대체물이라면, 배가 고플 때마다 그저 잔치에 있는 자신을 상상하며 진수성찬을 먹는 것을 떠올릴 수 있을 것이다."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "hints": [
+        { "pos": 1, "letter": "i", "answer": "incentive", "after": "to find real food" },
+        { "pos": 2, "letter": "s", "answer": "starve",    "after": "to death" }
+      ],
+      "ko_full": "여러분은 진짜 음식을 찾을 동기가 전혀 없어져 곧 굶어 죽고 말 것이다."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "hints": [
+        { "pos": 1, "letter": "c", "answer": "cloy",        "after": "the hungry edge" },
+        { "pos": 2, "letter": "a", "answer": "appetite",    "after": "by bare imagination" },
+        { "pos": 3, "letter": "i", "answer": "imagination", "after": "of a feast" }
+      ],
+      "ko_full": "시인이 말했듯이, \"진수성찬을 그저 상상하는 것만으로는 굶주린 식욕의 날카로움을 물리게 할 수 없다.\""
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 },
+    { "no": 7, "ref_sentence": 7 },
+    { "no": 8, "ref_sentence": 8 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["Humans", "excel", "at", "visual", "imagery"],
+      "answer": "Humans excel at visual imagery."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["Our", "brains", "evolved", "this", "ability", "to", "create", "an", "internal", "mental", "picture", "or", "model", "of", "the", "world", "in", "which", "we", "can", "rehearse", "forthcoming", "actions", "without", "the", "risks", "or", "the", "penalties", "of", "doing", "them", "in", "the", "real", "world"],
+      "answer": "Our brains evolved this ability to create an internal mental picture or model of the world in which we can rehearse forthcoming actions, without the risks or the penalties of doing them in the real world."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["There", "are", "even", "hints", "from", "brain-imaging", "studies", "by", "Harvard", "University", "psychologist", "Steve", "Kosslyn", "showing", "that", "your", "brain", "uses", "the", "same", "regions", "to", "imagine", "a", "scene", "as", "when", "you", "actually", "view", "one"],
+      "answer": "There are even hints from brain-imaging studies by Harvard University psychologist Steve Kosslyn showing that your brain uses the same regions to imagine a scene as when you actually view one."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["But", "evolution", "has", "seen", "to", "it", "that", "such", "internally", "generated", "representations", "are", "never", "as", "authentic", "as", "the", "real", "thing"],
+      "answer": "But evolution has seen to it that such internally generated representations are never as authentic as the real thing."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["This", "is", "a", "wise", "bit", "of", "self-restraint", "on", "your", "genes'", "part"],
+      "answer": "This is a wise bit of self-restraint on your genes' part."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["If", "your", "internal", "model", "of", "the", "world", "were", "a", "perfect", "substitute", "then", "anytime", "you", "felt", "hungry", "you", "could", "simply", "imagine", "yourself", "at", "a", "banquet", "consuming", "a", "feast"],
+      "answer": "If your internal model of the world were a perfect substitute, then anytime you felt hungry you could simply imagine yourself at a banquet, consuming a feast."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "words": ["You", "would", "have", "no", "incentive", "to", "find", "real", "food", "and", "would", "soon", "starve", "to", "death"],
+      "answer": "You would have no incentive to find real food and would soon starve to death."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "words": ["As", "the", "Bard", "said", "You", "cannot", "cloy", "the", "hungry", "edge", "of", "appetite", "by", "bare", "imagination", "of", "a", "feast"],
+      "answer": "As the Bard said, \"You cannot cloy the hungry edge of appetite by bare imagination of a feast.\""
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" },
+    { "no": 7, "ref_sentence": 7, "given": "ko" },
+    { "no": 8, "ref_sentence": 8, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 2, "no": 1 },
+    { "kind": "vocab",   "ref": 5, "no": 2 },
+    { "kind": "fill",    "ref": 6, "no": 3 },
+    { "kind": "ko",      "ref": 4, "no": 4 },
+    { "kind": "jumble",  "ref": 7, "no": 5 },
+    { "kind": "sent",    "ref": 8, "no": 6 },
+    { "kind": "grammar", "ref": 3, "no": 7 },
+    { "kind": "vocab",   "ref": 6, "no": 8 }
+  ]
+}

@@ -1,0 +1,358 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "40.json",
+  "_note": "40번 워크북 — 본문 N문장 풀커버.",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "constant",      "pos": "형" },
+      { "word": "conform",       "pos": "동" },
+      { "word": "variation",     "pos": "명" },
+      { "word": "appreciate",    "pos": "동" },
+      { "word": "crucial",       "pos": "형" },
+      { "word": "systematic",    "pos": "형" },
+      { "word": "violation",     "pos": "명" },
+      { "word": "domain",        "pos": "명" },
+      { "word": "involve",       "pos": "동" },
+      { "word": "robotic",       "pos": "형" }
+    ],
+    "ko_to_en": [
+      { "meaning": "박자, 맥박",          "pos": "명", "answer": "pulse" },
+      { "meaning": "멜로디, 선율",        "pos": "명", "answer": "melody" },
+      { "meaning": "심적 표상",           "pos": "구", "answer": "mental representation" },
+      { "meaning": "기대, 예상",          "pos": "명", "answer": "expectation" },
+      { "meaning": "음높이",              "pos": "명", "answer": "pitch" },
+      { "meaning": "템포, 빠르기",        "pos": "명", "answer": "tempo" },
+      { "meaning": "조직화된",            "pos": "형", "answer": "organized" },
+      { "meaning": "예상치 못한",         "pos": "형", "answer": "unexpected" },
+      { "meaning": "밋밋한, 단조로운",    "pos": "형", "answer": "flat" },
+      { "meaning": "소통하다, 전달하다",  "pos": "동", "answer": "communicate" }
+    ],
+    "expressions": [
+      { "ko": "~을 따르다, 순응하다",      "answer": "conform to" },
+      { "ko": "~을 자유롭게 변형하다",     "answer": "take liberties with" },
+      { "ko": "기타 등등",                 "answer": "and so on" },
+      { "ko": "기대에 대한 체계적 위반",   "answer": "systematic violations of expectations" },
+      { "ko": "예상치 못한 요소",          "answer": "element of the unexpected" }
+    ],
+    "definitions": [
+      { "def": "staying the same; not changing",                                  "answer": "constant" },
+      { "def": "a thought structure or framework used to organize information",   "answer": "schema" },
+      { "def": "extremely important or decisive",                                 "answer": "crucial" },
+      { "def": "an act of breaking a rule or expectation",                        "answer": "violation" },
+      { "def": "moving in a stiff, mechanical way like a machine",                "answer": "robotic" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "The brain needs {{1:to create/creating}} a model of a constant pulse — a schema — so that we know {{2:when/what}} the musicians are not conforming to it.",
+      "ko_full": "뇌는 일정한 박자의 모델 — 즉 스키마 — 를 만들어야 하며, 그래야 음악가가 그것을 따르지 않을 때를 우리가 알 수 있다.",
+      "answers": ["to create", "when"],
+      "explain": [
+        "need + to V — to부정사 목적어.",
+        "'언제 ~하는지'를 묻는 명사절 → 의문부사 when."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "We need to have a mental representation of {{1:what/that}} the melody is in order {{2:to know/knowing}} — and appreciate — when the musician is taking liberties with it.",
+      "ko_full": "이는 멜로디의 변주와 유사하다. 우리는 음악가가 멜로디를 자유롭게 변형할 때를 알고 — 그리고 음미하기 — 위해, 멜로디가 무엇인지에 대한 심적 표상을 가지고 있어야 한다.",
+      "answers": ["what", "to know"],
+      "explain": [
+        "전치사 of의 목적어 명사절, is의 보어가 빠진 불완전절 → 관계대명사 what.",
+        "in order to V — '~하기 위해' 목적의 to부정사."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "Metrical extraction, knowing what the pulse is and when we expect it {{1:to occur/occurring}}, {{2:is/are}} a crucial part of musical emotion.",
+      "ko_full": "박자 추출, 즉 박자가 무엇이고 우리가 언제 그것이 일어날지 예상하는지를 아는 것은 음악적 감정의 결정적 부분이다.",
+      "answers": ["to occur", "is"],
+      "explain": [
+        "expect + 목적어 + to V — to부정사 목적격보어.",
+        "주어 핵 = Metrical extraction(단수) → is."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "Music communicates to us {{1:emotionally/emotional}} through systematic {{2:violations/violates}} of expectations.",
+      "ko_full": "음악은 기대에 대한 체계적 위반을 통해 우리에게 감정적으로 소통한다.",
+      "answers": ["emotionally", "violations"],
+      "explain": [
+        "동사 communicates를 수식 → 부사 emotionally.",
+        "전치사구의 핵이 되는 명사 필요 → violations(명사)."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "These violations can occur in any domain — the domain of pitch, rhythm, tempo, and so on — but {{1:occur they must/they occur must}}.",
+      "ko_full": "이러한 위반은 어떤 영역에서든 — 음높이, 리듬, 템포 등의 영역에서 — 일어날 수 있지만, 반드시 일어나야 한다.",
+      "answers": ["occur they must"],
+      "explain": [
+        "강조를 위해 본동사 occur를 앞세운 도치 (= but they must occur)."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "Music is organized sound, but the organization has {{1:to involve/involving}} some element of the unexpected {{2:or/and}} it is emotionally flat and robotic.",
+      "ko_full": "음악은 조직화된 소리이지만, 그 조직화에는 예상치 못한 요소가 반드시 포함되어야 하며, 그렇지 않으면 감정적으로 밋밋하고 기계적이다.",
+      "answers": ["to involve", "or"],
+      "explain": [
+        "have to V — '~해야 한다'.",
+        "조건+or 구조 — '그렇지 않으면'의 의미 → or."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "Too much organization may technically still be music, but it would be music {{1:that/what}} no one {{2:wants/want}} to listen to.",
+      "ko_full": "지나친 조직화는 기술적으로는 여전히 음악일 수 있으나, 아무도 듣고 싶어 하지 않는 음악일 것이다.",
+      "answers": ["that", "wants"],
+      "explain": [
+        "선행사 music을 수식하는 목적격 관계대명사 that (listen to의 목적어).",
+        "주어 no one은 단수 취급 → wants."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "The brain needs to create a model of a {{1:constant/changing}} pulse — a schema — so that we know when the musicians are not {{2:conforming to/deviating from}} it.",
+      "ko_full": "뇌는 일정한 박자의 모델 — 즉 스키마 — 를 만들어야 하며, 그래야 음악가가 그것을 따르지 않을 때를 우리가 알 수 있다.",
+      "answers": ["constant", "conforming to"],
+      "explain": [
+        "'일정한' 박자 — constant.",
+        "기준을 '따른다' — conform to (벗어남의 반대)."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "We need a mental representation of what the melody is in order to know — and {{1:appreciate/disregard}} — when the musician is {{2:taking liberties with/strictly following}} it.",
+      "ko_full": "우리는 음악가가 멜로디를 자유롭게 변형할 때를 알고 음미하기 위해, 멜로디가 무엇인지에 대한 심적 표상을 가지고 있어야 한다.",
+      "answers": ["appreciate", "taking liberties with"],
+      "explain": [
+        "'음미하다' — appreciate.",
+        "'자유롭게 변형하다' — take liberties with."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "Metrical extraction, knowing what the pulse is and when we {{1:expect/forget}} it to occur, is a {{2:crucial/trivial}} part of musical emotion.",
+      "ko_full": "박자 추출, 즉 박자가 무엇이고 우리가 언제 그것이 일어날지 예상하는지를 아는 것은 음악적 감정의 결정적 부분이다.",
+      "answers": ["expect", "crucial"],
+      "explain": [
+        "박자가 일어날 것을 '예상하다' — expect.",
+        "음악 감정의 '결정적' 부분 — crucial."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "Music communicates to us emotionally through {{1:systematic/random}} {{2:violations/compliance}} of expectations.",
+      "ko_full": "음악은 기대에 대한 체계적 위반을 통해 우리에게 감정적으로 소통한다.",
+      "answers": ["systematic", "violations"],
+      "explain": [
+        "'체계적인' 위반 — systematic.",
+        "기대의 '위반' — violations (준수의 반대)."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "These violations can occur in any {{1:domain/limit}} — the domain of pitch, rhythm, tempo, {{2:and so on/and nothing else}} — but occur they must.",
+      "ko_full": "이러한 위반은 어떤 영역에서든 — 음높이, 리듬, 템포 등의 영역에서 — 일어날 수 있지만, 반드시 일어나야 한다.",
+      "answers": ["domain", "and so on"],
+      "explain": [
+        "어떤 '영역'에서든 — domain.",
+        "'기타 등등' — and so on."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "Music is {{1:organized/chaotic}} sound, but the organization has to involve some element of the {{2:unexpected/expected}} or it is emotionally flat and robotic.",
+      "ko_full": "음악은 조직화된 소리이지만, 그 조직화에는 예상치 못한 요소가 반드시 포함되어야 하며, 그렇지 않으면 감정적으로 밋밋하고 기계적이다.",
+      "answers": ["organized", "unexpected"],
+      "explain": [
+        "음악은 '조직화된' 소리 — organized.",
+        "'예상치 못한' 요소 — the unexpected."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "Too much organization may {{1:technically/clearly}} still be music, but it would be music that no one wants to {{2:listen to/compose}}.",
+      "ko_full": "지나친 조직화는 기술적으로는 여전히 음악일 수 있으나, 아무도 듣고 싶어 하지 않는 음악일 것이다.",
+      "answers": ["technically", "listen to"],
+      "explain": [
+        "'엄밀히 말하면' — technically.",
+        "아무도 '듣고' 싶어 하지 않는 — listen to."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "m", "answer": "model",    "after": "of a constant pulse" },
+        { "pos": 2, "letter": "c", "answer": "constant", "after": "pulse" },
+        { "pos": 3, "letter": "s", "answer": "schema",   "after": "so that we know" },
+        { "pos": 4, "letter": "c", "answer": "conforming", "after": "to it" }
+      ],
+      "ko_full": "뇌는 일정한 박자의 모델 — 즉 스키마 — 를 만들어야 하며, 그래야 음악가가 그것을 따르지 않을 때를 우리가 알 수 있다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "r", "answer": "representation", "after": "of what the melody is" },
+        { "pos": 2, "letter": "m", "answer": "melody",         "after": "is in order to know" },
+        { "pos": 3, "letter": "a", "answer": "appreciate",     "after": "when the musician" },
+        { "pos": 4, "letter": "l", "answer": "liberties",      "after": "with it" }
+      ],
+      "ko_full": "우리는 음악가가 멜로디를 자유롭게 변형할 때를 알고 음미하기 위해, 멜로디가 무엇인지에 대한 심적 표상을 가지고 있어야 한다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "m", "answer": "metrical",   "after": "extraction" },
+        { "pos": 2, "letter": "e", "answer": "expect",     "after": "it to occur" },
+        { "pos": 3, "letter": "c", "answer": "crucial",    "after": "part of musical emotion" }
+      ],
+      "ko_full": "박자 추출, 즉 박자가 무엇이고 우리가 언제 그것이 일어날지 예상하는지를 아는 것은 음악적 감정의 결정적 부분이다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "c", "answer": "communicates", "after": "to us emotionally" },
+        { "pos": 2, "letter": "s", "answer": "systematic",   "after": "violations" },
+        { "pos": 3, "letter": "v", "answer": "violations",   "after": "of expectations" }
+      ],
+      "ko_full": "음악은 기대에 대한 체계적 위반을 통해 우리에게 감정적으로 소통한다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "d", "answer": "domain", "after": "of pitch, rhythm" },
+        { "pos": 2, "letter": "p", "answer": "pitch",  "after": "rhythm, tempo" },
+        { "pos": 3, "letter": "t", "answer": "tempo",  "after": "and so on" },
+        { "pos": 4, "letter": "o", "answer": "occur",  "after": "they must" }
+      ],
+      "ko_full": "이러한 위반은 어떤 영역에서든 — 음높이, 리듬, 템포 등의 영역에서 — 일어날 수 있지만, 반드시 일어나야 한다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "o", "answer": "organized",  "after": "sound" },
+        { "pos": 2, "letter": "i", "answer": "involve",    "after": "some element" },
+        { "pos": 3, "letter": "u", "answer": "unexpected", "after": "or it is" },
+        { "pos": 4, "letter": "r", "answer": "robotic",    "after": "" }
+      ],
+      "ko_full": "음악은 조직화된 소리이지만, 그 조직화에는 예상치 못한 요소가 반드시 포함되어야 하며, 그렇지 않으면 감정적으로 밋밋하고 기계적이다."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "hints": [
+        { "pos": 1, "letter": "o", "answer": "organization", "after": "may technically" },
+        { "pos": 2, "letter": "t", "answer": "technically",  "after": "still be music" },
+        { "pos": 3, "letter": "l", "answer": "listen",       "after": "to" }
+      ],
+      "ko_full": "지나친 조직화는 기술적으로는 여전히 음악일 수 있으나, 아무도 듣고 싶어 하지 않는 음악일 것이다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 },
+    { "no": 7, "ref_sentence": 7 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["The", "brain", "needs", "to", "create", "a", "model", "of", "a", "constant", "pulse", "a", "schema", "so", "that", "we", "know", "when", "the", "musicians", "are", "not", "conforming", "to", "it"],
+      "answer": "The brain needs to create a model of a constant pulse — a schema — so that we know when the musicians are not conforming to it."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["This", "is", "similar", "to", "variations", "of", "a", "melody", "We", "need", "to", "have", "a", "mental", "representation", "of", "what", "the", "melody", "is", "in", "order", "to", "know", "and", "appreciate", "when", "the", "musician", "is", "taking", "liberties", "with", "it"],
+      "answer": "This is similar to variations of a melody: We need to have a mental representation of what the melody is in order to know — and appreciate — when the musician is taking liberties with it."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["Metrical", "extraction", "knowing", "what", "the", "pulse", "is", "and", "when", "we", "expect", "it", "to", "occur", "is", "a", "crucial", "part", "of", "musical", "emotion"],
+      "answer": "Metrical extraction, knowing what the pulse is and when we expect it to occur, is a crucial part of musical emotion."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["Music", "communicates", "to", "us", "emotionally", "through", "systematic", "violations", "of", "expectations"],
+      "answer": "Music communicates to us emotionally through systematic violations of expectations."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["These", "violations", "can", "occur", "in", "any", "domain", "the", "domain", "of", "pitch", "rhythm", "tempo", "and", "so", "on", "but", "occur", "they", "must"],
+      "answer": "These violations can occur in any domain — the domain of pitch, rhythm, tempo, and so on — but occur they must."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["Music", "is", "organized", "sound", "but", "the", "organization", "has", "to", "involve", "some", "element", "of", "the", "unexpected", "or", "it", "is", "emotionally", "flat", "and", "robotic"],
+      "answer": "Music is organized sound, but the organization has to involve some element of the unexpected or it is emotionally flat and robotic."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "words": ["Too", "much", "organization", "may", "technically", "still", "be", "music", "but", "it", "would", "be", "music", "that", "no", "one", "wants", "to", "listen", "to"],
+      "answer": "Too much organization may technically still be music, but it would be music that no one wants to listen to."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" },
+    { "no": 7, "ref_sentence": 7, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 1, "no": 1 },
+    { "kind": "vocab",   "ref": 4, "no": 2 },
+    { "kind": "fill",    "ref": 3, "no": 3 },
+    { "kind": "ko",      "ref": 5, "no": 4 },
+    { "kind": "jumble",  "ref": 6, "no": 5 },
+    { "kind": "sent",    "ref": 7, "no": 6 },
+    { "kind": "grammar", "ref": 2, "no": 7 },
+    { "kind": "vocab",   "ref": 6, "no": 8 }
+  ]
+}

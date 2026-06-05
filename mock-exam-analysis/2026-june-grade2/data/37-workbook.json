@@ -1,0 +1,468 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "37.json",
+  "_note": "37번 워크북 — 본문 10문장 풀커버.",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "startled",      "pos": "형" },
+      { "word": "scan",          "pos": "동" },
+      { "word": "threat",        "pos": "명" },
+      { "word": "maximize",      "pos": "동" },
+      { "word": "detection",     "pos": "명" },
+      { "word": "locate",        "pos": "동" },
+      { "word": "flee",          "pos": "동" },
+      { "word": "sophisticated", "pos": "형" },
+      { "word": "inhibition",    "pos": "명" },
+      { "word": "conserve",      "pos": "동" }
+    ],
+    "ko_to_en": [
+      { "meaning": "잠재적인",        "pos": "형", "answer": "potential" },
+      { "meaning": "외상의, 충격적인", "pos": "형", "answer": "traumatic" },
+      { "meaning": "촉진하다",        "pos": "동", "answer": "promote" },
+      { "meaning": "긴장을 풀다",     "pos": "동", "answer": "relax" },
+      { "meaning": "형성하다",        "pos": "동", "answer": "shape" },
+      { "meaning": "끊임없는",        "pos": "형", "answer": "constant" },
+      { "meaning": "방해, 간섭",      "pos": "명", "answer": "interference" },
+      { "meaning": "통합",            "pos": "명", "answer": "integration" },
+      { "meaning": "만성의",          "pos": "형", "answer": "chronic" },
+      { "meaning": "얼어붙다",        "pos": "동", "answer": "freeze" }
+    ],
+    "expressions": [
+      { "ko": "멈추다",            "answer": "come to a stop" },
+      { "ko": "숨을 참다",         "answer": "hold one's breath" },
+      { "ko": "(무심코) 드러내다", "answer": "give away" },
+      { "ko": "자연선택",          "answer": "natural selection" },
+      { "ko": "싸우거나 도망가다", "answer": "fight or flee" }
+    ],
+    "definitions": [
+      { "def": "to look at something carefully in order to find a particular thing",        "answer": "scan" },
+      { "def": "to find the exact position of something",                                  "answer": "locate" },
+      { "def": "to run away from danger",                                                  "answer": "flee" },
+      { "def": "the act of stopping a process or action from happening",                   "answer": "inhibition" },
+      { "def": "lasting for a long time or happening again and again",                     "answer": "chronic" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Think about a time {{1:when/which}} you {{2:were startled/were startling}}.",
+      "ko_full": "당신이 깜짝 놀랐던 때를 떠올려 보라.",
+      "answers": ["when", "were startled"],
+      "explain": [
+        "선행사 a time(시간) + 완전한 절 → 관계부사 when.",
+        "사람이 '놀람을 당하는' 수동 의미 → were startled."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "Did you come to a sudden stop, freeze all your movements, and hold your breath {{1:as/which}} you scanned the environment for a threat?",
+      "ko_full": "당신은 위협을 찾아 주변을 살피면서 갑자기 멈추고, 모든 움직임을 얼어붙게 하고, 숨을 참았는가?",
+      "answers": ["as"],
+      "explain": [
+        "'~하면서'(동시 동작)를 이끄는 접속사 as."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "All these responses {{1:maximize/maximizes}} our ability {{2:to avoid/avoiding}} detection, locate the source of possible danger, and prepare to fight or flee.",
+      "ko_full": "이 모든 반응은 발각을 피하고, 가능한 위험의 근원을 찾아내고, 싸우거나 도망갈 준비를 하는 우리의 능력을 극대화한다.",
+      "answers": ["maximize", "to avoid"],
+      "explain": [
+        "주어 All these responses(복수) → maximize.",
+        "ability + to V — to부정사(to avoid/locate/prepare 병렬)."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "As sophisticated as language has become, it is still the creation of sound {{1:that/what}} might {{2:give away/be given away}} our location to a potential predator.",
+      "ko_full": "언어가 아무리 정교해졌다 하더라도, 그것은 여전히 잠재적 포식자에게 우리의 위치를 알려줄 수 있는 소리의 생성이다.",
+      "answers": ["that", "give away"],
+      "explain": [
+        "선행사 the creation of sound 수식 주격 관계대명사 that.",
+        "뒤에 목적어 our location 존재 → 능동 give away."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "Because of this, the freeze response {{1:results in/results from}} the inhibition of language in highly stressful and traumatic {{2:situations/situation}}.",
+      "ko_full": "이 때문에, 얼어붙는 반응은 매우 스트레스가 크고 외상적인 상황에서 언어의 억제로 이어진다.",
+      "answers": ["results in", "situations"],
+      "explain": [
+        "결과를 '초래하다' — result in (result from은 원인).",
+        "복수 형태 situations가 자연스러움(일반적 상황들)."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "Natural selection {{1:promoted/has promoted}} the evolution of language but {{2:conserved/conserving}} the freeze rule.",
+      "ko_full": "자연선택은 언어의 진화를 촉진했지만 얼어붙는 규칙은 보존했다.",
+      "answers": ["promoted", "conserved"],
+      "explain": [
+        "but으로 뒤의 conserved와 병렬 → 과거시제 promoted.",
+        "promoted ~ but conserved ~ — 두 과거동사 대조 병렬."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "When the threat passes, we {{1:begin/beginning}} to relax and find our voices again, perhaps even {{2:to laugh/laughing}} at our own reactions.",
+      "ko_full": "위협이 지나가면, 우리는 긴장을 풀기 시작하고 다시 목소리를 되찾으며, 어쩌면 자신의 반응에 웃기까지 한다.",
+      "answers": ["begin", "to laugh"],
+      "explain": [
+        "주절의 정동사 필요 → begin.",
+        "begin to relax/find/(to) laugh — to부정사 병렬."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "{{1:But/Despite}} what if we can {{2:never/ever}} relax?",
+      "ko_full": "그러나 만약 우리가 결코 긴장을 풀 수 없다면 어떻게 될까?",
+      "answers": ["But", "never"],
+      "explain": [
+        "절을 잇는 접속부사 But (Despite는 전치사).",
+        "'결코 ~ 못한다' 부정 의미 → never."
+      ]
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "en_template": "What if our experiences {{1:shape/shapes}} our brain {{2:to be/being}} in a constant state of fear?",
+      "ko_full": "만약 우리의 경험이 우리의 뇌를 끊임없는 공포 상태에 있도록 형성한다면 어떻게 될까?",
+      "answers": ["shape", "to be"],
+      "explain": [
+        "주어 our experiences(복수) → shape.",
+        "shape A to be ~ — 'A가 ~한 상태가 되도록 형성하다'(to부정사 보어)."
+      ]
+    },
+    {
+      "no": 10,
+      "ref_sentence": 10,
+      "en_template": "This interference {{1:with/of}} the proper development and integration of neural networks {{2:can result/can be resulted}} in chronic stress and even mental illness.",
+      "ko_full": "신경망의 적절한 발달과 통합에 대한 이러한 방해는 만성 스트레스와 심지어 정신 질환으로 이어질 수 있다.",
+      "answers": ["with", "can result"],
+      "explain": [
+        "interference with ~ — '~에 대한 방해'(전치사 with).",
+        "result in은 자동사구 — 수동 불가, can result."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Think about a time when you were {{1:startled/calmed}}.",
+      "ko_full": "당신이 깜짝 놀랐던 때를 떠올려 보라.",
+      "answers": ["startled"],
+      "explain": ["'깜짝 놀란' — startled (calmed는 반대 의미)."]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "Did you come to a sudden stop, {{1:freeze/loosen}} all your movements, and hold your breath as you {{2:scanned/ignored}} the environment for a threat?",
+      "ko_full": "당신은 위협을 찾아 주변을 살피면서 갑자기 멈추고, 모든 움직임을 얼어붙게 하고, 숨을 참았는가?",
+      "answers": ["freeze", "scanned"],
+      "explain": [
+        "'움직임을 얼어붙게' — freeze.",
+        "주변을 '살피다' — scanned (ignored는 반대)."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "All these responses {{1:maximize/minimize}} our ability to avoid {{2:detection/protection}}, locate the source of possible danger, and prepare to fight or flee.",
+      "ko_full": "이 모든 반응은 발각을 피하고, 가능한 위험의 근원을 찾아내고, 싸우거나 도망갈 준비를 하는 우리의 능력을 극대화한다.",
+      "answers": ["maximize", "detection"],
+      "explain": [
+        "능력을 '극대화' — maximize.",
+        "'발각'을 피함 — detection."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "As {{1:sophisticated/primitive}} as language has become, it is still the creation of sound that might give away our location to a {{2:potential/harmless}} predator.",
+      "ko_full": "언어가 아무리 정교해졌다 하더라도, 그것은 여전히 잠재적 포식자에게 우리의 위치를 알려줄 수 있는 소리의 생성이다.",
+      "answers": ["sophisticated", "potential"],
+      "explain": [
+        "'정교한' — sophisticated (primitive는 반대).",
+        "'잠재적' 포식자 — potential."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "Because of this, the freeze response results in the {{1:inhibition/release}} of language in highly stressful and {{2:traumatic/soothing}} situations.",
+      "ko_full": "이 때문에, 얼어붙는 반응은 매우 스트레스가 크고 외상적인 상황에서 언어의 억제로 이어진다.",
+      "answers": ["inhibition", "traumatic"],
+      "explain": [
+        "언어의 '억제' — inhibition (release는 반대).",
+        "'외상적인' 상황 — traumatic (soothing은 반대)."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "Natural selection {{1:promoted/hindered}} the evolution of language but {{2:conserved/discarded}} the freeze rule.",
+      "ko_full": "자연선택은 언어의 진화를 촉진했지만 얼어붙는 규칙은 보존했다.",
+      "answers": ["promoted", "conserved"],
+      "explain": [
+        "진화를 '촉진' — promoted (hindered는 반대).",
+        "규칙을 '보존' — conserved (discarded는 반대)."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "When the threat {{1:passes/persists}}, we begin to {{2:relax/tense}} and find our voices again, perhaps even to laugh at our own reactions.",
+      "ko_full": "위협이 지나가면, 우리는 긴장을 풀기 시작하고 다시 목소리를 되찾으며, 어쩌면 자신의 반응에 웃기까지 한다.",
+      "answers": ["passes", "relax"],
+      "explain": [
+        "위협이 '지나가다' — passes (persists는 반대).",
+        "'긴장을 풀다' — relax (tense는 반대)."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "But what if we can never {{1:relax/worry}}?",
+      "ko_full": "그러나 만약 우리가 결코 긴장을 풀 수 없다면 어떻게 될까?",
+      "answers": ["relax"],
+      "explain": ["'긴장을 풀다' — relax (worry는 반대 맥락)."]
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "en_template": "What if our experiences {{1:shape/erase}} our brain to be in a {{2:constant/occasional}} state of fear?",
+      "ko_full": "만약 우리의 경험이 우리의 뇌를 끊임없는 공포 상태에 있도록 형성한다면 어떻게 될까?",
+      "answers": ["shape", "constant"],
+      "explain": [
+        "뇌를 '형성하다' — shape.",
+        "'끊임없는' 공포 상태 — constant (occasional은 반대)."
+      ]
+    },
+    {
+      "no": 10,
+      "ref_sentence": 10,
+      "en_template": "This {{1:interference/facilitation}} with the proper development and integration of neural networks can result in {{2:chronic/temporary}} stress and even mental illness.",
+      "ko_full": "신경망의 적절한 발달과 통합에 대한 이러한 방해는 만성 스트레스와 심지어 정신 질환으로 이어질 수 있다.",
+      "answers": ["interference", "chronic"],
+      "explain": [
+        "발달에 대한 '방해' — interference (facilitation은 반대).",
+        "'만성의' 스트레스 — chronic (temporary는 반대)."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "t", "answer": "time",     "after": "when you were startled" },
+        { "pos": 2, "letter": "s", "answer": "startled", "after": "" }
+      ],
+      "ko_full": "당신이 깜짝 놀랐던 때를 떠올려 보라."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "f", "answer": "freeze",      "after": "all your movements" },
+        { "pos": 2, "letter": "b", "answer": "breath",      "after": "as you scanned" },
+        { "pos": 3, "letter": "s", "answer": "scanned",     "after": "the environment" },
+        { "pos": 4, "letter": "t", "answer": "threat",      "after": "" }
+      ],
+      "ko_full": "당신은 위협을 찾아 주변을 살피면서 갑자기 멈추고, 모든 움직임을 얼어붙게 하고, 숨을 참았는가?"
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "r", "answer": "responses",  "after": "maximize our ability" },
+        { "pos": 2, "letter": "d", "answer": "detection",  "after": ", locate the source" },
+        { "pos": 3, "letter": "f", "answer": "flee",       "after": "" }
+      ],
+      "ko_full": "이 모든 반응은 발각을 피하고, 가능한 위험의 근원을 찾아내고, 싸우거나 도망갈 준비를 하는 우리의 능력을 극대화한다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "s", "answer": "sophisticated", "after": "as language has become" },
+        { "pos": 2, "letter": "c", "answer": "creation",      "after": "of sound" },
+        { "pos": 3, "letter": "p", "answer": "predator",      "after": "" }
+      ],
+      "ko_full": "언어가 아무리 정교해졌다 하더라도, 그것은 여전히 잠재적 포식자에게 우리의 위치를 알려줄 수 있는 소리의 생성이다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "i", "answer": "inhibition", "after": "of language" },
+        { "pos": 2, "letter": "s", "answer": "stressful",  "after": "and traumatic" },
+        { "pos": 3, "letter": "t", "answer": "traumatic",  "after": "situations" }
+      ],
+      "ko_full": "이 때문에, 얼어붙는 반응은 매우 스트레스가 크고 외상적인 상황에서 언어의 억제로 이어진다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "s", "answer": "selection", "after": "promoted the evolution" },
+        { "pos": 2, "letter": "e", "answer": "evolution", "after": "of language" },
+        { "pos": 3, "letter": "c", "answer": "conserved", "after": "the freeze rule" }
+      ],
+      "ko_full": "자연선택은 언어의 진화를 촉진했지만 얼어붙는 규칙은 보존했다."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "hints": [
+        { "pos": 1, "letter": "p", "answer": "passes",    "after": ", we begin to relax" },
+        { "pos": 2, "letter": "r", "answer": "relax",     "after": "and find our voices" },
+        { "pos": 3, "letter": "l", "answer": "laugh",     "after": "at our own reactions" }
+      ],
+      "ko_full": "위협이 지나가면, 우리는 긴장을 풀기 시작하고 다시 목소리를 되찾으며, 어쩌면 자신의 반응에 웃기까지 한다."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "hints": [
+        { "pos": 1, "letter": "n", "answer": "never", "after": "relax" },
+        { "pos": 2, "letter": "r", "answer": "relax", "after": "" }
+      ],
+      "ko_full": "그러나 만약 우리가 결코 긴장을 풀 수 없다면 어떻게 될까?"
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "hints": [
+        { "pos": 1, "letter": "e", "answer": "experiences", "after": "shape our brain" },
+        { "pos": 2, "letter": "s", "answer": "shape",       "after": "our brain" },
+        { "pos": 3, "letter": "f", "answer": "fear",        "after": "" }
+      ],
+      "ko_full": "만약 우리의 경험이 우리의 뇌를 끊임없는 공포 상태에 있도록 형성한다면 어떻게 될까?"
+    },
+    {
+      "no": 10,
+      "ref_sentence": 10,
+      "hints": [
+        { "pos": 1, "letter": "i", "answer": "interference", "after": "with the proper development" },
+        { "pos": 2, "letter": "n", "answer": "neural",       "after": "networks" },
+        { "pos": 3, "letter": "c", "answer": "chronic",      "after": "stress" },
+        { "pos": 4, "letter": "m", "answer": "mental",       "after": "illness" }
+      ],
+      "ko_full": "신경망의 적절한 발달과 통합에 대한 이러한 방해는 만성 스트레스와 심지어 정신 질환으로 이어질 수 있다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 },
+    { "no": 7, "ref_sentence": 7 },
+    { "no": 8, "ref_sentence": 8 },
+    { "no": 9, "ref_sentence": 9 },
+    { "no": 10, "ref_sentence": 10 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["Think", "about", "a", "time", "when", "you", "were", "startled"],
+      "answer": "Think about a time when you were startled."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["Did", "you", "come", "to", "a", "sudden", "stop", "freeze", "all", "your", "movements", "and", "hold", "your", "breath", "as", "you", "scanned", "the", "environment", "for", "a", "threat"],
+      "answer": "Did you come to a sudden stop, freeze all your movements, and hold your breath as you scanned the environment for a threat?"
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["All", "these", "responses", "maximize", "our", "ability", "to", "avoid", "detection", "locate", "the", "source", "of", "possible", "danger", "and", "prepare", "to", "fight", "or", "flee"],
+      "answer": "All these responses maximize our ability to avoid detection, locate the source of possible danger, and prepare to fight or flee."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["As", "sophisticated", "as", "language", "has", "become", "it", "is", "still", "the", "creation", "of", "sound", "that", "might", "give", "away", "our", "location", "to", "a", "potential", "predator"],
+      "answer": "As sophisticated as language has become, it is still the creation of sound that might give away our location to a potential predator."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["Because", "of", "this", "the", "freeze", "response", "results", "in", "the", "inhibition", "of", "language", "in", "highly", "stressful", "and", "traumatic", "situations"],
+      "answer": "Because of this, the freeze response results in the inhibition of language in highly stressful and traumatic situations."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["Natural", "selection", "promoted", "the", "evolution", "of", "language", "but", "conserved", "the", "freeze", "rule"],
+      "answer": "Natural selection promoted the evolution of language but conserved the freeze rule."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "words": ["When", "the", "threat", "passes", "we", "begin", "to", "relax", "and", "find", "our", "voices", "again", "perhaps", "even", "to", "laugh", "at", "our", "own", "reactions"],
+      "answer": "When the threat passes, we begin to relax and find our voices again, perhaps even to laugh at our own reactions."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "words": ["But", "what", "if", "we", "can", "never", "relax"],
+      "answer": "But what if we can never relax?"
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "words": ["What", "if", "our", "experiences", "shape", "our", "brain", "to", "be", "in", "a", "constant", "state", "of", "fear"],
+      "answer": "What if our experiences shape our brain to be in a constant state of fear?"
+    },
+    {
+      "no": 10,
+      "ref_sentence": 10,
+      "words": ["This", "interference", "with", "the", "proper", "development", "and", "integration", "of", "neural", "networks", "can", "result", "in", "chronic", "stress", "and", "even", "mental", "illness"],
+      "answer": "This interference with the proper development and integration of neural networks can result in chronic stress and even mental illness."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" },
+    { "no": 7, "ref_sentence": 7, "given": "ko" },
+    { "no": 8, "ref_sentence": 8, "given": "ko" },
+    { "no": 9, "ref_sentence": 9, "given": "ko" },
+    { "no": 10, "ref_sentence": 10, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 1, "no": 1 },
+    { "kind": "vocab",   "ref": 4, "no": 2 },
+    { "kind": "fill",    "ref": 5, "no": 3 },
+    { "kind": "ko",      "ref": 6, "no": 4 },
+    { "kind": "jumble",  "ref": 8, "no": 5 },
+    { "kind": "sent",    "ref": 10, "no": 6 },
+    { "kind": "grammar", "ref": 7, "no": 7 },
+    { "kind": "vocab",   "ref": 9, "no": 8 }
+  ]
+}

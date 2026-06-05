@@ -584,6 +584,252 @@ ${pages.join('\n\n')}
 }
 
 // ─────────────────────────────────────────────────────────────
+// 측정 기반 페이지 분할 (v1.1 — 긴 지문 전용, 짧은 지문 동작 불변)
+// ─────────────────────────────────────────────────────────────
+//
+// build.mjs 의 measureAndChunk 와 동일한 철학: puppeteer 로 각 항목의
+// 실제 높이를 측정해 본문 가용 높이를 넘는 STEP 만 연속 페이지로 분할.
+// 6~10문장 워크북은 모든 STEP 이 1페이지에 들어가므로 분할이 발생하지 않아
+// v1.0 LOCKED 산출물과 100% 동일. 13·25문장 같은 긴 지문에서만 STEP 이
+// "9 → 9 / 9-2" 식으로 늘어난다 (CSS 무수정, 동일 마크업 재사용).
+//
+// 동작:
+//   - 각 .page 의 .page-body 안쪽 "리스트 컨테이너"(.qa-list/.trans-list/
+//     .jumble-list/.mixed-list/.answer-2col)의 직계 항목 높이를 측정.
+//   - step-banner + 가용 높이를 계산해 그리디로 항목을 페이지에 분배.
+//   - 넘칠 때만 같은 헤더/배너로 연속 페이지 생성, 푸터 페이지번호 재계산.
+
+async function paginateOverflow(html, stylesHref, distDir) {
+  const puppeteer = (await import('puppeteer')).default;
+  const cssAbsPath = path.resolve(distDir, '..', 'styles', 'workbook.css');
+  let cssContent = '';
+  try { cssContent = await fs.readFile(cssAbsPath, 'utf8'); } catch {}
+
+  const tmpPath = path.join(process.cwd(), `.tmp-wb-measure-${process.pid}-${Math.abs(hashStr(html))}.html`);
+  const measureDoc = html.replace(
+    /<link rel="stylesheet"[^>]*>/,
+    `<style>${cssContent}</style>`
+  );
+  await fs.writeFile(tmpPath, measureDoc, 'utf8');
+
+  const browser = await puppeteer.launch({ headless: 'new' });
+  const page = await browser.newPage();
+  await page.setViewport({ width: 794, height: 1123 });
+  await page.goto('file://' + tmpPath.replace(/\\/g, '/'), { waitUntil: 'networkidle0' });
+
+  const plan = await page.evaluate(() => {
+    const LIST_SEL = '.qa-list, .trans-list, .jumble-list, .mixed-list, .answer-2col';
+    const outerH = (c) => {
+      const r = c.getBoundingClientRect();
+      const cs = getComputedStyle(c);
+      return r.height + parseFloat(cs.marginTop) + parseFloat(cs.marginBottom);
+    };
+    const pages = [...document.querySelectorAll('.page')];
+    return pages.map((p, idx) => {
+      const body = p.querySelector('.page-body');
+      const banner = p.querySelector('.step-banner');
+      const list = p.querySelector(LIST_SEL);
+      const bodyH = body.getBoundingClientRect().height;
+      const bannerH = banner ? outerH(banner) : 0;
+      const avail = Math.floor(bodyH - bannerH - 8);
+      let contentH = 0;
+      [...body.children].forEach(c => { contentH += outerH(c); });
+      const overflow = contentH > bodyH + 1;
+
+      const isAnswer = list && list.classList.contains('answer-2col');
+      // STEP 1 (passage page) 은 list 컨테이너가 없다 — 본문 블록을 분할 대상으로
+      const isPassage = !list && body.querySelector('.passage-grid');
+
+      let itemHeights = [];
+      if (list) {
+        itemHeights = [...list.children].map(outerH);
+      } else if (isPassage) {
+        // page-body 직계 블록들(passage-grid, voca-block, voca-2col)을 분할 단위로
+        itemHeights = [...body.children]
+          .filter(c => !c.classList.contains('step-banner'))
+          .map(outerH);
+      }
+      return {
+        idx, overflow, avail,
+        listClass: list ? list.getAttribute('class') : null,
+        isAnswer, isPassage, itemHeights
+      };
+    });
+  });
+
+  await browser.close();
+  try { await fs.unlink(tmpPath); } catch {}
+
+  // overflow 페이지가 없으면 원본 그대로 반환 (짧은 워크북 = 변경 없음)
+  if (!plan.some(p => p.overflow)) return html;
+
+  // ── 항목 단위로 페이지 분할 ──
+  // 정규식으로 각 <section class="page" ...> ... </section> 추출
+  const sectionRe = /<section class="page"[\s\S]*?<\/section>/g;
+  const sections = html.match(sectionRe) || [];
+
+  const GAP = 6;       // auto-fit 항목 간 최소 간격 추정(여유분)
+  const COLS = 2;      // answer-2col 컬럼 수
+  const SAFETY = 0.94; // 가용 높이 안전 계수 (auto-fit space-around 여백 흡수)
+  const newSections = [];
+
+  // 항목 배열을 capacity 기준 그리디 분배
+  function greedy(items, heights, capacity) {
+    const groups = [];
+    let cur = [], curH = 0;
+    for (let k = 0; k < items.length; k++) {
+      const h = heights[k];
+      const addH = cur.length === 0 ? h : h + GAP;
+      if (cur.length > 0 && curH + addH > capacity) { groups.push(cur); cur = []; curH = 0; }
+      cur.push(items[k]);
+      curH += (cur.length === 1 ? h : h + GAP);
+    }
+    if (cur.length) groups.push(cur);
+    return groups;
+  }
+  function withContNote(head, gi) {
+    if (gi === 0) return head;
+    return head.replace(/(<span class="step-subtitle">[^<]*)(<\/span>)/,
+      `$1 <span style="font-size:8pt;color:var(--c-muted)">(이어서 ${gi + 1})</span>$2`);
+  }
+  // CSS column-count:2 모사 — 섹션들을 순서대로 두 컬럼에 채울 때
+  // 더 높은 컬럼의 높이를 추정 (col1 을 sum/2 직전까지 채우고 나머지 col2).
+  function tallerColumnHeight(heights) {
+    const total = heights.reduce((a, c) => a + c + GAP, 0);
+    const half = total / 2;
+    let col1 = 0, idx = 0;
+    for (; idx < heights.length; idx++) {
+      if (col1 + heights[idx] + GAP > half && col1 > 0) break;
+      col1 += heights[idx] + GAP;
+    }
+    let col2 = 0;
+    for (let k = idx; k < heights.length; k++) col2 += heights[k] + GAP;
+    return Math.max(col1, col2);
+  }
+  // answer-2col 전용: 더 높은 컬럼이 avail 을 넘지 않도록 섹션을 페이지에 분배
+  function greedyColumns(items, heights, avail) {
+    const groups = [];
+    let cur = [], curHs = [];
+    for (let k = 0; k < items.length; k++) {
+      const trial = [...curHs, heights[k]];
+      if (curHs.length > 0 && tallerColumnHeight(trial) > avail) {
+        groups.push(cur); cur = []; curHs = [];
+      }
+      cur.push(items[k]); curHs.push(heights[k]);
+    }
+    if (cur.length) groups.push(cur);
+    return groups;
+  }
+
+  sections.forEach((sec, i) => {
+    const info = plan[i];
+    if (!info || !info.overflow) { newSections.push(sec); return; }
+
+    // ── CASE A: STEP 1 passage 페이지 (리스트 컨테이너 없음) ──
+    if (info.isPassage && !info.listClass) {
+      // page-body 직계 블록(배너 제외)을 분할 단위로
+      const pbOpenRe = /<div class="page-body">/;
+      const pbm = sec.match(pbOpenRe);
+      const footRe = /<footer class="page-foot">[\s\S]*?<\/footer>/;
+      const fm = sec.match(footRe);
+      if (!pbm || !fm) { newSections.push(sec); return; }
+      const headTop = sec.slice(0, pbm.index + pbm[0].length); // <section..><header..><div page-body>
+      const pbInner = sec.slice(pbm.index + pbm[0].length, sec.lastIndexOf('</div>', fm.index));
+      const footer = fm[0];
+      // 배너 분리
+      const bannerRe = /<div class="step-banner">[\s\S]*?<\/div>\s*<\/div>\s*<\/div>/;
+      // 배너는 3중 div — 안전하게 splitTopDivs 로 첫 블록 취득
+      const blocks = splitTopDivs(pbInner, null);
+      if (blocks.length < 2) { newSections.push(sec); return; }
+      const banner = blocks[0];
+      const contentBlocks = blocks.slice(1);
+      if (contentBlocks.length !== info.itemHeights.length) { newSections.push(sec); return; }
+      const cap = Math.floor(info.avail * SAFETY);
+      const groups = greedy(contentBlocks, info.itemHeights, cap);
+      const sectOpen = sec.slice(0, sec.indexOf('<header'));
+      const header = sec.slice(sec.indexOf('<header'), sec.indexOf('<div class="page-body">'));
+      groups.forEach((grp, gi) => {
+        const head = withContNote(`${sectOpen}${header}<div class="page-body">\n${banner}\n`, gi);
+        newSections.push(`${head}${grp.join('\n')}\n  </div>\n${footer}\n</section>`);
+      });
+      return;
+    }
+
+    if (!info.listClass) { newSections.push(sec); return; }
+
+    // ── CASE B: 리스트 기반 STEP (2~9) ──
+    const listOpenRe = new RegExp(`<div class="${escapeReg(info.listClass)}">`);
+    const openMatch = sec.match(listOpenRe);
+    if (!openMatch) { newSections.push(sec); return; }
+    const listOpen = openMatch[0];
+    const beforeList = sec.slice(0, openMatch.index);
+    const afterOpenIdx = openMatch.index + listOpen.length;
+    const listInnerAndRest = sec.slice(afterOpenIdx);
+    const bodyCloseRe = /\s*<\/div>\s*<\/div>\s*<footer/;
+    const bodyCloseMatch = listInnerAndRest.match(bodyCloseRe);
+    if (!bodyCloseMatch) { newSections.push(sec); return; }
+    const listInner = listInnerAndRest.slice(0, bodyCloseMatch.index);
+    const tail = listInnerAndRest.slice(bodyCloseMatch.index);
+
+    const items = splitTopDivs(listInner, null);
+    if (items.length !== info.itemHeights.length) { newSections.push(sec); return; }
+
+    // answer-2col 은 2단 컬럼 → 더 높은 컬럼이 avail 안에 들도록 컬럼 인지 분배.
+    // 그 외 STEP 은 단일 컬럼 그리디.
+    const groups = info.isAnswer
+      ? greedyColumns(items, info.itemHeights, Math.floor(info.avail * SAFETY))
+      : greedy(items, info.itemHeights, Math.floor(info.avail * SAFETY));
+
+    groups.forEach((grp, gi) => {
+      const head = withContNote(beforeList, gi);
+      newSections.push(`${head}${listOpen}${grp.join('')}${tail}`);
+    });
+  });
+
+  // 푸터 페이지 번호 재계산 (전체 순번)
+  let pageNum = 0;
+  const renumbered = newSections.map(sec => {
+    pageNum += 1;
+    return sec.replace(/<span class="pageno">\d+<\/span>/, `<span class="pageno">${pageNum}</span>`);
+  });
+
+  // 문서 재조립
+  const firstSecIdx = html.indexOf(sections[0]);
+  const docHead = html.slice(0, firstSecIdx);
+  const lastSec = sections[sections.length - 1];
+  const docTail = html.slice(html.indexOf(lastSec) + lastSec.length);
+  return docHead + renumbered.join('\n\n') + docTail;
+}
+
+// 최상위 <div ...> 블록들을 균형 괄호로 분리
+function splitTopDivs(htmlFrag, classHint) {
+  const divs = [];
+  let i = 0;
+  const openTag = /<div\b[^>]*>/g;
+  const s = htmlFrag;
+  while (i < s.length) {
+    openTag.lastIndex = i;
+    const m = openTag.exec(s);
+    if (!m) break;
+    // 균형 맞는 닫기 찾기
+    let depth = 0, j = m.index;
+    const tagRe = /<\/?div\b[^>]*>/g;
+    tagRe.lastIndex = m.index;
+    let t;
+    while ((t = tagRe.exec(s))) {
+      if (t[0].startsWith('</')) { depth--; } else { depth++; }
+      if (depth === 0) { j = tagRe.lastIndex; break; }
+    }
+    divs.push(s.slice(m.index, j));
+    i = j;
+  }
+  return divs.filter(d => d.trim());
+}
+
+function escapeReg(str) { return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+function hashStr(str) { let h = 0; for (let i = 0; i < str.length; i++) { h = (h * 31 + str.charCodeAt(i)) | 0; } return h; }
+
+// ─────────────────────────────────────────────────────────────
 // 메인
 // ─────────────────────────────────────────────────────────────
 
@@ -617,7 +863,13 @@ async function main() {
     const wb   = JSON.parse(await fs.readFile(path.join(dataDir, wbFile), 'utf8'));
     const data = JSON.parse(await fs.readFile(dataFile, 'utf8'));
 
-    const html = buildHtml({ data, wb });
+    let html = buildHtml({ data, wb });
+    // 긴 지문(STEP overflow)만 연속 페이지로 분할 — 짧은 워크북은 변화 없음
+    try {
+      html = await paginateOverflow(html, '../styles/workbook.css', distDir);
+    } catch (err) {
+      console.warn(`   ⚠️  paginate skipped for ${qno}: ${err.message}`);
+    }
     const outName = `workbook-${qno}.html`;
     await fs.writeFile(path.join(distDir, outName), html, 'utf8');
     indexLinks.push(`<a href="${outName}">${esc(data.exam)} · ${esc(data.question_no)}번 워크북</a>`);

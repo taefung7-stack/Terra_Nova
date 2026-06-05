@@ -1,0 +1,465 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "19.json",
+  "_note": "19번 워크북 — 본문 10문장 풀커버.",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "bakery",   "pos": "명" },
+      { "word": "flavor",   "pos": "명" },
+      { "word": "notice",   "pos": "동" },
+      { "word": "wonder",   "pos": "동" },
+      { "word": "mistake",  "pos": "명" },
+      { "word": "explain",  "pos": "동" },
+      { "word": "receive",  "pos": "동" },
+      { "word": "similar",  "pos": "형" },
+      { "word": "quality",  "pos": "형" },
+      { "word": "imagine",  "pos": "동" }
+    ],
+    "ko_to_en": [
+      { "meaning": "빵집, 제과점",       "pos": "명", "answer": "bakery" },
+      { "meaning": "맛, 풍미",           "pos": "명", "answer": "flavor" },
+      { "meaning": "알아차리다",         "pos": "동", "answer": "notice" },
+      { "meaning": "메시지, 문구",       "pos": "명", "answer": "message" },
+      { "meaning": "실수, 잘못",         "pos": "명", "answer": "mistake" },
+      { "meaning": "설명하다",           "pos": "동", "answer": "explain" },
+      { "meaning": "받다",               "pos": "동", "answer": "receive" },
+      { "meaning": "비슷한, 유사한",     "pos": "형", "answer": "similar" },
+      { "meaning": "상상하다",           "pos": "동", "answer": "imagine" },
+      { "meaning": "완벽한",             "pos": "형", "answer": "perfect" }
+    ],
+    "expressions": [
+      { "ko": "찾아오다, 가지러 가다", "answer": "pick up" },
+      { "ko": "이해하다",             "answer": "get it" },
+      { "ko": "자리를 떠나다",         "answer": "walk away" },
+      { "ko": "잠시 후에",            "answer": "moments later" },
+      { "ko": "훨씬 더 좋은",          "answer": "even better" }
+    ],
+    "definitions": [
+      { "def": "a shop where bread and cakes are made and sold",          "answer": "bakery" },
+      { "def": "to become aware of something by seeing it",               "answer": "notice" },
+      { "def": "to make clear by giving reasons or details",              "answer": "explain" },
+      { "def": "almost the same but not exactly alike",                   "answer": "similar" },
+      { "def": "having no faults; as good as it can possibly be",         "answer": "perfect" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Luna {{1:went/goes}} to the bakery {{2:to pick up/picking up}} a chocolate cake for her dad's 70th birthday.",
+      "ko_full": "Luna는 아빠의 70번째 생일을 위한 초콜릿 케이크를 찾으러 빵집에 갔다.",
+      "answers": ["went", "to pick up"],
+      "explain": [
+        "과거 시제 서술 — went.",
+        "목적을 나타내는 to부정사의 부사적 용법 — to pick up."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "As she opened the box, she {{1:couldn't/couldn't be}} understand {{2:what/that}} she saw.",
+      "ko_full": "상자를 열었을 때, 그녀는 자신이 본 것을 이해할 수 없었다.",
+      "answers": ["couldn't", "what"],
+      "explain": [
+        "조동사 could not + 동사원형 — couldn't understand.",
+        "선행사를 포함한 관계대명사 what (saw의 목적어 절)."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "It {{1:was/were}} a lemon cake.",
+      "ko_full": "그것은 레몬 케이크였다.",
+      "answers": ["was"],
+      "explain": [
+        "단수 주어 It → was."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "Then she {{1:noticed/noticing}} the message {{2:on/in}} top.",
+      "ko_full": "그때 그녀는 위에 적힌 메시지를 알아차렸다.",
+      "answers": ["noticed", "on"],
+      "explain": [
+        "과거 시제 본동사 — noticed.",
+        "'위에' — on top."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "It {{1:said/told}}, \"Happy 50th Birthday, Dad!\"",
+      "ko_full": "거기에는 \"50번째 생일 축하해요, 아빠!\"라고 적혀 있었다.",
+      "answers": ["said"],
+      "explain": [
+        "글·표지가 '~라고 적혀 있다'의 say (간접목적어 불필요) — said."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "Luna said to the baker, \"I don't get it. The flavor and the message {{1:are/is}} wrong.\"",
+      "ko_full": "Luna는 제빵사에게 말했다. \"이해가 안 되네요. 맛과 메시지가 잘못됐어요.\"",
+      "answers": ["are"],
+      "explain": [
+        "복수 주어(flavor and message) → are."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "She wondered {{1:if/that}} she {{2:made/make}} a mistake when ordering.",
+      "ko_full": "그녀는 자신이 주문할 때 실수를 한 것은 아닌지 궁금했다.",
+      "answers": ["if", "made"],
+      "explain": [
+        "'~인지 아닌지'의 명사절 접속사 if(= whether).",
+        "과거 시제 동사 — made."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "The baker {{1:asked/asked to}} her {{2:to wait/wait}} and walked away.",
+      "ko_full": "제빵사는 그녀에게 기다려 달라고 하고는 자리를 떠났다.",
+      "answers": ["asked", "to wait"],
+      "explain": [
+        "ask + 목적어 + to V (5형식) — asked her.",
+        "목적격보어로 to부정사 — to wait."
+      ]
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "en_template": "Moments later, he returned with her cake, {{1:explaining/explained}} they {{2:had received/receive}} two similar orders.",
+      "ko_full": "잠시 후, 그는 비슷한 주문 두 건을 받았다고 설명하며 그녀의 케이크를 가지고 돌아왔다.",
+      "answers": ["explaining", "had received"],
+      "explain": [
+        "분사구문(= and he explained) — explaining.",
+        "돌아온 시점보다 앞선 일을 나타내는 과거완료 — had received."
+      ]
+    },
+    {
+      "no": 10,
+      "ref_sentence": 10,
+      "en_template": "{{1:Knowing/Known}} she had chosen a quality bakery, Luna said, \"I see. Well, this looks perfect, even {{2:better/best}} than I imagined.\"",
+      "ko_full": "자신이 좋은 빵집을 골랐다는 것을 알기에, Luna는 말했다. \"그렇군요. 음, 이거 완벽해 보여요, 제가 상상한 것보다 더 좋네요.\"",
+      "answers": ["Knowing", "better"],
+      "explain": [
+        "이유를 나타내는 분사구문(= Because she knew) — Knowing.",
+        "than과 호응하는 비교급 — better."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Luna went to the {{1:bakery/library}} to {{2:pick up/drop off}} a chocolate cake for her dad's 70th birthday.",
+      "ko_full": "Luna는 아빠의 70번째 생일을 위한 초콜릿 케이크를 찾으러 빵집에 갔다.",
+      "answers": ["bakery", "pick up"],
+      "explain": [
+        "케이크를 찾는 장소 — bakery(빵집).",
+        "'찾아오다, 가지러 가다' — pick up."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "As she opened the box, she couldn't {{1:understand/recall}} what she saw.",
+      "ko_full": "상자를 열었을 때, 그녀는 자신이 본 것을 이해할 수 없었다.",
+      "answers": ["understand"],
+      "explain": [
+        "혼란 — 본 것을 '이해'할 수 없음 — understand."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "It was a {{1:lemon/chocolate}} cake.",
+      "ko_full": "그것은 레몬 케이크였다.",
+      "answers": ["lemon"],
+      "explain": [
+        "주문한 초콜릿이 아닌 '레몬' 케이크 — lemon."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "Then she {{1:noticed/ignored}} the message on top.",
+      "ko_full": "그때 그녀는 위에 적힌 메시지를 알아차렸다.",
+      "answers": ["noticed"],
+      "explain": [
+        "'알아차리다' — noticed ↔ ignored(무시하다)."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "It said, \"Happy {{1:50th/70th}} Birthday, Dad!\"",
+      "ko_full": "거기에는 \"50번째 생일 축하해요, 아빠!\"라고 적혀 있었다.",
+      "answers": ["50th"],
+      "explain": [
+        "잘못 적힌 문구는 '50번째' — 50th(원래는 70th)."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "Luna said to the baker, \"I don't get it. The flavor and the message are {{1:wrong/correct}}.\"",
+      "ko_full": "Luna는 제빵사에게 말했다. \"이해가 안 되네요. 맛과 메시지가 잘못됐어요.\"",
+      "answers": ["wrong"],
+      "explain": [
+        "맛과 문구가 '잘못됨' — wrong ↔ correct."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "She {{1:wondered/knew}} if she made a {{2:mistake/success}} when ordering.",
+      "ko_full": "그녀는 자신이 주문할 때 실수를 한 것은 아닌지 궁금했다.",
+      "answers": ["wondered", "mistake"],
+      "explain": [
+        "'궁금해했다' — wondered ↔ knew(확신).",
+        "'실수' — mistake."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "The baker asked her to wait and {{1:walked away/came back}}.",
+      "ko_full": "제빵사는 그녀에게 기다려 달라고 하고는 자리를 떠났다.",
+      "answers": ["walked away"],
+      "explain": [
+        "'자리를 떠나다' — walked away ↔ came back(돌아오다)."
+      ]
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "en_template": "Moments later, he {{1:returned/disappeared}} with her cake, explaining they had received two {{2:similar/different}} orders.",
+      "ko_full": "잠시 후, 그는 비슷한 주문 두 건을 받았다고 설명하며 그녀의 케이크를 가지고 돌아왔다.",
+      "answers": ["returned", "similar"],
+      "explain": [
+        "'돌아왔다' — returned.",
+        "'비슷한' 주문 — similar ↔ different."
+      ]
+    },
+    {
+      "no": 10,
+      "ref_sentence": 10,
+      "en_template": "Knowing she had chosen a {{1:quality/poor}} bakery, Luna said, \"I see. Well, this looks {{2:perfect/terrible}}, even better than I imagined.\"",
+      "ko_full": "자신이 좋은 빵집을 골랐다는 것을 알기에, Luna는 말했다. \"그렇군요. 음, 이거 완벽해 보여요, 제가 상상한 것보다 더 좋네요.\"",
+      "answers": ["quality", "perfect"],
+      "explain": [
+        "'양질의, 우수한' 빵집 — quality ↔ poor.",
+        "'완벽한' — perfect ↔ terrible."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "b", "answer": "bakery",    "after": "to pick up" },
+        { "pos": 2, "letter": "c", "answer": "chocolate", "after": "cake" },
+        { "pos": 3, "letter": "b", "answer": "birthday",  "after": "" }
+      ],
+      "ko_full": "Luna는 아빠의 70번째 생일을 위한 초콜릿 케이크를 찾으러 빵집에 갔다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "o", "answer": "opened",     "after": "the box" },
+        { "pos": 2, "letter": "u", "answer": "understand", "after": "what she saw" },
+        { "pos": 3, "letter": "s", "answer": "saw",        "after": "" }
+      ],
+      "ko_full": "상자를 열었을 때, 그녀는 자신이 본 것을 이해할 수 없었다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "l", "answer": "lemon", "after": "cake" },
+        { "pos": 2, "letter": "c", "answer": "cake",  "after": "" }
+      ],
+      "ko_full": "그것은 레몬 케이크였다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "n", "answer": "noticed", "after": "the message" },
+        { "pos": 2, "letter": "m", "answer": "message", "after": "on top" },
+        { "pos": 3, "letter": "t", "answer": "top",     "after": "" }
+      ],
+      "ko_full": "그때 그녀는 위에 적힌 메시지를 알아차렸다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "s", "answer": "said",     "after": "Happy" },
+        { "pos": 2, "letter": "b", "answer": "birthday", "after": "Dad" }
+      ],
+      "ko_full": "거기에는 \"50번째 생일 축하해요, 아빠!\"라고 적혀 있었다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "b", "answer": "baker",   "after": "I don't get it" },
+        { "pos": 2, "letter": "f", "answer": "flavor",  "after": "and the message" },
+        { "pos": 3, "letter": "w", "answer": "wrong",   "after": "" }
+      ],
+      "ko_full": "Luna는 제빵사에게 말했다. \"이해가 안 되네요. 맛과 메시지가 잘못됐어요.\""
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "hints": [
+        { "pos": 1, "letter": "w", "answer": "wondered", "after": "if she made" },
+        { "pos": 2, "letter": "m", "answer": "mistake",  "after": "when ordering" },
+        { "pos": 3, "letter": "o", "answer": "ordering", "after": "" }
+      ],
+      "ko_full": "그녀는 자신이 주문할 때 실수를 한 것은 아닌지 궁금했다."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "hints": [
+        { "pos": 1, "letter": "b", "answer": "baker",  "after": "asked her to wait" },
+        { "pos": 2, "letter": "w", "answer": "wait",   "after": "and walked away" },
+        { "pos": 3, "letter": "w", "answer": "walked", "after": "away" }
+      ],
+      "ko_full": "제빵사는 그녀에게 기다려 달라고 하고는 자리를 떠났다."
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "hints": [
+        { "pos": 1, "letter": "r", "answer": "returned",  "after": "with her cake" },
+        { "pos": 2, "letter": "e", "answer": "explaining", "after": "they had received" },
+        { "pos": 3, "letter": "s", "answer": "similar",   "after": "orders" }
+      ],
+      "ko_full": "잠시 후, 그는 비슷한 주문 두 건을 받았다고 설명하며 그녀의 케이크를 가지고 돌아왔다."
+    },
+    {
+      "no": 10,
+      "ref_sentence": 10,
+      "hints": [
+        { "pos": 1, "letter": "k", "answer": "knowing",  "after": "she had chosen" },
+        { "pos": 2, "letter": "q", "answer": "quality",  "after": "bakery" },
+        { "pos": 3, "letter": "p", "answer": "perfect",  "after": "even better" },
+        { "pos": 4, "letter": "i", "answer": "imagined", "after": "" }
+      ],
+      "ko_full": "자신이 좋은 빵집을 골랐다는 것을 알기에, Luna는 말했다. \"그렇군요. 음, 이거 완벽해 보여요, 제가 상상한 것보다 더 좋네요.\""
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 },
+    { "no": 7, "ref_sentence": 7 },
+    { "no": 8, "ref_sentence": 8 },
+    { "no": 9, "ref_sentence": 9 },
+    { "no": 10, "ref_sentence": 10 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["Luna", "went", "to", "the", "bakery", "to", "pick", "up", "a", "chocolate", "cake", "for", "her", "dad's", "70th", "birthday"],
+      "answer": "Luna went to the bakery to pick up a chocolate cake for her dad's 70th birthday."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["As", "she", "opened", "the", "box", "she", "couldn't", "understand", "what", "she", "saw"],
+      "answer": "As she opened the box, she couldn't understand what she saw."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["It", "was", "a", "lemon", "cake"],
+      "answer": "It was a lemon cake."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["Then", "she", "noticed", "the", "message", "on", "top"],
+      "answer": "Then she noticed the message on top."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["It", "said", "Happy", "50th", "Birthday", "Dad"],
+      "answer": "It said, \"Happy 50th Birthday, Dad!\""
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["Luna", "said", "to", "the", "baker", "I", "don't", "get", "it", "The", "flavor", "and", "the", "message", "are", "wrong"],
+      "answer": "Luna said to the baker, \"I don't get it. The flavor and the message are wrong.\""
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "words": ["She", "wondered", "if", "she", "made", "a", "mistake", "when", "ordering"],
+      "answer": "She wondered if she made a mistake when ordering."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "words": ["The", "baker", "asked", "her", "to", "wait", "and", "walked", "away"],
+      "answer": "The baker asked her to wait and walked away."
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "words": ["Moments", "later", "he", "returned", "with", "her", "cake", "explaining", "they", "had", "received", "two", "similar", "orders"],
+      "answer": "Moments later, he returned with her cake, explaining they had received two similar orders."
+    },
+    {
+      "no": 10,
+      "ref_sentence": 10,
+      "words": ["Knowing", "she", "had", "chosen", "a", "quality", "bakery", "Luna", "said", "I", "see", "Well", "this", "looks", "perfect", "even", "better", "than", "I", "imagined"],
+      "answer": "Knowing she had chosen a quality bakery, Luna said, \"I see. Well, this looks perfect, even better than I imagined.\""
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" },
+    { "no": 7, "ref_sentence": 7, "given": "ko" },
+    { "no": 8, "ref_sentence": 8, "given": "ko" },
+    { "no": 9, "ref_sentence": 9, "given": "ko" },
+    { "no": 10, "ref_sentence": 10, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 1,  "no": 1 },
+    { "kind": "vocab",   "ref": 3,  "no": 2 },
+    { "kind": "fill",    "ref": 5,  "no": 3 },
+    { "kind": "ko",      "ref": 7,  "no": 4 },
+    { "kind": "jumble",  "ref": 8,  "no": 5 },
+    { "kind": "sent",    "ref": 10, "no": 6 },
+    { "kind": "grammar", "ref": 9,  "no": 7 },
+    { "kind": "vocab",   "ref": 6,  "no": 8 }
+  ]
+}

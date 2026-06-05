@@ -1,0 +1,322 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "23.json",
+  "_note": "23번 워크북 — 본문 6문장 풀커버.",
+  "_template_for_new_rounds": "이 파일을 새 회차의 {N}-workbook.json 작성 시 템플릿으로 사용. en_template의 {{N:A/B}} 토큰 = 양자택일 박스, hints 배열 = 빈칸 첫글자, jumble.words = 단어 배열 (셔플 X, 의도 유지).",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "barrier",       "pos": "명" },
+      { "word": "competitive",   "pos": "형" },
+      { "word": "significant",   "pos": "형" },
+      { "word": "convert",       "pos": "동" },
+      { "word": "hedge",         "pos": "동" },
+      { "word": "disappear",     "pos": "동" },
+      { "word": "reinvest",      "pos": "동" },
+      { "word": "productivity",  "pos": "명" },
+      { "word": "innovation",    "pos": "명" },
+      { "word": "unify",         "pos": "동" }
+    ],
+    "ko_to_en": [
+      { "meaning": "무역, 거래",        "pos": "명", "answer": "trade" },
+      { "meaning": "거래 비용",         "pos": "명구", "answer": "transaction cost" },
+      { "meaning": "자금",              "pos": "명", "answer": "funds" },
+      { "meaning": "상품, 재화",        "pos": "명", "answer": "goods" },
+      { "meaning": "절약(분), 저축",    "pos": "명", "answer": "savings" },
+      { "meaning": "생산적인",          "pos": "형", "answer": "productive" },
+      { "meaning": "쓸모없는",          "pos": "형", "answer": "useless" },
+      { "meaning": "기본적으로",        "pos": "부", "answer": "basically" },
+      { "meaning": "토대, 기반",        "pos": "명", "answer": "foundation" },
+      { "meaning": "혁신",              "pos": "명", "answer": "innovation" }
+    ],
+    "expressions": [
+      { "ko": "~의 부족",            "answer": "a lack of" },
+      { "ko": "A 때문이 아니라 B 때문에", "answer": "not because of A but because B" },
+      { "ko": "~로 바뀌다",          "answer": "turn into" },
+      { "ko": "~을 제공하다, 마련하다", "answer": "provide for" },
+      { "ko": "경쟁력 있는 가격에",   "answer": "at competitive prices" }
+    ],
+    "definitions": [
+      { "def": "something that blocks or prevents progress",                       "answer": "barrier" },
+      { "def": "to change money from one currency into another",                   "answer": "convert" },
+      { "def": "to invest money or profits back into something again",            "answer": "reinvest" },
+      { "def": "to combine separate things into a single whole",                  "answer": "unify" },
+      { "def": "the strong base on which something is built or supported",         "answer": "foundation" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Many of the barriers to trade {{1:exist/exists}} not because of a lack of markets or customers, but because there {{2:are/is}} major barriers to {{3:getting/get}} products to market at competitive prices.",
+      "ko_full": "무역에 대한 장벽 중 많은 것은 시장이나 고객의 부족 때문이 아니라, 제품을 경쟁력 있는 가격으로 시장에 내놓는 데 주요한 장벽이 있기 때문에 존재한다.",
+      "answers": ["exist", "are", "getting"],
+      "explain": [
+        "주어 핵 'Many (of the barriers)' = 복수 취급 → exist.",
+        "there + 복수 명사(major barriers) → are.",
+        "전치사 to + 동명사 getting (barriers to ~ing)."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "Transaction costs {{1:are/is}} significant for companies — not only the straight exchange costs, but also the cost of {{2:converting/convert}}, paying, and hedging funds just {{3:to pay/paying}} for the goods and services.",
+      "ko_full": "거래 비용은 기업에게 상당하다 — 단순한 환전 비용뿐만 아니라, 단지 상품과 서비스의 대금을 치르기 위해 자금을 환전하고 지불하고 헤지하는 비용까지도 그렇다.",
+      "answers": ["are", "converting", "to pay"],
+      "explain": [
+        "주어 Transaction costs(복수) → are.",
+        "of + 동명사 병렬 converting, paying, hedging.",
+        "'~하기 위해' 목적의 to부정사 to pay."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "Having a common currency {{1:means/mean}} {{2:that/what}} many of those transaction costs disappear and the savings can {{3:be reinvested/reinvest}} back into firms' productivity and innovation.",
+      "ko_full": "공통 통화를 갖는다는 것은 그러한 거래 비용 중 많은 것이 사라지고 그 절약분이 기업의 생산성과 혁신에 다시 재투자될 수 있음을 의미한다.",
+      "answers": ["means", "that", "be reinvested"],
+      "explain": [
+        "동명사구 주어(Having ...)는 단수 → means.",
+        "means의 목적어 명사절을 이끄는 접속사 that(완전한 절).",
+        "savings가 '재투자되는' 대상 → 수동 be reinvested."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "Basically, useless costs {{1:turn/turns}} into productive costs — with longer-term benefits {{2:to/for}} the whole economy.",
+      "ko_full": "기본적으로, 쓸모없는 비용이 생산적인 비용으로 바뀌며 — 경제 전체에 더 장기적인 이익을 준다.",
+      "answers": ["turn", "to"],
+      "explain": [
+        "주어 useless costs(복수) → turn.",
+        "benefit to N: ~에 대한 이익 — 관용적으로 전치사 to."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "By {{1:unifying/unify}} some of the currencies, whole economies benefit and grow more than they {{2:would/will}} as independents.",
+      "ko_full": "일부 통화를 통합함으로써, 경제 전체가 독립적으로 있을 때보다 더 많이 이익을 얻고 성장한다.",
+      "answers": ["unifying", "would"],
+      "explain": [
+        "By + 동명사(unifying) — '~함으로써'.",
+        "비교 구문 than they would (benefit and grow) — 가정·반복 동사 would."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "So a common currency {{1:provides/provide}} for a strong economic foundation {{2:that/what}} all can benefit from.",
+      "ko_full": "따라서 공통 통화는 모두가 이익을 얻을 수 있는 강력한 경제적 토대를 제공한다.",
+      "answers": ["provides", "that"],
+      "explain": [
+        "주어 a common currency(단수) → provides.",
+        "선행사 foundation 수식, benefit from의 목적어 → 목적격 관계대명사 that."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Many of the {{1:barriers/gateways}} to trade exist not because of a lack of markets or customers, but because there are major barriers to getting products to market at {{2:competitive/uncompetitive}} prices.",
+      "ko_full": "무역에 대한 장벽 중 많은 것은 시장이나 고객의 부족 때문이 아니라, 제품을 경쟁력 있는 가격으로 시장에 내놓는 데 주요한 장벽이 있기 때문에 존재한다.",
+      "answers": ["barriers", "competitive"],
+      "explain": [
+        "무역을 막는 '장벽' — barriers.",
+        "'경쟁력 있는' 가격 — competitive."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "Transaction costs are {{1:significant/trivial}} for companies — not only the straight exchange costs, but also the cost of converting, paying, and {{2:hedging/exposing}} funds just to pay for the goods and services.",
+      "ko_full": "거래 비용은 기업에게 상당하다 — 단순한 환전 비용뿐만 아니라, 단지 상품과 서비스의 대금을 치르기 위해 자금을 환전하고 지불하고 헤지하는 비용까지도 그렇다.",
+      "answers": ["significant", "hedging"],
+      "explain": [
+        "거래 비용이 '상당하다' — significant.",
+        "위험을 '헤지(회피)하다' — hedging."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "Having a common currency means that many of those transaction costs {{1:disappear/emerge}} and the savings can be {{2:reinvested/withdrawn}} back into firms' productivity and innovation.",
+      "ko_full": "공통 통화를 갖는다는 것은 그러한 거래 비용 중 많은 것이 사라지고 그 절약분이 기업의 생산성과 혁신에 다시 재투자될 수 있음을 의미한다.",
+      "answers": ["disappear", "reinvested"],
+      "explain": [
+        "거래 비용이 '사라진다' — disappear.",
+        "절약분이 '재투자된다' — reinvested."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "Basically, {{1:useless/useful}} costs turn into {{2:productive/unproductive}} costs — with longer-term benefits to the whole economy.",
+      "ko_full": "기본적으로, 쓸모없는 비용이 생산적인 비용으로 바뀌며 — 경제 전체에 더 장기적인 이익을 준다.",
+      "answers": ["useless", "productive"],
+      "explain": [
+        "'쓸모없는' 비용 — useless.",
+        "'생산적인' 비용으로 전환 — productive."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "By {{1:unifying/dividing}} some of the currencies, whole economies {{2:benefit/suffer}} and grow more than they would as independents.",
+      "ko_full": "일부 통화를 통합함으로써, 경제 전체가 독립적으로 있을 때보다 더 많이 이익을 얻고 성장한다.",
+      "answers": ["unifying", "benefit"],
+      "explain": [
+        "통화를 '통합함' — unifying.",
+        "경제 전체가 '이익을 얻는다' — benefit."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "So a common currency provides for a strong economic {{1:foundation/superstructure}} that all can {{2:benefit/deprive}} from.",
+      "ko_full": "따라서 공통 통화는 모두가 이익을 얻을 수 있는 강력한 경제적 토대를 제공한다.",
+      "answers": ["foundation", "benefit"],
+      "explain": [
+        "강력한 경제적 '토대' — foundation.",
+        "모두가 '이익을 얻다' — benefit from."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "b", "answer": "barriers",    "after": "to trade exist" },
+        { "pos": 2, "letter": "c", "answer": "customers",   "after": ", but because" },
+        { "pos": 3, "letter": "m", "answer": "market",      "after": "at competitive prices" },
+        { "pos": 4, "letter": "c", "answer": "competitive", "after": "prices" }
+      ],
+      "ko_full": "무역에 대한 장벽 중 많은 것은 시장이나 고객의 부족 때문이 아니라, 제품을 경쟁력 있는 가격으로 시장에 내놓는 데 주요한 장벽이 있기 때문에 존재한다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "s", "answer": "significant", "after": "for companies" },
+        { "pos": 2, "letter": "e", "answer": "exchange",    "after": "costs" },
+        { "pos": 3, "letter": "h", "answer": "hedging",     "after": "funds" },
+        { "pos": 4, "letter": "s", "answer": "services",    "after": "" }
+      ],
+      "ko_full": "거래 비용은 기업에게 상당하다 — 단순한 환전 비용뿐만 아니라, 단지 상품과 서비스의 대금을 치르기 위해 자금을 환전하고 지불하고 헤지하는 비용까지도 그렇다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "c", "answer": "currency",     "after": "means that" },
+        { "pos": 2, "letter": "d", "answer": "disappear",    "after": "and the savings" },
+        { "pos": 3, "letter": "r", "answer": "reinvested",   "after": "back into" },
+        { "pos": 4, "letter": "i", "answer": "innovation",   "after": "" }
+      ],
+      "ko_full": "공통 통화를 갖는다는 것은 그러한 거래 비용 중 많은 것이 사라지고 그 절약분이 기업의 생산성과 혁신에 다시 재투자될 수 있음을 의미한다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "u", "answer": "useless",    "after": "costs turn into" },
+        { "pos": 2, "letter": "p", "answer": "productive", "after": "costs" },
+        { "pos": 3, "letter": "e", "answer": "economy",    "after": "" }
+      ],
+      "ko_full": "기본적으로, 쓸모없는 비용이 생산적인 비용으로 바뀌며 — 경제 전체에 더 장기적인 이익을 준다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "u", "answer": "unifying",     "after": "some of the currencies" },
+        { "pos": 2, "letter": "b", "answer": "benefit",      "after": "and grow" },
+        { "pos": 3, "letter": "i", "answer": "independents", "after": "" }
+      ],
+      "ko_full": "일부 통화를 통합함으로써, 경제 전체가 독립적으로 있을 때보다 더 많이 이익을 얻고 성장한다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "c", "answer": "currency",   "after": "provides for" },
+        { "pos": 2, "letter": "f", "answer": "foundation", "after": "that all can benefit from" },
+        { "pos": 3, "letter": "b", "answer": "benefit",    "after": "from" }
+      ],
+      "ko_full": "따라서 공통 통화는 모두가 이익을 얻을 수 있는 강력한 경제적 토대를 제공한다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["Many", "of", "the", "barriers", "to", "trade", "exist", "not", "because", "of", "a", "lack", "of", "markets", "or", "customers", "but", "because", "there", "are", "major", "barriers", "to", "getting", "products", "to", "market", "at", "competitive", "prices"],
+      "answer": "Many of the barriers to trade exist not because of a lack of markets or customers, but because there are major barriers to getting products to market at competitive prices."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["Transaction", "costs", "are", "significant", "for", "companies", "not", "only", "the", "straight", "exchange", "costs", "but", "also", "the", "cost", "of", "converting", "paying", "and", "hedging", "funds", "just", "to", "pay", "for", "the", "goods", "and", "services"],
+      "answer": "Transaction costs are significant for companies — not only the straight exchange costs, but also the cost of converting, paying, and hedging funds just to pay for the goods and services."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["Having", "a", "common", "currency", "means", "that", "many", "of", "those", "transaction", "costs", "disappear", "and", "the", "savings", "can", "be", "reinvested", "back", "into", "firms'", "productivity", "and", "innovation"],
+      "answer": "Having a common currency means that many of those transaction costs disappear and the savings can be reinvested back into firms' productivity and innovation."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["Basically", "useless", "costs", "turn", "into", "productive", "costs", "with", "longer-term", "benefits", "to", "the", "whole", "economy"],
+      "answer": "Basically, useless costs turn into productive costs — with longer-term benefits to the whole economy."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["By", "unifying", "some", "of", "the", "currencies", "whole", "economies", "benefit", "and", "grow", "more", "than", "they", "would", "as", "independents"],
+      "answer": "By unifying some of the currencies, whole economies benefit and grow more than they would as independents."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["So", "a", "common", "currency", "provides", "for", "a", "strong", "economic", "foundation", "that", "all", "can", "benefit", "from"],
+      "answer": "So a common currency provides for a strong economic foundation that all can benefit from."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 1, "no": 1 },
+    { "kind": "vocab",   "ref": 3, "no": 2 },
+    { "kind": "fill",    "ref": 4, "no": 3 },
+    { "kind": "ko",      "ref": 5, "no": 4 },
+    { "kind": "jumble",  "ref": 6, "no": 5 },
+    { "kind": "sent",    "ref": 2, "no": 6 },
+    { "kind": "grammar", "ref": 5, "no": 7 },
+    { "kind": "vocab",   "ref": 6, "no": 8 }
+  ]
+}

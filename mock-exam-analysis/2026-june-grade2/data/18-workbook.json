@@ -1,0 +1,393 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "18.json",
+  "_note": "18번 워크북 — 본문 8문장 풀커버.",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "annual",        "pos": "형" },
+      { "word": "registration",  "pos": "명" },
+      { "word": "encourage",     "pos": "동" },
+      { "word": "conservation",  "pos": "명" },
+      { "word": "renewable",     "pos": "형" },
+      { "word": "opportunity",   "pos": "명" },
+      { "word": "showcase",      "pos": "동" },
+      { "word": "submit",        "pos": "동" },
+      { "word": "brief",         "pos": "형" },
+      { "word": "participation", "pos": "명" }
+    ],
+    "ko_to_en": [
+      { "meaning": "주제, 테마",        "pos": "명", "answer": "theme" },
+      { "meaning": "지속 가능한",       "pos": "형", "answer": "sustainable" },
+      { "meaning": "공지·발표하다",     "pos": "동", "answer": "announced" },
+      { "meaning": "예상·기대하다",     "pos": "동", "answer": "expected" },
+      { "meaning": "그러므로, 따라서",  "pos": "부", "answer": "Therefore" },
+      { "meaning": "발표·제시하다",     "pos": "동", "answer": "present" },
+      { "meaning": "실험",              "pos": "명", "answer": "experiment" },
+      { "meaning": "또래, 동료",        "pos": "명", "answer": "peers" },
+      { "meaning": "지역의, 현지의",    "pos": "형", "answer": "local" },
+      { "meaning": "기회",              "pos": "명", "answer": "opportunity" }
+    ],
+    "expressions": [
+      { "ko": "열리다, 개최되다",   "answer": "be held" },
+      { "ko": "참가하다",           "answer": "take part" },
+      { "ko": "~와 관련된",         "answer": "related to" },
+      { "ko": "~을 기대하다",       "answer": "look forward to" },
+      { "ko": "예상보다 낮은",      "answer": "lower than we expected" }
+    ],
+    "definitions": [
+      { "def": "happening once every year",                                  "answer": "annual" },
+      { "def": "the act of putting your name on an official list to join",   "answer": "registration" },
+      { "def": "to give someone support or confidence to do something",      "answer": "encourage" },
+      { "def": "able to be replaced naturally and not used up",              "answer": "renewable" },
+      { "def": "to give a document or piece of work to someone in authority", "answer": "submit" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Dear students, The annual Riverdale Science Fair {{1:will be held/will hold}} on July 18 {{2:with/by}} the theme \"Sustainable Future.\"",
+      "ko_full": "학생 여러분께, 연례 Riverdale 과학 박람회가 \"지속 가능한 미래\"라는 주제로 7월 18일에 열립니다.",
+      "answers": ["will be held", "with"],
+      "explain": [
+        "박람회는 '개최되는' 대상 → 미래 수동태 will be held.",
+        "'~라는 주제로'의 동반 의미 → 전치사 with."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "Although we {{1:announced/announce}} the fair last month, student registration is still {{2:lower/lowest}} than we expected.",
+      "ko_full": "지난달에 박람회를 공지했지만, 학생 신청이 여전히 예상보다 저조합니다.",
+      "answers": ["announced", "lower"],
+      "explain": [
+        "last month(과거 시점) → 과거시제 announced.",
+        "than과 호응하는 비교급 → lower."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "Therefore, we would like {{1:to encourage/encouraging}} more of you {{2:to take/take}} part.",
+      "ko_full": "그래서 우리는 더 많은 여러분이 참가하도록 독려하고자 합니다.",
+      "answers": ["to encourage", "to take"],
+      "explain": [
+        "would like + to V → to encourage.",
+        "encourage + 목적어 + to V(5형식) → to take."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "You {{1:are invited/invite}} to present a project, experiment, or model {{2:related/relating}} to environmental conservation or renewable energy.",
+      "ko_full": "여러분은 환경 보존이나 재생 에너지와 관련된 프로젝트, 실험, 또는 모형을 발표하도록 초대됩니다.",
+      "answers": ["are invited", "related"],
+      "explain": [
+        "You가 '초대받는' 대상 → 수동태 are invited.",
+        "명사를 수식하는 과거분사구(~와 관련된) → related to."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "You will have the opportunity {{1:to showcase/showcasing}} your work for teachers, peers, and {{2:local/locally}} scientists.",
+      "ko_full": "여러분은 교사, 또래, 그리고 지역 과학자들에게 여러분의 작품을 선보일 기회를 갖게 됩니다.",
+      "answers": ["to showcase", "local"],
+      "explain": [
+        "명사 opportunity를 수식하는 to부정사 형용사적 용법 → to showcase.",
+        "명사 scientists를 수식하는 형용사 → local."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "If you {{1:are/will be}} interested, please {{2:submit/to submit}} a brief description of your work by June 25.",
+      "ko_full": "관심이 있다면, 6월 25일까지 작품에 대한 간단한 설명을 제출해 주십시오.",
+      "answers": ["are", "submit"],
+      "explain": [
+        "조건 부사절(if)에서는 현재시제로 미래 대용 → are.",
+        "명령문은 동사원형으로 시작 → submit."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "We look forward {{1:to/for}} your {{2:participation/participate}}.",
+      "ko_full": "여러분의 참여를 기대합니다.",
+      "answers": ["to", "participation"],
+      "explain": [
+        "look forward to + 명사/동명사(여기서 to는 전치사) → to.",
+        "소유격 your 뒤에는 명사 → participation."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "Mr. Howard, {{1:Science/Sciences}} {{2:Teacher/Teach}}",
+      "ko_full": "과학 교사 Howard 선생님 드림",
+      "answers": ["Science", "Teacher"],
+      "explain": [
+        "Teacher를 수식하는 한정 명사(단수형) → Science.",
+        "'교사'를 뜻하는 명사 → Teacher."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "The {{1:annual/occasional}} Riverdale Science Fair will be held on July 18 with the {{2:theme/title}} \"Sustainable Future.\"",
+      "ko_full": "연례 Riverdale 과학 박람회가 \"지속 가능한 미래\"라는 주제로 7월 18일에 열립니다.",
+      "answers": ["annual", "theme"],
+      "explain": [
+        "매년 열리는 '연례의' 박람회 → annual.",
+        "행사의 '주제' → theme."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "Although we {{1:announced/concealed}} the fair last month, student {{2:registration/withdrawal}} is still lower than we expected.",
+      "ko_full": "지난달에 박람회를 공지했지만, 학생 신청이 여전히 예상보다 저조합니다.",
+      "answers": ["announced", "registration"],
+      "explain": [
+        "박람회를 '공지했다' → announced.",
+        "학생 '신청·등록' → registration."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "Therefore, we would like to {{1:encourage/discourage}} more of you to {{2:take part/abstain}}.",
+      "ko_full": "그래서 우리는 더 많은 여러분이 참가하도록 독려하고자 합니다.",
+      "answers": ["encourage", "take part"],
+      "explain": [
+        "참가를 '독려하다' → encourage.",
+        "'참가하다' → take part."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "You are invited to {{1:present/withhold}} a project, experiment, or model related to environmental {{2:conservation/destruction}} or renewable energy.",
+      "ko_full": "여러분은 환경 보존이나 재생 에너지와 관련된 프로젝트, 실험, 또는 모형을 발표하도록 초대됩니다.",
+      "answers": ["present", "conservation"],
+      "explain": [
+        "작품을 '발표·제시하다' → present.",
+        "환경 '보존' → conservation."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "You will have the {{1:opportunity/obstacle}} to {{2:showcase/hide}} your work for teachers, peers, and local scientists.",
+      "ko_full": "여러분은 교사, 또래, 그리고 지역 과학자들에게 여러분의 작품을 선보일 기회를 갖게 됩니다.",
+      "answers": ["opportunity", "showcase"],
+      "explain": [
+        "작품을 선보일 '기회' → opportunity.",
+        "작품을 '선보이다·전시하다' → showcase."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "If you are interested, please {{1:submit/withdraw}} a {{2:brief/lengthy}} description of your work by June 25.",
+      "ko_full": "관심이 있다면, 6월 25일까지 작품에 대한 간단한 설명을 제출해 주십시오.",
+      "answers": ["submit", "brief"],
+      "explain": [
+        "설명을 '제출하다' → submit.",
+        "'간단한' 설명 → brief."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "We {{1:look forward to/give up on}} your {{2:participation/absence}}.",
+      "ko_full": "여러분의 참여를 기대합니다.",
+      "answers": ["look forward to", "participation"],
+      "explain": [
+        "참여를 '기대하다' → look forward to.",
+        "여러분의 '참여' → participation."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "Mr. Howard, {{1:Science/Music}} {{2:Teacher/Student}}",
+      "ko_full": "과학 교사 Howard 선생님 드림",
+      "answers": ["Science", "Teacher"],
+      "explain": [
+        "발신자는 '과학' 교사 → Science.",
+        "직책은 '교사' → Teacher."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "a", "answer": "annual", "after": "Riverdale Science Fair" },
+        { "pos": 2, "letter": "h", "answer": "held",   "after": "on July 18" },
+        { "pos": 3, "letter": "t", "answer": "theme",  "after": "\"Sustainable Future.\"" }
+      ],
+      "ko_full": "학생 여러분께, 연례 Riverdale 과학 박람회가 \"지속 가능한 미래\"라는 주제로 7월 18일에 열립니다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "a", "answer": "announced",    "after": "the fair last month" },
+        { "pos": 2, "letter": "r", "answer": "registration", "after": "is still lower" },
+        { "pos": 3, "letter": "e", "answer": "expected",     "after": "" }
+      ],
+      "ko_full": "지난달에 박람회를 공지했지만, 학생 신청이 여전히 예상보다 저조합니다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "e", "answer": "encourage", "after": "more of you" },
+        { "pos": 2, "letter": "t", "answer": "take",      "after": "part" }
+      ],
+      "ko_full": "그래서 우리는 더 많은 여러분이 참가하도록 독려하고자 합니다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "i", "answer": "invited",      "after": "to present" },
+        { "pos": 2, "letter": "e", "answer": "experiment",   "after": ", or model" },
+        { "pos": 3, "letter": "c", "answer": "conservation", "after": "or renewable energy" },
+        { "pos": 4, "letter": "r", "answer": "renewable",    "after": "energy" }
+      ],
+      "ko_full": "여러분은 환경 보존이나 재생 에너지와 관련된 프로젝트, 실험, 또는 모형을 발표하도록 초대됩니다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "o", "answer": "opportunity", "after": "to showcase" },
+        { "pos": 2, "letter": "s", "answer": "showcase",    "after": "your work" },
+        { "pos": 3, "letter": "p", "answer": "peers",       "after": ", and local scientists" }
+      ],
+      "ko_full": "여러분은 교사, 또래, 그리고 지역 과학자들에게 여러분의 작품을 선보일 기회를 갖게 됩니다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "i", "answer": "interested",  "after": ", please submit" },
+        { "pos": 2, "letter": "s", "answer": "submit",      "after": "a brief description" },
+        { "pos": 3, "letter": "b", "answer": "brief",       "after": "description of your work" }
+      ],
+      "ko_full": "관심이 있다면, 6월 25일까지 작품에 대한 간단한 설명을 제출해 주십시오."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "hints": [
+        { "pos": 1, "letter": "f", "answer": "forward",       "after": "to your participation" },
+        { "pos": 2, "letter": "p", "answer": "participation", "after": "" }
+      ],
+      "ko_full": "여러분의 참여를 기대합니다."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "hints": [
+        { "pos": 1, "letter": "s", "answer": "Science", "after": "Teacher" },
+        { "pos": 2, "letter": "t", "answer": "Teacher", "after": "" }
+      ],
+      "ko_full": "과학 교사 Howard 선생님 드림"
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 },
+    { "no": 7, "ref_sentence": 7 },
+    { "no": 8, "ref_sentence": 8 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["Dear", "students", "The", "annual", "Riverdale", "Science", "Fair", "will", "be", "held", "on", "July", "18", "with", "the", "theme", "Sustainable", "Future"],
+      "answer": "Dear students, The annual Riverdale Science Fair will be held on July 18 with the theme \"Sustainable Future.\""
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["Although", "we", "announced", "the", "fair", "last", "month", "student", "registration", "is", "still", "lower", "than", "we", "expected"],
+      "answer": "Although we announced the fair last month, student registration is still lower than we expected."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["Therefore", "we", "would", "like", "to", "encourage", "more", "of", "you", "to", "take", "part"],
+      "answer": "Therefore, we would like to encourage more of you to take part."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["You", "are", "invited", "to", "present", "a", "project", "experiment", "or", "model", "related", "to", "environmental", "conservation", "or", "renewable", "energy"],
+      "answer": "You are invited to present a project, experiment, or model related to environmental conservation or renewable energy."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["You", "will", "have", "the", "opportunity", "to", "showcase", "your", "work", "for", "teachers", "peers", "and", "local", "scientists"],
+      "answer": "You will have the opportunity to showcase your work for teachers, peers, and local scientists."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["If", "you", "are", "interested", "please", "submit", "a", "brief", "description", "of", "your", "work", "by", "June", "25"],
+      "answer": "If you are interested, please submit a brief description of your work by June 25."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "words": ["We", "look", "forward", "to", "your", "participation"],
+      "answer": "We look forward to your participation."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "words": ["Mr.", "Howard", "Science", "Teacher"],
+      "answer": "Mr. Howard, Science Teacher"
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" },
+    { "no": 7, "ref_sentence": 7, "given": "ko" },
+    { "no": 8, "ref_sentence": 8, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 3, "no": 1 },
+    { "kind": "vocab",   "ref": 2, "no": 2 },
+    { "kind": "fill",    "ref": 4, "no": 3 },
+    { "kind": "ko",      "ref": 5, "no": 4 },
+    { "kind": "jumble",  "ref": 6, "no": 5 },
+    { "kind": "sent",    "ref": 7, "no": 6 },
+    { "kind": "grammar", "ref": 1, "no": 7 },
+    { "kind": "vocab",   "ref": 5, "no": 8 }
+  ]
+}

@@ -1,0 +1,355 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "31.json",
+  "_note": "31번 워크북 — 본문 7문장 풀커버.",
+  "_template_for_new_rounds": "이 파일을 새 회차의 {N}-workbook.json 작성 시 템플릿으로 사용. en_template의 {{N:A/B}} 토큰 = 양자택일 박스, hints 배열 = 빈칸 첫글자, jumble.words = 단어 배열 (셔플 X, 의도 유지).",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "underappreciated", "pos": "형" },
+      { "word": "feature",          "pos": "명" },
+      { "word": "future-proof",     "pos": "형" },
+      { "word": "ancient",          "pos": "형" },
+      { "word": "medieval",         "pos": "형" },
+      { "word": "infrastructure",   "pos": "명" },
+      { "word": "evolving",         "pos": "형" },
+      { "word": "prophet",          "pos": "명" },
+      { "word": "persistence",      "pos": "명" },
+      { "word": "advantage",        "pos": "명" }
+    ],
+    "ko_to_en": [
+      { "meaning": "광장",             "pos": "명", "answer": "square" },
+      { "meaning": "속성, 본질",       "pos": "명", "answer": "nature" },
+      { "meaning": "기반 시설",        "pos": "명", "answer": "infrastructure" },
+      { "meaning": "지원하다, 떠받치다", "pos": "동", "answer": "support" },
+      { "meaning": "물리적인, 실재의",  "pos": "형", "answer": "physical" },
+      { "meaning": "수리하다",         "pos": "동", "answer": "repair" },
+      { "meaning": "경제",             "pos": "명", "answer": "economy" },
+      { "meaning": "건축, 구조",       "pos": "명", "answer": "architecture" },
+      { "meaning": "능력",             "pos": "명", "answer": "ability" },
+      { "meaning": "예측하다",         "pos": "동", "answer": "predict" }
+    ],
+    "expressions": [
+      { "ko": "미래 대비형의",        "answer": "future-proof" },
+      { "ko": "중요하게 다루다",      "answer": "make much of" },
+      { "ko": "지적하다",            "answer": "point out" },
+      { "ko": "~와 달리",            "answer": "unlike" },
+      { "ko": "지난 500년 동안",     "answer": "over the last five hundred years" }
+    ],
+    "definitions": [
+      { "def": "not valued or recognized as much as it deserves",                  "answer": "underappreciated" },
+      { "def": "designed to remain useful in the future without becoming outdated", "answer": "future-proof" },
+      { "def": "the basic physical systems and structures a place needs to work",  "answer": "infrastructure" },
+      { "def": "a person who predicts what will happen in the future",             "answer": "prophet" },
+      { "def": "the fact of continuing to exist over a long period of time",       "answer": "persistence" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "One easily underappreciated feature of a city street or square {{1:is/are}} its \"future-proof\" nature.",
+      "ko_full": "도시의 거리나 광장이 지닌, 쉽게 과소평가되는 한 가지 특징은 그것의 \"미래 대비형\" 속성이다.",
+      "answers": ["is"],
+      "explain": [
+        "주어 핵 = One ... feature (단수) → is. of a city street or square는 수식어구."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "The ancient medieval squares in places like Marrakesh and Siena are still places {{1:where/which}} stuff is sold every day, even if the stuff itself {{2:has changed/has been changed}} over the last five hundred years.",
+      "ko_full": "Marrakesh와 Siena 같은 곳의 고대 중세 광장은, 비록 그곳에서 팔리는 물건 자체는 지난 500년 동안 바뀌었을지라도, 여전히 매일 무언가가 팔리는 장소이다.",
+      "answers": ["where", "has changed"],
+      "explain": [
+        "선행사 places(장소) + 뒤 절이 완전 → 관계부사 where.",
+        "change는 '변하다'의 자동사 의미 — 능동 현재완료 has changed."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "The city square is a fairly future-proof technology, {{1:as is/as does}} the shopping street, even in an age of online shopping.",
+      "ko_full": "도시 광장은 상당히 미래 대비형 기술이며, 온라인 쇼핑의 시대에도 쇼핑 거리 역시 그러하다.",
+      "answers": ["as is"],
+      "explain": [
+        "앞 문장의 동사가 be(is) → 대용 도치도 be동사 as is (= and so is)."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "For example, the same physical store {{1:that/what}} once sold buggy whips and typewriters {{2:might/must}} now repair damaged phones and sell bubble tea.",
+      "ko_full": "예를 들어, 한때 마차 채찍과 타자기를 팔던 바로 그 물리적 상점이 이제는 손상된 휴대전화를 수리하고 버블티를 팔 수도 있다.",
+      "answers": ["that", "might"],
+      "explain": [
+        "선행사 store(사물) + 뒤 절의 주어 역할 → 주격 관계대명사 that.",
+        "'~할 수도 있다'는 약한 추측 — might."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "The same infrastructure {{1:supports/support}} evolving uses.",
+      "ko_full": "같은 기반 시설이 진화하는 용도들을 지원한다.",
+      "answers": ["supports"],
+      "explain": [
+        "주어 The same infrastructure(단수) → 3인칭 단수 supports."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "Jane Jacobs, the great prophet of the city economy, made much of this fact in her books, {{1:including/included}} The Death and Life of Great American Cities and The Nature of Economies.",
+      "ko_full": "도시 경제의 위대한 예언자인 Jane Jacobs는 The Death and Life of Great American Cities와 The Nature of Economies를 비롯한 그녀의 책들에서 이 사실을 중요하게 다루었다.",
+      "answers": ["including"],
+      "explain": [
+        "'~을 포함하여'는 전치사처럼 쓰이는 including — 뒤에 목적어(책 제목) 동반."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "As she pointed out, the great advantage of a city architecture is its ability {{1:to support/supporting}} change in uses, and Jacobs correctly predicted the persistence of the city itself, unlike those {{2:who/whom}} predicted the rise of the Internet would mean the death of the city.",
+      "ko_full": "그녀가 지적했듯이, 도시 건축의 큰 장점은 용도의 변화를 지원하는 능력이며, 인터넷의 부상이 도시의 죽음을 의미할 것이라 예측한 사람들과 달리 Jacobs는 도시 자체의 지속을 정확히 예측했다.",
+      "answers": ["to support", "who"],
+      "explain": [
+        "ability + to V — 명사 ability를 수식하는 to부정사.",
+        "선행사 those(사람) + 뒤 절의 주어 역할 → 주격 who."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "One easily {{1:underappreciated/celebrated}} feature of a city street or square is its \"future-proof\" {{2:nature/decline}}.",
+      "ko_full": "도시의 거리나 광장이 지닌, 쉽게 과소평가되는 한 가지 특징은 그것의 \"미래 대비형\" 속성이다.",
+      "answers": ["underappreciated", "nature"],
+      "explain": [
+        "'쉽게 과소평가되는' 특징 — underappreciated.",
+        "'미래 대비형' 속성 — nature(속성/본질)."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "The {{1:ancient/futuristic}} medieval squares in places like Marrakesh and Siena are still places where stuff is sold every day, even if the stuff itself has {{2:changed/vanished}} over the last five hundred years.",
+      "ko_full": "Marrakesh와 Siena 같은 곳의 고대 중세 광장은, 비록 그곳에서 팔리는 물건 자체는 지난 500년 동안 바뀌었을지라도, 여전히 매일 무언가가 팔리는 장소이다.",
+      "answers": ["ancient", "changed"],
+      "explain": [
+        "'고대의' 중세 광장 — ancient.",
+        "물건 자체는 '바뀌었다' — changed."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "The city square is a fairly {{1:future-proof/obsolete}} technology, as is the shopping street, even in an age of online {{2:shopping/farming}}.",
+      "ko_full": "도시 광장은 상당히 미래 대비형 기술이며, 온라인 쇼핑의 시대에도 쇼핑 거리 역시 그러하다.",
+      "answers": ["future-proof", "shopping"],
+      "explain": [
+        "'미래 대비형' 기술 — future-proof (obsolete은 정반대).",
+        "온라인 '쇼핑'의 시대 — shopping."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "For example, the same physical store that once sold buggy whips and typewriters might now {{1:repair/destroy}} damaged phones and sell bubble tea.",
+      "ko_full": "예를 들어, 한때 마차 채찍과 타자기를 팔던 바로 그 물리적 상점이 이제는 손상된 휴대전화를 수리하고 버블티를 팔 수도 있다.",
+      "answers": ["repair"],
+      "explain": [
+        "손상된 휴대전화를 '수리하다' — repair (destroy는 정반대)."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "The same infrastructure {{1:supports/hinders}} {{2:evolving/static}} uses.",
+      "ko_full": "같은 기반 시설이 진화하는 용도들을 지원한다.",
+      "answers": ["supports", "evolving"],
+      "explain": [
+        "용도를 '지원한다' — supports (hinders는 정반대).",
+        "'진화하는' 용도 — evolving (static은 정반대)."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "Jane Jacobs, the great {{1:prophet/skeptic}} of the city economy, {{2:made much of/ignored}} this fact in her books, including The Death and Life of Great American Cities and The Nature of Economies.",
+      "ko_full": "도시 경제의 위대한 예언자인 Jane Jacobs는 The Death and Life of Great American Cities와 The Nature of Economies를 비롯한 그녀의 책들에서 이 사실을 중요하게 다루었다.",
+      "answers": ["prophet", "made much of"],
+      "explain": [
+        "도시 경제의 '예언자' — prophet.",
+        "이 사실을 '중요하게 다루었다' — made much of (ignored는 정반대)."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "As she pointed out, the great {{1:advantage/disadvantage}} of a city architecture is its ability to support change in uses, and Jacobs correctly predicted the {{2:persistence/disappearance}} of the city itself.",
+      "ko_full": "그녀가 지적했듯이, 도시 건축의 큰 장점은 용도의 변화를 지원하는 능력이며, Jacobs는 도시 자체의 지속을 정확히 예측했다.",
+      "answers": ["advantage", "persistence"],
+      "explain": [
+        "도시 건축의 큰 '장점' — advantage (disadvantage는 정반대).",
+        "도시의 '지속' — persistence (disappearance는 정반대)."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "u", "answer": "underappreciated", "after": "feature of a city" },
+        { "pos": 2, "letter": "f", "answer": "feature",          "after": "of a city street" },
+        { "pos": 3, "letter": "s", "answer": "square",           "after": "is its" },
+        { "pos": 4, "letter": "n", "answer": "nature",           "after": "" }
+      ],
+      "ko_full": "도시의 거리나 광장이 지닌, 쉽게 과소평가되는 한 가지 특징은 그것의 \"미래 대비형\" 속성이다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "a", "answer": "ancient",  "after": "medieval squares" },
+        { "pos": 2, "letter": "m", "answer": "medieval", "after": "squares in places" },
+        { "pos": 3, "letter": "s", "answer": "sold",     "after": "every day" },
+        { "pos": 4, "letter": "c", "answer": "changed",  "after": "over the last five hundred years" }
+      ],
+      "ko_full": "Marrakesh와 Siena 같은 곳의 고대 중세 광장은, 비록 그곳에서 팔리는 물건 자체는 지난 500년 동안 바뀌었을지라도, 여전히 매일 무언가가 팔리는 장소이다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "f", "answer": "future",   "after": "-proof technology" },
+        { "pos": 2, "letter": "t", "answer": "technology", "after": ", as is the shopping street" },
+        { "pos": 3, "letter": "s", "answer": "shopping", "after": "street, even in an age" }
+      ],
+      "ko_full": "도시 광장은 상당히 미래 대비형 기술이며, 온라인 쇼핑의 시대에도 쇼핑 거리 역시 그러하다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "p", "answer": "physical",  "after": "store that once" },
+        { "pos": 2, "letter": "t", "answer": "typewriters", "after": "might now repair" },
+        { "pos": 3, "letter": "r", "answer": "repair",    "after": "damaged phones" },
+        { "pos": 4, "letter": "d", "answer": "damaged",   "after": "phones and sell bubble tea" }
+      ],
+      "ko_full": "예를 들어, 한때 마차 채찍과 타자기를 팔던 바로 그 물리적 상점이 이제는 손상된 휴대전화를 수리하고 버블티를 팔 수도 있다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "i", "answer": "infrastructure", "after": "supports evolving uses" },
+        { "pos": 2, "letter": "s", "answer": "supports",       "after": "evolving uses" },
+        { "pos": 3, "letter": "e", "answer": "evolving",       "after": "uses" }
+      ],
+      "ko_full": "같은 기반 시설이 진화하는 용도들을 지원한다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "p", "answer": "prophet",  "after": "of the city economy" },
+        { "pos": 2, "letter": "e", "answer": "economy",  "after": ", made much of" },
+        { "pos": 3, "letter": "b", "answer": "books",    "after": ", including" }
+      ],
+      "ko_full": "도시 경제의 위대한 예언자인 Jane Jacobs는 The Death and Life of Great American Cities와 The Nature of Economies를 비롯한 그녀의 책들에서 이 사실을 중요하게 다루었다."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "hints": [
+        { "pos": 1, "letter": "a", "answer": "advantage",   "after": "of a city architecture" },
+        { "pos": 2, "letter": "a", "answer": "architecture", "after": "is its ability" },
+        { "pos": 3, "letter": "p", "answer": "persistence", "after": "of the city itself" },
+        { "pos": 4, "letter": "d", "answer": "death",       "after": "of the city" }
+      ],
+      "ko_full": "그녀가 지적했듯이, 도시 건축의 큰 장점은 용도의 변화를 지원하는 능력이며, 인터넷의 부상이 도시의 죽음을 의미할 것이라 예측한 사람들과 달리 Jacobs는 도시 자체의 지속을 정확히 예측했다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 },
+    { "no": 7, "ref_sentence": 7 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["One", "easily", "underappreciated", "feature", "of", "a", "city", "street", "or", "square", "is", "its", "future-proof", "nature"],
+      "answer": "One easily underappreciated feature of a city street or square is its \"future-proof\" nature."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["The", "ancient", "medieval", "squares", "in", "places", "like", "Marrakesh", "and", "Siena", "are", "still", "places", "where", "stuff", "is", "sold", "every", "day", "even", "if", "the", "stuff", "itself", "has", "changed", "over", "the", "last", "five", "hundred", "years"],
+      "answer": "The ancient medieval squares in places like Marrakesh and Siena are still places where stuff is sold every day, even if the stuff itself has changed over the last five hundred years."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["The", "city", "square", "is", "a", "fairly", "future-proof", "technology", "as", "is", "the", "shopping", "street", "even", "in", "an", "age", "of", "online", "shopping"],
+      "answer": "The city square is a fairly future-proof technology, as is the shopping street, even in an age of online shopping."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["For", "example", "the", "same", "physical", "store", "that", "once", "sold", "buggy", "whips", "and", "typewriters", "might", "now", "repair", "damaged", "phones", "and", "sell", "bubble", "tea"],
+      "answer": "For example, the same physical store that once sold buggy whips and typewriters might now repair damaged phones and sell bubble tea."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["The", "same", "infrastructure", "supports", "evolving", "uses"],
+      "answer": "The same infrastructure supports evolving uses."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["Jane", "Jacobs", "the", "great", "prophet", "of", "the", "city", "economy", "made", "much", "of", "this", "fact", "in", "her", "books", "including", "The", "Death", "and", "Life", "of", "Great", "American", "Cities", "and", "The", "Nature", "of", "Economies"],
+      "answer": "Jane Jacobs, the great prophet of the city economy, made much of this fact in her books, including The Death and Life of Great American Cities and The Nature of Economies."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "words": ["As", "she", "pointed", "out", "the", "great", "advantage", "of", "a", "city", "architecture", "is", "its", "ability", "to", "support", "change", "in", "uses", "and", "Jacobs", "correctly", "predicted", "the", "persistence", "of", "the", "city", "itself", "unlike", "those", "who", "predicted", "the", "rise", "of", "the", "Internet", "would", "mean", "the", "death", "of", "the", "city"],
+      "answer": "As she pointed out, the great advantage of a city architecture is its ability to support change in uses, and Jacobs correctly predicted the persistence of the city itself, unlike those who predicted the rise of the Internet would mean the death of the city."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" },
+    { "no": 7, "ref_sentence": 7, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 2, "no": 1 },
+    { "kind": "vocab",   "ref": 5, "no": 2 },
+    { "kind": "fill",    "ref": 4, "no": 3 },
+    { "kind": "ko",      "ref": 6, "no": 4 },
+    { "kind": "jumble",  "ref": 5, "no": 5 },
+    { "kind": "sent",    "ref": 7, "no": 6 },
+    { "kind": "grammar", "ref": 7, "no": 7 },
+    { "kind": "vocab",   "ref": 3, "no": 8 }
+  ]
+}

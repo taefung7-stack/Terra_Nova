@@ -1,0 +1,972 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "43.json",
+  "_note": "43번 워크북 — 본문 N문장 풀커버.",
+  "_template_for_new_rounds": "이 파일을 새 회차의 {N}-workbook.json 작성 시 템플릿으로 사용. en_template의 {{N:A/B}} 토큰 = 양자택일 박스, hints 배열 = 빈칸 첫글자, jumble.words = 단어 배열 (셔플 X, 의도 유지).",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "kindness",    "pos": "명" },
+      { "word": "cheerful",    "pos": "형" },
+      { "word": "include",     "pos": "동" },
+      { "word": "mention",     "pos": "동" },
+      { "word": "conclude",    "pos": "동" },
+      { "word": "package",     "pos": "명" },
+      { "word": "remind",      "pos": "동" },
+      { "word": "announce",    "pos": "동" },
+      { "word": "greet",       "pos": "동" },
+      { "word": "brighten",    "pos": "동" }
+    ],
+    "ko_to_en": [
+      { "meaning": "시골",              "pos": "명", "answer": "countryside" },
+      { "meaning": "발코니",            "pos": "명", "answer": "balcony" },
+      { "meaning": "~에도 불구하고",    "pos": "전", "answer": "despite" },
+      { "meaning": "제한된",            "pos": "형", "answer": "limited" },
+      { "meaning": "접힌",              "pos": "형", "answer": "folded" },
+      { "meaning": "집에서 만든",       "pos": "형", "answer": "homemade" },
+      { "meaning": "무척 기쁜, 신난",   "pos": "형", "answer": "thrilled" },
+      { "meaning": "어르신, 노인",      "pos": "명", "answer": "senior" },
+      { "meaning": "기운, 마음",        "pos": "명", "answer": "spirit" },
+      { "meaning": "재활용된",          "pos": "형", "answer": "recycled" }
+    ],
+    "expressions": [
+      { "ko": "~의 일환으로",     "answer": "as part of" },
+      { "ko": "~을 돌보다",       "answer": "take care of" },
+      { "ko": "두 팔을 벌려",     "answer": "with open arms" },
+      { "ko": "~할 때마다",       "answer": "whenever" },
+      { "ko": "예전에 ~했다",     "answer": "used to" }
+    ],
+    "definitions": [
+      { "def": "to put something inside an envelope or package along with other things", "answer": "include" },
+      { "def": "to end or finish something such as a letter or speech",                  "answer": "conclude" },
+      { "def": "to officially tell people about something",                              "answer": "announce" },
+      { "def": "to welcome someone in a friendly way",                                   "answer": "greet" },
+      { "def": "to make someone feel happier or more cheerful",                          "answer": "brighten" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "As part of a kindness project, Orange High School students {{1:wrote/written}} cheerful letters to elders in a countryside village.",
+      "ko_full": "친절 프로젝트의 일환으로, Orange 고등학교 학생들은 시골 마을의 어르신들에게 밝은 편지를 썼다.",
+      "answers": ["wrote"],
+      "explain": ["문장의 본동사 자리 — 과거형 wrote (과거분사 written 불가)."]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "Anna wrote {{1:to/for}} Mrs. Pike.",
+      "ko_full": "Anna는 Pike 부인에게 편지를 썼다.",
+      "answers": ["to"],
+      "explain": ["write to + 사람: ~에게 (편지를) 쓰다 — 방향의 to."]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "She shared about her balcony garden at home and {{1:included/including}} drawings of flowers.",
+      "ko_full": "그녀는 집에 있는 자신의 발코니 정원에 대해 이야기하고 꽃 그림을 동봉했다.",
+      "answers": ["included"],
+      "explain": ["and로 shared와 병렬되는 과거동사 — included."]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "Anna mentioned that {{1:despite/although}} having limited space, she enjoyed {{2:taking/to take}} care of her plants.",
+      "ko_full": "Anna는 공간이 제한적임에도 자신의 식물을 돌보는 것을 즐긴다고 언급했다.",
+      "answers": ["despite", "taking"],
+      "explain": [
+        "뒤에 동명사구(having)가 옴 → 전치사 despite (although는 절을 이끔).",
+        "enjoy + 동명사 — taking."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "Her letter concluded by {{1:expressing/express}} hope {{2:that/what}} Mrs. Pike also had a nice garden.",
+      "ko_full": "그녀의 편지는 Pike 부인도 멋진 정원을 가지고 있기를 바란다는 말로 끝맺었다.",
+      "answers": ["expressing", "that"],
+      "explain": [
+        "by + 동명사 — expressing.",
+        "hope의 내용을 설명하는 동격 that절 — 완전한 절을 이끄는 that."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "After {{1:sending/sent}} the letter, Anna forgot about it until a month later when a package {{2:arrived/was arrived}} at her home.",
+      "ko_full": "편지를 보낸 후, Anna는 한 달 뒤 집에 소포가 도착할 때까지 그것을 잊고 있었다.",
+      "answers": ["sending", "arrived"],
+      "explain": [
+        "전치사 After + 동명사 — sending.",
+        "arrive는 자동사 — 수동태 불가, arrived."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "Anna {{1:noticed/noticing}} the box in front of her door.",
+      "ko_full": "Anna는 문 앞에 있는 상자를 알아차렸다.",
+      "answers": ["noticed"],
+      "explain": ["문장의 본동사 — 과거형 noticed."]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "She walked closer and saw {{1:it was/it being}} addressed to her.",
+      "ko_full": "(d)그녀는 더 가까이 걸어가 그것이 자신에게 온 것임을 보았다.",
+      "answers": ["it was"],
+      "explain": ["saw의 목적어 명사절(접속사 that 생략) — 정상 절 it was."]
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "en_template": "When Anna opened it, she {{1:found/finded}} a folded letter and a jar of homemade strawberry mint jam {{2:from/by}} Mrs. Pike.",
+      "ko_full": "Anna가 그것을 열었을 때, 그녀는 접힌 편지 한 통과 Pike 부인이 보낸 집에서 만든 딸기민트 잼 한 병을 발견했다.",
+      "answers": ["found", "from"],
+      "explain": [
+        "find의 과거형 — found (불규칙).",
+        "'~로부터(출처)' — from Mrs. Pike."
+      ]
+    },
+    {
+      "no": 10,
+      "ref_sentence": 10,
+      "en_template": "She wrote, \"Your words {{1:made/let}} me smile. I {{2:used to have/used to having}} a garden, but when my husband died, I stopped planting.\"",
+      "ko_full": "(e)그녀는 \"당신의 말이 저를 미소 짓게 했어요. 저는 예전에 정원을 가지고 있었지만, 남편이 세상을 떠났을 때 심는 것을 그만두었어요.\"라고 썼다.",
+      "answers": ["made", "used to have"],
+      "explain": [
+        "make + 목적어 + 원형부정사(smile) — 사역동사 made.",
+        "used to + 동사원형 = 예전에 ~했다 — used to have."
+      ]
+    },
+    {
+      "no": 11,
+      "ref_sentence": 11,
+      "en_template": "The letter {{1:was signed/signed}}, \"Love, Mrs. Pike.\"",
+      "ko_full": "그 편지는 \"사랑을 담아, Pike 부인\"이라고 서명되어 있었다.",
+      "answers": ["was signed"],
+      "explain": ["편지가 서명되는 대상 → 수동태 was signed."]
+    },
+    {
+      "no": 12,
+      "ref_sentence": 12,
+      "en_template": "Anna was deeply {{1:moved/moving}} by Mrs. Pike's response.",
+      "ko_full": "Anna는 Pike 부인의 답장에 깊이 감동했다.",
+      "answers": ["moved"],
+      "explain": ["Anna가 감동을 '받은' 것 → 수동의 과거분사 moved (be moved 감동받다)."]
+    },
+    {
+      "no": 13,
+      "ref_sentence": 13,
+      "en_template": "When her teacher announced that her class {{1:would/will}} visit the village {{2:to meet/meeting}} the seniors, Anna was thrilled.",
+      "ko_full": "(b)그녀의 선생님이 학급이 마을을 방문해 어르신들을 만날 것이라고 알리자, Anna는 무척 기뻤다.",
+      "answers": ["would", "to meet"],
+      "explain": [
+        "주절이 과거(announced) → 시제 일치로 would.",
+        "목적의 부사적 to부정사 — to meet."
+      ]
+    },
+    {
+      "no": 14,
+      "ref_sentence": 14,
+      "en_template": "As they arrived, Mrs. Pike {{1:warmly/warm}} greeted Anna with open arms.",
+      "ko_full": "그들이 도착하자, Pike 부인은 두 팔을 벌려 Anna를 따뜻하게 맞이했다.",
+      "answers": ["warmly"],
+      "explain": ["동사 greeted를 수식 → 부사 warmly."]
+    },
+    {
+      "no": 15,
+      "ref_sentence": 15,
+      "en_template": "She pointed to a green space beside her house, {{1:saying/said}}, \"Look at my herbs.\"",
+      "ko_full": "그녀는 집 옆의 푸른 공간을 가리키며 \"제 허브를 보세요\"라고 말했다.",
+      "answers": ["saying"],
+      "explain": ["동시동작을 나타내는 분사구문 — saying."]
+    },
+    {
+      "no": 16,
+      "ref_sentence": 16,
+      "en_template": "Anna smiled and commented on {{1:how/what}} wonderful they must smell.",
+      "ko_full": "Anna는 미소 지으며 그것들이 얼마나 좋은 향이 날지 이야기했다.",
+      "answers": ["how"],
+      "explain": ["how + 형용사(wonderful) + 주어 + 동사 — 간접의문문은 how."]
+    },
+    {
+      "no": 17,
+      "ref_sentence": 17,
+      "en_template": "Together, they spent the day {{1:planting/to plant}} seeds.",
+      "ko_full": "함께 그들은 하루 동안 씨앗을 심으며 보냈다.",
+      "answers": ["planting"],
+      "explain": ["spend + 시간 + 동명사 = ~하며 시간을 보내다 — planting."]
+    },
+    {
+      "no": 18,
+      "ref_sentence": 18,
+      "en_template": "Mrs. Pike even gave Anna some herbs {{1:to take/taking}} home.",
+      "ko_full": "Pike 부인은 심지어 Anna에게 집에 가져갈 허브를 좀 주었다.",
+      "answers": ["to take"],
+      "explain": ["herbs를 수식하는 형용사적 to부정사('가져갈') — to take."]
+    },
+    {
+      "no": 19,
+      "ref_sentence": 19,
+      "en_template": "Mrs. Pike thanked Anna {{1:for/of}} {{2:brightening/brighten}} her spirit.",
+      "ko_full": "Pike 부인은 자신의 기운을 북돋아 준 것에 대해 Anna에게 고마워했다.",
+      "answers": ["for", "brightening"],
+      "explain": [
+        "thank A for B — 전치사 for.",
+        "for 뒤 동명사 — brightening."
+      ]
+    },
+    {
+      "no": 20,
+      "ref_sentence": 20,
+      "en_template": "After the visit, Anna {{1:continued/continues}} writing to Mrs. Pike every month.",
+      "ko_full": "방문 후, Anna는 매달 Pike 부인에게 계속 편지를 썼다.",
+      "answers": ["continued"],
+      "explain": ["과거 시점 서술(After the visit) — 과거형 continued."]
+    },
+    {
+      "no": 21,
+      "ref_sentence": 21,
+      "en_template": "She also started a gardening club {{1:where/which}} students planted seeds in recycled jars and cups.",
+      "ko_full": "그녀는 또한 학생들이 재활용 병과 컵에 씨앗을 심는 원예 동아리를 시작했다.",
+      "answers": ["where"],
+      "explain": ["뒤 절이 완전 — 장소 선행사 club을 수식하는 관계부사 where."]
+    },
+    {
+      "no": 22,
+      "ref_sentence": 22,
+      "en_template": "Anna used the empty jam jar to plant some rosemary, {{1:which/that}} reminded her {{2:of/about}} Mrs. Pike's herb garden.",
+      "ko_full": "Anna는 빈 잼 병을 사용해 로즈마리를 좀 심었고, 그것은 그녀에게 Pike 부인의 허브 정원을 떠올리게 했다.",
+      "answers": ["which", "of"],
+      "explain": [
+        "콤마 뒤 계속적 용법 — that 불가, which.",
+        "remind A of B 구문 — of."
+      ]
+    },
+    {
+      "no": 23,
+      "ref_sentence": 23,
+      "en_template": "The rosemary {{1:grew/grown}} by the window.",
+      "ko_full": "로즈마리는 창가에서 자랐다.",
+      "answers": ["grew"],
+      "explain": ["문장의 본동사 — grow의 과거형 grew (자동사, 수동 불가)."]
+    },
+    {
+      "no": 24,
+      "ref_sentence": 24,
+      "en_template": "{{1:Whenever/However}} Anna looked at it, she had a warm feeling.",
+      "ko_full": "Anna가 그것을 볼 때마다 (c)그녀는 따뜻한 감정을 느꼈다.",
+      "answers": ["Whenever"],
+      "explain": ["'~할 때마다'(시간) — 복합관계부사 Whenever."]
+    },
+    {
+      "no": 25,
+      "ref_sentence": 25,
+      "en_template": "It was a daily reminder {{1:that/which}} people, like plants, sometimes just {{2:need/needs}} a little sunlight.",
+      "ko_full": "그것은 사람도 식물처럼 때로는 약간의 햇빛만 필요하다는 것을 매일 일깨워 주는 것이었다.",
+      "answers": ["that", "need"],
+      "explain": [
+        "reminder의 내용을 설명하는 동격 that절 — 완전한 절을 이끄는 that.",
+        "주어 people(복수) → 동사원형 need."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "As part of a {{1:kindness/cruelty}} project, Orange High School students wrote {{2:cheerful/gloomy}} letters to elders in a countryside village.",
+      "ko_full": "친절 프로젝트의 일환으로, Orange 고등학교 학생들은 시골 마을의 어르신들에게 밝은 편지를 썼다.",
+      "answers": ["kindness", "cheerful"],
+      "explain": [
+        "'친절' 프로젝트 — kindness.",
+        "'밝은' 편지 — cheerful."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "Anna {{1:wrote/erased}} to Mrs. Pike.",
+      "ko_full": "Anna는 Pike 부인에게 편지를 썼다.",
+      "answers": ["wrote"],
+      "explain": ["편지를 '썼다' — wrote."]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "She shared about her balcony garden at home and {{1:included/excluded}} drawings of flowers.",
+      "ko_full": "그녀는 집에 있는 자신의 발코니 정원에 대해 이야기하고 꽃 그림을 동봉했다.",
+      "answers": ["included"],
+      "explain": ["꽃 그림을 '동봉했다(포함했다)' — included."]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "Anna {{1:mentioned/concealed}} that despite having {{2:limited/unlimited}} space, she enjoyed taking care of her plants.",
+      "ko_full": "Anna는 공간이 제한적임에도 자신의 식물을 돌보는 것을 즐긴다고 언급했다.",
+      "answers": ["mentioned", "limited"],
+      "explain": [
+        "'언급했다' — mentioned.",
+        "'제한된' 공간 — limited."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "Her letter {{1:concluded/began}} by expressing {{2:hope/doubt}} that Mrs. Pike also had a nice garden.",
+      "ko_full": "그녀의 편지는 Pike 부인도 멋진 정원을 가지고 있기를 바란다는 말로 끝맺었다.",
+      "answers": ["concluded", "hope"],
+      "explain": [
+        "편지를 '끝맺었다' — concluded.",
+        "'바람(희망)' — hope."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "After sending the letter, Anna {{1:forgot/remembered}} about it until a month later when a {{2:package/letter}} arrived at her home.",
+      "ko_full": "편지를 보낸 후, Anna는 한 달 뒤 집에 소포가 도착할 때까지 그것을 잊고 있었다.",
+      "answers": ["forgot", "package"],
+      "explain": [
+        "'잊고 있었다' — forgot.",
+        "도착한 것은 '소포' — package."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "Anna {{1:noticed/ignored}} the box in front of her door.",
+      "ko_full": "Anna는 문 앞에 있는 상자를 알아차렸다.",
+      "answers": ["noticed"],
+      "explain": ["상자를 '알아차렸다' — noticed."]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "She walked {{1:closer/farther}} and saw it was {{2:addressed/returned}} to her.",
+      "ko_full": "(d)그녀는 더 가까이 걸어가 그것이 자신에게 온 것임을 보았다.",
+      "answers": ["closer", "addressed"],
+      "explain": [
+        "'더 가까이' — closer.",
+        "'(수신인이) 자신 앞으로 적힌' — addressed to."
+      ]
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "en_template": "When Anna opened it, she found a folded letter and a jar of {{1:homemade/store-bought}} strawberry mint jam from Mrs. Pike.",
+      "ko_full": "Anna가 그것을 열었을 때, 그녀는 접힌 편지 한 통과 Pike 부인이 보낸 집에서 만든 딸기민트 잼 한 병을 발견했다.",
+      "answers": ["homemade"],
+      "explain": ["'집에서 만든' 잼 — homemade."]
+    },
+    {
+      "no": 10,
+      "ref_sentence": 10,
+      "en_template": "She wrote that the words made her {{1:smile/cry}}, and that when her husband died she {{2:stopped/started}} planting.",
+      "ko_full": "(e)그녀는 그 말이 자신을 미소 짓게 했고, 남편이 세상을 떠났을 때 심는 것을 그만두었다고 썼다.",
+      "answers": ["smile", "stopped"],
+      "explain": [
+        "'미소 짓게' 했다 — smile.",
+        "심는 것을 '그만두었다' — stopped."
+      ]
+    },
+    {
+      "no": 11,
+      "ref_sentence": 11,
+      "en_template": "The letter was {{1:signed/erased}}, \"Love, Mrs. Pike.\"",
+      "ko_full": "그 편지는 \"사랑을 담아, Pike 부인\"이라고 서명되어 있었다.",
+      "answers": ["signed"],
+      "explain": ["'서명되어' 있었다 — signed."]
+    },
+    {
+      "no": 12,
+      "ref_sentence": 12,
+      "en_template": "Anna was deeply {{1:moved/bored}} by Mrs. Pike's response.",
+      "ko_full": "Anna는 Pike 부인의 답장에 깊이 감동했다.",
+      "answers": ["moved"],
+      "explain": ["'감동했다' — moved."]
+    },
+    {
+      "no": 13,
+      "ref_sentence": 13,
+      "en_template": "When her teacher {{1:announced/hid}} the village visit, Anna was {{2:thrilled/disappointed}}.",
+      "ko_full": "(b)그녀의 선생님이 마을 방문을 알리자, Anna는 무척 기뻤다.",
+      "answers": ["announced", "thrilled"],
+      "explain": [
+        "'알렸다(발표했다)' — announced.",
+        "'무척 기뻐했다' — thrilled."
+      ]
+    },
+    {
+      "no": 14,
+      "ref_sentence": 14,
+      "en_template": "As they arrived, Mrs. Pike warmly {{1:greeted/ignored}} Anna with open arms.",
+      "ko_full": "그들이 도착하자, Pike 부인은 두 팔을 벌려 Anna를 따뜻하게 맞이했다.",
+      "answers": ["greeted"],
+      "explain": ["'맞이했다' — greeted."]
+    },
+    {
+      "no": 15,
+      "ref_sentence": 15,
+      "en_template": "She {{1:pointed to/turned from}} a green space beside her house, saying, \"Look at my herbs.\"",
+      "ko_full": "그녀는 집 옆의 푸른 공간을 가리키며 \"제 허브를 보세요\"라고 말했다.",
+      "answers": ["pointed to"],
+      "explain": ["'~을 가리켰다' — pointed to."]
+    },
+    {
+      "no": 16,
+      "ref_sentence": 16,
+      "en_template": "Anna smiled and commented on how {{1:wonderful/terrible}} they must smell.",
+      "ko_full": "Anna는 미소 지으며 그것들이 얼마나 좋은 향이 날지 이야기했다.",
+      "answers": ["wonderful"],
+      "explain": ["'얼마나 좋은(멋진)' 향 — wonderful."]
+    },
+    {
+      "no": 17,
+      "ref_sentence": 17,
+      "en_template": "Together, they {{1:spent/wasted}} the day planting seeds.",
+      "ko_full": "함께 그들은 하루 동안 씨앗을 심으며 보냈다.",
+      "answers": ["spent"],
+      "explain": ["하루를 '보냈다' — spent."]
+    },
+    {
+      "no": 18,
+      "ref_sentence": 18,
+      "en_template": "Mrs. Pike even {{1:gave/took}} Anna some herbs to take home.",
+      "ko_full": "Pike 부인은 심지어 Anna에게 집에 가져갈 허브를 좀 주었다.",
+      "answers": ["gave"],
+      "explain": ["허브를 '주었다' — gave."]
+    },
+    {
+      "no": 19,
+      "ref_sentence": 19,
+      "en_template": "Mrs. Pike thanked Anna for {{1:brightening/dampening}} her spirit.",
+      "ko_full": "Pike 부인은 자신의 기운을 북돋아 준 것에 대해 Anna에게 고마워했다.",
+      "answers": ["brightening"],
+      "explain": ["기운을 '북돋아 준' — brightening."]
+    },
+    {
+      "no": 20,
+      "ref_sentence": 20,
+      "en_template": "After the visit, Anna {{1:continued/stopped}} writing to Mrs. Pike every month.",
+      "ko_full": "방문 후, Anna는 매달 Pike 부인에게 계속 편지를 썼다.",
+      "answers": ["continued"],
+      "explain": ["'계속' 편지를 썼다 — continued."]
+    },
+    {
+      "no": 21,
+      "ref_sentence": 21,
+      "en_template": "She also started a gardening club where students planted seeds in {{1:recycled/brand-new}} jars and cups.",
+      "ko_full": "그녀는 또한 학생들이 재활용 병과 컵에 씨앗을 심는 원예 동아리를 시작했다.",
+      "answers": ["recycled"],
+      "explain": ["'재활용된' 병과 컵 — recycled."]
+    },
+    {
+      "no": 22,
+      "ref_sentence": 22,
+      "en_template": "Anna used the {{1:empty/full}} jam jar to plant some rosemary, which {{2:reminded/freed}} her of Mrs. Pike's herb garden.",
+      "ko_full": "Anna는 빈 잼 병을 사용해 로즈마리를 좀 심었고, 그것은 그녀에게 Pike 부인의 허브 정원을 떠올리게 했다.",
+      "answers": ["empty", "reminded"],
+      "explain": [
+        "'빈' 잼 병 — empty.",
+        "'떠올리게 했다' — reminded."
+      ]
+    },
+    {
+      "no": 23,
+      "ref_sentence": 23,
+      "en_template": "The rosemary {{1:grew/withered}} by the window.",
+      "ko_full": "로즈마리는 창가에서 자랐다.",
+      "answers": ["grew"],
+      "explain": ["로즈마리가 '자랐다' — grew."]
+    },
+    {
+      "no": 24,
+      "ref_sentence": 24,
+      "en_template": "Whenever Anna looked at it, she had a {{1:warm/cold}} feeling.",
+      "ko_full": "Anna가 그것을 볼 때마다 (c)그녀는 따뜻한 감정을 느꼈다.",
+      "answers": ["warm"],
+      "explain": ["'따뜻한' 감정 — warm."]
+    },
+    {
+      "no": 25,
+      "ref_sentence": 25,
+      "en_template": "It was a daily {{1:reminder/secret}} that people, like plants, sometimes just need a little {{2:sunlight/darkness}}.",
+      "ko_full": "그것은 사람도 식물처럼 때로는 약간의 햇빛만 필요하다는 것을 매일 일깨워 주는 것이었다.",
+      "answers": ["reminder", "sunlight"],
+      "explain": [
+        "매일의 '일깨움(상기)' — reminder.",
+        "약간의 '햇빛' — sunlight."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "k", "answer": "kindness",    "after": "project" },
+        { "pos": 2, "letter": "c", "answer": "cheerful",    "after": "letters" },
+        { "pos": 3, "letter": "e", "answer": "elders",      "after": "in a countryside village" },
+        { "pos": 4, "letter": "c", "answer": "countryside", "after": "village" }
+      ],
+      "ko_full": "친절 프로젝트의 일환으로, Orange 고등학교 학생들은 시골 마을의 어르신들에게 밝은 편지를 썼다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "w", "answer": "wrote", "after": "to Mrs. Pike" }
+      ],
+      "ko_full": "Anna는 Pike 부인에게 편지를 썼다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "b", "answer": "balcony",  "after": "garden at home" },
+        { "pos": 2, "letter": "i", "answer": "included", "after": "drawings of flowers" },
+        { "pos": 3, "letter": "d", "answer": "drawings", "after": "of flowers" }
+      ],
+      "ko_full": "그녀는 집에 있는 자신의 발코니 정원에 대해 이야기하고 꽃 그림을 동봉했다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "m", "answer": "mentioned", "after": "that despite" },
+        { "pos": 2, "letter": "l", "answer": "limited",   "after": "space" },
+        { "pos": 3, "letter": "p", "answer": "plants",    "after": "" }
+      ],
+      "ko_full": "Anna는 공간이 제한적임에도 자신의 식물을 돌보는 것을 즐긴다고 언급했다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "c", "answer": "concluded", "after": "by expressing hope" },
+        { "pos": 2, "letter": "h", "answer": "hope",      "after": "that Mrs. Pike" },
+        { "pos": 3, "letter": "g", "answer": "garden",    "after": "" }
+      ],
+      "ko_full": "그녀의 편지는 Pike 부인도 멋진 정원을 가지고 있기를 바란다는 말로 끝맺었다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "f", "answer": "forgot",  "after": "about it" },
+        { "pos": 2, "letter": "p", "answer": "package", "after": "arrived at her home" },
+        { "pos": 3, "letter": "a", "answer": "arrived", "after": "at her home" }
+      ],
+      "ko_full": "편지를 보낸 후, Anna는 한 달 뒤 집에 소포가 도착할 때까지 그것을 잊고 있었다."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "hints": [
+        { "pos": 1, "letter": "n", "answer": "noticed", "after": "the box" },
+        { "pos": 2, "letter": "b", "answer": "box",     "after": "in front of her door" },
+        { "pos": 3, "letter": "d", "answer": "door",    "after": "" }
+      ],
+      "ko_full": "Anna는 문 앞에 있는 상자를 알아차렸다."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "hints": [
+        { "pos": 1, "letter": "c", "answer": "closer",    "after": "and saw" },
+        { "pos": 2, "letter": "a", "answer": "addressed", "after": "to her" }
+      ],
+      "ko_full": "(d)그녀는 더 가까이 걸어가 그것이 자신에게 온 것임을 보았다."
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "hints": [
+        { "pos": 1, "letter": "f", "answer": "folded",   "after": "letter" },
+        { "pos": 2, "letter": "j", "answer": "jar",      "after": "of homemade jam" },
+        { "pos": 3, "letter": "h", "answer": "homemade", "after": "strawberry mint jam" }
+      ],
+      "ko_full": "Anna가 그것을 열었을 때, 그녀는 접힌 편지 한 통과 Pike 부인이 보낸 집에서 만든 딸기민트 잼 한 병을 발견했다."
+    },
+    {
+      "no": 10,
+      "ref_sentence": 10,
+      "hints": [
+        { "pos": 1, "letter": "s", "answer": "smile",    "after": "I used to have" },
+        { "pos": 2, "letter": "h", "answer": "husband",  "after": "died" },
+        { "pos": 3, "letter": "p", "answer": "planting", "after": "" }
+      ],
+      "ko_full": "(e)그녀는 \"당신의 말이 저를 미소 짓게 했어요. 저는 예전에 정원을 가지고 있었지만, 남편이 세상을 떠났을 때 심는 것을 그만두었어요.\"라고 썼다."
+    },
+    {
+      "no": 11,
+      "ref_sentence": 11,
+      "hints": [
+        { "pos": 1, "letter": "s", "answer": "signed", "after": "Love, Mrs. Pike" },
+        { "pos": 2, "letter": "l", "answer": "letter", "after": "was signed" }
+      ],
+      "ko_full": "그 편지는 \"사랑을 담아, Pike 부인\"이라고 서명되어 있었다."
+    },
+    {
+      "no": 12,
+      "ref_sentence": 12,
+      "hints": [
+        { "pos": 1, "letter": "m", "answer": "moved",    "after": "by Mrs. Pike's response" },
+        { "pos": 2, "letter": "r", "answer": "response", "after": "" }
+      ],
+      "ko_full": "Anna는 Pike 부인의 답장에 깊이 감동했다."
+    },
+    {
+      "no": 13,
+      "ref_sentence": 13,
+      "hints": [
+        { "pos": 1, "letter": "t", "answer": "teacher",  "after": "announced" },
+        { "pos": 2, "letter": "a", "answer": "announced", "after": "that her class" },
+        { "pos": 3, "letter": "t", "answer": "thrilled", "after": "" }
+      ],
+      "ko_full": "(b)그녀의 선생님이 학급이 마을을 방문해 어르신들을 만날 것이라고 알리자, Anna는 무척 기뻤다."
+    },
+    {
+      "no": 14,
+      "ref_sentence": 14,
+      "hints": [
+        { "pos": 1, "letter": "a", "answer": "arrived", "after": "Mrs. Pike" },
+        { "pos": 2, "letter": "g", "answer": "greeted", "after": "Anna with open arms" }
+      ],
+      "ko_full": "그들이 도착하자, Pike 부인은 두 팔을 벌려 Anna를 따뜻하게 맞이했다."
+    },
+    {
+      "no": 15,
+      "ref_sentence": 15,
+      "hints": [
+        { "pos": 1, "letter": "p", "answer": "pointed", "after": "to a green space" },
+        { "pos": 2, "letter": "h", "answer": "herbs",   "after": "" }
+      ],
+      "ko_full": "그녀는 집 옆의 푸른 공간을 가리키며 \"제 허브를 보세요\"라고 말했다."
+    },
+    {
+      "no": 16,
+      "ref_sentence": 16,
+      "hints": [
+        { "pos": 1, "letter": "c", "answer": "commented",  "after": "on how wonderful" },
+        { "pos": 2, "letter": "w", "answer": "wonderful",  "after": "they must smell" },
+        { "pos": 3, "letter": "s", "answer": "smell",      "after": "" }
+      ],
+      "ko_full": "Anna는 미소 지으며 그것들이 얼마나 좋은 향이 날지 이야기했다."
+    },
+    {
+      "no": 17,
+      "ref_sentence": 17,
+      "hints": [
+        { "pos": 1, "letter": "s", "answer": "spent",    "after": "the day" },
+        { "pos": 2, "letter": "p", "answer": "planting", "after": "seeds" },
+        { "pos": 3, "letter": "s", "answer": "seeds",    "after": "" }
+      ],
+      "ko_full": "함께 그들은 하루 동안 씨앗을 심으며 보냈다."
+    },
+    {
+      "no": 18,
+      "ref_sentence": 18,
+      "hints": [
+        { "pos": 1, "letter": "g", "answer": "gave",  "after": "Anna some herbs" },
+        { "pos": 2, "letter": "h", "answer": "herbs", "after": "to take home" }
+      ],
+      "ko_full": "Pike 부인은 심지어 Anna에게 집에 가져갈 허브를 좀 주었다."
+    },
+    {
+      "no": 19,
+      "ref_sentence": 19,
+      "hints": [
+        { "pos": 1, "letter": "t", "answer": "thanked",    "after": "Anna for" },
+        { "pos": 2, "letter": "b", "answer": "brightening", "after": "her spirit" },
+        { "pos": 3, "letter": "s", "answer": "spirit",     "after": "" }
+      ],
+      "ko_full": "Pike 부인은 자신의 기운을 북돋아 준 것에 대해 Anna에게 고마워했다."
+    },
+    {
+      "no": 20,
+      "ref_sentence": 20,
+      "hints": [
+        { "pos": 1, "letter": "v", "answer": "visit",     "after": "Anna continued" },
+        { "pos": 2, "letter": "c", "answer": "continued", "after": "writing" },
+        { "pos": 3, "letter": "m", "answer": "month",     "after": "" }
+      ],
+      "ko_full": "방문 후, Anna는 매달 Pike 부인에게 계속 편지를 썼다."
+    },
+    {
+      "no": 21,
+      "ref_sentence": 21,
+      "hints": [
+        { "pos": 1, "letter": "g", "answer": "gardening", "after": "club" },
+        { "pos": 2, "letter": "r", "answer": "recycled",  "after": "jars and cups" },
+        { "pos": 3, "letter": "s", "answer": "seeds",     "after": "in recycled jars" }
+      ],
+      "ko_full": "그녀는 또한 학생들이 재활용 병과 컵에 씨앗을 심는 원예 동아리를 시작했다."
+    },
+    {
+      "no": 22,
+      "ref_sentence": 22,
+      "hints": [
+        { "pos": 1, "letter": "e", "answer": "empty",    "after": "jam jar" },
+        { "pos": 2, "letter": "r", "answer": "rosemary", "after": "which reminded her" },
+        { "pos": 3, "letter": "r", "answer": "reminded", "after": "her of Mrs. Pike's herb garden" }
+      ],
+      "ko_full": "Anna는 빈 잼 병을 사용해 로즈마리를 좀 심었고, 그것은 그녀에게 Pike 부인의 허브 정원을 떠올리게 했다."
+    },
+    {
+      "no": 23,
+      "ref_sentence": 23,
+      "hints": [
+        { "pos": 1, "letter": "g", "answer": "grew",   "after": "by the window" },
+        { "pos": 2, "letter": "w", "answer": "window", "after": "" }
+      ],
+      "ko_full": "로즈마리는 창가에서 자랐다."
+    },
+    {
+      "no": 24,
+      "ref_sentence": 24,
+      "hints": [
+        { "pos": 1, "letter": "l", "answer": "looked",  "after": "at it" },
+        { "pos": 2, "letter": "w", "answer": "warm",    "after": "feeling" },
+        { "pos": 3, "letter": "f", "answer": "feeling", "after": "" }
+      ],
+      "ko_full": "Anna가 그것을 볼 때마다 (c)그녀는 따뜻한 감정을 느꼈다."
+    },
+    {
+      "no": 25,
+      "ref_sentence": 25,
+      "hints": [
+        { "pos": 1, "letter": "r", "answer": "reminder", "after": "that people" },
+        { "pos": 2, "letter": "p", "answer": "plants",   "after": "sometimes just need" },
+        { "pos": 3, "letter": "s", "answer": "sunlight", "after": "" }
+      ],
+      "ko_full": "그것은 사람도 식물처럼 때로는 약간의 햇빛만 필요하다는 것을 매일 일깨워 주는 것이었다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 },
+    { "no": 7, "ref_sentence": 7 },
+    { "no": 8, "ref_sentence": 8 },
+    { "no": 9, "ref_sentence": 9 },
+    { "no": 10, "ref_sentence": 10 },
+    { "no": 11, "ref_sentence": 11 },
+    { "no": 12, "ref_sentence": 12 },
+    { "no": 13, "ref_sentence": 13 },
+    { "no": 14, "ref_sentence": 14 },
+    { "no": 15, "ref_sentence": 15 },
+    { "no": 16, "ref_sentence": 16 },
+    { "no": 17, "ref_sentence": 17 },
+    { "no": 18, "ref_sentence": 18 },
+    { "no": 19, "ref_sentence": 19 },
+    { "no": 20, "ref_sentence": 20 },
+    { "no": 21, "ref_sentence": 21 },
+    { "no": 22, "ref_sentence": 22 },
+    { "no": 23, "ref_sentence": 23 },
+    { "no": 24, "ref_sentence": 24 },
+    { "no": 25, "ref_sentence": 25 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["As", "part", "of", "a", "kindness", "project", "Orange", "High", "School", "students", "wrote", "cheerful", "letters", "to", "elders", "in", "a", "countryside", "village"],
+      "answer": "As part of a kindness project, Orange High School students wrote cheerful letters to elders in a countryside village."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["Anna", "wrote", "to", "Mrs.", "Pike"],
+      "answer": "Anna wrote to Mrs. Pike."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["She", "shared", "about", "her", "balcony", "garden", "at", "home", "and", "included", "drawings", "of", "flowers"],
+      "answer": "She shared about her balcony garden at home and included drawings of flowers."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["Anna", "mentioned", "that", "despite", "having", "limited", "space", "she", "enjoyed", "taking", "care", "of", "her", "plants"],
+      "answer": "Anna mentioned that despite having limited space, she enjoyed taking care of her plants."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["Her", "letter", "concluded", "by", "expressing", "hope", "that", "Mrs.", "Pike", "also", "had", "a", "nice", "garden"],
+      "answer": "Her letter concluded by expressing hope that Mrs. Pike also had a nice garden."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["After", "sending", "the", "letter", "Anna", "forgot", "about", "it", "until", "a", "month", "later", "when", "a", "package", "arrived", "at", "her", "home"],
+      "answer": "After sending the letter, Anna forgot about it until a month later when a package arrived at her home."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "words": ["Anna", "noticed", "the", "box", "in", "front", "of", "her", "door"],
+      "answer": "Anna noticed the box in front of her door."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "words": ["She", "walked", "closer", "and", "saw", "it", "was", "addressed", "to", "her"],
+      "answer": "She walked closer and saw it was addressed to her."
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "words": ["When", "Anna", "opened", "it", "she", "found", "a", "folded", "letter", "and", "a", "jar", "of", "homemade", "strawberry", "mint", "jam", "from", "Mrs.", "Pike"],
+      "answer": "When Anna opened it, she found a folded letter and a jar of homemade strawberry mint jam from Mrs. Pike."
+    },
+    {
+      "no": 10,
+      "ref_sentence": 10,
+      "words": ["She", "wrote", "Your", "words", "made", "me", "smile", "I", "used", "to", "have", "a", "garden", "but", "when", "my", "husband", "died", "I", "stopped", "planting", "Your", "letter", "reminded", "me", "how", "much", "I", "missed", "it", "So", "I", "planted", "some", "herbs", "Have", "a", "taste"],
+      "answer": "She wrote, \"Your words made me smile. I used to have a garden, but when my husband died, I stopped planting. Your letter reminded me how much I missed it. So I planted some herbs. Have a taste!\""
+    },
+    {
+      "no": 11,
+      "ref_sentence": 11,
+      "words": ["The", "letter", "was", "signed", "Love", "Mrs.", "Pike"],
+      "answer": "The letter was signed, \"Love, Mrs. Pike.\""
+    },
+    {
+      "no": 12,
+      "ref_sentence": 12,
+      "words": ["Anna", "was", "deeply", "moved", "by", "Mrs.", "Pike's", "response"],
+      "answer": "Anna was deeply moved by Mrs. Pike's response."
+    },
+    {
+      "no": 13,
+      "ref_sentence": 13,
+      "words": ["When", "her", "teacher", "announced", "that", "her", "class", "would", "visit", "the", "village", "to", "meet", "the", "seniors", "Anna", "was", "thrilled"],
+      "answer": "When her teacher announced that her class would visit the village to meet the seniors, Anna was thrilled."
+    },
+    {
+      "no": 14,
+      "ref_sentence": 14,
+      "words": ["As", "they", "arrived", "Mrs.", "Pike", "warmly", "greeted", "Anna", "with", "open", "arms"],
+      "answer": "As they arrived, Mrs. Pike warmly greeted Anna with open arms."
+    },
+    {
+      "no": 15,
+      "ref_sentence": 15,
+      "words": ["She", "pointed", "to", "a", "green", "space", "beside", "her", "house", "saying", "Look", "at", "my", "herbs"],
+      "answer": "She pointed to a green space beside her house, saying, \"Look at my herbs.\""
+    },
+    {
+      "no": 16,
+      "ref_sentence": 16,
+      "words": ["Anna", "smiled", "and", "commented", "on", "how", "wonderful", "they", "must", "smell"],
+      "answer": "Anna smiled and commented on how wonderful they must smell."
+    },
+    {
+      "no": 17,
+      "ref_sentence": 17,
+      "words": ["Together", "they", "spent", "the", "day", "planting", "seeds"],
+      "answer": "Together, they spent the day planting seeds."
+    },
+    {
+      "no": 18,
+      "ref_sentence": 18,
+      "words": ["Mrs.", "Pike", "even", "gave", "Anna", "some", "herbs", "to", "take", "home"],
+      "answer": "Mrs. Pike even gave Anna some herbs to take home."
+    },
+    {
+      "no": 19,
+      "ref_sentence": 19,
+      "words": ["Mrs.", "Pike", "thanked", "Anna", "for", "brightening", "her", "spirit"],
+      "answer": "Mrs. Pike thanked Anna for brightening her spirit."
+    },
+    {
+      "no": 20,
+      "ref_sentence": 20,
+      "words": ["After", "the", "visit", "Anna", "continued", "writing", "to", "Mrs.", "Pike", "every", "month"],
+      "answer": "After the visit, Anna continued writing to Mrs. Pike every month."
+    },
+    {
+      "no": 21,
+      "ref_sentence": 21,
+      "words": ["She", "also", "started", "a", "gardening", "club", "where", "students", "planted", "seeds", "in", "recycled", "jars", "and", "cups"],
+      "answer": "She also started a gardening club where students planted seeds in recycled jars and cups."
+    },
+    {
+      "no": 22,
+      "ref_sentence": 22,
+      "words": ["Anna", "used", "the", "empty", "jam", "jar", "to", "plant", "some", "rosemary", "which", "reminded", "her", "of", "Mrs.", "Pike's", "herb", "garden"],
+      "answer": "Anna used the empty jam jar to plant some rosemary, which reminded her of Mrs. Pike's herb garden."
+    },
+    {
+      "no": 23,
+      "ref_sentence": 23,
+      "words": ["The", "rosemary", "grew", "by", "the", "window"],
+      "answer": "The rosemary grew by the window."
+    },
+    {
+      "no": 24,
+      "ref_sentence": 24,
+      "words": ["Whenever", "Anna", "looked", "at", "it", "she", "had", "a", "warm", "feeling"],
+      "answer": "Whenever Anna looked at it, she had a warm feeling."
+    },
+    {
+      "no": 25,
+      "ref_sentence": 25,
+      "words": ["It", "was", "a", "daily", "reminder", "that", "people", "like", "plants", "sometimes", "just", "need", "a", "little", "sunlight"],
+      "answer": "It was a daily reminder that people, like plants, sometimes just need a little sunlight."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" },
+    { "no": 7, "ref_sentence": 7, "given": "ko" },
+    { "no": 8, "ref_sentence": 8, "given": "ko" },
+    { "no": 9, "ref_sentence": 9, "given": "ko" },
+    { "no": 10, "ref_sentence": 10, "given": "ko" },
+    { "no": 11, "ref_sentence": 11, "given": "ko" },
+    { "no": 12, "ref_sentence": 12, "given": "ko" },
+    { "no": 13, "ref_sentence": 13, "given": "ko" },
+    { "no": 14, "ref_sentence": 14, "given": "ko" },
+    { "no": 15, "ref_sentence": 15, "given": "ko" },
+    { "no": 16, "ref_sentence": 16, "given": "ko" },
+    { "no": 17, "ref_sentence": 17, "given": "ko" },
+    { "no": 18, "ref_sentence": 18, "given": "ko" },
+    { "no": 19, "ref_sentence": 19, "given": "ko" },
+    { "no": 20, "ref_sentence": 20, "given": "ko" },
+    { "no": 21, "ref_sentence": 21, "given": "ko" },
+    { "no": 22, "ref_sentence": 22, "given": "ko" },
+    { "no": 23, "ref_sentence": 23, "given": "ko" },
+    { "no": 24, "ref_sentence": 24, "given": "ko" },
+    { "no": 25, "ref_sentence": 25, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 4,  "no": 1 },
+    { "kind": "vocab",   "ref": 6,  "no": 2 },
+    { "kind": "fill",    "ref": 9,  "no": 3 },
+    { "kind": "ko",      "ref": 13, "no": 4 },
+    { "kind": "jumble",  "ref": 18, "no": 5 },
+    { "kind": "sent",    "ref": 22, "no": 6 },
+    { "kind": "grammar", "ref": 10, "no": 7 },
+    { "kind": "vocab",   "ref": 25, "no": 8 }
+  ]
+}

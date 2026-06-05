@@ -1,0 +1,467 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "24.json",
+  "_note": "24번 워크북 — 본문 10문장 풀커버.",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "stellar",        "pos": "형" },
+      { "word": "neighbour",      "pos": "명" },
+      { "word": "reach",          "pos": "동" },
+      { "word": "incredible",     "pos": "형" },
+      { "word": "collect",        "pos": "동" },
+      { "word": "constellation",  "pos": "명" },
+      { "word": "reddish",        "pos": "형" },
+      { "word": "journey",        "pos": "명" },
+      { "word": "familiar",       "pos": "형" },
+      { "word": "distant",        "pos": "형" }
+    ],
+    "ko_to_en": [
+      { "meaning": "선물, 재능",       "pos": "명", "answer": "gift" },
+      { "meaning": "빛나다, 타오르다",  "pos": "동", "answer": "glow" },
+      { "meaning": "더 멀리",          "pos": "부", "answer": "further" },
+      { "meaning": "밝은",            "pos": "형", "answer": "bright" },
+      { "meaning": "세대",            "pos": "명", "answer": "generation" },
+      { "meaning": "이동하다, 나아가다", "pos": "동", "answer": "travel" },
+      { "meaning": "별자리",          "pos": "명", "answer": "constellation" },
+      { "meaning": "여정, 이동",       "pos": "명", "answer": "journey" },
+      { "meaning": "도달하다, 닿다",    "pos": "동", "answer": "reach" },
+      { "meaning": "먼, 멀리 떨어진",   "pos": "형", "answer": "distant" }
+    ],
+    "expressions": [
+      { "ko": "되돌아보다",        "answer": "look back" },
+      { "ko": "시간상으로",        "answer": "in time" },
+      { "ko": "그것이 있던 모습대로", "answer": "as they were" },
+      { "ko": "(시간을) 되감다",    "answer": "wind back" },
+      { "ko": "중세 시대",         "answer": "the Middle Ages" }
+    ],
+    "definitions": [
+      { "def": "very surprising or hard to believe",                          "answer": "incredible" },
+      { "def": "to bring or gather things together into one place",           "answer": "collect" },
+      { "def": "far away in space or time",                                   "answer": "distant" },
+      { "def": "a group of stars that forms a pattern in the sky",            "answer": "constellation" },
+      { "def": "well known to you because you have seen it many times",       "answer": "familiar" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "The light from even our nearest stellar neighbour {{1:takes/take}} four years {{2:to reach/reaching}} us.",
+      "ko_full": "심지어 우리의 가장 가까운 항성 이웃에서 오는 빛조차 우리에게 도달하는 데 4년이 걸린다.",
+      "answers": ["takes", "to reach"],
+      "explain": [
+        "주어 핵 = The light (단수) → 3인칭 단수 takes.",
+        "take + 시간 + to V 구문 → to부정사 to reach."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "When we look at the stars, we {{1:are looking/are looked}} back in time.",
+      "ko_full": "우리가 별을 바라볼 때, 우리는 시간을 거슬러 과거를 보고 있는 것이다.",
+      "answers": ["are looking"],
+      "explain": [
+        "look back는 자동사 — 수동태 불가, 능동 현재진행 are looking."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "This {{1:is/are}} an incredible gift.",
+      "ko_full": "이것은 놀라운 선물이다.",
+      "answers": ["is"],
+      "explain": [
+        "주어 This (단수 지시대명사) → is."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "We can see parts of space, parts of our universe, as they {{1:were/are}} many years {{2:ago/later}}.",
+      "ko_full": "우리는 우주 공간의 일부, 우리 우주의 일부를 그것이 여러 해 전에 있던 모습 그대로 볼 수 있다.",
+      "answers": ["were", "ago"],
+      "explain": [
+        "as + 과거시제 were — '과거에 있던 모습대로'.",
+        "many years ago — '여러 해 전'."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "{{1:The further/Further}} we can collect light from, the further back in time we {{2:can look/looking}}.",
+      "ko_full": "우리가 더 먼 곳에서 빛을 모을수록, 우리는 시간을 더 멀리 거슬러 볼 수 있다.",
+      "answers": ["The further", "can look"],
+      "explain": [
+        "The 비교급 ~, the 비교급 ... 구문의 앞부분 → The further.",
+        "주절에는 정상 동사구 필요 → can look."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "If you look at the bright star Betelgeuse, {{1:which/what}} glows in the Orion constellation, you {{2:wind/winds}} time back more than six hundred years.",
+      "ko_full": "오리온자리에서 빛나는 밝은 별 베텔게우스를 바라보면, 여러분은 시간을 600년 넘게 되감는 것이다.",
+      "answers": ["which", "wind"],
+      "explain": [
+        "선행사 Betelgeuse를 부연하는 계속적 용법 관계대명사 → which.",
+        "주어 you → 동사원형 wind."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "Its reddish glow {{1:started/has started}} its journey to Earth {{2:in/on}} the Middle Ages.",
+      "ko_full": "그것의 붉은빛은 중세 시대에 지구를 향한 여정을 시작했다.",
+      "answers": ["started", "in"],
+      "explain": [
+        "in the Middle Ages — 명백한 과거 시점 → 단순과거 started.",
+        "시대·세기 앞 전치사 → in."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "The stars in Orion's belt are {{1:even/very}} {{2:further/far}} away.",
+      "ko_full": "오리온의 허리띠에 있는 별들은 훨씬 더 멀리 있다.",
+      "answers": ["even", "further"],
+      "explain": [
+        "비교급 강조 부사 → even (very는 비교급 수식 불가).",
+        "비교급 형태 → further."
+      ]
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "en_template": "Their light, familiar to generations of humans, {{1:has travelled/have travelled}} at least 1,000 years {{2:to reach/reaching}} us.",
+      "ko_full": "여러 세대의 인류에게 친숙한 그 별들의 빛은 우리에게 도달하는 데 최소 1,000년을 이동해 왔다.",
+      "answers": ["has travelled", "to reach"],
+      "explain": [
+        "주어 핵 = Their light (단수) → has travelled.",
+        "'~하기 위해'의 부사적 to부정사 → to reach."
+      ]
+    },
+    {
+      "no": 10,
+      "ref_sentence": 10,
+      "en_template": "This means we have a chance of {{1:understanding/understand}} the history of the universe because we can see the more distant parts of it as they {{2:were/are}} in the past.",
+      "ko_full": "이것은 우리가 우주의 더 먼 부분을 수천, 수백만, 혹은 수십억 년 전 과거의 모습 그대로 볼 수 있기 때문에 우주의 역사를 이해할 기회를 갖는다는 것을 의미한다.",
+      "answers": ["understanding", "were"],
+      "explain": [
+        "a chance of + 동명사 → understanding.",
+        "as + 과거시제 — '과거에 있던 모습대로' → were."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "The light from even our {{1:nearest/farthest}} stellar neighbour takes four years to {{2:reach/leave}} us.",
+      "ko_full": "심지어 우리의 가장 가까운 항성 이웃에서 오는 빛조차 우리에게 도달하는 데 4년이 걸린다.",
+      "answers": ["nearest", "reach"],
+      "explain": [
+        "'가장 가까운' 별 이웃 — nearest.",
+        "우리에게 '도달하다' — reach."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "When we look at the stars, we are looking {{1:back/forward}} in time.",
+      "ko_full": "우리가 별을 바라볼 때, 우리는 시간을 거슬러 과거를 보고 있는 것이다.",
+      "answers": ["back"],
+      "explain": [
+        "시간을 '거슬러'(과거를) 보다 — look back."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "This is an {{1:incredible/ordinary}} gift.",
+      "ko_full": "이것은 놀라운 선물이다.",
+      "answers": ["incredible"],
+      "explain": [
+        "'놀라운' 선물 — incredible."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "We can see parts of space, parts of our universe, as they were many years {{1:ago/ahead}}.",
+      "ko_full": "우리는 우주 공간의 일부, 우리 우주의 일부를 그것이 여러 해 전에 있던 모습 그대로 볼 수 있다.",
+      "answers": ["ago"],
+      "explain": [
+        "'여러 해 전' — many years ago."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "The further we can {{1:collect/scatter}} light from, the further back in time we can look.",
+      "ko_full": "우리가 더 먼 곳에서 빛을 모을수록, 우리는 시간을 더 멀리 거슬러 볼 수 있다.",
+      "answers": ["collect"],
+      "explain": [
+        "빛을 '모으다' — collect."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "If you look at the {{1:bright/dim}} star Betelgeuse, which glows in the Orion {{2:constellation/galaxy}}, you wind time back more than six hundred years.",
+      "ko_full": "오리온자리에서 빛나는 밝은 별 베텔게우스를 바라보면, 여러분은 시간을 600년 넘게 되감는 것이다.",
+      "answers": ["bright", "constellation"],
+      "explain": [
+        "'밝은' 별 — bright.",
+        "오리온 '별자리' — constellation."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "Its {{1:reddish/bluish}} glow started its {{2:journey/arrival}} to Earth in the Middle Ages.",
+      "ko_full": "그것의 붉은빛은 중세 시대에 지구를 향한 여정을 시작했다.",
+      "answers": ["reddish", "journey"],
+      "explain": [
+        "베텔게우스의 '붉은' 빛 — reddish.",
+        "지구를 향한 '여정' — journey."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "The stars in Orion's belt are even {{1:further/nearer}} away.",
+      "ko_full": "오리온의 허리띠에 있는 별들은 훨씬 더 멀리 있다.",
+      "answers": ["further"],
+      "explain": [
+        "'더 멀리' 있다 — further away."
+      ]
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "en_template": "Their light, {{1:familiar/unfamiliar}} to generations of humans, has {{2:travelled/stayed}} at least 1,000 years to reach us.",
+      "ko_full": "여러 세대의 인류에게 친숙한 그 별들의 빛은 우리에게 도달하는 데 최소 1,000년을 이동해 왔다.",
+      "answers": ["familiar", "travelled"],
+      "explain": [
+        "여러 세대에게 '친숙한' — familiar.",
+        "1,000년을 '이동해 왔다' — travelled."
+      ]
+    },
+    {
+      "no": 10,
+      "ref_sentence": 10,
+      "en_template": "This means we have a chance of understanding the {{1:history/future}} of the universe because we can see the more {{2:distant/nearby}} parts of it as they were in the past.",
+      "ko_full": "이것은 우리가 우주의 더 먼 부분을 수천, 수백만, 혹은 수십억 년 전 과거의 모습 그대로 볼 수 있기 때문에 우주의 역사를 이해할 기회를 갖는다는 것을 의미한다.",
+      "answers": ["history", "distant"],
+      "explain": [
+        "우주의 '역사' — history.",
+        "더 '먼' 부분 — distant."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "n", "answer": "nearest",   "after": "stellar neighbour" },
+        { "pos": 2, "letter": "s", "answer": "stellar",   "after": "neighbour takes" },
+        { "pos": 3, "letter": "r", "answer": "reach",     "after": "us" }
+      ],
+      "ko_full": "심지어 우리의 가장 가까운 항성 이웃에서 오는 빛조차 우리에게 도달하는 데 4년이 걸린다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "l", "answer": "look",   "after": "at the stars" },
+        { "pos": 2, "letter": "b", "answer": "back",   "after": "in time" },
+        { "pos": 3, "letter": "t", "answer": "time",   "after": "" }
+      ],
+      "ko_full": "우리가 별을 바라볼 때, 우리는 시간을 거슬러 과거를 보고 있는 것이다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "i", "answer": "incredible", "after": "gift" },
+        { "pos": 2, "letter": "g", "answer": "gift",       "after": "" }
+      ],
+      "ko_full": "이것은 놀라운 선물이다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "s", "answer": "space",     "after": ", parts of our universe" },
+        { "pos": 2, "letter": "u", "answer": "universe",  "after": ", as they were" },
+        { "pos": 3, "letter": "y", "answer": "years",     "after": "ago" }
+      ],
+      "ko_full": "우리는 우주 공간의 일부, 우리 우주의 일부를 그것이 여러 해 전에 있던 모습 그대로 볼 수 있다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "c", "answer": "collect",  "after": "light from" },
+        { "pos": 2, "letter": "l", "answer": "light",    "after": "from" },
+        { "pos": 3, "letter": "t", "answer": "time",     "after": "we can look" }
+      ],
+      "ko_full": "우리가 더 먼 곳에서 빛을 모을수록, 우리는 시간을 더 멀리 거슬러 볼 수 있다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "b", "answer": "bright",        "after": "star Betelgeuse" },
+        { "pos": 2, "letter": "g", "answer": "glows",         "after": "in the Orion" },
+        { "pos": 3, "letter": "c", "answer": "constellation", "after": ", you wind time back" },
+        { "pos": 4, "letter": "w", "answer": "wind",          "after": "time back more than" }
+      ],
+      "ko_full": "오리온자리에서 빛나는 밝은 별 베텔게우스를 바라보면, 여러분은 시간을 600년 넘게 되감는 것이다."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "hints": [
+        { "pos": 1, "letter": "r", "answer": "reddish", "after": "glow" },
+        { "pos": 2, "letter": "j", "answer": "journey", "after": "to Earth" },
+        { "pos": 3, "letter": "M", "answer": "middle",  "after": "ages" }
+      ],
+      "ko_full": "그것의 붉은빛은 중세 시대에 지구를 향한 여정을 시작했다."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "hints": [
+        { "pos": 1, "letter": "b", "answer": "belt",    "after": "are even further" },
+        { "pos": 2, "letter": "f", "answer": "further", "after": "away" }
+      ],
+      "ko_full": "오리온의 허리띠에 있는 별들은 훨씬 더 멀리 있다."
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "hints": [
+        { "pos": 1, "letter": "f", "answer": "familiar",    "after": "to generations" },
+        { "pos": 2, "letter": "g", "answer": "generations", "after": "of humans" },
+        { "pos": 3, "letter": "t", "answer": "travelled",   "after": "at least 1,000 years" }
+      ],
+      "ko_full": "여러 세대의 인류에게 친숙한 그 별들의 빛은 우리에게 도달하는 데 최소 1,000년을 이동해 왔다."
+    },
+    {
+      "no": 10,
+      "ref_sentence": 10,
+      "hints": [
+        { "pos": 1, "letter": "h", "answer": "history",  "after": "of the universe" },
+        { "pos": 2, "letter": "d", "answer": "distant",  "after": "parts of it" },
+        { "pos": 3, "letter": "p", "answer": "past",     "after": ", thousands or millions" }
+      ],
+      "ko_full": "이것은 우리가 우주의 더 먼 부분을 수천, 수백만, 혹은 수십억 년 전 과거의 모습 그대로 볼 수 있기 때문에 우주의 역사를 이해할 기회를 갖는다는 것을 의미한다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 },
+    { "no": 7, "ref_sentence": 7 },
+    { "no": 8, "ref_sentence": 8 },
+    { "no": 9, "ref_sentence": 9 },
+    { "no": 10, "ref_sentence": 10 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["The", "light", "from", "even", "our", "nearest", "stellar", "neighbour", "takes", "four", "years", "to", "reach", "us"],
+      "answer": "The light from even our nearest stellar neighbour takes four years to reach us."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["When", "we", "look", "at", "the", "stars", "we", "are", "looking", "back", "in", "time"],
+      "answer": "When we look at the stars, we are looking back in time."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["This", "is", "an", "incredible", "gift"],
+      "answer": "This is an incredible gift."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["We", "can", "see", "parts", "of", "space", "parts", "of", "our", "universe", "as", "they", "were", "many", "years", "ago"],
+      "answer": "We can see parts of space, parts of our universe, as they were many years ago."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["The", "further", "we", "can", "collect", "light", "from", "the", "further", "back", "in", "time", "we", "can", "look"],
+      "answer": "The further we can collect light from, the further back in time we can look."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["If", "you", "look", "at", "the", "bright", "star", "Betelgeuse", "which", "glows", "in", "the", "Orion", "constellation", "you", "wind", "time", "back", "more", "than", "six", "hundred", "years"],
+      "answer": "If you look at the bright star Betelgeuse, which glows in the Orion constellation, you wind time back more than six hundred years."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "words": ["Its", "reddish", "glow", "started", "its", "journey", "to", "Earth", "in", "the", "Middle", "Ages"],
+      "answer": "Its reddish glow started its journey to Earth in the Middle Ages."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "words": ["The", "stars", "in", "Orion's", "belt", "are", "even", "further", "away"],
+      "answer": "The stars in Orion's belt are even further away."
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "words": ["Their", "light", "familiar", "to", "generations", "of", "humans", "has", "travelled", "at", "least", "1,000", "years", "to", "reach", "us"],
+      "answer": "Their light, familiar to generations of humans, has travelled at least 1,000 years to reach us."
+    },
+    {
+      "no": 10,
+      "ref_sentence": 10,
+      "words": ["This", "means", "we", "have", "a", "chance", "of", "understanding", "the", "history", "of", "the", "universe", "because", "we", "can", "see", "the", "more", "distant", "parts", "of", "it", "as", "they", "were", "in", "the", "past", "thousands", "or", "millions", "or", "billions", "of", "years", "ago"],
+      "answer": "This means we have a chance of understanding the history of the universe because we can see the more distant parts of it as they were in the past, thousands or millions or billions of years ago."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" },
+    { "no": 7, "ref_sentence": 7, "given": "ko" },
+    { "no": 8, "ref_sentence": 8, "given": "ko" },
+    { "no": 9, "ref_sentence": 9, "given": "ko" },
+    { "no": 10, "ref_sentence": 10, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 1, "no": 1 },
+    { "kind": "vocab",   "ref": 6, "no": 2 },
+    { "kind": "fill",    "ref": 4, "no": 3 },
+    { "kind": "ko",      "ref": 7, "no": 4 },
+    { "kind": "jumble",  "ref": 8, "no": 5 },
+    { "kind": "sent",    "ref": 10, "no": 6 },
+    { "kind": "grammar", "ref": 5, "no": 7 },
+    { "kind": "vocab",   "ref": 9, "no": 8 }
+  ]
+}

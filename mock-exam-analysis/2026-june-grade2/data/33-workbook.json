@@ -1,0 +1,281 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "33.json",
+  "_note": "33번 워크북 — 본문 5문장 풀커버.",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "evolution",   "pos": "명" },
+      { "word": "standstill",  "pos": "명" },
+      { "word": "onset",       "pos": "명" },
+      { "word": "constantly",  "pos": "부" },
+      { "word": "track",       "pos": "동" },
+      { "word": "steady",      "pos": "형" },
+      { "word": "persist",     "pos": "동" },
+      { "word": "successive",  "pos": "형" },
+      { "word": "propel",      "pos": "동" },
+      { "word": "reverse",     "pos": "동" }
+    ],
+    "ko_to_en": [
+      { "meaning": "조건, 상황",       "pos": "명", "answer": "condition" },
+      { "meaning": "평균의",           "pos": "형", "answer": "average" },
+      { "meaning": "강우량",           "pos": "명", "answer": "rainfall" },
+      { "meaning": "결과",             "pos": "명", "answer": "consequence" },
+      { "meaning": "끊임없이",         "pos": "부", "answer": "constantly" },
+      { "meaning": "세대",             "pos": "명", "answer": "generation" },
+      { "meaning": "방향",             "pos": "명", "answer": "direction" },
+      { "meaning": "추세, 흐름",       "pos": "명", "answer": "trend" },
+      { "meaning": "기온, 온도",       "pos": "명", "answer": "temperature" },
+      { "meaning": "추적하다",         "pos": "동", "answer": "track" }
+    ],
+    "expressions": [
+      { "ko": "정지 상태에 이르다", "answer": "come to a standstill" },
+      { "ko": "멈추다",            "answer": "come to a halt" },
+      { "ko": "그 결과",           "answer": "as a consequence" },
+      { "ko": "~의 영향을 받는",   "answer": "under the influence of" },
+      { "ko": "서서히 오르다",     "answer": "creep up" }
+    ],
+    "definitions": [
+      { "def": "a state in which all activity or movement has stopped",      "answer": "standstill" },
+      { "def": "the beginning of something, especially something unpleasant","answer": "onset" },
+      { "def": "to continue to exist or happen for a long time",             "answer": "persist" },
+      { "def": "following one after another in order, without a break",      "answer": "successive" },
+      { "def": "to change to the opposite direction or order",              "answer": "reverse" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Evolution {{1:will come/will be come}} to a standstill until something in the conditions {{2:changes/change}}: the onset of an ice age, a change in the average rainfall of the area, a shift in the prevailing wind.",
+      "ko_full": "진화는 조건 속의 무언가가 바뀔 때까지 정지 상태에 이른다. 즉 빙하기의 도래, 그 지역 평균 강우량의 변화, 탁월풍의 이동 같은 것 말이다.",
+      "answers": ["will come", "changes"],
+      "explain": [
+        "come은 자동사 — 수동태(be come) 불가, 미래 능동 will come.",
+        "주어 something은 단수 → 3인칭 단수 동사 changes."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "Such changes {{1:do happen/do happens}} when we {{2:are dealing/dealing}} with a timescale as long as the evolutionary one.",
+      "ko_full": "그러한 변화는 진화적 시간만큼이나 긴 시간 척도를 다룰 때에는 실제로 일어난다.",
+      "answers": ["do happen", "are dealing"],
+      "explain": [
+        "강조의 do + 동사원형 — do happen(do happens 아님).",
+        "when절의 진행 동사 — be동사 필요, are dealing."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "As a consequence, evolution normally does not come to a halt, {{1:but/and}} constantly {{2:tracks/track}} the changing environment.",
+      "ko_full": "그 결과, 진화는 보통 멈추는 것이 아니라, 변화하는 환경을 끊임없이 추적한다.",
+      "answers": ["but", "tracks"],
+      "explain": [
+        "not A but B 상관접속 — 대조의 but.",
+        "주어 evolution(단수) → 3인칭 단수 tracks."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "If there is a steady downward drift in the average temperature in the area, a drift {{1:that/what}} persists over centuries, successive generations of animals {{2:will be propelled/will propel}} by a steady selection 'pressure' in the direction, say, of {{3:growing/grow}} longer coats of hair.",
+      "ko_full": "만약 그 지역 평균 기온에 꾸준한 하강 흐름, 즉 수 세기에 걸쳐 지속되는 흐름이 있다면, 잇따른 세대의 동물들은 가령 더 긴 털을 기르는 방향으로 꾸준한 선택 '압력'에 의해 추동될 것이다.",
+      "answers": ["that", "will be propelled", "growing"],
+      "explain": [
+        "선행사 a drift 수식하는 주격 관계대명사 that(선행사 있으므로 what 불가).",
+        "generations가 압력에 '추동되는' 대상 → 수동태 will be propelled.",
+        "전치사 of의 목적어 → 동명사 growing."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "If after a few thousand years of reduced temperature the trend reverses and average temperatures creep up again, the animals will come under the influence of a new selection pressure, and {{1:will be pushed/will push}} towards {{2:growing/to grow}} shorter coats again.",
+      "ko_full": "만약 수천 년의 기온 하강 후에 그 추세가 역전되어 평균 기온이 다시 서서히 올라가면, 그 동물들은 새로운 선택 압력의 영향을 받게 되고, 다시 더 짧은 털을 기르는 쪽으로 떠밀릴 것이다.",
+      "answers": ["will be pushed", "growing"],
+      "explain": [
+        "동물이 '떠밀리는' 대상 → 수동태 will be pushed.",
+        "towards(전치사) + 동명사 → growing."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Evolution will come to a {{1:standstill/acceleration}} until something in the conditions {{2:changes/stays}}: the onset of an ice age, a change in the average rainfall, a shift in the prevailing wind.",
+      "ko_full": "진화는 조건 속의 무언가가 바뀔 때까지 정지 상태에 이른다.",
+      "answers": ["standstill", "changes"],
+      "explain": [
+        "'정지 상태' — standstill.",
+        "조건이 '바뀔' 때까지 — changes."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "Such changes {{1:do happen/never happen}} when we are dealing with a timescale {{2:as long as/as short as}} the evolutionary one.",
+      "ko_full": "그러한 변화는 진화적 시간만큼이나 긴 시간 척도를 다룰 때에는 실제로 일어난다.",
+      "answers": ["do happen", "as long as"],
+      "explain": [
+        "변화가 '실제로 일어난다' — do happen.",
+        "'~만큼 긴' — as long as."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "As a consequence, evolution normally does not come to a {{1:halt/start}}, but constantly {{2:tracks/ignores}} the changing environment.",
+      "ko_full": "그 결과, 진화는 보통 멈추는 것이 아니라, 변화하는 환경을 끊임없이 추적한다.",
+      "answers": ["halt", "tracks"],
+      "explain": [
+        "'멈춤' — halt.",
+        "환경을 '추적한다' — tracks."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "If there is a steady {{1:downward/upward}} drift in the average temperature, a drift that {{2:persists/vanishes}} over centuries, successive generations will be {{3:propelled/restrained}} toward growing longer coats of hair.",
+      "ko_full": "만약 그 지역 평균 기온에 수 세기에 걸쳐 지속되는 꾸준한 하강 흐름이 있다면, 잇따른 세대의 동물들은 더 긴 털을 기르는 방향으로 추동될 것이다.",
+      "answers": ["downward", "persists", "propelled"],
+      "explain": [
+        "기온의 '하강' 흐름 — downward.",
+        "수 세기 '지속되는' — persists.",
+        "압력에 '추동되는' — propelled."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "If the trend {{1:reverses/continues}} and temperatures creep up again, the animals come under a new selection pressure and are pushed towards growing {{2:shorter/longer}} coats again.",
+      "ko_full": "만약 추세가 역전되어 평균 기온이 다시 서서히 올라가면, 동물들은 새로운 선택 압력을 받아 다시 더 짧은 털을 기르는 쪽으로 떠밀린다.",
+      "answers": ["reverses", "shorter"],
+      "explain": [
+        "추세가 '역전된다' — reverses.",
+        "기온이 다시 오르면 '더 짧은' 털 — shorter."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "s", "answer": "standstill", "after": "until something" },
+        { "pos": 2, "letter": "c", "answer": "conditions", "after": "changes" },
+        { "pos": 3, "letter": "o", "answer": "onset",      "after": "of an ice age" },
+        { "pos": 4, "letter": "r", "answer": "rainfall",   "after": "of the area" }
+      ],
+      "ko_full": "진화는 조건 속의 무언가가 바뀔 때까지 정지 상태에 이른다. 즉 빙하기의 도래, 그 지역 평균 강우량의 변화, 탁월풍의 이동 같은 것 말이다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "c", "answer": "changes",   "after": "do happen" },
+        { "pos": 2, "letter": "d", "answer": "dealing",   "after": "with a timescale" },
+        { "pos": 3, "letter": "t", "answer": "timescale", "after": "as long as" },
+        { "pos": 4, "letter": "e", "answer": "evolutionary", "after": "one" }
+      ],
+      "ko_full": "그러한 변화는 진화적 시간만큼이나 긴 시간 척도를 다룰 때에는 실제로 일어난다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "c", "answer": "consequence", "after": ", evolution normally" },
+        { "pos": 2, "letter": "h", "answer": "halt",        "after": ", but constantly" },
+        { "pos": 3, "letter": "t", "answer": "tracks",      "after": "the changing environment" }
+      ],
+      "ko_full": "그 결과, 진화는 보통 멈추는 것이 아니라, 변화하는 환경을 끊임없이 추적한다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "d", "answer": "downward",   "after": "drift in the average temperature" },
+        { "pos": 2, "letter": "p", "answer": "persists",   "after": "over centuries" },
+        { "pos": 3, "letter": "s", "answer": "successive", "after": "generations of animals" },
+        { "pos": 4, "letter": "p", "answer": "pressure",   "after": "in the direction" }
+      ],
+      "ko_full": "만약 그 지역 평균 기온에 꾸준한 하강 흐름, 즉 수 세기에 걸쳐 지속되는 흐름이 있다면, 잇따른 세대의 동물들은 가령 더 긴 털을 기르는 방향으로 꾸준한 선택 '압력'에 의해 추동될 것이다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "r", "answer": "reverses", "after": "and average temperatures" },
+        { "pos": 2, "letter": "c", "answer": "creep",    "after": "up again" },
+        { "pos": 3, "letter": "i", "answer": "influence","after": "of a new selection pressure" },
+        { "pos": 4, "letter": "s", "answer": "shorter",  "after": "coats again" }
+      ],
+      "ko_full": "만약 수천 년의 기온 하강 후에 그 추세가 역전되어 평균 기온이 다시 서서히 올라가면, 그 동물들은 새로운 선택 압력의 영향을 받게 되고, 다시 더 짧은 털을 기르는 쪽으로 떠밀릴 것이다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["Evolution", "will", "come", "to", "a", "standstill", "until", "something", "in", "the", "conditions", "changes", "the", "onset", "of", "an", "ice", "age", "a", "change", "in", "the", "average", "rainfall", "of", "the", "area", "a", "shift", "in", "the", "prevailing", "wind"],
+      "answer": "Evolution will come to a standstill until something in the conditions changes: the onset of an ice age, a change in the average rainfall of the area, a shift in the prevailing wind."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["Such", "changes", "do", "happen", "when", "we", "are", "dealing", "with", "a", "timescale", "as", "long", "as", "the", "evolutionary", "one"],
+      "answer": "Such changes do happen when we are dealing with a timescale as long as the evolutionary one."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["As", "a", "consequence", "evolution", "normally", "does", "not", "come", "to", "a", "halt", "but", "constantly", "tracks", "the", "changing", "environment"],
+      "answer": "As a consequence, evolution normally does not come to a halt, but constantly tracks the changing environment."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["If", "there", "is", "a", "steady", "downward", "drift", "in", "the", "average", "temperature", "in", "the", "area", "a", "drift", "that", "persists", "over", "centuries", "successive", "generations", "of", "animals", "will", "be", "propelled", "by", "a", "steady", "selection", "pressure", "in", "the", "direction", "say", "of", "growing", "longer", "coats", "of", "hair"],
+      "answer": "If there is a steady downward drift in the average temperature in the area, a drift that persists over centuries, successive generations of animals will be propelled by a steady selection 'pressure' in the direction, say, of growing longer coats of hair."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["If", "after", "a", "few", "thousand", "years", "of", "reduced", "temperature", "the", "trend", "reverses", "and", "average", "temperatures", "creep", "up", "again", "the", "animals", "will", "come", "under", "the", "influence", "of", "a", "new", "selection", "pressure", "and", "will", "be", "pushed", "towards", "growing", "shorter", "coats", "again"],
+      "answer": "If after a few thousand years of reduced temperature the trend reverses and average temperatures creep up again, the animals will come under the influence of a new selection pressure, and will be pushed towards growing shorter coats again."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 1, "no": 1 },
+    { "kind": "vocab",   "ref": 3, "no": 2 },
+    { "kind": "fill",    "ref": 4, "no": 3 },
+    { "kind": "ko",      "ref": 2, "no": 4 },
+    { "kind": "jumble",  "ref": 5, "no": 5 },
+    { "kind": "sent",    "ref": 3, "no": 6 },
+    { "kind": "grammar", "ref": 4, "no": 7 },
+    { "kind": "vocab",   "ref": 5, "no": 8 }
+  ]
+}

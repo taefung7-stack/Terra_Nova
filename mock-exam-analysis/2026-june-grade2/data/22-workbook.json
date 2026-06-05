@@ -1,0 +1,435 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "22.json",
+  "_note": "22번 워크북 — 본문 9문장 풀커버.",
+  "_template_for_new_rounds": "이 파일을 새 회차의 {N}-workbook.json 작성 시 템플릿으로 사용. en_template의 {{N:A/B}} 토큰 = 양자택일 박스, hints 배열 = 빈칸 첫글자, jumble.words = 단어 배열 (셔플 X, 의도 유지).",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "objective",     "pos": "형" },
+      { "word": "probability",   "pos": "명" },
+      { "word": "subjective",    "pos": "형" },
+      { "word": "weight",        "pos": "명" },
+      { "word": "treat",         "pos": "동" },
+      { "word": "define",        "pos": "동" },
+      { "word": "overestimate",  "pos": "동" },
+      { "word": "likelihood",    "pos": "명" },
+      { "word": "optimistic",    "pos": "형" },
+      { "word": "odds",          "pos": "명" }
+    ],
+    "ko_to_en": [
+      { "meaning": "객관적인",            "pos": "형", "answer": "objective" },
+      { "meaning": "주관적인",            "pos": "형", "answer": "subjective" },
+      { "meaning": "확률, 가능성",        "pos": "명", "answer": "probability" },
+      { "meaning": "취급하다, 다루다",    "pos": "동", "answer": "treat" },
+      { "meaning": "일어나다, 발생하다",  "pos": "동", "answer": "occur" },
+      { "meaning": "과대평가하다",        "pos": "동", "answer": "overestimate" },
+      { "meaning": "가능성, 개연성",      "pos": "명", "answer": "likelihood" },
+      { "meaning": "낙관적인",            "pos": "형", "answer": "optimistic" },
+      { "meaning": "복권",                "pos": "명", "answer": "lottery" },
+      { "meaning": "(성공) 확률, 승산",   "pos": "명", "answer": "odds" }
+    ],
+    "expressions": [
+      { "ko": "~까지",            "answer": "up to" },
+      { "ko": "~에 작용하다",     "answer": "factor into" },
+      { "ko": "즉, 다시 말해",    "answer": "that is" },
+      { "ko": "~인 것처럼 보이다", "answer": "seem like" },
+      { "ko": "대략 ~정도의",     "answer": "on the order of" }
+    ],
+    "definitions": [
+      { "def": "how likely it is that something will happen",                  "answer": "probability" },
+      { "def": "based on facts, not influenced by personal feelings",          "answer": "objective" },
+      { "def": "to think that something is larger or more likely than it is",  "answer": "overestimate" },
+      { "def": "hopeful and confident about the future",                       "answer": "optimistic" },
+      { "def": "to state exactly what something means",                        "answer": "define" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "For each objective probability — from one percent to 100 percent — we want {{1:to know/knowing}} the subjective probability {{2:weight/weigh}}.",
+      "ko_full": "1퍼센트부터 100퍼센트까지 각각의 객관적 확률에 대해, 우리는 주관적 확률 가중치를 알고 싶어 한다.",
+      "answers": ["to know", "weight"],
+      "explain": [
+        "want + to V — to부정사를 목적어로 취함.",
+        "관사·형용사 뒤 목적어 자리 → 명사 weight (동사 weigh 아님)."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "When we make decisions, do we {{1:treat/treating}} a one-percent chance just like one percent, or like {{2:something else/anything else}}?",
+      "ko_full": "우리가 결정을 내릴 때, 1퍼센트의 가능성을 그저 1퍼센트로 취급하는가, 아니면 다른 무언가로 취급하는가?",
+      "answers": ["treat", "something else"],
+      "explain": [
+        "조동사 do 뒤 → 동사원형 treat.",
+        "긍정 의문(선택지 제시) 맥락 → something else."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "Events {{1:that/what}} could happen but aren't likely — low-probability events — can {{2:be defined/define}} as probabilities up to about 25 percent.",
+      "ko_full": "일어날 수는 있지만 그럴 가능성이 높지 않은 사건, 즉 낮은 확률 사건은 약 25퍼센트까지의 확률로 정의될 수 있다.",
+      "answers": ["that", "be defined"],
+      "explain": [
+        "선행사 Events를 수식하는 주격 관계대명사 that.",
+        "Events가 정의되는 대상 → 수동 be defined."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "Low-probability events {{1:tend/tends}} to factor more into decisions than they {{2:should/should to}}.",
+      "ko_full": "낮은 확률 사건은 마땅히 그래야 하는 것보다 결정에 더 많이 작용하는 경향이 있다.",
+      "answers": ["tend", "should"],
+      "explain": [
+        "주어 events(복수) → tend.",
+        "조동사 should 뒤 동사(factor) 생략 — to 불필요."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "That is, an event {{1:that/what}} has an objective one-percent chance of occurring could subjectively {{2:seem like/seem}} it has a five-percent chance of occurring.",
+      "ko_full": "즉, 객관적으로 1퍼센트의 발생 가능성을 가진 사건이 주관적으로는 5퍼센트의 발생 가능성을 가진 것처럼 보일 수 있다.",
+      "answers": ["that", "seem like"],
+      "explain": [
+        "선행사 an event를 수식하는 주격 관계대명사 that.",
+        "뒤에 절(it has ...)이 오므로 seem like + 절."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "We overestimate the likelihood {{1:of/for}} {{2:these/this}} low-probability events.",
+      "ko_full": "우리는 이러한 낮은 확률 사건의 발생 가능성을 과대평가한다.",
+      "answers": ["of", "these"],
+      "explain": [
+        "the likelihood of N — 'N의 가능성'.",
+        "복수 명사 events 수식 → these."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "In general, the {{1:smaller/smallest}} the probability, the {{2:more/most}} we overestimate its likelihood.",
+      "ko_full": "일반적으로, 확률이 작을수록 우리는 그 발생 가능성을 더 많이 과대평가한다.",
+      "answers": ["smaller", "more"],
+      "explain": [
+        "The 비교급 ~, the 비교급 ... 구문 — 비교급 smaller.",
+        "동일 구문의 두 번째 비교급 — more."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "For example, people {{1:who/which}} play the lottery are often {{2:optimistic about/optimistic of}} winning.",
+      "ko_full": "예를 들어, 복권을 하는 사람들은 흔히 당첨에 대해 낙관적이다.",
+      "answers": ["who", "optimistic about"],
+      "explain": [
+        "선행사 people(사람) → 주격 관계대명사 who.",
+        "be optimistic about ~ — '~에 대해 낙관적이다' 고정 전치사."
+      ]
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "en_template": "However, the odds of a single ticket {{1:winning/won}} the largest, most popular U.S. lotteries {{2:are/is}} on the order of one in 175 million.",
+      "ko_full": "그러나 가장 크고 가장 인기 있는 미국 복권에서 한 장의 표가 당첨될 확률은 1억 7천 5백만 분의 1 정도이다.",
+      "answers": ["winning", "are"],
+      "explain": [
+        "a single ticket가 의미상 주어인 동명사 winning.",
+        "주어 핵 = the odds(복수) → are."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "For each {{1:objective/subjective}} probability — from one percent to 100 percent — we want to know the {{2:subjective/factual}} probability weight.",
+      "ko_full": "1퍼센트부터 100퍼센트까지 각각의 객관적 확률에 대해, 우리는 주관적 확률 가중치를 알고 싶어 한다.",
+      "answers": ["objective", "subjective"],
+      "explain": [
+        "수치로 주어진 '객관적' 확률 — objective.",
+        "우리가 부여하는 '주관적' 가중치 — subjective."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "When we make decisions, do we {{1:treat/ignore}} a one-percent chance just like one percent, or like something {{2:else/same}}?",
+      "ko_full": "우리가 결정을 내릴 때, 1퍼센트의 가능성을 그저 1퍼센트로 취급하는가, 아니면 다른 무언가로 취급하는가?",
+      "answers": ["treat", "else"],
+      "explain": [
+        "확률을 어떻게 '취급'하는가 — treat.",
+        "'다른' 무언가 — something else."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "Events that could happen but aren't {{1:likely/certain}} — low-probability events — can be {{2:defined/confused}} as probabilities up to about 25 percent.",
+      "ko_full": "일어날 수는 있지만 그럴 가능성이 높지 않은 사건, 즉 낮은 확률 사건은 약 25퍼센트까지의 확률로 정의될 수 있다.",
+      "answers": ["likely", "defined"],
+      "explain": [
+        "'가능성 높은'은 아니다 — likely.",
+        "약 25%까지로 '정의된다' — defined."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "Low-probability events tend to factor {{1:more/less}} into decisions than they {{2:should/must}}.",
+      "ko_full": "낮은 확률 사건은 마땅히 그래야 하는 것보다 결정에 더 많이 작용하는 경향이 있다.",
+      "answers": ["more", "should"],
+      "explain": [
+        "마땅한 것보다 '더 많이' 작용 — more.",
+        "'마땅히 그래야 하는' — than they should."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "That is, an event that has an {{1:objective/subjective}} one-percent chance could {{2:subjectively/objectively}} seem like it has a five-percent chance.",
+      "ko_full": "즉, 객관적으로 1퍼센트의 발생 가능성을 가진 사건이 주관적으로는 5퍼센트의 발생 가능성을 가진 것처럼 보일 수 있다.",
+      "answers": ["objective", "subjectively"],
+      "explain": [
+        "실제 1%는 '객관적' 확률 — objective.",
+        "5%처럼 보이는 것은 '주관적으로' — subjectively."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "We {{1:overestimate/underestimate}} the {{2:likelihood/certainty}} of these low-probability events.",
+      "ko_full": "우리는 이러한 낮은 확률 사건의 발생 가능성을 과대평가한다.",
+      "answers": ["overestimate", "likelihood"],
+      "explain": [
+        "실제보다 크게 봄 — overestimate.",
+        "발생 '가능성' — likelihood."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "In general, the smaller the {{1:probability/certainty}}, the more we {{2:overestimate/overlook}} its likelihood.",
+      "ko_full": "일반적으로, 확률이 작을수록 우리는 그 발생 가능성을 더 많이 과대평가한다.",
+      "answers": ["probability", "overestimate"],
+      "explain": [
+        "작을수록 더 부풀리는 대상 — probability(확률).",
+        "더 많이 '과대평가' — overestimate."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "For example, people who play the lottery are often {{1:optimistic/pessimistic}} about {{2:winning/losing}}.",
+      "ko_full": "예를 들어, 복권을 하는 사람들은 흔히 당첨에 대해 낙관적이다.",
+      "answers": ["optimistic", "winning"],
+      "explain": [
+        "당첨에 대해 '낙관적' — optimistic.",
+        "기대하는 것은 '당첨' — winning."
+      ]
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "en_template": "However, the {{1:odds/certainty}} of a single ticket winning the largest U.S. lotteries are on the {{2:order/edge}} of one in 175 million.",
+      "ko_full": "그러나 가장 크고 가장 인기 있는 미국 복권에서 한 장의 표가 당첨될 확률은 1억 7천 5백만 분의 1 정도이다.",
+      "answers": ["odds", "order"],
+      "explain": [
+        "당첨 '확률, 승산' — odds.",
+        "on the order of ~ '대략 ~정도의' 고정 표현 — order."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "o", "answer": "objective",   "after": "probability" },
+        { "pos": 2, "letter": "s", "answer": "subjective",  "after": "probability weight" },
+        { "pos": 3, "letter": "w", "answer": "weight",      "after": "" }
+      ],
+      "ko_full": "1퍼센트부터 100퍼센트까지 각각의 객관적 확률에 대해, 우리는 주관적 확률 가중치를 알고 싶어 한다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "d", "answer": "decisions", "after": "do we treat" },
+        { "pos": 2, "letter": "t", "answer": "treat",     "after": "a one-percent chance" },
+        { "pos": 3, "letter": "c", "answer": "chance",    "after": "just like one percent" }
+      ],
+      "ko_full": "우리가 결정을 내릴 때, 1퍼센트의 가능성을 그저 1퍼센트로 취급하는가, 아니면 다른 무언가로 취급하는가?"
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "h", "answer": "happen",  "after": "but aren't likely" },
+        { "pos": 2, "letter": "d", "answer": "defined", "after": "as probabilities" },
+        { "pos": 3, "letter": "p", "answer": "probabilities", "after": "up to about 25 percent" }
+      ],
+      "ko_full": "일어날 수는 있지만 그럴 가능성이 높지 않은 사건, 즉 낮은 확률 사건은 약 25퍼센트까지의 확률로 정의될 수 있다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "f", "answer": "factor",    "after": "more into decisions" },
+        { "pos": 2, "letter": "d", "answer": "decisions", "after": "than they should" },
+        { "pos": 3, "letter": "s", "answer": "should",    "after": "" }
+      ],
+      "ko_full": "낮은 확률 사건은 마땅히 그래야 하는 것보다 결정에 더 많이 작용하는 경향이 있다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "o", "answer": "objective",     "after": "one-percent chance" },
+        { "pos": 2, "letter": "o", "answer": "occurring",     "after": "could subjectively" },
+        { "pos": 3, "letter": "s", "answer": "subjectively",  "after": "seem like" }
+      ],
+      "ko_full": "즉, 객관적으로 1퍼센트의 발생 가능성을 가진 사건이 주관적으로는 5퍼센트의 발생 가능성을 가진 것처럼 보일 수 있다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "o", "answer": "overestimate", "after": "the likelihood" },
+        { "pos": 2, "letter": "l", "answer": "likelihood",   "after": "of these" }
+      ],
+      "ko_full": "우리는 이러한 낮은 확률 사건의 발생 가능성을 과대평가한다."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "hints": [
+        { "pos": 1, "letter": "s", "answer": "smaller",      "after": "the probability" },
+        { "pos": 2, "letter": "o", "answer": "overestimate", "after": "its likelihood" },
+        { "pos": 3, "letter": "l", "answer": "likelihood",   "after": "" }
+      ],
+      "ko_full": "일반적으로, 확률이 작을수록 우리는 그 발생 가능성을 더 많이 과대평가한다."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "hints": [
+        { "pos": 1, "letter": "l", "answer": "lottery",    "after": "are often optimistic" },
+        { "pos": 2, "letter": "o", "answer": "optimistic", "after": "about winning" },
+        { "pos": 3, "letter": "w", "answer": "winning",    "after": "" }
+      ],
+      "ko_full": "예를 들어, 복권을 하는 사람들은 흔히 당첨에 대해 낙관적이다."
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "hints": [
+        { "pos": 1, "letter": "o", "answer": "odds",     "after": "of a single ticket" },
+        { "pos": 2, "letter": "t", "answer": "ticket",   "after": "winning the largest" },
+        { "pos": 3, "letter": "l", "answer": "lotteries", "after": "are on the order of" }
+      ],
+      "ko_full": "그러나 가장 크고 가장 인기 있는 미국 복권에서 한 장의 표가 당첨될 확률은 1억 7천 5백만 분의 1 정도이다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 },
+    { "no": 7, "ref_sentence": 7 },
+    { "no": 8, "ref_sentence": 8 },
+    { "no": 9, "ref_sentence": 9 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["For", "each", "objective", "probability", "from", "one", "percent", "to", "100", "percent", "we", "want", "to", "know", "the", "subjective", "probability", "weight"],
+      "answer": "For each objective probability — from one percent to 100 percent — we want to know the subjective probability weight."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["When", "we", "make", "decisions", "do", "we", "treat", "a", "one-percent", "chance", "just", "like", "one", "percent", "or", "like", "something", "else"],
+      "answer": "When we make decisions, do we treat a one-percent chance just like one percent, or like something else?"
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["Events", "that", "could", "happen", "but", "aren't", "likely", "low-probability", "events", "can", "be", "defined", "as", "probabilities", "up", "to", "about", "25", "percent"],
+      "answer": "Events that could happen but aren't likely — low-probability events — can be defined as probabilities up to about 25 percent."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["Low-probability", "events", "tend", "to", "factor", "more", "into", "decisions", "than", "they", "should"],
+      "answer": "Low-probability events tend to factor more into decisions than they should."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["That", "is", "an", "event", "that", "has", "an", "objective", "one-percent", "chance", "of", "occurring", "could", "subjectively", "seem", "like", "it", "has", "a", "five-percent", "chance", "of", "occurring"],
+      "answer": "That is, an event that has an objective one-percent chance of occurring could subjectively seem like it has a five-percent chance of occurring."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["We", "overestimate", "the", "likelihood", "of", "these", "low-probability", "events"],
+      "answer": "We overestimate the likelihood of these low-probability events."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "words": ["In", "general", "the", "smaller", "the", "probability", "the", "more", "we", "overestimate", "its", "likelihood"],
+      "answer": "In general, the smaller the probability, the more we overestimate its likelihood."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "words": ["For", "example", "people", "who", "play", "the", "lottery", "are", "often", "optimistic", "about", "winning"],
+      "answer": "For example, people who play the lottery are often optimistic about winning."
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "words": ["However", "the", "odds", "of", "a", "single", "ticket", "winning", "the", "largest", "most", "popular", "U.S.", "lotteries", "are", "on", "the", "order", "of", "one", "in", "175", "million"],
+      "answer": "However, the odds of a single ticket winning the largest, most popular U.S. lotteries are on the order of one in 175 million."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" },
+    { "no": 7, "ref_sentence": 7, "given": "ko" },
+    { "no": 8, "ref_sentence": 8, "given": "ko" },
+    { "no": 9, "ref_sentence": 9, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 1, "no": 1 },
+    { "kind": "vocab",   "ref": 3, "no": 2 },
+    { "kind": "fill",    "ref": 5, "no": 3 },
+    { "kind": "ko",      "ref": 6, "no": 4 },
+    { "kind": "jumble",  "ref": 7, "no": 5 },
+    { "kind": "sent",    "ref": 9, "no": 6 },
+    { "kind": "grammar", "ref": 8, "no": 7 },
+    { "kind": "vocab",   "ref": 4, "no": 8 }
+  ]
+}
