@@ -1,6 +1,7 @@
 # 2026 6월 고2 모의고사 분석지 — 미드저니 삽화 프롬프트 시트
 
 > 회사 규칙: **항상 `--ar 16:5 --v 7`** · 고등부 톤 = cinematic editorial + painterly 3D mix · soft pastel · 우드블록/폴크아트 금지
+> 학생용 교재이므로 어둡거나 무서운 연출 지양 — 밝고 친근한 톤 유지
 > 저장 위치: 생성한 PNG를 `2026-june-grade2/assets/illust-{번호}.png` 로 저장 → `npm run build:june && npm run pdf:june` 재생성
 
 | 번호 | 유형 | 제목 |
@@ -63,7 +64,7 @@ A startup team of skilled individuals shown as glowing puzzle pieces that do not
 **제목:** Why Evolution Keeps Our Imagination Less Real Than Reality
 
 ```
-A human figure split between a vivid imagined banquet feast glowing softly on one side and an empty plate in the real world on the other, faint brain neurons overlaying the scene, soft pastel butter and coral tones, cinematic editorial + painterly 3D mix, --ar 16:5 --v 7
+A bright split scene: on one side a person happily imagining a glowing banquet feast, on the other the same person cheerfully heading out to find real food, gentle brain motif, warm soft pastel butter and coral tones, bright friendly lighting, cinematic editorial + painterly 3D mix, --ar 16:5 --v 7
 ```
 
 ## 22번 · 요지
@@ -90,7 +91,7 @@ Multiple national coins merging into one glowing unified coin while trade goods 
 **제목:** Starlight as a Window into the History of the Universe
 
 ```
-Ancient starlight streaming across deep space toward Earth, the reddish glow of Betelgeuse in the Orion constellation traveling through centuries, a faint clock motif woven into the cosmos, soft pastel indigo and sky tones, cinematic editorial + painterly 3D mix, --ar 16:5 --v 7
+Ancient starlight gently streaming across a bright deep-blue night sky toward Earth, the warm reddish glow of Betelgeuse in the Orion constellation, a soft clock motif woven into the friendly cosmos, soft pastel sky and lavender tones, luminous and uplifting, cinematic editorial + painterly 3D mix, --ar 16:5 --v 7
 ```
 
 ## 26번 · 내용 불일치
@@ -117,7 +118,7 @@ A consumer at a store counter handing over a discount coupon while a thought-bub
 **제목:** Why Early Buyers of High-Tech Products Ignore Price
 
 ```
-A luxury high-tech flagship phone displayed under spotlight in an upscale minimalist showroom, wealthy early-adopter customers admiring it indifferent to price tags, premium quality aura, soft pastel butter and indigo tones, cinematic editorial + painterly 3D mix, --ar 16:5 --v 7
+A sleek high-tech flagship phone on a bright spotlight pedestal in a clean modern showroom, cheerful well-dressed early-adopter customers admiring it, premium quality glow, soft pastel butter and sky tones, bright airy lighting, cinematic editorial + painterly 3D mix, --ar 16:5 --v 7
 ```
 
 ## 31번 · 빈칸 추론
@@ -171,7 +172,7 @@ A thoughtful viewer standing before a painting in a gallery, glowing threads of 
 **제목:** From Survival to Surplus: How Smarter Hunting Gave Our Ancestors Free Time
 
 ```
-Early human ancestors evolving from exhausted survival hunters into skilled, intelligent hunters resting with abundant prey, a timeline of growing prosperity across a savanna landscape, soft pastel sage and coral tones, cinematic editorial + painterly 3D mix, --ar 16:5 --v 7
+Early human ancestors evolving from busy hunters into clever skilled hunters happily resting with abundant food, a bright timeline of growing prosperity across a sunny savanna, soft pastel sage and warm coral tones, cheerful daylight, cinematic editorial + painterly 3D mix, --ar 16:5 --v 7
 ```
 
 ## 37번 · 글의 순서
@@ -180,7 +181,7 @@ Early human ancestors evolving from exhausted survival hunters into skilled, int
 **제목:** The Freeze Response: Why Fear Silences Us and What Chronic Fear Costs
 
 ```
-A startled human figure frozen mid-motion in a dim forest, holding their breath while scanning for danger, faint glowing neural networks in the brain dimming under chronic stress, soft pastel indigo and sage tones, cinematic editorial + painterly 3D mix, --ar 16:5 --v 7
+A surprised person pausing mid-step in a bright sunny park, holding still for a moment then relaxing and smiling, gentle glowing neural network motif lighting up warmly, soft pastel sky and mint tones, bright friendly atmosphere, cinematic editorial + painterly 3D mix, --ar 16:5 --v 7
 ```
 
 ## 38번 · 문장 삽입
@@ -189,7 +190,7 @@ A startled human figure frozen mid-motion in a dim forest, holding their breath 
 **제목:** How Violent Video Games Dull Emotion and Reduce Empathy
 
 ```
-A teenager sitting alone in a dim room bathed in cold screen light from a violent video game, faint emotional waves fading into grey around the figure, soft pastel sky and muted indigo tones, cinematic editorial + painterly 3D mix, --ar 16:5 --v 7
+A teenager playing a video game in a bright cozy living room, with soft glowing heart and emotion icons gently floating nearby, a friendly reminder of feelings and empathy, soft pastel sky and butter tones, warm cheerful lighting, cinematic editorial + painterly 3D mix, --ar 16:5 --v 7
 ```
 
 ## 39번 · 문장 삽입
@@ -198,7 +199,7 @@ A teenager sitting alone in a dim room bathed in cold screen light from a violen
 **제목:** Real Social Purpose Versus the Trap of Purpose-Washing
 
 ```
-A glossy corporate billboard proclaiming a noble social cause while behind it a hollow scaffold reveals emptiness, a small genuine green sprout contrasting the facade, soft pastel sage and coral tones, cinematic editorial + painterly 3D mix, --ar 16:5 --v 7
+A friendly brand showing a bright billboard about a social cause, with a small healthy green sprout growing strongly in front symbolizing genuine purpose, soft pastel sage and coral tones, bright optimistic daylight, cinematic editorial + painterly 3D mix, --ar 16:5 --v 7
 ```
 
 ## 40번 · 문단 요약
@@ -216,7 +217,7 @@ An orchestra performing as a glowing grid of steady pulse lines ripples and bend
 **제목:** Oil Under Threat: Innovation Reshapes the Energy Landscape
 
 ```
-A futuristic fuel-cell car glowing with clean energy beside fading oil derricks on the horizon, an energy landscape shifting from black oil to bright water-powered light, soft pastel sky and sage tones, cinematic editorial + painterly 3D mix, --ar 16:5 --v 7
+A bright futuristic fuel-cell car glowing with clean water-powered energy on a sunny road, gentle wind turbines and clear blue sky behind, an uplifting shift toward green energy, soft pastel sky and mint tones, bright hopeful lighting, cinematic editorial + painterly 3D mix, --ar 16:5 --v 7
 ```
 
 ## 43번 · 장문(순서+지칭+내용)
