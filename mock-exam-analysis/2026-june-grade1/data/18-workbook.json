@@ -1,0 +1,384 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "18.json",
+  "_note": "18번 워크북 — 본문 8문장 풀커버.",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "resident",   "pos": "명" },
+      { "word": "director",   "pos": "명" },
+      { "word": "invite",     "pos": "동" },
+      { "word": "donation",   "pos": "명" },
+      { "word": "collect",    "pos": "동" },
+      { "word": "support",    "pos": "동" },
+      { "word": "discover",   "pos": "동" },
+      { "word": "accept",     "pos": "동" },
+      { "word": "grateful",   "pos": "형" },
+      { "word": "meaningful", "pos": "형" }
+    ],
+    "ko_to_en": [
+      { "meaning": "공동체, 지역 사회", "pos": "명",  "answer": "community" },
+      { "meaning": "기쁜",             "pos": "형",  "answer": "pleased" },
+      { "meaning": "중고의",           "pos": "형",  "answer": "used" },
+      { "meaning": "청소년",           "pos": "명",  "answer": "teenagers" },
+      { "meaning": "즐거움, 기쁨",     "pos": "명",  "answer": "joy" },
+      { "meaning": "상태",             "pos": "명",  "answer": "condition" },
+      { "meaning": "기꺼이",           "pos": "부",  "answer": "gladly" },
+      { "meaning": "시",               "pos": "명",  "answer": "poetry" },
+      { "meaning": "참여하다",         "pos": "동",  "answer": "join" },
+      { "meaning": "운영 시간",        "pos": "명구", "answer": "operating hours" }
+    ],
+    "expressions": [
+      { "ko": "~하게 되어 기쁘다",      "answer": "pleased to" },
+      { "ko": "~을 기부함으로써",       "answer": "by donating" },
+      { "ko": "상태가 좋은",            "answer": "in good condition" },
+      { "ko": "~을 포함하여",           "answer": "including" },
+      { "ko": "~한다면 감사하겠습니다", "answer": "would be grateful if" }
+    ],
+    "definitions": [
+      { "def": "a person who lives in a particular place",                  "answer": "resident" },
+      { "def": "the act of giving something, especially to a good cause",   "answer": "donation" },
+      { "def": "to gather things together from different places",          "answer": "collect" },
+      { "def": "to find or learn about something for the first time",       "answer": "discover" },
+      { "def": "feeling thankful for something",                            "answer": "grateful" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Dear Residents, I am Trixie Mitchell, the director {{1:of/for}} the Riverside Community Center.",
+      "ko_full": "주민 여러분께, 저는 Riverside 커뮤니티 센터의 책임자인 Trixie Mitchell입니다.",
+      "answers": ["of"],
+      "explain": [
+        "'~의 책임자' — the director of N."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "I am pleased {{1:to invite/inviting}} you to a book donation drive.",
+      "ko_full": "여러분을 도서 기부 행사에 초대하게 되어 기쁩니다.",
+      "answers": ["to invite"],
+      "explain": [
+        "be pleased to V — 감정 형용사 + to부정사."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "We are {{1:collecting/collected}} used books {{2:to support/supporting}} our reading programs for children and teenagers.",
+      "ko_full": "저희는 어린이와 청소년을 위한 독서 프로그램을 지원하기 위해 중고 도서를 모으고 있습니다.",
+      "answers": ["collecting", "to support"],
+      "explain": [
+        "현재진행 be + V-ing — are collecting.",
+        "목적의 to부정사 — to support(지원하기 위해)."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "By {{1:donating/donate}} books, you can help young readers {{2:discover/discovered}} the joy of reading.",
+      "ko_full": "책을 기부함으로써, 여러분은 어린 독자들이 독서의 즐거움을 발견하도록 도울 수 있습니다.",
+      "answers": ["donating", "discover"],
+      "explain": [
+        "전치사 by + 동명사 — donating.",
+        "help + O + (to)동사원형 — discover."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "Any books in good condition {{1:are/is}} gladly accepted, including novels, poetry, and non-fiction books.",
+      "ko_full": "소설, 시, 그리고 비소설 도서를 포함하여 상태가 좋은 어떤 책이든 기쁘게 받습니다.",
+      "answers": ["are"],
+      "explain": [
+        "주어 핵 = books(복수) → are gladly accepted."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "You can {{1:bring/to bring}} your books to our community center {{2:during/while}} our operating hours.",
+      "ko_full": "운영 시간 동안 저희 커뮤니티 센터로 책을 가져오시면 됩니다.",
+      "answers": ["bring", "during"],
+      "explain": [
+        "조동사 can + 동사원형 — bring.",
+        "기간 명사구 앞 전치사 — during our operating hours."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "We would be grateful {{1:if/that}} you {{2:could/can}} join this meaningful event.",
+      "ko_full": "이 뜻깊은 행사에 참여해 주신다면 감사하겠습니다.",
+      "answers": ["if", "could"],
+      "explain": [
+        "조건절 접속사 — if.",
+        "would ... if 정중한 가정 — could."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "Sincerely, {{1:Trixie/Trixies}} Mitchell",
+      "ko_full": "Trixie Mitchell 드림",
+      "answers": ["Trixie"],
+      "explain": [
+        "고유명사 — Trixie Mitchell(서명)."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Dear Residents, I am Trixie Mitchell, the {{1:director/visitor}} of the Riverside Community Center.",
+      "ko_full": "주민 여러분께, 저는 Riverside 커뮤니티 센터의 책임자인 Trixie Mitchell입니다.",
+      "answers": ["director"],
+      "explain": ["센터의 '책임자' — director."]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "I am {{1:pleased/reluctant}} to invite you to a book {{2:donation/purchase}} drive.",
+      "ko_full": "여러분을 도서 기부 행사에 초대하게 되어 기쁩니다.",
+      "answers": ["pleased", "donation"],
+      "explain": [
+        "초대하게 되어 '기쁜' — pleased.",
+        "도서 '기부' 행사 — donation."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "We are collecting {{1:used/new}} books to {{2:support/hinder}} our reading programs for children and teenagers.",
+      "ko_full": "저희는 어린이와 청소년을 위한 독서 프로그램을 지원하기 위해 중고 도서를 모으고 있습니다.",
+      "answers": ["used", "support"],
+      "explain": [
+        "'중고' 도서 — used.",
+        "프로그램을 '지원하기' 위해 — support."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "By donating books, you can help young readers {{1:discover/miss}} the {{2:joy/sorrow}} of reading.",
+      "ko_full": "책을 기부함으로써, 여러분은 어린 독자들이 독서의 즐거움을 발견하도록 도울 수 있습니다.",
+      "answers": ["discover", "joy"],
+      "explain": [
+        "독서의 즐거움을 '발견' — discover.",
+        "독서의 '즐거움' — joy."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "Any books in good {{1:condition/damage}} are gladly {{2:accepted/rejected}}, including novels, poetry, and non-fiction books.",
+      "ko_full": "소설, 시, 그리고 비소설 도서를 포함하여 상태가 좋은 어떤 책이든 기쁘게 받습니다.",
+      "answers": ["condition", "accepted"],
+      "explain": [
+        "좋은 '상태' — condition.",
+        "기쁘게 '받아들여진다' — accepted."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "You can {{1:bring/throw}} your books to our community center during our {{2:operating/closing}} hours.",
+      "ko_full": "운영 시간 동안 저희 커뮤니티 센터로 책을 가져오시면 됩니다.",
+      "answers": ["bring", "operating"],
+      "explain": [
+        "책을 '가져오다' — bring.",
+        "'운영' 시간 — operating hours."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "We would be {{1:grateful/annoyed}} if you could join this {{2:meaningful/meaningless}} event.",
+      "ko_full": "이 뜻깊은 행사에 참여해 주신다면 감사하겠습니다.",
+      "answers": ["grateful", "meaningful"],
+      "explain": [
+        "'감사하는' — grateful.",
+        "'뜻깊은' 행사 — meaningful."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "{{1:Sincerely/Roughly}}, Trixie Mitchell",
+      "ko_full": "Trixie Mitchell 드림",
+      "answers": ["Sincerely"],
+      "explain": ["격식 있는 맺음말 — Sincerely(드림)."]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "r", "answer": "residents", "after": ", I am Trixie" },
+        { "pos": 2, "letter": "d", "answer": "director",  "after": "of the Riverside" },
+        { "pos": 3, "letter": "c", "answer": "community", "after": "Center" }
+      ],
+      "ko_full": "주민 여러분께, 저는 Riverside 커뮤니티 센터의 책임자인 Trixie Mitchell입니다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "p", "answer": "pleased",  "after": "to invite you" },
+        { "pos": 2, "letter": "i", "answer": "invite",   "after": "you to a book" },
+        { "pos": 3, "letter": "d", "answer": "donation", "after": "drive" }
+      ],
+      "ko_full": "여러분을 도서 기부 행사에 초대하게 되어 기쁩니다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "c", "answer": "collecting", "after": "used books" },
+        { "pos": 2, "letter": "s", "answer": "support",    "after": "our reading programs" },
+        { "pos": 3, "letter": "t", "answer": "teenagers",  "after": "" }
+      ],
+      "ko_full": "저희는 어린이와 청소년을 위한 독서 프로그램을 지원하기 위해 중고 도서를 모으고 있습니다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "d", "answer": "donating", "after": "books" },
+        { "pos": 2, "letter": "h", "answer": "help",     "after": "young readers" },
+        { "pos": 3, "letter": "d", "answer": "discover", "after": "the joy of reading" },
+        { "pos": 4, "letter": "j", "answer": "joy",      "after": "of reading" }
+      ],
+      "ko_full": "책을 기부함으로써, 여러분은 어린 독자들이 독서의 즐거움을 발견하도록 도울 수 있습니다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "c", "answer": "condition", "after": "are gladly accepted" },
+        { "pos": 2, "letter": "a", "answer": "accepted",  "after": ", including novels" },
+        { "pos": 3, "letter": "p", "answer": "poetry",    "after": ", and non-fiction" }
+      ],
+      "ko_full": "소설, 시, 그리고 비소설 도서를 포함하여 상태가 좋은 어떤 책이든 기쁘게 받습니다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "b", "answer": "bring",     "after": "your books" },
+        { "pos": 2, "letter": "c", "answer": "center",    "after": "during our operating" },
+        { "pos": 3, "letter": "o", "answer": "operating", "after": "hours" }
+      ],
+      "ko_full": "운영 시간 동안 저희 커뮤니티 센터로 책을 가져오시면 됩니다."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "hints": [
+        { "pos": 1, "letter": "g", "answer": "grateful",   "after": "if you could join" },
+        { "pos": 2, "letter": "j", "answer": "join",       "after": "this meaningful event" },
+        { "pos": 3, "letter": "m", "answer": "meaningful", "after": "event" }
+      ],
+      "ko_full": "이 뜻깊은 행사에 참여해 주신다면 감사하겠습니다."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "hints": [
+        { "pos": 1, "letter": "s", "answer": "sincerely", "after": ", Trixie Mitchell" }
+      ],
+      "ko_full": "Trixie Mitchell 드림"
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 },
+    { "no": 7, "ref_sentence": 7 },
+    { "no": 8, "ref_sentence": 8 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["Dear", "Residents", "I", "am", "Trixie", "Mitchell", "the", "director", "of", "the", "Riverside", "Community", "Center"],
+      "answer": "Dear Residents, I am Trixie Mitchell, the director of the Riverside Community Center."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["I", "am", "pleased", "to", "invite", "you", "to", "a", "book", "donation", "drive"],
+      "answer": "I am pleased to invite you to a book donation drive."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["We", "are", "collecting", "used", "books", "to", "support", "our", "reading", "programs", "for", "children", "and", "teenagers"],
+      "answer": "We are collecting used books to support our reading programs for children and teenagers."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["By", "donating", "books", "you", "can", "help", "young", "readers", "discover", "the", "joy", "of", "reading"],
+      "answer": "By donating books, you can help young readers discover the joy of reading."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["Any", "books", "in", "good", "condition", "are", "gladly", "accepted", "including", "novels", "poetry", "and", "non-fiction", "books"],
+      "answer": "Any books in good condition are gladly accepted, including novels, poetry, and non-fiction books."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["You", "can", "bring", "your", "books", "to", "our", "community", "center", "during", "our", "operating", "hours"],
+      "answer": "You can bring your books to our community center during our operating hours."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "words": ["We", "would", "be", "grateful", "if", "you", "could", "join", "this", "meaningful", "event"],
+      "answer": "We would be grateful if you could join this meaningful event."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "words": ["Sincerely", "Trixie", "Mitchell"],
+      "answer": "Sincerely, Trixie Mitchell"
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" },
+    { "no": 7, "ref_sentence": 7, "given": "ko" },
+    { "no": 8, "ref_sentence": 8, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 2, "no": 1 },
+    { "kind": "vocab",   "ref": 4, "no": 2 },
+    { "kind": "fill",    "ref": 3, "no": 3 },
+    { "kind": "ko",      "ref": 6, "no": 4 },
+    { "kind": "jumble",  "ref": 5, "no": 5 },
+    { "kind": "sent",    "ref": 7, "no": 6 },
+    { "kind": "grammar", "ref": 4, "no": 7 },
+    { "kind": "vocab",   "ref": 2, "no": 8 }
+  ]
+}

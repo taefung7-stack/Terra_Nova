@@ -1,0 +1,319 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "24.json",
+  "_note": "24번 워크북 — 본문 6문장 풀커버.",
+  "_template_for_new_rounds": "이 파일을 새 회차의 {N}-workbook.json 작성 시 템플릿으로 사용. en_template의 {{N:A/B}} 토큰 = 양자택일 박스, hints 배열 = 빈칸 첫글자, jumble.words = 단어 배열 (셔플 X, 의도 유지).",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "occur",        "pos": "동" },
+      { "word": "immediately",  "pos": "부" },
+      { "word": "notice",       "pos": "동" },
+      { "word": "increase",     "pos": "동" },
+      { "word": "incredibly",   "pos": "부" },
+      { "word": "pleasure",     "pos": "명" },
+      { "word": "challenge",    "pos": "명" },
+      { "word": "seek",         "pos": "동" },
+      { "word": "achieve",      "pos": "동" },
+      { "word": "baseline",     "pos": "명" }
+    ],
+    "ko_to_en": [
+      { "meaning": "도파민",            "pos": "명", "answer": "dopamine" },
+      { "meaning": "항상성",            "pos": "명", "answer": "homeostasis" },
+      { "meaning": "균형",              "pos": "명", "answer": "balance" },
+      { "meaning": "만들어 내다",       "pos": "동", "answer": "create" },
+      { "meaning": "추구하다, 찾다",    "pos": "동", "answer": "seek" },
+      { "meaning": "이루다, 달성하다",  "pos": "동", "answer": "achieve" },
+      { "meaning": "떨어지다, 하락하다", "pos": "동", "answer": "drop" },
+      { "meaning": "같은, 동등한",      "pos": "형", "answer": "equal" },
+      { "meaning": "재균형을 맞추다",   "pos": "동", "answer": "rebalance" },
+      { "meaning": "즐거움, 쾌락",      "pos": "명", "answer": "pleasure" }
+    ],
+    "expressions": [
+      { "ko": "~와 마찬가지로",   "answer": "as with" },
+      { "ko": "내려오다, 떨어지다", "answer": "come down" },
+      { "ko": "이를 염두에 두고",  "answer": "with this in mind" },
+      { "ko": "~하기 위해",       "answer": "in order to" },
+      { "ko": "훨씬 더 나쁜",     "answer": "even worse" }
+    ],
+    "definitions": [
+      { "def": "to happen or take place",                                        "answer": "occur" },
+      { "def": "a state of internal balance the body always seeks",              "answer": "homeostasis" },
+      { "def": "to become larger in number or amount",                           "answer": "increase" },
+      { "def": "a normal or starting level used as a point of comparison",       "answer": "baseline" },
+      { "def": "a feeling of happiness or enjoyment",                            "answer": "pleasure" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Let's look at {{1:what/that}} is occurring in your brain when {{2:scrolling/scrolled}} on social media, a quick dopamine activity.",
+      "ko_full": "소셜 미디어에서 스크롤할 때, 즉 빠른 도파민 활동을 할 때 여러분의 뇌에서 무슨 일이 일어나는지 살펴보자.",
+      "answers": ["what", "scrolling"],
+      "explain": [
+        "look at의 목적어 명사절 + 절 안 주어 역할 → 관계대명사/의문사 what.",
+        "주어(you)가 스크롤을 '하는' 능동·진행 → 분사 scrolling(when scrolling)."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "You open your social media apps and immediately you notice you feel really good, your dopamine levels {{1:increase/increases}} incredibly fast and pleasure {{2:is experienced/experiences}} in your brain.",
+      "ko_full": "여러분이 소셜 미디어 앱을 열면 즉시 기분이 정말 좋다는 것을 알아차리고, 도파민 수치가 믿을 수 없을 만큼 빠르게 증가하며 뇌에서 즐거움이 경험된다.",
+      "answers": ["increase", "is experienced"],
+      "explain": [
+        "주어 your dopamine levels(복수) → 동사 increase.",
+        "pleasure가 '경험되는' 대상 → 수동태 is experienced."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "The challenge this creates is as with everything in our universe: as the laws of physics explain, 'what goes up, {{1:must/musts}} {{2:come/comes}} down'.",
+      "ko_full": "이것이 만들어 내는 문제는 우리 우주의 모든 것과 마찬가지인데, 물리 법칙이 설명하듯 '올라간 것은 반드시 내려와야 한다'.",
+      "answers": ["must", "come"],
+      "explain": [
+        "조동사 must는 수·인칭 변화 없음 → must.",
+        "조동사 뒤에는 동사원형 → come."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "Your brain and body are always seeking something {{1:called/calling}} 'homeostasis', {{2:which/what}} simply means balance.",
+      "ko_full": "여러분의 뇌와 몸은 항상 '항상성'이라고 불리는 것을 추구하는데, 그것은 간단히 말해 균형을 의미한다.",
+      "answers": ["called", "which"],
+      "explain": [
+        "something이 '불리는' 대상 → 과거분사 called(수동).",
+        "앞 절(선행사)을 보충 설명하는 계속적 용법 → 관계대명사 which."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "With this in mind, when dopamine levels increase incredibly fast when scrolling social media, the brain then thinks, 'Wow, {{1:how/what}} are my dopamine levels {{2:so/such}} high?'",
+      "ko_full": "이를 염두에 두면, 소셜 미디어를 스크롤할 때 도파민 수치가 믿을 수 없을 만큼 빠르게 증가하면, 그러면 뇌는 '와, 내 도파민 수치가 어떻게 이렇게 높지?'라고 생각한다.",
+      "answers": ["how", "so"],
+      "explain": [
+        "정도·방식을 묻는 의문사 → how.",
+        "형용사 high를 강조하는 부사 → so (so + 형용사)."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "In order {{1:to achieve/achieving}} homeostasis, or balance, the dopamine then has to quickly drop an equal amount below your baseline level in order to rebalance, {{2:making/made}} you feel even worse than before you started scrolling.",
+      "ko_full": "항상성, 즉 균형을 이루기 위해, 그러면 도파민은 재균형을 맞추려고 같은 양만큼 여러분의 기준선 아래로 빠르게 떨어져야 하며, 이는 여러분이 스크롤을 시작하기 전보다 훨씬 더 기분이 나쁘게 만든다.",
+      "answers": ["to achieve", "making"],
+      "explain": [
+        "in order to V(~하기 위해) → to achieve.",
+        "결과를 나타내는 분사구문 → 능동 making."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Let's look at what is {{1:occurring/disappearing}} in your brain when scrolling on social media, a {{2:quick/slow}} dopamine activity.",
+      "ko_full": "소셜 미디어에서 스크롤할 때, 즉 빠른 도파민 활동을 할 때 여러분의 뇌에서 무슨 일이 일어나는지 살펴보자.",
+      "answers": ["occurring", "quick"],
+      "explain": [
+        "뇌에서 '일어나는' 일 — occurring.",
+        "'빠른' 도파민 활동 — quick."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "You open your social media apps and immediately you notice you feel really good, your dopamine levels {{1:increase/decrease}} incredibly fast and {{2:pleasure/pain}} is experienced in your brain.",
+      "ko_full": "여러분이 소셜 미디어 앱을 열면 즉시 기분이 정말 좋다는 것을 알아차리고, 도파민 수치가 믿을 수 없을 만큼 빠르게 증가하며 뇌에서 즐거움이 경험된다.",
+      "answers": ["increase", "pleasure"],
+      "explain": [
+        "도파민 수치가 '증가' — increase.",
+        "뇌에서 '즐거움'이 경험됨 — pleasure."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "The {{1:challenge/solution}} this creates is as with everything in our universe: as the laws of physics explain, 'what goes up, must {{2:come down/go up}}'.",
+      "ko_full": "이것이 만들어 내는 문제는 우리 우주의 모든 것과 마찬가지인데, 물리 법칙이 설명하듯 '올라간 것은 반드시 내려와야 한다'.",
+      "answers": ["challenge", "come down"],
+      "explain": [
+        "이것이 만드는 '문제' — challenge.",
+        "올라간 것은 반드시 '내려와야' 함 — come down."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "Your brain and body are always {{1:seeking/avoiding}} something called 'homeostasis', which simply means {{2:balance/imbalance}}.",
+      "ko_full": "여러분의 뇌와 몸은 항상 '항상성'이라고 불리는 것을 추구하는데, 그것은 간단히 말해 균형을 의미한다.",
+      "answers": ["seeking", "balance"],
+      "explain": [
+        "항상성을 '추구' — seeking.",
+        "항상성은 곧 '균형' — balance."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "With this in mind, when dopamine levels {{1:increase/drop}} incredibly fast when scrolling social media, the brain then thinks, 'Wow, how are my dopamine levels so {{2:high/low}}?'",
+      "ko_full": "이를 염두에 두면, 소셜 미디어를 스크롤할 때 도파민 수치가 믿을 수 없을 만큼 빠르게 증가하면, 그러면 뇌는 '와, 내 도파민 수치가 어떻게 이렇게 높지?'라고 생각한다.",
+      "answers": ["increase", "high"],
+      "explain": [
+        "도파민 수치가 빠르게 '증가' — increase.",
+        "수치가 '높다'고 자각 — high."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "In order to {{1:achieve/destroy}} homeostasis, or balance, the dopamine then has to quickly drop an {{2:equal/unequal}} amount below your baseline level in order to rebalance, making you feel even {{3:worse/better}} than before you started scrolling.",
+      "ko_full": "항상성, 즉 균형을 이루기 위해, 그러면 도파민은 재균형을 맞추려고 같은 양만큼 여러분의 기준선 아래로 빠르게 떨어져야 하며, 이는 여러분이 스크롤을 시작하기 전보다 훨씬 더 기분이 나쁘게 만든다.",
+      "answers": ["achieve", "equal", "worse"],
+      "explain": [
+        "항상성을 '이루기' 위해 — achieve.",
+        "'같은' 양만큼 떨어짐 — equal.",
+        "시작 전보다 '더 나쁜' 기분 — worse."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "o", "answer": "occurring", "after": "in your brain" },
+        { "pos": 2, "letter": "b", "answer": "brain",     "after": "when scrolling" },
+        { "pos": 3, "letter": "s", "answer": "scrolling", "after": "on social media" },
+        { "pos": 4, "letter": "d", "answer": "dopamine",  "after": "activity" }
+      ],
+      "ko_full": "소셜 미디어에서 스크롤할 때, 즉 빠른 도파민 활동을 할 때 여러분의 뇌에서 무슨 일이 일어나는지 살펴보자."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "i", "answer": "immediately", "after": "you notice" },
+        { "pos": 2, "letter": "n", "answer": "notice",      "after": "you feel really good" },
+        { "pos": 3, "letter": "i", "answer": "increase",    "after": "incredibly fast" },
+        { "pos": 4, "letter": "p", "answer": "pleasure",    "after": "is experienced" }
+      ],
+      "ko_full": "여러분이 소셜 미디어 앱을 열면 즉시 기분이 정말 좋다는 것을 알아차리고, 도파민 수치가 믿을 수 없을 만큼 빠르게 증가하며 뇌에서 즐거움이 경험된다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "c", "answer": "challenge", "after": "this creates" },
+        { "pos": 2, "letter": "u", "answer": "universe",  "after": ": as the laws" },
+        { "pos": 3, "letter": "p", "answer": "physics",   "after": "explain" }
+      ],
+      "ko_full": "이것이 만들어 내는 문제는 우리 우주의 모든 것과 마찬가지인데, 물리 법칙이 설명하듯 '올라간 것은 반드시 내려와야 한다'."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "s", "answer": "seeking",     "after": "something called" },
+        { "pos": 2, "letter": "h", "answer": "homeostasis", "after": ", which simply means" },
+        { "pos": 3, "letter": "b", "answer": "balance",     "after": "" }
+      ],
+      "ko_full": "여러분의 뇌와 몸은 항상 '항상성'이라고 불리는 것을 추구하는데, 그것은 간단히 말해 균형을 의미한다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "i", "answer": "increase",  "after": "incredibly fast" },
+        { "pos": 2, "letter": "s", "answer": "scrolling", "after": "social media" },
+        { "pos": 3, "letter": "h", "answer": "high",      "after": "?" }
+      ],
+      "ko_full": "이를 염두에 두면, 소셜 미디어를 스크롤할 때 도파민 수치가 믿을 수 없을 만큼 빠르게 증가하면, 그러면 뇌는 '와, 내 도파민 수치가 어떻게 이렇게 높지?'라고 생각한다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "a", "answer": "achieve",  "after": "homeostasis" },
+        { "pos": 2, "letter": "d", "answer": "drop",     "after": "an equal amount" },
+        { "pos": 3, "letter": "b", "answer": "baseline", "after": "level" },
+        { "pos": 4, "letter": "r", "answer": "rebalance","after": ", making you" }
+      ],
+      "ko_full": "항상성, 즉 균형을 이루기 위해, 그러면 도파민은 재균형을 맞추려고 같은 양만큼 여러분의 기준선 아래로 빠르게 떨어져야 하며, 이는 여러분이 스크롤을 시작하기 전보다 훨씬 더 기분이 나쁘게 만든다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["Let's", "look", "at", "what", "is", "occurring", "in", "your", "brain", "when", "scrolling", "on", "social", "media", "a", "quick", "dopamine", "activity"],
+      "answer": "Let's look at what is occurring in your brain when scrolling on social media, a quick dopamine activity."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["You", "open", "your", "social", "media", "apps", "and", "immediately", "you", "notice", "you", "feel", "really", "good", "your", "dopamine", "levels", "increase", "incredibly", "fast", "and", "pleasure", "is", "experienced", "in", "your", "brain"],
+      "answer": "You open your social media apps and immediately you notice you feel really good, your dopamine levels increase incredibly fast and pleasure is experienced in your brain."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["The", "challenge", "this", "creates", "is", "as", "with", "everything", "in", "our", "universe", "as", "the", "laws", "of", "physics", "explain", "what", "goes", "up", "must", "come", "down"],
+      "answer": "The challenge this creates is as with everything in our universe: as the laws of physics explain, 'what goes up, must come down'."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["Your", "brain", "and", "body", "are", "always", "seeking", "something", "called", "homeostasis", "which", "simply", "means", "balance"],
+      "answer": "Your brain and body are always seeking something called 'homeostasis', which simply means balance."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["With", "this", "in", "mind", "when", "dopamine", "levels", "increase", "incredibly", "fast", "when", "scrolling", "social", "media", "the", "brain", "then", "thinks", "Wow", "how", "are", "my", "dopamine", "levels", "so", "high"],
+      "answer": "With this in mind, when dopamine levels increase incredibly fast when scrolling social media, the brain then thinks, 'Wow, how are my dopamine levels so high?'"
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["In", "order", "to", "achieve", "homeostasis", "or", "balance", "the", "dopamine", "then", "has", "to", "quickly", "drop", "an", "equal", "amount", "below", "your", "baseline", "level", "in", "order", "to", "rebalance", "making", "you", "feel", "even", "worse", "than", "before", "you", "started", "scrolling"],
+      "answer": "In order to achieve homeostasis, or balance, the dopamine then has to quickly drop an equal amount below your baseline level in order to rebalance, making you feel even worse than before you started scrolling."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 1, "no": 1 },
+    { "kind": "vocab",   "ref": 2, "no": 2 },
+    { "kind": "fill",    "ref": 3, "no": 3 },
+    { "kind": "ko",      "ref": 4, "no": 4 },
+    { "kind": "jumble",  "ref": 5, "no": 5 },
+    { "kind": "sent",    "ref": 6, "no": 6 },
+    { "kind": "grammar", "ref": 6, "no": 7 }
+  ]
+}

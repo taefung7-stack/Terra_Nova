@@ -1,0 +1,355 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "36.json",
+  "_note": "36번 워크북 — 본문 7문장 풀커버.",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "hemisphere",     "pos": "명" },
+      { "word": "crucially",      "pos": "부" },
+      { "word": "evaporation",    "pos": "명" },
+      { "word": "climate",        "pos": "명" },
+      { "word": "risky",          "pos": "형" },
+      { "word": "temperature",    "pos": "명" },
+      { "word": "explosion",      "pos": "명" },
+      { "word": "intensively",    "pos": "부" },
+      { "word": "overnight",      "pos": "부" },
+      { "word": "forage",         "pos": "동" }
+    ],
+    "ko_to_en": [
+      { "meaning": "빙상",               "pos": "구", "answer": "ice sheet" },
+      { "meaning": "건조한",             "pos": "형", "answer": "dry" },
+      { "meaning": "연관 짓다",          "pos": "동", "answer": "associate" },
+      { "meaning": "선택지",             "pos": "명", "answer": "option" },
+      { "meaning": "생산하다",           "pos": "동", "answer": "produce" },
+      { "meaning": "오르다",             "pos": "동", "answer": "rise" },
+      { "meaning": "녹다",               "pos": "동", "answer": "melt" },
+      { "meaning": "행성, 지구",         "pos": "명", "answer": "planet" },
+      { "meaning": "수렵채집인",         "pos": "명", "answer": "hunter-gatherer" },
+      { "meaning": "자라다, 재배하다",   "pos": "동", "answer": "grow" }
+    ],
+    "expressions": [
+      { "ko": "A를 B와 연관 짓다",   "answer": "associate A with B" },
+      { "ko": "~에 의존하다",        "answer": "depend on" },
+      { "ko": "~뿐만 아니라 …도",    "answer": "not only but" },
+      { "ko": "하룻밤 사이에",        "answer": "overnight" },
+      { "ko": "약간의 부업",          "answer": "a little side hustle" }
+    ],
+    "definitions": [
+      { "def": "a very long period when much of the Earth was covered in ice", "answer": "Ice Age" },
+      { "def": "the process by which liquid water turns into vapor",          "answer": "evaporation" },
+      { "def": "the usual weather conditions of a place over a long time",     "answer": "climate" },
+      { "def": "involving the possibility of danger or loss",                  "answer": "risky" },
+      { "def": "to search widely for food in the wild",                        "answer": "forage" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "During the Ice Age, not only {{1:was the planet/the planet was}} much colder, with ice sheets {{2:covering/covered}} much of what we call the northern hemisphere today, but, crucially, it was much drier.",
+      "ko_full": "빙하기 동안, 지구는 훨씬 더 추웠을 뿐만 아니라 — 빙상이 오늘날 우리가 북반구라고 부르는 곳의 많은 부분을 덮은 채 — 결정적으로, 훨씬 더 건조했다.",
+      "answers": ["was the planet", "covering"],
+      "explain": [
+        "부정어 not only가 문두 → 주어·동사 도치: was the planet.",
+        "with + 명사 + 분사 부대상황 — 빙상이 능동적으로 '덮은' 상태 → 현재분사 covering."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "In Ireland, we often associate the cold {{1:with/to}} the wet but if it is really cold, there {{2:is/are}} far less evaporation, fewer clouds, and less rain.",
+      "ko_full": "아일랜드에서 우리는 흔히 추위를 습함과 연관 짓지만, 정말로 추우면 증발이 훨씬 적고, 구름이 더 적으며, 비도 더 적다.",
+      "answers": ["with", "is"],
+      "explain": [
+        "associate A with B — 'A를 B와 연관 짓다' 짝꿍 전치사 with.",
+        "there is/are는 바로 뒤 명사에 일치 — 단수 evaporation → is."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "Our world in the Ice Age was cold and dry, {{1:meaning/meant}} it was difficult for plants {{2:to grow/growing}}.",
+      "ko_full": "빙하기의 우리 세계는 춥고 건조했으며, 이는 식물이 자라기 어려웠음을 의미했다.",
+      "answers": ["meaning", "to grow"],
+      "explain": [
+        "앞 절 전체를 받는 분사구문 — 현재분사 meaning(= which meant).",
+        "It is difficult for + 의미상 주어 + to V (가주어·진주어) → to grow."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "In this type of climate, farming isn't an option: it's too {{1:risky/risk}} to depend on any one piece of land to produce the energy {{2:you need/you needing}}.",
+      "ko_full": "이런 종류의 기후에서는 농사가 선택지가 아니다. 필요한 에너지를 생산하기 위해 어느 한 땅에 의존하는 것은 너무 위험하다.",
+      "answers": ["risky", "you need"],
+      "explain": [
+        "too + 형용사 + to V 구문 — be동사 뒤 보어는 형용사 risky.",
+        "the energy (which) you need — 목적격 관계대명사 생략 + 정상 동사 need."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "{{1:As/Despite}} the temperature rose and the ice caps melted, we {{2:experienced/were experienced}} a sudden explosion of life.",
+      "ko_full": "기온이 오르고 빙관이 녹으면서, 우리는 갑작스러운 생명의 폭발을 경험했다.",
+      "answers": ["As", "experienced"],
+      "explain": [
+        "뒤에 절(주어+동사)이 오므로 접속사 As(~하면서). Despite는 전치사.",
+        "we가 직접 경험한 능동 의미 → 능동태 experienced."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "The world got warmer and wetter, and people started {{1:to live/lived}} around places {{2:where/which}} they could make food grow most intensively.",
+      "ko_full": "세계는 더 따뜻하고 더 습해졌으며, 사람들은 식량을 가장 집약적으로 자라게 할 수 있는 곳 주변에 살기 시작했다.",
+      "answers": ["to live", "where"],
+      "explain": [
+        "start + to V / V-ing — 목적어로 to부정사 to live.",
+        "선행사 places + 뒤 완전한 절 → 관계부사 where."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "This didn't happen overnight; it probably took thousands of years, with hunter-gatherers {{1:foraging/foraged}} and hunting, while {{2:doing/done}} a little side hustle in farming.",
+      "ko_full": "이것은 하룻밤 사이에 일어나지 않았다. 그것은 아마 수천 년이 걸렸고, 수렵채집인들이 채집하고 사냥하면서 농사라는 약간의 부업도 했다.",
+      "answers": ["foraging", "doing"],
+      "explain": [
+        "with + 명사 + 현재분사 부대상황 — 능동 의미 foraging.",
+        "while (they were) doing — 분사구문, 능동 현재분사 doing."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "During the Ice Age, not only was the planet much {{1:colder/warmer}}, with ice sheets covering much of what we call the northern hemisphere today, but, {{2:crucially/trivially}}, it was much drier.",
+      "ko_full": "빙하기 동안, 지구는 훨씬 더 추웠을 뿐만 아니라 — 빙상이 오늘날 우리가 북반구라고 부르는 곳의 많은 부분을 덮은 채 — 결정적으로, 훨씬 더 건조했다.",
+      "answers": ["colder", "crucially"],
+      "explain": [
+        "빙하기 = 훨씬 '더 추움' — colder.",
+        "'결정적으로' 더 건조 — crucially."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "In Ireland, we often {{1:associate/dissociate}} the cold with the wet but if it is really cold, there is far less {{2:evaporation/condensation}}, fewer clouds, and less rain.",
+      "ko_full": "아일랜드에서 우리는 흔히 추위를 습함과 연관 짓지만, 정말로 추우면 증발이 훨씬 적고, 구름이 더 적으며, 비도 더 적다.",
+      "answers": ["associate", "evaporation"],
+      "explain": [
+        "추위를 습함과 '연관 짓다' — associate.",
+        "추우면 '증발'이 줄어듦 — evaporation."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "Our world in the Ice Age was cold and {{1:dry/wet}}, meaning it was {{2:difficult/easy}} for plants to grow.",
+      "ko_full": "빙하기의 우리 세계는 춥고 건조했으며, 이는 식물이 자라기 어려웠음을 의미했다.",
+      "answers": ["dry", "difficult"],
+      "explain": [
+        "빙하기 세계는 '건조' — dry.",
+        "식물이 자라기 '어려움' — difficult."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "In this type of climate, farming isn't an {{1:option/obligation}}: it's too {{2:risky/safe}} to depend on any one piece of land to produce the energy you need.",
+      "ko_full": "이런 종류의 기후에서는 농사가 선택지가 아니다. 필요한 에너지를 생산하기 위해 어느 한 땅에 의존하는 것은 너무 위험하다.",
+      "answers": ["option", "risky"],
+      "explain": [
+        "농사가 '선택지'가 아니다 — option.",
+        "한 땅에 의존하는 것은 너무 '위험' — risky."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "As the temperature {{1:rose/fell}} and the ice caps melted, we experienced a sudden {{2:explosion/decline}} of life.",
+      "ko_full": "기온이 오르고 빙관이 녹으면서, 우리는 갑작스러운 생명의 폭발을 경험했다.",
+      "answers": ["rose", "explosion"],
+      "explain": [
+        "기온이 '오르다' — rose.",
+        "생명의 '폭발(급증)' — explosion."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "The world got warmer and {{1:wetter/drier}}, and people started to live around places where they could make food grow most {{2:intensively/sparsely}}.",
+      "ko_full": "세계는 더 따뜻하고 더 습해졌으며, 사람들은 식량을 가장 집약적으로 자라게 할 수 있는 곳 주변에 살기 시작했다.",
+      "answers": ["wetter", "intensively"],
+      "explain": [
+        "세계가 더 따뜻하고 '더 습해짐' — wetter.",
+        "식량을 가장 '집약적으로' 재배 — intensively."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "This didn't happen {{1:overnight/gradually}}; it probably took thousands of years, with hunter-gatherers {{2:foraging/farming}} and hunting, while doing a little side hustle in farming.",
+      "ko_full": "이것은 하룻밤 사이에 일어나지 않았다. 그것은 아마 수천 년이 걸렸고, 수렵채집인들이 채집하고 사냥하면서 농사라는 약간의 부업도 했다.",
+      "answers": ["overnight", "foraging"],
+      "explain": [
+        "'하룻밤 사이에' 일어나지 않음 — overnight.",
+        "수렵채집인들이 '채집'하며 — foraging."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "c", "answer": "colder",     "after": "with ice sheets" },
+        { "pos": 2, "letter": "h", "answer": "hemisphere", "after": "today" },
+        { "pos": 3, "letter": "c", "answer": "crucially",  "after": "it was much drier" },
+        { "pos": 4, "letter": "d", "answer": "drier",      "after": "" }
+      ],
+      "ko_full": "빙하기 동안, 지구는 훨씬 더 추웠을 뿐만 아니라 — 빙상이 오늘날 우리가 북반구라고 부르는 곳의 많은 부분을 덮은 채 — 결정적으로, 훨씬 더 건조했다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "a", "answer": "associate",   "after": "the cold with the wet" },
+        { "pos": 2, "letter": "e", "answer": "evaporation", "after": "fewer clouds" },
+        { "pos": 3, "letter": "r", "answer": "rain",        "after": "" }
+      ],
+      "ko_full": "아일랜드에서 우리는 흔히 추위를 습함과 연관 짓지만, 정말로 추우면 증발이 훨씬 적고, 구름이 더 적으며, 비도 더 적다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "c", "answer": "cold",      "after": "and dry" },
+        { "pos": 2, "letter": "d", "answer": "difficult", "after": "for plants to grow" },
+        { "pos": 3, "letter": "g", "answer": "grow",      "after": "" }
+      ],
+      "ko_full": "빙하기의 우리 세계는 춥고 건조했으며, 이는 식물이 자라기 어려웠음을 의미했다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "f", "answer": "farming", "after": "isn't an option" },
+        { "pos": 2, "letter": "r", "answer": "risky",   "after": "to depend on" },
+        { "pos": 3, "letter": "e", "answer": "energy",  "after": "you need" }
+      ],
+      "ko_full": "이런 종류의 기후에서는 농사가 선택지가 아니다. 필요한 에너지를 생산하기 위해 어느 한 땅에 의존하는 것은 너무 위험하다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "t", "answer": "temperature", "after": "rose" },
+        { "pos": 2, "letter": "m", "answer": "melted",      "after": "we experienced" },
+        { "pos": 3, "letter": "e", "answer": "explosion",   "after": "of life" }
+      ],
+      "ko_full": "기온이 오르고 빙관이 녹으면서, 우리는 갑작스러운 생명의 폭발을 경험했다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "w", "answer": "warmer",      "after": "and wetter" },
+        { "pos": 2, "letter": "p", "answer": "places",      "after": "where they could" },
+        { "pos": 3, "letter": "i", "answer": "intensively", "after": "" }
+      ],
+      "ko_full": "세계는 더 따뜻하고 더 습해졌으며, 사람들은 식량을 가장 집약적으로 자라게 할 수 있는 곳 주변에 살기 시작했다."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "hints": [
+        { "pos": 1, "letter": "o", "answer": "overnight", "after": "it probably took" },
+        { "pos": 2, "letter": "f", "answer": "foraging",  "after": "and hunting" },
+        { "pos": 3, "letter": "f", "answer": "farming",   "after": "" }
+      ],
+      "ko_full": "이것은 하룻밤 사이에 일어나지 않았다. 그것은 아마 수천 년이 걸렸고, 수렵채집인들이 채집하고 사냥하면서 농사라는 약간의 부업도 했다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 },
+    { "no": 7, "ref_sentence": 7 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["During", "the", "Ice", "Age", "not", "only", "was", "the", "planet", "much", "colder", "with", "ice", "sheets", "covering", "much", "of", "what", "we", "call", "the", "northern", "hemisphere", "today", "but", "crucially", "it", "was", "much", "drier"],
+      "answer": "During the Ice Age, not only was the planet much colder, with ice sheets covering much of what we call the northern hemisphere today, but, crucially, it was much drier."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["In", "Ireland", "we", "often", "associate", "the", "cold", "with", "the", "wet", "but", "if", "it", "is", "really", "cold", "there", "is", "far", "less", "evaporation", "fewer", "clouds", "and", "less", "rain"],
+      "answer": "In Ireland, we often associate the cold with the wet but if it is really cold, there is far less evaporation, fewer clouds, and less rain."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["Our", "world", "in", "the", "Ice", "Age", "was", "cold", "and", "dry", "meaning", "it", "was", "difficult", "for", "plants", "to", "grow"],
+      "answer": "Our world in the Ice Age was cold and dry, meaning it was difficult for plants to grow."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["In", "this", "type", "of", "climate", "farming", "isn't", "an", "option", "it's", "too", "risky", "to", "depend", "on", "any", "one", "piece", "of", "land", "to", "produce", "the", "energy", "you", "need"],
+      "answer": "In this type of climate, farming isn't an option: it's too risky to depend on any one piece of land to produce the energy you need."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["As", "the", "temperature", "rose", "and", "the", "ice", "caps", "melted", "we", "experienced", "a", "sudden", "explosion", "of", "life"],
+      "answer": "As the temperature rose and the ice caps melted, we experienced a sudden explosion of life."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["The", "world", "got", "warmer", "and", "wetter", "and", "people", "started", "to", "live", "around", "places", "where", "they", "could", "make", "food", "grow", "most", "intensively"],
+      "answer": "The world got warmer and wetter, and people started to live around places where they could make food grow most intensively."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "words": ["This", "didn't", "happen", "overnight", "it", "probably", "took", "thousands", "of", "years", "with", "hunter-gatherers", "foraging", "and", "hunting", "while", "doing", "a", "little", "side", "hustle", "in", "farming"],
+      "answer": "This didn't happen overnight; it probably took thousands of years, with hunter-gatherers foraging and hunting, while doing a little side hustle in farming."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" },
+    { "no": 7, "ref_sentence": 7, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 1, "no": 1 },
+    { "kind": "vocab",   "ref": 2, "no": 2 },
+    { "kind": "fill",    "ref": 3, "no": 3 },
+    { "kind": "ko",      "ref": 4, "no": 4 },
+    { "kind": "jumble",  "ref": 5, "no": 5 },
+    { "kind": "sent",    "ref": 6, "no": 6 },
+    { "kind": "grammar", "ref": 7, "no": 7 }
+  ]
+}

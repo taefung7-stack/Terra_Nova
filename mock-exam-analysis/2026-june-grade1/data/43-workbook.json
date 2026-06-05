@@ -1,0 +1,976 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "43.json",
+  "_note": "43번 워크북 — 본문 N문장 풀커버.",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "talented",     "pos": "형" },
+      { "word": "recognition",  "pos": "명" },
+      { "word": "jealous",      "pos": "형" },
+      { "word": "competition",  "pos": "명" },
+      { "word": "masterpiece",  "pos": "명" },
+      { "word": "evaluate",     "pos": "동" },
+      { "word": "announce",     "pos": "동" },
+      { "word": "congratulate", "pos": "동" },
+      { "word": "dedication",   "pos": "명" },
+      { "word": "embarrassed",  "pos": "형" }
+    ],
+    "ko_to_en": [
+      { "meaning": "성악가, 가수",        "pos": "명", "answer": "vocalist" },
+      { "meaning": "애쓰다, 분투하다",    "pos": "동", "answer": "struggle" },
+      { "meaning": "공연, 연주",          "pos": "명", "answer": "performance" },
+      { "meaning": "수도",                "pos": "명", "answer": "capital" },
+      { "meaning": "기회",                "pos": "명", "answer": "opportunity" },
+      { "meaning": "긴장한, 불안한",      "pos": "형", "answer": "nervous" },
+      { "meaning": "청중, 관객",          "pos": "명", "answer": "audience" },
+      { "meaning": "고마워하는",          "pos": "형", "answer": "grateful" },
+      { "meaning": "영감을 받은",         "pos": "형", "answer": "inspired" },
+      { "meaning": "유대, 결속",          "pos": "명", "answer": "bond" }
+    ],
+    "expressions": [
+      { "ko": "~에 쏟아붓다",        "answer": "pour into" },
+      { "ko": "결실을 맺다",         "answer": "pay off" },
+      { "ko": "~하지 않을 수 없었다", "answer": "couldn't help but" },
+      { "ko": "줄곧, 내내",          "answer": "all along" },
+      { "ko": "그날 이후로",         "answer": "from that day on" }
+    ],
+    "definitions": [
+      { "def": "having a natural ability to do something well",            "answer": "talented" },
+      { "def": "feeling unhappy because someone has something you want",   "answer": "jealous" },
+      { "def": "an event where people compete to win a prize",             "answer": "competition" },
+      { "def": "to judge the value or quality of something carefully",     "answer": "evaluate" },
+      { "def": "to tell someone you are happy about their success",        "answer": "congratulate" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Emma was a talented vocalist but {{1:struggled/struggling}} to {{2:gain/gaining}} recognition.",
+      "ko_full": "Emma는 재능 있는 성악가였지만 인정을 받으려고 애를 먹었다.",
+      "answers": ["struggled", "gain"],
+      "explain": [
+        "but으로 연결된 과거시제 동사 → struggled.",
+        "struggle to + 동사원형 — gain."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "Lisa, {{1:who/which}} went to the same high school with her, had quickly {{2:become/became}} famous with powerful performances.",
+      "ko_full": "그녀와 같은 고등학교에 다닌 Lisa는 강렬한 공연으로 빠르게 유명해졌다.",
+      "answers": ["who", "become"],
+      "explain": [
+        "선행사 Lisa(사람) + 주격 → who.",
+        "had + p.p.(대과거) → had become."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "Emma felt jealous {{1:watching/watched}} Lisa's {{2:success/succeed}}.",
+      "ko_full": "Emma는 Lisa의 성공을 지켜보며 질투를 느꼈다.",
+      "answers": ["watching", "success"],
+      "explain": [
+        "분사구문(능동·동시동작) → watching.",
+        "소유격 Lisa's 뒤 명사 → success."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "One day, Emma {{1:decided/decided to}} {{2:enter/entering}} a major vocal competition in the capital city.",
+      "ko_full": "어느 날, Emma는 수도에서 열리는 큰 성악 대회에 참가하기로 결심했다.",
+      "answers": ["decided to", "enter"],
+      "explain": [
+        "decide to + 동사원형 구조 → decided to.",
+        "to부정사의 동사원형 → enter."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "She spent months {{1:preparing/to prepare}} her masterpiece of a performance, {{2:hoping/hoped}} this would finally be her opportunity to shine.",
+      "ko_full": "그녀는 이것이 마침내 빛날 자신의 기회가 되기를 바라며 몇 달 동안 자신의 걸작 같은 공연을 준비했다.",
+      "answers": ["preparing", "hoping"],
+      "explain": [
+        "spend + 시간 + V-ing → preparing.",
+        "분사구문(능동) → hoping."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "{{1:When/While}} the competition day arrived, Emma {{2:felt/feel}} nervous.",
+      "ko_full": "대회 날이 오자, Emma는 긴장했다.",
+      "answers": ["When", "felt"],
+      "explain": [
+        "'~할 때'의 시간 부사절 → When.",
+        "주절 과거시제 동사 → felt."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "{{1:Walking/Walked}} into the concert hall, Emma saw a large audience {{2:cheering/cheered}} for Lisa.",
+      "ko_full": "콘서트홀로 걸어 들어가며, Emma는 많은 청중이 Lisa를 응원하는 것을 보았다.",
+      "answers": ["Walking", "cheering"],
+      "explain": [
+        "분사구문(능동·동시동작) → Walking.",
+        "see + O + V-ing(지각동사) → cheering."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "She couldn't help but {{1:compare/comparing}} {{2:herself/her}} to Lisa.",
+      "ko_full": "그녀는 자신을 Lisa와 비교하지 않을 수 없었다.",
+      "answers": ["compare", "herself"],
+      "explain": [
+        "couldn't help but + 동사원형 → compare.",
+        "주어와 동일 대상 목적어 → 재귀대명사 herself."
+      ]
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "en_template": "On her turn, Emma performed with all her heart, {{1:pouring/poured}} her months of preparation {{2:into/onto}} every note.",
+      "ko_full": "자기 차례에, Emma는 온 마음을 다해 공연했고, 자신의 몇 달간의 준비를 음 하나하나에 쏟아부었다.",
+      "answers": ["pouring", "into"],
+      "explain": [
+        "분사구문(능동·동시동작) → pouring.",
+        "pour A into B 숙어 → into."
+      ]
+    },
+    {
+      "no": 10,
+      "ref_sentence": 10,
+      "en_template": "The judges then {{1:evaluated/evaluating}} each vocalist's performance {{2:carefully/careful}}.",
+      "ko_full": "그런 다음 심사위원들은 각 성악가의 공연을 신중하게 평가했다.",
+      "answers": ["evaluated", "carefully"],
+      "explain": [
+        "주어 The judges의 본동사 과거형 → evaluated.",
+        "동사를 수식하는 부사 → carefully."
+      ]
+    },
+    {
+      "no": 11,
+      "ref_sentence": 11,
+      "en_template": "Finally, the results {{1:were announced/announced}}.",
+      "ko_full": "마침내, 결과가 발표되었다.",
+      "answers": ["were announced"],
+      "explain": [
+        "결과가 '발표되는' 대상 → 수동태 were announced."
+      ]
+    },
+    {
+      "no": 12,
+      "ref_sentence": 12,
+      "en_template": "To her surprise, Emma {{1:got/getting}} first place, {{2:not/no}} Lisa.",
+      "ko_full": "놀랍게도, Lisa가 아니라 Emma가 1등을 차지했다.",
+      "answers": ["got", "not"],
+      "explain": [
+        "주어 Emma의 본동사 과거형 → got.",
+        "'~가 아니라'의 대조 → not."
+      ]
+    },
+    {
+      "no": 13,
+      "ref_sentence": 13,
+      "en_template": "Moments later, Lisa came over {{1:to congratulate/congratulating}} Emma {{2:with/by}} a warm smile.",
+      "ko_full": "잠시 후, Lisa가 따뜻한 미소를 지으며 Emma를 축하하러 다가왔다.",
+      "answers": ["to congratulate", "with"],
+      "explain": [
+        "목적의 to부정사 → to congratulate.",
+        "'~을 지으며/띠고'의 with → with."
+      ]
+    },
+    {
+      "no": 14,
+      "ref_sentence": 14,
+      "en_template": "She said, \"Your hard work and dedication really {{1:paid/payed}} off. I'm so {{2:happy/happily}} for you.\"",
+      "ko_full": "그녀는 \"너의 노력과 헌신이 정말 결실을 맺었어. 정말 기뻐\"라고 말했다.",
+      "answers": ["paid", "happy"],
+      "explain": [
+        "pay off의 과거형 → paid.",
+        "be동사 보어 형용사 → happy."
+      ]
+    },
+    {
+      "no": 15,
+      "ref_sentence": 15,
+      "en_template": "She didn't {{1:seem/seemed}} {{2:bothered/bother}} by the results.",
+      "ko_full": "그녀는 결과에 개의치 않는 듯 보였다.",
+      "answers": ["seem", "bothered"],
+      "explain": [
+        "didn't 뒤 동사원형 → seem.",
+        "seem + p.p.(수동·상태) → bothered."
+      ]
+    },
+    {
+      "no": 16,
+      "ref_sentence": 16,
+      "en_template": "\"I'm proud {{1:that/what}} your singing {{2:brings/bring}} joy to people,\" said Lisa.",
+      "ko_full": "\"네 노래가 사람들에게 기쁨을 준다는 게 자랑스러워\"라고 Lisa가 말했다.",
+      "answers": ["that", "brings"],
+      "explain": [
+        "proud 뒤 완전한 절을 이끄는 접속사 → that.",
+        "단수주어 your singing → brings."
+      ]
+    },
+    {
+      "no": 17,
+      "ref_sentence": 17,
+      "en_template": "Emma felt {{1:grateful/gratefully}} {{2:for/to}} Lisa's kindness.",
+      "ko_full": "Emma는 Lisa의 친절에 고마움을 느꼈다.",
+      "answers": ["grateful", "for"],
+      "explain": [
+        "feel + 형용사 보어 → grateful.",
+        "grateful for ~ 숙어 → for."
+      ]
+    },
+    {
+      "no": 18,
+      "ref_sentence": 18,
+      "en_template": "Lisa added, \"I've always {{1:been/being}} moved by your effort and have been {{2:supporting/supported}} you all along.\"",
+      "ko_full": "Lisa가 \"난 늘 네 노력에 감동했고, 줄곧 너를 응원해 왔어\"라고 덧붙였다.",
+      "answers": ["been", "supporting"],
+      "explain": [
+        "현재완료 수동 have been + p.p. → been moved.",
+        "현재완료진행 have been + V-ing → supporting."
+      ]
+    },
+    {
+      "no": 19,
+      "ref_sentence": 19,
+      "en_template": "These words {{1:made/let}} Emma {{2:feel/to feel}} embarrassed at her jealousy.",
+      "ko_full": "이 말은 Emma가 자신의 질투를 부끄러워하게 만들었다.",
+      "answers": ["made", "feel"],
+      "explain": [
+        "사역동사 make + O + 원형 → made.",
+        "사역동사의 목적격보어 동사원형 → feel."
+      ]
+    },
+    {
+      "no": 20,
+      "ref_sentence": 20,
+      "en_template": "At the same time, she {{1:got/get}} inspired {{2:to find/finding}} a better path forward.",
+      "ko_full": "동시에, 그녀는 더 나은 길을 찾도록 영감을 받았다.",
+      "answers": ["got", "to find"],
+      "explain": [
+        "과거시제 상태 변화 get + p.p. → got.",
+        "목적·결과의 to부정사 → to find."
+      ]
+    },
+    {
+      "no": 21,
+      "ref_sentence": 21,
+      "en_template": "They hugged {{1:warmly/warm}}, their bond {{2:strengthened/strengthening}}.",
+      "ko_full": "그들은 따뜻하게 포옹했고, 그들의 유대는 더 단단해졌다.",
+      "answers": ["warmly", "strengthened"],
+      "explain": [
+        "동사 hugged를 수식하는 부사 → warmly.",
+        "their bond가 '강화된' 상태(독립분사) → strengthened."
+      ]
+    },
+    {
+      "no": 22,
+      "ref_sentence": 22,
+      "en_template": "From that day on, they supported {{1:each other/each others}} and even {{2:sang/sung}} on the same stage together.",
+      "ko_full": "그날 이후로, 그들은 서로를 응원했고 심지어 같은 무대에서 함께 노래했다.",
+      "answers": ["each other", "sang"],
+      "explain": [
+        "'서로'를 뜻하는 대명사 → each other.",
+        "sing의 과거형 → sang."
+      ]
+    },
+    {
+      "no": 23,
+      "ref_sentence": 23,
+      "en_template": "Emma became more {{1:confident/confidently}} and, finally, got a chance {{2:to have/having}} her solo concert.",
+      "ko_full": "Emma는 더 자신감을 갖게 되었고, 마침내 자신의 단독 콘서트를 열 기회를 얻었다.",
+      "answers": ["confident", "to have"],
+      "explain": [
+        "become + 형용사 보어 → confident.",
+        "chance를 수식하는 형용사적 to부정사 → to have."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Emma was a {{1:talented/untalented}} vocalist but struggled to gain {{2:recognition/neglect}}.",
+      "ko_full": "Emma는 재능 있는 성악가였지만 인정을 받으려고 애를 먹었다.",
+      "answers": ["talented", "recognition"],
+      "explain": [
+        "'재능 있는' 성악가 — talented.",
+        "받으려 애쓴 것은 '인정' — recognition."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "Lisa, who went to the same high school with her, had quickly become {{1:famous/unknown}} with {{2:powerful/weak}} performances.",
+      "ko_full": "그녀와 같은 고등학교에 다닌 Lisa는 강렬한 공연으로 빠르게 유명해졌다.",
+      "answers": ["famous", "powerful"],
+      "explain": [
+        "빠르게 '유명해졌다' — famous.",
+        "'강렬한' 공연 — powerful."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "Emma felt {{1:jealous/content}} watching Lisa's {{2:success/failure}}.",
+      "ko_full": "Emma는 Lisa의 성공을 지켜보며 질투를 느꼈다.",
+      "answers": ["jealous", "success"],
+      "explain": [
+        "'질투'를 느꼈다 — jealous.",
+        "Lisa의 '성공'을 지켜봄 — success."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "One day, Emma decided to {{1:enter/leave}} a major vocal {{2:competition/cooperation}} in the capital city.",
+      "ko_full": "어느 날, Emma는 수도에서 열리는 큰 성악 대회에 참가하기로 결심했다.",
+      "answers": ["enter", "competition"],
+      "explain": [
+        "대회에 '참가하다' — enter.",
+        "성악 '대회' — competition."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "She spent months preparing her {{1:masterpiece/failure}} of a performance, hoping this would finally be her opportunity to {{2:shine/fade}}.",
+      "ko_full": "그녀는 이것이 마침내 빛날 자신의 기회가 되기를 바라며 몇 달 동안 자신의 걸작 같은 공연을 준비했다.",
+      "answers": ["masterpiece", "shine"],
+      "explain": [
+        "'걸작' 같은 공연 — masterpiece.",
+        "마침내 '빛날' 기회 — shine."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "When the competition day arrived, Emma felt {{1:nervous/calm}}.",
+      "ko_full": "대회 날이 오자, Emma는 긴장했다.",
+      "answers": ["nervous"],
+      "explain": [
+        "대회 날 '긴장한' — nervous."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "Walking into the concert hall, Emma saw a large {{1:audience/performer}} {{2:cheering/booing}} for Lisa.",
+      "ko_full": "콘서트홀로 걸어 들어가며, Emma는 많은 청중이 Lisa를 응원하는 것을 보았다.",
+      "answers": ["audience", "cheering"],
+      "explain": [
+        "많은 '청중' — audience.",
+        "Lisa를 '응원하는' — cheering."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "She couldn't help but {{1:compare/separate}} herself to Lisa.",
+      "ko_full": "그녀는 자신을 Lisa와 비교하지 않을 수 없었다.",
+      "answers": ["compare"],
+      "explain": [
+        "자신을 Lisa와 '비교하다' — compare."
+      ]
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "en_template": "On her turn, Emma {{1:performed/withdrew}} with all her heart, pouring her months of {{2:preparation/laziness}} into every note.",
+      "ko_full": "자기 차례에, Emma는 온 마음을 다해 공연했고, 자신의 몇 달간의 준비를 음 하나하나에 쏟아부었다.",
+      "answers": ["performed", "preparation"],
+      "explain": [
+        "온 마음으로 '공연했다' — performed.",
+        "몇 달간의 '준비' — preparation."
+      ]
+    },
+    {
+      "no": 10,
+      "ref_sentence": 10,
+      "en_template": "The judges then {{1:evaluated/ignored}} each vocalist's performance {{2:carefully/carelessly}}.",
+      "ko_full": "그런 다음 심사위원들은 각 성악가의 공연을 신중하게 평가했다.",
+      "answers": ["evaluated", "carefully"],
+      "explain": [
+        "공연을 '평가했다' — evaluated.",
+        "'신중하게' — carefully."
+      ]
+    },
+    {
+      "no": 11,
+      "ref_sentence": 11,
+      "en_template": "Finally, the results were {{1:announced/concealed}}.",
+      "ko_full": "마침내, 결과가 발표되었다.",
+      "answers": ["announced"],
+      "explain": [
+        "결과가 '발표되었다' — announced."
+      ]
+    },
+    {
+      "no": 12,
+      "ref_sentence": 12,
+      "en_template": "To her {{1:surprise/expectation}}, Emma got {{2:first/last}} place, not Lisa.",
+      "ko_full": "놀랍게도, Lisa가 아니라 Emma가 1등을 차지했다.",
+      "answers": ["surprise", "first"],
+      "explain": [
+        "'놀랍게도' — surprise.",
+        "'1등'을 차지함 — first."
+      ]
+    },
+    {
+      "no": 13,
+      "ref_sentence": 13,
+      "en_template": "Moments later, Lisa came over to {{1:congratulate/criticize}} Emma with a {{2:warm/cold}} smile.",
+      "ko_full": "잠시 후, Lisa가 따뜻한 미소를 지으며 Emma를 축하하러 다가왔다.",
+      "answers": ["congratulate", "warm"],
+      "explain": [
+        "Emma를 '축하하러' — congratulate.",
+        "'따뜻한' 미소 — warm."
+      ]
+    },
+    {
+      "no": 14,
+      "ref_sentence": 14,
+      "en_template": "She said, \"Your hard work and {{1:dedication/indifference}} really paid {{2:off/up}}. I'm so happy for you.\"",
+      "ko_full": "그녀는 \"너의 노력과 헌신이 정말 결실을 맺었어. 정말 기뻐\"라고 말했다.",
+      "answers": ["dedication", "off"],
+      "explain": [
+        "노력과 '헌신' — dedication.",
+        "pay off(결실을 맺다)의 off."
+      ]
+    },
+    {
+      "no": 15,
+      "ref_sentence": 15,
+      "en_template": "She didn't seem {{1:bothered/pleased}} by the {{2:results/rumors}}.",
+      "ko_full": "그녀는 결과에 개의치 않는 듯 보였다.",
+      "answers": ["bothered", "results"],
+      "explain": [
+        "'개의치(신경 쓰이는)' 않는 — bothered.",
+        "'결과'에 — results."
+      ]
+    },
+    {
+      "no": 16,
+      "ref_sentence": 16,
+      "en_template": "\"I'm {{1:proud/ashamed}} that your singing brings {{2:joy/sorrow}} to people,\" said Lisa.",
+      "ko_full": "\"네 노래가 사람들에게 기쁨을 준다는 게 자랑스러워\"라고 Lisa가 말했다.",
+      "answers": ["proud", "joy"],
+      "explain": [
+        "'자랑스러운' — proud.",
+        "사람들에게 '기쁨' — joy."
+      ]
+    },
+    {
+      "no": 17,
+      "ref_sentence": 17,
+      "en_template": "Emma felt {{1:grateful/ungrateful}} for Lisa's {{2:kindness/cruelty}}.",
+      "ko_full": "Emma는 Lisa의 친절에 고마움을 느꼈다.",
+      "answers": ["grateful", "kindness"],
+      "explain": [
+        "'고마워하는' — grateful.",
+        "Lisa의 '친절' — kindness."
+      ]
+    },
+    {
+      "no": 18,
+      "ref_sentence": 18,
+      "en_template": "Lisa added, \"I've always been {{1:moved/annoyed}} by your effort and have been {{2:supporting/discouraging}} you all along.\"",
+      "ko_full": "Lisa가 \"난 늘 네 노력에 감동했고, 줄곧 너를 응원해 왔어\"라고 덧붙였다.",
+      "answers": ["moved", "supporting"],
+      "explain": [
+        "노력에 '감동한' — moved.",
+        "줄곧 '응원해' 온 — supporting."
+      ]
+    },
+    {
+      "no": 19,
+      "ref_sentence": 19,
+      "en_template": "These words made Emma feel {{1:embarrassed/proud}} at her {{2:jealousy/generosity}}.",
+      "ko_full": "이 말은 Emma가 자신의 질투를 부끄러워하게 만들었다.",
+      "answers": ["embarrassed", "jealousy"],
+      "explain": [
+        "'부끄러운' — embarrassed.",
+        "자신의 '질투' — jealousy."
+      ]
+    },
+    {
+      "no": 20,
+      "ref_sentence": 20,
+      "en_template": "At the same time, she got {{1:inspired/discouraged}} to find a {{2:better/worse}} path forward.",
+      "ko_full": "동시에, 그녀는 더 나은 길을 찾도록 영감을 받았다.",
+      "answers": ["inspired", "better"],
+      "explain": [
+        "'영감을 받은' — inspired.",
+        "'더 나은' 길 — better."
+      ]
+    },
+    {
+      "no": 21,
+      "ref_sentence": 21,
+      "en_template": "They hugged warmly, their {{1:bond/conflict}} {{2:strengthened/weakened}}.",
+      "ko_full": "그들은 따뜻하게 포옹했고, 그들의 유대는 더 단단해졌다.",
+      "answers": ["bond", "strengthened"],
+      "explain": [
+        "'유대' — bond.",
+        "더 '단단해진' — strengthened."
+      ]
+    },
+    {
+      "no": 22,
+      "ref_sentence": 22,
+      "en_template": "From that day on, they {{1:supported/abandoned}} each other and even sang on the same {{2:stage/street}} together.",
+      "ko_full": "그날 이후로, 그들은 서로를 응원했고 심지어 같은 무대에서 함께 노래했다.",
+      "answers": ["supported", "stage"],
+      "explain": [
+        "서로를 '응원했다' — supported.",
+        "같은 '무대' — stage."
+      ]
+    },
+    {
+      "no": 23,
+      "ref_sentence": 23,
+      "en_template": "Emma became more {{1:confident/anxious}} and, finally, got a {{2:chance/risk}} to have her solo concert.",
+      "ko_full": "Emma는 더 자신감을 갖게 되었고, 마침내 자신의 단독 콘서트를 열 기회를 얻었다.",
+      "answers": ["confident", "chance"],
+      "explain": [
+        "더 '자신감 있는' — confident.",
+        "단독 콘서트를 열 '기회' — chance."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "t", "answer": "talented",    "after": "vocalist" },
+        { "pos": 2, "letter": "s", "answer": "struggled",   "after": "to gain" },
+        { "pos": 3, "letter": "r", "answer": "recognition", "after": "" }
+      ],
+      "ko_full": "Emma는 재능 있는 성악가였지만 인정을 받으려고 애를 먹었다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "h", "answer": "high",         "after": "school with her" },
+        { "pos": 2, "letter": "f", "answer": "famous",       "after": "with powerful" },
+        { "pos": 3, "letter": "p", "answer": "performances", "after": "" }
+      ],
+      "ko_full": "그녀와 같은 고등학교에 다닌 Lisa는 강렬한 공연으로 빠르게 유명해졌다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "j", "answer": "jealous", "after": "watching" },
+        { "pos": 2, "letter": "s", "answer": "success", "after": "" }
+      ],
+      "ko_full": "Emma는 Lisa의 성공을 지켜보며 질투를 느꼈다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "e", "answer": "enter",       "after": "a major vocal" },
+        { "pos": 2, "letter": "c", "answer": "competition", "after": "in the capital" },
+        { "pos": 3, "letter": "c", "answer": "capital",     "after": "city" }
+      ],
+      "ko_full": "어느 날, Emma는 수도에서 열리는 큰 성악 대회에 참가하기로 결심했다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "m", "answer": "months",      "after": "preparing" },
+        { "pos": 2, "letter": "m", "answer": "masterpiece", "after": "of a performance" },
+        { "pos": 3, "letter": "o", "answer": "opportunity", "after": "to shine" }
+      ],
+      "ko_full": "그녀는 이것이 마침내 빛날 자신의 기회가 되기를 바라며 몇 달 동안 자신의 걸작 같은 공연을 준비했다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "c", "answer": "competition", "after": "day arrived" },
+        { "pos": 2, "letter": "n", "answer": "nervous",     "after": "" }
+      ],
+      "ko_full": "대회 날이 오자, Emma는 긴장했다."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "hints": [
+        { "pos": 1, "letter": "c", "answer": "concert",  "after": "hall" },
+        { "pos": 2, "letter": "a", "answer": "audience", "after": "cheering for Lisa" },
+        { "pos": 3, "letter": "c", "answer": "cheering", "after": "for Lisa" }
+      ],
+      "ko_full": "콘서트홀로 걸어 들어가며, Emma는 많은 청중이 Lisa를 응원하는 것을 보았다."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "hints": [
+        { "pos": 1, "letter": "h", "answer": "help",    "after": "but compare" },
+        { "pos": 2, "letter": "c", "answer": "compare", "after": "herself to Lisa" }
+      ],
+      "ko_full": "그녀는 자신을 Lisa와 비교하지 않을 수 없었다."
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "hints": [
+        { "pos": 1, "letter": "p", "answer": "performed",   "after": "with all her heart" },
+        { "pos": 2, "letter": "p", "answer": "preparation", "after": "into every note" },
+        { "pos": 3, "letter": "n", "answer": "note",        "after": "" }
+      ],
+      "ko_full": "자기 차례에, Emma는 온 마음을 다해 공연했고, 자신의 몇 달간의 준비를 음 하나하나에 쏟아부었다."
+    },
+    {
+      "no": 10,
+      "ref_sentence": 10,
+      "hints": [
+        { "pos": 1, "letter": "j", "answer": "judges",    "after": "then evaluated" },
+        { "pos": 2, "letter": "e", "answer": "evaluated", "after": "each vocalist's" },
+        { "pos": 3, "letter": "c", "answer": "carefully", "after": "" }
+      ],
+      "ko_full": "그런 다음 심사위원들은 각 성악가의 공연을 신중하게 평가했다."
+    },
+    {
+      "no": 11,
+      "ref_sentence": 11,
+      "hints": [
+        { "pos": 1, "letter": "r", "answer": "results",   "after": "were announced" },
+        { "pos": 2, "letter": "a", "answer": "announced", "after": "" }
+      ],
+      "ko_full": "마침내, 결과가 발표되었다."
+    },
+    {
+      "no": 12,
+      "ref_sentence": 12,
+      "hints": [
+        { "pos": 1, "letter": "s", "answer": "surprise", "after": "Emma got first" },
+        { "pos": 2, "letter": "f", "answer": "first",    "after": "place, not Lisa" }
+      ],
+      "ko_full": "놀랍게도, Lisa가 아니라 Emma가 1등을 차지했다."
+    },
+    {
+      "no": 13,
+      "ref_sentence": 13,
+      "hints": [
+        { "pos": 1, "letter": "c", "answer": "congratulate", "after": "Emma with a warm smile" },
+        { "pos": 2, "letter": "w", "answer": "warm",         "after": "smile" }
+      ],
+      "ko_full": "잠시 후, Lisa가 따뜻한 미소를 지으며 Emma를 축하하러 다가왔다."
+    },
+    {
+      "no": 14,
+      "ref_sentence": 14,
+      "hints": [
+        { "pos": 1, "letter": "d", "answer": "dedication", "after": "really paid off" },
+        { "pos": 2, "letter": "h", "answer": "happy",      "after": "for you" }
+      ],
+      "ko_full": "그녀는 \"너의 노력과 헌신이 정말 결실을 맺었어. 정말 기뻐\"라고 말했다."
+    },
+    {
+      "no": 15,
+      "ref_sentence": 15,
+      "hints": [
+        { "pos": 1, "letter": "b", "answer": "bothered", "after": "by the results" },
+        { "pos": 2, "letter": "r", "answer": "results",  "after": "" }
+      ],
+      "ko_full": "그녀는 결과에 개의치 않는 듯 보였다."
+    },
+    {
+      "no": 16,
+      "ref_sentence": 16,
+      "hints": [
+        { "pos": 1, "letter": "p", "answer": "proud", "after": "that your singing" },
+        { "pos": 2, "letter": "j", "answer": "joy",   "after": "to people" }
+      ],
+      "ko_full": "\"네 노래가 사람들에게 기쁨을 준다는 게 자랑스러워\"라고 Lisa가 말했다."
+    },
+    {
+      "no": 17,
+      "ref_sentence": 17,
+      "hints": [
+        { "pos": 1, "letter": "g", "answer": "grateful", "after": "for Lisa's kindness" },
+        { "pos": 2, "letter": "k", "answer": "kindness", "after": "" }
+      ],
+      "ko_full": "Emma는 Lisa의 친절에 고마움을 느꼈다."
+    },
+    {
+      "no": 18,
+      "ref_sentence": 18,
+      "hints": [
+        { "pos": 1, "letter": "m", "answer": "moved",      "after": "by your effort" },
+        { "pos": 2, "letter": "e", "answer": "effort",     "after": "and have been supporting" },
+        { "pos": 3, "letter": "s", "answer": "supporting", "after": "you all along" }
+      ],
+      "ko_full": "Lisa가 \"난 늘 네 노력에 감동했고, 줄곧 너를 응원해 왔어\"라고 덧붙였다."
+    },
+    {
+      "no": 19,
+      "ref_sentence": 19,
+      "hints": [
+        { "pos": 1, "letter": "e", "answer": "embarrassed", "after": "at her jealousy" },
+        { "pos": 2, "letter": "j", "answer": "jealousy",    "after": "" }
+      ],
+      "ko_full": "이 말은 Emma가 자신의 질투를 부끄러워하게 만들었다."
+    },
+    {
+      "no": 20,
+      "ref_sentence": 20,
+      "hints": [
+        { "pos": 1, "letter": "i", "answer": "inspired", "after": "to find a better" },
+        { "pos": 2, "letter": "p", "answer": "path",     "after": "forward" }
+      ],
+      "ko_full": "동시에, 그녀는 더 나은 길을 찾도록 영감을 받았다."
+    },
+    {
+      "no": 21,
+      "ref_sentence": 21,
+      "hints": [
+        { "pos": 1, "letter": "h", "answer": "hugged", "after": "warmly" },
+        { "pos": 2, "letter": "b", "answer": "bond",   "after": "strengthened" }
+      ],
+      "ko_full": "그들은 따뜻하게 포옹했고, 그들의 유대는 더 단단해졌다."
+    },
+    {
+      "no": 22,
+      "ref_sentence": 22,
+      "hints": [
+        { "pos": 1, "letter": "s", "answer": "supported", "after": "each other" },
+        { "pos": 2, "letter": "s", "answer": "stage",     "after": "together" }
+      ],
+      "ko_full": "그날 이후로, 그들은 서로를 응원했고 심지어 같은 무대에서 함께 노래했다."
+    },
+    {
+      "no": 23,
+      "ref_sentence": 23,
+      "hints": [
+        { "pos": 1, "letter": "c", "answer": "confident", "after": "and, finally" },
+        { "pos": 2, "letter": "s", "answer": "solo",      "after": "concert" }
+      ],
+      "ko_full": "Emma는 더 자신감을 갖게 되었고, 마침내 자신의 단독 콘서트를 열 기회를 얻었다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 },
+    { "no": 7, "ref_sentence": 7 },
+    { "no": 8, "ref_sentence": 8 },
+    { "no": 9, "ref_sentence": 9 },
+    { "no": 10, "ref_sentence": 10 },
+    { "no": 11, "ref_sentence": 11 },
+    { "no": 12, "ref_sentence": 12 },
+    { "no": 13, "ref_sentence": 13 },
+    { "no": 14, "ref_sentence": 14 },
+    { "no": 15, "ref_sentence": 15 },
+    { "no": 16, "ref_sentence": 16 },
+    { "no": 17, "ref_sentence": 17 },
+    { "no": 18, "ref_sentence": 18 },
+    { "no": 19, "ref_sentence": 19 },
+    { "no": 20, "ref_sentence": 20 },
+    { "no": 21, "ref_sentence": 21 },
+    { "no": 22, "ref_sentence": 22 },
+    { "no": 23, "ref_sentence": 23 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["Emma", "was", "a", "talented", "vocalist", "but", "struggled", "to", "gain", "recognition"],
+      "answer": "Emma was a talented vocalist but struggled to gain recognition."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["Lisa", "who", "went", "to", "the", "same", "high", "school", "with", "her", "had", "quickly", "become", "famous", "with", "powerful", "performances"],
+      "answer": "Lisa, who went to the same high school with her, had quickly become famous with powerful performances."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["Emma", "felt", "jealous", "watching", "Lisa's", "success"],
+      "answer": "Emma felt jealous watching Lisa's success."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["One", "day", "Emma", "decided", "to", "enter", "a", "major", "vocal", "competition", "in", "the", "capital", "city"],
+      "answer": "One day, Emma decided to enter a major vocal competition in the capital city."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["She", "spent", "months", "preparing", "her", "masterpiece", "of", "a", "performance", "hoping", "this", "would", "finally", "be", "her", "opportunity", "to", "shine"],
+      "answer": "She spent months preparing her masterpiece of a performance, hoping this would finally be her opportunity to shine."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["When", "the", "competition", "day", "arrived", "Emma", "felt", "nervous"],
+      "answer": "When the competition day arrived, Emma felt nervous."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "words": ["Walking", "into", "the", "concert", "hall", "Emma", "saw", "a", "large", "audience", "cheering", "for", "Lisa"],
+      "answer": "Walking into the concert hall, Emma saw a large audience cheering for Lisa."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "words": ["She", "couldn't", "help", "but", "compare", "herself", "to", "Lisa"],
+      "answer": "She couldn't help but compare herself to Lisa."
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "words": ["On", "her", "turn", "Emma", "performed", "with", "all", "her", "heart", "pouring", "her", "months", "of", "preparation", "into", "every", "note"],
+      "answer": "On her turn, Emma performed with all her heart, pouring her months of preparation into every note."
+    },
+    {
+      "no": 10,
+      "ref_sentence": 10,
+      "words": ["The", "judges", "then", "evaluated", "each", "vocalist's", "performance", "carefully"],
+      "answer": "The judges then evaluated each vocalist's performance carefully."
+    },
+    {
+      "no": 11,
+      "ref_sentence": 11,
+      "words": ["Finally", "the", "results", "were", "announced"],
+      "answer": "Finally, the results were announced."
+    },
+    {
+      "no": 12,
+      "ref_sentence": 12,
+      "words": ["To", "her", "surprise", "Emma", "got", "first", "place", "not", "Lisa"],
+      "answer": "To her surprise, Emma got first place, not Lisa."
+    },
+    {
+      "no": 13,
+      "ref_sentence": 13,
+      "words": ["Moments", "later", "Lisa", "came", "over", "to", "congratulate", "Emma", "with", "a", "warm", "smile"],
+      "answer": "Moments later, Lisa came over to congratulate Emma with a warm smile."
+    },
+    {
+      "no": 14,
+      "ref_sentence": 14,
+      "words": ["She", "said", "Your", "hard", "work", "and", "dedication", "really", "paid", "off", "I'm", "so", "happy", "for", "you"],
+      "answer": "She said, \"Your hard work and dedication really paid off. I'm so happy for you.\""
+    },
+    {
+      "no": 15,
+      "ref_sentence": 15,
+      "words": ["She", "didn't", "seem", "bothered", "by", "the", "results"],
+      "answer": "She didn't seem bothered by the results."
+    },
+    {
+      "no": 16,
+      "ref_sentence": 16,
+      "words": ["I'm", "proud", "that", "your", "singing", "brings", "joy", "to", "people", "said", "Lisa"],
+      "answer": "\"I'm proud that your singing brings joy to people,\" said Lisa."
+    },
+    {
+      "no": 17,
+      "ref_sentence": 17,
+      "words": ["Emma", "felt", "grateful", "for", "Lisa's", "kindness"],
+      "answer": "Emma felt grateful for Lisa's kindness."
+    },
+    {
+      "no": 18,
+      "ref_sentence": 18,
+      "words": ["Lisa", "added", "I've", "always", "been", "moved", "by", "your", "effort", "and", "have", "been", "supporting", "you", "all", "along"],
+      "answer": "Lisa added, \"I've always been moved by your effort and have been supporting you all along.\""
+    },
+    {
+      "no": 19,
+      "ref_sentence": 19,
+      "words": ["These", "words", "made", "Emma", "feel", "embarrassed", "at", "her", "jealousy"],
+      "answer": "These words made Emma feel embarrassed at her jealousy."
+    },
+    {
+      "no": 20,
+      "ref_sentence": 20,
+      "words": ["At", "the", "same", "time", "she", "got", "inspired", "to", "find", "a", "better", "path", "forward"],
+      "answer": "At the same time, she got inspired to find a better path forward."
+    },
+    {
+      "no": 21,
+      "ref_sentence": 21,
+      "words": ["They", "hugged", "warmly", "their", "bond", "strengthened"],
+      "answer": "They hugged warmly, their bond strengthened."
+    },
+    {
+      "no": 22,
+      "ref_sentence": 22,
+      "words": ["From", "that", "day", "on", "they", "supported", "each", "other", "and", "even", "sang", "on", "the", "same", "stage", "together"],
+      "answer": "From that day on, they supported each other and even sang on the same stage together."
+    },
+    {
+      "no": 23,
+      "ref_sentence": 23,
+      "words": ["Emma", "became", "more", "confident", "and", "finally", "got", "a", "chance", "to", "have", "her", "solo", "concert"],
+      "answer": "Emma became more confident and, finally, got a chance to have her solo concert."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" },
+    { "no": 7, "ref_sentence": 7, "given": "ko" },
+    { "no": 8, "ref_sentence": 8, "given": "ko" },
+    { "no": 9, "ref_sentence": 9, "given": "ko" },
+    { "no": 10, "ref_sentence": 10, "given": "ko" },
+    { "no": 11, "ref_sentence": 11, "given": "ko" },
+    { "no": 12, "ref_sentence": 12, "given": "ko" },
+    { "no": 13, "ref_sentence": 13, "given": "ko" },
+    { "no": 14, "ref_sentence": 14, "given": "ko" },
+    { "no": 15, "ref_sentence": 15, "given": "ko" },
+    { "no": 16, "ref_sentence": 16, "given": "ko" },
+    { "no": 17, "ref_sentence": 17, "given": "ko" },
+    { "no": 18, "ref_sentence": 18, "given": "ko" },
+    { "no": 19, "ref_sentence": 19, "given": "ko" },
+    { "no": 20, "ref_sentence": 20, "given": "ko" },
+    { "no": 21, "ref_sentence": 21, "given": "ko" },
+    { "no": 22, "ref_sentence": 22, "given": "ko" },
+    { "no": 23, "ref_sentence": 23, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 2,  "no": 1 },
+    { "kind": "vocab",   "ref": 5,  "no": 2 },
+    { "kind": "fill",    "ref": 9,  "no": 3 },
+    { "kind": "ko",      "ref": 12, "no": 4 },
+    { "kind": "jumble",  "ref": 15, "no": 5 },
+    { "kind": "sent",    "ref": 18, "no": 6 },
+    { "kind": "grammar", "ref": 19, "no": 7 },
+    { "kind": "vocab",   "ref": 23, "no": 8 }
+  ]
+}

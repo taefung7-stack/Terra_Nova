@@ -1,0 +1,352 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "23.json",
+  "_note": "23번 워크북 — 본문 7문장 풀커버.",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "shame",        "pos": "명" },
+      { "word": "guilt",        "pos": "명" },
+      { "word": "behavior",     "pos": "명" },
+      { "word": "uncomfortable","pos": "형" },
+      { "word": "helpful",      "pos": "형" },
+      { "word": "apologize",    "pos": "동" },
+      { "word": "motivator",    "pos": "명" },
+      { "word": "powerful",     "pos": "형" },
+      { "word": "destructive",  "pos": "형" },
+      { "word": "corrode",      "pos": "동" }
+    ],
+    "ko_to_en": [
+      { "meaning": "수치심",            "pos": "명", "answer": "shame" },
+      { "meaning": "죄책감",            "pos": "명", "answer": "guilt" },
+      { "meaning": "행동",              "pos": "명", "answer": "behavior" },
+      { "meaning": "사과하다",          "pos": "동", "answer": "apologize" },
+      { "meaning": "동기, 동기 부여 요인","pos": "명", "answer": "motivator" },
+      { "meaning": "효과, 영향",        "pos": "명", "answer": "effect" },
+      { "meaning": "긍정적인",          "pos": "형", "answer": "positive" },
+      { "meaning": "파괴적인",          "pos": "형", "answer": "destructive" },
+      { "meaning": "연구, 조사",        "pos": "명", "answer": "research" },
+      { "meaning": "믿다",              "pos": "동", "answer": "believe" }
+    ],
+    "expressions": [
+      { "ko": "죄책감을 느끼다",       "answer": "feel guilty" },
+      { "ko": "A를 B에 견주어 보다",   "answer": "hold up A against B" },
+      { "ko": "~하지 못하다",          "answer": "fail to" },
+      { "ko": "보상하다, 바로잡다",     "answer": "make amends" },
+      { "ko": "사실, 실제로",          "answer": "in fact" }
+    ],
+    "definitions": [
+      { "def": "a painful feeling about who we are as a person",              "answer": "shame" },
+      { "def": "an uncomfortable feeling caused by something we have done",    "answer": "guilt" },
+      { "def": "to say you are sorry for something you have done",            "answer": "apologize" },
+      { "def": "something that makes you want to act or change",              "answer": "motivator" },
+      { "def": "to slowly damage or wear something away",                     "answer": "corrode" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Shame is about who we {{1:are/is}}, and guilt {{2:is/are}} about our behaviors.",
+      "ko_full": "수치심은 우리가 어떤 사람인지에 관한 것이고, 죄책감은 우리의 행동에 관한 것이다.",
+      "answers": ["are", "is"],
+      "explain": [
+        "관계절 주어 we → 복수 동사 are.",
+        "주어 guilt(단수) → is."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "We feel guilty when we hold up something we've done or {{1:failed/failing}} to do against the kind of person we {{2:want/wants}} to be.",
+      "ko_full": "우리는 자신이 한 일이나 하지 못한 일을 우리가 되고 싶은 종류의 사람에 견주어 볼 때 죄책감을 느낀다.",
+      "answers": ["failed", "want"],
+      "explain": [
+        "done과 병렬 — 과거분사 failed.",
+        "주어 we → 동사원형 want."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "It's an uncomfortable feeling, but one {{1:that's/what's}} helpful.",
+      "ko_full": "그것은 불편한 감정이지만, 도움이 되는 감정이다.",
+      "answers": ["that's"],
+      "explain": [
+        "선행사 one을 수식하는 주격 관계대명사 that(that's = that is)."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "When we apologize for something we've done, make amends to others, or {{1:change/changing}} a behavior that we don't feel good about, guilt {{2:is/are}} most often the motivator.",
+      "ko_full": "우리가 한 일에 대해 사과하거나, 다른 사람들에게 보상하거나, 좋게 느껴지지 않는 행동을 바꿀 때, 죄책감은 대개 동기가 된다.",
+      "answers": ["change", "is"],
+      "explain": [
+        "apologize, make와 병렬 — 동사원형 change.",
+        "주어 guilt(단수) → is."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "Guilt is just as powerful as shame, but its effect is often positive {{1:while/during}} shame often {{2:is/being}} destructive.",
+      "ko_full": "죄책감은 수치심만큼이나 강력하지만, 그 효과는 흔히 긍정적인 반면 수치심은 흔히 파괴적이다.",
+      "answers": ["while", "is"],
+      "explain": [
+        "절을 이끄는 대조 접속사 while(during은 전치사).",
+        "주어 shame → 정상 동사 is."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "When we see people {{1:apologize/to apologize}}, make amends, or replace negative behaviors with more positive {{2:ones/one}}, guilt is often the motivator, not shame.",
+      "ko_full": "사람들이 사과하거나, 보상하거나, 부정적인 행동을 더 긍정적인 것으로 대체하는 것을 우리가 볼 때, 동기가 되는 것은 흔히 죄책감이지 수치심이 아니다.",
+      "answers": ["apologize", "ones"],
+      "explain": [
+        "지각동사 see + O + 동사원형 apologize.",
+        "복수 behaviors를 대신하는 대명사 ones."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "In fact, in my research, I found {{1:that/what}} shame corrodes the part of us that {{2:believes/believe}} we can change and do better.",
+      "ko_full": "사실, 내 연구에서, 나는 수치심이 우리가 변화하고 더 나아질 수 있다고 믿는 우리의 일부를 좀먹는다는 것을 발견했다.",
+      "answers": ["that", "believes"],
+      "explain": [
+        "found의 목적어 명사절 유도 접속사 that.",
+        "선행사 the part(단수) → believes."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "{{1:Shame/Praise}} is about who we are, and {{2:guilt/pride}} is about our behaviors.",
+      "ko_full": "수치심은 우리가 어떤 사람인지에 관한 것이고, 죄책감은 우리의 행동에 관한 것이다.",
+      "answers": ["Shame", "guilt"],
+      "explain": [
+        "'존재'에 관한 감정 — Shame(수치심).",
+        "'행동'에 관한 감정 — guilt(죄책감)."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "We feel {{1:guilty/proud}} when we hold up something we've done or failed to do against the kind of person we want to be.",
+      "ko_full": "우리는 자신이 한 일이나 하지 못한 일을 우리가 되고 싶은 종류의 사람에 견주어 볼 때 죄책감을 느낀다.",
+      "answers": ["guilty"],
+      "explain": [
+        "맥락상 '죄책감을 느낀다' — guilty."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "It's an {{1:uncomfortable/comfortable}} feeling, but one that's {{2:helpful/harmful}}.",
+      "ko_full": "그것은 불편한 감정이지만, 도움이 되는 감정이다.",
+      "answers": ["uncomfortable", "helpful"],
+      "explain": [
+        "'불편한' 감정 — uncomfortable.",
+        "그러나 '도움이 되는' — helpful."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "When we apologize for something we've done, make {{1:amends/excuses}} to others, or change a behavior that we don't feel good about, guilt is most often the {{2:motivator/obstacle}}.",
+      "ko_full": "우리가 한 일에 대해 사과하거나, 다른 사람들에게 보상하거나, 좋게 느껴지지 않는 행동을 바꿀 때, 죄책감은 대개 동기가 된다.",
+      "answers": ["amends", "motivator"],
+      "explain": [
+        "'보상하다' — make amends.",
+        "행동을 이끄는 '동기' — motivator."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "Guilt is just as {{1:powerful/weak}} as shame, but its effect is often positive while shame often is {{2:destructive/constructive}}.",
+      "ko_full": "죄책감은 수치심만큼이나 강력하지만, 그 효과는 흔히 긍정적인 반면 수치심은 흔히 파괴적이다.",
+      "answers": ["powerful", "destructive"],
+      "explain": [
+        "수치심만큼 '강력한' — powerful.",
+        "수치심은 흔히 '파괴적' — destructive."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "When we see people apologize, make amends, or {{1:replace/keep}} negative behaviors with more positive ones, guilt is often the motivator, not {{2:shame/guilt}}.",
+      "ko_full": "사람들이 사과하거나, 보상하거나, 부정적인 행동을 더 긍정적인 것으로 대체하는 것을 우리가 볼 때, 동기가 되는 것은 흔히 죄책감이지 수치심이 아니다.",
+      "answers": ["replace", "shame"],
+      "explain": [
+        "부정적 행동을 '대체하다' — replace.",
+        "동기가 되는 것은 죄책감이지 '수치심'이 아님 — shame."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "In fact, in my research, I found that shame {{1:corrodes/strengthens}} the part of us that believes we can change and do {{2:better/worse}}.",
+      "ko_full": "사실, 내 연구에서, 나는 수치심이 우리가 변화하고 더 나아질 수 있다고 믿는 우리의 일부를 좀먹는다는 것을 발견했다.",
+      "answers": ["corrodes", "better"],
+      "explain": [
+        "수치심이 우리의 일부를 '좀먹다' — corrodes.",
+        "'더 나아질' 수 있다 — better."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "s", "answer": "shame",     "after": "is about who we are" },
+        { "pos": 2, "letter": "g", "answer": "guilt",     "after": "is about our behaviors" },
+        { "pos": 3, "letter": "b", "answer": "behaviors", "after": "" }
+      ],
+      "ko_full": "수치심은 우리가 어떤 사람인지에 관한 것이고, 죄책감은 우리의 행동에 관한 것이다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "g", "answer": "guilty", "after": "when we hold up" },
+        { "pos": 2, "letter": "h", "answer": "hold",   "after": "up something" },
+        { "pos": 3, "letter": "f", "answer": "failed", "after": "to do against" }
+      ],
+      "ko_full": "우리는 자신이 한 일이나 하지 못한 일을 우리가 되고 싶은 종류의 사람에 견주어 볼 때 죄책감을 느낀다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "u", "answer": "uncomfortable", "after": "feeling" },
+        { "pos": 2, "letter": "f", "answer": "feeling",       "after": ", but one" },
+        { "pos": 3, "letter": "h", "answer": "helpful",       "after": "" }
+      ],
+      "ko_full": "그것은 불편한 감정이지만, 도움이 되는 감정이다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "a", "answer": "apologize", "after": "for something" },
+        { "pos": 2, "letter": "a", "answer": "amends",    "after": "to others" },
+        { "pos": 3, "letter": "m", "answer": "motivator", "after": "" }
+      ],
+      "ko_full": "우리가 한 일에 대해 사과하거나, 다른 사람들에게 보상하거나, 좋게 느껴지지 않는 행동을 바꿀 때, 죄책감은 대개 동기가 된다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "p", "answer": "powerful",    "after": "as shame" },
+        { "pos": 2, "letter": "p", "answer": "positive",    "after": "while shame" },
+        { "pos": 3, "letter": "d", "answer": "destructive", "after": "" }
+      ],
+      "ko_full": "죄책감은 수치심만큼이나 강력하지만, 그 효과는 흔히 긍정적인 반면 수치심은 흔히 파괴적이다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "a", "answer": "apologize", "after": ", make amends" },
+        { "pos": 2, "letter": "r", "answer": "replace",   "after": "negative behaviors" },
+        { "pos": 3, "letter": "m", "answer": "motivator", "after": ", not shame" }
+      ],
+      "ko_full": "사람들이 사과하거나, 보상하거나, 부정적인 행동을 더 긍정적인 것으로 대체하는 것을 우리가 볼 때, 동기가 되는 것은 흔히 죄책감이지 수치심이 아니다."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "hints": [
+        { "pos": 1, "letter": "r", "answer": "research", "after": ", I found" },
+        { "pos": 2, "letter": "c", "answer": "corrodes", "after": "the part of us" },
+        { "pos": 3, "letter": "b", "answer": "believes", "after": "we can change" }
+      ],
+      "ko_full": "사실, 내 연구에서, 나는 수치심이 우리가 변화하고 더 나아질 수 있다고 믿는 우리의 일부를 좀먹는다는 것을 발견했다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 },
+    { "no": 7, "ref_sentence": 7 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["Shame", "is", "about", "who", "we", "are", "and", "guilt", "is", "about", "our", "behaviors"],
+      "answer": "Shame is about who we are, and guilt is about our behaviors."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["We", "feel", "guilty", "when", "we", "hold", "up", "something", "we've", "done", "or", "failed", "to", "do", "against", "the", "kind", "of", "person", "we", "want", "to", "be"],
+      "answer": "We feel guilty when we hold up something we've done or failed to do against the kind of person we want to be."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["It's", "an", "uncomfortable", "feeling", "but", "one", "that's", "helpful"],
+      "answer": "It's an uncomfortable feeling, but one that's helpful."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["When", "we", "apologize", "for", "something", "we've", "done", "make", "amends", "to", "others", "or", "change", "a", "behavior", "that", "we", "don't", "feel", "good", "about", "guilt", "is", "most", "often", "the", "motivator"],
+      "answer": "When we apologize for something we've done, make amends to others, or change a behavior that we don't feel good about, guilt is most often the motivator."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["Guilt", "is", "just", "as", "powerful", "as", "shame", "but", "its", "effect", "is", "often", "positive", "while", "shame", "often", "is", "destructive"],
+      "answer": "Guilt is just as powerful as shame, but its effect is often positive while shame often is destructive."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["When", "we", "see", "people", "apologize", "make", "amends", "or", "replace", "negative", "behaviors", "with", "more", "positive", "ones", "guilt", "is", "often", "the", "motivator", "not", "shame"],
+      "answer": "When we see people apologize, make amends, or replace negative behaviors with more positive ones, guilt is often the motivator, not shame."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "words": ["In", "fact", "in", "my", "research", "I", "found", "that", "shame", "corrodes", "the", "part", "of", "us", "that", "believes", "we", "can", "change", "and", "do", "better"],
+      "answer": "In fact, in my research, I found that shame corrodes the part of us that believes we can change and do better."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" },
+    { "no": 7, "ref_sentence": 7, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 1, "no": 1 },
+    { "kind": "vocab",   "ref": 3, "no": 2 },
+    { "kind": "fill",    "ref": 4, "no": 3 },
+    { "kind": "ko",      "ref": 5, "no": 4 },
+    { "kind": "jumble",  "ref": 6, "no": 5 },
+    { "kind": "sent",    "ref": 7, "no": 6 },
+    { "kind": "grammar", "ref": 2, "no": 7 }
+  ]
+}

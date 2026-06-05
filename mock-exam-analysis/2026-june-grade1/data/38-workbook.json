@@ -1,0 +1,351 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "38.json",
+  "_note": "38번 워크북 — 본문 N문장 풀커버.",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "gesture",       "pos": "동" },
+      { "word": "describe",      "pos": "동" },
+      { "word": "recall",        "pos": "동" },
+      { "word": "perform",       "pos": "동" },
+      { "word": "various",       "pos": "형" },
+      { "word": "odd",           "pos": "형" },
+      { "word": "immediately",   "pos": "부" },
+      { "word": "particularly",  "pos": "부" },
+      { "word": "spontaneously", "pos": "부" },
+      { "word": "encode",        "pos": "동" }
+    ],
+    "ko_to_en": [
+      { "meaning": "사건",           "pos": "명", "answer": "event" },
+      { "meaning": "성인",           "pos": "명", "answer": "adult" },
+      { "meaning": "검사하다",        "pos": "동", "answer": "test" },
+      { "meaning": "기억",           "pos": "명", "answer": "memory" },
+      { "meaning": "효과",           "pos": "명", "answer": "effect" },
+      { "meaning": "지시",           "pos": "명", "answer": "instruction" },
+      { "meaning": "패턴, 양상",      "pos": "명", "answer": "pattern" },
+      { "meaning": "산출하다",        "pos": "동", "answer": "produce" },
+      { "meaning": "기억에 남는",      "pos": "형", "answer": "memorable" },
+      { "meaning": "미끄러지다",       "pos": "동", "answer": "slide" }
+    ],
+    "expressions": [
+      { "ko": "몸을 숙이다",     "answer": "bend down" },
+      { "ko": "흔들려 닫히다",   "answer": "swing shut" },
+      { "ko": "저절로",         "answer": "on its own" },
+      { "ko": "스스로",         "answer": "on their own" },
+      { "ko": "~하라고 듣다",    "answer": "be told to" }
+    ],
+    "definitions": [
+      { "def": "to move your hands or head to express an idea or feeling",            "answer": "gesture" },
+      { "def": "to bring something back to your mind; to remember",                  "answer": "recall" },
+      { "def": "a fully grown person",                                              "answer": "adult" },
+      { "def": "happening in a natural way without being planned",                   "answer": "spontaneously" },
+      { "def": "easy to remember or worth remembering",                              "answer": "memorable" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "If you gesture while {{1:describing/described}} an event, do you think you'll be able to recall that event better than if you {{2:don't/aren't}} gesture?",
+      "ko_full": "만약 당신이 어떤 사건을 설명하면서 제스처를 한다면, 제스처를 하지 않을 때보다 그 사건을 더 잘 기억할 수 있을 것이라고 생각하는가?",
+      "answers": ["describing", "don't"],
+      "explain": [
+        "while + 분사구문 → 현재분사 describing.",
+        "일반동사 gesture의 부정 → 조동사 don't."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "We had adults {{1:watch/to watch}} videos of toy objects, animals, and people {{2:performing/performed}} various, sometimes odd, actions: a chicken sliding to a policeman, a jogger bending down to touch his toes, a fence swinging shut on its own.",
+      "ko_full": "우리는 성인들에게 장난감 물체, 동물, 사람들이 다양하고 때로는 이상한 동작을 하는 영상을 보게 했다. 닭이 경찰관에게 미끄러져 가고, 조깅하는 사람이 발끝을 만지려 몸을 숙이고, 울타리가 저절로 닫히는 것 등이었다.",
+      "answers": ["watch", "performing"],
+      "explain": [
+        "사역동사 have + 목적어 + 동사원형 → watch.",
+        "people을 능동으로 수식하는 현재분사 → performing."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "We then {{1:tested/were tested}} the adults' memories of these events immediately after the descriptions and three weeks {{2:later/late}}.",
+      "ko_full": "그런 다음 우리는 설명 직후와 3주 후에 이 사건들에 대한 성인들의 기억을 검사했다.",
+      "answers": ["tested", "later"],
+      "explain": [
+        "주어 We가 검사를 행함 → 능동 tested.",
+        "'~후에'를 뜻하는 부사 → later."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "Adults {{1:who/which}} were told to gesture while describing the events {{2:remembered/were remembered}} more than adults who were told not to gesture, particularly several weeks later.",
+      "ko_full": "사건을 설명하면서 제스처를 하라고 들은 성인들은 제스처를 하지 말라고 들은 성인들보다, 특히 몇 주 후에 더 많이 기억했다.",
+      "answers": ["who", "remembered"],
+      "explain": [
+        "선행사 Adults(사람) + 주격 → who.",
+        "주어가 기억을 행함 → 능동 remembered."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "To see {{1:if/that}} we'd get the same effects if people gestured on their own, we did the study again, but this time we gave the adults {{2:no/any}} instructions about gesture.",
+      "ko_full": "사람들이 스스로 제스처를 해도 같은 효과를 얻는지 보기 위해, 우리는 그 연구를 다시 했는데, 이번에는 성인들에게 제스처에 관한 어떤 지시도 주지 않았다.",
+      "answers": ["if", "no"],
+      "explain": [
+        "'~인지 아닌지'의 명사절 → if(=whether).",
+        "'어떤 지시도 주지 않았다' → 부정 한정사 no."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "We found the same patterns: people remembered items on {{1:which/that}} they had gestured spontaneously better than items on which they {{2:had not/have not}} gestured.",
+      "ko_full": "우리는 같은 패턴을 발견했다. 사람들은 자발적으로 제스처를 한 항목을 제스처를 하지 않은 항목보다 더 잘 기억했다.",
+      "answers": ["which", "had not"],
+      "explain": [
+        "전치사 on 뒤 관계대명사 → which (that은 전치사 뒤 불가).",
+        "기준 시점보다 앞선 일 → 과거완료 had not."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "{{1:Producing/Produce}} gesture along with speech makes the information {{2:encoded/encoding}} in that speech memorable.",
+      "ko_full": "말과 함께 제스처를 산출하는 것은 그 말에 담긴 정보를 기억에 남게 만든다.",
+      "answers": ["Producing", "encoded"],
+      "explain": [
+        "문장 주어 자리의 동명사 → Producing.",
+        "information이 부호화 '되는' 대상 → 과거분사 encoded."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "If you gesture while describing an event, do you think you'll be able to {{1:recall/forget}} that event better than if you don't gesture?",
+      "ko_full": "만약 당신이 어떤 사건을 설명하면서 제스처를 한다면, 제스처를 하지 않을 때보다 그 사건을 더 잘 기억할 수 있을 것이라고 생각하는가?",
+      "answers": ["recall"],
+      "explain": ["맥락상 사건을 '기억해 내다' — recall(↔ forget)."]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "We had adults watch videos of toy objects, animals, and people performing {{1:various/uniform}}, sometimes {{2:odd/normal}}, actions: a chicken sliding to a policeman, a jogger bending down to touch his toes, a fence swinging shut on its own.",
+      "ko_full": "우리는 성인들에게 장난감 물체, 동물, 사람들이 다양하고 때로는 이상한 동작을 하는 영상을 보게 했다. 닭이 경찰관에게 미끄러져 가고, 조깅하는 사람이 발끝을 만지려 몸을 숙이고, 울타리가 저절로 닫히는 것 등이었다.",
+      "answers": ["various", "odd"],
+      "explain": [
+        "'다양한' 동작 — various(↔ uniform).",
+        "'이상한' 동작 — odd(↔ normal)."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "We then {{1:tested/ignored}} the adults' memories of these events {{2:immediately/later}} after the descriptions and three weeks later.",
+      "ko_full": "그런 다음 우리는 설명 직후와 3주 후에 이 사건들에 대한 성인들의 기억을 검사했다.",
+      "answers": ["tested", "immediately"],
+      "explain": [
+        "기억을 '검사했다' — tested(↔ ignored).",
+        "설명 '직후' — immediately(↔ later)."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "Adults who were told to gesture while describing the events remembered {{1:more/less}} than adults who were told not to gesture, {{2:particularly/generally}} several weeks later.",
+      "ko_full": "사건을 설명하면서 제스처를 하라고 들은 성인들은 제스처를 하지 말라고 들은 성인들보다, 특히 몇 주 후에 더 많이 기억했다.",
+      "answers": ["more", "particularly"],
+      "explain": [
+        "제스처 집단이 '더 많이' 기억 — more(↔ less).",
+        "'특히' 몇 주 후 — particularly(↔ generally)."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "To see if we'd get the same {{1:effects/causes}} if people gestured on their own, we did the study again, but this time we gave the adults no {{2:instructions/permissions}} about gesture.",
+      "ko_full": "사람들이 스스로 제스처를 해도 같은 효과를 얻는지 보기 위해, 우리는 그 연구를 다시 했는데, 이번에는 성인들에게 제스처에 관한 어떤 지시도 주지 않았다.",
+      "answers": ["effects", "instructions"],
+      "explain": [
+        "같은 '효과' — effects(↔ causes).",
+        "제스처에 관한 '지시' — instructions."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "We found the same {{1:patterns/differences}}: people remembered items on which they had gestured {{2:spontaneously/deliberately}} better than items on which they had not gestured.",
+      "ko_full": "우리는 같은 패턴을 발견했다. 사람들은 자발적으로 제스처를 한 항목을 제스처를 하지 않은 항목보다 더 잘 기억했다.",
+      "answers": ["patterns", "spontaneously"],
+      "explain": [
+        "같은 '패턴' — patterns(↔ differences).",
+        "'자발적으로' 제스처 — spontaneously(↔ deliberately)."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "{{1:Producing/Withholding}} gesture along with speech makes the information encoded in that speech {{2:memorable/forgettable}}.",
+      "ko_full": "말과 함께 제스처를 산출하는 것은 그 말에 담긴 정보를 기억에 남게 만든다.",
+      "answers": ["Producing", "memorable"],
+      "explain": [
+        "제스처를 '산출하는 것' — Producing(↔ Withholding).",
+        "정보를 '기억에 남게' — memorable(↔ forgettable)."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "g", "answer": "gesture",  "after": "while describing an event" },
+        { "pos": 2, "letter": "d", "answer": "describing", "after": "an event" },
+        { "pos": 3, "letter": "r", "answer": "recall",   "after": "that event better" }
+      ],
+      "ko_full": "만약 당신이 어떤 사건을 설명하면서 제스처를 한다면, 제스처를 하지 않을 때보다 그 사건을 더 잘 기억할 수 있을 것이라고 생각하는가?"
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "a", "answer": "adults",     "after": "watch videos" },
+        { "pos": 2, "letter": "p", "answer": "performing", "after": "various, sometimes odd, actions" },
+        { "pos": 3, "letter": "o", "answer": "odd",        "after": "actions" }
+      ],
+      "ko_full": "우리는 성인들에게 장난감 물체, 동물, 사람들이 다양하고 때로는 이상한 동작을 하는 영상을 보게 했다. 닭이 경찰관에게 미끄러져 가고, 조깅하는 사람이 발끝을 만지려 몸을 숙이고, 울타리가 저절로 닫히는 것 등이었다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "t", "answer": "tested",       "after": "the adults' memories" },
+        { "pos": 2, "letter": "m", "answer": "memories",     "after": "of these events" },
+        { "pos": 3, "letter": "i", "answer": "immediately",  "after": "after the descriptions" }
+      ],
+      "ko_full": "그런 다음 우리는 설명 직후와 3주 후에 이 사건들에 대한 성인들의 기억을 검사했다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "g", "answer": "gesture",      "after": "while describing the events" },
+        { "pos": 2, "letter": "r", "answer": "remembered",   "after": "more than adults" },
+        { "pos": 3, "letter": "p", "answer": "particularly", "after": "several weeks later" }
+      ],
+      "ko_full": "사건을 설명하면서 제스처를 하라고 들은 성인들은 제스처를 하지 말라고 들은 성인들보다, 특히 몇 주 후에 더 많이 기억했다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "e", "answer": "effects",      "after": "if people gestured on their own" },
+        { "pos": 2, "letter": "s", "answer": "study",        "after": "again" },
+        { "pos": 3, "letter": "i", "answer": "instructions", "after": "about gesture" }
+      ],
+      "ko_full": "사람들이 스스로 제스처를 해도 같은 효과를 얻는지 보기 위해, 우리는 그 연구를 다시 했는데, 이번에는 성인들에게 제스처에 관한 어떤 지시도 주지 않았다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "p", "answer": "patterns",      "after": ": people remembered" },
+        { "pos": 2, "letter": "s", "answer": "spontaneously", "after": "better than items" },
+        { "pos": 3, "letter": "g", "answer": "gestured",      "after": "spontaneously better" }
+      ],
+      "ko_full": "우리는 같은 패턴을 발견했다. 사람들은 자발적으로 제스처를 한 항목을 제스처를 하지 않은 항목보다 더 잘 기억했다."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "hints": [
+        { "pos": 1, "letter": "p", "answer": "producing",  "after": "gesture along with speech" },
+        { "pos": 2, "letter": "e", "answer": "encoded",    "after": "in that speech" },
+        { "pos": 3, "letter": "m", "answer": "memorable",  "after": "" }
+      ],
+      "ko_full": "말과 함께 제스처를 산출하는 것은 그 말에 담긴 정보를 기억에 남게 만든다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 },
+    { "no": 7, "ref_sentence": 7 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["If", "you", "gesture", "while", "describing", "an", "event", "do", "you", "think", "you'll", "be", "able", "to", "recall", "that", "event", "better", "than", "if", "you", "don't", "gesture"],
+      "answer": "If you gesture while describing an event, do you think you'll be able to recall that event better than if you don't gesture?"
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["We", "had", "adults", "watch", "videos", "of", "toy", "objects", "animals", "and", "people", "performing", "various", "sometimes", "odd", "actions", "a", "chicken", "sliding", "to", "a", "policeman", "a", "jogger", "bending", "down", "to", "touch", "his", "toes", "a", "fence", "swinging", "shut", "on", "its", "own"],
+      "answer": "We had adults watch videos of toy objects, animals, and people performing various, sometimes odd, actions: a chicken sliding to a policeman, a jogger bending down to touch his toes, a fence swinging shut on its own."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["We", "then", "tested", "the", "adults'", "memories", "of", "these", "events", "immediately", "after", "the", "descriptions", "and", "three", "weeks", "later"],
+      "answer": "We then tested the adults' memories of these events immediately after the descriptions and three weeks later."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["Adults", "who", "were", "told", "to", "gesture", "while", "describing", "the", "events", "remembered", "more", "than", "adults", "who", "were", "told", "not", "to", "gesture", "particularly", "several", "weeks", "later"],
+      "answer": "Adults who were told to gesture while describing the events remembered more than adults who were told not to gesture, particularly several weeks later."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["To", "see", "if", "we'd", "get", "the", "same", "effects", "if", "people", "gestured", "on", "their", "own", "we", "did", "the", "study", "again", "but", "this", "time", "we", "gave", "the", "adults", "no", "instructions", "about", "gesture"],
+      "answer": "To see if we'd get the same effects if people gestured on their own, we did the study again, but this time we gave the adults no instructions about gesture."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["We", "found", "the", "same", "patterns", "people", "remembered", "items", "on", "which", "they", "had", "gestured", "spontaneously", "better", "than", "items", "on", "which", "they", "had", "not", "gestured"],
+      "answer": "We found the same patterns: people remembered items on which they had gestured spontaneously better than items on which they had not gestured."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "words": ["Producing", "gesture", "along", "with", "speech", "makes", "the", "information", "encoded", "in", "that", "speech", "memorable"],
+      "answer": "Producing gesture along with speech makes the information encoded in that speech memorable."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" },
+    { "no": 7, "ref_sentence": 7, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 1, "no": 1 },
+    { "kind": "vocab",   "ref": 2, "no": 2 },
+    { "kind": "fill",    "ref": 3, "no": 3 },
+    { "kind": "ko",      "ref": 4, "no": 4 },
+    { "kind": "jumble",  "ref": 5, "no": 5 },
+    { "kind": "sent",    "ref": 6, "no": 6 },
+    { "kind": "grammar", "ref": 7, "no": 7 }
+  ]
+}

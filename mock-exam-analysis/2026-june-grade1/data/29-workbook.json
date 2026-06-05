@@ -1,0 +1,322 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "29.json",
+  "_note": "29번 워크북 — 본문 6문장 풀커버.",
+  "_template_for_new_rounds": "이 파일을 새 회차의 {N}-workbook.json 작성 시 템플릿으로 사용. en_template의 {{N:A/B}} 토큰 = 양자택일 박스, hints 배열 = 빈칸 첫글자, jumble.words = 단어 배열 (셔플 X, 의도 유지).",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "literature",   "pos": "명" },
+      { "word": "essence",      "pos": "명" },
+      { "word": "testament",    "pos": "명" },
+      { "word": "enduring",     "pos": "형" },
+      { "word": "transcend",    "pos": "동" },
+      { "word": "retain",       "pos": "동" },
+      { "word": "relevance",    "pos": "명" },
+      { "word": "timeless",     "pos": "형" },
+      { "word": "convey",       "pos": "동" },
+      { "word": "empathize",    "pos": "동" }
+    ],
+    "ko_to_en": [
+      { "meaning": "창의성",            "pos": "명", "answer": "creativity" },
+      { "meaning": "표현",              "pos": "명", "answer": "expression" },
+      { "meaning": "감정",              "pos": "명", "answer": "emotion" },
+      { "meaning": "환경, 지형",        "pos": "명", "answer": "landscape" },
+      { "meaning": "중요성",            "pos": "명", "answer": "significance" },
+      { "meaning": "포착하다",          "pos": "동", "answer": "capture" },
+      { "meaning": "복잡성",            "pos": "명", "answer": "complexity" },
+      { "meaning": "깊이",              "pos": "명", "answer": "depth" },
+      { "meaning": "미묘한 차이",       "pos": "명", "answer": "nuance" },
+      { "meaning": "승리, 대성공",      "pos": "명", "answer": "triumph" }
+    ],
+    "expressions": [
+      { "ko": "~에도 불구하고",       "answer": "despite" },
+      { "ko": "각계각층, 모든 계층",  "answer": "all walks of life" },
+      { "ko": "~에 대한 증거",        "answer": "a testament to" },
+      { "ko": "시대를 초월한 예술 형식", "answer": "a timeless art form" },
+      { "ko": "~에 공감하다",         "answer": "empathize with" }
+    ],
+    "definitions": [
+      { "def": "to go beyond the limits of something",                          "answer": "transcend" },
+      { "def": "to keep or continue to have something",                          "answer": "retain" },
+      { "def": "lasting for a long time; permanent",                             "answer": "enduring" },
+      { "def": "to express or communicate an idea or feeling",                   "answer": "convey" },
+      { "def": "to understand and share the feelings of another",                "answer": "empathize" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Literature, in its essence, {{1:is/are}} a testament to the enduring power of human creativity and {{2:expression/expressing}}.",
+      "ko_full": "문학은 본질적으로 인간의 창의성과 표현이 지닌 영원한 힘에 대한 증거이다.",
+      "answers": ["is", "expression"],
+      "explain": [
+        "주어 핵 = Literature(단수, 불가산) → is.",
+        "and로 creativity와 병렬되는 명사 → expression."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "It transcends time and space, {{1:connecting/connected}} us with the thoughts and emotions of people from all walks of life, {{2:across/cross}} centuries and cultures.",
+      "ko_full": "그것은 시간과 공간을 초월하여, 여러 세기와 문화를 가로질러 각계각층 사람들의 생각과 감정으로 우리를 연결해 준다.",
+      "answers": ["connecting", "across"],
+      "explain": [
+        "주절(It transcends)에 부가되는 분사구문(= and it connects) → 능동 connecting.",
+        "'~을 가로질러' 전치사 across."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "{{1:Despite/Although}} the rise of new technologies and the ever-changing landscape of media, literature {{2:has retained/has been retained}} its relevance and significance as a timeless art form.",
+      "ko_full": "새로운 기술의 부상과 끊임없이 변화하는 미디어 환경에도 불구하고, 문학은 시대를 초월한 예술 형식으로서 그 적합성과 중요성을 유지해 왔다.",
+      "answers": ["Despite", "has retained"],
+      "explain": [
+        "뒤에 명사구(the rise of ~)가 오므로 전치사 Despite (Although는 절을 이끔).",
+        "목적어 its relevance and significance가 있으므로 능동 has retained."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "One reason for literature's enduring power {{1:is/are}} its ability to capture and {{2:convey/conveying}} the complexities of the human experience.",
+      "ko_full": "문학의 영원한 힘의 한 가지 이유는 인간 경험의 복잡성을 포착하고 전달하는 능력이다.",
+      "answers": ["is", "convey"],
+      "explain": [
+        "주어 핵 = One reason(단수) → is.",
+        "to capture와 and로 병렬된 동사원형 convey."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "Through the written word, authors {{1:having/have}} the unique ability to {{2:explore/exploring}} the depths of human emotion, the nuances of relationships, and the challenges and triumphs of the human spirit.",
+      "ko_full": "글로 쓰인 말을 통해, 작가들은 인간 감정의 깊이, 관계의 미묘함, 그리고 인간 정신의 도전과 승리를 탐구하는 독특한 능력을 가진다.",
+      "answers": ["having", "explore"],
+      "explain": [
+        "★어법 포인트: 본문은 having으로 인쇄되어 있으나 주어 authors의 본동사가 없어 어법상 틀림 → have가 옳음. (본문 그대로 having 선택)",
+        "ability to + 동사원형 → explore."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "Literature allows us to see ourselves {{1:reflected/reflecting}} in the pages of a book, to empathize with characters different from ourselves, and to gain a deeper understanding of the human {{2:condition/conditional}}.",
+      "ko_full": "문학은 우리가 책의 페이지에 반영된 우리 자신을 보고, 우리와 다른 인물들에게 공감하며, 인간의 조건에 대한 더 깊은 이해를 얻게 해준다.",
+      "answers": ["reflected", "condition"],
+      "explain": [
+        "see + 목적어(ourselves) + 과거분사(수동, '반영되는' 대상) → reflected.",
+        "the human + 명사 → condition."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Literature, in its essence, is a {{1:testament/contradiction}} to the {{2:enduring/fleeting}} power of human creativity and expression.",
+      "ko_full": "문학은 본질적으로 인간의 창의성과 표현이 지닌 영원한 힘에 대한 증거이다.",
+      "answers": ["testament", "enduring"],
+      "explain": [
+        "'~에 대한 증거' — testament.",
+        "'영원한, 지속되는' — enduring."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "It {{1:transcends/obeys}} time and space, connecting us with the thoughts and {{2:emotions/objects}} of people from all walks of life, across centuries and cultures.",
+      "ko_full": "그것은 시간과 공간을 초월하여, 여러 세기와 문화를 가로질러 각계각층 사람들의 생각과 감정으로 우리를 연결해 준다.",
+      "answers": ["transcends", "emotions"],
+      "explain": [
+        "시간·공간을 '초월하다' — transcends.",
+        "생각과 '감정' — emotions."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "Despite the rise of new technologies and the ever-changing landscape of media, literature has {{1:retained/lost}} its relevance and significance as a {{2:timeless/dated}} art form.",
+      "ko_full": "새로운 기술의 부상과 끊임없이 변화하는 미디어 환경에도 불구하고, 문학은 시대를 초월한 예술 형식으로서 그 적합성과 중요성을 유지해 왔다.",
+      "answers": ["retained", "timeless"],
+      "explain": [
+        "적합성과 중요성을 '유지하다' — retained.",
+        "'시대를 초월한' 예술 형식 — timeless."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "One reason for literature's enduring power is its ability to {{1:capture/miss}} and convey the {{2:complexities/simplicities}} of the human experience.",
+      "ko_full": "문학의 영원한 힘의 한 가지 이유는 인간 경험의 복잡성을 포착하고 전달하는 능력이다.",
+      "answers": ["capture", "complexities"],
+      "explain": [
+        "인간 경험을 '포착하다' — capture.",
+        "인간 경험의 '복잡성' — complexities."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "Through the written word, authors having the {{1:unique/ordinary}} ability to explore the {{2:depths/surfaces}} of human emotion, the nuances of relationships, and the challenges and triumphs of the human spirit.",
+      "ko_full": "글로 쓰인 말을 통해, 작가들은 인간 감정의 깊이, 관계의 미묘함, 그리고 인간 정신의 도전과 승리를 탐구하는 독특한 능력을 가진다.",
+      "answers": ["unique", "depths"],
+      "explain": [
+        "'독특한' 능력 — unique.",
+        "인간 감정의 '깊이' — depths."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "Literature allows us to see ourselves reflected in the pages of a book, to {{1:empathize/clash}} with characters different from ourselves, and to gain a {{2:deeper/shallower}} understanding of the human condition.",
+      "ko_full": "문학은 우리가 책의 페이지에 반영된 우리 자신을 보고, 우리와 다른 인물들에게 공감하며, 인간의 조건에 대한 더 깊은 이해를 얻게 해준다.",
+      "answers": ["empathize", "deeper"],
+      "explain": [
+        "인물들에게 '공감하다' — empathize.",
+        "'더 깊은' 이해 — deeper."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "e", "answer": "essence",      "after": "is a testament" },
+        { "pos": 2, "letter": "t", "answer": "testament",    "after": "to the enduring power" },
+        { "pos": 3, "letter": "e", "answer": "enduring",     "after": "power" },
+        { "pos": 4, "letter": "c", "answer": "creativity",   "after": "and expression" }
+      ],
+      "ko_full": "문학은 본질적으로 인간의 창의성과 표현이 지닌 영원한 힘에 대한 증거이다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "t", "answer": "transcends",  "after": "time and space" },
+        { "pos": 2, "letter": "c", "answer": "connecting",  "after": "us with the thoughts" },
+        { "pos": 3, "letter": "e", "answer": "emotions",    "after": "of people" },
+        { "pos": 4, "letter": "c", "answer": "cultures",    "after": "" }
+      ],
+      "ko_full": "그것은 시간과 공간을 초월하여, 여러 세기와 문화를 가로질러 각계각층 사람들의 생각과 감정으로 우리를 연결해 준다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "t", "answer": "technologies", "after": "and the ever-changing" },
+        { "pos": 2, "letter": "r", "answer": "retained",     "after": "its relevance" },
+        { "pos": 3, "letter": "s", "answer": "significance", "after": "as a timeless art form" },
+        { "pos": 4, "letter": "t", "answer": "timeless",     "after": "art form" }
+      ],
+      "ko_full": "새로운 기술의 부상과 끊임없이 변화하는 미디어 환경에도 불구하고, 문학은 시대를 초월한 예술 형식으로서 그 적합성과 중요성을 유지해 왔다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "r", "answer": "reason",       "after": "for literature's" },
+        { "pos": 2, "letter": "a", "answer": "ability",      "after": "to capture and convey" },
+        { "pos": 3, "letter": "c", "answer": "convey",       "after": "the complexities" },
+        { "pos": 4, "letter": "c", "answer": "complexities", "after": "of the human experience" }
+      ],
+      "ko_full": "문학의 영원한 힘의 한 가지 이유는 인간 경험의 복잡성을 포착하고 전달하는 능력이다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "a", "answer": "authors",   "after": "having the unique ability" },
+        { "pos": 2, "letter": "e", "answer": "explore",   "after": "the depths of human emotion" },
+        { "pos": 3, "letter": "n", "answer": "nuances",   "after": "of relationships" },
+        { "pos": 4, "letter": "t", "answer": "triumphs",  "after": "of the human spirit" }
+      ],
+      "ko_full": "글로 쓰인 말을 통해, 작가들은 인간 감정의 깊이, 관계의 미묘함, 그리고 인간 정신의 도전과 승리를 탐구하는 독특한 능력을 가진다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "r", "answer": "reflected",  "after": "in the pages of a book" },
+        { "pos": 2, "letter": "e", "answer": "empathize",  "after": "with characters" },
+        { "pos": 3, "letter": "u", "answer": "understanding", "after": "of the human condition" },
+        { "pos": 4, "letter": "c", "answer": "condition",  "after": "" }
+      ],
+      "ko_full": "문학은 우리가 책의 페이지에 반영된 우리 자신을 보고, 우리와 다른 인물들에게 공감하며, 인간의 조건에 대한 더 깊은 이해를 얻게 해준다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["Literature", "in", "its", "essence", "is", "a", "testament", "to", "the", "enduring", "power", "of", "human", "creativity", "and", "expression"],
+      "answer": "Literature, in its essence, is a testament to the enduring power of human creativity and expression."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["It", "transcends", "time", "and", "space", "connecting", "us", "with", "the", "thoughts", "and", "emotions", "of", "people", "from", "all", "walks", "of", "life", "across", "centuries", "and", "cultures"],
+      "answer": "It transcends time and space, connecting us with the thoughts and emotions of people from all walks of life, across centuries and cultures."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["Despite", "the", "rise", "of", "new", "technologies", "and", "the", "ever-changing", "landscape", "of", "media", "literature", "has", "retained", "its", "relevance", "and", "significance", "as", "a", "timeless", "art", "form"],
+      "answer": "Despite the rise of new technologies and the ever-changing landscape of media, literature has retained its relevance and significance as a timeless art form."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["One", "reason", "for", "literature's", "enduring", "power", "is", "its", "ability", "to", "capture", "and", "convey", "the", "complexities", "of", "the", "human", "experience"],
+      "answer": "One reason for literature's enduring power is its ability to capture and convey the complexities of the human experience."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["Through", "the", "written", "word", "authors", "having", "the", "unique", "ability", "to", "explore", "the", "depths", "of", "human", "emotion", "the", "nuances", "of", "relationships", "and", "the", "challenges", "and", "triumphs", "of", "the", "human", "spirit"],
+      "answer": "Through the written word, authors having the unique ability to explore the depths of human emotion, the nuances of relationships, and the challenges and triumphs of the human spirit."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["Literature", "allows", "us", "to", "see", "ourselves", "reflected", "in", "the", "pages", "of", "a", "book", "to", "empathize", "with", "characters", "different", "from", "ourselves", "and", "to", "gain", "a", "deeper", "understanding", "of", "the", "human", "condition"],
+      "answer": "Literature allows us to see ourselves reflected in the pages of a book, to empathize with characters different from ourselves, and to gain a deeper understanding of the human condition."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 1, "no": 1 },
+    { "kind": "vocab",   "ref": 2, "no": 2 },
+    { "kind": "fill",    "ref": 3, "no": 3 },
+    { "kind": "ko",      "ref": 4, "no": 4 },
+    { "kind": "jumble",  "ref": 5, "no": 5 },
+    { "kind": "sent",    "ref": 6, "no": 6 },
+    { "kind": "grammar", "ref": 5, "no": 7 },
+    { "kind": "vocab",   "ref": 3, "no": 8 }
+  ]
+}

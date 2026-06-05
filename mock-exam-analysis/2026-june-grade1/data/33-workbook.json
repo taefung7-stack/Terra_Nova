@@ -1,0 +1,395 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "33.json",
+  "_note": "33번 워크북 — 본문 8문장 풀커버.",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "olfactory",   "pos": "형" },
+      { "word": "challenging", "pos": "형" },
+      { "word": "describe",    "pos": "동" },
+      { "word": "source",      "pos": "명" },
+      { "word": "odor",        "pos": "명" },
+      { "word": "familiar",    "pos": "형" },
+      { "word": "identify",    "pos": "동" },
+      { "word": "majority",    "pos": "명" },
+      { "word": "evolution",   "pos": "명" },
+      { "word": "respond",     "pos": "동" }
+    ],
+    "ko_to_en": [
+      { "meaning": "기본적인",         "pos": "형", "answer": "basic" },
+      { "meaning": "경험",             "pos": "명", "answer": "experience" },
+      { "meaning": "맥락, 상황",       "pos": "명", "answer": "context" },
+      { "meaning": "참가자",           "pos": "명", "answer": "participant" },
+      { "meaning": "흔한",             "pos": "형", "answer": "common" },
+      { "meaning": "형성하다",         "pos": "동", "answer": "shape" },
+      { "meaning": "대신에",           "pos": "부", "answer": "instead" },
+      { "meaning": "더욱이, 게다가",   "pos": "부", "answer": "furthermore" },
+      { "meaning": "이름을 대다",      "pos": "동", "answer": "name" },
+      { "meaning": "분명히",           "pos": "부", "answer": "obviously" }
+    ],
+    "expressions": [
+      { "ko": "~한 냄새가 나다",   "answer": "smell like" },
+      { "ko": "~할 수 없다",       "answer": "be unable to" },
+      { "ko": "잘 갖추어져 있지 않은", "answer": "not well-equipped" },
+      { "ko": "평소의 맥락에서",   "answer": "in their usual context" },
+      { "ko": "~의 대다수",        "answer": "the majority of" }
+    ],
+    "definitions": [
+      { "def": "relating to the sense of smell",                              "answer": "olfactory" },
+      { "def": "the place or thing from which something comes",               "answer": "source" },
+      { "def": "to recognize or correctly name something",                    "answer": "identify" },
+      { "def": "to say what something is like in words",                      "answer": "describe" },
+      { "def": "the gradual process by which living things change over time", "answer": "evolution" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Talking about what something smells like {{1:is/are}} the most basic way of {{2:talking/to talk}} about our olfactory experience, and even this most basic way of talking about smells {{3:is/being}} challenging.",
+      "ko_full": "무언가가 어떤 냄새가 나는지 이야기하는 것은 우리의 후각 경험에 대해 이야기하는 가장 기본적인 방법인데, 이 가장 기본적인 방법조차도 어렵다.",
+      "answers": ["is", "talking", "is"],
+      "explain": [
+        "주어는 동명사구 'Talking ~' (단수 취급) → is.",
+        "the way of + 동명사 — talking.",
+        "and 뒤 주어 'this most basic way'에 대한 정상 동사 → is."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "There {{1:are/is}} no words in the English language to describe smells in the same way in {{2:which/that}} \"blue\" or \"green\" describe colors.",
+      "ko_full": "영어에는 \"파랑\"이나 \"초록\"이 색을 묘사하는 것과 같은 방식으로 냄새를 묘사하는 단어가 없다.",
+      "answers": ["are", "which"],
+      "explain": [
+        "There + 복수 주어 words → are.",
+        "in the same way in which ~ — 전치사 + 관계대명사 which."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "Instead, to talk about {{1:how/what}} something smells, we talk about the source of the {{2:odor/odors}}.",
+      "ko_full": "대신, 무언가가 어떤 냄새가 나는지 이야기하기 위해, 우리는 그 냄새의 출처에 대해 이야기한다.",
+      "answers": ["how", "odor"],
+      "explain": [
+        "smells 뒤 보어 자리 없음 → 방법을 묻는 간접의문문 how.",
+        "the source of the + 단수 명사 odor (앞서 언급된 그 냄새)."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "Things {{1:smell/smells}} \"flowery,\" \"fruity,\" or {{2:fishy/fishily}}.\"",
+      "ko_full": "어떤 것은 \"꽃 같은\", \"과일 같은\", 또는 \"생선 같은\" 냄새가 난다.",
+      "answers": ["smell", "fishy"],
+      "explain": [
+        "복수 주어 Things → 동사원형 smell.",
+        "smell + 형용사(2형식) — fishy (부사 아님)."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "Furthermore, even the most familiar odors are difficult {{1:to identify/identifying}} when they are not {{2:experienced/experiencing}} in their usual context.",
+      "ko_full": "더욱이, 가장 익숙한 냄새조차도 평소의 맥락에서 경험되지 않으면 식별하기 어렵다.",
+      "answers": ["to identify", "experienced"],
+      "explain": [
+        "difficult + to부정사 (난이형용사 구문) → to identify.",
+        "odors가 경험되는 대상 → 수동 are not experienced."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "In one experiment the majority of participants {{1:was/were}} unable {{2:to name/naming}} very common odors like beer, urine, roses, or motor oil.",
+      "ko_full": "한 실험에서 참가자 대다수는 맥주, 소변, 장미, 또는 엔진 오일 같은 매우 흔한 냄새의 이름을 대지 못했다.",
+      "answers": ["was", "to name"],
+      "explain": [
+        "the majority of + 명사: 본문은 단수 취급 was.",
+        "be unable + to부정사 → to name."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "Obviously, even those {{1:who/which}} couldn't name any of these odors {{2:would/would have}} drink the beer but not the urine or the motor oil.",
+      "ko_full": "분명히, 이 냄새들 중 어느 것의 이름도 대지 못한 사람들조차 맥주는 마시되 소변이나 엔진 오일은 마시지 않을 것이다.",
+      "answers": ["who", "would"],
+      "explain": [
+        "선행사 those(사람) + 주격 관계대명사 → who.",
+        "would + 동사원형 (가정·추정) → would drink."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "This is {{1:how/what}} evolution has shaped our brain: We respond to odors {{2:correctly/correct}} in many different ways, but we are not well-equipped to talk about them.",
+      "ko_full": "이것이 진화가 우리의 뇌를 형성해 온 방식이다: 우리는 여러 다양한 방식으로 냄새에 올바르게 반응하지만, 그것에 대해 말할 능력은 잘 갖추어져 있지 않다.",
+      "answers": ["how", "correctly"],
+      "explain": [
+        "This is how ~ (관계부사 how, 방식).",
+        "동사 respond를 수식하는 부사 → correctly."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Talking about what something smells like is the most {{1:basic/advanced}} way of talking about our olfactory experience, and even this most basic way of talking about smells is {{2:challenging/easy}}.",
+      "ko_full": "무언가가 어떤 냄새가 나는지 이야기하는 것은 우리의 후각 경험에 대해 이야기하는 가장 기본적인 방법인데, 이 가장 기본적인 방법조차도 어렵다.",
+      "answers": ["basic", "challenging"],
+      "explain": [
+        "'가장 기본적인' 방법 — basic.",
+        "기본 방법조차 '어렵다' — challenging."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "There are no words in the English language to {{1:describe/ignore}} smells in the same way in which \"blue\" or \"green\" describe {{2:colors/sounds}}.",
+      "ko_full": "영어에는 \"파랑\"이나 \"초록\"이 색을 묘사하는 것과 같은 방식으로 냄새를 묘사하는 단어가 없다.",
+      "answers": ["describe", "colors"],
+      "explain": [
+        "냄새를 '묘사하다' — describe.",
+        "blue/green이 묘사하는 것은 '색' — colors."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "Instead, to talk about how something smells, we talk about the {{1:source/result}} of the {{2:odor/sound}}.",
+      "ko_full": "대신, 무언가가 어떤 냄새가 나는지 이야기하기 위해, 우리는 그 냄새의 출처에 대해 이야기한다.",
+      "answers": ["source", "odor"],
+      "explain": [
+        "냄새의 '출처' — source.",
+        "그 '냄새'의 출처 — odor."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "Things smell {{1:flowery/colorless}}, \"fruity,\" or \"fishy.\"",
+      "ko_full": "어떤 것은 \"꽃 같은\", \"과일 같은\", 또는 \"생선 같은\" 냄새가 난다.",
+      "answers": ["flowery"],
+      "explain": ["출처(flower)에서 파생된 '꽃 같은' — flowery."]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "Furthermore, even the most {{1:familiar/unfamiliar}} odors are difficult to {{2:identify/create}} when they are not experienced in their usual context.",
+      "ko_full": "더욱이, 가장 익숙한 냄새조차도 평소의 맥락에서 경험되지 않으면 식별하기 어렵다.",
+      "answers": ["familiar", "identify"],
+      "explain": [
+        "가장 '익숙한' 냄새조차 — familiar.",
+        "냄새를 '식별하다' — identify."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "In one experiment the {{1:majority/minority}} of participants was unable to {{2:name/smell}} very common odors like beer, urine, roses, or motor oil.",
+      "ko_full": "한 실험에서 참가자 대다수는 맥주, 소변, 장미, 또는 엔진 오일 같은 매우 흔한 냄새의 이름을 대지 못했다.",
+      "answers": ["majority", "name"],
+      "explain": [
+        "참가자 '대다수' — majority.",
+        "냄새의 '이름을 대다' — name."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "{{1:Obviously/Doubtfully}}, even those who couldn't name any of these odors would {{2:drink/spill}} the beer but not the urine or the motor oil.",
+      "ko_full": "분명히, 이 냄새들 중 어느 것의 이름도 대지 못한 사람들조차 맥주는 마시되 소변이나 엔진 오일은 마시지 않을 것이다.",
+      "answers": ["Obviously", "drink"],
+      "explain": [
+        "'분명히' — Obviously.",
+        "맥주는 '마시다' — drink."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "This is how {{1:evolution/extinction}} has shaped our brain: We {{2:respond/ignore}} to odors correctly in many different ways, but we are not well-equipped to talk about them.",
+      "ko_full": "이것이 진화가 우리의 뇌를 형성해 온 방식이다: 우리는 여러 다양한 방식으로 냄새에 올바르게 반응하지만, 그것에 대해 말할 능력은 잘 갖추어져 있지 않다.",
+      "answers": ["evolution", "respond"],
+      "explain": [
+        "뇌를 형성해 온 것은 '진화' — evolution.",
+        "냄새에 '반응하다' — respond."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "b", "answer": "basic",      "after": "way of talking" },
+        { "pos": 2, "letter": "o", "answer": "olfactory",  "after": "experience" },
+        { "pos": 3, "letter": "c", "answer": "challenging", "after": "" }
+      ],
+      "ko_full": "무언가가 어떤 냄새가 나는지 이야기하는 것은 우리의 후각 경험에 대해 이야기하는 가장 기본적인 방법인데, 이 가장 기본적인 방법조차도 어렵다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "w", "answer": "words",    "after": "in the English language" },
+        { "pos": 2, "letter": "d", "answer": "describe", "after": "smells" },
+        { "pos": 3, "letter": "c", "answer": "colors",   "after": "" }
+      ],
+      "ko_full": "영어에는 \"파랑\"이나 \"초록\"이 색을 묘사하는 것과 같은 방식으로 냄새를 묘사하는 단어가 없다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "i", "answer": "instead", "after": ", to talk about" },
+        { "pos": 2, "letter": "s", "answer": "source",  "after": "of the odor" },
+        { "pos": 3, "letter": "o", "answer": "odor",    "after": "" }
+      ],
+      "ko_full": "대신, 무언가가 어떤 냄새가 나는지 이야기하기 위해, 우리는 그 냄새의 출처에 대해 이야기한다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "s", "answer": "smell",   "after": "flowery" },
+        { "pos": 2, "letter": "f", "answer": "flowery", "after": "fruity" },
+        { "pos": 3, "letter": "f", "answer": "fishy",   "after": "" }
+      ],
+      "ko_full": "어떤 것은 \"꽃 같은\", \"과일 같은\", 또는 \"생선 같은\" 냄새가 난다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "f", "answer": "familiar", "after": "odors" },
+        { "pos": 2, "letter": "i", "answer": "identify", "after": "when they are" },
+        { "pos": 3, "letter": "c", "answer": "context",  "after": "" }
+      ],
+      "ko_full": "더욱이, 가장 익숙한 냄새조차도 평소의 맥락에서 경험되지 않으면 식별하기 어렵다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "e", "answer": "experiment",   "after": "the majority" },
+        { "pos": 2, "letter": "p", "answer": "participants", "after": "was unable" },
+        { "pos": 3, "letter": "n", "answer": "name",         "after": "very common odors" },
+        { "pos": 4, "letter": "c", "answer": "common",       "after": "odors" }
+      ],
+      "ko_full": "한 실험에서 참가자 대다수는 맥주, 소변, 장미, 또는 엔진 오일 같은 매우 흔한 냄새의 이름을 대지 못했다."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "hints": [
+        { "pos": 1, "letter": "o", "answer": "obviously", "after": ", even those" },
+        { "pos": 2, "letter": "n", "answer": "name",      "after": "any of these odors" },
+        { "pos": 3, "letter": "d", "answer": "drink",     "after": "the beer" }
+      ],
+      "ko_full": "분명히, 이 냄새들 중 어느 것의 이름도 대지 못한 사람들조차 맥주는 마시되 소변이나 엔진 오일은 마시지 않을 것이다."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "hints": [
+        { "pos": 1, "letter": "e", "answer": "evolution", "after": "has shaped our brain" },
+        { "pos": 2, "letter": "s", "answer": "shaped",    "after": "our brain" },
+        { "pos": 3, "letter": "r", "answer": "respond",   "after": "to odors correctly" },
+        { "pos": 4, "letter": "c", "answer": "correctly", "after": "in many different ways" }
+      ],
+      "ko_full": "이것이 진화가 우리의 뇌를 형성해 온 방식이다: 우리는 여러 다양한 방식으로 냄새에 올바르게 반응하지만, 그것에 대해 말할 능력은 잘 갖추어져 있지 않다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 },
+    { "no": 7, "ref_sentence": 7 },
+    { "no": 8, "ref_sentence": 8 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["Talking", "about", "what", "something", "smells", "like", "is", "the", "most", "basic", "way", "of", "talking", "about", "our", "olfactory", "experience", "and", "even", "this", "most", "basic", "way", "of", "talking", "about", "smells", "is", "challenging"],
+      "answer": "Talking about what something smells like is the most basic way of talking about our olfactory experience, and even this most basic way of talking about smells is challenging."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["There", "are", "no", "words", "in", "the", "English", "language", "to", "describe", "smells", "in", "the", "same", "way", "in", "which", "blue", "or", "green", "describe", "colors"],
+      "answer": "There are no words in the English language to describe smells in the same way in which \"blue\" or \"green\" describe colors."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["Instead", "to", "talk", "about", "how", "something", "smells", "we", "talk", "about", "the", "source", "of", "the", "odor"],
+      "answer": "Instead, to talk about how something smells, we talk about the source of the odor."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["Things", "smell", "flowery", "fruity", "or", "fishy"],
+      "answer": "Things smell \"flowery,\" \"fruity,\" or \"fishy.\""
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["Furthermore", "even", "the", "most", "familiar", "odors", "are", "difficult", "to", "identify", "when", "they", "are", "not", "experienced", "in", "their", "usual", "context"],
+      "answer": "Furthermore, even the most familiar odors are difficult to identify when they are not experienced in their usual context."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["In", "one", "experiment", "the", "majority", "of", "participants", "was", "unable", "to", "name", "very", "common", "odors", "like", "beer", "urine", "roses", "or", "motor", "oil"],
+      "answer": "In one experiment the majority of participants was unable to name very common odors like beer, urine, roses, or motor oil."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "words": ["Obviously", "even", "those", "who", "couldn't", "name", "any", "of", "these", "odors", "would", "drink", "the", "beer", "but", "not", "the", "urine", "or", "the", "motor", "oil"],
+      "answer": "Obviously, even those who couldn't name any of these odors would drink the beer but not the urine or the motor oil."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "words": ["This", "is", "how", "evolution", "has", "shaped", "our", "brain", "We", "respond", "to", "odors", "correctly", "in", "many", "different", "ways", "but", "we", "are", "not", "well-equipped", "to", "talk", "about", "them"],
+      "answer": "This is how evolution has shaped our brain: We respond to odors correctly in many different ways, but we are not well-equipped to talk about them."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" },
+    { "no": 7, "ref_sentence": 7, "given": "ko" },
+    { "no": 8, "ref_sentence": 8, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 1, "no": 1 },
+    { "kind": "vocab",   "ref": 2, "no": 2 },
+    { "kind": "fill",    "ref": 4, "no": 3 },
+    { "kind": "ko",      "ref": 5, "no": 4 },
+    { "kind": "jumble",  "ref": 6, "no": 5 },
+    { "kind": "sent",    "ref": 7, "no": 6 },
+    { "kind": "grammar", "ref": 8, "no": 7 },
+    { "kind": "vocab",   "ref": 3, "no": 8 }
+  ]
+}

@@ -1,0 +1,393 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "19.json",
+  "_note": "19번 워크북 — 본문 8문장 풀커버.",
+  "_template_for_new_rounds": "이 파일을 새 회차의 {N}-workbook.json 작성 시 템플릿으로 사용. en_template의 {{N:A/B}} 토큰 = 양자택일 박스, hints 배열 = 빈칸 첫글자, jumble.words = 단어 배열 (셔플 X, 의도 유지).",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "business trip", "pos": "구" },
+      { "word": "suddenly",      "pos": "부" },
+      { "word": "announce",      "pos": "동" },
+      { "word": "mechanical",    "pos": "형" },
+      { "word": "nervous",       "pos": "형" },
+      { "word": "hesitation",    "pos": "명" },
+      { "word": "worry",         "pos": "동" },
+      { "word": "reach",         "pos": "동" },
+      { "word": "delay",         "pos": "동" },
+      { "word": "relief",        "pos": "명" }
+    ],
+    "ko_to_en": [
+      { "meaning": "타다",                 "pos": "동", "answer": "ride" },
+      { "meaning": "멈추다",               "pos": "동", "answer": "stop" },
+      { "meaning": "문제, 고장",           "pos": "명", "answer": "problem" },
+      { "meaning": "놓치다",               "pos": "동", "answer": "miss" },
+      { "meaning": "(차에서) 내리다",      "pos": "구", "answer": "get off" },
+      { "meaning": "택시",                 "pos": "명", "answer": "taxi" },
+      { "meaning": "마침내",               "pos": "부", "answer": "finally" },
+      { "meaning": "역",                   "pos": "명", "answer": "station" },
+      { "meaning": "자리, 좌석",           "pos": "명", "answer": "seat" },
+      { "meaning": "숨, 호흡",             "pos": "명", "answer": "breath" }
+    ],
+    "expressions": [
+      { "ko": "~로 가는 길에",        "answer": "on one's way to" },
+      { "ko": "망설임 없이",          "answer": "without hesitation" },
+      { "ko": "제시간에 도착하다",    "answer": "make it in time" },
+      { "ko": "알게 되다",            "answer": "find out" },
+      { "ko": "(자리에) 자리 잡다",   "answer": "settle into" }
+    ],
+    "definitions": [
+      { "def": "a journey taken for work purposes",                         "answer": "business trip" },
+      { "def": "feeling worried or uneasy about something",                 "answer": "nervous" },
+      { "def": "to make something happen later than planned",               "answer": "delay" },
+      { "def": "to tell people about something officially or publicly",     "answer": "announce" },
+      { "def": "the good feeling you have when worry or pain goes away",    "answer": "relief" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Daniel {{1:was/were}} on his way to the train station {{2:for/from}} a business trip.",
+      "ko_full": "Daniel은 출장을 위해 기차역으로 가는 길이었다.",
+      "answers": ["was", "for"],
+      "explain": [
+        "주어 Daniel은 3인칭 단수 → was.",
+        "'출장을 위해' 목적의 전치사 → for."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "He {{1:was riding/was rode}} a bus {{2:when/which}} it suddenly stopped.",
+      "ko_full": "그는 버스를 타고 있었는데 그때 버스가 갑자기 멈췄다.",
+      "answers": ["was riding", "when"],
+      "explain": [
+        "과거진행형 was + V-ing → was riding.",
+        "'~하고 있었는데 그때'를 잇는 시간 접속사 → when."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "The driver announced, \"We {{1:have/has}} a {{2:mechanical/mechanically}} problem.\"",
+      "ko_full": "운전기사가 \"기계적 문제가 생겼습니다\"라고 안내했다.",
+      "answers": ["have", "mechanical"],
+      "explain": [
+        "주어 We → have.",
+        "명사 problem을 수식하는 형용사 → mechanical."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "Daniel grew {{1:nervous/nervously}} about {{2:missing/to miss}} his train.",
+      "ko_full": "Daniel은 기차를 놓칠까 봐 초조해졌다.",
+      "answers": ["nervous", "missing"],
+      "explain": [
+        "grow + 형용사(~한 상태가 되다) → nervous.",
+        "about은 전치사 → 동명사 missing."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "Without hesitation, he got {{1:off/out}} the bus and {{2:took/taken}} a taxi to the station.",
+      "ko_full": "망설임 없이, 그는 버스에서 내려 택시를 타고 역으로 갔다.",
+      "answers": ["off", "took"],
+      "explain": [
+        "get off the bus: (버스에서) 내리다 → off.",
+        "과거시제 동사, take의 과거형 → took."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "Still, he kept {{1:worrying/to worry}} about {{2:not making/not to make}} it in time.",
+      "ko_full": "그래도 그는 제시간에 도착하지 못할까 봐 계속 걱정했다.",
+      "answers": ["worrying", "not making"],
+      "explain": [
+        "keep + V-ing(계속 ~하다) → worrying.",
+        "about(전치사) 뒤 동명사의 부정 → not making."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "When he finally reached the station, he found out the train {{1:was/being}} delayed {{2:by/in}} ten minutes.",
+      "ko_full": "마침내 역에 도착했을 때, 그는 기차가 10분 지연되었다는 것을 알게 되었다.",
+      "answers": ["was", "by"],
+      "explain": [
+        "found out의 목적어절 동사 → 정상 동사 was (분사 아님).",
+        "차이·정도를 나타내는 'by ~'(~만큼) → by."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "Once he {{1:settled/was settled}} into his seat, he let out a long breath {{2:of/in}} relief.",
+      "ko_full": "자리에 앉자, 그는 안도의 긴 한숨을 내쉬었다.",
+      "answers": ["settled", "of"],
+      "explain": [
+        "settle into는 자동사 — 능동 과거 settled.",
+        "'안도의 한숨'을 나타내는 of breath of relief → of."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Daniel was on his {{1:way/end}} to the train station for a business trip.",
+      "ko_full": "Daniel은 출장을 위해 기차역으로 가는 길이었다.",
+      "answers": ["way"],
+      "explain": ["on one's way to: ~로 가는 길에 → way."]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "He was riding a bus when it {{1:suddenly/gradually}} {{2:stopped/started}}.",
+      "ko_full": "그는 버스를 타고 있었는데 그때 버스가 갑자기 멈췄다.",
+      "answers": ["suddenly", "stopped"],
+      "explain": [
+        "'갑자기' — suddenly (↔ gradually).",
+        "버스가 '멈췄다' — stopped (↔ started)."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "The driver {{1:announced/concealed}}, \"We have a {{2:mechanical/manual}} problem.\"",
+      "ko_full": "운전기사가 \"기계적 문제가 생겼습니다\"라고 안내했다.",
+      "answers": ["announced", "mechanical"],
+      "explain": [
+        "'안내했다' — announced (↔ concealed 숨기다).",
+        "'기계적' 문제 — mechanical (↔ manual)."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "Daniel grew {{1:nervous/calm}} about {{2:missing/catching}} his train.",
+      "ko_full": "Daniel은 기차를 놓칠까 봐 초조해졌다.",
+      "answers": ["nervous", "missing"],
+      "explain": [
+        "'초조한' — nervous (↔ calm).",
+        "기차를 '놓치다' — missing (↔ catching)."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "Without {{1:hesitation/delay}}, he {{2:got off/got on}} the bus and took a taxi to the station.",
+      "ko_full": "망설임 없이, 그는 버스에서 내려 택시를 타고 역으로 갔다.",
+      "answers": ["hesitation", "got off"],
+      "explain": [
+        "without hesitation: '망설임 없이' — hesitation.",
+        "버스에서 '내렸다' — got off (↔ got on 타다)."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "Still, he kept {{1:worrying/relaxing}} about not making it {{2:in time/too early}}.",
+      "ko_full": "그래도 그는 제시간에 도착하지 못할까 봐 계속 걱정했다.",
+      "answers": ["worrying", "in time"],
+      "explain": [
+        "'걱정하다' — worrying (↔ relaxing).",
+        "'제시간에' — in time."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "When he finally reached the station, he {{1:found out/overlooked}} the train was {{2:delayed/advanced}} by ten minutes.",
+      "ko_full": "마침내 역에 도착했을 때, 그는 기차가 10분 지연되었다는 것을 알게 되었다.",
+      "answers": ["found out", "delayed"],
+      "explain": [
+        "'알게 되었다' — found out (↔ overlooked 못 보고 넘기다).",
+        "기차가 '지연되었다' — delayed (↔ advanced 앞당겨진)."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "Once he {{1:settled into/left}} his seat, he let out a long breath of {{2:relief/anxiety}}.",
+      "ko_full": "자리에 앉자, 그는 안도의 긴 한숨을 내쉬었다.",
+      "answers": ["settled into", "relief"],
+      "explain": [
+        "자리에 '자리 잡았다' — settled into (↔ left 떠나다).",
+        "'안도' — relief (↔ anxiety 불안)."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "w", "answer": "way",     "after": "to the train" },
+        { "pos": 2, "letter": "s", "answer": "station", "after": "for a business trip" },
+        { "pos": 3, "letter": "b", "answer": "business","after": "trip" }
+      ],
+      "ko_full": "Daniel은 출장을 위해 기차역으로 가는 길이었다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "r", "answer": "riding",   "after": "a bus" },
+        { "pos": 2, "letter": "s", "answer": "suddenly", "after": "stopped" },
+        { "pos": 3, "letter": "s", "answer": "stopped",  "after": "" }
+      ],
+      "ko_full": "그는 버스를 타고 있었는데 그때 버스가 갑자기 멈췄다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "a", "answer": "announced",  "after": "We have" },
+        { "pos": 2, "letter": "m", "answer": "mechanical", "after": "problem" },
+        { "pos": 3, "letter": "p", "answer": "problem",    "after": "" }
+      ],
+      "ko_full": "운전기사가 \"기계적 문제가 생겼습니다\"라고 안내했다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "g", "answer": "grew",    "after": "nervous about" },
+        { "pos": 2, "letter": "n", "answer": "nervous", "after": "about missing" },
+        { "pos": 3, "letter": "m", "answer": "missing", "after": "his train" }
+      ],
+      "ko_full": "Daniel은 기차를 놓칠까 봐 초조해졌다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "h", "answer": "hesitation", "after": ", he got off" },
+        { "pos": 2, "letter": "b", "answer": "bus",        "after": "and took a taxi" },
+        { "pos": 3, "letter": "t", "answer": "taxi",       "after": "to the station" }
+      ],
+      "ko_full": "망설임 없이, 그는 버스에서 내려 택시를 타고 역으로 갔다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "w", "answer": "worrying", "after": "about not making" },
+        { "pos": 2, "letter": "m", "answer": "making",   "after": "it in time" },
+        { "pos": 3, "letter": "t", "answer": "time",     "after": "" }
+      ],
+      "ko_full": "그래도 그는 제시간에 도착하지 못할까 봐 계속 걱정했다."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "hints": [
+        { "pos": 1, "letter": "r", "answer": "reached", "after": "the station" },
+        { "pos": 2, "letter": "d", "answer": "delayed", "after": "by ten minutes" },
+        { "pos": 3, "letter": "m", "answer": "minutes", "after": "" }
+      ],
+      "ko_full": "마침내 역에 도착했을 때, 그는 기차가 10분 지연되었다는 것을 알게 되었다."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "hints": [
+        { "pos": 1, "letter": "s", "answer": "settled", "after": "into his seat" },
+        { "pos": 2, "letter": "b", "answer": "breath",  "after": "of relief" },
+        { "pos": 3, "letter": "r", "answer": "relief",  "after": "" }
+      ],
+      "ko_full": "자리에 앉자, 그는 안도의 긴 한숨을 내쉬었다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 },
+    { "no": 7, "ref_sentence": 7 },
+    { "no": 8, "ref_sentence": 8 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["Daniel", "was", "on", "his", "way", "to", "the", "train", "station", "for", "a", "business", "trip"],
+      "answer": "Daniel was on his way to the train station for a business trip."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["He", "was", "riding", "a", "bus", "when", "it", "suddenly", "stopped"],
+      "answer": "He was riding a bus when it suddenly stopped."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["The", "driver", "announced", "We", "have", "a", "mechanical", "problem"],
+      "answer": "The driver announced, \"We have a mechanical problem.\""
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["Daniel", "grew", "nervous", "about", "missing", "his", "train"],
+      "answer": "Daniel grew nervous about missing his train."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["Without", "hesitation", "he", "got", "off", "the", "bus", "and", "took", "a", "taxi", "to", "the", "station"],
+      "answer": "Without hesitation, he got off the bus and took a taxi to the station."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["Still", "he", "kept", "worrying", "about", "not", "making", "it", "in", "time"],
+      "answer": "Still, he kept worrying about not making it in time."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "words": ["When", "he", "finally", "reached", "the", "station", "he", "found", "out", "the", "train", "was", "delayed", "by", "ten", "minutes"],
+      "answer": "When he finally reached the station, he found out the train was delayed by ten minutes."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "words": ["Once", "he", "settled", "into", "his", "seat", "he", "let", "out", "a", "long", "breath", "of", "relief"],
+      "answer": "Once he settled into his seat, he let out a long breath of relief."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" },
+    { "no": 7, "ref_sentence": 7, "given": "ko" },
+    { "no": 8, "ref_sentence": 8, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 2, "no": 1 },
+    { "kind": "vocab",   "ref": 4, "no": 2 },
+    { "kind": "fill",    "ref": 5, "no": 3 },
+    { "kind": "ko",      "ref": 6, "no": 4 },
+    { "kind": "jumble",  "ref": 7, "no": 5 },
+    { "kind": "sent",    "ref": 8, "no": 6 },
+    { "kind": "grammar", "ref": 3, "no": 7 },
+    { "kind": "vocab",   "ref": 7, "no": 8 }
+  ]
+}

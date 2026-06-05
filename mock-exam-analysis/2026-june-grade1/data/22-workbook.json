@@ -1,0 +1,396 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "22.json",
+  "_note": "22번 워크북 — 본문 N문장 풀커버.",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "suppose",       "pos": "동" },
+      { "word": "challenging",   "pos": "형" },
+      { "word": "encounter",     "pos": "동" },
+      { "word": "relaxed",       "pos": "형" },
+      { "word": "insight",       "pos": "명" },
+      { "word": "unexpected",    "pos": "형" },
+      { "word": "enhance",       "pos": "동" },
+      { "word": "spontaneous",   "pos": "형" },
+      { "word": "specific",      "pos": "형" },
+      { "word": "harmful",       "pos": "형" }
+    ],
+    "ko_to_en": [
+      { "meaning": "해결책",             "pos": "명", "answer": "solution" },
+      { "meaning": "기술적인",           "pos": "형", "answer": "technological" },
+      { "meaning": "발견",               "pos": "명", "answer": "discovery" },
+      { "meaning": "발명(품)",           "pos": "명", "answer": "invention" },
+      { "meaning": "잠재적으로",         "pos": "부", "answer": "potentially" },
+      { "meaning": "결과",               "pos": "명", "answer": "outcome" },
+      { "meaning": "특정한",             "pos": "형", "answer": "specific" },
+      { "meaning": "폭, 너비",           "pos": "명", "answer": "breadth" },
+      { "meaning": "범위",               "pos": "명", "answer": "scope" },
+      { "meaning": "상상력",             "pos": "명", "answer": "imagination" }
+    ],
+    "expressions": [
+      { "ko": "~에 주의를 기울이다",   "answer": "pay attention to" },
+      { "ko": "~할 가능성이 있다",     "answer": "chances are" },
+      { "ko": "갑자기 떠오르다",       "answer": "pop up" },
+      { "ko": "일어나다, 발생하다",    "answer": "take place" },
+      { "ko": "반대로",               "answer": "on the contrary" }
+    ],
+    "definitions": [
+      { "def": "to make something better or greater in value or quality",         "answer": "enhance" },
+      { "def": "happening naturally without being planned",                       "answer": "spontaneous" },
+      { "def": "to meet or come across something by chance",                      "answer": "encounter" },
+      { "def": "a sudden clear understanding of something",                       "answer": "insight" },
+      { "def": "causing damage or injury to something",                          "answer": "harmful" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Suppose you {{1:have been working/have been worked}} on the solution to a challenging technological problem {{2:for/since}} many years.",
+      "ko_full": "여러분이 어려운 기술적 문제의 해결책을 여러 해 동안 연구해 왔다고 가정해 보라.",
+      "answers": ["have been working", "for"],
+      "explain": [
+        "work는 능동의 현재완료진행 — have been working.",
+        "기간(many years) 앞에는 for."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "Let's also suppose that you have been paying attention to {{1:whatever/whichever}} else you have encountered that {{2:might/may have}} be related to the problem.",
+      "ko_full": "또한 여러분이 그 문제와 관련이 있을 수 있는, 마주친 그 밖의 무엇이든 주의를 기울여 왔다고 가정해 보자.",
+      "answers": ["whatever", "might"],
+      "explain": [
+        "'무엇이든'을 뜻하는 복합관계대명사 whatever.",
+        "뒤에 동사원형 be가 오므로 조동사 might."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "In that case, chances are {{1:that/what}} creative solutions to the problem could suddenly pop up in your mind when you {{2:are/will be}} relaxed.",
+      "ko_full": "그런 경우, 여러분이 편안할 때 그 문제에 대한 창의적인 해결책이 갑자기 머릿속에 떠오를 가능성이 있다.",
+      "answers": ["that", "are"],
+      "explain": [
+        "chances are 뒤 완전한 절을 이끄는 접속사 that.",
+        "시간 부사절(when)에서는 현재형이 미래를 대신 — are."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "Such \"eureka moments\" (when great insights {{1:lead/leads}} to discovery or invention) often {{2:take/takes}} place at unexpected times.",
+      "ko_full": "그러한 \"유레카 순간\"(위대한 통찰이 발견이나 발명으로 이어지는 때)은 흔히 예상치 못한 때에 일어난다.",
+      "answers": ["lead", "take"],
+      "explain": [
+        "주어 insights(복수) → lead.",
+        "주어 eureka moments(복수) → take."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "To enhance spontaneous creativity, therefore, one must pay attention to the things {{1:that/what}} could potentially {{2:lead/leading}} to valuable outcomes.",
+      "ko_full": "그러므로, 자발적인 창의성을 높이려면, 사람은 잠재적으로 가치 있는 결과로 이어질 수 있는 것들에 주의를 기울여야 한다.",
+      "answers": ["that", "lead"],
+      "explain": [
+        "선행사 the things를 수식하는 주격 관계대명사 that.",
+        "조동사 could 뒤 동사원형 lead."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "This does not mean {{1:that/what}} you must {{2:narrow/narrowing}} down your interest to one specific topic.",
+      "ko_full": "이것은 여러분이 자신의 관심을 하나의 특정 주제로 좁혀야 한다는 것을 의미하지 않는다.",
+      "answers": ["that", "narrow"],
+      "explain": [
+        "mean의 목적어 명사절을 이끄는 접속사 that.",
+        "조동사 must 뒤 동사원형 narrow."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "On the contrary, breadth of experience {{1:is/are}} the {{2:key/keys}} to creativity.",
+      "ko_full": "반대로, 경험의 폭이 창의성의 열쇠이다.",
+      "answers": ["is", "key"],
+      "explain": [
+        "주어 핵 = breadth(단수) → is.",
+        "the ~ to creativity, 단수 보어 key."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "If your experience {{1:is/being}} limited to a narrow range of topics, then the scope of your imagination will likewise be narrow, {{2:which/that}} would be harmful to creativity.",
+      "ko_full": "만약 여러분의 경험이 좁은 범위의 주제에 한정된다면, 그러면 여러분의 상상력의 범위도 마찬가지로 좁아질 것이고, 이는 창의성에 해로울 것이다.",
+      "answers": ["is", "which"],
+      "explain": [
+        "조건절의 정상 동사 형태 — is(수동 is limited).",
+        "앞 절 전체를 받는 계속적 용법 관계대명사 which."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Suppose you have been working on the {{1:solution/problem}} to a {{2:challenging/easy}} technological problem for many years.",
+      "ko_full": "여러분이 어려운 기술적 문제의 해결책을 여러 해 동안 연구해 왔다고 가정해 보라.",
+      "answers": ["solution", "challenging"],
+      "explain": [
+        "'해결책'을 연구 — solution.",
+        "'어려운' 기술 문제 — challenging."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "Let's also suppose that you have been {{1:paying attention to/ignoring}} whatever else you have {{2:encountered/avoided}} that might be related to the problem.",
+      "ko_full": "또한 여러분이 그 문제와 관련이 있을 수 있는, 마주친 그 밖의 무엇이든 주의를 기울여 왔다고 가정해 보자.",
+      "answers": ["paying attention to", "encountered"],
+      "explain": [
+        "'주의를 기울이다' — pay attention to.",
+        "'마주친' — encountered."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "In that case, chances are that {{1:creative/dull}} solutions to the problem could suddenly {{2:pop up/vanish}} in your mind when you are relaxed.",
+      "ko_full": "그런 경우, 여러분이 편안할 때 그 문제에 대한 창의적인 해결책이 갑자기 머릿속에 떠오를 가능성이 있다.",
+      "answers": ["creative", "pop up"],
+      "explain": [
+        "'창의적인' 해결책 — creative.",
+        "'갑자기 떠오르다' — pop up."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "Such \"eureka moments\" (when great {{1:insights/ignorance}} lead to discovery or invention) often take place at {{2:unexpected/expected}} times.",
+      "ko_full": "그러한 \"유레카 순간\"(위대한 통찰이 발견이나 발명으로 이어지는 때)은 흔히 예상치 못한 때에 일어난다.",
+      "answers": ["insights", "unexpected"],
+      "explain": [
+        "'통찰' — insights.",
+        "'예상치 못한' 때 — unexpected."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "To {{1:enhance/reduce}} spontaneous creativity, therefore, one must pay attention to the things that could {{2:potentially/actually}} lead to valuable outcomes.",
+      "ko_full": "그러므로, 자발적인 창의성을 높이려면, 사람은 잠재적으로 가치 있는 결과로 이어질 수 있는 것들에 주의를 기울여야 한다.",
+      "answers": ["enhance", "potentially"],
+      "explain": [
+        "창의성을 '높이다' — enhance.",
+        "'잠재적으로' — potentially."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "This does not mean that you must {{1:narrow down/broaden}} your interest to one {{2:specific/general}} topic.",
+      "ko_full": "이것은 여러분이 자신의 관심을 하나의 특정 주제로 좁혀야 한다는 것을 의미하지 않는다.",
+      "answers": ["narrow down", "specific"],
+      "explain": [
+        "관심을 '좁히다' — narrow down.",
+        "'특정한' 주제 — specific."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "On the contrary, {{1:breadth/narrowness}} of experience is the {{2:key/barrier}} to creativity.",
+      "ko_full": "반대로, 경험의 폭이 창의성의 열쇠이다.",
+      "answers": ["breadth", "key"],
+      "explain": [
+        "경험의 '폭' — breadth.",
+        "창의성의 '열쇠' — key."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "If your experience is {{1:limited/expanded}} to a narrow range of topics, then the scope of your imagination will likewise be narrow, which would be {{2:harmful/beneficial}} to creativity.",
+      "ko_full": "만약 여러분의 경험이 좁은 범위의 주제에 한정된다면, 그러면 여러분의 상상력의 범위도 마찬가지로 좁아질 것이고, 이는 창의성에 해로울 것이다.",
+      "answers": ["limited", "harmful"],
+      "explain": [
+        "'한정된' — limited.",
+        "창의성에 '해로운' — harmful."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "s", "answer": "solution",      "after": "to a challenging" },
+        { "pos": 2, "letter": "c", "answer": "challenging",   "after": "technological problem" },
+        { "pos": 3, "letter": "t", "answer": "technological", "after": "problem" }
+      ],
+      "ko_full": "여러분이 어려운 기술적 문제의 해결책을 여러 해 동안 연구해 왔다고 가정해 보라."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "a", "answer": "attention",  "after": "to whatever else" },
+        { "pos": 2, "letter": "e", "answer": "encountered", "after": "that might be" },
+        { "pos": 3, "letter": "r", "answer": "related",    "after": "to the problem" }
+      ],
+      "ko_full": "또한 여러분이 그 문제와 관련이 있을 수 있는, 마주친 그 밖의 무엇이든 주의를 기울여 왔다고 가정해 보자."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "c", "answer": "creative", "after": "solutions to the problem" },
+        { "pos": 2, "letter": "m", "answer": "mind",     "after": "when you are relaxed" },
+        { "pos": 3, "letter": "r", "answer": "relaxed",  "after": "" }
+      ],
+      "ko_full": "그런 경우, 여러분이 편안할 때 그 문제에 대한 창의적인 해결책이 갑자기 머릿속에 떠오를 가능성이 있다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "i", "answer": "insights",  "after": "lead to discovery" },
+        { "pos": 2, "letter": "d", "answer": "discovery", "after": "or invention" },
+        { "pos": 3, "letter": "u", "answer": "unexpected", "after": "times" }
+      ],
+      "ko_full": "그러한 \"유레카 순간\"(위대한 통찰이 발견이나 발명으로 이어지는 때)은 흔히 예상치 못한 때에 일어난다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "e", "answer": "enhance",     "after": "spontaneous creativity" },
+        { "pos": 2, "letter": "s", "answer": "spontaneous", "after": "creativity" },
+        { "pos": 3, "letter": "v", "answer": "valuable",    "after": "outcomes" }
+      ],
+      "ko_full": "그러므로, 자발적인 창의성을 높이려면, 사람은 잠재적으로 가치 있는 결과로 이어질 수 있는 것들에 주의를 기울여야 한다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "n", "answer": "narrow",   "after": "down your interest" },
+        { "pos": 2, "letter": "i", "answer": "interest", "after": "to one specific topic" },
+        { "pos": 3, "letter": "s", "answer": "specific", "after": "topic" }
+      ],
+      "ko_full": "이것은 여러분이 자신의 관심을 하나의 특정 주제로 좁혀야 한다는 것을 의미하지 않는다."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "hints": [
+        { "pos": 1, "letter": "b", "answer": "breadth",    "after": "of experience" },
+        { "pos": 2, "letter": "e", "answer": "experience", "after": "is the key" },
+        { "pos": 3, "letter": "c", "answer": "creativity", "after": "" }
+      ],
+      "ko_full": "반대로, 경험의 폭이 창의성의 열쇠이다."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "hints": [
+        { "pos": 1, "letter": "l", "answer": "limited",     "after": "to a narrow range" },
+        { "pos": 2, "letter": "s", "answer": "scope",       "after": "of your imagination" },
+        { "pos": 3, "letter": "i", "answer": "imagination", "after": "will likewise be narrow" },
+        { "pos": 4, "letter": "h", "answer": "harmful",     "after": "to creativity" }
+      ],
+      "ko_full": "만약 여러분의 경험이 좁은 범위의 주제에 한정된다면, 그러면 여러분의 상상력의 범위도 마찬가지로 좁아질 것이고, 이는 창의성에 해로울 것이다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 },
+    { "no": 7, "ref_sentence": 7 },
+    { "no": 8, "ref_sentence": 8 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["Suppose", "you", "have", "been", "working", "on", "the", "solution", "to", "a", "challenging", "technological", "problem", "for", "many", "years"],
+      "answer": "Suppose you have been working on the solution to a challenging technological problem for many years."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["Let's", "also", "suppose", "that", "you", "have", "been", "paying", "attention", "to", "whatever", "else", "you", "have", "encountered", "that", "might", "be", "related", "to", "the", "problem"],
+      "answer": "Let's also suppose that you have been paying attention to whatever else you have encountered that might be related to the problem."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["In", "that", "case", "chances", "are", "that", "creative", "solutions", "to", "the", "problem", "could", "suddenly", "pop", "up", "in", "your", "mind", "when", "you", "are", "relaxed"],
+      "answer": "In that case, chances are that creative solutions to the problem could suddenly pop up in your mind when you are relaxed."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["Such", "eureka", "moments", "when", "great", "insights", "lead", "to", "discovery", "or", "invention", "often", "take", "place", "at", "unexpected", "times"],
+      "answer": "Such \"eureka moments\" (when great insights lead to discovery or invention) often take place at unexpected times."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["To", "enhance", "spontaneous", "creativity", "therefore", "one", "must", "pay", "attention", "to", "the", "things", "that", "could", "potentially", "lead", "to", "valuable", "outcomes"],
+      "answer": "To enhance spontaneous creativity, therefore, one must pay attention to the things that could potentially lead to valuable outcomes."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["This", "does", "not", "mean", "that", "you", "must", "narrow", "down", "your", "interest", "to", "one", "specific", "topic"],
+      "answer": "This does not mean that you must narrow down your interest to one specific topic."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "words": ["On", "the", "contrary", "breadth", "of", "experience", "is", "the", "key", "to", "creativity"],
+      "answer": "On the contrary, breadth of experience is the key to creativity."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "words": ["If", "your", "experience", "is", "limited", "to", "a", "narrow", "range", "of", "topics", "then", "the", "scope", "of", "your", "imagination", "will", "likewise", "be", "narrow", "which", "would", "be", "harmful", "to", "creativity"],
+      "answer": "If your experience is limited to a narrow range of topics, then the scope of your imagination will likewise be narrow, which would be harmful to creativity."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" },
+    { "no": 7, "ref_sentence": 7, "given": "ko" },
+    { "no": 8, "ref_sentence": 8, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 1, "no": 1 },
+    { "kind": "vocab",   "ref": 3, "no": 2 },
+    { "kind": "fill",    "ref": 5, "no": 3 },
+    { "kind": "ko",      "ref": 6, "no": 4 },
+    { "kind": "jumble",  "ref": 7, "no": 5 },
+    { "kind": "sent",    "ref": 8, "no": 6 },
+    { "kind": "grammar", "ref": 4, "no": 7 },
+    { "kind": "vocab",   "ref": 2, "no": 8 }
+  ]
+}

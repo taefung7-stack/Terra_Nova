@@ -1,0 +1,512 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "37.json",
+  "_note": "37번 워크북 — 본문 11문장 풀커버.",
+  "_template_for_new_rounds": "이 파일을 새 회차의 {N}-workbook.json 작성 시 템플릿으로 사용. en_template의 {{N:A/B}} 토큰 = 양자택일 박스, hints 배열 = 빈칸 첫글자, jumble.words = 단어 배열 (셔플 X, 의도 유지).",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "working memory",  "pos": "구" },
+      { "word": "long-term memory", "pos": "구" },
+      { "word": "explicitly",      "pos": "부" },
+      { "word": "aware",           "pos": "형" },
+      { "word": "access",          "pos": "동" },
+      { "word": "retrieve",        "pos": "동" },
+      { "word": "consciousness",   "pos": "명" },
+      { "word": "awareness",       "pos": "명" },
+      { "word": "limit",           "pos": "명" },
+      { "word": "visualize",       "pos": "동" }
+    ],
+    "ko_to_en": [
+      { "meaning": "직접",             "pos": "부", "answer": "directly" },
+      { "meaning": "가져오다",         "pos": "동", "answer": "bring" },
+      { "meaning": "저장하다",         "pos": "동", "answer": "store" },
+      { "meaning": "나열하다",         "pos": "동", "answer": "list" },
+      { "meaning": "항목",             "pos": "명", "answer": "item" },
+      { "meaning": "덩어리",           "pos": "명", "answer": "chunk" },
+      { "meaning": "붙잡다, 유지하다",  "pos": "동", "answer": "hold" },
+      { "meaning": "차이",             "pos": "명", "answer": "difference" },
+      { "meaning": "정보",             "pos": "명", "answer": "information" },
+      { "meaning": "명시적으로",       "pos": "부", "answer": "explicitly" }
+    ],
+    "expressions": [
+      { "ko": "하나씩",        "answer": "one by one" },
+      { "ko": "줄줄이 말하다",  "answer": "reel off" },
+      { "ko": "~할 수 있는",   "answer": "able to" },
+      { "ko": "한 번에",       "answer": "at any one time" },
+      { "ko": "~의 밖에",      "answer": "outside" }
+    ],
+    "definitions": [
+      { "def": "to reach or get to something so you can use it",         "answer": "access" },
+      { "def": "to get back information stored in your memory",          "answer": "retrieve" },
+      { "def": "knowing or noticing that something exists",              "answer": "aware" },
+      { "def": "the greatest amount that is allowed or possible",        "answer": "limit" },
+      { "def": "to form a picture of something in your mind",            "answer": "visualize" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "The big difference between working and long-term memory is {{1:that/what}} we are explicitly aware of the information in working memory, but we are not {{2:able/possible}} to directly access the information in our long-term memory.",
+      "ko_full": "작업 기억과 장기 기억의 큰 차이는, 우리가 작업 기억 속 정보는 명시적으로 인식하지만 장기 기억 속 정보에는 직접 접근할 수 없다는 것이다.",
+      "answers": ["that", "able"],
+      "explain": [
+        "is의 보어 명사절을 이끄는 접속사 that(완전한 절).",
+        "be able to + 동사원형 — 사람 주어 we는 able(possible 불가)."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "We access long-term memory by {{1:bringing/bring}} the information into working memory.",
+      "ko_full": "우리는 정보를 작업 기억으로 불러옴으로써 장기 기억에 접근한다.",
+      "answers": ["bringing"],
+      "explain": [
+        "전치사 by 뒤에는 동명사 bringing(~함으로써)."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "For example, right now you are not {{1:aware/awareness}} of all the actors you {{2:have/has}} ever seen.",
+      "ko_full": "예를 들어, 지금 당신은 당신이 본 적 있는 모든 배우를 인식하고 있지는 않다.",
+      "answers": ["aware", "have"],
+      "explain": [
+        "be 동사 보어 자리 — 형용사 aware(명사 awareness 불가).",
+        "주어 you + 현재완료 → have ever seen."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "They {{1:are stored/store}} in your long-term memory {{2:outside/outsider}} your consciousness.",
+      "ko_full": "그들은 당신의 의식 밖, 당신의 장기 기억 속에 저장되어 있다.",
+      "answers": ["are stored", "outside"],
+      "explain": [
+        "주어 They는 '저장되는' 대상 → 수동태 are stored.",
+        "'~의 밖에'는 전치사 outside(명사 outsider 불가)."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "However, if I {{1:asked/ask}} you to list all the actors, you {{2:would/will}} use your working memory to retrieve them one by one and reel them off.",
+      "ko_full": "그러나 만약 내가 당신에게 모든 배우를 나열해 보라고 한다면, 당신은 작업 기억을 사용해 그들을 하나씩 떠올려 줄줄이 말할 것이다.",
+      "answers": ["asked", "would"],
+      "explain": [
+        "가정법 과거: If S + 과거동사 asked.",
+        "주절은 would + 동사원형."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "Your working memory can {{1:access/accesses}} your long-term memory and {{2:bring/brings}} those memories to awareness.",
+      "ko_full": "당신의 작업 기억은 장기 기억에 접근해 그 기억들을 의식으로 가져올 수 있다.",
+      "answers": ["access", "bring"],
+      "explain": [
+        "조동사 can 뒤에는 동사원형 access.",
+        "can access ~ and (can) bring ~ 병렬 → 동사원형 bring."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "But {{1:remember/remembering}} it {{2:has/have}} a limit of seven items or chunks.",
+      "ko_full": "그러나 그것이 일곱 개의 항목 또는 덩어리라는 한계를 가진다는 점을 기억하라.",
+      "answers": ["remember", "has"],
+      "explain": [
+        "명령문 → 동사원형 remember.",
+        "주어 it(단수) → has."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "Each {{1:actor/actors}} would {{2:be/being}} an item.",
+      "ko_full": "각 배우는 하나의 항목이 될 것이다.",
+      "answers": ["actor", "be"],
+      "explain": [
+        "Each + 단수명사 → actor.",
+        "조동사 would 뒤에는 동사원형 be."
+      ]
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "en_template": "Try and {{1:hold/holding}} all the actors you {{2:know/knows}} in your explicit awareness.",
+      "ko_full": "당신이 아는 모든 배우를 명시적 인식 속에 붙잡아 두려고 해 보라.",
+      "answers": ["hold", "know"],
+      "explain": [
+        "Try and + 동사원형(= try to) → hold.",
+        "주어 you → know."
+      ]
+    },
+    {
+      "no": 10,
+      "ref_sentence": 10,
+      "en_template": "You might {{1:try/tries}} to visualize a large group {{2:of/for}} them.",
+      "ko_full": "당신은 그들의 큰 무리를 시각화하려 할 수도 있다.",
+      "answers": ["try", "of"],
+      "explain": [
+        "조동사 might 뒤에는 동사원형 try.",
+        "a large group of ~ (~의 큰 무리)."
+      ]
+    },
+    {
+      "no": 11,
+      "ref_sentence": 11,
+      "en_template": "But you still would {{1:only/lonely}} be aware of a few actors at {{2:any/some}} one time.",
+      "ko_full": "그러나 당신은 여전히 한 번에 단지 몇 명의 배우만 인식할 수 있을 것이다.",
+      "answers": ["only", "any"],
+      "explain": [
+        "'단지 ~만'의 한정 부사 only(lonely=외로운 불가).",
+        "at any one time(한 번에) — 관용 표현."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "The big difference between working and long-term memory is that we are explicitly {{1:aware/unaware}} of the information in working memory, but we are not able to directly {{2:access/block}} the information in our long-term memory.",
+      "ko_full": "작업 기억과 장기 기억의 큰 차이는, 우리가 작업 기억 속 정보는 명시적으로 인식하지만 장기 기억 속 정보에는 직접 접근할 수 없다는 것이다.",
+      "answers": ["aware", "access"],
+      "explain": [
+        "작업 기억 정보는 '인식하는' — aware.",
+        "장기 기억에 '접근하다' — access."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "We {{1:access/block}} long-term memory by {{2:bringing/removing}} the information into working memory.",
+      "ko_full": "우리는 정보를 작업 기억으로 불러옴으로써 장기 기억에 접근한다.",
+      "answers": ["access", "bringing"],
+      "explain": [
+        "장기 기억에 '접근하다' — access.",
+        "정보를 '가져옴'으로써 — bringing."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "For example, right now you are not {{1:aware/unaware}} of all the actors you have ever {{2:seen/forgotten}}.",
+      "ko_full": "예를 들어, 지금 당신은 당신이 본 적 있는 모든 배우를 인식하고 있지는 않다.",
+      "answers": ["aware", "seen"],
+      "explain": [
+        "not aware of ~ (인식하지 못함) — aware.",
+        "'본 적 있는' — seen."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "They are {{1:stored/discarded}} in your long-term memory {{2:outside/inside}} your consciousness.",
+      "ko_full": "그들은 당신의 의식 밖, 당신의 장기 기억 속에 저장되어 있다.",
+      "answers": ["stored", "outside"],
+      "explain": [
+        "장기 기억에 '저장된' — stored.",
+        "의식 '밖에' — outside."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "However, if I asked you to {{1:list/hide}} all the actors, you would use your working memory to {{2:retrieve/store}} them one by one and reel them off.",
+      "ko_full": "그러나 만약 내가 당신에게 모든 배우를 나열해 보라고 한다면, 당신은 작업 기억을 사용해 그들을 하나씩 떠올려 줄줄이 말할 것이다.",
+      "answers": ["list", "retrieve"],
+      "explain": [
+        "모든 배우를 '나열하다' — list.",
+        "그들을 '인출하다, 떠올리다' — retrieve."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "Your working memory can {{1:access/block}} your long-term memory and bring those memories to {{2:awareness/ignorance}}.",
+      "ko_full": "당신의 작업 기억은 장기 기억에 접근해 그 기억들을 의식으로 가져올 수 있다.",
+      "answers": ["access", "awareness"],
+      "explain": [
+        "장기 기억에 '접근하다' — access.",
+        "기억들을 '의식'으로 — awareness."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "But remember it has a {{1:limit/freedom}} of seven {{2:items/feelings}} or chunks.",
+      "ko_full": "그러나 그것이 일곱 개의 항목 또는 덩어리라는 한계를 가진다는 점을 기억하라.",
+      "answers": ["limit", "items"],
+      "explain": [
+        "일곱 개라는 '한계' — limit.",
+        "일곱 개의 '항목' — items."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "Each actor would be an {{1:item/emotion}}.",
+      "ko_full": "각 배우는 하나의 항목이 될 것이다.",
+      "answers": ["item"],
+      "explain": [
+        "각 배우 = 하나의 '항목' — item."
+      ]
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "en_template": "Try and {{1:hold/release}} all the actors you know in your {{2:explicit/vague}} awareness.",
+      "ko_full": "당신이 아는 모든 배우를 명시적 인식 속에 붙잡아 두려고 해 보라.",
+      "answers": ["hold", "explicit"],
+      "explain": [
+        "배우들을 '붙잡아 두다' — hold.",
+        "'명시적' 인식 — explicit."
+      ]
+    },
+    {
+      "no": 10,
+      "ref_sentence": 10,
+      "en_template": "You might try to {{1:visualize/ignore}} a {{2:large/tiny}} group of them.",
+      "ko_full": "당신은 그들의 큰 무리를 시각화하려 할 수도 있다.",
+      "answers": ["visualize", "large"],
+      "explain": [
+        "그들을 '시각화하다' — visualize.",
+        "'큰' 무리 — large."
+      ]
+    },
+    {
+      "no": 11,
+      "ref_sentence": 11,
+      "en_template": "But you still would only be {{1:aware/unaware}} of a {{2:few/many}} actors at any one time.",
+      "ko_full": "그러나 당신은 여전히 한 번에 단지 몇 명의 배우만 인식할 수 있을 것이다.",
+      "answers": ["aware", "few"],
+      "explain": [
+        "단지 몇 명만 '인식하는' — aware.",
+        "'몇몇의' 배우 — few."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "d", "answer": "difference",  "after": "between working and long-term memory" },
+        { "pos": 2, "letter": "e", "answer": "explicitly",  "after": "aware of the information" },
+        { "pos": 3, "letter": "a", "answer": "access",       "after": "the information in our long-term memory" }
+      ],
+      "ko_full": "작업 기억과 장기 기억의 큰 차이는, 우리가 작업 기억 속 정보는 명시적으로 인식하지만 장기 기억 속 정보에는 직접 접근할 수 없다는 것이다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "a", "answer": "access",      "after": "long-term memory" },
+        { "pos": 2, "letter": "b", "answer": "bringing",    "after": "the information" },
+        { "pos": 3, "letter": "w", "answer": "working",     "after": "memory" }
+      ],
+      "ko_full": "우리는 정보를 작업 기억으로 불러옴으로써 장기 기억에 접근한다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "a", "answer": "aware",   "after": "of all the actors" },
+        { "pos": 2, "letter": "a", "answer": "actors",  "after": "you have ever seen" },
+        { "pos": 3, "letter": "s", "answer": "seen",    "after": "" }
+      ],
+      "ko_full": "예를 들어, 지금 당신은 당신이 본 적 있는 모든 배우를 인식하고 있지는 않다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "s", "answer": "stored",        "after": "in your long-term memory" },
+        { "pos": 2, "letter": "o", "answer": "outside",       "after": "your consciousness" },
+        { "pos": 3, "letter": "c", "answer": "consciousness", "after": "" }
+      ],
+      "ko_full": "그들은 당신의 의식 밖, 당신의 장기 기억 속에 저장되어 있다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "l", "answer": "list",     "after": "all the actors" },
+        { "pos": 2, "letter": "r", "answer": "retrieve", "after": "them one by one" },
+        { "pos": 3, "letter": "r", "answer": "reel",     "after": "them off" }
+      ],
+      "ko_full": "그러나 만약 내가 당신에게 모든 배우를 나열해 보라고 한다면, 당신은 작업 기억을 사용해 그들을 하나씩 떠올려 줄줄이 말할 것이다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "a", "answer": "access",    "after": "your long-term memory" },
+        { "pos": 2, "letter": "b", "answer": "bring",     "after": "those memories" },
+        { "pos": 3, "letter": "a", "answer": "awareness", "after": "" }
+      ],
+      "ko_full": "당신의 작업 기억은 장기 기억에 접근해 그 기억들을 의식으로 가져올 수 있다."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "hints": [
+        { "pos": 1, "letter": "r", "answer": "remember", "after": "it has a limit" },
+        { "pos": 2, "letter": "l", "answer": "limit",    "after": "of seven items" },
+        { "pos": 3, "letter": "c", "answer": "chunks",   "after": "" }
+      ],
+      "ko_full": "그러나 그것이 일곱 개의 항목 또는 덩어리라는 한계를 가진다는 점을 기억하라."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "hints": [
+        { "pos": 1, "letter": "a", "answer": "actor", "after": "would be an item" },
+        { "pos": 2, "letter": "i", "answer": "item",  "after": "" }
+      ],
+      "ko_full": "각 배우는 하나의 항목이 될 것이다."
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "hints": [
+        { "pos": 1, "letter": "h", "answer": "hold",      "after": "all the actors" },
+        { "pos": 2, "letter": "e", "answer": "explicit",  "after": "awareness" },
+        { "pos": 3, "letter": "a", "answer": "awareness", "after": "" }
+      ],
+      "ko_full": "당신이 아는 모든 배우를 명시적 인식 속에 붙잡아 두려고 해 보라."
+    },
+    {
+      "no": 10,
+      "ref_sentence": 10,
+      "hints": [
+        { "pos": 1, "letter": "v", "answer": "visualize", "after": "a large group" },
+        { "pos": 2, "letter": "g", "answer": "group",     "after": "of them" }
+      ],
+      "ko_full": "당신은 그들의 큰 무리를 시각화하려 할 수도 있다."
+    },
+    {
+      "no": 11,
+      "ref_sentence": 11,
+      "hints": [
+        { "pos": 1, "letter": "s", "answer": "still",  "after": "would only be aware" },
+        { "pos": 2, "letter": "a", "answer": "aware",  "after": "of a few actors" },
+        { "pos": 3, "letter": "f", "answer": "few",    "after": "actors at any one time" }
+      ],
+      "ko_full": "그러나 당신은 여전히 한 번에 단지 몇 명의 배우만 인식할 수 있을 것이다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 },
+    { "no": 7, "ref_sentence": 7 },
+    { "no": 8, "ref_sentence": 8 },
+    { "no": 9, "ref_sentence": 9 },
+    { "no": 10, "ref_sentence": 10 },
+    { "no": 11, "ref_sentence": 11 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["The", "big", "difference", "between", "working", "and", "long-term", "memory", "is", "that", "we", "are", "explicitly", "aware", "of", "the", "information", "in", "working", "memory", "but", "we", "are", "not", "able", "to", "directly", "access", "the", "information", "in", "our", "long-term", "memory"],
+      "answer": "The big difference between working and long-term memory is that we are explicitly aware of the information in working memory, but we are not able to directly access the information in our long-term memory."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["We", "access", "long-term", "memory", "by", "bringing", "the", "information", "into", "working", "memory"],
+      "answer": "We access long-term memory by bringing the information into working memory."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["For", "example", "right", "now", "you", "are", "not", "aware", "of", "all", "the", "actors", "you", "have", "ever", "seen"],
+      "answer": "For example, right now you are not aware of all the actors you have ever seen."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["They", "are", "stored", "in", "your", "long-term", "memory", "outside", "your", "consciousness"],
+      "answer": "They are stored in your long-term memory outside your consciousness."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["However", "if", "I", "asked", "you", "to", "list", "all", "the", "actors", "you", "would", "use", "your", "working", "memory", "to", "retrieve", "them", "one", "by", "one", "and", "reel", "them", "off"],
+      "answer": "However, if I asked you to list all the actors, you would use your working memory to retrieve them one by one and reel them off."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["Your", "working", "memory", "can", "access", "your", "long-term", "memory", "and", "bring", "those", "memories", "to", "awareness"],
+      "answer": "Your working memory can access your long-term memory and bring those memories to awareness."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "words": ["But", "remember", "it", "has", "a", "limit", "of", "seven", "items", "or", "chunks"],
+      "answer": "But remember it has a limit of seven items or chunks."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "words": ["Each", "actor", "would", "be", "an", "item"],
+      "answer": "Each actor would be an item."
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "words": ["Try", "and", "hold", "all", "the", "actors", "you", "know", "in", "your", "explicit", "awareness"],
+      "answer": "Try and hold all the actors you know in your explicit awareness."
+    },
+    {
+      "no": 10,
+      "ref_sentence": 10,
+      "words": ["You", "might", "try", "to", "visualize", "a", "large", "group", "of", "them"],
+      "answer": "You might try to visualize a large group of them."
+    },
+    {
+      "no": 11,
+      "ref_sentence": 11,
+      "words": ["But", "you", "still", "would", "only", "be", "aware", "of", "a", "few", "actors", "at", "any", "one", "time"],
+      "answer": "But you still would only be aware of a few actors at any one time."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" },
+    { "no": 7, "ref_sentence": 7, "given": "ko" },
+    { "no": 8, "ref_sentence": 8, "given": "ko" },
+    { "no": 9, "ref_sentence": 9, "given": "ko" },
+    { "no": 10, "ref_sentence": 10, "given": "ko" },
+    { "no": 11, "ref_sentence": 11, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 1, "no": 1 },
+    { "kind": "vocab",   "ref": 4, "no": 2 },
+    { "kind": "fill",    "ref": 5, "no": 3 },
+    { "kind": "ko",      "ref": 7, "no": 4 },
+    { "kind": "jumble",  "ref": 9, "no": 5 },
+    { "kind": "sent",    "ref": 11, "no": 6 },
+    { "kind": "grammar", "ref": 6, "no": 7 },
+    { "kind": "vocab",   "ref": 10, "no": 8 }
+  ]
+}

@@ -1,0 +1,399 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "39.json",
+  "_note": "39번 워크북 — 본문 8문장 풀커버.",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "approximately",   "pos": "부" },
+      { "word": "emission",        "pos": "명" },
+      { "word": "degradation",     "pos": "명" },
+      { "word": "deforestation",   "pos": "명" },
+      { "word": "convert",         "pos": "동" },
+      { "word": "photosynthesis",  "pos": "명" },
+      { "word": "regulator",       "pos": "명" },
+      { "word": "atmosphere",      "pos": "명" },
+      { "word": "radiation",       "pos": "명" },
+      { "word": "accomplish",      "pos": "동" }
+    ],
+    "ko_to_en": [
+      { "meaning": "온실가스",          "pos": "구", "answer": "greenhouse gas" },
+      { "meaning": "탄소 순환",         "pos": "구", "answer": "carbon cycle" },
+      { "meaning": "산소",              "pos": "명", "answer": "oxygen" },
+      { "meaning": "그 결과",           "pos": "부", "answer": "consequently" },
+      { "meaning": "이산화탄소",        "pos": "구", "answer": "carbon dioxide" },
+      { "meaning": "존재(량)",          "pos": "명", "answer": "existence" },
+      { "meaning": "막다",              "pos": "동", "answer": "prevent" },
+      { "meaning": "점진적으로",        "pos": "부", "answer": "progressively" },
+      { "meaning": "반사하다",          "pos": "동", "answer": "reflect" },
+      { "meaning": "따라서",            "pos": "부", "answer": "accordingly" }
+    ],
+    "expressions": [
+      { "ko": "~에 의해 발생되다",   "answer": "be caused by" },
+      { "ko": "~에서 역할을 하다",   "answer": "play a role in" },
+      { "ko": "A를 B로 바꾸다",      "answer": "convert A to B" },
+      { "ko": "~로 이어지다",        "answer": "lead to" },
+      { "ko": "~에 관한 한",         "answer": "when it comes to" }
+    ],
+    "definitions": [
+      { "def": "the act of cutting down or clearing forests",                          "answer": "deforestation" },
+      { "def": "the process by which plants make oxygen from carbon dioxide and light", "answer": "photosynthesis" },
+      { "def": "something that controls or keeps a process in balance",                 "answer": "regulator" },
+      { "def": "the layer of gases surrounding the Earth",                              "answer": "atmosphere" },
+      { "def": "to stop something from happening",                                      "answer": "prevent" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Approximately 15-20% of global greenhouse gas emissions {{1:are/is}} {{2:caused/causing}} by degradation and deforestation.",
+      "ko_full": "전 세계 온실가스 배출량의 약 15~20%가 (산림) 황폐화와 삼림 벌채에 의해 발생한다.",
+      "answers": ["are", "caused"],
+      "explain": [
+        "of 뒤 복수명사 emissions에 수 일치 → are.",
+        "배출량이 '발생되는' 대상 → 수동태 be caused by."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "Trees {{1:play/plays}} a huge role {{2:in/on}} the carbon cycle.",
+      "ko_full": "나무는 탄소 순환에서 막대한 역할을 한다.",
+      "answers": ["play", "in"],
+      "explain": [
+        "주어 Trees(복수) → play.",
+        "play a role in: '~에서 역할을 하다' 짝꿍 전치사 in."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "They convert the CO2 in the air {{1:to/from}} oxygen through the process of photosynthesis, and consequently, they {{2:are viewed/view}} as a natural regulator of carbon dioxide.",
+      "ko_full": "나무는 광합성 과정을 통해 공기 중의 이산화탄소를 산소로 바꾸며, 그 결과 이산화탄소의 자연 조절자로 여겨진다.",
+      "answers": ["to", "are viewed"],
+      "explain": [
+        "convert A to B: 'A를 B로 바꾸다'.",
+        "나무가 '여겨지는' 대상 → 수동태 are viewed as."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "The existence of a larger amount of trees will no doubt {{1:lead/leads}} to the {{2:reduced/reducing}} presence of carbon dioxide in the atmosphere and the increased existence of oxygen.",
+      "ko_full": "더 많은 양의 나무가 존재하면 의심할 여지 없이 대기 중 이산화탄소의 감소와 산소의 증가로 이어질 것이다.",
+      "answers": ["lead", "reduced"],
+      "explain": [
+        "조동사 will 뒤 → 동사원형 lead.",
+        "'감소된 존재량' — 명사 presence를 수식하는 과거분사 reduced."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "Unfortunately, deforestation is {{1:preventing/prevented}} this process from {{2:being/be}} fully accomplished.",
+      "ko_full": "불행히도, 삼림 벌채가 이 과정이 온전히 완수되는 것을 막고 있다.",
+      "answers": ["preventing", "being"],
+      "explain": [
+        "벌채가 막는 주체 → 현재진행 능동 is preventing.",
+        "prevent A from V-ing: 전치사 from 뒤 동명사 being."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "And with half of the Earth's forests {{1:gone/going}}, the amount of carbon dioxide {{2:is/are}} progressively rising.",
+      "ko_full": "그리고 지구 숲의 절반이 사라지면서, 이산화탄소의 양이 점진적으로 증가하고 있다.",
+      "answers": ["gone", "is"],
+      "explain": [
+        "with + 명사 + 과거분사(gone): '~가 사라진 채로'(부대상황).",
+        "주어 핵 the amount(단수) → is."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "With more carbon dioxide in the atmosphere, more of the sun's radiation is being reflected back to Earth instead of {{1:being/be}} released into space, and this is causing the planet's average temperature {{2:to rise/rise}}.",
+      "ko_full": "대기 중에 이산화탄소가 더 많아지면서, 태양 복사의 더 많은 부분이 우주로 방출되는 대신 지구로 반사되어 되돌아오고, 이것이 지구의 평균 기온을 상승시키고 있다.",
+      "answers": ["being", "to rise"],
+      "explain": [
+        "instead of + 동명사(수동) being released.",
+        "cause + 목적어 + to부정사: to rise."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "Accordingly, deforestation {{1:is/are}} a major issue when it {{2:comes/come}} to global warming.",
+      "ko_full": "따라서, 삼림 벌채는 지구온난화에 관한 한 중대한 문제이다.",
+      "answers": ["is", "comes"],
+      "explain": [
+        "주어 deforestation(단수) → is.",
+        "when it comes to: 관용 표현, it(단수) → comes."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Approximately 15-20% of global greenhouse gas {{1:emissions/absorptions}} are caused by degradation and {{2:deforestation/afforestation}}.",
+      "ko_full": "전 세계 온실가스 배출량의 약 15~20%가 (산림) 황폐화와 삼림 벌채에 의해 발생한다.",
+      "answers": ["emissions", "deforestation"],
+      "explain": [
+        "온실가스 '배출' — emissions(↔ absorptions 흡수).",
+        "'삼림 벌채' — deforestation(↔ afforestation 조림)."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "Trees play a {{1:huge/tiny}} role in the carbon {{2:cycle/break}}.",
+      "ko_full": "나무는 탄소 순환에서 막대한 역할을 한다.",
+      "answers": ["huge", "cycle"],
+      "explain": [
+        "'막대한' 역할 — huge(↔ tiny).",
+        "탄소 '순환' — carbon cycle."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "They {{1:convert/preserve}} the CO2 in the air to oxygen through the process of photosynthesis, and consequently, they are viewed as a natural {{2:regulator/destroyer}} of carbon dioxide.",
+      "ko_full": "나무는 광합성 과정을 통해 공기 중의 이산화탄소를 산소로 바꾸며, 그 결과 이산화탄소의 자연 조절자로 여겨진다.",
+      "answers": ["convert", "regulator"],
+      "explain": [
+        "CO2를 산소로 '바꾸다' — convert(↔ preserve 보존하다).",
+        "이산화탄소의 '조절자' — regulator."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "The existence of a larger amount of trees will no doubt lead to the {{1:reduced/increased}} presence of carbon dioxide in the atmosphere and the {{2:increased/decreased}} existence of oxygen.",
+      "ko_full": "더 많은 양의 나무가 존재하면 의심할 여지 없이 대기 중 이산화탄소의 감소와 산소의 증가로 이어질 것이다.",
+      "answers": ["reduced", "increased"],
+      "explain": [
+        "이산화탄소의 '감소' — reduced.",
+        "산소의 '증가' — increased."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "Unfortunately, deforestation is {{1:preventing/enabling}} this process from being fully {{2:accomplished/abandoned}}.",
+      "ko_full": "불행히도, 삼림 벌채가 이 과정이 온전히 완수되는 것을 막고 있다.",
+      "answers": ["preventing", "accomplished"],
+      "explain": [
+        "과정을 '막다' — preventing(↔ enabling 가능하게 하다).",
+        "온전히 '완수되다' — accomplished."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "And with half of the Earth's forests gone, the amount of carbon dioxide is {{1:progressively/suddenly}} {{2:rising/falling}}.",
+      "ko_full": "그리고 지구 숲의 절반이 사라지면서, 이산화탄소의 양이 점진적으로 증가하고 있다.",
+      "answers": ["progressively", "rising"],
+      "explain": [
+        "'점진적으로' — progressively(↔ suddenly 갑자기).",
+        "양이 '증가하고' 있다 — rising."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "With more carbon dioxide in the atmosphere, more of the sun's radiation is being {{1:reflected/absorbed}} back to Earth instead of being released into space, and this is causing the planet's average temperature to {{2:rise/drop}}.",
+      "ko_full": "대기 중에 이산화탄소가 더 많아지면서, 태양 복사의 더 많은 부분이 우주로 방출되는 대신 지구로 반사되어 되돌아오고, 이것이 지구의 평균 기온을 상승시키고 있다.",
+      "answers": ["reflected", "rise"],
+      "explain": [
+        "복사가 지구로 '반사되다' — reflected(↔ absorbed 흡수되다).",
+        "기온이 '상승하다' — rise."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "Accordingly, deforestation is a {{1:major/minor}} {{2:issue/solution}} when it comes to global warming.",
+      "ko_full": "따라서, 삼림 벌채는 지구온난화에 관한 한 중대한 문제이다.",
+      "answers": ["major", "issue"],
+      "explain": [
+        "'중대한' 문제 — major(↔ minor 사소한).",
+        "'문제' — issue(↔ solution 해결책)."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "g", "answer": "greenhouse",    "after": "gas emissions" },
+        { "pos": 2, "letter": "e", "answer": "emissions",     "after": "are caused by" },
+        { "pos": 3, "letter": "d", "answer": "degradation",   "after": "and deforestation" },
+        { "pos": 4, "letter": "d", "answer": "deforestation", "after": "" }
+      ],
+      "ko_full": "전 세계 온실가스 배출량의 약 15~20%가 (산림) 황폐화와 삼림 벌채에 의해 발생한다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "r", "answer": "role",  "after": "in the carbon cycle" },
+        { "pos": 2, "letter": "c", "answer": "carbon", "after": "cycle" },
+        { "pos": 3, "letter": "c", "answer": "cycle",  "after": "" }
+      ],
+      "ko_full": "나무는 탄소 순환에서 막대한 역할을 한다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "c", "answer": "convert",        "after": "the CO2 in the air" },
+        { "pos": 2, "letter": "o", "answer": "oxygen",         "after": "through the process" },
+        { "pos": 3, "letter": "p", "answer": "photosynthesis", "after": ", and consequently" },
+        { "pos": 4, "letter": "r", "answer": "regulator",      "after": "of carbon dioxide" }
+      ],
+      "ko_full": "나무는 광합성 과정을 통해 공기 중의 이산화탄소를 산소로 바꾸며, 그 결과 이산화탄소의 자연 조절자로 여겨진다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "e", "answer": "existence",  "after": "of a larger amount" },
+        { "pos": 2, "letter": "r", "answer": "reduced",    "after": "presence of carbon dioxide" },
+        { "pos": 3, "letter": "a", "answer": "atmosphere", "after": "and the increased" },
+        { "pos": 4, "letter": "i", "answer": "increased",  "after": "existence of oxygen" }
+      ],
+      "ko_full": "더 많은 양의 나무가 존재하면 의심할 여지 없이 대기 중 이산화탄소의 감소와 산소의 증가로 이어질 것이다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "d", "answer": "deforestation", "after": "is preventing" },
+        { "pos": 2, "letter": "p", "answer": "preventing",    "after": "this process" },
+        { "pos": 3, "letter": "a", "answer": "accomplished",  "after": "" }
+      ],
+      "ko_full": "불행히도, 삼림 벌채가 이 과정이 온전히 완수되는 것을 막고 있다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "f", "answer": "forests",       "after": "gone" },
+        { "pos": 2, "letter": "p", "answer": "progressively", "after": "rising" },
+        { "pos": 3, "letter": "r", "answer": "rising",        "after": "" }
+      ],
+      "ko_full": "그리고 지구 숲의 절반이 사라지면서, 이산화탄소의 양이 점진적으로 증가하고 있다."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "hints": [
+        { "pos": 1, "letter": "r", "answer": "radiation",   "after": "is being reflected" },
+        { "pos": 2, "letter": "r", "answer": "reflected",   "after": "back to Earth" },
+        { "pos": 3, "letter": "s", "answer": "space",       "after": ", and this is causing" },
+        { "pos": 4, "letter": "t", "answer": "temperature", "after": "to rise" }
+      ],
+      "ko_full": "대기 중에 이산화탄소가 더 많아지면서, 태양 복사의 더 많은 부분이 우주로 방출되는 대신 지구로 반사되어 되돌아오고, 이것이 지구의 평균 기온을 상승시키고 있다."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "hints": [
+        { "pos": 1, "letter": "d", "answer": "deforestation", "after": "is a major issue" },
+        { "pos": 2, "letter": "i", "answer": "issue",         "after": "when it comes to" },
+        { "pos": 3, "letter": "w", "answer": "warming",       "after": "" }
+      ],
+      "ko_full": "따라서, 삼림 벌채는 지구온난화에 관한 한 중대한 문제이다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 },
+    { "no": 7, "ref_sentence": 7 },
+    { "no": 8, "ref_sentence": 8 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["Approximately", "15-20%", "of", "global", "greenhouse", "gas", "emissions", "are", "caused", "by", "degradation", "and", "deforestation"],
+      "answer": "Approximately 15-20% of global greenhouse gas emissions are caused by degradation and deforestation."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["Trees", "play", "a", "huge", "role", "in", "the", "carbon", "cycle"],
+      "answer": "Trees play a huge role in the carbon cycle."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["They", "convert", "the", "CO2", "in", "the", "air", "to", "oxygen", "through", "the", "process", "of", "photosynthesis", "and", "consequently", "they", "are", "viewed", "as", "a", "natural", "regulator", "of", "carbon", "dioxide"],
+      "answer": "They convert the CO2 in the air to oxygen through the process of photosynthesis, and consequently, they are viewed as a natural regulator of carbon dioxide."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["The", "existence", "of", "a", "larger", "amount", "of", "trees", "will", "no", "doubt", "lead", "to", "the", "reduced", "presence", "of", "carbon", "dioxide", "in", "the", "atmosphere", "and", "the", "increased", "existence", "of", "oxygen"],
+      "answer": "The existence of a larger amount of trees will no doubt lead to the reduced presence of carbon dioxide in the atmosphere and the increased existence of oxygen."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["Unfortunately", "deforestation", "is", "preventing", "this", "process", "from", "being", "fully", "accomplished"],
+      "answer": "Unfortunately, deforestation is preventing this process from being fully accomplished."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["And", "with", "half", "of", "the", "Earth's", "forests", "gone", "the", "amount", "of", "carbon", "dioxide", "is", "progressively", "rising"],
+      "answer": "And with half of the Earth's forests gone, the amount of carbon dioxide is progressively rising."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "words": ["With", "more", "carbon", "dioxide", "in", "the", "atmosphere", "more", "of", "the", "sun's", "radiation", "is", "being", "reflected", "back", "to", "Earth", "instead", "of", "being", "released", "into", "space", "and", "this", "is", "causing", "the", "planet's", "average", "temperature", "to", "rise"],
+      "answer": "With more carbon dioxide in the atmosphere, more of the sun's radiation is being reflected back to Earth instead of being released into space, and this is causing the planet's average temperature to rise."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "words": ["Accordingly", "deforestation", "is", "a", "major", "issue", "when", "it", "comes", "to", "global", "warming"],
+      "answer": "Accordingly, deforestation is a major issue when it comes to global warming."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" },
+    { "no": 7, "ref_sentence": 7, "given": "ko" },
+    { "no": 8, "ref_sentence": 8, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 1, "no": 1 },
+    { "kind": "vocab",   "ref": 3, "no": 2 },
+    { "kind": "fill",    "ref": 4, "no": 3 },
+    { "kind": "ko",      "ref": 5, "no": 4 },
+    { "kind": "jumble",  "ref": 6, "no": 5 },
+    { "kind": "sent",    "ref": 7, "no": 6 },
+    { "kind": "grammar", "ref": 8, "no": 7 },
+    { "kind": "vocab",   "ref": 2, "no": 8 }
+  ]
+}

@@ -1,0 +1,318 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "40.json",
+  "_note": "40번 워크북 — 본문 6문장 풀커버.",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "decision",      "pos": "명" },
+      { "word": "appropriate",   "pos": "형" },
+      { "word": "psychologist",  "pos": "명" },
+      { "word": "unconscious",   "pos": "형" },
+      { "word": "determine",     "pos": "동" },
+      { "word": "assess",        "pos": "동" },
+      { "word": "occur",         "pos": "동" },
+      { "word": "generate",      "pos": "동" },
+      { "word": "convinced",     "pos": "형" },
+      { "word": "justify",       "pos": "동" }
+    ],
+    "ko_to_en": [
+      { "meaning": "안전한",           "pos": "형", "answer": "safe" },
+      { "meaning": "제안하다",         "pos": "동", "answer": "suggest" },
+      { "meaning": "의식적으로",       "pos": "부", "answer": "consciously" },
+      { "meaning": "공포 반응",        "pos": "구", "answer": "fear response" },
+      { "meaning": "의식적인",         "pos": "형", "answer": "conscious" },
+      { "meaning": "바로잡다",         "pos": "동", "answer": "correct" },
+      { "meaning": "알아차리다",       "pos": "동", "answer": "notice" },
+      { "meaning": "정확한",           "pos": "형", "answer": "accurate" },
+      { "meaning": "이성적인",         "pos": "형", "answer": "rational" },
+      { "meaning": "감정적으로",       "pos": "부", "answer": "emotionally" }
+    ],
+    "expressions": [
+      { "ko": "투쟁 또는 도피",   "answer": "fight or flight" },
+      { "ko": "~에 돌입하다",     "answer": "launch into" },
+      { "ko": "내부적으로",       "answer": "internally" },
+      { "ko": "실제로는",         "answer": "in reality" },
+      { "ko": "애초에",           "answer": "in the first place" }
+    ],
+    "definitions": [
+      { "def": "to judge the value, amount, or quality of something",      "answer": "assess" },
+      { "def": "not aware of or controlled by your conscious mind",        "answer": "unconscious" },
+      { "def": "to make or produce something",                            "answer": "generate" },
+      { "def": "to give a good reason for something",                      "answer": "justify" },
+      { "def": "completely sure that something is true",                   "answer": "convinced" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "We go out in the world every day and {{1:make/makes}} decisions about {{2:what/that}} is safe or not and what is appropriate or not.",
+      "ko_full": "우리는 매일 세상에 나가 무엇이 안전한지 아닌지, 무엇이 적절한지 아닌지에 대해 결정을 내린다.",
+      "answers": ["make", "what"],
+      "explain": [
+        "주어 We(복수) + 등위 동사 → 원형 make.",
+        "about의 목적어가 되는 간접의문문(명사절)의 주어 → 의문사 what."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "It is what psychologist Joseph LeDoux has suggested is an unconscious \"danger detector\" that {{1:determines/determine}} whether or not something or someone is safe before we can even begin to {{2:consciously make/make consciously}} a determination.",
+      "ko_full": "심리학자 Joseph LeDoux가 제안한 바에 따르면, 우리가 의식적으로 판단을 내리기 시작하기도 전에 어떤 것이나 누군가가 안전한지 아닌지를 결정하는 것은 무의식적인 \"위험 감지기\"이다.",
+      "answers": ["determines", "consciously make"],
+      "explain": [
+        "It is ~ that 강조구문 — 강조 대상(danger detector, 단수)에 수일치 → determines.",
+        "to부정사 사이에 부사 삽입(분리부정사) consciously make — 원문 어순."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "When the object, animal, or person {{1:is assessed/assesses}} to be dangerous, a fear response, {{2:which/what}} has been called \"fight or flight,\" occurs.",
+      "ko_full": "어떤 대상, 동물, 또는 사람이 위험하다고 평가되면, \"투쟁 또는 도피\"라고 불려 온 공포 반응이 일어난다.",
+      "answers": ["is assessed", "which"],
+      "explain": [
+        "대상이 '평가되는' 대상 → 수동태 is assessed.",
+        "선행사 a fear response를 부연하는 계속적 관계대명사 which."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "On a conscious level we may correct a mistake in this \"danger detector\" when we notice it, but often, of course, we simply begin to generate reasons for {{1:why/which}} it was {{2:accurate/accurately}} in the first place.",
+      "ko_full": "의식적 차원에서 우리는 이 \"위험 감지기\"의 실수를 알아차릴 때 그것을 바로잡을 수도 있지만, 물론 흔히 우리는 그것이 애초에 왜 정확했는지에 대한 이유를 그냥 만들어 내기 시작한다.",
+      "answers": ["why", "accurate"],
+      "explain": [
+        "reasons for + 의문사절 — 이유를 나타내는 why.",
+        "be동사 was의 보어 → 형용사 accurate."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "We are generally convinced {{1:that/what}} our decisions are \"rational,\" but in reality, most human decisions are {{2:made/making}} emotionally, and then we collect or generate the facts to justify these decisions.",
+      "ko_full": "우리는 일반적으로 우리의 결정이 \"이성적\"이라고 확신하지만, 실제로 대부분의 인간의 결정은 감정적으로 내려지며, 그런 다음 우리는 이 결정을 정당화하기 위해 사실을 수집하거나 만들어 낸다.",
+      "answers": ["that", "made"],
+      "explain": [
+        "be convinced의 목적어 명사절을 이끄는 접속사 that.",
+        "결정이 '내려지는' 것 → 수동태 are made."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "When we see something or someone who \"feels\" dangerous, we {{1:have/has}} already launched into action internally before we have even {{2:started/starting}} \"thinking.\"",
+      "ko_full": "우리가 \"위험하게 느껴지는\" 무언가나 누군가를 볼 때, 우리는 \"생각하기\"를 시작하기도 전에 이미 내부적으로 행동에 돌입해 있다.",
+      "answers": ["have", "started"],
+      "explain": [
+        "주어 we(복수) + 현재완료 → have.",
+        "현재완료 have ... started — 과거분사 started."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "We go out in the world every day and make {{1:decisions/questions}} about what is {{2:safe/risky}} or not and what is appropriate or not.",
+      "ko_full": "우리는 매일 세상에 나가 무엇이 안전한지 아닌지, 무엇이 적절한지 아닌지에 대해 결정을 내린다.",
+      "answers": ["decisions", "safe"],
+      "explain": [
+        "'결정'을 내린다 — decisions.",
+        "'안전한지' 아닌지 — safe."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "It is what psychologist Joseph LeDoux has suggested is an {{1:unconscious/deliberate}} \"danger detector\" that {{2:determines/ignores}} whether or not something or someone is safe before we can even begin to consciously make a determination.",
+      "ko_full": "심리학자 Joseph LeDoux가 제안한 바에 따르면, 우리가 의식적으로 판단을 내리기 시작하기도 전에 어떤 것이나 누군가가 안전한지 아닌지를 결정하는 것은 무의식적인 \"위험 감지기\"이다.",
+      "answers": ["unconscious", "determines"],
+      "explain": [
+        "의식 전에 작동 → '무의식적인' unconscious.",
+        "안전 여부를 '결정하다' — determines."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "When the object, animal, or person is assessed to be {{1:dangerous/harmless}}, a {{2:fear/calm}} response, which has been called \"fight or flight,\" occurs.",
+      "ko_full": "어떤 대상, 동물, 또는 사람이 위험하다고 평가되면, \"투쟁 또는 도피\"라고 불려 온 공포 반응이 일어난다.",
+      "answers": ["dangerous", "fear"],
+      "explain": [
+        "'위험하다'고 평가됨 — dangerous.",
+        "'공포' 반응 — fear response."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "On a conscious level we may {{1:correct/ignore}} a mistake in this \"danger detector\" when we notice it, but often, of course, we simply begin to {{2:generate/erase}} reasons for why it was accurate in the first place.",
+      "ko_full": "의식적 차원에서 우리는 이 \"위험 감지기\"의 실수를 알아차릴 때 그것을 바로잡을 수도 있지만, 물론 흔히 우리는 그것이 애초에 왜 정확했는지에 대한 이유를 그냥 만들어 내기 시작한다.",
+      "answers": ["correct", "generate"],
+      "explain": [
+        "실수를 '바로잡다' — correct.",
+        "이유를 '만들어 내다' — generate."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "We are generally {{1:convinced/doubtful}} that our decisions are \"rational,\" but in reality, most human decisions are made {{2:emotionally/rationally}}, and then we collect or generate the facts to justify these decisions.",
+      "ko_full": "우리는 일반적으로 우리의 결정이 \"이성적\"이라고 확신하지만, 실제로 대부분의 인간의 결정은 감정적으로 내려지며, 그런 다음 우리는 이 결정을 정당화하기 위해 사실을 수집하거나 만들어 낸다.",
+      "answers": ["convinced", "emotionally"],
+      "explain": [
+        "이성적이라고 '확신하다' — convinced.",
+        "실제로는 '감정적으로' 결정 — emotionally."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "When we see something or someone who \"feels\" {{1:dangerous/comforting}}, we have already launched into action {{2:internally/externally}} before we have even started \"thinking.\"",
+      "ko_full": "우리가 \"위험하게 느껴지는\" 무언가나 누군가를 볼 때, 우리는 \"생각하기\"를 시작하기도 전에 이미 내부적으로 행동에 돌입해 있다.",
+      "answers": ["dangerous", "internally"],
+      "explain": [
+        "'위험하게' 느껴지는 — dangerous.",
+        "'내부적으로' 돌입 — internally."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "d", "answer": "decisions",   "after": "about what is safe" },
+        { "pos": 2, "letter": "s", "answer": "safe",        "after": "or not" },
+        { "pos": 3, "letter": "a", "answer": "appropriate", "after": "or not" }
+      ],
+      "ko_full": "우리는 매일 세상에 나가 무엇이 안전한지 아닌지, 무엇이 적절한지 아닌지에 대해 결정을 내린다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "p", "answer": "psychologist", "after": "Joseph LeDoux" },
+        { "pos": 2, "letter": "u", "answer": "unconscious",  "after": "\"danger detector\"" },
+        { "pos": 3, "letter": "d", "answer": "determines",   "after": "whether or not" },
+        { "pos": 4, "letter": "c", "answer": "consciously",  "after": "make a determination" }
+      ],
+      "ko_full": "심리학자 Joseph LeDoux가 제안한 바에 따르면, 우리가 의식적으로 판단을 내리기 시작하기도 전에 어떤 것이나 누군가가 안전한지 아닌지를 결정하는 것은 무의식적인 \"위험 감지기\"이다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "a", "answer": "assessed",  "after": "to be dangerous" },
+        { "pos": 2, "letter": "d", "answer": "dangerous", "after": ", a fear response" },
+        { "pos": 3, "letter": "f", "answer": "fear",      "after": "response" },
+        { "pos": 4, "letter": "o", "answer": "occurs",    "after": "" }
+      ],
+      "ko_full": "어떤 대상, 동물, 또는 사람이 위험하다고 평가되면, \"투쟁 또는 도피\"라고 불려 온 공포 반응이 일어난다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "c", "answer": "correct",  "after": "a mistake" },
+        { "pos": 2, "letter": "n", "answer": "notice",   "after": "it, but often" },
+        { "pos": 3, "letter": "g", "answer": "generate", "after": "reasons for why" },
+        { "pos": 4, "letter": "a", "answer": "accurate", "after": "in the first place" }
+      ],
+      "ko_full": "의식적 차원에서 우리는 이 \"위험 감지기\"의 실수를 알아차릴 때 그것을 바로잡을 수도 있지만, 물론 흔히 우리는 그것이 애초에 왜 정확했는지에 대한 이유를 그냥 만들어 내기 시작한다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "c", "answer": "convinced",   "after": "that our decisions" },
+        { "pos": 2, "letter": "r", "answer": "rational",    "after": ", but in reality" },
+        { "pos": 3, "letter": "e", "answer": "emotionally", "after": ", and then we" },
+        { "pos": 4, "letter": "j", "answer": "justify",     "after": "these decisions" }
+      ],
+      "ko_full": "우리는 일반적으로 우리의 결정이 \"이성적\"이라고 확신하지만, 실제로 대부분의 인간의 결정은 감정적으로 내려지며, 그런 다음 우리는 이 결정을 정당화하기 위해 사실을 수집하거나 만들어 낸다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "d", "answer": "dangerous",  "after": ", we have already" },
+        { "pos": 2, "letter": "l", "answer": "launched",   "after": "into action" },
+        { "pos": 3, "letter": "i", "answer": "internally", "after": "before we have" }
+      ],
+      "ko_full": "우리가 \"위험하게 느껴지는\" 무언가나 누군가를 볼 때, 우리는 \"생각하기\"를 시작하기도 전에 이미 내부적으로 행동에 돌입해 있다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["We", "go", "out", "in", "the", "world", "every", "day", "and", "make", "decisions", "about", "what", "is", "safe", "or", "not", "and", "what", "is", "appropriate", "or", "not"],
+      "answer": "We go out in the world every day and make decisions about what is safe or not and what is appropriate or not."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["It", "is", "what", "psychologist", "Joseph", "LeDoux", "has", "suggested", "is", "an", "unconscious", "danger", "detector", "that", "determines", "whether", "or", "not", "something", "or", "someone", "is", "safe", "before", "we", "can", "even", "begin", "to", "consciously", "make", "a", "determination"],
+      "answer": "It is what psychologist Joseph LeDoux has suggested is an unconscious \"danger detector\" that determines whether or not something or someone is safe before we can even begin to consciously make a determination."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["When", "the", "object", "animal", "or", "person", "is", "assessed", "to", "be", "dangerous", "a", "fear", "response", "which", "has", "been", "called", "fight", "or", "flight", "occurs"],
+      "answer": "When the object, animal, or person is assessed to be dangerous, a fear response, which has been called \"fight or flight,\" occurs."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["On", "a", "conscious", "level", "we", "may", "correct", "a", "mistake", "in", "this", "danger", "detector", "when", "we", "notice", "it", "but", "often", "of", "course", "we", "simply", "begin", "to", "generate", "reasons", "for", "why", "it", "was", "accurate", "in", "the", "first", "place"],
+      "answer": "On a conscious level we may correct a mistake in this \"danger detector\" when we notice it, but often, of course, we simply begin to generate reasons for why it was accurate in the first place."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["We", "are", "generally", "convinced", "that", "our", "decisions", "are", "rational", "but", "in", "reality", "most", "human", "decisions", "are", "made", "emotionally", "and", "then", "we", "collect", "or", "generate", "the", "facts", "to", "justify", "these", "decisions"],
+      "answer": "We are generally convinced that our decisions are \"rational,\" but in reality, most human decisions are made emotionally, and then we collect or generate the facts to justify these decisions."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["When", "we", "see", "something", "or", "someone", "who", "feels", "dangerous", "we", "have", "already", "launched", "into", "action", "internally", "before", "we", "have", "even", "started", "thinking"],
+      "answer": "When we see something or someone who \"feels\" dangerous, we have already launched into action internally before we have even started \"thinking.\""
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 1, "no": 1 },
+    { "kind": "vocab",   "ref": 2, "no": 2 },
+    { "kind": "fill",    "ref": 3, "no": 3 },
+    { "kind": "ko",      "ref": 4, "no": 4 },
+    { "kind": "jumble",  "ref": 5, "no": 5 },
+    { "kind": "sent",    "ref": 6, "no": 6 },
+    { "kind": "grammar", "ref": 5, "no": 7 }
+  ]
+}

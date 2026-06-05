@@ -1,0 +1,429 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "31.json",
+  "_note": "31번 워크북 — 본문 9문장 풀커버.",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "interconnected", "pos": "형" },
+      { "word": "ever-changing",  "pos": "형" },
+      { "word": "imperceptibly",  "pos": "부" },
+      { "word": "perceive",       "pos": "동" },
+      { "word": "crucially",      "pos": "부" },
+      { "word": "seemingly",      "pos": "부" },
+      { "word": "immediate",      "pos": "형" },
+      { "word": "surroundings",   "pos": "명" },
+      { "word": "static",         "pos": "형" },
+      { "word": "microscopic",    "pos": "형" }
+    ],
+    "ko_to_en": [
+      { "meaning": "감지하다",            "pos": "동", "answer": "sense" },
+      { "meaning": "나이를 먹다",         "pos": "동", "answer": "age" },
+      { "meaning": "미세한, 아주 작은",   "pos": "형", "answer": "minute" },
+      { "meaning": "인식하다",            "pos": "동", "answer": "perceive" },
+      { "meaning": "깨닫다",              "pos": "동", "answer": "realize" },
+      { "meaning": "고대의",              "pos": "형", "answer": "ancient" },
+      { "meaning": "철학자",              "pos": "명", "answer": "philosopher" },
+      { "meaning": "정확히, 옳게",        "pos": "부", "answer": "rightly" },
+      { "meaning": "단지 ~에 불과한",     "pos": "형", "answer": "mere" },
+      { "meaning": "주변 환경",           "pos": "명", "answer": "surroundings" }
+    ],
+    "expressions": [
+      { "ko": "일어나다, 발생하다",      "answer": "take place" },
+      { "ko": "주목할 만한",             "answer": "of note" },
+      { "ko": "지적하다",                "answer": "point out" },
+      { "ko": "발을 담그다, 들어가다",   "answer": "step in" },
+      { "ko": "쌓이다, 누적되다",        "answer": "add up" }
+    ],
+    "definitions": [
+      { "def": "to notice or become aware of something",                        "answer": "sense" },
+      { "def": "in a way that is too slight to be noticed",                     "answer": "imperceptibly" },
+      { "def": "very small in amount or size",                                  "answer": "minute" },
+      { "def": "staying the same; not moving or changing",                      "answer": "static" },
+      { "def": "to come to understand a fact clearly",                          "answer": "realize" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Our world is not just interconnected, but ever-changing, {{1:even if/even though}} we {{2:can't/aren't}} sense it.",
+      "ko_full": "우리의 세계는 단지 상호 연결되어 있을 뿐만 아니라, 우리가 그것을 감지하지 못할지라도 끊임없이 변화하고 있다.",
+      "answers": ["even if", "can't"],
+      "explain": [
+        "감지 '못할지라도'(가정·양보) — even if 가 문맥에 맞음.",
+        "동사 sense 앞 조동사 부정 → can't (be동사 aren't 불가)."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "While you're {{1:reading/read}} this, you're {{2:changing/changed}}.",
+      "ko_full": "당신이 이 글을 읽는 동안에도, 당신은 변하고 있다.",
+      "answers": ["reading", "changing"],
+      "explain": [
+        "be동사 + V-ing 진행형 — reading.",
+        "주어 you가 스스로 변하는 능동 진행 → changing."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "You're aging (a minute amount, thankfully), but the neural networks in your brain are also imperceptibly changing {{1:as/which}} you {{2:perceive/perceiving}} each word.",
+      "ko_full": "당신은 (다행히도 아주 미세한 양만큼) 나이를 먹고 있지만, 각 단어를 인식할 때 뇌의 신경망도 감지할 수 없을 만큼 변하고 있다.",
+      "answers": ["as", "perceive"],
+      "explain": [
+        "'~할 때/하면서'의 시간 접속사 → as.",
+        "as절의 정상 동사 → perceive."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "Crucially, even when we're seemingly not doing anything of note, events are taking place outside your immediate surroundings {{1:that/what}} will change your life in the future, though you {{2:won't/don't}} realize it yet.",
+      "ko_full": "결정적으로, 우리가 겉보기에 별다른 일을 하고 있지 않을 때조차, 당신의 직접적인 주변 환경 밖에서는 당신이 아직 깨닫지 못하더라도 미래에 당신의 삶을 바꿀 사건들이 일어나고 있다.",
+      "answers": ["that", "won't"],
+      "explain": [
+        "선행사 events를 수식하는 주격 관계대명사 → that.",
+        "미래에 '깨닫지 못할 것' — 미래 부정 won't."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "Heraclitus, the ancient Greek philosopher, rightly {{1:pointed/point}} out, \"No man ever steps in the same river twice. For it's not the same river and {{2:he's/his}} not the same man.\"",
+      "ko_full": "고대 그리스 철학자 Heraclitus는 \"누구도 같은 강에 두 번 발을 담글 수 없다. 왜냐하면 그것은 같은 강이 아니고 그도 같은 사람이 아니기 때문이다\"라고 정확히 지적했다.",
+      "answers": ["pointed", "he's"],
+      "explain": [
+        "과거시제 지적했다 → pointed (out).",
+        "'그는 ~아니다' = he is not → 축약 he's."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "To that, Cratylus, a student of Heraclitus, added {{1:that/what}} we are not {{2:mere/merely}} passive observers.",
+      "ko_full": "그것에 더해, Heraclitus의 제자인 Cratylus는 우리가 단지 수동적 관찰자가 아니라고 덧붙였다.",
+      "answers": ["that", "mere"],
+      "explain": [
+        "added의 목적어 명사절을 이끄는 접속사 → that.",
+        "명사 observers 수식 → 형용사 mere."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "{{1:When/While}} you {{2:step/stepping}} in a river, you change it.",
+      "ko_full": "당신이 강에 발을 담글 때, 당신은 그것을 바꾼다.",
+      "answers": ["When", "step"],
+      "explain": [
+        "'~할 때'의 시간 부사절 → When.",
+        "부사절의 정상 동사 현재형 → step."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "{{1:Nothing/Anything}} {{2:is/are}} static.",
+      "ko_full": "어떤 것도 고정되어 있지 않다.",
+      "answers": ["Nothing", "is"],
+      "explain": [
+        "'어떤 것도 ~아니다'의 부정 주어 → Nothing.",
+        "Nothing은 단수 취급 → is."
+      ]
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "en_template": "Even microscopic changes {{1:add/adds}} up {{2:over/of}} time.",
+      "ko_full": "미세한 변화조차 시간이 지나면서 쌓인다.",
+      "answers": ["add", "over"],
+      "explain": [
+        "복수 주어 changes → add.",
+        "'시간이 지나면서' — over time."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Our world is not just {{1:interconnected/isolated}}, but {{2:ever-changing/static}}, even if we can't sense it.",
+      "ko_full": "우리의 세계는 단지 상호 연결되어 있을 뿐만 아니라, 우리가 그것을 감지하지 못할지라도 끊임없이 변화하고 있다.",
+      "answers": ["interconnected", "ever-changing"],
+      "explain": [
+        "'상호 연결된' — interconnected (↔ isolated).",
+        "'끊임없이 변하는' — ever-changing (↔ static)."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "{{1:While/Unless}} you're reading this, you're {{2:changing/staying}}.",
+      "ko_full": "당신이 이 글을 읽는 동안에도, 당신은 변하고 있다.",
+      "answers": ["While", "changing"],
+      "explain": [
+        "'~하는 동안' — While.",
+        "'변하고 있다' — changing."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "You're aging (a {{1:minute/huge}} amount, thankfully), but the neural networks in your brain are also {{2:imperceptibly/noticeably}} changing as you perceive each word.",
+      "ko_full": "당신은 (다행히도 아주 미세한 양만큼) 나이를 먹고 있지만, 각 단어를 인식할 때 뇌의 신경망도 감지할 수 없을 만큼 변하고 있다.",
+      "answers": ["minute", "imperceptibly"],
+      "explain": [
+        "'아주 미세한' 양 — minute (↔ huge).",
+        "'감지할 수 없을 만큼' — imperceptibly (↔ noticeably)."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "Crucially, even when we're {{1:seemingly/actually}} not doing anything of note, events are taking place outside your {{2:immediate/distant}} surroundings that will change your life in the future, though you won't realize it yet.",
+      "ko_full": "결정적으로, 우리가 겉보기에 별다른 일을 하고 있지 않을 때조차, 당신의 직접적인 주변 환경 밖에서는 당신이 아직 깨닫지 못하더라도 미래에 당신의 삶을 바꿀 사건들이 일어나고 있다.",
+      "answers": ["seemingly", "immediate"],
+      "explain": [
+        "'겉보기에' — seemingly (↔ actually).",
+        "'직접적인, 가까운' 주변 — immediate (↔ distant)."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "Heraclitus, the {{1:ancient/modern}} Greek philosopher, {{2:rightly/wrongly}} pointed out, \"No man ever steps in the same river twice. For it's not the same river and he's not the same man.\"",
+      "ko_full": "고대 그리스 철학자 Heraclitus는 \"누구도 같은 강에 두 번 발을 담글 수 없다. 왜냐하면 그것은 같은 강이 아니고 그도 같은 사람이 아니기 때문이다\"라고 정확히 지적했다.",
+      "answers": ["ancient", "rightly"],
+      "explain": [
+        "'고대의' — ancient (↔ modern).",
+        "'정확히, 옳게' — rightly (↔ wrongly)."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "To that, Cratylus, a student of Heraclitus, {{1:added/subtracted}} that we are not mere {{2:passive/active}} observers.",
+      "ko_full": "그것에 더해, Heraclitus의 제자인 Cratylus는 우리가 단지 수동적 관찰자가 아니라고 덧붙였다.",
+      "answers": ["added", "passive"],
+      "explain": [
+        "'덧붙였다' — added (↔ subtracted).",
+        "'수동적' 관찰자 — passive (↔ active)."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "When you {{1:step in/step out of}} a river, you {{2:change/keep}} it.",
+      "ko_full": "당신이 강에 발을 담글 때, 당신은 그것을 바꾼다.",
+      "answers": ["step in", "change"],
+      "explain": [
+        "'발을 담그다' — step in (↔ step out of).",
+        "'바꾼다' — change (↔ keep)."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "Nothing is {{1:static/dynamic}}.",
+      "ko_full": "어떤 것도 고정되어 있지 않다.",
+      "answers": ["static"],
+      "explain": ["'고정된, 정적인' — static (↔ dynamic)."]
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "en_template": "Even {{1:microscopic/enormous}} changes {{2:add up/dwindle}} over time.",
+      "ko_full": "미세한 변화조차 시간이 지나면서 쌓인다.",
+      "answers": ["microscopic", "add up"],
+      "explain": [
+        "'미세한' 변화 — microscopic (↔ enormous).",
+        "'쌓이다, 누적되다' — add up (↔ dwindle)."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "i", "answer": "interconnected", "after": ", but ever-changing" },
+        { "pos": 2, "letter": "e", "answer": "ever-changing",  "after": ", even if we can't sense it" },
+        { "pos": 3, "letter": "s", "answer": "sense",          "after": "it" }
+      ],
+      "ko_full": "우리의 세계는 단지 상호 연결되어 있을 뿐만 아니라, 우리가 그것을 감지하지 못할지라도 끊임없이 변화하고 있다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "r", "answer": "reading",  "after": "this" },
+        { "pos": 2, "letter": "c", "answer": "changing", "after": "" }
+      ],
+      "ko_full": "당신이 이 글을 읽는 동안에도, 당신은 변하고 있다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "a", "answer": "aging",    "after": "(a minute amount" },
+        { "pos": 2, "letter": "n", "answer": "neural",   "after": "networks in your brain" },
+        { "pos": 3, "letter": "p", "answer": "perceive", "after": "each word" }
+      ],
+      "ko_full": "당신은 (다행히도 아주 미세한 양만큼) 나이를 먹고 있지만, 각 단어를 인식할 때 뇌의 신경망도 감지할 수 없을 만큼 변하고 있다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "c", "answer": "crucially",    "after": ", even when" },
+        { "pos": 2, "letter": "e", "answer": "events",       "after": "are taking place" },
+        { "pos": 3, "letter": "s", "answer": "surroundings", "after": "that will change" },
+        { "pos": 4, "letter": "r", "answer": "realize",      "after": "it yet" }
+      ],
+      "ko_full": "결정적으로, 우리가 겉보기에 별다른 일을 하고 있지 않을 때조차, 당신의 직접적인 주변 환경 밖에서는 당신이 아직 깨닫지 못하더라도 미래에 당신의 삶을 바꿀 사건들이 일어나고 있다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "a", "answer": "ancient",     "after": "Greek philosopher" },
+        { "pos": 2, "letter": "r", "answer": "rightly",     "after": "pointed out" },
+        { "pos": 3, "letter": "r", "answer": "river",       "after": "twice" }
+      ],
+      "ko_full": "고대 그리스 철학자 Heraclitus는 \"누구도 같은 강에 두 번 발을 담글 수 없다. 왜냐하면 그것은 같은 강이 아니고 그도 같은 사람이 아니기 때문이다\"라고 정확히 지적했다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "s", "answer": "student",   "after": "of Heraclitus" },
+        { "pos": 2, "letter": "a", "answer": "added",     "after": "that we are not" },
+        { "pos": 3, "letter": "p", "answer": "passive",   "after": "observers" }
+      ],
+      "ko_full": "그것에 더해, Heraclitus의 제자인 Cratylus는 우리가 단지 수동적 관찰자가 아니라고 덧붙였다."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "hints": [
+        { "pos": 1, "letter": "r", "answer": "river",  "after": ", you change it" },
+        { "pos": 2, "letter": "c", "answer": "change", "after": "it" }
+      ],
+      "ko_full": "당신이 강에 발을 담글 때, 당신은 그것을 바꾼다."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "hints": [
+        { "pos": 1, "letter": "n", "answer": "nothing", "after": "is static" },
+        { "pos": 2, "letter": "s", "answer": "static",  "after": "" }
+      ],
+      "ko_full": "어떤 것도 고정되어 있지 않다."
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "hints": [
+        { "pos": 1, "letter": "m", "answer": "microscopic", "after": "changes add up" },
+        { "pos": 2, "letter": "c", "answer": "changes",     "after": "add up over time" }
+      ],
+      "ko_full": "미세한 변화조차 시간이 지나면서 쌓인다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 },
+    { "no": 7, "ref_sentence": 7 },
+    { "no": 8, "ref_sentence": 8 },
+    { "no": 9, "ref_sentence": 9 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["Our", "world", "is", "not", "just", "interconnected", "but", "ever-changing", "even", "if", "we", "can't", "sense", "it"],
+      "answer": "Our world is not just interconnected, but ever-changing, even if we can't sense it."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["While", "you're", "reading", "this", "you're", "changing"],
+      "answer": "While you're reading this, you're changing."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["You're", "aging", "a", "minute", "amount", "thankfully", "but", "the", "neural", "networks", "in", "your", "brain", "are", "also", "imperceptibly", "changing", "as", "you", "perceive", "each", "word"],
+      "answer": "You're aging (a minute amount, thankfully), but the neural networks in your brain are also imperceptibly changing as you perceive each word."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["Crucially", "even", "when", "we're", "seemingly", "not", "doing", "anything", "of", "note", "events", "are", "taking", "place", "outside", "your", "immediate", "surroundings", "that", "will", "change", "your", "life", "in", "the", "future", "though", "you", "won't", "realize", "it", "yet"],
+      "answer": "Crucially, even when we're seemingly not doing anything of note, events are taking place outside your immediate surroundings that will change your life in the future, though you won't realize it yet."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["Heraclitus", "the", "ancient", "Greek", "philosopher", "rightly", "pointed", "out", "No", "man", "ever", "steps", "in", "the", "same", "river", "twice", "For", "it's", "not", "the", "same", "river", "and", "he's", "not", "the", "same", "man"],
+      "answer": "Heraclitus, the ancient Greek philosopher, rightly pointed out, \"No man ever steps in the same river twice. For it's not the same river and he's not the same man.\""
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["To", "that", "Cratylus", "a", "student", "of", "Heraclitus", "added", "that", "we", "are", "not", "mere", "passive", "observers"],
+      "answer": "To that, Cratylus, a student of Heraclitus, added that we are not mere passive observers."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "words": ["When", "you", "step", "in", "a", "river", "you", "change", "it"],
+      "answer": "When you step in a river, you change it."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "words": ["Nothing", "is", "static"],
+      "answer": "Nothing is static."
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "words": ["Even", "microscopic", "changes", "add", "up", "over", "time"],
+      "answer": "Even microscopic changes add up over time."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" },
+    { "no": 7, "ref_sentence": 7, "given": "ko" },
+    { "no": 8, "ref_sentence": 8, "given": "ko" },
+    { "no": 9, "ref_sentence": 9, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 1, "no": 1 },
+    { "kind": "vocab",   "ref": 3, "no": 2 },
+    { "kind": "fill",    "ref": 4, "no": 3 },
+    { "kind": "ko",      "ref": 5, "no": 4 },
+    { "kind": "jumble",  "ref": 6, "no": 5 },
+    { "kind": "sent",    "ref": 7, "no": 6 },
+    { "kind": "grammar", "ref": 8, "no": 7 },
+    { "kind": "vocab",   "ref": 9, "no": 8 }
+  ]
+}

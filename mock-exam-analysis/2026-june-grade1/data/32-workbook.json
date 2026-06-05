@@ -1,0 +1,430 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "32.json",
+  "_note": "32번 워크북 — 본문 9문장 풀커버.",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "spot",         "pos": "명" },
+      { "word": "variety",      "pos": "명" },
+      { "word": "reinforce",    "pos": "동" },
+      { "word": "nook",         "pos": "명" },
+      { "word": "reflect",      "pos": "동" },
+      { "word": "numerous",     "pos": "형" },
+      { "word": "counterpart",  "pos": "명" },
+      { "word": "recall",       "pos": "동" },
+      { "word": "association",  "pos": "명" },
+      { "word": "consciously",  "pos": "부" }
+    ],
+    "ko_to_en": [
+      { "meaning": "다양성",             "pos": "명", "answer": "variety" },
+      { "meaning": "강화하다",           "pos": "동", "answer": "reinforce" },
+      { "meaning": "경험",               "pos": "명", "answer": "experience" },
+      { "meaning": "습관",               "pos": "명", "answer": "habit" },
+      { "meaning": "연구",               "pos": "명", "answer": "research" },
+      { "meaning": "실험",               "pos": "명", "answer": "experiment" },
+      { "meaning": "학습자",             "pos": "명", "answer": "learner" },
+      { "meaning": "나누다",             "pos": "동", "answer": "divide" },
+      { "meaning": "장소, 위치",         "pos": "명", "answer": "location" },
+      { "meaning": "기억해 내다",        "pos": "동", "answer": "recall" }
+    ],
+    "expressions": [
+      { "ko": "~보다는, ~대신에",        "answer": "rather than" },
+      { "ko": "~할 가능성이 높다",       "answer": "be likely to" },
+      { "ko": "이리저리 옮겨 다니다",    "answer": "move around" },
+      { "ko": "적어도",                  "answer": "at least" },
+      { "ko": "가능한 한 많은",          "answer": "as many as possible" }
+    ],
+    "definitions": [
+      { "def": "a particular place or point",                                  "answer": "spot" },
+      { "def": "to make something stronger",                                   "answer": "reinforce" },
+      { "def": "a great many; very many in number",                            "answer": "numerous" },
+      { "def": "to bring a memory back into your mind",                        "answer": "recall" },
+      { "def": "a mental connection between ideas or things",                  "answer": "association" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Do you always {{1:study/studying}} in the same {{2:spot/spots}}?",
+      "ko_full": "당신은 항상 같은 장소에서 공부하는가?",
+      "answers": ["study", "spot"],
+      "explain": [
+        "조동사 Do 의문문 → 동사원형 study.",
+        "the same + 단수명사 spot."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "{{1:Don't/Doesn't}}.",
+      "ko_full": "그러지 마라.",
+      "answers": ["Don't"],
+      "explain": [
+        "생략 부정 명령문 → Don't."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "If you study in different places, that helps {{1:create/created}} variety, and that rich experience can {{2:reinforce/reinforcing}} what you are learning.",
+      "ko_full": "당신이 여러 다른 장소에서 공부하면, 그것은 다양성을 만들어 내는 데 도움이 되고, 그 풍부한 경험은 당신이 배우고 있는 것을 강화할 수 있다.",
+      "answers": ["create", "reinforce"],
+      "explain": [
+        "help + (to) 동사원형 — help create.",
+        "조동사 can 뒤 → 동사원형 reinforce."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "When several college students told us they did school work in different places {{1:rather than/rather as}} in some favorite nook, that habit {{2:reflected/reflecting}} the research on learning.",
+      "ko_full": "여러 대학생들이 우리에게 그들이 어떤 좋아하는 구석진 곳이 아니라 다른 여러 장소에서 학업을 한다고 말했을 때, 그 습관은 학습에 관한 연구를 반영한 것이었다.",
+      "answers": ["rather than", "reflected"],
+      "explain": [
+        "A rather than B — \"B가 아니라 A\".",
+        "주절 동사가 필요 → 과거시제 reflected."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "Numerous experiments have found that if learners simply study in at least two different places, they are more {{1:likely/like}} to {{2:recall/recalling}} the material.",
+      "ko_full": "수많은 실험은 학습자가 단지 적어도 두 곳의 다른 장소에서 공부하기만 해도, 그들이 학습 자료를 기억할 가능성이 더 높다는 것을 발견했다.",
+      "answers": ["likely", "recall"],
+      "explain": [
+        "be more likely to V — \"~할 가능성이 더 높다\".",
+        "to부정사 → 동사원형 recall."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "In {{1:one/ones}} of the first such trials, two different groups {{2:studied/study}} a list of words.",
+      "ko_full": "그러한 최초의 실험들 중 하나에서, 두 개의 다른 집단이 단어 목록을 공부했다.",
+      "answers": ["one", "studied"],
+      "explain": [
+        "one of the + 복수 — \"~중 하나\".",
+        "과거 사실 서술 → 과거시제 studied."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "Some students returned to the same room twice {{1:while/during}} their counterparts spent the same amount of time {{2:divided/dividing}} between two locations.",
+      "ko_full": "어떤 학생들은 같은 방으로 두 번 돌아온 반면, 그들의 상대편은 같은 양의 시간을 두 장소에 나누어 보냈다.",
+      "answers": ["while", "divided"],
+      "explain": [
+        "절을 이끄는 접속사 while(반면에); during은 전치사라 불가.",
+        "time이 '나누어진' 대상 → 과거분사 divided."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "When {{1:asked/asking}} to recall as many words on the list as possible, those {{2:who/which}} had moved around did far better.",
+      "ko_full": "목록에 있는 가능한 한 많은 단어를 기억해 내라고 했을 때, 이리저리 옮겨 다닌 학생들이 훨씬 더 잘했다.",
+      "answers": ["asked", "who"],
+      "explain": [
+        "분사구문 When (being) asked — 수동 과거분사 asked.",
+        "선행사 those(사람) → 관계대명사 who."
+      ]
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "en_template": "Variety {{1:creates/create}} rich association, even when those connections form in the background, totally outside of {{2:what/which}} we are consciously thinking.",
+      "ko_full": "다양성은 풍부한 연상을 만들어 내며, 그 연결이 우리가 의식적으로 생각하는 것 밖에서 배경처럼 형성될 때조차 그러하다.",
+      "answers": ["creates", "what"],
+      "explain": [
+        "주어 Variety(단수) → creates.",
+        "선행사 없이 명사절 — 관계대명사 what."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Do you always study in the {{1:same/different}} spot?",
+      "ko_full": "당신은 항상 같은 장소에서 공부하는가?",
+      "answers": ["same"],
+      "explain": ["'같은' 장소 — same."]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "{{1:Don't/Do}}.",
+      "ko_full": "그러지 마라.",
+      "answers": ["Don't"],
+      "explain": ["앞 질문에 대한 단호한 금지 답 — Don't."]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "If you study in {{1:different/identical}} places, that helps create {{2:variety/uniformity}}, and that rich experience can reinforce what you are learning.",
+      "ko_full": "당신이 여러 다른 장소에서 공부하면, 그것은 다양성을 만들어 내는 데 도움이 되고, 그 풍부한 경험은 당신이 배우고 있는 것을 강화할 수 있다.",
+      "answers": ["different", "variety"],
+      "explain": [
+        "'여러 다른' 장소 — different.",
+        "'다양성' — variety ↔ uniformity."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "When several college students told us they did school work in different places rather than in some {{1:favorite/disliked}} nook, that habit {{2:reflected/distorted}} the research on learning.",
+      "ko_full": "여러 대학생들이 우리에게 그들이 어떤 좋아하는 구석진 곳이 아니라 다른 여러 장소에서 학업을 한다고 말했을 때, 그 습관은 학습에 관한 연구를 반영한 것이었다.",
+      "answers": ["favorite", "reflected"],
+      "explain": [
+        "'가장 좋아하는' 구석 — favorite ↔ disliked.",
+        "연구를 '반영' — reflected ↔ distorted."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "{{1:Numerous/Few}} experiments have found that if learners simply study in at least two different places, they are more likely to {{2:recall/forget}} the material.",
+      "ko_full": "수많은 실험은 학습자가 단지 적어도 두 곳의 다른 장소에서 공부하기만 해도, 그들이 학습 자료를 기억할 가능성이 더 높다는 것을 발견했다.",
+      "answers": ["Numerous", "recall"],
+      "explain": [
+        "'수많은' 실험 — numerous ↔ few.",
+        "자료를 '기억해 내다' — recall ↔ forget."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "In one of the first such {{1:trials/breaks}}, two different {{2:groups/individuals}} studied a list of words.",
+      "ko_full": "그러한 최초의 실험들 중 하나에서, 두 개의 다른 집단이 단어 목록을 공부했다.",
+      "answers": ["trials", "groups"],
+      "explain": [
+        "'실험' — trials.",
+        "'집단' — groups ↔ individuals."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "Some students {{1:returned/escaped}} to the same room twice while their {{2:counterparts/strangers}} spent the same amount of time divided between two locations.",
+      "ko_full": "어떤 학생들은 같은 방으로 두 번 돌아온 반면, 그들의 상대편은 같은 양의 시간을 두 장소에 나누어 보냈다.",
+      "answers": ["returned", "counterparts"],
+      "explain": [
+        "같은 방으로 '돌아오다' — returned.",
+        "'상대편(대응 집단)' — counterparts."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "When asked to recall as many words on the list as possible, those who had {{1:moved around/stayed put}} did far {{2:better/worse}}.",
+      "ko_full": "목록에 있는 가능한 한 많은 단어를 기억해 내라고 했을 때, 이리저리 옮겨 다닌 학생들이 훨씬 더 잘했다.",
+      "answers": ["moved around", "better"],
+      "explain": [
+        "'이리저리 옮겨 다닌' — moved around ↔ stayed put.",
+        "훨씬 '더 잘' — better ↔ worse."
+      ]
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "en_template": "Variety creates {{1:rich/poor}} association, even when those connections form in the background, totally outside of what we are {{2:consciously/unconsciously}} thinking.",
+      "ko_full": "다양성은 풍부한 연상을 만들어 내며, 그 연결이 우리가 의식적으로 생각하는 것 밖에서 배경처럼 형성될 때조차 그러하다.",
+      "answers": ["rich", "consciously"],
+      "explain": [
+        "'풍부한' 연상 — rich ↔ poor.",
+        "'의식적으로' 생각하는 것 — consciously ↔ unconsciously."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "a", "answer": "always", "after": "study" },
+        { "pos": 2, "letter": "s", "answer": "study",  "after": "in the same spot" },
+        { "pos": 3, "letter": "s", "answer": "spot",   "after": "" }
+      ],
+      "ko_full": "당신은 항상 같은 장소에서 공부하는가?"
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "d", "answer": "don't", "after": "" }
+      ],
+      "ko_full": "그러지 마라."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "p", "answer": "places",     "after": ", that helps" },
+        { "pos": 2, "letter": "v", "answer": "variety",    "after": ", and that rich" },
+        { "pos": 3, "letter": "e", "answer": "experience", "after": "can reinforce" },
+        { "pos": 4, "letter": "r", "answer": "reinforce",  "after": "what you are learning" }
+      ],
+      "ko_full": "당신이 여러 다른 장소에서 공부하면, 그것은 다양성을 만들어 내는 데 도움이 되고, 그 풍부한 경험은 당신이 배우고 있는 것을 강화할 수 있다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "c", "answer": "college",  "after": "students told us" },
+        { "pos": 2, "letter": "f", "answer": "favorite", "after": "nook" },
+        { "pos": 3, "letter": "n", "answer": "nook",     "after": ", that habit" },
+        { "pos": 4, "letter": "r", "answer": "reflected", "after": "the research on learning" }
+      ],
+      "ko_full": "여러 대학생들이 우리에게 그들이 어떤 좋아하는 구석진 곳이 아니라 다른 여러 장소에서 학업을 한다고 말했을 때, 그 습관은 학습에 관한 연구를 반영한 것이었다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "n", "answer": "numerous",    "after": "experiments have found" },
+        { "pos": 2, "letter": "l", "answer": "learners",    "after": "simply study" },
+        { "pos": 3, "letter": "r", "answer": "recall",      "after": "the material" },
+        { "pos": 4, "letter": "m", "answer": "material",    "after": "" }
+      ],
+      "ko_full": "수많은 실험은 학습자가 단지 적어도 두 곳의 다른 장소에서 공부하기만 해도, 그들이 학습 자료를 기억할 가능성이 더 높다는 것을 발견했다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "t", "answer": "trials", "after": ", two different groups" },
+        { "pos": 2, "letter": "g", "answer": "groups", "after": "studied a list" },
+        { "pos": 3, "letter": "w", "answer": "words",  "after": "" }
+      ],
+      "ko_full": "그러한 최초의 실험들 중 하나에서, 두 개의 다른 집단이 단어 목록을 공부했다."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "hints": [
+        { "pos": 1, "letter": "r", "answer": "returned",    "after": "to the same room twice" },
+        { "pos": 2, "letter": "c", "answer": "counterparts", "after": "spent the same amount" },
+        { "pos": 3, "letter": "l", "answer": "locations",   "after": "" }
+      ],
+      "ko_full": "어떤 학생들은 같은 방으로 두 번 돌아온 반면, 그들의 상대편은 같은 양의 시간을 두 장소에 나누어 보냈다."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "hints": [
+        { "pos": 1, "letter": "r", "answer": "recall", "after": "as many words" },
+        { "pos": 2, "letter": "m", "answer": "moved",  "after": "around did far better" },
+        { "pos": 3, "letter": "b", "answer": "better", "after": "" }
+      ],
+      "ko_full": "목록에 있는 가능한 한 많은 단어를 기억해 내라고 했을 때, 이리저리 옮겨 다닌 학생들이 훨씬 더 잘했다."
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "hints": [
+        { "pos": 1, "letter": "v", "answer": "variety",     "after": "creates rich association" },
+        { "pos": 2, "letter": "a", "answer": "association", "after": ", even when those connections" },
+        { "pos": 3, "letter": "c", "answer": "connections", "after": "form in the background" },
+        { "pos": 4, "letter": "c", "answer": "consciously", "after": "thinking" }
+      ],
+      "ko_full": "다양성은 풍부한 연상을 만들어 내며, 그 연결이 우리가 의식적으로 생각하는 것 밖에서 배경처럼 형성될 때조차 그러하다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 },
+    { "no": 7, "ref_sentence": 7 },
+    { "no": 8, "ref_sentence": 8 },
+    { "no": 9, "ref_sentence": 9 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["Do", "you", "always", "study", "in", "the", "same", "spot"],
+      "answer": "Do you always study in the same spot?"
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["Don't"],
+      "answer": "Don't."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["If", "you", "study", "in", "different", "places", "that", "helps", "create", "variety", "and", "that", "rich", "experience", "can", "reinforce", "what", "you", "are", "learning"],
+      "answer": "If you study in different places, that helps create variety, and that rich experience can reinforce what you are learning."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["When", "several", "college", "students", "told", "us", "they", "did", "school", "work", "in", "different", "places", "rather", "than", "in", "some", "favorite", "nook", "that", "habit", "reflected", "the", "research", "on", "learning"],
+      "answer": "When several college students told us they did school work in different places rather than in some favorite nook, that habit reflected the research on learning."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["Numerous", "experiments", "have", "found", "that", "if", "learners", "simply", "study", "in", "at", "least", "two", "different", "places", "they", "are", "more", "likely", "to", "recall", "the", "material"],
+      "answer": "Numerous experiments have found that if learners simply study in at least two different places, they are more likely to recall the material."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["In", "one", "of", "the", "first", "such", "trials", "two", "different", "groups", "studied", "a", "list", "of", "words"],
+      "answer": "In one of the first such trials, two different groups studied a list of words."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "words": ["Some", "students", "returned", "to", "the", "same", "room", "twice", "while", "their", "counterparts", "spent", "the", "same", "amount", "of", "time", "divided", "between", "two", "locations"],
+      "answer": "Some students returned to the same room twice while their counterparts spent the same amount of time divided between two locations."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "words": ["When", "asked", "to", "recall", "as", "many", "words", "on", "the", "list", "as", "possible", "those", "who", "had", "moved", "around", "did", "far", "better"],
+      "answer": "When asked to recall as many words on the list as possible, those who had moved around did far better."
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "words": ["Variety", "creates", "rich", "association", "even", "when", "those", "connections", "form", "in", "the", "background", "totally", "outside", "of", "what", "we", "are", "consciously", "thinking"],
+      "answer": "Variety creates rich association, even when those connections form in the background, totally outside of what we are consciously thinking."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" },
+    { "no": 7, "ref_sentence": 7, "given": "ko" },
+    { "no": 8, "ref_sentence": 8, "given": "ko" },
+    { "no": 9, "ref_sentence": 9, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 1, "no": 1 },
+    { "kind": "vocab",   "ref": 3, "no": 2 },
+    { "kind": "fill",    "ref": 5, "no": 3 },
+    { "kind": "ko",      "ref": 7, "no": 4 },
+    { "kind": "jumble",  "ref": 8, "no": 5 },
+    { "kind": "sent",    "ref": 9, "no": 6 },
+    { "kind": "grammar", "ref": 4, "no": 7 },
+    { "kind": "vocab",   "ref": 6, "no": 8 }
+  ]
+}

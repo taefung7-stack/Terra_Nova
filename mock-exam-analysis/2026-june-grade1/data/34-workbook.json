@@ -1,0 +1,287 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "34.json",
+  "_note": "34번 워크북 — 본문 5문장 풀커버.",
+  "_template_for_new_rounds": "이 파일은 21-workbook.json 템플릿 기준. en_template의 {{N:A/B}} 토큰 = 양자택일 박스, hints 배열 = 빈칸 첫글자, jumble.words = 단어 배열 (셔플 X, 의도 유지).",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "particularly",  "pos": "부" },
+      { "word": "powerful",      "pos": "형" },
+      { "word": "adapt",         "pos": "동" },
+      { "word": "adjust",        "pos": "동" },
+      { "word": "circumstance",  "pos": "명" },
+      { "word": "yield",         "pos": "동" },
+      { "word": "consequence",   "pos": "명" },
+      { "word": "praise",        "pos": "동" },
+      { "word": "promising",     "pos": "형" },
+      { "word": "disadvantage",  "pos": "명" }
+    ],
+    "ko_to_en": [
+      { "meaning": "결과",                 "pos": "명", "answer": "consequence" },
+      { "meaning": "올바르게",             "pos": "부", "answer": "correctly" },
+      { "meaning": "계속하다",             "pos": "동", "answer": "continue" },
+      { "meaning": "(몸) 단련, 컨디셔닝",  "pos": "명", "answer": "conditioning" },
+      { "meaning": "결과",                 "pos": "명", "answer": "result" },
+      { "meaning": "이득, 혜택",           "pos": "명", "answer": "benefit" },
+      { "meaning": "피하다",               "pos": "동", "answer": "avoid" },
+      { "meaning": "불편",                 "pos": "명", "answer": "discomfort" },
+      { "meaning": "보상",                 "pos": "명", "answer": "reward" },
+      { "meaning": "행동",                 "pos": "명", "answer": "behavior" }
+    ],
+    "expressions": [
+      { "ko": "~에 비추어",         "answer": "in light of" },
+      { "ko": "포기하다",           "answer": "give up" },
+      { "ko": "~을 위해, ~에 찬성하여", "answer": "in favor of" },
+      { "ko": "일반적으로",         "answer": "in general" },
+      { "ko": "~로 이어지다",       "answer": "lead to" }
+    ],
+    "definitions": [
+      { "def": "to change to suit new conditions or circumstances",            "answer": "adapt" },
+      { "def": "a result or effect of an action or condition",                 "answer": "consequence" },
+      { "def": "to express approval or admiration of someone or something",    "answer": "praise" },
+      { "def": "to keep avoiding or staying away from something",              "answer": "avoid" },
+      { "def": "showing signs of future success; likely to turn out well",     "answer": "promising" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "A particularly powerful way in {{1:which/that}} human beings adapt and adjust to their circumstances is by {{2:changing/change}} behaviors in light of the consequences {{3:that/what}} they yield.",
+      "ko_full": "인간이 자신의 환경에 적응하고 맞추어 가는 특히 강력한 한 가지 방법은 그것들이 초래하는 결과에 비추어 행동을 바꾸는 것을 통해서이다.",
+      "answers": ["which", "changing", "that"],
+      "explain": [
+        "'in 전치사 + 관계대명사' 구조 → in which (the way in which S V).",
+        "by + 동명사(수단) → changing.",
+        "선행사 consequences를 수식하는 목적격 관계대명사 that (what 불가)."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "For instance, a child {{1:who/which}} gets praised by her teacher for {{2:doing/do}} an exercise correctly is likely to continue {{3:doing/to do}} the exercise in that way.",
+      "ko_full": "예를 들어, 어떤 운동을 올바르게 했다고 선생님에게 칭찬받는 아이는 그 방식으로 그 운동을 계속할 가능성이 높다.",
+      "answers": ["who", "doing", "doing"],
+      "explain": [
+        "선행사 a child(사람) + 주격 → who.",
+        "전치사 for + 동명사 → doing.",
+        "continue + V-ing(동명사)로 '계속 ~하다'."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "A dancer who feels {{1:that/what}} a particular conditioning exercise is not giving any results is likely to give that exercise up in favor of another one {{2:that/what}} seems more {{3:promising/promised}}.",
+      "ko_full": "어떤 특정한 컨디셔닝 운동이 아무런 결과를 내지 않는다고 느끼는 무용수는 더 유망해 보이는 다른 운동을 위해 그 운동을 포기할 가능성이 높다.",
+      "answers": ["that", "that", "promising"],
+      "explain": [
+        "feels의 목적어 명사절을 이끄는 완전한 절 접속사 → that.",
+        "선행사 another one을 수식하는 주격 관계대명사 → that.",
+        "'유망한' 능동·진행 의미의 형용사 → promising."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "In general, we tend to {{1:do/doing}} things that bring us some kind of benefit or {{2:act/acting}} in ways that {{3:help/helps}} us avoid some kind of problem, discomfort, or disadvantage.",
+      "ko_full": "일반적으로, 우리는 우리에게 어떤 이득을 가져다주는 일을 하거나, 어떤 문제·불편·불이익을 피하도록 도와주는 방식으로 행동하는 경향이 있다.",
+      "answers": ["do", "act", "help"],
+      "explain": [
+        "tend to + 동사원형 → do.",
+        "to do와 등위 접속(or) → 동사원형 act.",
+        "선행사 ways(복수)를 받는 주격 관계절 동사 → help."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "We also tend to do {{1:fewer/less}} things (or stop {{2:doing/to do}} things) that lead to problems, discomfort, or disadvantages, and we tend to avoid {{3:acting/to act}} in ways that do not bring any benefit or reward.",
+      "ko_full": "또한 우리는 문제·불편·불이익으로 이어지는 일은 덜 하거나(또는 그만두거나) 하며, 어떤 이득이나 보상도 가져다주지 않는 방식으로 행동하는 것은 피하는 경향이 있다.",
+      "answers": ["fewer", "doing", "acting"],
+      "explain": [
+        "셀 수 있는 명사 things → fewer.",
+        "stop + V-ing '~하는 것을 멈추다' → doing.",
+        "avoid + 동명사 목적어 → acting."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "A particularly {{1:powerful/weak}} way in which human beings {{2:adapt/resist}} and adjust to their circumstances is by changing behaviors in light of the consequences that they yield.",
+      "ko_full": "인간이 자신의 환경에 적응하고 맞추어 가는 특히 강력한 한 가지 방법은 그것들이 초래하는 결과에 비추어 행동을 바꾸는 것을 통해서이다.",
+      "answers": ["powerful", "adapt"],
+      "explain": [
+        "'강력한' 방법 → powerful (↔ weak).",
+        "환경에 '적응한다' → adapt (↔ resist)."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "For instance, a child who gets {{1:praised/criticized}} by her teacher for doing an exercise {{2:correctly/wrongly}} is likely to {{3:continue/stop}} doing the exercise in that way.",
+      "ko_full": "예를 들어, 어떤 운동을 올바르게 했다고 선생님에게 칭찬받는 아이는 그 방식으로 그 운동을 계속할 가능성이 높다.",
+      "answers": ["praised", "correctly", "continue"],
+      "explain": [
+        "선생님에게 '칭찬받는' → praised (↔ criticized).",
+        "운동을 '올바르게' 함 → correctly (↔ wrongly).",
+        "좋은 결과 → 행동을 '계속' → continue (↔ stop)."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "A dancer who feels that a particular conditioning exercise is not giving any {{1:results/causes}} is likely to give that exercise up in favor of another one that seems more {{2:promising/unpromising}}.",
+      "ko_full": "어떤 특정한 컨디셔닝 운동이 아무런 결과를 내지 않는다고 느끼는 무용수는 더 유망해 보이는 다른 운동을 위해 그 운동을 포기할 가능성이 높다.",
+      "answers": ["results", "promising"],
+      "explain": [
+        "아무 '결과'를 내지 않음 → results (↔ causes).",
+        "더 '유망해' 보이는 → promising (↔ unpromising)."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "In general, we tend to do things that bring us some kind of {{1:benefit/harm}} or act in ways that help us {{2:avoid/seek}} some kind of problem, discomfort, or disadvantage.",
+      "ko_full": "일반적으로, 우리는 우리에게 어떤 이득을 가져다주는 일을 하거나, 어떤 문제·불편·불이익을 피하도록 도와주는 방식으로 행동하는 경향이 있다.",
+      "answers": ["benefit", "avoid"],
+      "explain": [
+        "어떤 '이득'을 가져다주는 → benefit (↔ harm).",
+        "문제·불편·불이익을 '피하도록' → avoid (↔ seek)."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "We also tend to do fewer things (or stop doing things) that {{1:lead to/prevent}} problems, discomfort, or disadvantages, and we tend to avoid acting in ways that do not bring any benefit or {{2:reward/punishment}}.",
+      "ko_full": "또한 우리는 문제·불편·불이익으로 이어지는 일은 덜 하거나(또는 그만두거나) 하며, 어떤 이득이나 보상도 가져다주지 않는 방식으로 행동하는 것은 피하는 경향이 있다.",
+      "answers": ["lead to", "reward"],
+      "explain": [
+        "문제·불이익으로 '이어지는' → lead to (↔ prevent).",
+        "이득이나 '보상' → reward (↔ punishment)."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "p", "answer": "powerful",     "after": "way in which" },
+        { "pos": 2, "letter": "a", "answer": "adapt",        "after": "and adjust" },
+        { "pos": 3, "letter": "c", "answer": "consequences", "after": "that they yield" },
+        { "pos": 4, "letter": "y", "answer": "yield",        "after": "" }
+      ],
+      "ko_full": "인간이 자신의 환경에 적응하고 맞추어 가는 특히 강력한 한 가지 방법은 그것들이 초래하는 결과에 비추어 행동을 바꾸는 것을 통해서이다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "c", "answer": "child",     "after": "who gets praised" },
+        { "pos": 2, "letter": "p", "answer": "praised",   "after": "by her teacher" },
+        { "pos": 3, "letter": "c", "answer": "correctly", "after": "is likely to" },
+        { "pos": 4, "letter": "c", "answer": "continue",  "after": "doing the exercise" }
+      ],
+      "ko_full": "예를 들어, 어떤 운동을 올바르게 했다고 선생님에게 칭찬받는 아이는 그 방식으로 그 운동을 계속할 가능성이 높다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "d", "answer": "dancer",       "after": "who feels" },
+        { "pos": 2, "letter": "c", "answer": "conditioning", "after": "exercise is not" },
+        { "pos": 3, "letter": "r", "answer": "results",      "after": "is likely to give" },
+        { "pos": 4, "letter": "p", "answer": "promising",    "after": "" }
+      ],
+      "ko_full": "어떤 특정한 컨디셔닝 운동이 아무런 결과를 내지 않는다고 느끼는 무용수는 더 유망해 보이는 다른 운동을 위해 그 운동을 포기할 가능성이 높다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "b", "answer": "benefit",      "after": "or act in ways" },
+        { "pos": 2, "letter": "a", "answer": "avoid",        "after": "some kind of problem" },
+        { "pos": 3, "letter": "d", "answer": "discomfort",   "after": "or disadvantage" },
+        { "pos": 4, "letter": "d", "answer": "disadvantage", "after": "" }
+      ],
+      "ko_full": "일반적으로, 우리는 우리에게 어떤 이득을 가져다주는 일을 하거나, 어떤 문제·불편·불이익을 피하도록 도와주는 방식으로 행동하는 경향이 있다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "f", "answer": "fewer",   "after": "things (or stop" },
+        { "pos": 2, "letter": "a", "answer": "avoid",   "after": "acting in ways" },
+        { "pos": 3, "letter": "b", "answer": "benefit", "after": "or reward" },
+        { "pos": 4, "letter": "r", "answer": "reward",  "after": "" }
+      ],
+      "ko_full": "또한 우리는 문제·불편·불이익으로 이어지는 일은 덜 하거나(또는 그만두거나) 하며, 어떤 이득이나 보상도 가져다주지 않는 방식으로 행동하는 것은 피하는 경향이 있다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["A", "particularly", "powerful", "way", "in", "which", "human", "beings", "adapt", "and", "adjust", "to", "their", "circumstances", "is", "by", "changing", "behaviors", "in", "light", "of", "the", "consequences", "that", "they", "yield"],
+      "answer": "A particularly powerful way in which human beings adapt and adjust to their circumstances is by changing behaviors in light of the consequences that they yield."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["For", "instance", "a", "child", "who", "gets", "praised", "by", "her", "teacher", "for", "doing", "an", "exercise", "correctly", "is", "likely", "to", "continue", "doing", "the", "exercise", "in", "that", "way"],
+      "answer": "For instance, a child who gets praised by her teacher for doing an exercise correctly is likely to continue doing the exercise in that way."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["A", "dancer", "who", "feels", "that", "a", "particular", "conditioning", "exercise", "is", "not", "giving", "any", "results", "is", "likely", "to", "give", "that", "exercise", "up", "in", "favor", "of", "another", "one", "that", "seems", "more", "promising"],
+      "answer": "A dancer who feels that a particular conditioning exercise is not giving any results is likely to give that exercise up in favor of another one that seems more promising."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["In", "general", "we", "tend", "to", "do", "things", "that", "bring", "us", "some", "kind", "of", "benefit", "or", "act", "in", "ways", "that", "help", "us", "avoid", "some", "kind", "of", "problem", "discomfort", "or", "disadvantage"],
+      "answer": "In general, we tend to do things that bring us some kind of benefit or act in ways that help us avoid some kind of problem, discomfort, or disadvantage."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["We", "also", "tend", "to", "do", "fewer", "things", "or", "stop", "doing", "things", "that", "lead", "to", "problems", "discomfort", "or", "disadvantages", "and", "we", "tend", "to", "avoid", "acting", "in", "ways", "that", "do", "not", "bring", "any", "benefit", "or", "reward"],
+      "answer": "We also tend to do fewer things (or stop doing things) that lead to problems, discomfort, or disadvantages, and we tend to avoid acting in ways that do not bring any benefit or reward."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 1, "no": 1 },
+    { "kind": "vocab",   "ref": 2, "no": 2 },
+    { "kind": "fill",    "ref": 3, "no": 3 },
+    { "kind": "ko",      "ref": 4, "no": 4 },
+    { "kind": "jumble",  "ref": 5, "no": 5 },
+    { "kind": "sent",    "ref": 1, "no": 6 },
+    { "kind": "grammar", "ref": 4, "no": 7 },
+    { "kind": "vocab",   "ref": 5, "no": 8 }
+  ]
+}

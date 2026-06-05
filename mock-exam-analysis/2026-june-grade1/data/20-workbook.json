@@ -1,0 +1,350 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "20.json",
+  "_note": "20번 워크북 — 본문 7문장 풀커버.",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "practice",      "pos": "동" },
+      { "word": "coach",         "pos": "동" },
+      { "word": "remind",        "pos": "동" },
+      { "word": "eventually",    "pos": "부" },
+      { "word": "automatically", "pos": "부" },
+      { "word": "behavior",      "pos": "명" },
+      { "word": "attention",     "pos": "명" },
+      { "word": "encouragement", "pos": "명" },
+      { "word": "gentle",        "pos": "형" },
+      { "word": "capture",       "pos": "동" }
+    ],
+    "ko_to_en": [
+      { "meaning": "가치(관)",            "pos": "명", "answer": "value" },
+      { "meaning": "집중시키다",          "pos": "동", "answer": "focus" },
+      { "meaning": "미세 조정하다, 다듬다", "pos": "동", "answer": "fine-tune" },
+      { "meaning": "기술, 능력",          "pos": "명", "answer": "skill" },
+      { "meaning": "지원하다",            "pos": "동", "answer": "support" },
+      { "meaning": "칭찬",                "pos": "명", "answer": "praise" },
+      { "meaning": "이끌다, 안내하다",     "pos": "동", "answer": "guide" },
+      { "meaning": "다른 곳에서",         "pos": "부", "answer": "elsewhere" },
+      { "meaning": "또래, 동료",          "pos": "명", "answer": "peer" },
+      { "meaning": "두려워하는",          "pos": "형", "answer": "afraid" }
+    ],
+    "expressions": [
+      { "ko": "~할 수 있다",         "answer": "be able to" },
+      { "ko": "거의 같은 방식으로",   "answer": "much the same way" },
+      { "ko": "나서서 책임지다",     "answer": "step up to the plate" },
+      { "ko": "한 걸음씩, 차근차근",  "answer": "step by step" },
+      { "ko": "~에 이끌리다",        "answer": "be guided by" }
+    ],
+    "definitions": [
+      { "def": "to teach or train someone to do something better",       "answer": "coach" },
+      { "def": "in the end, after a long time",                          "answer": "eventually" },
+      { "def": "without conscious thought, by itself",                    "answer": "automatically" },
+      { "def": "to make small adjustments to improve something",          "answer": "fine-tune" },
+      { "def": "to attract and hold someone's interest",                 "answer": "capture" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Remember how you {{1:learned/learning}} to drive or cook?",
+      "ko_full": "여러분이 어떻게 운전이나 요리를 배웠는지 기억하는가?",
+      "answers": ["learned"],
+      "explain": [
+        "의문사절(how ...)의 동사 — 과거 시제 learned."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "You practiced while someone coached you, {{1:reminding/reminded}} you what to do until you {{2:were/was}} able to coach yourself and then, eventually, do it automatically.",
+      "ko_full": "누군가가 여러분을 코치하며, 스스로 코치할 수 있고 그러고 나서 결국 자동으로 할 수 있을 때까지 무엇을 해야 하는지 일러주는 동안 여러분은 연습했다.",
+      "answers": ["reminding", "were"],
+      "explain": [
+        "분사구문 — 동시 동작을 나타내는 현재분사 reminding.",
+        "주어 you → were able to."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "Children {{1:learn/learns}} values much the same way.",
+      "ko_full": "아이들도 거의 같은 방식으로 가치를 배운다.",
+      "answers": ["learn"],
+      "explain": [
+        "복수 주어 Children → 동사원형 learn."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "They practice different kinds of behavior, while, you, as coach, help {{1:focus/focusing}} their attention on what is important and on {{2:fine-tuning/fine-tune}} important skills.",
+      "ko_full": "그들은 여러 종류의 행동을 연습하고, 그러는 동안 코치로서 여러분은 무엇이 중요한지에 그리고 중요한 기술을 다듬는 데 그들의 주의를 집중하도록 돕는다.",
+      "answers": ["focus", "fine-tuning"],
+      "explain": [
+        "help + (to) 동사원형 — focus.",
+        "전치사 on의 목적어 → 동명사 fine-tuning."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "You support them {{1:with/of}} your praise, encouragement and gentle reminders.",
+      "ko_full": "여러분은 칭찬, 격려, 그리고 부드러운 일깨움으로 그들을 지원한다.",
+      "answers": ["with"],
+      "explain": [
+        "'~으로(수단)' 지원 — 전치사 with."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "If you don't coach your child, she will find her coaches elsewhere and be guided by the values of the media, her peers and anyone else {{1:who/which}} {{2:captures/capture}} her interest.",
+      "ko_full": "여러분이 자녀를 코치하지 않으면, 그 아이는 다른 곳에서 코치를 찾아 미디어, 또래, 그리고 그녀의 관심을 끄는 그 누구의 가치에 의해 이끌릴 것이다.",
+      "answers": ["who", "captures"],
+      "explain": [
+        "선행사 anyone else(사람) → 주격 관계대명사 who.",
+        "선행사 anyone(단수 취급) → captures."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "So, step up to the plate, {{1:don't be/aren't}} afraid and {{2:help/helps}} your child learn how to be a good person, step by step.",
+      "ko_full": "그러니, 나서서, 두려워하지 말고, 여러분의 자녀가 좋은 사람이 되는 법을 한 걸음씩 배우도록 도우라.",
+      "answers": ["don't be", "help"],
+      "explain": [
+        "부정 명령문 — Don't be afraid.",
+        "명령문 병렬 — 동사원형 help."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Remember how you {{1:learned/forgot}} to drive or cook?",
+      "ko_full": "여러분이 어떻게 운전이나 요리를 배웠는지 기억하는가?",
+      "answers": ["learned"],
+      "explain": ["운전·요리를 '배웠다' — learned."]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "You {{1:practiced/quit}} while someone {{2:coached/ignored}} you, reminding you what to do until you were able to coach yourself and then, eventually, do it automatically.",
+      "ko_full": "누군가가 여러분을 코치하며, 스스로 코치할 수 있고 그러고 나서 결국 자동으로 할 수 있을 때까지 무엇을 해야 하는지 일러주는 동안 여러분은 연습했다.",
+      "answers": ["practiced", "coached"],
+      "explain": [
+        "'연습했다' — practiced.",
+        "누군가가 '코치했다' — coached."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "Children learn values {{1:much the same way/in a totally different way}}.",
+      "ko_full": "아이들도 거의 같은 방식으로 가치를 배운다.",
+      "answers": ["much the same way"],
+      "explain": ["'거의 같은 방식으로' — much the same way."]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "They practice different kinds of behavior, while, you, as coach, help {{1:focus/scatter}} their attention on what is important and on {{2:fine-tuning/neglecting}} important skills.",
+      "ko_full": "그들은 여러 종류의 행동을 연습하고, 그러는 동안 코치로서 여러분은 무엇이 중요한지에 그리고 중요한 기술을 다듬는 데 그들의 주의를 집중하도록 돕는다.",
+      "answers": ["focus", "fine-tuning"],
+      "explain": [
+        "주의를 '집중하다' — focus.",
+        "기술을 '다듬다' — fine-tuning."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "You {{1:support/hinder}} them with your praise, {{2:encouragement/criticism}} and gentle reminders.",
+      "ko_full": "여러분은 칭찬, 격려, 그리고 부드러운 일깨움으로 그들을 지원한다.",
+      "answers": ["support", "encouragement"],
+      "explain": [
+        "그들을 '지원하다' — support.",
+        "'격려' — encouragement."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "If you don't coach your child, she will find her coaches {{1:elsewhere/here}} and be guided by the values of the media, her peers and anyone else who {{2:captures/loses}} her interest.",
+      "ko_full": "여러분이 자녀를 코치하지 않으면, 그 아이는 다른 곳에서 코치를 찾아 미디어, 또래, 그리고 그녀의 관심을 끄는 그 누구의 가치에 의해 이끌릴 것이다.",
+      "answers": ["elsewhere", "captures"],
+      "explain": [
+        "'다른 곳에서' — elsewhere.",
+        "관심을 '사로잡다' — captures."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "So, {{1:step up to the plate/back down}}, don't be {{2:afraid/confident}} and help your child learn how to be a good person, step by step.",
+      "ko_full": "그러니, 나서서, 두려워하지 말고, 여러분의 자녀가 좋은 사람이 되는 법을 한 걸음씩 배우도록 도우라.",
+      "answers": ["step up to the plate", "afraid"],
+      "explain": [
+        "'나서서 책임지다' — step up to the plate.",
+        "'두려워하지' 말라 — afraid."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "r", "answer": "remember", "after": "how you learned" },
+        { "pos": 2, "letter": "l", "answer": "learned",  "after": "to drive or cook" },
+        { "pos": 3, "letter": "d", "answer": "drive",    "after": "or cook" }
+      ],
+      "ko_full": "여러분이 어떻게 운전이나 요리를 배웠는지 기억하는가?"
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "p", "answer": "practiced",     "after": "while someone" },
+        { "pos": 2, "letter": "c", "answer": "coached",       "after": "you, reminding" },
+        { "pos": 3, "letter": "r", "answer": "reminding",     "after": "you what to do" },
+        { "pos": 4, "letter": "a", "answer": "automatically", "after": "" }
+      ],
+      "ko_full": "누군가가 여러분을 코치하며, 스스로 코치할 수 있고 그러고 나서 결국 자동으로 할 수 있을 때까지 무엇을 해야 하는지 일러주는 동안 여러분은 연습했다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "l", "answer": "learn",  "after": "values" },
+        { "pos": 2, "letter": "v", "answer": "values", "after": "much the same way" }
+      ],
+      "ko_full": "아이들도 거의 같은 방식으로 가치를 배운다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "b", "answer": "behavior",  "after": ", while, you" },
+        { "pos": 2, "letter": "f", "answer": "focus",     "after": "their attention" },
+        { "pos": 3, "letter": "a", "answer": "attention", "after": "on what is important" },
+        { "pos": 4, "letter": "s", "answer": "skills",    "after": "" }
+      ],
+      "ko_full": "그들은 여러 종류의 행동을 연습하고, 그러는 동안 코치로서 여러분은 무엇이 중요한지에 그리고 중요한 기술을 다듬는 데 그들의 주의를 집중하도록 돕는다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "s", "answer": "support",       "after": "them with" },
+        { "pos": 2, "letter": "p", "answer": "praise",        "after": ", encouragement" },
+        { "pos": 3, "letter": "e", "answer": "encouragement", "after": "and gentle reminders" },
+        { "pos": 4, "letter": "g", "answer": "gentle",        "after": "reminders" }
+      ],
+      "ko_full": "여러분은 칭찬, 격려, 그리고 부드러운 일깨움으로 그들을 지원한다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "c", "answer": "coach",     "after": "your child" },
+        { "pos": 2, "letter": "e", "answer": "elsewhere", "after": "and be guided" },
+        { "pos": 3, "letter": "p", "answer": "peers",     "after": "and anyone else" },
+        { "pos": 4, "letter": "c", "answer": "captures",  "after": "her interest" }
+      ],
+      "ko_full": "여러분이 자녀를 코치하지 않으면, 그 아이는 다른 곳에서 코치를 찾아 미디어, 또래, 그리고 그녀의 관심을 끄는 그 누구의 가치에 의해 이끌릴 것이다."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "hints": [
+        { "pos": 1, "letter": "p", "answer": "plate",  "after": ", don't be afraid" },
+        { "pos": 2, "letter": "a", "answer": "afraid", "after": "and help" },
+        { "pos": 3, "letter": "h", "answer": "help",   "after": "your child learn" },
+        { "pos": 4, "letter": "p", "answer": "person", "after": ", step by step" }
+      ],
+      "ko_full": "그러니, 나서서, 두려워하지 말고, 여러분의 자녀가 좋은 사람이 되는 법을 한 걸음씩 배우도록 도우라."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 },
+    { "no": 7, "ref_sentence": 7 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["Remember", "how", "you", "learned", "to", "drive", "or", "cook"],
+      "answer": "Remember how you learned to drive or cook?"
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["You", "practiced", "while", "someone", "coached", "you", "reminding", "you", "what", "to", "do", "until", "you", "were", "able", "to", "coach", "yourself", "and", "then", "eventually", "do", "it", "automatically"],
+      "answer": "You practiced while someone coached you, reminding you what to do until you were able to coach yourself and then, eventually, do it automatically."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["Children", "learn", "values", "much", "the", "same", "way"],
+      "answer": "Children learn values much the same way."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["They", "practice", "different", "kinds", "of", "behavior", "while", "you", "as", "coach", "help", "focus", "their", "attention", "on", "what", "is", "important", "and", "on", "fine-tuning", "important", "skills"],
+      "answer": "They practice different kinds of behavior, while, you, as coach, help focus their attention on what is important and on fine-tuning important skills."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["You", "support", "them", "with", "your", "praise", "encouragement", "and", "gentle", "reminders"],
+      "answer": "You support them with your praise, encouragement and gentle reminders."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["If", "you", "don't", "coach", "your", "child", "she", "will", "find", "her", "coaches", "elsewhere", "and", "be", "guided", "by", "the", "values", "of", "the", "media", "her", "peers", "and", "anyone", "else", "who", "captures", "her", "interest"],
+      "answer": "If you don't coach your child, she will find her coaches elsewhere and be guided by the values of the media, her peers and anyone else who captures her interest."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "words": ["So", "step", "up", "to", "the", "plate", "don't", "be", "afraid", "and", "help", "your", "child", "learn", "how", "to", "be", "a", "good", "person", "step", "by", "step"],
+      "answer": "So, step up to the plate, don't be afraid and help your child learn how to be a good person, step by step."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" },
+    { "no": 7, "ref_sentence": 7, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 2, "no": 1 },
+    { "kind": "vocab",   "ref": 4, "no": 2 },
+    { "kind": "fill",    "ref": 5, "no": 3 },
+    { "kind": "ko",      "ref": 3, "no": 4 },
+    { "kind": "jumble",  "ref": 6, "no": 5 },
+    { "kind": "sent",    "ref": 7, "no": 6 },
+    { "kind": "grammar", "ref": 6, "no": 7 },
+    { "kind": "vocab",   "ref": 1, "no": 8 }
+  ]
+}

@@ -1,0 +1,476 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "41.json",
+  "_note": "41번 워크북 — 본문 N문장 풀커버.",
+  "_template_for_new_rounds": "이 파일을 새 회차의 {N}-workbook.json 작성 시 템플릿으로 사용. en_template의 {{N:A/B}} 토큰 = 양자택일 박스, hints 배열 = 빈칸 첫글자, jumble.words = 단어 배열 (셔플 X, 의도 유지).",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "commercial",     "pos": "형" },
+      { "word": "predictability", "pos": "명" },
+      { "word": "certainty",      "pos": "명" },
+      { "word": "spectator",      "pos": "명" },
+      { "word": "perspective",    "pos": "명" },
+      { "word": "attract",        "pos": "동" },
+      { "word": "attendance",     "pos": "명" },
+      { "word": "variability",    "pos": "명" },
+      { "word": "opponent",       "pos": "명" },
+      { "word": "overcome",       "pos": "동" }
+    ],
+    "ko_to_en": [
+      { "meaning": "확실성",            "pos": "명", "answer": "certainty" },
+      { "meaning": "예측 불가능한",     "pos": "형", "answer": "unpredictable" },
+      { "meaning": "제공, 전달",        "pos": "명", "answer": "delivery" },
+      { "meaning": "경기, 시합",        "pos": "명", "answer": "contest" },
+      { "meaning": "수익, 이익",        "pos": "명", "answer": "profit" },
+      { "meaning": "존재",              "pos": "명", "answer": "presence" },
+      { "meaning": "부상",              "pos": "명", "answer": "injury" },
+      { "meaning": "경기장, 개최지",    "pos": "명", "answer": "venue" },
+      { "meaning": "체계적인",          "pos": "형", "answer": "systematic" },
+      { "meaning": "재정적인",          "pos": "형", "answer": "financial" }
+    ],
+    "expressions": [
+      { "ko": "~에 관한 한",     "answer": "when it comes to" },
+      { "ko": "~에 의존하다",    "answer": "depend on" },
+      { "ko": "~에 기여하다",    "answer": "contribute to" },
+      { "ko": "~할 가능성이 높다", "answer": "be likely to" },
+      { "ko": "~하기 위해",      "answer": "in order to" }
+    ],
+    "definitions": [
+      { "def": "a person who watches an event, especially a sports game",        "answer": "spectator" },
+      { "def": "to pull or draw someone toward something",                       "answer": "attract" },
+      { "def": "the quality of being likely to change in an unexpected way",     "answer": "variability" },
+      { "def": "a person or team competing against another",                     "answer": "opponent" },
+      { "def": "to successfully deal with or solve a difficult problem",         "answer": "overcome" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Commercial businesses {{1:aim/aims}} for predictability and certainty, especially when it {{2:comes/come}} to product quality.",
+      "ko_full": "상업적 기업들은 특히 제품 품질에 관해서는 예측 가능성과 확실성을 목표로 한다.",
+      "answers": ["aim", "comes"],
+      "explain": [
+        "주어 businesses(복수) → 동사 aim.",
+        "when it comes to: 비인칭 it 단수 주어 → comes."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "But predictability and certainty are not always valued in the sporting world, especially when it comes to the delivery of professional sport {{1:competitions/competition}}.",
+      "ko_full": "그러나 예측 가능성과 확실성이 스포츠 세계에서, 특히 프로 스포츠 경기를 제공하는 일에 관해서는 항상 가치 있게 여겨지는 것은 아니다.",
+      "answers": ["competitions"],
+      "explain": [
+        "the delivery of professional sport competitions — 가산 복수형 competitions."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "From a spectator's perspective the sport experience is better {{1:experienced/experiencing}} when {{2:unpredictable/unpredictably}}.",
+      "ko_full": "관중의 관점에서 스포츠 경험은 예측 불가능할 때 더 잘 경험된다.",
+      "answers": ["experienced", "unpredictable"],
+      "explain": [
+        "주어 experience가 '경험되는' 대상 → 수동 과거분사 experienced.",
+        "when (it is) unpredictable — 보어 자리 형용사 unpredictable."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "Sport events actually {{1:depend/depends}} on that unpredictability in order {{2:to attract/attracting}} people to the game.",
+      "ko_full": "스포츠 행사는 사람들을 경기로 끌어들이기 위해 실제로 그 예측 불가능성에 의존한다.",
+      "answers": ["depend", "to attract"],
+      "explain": [
+        "주어 events(복수) → depend.",
+        "in order to + V(원형) — 목적 부정사 to attract."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "When the results of games cannot {{1:be predicted/predict}}, attendances at sporting contests are likely to be higher, {{2:as/so}} are the profits of leagues.",
+      "ko_full": "경기 결과를 예측할 수 없을 때, 스포츠 경기의 관중 수는 더 많아질 가능성이 높으며, 리그의 수익도 마찬가지다.",
+      "answers": ["be predicted", "as"],
+      "explain": [
+        "results가 '예측되는' 대상 → 수동 be predicted.",
+        "as + 도치('~도 그러하다') — as are the profits."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "However, the presence of predictability also {{1:leads/lead}} to significant variability in the quality of sporting {{2:performances/performance}}.",
+      "ko_full": "그러나 예측 가능성의 존재(→부재) 또한 스포츠 경기력의 질에 상당한 변동성을 초래한다.",
+      "answers": ["leads", "performances"],
+      "explain": [
+        "주어 핵 presence(단수) → leads.",
+        "the quality of sporting performances — 가산 복수형 performances."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "Many factors can contribute to the variability of the sport product, {{1:including/included}} the weather, player injuries, the venue, the quality of the opponents, the closeness of the scores and even the size of the crowd.",
+      "ko_full": "날씨, 선수 부상, 경기장, 상대의 수준, 점수의 접전 정도, 심지어 관중의 규모까지 포함해 많은 요인이 스포츠 상품의 변동성에 기여할 수 있다.",
+      "answers": ["including"],
+      "explain": [
+        "including ~: '~을 포함하여'(전치사). included(과거분사)는 부적절."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "A cricket match can be exhilarating, boring or even frustrating, but fans still {{1:have/has}} to pay the {{2:same/sameness}} price.",
+      "ko_full": "크리켓 경기는 짜릿하거나 지루하거나 심지어 답답할 수도 있지만, 팬들은 여전히 같은 가격을 지불해야 한다.",
+      "answers": ["have", "same"],
+      "explain": [
+        "주어 fans(복수) → have.",
+        "명사 price를 수식하는 형용사 same."
+      ]
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "en_template": "Sport marketers may attempt to overcome this by 'improving' the product in systematic ways, such as {{1:including/include}} a star player, offering premium seating or {{2:providing/provide}} other forms of entertainment and inviting facilities.",
+      "ko_full": "스포츠 마케터들은 스타 선수를 포함시키거나, 프리미엄 좌석을 제공하거나, 다른 형태의 오락과 매력적인 시설을 제공하는 등 체계적인 방식으로 상품을 '개선'함으로써 이것을 극복하려 시도할 수 있다.",
+      "answers": ["including", "providing"],
+      "explain": [
+        "such as 뒤 동명사 병렬 — including.",
+        "offering ... or providing 병렬 — 동명사 providing."
+      ]
+    },
+    {
+      "no": 10,
+      "ref_sentence": 10,
+      "en_template": "The uncertain nature of sport contests {{1:is/are}} just one element of a total experience, {{2:although/despite}} it is an important element for financial success.",
+      "ko_full": "스포츠 경기의 불확실한 본질은 총체적 경험의 한 요소일 뿐이지만, 그것은 재정적 성공을 위한 중요한 요소이다.",
+      "answers": ["is", "although"],
+      "explain": [
+        "주어 핵 nature(단수) → is.",
+        "뒤에 절(it is...)이 오므로 접속사 although(despite는 전치사)."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Commercial businesses aim for {{1:predictability/randomness}} and certainty, especially when it comes to product {{2:quality/quantity}}.",
+      "ko_full": "상업적 기업들은 특히 제품 품질에 관해서는 예측 가능성과 확실성을 목표로 한다.",
+      "answers": ["predictability", "quality"],
+      "explain": [
+        "'예측 가능성' — predictability.",
+        "제품 '품질' — quality."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "But predictability and certainty are not always {{1:valued/ignored}} in the sporting world, especially when it comes to the {{2:delivery/cancellation}} of professional sport competitions.",
+      "ko_full": "그러나 예측 가능성과 확실성이 스포츠 세계에서, 특히 프로 스포츠 경기를 제공하는 일에 관해서는 항상 가치 있게 여겨지는 것은 아니다.",
+      "answers": ["valued", "delivery"],
+      "explain": [
+        "'가치 있게 여겨지는' — valued.",
+        "경기 '제공' — delivery."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "From a {{1:spectator's/referee's}} perspective the sport experience is better experienced when {{2:unpredictable/predictable}}.",
+      "ko_full": "관중의 관점에서 스포츠 경험은 예측 불가능할 때 더 잘 경험된다.",
+      "answers": ["spectator's", "unpredictable"],
+      "explain": [
+        "'관중의' 관점 — spectator's.",
+        "'예측 불가능할' 때 — unpredictable."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "Sport events actually {{1:depend on/avoid}} that unpredictability in order to {{2:attract/repel}} people to the game.",
+      "ko_full": "스포츠 행사는 사람들을 경기로 끌어들이기 위해 실제로 그 예측 불가능성에 의존한다.",
+      "answers": ["depend on", "attract"],
+      "explain": [
+        "예측 불가능성에 '의존' — depend on.",
+        "사람들을 '끌어들이다' — attract. ↔ repel."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "When the results of games cannot be predicted, {{1:attendances/absences}} at sporting contests are likely to be higher, as are the {{2:profits/losses}} of leagues.",
+      "ko_full": "경기 결과를 예측할 수 없을 때, 스포츠 경기의 관중 수는 더 많아질 가능성이 높으며, 리그의 수익도 마찬가지다.",
+      "answers": ["attendances", "profits"],
+      "explain": [
+        "'관중 수' — attendances.",
+        "리그의 '수익' — profits. ↔ losses."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "However, the presence of predictability also leads to significant {{1:variability/consistency}} in the {{2:quality/quantity}} of sporting performances.",
+      "ko_full": "그러나 예측 가능성의 존재(→부재) 또한 스포츠 경기력의 질에 상당한 변동성을 초래한다.",
+      "answers": ["variability", "quality"],
+      "explain": [
+        "'변동성' — variability. ↔ consistency.",
+        "경기력의 '질' — quality."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "Many factors can {{1:contribute to/reduce}} the variability of the sport product, including the weather, player injuries, the {{2:venue/audience}}, the quality of the opponents, the closeness of the scores and even the size of the crowd.",
+      "ko_full": "날씨, 선수 부상, 경기장, 상대의 수준, 점수의 접전 정도, 심지어 관중의 규모까지 포함해 많은 요인이 스포츠 상품의 변동성에 기여할 수 있다.",
+      "answers": ["contribute to", "venue"],
+      "explain": [
+        "변동성에 '기여하다' — contribute to.",
+        "'경기장' — venue."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "A cricket match can be {{1:exhilarating/dull}}, boring or even frustrating, but fans still have to pay the {{2:same/lower}} price.",
+      "ko_full": "크리켓 경기는 짜릿하거나 지루하거나 심지어 답답할 수도 있지만, 팬들은 여전히 같은 가격을 지불해야 한다.",
+      "answers": ["exhilarating", "same"],
+      "explain": [
+        "'짜릿한' — exhilarating.",
+        "'같은' 가격 — same."
+      ]
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "en_template": "Sport marketers may attempt to {{1:overcome/ignore}} this by 'improving' the product in {{2:systematic/random}} ways, such as including a star player, offering premium seating or providing other forms of entertainment and inviting facilities.",
+      "ko_full": "스포츠 마케터들은 스타 선수를 포함시키거나, 프리미엄 좌석을 제공하거나, 다른 형태의 오락과 매력적인 시설을 제공하는 등 체계적인 방식으로 상품을 '개선'함으로써 이것을 극복하려 시도할 수 있다.",
+      "answers": ["overcome", "systematic"],
+      "explain": [
+        "이것을 '극복하다' — overcome.",
+        "'체계적인' 방식 — systematic. ↔ random."
+      ]
+    },
+    {
+      "no": 10,
+      "ref_sentence": 10,
+      "en_template": "The {{1:uncertain/certain}} nature of sport contests is just one element of a total experience, although it is an important element for {{2:financial/physical}} success.",
+      "ko_full": "스포츠 경기의 불확실한 본질은 총체적 경험의 한 요소일 뿐이지만, 그것은 재정적 성공을 위한 중요한 요소이다.",
+      "answers": ["uncertain", "financial"],
+      "explain": [
+        "'불확실한' 본질 — uncertain.",
+        "'재정적' 성공 — financial."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "c", "answer": "commercial",     "after": "businesses aim for" },
+        { "pos": 2, "letter": "p", "answer": "predictability", "after": "and certainty" },
+        { "pos": 3, "letter": "q", "answer": "quality",        "after": "" }
+      ],
+      "ko_full": "상업적 기업들은 특히 제품 품질에 관해서는 예측 가능성과 확실성을 목표로 한다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "v", "answer": "valued",       "after": "in the sporting world" },
+        { "pos": 2, "letter": "d", "answer": "delivery",     "after": "of professional sport" },
+        { "pos": 3, "letter": "c", "answer": "competitions", "after": "" }
+      ],
+      "ko_full": "그러나 예측 가능성과 확실성이 스포츠 세계에서, 특히 프로 스포츠 경기를 제공하는 일에 관해서는 항상 가치 있게 여겨지는 것은 아니다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "s", "answer": "spectator",     "after": "perspective" },
+        { "pos": 2, "letter": "e", "answer": "experienced",   "after": "when unpredictable" },
+        { "pos": 3, "letter": "u", "answer": "unpredictable", "after": "" }
+      ],
+      "ko_full": "관중의 관점에서 스포츠 경험은 예측 불가능할 때 더 잘 경험된다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "d", "answer": "depend",          "after": "on that unpredictability" },
+        { "pos": 2, "letter": "u", "answer": "unpredictability", "after": "in order to attract" },
+        { "pos": 3, "letter": "a", "answer": "attract",          "after": "people to the game" }
+      ],
+      "ko_full": "스포츠 행사는 사람들을 경기로 끌어들이기 위해 실제로 그 예측 불가능성에 의존한다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "p", "answer": "predicted",   "after": "attendances" },
+        { "pos": 2, "letter": "a", "answer": "attendances", "after": "are likely to be higher" },
+        { "pos": 3, "letter": "p", "answer": "profits",     "after": "of leagues" }
+      ],
+      "ko_full": "경기 결과를 예측할 수 없을 때, 스포츠 경기의 관중 수는 더 많아질 가능성이 높으며, 리그의 수익도 마찬가지다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "p", "answer": "presence",    "after": "of predictability" },
+        { "pos": 2, "letter": "v", "answer": "variability", "after": "in the quality" },
+        { "pos": 3, "letter": "p", "answer": "performances", "after": "" }
+      ],
+      "ko_full": "그러나 예측 가능성의 존재(→부재) 또한 스포츠 경기력의 질에 상당한 변동성을 초래한다."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "hints": [
+        { "pos": 1, "letter": "f", "answer": "factors",  "after": "can contribute to" },
+        { "pos": 2, "letter": "i", "answer": "injuries", "after": "the venue" },
+        { "pos": 3, "letter": "o", "answer": "opponents", "after": "the closeness of the scores" },
+        { "pos": 4, "letter": "c", "answer": "crowd",    "after": "" }
+      ],
+      "ko_full": "날씨, 선수 부상, 경기장, 상대의 수준, 점수의 접전 정도, 심지어 관중의 규모까지 포함해 많은 요인이 스포츠 상품의 변동성에 기여할 수 있다."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "hints": [
+        { "pos": 1, "letter": "e", "answer": "exhilarating", "after": "boring or even frustrating" },
+        { "pos": 2, "letter": "f", "answer": "frustrating",  "after": "but fans" },
+        { "pos": 3, "letter": "p", "answer": "price",        "after": "" }
+      ],
+      "ko_full": "크리켓 경기는 짜릿하거나 지루하거나 심지어 답답할 수도 있지만, 팬들은 여전히 같은 가격을 지불해야 한다."
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "hints": [
+        { "pos": 1, "letter": "o", "answer": "overcome",   "after": "this by improving" },
+        { "pos": 2, "letter": "s", "answer": "systematic", "after": "ways" },
+        { "pos": 3, "letter": "p", "answer": "premium",    "after": "seating" },
+        { "pos": 4, "letter": "f", "answer": "facilities", "after": "" }
+      ],
+      "ko_full": "스포츠 마케터들은 스타 선수를 포함시키거나, 프리미엄 좌석을 제공하거나, 다른 형태의 오락과 매력적인 시설을 제공하는 등 체계적인 방식으로 상품을 '개선'함으로써 이것을 극복하려 시도할 수 있다."
+    },
+    {
+      "no": 10,
+      "ref_sentence": 10,
+      "hints": [
+        { "pos": 1, "letter": "u", "answer": "uncertain", "after": "nature of sport contests" },
+        { "pos": 2, "letter": "e", "answer": "element",   "after": "of a total experience" },
+        { "pos": 3, "letter": "f", "answer": "financial", "after": "success" }
+      ],
+      "ko_full": "스포츠 경기의 불확실한 본질은 총체적 경험의 한 요소일 뿐이지만, 그것은 재정적 성공을 위한 중요한 요소이다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 },
+    { "no": 7, "ref_sentence": 7 },
+    { "no": 8, "ref_sentence": 8 },
+    { "no": 9, "ref_sentence": 9 },
+    { "no": 10, "ref_sentence": 10 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["Commercial", "businesses", "aim", "for", "predictability", "and", "certainty", "especially", "when", "it", "comes", "to", "product", "quality"],
+      "answer": "Commercial businesses aim for predictability and certainty, especially when it comes to product quality."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["But", "predictability", "and", "certainty", "are", "not", "always", "valued", "in", "the", "sporting", "world", "especially", "when", "it", "comes", "to", "the", "delivery", "of", "professional", "sport", "competitions"],
+      "answer": "But predictability and certainty are not always valued in the sporting world, especially when it comes to the delivery of professional sport competitions."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["From", "a", "spectator's", "perspective", "the", "sport", "experience", "is", "better", "experienced", "when", "unpredictable"],
+      "answer": "From a spectator's perspective the sport experience is better experienced when unpredictable."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["Sport", "events", "actually", "depend", "on", "that", "unpredictability", "in", "order", "to", "attract", "people", "to", "the", "game"],
+      "answer": "Sport events actually depend on that unpredictability in order to attract people to the game."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["When", "the", "results", "of", "games", "cannot", "be", "predicted", "attendances", "at", "sporting", "contests", "are", "likely", "to", "be", "higher", "as", "are", "the", "profits", "of", "leagues"],
+      "answer": "When the results of games cannot be predicted, attendances at sporting contests are likely to be higher, as are the profits of leagues."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["However", "the", "presence", "of", "predictability", "also", "leads", "to", "significant", "variability", "in", "the", "quality", "of", "sporting", "performances"],
+      "answer": "However, the presence of predictability also leads to significant variability in the quality of sporting performances."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "words": ["Many", "factors", "can", "contribute", "to", "the", "variability", "of", "the", "sport", "product", "including", "the", "weather", "player", "injuries", "the", "venue", "the", "quality", "of", "the", "opponents", "the", "closeness", "of", "the", "scores", "and", "even", "the", "size", "of", "the", "crowd"],
+      "answer": "Many factors can contribute to the variability of the sport product, including the weather, player injuries, the venue, the quality of the opponents, the closeness of the scores and even the size of the crowd."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "words": ["A", "cricket", "match", "can", "be", "exhilarating", "boring", "or", "even", "frustrating", "but", "fans", "still", "have", "to", "pay", "the", "same", "price"],
+      "answer": "A cricket match can be exhilarating, boring or even frustrating, but fans still have to pay the same price."
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "words": ["Sport", "marketers", "may", "attempt", "to", "overcome", "this", "by", "improving", "the", "product", "in", "systematic", "ways", "such", "as", "including", "a", "star", "player", "offering", "premium", "seating", "or", "providing", "other", "forms", "of", "entertainment", "and", "inviting", "facilities"],
+      "answer": "Sport marketers may attempt to overcome this by 'improving' the product in systematic ways, such as including a star player, offering premium seating or providing other forms of entertainment and inviting facilities."
+    },
+    {
+      "no": 10,
+      "ref_sentence": 10,
+      "words": ["The", "uncertain", "nature", "of", "sport", "contests", "is", "just", "one", "element", "of", "a", "total", "experience", "although", "it", "is", "an", "important", "element", "for", "financial", "success"],
+      "answer": "The uncertain nature of sport contests is just one element of a total experience, although it is an important element for financial success."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" },
+    { "no": 7, "ref_sentence": 7, "given": "ko" },
+    { "no": 8, "ref_sentence": 8, "given": "ko" },
+    { "no": 9, "ref_sentence": 9, "given": "ko" },
+    { "no": 10, "ref_sentence": 10, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 1, "no": 1 },
+    { "kind": "vocab",   "ref": 3, "no": 2 },
+    { "kind": "fill",    "ref": 5, "no": 3 },
+    { "kind": "ko",      "ref": 6, "no": 4 },
+    { "kind": "jumble",  "ref": 8, "no": 5 },
+    { "kind": "sent",    "ref": 10, "no": 6 },
+    { "kind": "grammar", "ref": 7, "no": 7 },
+    { "kind": "vocab",   "ref": 9, "no": 8 }
+  ]
+}

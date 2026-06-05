@@ -1,0 +1,316 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "35.json",
+  "_note": "35번 워크북 — 본문 6문장 풀커버.",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "evident",       "pos": "형" },
+      { "word": "adopt",         "pos": "동" },
+      { "word": "outcome",       "pos": "명" },
+      { "word": "conduct",       "pos": "동" },
+      { "word": "participant",   "pos": "명" },
+      { "word": "anxiety",       "pos": "명" },
+      { "word": "constant",      "pos": "형" },
+      { "word": "meaningful",    "pos": "형" },
+      { "word": "implement",     "pos": "동" },
+      { "word": "mindfulness",   "pos": "명" }
+    ],
+    "ko_to_en": [
+      { "meaning": "제한하다",           "pos": "동", "answer": "limit" },
+      { "meaning": "우울(증)",           "pos": "명", "answer": "depression" },
+      { "meaning": "알림",               "pos": "명", "answer": "notification" },
+      { "meaning": "상호작용",           "pos": "명", "answer": "interaction" },
+      { "meaning": "행복, 안녕",         "pos": "명", "answer": "well-being" },
+      { "meaning": "흐름, 줄기",         "pos": "명", "answer": "stream" },
+      { "meaning": "번아웃, 탈진",       "pos": "명", "answer": "burnout" },
+      { "meaning": "불면증",             "pos": "명", "answer": "insomnia" },
+      { "meaning": "경계, 한계",         "pos": "명", "answer": "boundary" },
+      { "meaning": "명료함",             "pos": "명", "answer": "clarity" }
+    ],
+    "expressions": [
+      { "ko": "~로 이어지다",         "answer": "lead to" },
+      { "ko": "~에 의존하다",         "answer": "rely on" },
+      { "ko": "~함으로써",            "answer": "by reducing" },
+      { "ko": "예를 들어",            "answer": "for instance" },
+      { "ko": "그 결과",              "answer": "as a result" }
+    ],
+    "definitions": [
+      { "def": "clear and easy to see or understand",                         "answer": "evident" },
+      { "def": "to accept and start to use something new",                    "answer": "adopt" },
+      { "def": "a person who takes part in an activity or study",             "answer": "participant" },
+      { "def": "to put a plan or method into action",                        "answer": "implement" },
+      { "def": "the state of being unable to sleep",                          "answer": "insomnia" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "It is evident through various case studies {{1:that/what}} adopting digital minimalism can {{2:lead to/lead}} improved mental health outcomes.",
+      "ko_full": "디지털 미니멀리즘을 받아들이는 것이 향상된 정신 건강 결과로 이어질 수 있다는 것은 다양한 사례 연구를 통해 분명하다.",
+      "answers": ["that", "lead to"],
+      "explain": [
+        "It is evident ~의 진주어 명사절 — 완전한 절을 이끄는 접속사 that.",
+        "lead to N: ~로 이어지다(타동사구), to 필요."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "For instance, a study {{1:conducted/conducting}} by researchers at Stanford University found that participants {{2:who/which}} limited their use of social media and digital devices reported lower levels of stress, anxiety, and depression.",
+      "ko_full": "예를 들어, 스탠퍼드 대학교 연구진이 수행한 한 연구는 소셜 미디어와 디지털 기기 사용을 제한한 참가자들이 더 낮은 수준의 스트레스, 불안, 우울을 보고했음을 발견했다.",
+      "answers": ["conducted", "who"],
+      "explain": [
+        "a study가 수행'된' 대상 — 과거분사 conducted(= which was conducted).",
+        "선행사 participants(사람) + 뒤 절의 주어 역할 → 주격 who."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "By {{1:reducing/reduce}} the constant stream of information and notifications, individuals were able to focus more on meaningful interactions and activities {{2:that/what}} promoted well-being.",
+      "ko_full": "끊임없는 정보와 알림의 흐름을 줄임으로써, 개인들은 의미 있는 상호작용과 행복을 증진하는 활동에 더 집중할 수 있었다.",
+      "answers": ["reducing", "that"],
+      "explain": [
+        "By + 동명사(~함으로써) — reducing.",
+        "선행사 activities를 수식하는 주격 관계대명사 that."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "Additionally, participants reported {{1:relying/to rely}} on social media to {{2:get/getting}} information for their purchasing decisions.",
+      "ko_full": "게다가, 참가자들은 구매 결정을 위한 정보를 얻기 위해 소셜 미디어에 의존했다고 보고했다.",
+      "answers": ["relying", "get"],
+      "explain": [
+        "report + 동명사 — relying.",
+        "'~하기 위해' 목적의 to부정사 — to get."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "In another case, a corporate professional {{1:struggling/struggled}} with burnout and insomnia implemented digital minimalism techniques, such as setting boundaries for phone usage and {{2:practicing/practiced}} mindfulness.",
+      "ko_full": "또 다른 사례에서, 번아웃과 불면증에 시달리던 한 직장인은 휴대전화 사용에 경계를 설정하고 마음챙김을 실천하는 등의 디지털 미니멀리즘 기법을 실행했다.",
+      "answers": ["struggling", "practicing"],
+      "explain": [
+        "주어 a corporate professional을 후치 수식하는 현재분사 struggling.",
+        "such as 뒤 setting과 병렬 — 동명사 practicing."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "As a result, he {{1:experienced/experiencing}} improved sleep quality, reduced stress levels, and a {{2:newfound/newly}} sense of calm and clarity.",
+      "ko_full": "그 결과, 그는 향상된 수면의 질, 줄어든 스트레스 수준, 그리고 새롭게 찾은 평온과 명료함을 경험했다.",
+      "answers": ["experienced", "newfound"],
+      "explain": [
+        "주어 he의 본동사 자리 — 과거동사 experienced.",
+        "명사 sense를 수식하는 형용사 newfound."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "It is {{1:evident/unclear}} through various case studies that {{2:adopting/rejecting}} digital minimalism can lead to improved mental health outcomes.",
+      "ko_full": "디지털 미니멀리즘을 받아들이는 것이 향상된 정신 건강 결과로 이어질 수 있다는 것은 다양한 사례 연구를 통해 분명하다.",
+      "answers": ["evident", "adopting"],
+      "explain": [
+        "사례 연구로 '분명하다' — evident.",
+        "디지털 미니멀리즘을 '받아들이다' — adopting."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "For instance, a study conducted by researchers at Stanford University found that participants who {{1:limited/expanded}} their use of social media and digital devices reported {{2:lower/higher}} levels of stress, anxiety, and depression.",
+      "ko_full": "예를 들어, 스탠퍼드 대학교 연구진이 수행한 한 연구는 소셜 미디어와 디지털 기기 사용을 제한한 참가자들이 더 낮은 수준의 스트레스, 불안, 우울을 보고했음을 발견했다.",
+      "answers": ["limited", "lower"],
+      "explain": [
+        "사용을 '제한한' 참가자 — limited.",
+        "스트레스가 '더 낮은' 수준 — lower."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "By reducing the {{1:constant/occasional}} stream of information and notifications, individuals were able to focus more on {{2:meaningful/trivial}} interactions and activities that promoted well-being.",
+      "ko_full": "끊임없는 정보와 알림의 흐름을 줄임으로써, 개인들은 의미 있는 상호작용과 행복을 증진하는 활동에 더 집중할 수 있었다.",
+      "answers": ["constant", "meaningful"],
+      "explain": [
+        "'끊임없는' 정보의 흐름 — constant.",
+        "'의미 있는' 상호작용 — meaningful."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "Additionally, participants reported {{1:relying on/avoiding}} social media to get information for their {{2:purchasing/selling}} decisions.",
+      "ko_full": "게다가, 참가자들은 구매 결정을 위한 정보를 얻기 위해 소셜 미디어에 의존했다고 보고했다.",
+      "answers": ["relying on", "purchasing"],
+      "explain": [
+        "소셜 미디어에 '의존하다' — relying on.",
+        "'구매' 결정 — purchasing."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "In another case, a corporate professional struggling with burnout and {{1:insomnia/vigor}} {{2:implemented/abandoned}} digital minimalism techniques, such as setting boundaries for phone usage and practicing mindfulness.",
+      "ko_full": "또 다른 사례에서, 번아웃과 불면증에 시달리던 한 직장인은 휴대전화 사용에 경계를 설정하고 마음챙김을 실천하는 등의 디지털 미니멀리즘 기법을 실행했다.",
+      "answers": ["insomnia", "implemented"],
+      "explain": [
+        "번아웃과 '불면증' — insomnia.",
+        "기법을 '실행했다' — implemented."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "As a result, he experienced {{1:improved/worsened}} sleep quality, {{2:reduced/increased}} stress levels, and a newfound sense of calm and clarity.",
+      "ko_full": "그 결과, 그는 향상된 수면의 질, 줄어든 스트레스 수준, 그리고 새롭게 찾은 평온과 명료함을 경험했다.",
+      "answers": ["improved", "reduced"],
+      "explain": [
+        "'향상된' 수면의 질 — improved.",
+        "'줄어든' 스트레스 — reduced."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "e", "answer": "evident",     "after": "through various case studies" },
+        { "pos": 2, "letter": "a", "answer": "adopting",    "after": "digital minimalism" },
+        { "pos": 3, "letter": "o", "answer": "outcomes",    "after": "" }
+      ],
+      "ko_full": "디지털 미니멀리즘을 받아들이는 것이 향상된 정신 건강 결과로 이어질 수 있다는 것은 다양한 사례 연구를 통해 분명하다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "c", "answer": "conducted",   "after": "by researchers" },
+        { "pos": 2, "letter": "p", "answer": "participants", "after": "who limited" },
+        { "pos": 3, "letter": "d", "answer": "depression",  "after": "" }
+      ],
+      "ko_full": "예를 들어, 스탠퍼드 대학교 연구진이 수행한 한 연구는 소셜 미디어와 디지털 기기 사용을 제한한 참가자들이 더 낮은 수준의 스트레스, 불안, 우울을 보고했음을 발견했다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "r", "answer": "reducing",    "after": "the constant stream" },
+        { "pos": 2, "letter": "n", "answer": "notifications", "after": ", individuals" },
+        { "pos": 3, "letter": "m", "answer": "meaningful",  "after": "interactions" }
+      ],
+      "ko_full": "끊임없는 정보와 알림의 흐름을 줄임으로써, 개인들은 의미 있는 상호작용과 행복을 증진하는 활동에 더 집중할 수 있었다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "r", "answer": "relying",     "after": "on social media" },
+        { "pos": 2, "letter": "i", "answer": "information", "after": "for their" },
+        { "pos": 3, "letter": "p", "answer": "purchasing",  "after": "decisions" }
+      ],
+      "ko_full": "게다가, 참가자들은 구매 결정을 위한 정보를 얻기 위해 소셜 미디어에 의존했다고 보고했다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "s", "answer": "struggling",  "after": "with burnout" },
+        { "pos": 2, "letter": "i", "answer": "implemented", "after": "digital minimalism" },
+        { "pos": 3, "letter": "b", "answer": "boundaries",  "after": "for phone usage" },
+        { "pos": 4, "letter": "m", "answer": "mindfulness", "after": "" }
+      ],
+      "ko_full": "또 다른 사례에서, 번아웃과 불면증에 시달리던 한 직장인은 휴대전화 사용에 경계를 설정하고 마음챙김을 실천하는 등의 디지털 미니멀리즘 기법을 실행했다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "e", "answer": "experienced", "after": "improved sleep quality" },
+        { "pos": 2, "letter": "r", "answer": "reduced",     "after": "stress levels" },
+        { "pos": 3, "letter": "c", "answer": "clarity",     "after": "" }
+      ],
+      "ko_full": "그 결과, 그는 향상된 수면의 질, 줄어든 스트레스 수준, 그리고 새롭게 찾은 평온과 명료함을 경험했다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["It", "is", "evident", "through", "various", "case", "studies", "that", "adopting", "digital", "minimalism", "can", "lead", "to", "improved", "mental", "health", "outcomes"],
+      "answer": "It is evident through various case studies that adopting digital minimalism can lead to improved mental health outcomes."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["For", "instance", "a", "study", "conducted", "by", "researchers", "at", "Stanford", "University", "found", "that", "participants", "who", "limited", "their", "use", "of", "social", "media", "and", "digital", "devices", "reported", "lower", "levels", "of", "stress", "anxiety", "and", "depression"],
+      "answer": "For instance, a study conducted by researchers at Stanford University found that participants who limited their use of social media and digital devices reported lower levels of stress, anxiety, and depression."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["By", "reducing", "the", "constant", "stream", "of", "information", "and", "notifications", "individuals", "were", "able", "to", "focus", "more", "on", "meaningful", "interactions", "and", "activities", "that", "promoted", "well-being"],
+      "answer": "By reducing the constant stream of information and notifications, individuals were able to focus more on meaningful interactions and activities that promoted well-being."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["Additionally", "participants", "reported", "relying", "on", "social", "media", "to", "get", "information", "for", "their", "purchasing", "decisions"],
+      "answer": "Additionally, participants reported relying on social media to get information for their purchasing decisions."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["In", "another", "case", "a", "corporate", "professional", "struggling", "with", "burnout", "and", "insomnia", "implemented", "digital", "minimalism", "techniques", "such", "as", "setting", "boundaries", "for", "phone", "usage", "and", "practicing", "mindfulness"],
+      "answer": "In another case, a corporate professional struggling with burnout and insomnia implemented digital minimalism techniques, such as setting boundaries for phone usage and practicing mindfulness."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["As", "a", "result", "he", "experienced", "improved", "sleep", "quality", "reduced", "stress", "levels", "and", "a", "newfound", "sense", "of", "calm", "and", "clarity"],
+      "answer": "As a result, he experienced improved sleep quality, reduced stress levels, and a newfound sense of calm and clarity."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 1, "no": 1 },
+    { "kind": "vocab",   "ref": 2, "no": 2 },
+    { "kind": "fill",    "ref": 3, "no": 3 },
+    { "kind": "ko",      "ref": 4, "no": 4 },
+    { "kind": "jumble",  "ref": 5, "no": 5 },
+    { "kind": "sent",    "ref": 6, "no": 6 },
+    { "kind": "grammar", "ref": 3, "no": 7 },
+    { "kind": "vocab",   "ref": 5, "no": 8 }
+  ]
+}
