@@ -47,13 +47,27 @@ async function main(){
     allPages += `\n<!-- ===== ${no}번 ===== -->\n` + sections.join('\n');
   }
 
+  // 제목 줄바꿈: "[2026] 6월 모의고사" / "{학년} 영어 영역"
+  //   examLabel 예: "[2026] 6월 모의고사 1학년" → 마지막 "N학년"을 둘째 줄로 분리
+  const lbl = (examLabel || '모의고사').trim();
+  const gm = lbl.match(/^(.*?)(\s*\d+학년)\s*$/);
+  const titleLine1 = gm ? gm[1].trim() : lbl;
+  const titleLine2 = (gm ? gm[2].trim() + ' ' : '') + '영어 영역';
+
+  // 번호 목록 줄바꿈: 32번 이상은 둘째 줄로
+  const row1 = nums.filter(n => n < 32);
+  const row2 = nums.filter(n => n >= 32);
+  const numHtml = row2.length
+    ? `${row1.join(' · ')}<br>${row2.join(' · ')}`
+    : nums.join(' · ');
+
   // 표지 1장
   const cover = `<section class="page cover-page">
   <div class="cover-wrap">
     <div class="cover-brand">Terra Nova</div>
-    <div class="cover-title">${esc(examLabel || '모의고사')} 영어 영역</div>
+    <div class="cover-title">${esc(titleLine1)}<br>${esc(titleLine2)}</div>
     <div class="cover-sub">본문분석지 합본 · 18~45번 (25·27·28 제외)</div>
-    <div class="cover-list">${nums.join(' · ')}</div>
+    <div class="cover-list">${numHtml}</div>
   </div>
 </section>`;
 
