@@ -16,7 +16,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 
-const SCALE = 2; // 2x = 약 192dpi 상당, 텍스트 선명
+const SCALE = Number(process.env.PDF_SCALE) || 2; // 2x≈192dpi. PDF_SCALE=3 이면 더 선명(합본용)
 
 function parseArgs(argv){
   const a = { footer: null, positional: [] };
