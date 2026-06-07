@@ -819,7 +819,7 @@ async function measureFlowMerge(data, dataDir, lastGroup, firstAnalysisGroup, la
 
   // 마지막 passage 페이지에 남는 공간이 충분해야(카드 1개+bar 들어갈 만큼) 병합 의미 있음
   const GAP = 9;
-  const SAFE = 42; // 보수 마진(병합 카드 결합 렌더 과소측정 ~18px 보정 — overflow 0 보장)
+  const SAFE = 46; // 보수 마진(병합 카드 결합 렌더 과소측정 보정 — grade1 #19 980/976 잡기 위해 42→46)
   let avail = m.bodyH - m.passageH - GAP - m.barH - SAFE;
   if (avail < (m.cardHs[0] || Infinity)) return null; // 카드 1개도 못 넣으면 병합 안 함
 
