@@ -304,9 +304,12 @@ ${buildFooter(startPageNo + i)}
 // PAGE 3, 4 — 문장별 분석
 // ─────────────────────────────────────────────────────────────
 /**
- * 분석 카드.
- * @param part 'full'(기본) | 'top'(paraphrasing 제외, 여백 분리용 상단부)
- *             | 'para'(paraphrasing 박스만, 다음 페이지 이어쓰기용)
+ * 분석 카드. 여백을 빼곡히 채우기 위해 여러 분할 형태를 지원한다.
+ *   'full' : 전체 (헤드 + 포인트 + paraphrasing)
+ *   'top'  : paraphrasing 제외 (헤드 + 포인트), 끝에 "para 다음장" 안내
+ *   'head' : 헤드만 (영문 + 끊어읽기 + 해석 + note), 끝에 "분석 다음장" 안내
+ *   'rest' : 포인트 + paraphrasing (head 다음 이어쓰기)
+ *   'para' : paraphrasing 박스만 (top 다음 이어쓰기)
  */
 function buildSentenceCard(s, part = 'full') {
   const tags = (s.tags || []).map(t => {
@@ -315,10 +318,13 @@ function buildSentenceCard(s, part = 'full') {
     return `<span class="tag ${tt.cls}">${tt.emoji} ${tt.label}</span>`;
   }).join('\n        ');
 
-  const points = (s.points || []).map(p => {
+  const pointsHtml = (s.points || []).map(p => {
     const tagText = POINT_LABEL[p.kind] || '포인트';
     return `        <div class="point ${esc(p.kind)}"><span class="pt-tag">${tagText}</span><span class="pt-text">${raw(p.text)}</span></div>`;
   }).join('\n');
+  const pointGrid = (s.points && s.points.length) ? `      <div class="point-grid">
+${pointsHtml}
+      </div>` : '';
 
   const noteHtml = s.note ? `      <div class="note">${raw(s.note)}</div>` : '';
 
@@ -338,24 +344,7 @@ ${rows}
       </div>`;
   }
 
-  // paraphrasing 박스만 (다음 페이지 이어쓰기)
-  if (part === 'para') {
-    return `    <div class="sent sent-cont">
-      <div class="sent-head">
-        <span class="sent-no">SENT ${s.no}</span>
-        <span class="cont-label">(이어서) PARAPHRASING</span>
-      </div>
-${paraHtml}
-    </div>`;
-  }
-
-  // 상단부(top): paraphrasing 은 다음 페이지로 분리 — "다음 페이지 계속" 안내
-  const tail = (part === 'top' && hasPara)
-    ? '\n      <div class="para-more">▶ PARAPHRASING 다음 페이지에서 계속</div>'
-    : (part === 'full' ? '\n' + paraHtml : '');
-
-  return `    <div class="sent">
-      <div class="sent-head">
+  const headInner = `      <div class="sent-head">
         <span class="sent-no">SENT ${s.no}</span>
         ${tags}
       </div>
@@ -364,10 +353,43 @@ ${paraHtml}
       </div>
       <div class="ko">${raw(s.ko_chunks)}</div>
       <div class="ko-bold">${esc(s.ko_full)}</div>
-${noteHtml}
-      <div class="point-grid">
-${points}
-      </div>${tail}
+${noteHtml}`;
+
+  // 이어쓰기 헤더(헤드 없이 바로 이어지는 part)
+  const contHead = (label) => `      <div class="sent-head">
+        <span class="sent-no">SENT ${s.no}</span>
+        <span class="cont-label">${label}</span>
+      </div>`;
+
+  if (part === 'para') {
+    return `    <div class="sent sent-cont">
+${contHead('(이어서) PARAPHRASING')}
+${paraHtml}
+    </div>`;
+  }
+  if (part === 'rest') {
+    return `    <div class="sent sent-cont">
+${contHead('(이어서) 포인트 분석')}
+${pointGrid}
+${hasPara ? '\n' + paraHtml : ''}
+    </div>`;
+  }
+  if (part === 'head') {
+    return `    <div class="sent">
+${headInner}
+      <div class="para-more">▶ 분석 다음 페이지에서 계속</div>
+    </div>`;
+  }
+  if (part === 'top') {
+    return `    <div class="sent">
+${headInner}
+${pointGrid}${hasPara ? '\n      <div class="para-more">▶ PARAPHRASING 다음 페이지에서 계속</div>' : ''}
+    </div>`;
+  }
+  // full
+  return `    <div class="sent">
+${headInner}
+${pointGrid}${hasPara ? '\n' + paraHtml : ''}
     </div>`;
 }
 
@@ -451,13 +473,19 @@ async function measureAndChunk(stylesHref, data, dataDir) {
   const cssAbsPath = path.resolve(path.dirname(dataDir), 'styles', 'analysis.css');
   const cssContent = await fs.readFile(cssAbsPath, 'utf8');
   const sents = data.sentences || [];
-  // 각 문장의 full(전체)·top(para 제외)·para(para 박스만) 세 형태 실측
+  // 각 문장의 5형태(full·top·head·rest·para) 실측 — 여백 채우기용 분할 후보
   const blocks = [];
   sents.forEach((s, i) => {
+    const hasP = s.paraphrasing && s.paraphrasing.length;
+    const hasPts = s.points && s.points.length;
     blocks.push(`<div data-k="full" data-i="${i}">${buildSentenceCard(s, 'full')}</div>`);
-    if (s.paraphrasing && s.paraphrasing.length) {
-      blocks.push(`<div data-k="top" data-i="${i}">${buildSentenceCard(s, 'top')}</div>`);
-      blocks.push(`<div data-k="para" data-i="${i}">${buildSentenceCard(s, 'para')}</div>`);
+    // top: para 분리 (para 있을 때만 의미)
+    if (hasP) blocks.push(`<div data-k="top" data-i="${i}">${buildSentenceCard(s, 'top')}</div>`);
+    if (hasP) blocks.push(`<div data-k="para" data-i="${i}">${buildSentenceCard(s, 'para')}</div>`);
+    // head/rest: 포인트가 있을 때만 의미(헤드만 앞장, 포인트+para 다음장)
+    if (hasPts) {
+      blocks.push(`<div data-k="head" data-i="${i}">${buildSentenceCard(s, 'head')}</div>`);
+      blocks.push(`<div data-k="rest" data-i="${i}">${buildSentenceCard(s, 'rest')}</div>`);
     }
   });
   const allOnOne = `<!doctype html><html><head><meta charset="utf-8"><style>${cssContent}</style></head><body>
@@ -487,37 +515,55 @@ ${blocks.join('\n')}
   await browser.close();
   try { await fs.unlink(tmpPath); } catch {}
 
-  const AVAIL = 920;
+  // sent-list 실가용 높이 934px(=bodyH 976 − section-bar 42). 안전 2px 마진.
+  const AVAIL = 932;
   const GAP = 9;
-  const SPLIT_MIN_GAIN = 120; // 앞장에 top을 넣어 채울 최소 높이(작은 여백엔 분리 안 함)
-  const fullH = i => measured['full:' + i] || 0;
-  const topH = i => measured['top:' + i] ?? fullH(i);
-  const paraH = i => measured['para:' + i] || 0;
+  const SPLIT_MIN_GAIN = 60; // 앞장에 분할 조각을 넣을 최소 이득(작으면 분리 안 함)
+  const H = (k, i) => measured[k + ':' + i];
+  const fullH = i => H('full', i) || 0;
   const hasPara = i => (sents[i].paraphrasing && sents[i].paraphrasing.length) > 0;
+  const hasPts = i => (sents[i].points && sents[i].points.length) > 0;
 
-  // 그리디 분배 + 여백 시 카드 분리(top→앞장, para→다음장)
+  // 그리디 분배 + 여백 시 카드 분할(빼곡 채우기 최우선)
   const pages = [];
   let cur = [];
   let curH = 0;
   const pushPage = () => { if (cur.length) { pages.push(cur); cur = []; curH = 0; } };
+
   for (let i = 0; i < sents.length; i++) {
     const h = fullH(i);
     const addH = cur.length === 0 ? h : h + GAP;
-    if (cur.length > 0 && curH + addH > AVAIL) {
-      // 카드가 통째로 안 들어감 → 남은 공간 확인해 분리 시도
-      const remain = AVAIL - curH - GAP;
-      const th = topH(i);
-      if (hasPara(i) && remain >= th && th >= SPLIT_MIN_GAIN) {
-        cur.push({ s: sents[i], part: 'top' });
-        pushPage();
-        cur.push({ s: sents[i], part: 'para' });
-        curH = paraH(i);
-        continue;
-      }
-      pushPage();
+    if (cur.length === 0 || curH + addH <= AVAIL) {
+      // 통째로 들어감
+      cur.push({ s: sents[i], part: 'full' });
+      curH += (cur.length === 1 ? h : h + GAP);
+      continue;
     }
+
+    // 통째로 안 들어감 → 앞장 여백에 가능한 가장 큰 조각을 넣어 채운다.
+    const remain = AVAIL - curH - GAP; // 앞장에 더 쓸 수 있는 높이
+    // 분할 후보(앞장 조각 → 다음장 나머지), 큰 조각 우선
+    const cands = [];
+    if (hasPara(i)) cands.push({ frontK: 'top', front: H('top', i), nextPart: 'para' });   // 헤드+포인트 / para
+    if (hasPts(i))  cands.push({ frontK: 'head', front: H('head', i), nextPart: 'rest' });  // 헤드 / 포인트+para
+    // 앞장에 들어가는 가장 큰 조각 선택
+    let chosen = null;
+    for (const c of cands) {
+      if (c.front != null && c.front <= remain && c.front >= SPLIT_MIN_GAIN) {
+        if (!chosen || c.front > chosen.front) chosen = c;
+      }
+    }
+    if (chosen) {
+      cur.push({ s: sents[i], part: chosen.frontK });
+      pushPage();
+      cur.push({ s: sents[i], part: chosen.nextPart });
+      curH = (H(chosen.nextPart, i) || 0);
+      continue;
+    }
+    // 분할 불가(여백 부족) → 통째로 다음 장
+    pushPage();
     cur.push({ s: sents[i], part: 'full' });
-    curH += (cur.length === 1 ? h : h + GAP);
+    curH += h;
   }
   pushPage();
   return pages;
@@ -773,7 +819,7 @@ async function measureFlowMerge(data, dataDir, lastGroup, firstAnalysisGroup, la
 
   // 마지막 passage 페이지에 남는 공간이 충분해야(카드 1개+bar 들어갈 만큼) 병합 의미 있음
   const GAP = 9;
-  const SAFE = 40; // 보수 마진(결합 렌더 보정 — 빠듯한 페이지는 병합 생략해 overflow 방지)
+  const SAFE = 42; // 보수 마진(병합 카드 결합 렌더 과소측정 ~18px 보정 — overflow 0 보장)
   let avail = m.bodyH - m.passageH - GAP - m.barH - SAFE;
   if (avail < (m.cardHs[0] || Infinity)) return null; // 카드 1개도 못 넣으면 병합 안 함
 
