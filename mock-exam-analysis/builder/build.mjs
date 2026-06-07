@@ -467,7 +467,7 @@ function chunkSentences(sentences) {
 }
 
 // 측정 함수 — buildHtml 후 puppeteer로 각 .sent 카드 실제 높이를 측정해 페이지 분배
-async function measureAndChunk(stylesHref, data, dataDir) {
+async function measureAndChunk(stylesHref, data, dataDir, startIdx = 0) {
   const puppeteer = (await import('puppeteer')).default;
   // CSS 파일을 인라인으로 포함 (file:// 상대경로 문제 우회)
   const cssAbsPath = path.resolve(path.dirname(dataDir), 'styles', 'analysis.css');
@@ -530,7 +530,7 @@ ${blocks.join('\n')}
   let curH = 0;
   const pushPage = () => { if (cur.length) { pages.push(cur); cur = []; curH = 0; } };
 
-  for (let i = 0; i < sents.length; i++) {
+  for (let i = startIdx; i < sents.length; i++) {
     const h = fullH(i);
     const addH = cur.length === 0 ? h : h + GAP;
     if (cur.length === 0 || curH + addH <= AVAIL) {
@@ -655,19 +655,24 @@ ${candidates.join('\n')}
   }
 
   // ── 분할 경로 ──
-  // 서로 다른 블록을 한 페이지에 합칠 때는 단독 측정값이 결합 렌더보다 ~10% 작게
-  // 나오므로(sibling margin·gap 누락), 패킹 한계는 보수적으로 bodyH×0.86 사용.
-  const PACK = Math.round(bodyH * 0.86);
+  // 두 종류의 한계를 분리한다:
+  //  · PACK_LINE: 단일 블록(fulltext)을 라인 단위로 쪼갤 때 — 그 페이지 자체가 꽉 차므로
+  //    결합 margin 누락이 없어 0.86으로 보수적 유지(묶음지문 overflow 0 보장).
+  //  · PACK_BLOCK: 서로 다른 블록(fulltext+answer+flow)을 한 페이지에 합칠 때 —
+  //    sibling margin·gap이 누락돼 단독합이 실제보다 작게 나오지만, 여백을 빼곡히
+  //    채우려고 0.90까지 허용(Q36 fulltext+answer 합침. 871/976 안전).
+  const PACK_LINE = Math.round(bodyH * 0.86);
+  const PACK_BLOCK = Math.round(bodyH * 0.90);
 
-  // 본문이 단독으로 PACK 을 넘으면 라인 단위 청크.
+  // 본문이 단독으로 PACK_LINE 을 넘으면 라인 단위 청크.
   const fulltextBlocks = [];
-  if (fulltextH <= PACK) {
+  if (fulltextH <= PACK_LINE) {
     fulltextBlocks.push({ type: 'fulltext', range: [0, nLines], cont: false, h: fulltextH });
   } else {
     let s = 0, curH = barH, e = 0, cont = false;
     for (let i = 0; i < lineHs.length; i++) {
       const lh = lineHs[i];
-      if (e > s && curH + lh > PACK) {
+      if (e > s && curH + lh > PACK_LINE) {
         fulltextBlocks.push({ type: 'fulltext', range: [s, e], cont, h: curH });
         s = e; curH = barH; cont = true;
       }
@@ -683,13 +688,17 @@ ${candidates.join('\n')}
     { type: 'flow', h: flowH },
   ];
 
-  // 그리디 패킹 (보수적 PACK 한계)
+  // 그리디 패킹 — 블록 결합 한계(PACK_BLOCK). 단, fulltext 라인블록끼리 이어붙으면
+  // 결합 누락이 없으므로 그 경우만 보수적 한계(PACK_LINE)로 검사해 overflow 방지.
   const groups = [];
   let cur = [];
   let curH = 0;
   for (const blk of seq) {
     const addH = cur.length === 0 ? blk.h : blk.h + GAP;
-    if (cur.length > 0 && curH + addH > PACK) {
+    // 직전 블록과 현재 블록이 모두 fulltext면 라인 한계, 아니면 블록 한계.
+    const prevType = cur.length ? (cur[cur.length - 1].type === 'fulltext' ? 'fulltext' : cur[cur.length - 1]) : null;
+    const limit = (prevType === 'fulltext' && blk.type === 'fulltext') ? PACK_LINE : PACK_BLOCK;
+    if (cur.length > 0 && curH + addH > limit) {
       groups.push(cur); cur = []; curH = 0;
     }
     cur.push(blk.type === 'fulltext' ? { type: 'fulltext', range: blk.range, cont: blk.cont } : blk.type);
@@ -886,12 +895,16 @@ async function buildHtml(data, opts = {}) {
     groups = chunkSentences(data.sentences || []);
   }
 
-  // 요구 #3: 마지막 passage 페이지(주로 flow)에 여백이 크면 분석 첫 카드들을 그 밑에 병합
+  // 요구 #3: 마지막 passage 페이지(주로 flow)에 여백이 크면 분석 첫 문장들을 그 밑에 병합.
+  // 끌어올림 대상은 "온전한 문장(full)" — 분할 조각을 끌어올리면 이어쓰기가 깨지므로
+  // 원본 sentences 앞부분(full)을 후보로 넘긴다.
   let mergedLast = null;
+  const sentsAll = data.sentences || [];
+  const fullCandidates = sentsAll.map(s => ({ s, part: 'full' }));
   try {
     const lastGroup = blockGroups[blockGroups.length - 1];
     const lastPageNo = 2 + passagePages.length - 1;
-    mergedLast = await measureFlowMerge(data, opts.dataDir, lastGroup, groups[0] || [], lastPageNo);
+    mergedLast = await measureFlowMerge(data, opts.dataDir, lastGroup, fullCandidates, lastPageNo);
   } catch (err) {
     console.warn(`   ⚠️  measureFlowMerge failed for ${data.question_no}:`, err.message);
   }
@@ -899,9 +912,16 @@ async function buildHtml(data, opts = {}) {
   if (mergedLast && mergedLast.leadCards > 0) {
     // 마지막 passage 페이지를 병합본으로 교체
     pages.push(...passagePages.slice(0, -1), mergedLast.lastPassageHtml);
-    // 첫 분석 그룹에서 끌어올린 카드 제거, 빈 그룹 제거
-    const remainingFirst = (groups[0] || []).slice(mergedLast.leadCards);
-    const remGroups = remainingFirst.length ? [remainingFirst, ...groups.slice(1)] : groups.slice(1);
+    // 끌어올린 문장 수만큼 건너뛰고 나머지를 처음부터 다시 청킹(빼곡 채우기 보장).
+    // (기존: groups[0].slice 만으로는 병합 후 첫 페이지가 듬성해지는 회귀 — 재청킹으로 해결)
+    let remGroups;
+    try {
+      remGroups = await measureAndChunk(stylesHref, data, opts.dataDir, mergedLast.leadCards);
+    } catch (err) {
+      console.warn(`   ⚠️  re-chunk after merge failed for ${data.question_no}, using slice:`, err.message);
+      const remainingFirst = (groups[0] || []).slice(mergedLast.leadCards);
+      remGroups = remainingFirst.length ? [remainingFirst, ...groups.slice(1)] : groups.slice(1);
+    }
     const analysisStart = 2 + passagePages.length; // 병합으로 passage 페이지 수 동일
     remGroups.forEach((group, i) => {
       pages.push(buildAnalysisPage(data, group, analysisStart + i, `ANALYSIS · ${i + 2}/${remGroups.length + 1}`));
