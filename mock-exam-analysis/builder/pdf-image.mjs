@@ -19,9 +19,10 @@ import { pathToFileURL } from 'node:url';
 const SCALE = Number(process.env.PDF_SCALE) || 2; // 2x≈192dpi. PDF_SCALE=3 이면 더 선명(합본용)
 
 function parseArgs(argv){
-  const a = { footer: null, positional: [] };
+  const a = { footer: null, match: null, positional: [] };
   for(const x of argv){
     if(x.startsWith('--footer=')) a.footer = x.slice('--footer='.length);
+    else if(x.startsWith('--match=')) a.match = x.slice('--match='.length); // dir 모드 파일 정규식(예: ^workbook-\d+\.html$)
     else a.positional.push(x);
   }
   return a;
@@ -66,7 +67,7 @@ async function renderHtmlToPdf(browser, htmlPath, outPath, footer){
 }
 
 async function main(){
-  const { footer, positional } = parseArgs(process.argv.slice(2));
+  const { footer, match, positional } = parseArgs(process.argv.slice(2));
   const target = positional[0];
   if(!target){ console.error('Usage: node builder/pdf-image.mjs <html|dist-dir> [out.pdf] [--footer="..."]'); process.exit(1); }
   const abs = path.resolve(process.cwd(), target);
@@ -75,7 +76,9 @@ async function main(){
 
   const stat = await fs.stat(abs);
   if (stat.isDirectory()) {
-    const files = (await fs.readdir(abs)).filter(f => /^\d+\.html$/.test(f)).sort((a,b)=>parseInt(a)-parseInt(b));
+    const re = match ? new RegExp(match) : /^\d+\.html$/;
+    const numOf = f => { const m = f.match(/\d+/); return m ? parseInt(m[0]) : 0; };
+    const files = (await fs.readdir(abs)).filter(f => re.test(f)).sort((a,b)=>numOf(a)-numOf(b));
     console.log(`🖼️  이미지 기반 PDF ${files.length}개 생성 (footer=${footer ?? '기본'})...`);
     for (const f of files) {
       const out = path.join(abs, f.replace(/\.html$/, '.pdf'));
