@@ -40,6 +40,51 @@ const corsHeaders = {
   'Access-Control-Allow-Methods': 'POST, OPTIONS',
 };
 
+// ── 모의고사(round_meta) → Storage 경로 매핑 ──
+// market.html addMock() 이 보내는 round_meta = { year, grade, month, kind, label }
+//   grade: '고1' | '고2' | '고3'
+//   kind : 'analysis' | 'workbook' | 'variant' | 'bundle'
+// 여기 등록된 경로의 PDF만 발송된다 = 화이트리스트.
+// ⚠️ 반드시 Terra Nova 정식본만 등록할 것. Impact7 등 내부/검토용 파일은 절대 올리지 말 것.
+//    (업로드 스크립트도 Terra Nova 파일만 textbook-pdfs/mock/ 에 올리도록 분리되어 있음)
+const GRADE_SLUG: Record<string, string> = { '고1': 'grade1', '고2': 'grade2', '고3': 'grade3' };
+
+// 회차별 자산이 존재하는 항목만 등록. 미등록(예: 고3, variant)은 발송 대상에서 제외.
+// 키: `${grade}|${year}-${MM}|${kind}` → Storage 경로(또는 bundle 의 경우 구성 목록)
+function mockPdfPaths(meta: any): Array<{ name: string; path: string }> {
+  if (!meta || typeof meta !== 'object') return [];
+  const grade = GRADE_SLUG[String(meta.grade || '')];
+  const year = String(meta.year || '');
+  const mm = String(meta.month || '').padStart(2, '0');
+  const kind = String(meta.kind || '');
+  if (!grade || !year || !mm) return [];
+
+  const base = `mock/${year}-${mm}`;
+  const label = meta.label ? `${meta.label} ` : '';
+  const gradeKo = String(meta.grade || '');
+
+  // 단품 종류 → (표시명, 파일명) 매핑. 등록된 것만 발송.
+  const SINGLE: Record<string, { suffix: string; ko: string }> = {
+    analysis: { suffix: 'analysis', ko: '본문분석' },
+    workbook: { suffix: 'workbook', ko: '워크북' },
+    // variant 는 회차 PDF 미비 → 등록 안 함(발송 제외)
+  };
+
+  if (kind === 'bundle') {
+    // 3종 풀패키지 → 등록된 단품(현재 analysis + workbook)을 모두 발송
+    const out: Array<{ name: string; path: string }> = [];
+    for (const k of ['analysis', 'workbook']) {
+      const s = SINGLE[k];
+      if (s) out.push({ name: `${label}${gradeKo} 모의고사 ${s.ko}`, path: `${base}/${grade}-${s.suffix}.pdf` });
+    }
+    return out;
+  }
+
+  const s = SINGLE[kind];
+  if (!s) return [];
+  return [{ name: `${label}${gradeKo} 모의고사 ${s.ko}`, path: `${base}/${grade}-${s.suffix}.pdf` }];
+}
+
 Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') return new Response('ok', { headers: corsHeaders });
   if (req.method !== 'POST') return jsonResp({ error: 'Method not allowed' }, 405);
@@ -97,12 +142,28 @@ Deno.serve(async (req) => {
   const downloads: Array<{ name: string; url: string }> = [];
   const errors: any[] = [];
 
+  // 발송 대상 (표시명 + Storage 경로) 목록을 모은 뒤 signed URL 생성
+  const toSign: Array<{ name: string; path: string; productId?: string }> = [];
+
   for (const item of orderItems) {
     const snap = item.product_snapshot || {};
+
+    // (A) 모의고사 회차 상품 — round_meta 로 경로 동적 구성 (화이트리스트)
+    if (snap.round_meta) {
+      const mapped = mockPdfPaths(snap.round_meta);
+      if (mapped.length) {
+        for (const m of mapped) toSign.push({ name: m.name, path: m.path, productId: item.product_id });
+        continue;
+      }
+      // 매핑 없음(고3·variant 등) → 스킵 (오류 아님)
+      errors.push({ productId: item.product_id, productName: snap.display_name || snap.name, round_meta: snap.round_meta, error: 'No PDF mapped for this round (grade/kind not available)' });
+      continue;
+    }
+
+    // (B) 기존 단순 상품 — snapshot/products 의 pdf_path
     let pdfPath: string | null = snap.pdf_path || null;
     let productName: string = snap.name || 'PDF 상품';
 
-    // snapshot 에 없으면 products 테이블에서 직접 조회 (fallback)
     if (!pdfPath && item.product_id) {
       const { data: prod } = await sb
         .from('products')
@@ -112,32 +173,30 @@ Deno.serve(async (req) => {
       if (prod) {
         pdfPath = prod.pdf_path || null;
         productName = prod.name || productName;
-        // 실물 상품은 스킵
-        if (prod.requires_shipping) continue;
+        if (prod.requires_shipping) continue; // 실물 상품 스킵
       }
     }
+    if (!pdfPath) continue; // 실물 또는 미설정 → 스킵
 
-    if (!pdfPath) {
-      // 실물 상품 또는 미설정 → 스킵 (오류 아님)
-      continue;
-    }
+    toSign.push({ name: productName, path: pdfPath, productId: item.product_id });
+  }
 
-    // signed URL 생성
+  // signed URL 생성
+  for (const t of toSign) {
     const { data: signed, error: signedErr } = await sb.storage
       .from(BUCKET)
-      .createSignedUrl(pdfPath, SIGNED_URL_TTL_DAYS * 24 * 60 * 60);
+      .createSignedUrl(t.path, SIGNED_URL_TTL_DAYS * 24 * 60 * 60);
 
     if (signedErr || !signed?.signedUrl) {
       errors.push({
-        productId: item.product_id,
-        productName,
-        pdfPath,
+        productId: t.productId,
+        productName: t.name,
+        pdfPath: t.path,
         error: signedErr?.message || 'Signed URL not generated',
       });
       continue;
     }
-
-    downloads.push({ name: productName, url: signed.signedUrl });
+    downloads.push({ name: t.name, url: signed.signedUrl });
   }
 
   // 디지털 상품 없으면 메일 발송 안 함 (실물 상품만 주문한 경우)
