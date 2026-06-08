@@ -37,7 +37,7 @@
   const businessInfoHtml = `
     <div class="tn-business-info" style="margin-top:18px;padding-top:18px;border-top:1px solid ${isLightTheme ? 'rgba(0,0,0,.06)' : 'rgba(255,255,255,.05)'};max-width:760px;font-size:.66rem;color:${fg};line-height:1.85;letter-spacing:.2px;">
       <div style="margin-bottom:4px;">
-        <strong style="color:${fgStrong};font-weight:600;">${safe(B.companyName, 'Terra Nova')}</strong>
+        <strong style="color:${fgStrong};font-weight:600;">${safe(B.companyName, '테라노바')}</strong>
         &nbsp;·&nbsp; 대표 ${safe(B.representative)}
         &nbsp;·&nbsp; 사업자등록번호 ${safe(B.businessNumber)}
       </div>
