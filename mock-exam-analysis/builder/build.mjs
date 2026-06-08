@@ -467,7 +467,7 @@ function chunkSentences(sentences) {
 }
 
 // 측정 함수 — buildHtml 후 puppeteer로 각 .sent 카드 실제 높이를 측정해 페이지 분배
-async function measureAndChunk(stylesHref, data, dataDir, startIdx = 0) {
+async function measureAndChunk(stylesHref, data, dataDir, startIdx = 0, prefixRestIdx = -1) {
   const puppeteer = (await import('puppeteer')).default;
   // CSS 파일을 인라인으로 포함 (file:// 상대경로 문제 우회)
   const cssAbsPath = path.resolve(path.dirname(dataDir), 'styles', 'analysis.css');
@@ -529,6 +529,14 @@ ${blocks.join('\n')}
   let cur = [];
   let curH = 0;
   const pushPage = () => { if (cur.length) { pages.push(cur); cur = []; curH = 0; } };
+
+  // flow-merge 가 (prefixRestIdx)번째 문장의 head 를 passage 페이지로 끌어올린 경우,
+  // 그 문장의 rest(이어지는 포인트+para)를 첫 분석 페이지 맨 앞에 둔다.
+  if (prefixRestIdx >= 0) {
+    const rh = H('rest', prefixRestIdx) || 0;
+    cur.push({ s: sents[prefixRestIdx], part: 'rest' });
+    curH = rh;
+  }
 
   for (let i = startIdx; i < sents.length; i++) {
     const h = fullH(i);
@@ -640,7 +648,7 @@ ${candidates.join('\n')}
       flow: sumChildren(byId('flow')),
     };
   });
-  await browser.close();
+  // 주의: browser/page 는 아래 pull-up 검증에서 재사용하므로 여기서 닫지 않는다.
   try { await fs.unlink(tmpPath); } catch {}
 
   const { bodyH, combinedH, barH, lineHs, fulltext: fulltextH, answer: answerH, flow: flowH } = measured;
@@ -650,7 +658,9 @@ ${candidates.join('\n')}
   const LIMIT = bodyH - 6;
 
   // 3블록이 한 페이지에 들어가면 분할하지 않음 (기존 단문·march 동작 보존)
+  // — 이 경로는 pull-up 검증이 불필요하므로 여기서 browser 를 닫고 바로 반환.
   if (combinedH <= LIMIT) {
+    await browser.close();
     return [[{ type: 'fulltext', range: [0, nLines], cont: false }, 'answer', 'flow']];
   }
 
@@ -705,6 +715,51 @@ ${candidates.join('\n')}
     curH += (cur.length === 1 ? blk.h : blk.h + GAP);
   }
   if (cur.length) groups.push(cur);
+
+  // ── 결합 실측 검증 패스 ──
+  // 단독합 추정은 sibling margin·gap을 빼먹어 실제보다 크게 나온다(Q41: 추정 980 vs
+  // 실제 952). 그래서 "현재 그룹 + 다음 그룹 첫 블록"을 실제 .page 에 렌더해 bodyH 안에
+  // 들어가면 그 블록을 끌어올려 PASSAGE 여백을 제거한다. 넘치면 그대로 둔다(overflow 0).
+  // 별도 인스턴스를 띄우지 않고 위 측정에서 쓰던 browser/page 를 재사용한다
+  // (문제마다 새 Chromium 을 띄우면 메모리 충돌로 빌드가 죽음 — exit 4 회귀 방지).
+  try {
+    const renderGroup = (g) => g.map(b => {
+      if (b === 'answer') return buildAnswerBlock(data);
+      if (b === 'flow') return buildFlow(data.flow || []);
+      if (b && b.type === 'fulltext') return buildFulltextBlock(data, b.range, b.cont);
+      return '';
+    }).join('\n');
+    let gi = 0;
+    while (gi < groups.length - 1) {
+      const next = groups[gi + 1];
+      if (!next.length) { gi++; continue; }
+      const trial = [...groups[gi], next[0]];
+      const trialHtml = `<!doctype html><html><head><meta charset="utf-8"><style>${cssContent}</style></head><body>
+<section class="page"><div class="page-body passage-layout" data-zone="t">${renderGroup(trial)}</div></section></body></html>`;
+      await page.setContent(trialHtml, { waitUntil: 'networkidle0' });
+      const trialH = await page.evaluate(() => {
+        const b = document.querySelector('[data-zone="t"]');
+        let c = 0; [...b.children].forEach(ch => { const r = ch.getBoundingClientRect(); const cs = getComputedStyle(ch); c += r.height + parseFloat(cs.marginTop) + parseFloat(cs.marginBottom); });
+        return Math.round(c);
+      });
+      // bodyH 는 콘텐츠가 적으면 flex 로 늘어나 과대평가되므로, 실제 .page 가용
+      // 높이(976) 기준으로 보수적 한계(SAFE 20px)에서만 끌어올린다.
+      const PAGE_AVAIL = 976;
+      const fit = trialH <= PAGE_AVAIL - 20;
+      if (fit) {
+        groups[gi].push(next.shift());
+        if (!next.length) groups.splice(gi + 1, 1);
+        // 같은 그룹에 더 끌어올 수 있는지 재시도(gi 유지)
+      } else {
+        gi++;
+      }
+    }
+  } catch (err) {
+    console.warn(`   ⚠️  passage pull-up verify failed for ${data.question_no}:`, err.message);
+  } finally {
+    await browser.close();
+  }
+
   return groups;
 }
 
@@ -799,11 +854,18 @@ async function measureFlowMerge(data, dataDir, lastGroup, firstAnalysisGroup, la
 
   // group 항목은 sentence 객체 또는 {s, part}. 렌더 헬퍼로 정규화.
   const renderItem = (it) => (it && it.s) ? buildSentenceCard(it.s, it.part || 'full') : buildSentenceCard(it);
-  // 측정: 마지막 passage 페이지 본문 + 분석 bar + 각 후보 카드
+  const sentOf = (it) => (it && it.s) ? it.s : it; // 후보의 원본 sentence
+  // 측정: 마지막 passage 페이지 본문 + 분석 bar + 각 후보 카드(full)
+  // + 각 문장의 head 조각(어법P 윗부분만) — full이 안 들어갈 때 head만 끌어올려 여백 채움.
   const cards = firstAnalysisGroup.map((it, i) => `<div data-c="${i}">${renderItem(it)}</div>`).join('\n');
+  const headCards = firstAnalysisGroup.map((it, i) => {
+    const s = sentOf(it);
+    const hasPts = s && s.points && s.points.length;
+    return hasPts ? `<div data-h="${i}">${buildSentenceCard(s, 'head')}</div>` : '';
+  }).join('\n');
   const html = `<!doctype html><html><head><meta charset="utf-8"><style>${cssContent}</style></head><body>
 <section class="page"><div class="page-body passage-layout" data-zone="passage">${passageInner}</div></section>
-<section class="page"><div class="page-body" data-zone="probe"><div data-c="bar">${ANALYSIS_BAR}</div>${cards}</div></section>
+<section class="page"><div class="page-body" data-zone="probe"><div data-c="bar">${ANALYSIS_BAR}</div>${cards}${headCards}</div></section>
 </body></html>`;
   const tmpPath = path.join(process.cwd(), `.tmp-merge-${process.pid}-${data.question_no}.html`);
   await fs.writeFile(tmpPath, html, 'utf8');
@@ -821,7 +883,9 @@ async function measureFlowMerge(data, dataDir, lastGroup, firstAnalysisGroup, la
     const bcs = getComputedStyle(barEl);
     const barH = barEl.getBoundingClientRect().height + parseFloat(bcs.marginTop) + parseFloat(bcs.marginBottom);
     const cardHs = [...probe.querySelectorAll('[data-c]:not([data-c="bar"])')].map(w => { const e = w.firstElementChild; const cs = getComputedStyle(e); return e.getBoundingClientRect().height + parseFloat(cs.marginTop) + parseFloat(cs.marginBottom); });
-    return { bodyH, passageH: Math.round(passageH), barH, cardHs };
+    const headHs = {};
+    [...probe.querySelectorAll('[data-h]')].forEach(w => { const e = w.firstElementChild; const cs = getComputedStyle(e); headHs[w.getAttribute('data-h')] = e.getBoundingClientRect().height + parseFloat(cs.marginTop) + parseFloat(cs.marginBottom); });
+    return { bodyH, passageH: Math.round(passageH), barH, cardHs, headHs };
   });
   await browser.close();
   try { await fs.unlink(tmpPath); } catch {}
@@ -840,7 +904,19 @@ async function measureFlowMerge(data, dataDir, lastGroup, firstAnalysisGroup, la
   }
   if (n < 1) return null;
 
-  const leadHtml = firstAnalysisGroup.slice(0, n).map(renderItem).join('\n\n');
+  // 통짜 n개 끌어올린 뒤, 남는 공간에 (n)번째 문장의 head 조각(어법P 윗부분)이
+  // 들어가면 head 만 추가로 끌어올린다. 그 문장의 rest(포인트+para)는 분석 첫 카드로.
+  // (요구: "어법 P. 윗부분만 잘라서 앞페이지 여백에 넣기")
+  let splitHead = false;
+  const headH = m.headHs[String(n)];
+  if (headH != null) {
+    const remain = avail - used - (n > 0 ? GAP : 0);
+    if (headH <= remain) { used += (n > 0 ? GAP : 0) + headH; splitHead = true; }
+  }
+
+  const leadItems = firstAnalysisGroup.slice(0, n).slice();
+  if (splitHead) leadItems.push({ s: sentOf(firstAnalysisGroup[n]), part: 'head' });
+  const leadHtml = leadItems.map(renderItem).join('\n\n');
   const lastPassageHtml = `<section class="page">
 ${buildHeader(data.exam + ' · ' + data.question_no + '번', 'PASSAGE')}
   <div class="page-body passage-layout">
@@ -855,7 +931,8 @@ ${leadHtml}
   </div>
 ${buildFooter(lastPageNo)}
 </section>`;
-  return { lastPassageHtml, leadCards: n };
+  // splitHead 시: n번째 문장의 rest 를 분석 첫 카드로 prepend, 재청킹은 n+1부터.
+  return { lastPassageHtml, leadCards: n, splitHeadIdx: splitHead ? n : -1 };
 }
 
 // ─────────────────────────────────────────────────────────────
@@ -914,9 +991,13 @@ async function buildHtml(data, opts = {}) {
     pages.push(...passagePages.slice(0, -1), mergedLast.lastPassageHtml);
     // 끌어올린 문장 수만큼 건너뛰고 나머지를 처음부터 다시 청킹(빼곡 채우기 보장).
     // (기존: groups[0].slice 만으로는 병합 후 첫 페이지가 듬성해지는 회귀 — 재청킹으로 해결)
+    // splitHeadIdx>=0 이면 그 문장 head 는 passage 로 끌어올려졌으므로, rest 를 첫 분석
+    // 페이지 맨 앞에 두고(prefixRest) 재청킹은 그 다음 문장(idx+1)부터 시작한다.
+    const splitIdx = mergedLast.splitHeadIdx;
+    const chunkStart = splitIdx >= 0 ? splitIdx + 1 : mergedLast.leadCards;
     let remGroups;
     try {
-      remGroups = await measureAndChunk(stylesHref, data, opts.dataDir, mergedLast.leadCards);
+      remGroups = await measureAndChunk(stylesHref, data, opts.dataDir, chunkStart, splitIdx);
     } catch (err) {
       console.warn(`   ⚠️  re-chunk after merge failed for ${data.question_no}, using slice:`, err.message);
       const remainingFirst = (groups[0] || []).slice(mergedLast.leadCards);
