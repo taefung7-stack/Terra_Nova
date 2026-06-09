@@ -50,15 +50,27 @@ async function main(){
     allPages += `\n<!-- ===== ${no}번 워크북 ===== -->\n` + sections.join('\n');
   }
 
+  // 표지 제목: "[2026] 6월 모의고사" 다음 줄바꿈 → "N학년 영어 영역"
+  const fullTitle = `${examLabel || '모의고사'} 영어 영역`;
+  const titleHtml = fullTitle.includes('모의고사 ')
+    ? `${esc(fullTitle.split('모의고사 ')[0])}모의고사<br>${esc(fullTitle.split('모의고사 ').slice(1).join('모의고사 '))}`
+    : esc(fullTitle);
+
+  // 번호 목록: 31번 다음 줄바꿈 → 32~43번 두 번째 줄
+  const splitAt = nums.indexOf(32) > -1 ? nums.indexOf(32) : Math.ceil(nums.length / 2);
+  const numLine1 = nums.slice(0, splitAt).join(' · ');
+  const numLine2 = nums.slice(splitAt).join(' · ');
+  const numHtml = numLine2 ? `${numLine1}<br>${numLine2}` : numLine1;
+
   // 표지 1장 — 워크북 mint 테마
   const cover = `<section class="page cover-page" data-step="1">
   <div class="cover-wrap">
     <div class="cover-brand">Terra Nova</div>
     <div class="cover-chip">WORKBOOK</div>
-    <div class="cover-title">${esc(examLabel || '모의고사')} 영어 영역</div>
+    <div class="cover-title">${titleHtml}</div>
     <div class="cover-sub">본문 워크북 합본 · 18~45번 (25·27·28 제외)</div>
     <div class="cover-steps">STEP 1 본문·해석 · 2 어법 · 3 어휘 · 4 빈칸 · 5 해석 · 6 배열 · 7 영작 · 8 종합 · 9 정답</div>
-    <div class="cover-list">${nums.join(' · ')}</div>
+    <div class="cover-list">${numHtml}</div>
   </div>
 </section>`;
 

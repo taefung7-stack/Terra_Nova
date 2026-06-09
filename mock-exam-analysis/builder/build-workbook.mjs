@@ -50,6 +50,108 @@ function esc(s) {
     .replace(/"/g, '&quot;');
 }
 
+// ─────────────────────────────────────────────────────────────
+// 결정적(deterministic) 셔플 — 같은 시드면 항상 같은 순서.
+// 빌드를 반복해도 워크북 단어 배열이 흔들리지 않도록 시드 고정.
+// (mulberry32 PRNG + Fisher–Yates)
+// ─────────────────────────────────────────────────────────────
+function seededRng(seed) {
+  let a = seed >>> 0;
+  return function () {
+    a |= 0; a = (a + 0x6D2B79F5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+function strSeed(s) {
+  let h = 2166136261 >>> 0;
+  for (let i = 0; i < s.length; i++) {
+    h ^= s.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return h >>> 0;
+}
+
+// 단어 배열을 결정적으로 섞되, 원래 순서와 동일하면 한 번 더 섞어 보장.
+function shuffleWords(words, seedKey) {
+  if (!Array.isArray(words) || words.length < 2) return words.slice();
+  const orig = words.join('');
+  for (let attempt = 0; attempt < 4; attempt++) {
+    const rng = seededRng(strSeed(seedKey + '#' + attempt));
+    const arr = words.slice();
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(rng() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    if (arr.join('') !== orig) return arr; // 원본과 달라야 '섞인' 것
+  }
+  // 단어가 전부 동일한 극단적 경우 — 원본 그대로
+  return words.slice();
+}
+
+// ─────────────────────────────────────────────────────────────
+// 고유명사 판별 — 정답으로 출제하면 안 되는 토큰.
+// 문장 첫 단어가 아니면서 대문자로 시작하거나, 알려진 인명/지명/서명.
+// ─────────────────────────────────────────────────────────────
+function buildProperNounSet(data) {
+  const set = new Set();
+  const sents = [...(data.passage || []), ...(data.passage_ko ? [] : [])];
+  for (const sent of (data.passage || [])) {
+    const clean = String(sent).replace(/\([a-e]\)/g, '');
+    const tokens = clean.match(/[A-Za-z][A-Za-z.'-]*/g) || [];
+    tokens.forEach((tok, idx) => {
+      const bare = tok.replace(/[.''-]+$/g, '');
+      if (!bare) return;
+      // 첫 글자 대문자 + (문장 첫 토큰이 아님 OR 전부 대문자 약어)
+      const isCap = /^[A-Z]/.test(bare);
+      const isAllCaps = /^[A-Z]{2,}$/.test(bare);
+      if (isCap && (idx > 0 || isAllCaps)) {
+        set.add(bare.toLowerCase());
+      }
+    });
+  }
+  // 문장 맨 앞에 와서 놓친 고유명사 보강: 2회 이상 등장하며 항상 대문자인 토큰
+  const capCount = {}, lowCount = {};
+  for (const sent of (data.passage || [])) {
+    const clean = String(sent).replace(/\([a-e]\)/g, '');
+    for (const tok of (clean.match(/[A-Za-z][A-Za-z.'-]*/g) || [])) {
+      const bare = tok.replace(/[.''-]+$/g, '');
+      if (!bare) continue;
+      if (/^[A-Z]/.test(bare)) capCount[bare.toLowerCase()] = (capCount[bare.toLowerCase()] || 0) + 1;
+      else lowCount[bare.toLowerCase()] = (lowCount[bare.toLowerCase()] || 0) + 1;
+    }
+  }
+  for (const w of Object.keys(capCount)) {
+    if (capCount[w] >= 1 && !lowCount[w]) set.add(w);
+  }
+  return set;
+}
+
+// 빈칸/정답 출제 제외 — 너무 쉬운 기초 단어 스톱리스트(길이+빈도 휴리스틱 보조).
+const EASY_STOPWORDS = new Set([
+  // 기능어
+  'the','a','an','and','or','but','so','if','of','to','in','on','at','by','for','with','from',
+  'as','is','are','was','were','be','been','being','am','do','does','did','have','has','had',
+  'i','you','he','she','it','we','they','this','that','these','those','my','your','his','her',
+  'its','our','their','me','him','them','us','not','no','yes','can','will','would','could',
+  'should','may','might','must','than','then','too','very','more','most','some','any','all',
+  'one','two','out','up','down','off','over','about','into','also',
+  // 쉬운 기초 명사/동사
+  'bus','taxi','car','train','go','goes','went','get','got','put','say','said','see','saw',
+  'day','time','man','woman','boy','girl','home','school','book','food','water','tree','dog',
+  'cat','run','ran','eat','ate','big','small','good','bad','new','old','hot','cold','red','blue'
+]);
+
+function isEasyWord(answer) {
+  const w = String(answer || '').toLowerCase().replace(/[^a-z'-]/g, '');
+  if (!w) return true;
+  if (EASY_STOPWORDS.has(w)) return true;
+  if (w.length <= 4) return true; // 4자 이하 — 핵심어 가능성 낮음
+  return false;
+}
+
 const STEP_META = {
   1: { title: '본문과 해석',         desc: '본문 + 해석 + 핵심 어휘 정리',                    color: 'mint'   },
   2: { title: '어법 양자택일',       desc: '둘 중 어법상 알맞은 것을 고르시오.',                color: 'sky'    },
@@ -476,6 +578,32 @@ function renderStep9({ data, wb, headOpts, pageNum }) {
     `<div class="al-row"><div class="al-no">${t.no}</div><div class="al-body"><span class="en">${esc(data.passage[t.ref_sentence - 1])}</span></div></div>`
   ).join('');
 
+  // STEP 8 종합 문제 정답 — mixed 각 항목을 원 유형에서 조회해 정답 산출.
+  const KIND_SHORT = { grammar: '어법', vocab: '어휘', fill: '빈칸', ko: '해석', jumble: '배열', sent: '영작' };
+  const mixedAns = (wb.mixed || []).map(m => {
+    let ans = '';
+    if (m.kind === 'grammar') {
+      const s = (wb.grammar_choice || []).find(x => x.no === m.ref);
+      ans = s ? s.answers.map(a => `<span class="ans-hl">${esc(a)}</span>`).join(' / ') : '';
+    } else if (m.kind === 'vocab') {
+      const s = (wb.vocab_choice || []).find(x => x.no === m.ref);
+      ans = s ? s.answers.map(a => `<span class="ans-hl">${esc(a)}</span>`).join(' / ') : '';
+    } else if (m.kind === 'fill') {
+      const s = (wb.fill_first_letter || []).find(x => x.no === m.ref);
+      ans = s ? s.hints.map(h => `<span class="ans-hl">${esc(h.answer)}</span>`).join(' · ') : '';
+    } else if (m.kind === 'ko') {
+      const s = (wb.ko_translation || []).find(x => x.no === m.ref);
+      ans = s ? esc(data.passage_ko[s.ref_sentence - 1] || '') : '';
+    } else if (m.kind === 'jumble') {
+      const s = (wb.jumble || []).find(x => x.no === m.ref);
+      ans = s ? `<span class="en">${esc(s.answer)}</span>` : '';
+    } else if (m.kind === 'sent') {
+      const s = (wb.sentence_translation || []).find(x => x.no === m.ref);
+      ans = s ? `<span class="en">${esc(data.passage[s.ref_sentence - 1] || '')}</span>` : '';
+    }
+    return `<div class="al-row"><div class="al-no">${m.no}</div><div class="al-body"><span class="alt" style="font-size:7pt;padding:0 6px;margin-right:6px">${KIND_SHORT[m.kind] || ''}</span>${ans}</div></div>`;
+  }).join('');
+
   const body = `    <div class="answer-2col">
       <div class="answer-section">
         <div class="as-head">
@@ -530,6 +658,15 @@ function renderStep9({ data, wb, headOpts, pageNum }) {
         </div>
         <div class="answer-list">${sentAns}</div>
       </div>
+
+      <div class="answer-section">
+        <div class="as-head">
+          <span class="as-tag">STEP 8</span>
+          <span class="as-title">종합 문제</span>
+          <span class="as-sub">${(wb.mixed || []).length}문항</span>
+        </div>
+        <div class="answer-list">${mixedAns}</div>
+      </div>
     </div>`;
 
   return pageWrap({ stepNum: 9, headOpts, pageNum, body });
@@ -563,6 +700,70 @@ function buildHtml({ data, wb }) {
   for (const it of (wb.jumble || [])) {
     cleanField(it, 'answer');
     if (Array.isArray(it.words)) it.words = it.words.map(stripChoiceMarkers);
+  }
+
+  // ── 정답 출제 품질 보정 (사용자 정책 2026-06-09) ──────────────────
+  // 1) 고유명사는 어떤 유형에서도 정답으로 출제하지 않는다.
+  // 2) STEP4 빈칸 첫글자는 너무 쉬운 기초 단어(bus/taxi 등)를 배제한다.
+  // 3) STEP6/8 영문 배열은 단어 순서를 결정적으로 섞는다.
+  const properNouns = buildProperNounSet(data);
+  const qno = data.question_no || '';
+
+  // STEP6 배열 — words 결정적 셔플 (시드: 회차+문항+문장번호)
+  for (const it of (wb.jumble || [])) {
+    if (Array.isArray(it.words)) {
+      it.words = shuffleWords(it.words, `${data.exam || ''}|${qno}|j${it.ref_sentence ?? it.no}`);
+    }
+  }
+
+  // STEP4 빈칸 — 고유명사·쉬운 단어를 정답에서 제외 (hints 필터링).
+  // 필터 후 힌트가 0개가 되면, 원본에서 가장 긴 단어 1개는 남겨 빈칸이 비지 않게 함.
+  for (const it of (wb.fill_first_letter || [])) {
+    if (!Array.isArray(it.hints)) continue;
+    const kept = it.hints.filter(h => {
+      const bare = String(h.answer || '').toLowerCase().replace(/[^a-z'-]/g, '');
+      if (properNouns.has(bare)) return false;
+      if (isEasyWord(h.answer)) return false;
+      return true;
+    });
+    if (kept.length === 0) {
+      const best = it.hints
+        .filter(h => !properNouns.has(String(h.answer || '').toLowerCase().replace(/[^a-z'-]/g, '')))
+        .sort((a, b) => String(b.answer || '').length - String(a.answer || '').length)[0];
+      it.hints = best ? [best] : [];
+    } else {
+      it.hints = kept;
+    }
+  }
+
+  // STEP2/3 양자택일 — 정답이 고유명사인 문항은 제외 (예: 18번 #8 Trixie).
+  const dropProperChoice = (arr) => (arr || []).filter(it => {
+    const ans = (it.answers || []).map(a => String(a).toLowerCase().replace(/[^a-z'-]/g, ''));
+    return !ans.some(a => properNouns.has(a));
+  });
+  wb.grammar_choice = dropProperChoice(wb.grammar_choice);
+  wb.vocab_choice   = dropProperChoice(wb.vocab_choice);
+
+  // 제외 후 no 재부여 (1..n 연속) — 표시 번호 정합성
+  const renumber = (arr) => (arr || []).forEach((it, i) => { it.no = i + 1; });
+  renumber(wb.grammar_choice);
+  renumber(wb.vocab_choice);
+
+  // mixed(STEP8)가 제거된 문항을 참조하면 정합성 깨짐 → 유효 참조만 유지하고 재번호.
+  if (Array.isArray(wb.mixed)) {
+    const validRef = {
+      grammar: new Set((wb.grammar_choice || []).map(x => x.no)),
+      vocab:   new Set((wb.vocab_choice   || []).map(x => x.no)),
+      fill:    new Set((wb.fill_first_letter || []).filter(x => x.hints && x.hints.length).map(x => x.no)),
+      ko:      new Set((wb.ko_translation || []).map(x => x.no)),
+      jumble:  new Set((wb.jumble || []).map(x => x.no)),
+      sent:    new Set((wb.sentence_translation || []).map(x => x.no)),
+    };
+    // 재번호 전에 mixed가 가리키던 grammar/vocab no는 이미 바뀌었을 수 있으나,
+    // 본 데이터셋의 mixed.ref는 ref_sentence 기준이 아닌 no 기준이므로
+    // 존재하지 않는 ref는 제외(품질 안전). 존재 항목만 통과.
+    wb.mixed = wb.mixed.filter(m => validRef[m.kind] && validRef[m.kind].has(m.ref));
+    wb.mixed.forEach((m, i) => { m.no = i + 1; });
   }
 
   const exam = data.exam || '';

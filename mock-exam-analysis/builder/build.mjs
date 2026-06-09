@@ -67,9 +67,9 @@ const TAG_LABEL = {
 };
 
 const POINT_LABEL = {
-  grammar: '어법 P.',
-  vocab:   '어휘 P.',
-  reading: '리딩 P.',
+  grammar: '어법 Point',
+  vocab:   '어휘 Point',
+  reading: '리딩 Point',
 };
 
 const LV_LABEL = { high: '상', mid: '중', low: '하' };
@@ -126,6 +126,7 @@ function buildIllustration(data) {
 
 function buildVocabTable(vocab, limit) {
   const list = (typeof limit === 'number') ? vocab.slice(0, limit) : vocab;
+  // 파생어(deriv) 컬럼 제거 (사용자 정책 2026-06-09) — 동의어·반의어만 표시.
   const rows = list.map((v, i) => `        <tr>
           <td class="col-no">${i + 1}</td>
           <td class="col-word">${esc(v.word)}</td>
@@ -133,19 +134,18 @@ function buildVocabTable(vocab, limit) {
           <td class="col-meaning">${esc(v.meaning)}</td>
           <td class="col-syn"><span class="tag-syn">${esc(v.syn)}</span></td>
           <td class="col-ant"><span class="tag-ant">${esc(v.ant)}</span></td>
-          <td class="col-deriv"><span class="tag-der">${esc(v.deriv)}</span></td>
         </tr>`).join('\n');
 
   return `    <div class="section-bar">
       VOCABULARY · 단어 정리
-      <span class="bar-sub">동의어 ≈ · 반의어 ↔ · 파생어 →</span>
+      <span class="bar-sub">동의어 ≈ · 반의어 ↔</span>
     </div>
 
     <table class="voca-table">
       <thead>
         <tr>
           <th>No.</th><th>단어</th><th>품사</th><th>뜻</th>
-          <th>동의어 ≈</th><th>반의어 ↔</th><th>파생어 →</th>
+          <th>동의어 ≈</th><th>반의어 ↔</th>
         </tr>
       </thead>
       <tbody>
@@ -320,7 +320,11 @@ function buildSentenceCard(s, part = 'full') {
 
   const pointsHtml = (s.points || []).map(p => {
     const tagText = POINT_LABEL[p.kind] || '포인트';
-    return `        <div class="point ${esc(p.kind)}"><span class="pt-tag">${tagText}</span><span class="pt-text">${raw(p.text)}</span></div>`;
+    // 한 포인트 안에 여러 항목이 ' + '로 묶인 경우 ', '로 연결 (사용자 정책 2026-06-09).
+    // 두 어구/구문 사이의 연결 '+'만 대상 — 닫는 ')' 또는 </strong> 뒤 + 앞이 <strong>/단어.
+    const text = String(p.text ?? '')
+      .replace(/(\)|<\/strong>)\s*\+\s*(?=<strong>|[A-Za-z(])/g, '$1, ');
+    return `        <div class="point ${esc(p.kind)}"><span class="pt-tag">${tagText}</span><span class="pt-text">${raw(text)}</span></div>`;
   }).join('\n');
   const pointGrid = (s.points && s.points.length) ? `      <div class="point-grid">
 ${pointsHtml}
