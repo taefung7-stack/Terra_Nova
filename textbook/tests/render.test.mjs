@@ -8,7 +8,7 @@ const here = dirname(fileURLToPath(import.meta.url));
 const root = resolve(here, '..');
 
 let server, browser;
-const PORT = 4260;
+const PORT = 4597;
 const MONTH = '2026-06';
 const PASSAGE = '01';
 
@@ -25,10 +25,13 @@ async function waitFor(url, timeoutMs = 15000) {
 }
 
 beforeAll(async () => {
-  server = spawn('npx', ['sirv', '.', '--port', String(PORT), '--host', '127.0.0.1', '--quiet'], {
+  server = spawn(process.execPath, [
+    resolve(root, 'node_modules', 'sirv-cli', 'bin.js'),
+    '.', '--port', String(PORT), '--host', '127.0.0.1', '--quiet'
+  ], {
     cwd: root,
-    stdio: 'pipe',
-    shell: process.platform === 'win32'
+    stdio: ['ignore', 'ignore', 'ignore'],
+    windowsHide: true
   });
   await waitFor(`http://127.0.0.1:${PORT}/textbook.html`);
   browser = await puppeteer.launch({ headless: 'new' });
@@ -47,7 +50,7 @@ describe('render pipeline', () => {
     const count = await page.$$eval('.page', nodes => nodes.length);
     expect(count).toBe(4);
     await page.close();
-  });
+  }, 30_000);
 
   it('does not trigger overflow on any page', async () => {
     const page = await browser.newPage();
@@ -59,7 +62,7 @@ describe('render pipeline', () => {
     expect(overflowPages).toBe(0);
     expect(warnings.filter(w => w.includes('overflow'))).toEqual([]);
     await page.close();
-  });
+  }, 30_000);
 
   it('injects subject, exactly 4 questions and exactly 10 vocab cards', async () => {
     const page = await browser.newPage();
@@ -77,7 +80,7 @@ describe('render pipeline', () => {
     expect(vocabCount).toBeGreaterThanOrEqual(10);
     expect(vocabCount).toBeLessThanOrEqual(14);
     await page.close();
-  });
+  }, 30_000);
 
   it('applies the per-month theme (data-month on body)', async () => {
     const page = await browser.newPage();
@@ -86,5 +89,5 @@ describe('render pipeline', () => {
     const monthAttr = await page.$eval('body', el => el.getAttribute('data-month'));
     expect(monthAttr).toBe(MONTH);
     await page.close();
-  });
+  }, 30_000);
 });
