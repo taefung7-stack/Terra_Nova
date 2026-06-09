@@ -506,7 +506,7 @@ async function handleBillingKeyIssued(data: any) {
     await fetch(`${SUPABASE_URL}/functions/v1/dispatch-monthly-pdf`, {
       method: 'POST',
       headers: { 'Authorization': `Bearer ${INTERNAL_EMAIL_SECRET}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ user_id: order.user_id, level }),
+      body: JSON.stringify({ userId: order.user_id, level }),
     });
   } catch (err) {
     console.warn('[webhook] billing post-charge PDF dispatch failed (non-fatal):', (err as Error).message);
