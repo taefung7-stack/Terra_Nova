@@ -196,27 +196,27 @@
       <div class="form-group">
         <label for="signup-phone">연락처</label>
         <input type="tel" id="signup-phone" name="phone" placeholder="010-0000-0000" required pattern="01[0-9]-?[0-9]{3,4}-?[0-9]{4}" autocomplete="tel" aria-required="true" aria-describedby="phone-note" oninput="formatPhone(this);checkPhone(this)">
-        <div class="input-note" id="phone-note">학습 관련 안내 및 배송 정보를 받을 번호입니다.</div>
+        <div class="input-note" id="phone-note">계정 확인과 학습 관련 안내를 받을 번호입니다.</div>
       </div>
 
       <!-- 배송 주소 -->
       <div class="form-group">
         <label>우편번호</label>
         <div style="display:flex;gap:8px;">
-          <input type="text" id="addr-zip" placeholder="00000" readonly required style="flex:1;">
+          <input type="text" id="addr-zip" placeholder="00000" readonly style="flex:1;">
           <button type="button" onclick="searchAddress()" style="background:var(--card2);color:var(--txt);border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:0 16px;font-family:'Pretendard',sans-serif;font-size:.82rem;font-weight:600;cursor:pointer;white-space:nowrap;">주소 검색</button>
         </div>
-        <div class="input-note">실물 책 배송을 위한 주소 정보입니다.</div>
+        <div class="input-note">선택 입력입니다. 실물 상품 또는 배송 플랜 신청 시 사용할 기본 배송지입니다.</div>
       </div>
 
       <div class="form-group">
         <label>기본 주소</label>
-        <input type="text" id="addr-main" placeholder="도로명/지번 주소" readonly required>
+        <input type="text" id="addr-main" placeholder="도로명/지번 주소" readonly>
       </div>
 
       <div class="form-group">
         <label>상세 주소</label>
-        <input type="text" id="addr-detail" placeholder="동·호수 등 상세주소" required>
+        <input type="text" id="addr-detail" placeholder="동·호수 등 상세주소">
       </div>
 
       <div class="form-group">
@@ -285,7 +285,29 @@
 <script type="module">
   // 소셜 가입 모듈 — login.html과 동일한 흐름
   import { supabase } from './supabase-client.js';
+
+  function readSignupConsentForSocial() {
+    const requiredTerms = document.querySelectorAll('.term-check[required]');
+    const allTermsOk = Array.from(requiredTerms).every(cb => cb.checked);
+    if (!allTermsOk) {
+      alert('소셜 가입 전 필수 약관과 개인정보처리방침에 동의해 주세요.');
+      document.querySelector('.terms-section')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return null;
+    }
+    const ts = new Date().toISOString();
+    return {
+      marketing_consent: document.getElementById('marketing-consent')?.checked || false,
+      terms_agreed_at: ts,
+      privacy_agreed_at: ts,
+      marketing_agreed_at: document.getElementById('marketing-consent')?.checked ? ts : null
+    };
+  }
+
   window.socialSignup = async function(provider) {
+    const consent = readSignupConsentForSocial();
+    if (!consent) return;
+    localStorage.setItem('tn_pending_oauth_consent', JSON.stringify(consent));
+
     if (provider === 'naver') {
       const clientId = window.NAVER_CLIENT_ID;
       if (!clientId || clientId.startsWith('REPLACE')) {
@@ -306,7 +328,7 @@
     // Kakao: 비즈 앱 등록 + account_email 필수 동의 활성화됨 → 기본 scope 사용
     const { error } = await supabase.auth.signInWithOAuth({
       provider,
-      options: { redirectTo: location.origin + '/mypage.html' }
+      options: { redirectTo: location.origin + '/mypage.html?oauth_consent=1' }
     });
     if (error) alert(provider + ' 가입 실패: ' + error.message);
   };
@@ -393,7 +415,7 @@
   function checkPhone(inp) {
     const ok = /^01[0-9]-\d{3,4}-\d{4}$/.test(inp.value);
     const el = document.getElementById('phone-note');
-    if(!inp.value){ el.textContent='학습 관련 안내 및 배송 정보를 받을 번호입니다.'; el.className='input-note'; inp.setAttribute('aria-invalid','false'); return; }
+    if(!inp.value){ el.textContent='계정 확인과 학습 관련 안내를 받을 번호입니다.'; el.className='input-note'; inp.setAttribute('aria-invalid','false'); return; }
     el.textContent = ok ? '✓ 올바른 번호 형식입니다.' : '휴대폰 번호 형식이 아닙니다 (예: 010-1234-5678).';
     el.className = 'input-note ' + (ok ? 'input-ok' : 'input-err');
     inp.setAttribute('aria-invalid', ok ? 'false' : 'true');
@@ -417,8 +439,7 @@
 
     if(name.length < 2){ alert('이름을 2자 이상 입력해 주세요.'); document.getElementById('signup-name').focus(); return; }
     if(!/^01[0-9]-\d{3,4}-\d{4}$/.test(phone)){ alert('올바른 휴대폰 번호를 입력해 주세요 (예: 010-1234-5678).'); document.getElementById('signup-phone').focus(); return; }
-    if(!zip){ alert('주소 검색 버튼으로 주소를 입력해 주세요.'); return; }
-    if(!addrDetail){ alert('상세 주소를 입력해 주세요.'); document.getElementById('addr-detail').focus(); return; }
+    if(addrDetail && (!zip || !addrMain)){ alert('상세 주소를 입력하려면 먼저 주소 검색으로 기본 주소를 선택해 주세요.'); return; }
     if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){ alert('올바른 이메일 주소를 입력해 주세요.'); document.getElementById('signup-email').focus(); return; }
     if(pw.length < 8){ alert('비밀번호는 8자 이상이어야 합니다.'); document.getElementById('signup-pw').focus(); return; }
     if(pw !== pw2){ alert('비밀번호가 일치하지 않습니다.'); document.getElementById('signup-pw2').focus(); return; }

@@ -88,14 +88,17 @@ site-config.js 의 다음 항목에 채널별로 입력:
 
 ```js
 window.PORTONE_CHANNEL_KEYS = {
-  kakaopay: 'channel-key-...',     // 카카오페이 채널 키
-  naverpay: 'channel-key-...',     // 네이버페이 채널 키
-  card_kcp: 'channel-key-...',     // KCP 신용카드 채널 키 (선택)
-  card_inicis: 'channel-key-...'   // 이니시스 신용카드 채널 키 (선택)
+  card_kakao_billing: 'channel-key-...', // 카카오페이 월간 정기결제 빌링
+  nice_kakao_billing: 'channel-key-...', // NICE Payments 카카오페이 빌링
+  card_monthly: 'channel-key-...',       // KG이니시스 월간 카드 빌링
+  card_annual: 'channel-key-...',        // KG이니시스 연간 일반결제
+  card_inicis: 'channel-key-...'         // 하위호환
 };
 ```
 
 **한 채널만 살아있어도 그 결제수단은 동작합니다.** 빈 문자열 채널은 order.html에서 자동으로 "준비중" 표시.
+
+카카오페이/NICE 정기결제 가맹 심사 신청 패키지는 `docs/PAYMENT_APPROVAL_APPLICATIONS.md`를 기준으로 진행합니다.
 
 ---
 

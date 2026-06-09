@@ -8,7 +8,7 @@
 --     사전 동의 + 동의 일시 보존 + 거부 의사표시 처리 가능해야 함
 --
 -- 해결:
---   1. profiles 테이블에 동의 컬럼 4개 추가
+--   1. profiles 테이블에 동의 컬럼 + 선택 배송지 컬럼 추가
 --   2. signup.html 이 가입 시 동의 일시(consentTimestamp) 함께 INSERT
 --   3. 마케팅 동의 철회 시 marketing_consent = false, marketing_revoked_at 기록
 -- ============================================================
@@ -19,13 +19,19 @@ ALTER TABLE public.profiles
   ADD COLUMN IF NOT EXISTS marketing_agreed_at timestamptz,
   ADD COLUMN IF NOT EXISTS marketing_revoked_at timestamptz,
   ADD COLUMN IF NOT EXISTS terms_agreed_at timestamptz,
-  ADD COLUMN IF NOT EXISTS privacy_agreed_at timestamptz;
+  ADD COLUMN IF NOT EXISTS privacy_agreed_at timestamptz,
+  ADD COLUMN IF NOT EXISTS shipping_zipcode text,
+  ADD COLUMN IF NOT EXISTS shipping_address text,
+  ADD COLUMN IF NOT EXISTS shipping_detail text;
 
 COMMENT ON COLUMN public.profiles.marketing_consent IS '마케팅 정보 수신 동의 여부 (현재 상태)';
 COMMENT ON COLUMN public.profiles.marketing_agreed_at IS '마케팅 동의 일시 (정보통신망법 50조 증적)';
 COMMENT ON COLUMN public.profiles.marketing_revoked_at IS '마케팅 동의 철회 일시 (수신거부 처리)';
 COMMENT ON COLUMN public.profiles.terms_agreed_at IS '이용약관 동의 일시';
 COMMENT ON COLUMN public.profiles.privacy_agreed_at IS '개인정보 처리방침 동의 일시';
+COMMENT ON COLUMN public.profiles.shipping_zipcode IS '기본 배송지 우편번호 (선택 입력)';
+COMMENT ON COLUMN public.profiles.shipping_address IS '기본 배송지 주소 (선택 입력)';
+COMMENT ON COLUMN public.profiles.shipping_detail IS '기본 배송지 상세주소 (선택 입력)';
 
 -- ── 2. handle_new_user 트리거에 동의 정보 전파 (이미 있다면 갱신) ──
 -- signUp options.data 에서 받은 동의 메타데이터를 profiles row 에 복사

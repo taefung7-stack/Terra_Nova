@@ -38,10 +38,12 @@ const PLAN_NAMES = {
 
 const VALID_LEVELS = ['MARS', 'VENUS', 'TERRA', 'NEPTUNE', 'URANUS', 'SATURN', 'JUPITER', 'SUN'];
 
-// 8자리 랜덤 결제 ID
-function makePaymentId(prefix: string): string {
+// 8자리 랜덤 결제 ID.
+// NICE 빌링키 발급 issueId는 영문/숫자 40자 이내만 허용하므로 구독 주문은 alnum 형식을 쓴다.
+function makePaymentId(prefix: string, alnum = false): string {
   const ts = Date.now();
   const rand = Math.random().toString(36).slice(2, 10);
+  if (alnum) return `${prefix}${ts}${rand}`;
   return `${prefix}_${ts}_${rand}`;
 }
 
@@ -125,7 +127,7 @@ Deno.serve(async (req) => {
     // 이니시스 입점조건: 연간은 1회성 일반결제이므로 "12개월 서비스 제공"을 상품명에 명시.
     const cycleLabel = cycle === 'annual' ? '연간 (12개월 서비스 제공)' : '월간';
     orderName = `${PLAN_NAMES[plan as keyof typeof PLAN_NAMES]} · ${cycleLabel} · ${level}`;
-    paymentIdPrefix = 'tn_sub';
+    paymentIdPrefix = 'tnsub';
     lineItems = [{
       product_snapshot: { kind: 'subscription', plan, cycle, level, name: orderName, price: totalAmount },
       quantity: 1,
@@ -198,7 +200,7 @@ Deno.serve(async (req) => {
   if (totalAmount <= 0) return jsonError('totalAmount must be > 0', 400);
 
   // ─── 4. orders INSERT ───────────────────────────────
-  const paymentId = makePaymentId(paymentIdPrefix);
+  const paymentId = makePaymentId(paymentIdPrefix, kind === 'subscription');
   const { data: order, error: orderErr } = await sb
     .from('orders')
     .insert({
