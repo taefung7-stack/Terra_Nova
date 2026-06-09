@@ -500,10 +500,13 @@ html, body {
   font-weight: 500;
 }
 .sent .en .slash { color: var(--c-sky-deep); font-weight: 700; padding: 0 1.5px; }
-/* 노란 형광펜 — 살짝 연하게 */
+/* 형광펜 3색 — 아래 포인트 색과 매칭 (어법=하늘 / 어휘=노랑 / 리딩·주제=빨강) */
+/* 노란 형광펜 = 어휘 Point */
 .sent .en .hl    { background: linear-gradient(transparent 55%, #fff1a8 55%); padding: 0 2px; font-weight: 600; }
-/* 빨간 형광펜 — 핵심 포인트 (연한 코랄) */
+/* 빨간 형광펜 = 리딩 Point / 주제·요지 */
 .sent .en .hl-r  { background: linear-gradient(transparent 55%, #ffd3d3 55%); padding: 0 2px; font-weight: 600; color: #a64545; }
+/* 하늘 형광펜 = 어법 Point */
+.sent .en .hl-g  { background: linear-gradient(transparent 55%, #cfe6ff 55%); padding: 0 2px; font-weight: 600; color: #2f6090; }
 .sent .en .key   { color: var(--c-mint-deep); font-weight: 700; border-bottom: 2px solid var(--c-sage); }
 
 /* 끊어읽기 한글 (작은 글씨) */
@@ -625,7 +628,7 @@ html, body {
 .point-grid { display: grid; gap: 3px; margin-top: 6px; }
 .point {
   display: grid;
-  grid-template-columns: 58px 1fr;
+  grid-template-columns: 70px 1fr;
   gap: 8px;
   font-size: 8.3pt;
   padding: 3.5px 9px;
@@ -635,10 +638,11 @@ html, body {
 .point .pt-tag {
   font-weight: 700;
   font-size: 7.9pt;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
   display: flex;
   align-items: center;
   gap: 3px;
+  white-space: nowrap;
 }
 .point .pt-text { color: var(--c-text); }
 .point.grammar { background: var(--c-sky-soft);    border-left: 3px solid var(--c-sky-deep); }
