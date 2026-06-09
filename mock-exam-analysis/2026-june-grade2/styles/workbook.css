@@ -265,7 +265,7 @@ html, body {
   left: 11px;
   background: var(--c-coral-deep);
   color: #fff;
-  font-size: 8.8pt;
+  font-size: 7.8pt;
   font-weight: 700;
   padding: 2px 9px;
   border-radius: 4px;
@@ -273,13 +273,13 @@ html, body {
 }
 .passage-box.ko .pb-label { background: var(--c-text-soft); }
 .passage-box .pb-body {
-  font-size: 10.3pt;          /* ★ 영문 키움 (8.6 → 9.3) */
+  font-size: 9.3pt;          /* STEP1 본문은 1pt 키우지 않음 (페이지 넘침 방지) */
   line-height: 1.6;
   color: var(--c-text);
   font-weight: 500;
 }
 .passage-box.ko .pb-body {
-  font-size: 9.9pt;
+  font-size: 8.9pt;
   color: var(--c-text-soft);
   font-weight: 400;
   line-height: 1.55;
@@ -291,7 +291,7 @@ html, body {
   border-radius: 50%;
   background: var(--c-coral-deep);
   color: #fff;
-  font-size: 7.5pt;
+  font-size: 6.5pt;
   font-weight: 800;
   text-align: center;
   line-height: 12px;
@@ -312,7 +312,7 @@ html, body {
   background: var(--c-step-soft);
   color: var(--c-step);
   border: 1px solid var(--c-step-line);
-  font-size: 9pt;
+  font-size: 8pt;
   font-weight: 700;
   padding: 1.5px 10px;
   border-radius: 4px;
@@ -323,7 +323,7 @@ html, body {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 2px 12px;
-  font-size: 9.1pt;
+  font-size: 8.1pt;
 }
 .voca-grid .v-item {
   display: grid;
@@ -332,15 +332,24 @@ html, body {
   align-items: baseline;
   line-height: 1.4;
 }
-/* 뜻이 길어 줄바꿈될 때 둘째 줄을 오른쪽으로 들여써서
-   [형]/[동] 품사 표시 선 아래를 침범하지 않도록 hanging indent */
-.voca-grid .v-item > span:last-child {
+/* 필수단어: 뜻이 길어 줄바꿈될 때, 둘째 줄이 한글 뜻 시작 라인에 맞도록
+   [번호][단어+품사][뜻] 을 그리드로 분리 — 뜻 칸 안에서만 줄바꿈되어 정렬 유지 */
+.voca-grid .v-item .v-body {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 4px;
+  align-items: baseline;
+}
+.voca-grid .v-item .v-head { white-space: nowrap; }
+.voca-grid .v-item .v-meaning { min-width: 0; }
+/* 동의어/반의어/영영풀이/표현 리스트(단어 = 뜻 구조)는 단순 hanging indent */
+.voca-2col .v-item > span:last-child {
   display: block;
-  padding-left: 2.6em;
-  text-indent: -2.6em;
+  padding-left: 1.4em;
+  text-indent: -1.4em;
 }
 .voca-grid .v-item .v-no {
-  font-size: 8.3pt;
+  font-size: 7.3pt;
   color: var(--c-muted);
   font-weight: 600;
   text-align: right;
@@ -348,11 +357,11 @@ html, body {
 .voca-grid .v-item .v-word {
   font-weight: 700;
   color: var(--c-ink);
-  font-size: 9.2pt;
+  font-size: 8.2pt;
 }
 .voca-grid .v-item .v-pos {
   color: var(--c-muted);
-  font-size: 8.2pt;
+  font-size: 7.2pt;
   font-weight: 500;
   margin: 0 2px;
 }
