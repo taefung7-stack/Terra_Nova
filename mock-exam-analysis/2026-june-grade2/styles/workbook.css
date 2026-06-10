@@ -332,22 +332,9 @@ html, body {
   align-items: baseline;
   line-height: 1.4;
 }
-/* 필수단어: 뜻이 길어 줄바꿈될 때, 둘째 줄이 한글 뜻 시작 라인에 맞도록
-   [번호][단어+품사][뜻] 을 그리드로 분리 — 뜻 칸 안에서만 줄바꿈되어 정렬 유지 */
-.voca-grid .v-item .v-body {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  column-gap: 4px;
-  align-items: baseline;
-}
-.voca-grid .v-item .v-head { white-space: nowrap; }
-.voca-grid .v-item .v-meaning { min-width: 0; }
-/* 동의어/반의어/영영풀이/표현 리스트(단어 = 뜻 구조)는 단순 hanging indent */
-.voca-2col .v-item > span:last-child {
-  display: block;
-  padding-left: 1.4em;
-  text-indent: -1.4em;
-}
+/* 줄바꿈 시 둘째 줄은 번호 칸(16px) 오른쪽, 즉 내용 셀 왼쪽에서 시작 —
+   .v-item 그리드의 1fr 내용 셀이 이미 번호 다음에서 시작하므로 자연 줄바꿈으로 충분.
+   (단어가 긴 'hold up A against B' 같은 항목도 안전하게 가로 흐름 유지) */
 .voca-grid .v-item .v-no {
   font-size: 7.3pt;
   color: var(--c-muted);

@@ -238,7 +238,7 @@ function renderStep1({ data, wb, headOpts, pageNum }) {
   const vocaItems = vocabPrimary.map((v, i) => `
         <div class="v-item">
           <span class="v-no">${i + 1}.</span>
-          <span class="v-body"><span class="v-head"><span class="v-word">${esc(v.word)}</span><span class="v-pos">[${esc(v.pos)}]</span></span><span class="v-meaning">${esc(v.meaning)}</span></span>
+          <span><span class="v-word">${esc(v.word)}</span><span class="v-pos">[${esc(v.pos)}]</span><span class="v-meaning">${esc(v.meaning)}</span></span>
         </div>`).join('');
 
   // 동의어 / 반의어 — 본문 vocab에서 상위 5개씩
