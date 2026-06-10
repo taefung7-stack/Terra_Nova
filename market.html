@@ -433,8 +433,8 @@
       <label>학년</label>
       <select id="mf-grade">
         <option value="고1">고1</option>
-        <option value="고2">고2</option>
-        <option value="고3" selected>고3</option>
+        <option value="고2" selected>고2</option>
+        <option value="고3">고3</option>
       </select>
     </div>
     <div class="mf-group">
@@ -832,8 +832,13 @@
   // 회차별 미리보기 오버라이드 — 선택된 학년/월에 맞는 샘플로 교체.
   // (없는 조합은 기본 PREVIEW[kind] 사용)
   const PREVIEW_BY_ROUND = {
+    '고1-6': {
+      analysis: { src: 'mock-exam-analysis/2026-june-grade1/dist/20.html',          title: '2026 6월 고1 모의고사 분석지 · 샘플' },
+      workbook: { src: 'mock-exam-analysis/2026-june-grade1/dist/workbook-20.html',  title: '2026 6월 고1 모의고사 워크북 · 샘플' },
+    },
     '고2-6': {
-      analysis: { src: 'mock-exam-analysis/2026-june-grade2/dist/20.html', title: '2026 6월 고2 모의고사 분석지 · 샘플' },
+      analysis: { src: 'mock-exam-analysis/2026-june-grade2/dist/20.html',          title: '2026 6월 고2 모의고사 분석지 · 샘플' },
+      workbook: { src: 'mock-exam-analysis/2026-june-grade2/dist/workbook-20.html',  title: '2026 6월 고2 모의고사 워크북 · 샘플' },
     },
   };
   function applyPreviewScale(){
