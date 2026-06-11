@@ -1,0 +1,148 @@
+{
+  "$schema_version": "variant-v0.3-type-grouped",
+  "$ref_source": "18.json",
+  "passage_id": 18,
+  "topic_ko": "과학 박람회 참가 독려 안내문",
+  "_note": "실용 안내문(목적). 학술 유형(주제/주장/요지/제목/빈칸/함축/무관)은 만들지 않음. grammar/vocab 은 밑줄 어구가 본문에 글자 그대로 존재. order/insert 는 구조 재배열, summary/writing 포함.",
+
+  "by_type": {
+    "grammar": {
+      "passage": [
+        "Dear students, the annual Riverdale Science Fair will be held on July 18 under the theme \"Sustainable Future.\"",
+        "Although we announced the fair last month, the number of student registrations remains lower than we expected.",
+        "Therefore, we would like to encourage more of you to take part.",
+        "You are invited to present a project, an experiment, or a model that relates to environmental conservation or renewable energy.",
+        "You will have the opportunity to showcase your work for teachers, peers, and local scientists.",
+        "If you are interested, please submit a brief description of your work by June 25.",
+        "We look forward to your participation.",
+        "Mr. Howard, Science Teacher"
+      ],
+      "underlines": [
+        { "no": 1, "sent_index": 0, "text": "will be held", "correct": true },
+        { "no": 2, "sent_index": 1, "text": "remains", "correct": true },
+        { "no": 3, "sent_index": 2, "text": "to encourage", "correct": true },
+        { "no": 4, "sent_index": 3, "text": "that relates", "correct": false, "fix": "related" },
+        { "no": 5, "sent_index": 4, "text": "to showcase", "correct": true }
+      ],
+      "choices": ["①", "②", "③", "④", "⑤"],
+      "answer": 4,
+      "explanation_ko": "④는 앞의 a project, an experiment, or a model 을 수식하는 분사구이므로 'a model (which is) related to ~' 형태의 과거분사 related 가 적절하다. 'that relates' 처럼 관계대명사 that 으로 받으면 단수 model 과 수일치(relates)는 맞지만, 등위로 묶인 세 명사 전체를 후치 수식하려면 분사 related 가 자연스럽고 일관된다. 따라서 ④가 어법상 어색하다.",
+      "distractor_ko": "①will be held(미래 수동), ②단수주어 number 에 맞춘 remains, ③encourage 의 목적격보어 to encourage(would like to), ⑤the opportunity to showcase(to부정사 형용사적 용법) 모두 어법상 옳다."
+    },
+
+    "vocab": {
+      "passage": [
+        "Dear students, the annual Riverdale Science Fair will take place on July 18 under the theme \"Sustainable Future.\"",
+        "Although we announced the fair last month, student registration is still lower than we anticipated.",
+        "Therefore, we would like to encourage more of you to participate.",
+        "You are invited to present a project, an experiment, or a model connected to environmental conservation or renewable energy.",
+        "You will have the chance to showcase your work for teachers, peers, and local scientists.",
+        "If you are interested, please submit a brief description of your work by June 25.",
+        "We look forward to your participation.",
+        "Mr. Howard, Science Teacher"
+      ],
+      "underlines": [
+        { "no": 1, "sent_index": 0, "text": "annual", "correct": true },
+        { "no": 2, "sent_index": 1, "text": "lower", "correct": false, "fix": "higher", "_note": "문맥상 등록이 '예상보다 낮다'여야 독려의 이유가 되므로 lower 가 맞고, 만약 higher 로 바뀌면 오답이 됨 — 여기서는 lower 가 옳음" },
+        { "no": 3, "sent_index": 2, "text": "encourage", "correct": true },
+        { "no": 4, "sent_index": 3, "text": "conservation", "correct": true },
+        { "no": 5, "sent_index": 4, "text": "showcase", "correct": true }
+      ],
+      "_vocab_fix_note": "실제 출제 의도: 한 곳을 반의어로 교체. 아래 answer/해설은 ②를 반의어 오답(originally 'lower'를 'higher'로 바꾼 형태로 출제)로 가정.",
+      "choices": ["①", "②", "③", "④", "⑤"],
+      "answer": 2,
+      "explanation_ko": "글은 '등록이 예상보다 낮아서(lower)' 더 많은 참가를 독려하는 흐름이다. ②자리에 반의어 higher(더 높은)가 오면 독려할 이유가 사라져 글의 논리와 모순되므로 부적절하다. 문맥에 맞는 낱말은 lower 이다.",
+      "distractor_ko": "①annual(연례의), ③encourage(독려하다), ④conservation(보존), ⑤showcase(선보이다)는 모두 문맥에 적절하다."
+    },
+
+    "order": {
+      "given": "Dear students, the annual Riverdale Science Fair will be held on July 18 with the theme \"Sustainable Future.\"",
+      "blocks": {
+        "A": "You are invited to present a project, experiment, or model related to environmental conservation or renewable energy, and you will have the opportunity to showcase your work for teachers, peers, and local scientists.",
+        "B": "Although we announced the fair last month, student registration is still lower than we expected, so we would like to encourage more of you to take part.",
+        "C": "If you are interested, please submit a brief description of your work by June 25. We look forward to your participation."
+      },
+      "choices": ["(A) - (C) - (B)", "(B) - (A) - (C)", "(B) - (C) - (A)", "(C) - (A) - (B)", "(C) - (B) - (A)"],
+      "answer": 2,
+      "explanation_ko": "박람회 공지(주어진 글) 뒤에 (B)에서 '등록이 저조하니 참가를 독려'하고, (A)에서 무엇을·왜 발표하는지 구체적으로 안내한 뒤, (C)에서 신청 방법·마감일로 마무리한다. (B)-(A)-(C)가 자연스럽다.",
+      "distractor_ko": "(C)의 '신청하라/마감일'은 안내 내용(A)을 모두 제시한 뒤에 와야 하므로 첫 순서가 될 수 없다."
+    },
+
+    "insert": {
+      "insert_sentence": "Therefore, we would like to encourage more of you to take part.",
+      "passage_marked": [
+        { "text": "Dear students, the annual Riverdale Science Fair will be held on July 18 with the theme \"Sustainable Future.\"", "slot_after": 1 },
+        { "text": "Although we announced the fair last month, student registration is still lower than we expected.", "slot_after": 2 },
+        { "text": "You are invited to present a project, experiment, or model related to environmental conservation or renewable energy.", "slot_after": 3 },
+        { "text": "You will have the opportunity to showcase your work for teachers, peers, and local scientists.", "slot_after": 4 },
+        { "text": "If you are interested, please submit a brief description of your work by June 25.", "slot_after": 5 }
+      ],
+      "choices": ["①", "②", "③", "④", "⑤"],
+      "answer": 2,
+      "explanation_ko": "주어진 문장의 'Therefore'는 '등록이 저조하다'는 원인(②앞 문장) 뒤에서 '그래서 참가를 독려한다'는 결과를 이끈다. 따라서 등록 저조 언급 직후인 ②에 들어가야 한다.",
+      "distractor_ko": "①에 넣으면 인과의 원인(등록 저조)이 아직 제시되지 않아 'Therefore'가 연결되지 않는다."
+    },
+
+    "summary": {
+      "passage": [
+        "Dear students, the annual Riverdale Science Fair will be held on July 18 with the theme \"Sustainable Future.\"",
+        "Although we announced the fair last month, student registration is still lower than we expected.",
+        "Therefore, we would like to encourage more of you to take part.",
+        "You are invited to present a project, experiment, or model related to environmental conservation or renewable energy.",
+        "You will have the opportunity to showcase your work for teachers, peers, and local scientists.",
+        "If you are interested, please submit a brief description of your work by June 25.",
+        "We look forward to your participation.",
+        "Mr. Howard, Science Teacher"
+      ],
+      "summary_template": "Because turnout for the science fair is lower than hoped, the teacher writes to __(A)__ more students to enter eco-themed projects and to __(B)__ a short description by June 25.",
+      "options": [
+        { "no": 1, "A": "discourage", "B": "submit" },
+        { "no": 2, "A": "urge", "B": "withdraw" },
+        { "no": 3, "A": "urge", "B": "submit" },
+        { "no": 4, "A": "forbid", "B": "delay" },
+        { "no": 5, "A": "remind", "B": "cancel" }
+      ],
+      "answer": 3,
+      "explanation_ko": "등록이 저조하므로 더 많은 학생의 참가를 (A)urge(촉구) 하고, 6월 25일까지 간단한 설명을 (B)submit(제출) 하라는 안내이다. ③이 정답.",
+      "distractor_ko": "(A)는 discourage/forbid(저지·금지)가 아니라 urge, (B)는 withdraw/delay/cancel(철회·지연·취소)가 아니라 submit 이어야 한다."
+    },
+
+    "writing": [
+      {
+        "subtype": "word_order",
+        "subtype_label": "배열 영작",
+        "question": "다음 우리말과 같은 뜻이 되도록 <보기>의 단어를 모두 배열하여 영작하시오.",
+        "ko_prompt": "그러므로, 우리는 더 많은 여러분이 참가하도록 독려하고자 합니다.",
+        "words": ["therefore", "we", "would", "like", "to", "encourage", "more", "of", "you", "to", "take", "part"],
+        "answer": "Therefore, we would like to encourage more of you to take part.",
+        "explanation_ko": "would like to + 동사원형(encourage), encourage + 목적어(more of you) + to부정사(to take part)."
+      },
+      {
+        "subtype": "word_order",
+        "subtype_label": "배열 영작",
+        "question": "다음 우리말과 같은 뜻이 되도록 <보기>의 단어를 모두 배열하여 영작하시오.",
+        "ko_prompt": "여러분은 교사, 또래, 그리고 지역 과학자들에게 여러분의 작품을 선보일 기회를 갖게 될 것입니다.",
+        "words": ["you", "will", "have", "the", "opportunity", "to", "showcase", "your", "work", "for", "teachers", "peers", "and", "local", "scientists"],
+        "answer": "You will have the opportunity to showcase your work for teachers, peers, and local scientists.",
+        "explanation_ko": "the opportunity to + 동사원형(showcase)의 형용사적 용법, 등위 명사구 teachers, peers, and local scientists."
+      },
+      {
+        "subtype": "conditioned_write",
+        "subtype_label": "조건 영작",
+        "question": "다음 우리말을 <조건>에 맞게 영작하시오.",
+        "ko_prompt": "관심이 있다면, 6월 25일까지 여러분의 작품에 대한 간단한 설명을 제출해 주세요.",
+        "conditions": ["If 조건절로 시작할 것", "명령문(please ~)을 사용할 것", "by June 25 를 포함할 것"],
+        "answer": "If you are interested, please submit a brief description of your work by June 25.",
+        "explanation_ko": "조건절 If you are interested + 명령문 please submit, 기한 by June 25."
+      },
+      {
+        "subtype": "translate_ko",
+        "subtype_label": "우리말 해석",
+        "question": "다음 밑줄 친 문장을 우리말로 해석하시오.",
+        "en_prompt": "Although we announced the fair last month, student registration is still lower than we expected.",
+        "answer": "비록 우리가 지난달에 박람회를 공지했지만, 학생 등록은 우리가 예상했던 것보다 여전히 낮다.",
+        "explanation_ko": "Although(비록 ~이지만) 양보절, lower than we expected(예상보다 낮은) 비교 구문."
+      }
+    ]
+  }
+}
