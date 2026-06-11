@@ -49,11 +49,13 @@ const dryRun = values['dry-run'];
 
 // 월별 로컬 파일 매핑 — Terra Nova 정식본만. 새 회차는 여기만 갱신.
 const MAP = {
+  // 2026-06: 표지(요트 벡터) + 본문 병합 + PDF 1.4(GoodNotes 호환) 정식본.
+  //   tools/rebuild-market-pdfs.mjs 로 생성. 표지 1p 포함, ObjStm 0, 50MB 이하.
   '2026-06': [
-    { key: `mock/2026-06/grade1-analysis.pdf`, file: '2026-june-grade1/dist/26년 6월 1학년 모의고사 본문분석 (수정본).pdf',  desc: '고1 본문분석' },
-    { key: `mock/2026-06/grade1-workbook.pdf`, file: '2026-june-grade1/dist/2026-6월-고1-영어-워크북-합본.pdf',              desc: '고1 워크북' },
-    { key: `mock/2026-06/grade2-analysis.pdf`, file: '2026-june-grade2/dist/26년 6월 2학년 모의고사 본문분석 (수정본3).pdf', desc: '고2 본문분석' },
-    { key: `mock/2026-06/grade2-workbook.pdf`, file: '2026-june-grade2/dist/2026-6월-고2-영어-워크북-합본.pdf',              desc: '고2 워크북' },
+    { key: `mock/2026-06/grade1-analysis.pdf`, file: '2026-june-grade1/dist/2026-6월-고1-영어-분석지-합본-표지포함.pdf', desc: '고1 본문분석' },
+    { key: `mock/2026-06/grade1-workbook.pdf`, file: '2026-june-grade1/dist/2026-6월-고1-영어-워크북-합본-표지포함.pdf', desc: '고1 워크북' },
+    { key: `mock/2026-06/grade2-analysis.pdf`, file: '2026-june-grade2/dist/2026-6월-고2-영어-분석지-합본-표지포함.pdf', desc: '고2 본문분석' },
+    { key: `mock/2026-06/grade2-workbook.pdf`, file: '2026-june-grade2/dist/2026-6월-고2-영어-워크북-합본-표지포함.pdf', desc: '고2 워크북' },
   ],
 };
 
