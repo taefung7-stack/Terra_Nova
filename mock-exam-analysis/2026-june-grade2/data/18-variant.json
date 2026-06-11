@@ -9,9 +9,9 @@
     "grammar": {
       "passage": [
         "Dear students, the annual Riverdale Science Fair will be held on July 18 under the theme \"Sustainable Future.\"",
-        "Although we announced the fair last month, the number of student registrations remains lower than we expected.",
+        "Although we announced the fair last month, the number of student registrations remain lower than we expected.",
         "Therefore, we would like to encourage more of you to take part.",
-        "You are invited to present a project, an experiment, or a model that relates to environmental conservation or renewable energy.",
+        "You are invited to present a model that relates to environmental conservation or renewable energy.",
         "You will have the opportunity to showcase your work for teachers, peers, and local scientists.",
         "If you are interested, please submit a brief description of your work by June 25.",
         "We look forward to your participation.",
@@ -19,21 +19,21 @@
       ],
       "underlines": [
         { "no": 1, "sent_index": 0, "text": "will be held", "correct": true },
-        { "no": 2, "sent_index": 1, "text": "remains", "correct": true },
+        { "no": 2, "sent_index": 1, "text": "remain", "correct": false, "fix": "remains" },
         { "no": 3, "sent_index": 2, "text": "to encourage", "correct": true },
-        { "no": 4, "sent_index": 3, "text": "that relates", "correct": false, "fix": "related" },
+        { "no": 4, "sent_index": 3, "text": "that relates", "correct": true },
         { "no": 5, "sent_index": 4, "text": "to showcase", "correct": true }
       ],
       "choices": ["①", "②", "③", "④", "⑤"],
-      "answer": 4,
-      "explanation_ko": "④는 앞의 a project, an experiment, or a model 을 수식하는 분사구이므로 'a model (which is) related to ~' 형태의 과거분사 related 가 적절하다. 'that relates' 처럼 관계대명사 that 으로 받으면 단수 model 과 수일치(relates)는 맞지만, 등위로 묶인 세 명사 전체를 후치 수식하려면 분사 related 가 자연스럽고 일관된다. 따라서 ④가 어법상 어색하다.",
-      "distractor_ko": "①will be held(미래 수동), ②단수주어 number 에 맞춘 remains, ③encourage 의 목적격보어 to encourage(would like to), ⑤the opportunity to showcase(to부정사 형용사적 용법) 모두 어법상 옳다."
+      "answer": 2,
+      "explanation_ko": "② 주어의 핵은 단수명사 the number(~의 수)이므로 동사도 단수 remains 여야 한다. 복수 동사 remain 은 수일치에 어긋나므로 틀리다 → remains 로 고쳐야 한다.",
+      "distractor_ko": "①will be held(미래 수동), ③would like to encourage(to부정사), ④선행사 a model(단수)에 맞춘 that relates, ⑤the opportunity to showcase(to부정사 형용사적 용법) 모두 어법상 옳다."
     },
 
     "vocab": {
       "passage": [
         "Dear students, the annual Riverdale Science Fair will take place on July 18 under the theme \"Sustainable Future.\"",
-        "Although we announced the fair last month, student registration is still lower than we anticipated.",
+        "Although we announced the fair last month, student registration is still higher than we anticipated.",
         "Therefore, we would like to encourage more of you to participate.",
         "You are invited to present a project, an experiment, or a model connected to environmental conservation or renewable energy.",
         "You will have the chance to showcase your work for teachers, peers, and local scientists.",
@@ -43,15 +43,14 @@
       ],
       "underlines": [
         { "no": 1, "sent_index": 0, "text": "annual", "correct": true },
-        { "no": 2, "sent_index": 1, "text": "lower", "correct": false, "fix": "higher", "_note": "문맥상 등록이 '예상보다 낮다'여야 독려의 이유가 되므로 lower 가 맞고, 만약 higher 로 바뀌면 오답이 됨 — 여기서는 lower 가 옳음" },
+        { "no": 2, "sent_index": 1, "text": "higher", "correct": false, "fix": "lower" },
         { "no": 3, "sent_index": 2, "text": "encourage", "correct": true },
         { "no": 4, "sent_index": 3, "text": "conservation", "correct": true },
         { "no": 5, "sent_index": 4, "text": "showcase", "correct": true }
       ],
-      "_vocab_fix_note": "실제 출제 의도: 한 곳을 반의어로 교체. 아래 answer/해설은 ②를 반의어 오답(originally 'lower'를 'higher'로 바꾼 형태로 출제)로 가정.",
       "choices": ["①", "②", "③", "④", "⑤"],
       "answer": 2,
-      "explanation_ko": "글은 '등록이 예상보다 낮아서(lower)' 더 많은 참가를 독려하는 흐름이다. ②자리에 반의어 higher(더 높은)가 오면 독려할 이유가 사라져 글의 논리와 모순되므로 부적절하다. 문맥에 맞는 낱말은 lower 이다.",
+      "explanation_ko": "② 등록이 예상보다 '낮기(lower)' 때문에 더 많은 참가를 독려하는 흐름이다. higher(더 높은)를 쓰면 독려할 이유가 사라져 글의 논리와 모순되므로 틀리다 → lower 로 고쳐야 한다.",
       "distractor_ko": "①annual(연례의), ③encourage(독려하다), ④conservation(보존), ⑤showcase(선보이다)는 모두 문맥에 적절하다."
     },
 

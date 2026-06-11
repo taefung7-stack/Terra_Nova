@@ -417,14 +417,16 @@ function paginate2col(cards, headOptsFor, startPage) {
   return { pages, nextPage: pageNum };
 }
 
-// 서술형 6-up: 좌3·우3. cards 를 6개씩 묶어 페이지 생성.
-function paginateWriting6up(cards, headOptsFor, startPage) {
+// 서술형 8-up: 좌4·우4. cards 를 8개씩 묶어 페이지 생성(세로 여백 최소화).
+// 좌측 열에 짝수 인덱스(0,2,4,6), 우측 열에 홀수 인덱스(1,3,5,7)를 배치.
+function paginateWriting8up(cards, headOptsFor, startPage) {
   const pages = [];
   let pageNum = startPage;
-  for (let i = 0; i < cards.length; i += 6) {
-    const slice = cards.slice(i, i + 6);
-    const leftCol = [slice[0], slice[2], slice[4]].filter(Boolean).join('\n');
-    const rightCol = [slice[1], slice[3], slice[5]].filter(Boolean).join('\n');
+  const PER = 8;
+  for (let i = 0; i < cards.length; i += PER) {
+    const slice = cards.slice(i, i + PER);
+    const leftCol = [slice[0], slice[2], slice[4], slice[6]].filter(Boolean).join('\n');
+    const rightCol = [slice[1], slice[3], slice[5], slice[7]].filter(Boolean).join('\n');
     const bodyInner = `    <div class="vq-cols vq-cols-write">
       <div class="vq-col">${leftCol}</div>
       <div class="vq-col">${rightCol}</div>
@@ -508,10 +510,10 @@ async function buildHtml({ variants, examMeta, cssContent }) {
     pageNum = r.nextPage;
   }
 
-  // 서술형(짧은) — 6-up 페이지
+  // 서술형(짧은) — 8-up 페이지(좌4·우4)
   if (writingShortCards.length) {
     const headOptsFor = () => ({ examShort, grade, kindTag: '서술형' });
-    const r = paginateWriting6up(writingShortCards, headOptsFor, pageNum);
+    const r = paginateWriting8up(writingShortCards, headOptsFor, pageNum);
     pages.push(...r.pages);
     pageNum = r.nextPage;
   }
