@@ -1,0 +1,861 @@
+{
+  "schema_version": "2.2",
+  "id": "2026-07-J-12",
+  "meta": {
+    "month": "2026-07-J",
+    "sequence": 12,
+    "subject": "수학",
+    "linked_unit": "확률과 통계 III-3 통계적 추정",
+    "part_ko": "표본이 말하는 전체",
+    "achievement_standard": "12확통03-05",
+    "achievement_verified": true,
+    "difficulty": "중간",
+    "cognitive_skill": "요지",
+    "lexile": "1150L",
+    "ar_level": 7.4,
+    "key_concepts": [
+      "통계적 추정",
+      "표본",
+      "모집단",
+      "신뢰구간"
+    ]
+  },
+  "page1": {
+    "title": "How a Spoonful Can Judge the Whole Pot",
+    "subtitle": "Why we can know the many by tasting the few.",
+    "body": "To check whether a huge pot of soup is salty enough, a cook does not drink the entire pot. After a good stir, a single spoonful tells the whole story. This everyday trick hides one of the most useful ideas in mathematics: <u>statistical estimation</u>, the art of learning about a vast whole by carefully examining a small part of it.\n\nThe small tested part is called a sample, and the entire group that it stands for is called the population. This quiet magic only works, however, if the sample is chosen truly fairly, so that every single member of the population has an equal chance of being picked. A spoonful taken carelessly from an unstirred pot, scooped all from the salty bottom, would badly mislead even the best cook. In the same way, a poll that quietly leaves out whole groups of people gives a twisted picture, no matter how many it includes. A fair sample is small, but it is a true <mark>mirror</mark> of the larger whole. This is why scientists test a new medicine on a carefully chosen group rather than on everyone at once. A few thousand fair volunteers can reveal how a drug will affect millions. The trick is always in the fairness, not merely in the size.\n\nHonest statisticians never pretend that their final estimate is perfectly exact. Instead, they carefully report a range and a level of confidence, saying in effect, \"We are fairly sure the real value lies somewhere between here and here.\" That careful humility is a feature, not a weakness, because it states clearly how much trust the number deserves. In a world flooded with confident-sounding figures, the wisest move is to ask not just what the number is, but how it was <blank>.",
+    "illustration": "../../assets/illustrations/2026-07-J/12.png",
+    "illustration_caption": "A fair sample mirrors the whole; a biased one misleads, however large."
+  },
+  "page2": {
+    "questions": [
+      {
+        "type": "mock_objective",
+        "style": "요지",
+        "stem": "다음 글의 요지로 가장 적절한 것은?",
+        "choices": [
+          "To know a population, you must always measure every single member.",
+          "Statistical estimation learns about a whole from a fair sample, and honest estimates report a range with a level of confidence.",
+          "A large sample is always accurate, even if it is chosen unfairly.",
+          "Statisticians should claim their estimates are exactly correct.",
+          "A spoonful of soup can never tell you anything useful."
+        ],
+        "answer_index": 1
+      },
+      {
+        "type": "mock_objective",
+        "style": "빈칸 추론",
+        "stem": "윗글의 밑줄 친 빈칸에 들어갈 말로 가장 적절한 것은?",
+        "choices": [
+          "spelled",
+          "obtained",
+          "forgotten",
+          "hidden",
+          "ignored"
+        ],
+        "answer_index": 1
+      },
+      {
+        "type": "mock_objective",
+        "style": "함의 추론",
+        "stem": "윗글의 밑줄 친 표현 a true mirror of the larger whole 이 의미하는 바로 가장 적절한 것은?",
+        "choices": [
+          "the sample is made of actual glass",
+          "a fair sample reflects the population accurately even though it is small",
+          "the sample must be exactly the same size as the population",
+          "mirrors are the best tool for measuring soup",
+          "a small sample can never represent a large group"
+        ],
+        "answer_index": 1
+      },
+      {
+        "type": "school_descriptive",
+        "style": "요약문 빈칸 완성",
+        "prompt": "다음은 본문의 요약문이다. 본문의 내용을 바탕으로 빈칸 (A), (B)에 들어갈 말을 <조건>에 맞게 영어 한 단어로 각각 쓰시오. <조건> 본문에서 제시된 단어를 그대로 활용할 것.",
+        "hints": [
+          "sample",
+          "population",
+          "fair",
+          "confidence",
+          "estimate"
+        ],
+        "summary_template": "Statistical estimation studies a whole <blank> (A) by examining a fair sample of it. An honest estimate reports a range and a level of <blank> (B), rather than pretending to be exact.",
+        "model_answer": "(A) population  (B) confidence"
+      }
+    ],
+    "textbook_tieback": {
+      "unit_label": "확률과 통계 III · 통계적 추정",
+      "body_ko": "고2 확률과 통계에서는 통계적 추정을 배운다. 전체(모집단)를 모두 조사하기 어려울 때, 일부(표본)를 조사해 모집단의 특성을 합리적으로 추정한다 — 마치 잘 저은 국 한 숟가락으로 솥 전체의 간을 보는 것과 같다. 단, 표본은 공정하게(무작위로) 뽑혀 모집단을 대표해야 한다. 한쪽에 치우쳐 뽑힌 표본(편향)은 아무리 커도 왜곡된 결과를 준다. 또한 추정값은 점이 아니라 신뢰구간(범위)과 신뢰수준으로 제시되어, '참값이 이 범위 안에 있을 것이라고 어느 정도 확신한다'고 말한다. 이 신중함은 약점이 아니라 그 수치를 얼마나 믿을 수 있는지를 정직하게 밝히는 강점이다.",
+      "tags": [
+        "통계적추정",
+        "표본·모집단",
+        "무작위·편향",
+        "신뢰구간"
+      ],
+      "visual_aid": {
+        "type": "emoji_flow",
+        "title": "표본으로 전체 추정",
+        "steps": [
+          {
+            "emoji": "🥄",
+            "label": "표본",
+            "note": "잘 저은 한 숟가락"
+          },
+          {
+            "emoji": "🍲",
+            "label": "모집단",
+            "note": "솥 전체"
+          },
+          {
+            "emoji": "🎲",
+            "label": "공정 추출",
+            "note": "편향이면 왜곡"
+          },
+          {
+            "emoji": "📏",
+            "label": "신뢰구간",
+            "note": "범위+신뢰수준"
+          }
+        ]
+      }
+    }
+  },
+  "page3": {
+    "sentences": [
+      {
+        "index": 1,
+        "segments": [
+          {
+            "role": "M",
+            "text": "To check whether a huge pot of soup is salty enough,",
+            "note": "to부정사 + whether 명사절"
+          },
+          {
+            "role": "S",
+            "text": "a cook"
+          },
+          {
+            "role": "V",
+            "text": "does not drink"
+          },
+          {
+            "role": "O",
+            "text": "the entire pot."
+          }
+        ],
+        "grammar_note": "to부정사 목적 + whether 명사절"
+      },
+      {
+        "index": 2,
+        "segments": [
+          {
+            "role": "M",
+            "text": "After a good stir,",
+            "note": "전치사구"
+          },
+          {
+            "role": "S",
+            "text": "a single spoonful"
+          },
+          {
+            "role": "V",
+            "text": "tells"
+          },
+          {
+            "role": "O",
+            "text": "the whole story."
+          }
+        ],
+        "grammar_note": "3형식 단문"
+      },
+      {
+        "index": 3,
+        "segments": [
+          {
+            "role": "S",
+            "text": "This everyday trick"
+          },
+          {
+            "role": "V",
+            "text": "hides"
+          },
+          {
+            "role": "O",
+            "text": "one of the most useful ideas in mathematics:",
+            "note": "콜론"
+          },
+          {
+            "role": "S",
+            "text": "statistical estimation,"
+          },
+          {
+            "role": "M",
+            "text": "the art of learning about a vast whole by carefully examining a small part of it.",
+            "note": "동격 + by -ing"
+          }
+        ],
+        "grammar_note": "콜론 동격 + by -ing"
+      },
+      {
+        "index": 4,
+        "segments": [
+          {
+            "role": "S",
+            "text": "The small part"
+          },
+          {
+            "role": "V",
+            "text": "is called",
+            "note": "수동태"
+          },
+          {
+            "role": "C",
+            "text": "a sample,"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "S",
+            "text": "the entire group it stands for",
+            "note": "관계절"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "the population."
+          }
+        ],
+        "grammar_note": "call O C 수동태 + 관계절 + 2형식"
+      },
+      {
+        "index": 5,
+        "segments": [
+          {
+            "role": "S",
+            "text": "The magic"
+          },
+          {
+            "role": "M",
+            "text": "only"
+          },
+          {
+            "role": "V",
+            "text": "works"
+          },
+          {
+            "role": "M",
+            "text": "if the sample is chosen fairly,",
+            "note": "if 조건절 수동"
+          },
+          {
+            "role": "CONJ",
+            "text": "so that",
+            "note": "결과"
+          },
+          {
+            "role": "S",
+            "text": "every member of the population"
+          },
+          {
+            "role": "V",
+            "text": "has"
+          },
+          {
+            "role": "O",
+            "text": "an equal chance of being picked.",
+            "note": "of + 수동 동명사"
+          }
+        ],
+        "grammar_note": "if 조건 + so that + of being p.p."
+      },
+      {
+        "index": 6,
+        "segments": [
+          {
+            "role": "S",
+            "text": "A spoonful taken from an unstirred pot, all from the salty bottom,",
+            "note": "과거분사 수식"
+          },
+          {
+            "role": "V",
+            "text": "would badly mislead",
+            "note": "가정법 would"
+          },
+          {
+            "role": "O",
+            "text": "the cook."
+          }
+        ],
+        "grammar_note": "과거분사 수식 + 가정법 would"
+      },
+      {
+        "index": 7,
+        "segments": [
+          {
+            "role": "M",
+            "text": "In the same way,",
+            "note": "연결"
+          },
+          {
+            "role": "S",
+            "text": "a poll that quietly leaves out whole groups of people",
+            "note": "관계대명사 that"
+          },
+          {
+            "role": "V",
+            "text": "gives"
+          },
+          {
+            "role": "O",
+            "text": "a twisted picture,",
+            "note": "4형식/3형식"
+          },
+          {
+            "role": "M",
+            "text": "no matter how many it includes.",
+            "note": "no matter how 양보"
+          }
+        ],
+        "grammar_note": "관계대명사 that + no matter how 양보"
+      },
+      {
+        "index": 8,
+        "segments": [
+          {
+            "role": "S",
+            "text": "A fair sample"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "small,"
+          },
+          {
+            "role": "CONJ",
+            "text": "but",
+            "note": "대조"
+          },
+          {
+            "role": "S",
+            "text": "it"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "a true mirror of the larger whole."
+          }
+        ],
+        "grammar_note": "대조 but + 2형식 비유"
+      },
+      {
+        "segments": [
+          {
+            "role": "S",
+            "text": "This"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "why scientists test a new medicine on a carefully chosen group rather than on everyone at once.",
+            "note": "why 명사절 + rather than"
+          }
+        ],
+        "grammar_note": "This is why + rather than",
+        "index": 9
+      },
+      {
+        "segments": [
+          {
+            "role": "S",
+            "text": "A few thousand fair volunteers"
+          },
+          {
+            "role": "V",
+            "text": "can reveal"
+          },
+          {
+            "role": "O",
+            "text": "how a drug will affect millions.",
+            "note": "간접의문문 how"
+          }
+        ],
+        "grammar_note": "조동사 can + 간접의문문",
+        "index": 10
+      },
+      {
+        "segments": [
+          {
+            "role": "S",
+            "text": "The trick"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "M",
+            "text": "always"
+          },
+          {
+            "role": "C",
+            "text": "in the fairness, not merely in the size.",
+            "note": "not 대조"
+          }
+        ],
+        "grammar_note": "2형식 + not A but B 대조",
+        "index": 11
+      },
+      {
+        "index": 12,
+        "segments": [
+          {
+            "role": "S",
+            "text": "Honest statisticians"
+          },
+          {
+            "role": "M",
+            "text": "never"
+          },
+          {
+            "role": "V",
+            "text": "pretend"
+          },
+          {
+            "role": "O",
+            "text": "their estimate is exact.",
+            "note": "명사절"
+          }
+        ],
+        "grammar_note": "pretend (that) 명사절"
+      },
+      {
+        "index": 13,
+        "segments": [
+          {
+            "role": "M",
+            "text": "Instead,",
+            "note": "연결"
+          },
+          {
+            "role": "S",
+            "text": "they"
+          },
+          {
+            "role": "V",
+            "text": "report"
+          },
+          {
+            "role": "O",
+            "text": "a range and a level of confidence,",
+            "note": "병렬 목적어"
+          },
+          {
+            "role": "V",
+            "text": "saying",
+            "note": "분사구문"
+          },
+          {
+            "role": "M",
+            "text": "in effect, \"We are fairly sure the real value lies somewhere between here and here.\"",
+            "note": "인용"
+          }
+        ],
+        "grammar_note": "분사구문 saying + 인용"
+      },
+      {
+        "index": 14,
+        "segments": [
+          {
+            "role": "S",
+            "text": "That careful humility"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "a feature, not a weakness,",
+            "note": "not 대조"
+          },
+          {
+            "role": "CONJ",
+            "text": "because",
+            "note": "원인절"
+          },
+          {
+            "role": "S",
+            "text": "it"
+          },
+          {
+            "role": "V",
+            "text": "states"
+          },
+          {
+            "role": "M",
+            "text": "clearly how much trust the number deserves.",
+            "note": "간접의문문"
+          }
+        ],
+        "grammar_note": "A, not B + because + 간접의문문 how much"
+      },
+      {
+        "index": 15,
+        "segments": [
+          {
+            "role": "M",
+            "text": "In a world flooded with confident-sounding figures,",
+            "note": "과거분사구"
+          },
+          {
+            "role": "S",
+            "text": "the wisest move"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "to ask not just what the number is, but how it was ____.",
+            "note": "to부정사 + not just A but B + 빈칸"
+          }
+        ],
+        "grammar_note": "to부정사 보어 + not just A but B + 의문사절"
+      }
+    ],
+    "translation_ko": "[1] 거대한 솥의 국이 충분히 짭짤한지 확인하려고, 요리사는 솥 전체를 마시지 않는다. [2] 잘 저은 뒤, 단 한 숟가락이 이야기 전체를 들려준다. [3] 이 일상의 요령은 수학에서 가장 쓸모 있는 생각 중 하나를 숨기고 있다 — 작은 일부를 신중히 살펴 거대한 전체에 대해 알아내는 기술, 곧 통계적 추정이다. [4] 그 작은 검사 대상 일부를 표본이라 부르고, 그것이 대표하는 전체 집단을 모집단이라 한다. [5] 그러나 이 조용한 마법은 표본이 진정 공정하게 뽑힐 때에만 작동하여, 모집단의 모든 구성원이 뽑힐 동등한 기회를 가지게 한다. [6] 젓지 않은 솥에서 부주의하게, 모두 짠 바닥에서만 뜬 한 숟가락은 최고의 요리사조차 심하게 오도할 것이다. [7] 같은 방식으로, 사람들의 통째 집단을 조용히 빠뜨린 여론조사는, 아무리 많은 사람을 포함하더라도 비틀린 그림을 준다. [8] 공정한 표본은 작지만, 그것은 더 큰 전체의 진실한 거울이다. [9] 이것이 과학자들이 새 약을 모두에게 한꺼번에가 아니라 신중히 고른 집단에 시험하는 이유다. [10] 공정하게 뽑힌 수천 명의 자원자가 그 약이 수백만 명에게 어떤 영향을 줄지 드러낼 수 있다. [11] 요령은 늘 크기가 아니라 공정함에 있다. [12] 정직한 통계학자는 자신의 최종 추정이 완벽히 정확하다고 결코 가장하지 않는다. [13] 대신, 그들은 범위와 신뢰수준을 신중히 보고하며, 사실상 '우리는 참값이 여기와 여기 사이 어딘가에 있다고 꽤 확신한다'고 말한다. [14] 그 신중한 겸손은 약점이 아니라 하나의 미덕인데, 그 수치가 얼마나 신뢰를 받을 만한지를 분명히 밝혀 주기 때문이다. [15] 자신만만하게 들리는 수치로 넘쳐나는 세상에서, 가장 현명한 행동은 그 숫자가 무엇인지뿐 아니라 그것이 어떻게 얻어졌는지를 묻는 것이다."
+  },
+  "answers": {
+    "explanations": [
+      {
+        "q_index": 0,
+        "q_style": "요지",
+        "correct": 1,
+        "evidence": "글은 통계적 추정이 공정한 표본으로 전체를 알아내는 것이며(3~8번), 정직한 추정은 범위와 신뢰수준을 보고한다(9~11번)고 한다. 따라서 '통계적 추정은 공정한 표본으로 전체를 파악하고, 정직한 추정은 신뢰수준과 범위를 밝힌다'가 요지다.",
+        "rationales": [
+          "1번 '한 숟가락이 전체를 말한다'와 모순된다. 전수조사가 필수는 아니다.",
+          "(정답) 공정한 표본 + 범위·신뢰수준 보고라는 글 전체 주장을 요약한다.",
+          "7번 '편향 표본은 아무리 커도 왜곡'과 모순된다. 큰 표본=정확이 아니다.",
+          "9번 '정확하다고 가장하지 않는다'와 정반대다.",
+          "2번 '한 숟가락이 이야기 전체를 들려준다'와 모순된다."
+        ],
+        "key_terms": [
+          {
+            "en": "estimation",
+            "ko": "추정"
+          },
+          {
+            "en": "sample",
+            "ko": "표본"
+          }
+        ]
+      },
+      {
+        "q_index": 1,
+        "q_style": "빈칸 추론",
+        "correct": 1,
+        "evidence": "빈칸 앞 \"ask not just what the number is, but how it was ___\"과 5~7번(표본이 어떻게 뽑혔는가가 중요)이 단서다. 숫자가 어떻게 '얻어졌는가(obtained)'를 물어야 한다는 흐름이 자연스럽다.",
+        "rationales": [
+          "'철자를 적다'는 숫자가 얻어진 방법이라는 맥락과 무관하다.",
+          "(정답) obtained는 '표본을 어떻게 뽑아 수치를 얻었나'라는 글의 핵심과 일치한다.",
+          "'잊혔다'는 능동적으로 묻는다는 흐름과 어긋난다.",
+          "'숨겨졌다'도 방법을 묻는다는 의미와 다르다.",
+          "'무시되었다'는 본문 취지와 반대다."
+        ],
+        "key_terms": [
+          {
+            "en": "obtain",
+            "ko": "얻다"
+          },
+          {
+            "en": "figure",
+            "ko": "수치"
+          }
+        ]
+      },
+      {
+        "q_index": 2,
+        "q_style": "함의 추론",
+        "correct": 1,
+        "evidence": "8번은 공정한 표본이 작지만 \"a true mirror of the larger whole\"이라 한다. 앞의 4~5번(표본이 모집단을 대표, 공정 추출)에 비춰, 이는 '공정한 표본은 작아도 모집단을 정확히 반영한다'를 뜻한다.",
+        "rationales": [
+          "'실제 유리로 되어 있다'는 비유를 문자화한 오답이다.",
+          "(정답) 공정한 표본이 작아도 모집단을 정확히 반영한다는 본문 의미 그대로다.",
+          "'모집단과 크기가 같아야 한다'는 '작지만 거울'이라는 8번과 모순된다.",
+          "'거울이 국 측정 최고 도구'는 비유를 엉뚱하게 받은 오답이다.",
+          "'작은 표본은 결코 대표 못 한다'는 8번과 정반대다."
+        ],
+        "key_terms": [
+          {
+            "en": "mirror",
+            "ko": "거울"
+          },
+          {
+            "en": "represent",
+            "ko": "대표하다"
+          }
+        ]
+      },
+      {
+        "q_index": 3,
+        "q_style": "요약문 빈칸 완성",
+        "correct": null,
+        "model_answer_en": "(A) population  (B) confidence",
+        "evidence": "(A)는 표본이 대표하는 전체 → 4번 \"the population\". (B)는 정직한 추정이 범위와 함께 보고하는 것 → 10번 \"a level of confidence\".",
+        "rationales": [
+          "(A) population — '표본이 대표하는 전체'는 4번의 population과 일치한다.",
+          "(B) confidence — '범위와 함께 보고하는 수준'은 10번의 confidence와 일치한다."
+        ],
+        "key_terms": [
+          {
+            "en": "population",
+            "ko": "모집단"
+          },
+          {
+            "en": "confidence",
+            "ko": "신뢰(수준)"
+          }
+        ]
+      }
+    ]
+  },
+  "page4": {
+    "vocab": [
+      {
+        "word": "statistical estimation",
+        "pos": "n.",
+        "meaning_ko": "통계적 추정",
+        "synonyms": [],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "Statistical estimation learns a whole from a part.",
+            "ko": "통계적 추정은 일부로 전체를 알아낸다."
+          },
+          {
+            "en": "A poll uses statistical estimation.",
+            "ko": "여론조사는 통계적 추정을 쓴다."
+          }
+        ]
+      },
+      {
+        "word": "sample",
+        "pos": "n.",
+        "meaning_ko": "표본",
+        "synonyms": [],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "The small part examined is called a sample.",
+            "ko": "조사한 작은 일부를 표본이라 부른다."
+          },
+          {
+            "en": "A fair sample mirrors the whole.",
+            "ko": "공정한 표본은 전체를 비춘다."
+          }
+        ]
+      },
+      {
+        "word": "population",
+        "pos": "n.",
+        "meaning_ko": "모집단",
+        "synonyms": [],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "The whole group is the population.",
+            "ko": "전체 집단이 모집단이다."
+          },
+          {
+            "en": "Every member of the population should have a chance.",
+            "ko": "모집단의 모든 구성원이 기회를 가져야 한다."
+          }
+        ]
+      },
+      {
+        "word": "stir",
+        "pos": "n.",
+        "meaning_ko": "휘젓기",
+        "synonyms": [],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "After a good stir, one spoonful tells the story.",
+            "ko": "잘 저은 뒤 한 숟가락이 이야기를 들려준다."
+          },
+          {
+            "en": "A stir mixes the soup evenly.",
+            "ko": "휘젓기는 국을 고르게 섞는다."
+          }
+        ]
+      },
+      {
+        "word": "mislead",
+        "pos": "v.",
+        "meaning_ko": "오도하다",
+        "synonyms": [
+          "deceive"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "A biased spoonful would mislead the cook.",
+            "ko": "편향된 한 숟가락은 요리사를 오도할 것이다."
+          },
+          {
+            "en": "Bad samples mislead us about the whole.",
+            "ko": "나쁜 표본은 전체에 대해 우리를 오도한다."
+          }
+        ]
+      },
+      {
+        "word": "poll",
+        "pos": "n.",
+        "meaning_ko": "여론조사",
+        "synonyms": [
+          "survey"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "A poll that leaves out groups gives a twisted picture.",
+            "ko": "집단을 빠뜨린 여론조사는 비틀린 그림을 준다."
+          },
+          {
+            "en": "The poll asked a fair sample of voters.",
+            "ko": "그 여론조사는 유권자의 공정한 표본에게 물었다."
+          }
+        ]
+      },
+      {
+        "word": "biased",
+        "pos": "adj.",
+        "meaning_ko": "편향된",
+        "synonyms": [
+          "skewed"
+        ],
+        "antonyms": [
+          "fair"
+        ],
+        "examples": [
+          {
+            "en": "A biased sample misleads, however large.",
+            "ko": "편향된 표본은 아무리 커도 오도한다."
+          },
+          {
+            "en": "Random choosing avoids a biased sample.",
+            "ko": "무작위 추출은 편향된 표본을 피한다."
+          }
+        ]
+      },
+      {
+        "word": "mirror",
+        "pos": "n.",
+        "meaning_ko": "거울; 정확히 비추는 것",
+        "synonyms": [
+          "reflection"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "A fair sample is a true mirror of the whole.",
+            "ko": "공정한 표본은 전체의 진실한 거울이다."
+          },
+          {
+            "en": "The data is a mirror of the population.",
+            "ko": "그 데이터는 모집단의 거울이다."
+          }
+        ]
+      },
+      {
+        "word": "estimate",
+        "pos": "n.",
+        "meaning_ko": "추정(값)",
+        "synonyms": [],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "An honest estimate is not exact.",
+            "ko": "정직한 추정값은 정확하지 않다."
+          },
+          {
+            "en": "The estimate came with a range.",
+            "ko": "그 추정값은 범위와 함께 나왔다."
+          }
+        ]
+      },
+      {
+        "word": "range",
+        "pos": "n.",
+        "meaning_ko": "범위, 구간",
+        "synonyms": [
+          "span"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "Statisticians report a range, not a single point.",
+            "ko": "통계학자는 한 점이 아니라 범위를 보고한다."
+          },
+          {
+            "en": "The true value lies within the range.",
+            "ko": "참값은 그 범위 안에 있다."
+          }
+        ]
+      },
+      {
+        "word": "confidence",
+        "pos": "n.",
+        "meaning_ko": "신뢰(수준)",
+        "synonyms": [],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "They report a level of confidence with the range.",
+            "ko": "그들은 범위와 함께 신뢰수준을 보고한다."
+          },
+          {
+            "en": "Confidence shows how much to trust the number.",
+            "ko": "신뢰수준은 그 수치를 얼마나 믿을지 보여 준다."
+          }
+        ]
+      },
+      {
+        "word": "humility",
+        "pos": "n.",
+        "meaning_ko": "겸손",
+        "synonyms": [
+          "modesty"
+        ],
+        "antonyms": [
+          "arrogance"
+        ],
+        "examples": [
+          {
+            "en": "That careful humility is a feature, not a weakness.",
+            "ko": "그 신중한 겸손은 약점이 아니라 미덕이다."
+          },
+          {
+            "en": "Statistical humility states its own limits.",
+            "ko": "통계적 겸손은 자신의 한계를 밝힌다."
+          }
+        ]
+      }
+    ]
+  }
+}
