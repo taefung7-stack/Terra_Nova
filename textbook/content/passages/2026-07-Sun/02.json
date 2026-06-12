@@ -1,0 +1,903 @@
+{
+  "schema_version": "2.2",
+  "id": "2026-07-Sun-02",
+  "meta": {
+    "month": "2026-07-Sun",
+    "sequence": 2,
+    "subject": "수학",
+    "linked_unit": "기하 I-2 평면 벡터",
+    "part_ko": "방향을 지닌 양",
+    "achievement_standard": "12기하01-04",
+    "achievement_verified": true,
+    "difficulty": "중간",
+    "cognitive_skill": "요지",
+    "lexile": "1190L",
+    "ar_level": 7.6,
+    "key_concepts": [
+      "벡터의 정의",
+      "크기와 방향",
+      "벡터의 합성",
+      "성분 표현"
+    ]
+  },
+  "page1": {
+    "title": "When a Number Needs a Direction",
+    "subtitle": "Why some quantities refuse to be a single value.",
+    "body": "Tell a friend the temperature is twenty degrees, and you have said everything there is to say. But tell a pilot that the wind is forty kilometers an hour, and you have left out the one thing that matters most: which way it is blowing. Some quantities, like temperature or mass, are fully captured by a single number, while others stubbornly demand a direction as well. Mathematicians handle this second kind with an object called a <u>vector</u>, a quantity that carries both a size and a heading at once.\n\nA vector is usually drawn as an arrow. Its length stands for the magnitude, how much, and the way it points stands for the direction, which way. Crucially, the arrow can be slid anywhere on the plane without changing what it means, because only its length and tilt count, not where it happens to sit. This is why two arrows of equal length pointing the same way are treated as the very same vector. Shift one of them across the page, and it stays exactly the vector it was before. To make calculation easy, we usually pin the tail at the origin and describe the tip with a pair of numbers, its <mark>components</mark>, one measuring how far it reaches across and one how far up.\n\nThe real power appears when vectors combine. To add two of them, you set the tail of the second at the tip of the first; the single arrow from the very start to the very end is their sum. This simple rule quietly explains a boat angling across a current, or three ropes pulling a ring into perfect stillness. Whenever directed influences pile up, their net effect is just one more vector waiting to be found. So a vector is not just a fancy number. It is the natural language for anything in the physical world that insists on having a <blank>.",
+    "illustration": "../../assets/illustrations/2026-07-Sun/02.png",
+    "illustration_caption": "An arrow with length and heading: a quantity that carries its own direction."
+  },
+  "page2": {
+    "questions": [
+      {
+        "type": "mock_objective",
+        "style": "요지",
+        "stem": "다음 글의 요지로 가장 적절한 것은?",
+        "choices": [
+          "Every physical quantity can be described by a single number alone.",
+          "A vector captures both magnitude and direction, can be slid freely on the plane, and combines by tip-to-tail addition to describe directional quantities.",
+          "The direction of a quantity never matters in physics.",
+          "Two arrows of equal length must always be different vectors.",
+          "Vectors cannot be added together in any meaningful way."
+        ],
+        "answer_index": 1
+      },
+      {
+        "type": "mock_objective",
+        "style": "빈칸 추론",
+        "stem": "윗글의 밑줄 친 빈칸에 들어갈 말로 가장 적절한 것은?",
+        "choices": [
+          "name",
+          "direction",
+          "color",
+          "price",
+          "weight"
+        ],
+        "answer_index": 1
+      },
+      {
+        "type": "mock_objective",
+        "style": "함의 추론",
+        "stem": "윗글에서 the arrow can be slid anywhere on the plane without changing what it means 가 의미하는 바로 가장 적절한 것은?",
+        "choices": [
+          "moving the arrow always changes the vector completely",
+          "a vector depends only on its length and direction, not on its position",
+          "vectors can never be moved once drawn",
+          "the position of the tail is the only thing that matters",
+          "a vector has no direction at all"
+        ],
+        "answer_index": 1
+      },
+      {
+        "type": "school_descriptive",
+        "style": "요약문 빈칸 완성",
+        "prompt": "다음은 본문의 요약문이다. 본문의 내용을 바탕으로 빈칸 (A), (B)에 들어갈 말을 <조건>에 맞게 영어 한 단어로 각각 쓰시오. <조건> 본문에서 제시된 단어를 그대로 활용할 것.",
+        "hints": [
+          "vector",
+          "magnitude",
+          "direction",
+          "arrow",
+          "add"
+        ],
+        "summary_template": "A <blank> (A) carries both a size and a direction, often drawn as an arrow. To combine two of them, you place them tip to tail and <blank> (B) them, which models real directional effects.",
+        "model_answer": "(A) vector  (B) add"
+      }
+    ],
+    "textbook_tieback": {
+      "unit_label": "기하 I · 평면 벡터",
+      "body_ko": "고3 기하에서는 크기만 가진 양(스칼라)과 달리 크기와 방향을 함께 가진 양인 벡터를 배운다. 벡터는 보통 화살표로 나타내며, 화살표의 길이는 크기(magnitude), 가리키는 방향은 방향(direction)을 뜻한다. 위치에 관계없이 길이와 방향이 같으면 같은 벡터로 본다(평행이동 불변). 계산 편의를 위해 시점을 원점에 두고 종점의 좌표(성분, components)로 (x, y)처럼 나타낸다. 두 벡터의 합은 한 벡터의 종점에 다른 벡터의 시점을 놓고 처음 시점에서 마지막 종점까지 잇는 화살표다(삼각형/평행사변형 법칙). 이 합성 규칙은 강을 비스듬히 건너는 배, 한 점을 당기는 여러 힘의 평형 등 실제 현상을 설명한다.",
+      "tags": [
+        "벡터",
+        "크기방향",
+        "성분표현",
+        "벡터합성"
+      ],
+      "visual_aid": {
+        "type": "emoji_flow",
+        "title": "방향을 지닌 양, 벡터",
+        "steps": [
+          {
+            "emoji": "🔢",
+            "label": "스칼라",
+            "note": "크기만 (온도)"
+          },
+          {
+            "emoji": "➡️",
+            "label": "벡터",
+            "note": "크기+방향"
+          },
+          {
+            "emoji": "📐",
+            "label": "성분",
+            "note": "(x, y)로 표현"
+          },
+          {
+            "emoji": "➕",
+            "label": "합성",
+            "note": "꼬리-머리 연결"
+          }
+        ]
+      }
+    }
+  },
+  "page3": {
+    "sentences": [
+      {
+        "index": 1,
+        "segments": [
+          {
+            "role": "V",
+            "text": "Tell"
+          },
+          {
+            "role": "O",
+            "text": "a friend the temperature is twenty degrees,",
+            "note": "명령문 tell O that절"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "S",
+            "text": "you"
+          },
+          {
+            "role": "V",
+            "text": "have said",
+            "note": "현재완료"
+          },
+          {
+            "role": "O",
+            "text": "everything there is to say.",
+            "note": "관계절 + to부정사"
+          }
+        ],
+        "grammar_note": "명령문 + and 결과 + 현재완료 + there is ~ to say"
+      },
+      {
+        "index": 2,
+        "segments": [
+          {
+            "role": "CONJ",
+            "text": "But"
+          },
+          {
+            "role": "V",
+            "text": "tell"
+          },
+          {
+            "role": "O",
+            "text": "a pilot that the wind is forty kilometers an hour,",
+            "note": "tell O that절"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "S",
+            "text": "you"
+          },
+          {
+            "role": "V",
+            "text": "have left out",
+            "note": "현재완료 구동사"
+          },
+          {
+            "role": "O",
+            "text": "the one thing that matters most: which way it is blowing.",
+            "note": "관계절 + 콜론 의문사절"
+          }
+        ],
+        "grammar_note": "명령문 + and 결과 + 관계절 + 콜론 which 명사절"
+      },
+      {
+        "index": 3,
+        "segments": [
+          {
+            "role": "S",
+            "text": "Some quantities, like temperature or mass,",
+            "note": "예시 삽입구"
+          },
+          {
+            "role": "V",
+            "text": "are captured",
+            "note": "수동태"
+          },
+          {
+            "role": "M",
+            "text": "fully by a single number,",
+            "note": "부사구"
+          },
+          {
+            "role": "CONJ",
+            "text": "while"
+          },
+          {
+            "role": "S",
+            "text": "others"
+          },
+          {
+            "role": "M",
+            "text": "stubbornly"
+          },
+          {
+            "role": "V",
+            "text": "demand"
+          },
+          {
+            "role": "O",
+            "text": "a direction as well.",
+            "note": "as well"
+          }
+        ],
+        "grammar_note": "수동태 + while 대조 부사절"
+      },
+      {
+        "index": 4,
+        "segments": [
+          {
+            "role": "S",
+            "text": "Mathematicians"
+          },
+          {
+            "role": "V",
+            "text": "handle"
+          },
+          {
+            "role": "O",
+            "text": "this second kind"
+          },
+          {
+            "role": "M",
+            "text": "with an object called a vector, a quantity that carries both a size and a heading at once.",
+            "note": "과거분사 + 동격 + 관계절"
+          }
+        ],
+        "grammar_note": "handle with + 과거분사 called + 동격 (관계절 both A and B)"
+      },
+      {
+        "index": 5,
+        "segments": [
+          {
+            "role": "S",
+            "text": "A vector"
+          },
+          {
+            "role": "V",
+            "text": "is usually drawn",
+            "note": "수동태"
+          },
+          {
+            "role": "M",
+            "text": "as an arrow.",
+            "note": "draw A as B 수동"
+          }
+        ],
+        "grammar_note": "수동태 (draw A as B)"
+      },
+      {
+        "index": 6,
+        "segments": [
+          {
+            "role": "S",
+            "text": "Its length"
+          },
+          {
+            "role": "V",
+            "text": "stands for",
+            "note": "구동사"
+          },
+          {
+            "role": "O",
+            "text": "the magnitude, how much,",
+            "note": "동격 의문사구"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "S",
+            "text": "the way it points"
+          },
+          {
+            "role": "V",
+            "text": "stands for"
+          },
+          {
+            "role": "O",
+            "text": "the direction, which way.",
+            "note": "동격 의문사구"
+          }
+        ],
+        "grammar_note": "stand for 병렬 + 동격 의문사구"
+      },
+      {
+        "index": 7,
+        "segments": [
+          {
+            "role": "M",
+            "text": "Crucially,"
+          },
+          {
+            "role": "S",
+            "text": "the arrow"
+          },
+          {
+            "role": "V",
+            "text": "can be slid",
+            "note": "수동태"
+          },
+          {
+            "role": "M",
+            "text": "anywhere on the plane without changing what it means,",
+            "note": "without -ing + what 명사절"
+          },
+          {
+            "role": "M",
+            "text": "because only its length and tilt count, not where it happens to sit.",
+            "note": "because 이유절 + not where 명사절"
+          }
+        ],
+        "grammar_note": "수동태 + without -ing (what절) + because 이유절 (not where절)"
+      },
+      {
+        "index": 8,
+        "segments": [
+          {
+            "role": "S",
+            "text": "This"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "why two arrows of equal length pointing the same way are treated as the very same vector.",
+            "note": "관계부사 why + 현재분사 + 수동"
+          }
+        ],
+        "grammar_note": "be why 관계부사 + 현재분사 수식 + treat A as B 수동"
+      },
+      {
+        "segments": [
+          {
+            "role": "V",
+            "text": "Shift"
+          },
+          {
+            "role": "O",
+            "text": "one of them"
+          },
+          {
+            "role": "M",
+            "text": "across the page,",
+            "note": "명령문"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "S",
+            "text": "it"
+          },
+          {
+            "role": "V",
+            "text": "stays"
+          },
+          {
+            "role": "C",
+            "text": "exactly the vector it was before.",
+            "note": "stay 보어 + 관계절"
+          }
+        ],
+        "grammar_note": "명령문 + and 결과 + stay 보어 (관계절)",
+        "index": 9
+      },
+      {
+        "index": 10,
+        "segments": [
+          {
+            "role": "M",
+            "text": "To make calculation easy,",
+            "note": "to부정사 + make O C"
+          },
+          {
+            "role": "S",
+            "text": "we"
+          },
+          {
+            "role": "M",
+            "text": "usually"
+          },
+          {
+            "role": "V",
+            "text": "pin"
+          },
+          {
+            "role": "O",
+            "text": "the tail at the origin",
+            "note": "pin O at"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "V",
+            "text": "describe"
+          },
+          {
+            "role": "O",
+            "text": "the tip with a pair of numbers, its components, one measuring how far it reaches across and one how far up.",
+            "note": "동격 + 분사구 병렬 + how 명사절"
+          }
+        ],
+        "grammar_note": "to부정사 (make O C) + 동격 + 분사구 + how 명사절 병렬"
+      },
+      {
+        "index": 11,
+        "segments": [
+          {
+            "role": "S",
+            "text": "The real power"
+          },
+          {
+            "role": "V",
+            "text": "appears"
+          },
+          {
+            "role": "M",
+            "text": "when vectors combine.",
+            "note": "when 부사절"
+          }
+        ],
+        "grammar_note": "자동사 appear + when 부사절"
+      },
+      {
+        "index": 12,
+        "segments": [
+          {
+            "role": "M",
+            "text": "To add two of them,",
+            "note": "to부정사 목적"
+          },
+          {
+            "role": "S",
+            "text": "you"
+          },
+          {
+            "role": "V",
+            "text": "set"
+          },
+          {
+            "role": "O",
+            "text": "the tail of the second at the tip of the first;",
+            "note": "set O at"
+          },
+          {
+            "role": "S",
+            "text": "the single arrow from the very start to the very end"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "their sum."
+          }
+        ],
+        "grammar_note": "to부정사 목적 + set O at + 세미콜론 병렬 (2형식)"
+      },
+      {
+        "index": 13,
+        "segments": [
+          {
+            "role": "S",
+            "text": "This simple rule"
+          },
+          {
+            "role": "M",
+            "text": "quietly"
+          },
+          {
+            "role": "V",
+            "text": "explains"
+          },
+          {
+            "role": "O",
+            "text": "a boat angling across a current, or three ropes pulling a ring into perfect stillness.",
+            "note": "현재분사 수식 병렬"
+          }
+        ],
+        "grammar_note": "3형식 + 현재분사 수식구 병렬"
+      },
+      {
+        "segments": [
+          {
+            "role": "M",
+            "text": "Whenever directed influences pile up,",
+            "note": "whenever 부사절"
+          },
+          {
+            "role": "S",
+            "text": "their net effect"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "just one more vector waiting to be found.",
+            "note": "현재분사 + 수동 부정사"
+          }
+        ],
+        "grammar_note": "whenever 부사절 + 2형식 + 현재분사 (수동 부정사)",
+        "index": 14
+      },
+      {
+        "index": 15,
+        "segments": [
+          {
+            "role": "CONJ",
+            "text": "So"
+          },
+          {
+            "role": "S",
+            "text": "a vector"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "not just a fancy number.",
+            "note": "not just"
+          }
+        ],
+        "grammar_note": "2형식 + not just"
+      },
+      {
+        "index": 16,
+        "segments": [
+          {
+            "role": "S",
+            "text": "It"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "the natural language for anything in the physical world that insists on having a ____.",
+            "note": "관계절 + insist on -ing + 빈칸"
+          }
+        ],
+        "grammar_note": "2형식 + 관계절 + insist on -ing (빈칸)"
+      }
+    ],
+    "translation_ko": "[1] 친구에게 기온이 20도라고 말하면, 너는 말할 수 있는 모든 것을 다 말한 것이다. [2] 그러나 조종사에게 바람이 시속 40킬로미터라고 말하면, 너는 가장 중요한 한 가지, 즉 그것이 어느 쪽으로 부는지를 빠뜨린 것이다. [3] 온도나 질량 같은 어떤 양들은 단 하나의 수로 온전히 포착되는 반면, 다른 양들은 방향까지 고집스럽게 요구한다. [4] 수학자들은 이 두 번째 종류를 벡터라 불리는 대상으로 다루는데, 벡터는 크기와 방향을 동시에 지닌 양이다. [5] 벡터는 보통 화살표로 그려진다. [6] 그 길이는 크기, 즉 '얼마나'를 나타내고, 가리키는 방향은 방향, 즉 '어느 쪽'을 나타낸다. [7] 결정적으로, 화살표는 그 뜻을 바꾸지 않고 평면 어디로든 미끄러뜨릴 수 있는데, 그것이 어디에 놓이느냐가 아니라 오직 길이와 기울기만이 중요하기 때문이다. [8] 이것이 길이가 같고 같은 쪽을 가리키는 두 화살표가 바로 같은 벡터로 취급되는 이유다. [9] 그것들 중 하나를 종이 위에서 옮겨도, 그것은 이전과 정확히 똑같은 벡터로 남는다. [10] 계산을 쉽게 하기 위해, 우리는 보통 시점을 원점에 고정하고 종점을 한 쌍의 수, 즉 성분으로 기술하는데, 하나는 가로로 얼마나 뻗는지를, 하나는 위로 얼마나인지를 잰다. [11] 진짜 힘은 벡터들이 결합할 때 나타난다. [12] 두 벡터를 더하려면, 둘째의 시점을 첫째의 종점에 놓는다; 맨 처음에서 맨 끝까지 잇는 하나의 화살표가 그들의 합이다. [13] 이 단순한 규칙은 물살을 비스듬히 가르는 배, 또는 고리를 완벽한 정지로 당기는 세 가닥의 밧줄을 조용히 설명한다. [14] 방향을 지닌 영향들이 쌓일 때마다, 그 알짜 효과는 그저 찾아내기를 기다리는 또 하나의 벡터일 뿐이다. [15] 그래서 벡터는 단지 멋진 수가 아니다. [16] 그것은 방향을 가져야만 한다고 고집하는, 물리 세계의 그 무엇을 위한 자연스러운 언어다."
+  },
+  "answers": {
+    "explanations": [
+      {
+        "q_index": 0,
+        "q_style": "요지",
+        "correct": 1,
+        "evidence": "글은 벡터가 크기와 방향을 함께 지니고(4·6번), 위치와 무관하게 평행이동 가능하며(7~8번), 꼬리-머리로 더해 방향성 현상을 설명한다(11~12번)고 한다. 따라서 '벡터는 크기·방향을 담고 평면에서 자유로이 이동하며 합성으로 방향성 양을 기술한다'가 요지다.",
+        "rationales": [
+          "2~3번에서 어떤 양은 방향까지 필요하므로 '단 하나의 수로 충분'은 틀리다.",
+          "(정답) 크기+방향, 이동 불변, 합성이라는 글 전체 주장을 요약한다.",
+          "2번 '방향이 가장 중요하다'와 모순된다.",
+          "8번 '길이·방향이 같으면 같은 벡터'와 모순된다.",
+          "10~11번 '벡터는 결합(합)할 수 있다'와 모순된다."
+        ],
+        "key_terms": [
+          {
+            "en": "vector",
+            "ko": "벡터"
+          },
+          {
+            "en": "magnitude",
+            "ko": "크기"
+          }
+        ]
+      },
+      {
+        "q_index": 1,
+        "q_style": "빈칸 추론",
+        "correct": 1,
+        "evidence": "빈칸은 \"anything in the physical world that insists on having a ___\"의 자리다. 글 전체가 벡터를 '방향(direction)'까지 필요로 하는 양의 언어로 설명하고(2~4번), 결론도 방향을 고집하는 대상이라 한다. 따라서 direction이 적절하다.",
+        "rationales": [
+          "'이름'은 본문의 크기-방향 논의와 무관하다.",
+          "(정답) direction은 2~4번이 강조한 벡터의 본질적 요소와 일치한다.",
+          "'색'은 본문 논지와 무관하다.",
+          "'가격'도 본문 맥락과 맞지 않는다.",
+          "'무게'는 방향이 없는 스칼라적 예에 가까워 결론과 어긋난다."
+        ],
+        "key_terms": [
+          {
+            "en": "direction",
+            "ko": "방향"
+          },
+          {
+            "en": "quantity",
+            "ko": "양"
+          }
+        ]
+      },
+      {
+        "q_index": 2,
+        "q_style": "함의 추론",
+        "correct": 1,
+        "evidence": "7번은 화살표를 \"slid anywhere on the plane without changing what it means, because only its length and tilt count, not where it happens to sit\"라고 한다. 즉 벡터는 위치가 아니라 길이와 방향에만 의존한다는 뜻이다.",
+        "rationales": [
+          "'이동하면 늘 완전히 바뀐다'는 7번 'without changing what it means'와 모순된다.",
+          "(정답) 벡터는 위치가 아니라 길이·방향에만 의존한다는 본문 의미 그대로다.",
+          "'한 번 그리면 옮길 수 없다'는 'can be slid anywhere'와 모순된다.",
+          "'시점 위치만 중요하다'는 'not where it happens to sit'와 정반대다.",
+          "'방향이 전혀 없다'는 벡터 정의(크기+방향)와 모순된다."
+        ],
+        "key_terms": [
+          {
+            "en": "tilt",
+            "ko": "기울기, 방향"
+          },
+          {
+            "en": "position",
+            "ko": "위치"
+          }
+        ]
+      },
+      {
+        "q_index": 3,
+        "q_style": "요약문 빈칸 완성",
+        "correct": null,
+        "model_answer_en": "(A) vector  (B) add",
+        "evidence": "(A)는 크기와 방향을 함께 지닌 대상 → 4번 vector. (B)는 두 벡터를 꼬리-머리로 놓고 하는 연산 → 11번 To add.",
+        "rationales": [
+          "(A) vector — '크기와 방향을 함께 지닌 대상'은 4번 vector와 일치한다.",
+          "(B) add — '꼬리-머리로 놓고 하는 연산'은 11번 add와 일치한다."
+        ],
+        "key_terms": [
+          {
+            "en": "vector",
+            "ko": "벡터"
+          },
+          {
+            "en": "add",
+            "ko": "더하다, 합성하다"
+          }
+        ]
+      }
+    ]
+  },
+  "page4": {
+    "vocab": [
+      {
+        "word": "vector",
+        "pos": "n.",
+        "meaning_ko": "벡터",
+        "synonyms": [],
+        "antonyms": [
+          "scalar"
+        ],
+        "examples": [
+          {
+            "en": "A vector carries both size and direction.",
+            "ko": "벡터는 크기와 방향을 함께 지닌다."
+          },
+          {
+            "en": "Velocity is a vector.",
+            "ko": "속도는 벡터다."
+          }
+        ]
+      },
+      {
+        "word": "magnitude",
+        "pos": "n.",
+        "meaning_ko": "크기, 양",
+        "synonyms": [
+          "size"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "The arrow's length shows its magnitude.",
+            "ko": "화살표의 길이는 그 크기를 보여 준다."
+          },
+          {
+            "en": "Magnitude tells you how much.",
+            "ko": "크기는 '얼마나'를 알려 준다."
+          }
+        ]
+      },
+      {
+        "word": "direction",
+        "pos": "n.",
+        "meaning_ko": "방향",
+        "synonyms": [],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "A vector also needs a direction.",
+            "ko": "벡터는 방향도 필요하다."
+          },
+          {
+            "en": "The way it points is its direction.",
+            "ko": "가리키는 쪽이 그 방향이다."
+          }
+        ]
+      },
+      {
+        "word": "arrow",
+        "pos": "n.",
+        "meaning_ko": "화살표",
+        "synonyms": [],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "A vector is drawn as an arrow.",
+            "ko": "벡터는 화살표로 그려진다."
+          },
+          {
+            "en": "The arrow's tip marks the endpoint.",
+            "ko": "화살표의 머리는 종점을 표시한다."
+          }
+        ]
+      },
+      {
+        "word": "component",
+        "pos": "n.",
+        "meaning_ko": "성분",
+        "synonyms": [],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "We describe the tip with its components.",
+            "ko": "우리는 종점을 그 성분으로 기술한다."
+          },
+          {
+            "en": "Each component measures one direction.",
+            "ko": "각 성분은 한 방향을 잰다."
+          }
+        ]
+      },
+      {
+        "word": "origin",
+        "pos": "n.",
+        "meaning_ko": "원점",
+        "synonyms": [],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "We pin the tail at the origin.",
+            "ko": "우리는 시점을 원점에 고정한다."
+          },
+          {
+            "en": "The origin is the point (0, 0).",
+            "ko": "원점은 (0, 0) 점이다."
+          }
+        ]
+      },
+      {
+        "word": "tilt",
+        "pos": "n.",
+        "meaning_ko": "기울기, 방향",
+        "synonyms": [
+          "slant"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "Only length and tilt count for a vector.",
+            "ko": "벡터에는 길이와 기울기만 중요하다."
+          },
+          {
+            "en": "The tilt sets the heading.",
+            "ko": "기울기가 방향을 정한다."
+          }
+        ]
+      },
+      {
+        "word": "sum",
+        "pos": "n.",
+        "meaning_ko": "합",
+        "synonyms": [],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "The arrow from start to end is their sum.",
+            "ko": "처음에서 끝까지의 화살표가 그들의 합이다."
+          },
+          {
+            "en": "Vector addition gives a sum.",
+            "ko": "벡터 덧셈은 합을 준다."
+          }
+        ]
+      },
+      {
+        "word": "combine",
+        "pos": "v.",
+        "meaning_ko": "결합하다",
+        "synonyms": [
+          "merge"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "Real power appears when vectors combine.",
+            "ko": "진짜 힘은 벡터가 결합할 때 나타난다."
+          },
+          {
+            "en": "Two forces combine into one.",
+            "ko": "두 힘이 하나로 결합한다."
+          }
+        ]
+      },
+      {
+        "word": "current",
+        "pos": "n.",
+        "meaning_ko": "물살, 흐름",
+        "synonyms": [
+          "flow"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "A boat angles across a current.",
+            "ko": "배는 물살을 비스듬히 가른다."
+          },
+          {
+            "en": "The current pushes the boat sideways.",
+            "ko": "물살이 배를 옆으로 민다."
+          }
+        ]
+      },
+      {
+        "word": "stubbornly",
+        "pos": "adv.",
+        "meaning_ko": "고집스럽게",
+        "synonyms": [],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "Some quantities stubbornly demand a direction.",
+            "ko": "어떤 양들은 고집스럽게 방향을 요구한다."
+          },
+          {
+            "en": "The vector stubbornly keeps its heading.",
+            "ko": "벡터는 고집스럽게 방향을 유지한다."
+          }
+        ]
+      },
+      {
+        "word": "scalar",
+        "pos": "n.",
+        "meaning_ko": "스칼라 (크기만 가진 양)",
+        "synonyms": [],
+        "antonyms": [
+          "vector"
+        ],
+        "examples": [
+          {
+            "en": "Temperature is a scalar, not a vector.",
+            "ko": "온도는 벡터가 아니라 스칼라다."
+          },
+          {
+            "en": "A scalar has size but no direction.",
+            "ko": "스칼라는 크기는 있으나 방향은 없다."
+          }
+        ]
+      }
+    ]
+  }
+}
