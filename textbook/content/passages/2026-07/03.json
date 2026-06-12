@@ -11,8 +11,8 @@
     "achievement_verified": true,
     "difficulty": "쉬움",
     "cognitive_skill": "요지",
-    "lexile": "840L",
-    "ar_level": 5.4,
+    "lexile": "740L",
+    "ar_level": 5,
     "key_concepts": [
       "문화권",
       "자연환경",
@@ -23,8 +23,8 @@
   "page1": {
     "title": "Why the World Splits into Culture Zones",
     "subtitle": "How land, weather, and faith draw invisible borders.",
-    "body": "Look at a world map and you mostly see country lines and capital cities. But there is another kind of map hidden quietly underneath it. On this second map, the world is split into a few large <u>culture zones</u>. People living in each zone often share a religion, a way of dressing, and similar everyday foods. These cultural borders do not match the political country lines at all. They were drawn very slowly, over many centuries, by nature and human history working together.\n\nThe land and the weather usually shape a culture first. In hot, dry deserts, people learned to herd animals and to wear loose, covering clothes for shade. In wet river valleys, they grew rice and built crowded farming towns close to the water. Religion then adds another powerful layer on top. A shared faith can tie distant places into one single <mark>culture zone</mark>, even when those places sit far apart. This is why parts of North Africa and the Middle East feel similar, though wide deserts and seas lie between them. Climate, crops, and belief slowly mixed together into one shared way of life.\n\nUnderstanding culture zones helps us read the whole world with kinder, calmer eyes. When a custom first looks strange to us, it usually makes good sense inside its own home zone. Clothing that seems far too warm may be perfect for blocking the harsh desert sun. A food rule that looks odd at first may quietly protect people's health in a hot land. Cultures are not random, and they are not simply better or worse; they are smart answers to where people actually live. Seeing this map of zones teaches us that difference is not a problem to fix but a pattern to <blank>, shaped by the land each group calls home.",
-    "illustration": "../../assets/illustrations/2026-07/03.png",
+    "body": "Look at a world map and you mostly see country lines and capital cities. But there is another kind of map hidden quietly underneath it. On this second map, the world is split into a few large <u>culture zones</u>. People in each zone often share a religion, a way of dressing, and similar everyday foods. These cultural borders do not match the country lines at all. They were drawn very slowly, over many centuries, by nature and human history working together.\n\nThe land and the weather usually shape a culture first. In hot, dry deserts, people learned to herd animals and to wear loose, covering clothes for shade. In wet river valleys, they grew rice and built crowded farming towns close to the water. Religion then adds another powerful layer on top. A shared faith can tie distant places into one single <mark>culture zone</mark>, even when those places sit far apart. This is why parts of North Africa and the Middle East feel similar, though wide deserts and seas lie between them. Climate, crops, and belief slowly mixed into one shared way of life.\n\nUnderstanding culture zones helps us read the world with kinder, calmer eyes. When a custom first looks strange to us, it usually makes good sense inside its own home zone. Clothing that seems far too warm may be perfect for blocking the harsh desert sun. A food rule that looks odd at first may quietly protect people's health in a hot land. Cultures are not random, and they are not simply better or worse; they are smart answers to where people actually live. Seeing this map of zones teaches us that difference is not a problem to fix but a pattern to <blank>, shaped by the land each group calls home.",
+    "illustration": "../../assets/illustrations/2026-07/03.jpg",
     "illustration_caption": "Climate, crops, and faith draw culture borders that ignore country lines."
   },
   "page2": {
@@ -127,12 +127,11 @@
         "segments": [
           {
             "role": "V",
-            "text": "Look at",
-            "note": "명령문"
+            "text": "Look"
           },
           {
-            "role": "O",
-            "text": "a world map"
+            "role": "M",
+            "text": "at a world map"
           },
           {
             "role": "CONJ",
@@ -155,38 +154,35 @@
             "text": "country lines and capital cities."
           }
         ],
-        "grammar_note": "명령문+and = 조건 결과"
+        "grammar_note": "명령문 + and 결과"
       },
       {
         "index": 2,
         "segments": [
           {
             "role": "CONJ",
-            "text": "But",
-            "note": "대조"
-          },
-          {
-            "role": "S",
-            "text": "there"
+            "text": "But"
           },
           {
             "role": "V",
-            "text": "is"
+            "text": "there is",
+            "note": "유도부사"
           },
           {
-            "role": "M",
-            "text": "another kind of map hidden underneath it.",
-            "note": "과거분사 hidden 수식"
+            "role": "S",
+            "text": "another kind of map hidden quietly underneath it.",
+            "note": "과거분사 수식"
           }
         ],
-        "grammar_note": "유도부사 there + 과거분사 수식"
+        "grammar_note": "there be + 과거분사 수식"
       },
       {
         "index": 3,
         "segments": [
           {
             "role": "M",
-            "text": "On this map,"
+            "text": "On this second map,",
+            "note": "전치사구"
           },
           {
             "role": "S",
@@ -199,10 +195,11 @@
           },
           {
             "role": "M",
-            "text": "into large culture zones."
+            "text": "into a few large culture zones.",
+            "note": "split into"
           }
         ],
-        "grammar_note": "be split into 수동태"
+        "grammar_note": "수동태 (split into)"
       },
       {
         "index": 4,
@@ -221,18 +218,17 @@
           },
           {
             "role": "O",
-            "text": "a religion, a way of dressing, and similar foods.",
-            "note": "명사 병렬"
+            "text": "a religion, a way of dressing, and similar everyday foods."
           }
         ],
-        "grammar_note": "빈도부사 + 목적어 병렬"
+        "grammar_note": "3형식 (병렬 목적어)"
       },
       {
         "index": 5,
         "segments": [
           {
             "role": "S",
-            "text": "These borders"
+            "text": "These cultural borders"
           },
           {
             "role": "V",
@@ -240,11 +236,11 @@
           },
           {
             "role": "O",
-            "text": "country lines at all.",
-            "note": "not ~ at all"
+            "text": "the country lines at all.",
+            "note": "강조 부정"
           }
         ],
-        "grammar_note": "do 강조 부정 + not ~ at all"
+        "grammar_note": "3형식 (강조 부정)"
       },
       {
         "index": 6,
@@ -260,15 +256,11 @@
           },
           {
             "role": "M",
-            "text": "slowly, over many centuries,"
-          },
-          {
-            "role": "M",
-            "text": "by nature and history together.",
-            "note": "by 행위자"
+            "text": "very slowly, over many centuries, by nature and human history working together.",
+            "note": "by 행위자 + 현재분사"
           }
         ],
-        "grammar_note": "수동태 + by 행위자"
+        "grammar_note": "수동태 (by 행위자, 현재분사)"
       },
       {
         "index": 7,
@@ -276,6 +268,10 @@
           {
             "role": "S",
             "text": "The land and the weather"
+          },
+          {
+            "role": "M",
+            "text": "usually"
           },
           {
             "role": "V",
@@ -290,14 +286,15 @@
             "text": "first."
           }
         ],
-        "grammar_note": "병렬 주어 3형식"
+        "grammar_note": "3형식"
       },
       {
         "index": 8,
         "segments": [
           {
             "role": "M",
-            "text": "In hot, dry deserts,"
+            "text": "In hot, dry deserts,",
+            "note": "전치사구"
           },
           {
             "role": "S",
@@ -305,18 +302,23 @@
           },
           {
             "role": "V",
-            "text": "learned to herd animals and to wear loose, covering clothes for shade.",
-            "note": "to부정사 병렬"
+            "text": "learned"
+          },
+          {
+            "role": "C",
+            "text": "to herd animals and to wear loose, covering clothes for shade.",
+            "note": "learn to V 병렬"
           }
         ],
-        "grammar_note": "learn to-V, 부정사 병렬"
+        "grammar_note": "learn to V (병렬)"
       },
       {
         "index": 9,
         "segments": [
           {
             "role": "M",
-            "text": "In wet river valleys,"
+            "text": "In wet river valleys,",
+            "note": "전치사구"
           },
           {
             "role": "S",
@@ -343,7 +345,7 @@
             "text": "crowded farming towns close to the water."
           }
         ],
-        "grammar_note": "과거시제 병렬 동사"
+        "grammar_note": "동사 병렬"
       },
       {
         "index": 10,
@@ -362,10 +364,14 @@
           },
           {
             "role": "O",
-            "text": "another layer."
+            "text": "another powerful layer"
+          },
+          {
+            "role": "M",
+            "text": "on top."
           }
         ],
-        "grammar_note": "3형식 단문"
+        "grammar_note": "3형식"
       },
       {
         "index": 11,
@@ -380,19 +386,16 @@
           },
           {
             "role": "O",
-            "text": "distant places"
-          },
-          {
-            "role": "M",
-            "text": "into one single culture zone,"
+            "text": "distant places into one single culture zone,",
+            "note": "tie A into B"
           },
           {
             "role": "M",
             "text": "even when those places sit far apart.",
-            "note": "양보 even when"
+            "note": "even when 양보"
           }
         ],
-        "grammar_note": "tie A into B + 양보 even when"
+        "grammar_note": "tie A into B + even when 양보"
       },
       {
         "index": 12,
@@ -408,15 +411,27 @@
           {
             "role": "C",
             "text": "why parts of North Africa and the Middle East feel similar,",
-            "note": "why 명사절"
+            "note": "관계부사 why"
+          },
+          {
+            "role": "CONJ",
+            "text": "though"
+          },
+          {
+            "role": "S",
+            "text": "wide deserts and seas"
+          },
+          {
+            "role": "V",
+            "text": "lie"
           },
           {
             "role": "M",
-            "text": "though deserts and seas lie between them.",
-            "note": "양보 though"
+            "text": "between them.",
+            "note": "though 양보"
           }
         ],
-        "grammar_note": "This is why + 양보 though"
+        "grammar_note": "be why 관계부사 + though 양보"
       },
       {
         "index": 13,
@@ -435,10 +450,11 @@
           },
           {
             "role": "M",
-            "text": "into one shared way of life."
+            "text": "into one shared way of life.",
+            "note": "mix into"
           }
         ],
-        "grammar_note": "병렬 주어 + mix into"
+        "grammar_note": "mix into 전치사구"
       },
       {
         "index": 14,
@@ -454,23 +470,19 @@
           },
           {
             "role": "O",
-            "text": "us"
-          },
-          {
-            "role": "C",
-            "text": "read the world with kinder eyes.",
+            "text": "us read the world with kinder, calmer eyes.",
             "note": "help O (to) V"
           }
         ],
-        "grammar_note": "동명사 주어 + help O 원형"
+        "grammar_note": "동명사 주어 + help O V"
       },
       {
         "index": 15,
         "segments": [
           {
             "role": "M",
-            "text": "When a custom looks strange to us,",
-            "note": "when 부사절"
+            "text": "When a custom first looks strange to us,",
+            "note": "when 부사절 + look 보어"
           },
           {
             "role": "S",
@@ -486,7 +498,7 @@
           },
           {
             "role": "O",
-            "text": "good sense inside its own zone."
+            "text": "good sense inside its own home zone."
           }
         ],
         "grammar_note": "when 부사절 + make sense"
@@ -497,7 +509,7 @@
           {
             "role": "S",
             "text": "Clothing that seems far too warm",
-            "note": "관계대명사 that"
+            "note": "관계절"
           },
           {
             "role": "V",
@@ -505,10 +517,11 @@
           },
           {
             "role": "C",
-            "text": "perfect for blocking the harsh desert sun."
+            "text": "perfect for blocking the harsh desert sun.",
+            "note": "for 동명사"
           }
         ],
-        "grammar_note": "관계대명사 that + 조동사 may"
+        "grammar_note": "관계절 + perfect for -ing"
       },
       {
         "index": 17,
@@ -516,7 +529,7 @@
           {
             "role": "S",
             "text": "A food rule that looks odd at first",
-            "note": "관계대명사 that"
+            "note": "관계절"
           },
           {
             "role": "V",
@@ -527,7 +540,7 @@
             "text": "people's health in a hot land."
           }
         ],
-        "grammar_note": "관계대명사 that + 조동사 may"
+        "grammar_note": "관계절 + 3형식"
       },
       {
         "index": 18,
@@ -541,8 +554,25 @@
             "text": "are"
           },
           {
-            "role": "C",
-            "text": "not random or better and worse;"
+            "role": "M",
+            "text": "not random,",
+            "note": "부정 보어"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "S",
+            "text": "they"
+          },
+          {
+            "role": "V",
+            "text": "are"
+          },
+          {
+            "role": "M",
+            "text": "not simply better or worse;"
           },
           {
             "role": "S",
@@ -554,18 +584,18 @@
           },
           {
             "role": "C",
-            "text": "smart answers to where people live.",
+            "text": "smart answers to where people actually live.",
             "note": "where 명사절"
           }
         ],
-        "grammar_note": "세미콜론 대조 + where 명사절"
+        "grammar_note": "2형식 병렬 + where 명사절"
       },
       {
         "index": 19,
         "segments": [
           {
             "role": "S",
-            "text": "Seeing the map of zones",
+            "text": "Seeing this map of zones",
             "note": "동명사 주어"
           },
           {
@@ -574,23 +604,14 @@
           },
           {
             "role": "O",
-            "text": "us"
-          },
-          {
-            "role": "O",
-            "text": "that difference is not a problem to fix but a pattern to ____,",
-            "note": "that 명사절 + not A but B + 빈칸"
-          },
-          {
-            "role": "M",
-            "text": "shaped by the land each group calls home.",
-            "note": "과거분사구"
+            "text": "us that difference is not a problem to fix but a pattern to ____, shaped by the land each group calls home.",
+            "note": "teach O that (not A but B) + 과거분사 + 빈칸"
           }
         ],
-        "grammar_note": "4형식 teach + not A but B + 과거분사구"
+        "grammar_note": "동명사 주어 + teach O that (not A but B, 과거분사, 빈칸)"
       }
     ],
-    "translation_ko": "[1] 세계 지도를 보면 대개 나라 경계선과 수도가 보인다. [2] 그러나 그 아래에 조용히 숨겨진 또 다른 종류의 지도가 있다. [3] 이 두 번째 지도에서 세계는 몇 개의 큰 문화권으로 나뉜다. [4] 각 문화권에 사는 사람들은 흔히 종교, 옷 입는 방식, 비슷한 일상 음식을 공유한다. [5] 이 문화적 경계들은 정치적 나라 경계선과 전혀 일치하지 않는다. [6] 그것들은 여러 세기에 걸쳐, 자연과 인류의 역사가 함께 작용하며 아주 천천히 그린 것이다. [7] 땅과 날씨가 보통 먼저 문화를 빚는다. [8] 덥고 건조한 사막에서 사람들은 동물을 치고 그늘을 위해 헐렁하게 몸을 덮는 옷을 입는 법을 배웠다. [9] 습한 하천 유역에서 그들은 벼를 길렀고 물 가까이에 밀집한 농촌 마을을 지었다. [10] 그다음 종교가 그 위에 또 하나의 강력한 겹을 더한다. [11] 공유된 신앙은, 그 지역들이 멀리 떨어져 있을 때조차 먼 지역들을 하나의 단일한 문화권으로 묶을 수 있다. [12] 이것이 북아프리카와 중동의 일부가, 사이에 넓은 사막과 바다가 놓여 있어도 비슷하게 느껴지는 이유다. [13] 기후, 작물, 믿음이 천천히 하나의 공유된 생활방식으로 함께 섞였다. [14] 문화권을 이해하면 우리는 온 세계를 더 따뜻하고 차분한 눈으로 읽게 된다. [15] 어떤 관습이 처음에 우리에게 이상해 보일 때, 그것은 보통 그 자신의 고향 문화권 안에서는 충분히 말이 된다. [16] 너무 더워 보이는 옷이 가혹한 사막의 햇빛을 막는 데는 완벽할 수 있다. [17] 처음엔 이상해 보이는 음식 규칙이 더운 땅에서 사람들의 건강을 조용히 지켜 줄 수 있다. [18] 문화는 무작위가 아니며 단순히 더 낫거나 못한 것도 아니라, 사람들이 실제로 사는 곳에 대한 영리한 답이다. [19] 이 문화권의 지도를 보는 것은, 차이가 고쳐야 할 문제가 아니라 이해해야 할 하나의 양식이며 각 집단이 고향이라 부르는 땅이 빚어낸 것임을 우리에게 가르쳐 준다."
+    "translation_ko": "[1] 세계 지도를 보면 너는 대개 국경선과 수도를 본다. [2] 그러나 그 아래에 조용히 숨은 또 다른 종류의 지도가 있다. [3] 이 두 번째 지도에서 세계는 몇 개의 큰 문화권으로 나뉜다. [4] 각 권의 사람들은 흔히 종교, 옷 입는 방식, 비슷한 일상 음식을 공유한다. [5] 이 문화적 경계는 국경선과 전혀 맞지 않는다. [6] 그것들은 자연과 인간 역사가 함께 작용하며 여러 세기에 걸쳐 아주 천천히 그려졌다. [7] 땅과 날씨가 보통 문화를 먼저 빚는다. [8] 덥고 건조한 사막에서 사람들은 가축을 치고 그늘을 위해 헐렁하게 덮는 옷을 입는 법을 배웠다. [9] 젖은 강 계곡에서 그들은 쌀을 길렀고 물 가까이에 붐비는 농경 마을을 지었다. [10] 그다음 종교가 그 위에 또 하나의 강력한 층을 더한다. [11] 공유된 신앙은, 먼 곳들이 멀리 떨어져 있을 때조차, 그곳들을 하나의 단일 문화권으로 묶을 수 있다. [12] 이것이 북아프리카와 중동의 일부가, 넓은 사막과 바다가 그 사이에 놓여 있는데도, 비슷하게 느껴지는 이유다. [13] 기후, 작물, 믿음이 천천히 하나의 공유된 삶의 방식으로 섞였다. [14] 문화권을 이해하는 것은 우리가 세계를 더 친절하고 차분한 눈으로 읽도록 돕는다. [15] 한 관습이 처음에 우리에게 낯설어 보일 때, 그것은 보통 자기 본거지 권 안에서는 충분히 말이 된다. [16] 너무 더워 보이는 옷이 가혹한 사막 햇빛을 막는 데 완벽할 수 있다. [17] 처음엔 이상해 보이는 음식 규칙이 더운 땅에서 사람들의 건강을 조용히 지켜 줄 수 있다. [18] 문화는 무작위가 아니고, 단순히 더 낫거나 못한 것도 아니다; 그것들은 사람들이 실제로 사는 곳에 대한 똑똑한 답이다. [19] 이 권의 지도를 보는 것은, 차이가 고쳐야 할 문제가 아니라 이해하고 존중해야 할 패턴, 곧 각 집단이 고향이라 부르는 땅이 빚은 패턴임을 우리에게 가르쳐 준다."
   },
   "answers": {
     "explanations": [
