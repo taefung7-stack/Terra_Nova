@@ -1,0 +1,878 @@
+{
+  "schema_version": "2.2",
+  "id": "2026-07-20",
+  "meta": {
+    "month": "2026-07",
+    "sequence": 20,
+    "subject": "정보",
+    "linked_unit": "정보 알고리즘과 프로그래밍",
+    "part_ko": "절차로 문제를 풀다",
+    "achievement_standard": "12정03-01",
+    "achievement_verified": true,
+    "difficulty": "쉬움",
+    "cognitive_skill": "요지",
+    "lexile": "950L",
+    "ar_level": 6,
+    "key_concepts": [
+      "알고리즘",
+      "절차",
+      "프로그래밍",
+      "문제 해결"
+    ]
+  },
+  "page1": {
+    "title": "A Recipe a Computer Can Follow",
+    "subtitle": "Why clear steps matter more than clever tricks.",
+    "body": "Think about how you make instant noodles. You boil water, add the noodles, wait a few minutes, and stir. If a friend followed those exact steps, they would get the same bowl of noodles. That ordered list of clear steps is, in spirit, an <u>algorithm</u>. An algorithm is simply a precise plan for solving a problem, written so plainly that even a machine can follow it without guessing.\n\nComputers are wonderfully powerful but oddly stubborn little helpers. They are incredibly fast and tireless, yet they simply cannot fill in the gaps the easy way a human friend always would. If a recipe says \"add some salt,\" a person guesses a reasonable pinch, but a computer freezes, because \"some\" is not exact. So before we write any code, we first design a careful algorithm: every step spelled out, every choice decided, nothing left vague. A computer will always do exactly what you say, even when that is not at all what you meant. <mark>Programming</mark> is really the act of turning that clear plan into a language the computer understands.\n\nThis way of thinking is useful far beyond computers and code. Breaking a big, scary task into small, ordered steps makes almost anything easier to handle, from cleaning a messy room to studying hard for difficult exams. Even putting a shelf of books in order is just a small algorithm you run by hand. You also slowly learn that a clear, simple method usually beats a clever but messy one in the long run. In the end, the real skill is not memorizing lines of code; it is learning to think clearly and patiently enough that your steps could be followed by anyone, or anything, without a single confused <blank>.",
+    "illustration": "../../assets/illustrations/2026-07/20.png",
+    "illustration_caption": "An algorithm is a recipe so clear that even a machine can follow it."
+  },
+  "page2": {
+    "questions": [
+      {
+        "type": "mock_objective",
+        "style": "요지",
+        "stem": "다음 글의 요지로 가장 적절한 것은?",
+        "choices": [
+          "Computers can always guess what a vague instruction means.",
+          "An algorithm is a precise, ordered set of steps, and thinking this way helps solve problems far beyond computers.",
+          "Memorizing code is the most important skill in programming.",
+          "Clever, messy methods are always better than simple ones.",
+          "Algorithms are only useful for making instant noodles."
+        ],
+        "answer_index": 1
+      },
+      {
+        "type": "mock_objective",
+        "style": "빈칸 추론",
+        "stem": "윗글의 밑줄 친 빈칸에 들어갈 말로 가장 적절한 것은?",
+        "choices": [
+          "celebration",
+          "step",
+          "reward",
+          "machine",
+          "friend"
+        ],
+        "answer_index": 1
+      },
+      {
+        "type": "mock_objective",
+        "style": "함의 추론",
+        "stem": "윗글의 밑줄 친 표현 a computer freezes 가 의미하는 바로 가장 적절한 것은?",
+        "choices": [
+          "the computer becomes physically cold",
+          "the computer cannot continue because the instruction is not exact",
+          "the computer chooses a reasonable amount on its own",
+          "the computer turns itself off to save power",
+          "the computer asks a human for more salt"
+        ],
+        "answer_index": 1
+      },
+      {
+        "type": "school_descriptive",
+        "style": "요약문 빈칸 완성",
+        "prompt": "다음은 본문의 요약문이다. 본문의 내용을 바탕으로 빈칸 (A), (B)에 들어갈 말을 <조건>에 맞게 영어 한 단어로 각각 쓰시오. <조건> 본문에서 제시된 단어를 그대로 활용할 것.",
+        "hints": [
+          "algorithm",
+          "steps",
+          "exact",
+          "programming",
+          "plan"
+        ],
+        "summary_template": "An <blank> (A) is a precise plan made of clear, ordered steps that even a machine can follow. <blank> (B) is the act of turning that plan into a language the computer understands.",
+        "model_answer": "(A) algorithm  (B) Programming"
+      }
+    ],
+    "textbook_tieback": {
+      "unit_label": "정보 ③ 알고리즘과 프로그래밍 · 알고리즘의 이해",
+      "body_ko": "고등 정보 과목의 '알고리즘과 프로그래밍' 영역에서는 문제 해결의 절차인 알고리즘과 그것을 코드로 구현하는 프로그래밍을 배운다. 알고리즘은 문제를 푸는 정확하고 순서 있는 단계의 모음으로, 모호함 없이 분명해야 한다. 컴퓨터는 매우 빠르지만 사람처럼 빈틈을 알아서 메우지 못하므로('소금 약간' 같은 모호한 지시에 멈춤), 코드를 작성하기 전에 모든 단계를 명확히 정한 알고리즘을 먼저 설계한다. 프로그래밍은 그 알고리즘을 컴퓨터가 이해하는 언어로 옮기는 일이다. 큰 문제를 작은 순서 단계로 쪼개는 이 사고방식은 컴퓨터를 넘어 일상의 문제 해결에도 널리 쓰인다.",
+      "tags": [
+        "알고리즘",
+        "절차",
+        "프로그래밍",
+        "문제해결"
+      ],
+      "visual_aid": {
+        "type": "emoji_flow",
+        "title": "알고리즘에서 프로그램으로",
+        "steps": [
+          {
+            "emoji": "📝",
+            "label": "문제",
+            "note": "풀고 싶은 것"
+          },
+          {
+            "emoji": "🔢",
+            "label": "알고리즘",
+            "note": "순서 단계"
+          },
+          {
+            "emoji": "💻",
+            "label": "프로그래밍",
+            "note": "언어로 옮김"
+          },
+          {
+            "emoji": "✅",
+            "label": "해결",
+            "note": "누구나 따라옴"
+          }
+        ]
+      }
+    }
+  },
+  "page3": {
+    "sentences": [
+      {
+        "index": 1,
+        "segments": [
+          {
+            "role": "V",
+            "text": "Think",
+            "note": "명령문"
+          },
+          {
+            "role": "M",
+            "text": "about how you make instant noodles.",
+            "note": "간접의문문 how"
+          }
+        ],
+        "grammar_note": "명령문 + about + 간접의문문"
+      },
+      {
+        "index": 2,
+        "segments": [
+          {
+            "role": "S",
+            "text": "You"
+          },
+          {
+            "role": "V",
+            "text": "boil, add, wait, and stir.",
+            "note": "병렬 동사"
+          }
+        ],
+        "grammar_note": "동사 병렬"
+      },
+      {
+        "index": 3,
+        "segments": [
+          {
+            "role": "M",
+            "text": "If a friend followed those exact steps,",
+            "note": "가정법 과거 if절"
+          },
+          {
+            "role": "S",
+            "text": "they"
+          },
+          {
+            "role": "V",
+            "text": "would get",
+            "note": "가정법 would"
+          },
+          {
+            "role": "O",
+            "text": "the same bowl of noodles."
+          }
+        ],
+        "grammar_note": "가정법 과거 if + would"
+      },
+      {
+        "index": 4,
+        "segments": [
+          {
+            "role": "S",
+            "text": "That ordered list of clear steps"
+          },
+          {
+            "role": "V",
+            "text": "is,"
+          },
+          {
+            "role": "M",
+            "text": "in spirit,"
+          },
+          {
+            "role": "C",
+            "text": "an algorithm.",
+            "note": "삽입구"
+          }
+        ],
+        "grammar_note": "2형식 + 삽입구"
+      },
+      {
+        "index": 5,
+        "segments": [
+          {
+            "role": "S",
+            "text": "An algorithm"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "M",
+            "text": "simply"
+          },
+          {
+            "role": "C",
+            "text": "a precise plan for solving a problem,",
+            "note": "for + 동명사"
+          },
+          {
+            "role": "M",
+            "text": "written so plainly that even a machine can follow it without guessing.",
+            "note": "과거분사 + so ~ that"
+          }
+        ],
+        "grammar_note": "for -ing + 과거분사 + so ~ that"
+      },
+      {
+        "index": 6,
+        "segments": [
+          {
+            "role": "S",
+            "text": "Computers"
+          },
+          {
+            "role": "V",
+            "text": "are"
+          },
+          {
+            "role": "C",
+            "text": "powerful but oddly stubborn helpers.",
+            "note": "대조 형용사"
+          }
+        ],
+        "grammar_note": "2형식 + 대조 but"
+      },
+      {
+        "index": 7,
+        "segments": [
+          {
+            "role": "S",
+            "text": "They"
+          },
+          {
+            "role": "V",
+            "text": "are"
+          },
+          {
+            "role": "C",
+            "text": "incredibly fast,"
+          },
+          {
+            "role": "CONJ",
+            "text": "yet",
+            "note": "양보"
+          },
+          {
+            "role": "S",
+            "text": "they"
+          },
+          {
+            "role": "V",
+            "text": "cannot fill in"
+          },
+          {
+            "role": "O",
+            "text": "gaps the way a human friend would.",
+            "note": "the way 절"
+          }
+        ],
+        "grammar_note": "양보 yet + fill in + the way 절"
+      },
+      {
+        "index": 8,
+        "segments": [
+          {
+            "role": "M",
+            "text": "If a recipe says \"add some salt,\"",
+            "note": "if 조건절 + 인용"
+          },
+          {
+            "role": "S",
+            "text": "a person"
+          },
+          {
+            "role": "V",
+            "text": "guesses"
+          },
+          {
+            "role": "O",
+            "text": "a reasonable pinch,"
+          },
+          {
+            "role": "CONJ",
+            "text": "but",
+            "note": "대조"
+          },
+          {
+            "role": "S",
+            "text": "a computer"
+          },
+          {
+            "role": "V",
+            "text": "freezes,"
+          },
+          {
+            "role": "CONJ",
+            "text": "because",
+            "note": "원인절"
+          },
+          {
+            "role": "S",
+            "text": "\"some\""
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "M",
+            "text": "not exact."
+          }
+        ],
+        "grammar_note": "if 조건 + 대조 but + because 원인"
+      },
+      {
+        "index": 9,
+        "segments": [
+          {
+            "role": "M",
+            "text": "So before we write any code,",
+            "note": "before 부사절"
+          },
+          {
+            "role": "S",
+            "text": "we"
+          },
+          {
+            "role": "M",
+            "text": "first"
+          },
+          {
+            "role": "V",
+            "text": "design"
+          },
+          {
+            "role": "O",
+            "text": "a careful algorithm: every step spelled out, every choice decided, nothing left vague.",
+            "note": "콜론 + 분사 병렬"
+          }
+        ],
+        "grammar_note": "before 부사절 + 콜론 + 독립분사 병렬"
+      },
+      {
+        "segments": [
+          {
+            "role": "S",
+            "text": "A computer"
+          },
+          {
+            "role": "M",
+            "text": "always"
+          },
+          {
+            "role": "V",
+            "text": "will do"
+          },
+          {
+            "role": "O",
+            "text": "exactly what you say,",
+            "note": "관계대명사 what"
+          },
+          {
+            "role": "M",
+            "text": "even when that is not at all what you meant.",
+            "note": "양보 even when"
+          }
+        ],
+        "grammar_note": "관계대명사 what + 양보 even when",
+        "index": 10
+      },
+      {
+        "index": 11,
+        "segments": [
+          {
+            "role": "S",
+            "text": "Programming"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "M",
+            "text": "really"
+          },
+          {
+            "role": "C",
+            "text": "the act of turning that clear plan into a language the computer understands.",
+            "note": "of -ing + 관계절"
+          }
+        ],
+        "grammar_note": "2형식 + of turning A into B + 관계절"
+      },
+      {
+        "index": 12,
+        "segments": [
+          {
+            "role": "S",
+            "text": "This way of thinking"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "useful far beyond computers."
+          }
+        ],
+        "grammar_note": "2형식 + 강조 far"
+      },
+      {
+        "index": 13,
+        "segments": [
+          {
+            "role": "S",
+            "text": "Breaking a big, scary task into small, ordered steps",
+            "note": "동명사 주어 + break A into B"
+          },
+          {
+            "role": "V",
+            "text": "makes"
+          },
+          {
+            "role": "O",
+            "text": "almost anything"
+          },
+          {
+            "role": "C",
+            "text": "easier to handle, from cleaning a room to studying for exams.",
+            "note": "make O C + from A to B"
+          }
+        ],
+        "grammar_note": "동명사 주어 + make O C + from A to B"
+      },
+      {
+        "segments": [
+          {
+            "role": "M",
+            "text": "Even"
+          },
+          {
+            "role": "S",
+            "text": "putting a shelf of books in order",
+            "note": "동명사 주어"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "just a small algorithm you run by hand.",
+            "note": "관계절 (목적격 생략)"
+          }
+        ],
+        "grammar_note": "동명사 주어 + 강조 even + 관계절",
+        "index": 14
+      },
+      {
+        "index": 15,
+        "segments": [
+          {
+            "role": "S",
+            "text": "You"
+          },
+          {
+            "role": "M",
+            "text": "also"
+          },
+          {
+            "role": "V",
+            "text": "learn"
+          },
+          {
+            "role": "O",
+            "text": "that a clear, simple method usually beats a clever but messy one.",
+            "note": "that 명사절"
+          }
+        ],
+        "grammar_note": "learn + that 명사절"
+      },
+      {
+        "index": 16,
+        "segments": [
+          {
+            "role": "M",
+            "text": "In the end,"
+          },
+          {
+            "role": "S",
+            "text": "the real skill"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "M",
+            "text": "not memorizing code;",
+            "note": "not 동명사"
+          },
+          {
+            "role": "S",
+            "text": "it"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "learning to think clearly enough that your steps could be followed by anyone, or anything, without a single confused ____.",
+            "note": "so ~ that + 빈칸"
+          }
+        ],
+        "grammar_note": "세미콜론 대조 + clearly enough that 결과절"
+      }
+    ],
+    "translation_ko": "[1] 라면을 어떻게 끓이는지 생각해 보라. [2] 당신은 물을 끓이고, 면을 넣고, 몇 분 기다리고, 젓는다. [3] 친구가 그 정확한 단계를 따른다면, 그들은 같은 라면 한 그릇을 얻을 것이다. [4] 그 순서 있는 분명한 단계 목록이, 본질적으로는 알고리즘이다. [5] 알고리즘은 그저 문제를 푸는 정확한 계획으로, 기계조차 추측 없이 따를 수 있을 만큼 평이하게 쓰인 것이다. [6] 컴퓨터는 강력하지만 묘하게 고집스러운 조력자다. [7] 그들은 엄청나게 빠르지만, 인간 친구처럼 빈틈을 메우지는 못한다. [8] 어떤 레시피가 '소금 약간'이라고 하면 사람은 적당한 한 꼬집을 짐작하지만, 컴퓨터는 멈춰 버리는데, '약간'이 정확하지 않기 때문이다. [9] 그래서 우리는 어떤 코드를 쓰기 전에, 먼저 신중한 알고리즘을 설계한다 — 모든 단계를 또박또박 적고, 모든 선택을 정하고, 어떤 것도 모호하게 남기지 않는다. [10] 컴퓨터는 당신이 의도한 것이 전혀 아닐 때조차, 늘 당신이 말한 그대로를 실행한다. [11] 프로그래밍은 사실 그 분명한 계획을 컴퓨터가 이해하는 언어로 옮기는 행위다. [12] 이런 사고방식은 컴퓨터와 코드를 훨씬 넘어 유용하다. [13] 크고 겁나는 과제를 작고 순서 있는 단계로 쪼개면, 지저분한 방을 치우는 일부터 어려운 시험을 열심히 공부하는 일까지 거의 모든 것이 다루기 더 쉬워진다. [14] 책장에 책을 순서대로 꽂는 것조차 당신이 손으로 실행하는 작은 알고리즘일 뿐이다. [15] 당신은 또한 분명하고 단순한 방법이 대개 영리하지만 지저분한 방법을 이긴다는 것을 배운다. [16] 결국 진짜 기술은 코드를 외우는 것이 아니라, 당신의 단계가 누구든, 또는 무엇이든, 단 한 번의 혼란스러운 단계도 없이 따를 수 있을 만큼 분명하게 생각하는 법을 배우는 것이다."
+  },
+  "answers": {
+    "explanations": [
+      {
+        "q_index": 0,
+        "q_style": "요지",
+        "correct": 1,
+        "evidence": "글은 알고리즘이 기계도 따를 수 있을 만큼 정확하고 순서 있는 단계라고 정의하고(4~5번), 이 사고방식이 컴퓨터를 넘어 일상 문제 해결에 유용하다(11~12번)고 한다. 따라서 '알고리즘은 정확한 순서 단계이며 이 사고방식은 컴퓨터를 넘어 문제 해결에 도움이 된다'가 요지다.",
+        "rationales": [
+          "8번 '컴퓨터는 모호한 지시에 멈춘다'와 정면 모순된다.",
+          "(정답) 알고리즘=정확한 순서 단계 + 폭넓은 유용성이라는 글 전체 주장을 요약한다.",
+          "14번 '진짜 기술은 코드 암기가 아니다'와 모순된다.",
+          "13번 '단순한 방법이 지저분한 영리함을 이긴다'와 반대다.",
+          "라면은 도입 예시일 뿐, '라면에만 유용'은 11~12번과 모순된다."
+        ],
+        "key_terms": [
+          {
+            "en": "algorithm",
+            "ko": "알고리즘"
+          },
+          {
+            "en": "steps",
+            "ko": "단계"
+          }
+        ]
+      },
+      {
+        "q_index": 1,
+        "q_style": "빈칸 추론",
+        "correct": 1,
+        "evidence": "빈칸 앞 \"your steps could be followed by anyone ... without a single confused ___\"이 단서다. 알고리즘이 순서 있는 '단계(step)'의 모음(2·4·9번)이므로, 혼란스러운 '단계' 하나 없이 따를 수 있다가 자연스럽다.",
+        "rationales": [
+          "'축하'는 단계·절차라는 글의 핵심과 무관하다.",
+          "(정답) step은 글 전체가 강조한 '순서 있는 단계'와 일치한다.",
+          "'보상'은 빈칸 맥락(혼란 없는 절차)과 맞지 않는다.",
+          "'기계'는 따르는 주체(anything)로 이미 언급돼 빈칸의 대상과 다르다.",
+          "'친구'도 따르는 주체일 뿐 '혼란스러운 ___'의 대상이 아니다."
+        ],
+        "key_terms": [
+          {
+            "en": "step",
+            "ko": "단계"
+          },
+          {
+            "en": "confused",
+            "ko": "혼란스러운"
+          }
+        ]
+      },
+      {
+        "q_index": 2,
+        "q_style": "함의 추론",
+        "correct": 1,
+        "evidence": "8번에서 '소금 약간'처럼 모호한 지시에 사람은 짐작하지만 컴퓨터는 \"freezes ... because 'some' is not exact\"라고 한다. 따라서 a computer freezes는 '지시가 정확하지 않아 컴퓨터가 진행하지 못한다'를 뜻한다.",
+        "rationales": [
+          "'물리적으로 차가워진다'는 freeze를 문자화한 오답이다.",
+          "(정답) 지시가 정확하지 않아 진행하지 못한다는 본문 설명 그대로다.",
+          "'스스로 적당량을 고른다'는 것은 사람(짐작)의 행동이고 컴퓨터는 그러지 못한다.",
+          "'전원을 끈다'는 본문에 근거가 없다.",
+          "'사람에게 소금을 더 달라고 묻는다'도 본문에 없는 내용이다."
+        ],
+        "key_terms": [
+          {
+            "en": "freeze",
+            "ko": "멈추다"
+          },
+          {
+            "en": "exact",
+            "ko": "정확한"
+          }
+        ]
+      },
+      {
+        "q_index": 3,
+        "q_style": "요약문 빈칸 완성",
+        "correct": null,
+        "model_answer_en": "(A) algorithm  (B) Programming",
+        "evidence": "(A)는 기계도 따를 수 있는 정확한 순서 단계 계획 → 4~5번의 algorithm. (B)는 그 계획을 컴퓨터 언어로 옮기는 행위 → 10번 \"Programming is ... turning that clear plan into a language\".",
+        "rationales": [
+          "(A) algorithm — '정확한 순서 단계 계획'은 5번의 algorithm과 일치한다.",
+          "(B) Programming — '계획을 컴퓨터 언어로 옮기는 행위'는 10번의 Programming과 일치한다."
+        ],
+        "key_terms": [
+          {
+            "en": "algorithm",
+            "ko": "알고리즘"
+          },
+          {
+            "en": "programming",
+            "ko": "프로그래밍"
+          }
+        ]
+      }
+    ]
+  },
+  "page4": {
+    "vocab": [
+      {
+        "word": "algorithm",
+        "pos": "n.",
+        "meaning_ko": "알고리즘",
+        "synonyms": [],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "An algorithm is a precise plan for solving a problem.",
+            "ko": "알고리즘은 문제를 푸는 정확한 계획이다."
+          },
+          {
+            "en": "A recipe is like an algorithm for cooking.",
+            "ko": "레시피는 요리를 위한 알고리즘과 같다."
+          }
+        ]
+      },
+      {
+        "word": "step",
+        "pos": "n.",
+        "meaning_ko": "단계",
+        "synonyms": [],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "An ordered list of steps can be an algorithm.",
+            "ko": "순서 있는 단계 목록은 알고리즘이 될 수 있다."
+          },
+          {
+            "en": "Follow each step without skipping.",
+            "ko": "각 단계를 건너뛰지 말고 따르라."
+          }
+        ]
+      },
+      {
+        "word": "precise",
+        "pos": "adj.",
+        "meaning_ko": "정확한, 명확한",
+        "synonyms": [
+          "exact"
+        ],
+        "antonyms": [
+          "vague"
+        ],
+        "examples": [
+          {
+            "en": "An algorithm must be precise, not vague.",
+            "ko": "알고리즘은 모호하지 않고 정확해야 한다."
+          },
+          {
+            "en": "Give precise directions to the robot.",
+            "ko": "로봇에게 정확한 지시를 주어라."
+          }
+        ]
+      },
+      {
+        "word": "stubborn",
+        "pos": "adj.",
+        "meaning_ko": "고집스러운, 융통성 없는",
+        "synonyms": [
+          "inflexible"
+        ],
+        "antonyms": [
+          "flexible"
+        ],
+        "examples": [
+          {
+            "en": "Computers are powerful but stubborn helpers.",
+            "ko": "컴퓨터는 강력하지만 고집스러운 조력자다."
+          },
+          {
+            "en": "The machine is stubborn about exact rules.",
+            "ko": "그 기계는 정확한 규칙에 대해 융통성이 없다."
+          }
+        ]
+      },
+      {
+        "word": "gap",
+        "pos": "n.",
+        "meaning_ko": "빈틈, 틈",
+        "synonyms": [
+          "hole"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "Computers cannot fill in gaps like humans.",
+            "ko": "컴퓨터는 사람처럼 빈틈을 메우지 못한다."
+          },
+          {
+            "en": "A vague step leaves a dangerous gap.",
+            "ko": "모호한 단계는 위험한 빈틈을 남긴다."
+          }
+        ]
+      },
+      {
+        "word": "exact",
+        "pos": "adj.",
+        "meaning_ko": "정확한",
+        "synonyms": [
+          "precise"
+        ],
+        "antonyms": [
+          "vague"
+        ],
+        "examples": [
+          {
+            "en": "A computer freezes because 'some' is not exact.",
+            "ko": "컴퓨터는 '약간'이 정확하지 않아 멈춘다."
+          },
+          {
+            "en": "Give the exact amount, not a guess.",
+            "ko": "짐작이 아니라 정확한 양을 주어라."
+          }
+        ]
+      },
+      {
+        "word": "vague",
+        "pos": "adj.",
+        "meaning_ko": "모호한",
+        "synonyms": [
+          "unclear"
+        ],
+        "antonyms": [
+          "exact"
+        ],
+        "examples": [
+          {
+            "en": "Leave nothing vague in an algorithm.",
+            "ko": "알고리즘에는 아무것도 모호하게 남기지 마라."
+          },
+          {
+            "en": "A vague plan confuses the computer.",
+            "ko": "모호한 계획은 컴퓨터를 혼란스럽게 한다."
+          }
+        ]
+      },
+      {
+        "word": "programming",
+        "pos": "n.",
+        "meaning_ko": "프로그래밍",
+        "synonyms": [
+          "coding"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "Programming turns a plan into computer language.",
+            "ko": "프로그래밍은 계획을 컴퓨터 언어로 옮긴다."
+          },
+          {
+            "en": "Programming follows the algorithm you designed.",
+            "ko": "프로그래밍은 당신이 설계한 알고리즘을 따른다."
+          }
+        ]
+      },
+      {
+        "word": "break into",
+        "pos": "v.",
+        "meaning_ko": "(작게) 쪼개다, 나누다",
+        "synonyms": [
+          "divide"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "Break a big task into small, ordered steps.",
+            "ko": "큰 과제를 작고 순서 있는 단계로 쪼개라."
+          },
+          {
+            "en": "Breaking it down makes anything easier.",
+            "ko": "쪼개면 무엇이든 더 쉬워진다."
+          }
+        ]
+      },
+      {
+        "word": "handle",
+        "pos": "v.",
+        "meaning_ko": "다루다, 처리하다",
+        "synonyms": [
+          "manage"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "Small steps make a task easier to handle.",
+            "ko": "작은 단계는 과제를 다루기 쉽게 한다."
+          },
+          {
+            "en": "She handled the problem calmly.",
+            "ko": "그녀는 그 문제를 차분히 다뤘다."
+          }
+        ]
+      },
+      {
+        "word": "method",
+        "pos": "n.",
+        "meaning_ko": "방법",
+        "synonyms": [
+          "way"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "A simple method usually beats a messy one.",
+            "ko": "단순한 방법이 대개 지저분한 방법을 이긴다."
+          },
+          {
+            "en": "Choose a clear method you can repeat.",
+            "ko": "반복할 수 있는 분명한 방법을 골라라."
+          }
+        ]
+      },
+      {
+        "word": "messy",
+        "pos": "adj.",
+        "meaning_ko": "지저분한, 엉성한",
+        "synonyms": [
+          "disorganized"
+        ],
+        "antonyms": [
+          "clear"
+        ],
+        "examples": [
+          {
+            "en": "A clever but messy method often fails.",
+            "ko": "영리하지만 지저분한 방법은 흔히 실패한다."
+          },
+          {
+            "en": "Messy steps are hard to follow.",
+            "ko": "지저분한 단계는 따르기 어렵다."
+          }
+        ]
+      }
+    ]
+  }
+}
