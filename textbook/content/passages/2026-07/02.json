@@ -35,12 +35,12 @@
         "stem": "다음 글의 요지로 가장 적절한 것은?",
         "choices": [
           "Polynomials are too complex for most students, so factoring should be skipped.",
-          "Expanding and factoring are opposite directions of the same skill, and seeing structure makes hard problems simple.",
-          "Factoring only works for equations that contain the number 6.",
           "Expanding is useful in school, but factoring has no real-world use.",
+          "Factoring only works for equations that contain the number 6.",
+          "Expanding and factoring are opposite directions of the same skill, and seeing structure makes hard problems simple.",
           "Algebra is mostly about memorizing symbols rather than understanding them."
         ],
-        "answer_index": 1
+        "answer_index": 3
       },
       {
         "type": "mock_objective",
@@ -48,25 +48,25 @@
         "stem": "윗글의 밑줄 친 빈칸에 들어갈 말로 가장 적절한 것은?",
         "choices": [
           "a language no one can read",
-          "disguise, waiting to be taken apart",
+          "a code with no answer",
           "a box that can never be opened",
           "motion that cannot be stopped",
-          "a code with no answer"
+          "disguise, waiting to be taken apart"
         ],
-        "answer_index": 1
+        "answer_index": 4
       },
       {
         "type": "mock_objective",
         "style": "함의 추론",
         "stem": "윗글의 밑줄 친 표현 takes it apart 가 의미하는 바로 가장 적절한 것은?",
         "choices": [
-          "it destroys the polynomial so it cannot be used again",
           "it rewrites the long expression as the simple parts that formed it",
+          "it destroys the polynomial so it cannot be used again",
           "it adds new terms to make the polynomial longer",
           "it changes the answer of the equation",
           "it proves that the polynomial was wrong"
         ],
-        "answer_index": 1
+        "answer_index": 0
       },
       {
         "type": "school_descriptive",
@@ -96,10 +96,26 @@
         "type": "emoji_flow",
         "title": "전개 ↔ 인수분해",
         "steps": [
-          { "emoji": "🧱", "label": "(x+3)(x+2)", "note": "두 블록" },
-          { "emoji": "➡️", "label": "전개", "note": "곱해서 펼침" },
-          { "emoji": "📏", "label": "x²+5x+6", "note": "긴 식" },
-          { "emoji": "⬅️", "label": "인수분해", "note": "곱 6·합 5 → 3,2" }
+          {
+            "emoji": "🧱",
+            "label": "(x+3)(x+2)",
+            "note": "두 블록"
+          },
+          {
+            "emoji": "➡️",
+            "label": "전개",
+            "note": "곱해서 펼침"
+          },
+          {
+            "emoji": "📏",
+            "label": "x²+5x+6",
+            "note": "긴 식"
+          },
+          {
+            "emoji": "⬅️",
+            "label": "인수분해",
+            "note": "곱 6·합 5 → 3,2"
+          }
         ]
       }
     }
@@ -109,206 +125,504 @@
       {
         "index": 1,
         "segments": [
-          { "role": "V", "text": "Think of", "note": "명령문, think of A as B" },
-          { "role": "O", "text": "a polynomial" },
-          { "role": "C", "text": "as a little machine made of number blocks.", "note": "as + 보어, 과거분사 수식" }
+          {
+            "role": "V",
+            "text": "Think of",
+            "note": "명령문, think of A as B"
+          },
+          {
+            "role": "O",
+            "text": "a polynomial"
+          },
+          {
+            "role": "C",
+            "text": "as a little machine made of number blocks.",
+            "note": "as + 보어, 과거분사 수식"
+          }
         ],
         "grammar_note": "think of A as B, made of 과거분사구"
       },
       {
         "index": 2,
         "segments": [
-          { "role": "S", "text": "Something like (x + 3)(x + 2)" },
-          { "role": "V", "text": "is" },
-          { "role": "C", "text": "just two small blocks that are waiting to be joined together.", "note": "관계대명사 that + 수동 부정사" }
+          {
+            "role": "S",
+            "text": "Something like (x + 3)(x + 2)"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "just two small blocks that are waiting to be joined together.",
+            "note": "관계대명사 that + 수동 부정사"
+          }
         ],
         "grammar_note": "관계대명사 that, be waiting to be p.p."
       },
       {
         "index": 3,
         "segments": [
-          { "role": "M", "text": "When you multiply them out step by step,", "note": "when 부사절, 구동사" },
-          { "role": "S", "text": "you" },
-          { "role": "V", "text": "get" },
-          { "role": "O", "text": "x squared plus 5x plus 6." }
+          {
+            "role": "M",
+            "text": "When you multiply them out step by step,",
+            "note": "when 부사절, 구동사"
+          },
+          {
+            "role": "S",
+            "text": "you"
+          },
+          {
+            "role": "V",
+            "text": "get"
+          },
+          {
+            "role": "O",
+            "text": "x squared plus 5x plus 6."
+          }
         ],
         "grammar_note": "when 부사절 + multiply out 구동사"
       },
       {
         "index": 4,
         "segments": [
-          { "role": "S", "text": "This building process" },
-          { "role": "V", "text": "is called", "note": "수동태" },
-          { "role": "C", "text": "expanding." }
+          {
+            "role": "S",
+            "text": "This building process"
+          },
+          {
+            "role": "V",
+            "text": "is called",
+            "note": "수동태"
+          },
+          {
+            "role": "C",
+            "text": "expanding."
+          }
         ],
         "grammar_note": "call O C의 수동태"
       },
       {
         "index": 5,
         "segments": [
-          { "role": "S", "text": "You" },
-          { "role": "V", "text": "took" },
-          { "role": "O", "text": "two simple parts" },
-          { "role": "CONJ", "text": "and" },
-          { "role": "V", "text": "turned" },
-          { "role": "O", "text": "them into one longer expression.", "note": "turn A into B" }
+          {
+            "role": "S",
+            "text": "You"
+          },
+          {
+            "role": "V",
+            "text": "took"
+          },
+          {
+            "role": "O",
+            "text": "two simple parts"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "V",
+            "text": "turned"
+          },
+          {
+            "role": "O",
+            "text": "them into one longer expression.",
+            "note": "turn A into B"
+          }
         ],
         "grammar_note": "과거시제 병렬 + turn A into B"
       },
       {
         "index": 6,
         "segments": [
-          { "role": "S", "text": "Every term" },
-          { "role": "V", "text": "came" },
-          { "role": "M", "text": "from a clear rule:" },
-          { "role": "S", "text": "you" },
-          { "role": "V", "text": "multiply" },
-          { "role": "O", "text": "each piece in the first block by each piece in the second," },
-          { "role": "CONJ", "text": "and" },
-          { "role": "V", "text": "then add" },
-          { "role": "O", "text": "the results." }
+          {
+            "role": "S",
+            "text": "Every term"
+          },
+          {
+            "role": "V",
+            "text": "came"
+          },
+          {
+            "role": "M",
+            "text": "from a clear rule:"
+          },
+          {
+            "role": "S",
+            "text": "you"
+          },
+          {
+            "role": "V",
+            "text": "multiply"
+          },
+          {
+            "role": "O",
+            "text": "each piece in the first block by each piece in the second,"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "V",
+            "text": "then add"
+          },
+          {
+            "role": "O",
+            "text": "the results."
+          }
         ],
         "grammar_note": "콜론 뒤 규칙 설명, multiply A by B + 병렬 add"
       },
       {
         "index": 7,
         "segments": [
-          { "role": "S", "text": "Factoring" },
-          { "role": "V", "text": "is" },
-          { "role": "C", "text": "the very same skill," },
-          { "role": "CONJ", "text": "but", "note": "대조" },
-          { "role": "S", "text": "it" },
-          { "role": "M", "text": "simply" },
-          { "role": "V", "text": "runs" },
-          { "role": "M", "text": "backward." }
+          {
+            "role": "S",
+            "text": "Factoring"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "the very same skill,"
+          },
+          {
+            "role": "CONJ",
+            "text": "but",
+            "note": "대조"
+          },
+          {
+            "role": "S",
+            "text": "it"
+          },
+          {
+            "role": "M",
+            "text": "simply"
+          },
+          {
+            "role": "V",
+            "text": "runs"
+          },
+          {
+            "role": "M",
+            "text": "backward."
+          }
         ],
         "grammar_note": "강조 very + 대조 but"
       },
       {
         "index": 8,
         "segments": [
-          { "role": "V", "text": "Suppose", "note": "명령문(가정)" },
-          { "role": "O", "text": "someone hands you x squared plus 5x plus 6 and asks where it came from.", "note": "명사절 + 간접의문문" }
+          {
+            "role": "V",
+            "text": "Suppose",
+            "note": "명령문(가정)"
+          },
+          {
+            "role": "O",
+            "text": "someone hands you x squared plus 5x plus 6 and asks where it came from.",
+            "note": "명사절 + 간접의문문"
+          }
         ],
         "grammar_note": "Suppose (that) 절 + 간접의문문 where"
       },
       {
         "index": 9,
         "segments": [
-          { "role": "S", "text": "You" },
-          { "role": "V", "text": "try to find" },
-          { "role": "O", "text": "the two blocks that built it in the first place.", "note": "관계대명사 that" }
+          {
+            "role": "S",
+            "text": "You"
+          },
+          {
+            "role": "V",
+            "text": "try to find"
+          },
+          {
+            "role": "O",
+            "text": "the two blocks that built it in the first place.",
+            "note": "관계대명사 that"
+          }
         ],
         "grammar_note": "try to-V + 관계대명사 that"
       },
       {
         "index": 10,
         "segments": [
-          { "role": "S", "text": "You" },
-          { "role": "V", "text": "look for" },
-          { "role": "O", "text": "two numbers that multiply to 6 and also add up to 5.", "note": "관계대명사 that + 병렬" }
+          {
+            "role": "S",
+            "text": "You"
+          },
+          {
+            "role": "V",
+            "text": "look for"
+          },
+          {
+            "role": "O",
+            "text": "two numbers that multiply to 6 and also add up to 5.",
+            "note": "관계대명사 that + 병렬"
+          }
         ],
         "grammar_note": "look for + 관계절 안 병렬 동사"
       },
       {
         "index": 11,
         "segments": [
-          { "role": "S", "text": "Those numbers" },
-          { "role": "V", "text": "are" },
-          { "role": "C", "text": "3 and 2," },
-          { "role": "CONJ", "text": "so", "note": "결과" },
-          { "role": "S", "text": "the machine" },
-          { "role": "V", "text": "breaks" },
-          { "role": "M", "text": "neatly back into (x + 3)(x + 2)." }
+          {
+            "role": "S",
+            "text": "Those numbers"
+          },
+          {
+            "role": "V",
+            "text": "are"
+          },
+          {
+            "role": "C",
+            "text": "3 and 2,"
+          },
+          {
+            "role": "CONJ",
+            "text": "so",
+            "note": "결과"
+          },
+          {
+            "role": "S",
+            "text": "the machine"
+          },
+          {
+            "role": "V",
+            "text": "breaks"
+          },
+          {
+            "role": "M",
+            "text": "neatly back into (x + 3)(x + 2)."
+          }
         ],
         "grammar_note": "결과 so + break back into"
       },
       {
         "index": 12,
         "segments": [
-          { "role": "S", "text": "Expanding" },
-          { "role": "V", "text": "builds" },
-          { "role": "O", "text": "the machine," },
-          { "role": "CONJ", "text": "while", "note": "대조" },
-          { "role": "S", "text": "factoring" },
-          { "role": "V", "text": "takes" },
-          { "role": "O", "text": "it apart." }
+          {
+            "role": "S",
+            "text": "Expanding"
+          },
+          {
+            "role": "V",
+            "text": "builds"
+          },
+          {
+            "role": "O",
+            "text": "the machine,"
+          },
+          {
+            "role": "CONJ",
+            "text": "while",
+            "note": "대조"
+          },
+          {
+            "role": "S",
+            "text": "factoring"
+          },
+          {
+            "role": "V",
+            "text": "takes"
+          },
+          {
+            "role": "O",
+            "text": "it apart."
+          }
         ],
         "grammar_note": "대조 while, take apart 구동사"
       },
       {
         "index": 13,
         "segments": [
-          { "role": "CONJ", "text": "Because the two moves are mirror images,", "note": "because 원인절" },
-          { "role": "S", "text": "you" },
-          { "role": "V", "text": "can always check" },
-          { "role": "O", "text": "one of them" },
-          { "role": "M", "text": "by doing the other.", "note": "by + -ing" }
+          {
+            "role": "CONJ",
+            "text": "Because the two moves are mirror images,",
+            "note": "because 원인절"
+          },
+          {
+            "role": "S",
+            "text": "you"
+          },
+          {
+            "role": "V",
+            "text": "can always check"
+          },
+          {
+            "role": "O",
+            "text": "one of them"
+          },
+          {
+            "role": "M",
+            "text": "by doing the other.",
+            "note": "by + -ing"
+          }
         ],
         "grammar_note": "because 원인절 + by -ing 수단"
       },
       {
         "index": 14,
         "segments": [
-          { "role": "S", "text": "This back-and-forth" },
-          { "role": "V", "text": "is really" },
-          { "role": "C", "text": "the heart of school algebra." }
+          {
+            "role": "S",
+            "text": "This back-and-forth"
+          },
+          {
+            "role": "V",
+            "text": "is really"
+          },
+          {
+            "role": "C",
+            "text": "the heart of school algebra."
+          }
         ],
         "grammar_note": "2형식 + 강조 really"
       },
       {
         "index": 15,
         "segments": [
-          { "role": "M", "text": "Once you can factor with confidence,", "note": "once 부사절" },
-          { "role": "S", "text": "many hard problems" },
-          { "role": "M", "text": "suddenly" },
-          { "role": "V", "text": "get", "note": "2형식" },
-          { "role": "C", "text": "easy." }
+          {
+            "role": "M",
+            "text": "Once you can factor with confidence,",
+            "note": "once 부사절"
+          },
+          {
+            "role": "S",
+            "text": "many hard problems"
+          },
+          {
+            "role": "M",
+            "text": "suddenly"
+          },
+          {
+            "role": "V",
+            "text": "get",
+            "note": "2형식"
+          },
+          {
+            "role": "C",
+            "text": "easy."
+          }
         ],
         "grammar_note": "once 부사절 + get 형용사 보어"
       },
       {
         "index": 16,
         "segments": [
-          { "role": "S", "text": "A long, frightening equation" },
-          { "role": "V", "text": "can shrink" },
-          { "role": "M", "text": "into a few simple pieces," },
-          { "role": "CONJ", "text": "and" },
-          { "role": "S", "text": "those pieces" },
-          { "role": "M", "text": "often" },
-          { "role": "V", "text": "hand" },
-          { "role": "O", "text": "you the answers right away.", "note": "4형식" }
+          {
+            "role": "S",
+            "text": "A long, frightening equation"
+          },
+          {
+            "role": "V",
+            "text": "can shrink"
+          },
+          {
+            "role": "M",
+            "text": "into a few simple pieces,"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "S",
+            "text": "those pieces"
+          },
+          {
+            "role": "M",
+            "text": "often"
+          },
+          {
+            "role": "V",
+            "text": "hand"
+          },
+          {
+            "role": "O",
+            "text": "you the answers right away.",
+            "note": "4형식"
+          }
         ],
         "grammar_note": "등위 and + 4형식 hand"
       },
       {
         "index": 17,
         "segments": [
-          { "role": "S", "text": "Engineers, coders, and economists" },
-          { "role": "M", "text": "all" },
-          { "role": "V", "text": "lean on" },
-          { "role": "O", "text": "the very same trick" },
-          { "role": "M", "text": "whenever they simplify messy formulas.", "note": "whenever 부사절" }
+          {
+            "role": "S",
+            "text": "Engineers, coders, and economists"
+          },
+          {
+            "role": "M",
+            "text": "all"
+          },
+          {
+            "role": "V",
+            "text": "lean on"
+          },
+          {
+            "role": "O",
+            "text": "the very same trick"
+          },
+          {
+            "role": "M",
+            "text": "whenever they simplify messy formulas.",
+            "note": "whenever 부사절"
+          }
         ],
         "grammar_note": "병렬 주어 + lean on + whenever 절"
       },
       {
         "index": 18,
         "segments": [
-          { "role": "S", "text": "The real lesson here" },
-          { "role": "V", "text": "is" },
-          { "role": "C", "text": "not just the steps themselves but the habit of looking for structure.", "note": "not just A but B" }
+          {
+            "role": "S",
+            "text": "The real lesson here"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "not just the steps themselves but the habit of looking for structure.",
+            "note": "not just A but B"
+          }
         ],
         "grammar_note": "not just A but B 구문, 재귀 themselves"
       },
       {
         "index": 19,
         "segments": [
-          { "role": "S", "text": "A scary line of symbols" },
-          { "role": "V", "text": "is" },
-          { "role": "M", "text": "often" },
-          { "role": "C", "text": "just a simple machine wearing a clever ____,", "note": "빈칸 보어 + 현재분사" },
-          { "role": "M", "text": "quietly waiting for someone patient enough to take it apart.", "note": "현재분사 + enough to" }
+          {
+            "role": "S",
+            "text": "A scary line of symbols"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "M",
+            "text": "often"
+          },
+          {
+            "role": "C",
+            "text": "just a simple machine wearing a clever ____,",
+            "note": "빈칸 보어 + 현재분사"
+          },
+          {
+            "role": "M",
+            "text": "quietly waiting for someone patient enough to take it apart.",
+            "note": "현재분사 + enough to"
+          }
         ],
         "grammar_note": "현재분사 wearing/waiting + 형용사 enough to-V"
       }
@@ -320,52 +634,70 @@
       {
         "q_index": 0,
         "q_style": "요지",
-        "correct": 1,
+        "correct": 3,
         "evidence": "글은 전개와 인수분해를 '같은 기술의 반대 방향(mirror images)'으로 설명하고, \"the habit of seeing structure\"가 진짜 교훈이라고 못박는다. 따라서 '둘은 같은 기술의 반대 방향이며 구조를 보면 어려운 문제가 쉬워진다'가 요지다.",
         "rationales": [
           "본문은 인수분해를 '건너뛰라'고 말하지 않는다. 오히려 핵심으로 본다.",
-          "(정답) 전개=인수분해의 역, 구조 보기로 문제가 쉬워진다는 글 전체 주장을 요약한다.",
-          "숫자 6은 예시일 뿐, 인수분해가 6에만 쓰인다는 것은 비약이다.",
           "공학자·프로그래머·경제학자가 인수분해를 쓴다고 했으므로 '실생활 쓸모 없음'은 모순이다.",
+          "숫자 6은 예시일 뿐, 인수분해가 6에만 쓰인다는 것은 비약이다.",
+          "(정답) 전개=인수분해의 역, 구조 보기로 문제가 쉬워진다는 글 전체 주장을 요약한다.",
           "본문은 '기호 암기'가 아니라 '구조 이해'를 강조하므로 정반대다."
         ],
         "key_terms": [
-          { "en": "factor", "ko": "인수분해하다" },
-          { "en": "structure", "ko": "구조" }
+          {
+            "en": "factor",
+            "ko": "인수분해하다"
+          },
+          {
+            "en": "structure",
+            "ko": "구조"
+          }
         ]
       },
       {
         "q_index": 1,
         "q_style": "빈칸 추론",
-        "correct": 1,
+        "correct": 4,
         "evidence": "빈칸 뒤 \"waiting for someone patient enough to take it apart\"가 단서다. 분해되기를 기다리는, 무서워 보이지만 사실은 단순한 기계는 '변장(disguise)' 상태다. 본문 전체의 '복잡해 보여도 단순한 구조'라는 주제와 호응한다.",
         "rationales": [
           "'아무도 못 읽는 언어'는 '분해하면 단순하다'는 주제와 어긋난다.",
-          "(정답) disguise(변장)는 '무서워 보이지만 사실 단순한 기계'라는 본문 핵심과 일치한다.",
+          "'답이 없는 암호'는 '곧바로 답을 알려준다'는 15번과 모순된다.",
           "'결코 열 수 없는 상자'는 '분해할 수 있다'는 본문과 모순된다.",
           "'멈출 수 없는 운동'은 본문 맥락(구조 분해)과 무관하다.",
-          "'답이 없는 암호'는 '곧바로 답을 알려준다'는 15번과 모순된다."
+          "(정답) disguise(변장)는 '무서워 보이지만 사실 단순한 기계'라는 본문 핵심과 일치한다."
         ],
         "key_terms": [
-          { "en": "disguise", "ko": "변장" },
-          { "en": "patient", "ko": "인내심 있는" }
+          {
+            "en": "disguise",
+            "ko": "변장"
+          },
+          {
+            "en": "patient",
+            "ko": "인내심 있는"
+          }
         ]
       },
       {
         "q_index": 2,
         "q_style": "함의 추론",
-        "correct": 1,
+        "correct": 0,
         "evidence": "11번 문장은 \"Expanding builds the machine; factoring takes it apart\"로 전개와 대비된다. 인수분해는 긴 식을 그것을 만든 단순한 부분(블록)으로 되돌리는 것이므로, takes it apart는 '긴 식을 그것을 이룬 단순한 부분으로 다시 쓴다'를 뜻한다.",
         "rationales": [
-          "인수분해는 식을 '파괴'하는 것이 아니라 형태만 바꾼다(검산도 가능).",
           "(정답) 긴 식을 그것을 만든 단순한 부분(인수)으로 되돌린다는 인수분해의 정의 그대로다.",
+          "인수분해는 식을 '파괴'하는 것이 아니라 형태만 바꾼다(검산도 가능).",
           "항을 '추가해 더 길게'는 전개에 가깝고 인수분해와 반대다.",
           "인수분해는 방정식의 '답을 바꾸지' 않는다. 같은 식의 다른 표현이다.",
           "'틀렸음을 증명'한다는 내용은 본문에 없다."
         ],
         "key_terms": [
-          { "en": "take apart", "ko": "분해하다" },
-          { "en": "expression", "ko": "식" }
+          {
+            "en": "take apart",
+            "ko": "분해하다"
+          },
+          {
+            "en": "expression",
+            "ko": "식"
+          }
         ]
       },
       {
@@ -379,8 +711,14 @@
           "(B) factoring — '긴 식을 다시 블록으로 나눈다'는 요약은 본문의 인수분해 정의와 일치한다."
         ],
         "key_terms": [
-          { "en": "expanding", "ko": "전개" },
-          { "en": "factoring", "ko": "인수분해" }
+          {
+            "en": "expanding",
+            "ko": "전개"
+          },
+          {
+            "en": "factoring",
+            "ko": "인수분해"
+          }
         ]
       }
     ]
@@ -394,30 +732,56 @@
         "synonyms": [],
         "antonyms": [],
         "examples": [
-          { "en": "A polynomial is built from terms added together.", "ko": "다항식은 더해진 항들로 이루어진다." },
-          { "en": "We can expand or factor a polynomial.", "ko": "우리는 다항식을 전개하거나 인수분해할 수 있다." }
+          {
+            "en": "A polynomial is built from terms added together.",
+            "ko": "다항식은 더해진 항들로 이루어진다."
+          },
+          {
+            "en": "We can expand or factor a polynomial.",
+            "ko": "우리는 다항식을 전개하거나 인수분해할 수 있다."
+          }
         ]
       },
       {
         "word": "expand",
         "pos": "v.",
         "meaning_ko": "전개하다, 펼치다",
-        "synonyms": ["multiply out"],
-        "antonyms": ["factor"],
+        "synonyms": [
+          "multiply out"
+        ],
+        "antonyms": [
+          "factor"
+        ],
         "examples": [
-          { "en": "Expand the brackets to remove them.", "ko": "괄호를 없애려면 식을 전개하라." },
-          { "en": "When you expand (x+3)(x+2), you get x²+5x+6.", "ko": "(x+3)(x+2)를 전개하면 x²+5x+6이 된다." }
+          {
+            "en": "Expand the brackets to remove them.",
+            "ko": "괄호를 없애려면 식을 전개하라."
+          },
+          {
+            "en": "When you expand (x+3)(x+2), you get x²+5x+6.",
+            "ko": "(x+3)(x+2)를 전개하면 x²+5x+6이 된다."
+          }
         ]
       },
       {
         "word": "factor",
         "pos": "v.",
         "meaning_ko": "인수분해하다",
-        "synonyms": ["break apart"],
-        "antonyms": ["expand"],
+        "synonyms": [
+          "break apart"
+        ],
+        "antonyms": [
+          "expand"
+        ],
         "examples": [
-          { "en": "Factor the expression back into two blocks.", "ko": "그 식을 다시 두 블록으로 인수분해하라." },
-          { "en": "If you can factor, equations get easier.", "ko": "인수분해할 수 있으면 방정식이 쉬워진다." }
+          {
+            "en": "Factor the expression back into two blocks.",
+            "ko": "그 식을 다시 두 블록으로 인수분해하라."
+          },
+          {
+            "en": "If you can factor, equations get easier.",
+            "ko": "인수분해할 수 있으면 방정식이 쉬워진다."
+          }
         ]
       },
       {
@@ -427,19 +791,33 @@
         "synonyms": [],
         "antonyms": [],
         "examples": [
-          { "en": "Each term came from a clear rule.", "ko": "각 항은 분명한 규칙에서 나왔다." },
-          { "en": "The expression x²+5x+6 has three terms.", "ko": "식 x²+5x+6은 세 개의 항을 가진다." }
+          {
+            "en": "Each term came from a clear rule.",
+            "ko": "각 항은 분명한 규칙에서 나왔다."
+          },
+          {
+            "en": "The expression x²+5x+6 has three terms.",
+            "ko": "식 x²+5x+6은 세 개의 항을 가진다."
+          }
         ]
       },
       {
         "word": "expression",
         "pos": "n.",
         "meaning_ko": "(수학) 식",
-        "synonyms": ["formula"],
+        "synonyms": [
+          "formula"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "You built one longer expression.", "ko": "당신은 하나의 더 긴 식을 만들었다." },
-          { "en": "A simple expression is easier to solve.", "ko": "단순한 식이 풀기 더 쉽다." }
+          {
+            "en": "You built one longer expression.",
+            "ko": "당신은 하나의 더 긴 식을 만들었다."
+          },
+          {
+            "en": "A simple expression is easier to solve.",
+            "ko": "단순한 식이 풀기 더 쉽다."
+          }
         ]
       },
       {
@@ -447,76 +825,138 @@
         "pos": "v.",
         "meaning_ko": "곱하다",
         "synonyms": [],
-        "antonyms": ["divide"],
+        "antonyms": [
+          "divide"
+        ],
         "examples": [
-          { "en": "Multiply each piece by each piece in the other block.", "ko": "각 조각을 다른 블록의 각 조각과 곱하라." },
-          { "en": "Two and three multiply to six.", "ko": "2와 3을 곱하면 6이 된다." }
+          {
+            "en": "Multiply each piece by each piece in the other block.",
+            "ko": "각 조각을 다른 블록의 각 조각과 곱하라."
+          },
+          {
+            "en": "Two and three multiply to six.",
+            "ko": "2와 3을 곱하면 6이 된다."
+          }
         ]
       },
       {
         "word": "backward",
         "pos": "adv.",
         "meaning_ko": "거꾸로, 반대 방향으로",
-        "synonyms": ["in reverse"],
-        "antonyms": ["forward"],
+        "synonyms": [
+          "in reverse"
+        ],
+        "antonyms": [
+          "forward"
+        ],
         "examples": [
-          { "en": "Factoring is the same skill running backward.", "ko": "인수분해는 거꾸로 진행되는 같은 기술이다." },
-          { "en": "Read the steps backward to check your work.", "ko": "검산하려면 단계를 거꾸로 읽어라." }
+          {
+            "en": "Factoring is the same skill running backward.",
+            "ko": "인수분해는 거꾸로 진행되는 같은 기술이다."
+          },
+          {
+            "en": "Read the steps backward to check your work.",
+            "ko": "검산하려면 단계를 거꾸로 읽어라."
+          }
         ]
       },
       {
         "word": "mirror image",
         "pos": "n.",
         "meaning_ko": "거울상, 정반대 모습",
-        "synonyms": ["reverse"],
+        "synonyms": [
+          "reverse"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "Expanding and factoring are mirror images.", "ko": "전개와 인수분해는 서로 거울상이다." },
-          { "en": "Each step has a mirror image that undoes it.", "ko": "각 단계에는 그것을 되돌리는 거울상이 있다." }
+          {
+            "en": "Expanding and factoring are mirror images.",
+            "ko": "전개와 인수분해는 서로 거울상이다."
+          },
+          {
+            "en": "Each step has a mirror image that undoes it.",
+            "ko": "각 단계에는 그것을 되돌리는 거울상이 있다."
+          }
         ]
       },
       {
         "word": "shrink",
         "pos": "v.",
         "meaning_ko": "줄어들다",
-        "synonyms": ["reduce"],
-        "antonyms": ["grow"],
+        "synonyms": [
+          "reduce"
+        ],
+        "antonyms": [
+          "grow"
+        ],
         "examples": [
-          { "en": "A long equation can shrink into a few pieces.", "ko": "긴 방정식은 몇 조각으로 줄어들 수 있다." },
-          { "en": "Factoring makes the problem shrink.", "ko": "인수분해는 문제를 줄어들게 만든다." }
+          {
+            "en": "A long equation can shrink into a few pieces.",
+            "ko": "긴 방정식은 몇 조각으로 줄어들 수 있다."
+          },
+          {
+            "en": "Factoring makes the problem shrink.",
+            "ko": "인수분해는 문제를 줄어들게 만든다."
+          }
         ]
       },
       {
         "word": "simplify",
         "pos": "v.",
         "meaning_ko": "단순화하다",
-        "synonyms": ["make simpler"],
-        "antonyms": ["complicate"],
+        "synonyms": [
+          "make simpler"
+        ],
+        "antonyms": [
+          "complicate"
+        ],
         "examples": [
-          { "en": "Economists simplify messy formulas with this trick.", "ko": "경제학자들은 이 요령으로 지저분한 공식을 단순화한다." },
-          { "en": "Always try to simplify before you solve.", "ko": "풀기 전에 항상 단순화하려고 하라." }
+          {
+            "en": "Economists simplify messy formulas with this trick.",
+            "ko": "경제학자들은 이 요령으로 지저분한 공식을 단순화한다."
+          },
+          {
+            "en": "Always try to simplify before you solve.",
+            "ko": "풀기 전에 항상 단순화하려고 하라."
+          }
         ]
       },
       {
         "word": "structure",
         "pos": "n.",
         "meaning_ko": "구조, 짜임",
-        "synonyms": ["pattern"],
+        "synonyms": [
+          "pattern"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "The real lesson is the habit of seeing structure.", "ko": "진짜 교훈은 구조를 보는 습관이다." },
-          { "en": "Every formula has a hidden structure.", "ko": "모든 공식에는 숨은 구조가 있다." }
+          {
+            "en": "The real lesson is the habit of seeing structure.",
+            "ko": "진짜 교훈은 구조를 보는 습관이다."
+          },
+          {
+            "en": "Every formula has a hidden structure.",
+            "ko": "모든 공식에는 숨은 구조가 있다."
+          }
         ]
       },
       {
         "word": "disguise",
         "pos": "n.",
         "meaning_ko": "변장, 위장",
-        "synonyms": ["cover"],
+        "synonyms": [
+          "cover"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "A scary formula is a simple machine in disguise.", "ko": "무서운 공식은 변장한 단순한 기계다." },
-          { "en": "The hard problem was an easy one in disguise.", "ko": "그 어려운 문제는 변장한 쉬운 문제였다." }
+          {
+            "en": "A scary formula is a simple machine in disguise.",
+            "ko": "무서운 공식은 변장한 단순한 기계다."
+          },
+          {
+            "en": "The hard problem was an easy one in disguise.",
+            "ko": "그 어려운 문제는 변장한 쉬운 문제였다."
+          }
         ]
       }
     ]

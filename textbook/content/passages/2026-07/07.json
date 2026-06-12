@@ -35,12 +35,12 @@
         "stem": "다음 글의 요지로 가장 적절한 것은?",
         "choices": [
           "Math statements should be judged as probably true, like everyday talk.",
-          "A statement must be clearly true or false, and a single counterexample is enough to prove it false.",
-          "Proving a statement true is always easier than proving it false.",
           "Opinions like favorite colors are the most important math statements.",
+          "Proving a statement true is always easier than proving it false.",
+          "A statement must be clearly true or false, and a single counterexample is enough to prove it false.",
           "The more examples agree, the more certainly a rule is proven true."
         ],
-        "answer_index": 1
+        "answer_index": 3
       },
       {
         "type": "mock_objective",
@@ -48,25 +48,25 @@
         "stem": "윗글의 밑줄 친 빈칸에 들어갈 말로 가장 적절한 것은?",
         "choices": [
           "voice that agrees with everyone",
-          "exception that breaks the claim",
+          "rule that no one tests",
           "number larger than ten",
           "opinion that feels right",
-          "rule that no one tests"
+          "exception that breaks the claim"
         ],
-        "answer_index": 1
+        "answer_index": 4
       },
       {
         "type": "mock_objective",
         "style": "함의 추론",
         "stem": "윗글의 밑줄 친 표현 the whole claim falls instantly 가 의미하는 바로 가장 적절한 것은?",
         "choices": [
-          "the claim becomes even stronger after the test",
           "a single counterexample makes the whole statement false at once",
+          "the claim becomes even stronger after the test",
           "the claim needs a thousand more examples to check",
           "the number two proves the claim is true",
           "the statement can no longer be tested by anyone"
         ],
-        "answer_index": 1
+        "answer_index": 0
       },
       {
         "type": "school_descriptive",
@@ -96,10 +96,26 @@
         "type": "emoji_flow",
         "title": "참·거짓 판별",
         "steps": [
-          { "emoji": "📝", "label": "명제", "note": "참/거짓 분명" },
-          { "emoji": "✅", "label": "참 증명", "note": "모든 경우" },
-          { "emoji": "❌", "label": "거짓", "note": "반례 1개" },
-          { "emoji": "👊", "label": "반례", "note": "한 방에 무너짐" }
+          {
+            "emoji": "📝",
+            "label": "명제",
+            "note": "참/거짓 분명"
+          },
+          {
+            "emoji": "✅",
+            "label": "참 증명",
+            "note": "모든 경우"
+          },
+          {
+            "emoji": "❌",
+            "label": "거짓",
+            "note": "반례 1개"
+          },
+          {
+            "emoji": "👊",
+            "label": "반례",
+            "note": "한 방에 무너짐"
+          }
         ]
       }
     }
@@ -109,199 +125,476 @@
       {
         "index": 1,
         "segments": [
-          { "role": "M", "text": "In everyday talk," },
-          { "role": "S", "text": "we" },
-          { "role": "V", "text": "say" },
-          { "role": "O", "text": "things are \"probably true\" or \"mostly right.\"", "note": "명사절 목적어" }
+          {
+            "role": "M",
+            "text": "In everyday talk,"
+          },
+          {
+            "role": "S",
+            "text": "we"
+          },
+          {
+            "role": "V",
+            "text": "say"
+          },
+          {
+            "role": "O",
+            "text": "things are \"probably true\" or \"mostly right.\"",
+            "note": "명사절 목적어"
+          }
         ],
         "grammar_note": "say + 명사절 목적어"
       },
       {
         "index": 2,
         "segments": [
-          { "role": "S", "text": "Math" },
-          { "role": "V", "text": "does not work" },
-          { "role": "M", "text": "that way." }
+          {
+            "role": "S",
+            "text": "Math"
+          },
+          {
+            "role": "V",
+            "text": "does not work"
+          },
+          {
+            "role": "M",
+            "text": "that way."
+          }
         ],
         "grammar_note": "do 강조 부정"
       },
       {
         "index": 3,
         "segments": [
-          { "role": "M", "text": "In math," },
-          { "role": "S", "text": "a statement" },
-          { "role": "V", "text": "must be" },
-          { "role": "C", "text": "clearly true or clearly false, with no middle ground.", "note": "조동사 must + 병렬 보어" }
+          {
+            "role": "M",
+            "text": "In math,"
+          },
+          {
+            "role": "S",
+            "text": "a statement"
+          },
+          {
+            "role": "V",
+            "text": "must be"
+          },
+          {
+            "role": "C",
+            "text": "clearly true or clearly false, with no middle ground.",
+            "note": "조동사 must + 병렬 보어"
+          }
         ],
         "grammar_note": "조동사 must be + 형용사 병렬"
       },
       {
         "index": 4,
         "segments": [
-          { "role": "S", "text": "A sentence like \"every even number is bigger than ten\"" },
-          { "role": "V", "text": "is" },
-          { "role": "C", "text": "a statement," },
-          { "role": "CONJ", "text": "because", "note": "원인절" },
-          { "role": "S", "text": "we" },
-          { "role": "V", "text": "can test" },
-          { "role": "O", "text": "it." }
+          {
+            "role": "S",
+            "text": "A sentence like \"every even number is bigger than ten\""
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "a statement,"
+          },
+          {
+            "role": "CONJ",
+            "text": "because",
+            "note": "원인절"
+          },
+          {
+            "role": "S",
+            "text": "we"
+          },
+          {
+            "role": "V",
+            "text": "can test"
+          },
+          {
+            "role": "O",
+            "text": "it."
+          }
         ],
         "grammar_note": "because 원인 부사절"
       },
       {
         "index": 5,
         "segments": [
-          { "role": "S", "text": "A sentence like \"blue is the best color\"" },
-          { "role": "V", "text": "is" },
-          { "role": "M", "text": "not," },
-          { "role": "CONJ", "text": "because", "note": "원인절" },
-          { "role": "S", "text": "there" },
-          { "role": "V", "text": "is" },
-          { "role": "C", "text": "no way to check it for everyone.", "note": "to부정사 형용사적" }
+          {
+            "role": "S",
+            "text": "A sentence like \"blue is the best color\""
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "M",
+            "text": "not,"
+          },
+          {
+            "role": "CONJ",
+            "text": "because",
+            "note": "원인절"
+          },
+          {
+            "role": "S",
+            "text": "there"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "no way to check it for everyone.",
+            "note": "to부정사 형용사적"
+          }
         ],
         "grammar_note": "because + there is no way to-V"
       },
       {
         "index": 6,
         "segments": [
-          { "role": "S", "text": "This sharp line" },
-          { "role": "V", "text": "is" },
-          { "role": "C", "text": "what makes math so powerful and so honest.", "note": "관계대명사 what + 사역" }
+          {
+            "role": "S",
+            "text": "This sharp line"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "what makes math so powerful and so honest.",
+            "note": "관계대명사 what + 사역"
+          }
         ],
         "grammar_note": "관계대명사 what 보어 + make O C"
       },
       {
         "index": 7,
         "segments": [
-          { "role": "CONJ", "text": "So" },
-          { "role": "V", "text": "how do we decide" },
-          { "role": "O", "text": "if a statement is true?", "note": "if 명사절" }
+          {
+            "role": "CONJ",
+            "text": "So"
+          },
+          {
+            "role": "V",
+            "text": "how do we decide"
+          },
+          {
+            "role": "O",
+            "text": "if a statement is true?",
+            "note": "if 명사절"
+          }
         ],
         "grammar_note": "if 명사절 목적어 의문문"
       },
       {
         "index": 8,
         "segments": [
-          { "role": "M", "text": "To prove it true,", "note": "to부정사 목적" },
-          { "role": "S", "text": "we" },
-          { "role": "V", "text": "must show" },
-          { "role": "O", "text": "it holds in every single case, not just a few.", "note": "명사절 + not just" }
+          {
+            "role": "M",
+            "text": "To prove it true,",
+            "note": "to부정사 목적"
+          },
+          {
+            "role": "S",
+            "text": "we"
+          },
+          {
+            "role": "V",
+            "text": "must show"
+          },
+          {
+            "role": "O",
+            "text": "it holds in every single case, not just a few.",
+            "note": "명사절 + not just"
+          }
         ],
         "grammar_note": "to부정사 목적 + show 명사절"
       },
       {
         "index": 9,
         "segments": [
-          { "role": "S", "text": "That" },
-          { "role": "V", "text": "sounds", "note": "2형식 감각동사" },
-          { "role": "C", "text": "hard," },
-          { "role": "CONJ", "text": "and" },
-          { "role": "M", "text": "often" },
-          { "role": "S", "text": "it" },
-          { "role": "V", "text": "is." }
+          {
+            "role": "S",
+            "text": "That"
+          },
+          {
+            "role": "V",
+            "text": "sounds",
+            "note": "2형식 감각동사"
+          },
+          {
+            "role": "C",
+            "text": "hard,"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "M",
+            "text": "often"
+          },
+          {
+            "role": "S",
+            "text": "it"
+          },
+          {
+            "role": "V",
+            "text": "is."
+          }
         ],
         "grammar_note": "sound 형용사 보어 + 등위 and"
       },
       {
         "index": 10,
         "segments": [
-          { "role": "CONJ", "text": "But", "note": "대조" },
-          { "role": "S", "text": "proving a statement false", "note": "동명사 주어" },
-          { "role": "V", "text": "is" },
-          { "role": "C", "text": "surprisingly easy." }
+          {
+            "role": "CONJ",
+            "text": "But",
+            "note": "대조"
+          },
+          {
+            "role": "S",
+            "text": "proving a statement false",
+            "note": "동명사 주어"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "surprisingly easy."
+          }
         ],
         "grammar_note": "대조 But + 동명사 주어"
       },
       {
         "index": 11,
         "segments": [
-          { "role": "S", "text": "We" },
-          { "role": "M", "text": "only" },
-          { "role": "V", "text": "need to find" },
-          { "role": "O", "text": "one example where it breaks.", "note": "관계부사 where" }
+          {
+            "role": "S",
+            "text": "We"
+          },
+          {
+            "role": "M",
+            "text": "only"
+          },
+          {
+            "role": "V",
+            "text": "need to find"
+          },
+          {
+            "role": "O",
+            "text": "one example where it breaks.",
+            "note": "관계부사 where"
+          }
         ],
         "grammar_note": "need to-V + 관계부사 where"
       },
       {
         "index": 12,
         "segments": [
-          { "role": "S", "text": "This single bad case" },
-          { "role": "V", "text": "is called", "note": "수동태" },
-          { "role": "C", "text": "a counterexample." }
+          {
+            "role": "S",
+            "text": "This single bad case"
+          },
+          {
+            "role": "V",
+            "text": "is called",
+            "note": "수동태"
+          },
+          {
+            "role": "C",
+            "text": "a counterexample."
+          }
         ],
         "grammar_note": "call O C의 수동태"
       },
       {
         "index": 13,
         "segments": [
-          { "role": "M", "text": "For \"every even number is bigger than ten,\"" },
-          { "role": "S", "text": "the number two" },
-          { "role": "V", "text": "is" },
-          { "role": "C", "text": "even and not bigger than ten," },
-          { "role": "CONJ", "text": "so", "note": "결과" },
-          { "role": "S", "text": "the whole claim" },
-          { "role": "V", "text": "falls" },
-          { "role": "M", "text": "instantly." }
+          {
+            "role": "M",
+            "text": "For \"every even number is bigger than ten,\""
+          },
+          {
+            "role": "S",
+            "text": "the number two"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "even and not bigger than ten,"
+          },
+          {
+            "role": "CONJ",
+            "text": "so",
+            "note": "결과"
+          },
+          {
+            "role": "S",
+            "text": "the whole claim"
+          },
+          {
+            "role": "V",
+            "text": "falls"
+          },
+          {
+            "role": "M",
+            "text": "instantly."
+          }
         ],
         "grammar_note": "결과 so + 1형식 fall"
       },
       {
         "index": 14,
         "segments": [
-          { "role": "S", "text": "This" },
-          { "role": "V", "text": "is" },
-          { "role": "C", "text": "a quietly amazing idea." }
+          {
+            "role": "S",
+            "text": "This"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "a quietly amazing idea."
+          }
         ],
         "grammar_note": "2형식 단문"
       },
       {
         "index": 15,
         "segments": [
-          { "role": "S", "text": "A thousand confirming examples" },
-          { "role": "V", "text": "cannot fully prove" },
-          { "role": "O", "text": "a rule," },
-          { "role": "CONJ", "text": "yet", "note": "양보" },
-          { "role": "S", "text": "one counterexample" },
-          { "role": "V", "text": "can destroy" },
-          { "role": "O", "text": "it for good." }
+          {
+            "role": "S",
+            "text": "A thousand confirming examples"
+          },
+          {
+            "role": "V",
+            "text": "cannot fully prove"
+          },
+          {
+            "role": "O",
+            "text": "a rule,"
+          },
+          {
+            "role": "CONJ",
+            "text": "yet",
+            "note": "양보"
+          },
+          {
+            "role": "S",
+            "text": "one counterexample"
+          },
+          {
+            "role": "V",
+            "text": "can destroy"
+          },
+          {
+            "role": "O",
+            "text": "it for good."
+          }
         ],
         "grammar_note": "양보 yet + 대조 구조"
       },
       {
         "index": 16,
         "segments": [
-          { "role": "S", "text": "It" },
-          { "role": "V", "text": "teaches" },
-          { "role": "O", "text": "a habit that reaches far past math class.", "note": "관계대명사 that" }
+          {
+            "role": "S",
+            "text": "It"
+          },
+          {
+            "role": "V",
+            "text": "teaches"
+          },
+          {
+            "role": "O",
+            "text": "a habit that reaches far past math class.",
+            "note": "관계대명사 that"
+          }
         ],
         "grammar_note": "관계대명사 that 수식"
       },
       {
         "index": 17,
         "segments": [
-          { "role": "M", "text": "When someone makes a big claim,", "note": "when 부사절" },
-          { "role": "S", "text": "a careful thinker" },
-          { "role": "V", "text": "does not just nod along.", "note": "구동사 nod along" }
+          {
+            "role": "M",
+            "text": "When someone makes a big claim,",
+            "note": "when 부사절"
+          },
+          {
+            "role": "S",
+            "text": "a careful thinker"
+          },
+          {
+            "role": "V",
+            "text": "does not just nod along.",
+            "note": "구동사 nod along"
+          }
         ],
         "grammar_note": "when 부사절 + nod along 구동사"
       },
       {
         "index": 18,
         "segments": [
-          { "role": "S", "text": "They" },
-          { "role": "V", "text": "ask" },
-          { "role": "O", "text": "whether a single clear exception might exist.", "note": "whether 명사절" }
+          {
+            "role": "S",
+            "text": "They"
+          },
+          {
+            "role": "V",
+            "text": "ask"
+          },
+          {
+            "role": "O",
+            "text": "whether a single clear exception might exist.",
+            "note": "whether 명사절"
+          }
         ],
         "grammar_note": "ask + whether 명사절"
       },
       {
         "index": 19,
         "segments": [
-          { "role": "M", "text": "In a world full of confident voices,", "note": "형용사구 수식" },
-          { "role": "S", "text": "the sharpest question" },
-          { "role": "V", "text": "is" },
-          { "role": "M", "text": "often" },
-          { "role": "C", "text": "not \"how many agree?\" but \"can you find even one honest ____?\"", "note": "not A but B" }
+          {
+            "role": "M",
+            "text": "In a world full of confident voices,",
+            "note": "형용사구 수식"
+          },
+          {
+            "role": "S",
+            "text": "the sharpest question"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "M",
+            "text": "often"
+          },
+          {
+            "role": "C",
+            "text": "not \"how many agree?\" but \"can you find even one honest ____?\"",
+            "note": "not A but B"
+          }
         ],
         "grammar_note": "not A but B 구문, 인용 의문문"
       }
@@ -313,52 +606,70 @@
       {
         "q_index": 0,
         "q_style": "요지",
-        "correct": 1,
+        "correct": 3,
         "evidence": "글은 명제가 참/거짓이 분명해야 하며(3번), 거짓 증명은 반례 하나면 충분하다(11~13번)고 한다. 따라서 '명제는 분명히 참 또는 거짓이고, 반례 하나로 거짓을 증명할 수 있다'가 요지다.",
         "rationales": [
           "2번 \"Math does not work that way\"와 모순된다. 수학은 '아마 맞다'로 판단하지 않는다.",
-          "(정답) 명제의 참/거짓 이분 + 반례 하나로 거짓 증명이라는 글 전체 주장을 요약한다.",
-          "8·10번에 따르면 참 증명이 더 어렵고 거짓 증명(반례)이 쉽다. 정반대다.",
           "5번에서 '최고의 색' 같은 의견은 명제가 아니라고 했다.",
+          "8·10번에 따르면 참 증명이 더 어렵고 거짓 증명(반례)이 쉽다. 정반대다.",
+          "(정답) 명제의 참/거짓 이분 + 반례 하나로 거짓 증명이라는 글 전체 주장을 요약한다.",
           "15번 \"A thousand ... examples cannot fully prove a rule\"와 정면 모순된다."
         ],
         "key_terms": [
-          { "en": "statement", "ko": "명제" },
-          { "en": "counterexample", "ko": "반례" }
+          {
+            "en": "statement",
+            "ko": "명제"
+          },
+          {
+            "en": "counterexample",
+            "ko": "반례"
+          }
         ]
       },
       {
         "q_index": 1,
         "q_style": "빈칸 추론",
-        "correct": 1,
+        "correct": 4,
         "evidence": "빈칸 앞 \"not 'how many agree?' but 'can you find even one honest ___?'\"는 not A but B 구조다. 글 전체가 강조한, 주장을 무너뜨리는 하나의 사례는 '예외(exception)'이며, 18번 \"a single clear exception\"이 직접 근거다.",
         "rationales": [
           "'모두와 동의하는 목소리'는 'how many agree'와 같은 쪽이라 B가 될 수 없다.",
-          "(정답) exception은 18번의 'single clear exception' 및 반례 개념과 일치한다.",
+          "'아무도 검증 안 하는 규칙'은 '검증한다'는 글의 태도와 반대다.",
           "'10보다 큰 수'는 예시의 일부일 뿐 빈칸의 일반 개념이 아니다.",
           "'옳게 느껴지는 의견'은 명제가 아니라고 한 본문과 어긋난다.",
-          "'아무도 검증 안 하는 규칙'은 '검증한다'는 글의 태도와 반대다."
+          "(정답) exception은 18번의 'single clear exception' 및 반례 개념과 일치한다."
         ],
         "key_terms": [
-          { "en": "exception", "ko": "예외" },
-          { "en": "claim", "ko": "주장" }
+          {
+            "en": "exception",
+            "ko": "예외"
+          },
+          {
+            "en": "claim",
+            "ko": "주장"
+          }
         ]
       },
       {
         "q_index": 2,
         "q_style": "함의 추론",
-        "correct": 1,
+        "correct": 0,
         "evidence": "13번에서 숫자 2가 반례가 되어 'every even number is bigger than ten'이 거짓이 된다고 한다. 따라서 the whole claim falls instantly는 '하나의 반례가 명제 전체를 한순간에 거짓으로 만든다'를 뜻한다.",
         "rationales": [
-          "반례가 나오면 주장은 '더 강해지는' 것이 아니라 무너진다.",
           "(정답) 반례 하나로 명제 전체가 즉시 거짓이 된다는 본문 설명 그대로다.",
+          "반례가 나오면 주장은 '더 강해지는' 것이 아니라 무너진다.",
           "거짓 증명은 '천 개의 예시'가 더 필요한 게 아니라 반례 하나면 된다.",
           "숫자 2는 주장이 '참'임을 증명하는 것이 아니라 '거짓'임을 보이는 반례다.",
           "'더 이상 검증 불가'는 본문 의미가 아니다."
         ],
         "key_terms": [
-          { "en": "claim", "ko": "주장" },
-          { "en": "false", "ko": "거짓의" }
+          {
+            "en": "claim",
+            "ko": "주장"
+          },
+          {
+            "en": "false",
+            "ko": "거짓의"
+          }
         ]
       },
       {
@@ -372,8 +683,14 @@
           "(B) counterexample — '규칙이 깨지는 단 하나의 경우'는 12번의 counterexample과 일치한다."
         ],
         "key_terms": [
-          { "en": "statement", "ko": "명제" },
-          { "en": "counterexample", "ko": "반례" }
+          {
+            "en": "statement",
+            "ko": "명제"
+          },
+          {
+            "en": "counterexample",
+            "ko": "반례"
+          }
         ]
       }
     ]
@@ -384,33 +701,61 @@
         "word": "statement",
         "pos": "n.",
         "meaning_ko": "명제, 진술",
-        "synonyms": ["claim"],
+        "synonyms": [
+          "claim"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "A statement must be clearly true or false.", "ko": "명제는 분명히 참이거나 거짓이어야 한다." },
-          { "en": "We can test a statement but not an opinion.", "ko": "우리는 명제는 검증할 수 있지만 의견은 그럴 수 없다." }
+          {
+            "en": "A statement must be clearly true or false.",
+            "ko": "명제는 분명히 참이거나 거짓이어야 한다."
+          },
+          {
+            "en": "We can test a statement but not an opinion.",
+            "ko": "우리는 명제는 검증할 수 있지만 의견은 그럴 수 없다."
+          }
         ]
       },
       {
         "word": "true",
         "pos": "adj.",
         "meaning_ko": "참인",
-        "synonyms": ["correct"],
-        "antonyms": ["false"],
+        "synonyms": [
+          "correct"
+        ],
+        "antonyms": [
+          "false"
+        ],
         "examples": [
-          { "en": "To prove it true, we must check every case.", "ko": "참임을 증명하려면 모든 경우를 확인해야 한다." },
-          { "en": "The statement turned out to be true.", "ko": "그 명제는 참으로 밝혀졌다." }
+          {
+            "en": "To prove it true, we must check every case.",
+            "ko": "참임을 증명하려면 모든 경우를 확인해야 한다."
+          },
+          {
+            "en": "The statement turned out to be true.",
+            "ko": "그 명제는 참으로 밝혀졌다."
+          }
         ]
       },
       {
         "word": "false",
         "pos": "adj.",
         "meaning_ko": "거짓인",
-        "synonyms": ["untrue"],
-        "antonyms": ["true"],
+        "synonyms": [
+          "untrue"
+        ],
+        "antonyms": [
+          "true"
+        ],
         "examples": [
-          { "en": "One counterexample makes a statement false.", "ko": "반례 하나가 명제를 거짓으로 만든다." },
-          { "en": "The claim was false from the start.", "ko": "그 주장은 처음부터 거짓이었다." }
+          {
+            "en": "One counterexample makes a statement false.",
+            "ko": "반례 하나가 명제를 거짓으로 만든다."
+          },
+          {
+            "en": "The claim was false from the start.",
+            "ko": "그 주장은 처음부터 거짓이었다."
+          }
         ]
       },
       {
@@ -420,96 +765,174 @@
         "synonyms": [],
         "antonyms": [],
         "examples": [
-          { "en": "The number two is a counterexample here.", "ko": "여기서 숫자 2는 반례다." },
-          { "en": "Find one counterexample to break the rule.", "ko": "규칙을 깨려면 반례 하나를 찾아라." }
+          {
+            "en": "The number two is a counterexample here.",
+            "ko": "여기서 숫자 2는 반례다."
+          },
+          {
+            "en": "Find one counterexample to break the rule.",
+            "ko": "규칙을 깨려면 반례 하나를 찾아라."
+          }
         ]
       },
       {
         "word": "prove",
         "pos": "v.",
         "meaning_ko": "증명하다",
-        "synonyms": ["show"],
-        "antonyms": ["disprove"],
+        "synonyms": [
+          "show"
+        ],
+        "antonyms": [
+          "disprove"
+        ],
         "examples": [
-          { "en": "To prove a rule true, check every case.", "ko": "규칙이 참임을 증명하려면 모든 경우를 확인하라." },
-          { "en": "They could not prove the claim.", "ko": "그들은 그 주장을 증명하지 못했다." }
+          {
+            "en": "To prove a rule true, check every case.",
+            "ko": "규칙이 참임을 증명하려면 모든 경우를 확인하라."
+          },
+          {
+            "en": "They could not prove the claim.",
+            "ko": "그들은 그 주장을 증명하지 못했다."
+          }
         ]
       },
       {
         "word": "test",
         "pos": "v.",
         "meaning_ko": "검증하다, 시험하다",
-        "synonyms": ["check"],
+        "synonyms": [
+          "check"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "We can test a statement to see if it holds.", "ko": "우리는 명제가 성립하는지 검증할 수 있다." },
-          { "en": "Scientists test ideas with experiments.", "ko": "과학자들은 실험으로 생각을 검증한다." }
+          {
+            "en": "We can test a statement to see if it holds.",
+            "ko": "우리는 명제가 성립하는지 검증할 수 있다."
+          },
+          {
+            "en": "Scientists test ideas with experiments.",
+            "ko": "과학자들은 실험으로 생각을 검증한다."
+          }
         ]
       },
       {
         "word": "case",
         "pos": "n.",
         "meaning_ko": "경우, 사례",
-        "synonyms": ["instance"],
+        "synonyms": [
+          "instance"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "A true rule must hold in every case.", "ko": "참인 규칙은 모든 경우에 성립해야 한다." },
-          { "en": "One bad case can break the rule.", "ko": "나쁜 경우 하나가 규칙을 깰 수 있다." }
+          {
+            "en": "A true rule must hold in every case.",
+            "ko": "참인 규칙은 모든 경우에 성립해야 한다."
+          },
+          {
+            "en": "One bad case can break the rule.",
+            "ko": "나쁜 경우 하나가 규칙을 깰 수 있다."
+          }
         ]
       },
       {
         "word": "hold",
         "pos": "v.",
         "meaning_ko": "성립하다, 유효하다",
-        "synonyms": ["be true"],
-        "antonyms": ["fail"],
+        "synonyms": [
+          "be true"
+        ],
+        "antonyms": [
+          "fail"
+        ],
         "examples": [
-          { "en": "We must show the rule holds in every case.", "ko": "그 규칙이 모든 경우에 성립함을 보여야 한다." },
-          { "en": "The pattern holds for small numbers only.", "ko": "그 패턴은 작은 수에서만 성립한다." }
+          {
+            "en": "We must show the rule holds in every case.",
+            "ko": "그 규칙이 모든 경우에 성립함을 보여야 한다."
+          },
+          {
+            "en": "The pattern holds for small numbers only.",
+            "ko": "그 패턴은 작은 수에서만 성립한다."
+          }
         ]
       },
       {
         "word": "claim",
         "pos": "n.",
         "meaning_ko": "주장",
-        "synonyms": ["assertion"],
+        "synonyms": [
+          "assertion"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "The whole claim falls with one counterexample.", "ko": "주장 전체가 반례 하나로 무너진다." },
-          { "en": "She made a big claim about the data.", "ko": "그녀는 데이터에 대해 큰 주장을 했다." }
+          {
+            "en": "The whole claim falls with one counterexample.",
+            "ko": "주장 전체가 반례 하나로 무너진다."
+          },
+          {
+            "en": "She made a big claim about the data.",
+            "ko": "그녀는 데이터에 대해 큰 주장을 했다."
+          }
         ]
       },
       {
         "word": "exception",
         "pos": "n.",
         "meaning_ko": "예외",
-        "synonyms": ["counterexample"],
+        "synonyms": [
+          "counterexample"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "A single exception can break a claim.", "ko": "단 하나의 예외가 주장을 깰 수 있다." },
-          { "en": "There is one clear exception to the rule.", "ko": "그 규칙에는 분명한 예외가 하나 있다." }
+          {
+            "en": "A single exception can break a claim.",
+            "ko": "단 하나의 예외가 주장을 깰 수 있다."
+          },
+          {
+            "en": "There is one clear exception to the rule.",
+            "ko": "그 규칙에는 분명한 예외가 하나 있다."
+          }
         ]
       },
       {
         "word": "destroy",
         "pos": "v.",
         "meaning_ko": "무너뜨리다, 파괴하다",
-        "synonyms": ["ruin"],
-        "antonyms": ["build"],
+        "synonyms": [
+          "ruin"
+        ],
+        "antonyms": [
+          "build"
+        ],
         "examples": [
-          { "en": "One counterexample can destroy a rule for good.", "ko": "반례 하나가 규칙을 영영 무너뜨릴 수 있다." },
-          { "en": "A flood destroyed the old bridge.", "ko": "홍수가 오래된 다리를 무너뜨렸다." }
+          {
+            "en": "One counterexample can destroy a rule for good.",
+            "ko": "반례 하나가 규칙을 영영 무너뜨릴 수 있다."
+          },
+          {
+            "en": "A flood destroyed the old bridge.",
+            "ko": "홍수가 오래된 다리를 무너뜨렸다."
+          }
         ]
       },
       {
         "word": "confident",
         "pos": "adj.",
         "meaning_ko": "자신만만한, 확신하는",
-        "synonyms": ["sure"],
-        "antonyms": ["unsure"],
+        "synonyms": [
+          "sure"
+        ],
+        "antonyms": [
+          "unsure"
+        ],
         "examples": [
-          { "en": "The world is full of confident voices.", "ko": "세상은 자신만만한 목소리로 가득하다." },
-          { "en": "He sounded confident about the answer.", "ko": "그는 답에 대해 자신만만하게 말했다." }
+          {
+            "en": "The world is full of confident voices.",
+            "ko": "세상은 자신만만한 목소리로 가득하다."
+          },
+          {
+            "en": "He sounded confident about the answer.",
+            "ko": "그는 답에 대해 자신만만하게 말했다."
+          }
         ]
       }
     ]

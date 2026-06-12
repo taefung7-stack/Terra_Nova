@@ -48,12 +48,12 @@
         "stem": "윗글의 밑줄 친 빈칸에 들어갈 말로 가장 적절한 것은?",
         "choices": [
           "erase as soon as possible",
-          "understand and respect",
           "fear and avoid",
+          "understand and respect",
           "rank from best to worst",
           "ignore completely"
         ],
-        "answer_index": 1
+        "answer_index": 2
       },
       {
         "type": "mock_objective",
@@ -61,12 +61,12 @@
         "stem": "윗글의 밑줄 친 표현 culture zone 이 의미하는 바로 가장 적절한 것은?",
         "choices": [
           "a single country with one official language",
-          "a wide region whose people share faith, dress, and food",
-          "a place where no traditions ever change",
           "a border drawn only by governments",
+          "a place where no traditions ever change",
+          "a wide region whose people share faith, dress, and food",
           "an area defined purely by its temperature"
         ],
-        "answer_index": 1
+        "answer_index": 3
       },
       {
         "type": "school_descriptive",
@@ -96,10 +96,26 @@
         "type": "emoji_flow",
         "title": "문화권을 만드는 힘",
         "steps": [
-          { "emoji": "🏜️", "label": "기후·지형", "note": "사막·하천" },
-          { "emoji": "🌾", "label": "생업", "note": "유목·벼농사" },
-          { "emoji": "🕌", "label": "종교", "note": "멀어도 묶음" },
-          { "emoji": "🗺️", "label": "문화권", "note": "국경과 다름" }
+          {
+            "emoji": "🏜️",
+            "label": "기후·지형",
+            "note": "사막·하천"
+          },
+          {
+            "emoji": "🌾",
+            "label": "생업",
+            "note": "유목·벼농사"
+          },
+          {
+            "emoji": "🕌",
+            "label": "종교",
+            "note": "멀어도 묶음"
+          },
+          {
+            "emoji": "🗺️",
+            "label": "문화권",
+            "note": "국경과 다름"
+          }
         ]
       }
     }
@@ -109,197 +125,467 @@
       {
         "index": 1,
         "segments": [
-          { "role": "V", "text": "Look at", "note": "명령문" },
-          { "role": "O", "text": "a world map" },
-          { "role": "CONJ", "text": "and" },
-          { "role": "S", "text": "you" },
-          { "role": "M", "text": "mostly" },
-          { "role": "V", "text": "see" },
-          { "role": "O", "text": "country lines and capital cities." }
+          {
+            "role": "V",
+            "text": "Look at",
+            "note": "명령문"
+          },
+          {
+            "role": "O",
+            "text": "a world map"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "S",
+            "text": "you"
+          },
+          {
+            "role": "M",
+            "text": "mostly"
+          },
+          {
+            "role": "V",
+            "text": "see"
+          },
+          {
+            "role": "O",
+            "text": "country lines and capital cities."
+          }
         ],
         "grammar_note": "명령문+and = 조건 결과"
       },
       {
         "index": 2,
         "segments": [
-          { "role": "CONJ", "text": "But", "note": "대조" },
-          { "role": "S", "text": "there" },
-          { "role": "V", "text": "is" },
-          { "role": "M", "text": "another kind of map hidden underneath it.", "note": "과거분사 hidden 수식" }
+          {
+            "role": "CONJ",
+            "text": "But",
+            "note": "대조"
+          },
+          {
+            "role": "S",
+            "text": "there"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "M",
+            "text": "another kind of map hidden underneath it.",
+            "note": "과거분사 hidden 수식"
+          }
         ],
         "grammar_note": "유도부사 there + 과거분사 수식"
       },
       {
         "index": 3,
         "segments": [
-          { "role": "M", "text": "On this map," },
-          { "role": "S", "text": "the world" },
-          { "role": "V", "text": "is split", "note": "수동태" },
-          { "role": "M", "text": "into large culture zones." }
+          {
+            "role": "M",
+            "text": "On this map,"
+          },
+          {
+            "role": "S",
+            "text": "the world"
+          },
+          {
+            "role": "V",
+            "text": "is split",
+            "note": "수동태"
+          },
+          {
+            "role": "M",
+            "text": "into large culture zones."
+          }
         ],
         "grammar_note": "be split into 수동태"
       },
       {
         "index": 4,
         "segments": [
-          { "role": "S", "text": "People in each zone" },
-          { "role": "M", "text": "often" },
-          { "role": "V", "text": "share" },
-          { "role": "O", "text": "a religion, a way of dressing, and similar foods.", "note": "명사 병렬" }
+          {
+            "role": "S",
+            "text": "People in each zone"
+          },
+          {
+            "role": "M",
+            "text": "often"
+          },
+          {
+            "role": "V",
+            "text": "share"
+          },
+          {
+            "role": "O",
+            "text": "a religion, a way of dressing, and similar foods.",
+            "note": "명사 병렬"
+          }
         ],
         "grammar_note": "빈도부사 + 목적어 병렬"
       },
       {
         "index": 5,
         "segments": [
-          { "role": "S", "text": "These borders" },
-          { "role": "V", "text": "do not match" },
-          { "role": "O", "text": "country lines at all.", "note": "not ~ at all" }
+          {
+            "role": "S",
+            "text": "These borders"
+          },
+          {
+            "role": "V",
+            "text": "do not match"
+          },
+          {
+            "role": "O",
+            "text": "country lines at all.",
+            "note": "not ~ at all"
+          }
         ],
         "grammar_note": "do 강조 부정 + not ~ at all"
       },
       {
         "index": 6,
         "segments": [
-          { "role": "S", "text": "They" },
-          { "role": "V", "text": "were drawn", "note": "수동태" },
-          { "role": "M", "text": "slowly, over many centuries," },
-          { "role": "M", "text": "by nature and history together.", "note": "by 행위자" }
+          {
+            "role": "S",
+            "text": "They"
+          },
+          {
+            "role": "V",
+            "text": "were drawn",
+            "note": "수동태"
+          },
+          {
+            "role": "M",
+            "text": "slowly, over many centuries,"
+          },
+          {
+            "role": "M",
+            "text": "by nature and history together.",
+            "note": "by 행위자"
+          }
         ],
         "grammar_note": "수동태 + by 행위자"
       },
       {
         "index": 7,
         "segments": [
-          { "role": "S", "text": "The land and the weather" },
-          { "role": "V", "text": "shape" },
-          { "role": "O", "text": "a culture" },
-          { "role": "M", "text": "first." }
+          {
+            "role": "S",
+            "text": "The land and the weather"
+          },
+          {
+            "role": "V",
+            "text": "shape"
+          },
+          {
+            "role": "O",
+            "text": "a culture"
+          },
+          {
+            "role": "M",
+            "text": "first."
+          }
         ],
         "grammar_note": "병렬 주어 3형식"
       },
       {
         "index": 8,
         "segments": [
-          { "role": "M", "text": "In hot, dry deserts," },
-          { "role": "S", "text": "people" },
-          { "role": "V", "text": "learned to herd animals and to wear loose, covering clothes for shade.", "note": "to부정사 병렬" }
+          {
+            "role": "M",
+            "text": "In hot, dry deserts,"
+          },
+          {
+            "role": "S",
+            "text": "people"
+          },
+          {
+            "role": "V",
+            "text": "learned to herd animals and to wear loose, covering clothes for shade.",
+            "note": "to부정사 병렬"
+          }
         ],
         "grammar_note": "learn to-V, 부정사 병렬"
       },
       {
         "index": 9,
         "segments": [
-          { "role": "M", "text": "In wet river valleys," },
-          { "role": "S", "text": "they" },
-          { "role": "V", "text": "grew" },
-          { "role": "O", "text": "rice" },
-          { "role": "CONJ", "text": "and" },
-          { "role": "V", "text": "built" },
-          { "role": "O", "text": "crowded farming towns close to the water." }
+          {
+            "role": "M",
+            "text": "In wet river valleys,"
+          },
+          {
+            "role": "S",
+            "text": "they"
+          },
+          {
+            "role": "V",
+            "text": "grew"
+          },
+          {
+            "role": "O",
+            "text": "rice"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "V",
+            "text": "built"
+          },
+          {
+            "role": "O",
+            "text": "crowded farming towns close to the water."
+          }
         ],
         "grammar_note": "과거시제 병렬 동사"
       },
       {
         "index": 10,
         "segments": [
-          { "role": "S", "text": "Religion" },
-          { "role": "M", "text": "then" },
-          { "role": "V", "text": "adds" },
-          { "role": "O", "text": "another layer." }
+          {
+            "role": "S",
+            "text": "Religion"
+          },
+          {
+            "role": "M",
+            "text": "then"
+          },
+          {
+            "role": "V",
+            "text": "adds"
+          },
+          {
+            "role": "O",
+            "text": "another layer."
+          }
         ],
         "grammar_note": "3형식 단문"
       },
       {
         "index": 11,
         "segments": [
-          { "role": "S", "text": "A shared faith" },
-          { "role": "V", "text": "can tie" },
-          { "role": "O", "text": "distant places" },
-          { "role": "M", "text": "into one single culture zone," },
-          { "role": "M", "text": "even when those places sit far apart.", "note": "양보 even when" }
+          {
+            "role": "S",
+            "text": "A shared faith"
+          },
+          {
+            "role": "V",
+            "text": "can tie"
+          },
+          {
+            "role": "O",
+            "text": "distant places"
+          },
+          {
+            "role": "M",
+            "text": "into one single culture zone,"
+          },
+          {
+            "role": "M",
+            "text": "even when those places sit far apart.",
+            "note": "양보 even when"
+          }
         ],
         "grammar_note": "tie A into B + 양보 even when"
       },
       {
         "index": 12,
         "segments": [
-          { "role": "S", "text": "This" },
-          { "role": "V", "text": "is" },
-          { "role": "C", "text": "why parts of North Africa and the Middle East feel similar,", "note": "why 명사절" },
-          { "role": "M", "text": "though deserts and seas lie between them.", "note": "양보 though" }
+          {
+            "role": "S",
+            "text": "This"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "why parts of North Africa and the Middle East feel similar,",
+            "note": "why 명사절"
+          },
+          {
+            "role": "M",
+            "text": "though deserts and seas lie between them.",
+            "note": "양보 though"
+          }
         ],
         "grammar_note": "This is why + 양보 though"
       },
       {
         "index": 13,
         "segments": [
-          { "role": "S", "text": "Climate, crops, and belief" },
-          { "role": "M", "text": "slowly" },
-          { "role": "V", "text": "mixed" },
-          { "role": "M", "text": "into one shared way of life." }
+          {
+            "role": "S",
+            "text": "Climate, crops, and belief"
+          },
+          {
+            "role": "M",
+            "text": "slowly"
+          },
+          {
+            "role": "V",
+            "text": "mixed"
+          },
+          {
+            "role": "M",
+            "text": "into one shared way of life."
+          }
         ],
         "grammar_note": "병렬 주어 + mix into"
       },
       {
         "index": 14,
         "segments": [
-          { "role": "S", "text": "Understanding culture zones", "note": "동명사 주어" },
-          { "role": "V", "text": "helps" },
-          { "role": "O", "text": "us" },
-          { "role": "C", "text": "read the world with kinder eyes.", "note": "help O (to) V" }
+          {
+            "role": "S",
+            "text": "Understanding culture zones",
+            "note": "동명사 주어"
+          },
+          {
+            "role": "V",
+            "text": "helps"
+          },
+          {
+            "role": "O",
+            "text": "us"
+          },
+          {
+            "role": "C",
+            "text": "read the world with kinder eyes.",
+            "note": "help O (to) V"
+          }
         ],
         "grammar_note": "동명사 주어 + help O 원형"
       },
       {
         "index": 15,
         "segments": [
-          { "role": "M", "text": "When a custom looks strange to us,", "note": "when 부사절" },
-          { "role": "S", "text": "it" },
-          { "role": "M", "text": "usually" },
-          { "role": "V", "text": "makes" },
-          { "role": "O", "text": "good sense inside its own zone." }
+          {
+            "role": "M",
+            "text": "When a custom looks strange to us,",
+            "note": "when 부사절"
+          },
+          {
+            "role": "S",
+            "text": "it"
+          },
+          {
+            "role": "M",
+            "text": "usually"
+          },
+          {
+            "role": "V",
+            "text": "makes"
+          },
+          {
+            "role": "O",
+            "text": "good sense inside its own zone."
+          }
         ],
         "grammar_note": "when 부사절 + make sense"
       },
       {
         "index": 16,
         "segments": [
-          { "role": "S", "text": "Clothing that seems far too warm", "note": "관계대명사 that" },
-          { "role": "V", "text": "may be" },
-          { "role": "C", "text": "perfect for blocking the harsh desert sun." }
+          {
+            "role": "S",
+            "text": "Clothing that seems far too warm",
+            "note": "관계대명사 that"
+          },
+          {
+            "role": "V",
+            "text": "may be"
+          },
+          {
+            "role": "C",
+            "text": "perfect for blocking the harsh desert sun."
+          }
         ],
         "grammar_note": "관계대명사 that + 조동사 may"
       },
       {
         "index": 17,
         "segments": [
-          { "role": "S", "text": "A food rule that looks odd at first", "note": "관계대명사 that" },
-          { "role": "V", "text": "may quietly protect" },
-          { "role": "O", "text": "people's health in a hot land." }
+          {
+            "role": "S",
+            "text": "A food rule that looks odd at first",
+            "note": "관계대명사 that"
+          },
+          {
+            "role": "V",
+            "text": "may quietly protect"
+          },
+          {
+            "role": "O",
+            "text": "people's health in a hot land."
+          }
         ],
         "grammar_note": "관계대명사 that + 조동사 may"
       },
       {
         "index": 18,
         "segments": [
-          { "role": "S", "text": "Cultures" },
-          { "role": "V", "text": "are" },
-          { "role": "C", "text": "not random or better and worse;" },
-          { "role": "S", "text": "they" },
-          { "role": "V", "text": "are" },
-          { "role": "C", "text": "smart answers to where people live.", "note": "where 명사절" }
+          {
+            "role": "S",
+            "text": "Cultures"
+          },
+          {
+            "role": "V",
+            "text": "are"
+          },
+          {
+            "role": "C",
+            "text": "not random or better and worse;"
+          },
+          {
+            "role": "S",
+            "text": "they"
+          },
+          {
+            "role": "V",
+            "text": "are"
+          },
+          {
+            "role": "C",
+            "text": "smart answers to where people live.",
+            "note": "where 명사절"
+          }
         ],
         "grammar_note": "세미콜론 대조 + where 명사절"
       },
       {
         "index": 19,
         "segments": [
-          { "role": "S", "text": "Seeing the map of zones", "note": "동명사 주어" },
-          { "role": "V", "text": "teaches" },
-          { "role": "O", "text": "us" },
-          { "role": "O", "text": "that difference is not a problem to fix but a pattern to ____,", "note": "that 명사절 + not A but B + 빈칸" },
-          { "role": "M", "text": "shaped by the land each group calls home.", "note": "과거분사구" }
+          {
+            "role": "S",
+            "text": "Seeing the map of zones",
+            "note": "동명사 주어"
+          },
+          {
+            "role": "V",
+            "text": "teaches"
+          },
+          {
+            "role": "O",
+            "text": "us"
+          },
+          {
+            "role": "O",
+            "text": "that difference is not a problem to fix but a pattern to ____,",
+            "note": "that 명사절 + not A but B + 빈칸"
+          },
+          {
+            "role": "M",
+            "text": "shaped by the land each group calls home.",
+            "note": "과거분사구"
+          }
         ],
         "grammar_note": "4형식 teach + not A but B + 과거분사구"
       }
@@ -321,42 +607,60 @@
           "본문은 이상한 관습을 '바꿔라'가 아니라 '이해하라'고 한다."
         ],
         "key_terms": [
-          { "en": "culture zone", "ko": "문화권" },
-          { "en": "respect", "ko": "존중하다" }
+          {
+            "en": "culture zone",
+            "ko": "문화권"
+          },
+          {
+            "en": "respect",
+            "ko": "존중하다"
+          }
         ]
       },
       {
         "q_index": 1,
         "q_style": "빈칸 추론",
-        "correct": 1,
+        "correct": 2,
         "evidence": "빈칸 앞 \"difference is not a problem to fix but a pattern to ___\"는 not A but B 구조다. 차이를 '고칠 문제'로 보지 않는다면, 그 반대는 차이를 '이해하고 존중'하는 것이다. 14번 \"kinder eyes\"와도 호응한다.",
         "rationales": [
           "'가능한 빨리 지운다'는 'fix(고친다)'와 같은 부정적 방향이라 not A but B의 B가 될 수 없다.",
-          "(정답) understand and respect는 '더 따뜻한 눈'·'말이 된다'는 글의 태도와 일치한다.",
           "'두려워하고 피한다'는 글의 포용적 태도와 반대다.",
+          "(정답) understand and respect는 '더 따뜻한 눈'·'말이 된다'는 글의 태도와 일치한다.",
           "'best~worst로 순위 매김'은 18번 \"not better and worse\"와 모순된다.",
           "'완전히 무시한다'는 '이해하라'는 주제와 어긋난다."
         ],
         "key_terms": [
-          { "en": "respect", "ko": "존중하다" },
-          { "en": "pattern", "ko": "양식" }
+          {
+            "en": "respect",
+            "ko": "존중하다"
+          },
+          {
+            "en": "pattern",
+            "ko": "양식"
+          }
         ]
       },
       {
         "q_index": 2,
         "q_style": "함의 추론",
-        "correct": 1,
+        "correct": 3,
         "evidence": "4번 문장은 \"People in each zone often share a religion, a way of dressing, and similar foods\"라고 culture zone을 정의한다. 따라서 culture zone은 '신앙·복식·음식을 공유하는 넓은 지역'을 뜻한다.",
         "rationales": [
           "문화권은 '한 나라·한 공용어'가 아니다. 국경과 다르다고 했다(5번).",
-          "(정답) 신앙·복식·음식을 공유하는 넓은 지역이라는 본문 정의 그대로다.",
-          "'전통이 절대 안 변하는 곳'이라는 내용은 본문에 없다.",
           "'정부가 그은 경계'는 오히려 country lines이고 문화권은 그것과 다르다.",
+          "'전통이 절대 안 변하는 곳'이라는 내용은 본문에 없다.",
+          "(정답) 신앙·복식·음식을 공유하는 넓은 지역이라는 본문 정의 그대로다.",
           "기온만으로 정의된다는 것은 종교·작물도 작용한다는 본문과 모순된다."
         ],
         "key_terms": [
-          { "en": "share", "ko": "공유하다" },
-          { "en": "faith", "ko": "신앙" }
+          {
+            "en": "share",
+            "ko": "공유하다"
+          },
+          {
+            "en": "faith",
+            "ko": "신앙"
+          }
         ]
       },
       {
@@ -370,8 +674,14 @@
           "(B) religion — '나중에 더해지는 공유된 신앙'은 10번의 religion과 일치한다."
         ],
         "key_terms": [
-          { "en": "nature", "ko": "자연" },
-          { "en": "religion", "ko": "종교" }
+          {
+            "en": "nature",
+            "ko": "자연"
+          },
+          {
+            "en": "religion",
+            "ko": "종교"
+          }
         ]
       }
     ]
@@ -382,44 +692,76 @@
         "word": "culture zone",
         "pos": "n.",
         "meaning_ko": "문화권",
-        "synonyms": ["cultural region"],
+        "synonyms": [
+          "cultural region"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "A culture zone can cross many country borders.", "ko": "문화권은 여러 나라 경계를 가로지를 수 있다." },
-          { "en": "People in one culture zone share similar customs.", "ko": "한 문화권의 사람들은 비슷한 관습을 공유한다." }
+          {
+            "en": "A culture zone can cross many country borders.",
+            "ko": "문화권은 여러 나라 경계를 가로지를 수 있다."
+          },
+          {
+            "en": "People in one culture zone share similar customs.",
+            "ko": "한 문화권의 사람들은 비슷한 관습을 공유한다."
+          }
         ]
       },
       {
         "word": "border",
         "pos": "n.",
         "meaning_ko": "경계, 국경",
-        "synonyms": ["boundary"],
+        "synonyms": [
+          "boundary"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "Culture borders do not match country borders.", "ko": "문화 경계는 나라 경계와 일치하지 않는다." },
-          { "en": "The river forms a natural border between regions.", "ko": "그 강이 지역들 사이의 자연 경계를 이룬다." }
+          {
+            "en": "Culture borders do not match country borders.",
+            "ko": "문화 경계는 나라 경계와 일치하지 않는다."
+          },
+          {
+            "en": "The river forms a natural border between regions.",
+            "ko": "그 강이 지역들 사이의 자연 경계를 이룬다."
+          }
         ]
       },
       {
         "word": "religion",
         "pos": "n.",
         "meaning_ko": "종교",
-        "synonyms": ["faith"],
+        "synonyms": [
+          "faith"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "A shared religion can tie distant places together.", "ko": "공유된 종교는 먼 지역들을 묶을 수 있다." },
-          { "en": "Religion shapes daily life in many cultures.", "ko": "종교는 많은 문화에서 일상을 빚는다." }
+          {
+            "en": "A shared religion can tie distant places together.",
+            "ko": "공유된 종교는 먼 지역들을 묶을 수 있다."
+          },
+          {
+            "en": "Religion shapes daily life in many cultures.",
+            "ko": "종교는 많은 문화에서 일상을 빚는다."
+          }
         ]
       },
       {
         "word": "herd",
         "pos": "v.",
         "meaning_ko": "(가축을) 치다, 몰다",
-        "synonyms": ["tend"],
+        "synonyms": [
+          "tend"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "Desert people learned to herd animals.", "ko": "사막 사람들은 동물을 치는 법을 배웠다." },
-          { "en": "They herd sheep across the dry plains.", "ko": "그들은 건조한 평원에서 양을 몬다." }
+          {
+            "en": "Desert people learned to herd animals.",
+            "ko": "사막 사람들은 동물을 치는 법을 배웠다."
+          },
+          {
+            "en": "They herd sheep across the dry plains.",
+            "ko": "그들은 건조한 평원에서 양을 몬다."
+          }
         ]
       },
       {
@@ -427,87 +769,160 @@
         "pos": "n.",
         "meaning_ko": "골짜기, 유역",
         "synonyms": [],
-        "antonyms": ["hill"],
+        "antonyms": [
+          "hill"
+        ],
         "examples": [
-          { "en": "In wet river valleys, people grew rice.", "ko": "습한 하천 유역에서 사람들은 벼를 길렀다." },
-          { "en": "The valley was perfect for farming.", "ko": "그 골짜기는 농사에 안성맞춤이었다." }
+          {
+            "en": "In wet river valleys, people grew rice.",
+            "ko": "습한 하천 유역에서 사람들은 벼를 길렀다."
+          },
+          {
+            "en": "The valley was perfect for farming.",
+            "ko": "그 골짜기는 농사에 안성맞춤이었다."
+          }
         ]
       },
       {
         "word": "faith",
         "pos": "n.",
         "meaning_ko": "신앙, 믿음",
-        "synonyms": ["belief", "religion"],
-        "antonyms": ["doubt"],
+        "synonyms": [
+          "belief",
+          "religion"
+        ],
+        "antonyms": [
+          "doubt"
+        ],
         "examples": [
-          { "en": "A shared faith links far-apart towns.", "ko": "공유된 신앙이 멀리 떨어진 마을들을 잇는다." },
-          { "en": "Their faith guides many daily choices.", "ko": "그들의 신앙이 많은 일상의 선택을 이끈다." }
+          {
+            "en": "A shared faith links far-apart towns.",
+            "ko": "공유된 신앙이 멀리 떨어진 마을들을 잇는다."
+          },
+          {
+            "en": "Their faith guides many daily choices.",
+            "ko": "그들의 신앙이 많은 일상의 선택을 이끈다."
+          }
         ]
       },
       {
         "word": "distant",
         "pos": "adj.",
         "meaning_ko": "멀리 떨어진",
-        "synonyms": ["far"],
-        "antonyms": ["near"],
+        "synonyms": [
+          "far"
+        ],
+        "antonyms": [
+          "near"
+        ],
         "examples": [
-          { "en": "Faith can tie distant places into one zone.", "ko": "신앙은 먼 지역들을 한 문화권으로 묶을 수 있다." },
-          { "en": "They traveled to a distant land.", "ko": "그들은 먼 땅으로 여행했다." }
+          {
+            "en": "Faith can tie distant places into one zone.",
+            "ko": "신앙은 먼 지역들을 한 문화권으로 묶을 수 있다."
+          },
+          {
+            "en": "They traveled to a distant land.",
+            "ko": "그들은 먼 땅으로 여행했다."
+          }
         ]
       },
       {
         "word": "custom",
         "pos": "n.",
         "meaning_ko": "관습, 풍습",
-        "synonyms": ["tradition"],
+        "synonyms": [
+          "tradition"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "A custom may look strange from outside.", "ko": "관습은 밖에서 보면 이상해 보일 수 있다." },
-          { "en": "Every culture has its own customs.", "ko": "모든 문화는 고유의 관습을 가진다." }
+          {
+            "en": "A custom may look strange from outside.",
+            "ko": "관습은 밖에서 보면 이상해 보일 수 있다."
+          },
+          {
+            "en": "Every culture has its own customs.",
+            "ko": "모든 문화는 고유의 관습을 가진다."
+          }
         ]
       },
       {
         "word": "make sense",
         "pos": "v.",
         "meaning_ko": "말이 되다, 이치에 맞다",
-        "synonyms": ["be reasonable"],
+        "synonyms": [
+          "be reasonable"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "The custom makes sense inside its own zone.", "ko": "그 관습은 그 자신의 문화권 안에서는 말이 된다." },
-          { "en": "Wearing loose clothes makes sense in a desert.", "ko": "헐렁한 옷을 입는 것은 사막에서 이치에 맞는다." }
+          {
+            "en": "The custom makes sense inside its own zone.",
+            "ko": "그 관습은 그 자신의 문화권 안에서는 말이 된다."
+          },
+          {
+            "en": "Wearing loose clothes makes sense in a desert.",
+            "ko": "헐렁한 옷을 입는 것은 사막에서 이치에 맞는다."
+          }
         ]
       },
       {
         "word": "block",
         "pos": "v.",
         "meaning_ko": "막다, 차단하다",
-        "synonyms": ["stop"],
-        "antonyms": ["allow"],
+        "synonyms": [
+          "stop"
+        ],
+        "antonyms": [
+          "allow"
+        ],
         "examples": [
-          { "en": "Loose clothing blocks the strong desert sun.", "ko": "헐렁한 옷이 강한 사막 햇빛을 막는다." },
-          { "en": "A wall can block the cold wind.", "ko": "벽이 찬 바람을 막을 수 있다." }
+          {
+            "en": "Loose clothing blocks the strong desert sun.",
+            "ko": "헐렁한 옷이 강한 사막 햇빛을 막는다."
+          },
+          {
+            "en": "A wall can block the cold wind.",
+            "ko": "벽이 찬 바람을 막을 수 있다."
+          }
         ]
       },
       {
         "word": "pattern",
         "pos": "n.",
         "meaning_ko": "양식, 패턴",
-        "synonyms": ["design"],
+        "synonyms": [
+          "design"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "Difference is a pattern to understand, not a problem.", "ko": "차이는 문제가 아니라 이해해야 할 양식이다." },
-          { "en": "Cultures follow patterns shaped by the land.", "ko": "문화는 땅이 빚은 양식을 따른다." }
+          {
+            "en": "Difference is a pattern to understand, not a problem.",
+            "ko": "차이는 문제가 아니라 이해해야 할 양식이다."
+          },
+          {
+            "en": "Cultures follow patterns shaped by the land.",
+            "ko": "문화는 땅이 빚은 양식을 따른다."
+          }
         ]
       },
       {
         "word": "respect",
         "pos": "v.",
         "meaning_ko": "존중하다",
-        "synonyms": ["honor"],
-        "antonyms": ["disrespect"],
+        "synonyms": [
+          "honor"
+        ],
+        "antonyms": [
+          "disrespect"
+        ],
         "examples": [
-          { "en": "Understanding zones helps us respect difference.", "ko": "문화권을 이해하면 차이를 존중하게 된다." },
-          { "en": "We should respect customs we do not share.", "ko": "우리는 우리와 다른 관습도 존중해야 한다." }
+          {
+            "en": "Understanding zones helps us respect difference.",
+            "ko": "문화권을 이해하면 차이를 존중하게 된다."
+          },
+          {
+            "en": "We should respect customs we do not share.",
+            "ko": "우리는 우리와 다른 관습도 존중해야 한다."
+          }
         ]
       }
     ]

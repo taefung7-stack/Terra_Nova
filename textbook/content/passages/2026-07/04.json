@@ -35,25 +35,25 @@
         "stem": "다음 글의 요지로 가장 적절한 것은?",
         "choices": [
           "Newspapers always tell the truth while videos and social posts always lie.",
-          "Each medium shapes the same fact in its own way, so readers should question what they receive.",
+          "All media give exactly the same feeling about any fact.",
           "The fastest reader is always the best reader.",
           "Social media should be banned because it uses emojis.",
-          "All media give exactly the same feeling about any fact."
+          "Each medium shapes the same fact in its own way, so readers should question what they receive."
         ],
-        "answer_index": 1
+        "answer_index": 4
       },
       {
         "type": "mock_objective",
         "style": "빈칸 추론",
         "stem": "윗글의 밑줄 친 빈칸에 들어갈 말로 가장 적절한 것은?",
         "choices": [
-          "speed that beats everyone else",
           "mind that looks past the surface",
+          "speed that beats everyone else",
           "memory that stores every word",
           "voice that repeats the message",
           "screen that shows more colors"
         ],
-        "answer_index": 1
+        "answer_index": 0
       },
       {
         "type": "mock_objective",
@@ -96,10 +96,26 @@
         "type": "emoji_flow",
         "title": "한 사실, 세 매체",
         "steps": [
-          { "emoji": "📰", "label": "신문", "note": "자세·차분" },
-          { "emoji": "🎬", "label": "영상", "note": "감정에 먼저" },
-          { "emoji": "📱", "label": "SNS", "note": "짧고 친근" },
-          { "emoji": "❓", "label": "질문", "note": "누가·왜·생략?" }
+          {
+            "emoji": "📰",
+            "label": "신문",
+            "note": "자세·차분"
+          },
+          {
+            "emoji": "🎬",
+            "label": "영상",
+            "note": "감정에 먼저"
+          },
+          {
+            "emoji": "📱",
+            "label": "SNS",
+            "note": "짧고 친근"
+          },
+          {
+            "emoji": "❓",
+            "label": "질문",
+            "note": "누가·왜·생략?"
+          }
         ]
       }
     }
@@ -109,204 +125,504 @@
       {
         "index": 1,
         "segments": [
-          { "role": "V", "text": "Imagine", "note": "명령문" },
-          { "role": "O", "text": "one simple fact:" },
-          { "role": "S", "text": "a small park" },
-          { "role": "V", "text": "opened" },
-          { "role": "M", "text": "downtown." }
+          {
+            "role": "V",
+            "text": "Imagine",
+            "note": "명령문"
+          },
+          {
+            "role": "O",
+            "text": "one simple fact:"
+          },
+          {
+            "role": "S",
+            "text": "a small park"
+          },
+          {
+            "role": "V",
+            "text": "opened"
+          },
+          {
+            "role": "M",
+            "text": "downtown."
+          }
         ],
         "grammar_note": "명령문 + 콜론 뒤 동격절"
       },
       {
         "index": 2,
         "segments": [
-          { "role": "M", "text": "Now" },
-          { "role": "V", "text": "picture", "note": "명령문" },
-          { "role": "O", "text": "that fact moving through three different media.", "note": "지각 목적어 + 현재분사" }
+          {
+            "role": "M",
+            "text": "Now"
+          },
+          {
+            "role": "V",
+            "text": "picture",
+            "note": "명령문"
+          },
+          {
+            "role": "O",
+            "text": "that fact moving through three different media.",
+            "note": "지각 목적어 + 현재분사"
+          }
         ],
         "grammar_note": "picture O -ing 구문"
       },
       {
         "index": 3,
         "segments": [
-          { "role": "S", "text": "A newspaper" },
-          { "role": "V", "text": "prints" },
-          { "role": "O", "text": "a calm paragraph with the date and the size of the park." }
+          {
+            "role": "S",
+            "text": "A newspaper"
+          },
+          {
+            "role": "V",
+            "text": "prints"
+          },
+          {
+            "role": "O",
+            "text": "a calm paragraph with the date and the size of the park."
+          }
         ],
         "grammar_note": "3형식 + 전치사구 수식"
       },
       {
         "index": 4,
         "segments": [
-          { "role": "S", "text": "A short video" },
-          { "role": "V", "text": "shows" },
-          { "role": "O", "text": "happy children running", "note": "지각동사 + 현재분사" },
-          { "role": "M", "text": "while bright music plays.", "note": "while 동시동작" }
+          {
+            "role": "S",
+            "text": "A short video"
+          },
+          {
+            "role": "V",
+            "text": "shows"
+          },
+          {
+            "role": "O",
+            "text": "happy children running",
+            "note": "지각동사 + 현재분사"
+          },
+          {
+            "role": "M",
+            "text": "while bright music plays.",
+            "note": "while 동시동작"
+          }
         ],
         "grammar_note": "show O -ing + while 부사절"
       },
       {
         "index": 5,
         "segments": [
-          { "role": "S", "text": "A social post" },
-          { "role": "V", "text": "adds" },
-          { "role": "O", "text": "a single photo and an excited caption full of emojis.", "note": "형용사구 수식" }
+          {
+            "role": "S",
+            "text": "A social post"
+          },
+          {
+            "role": "V",
+            "text": "adds"
+          },
+          {
+            "role": "O",
+            "text": "a single photo and an excited caption full of emojis.",
+            "note": "형용사구 수식"
+          }
         ],
         "grammar_note": "3형식 + full of 수식"
       },
       {
         "index": 6,
         "segments": [
-          { "role": "S", "text": "The fact" },
-          { "role": "M", "text": "never" },
-          { "role": "V", "text": "changed," },
-          { "role": "CONJ", "text": "yet", "note": "양보" },
-          { "role": "S", "text": "each version" },
-          { "role": "V", "text": "makes" },
-          { "role": "O", "text": "you" },
-          { "role": "C", "text": "feel something different.", "note": "사역 make O 원형" }
+          {
+            "role": "S",
+            "text": "The fact"
+          },
+          {
+            "role": "M",
+            "text": "never"
+          },
+          {
+            "role": "V",
+            "text": "changed,"
+          },
+          {
+            "role": "CONJ",
+            "text": "yet",
+            "note": "양보"
+          },
+          {
+            "role": "S",
+            "text": "each version"
+          },
+          {
+            "role": "V",
+            "text": "makes"
+          },
+          {
+            "role": "O",
+            "text": "you"
+          },
+          {
+            "role": "C",
+            "text": "feel something different.",
+            "note": "사역 make O 원형"
+          }
         ],
         "grammar_note": "양보 yet + 사역동사 make O V"
       },
       {
         "index": 7,
         "segments": [
-          { "role": "S", "text": "This" },
-          { "role": "V", "text": "happens" },
-          { "role": "M", "text": "because every medium shapes the message in its own way.", "note": "because 원인절" }
+          {
+            "role": "S",
+            "text": "This"
+          },
+          {
+            "role": "V",
+            "text": "happens"
+          },
+          {
+            "role": "M",
+            "text": "because every medium shapes the message in its own way.",
+            "note": "because 원인절"
+          }
         ],
         "grammar_note": "because 원인 부사절"
       },
       {
         "index": 8,
         "segments": [
-          { "role": "S", "text": "A newspaper" },
-          { "role": "V", "text": "has" },
-          { "role": "O", "text": "room for detail," },
-          { "role": "CONJ", "text": "so", "note": "결과" },
-          { "role": "S", "text": "it" },
-          { "role": "V", "text": "sounds", "note": "2형식 감각동사" },
-          { "role": "C", "text": "careful and complete." }
+          {
+            "role": "S",
+            "text": "A newspaper"
+          },
+          {
+            "role": "V",
+            "text": "has"
+          },
+          {
+            "role": "O",
+            "text": "room for detail,"
+          },
+          {
+            "role": "CONJ",
+            "text": "so",
+            "note": "결과"
+          },
+          {
+            "role": "S",
+            "text": "it"
+          },
+          {
+            "role": "V",
+            "text": "sounds",
+            "note": "2형식 감각동사"
+          },
+          {
+            "role": "C",
+            "text": "careful and complete."
+          }
         ],
         "grammar_note": "결과 so + sound 형용사 보어"
       },
       {
         "index": 9,
         "segments": [
-          { "role": "S", "text": "A video" },
-          { "role": "V", "text": "moves fast and uses sound,", "note": "병렬 동사" },
-          { "role": "CONJ", "text": "so", "note": "결과" },
-          { "role": "S", "text": "it" },
-          { "role": "V", "text": "pulls at" },
-          { "role": "O", "text": "your emotions" },
-          { "role": "M", "text": "before you think.", "note": "before 부사절" }
+          {
+            "role": "S",
+            "text": "A video"
+          },
+          {
+            "role": "V",
+            "text": "moves fast and uses sound,",
+            "note": "병렬 동사"
+          },
+          {
+            "role": "CONJ",
+            "text": "so",
+            "note": "결과"
+          },
+          {
+            "role": "S",
+            "text": "it"
+          },
+          {
+            "role": "V",
+            "text": "pulls at"
+          },
+          {
+            "role": "O",
+            "text": "your emotions"
+          },
+          {
+            "role": "M",
+            "text": "before you think.",
+            "note": "before 부사절"
+          }
         ],
         "grammar_note": "병렬 동사 + 결과 so + before 절"
       },
       {
         "index": 10,
         "segments": [
-          { "role": "S", "text": "A social post" },
-          { "role": "V", "text": "is" },
-          { "role": "C", "text": "short and personal," },
-          { "role": "CONJ", "text": "so", "note": "결과" },
-          { "role": "S", "text": "it" },
-          { "role": "V", "text": "feels", "note": "2형식 감각동사" },
-          { "role": "C", "text": "like a friend talking to you.", "note": "like + 명사 + 현재분사" }
+          {
+            "role": "S",
+            "text": "A social post"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "short and personal,"
+          },
+          {
+            "role": "CONJ",
+            "text": "so",
+            "note": "결과"
+          },
+          {
+            "role": "S",
+            "text": "it"
+          },
+          {
+            "role": "V",
+            "text": "feels",
+            "note": "2형식 감각동사"
+          },
+          {
+            "role": "C",
+            "text": "like a friend talking to you.",
+            "note": "like + 명사 + 현재분사"
+          }
         ],
         "grammar_note": "결과 so + feel like 명사구"
       },
       {
         "index": 11,
         "segments": [
-          { "role": "S", "text": "None of these" },
-          { "role": "V", "text": "is lying," },
-          { "role": "CONJ", "text": "but", "note": "대조" },
-          { "role": "S", "text": "each one" },
-          { "role": "V", "text": "chooses" },
-          { "role": "O", "text": "what to show and what to leave out.", "note": "의문사 + to부정사" }
+          {
+            "role": "S",
+            "text": "None of these"
+          },
+          {
+            "role": "V",
+            "text": "is lying,"
+          },
+          {
+            "role": "CONJ",
+            "text": "but",
+            "note": "대조"
+          },
+          {
+            "role": "S",
+            "text": "each one"
+          },
+          {
+            "role": "V",
+            "text": "chooses"
+          },
+          {
+            "role": "O",
+            "text": "what to show and what to leave out.",
+            "note": "의문사 + to부정사"
+          }
         ],
         "grammar_note": "대조 but + what to-V 병렬"
       },
       {
         "index": 12,
         "segments": [
-          { "role": "S", "text": "The medium" },
-          { "role": "V", "text": "is" },
-          { "role": "M", "text": "never" },
-          { "role": "C", "text": "a clear glass window;" },
-          { "role": "S", "text": "it" },
-          { "role": "V", "text": "is" },
-          { "role": "C", "text": "more like a colored filter over the same scene.", "note": "비교 more like" }
+          {
+            "role": "S",
+            "text": "The medium"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "M",
+            "text": "never"
+          },
+          {
+            "role": "C",
+            "text": "a clear glass window;"
+          },
+          {
+            "role": "S",
+            "text": "it"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "more like a colored filter over the same scene.",
+            "note": "비교 more like"
+          }
         ],
         "grammar_note": "세미콜론 대조 + more like 비유"
       },
       {
         "index": 13,
         "segments": [
-          { "role": "S", "text": "This" },
-          { "role": "V", "text": "is" },
-          { "role": "C", "text": "why a smart reader asks questions instead of just absorbing.", "note": "why 명사절 + instead of -ing" }
+          {
+            "role": "S",
+            "text": "This"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "why a smart reader asks questions instead of just absorbing.",
+            "note": "why 명사절 + instead of -ing"
+          }
         ],
         "grammar_note": "This is why + instead of -ing"
       },
       {
         "index": 14,
         "segments": [
-          { "role": "V", "text": "Who made" },
-          { "role": "O", "text": "this," },
-          { "role": "CONJ", "text": "and" },
-          { "role": "S", "text": "what" },
-          { "role": "V", "text": "do they want" },
-          { "role": "M", "text": "from me?" }
+          {
+            "role": "V",
+            "text": "Who made"
+          },
+          {
+            "role": "O",
+            "text": "this,"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "S",
+            "text": "what"
+          },
+          {
+            "role": "V",
+            "text": "do they want"
+          },
+          {
+            "role": "M",
+            "text": "from me?"
+          }
         ],
         "grammar_note": "의문사 의문문 병렬"
       },
       {
         "index": 15,
         "segments": [
-          { "role": "S", "text": "What" },
-          { "role": "V", "text": "was cut out", "note": "수동태" },
-          { "role": "M", "text": "to make it shorter or more exciting?", "note": "to부정사 목적" }
+          {
+            "role": "S",
+            "text": "What"
+          },
+          {
+            "role": "V",
+            "text": "was cut out",
+            "note": "수동태"
+          },
+          {
+            "role": "M",
+            "text": "to make it shorter or more exciting?",
+            "note": "to부정사 목적"
+          }
         ],
         "grammar_note": "수동태 의문문 + to부정사 목적"
       },
       {
         "index": 16,
         "segments": [
-          { "role": "V", "text": "Would" },
-          { "role": "S", "text": "the same story" },
-          { "role": "V", "text": "feel", "note": "2형식" },
-          { "role": "C", "text": "different somewhere else?" }
+          {
+            "role": "V",
+            "text": "Would"
+          },
+          {
+            "role": "S",
+            "text": "the same story"
+          },
+          {
+            "role": "V",
+            "text": "feel",
+            "note": "2형식"
+          },
+          {
+            "role": "C",
+            "text": "different somewhere else?"
+          }
         ],
         "grammar_note": "조동사 would 의문문 + feel 보어"
       },
       {
         "index": 17,
         "segments": [
-          { "role": "S", "text": "Asking these things", "note": "동명사 주어" },
-          { "role": "V", "text": "does not mean" },
-          { "role": "O", "text": "you trust nothing.", "note": "명사절 목적어" }
+          {
+            "role": "S",
+            "text": "Asking these things",
+            "note": "동명사 주어"
+          },
+          {
+            "role": "V",
+            "text": "does not mean"
+          },
+          {
+            "role": "O",
+            "text": "you trust nothing.",
+            "note": "명사절 목적어"
+          }
         ],
         "grammar_note": "동명사 주어 + 명사절 목적어"
       },
       {
         "index": 18,
         "segments": [
-          { "role": "S", "text": "It" },
-          { "role": "V", "text": "means" },
-          { "role": "O", "text": "you stay awake", "note": "명사절" },
-          { "role": "M", "text": "while messages pour in all day.", "note": "while 부사절" }
+          {
+            "role": "S",
+            "text": "It"
+          },
+          {
+            "role": "V",
+            "text": "means"
+          },
+          {
+            "role": "O",
+            "text": "you stay awake",
+            "note": "명사절"
+          },
+          {
+            "role": "M",
+            "text": "while messages pour in all day.",
+            "note": "while 부사절"
+          }
         ],
         "grammar_note": "명사절 목적어 + while 부사절"
       },
       {
         "index": 19,
         "segments": [
-          { "role": "M", "text": "In a world flooded with media,", "note": "과거분사구 수식" },
-          { "role": "S", "text": "the most useful skill" },
-          { "role": "V", "text": "is" },
-          { "role": "C", "text": "not reading faster but reading with a careful, questioning ____ that looks past the surface.", "note": "not A but B + 빈칸 + 관계절" }
+          {
+            "role": "M",
+            "text": "In a world flooded with media,",
+            "note": "과거분사구 수식"
+          },
+          {
+            "role": "S",
+            "text": "the most useful skill"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "not reading faster but reading with a careful, questioning ____ that looks past the surface.",
+            "note": "not A but B + 빈칸 + 관계절"
+          }
         ],
         "grammar_note": "not A but B + 관계대명사 that"
       }
@@ -318,35 +634,47 @@
       {
         "q_index": 0,
         "q_style": "요지",
-        "correct": 1,
+        "correct": 4,
         "evidence": "글은 같은 사실이 신문·영상·SNS에서 다르게 구성된다고 보여 주고, \"a smart reader asks questions instead of just absorbing\"로 비판적 수용을 강조한다. 따라서 '각 매체가 같은 사실을 다르게 빚으므로 받아들이는 것을 질문해야 한다'가 요지다.",
         "rationales": [
           "11번 \"None of these is lying\"과 모순된다. 신문만 진실/나머지는 거짓이 아니다.",
-          "(정답) 매체별 메시지 구성 + 비판적 질문이라는 글 전체 주장을 요약한다.",
+          "6번 \"makes you feel something different\"와 정면 모순된다.",
           "19번은 '더 빨리 읽기가 아니다'라고 명시하므로 정반대다.",
           "본문은 SNS를 '금지하라'고 말하지 않는다. 이모지는 예시일 뿐이다.",
-          "6번 \"makes you feel something different\"와 정면 모순된다."
+          "(정답) 매체별 메시지 구성 + 비판적 질문이라는 글 전체 주장을 요약한다."
         ],
         "key_terms": [
-          { "en": "medium", "ko": "매체" },
-          { "en": "absorb", "ko": "받아들이다" }
+          {
+            "en": "medium",
+            "ko": "매체"
+          },
+          {
+            "en": "absorb",
+            "ko": "받아들이다"
+          }
         ]
       },
       {
         "q_index": 1,
         "q_style": "빈칸 추론",
-        "correct": 1,
+        "correct": 0,
         "evidence": "빈칸 앞 \"not reading faster but reading with a careful, questioning ___ that looks past the surface\"는 not A but B 구조다. '더 빨리'의 반대는 '표면 너머를 보는 질문하는 마음(mind)'이다. 13번의 '질문을 던지는 독자'와 호응한다.",
         "rationales": [
-          "'남을 이기는 속도'는 '더 빨리 읽기'와 같은 방향이라 not A but B의 B가 될 수 없다.",
           "(정답) mind(마음/태도)는 'questioning ... looks past the surface'와 직접 연결된다.",
+          "'남을 이기는 속도'는 '더 빨리 읽기'와 같은 방향이라 not A but B의 B가 될 수 없다.",
           "'모든 단어를 저장하는 기억'은 비판적 질문이라는 주제와 무관하다.",
           "'메시지를 반복하는 목소리'는 '질문하라'는 태도와 반대다.",
           "'더 많은 색을 보여 주는 화면'은 비유(필터)를 엉뚱하게 문자화한 오답이다."
         ],
         "key_terms": [
-          { "en": "questioning", "ko": "질문하는" },
-          { "en": "surface", "ko": "표면" }
+          {
+            "en": "questioning",
+            "ko": "질문하는"
+          },
+          {
+            "en": "surface",
+            "ko": "표면"
+          }
         ]
       },
       {
@@ -362,8 +690,14 @@
           "'모든 이야기를 지루하게 만든다'는 필터 비유의 의미가 아니다."
         ],
         "key_terms": [
-          { "en": "filter", "ko": "필터" },
-          { "en": "scene", "ko": "장면" }
+          {
+            "en": "filter",
+            "ko": "필터"
+          },
+          {
+            "en": "scene",
+            "ko": "장면"
+          }
         ]
       },
       {
@@ -377,8 +711,14 @@
           "(B) question — '그냥 받아들이지 않고 ~한다'는 13번의 '질문을 던진다(question)'와 일치한다."
         ],
         "key_terms": [
-          { "en": "medium", "ko": "매체" },
-          { "en": "question", "ko": "질문하다" }
+          {
+            "en": "medium",
+            "ko": "매체"
+          },
+          {
+            "en": "question",
+            "ko": "질문하다"
+          }
         ]
       }
     ]
@@ -389,132 +729,239 @@
         "word": "medium",
         "pos": "n.",
         "meaning_ko": "매체 (복수 media)",
-        "synonyms": ["channel"],
+        "synonyms": [
+          "channel"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "Each medium shapes the message in its own way.", "ko": "각 매체는 저마다의 방식으로 메시지를 빚는다." },
-          { "en": "A newspaper is a slower medium than a video.", "ko": "신문은 영상보다 느린 매체다." }
+          {
+            "en": "Each medium shapes the message in its own way.",
+            "ko": "각 매체는 저마다의 방식으로 메시지를 빚는다."
+          },
+          {
+            "en": "A newspaper is a slower medium than a video.",
+            "ko": "신문은 영상보다 느린 매체다."
+          }
         ]
       },
       {
         "word": "message",
         "pos": "n.",
         "meaning_ko": "메시지, 전하려는 내용",
-        "synonyms": ["content"],
+        "synonyms": [
+          "content"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "The same message can feel different in each medium.", "ko": "같은 메시지가 매체마다 다르게 느껴질 수 있다." },
-          { "en": "Messages pour in all day long.", "ko": "메시지가 하루 종일 쏟아져 들어온다." }
+          {
+            "en": "The same message can feel different in each medium.",
+            "ko": "같은 메시지가 매체마다 다르게 느껴질 수 있다."
+          },
+          {
+            "en": "Messages pour in all day long.",
+            "ko": "메시지가 하루 종일 쏟아져 들어온다."
+          }
         ]
       },
       {
         "word": "shape",
         "pos": "v.",
         "meaning_ko": "빚다, 형성하다",
-        "synonyms": ["form"],
+        "synonyms": [
+          "form"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "Every medium shapes how the fact feels.", "ko": "모든 매체는 그 사실이 어떻게 느껴지는지 빚는다." },
-          { "en": "Music can shape your mood quickly.", "ko": "음악은 당신의 기분을 빠르게 빚을 수 있다." }
+          {
+            "en": "Every medium shapes how the fact feels.",
+            "ko": "모든 매체는 그 사실이 어떻게 느껴지는지 빚는다."
+          },
+          {
+            "en": "Music can shape your mood quickly.",
+            "ko": "음악은 당신의 기분을 빠르게 빚을 수 있다."
+          }
         ]
       },
       {
         "word": "absorb",
         "pos": "v.",
         "meaning_ko": "(생각 없이) 받아들이다, 흡수하다",
-        "synonyms": ["take in"],
-        "antonyms": ["question"],
+        "synonyms": [
+          "take in"
+        ],
+        "antonyms": [
+          "question"
+        ],
         "examples": [
-          { "en": "A smart reader questions instead of just absorbing.", "ko": "똑똑한 독자는 그냥 받아들이지 않고 질문한다." },
-          { "en": "Do not absorb every message without thinking.", "ko": "생각 없이 모든 메시지를 받아들이지 마라." }
+          {
+            "en": "A smart reader questions instead of just absorbing.",
+            "ko": "똑똑한 독자는 그냥 받아들이지 않고 질문한다."
+          },
+          {
+            "en": "Do not absorb every message without thinking.",
+            "ko": "생각 없이 모든 메시지를 받아들이지 마라."
+          }
         ]
       },
       {
         "word": "caption",
         "pos": "n.",
         "meaning_ko": "(사진 등의) 캡션, 설명글",
-        "synonyms": ["text"],
+        "synonyms": [
+          "text"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "The post had an excited caption full of emojis.", "ko": "그 게시물은 이모지로 가득한 신난 캡션이 있었다." },
-          { "en": "A caption can change how you read a photo.", "ko": "캡션은 사진을 읽는 방식을 바꿀 수 있다." }
+          {
+            "en": "The post had an excited caption full of emojis.",
+            "ko": "그 게시물은 이모지로 가득한 신난 캡션이 있었다."
+          },
+          {
+            "en": "A caption can change how you read a photo.",
+            "ko": "캡션은 사진을 읽는 방식을 바꿀 수 있다."
+          }
         ]
       },
       {
         "word": "emotion",
         "pos": "n.",
         "meaning_ko": "감정",
-        "synonyms": ["feeling"],
+        "synonyms": [
+          "feeling"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "A video pulls at your emotions before you think.", "ko": "영상은 당신이 생각하기 전에 감정을 끌어당긴다." },
-          { "en": "Music adds emotion to a plain fact.", "ko": "음악은 밋밋한 사실에 감정을 더한다." }
+          {
+            "en": "A video pulls at your emotions before you think.",
+            "ko": "영상은 당신이 생각하기 전에 감정을 끌어당긴다."
+          },
+          {
+            "en": "Music adds emotion to a plain fact.",
+            "ko": "음악은 밋밋한 사실에 감정을 더한다."
+          }
         ]
       },
       {
         "word": "leave out",
         "pos": "v.",
         "meaning_ko": "빼다, 생략하다",
-        "synonyms": ["omit"],
-        "antonyms": ["include"],
+        "synonyms": [
+          "omit"
+        ],
+        "antonyms": [
+          "include"
+        ],
         "examples": [
-          { "en": "Each medium chooses what to leave out.", "ko": "각 매체는 무엇을 뺄지를 선택한다." },
-          { "en": "They left out the boring details.", "ko": "그들은 지루한 세부 사항을 생략했다." }
+          {
+            "en": "Each medium chooses what to leave out.",
+            "ko": "각 매체는 무엇을 뺄지를 선택한다."
+          },
+          {
+            "en": "They left out the boring details.",
+            "ko": "그들은 지루한 세부 사항을 생략했다."
+          }
         ]
       },
       {
         "word": "filter",
         "pos": "n.",
         "meaning_ko": "필터, 거르개",
-        "synonyms": ["screen"],
+        "synonyms": [
+          "screen"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "The medium is like a colored filter over the scene.", "ko": "매체는 장면 위에 덧씌운 색깔 필터와 같다." },
-          { "en": "A filter changes how the same photo looks.", "ko": "필터는 같은 사진이 어떻게 보이는지 바꾼다." }
+          {
+            "en": "The medium is like a colored filter over the scene.",
+            "ko": "매체는 장면 위에 덧씌운 색깔 필터와 같다."
+          },
+          {
+            "en": "A filter changes how the same photo looks.",
+            "ko": "필터는 같은 사진이 어떻게 보이는지 바꾼다."
+          }
         ]
       },
       {
         "word": "personal",
         "pos": "adj.",
         "meaning_ko": "개인적인, 친근한",
-        "synonyms": ["private", "intimate"],
-        "antonyms": ["public"],
+        "synonyms": [
+          "private",
+          "intimate"
+        ],
+        "antonyms": [
+          "public"
+        ],
         "examples": [
-          { "en": "A social post feels personal, like a friend talking.", "ko": "SNS 게시물은 친구가 말하는 것처럼 친근하게 느껴진다." },
-          { "en": "She shared a personal story with the class.", "ko": "그녀는 반 아이들에게 개인적인 이야기를 나눴다." }
+          {
+            "en": "A social post feels personal, like a friend talking.",
+            "ko": "SNS 게시물은 친구가 말하는 것처럼 친근하게 느껴진다."
+          },
+          {
+            "en": "She shared a personal story with the class.",
+            "ko": "그녀는 반 아이들에게 개인적인 이야기를 나눴다."
+          }
         ]
       },
       {
         "word": "flood",
         "pos": "v.",
         "meaning_ko": "넘쳐나게 하다, 범람하다",
-        "synonyms": ["overwhelm"],
+        "synonyms": [
+          "overwhelm"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "We live in a world flooded with media.", "ko": "우리는 매체로 넘쳐나는 세상에 산다." },
-          { "en": "Messages flood our phones every minute.", "ko": "메시지가 매 순간 우리 폰에 넘쳐난다." }
+          {
+            "en": "We live in a world flooded with media.",
+            "ko": "우리는 매체로 넘쳐나는 세상에 산다."
+          },
+          {
+            "en": "Messages flood our phones every minute.",
+            "ko": "메시지가 매 순간 우리 폰에 넘쳐난다."
+          }
         ]
       },
       {
         "word": "surface",
         "pos": "n.",
         "meaning_ko": "표면, 겉",
-        "synonyms": ["top layer"],
-        "antonyms": ["depth"],
+        "synonyms": [
+          "top layer"
+        ],
+        "antonyms": [
+          "depth"
+        ],
         "examples": [
-          { "en": "A careful mind looks past the surface.", "ko": "신중한 마음은 표면 너머를 본다." },
-          { "en": "Do not judge a story by its surface.", "ko": "이야기를 표면만 보고 판단하지 마라." }
+          {
+            "en": "A careful mind looks past the surface.",
+            "ko": "신중한 마음은 표면 너머를 본다."
+          },
+          {
+            "en": "Do not judge a story by its surface.",
+            "ko": "이야기를 표면만 보고 판단하지 마라."
+          }
         ]
       },
       {
         "word": "questioning",
         "pos": "adj.",
         "meaning_ko": "질문하는, 의심하는",
-        "synonyms": ["doubting"],
-        "antonyms": ["accepting"],
+        "synonyms": [
+          "doubting"
+        ],
+        "antonyms": [
+          "accepting"
+        ],
         "examples": [
-          { "en": "Read with a careful, questioning mind.", "ko": "신중하고 질문하는 마음으로 읽어라." },
-          { "en": "A questioning reader is hard to fool.", "ko": "질문하는 독자는 속이기 어렵다." }
+          {
+            "en": "Read with a careful, questioning mind.",
+            "ko": "신중하고 질문하는 마음으로 읽어라."
+          },
+          {
+            "en": "A questioning reader is hard to fool.",
+            "ko": "질문하는 독자는 속이기 어렵다."
+          }
         ]
       }
     ]
