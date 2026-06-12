@@ -5,6 +5,7 @@ import { mkdirSync, readdirSync, existsSync } from 'node:fs';
 import { dirname, resolve, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parseArgs } from 'node:util';
+import { distLevelDir } from './_dist-path.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = resolve(here, '..');
@@ -45,7 +46,8 @@ async function main() {
   const validator = spawn('node', [join(root, 'tools', 'validate-content.mjs'), '--month', values.month], { stdio: 'inherit' });
   await new Promise((ok, ko) => validator.on('exit', c => c === 0 ? ok() : ko(new Error('validation failed'))));
 
-  const outDir = join(root, 'dist', values.month);
+  // 교재는 dist/{YYYY-MM}/{YYYY-MM}-{Level} (학년)/ 로 정리(2026-06 컨벤션).
+  const outDir = distLevelDir(root, values.month);
   mkdirSync(outDir, { recursive: true });
 
   const port = 4175;

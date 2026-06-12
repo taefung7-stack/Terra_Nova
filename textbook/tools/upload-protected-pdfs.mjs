@@ -18,7 +18,7 @@
  *   - send-sample           : storage.from('sample-pdfs').createSignedUrl('{level}.pdf')
  */
 import { createClient } from '@supabase/supabase-js';
-import { readFileSync, existsSync, statSync } from 'node:fs';
+import { readFileSync, existsSync, statSync, readdirSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parseArgs } from 'node:util';
@@ -64,10 +64,18 @@ const distDir = resolve(root, 'dist');
 const monthDir = resolve(distDir, month);
 const searchDir = existsSync(monthDir) && statSync(monthDir).isDirectory() ? monthDir : distDir;
 
+// searchDir 안에서 "{month}-{Level}" 로 시작하는 실제 폴더를 찾는다(학년 접미사 " (초5)" 허용).
+const entries = existsSync(searchDir) ? readdirSync(searchDir) : [];
+const findDir = (lvl) => {
+  const exact = `${month}-${lvl}`;
+  const hit = entries.find(d => d === exact || d.startsWith(exact + ' '));
+  return hit ? resolve(searchDir, hit) : resolve(searchDir, exact);
+};
+
 const targets = [];
 const levelsToTry = reqLvls || VALID_LEVELS;
 for (const lvl of levelsToTry) {
-  const dir = resolve(searchDir, `${month}-${lvl}`);
+  const dir = findDir(lvl);
   const fullPath = resolve(dir, `${month}-${lvl}-fullbook.pdf`);
   const sampPath = resolve(dir, `${month}-${lvl}-sample.pdf`);
   const has = { full: existsSync(fullPath), samp: existsSync(sampPath) };

@@ -25,6 +25,7 @@ import { dirname, resolve, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parseArgs } from 'node:util';
 import { PDFDocument } from 'pdf-lib';
+import { distLevelDir, parseMonthArg } from './_dist-path.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = resolve(here, '..');
@@ -64,9 +65,14 @@ async function main() {
     process.exit(2);
   }
   const month = values.month;
+  // dist/{YYYY-MM}/{YYYY-MM}-{Level} (학년)/{YYYY-MM}-{Level}-fullbook.pdf 로 정리.
+  const { month: ym, level } = parseMonthArg(month);
+  const levelDir = distLevelDir(root, month);
+  const fullbookName = level ? `${ym}-${level}-fullbook.pdf` : `${month}-fullbook.pdf`;
   const outPath = values.out
     ? resolve(values.out)
-    : join(root, 'dist', month, `${month}-fullbook.pdf`);
+    : join(levelDir, fullbookName);
+  mkdirSync(dirname(outPath), { recursive: true });
 
   const port = 4185;
   const server = spawn(process.execPath, [

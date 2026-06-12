@@ -82,13 +82,16 @@ console.log(`[upload-monthly-pdfs] ${month}, ${dirs.length}개 디렉토리 발�
 
 let uploaded = 0, skipped = 0, failed = 0;
 for (const dir of dirs) {
-  const levelMatch = dir.match(/-([A-Z][a-z]+)$/);
+  // 폴더명 끝의 선택적 학년 접미사 " (초5)" 등을 무시하고 레벨을 파싱.
+  const levelMatch = dir.match(/-([A-Z][a-z]+)(?:\s*\(.*\))?$/);
   if (!levelMatch) { console.warn('  - skip (level 파싱 실패):', dir); skipped++; continue; }
   const level = levelMatch[1].toUpperCase();
   if (!VALID_LEVELS.includes(level)) { console.warn('  - skip (invalid level):', level); skipped++; continue; }
   if (requestedLevels && !requestedLevels.includes(level)) { skipped++; continue; }
 
-  const pdfPath = resolve(searchDir, dir, `${dir}.pdf`);
+  // 내부 PDF 파일명은 접미사 없는 {month}-{Level}.pdf (예: 2026-06-Mars.pdf).
+  const base = `${month}-${levelMatch[1]}`;
+  const pdfPath = resolve(searchDir, dir, `${base}.pdf`);
   if (!existsSync(pdfPath)) { console.warn('  - skip (PDF 없음):', pdfPath); skipped++; continue; }
 
   const objectPath = `${month}/${month}-${level}.pdf`;
