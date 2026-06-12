@@ -1,7 +1,7 @@
 /**
  * Extract MARS preview JPGs directly from the printed book PDF.
  * Pulls pages 5-8 (P1 Passage / P2 Practice / P3 Syntax / P4 Vocab of passage 01)
- * from dist/2026-06-Mars/2026-06-Mars.pdf and writes them to
+ * from dist/2026-06/2026-06-Mars/2026-06-Mars.pdf and writes them to
  * ../assets/textbook-previews/mars-p[1-4].jpg
  *
  * Uses Artifex MuPDF (npm: mupdf) — correctly rasterizes gradients,
@@ -16,7 +16,7 @@ import { resolve, join } from 'node:path';
 import * as mupdf from 'mupdf';
 import { createCanvas, loadImage } from 'canvas';
 
-const pdfPath = resolve('./dist/2026-06-Mars/2026-06-Mars.pdf');
+const pdfPath = resolve('./dist/2026-06/2026-06-Mars/2026-06-Mars.pdf');
 const outDir = resolve('../assets/textbook-previews');
 await mkdir(outDir, { recursive: true });
 

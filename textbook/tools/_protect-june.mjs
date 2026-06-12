@@ -76,7 +76,7 @@ console.log('=== Terra Nova 2026-06 신간 보안 PDF 생성 ===\n');
 const results = [];
 
 for (const level of levels) {
-  const distDir = join(root, 'dist', `2026-06-${level}`);
+  const distDir = join(root, 'dist', '2026-06', `2026-06-${level}`);
   const srcPath = join(distDir, `2026-06-${level}.pdf`);
 
   if (!existsSync(srcPath)) {

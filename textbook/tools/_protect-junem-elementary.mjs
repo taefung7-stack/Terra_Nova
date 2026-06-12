@@ -63,7 +63,7 @@ console.log('=== Terra Nova 2026-06 초등부 보안 PDF 생성 ===\n');
 const results = [];
 
 for (const level of LEVELS) {
-  const distDir = join(root, 'dist', `${MONTH}-${level}`);
+  const distDir = join(root, 'dist', MONTH, `${MONTH}-${level}`);
   const srcPath = join(distDir, `${MONTH}-${level}.pdf`);
   if (!existsSync(srcPath)) { console.log(`[${level}] SKIP: ${srcPath} 없음\n`); continue; }
 

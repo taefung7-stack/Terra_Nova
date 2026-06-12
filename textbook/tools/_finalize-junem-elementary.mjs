@@ -67,7 +67,7 @@ const browser = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox']
 
 try {
   for (const { level, coverFile, bodyFile } of LEVELS) {
-    const distDir = join(root, 'dist', `${MONTH}-${level}`);
+    const distDir = join(root, 'dist', MONTH, `${MONTH}-${level}`);
     const coverPath = join(distDir, coverFile);
     const bodyPath = join(distDir, bodyFile);
     const outPath = join(distDir, `${MONTH}-${level}.pdf`);

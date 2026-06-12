@@ -100,7 +100,7 @@ const browser = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox']
 
 try {
   for (const level of levels) {
-    const distDir = join(root, 'dist', `${MONTH}-${level}`);
+    const distDir = join(root, 'dist', MONTH, `${MONTH}-${level}`);
     const rawPath = join(distDir, `${MONTH}-${level}.raw.pdf`);
     const outPath = join(distDir, `${MONTH}-${level}.pdf`);
     const colophonPath = join(tmpDir, `${MONTH}-${level}-colophon.pdf`);

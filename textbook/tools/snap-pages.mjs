@@ -55,7 +55,7 @@ try {
   for (let i = 0; i < dims.length; i++) {
     const d = dims[i];
     await browserPage.screenshot({
-      path: 'dist/2026-06-N/sample-01-p' + (i+1) + '.png',
+      path: 'dist/2026-06/2026-06-Neptune/sample-01-p' + (i+1) + '.png',
       clip: { x: d.x, y: d.y, width: d.w, height: d.h }
     });
     console.log('p' + (i+1) + ' clipped at', JSON.stringify(d));

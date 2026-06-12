@@ -9,8 +9,8 @@ const outDir = join(root, 'dist', '_qa-renders', 'junem');
 if (!existsSync(outDir)) mkdirSync(outDir, { recursive: true });
 
 const jobs = [
-  ['mars', 'dist/2026-06-Mars/mars_fullbook_final_complete.pdf', [1, 2, 4, 6, 91, 103, 113, 154]],
-  ['venus', 'dist/2026-06-Venus/venus_fullbook_final_complete.pdf', [1, 2, 4, 6, 7, 8, 9, 50, 91, 103, 113, 154]],
+  ['mars', 'dist/2026-06/2026-06-Mars/mars_fullbook_final_complete.pdf', [1, 2, 4, 6, 91, 103, 113, 154]],
+  ['venus', 'dist/2026-06/2026-06-Venus/venus_fullbook_final_complete.pdf', [1, 2, 4, 6, 7, 8, 9, 50, 91, 103, 113, 154]],
 ];
 
 for (const [name, path, pages] of jobs) {

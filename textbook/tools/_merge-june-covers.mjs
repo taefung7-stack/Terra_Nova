@@ -26,7 +26,7 @@ const levels = [
 ];
 
 for (const { level, coverFile } of levels) {
-  const distDir = join(root, 'dist', `2026-06-${level}`);
+  const distDir = join(root, 'dist', '2026-06', `2026-06-${level}`);
   const coverPath = join(distDir, coverFile);
   const bodyPath = join(distDir, `2026-06-${level}-fullbook.pdf`);
   const outPath = join(distDir, `2026-06-${level}.pdf`);

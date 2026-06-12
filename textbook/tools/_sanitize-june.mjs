@@ -61,7 +61,7 @@ const levels = ['Neptune', 'Uranus', 'Terra'];
 console.log('=== 6월호 에러 페이지 백지화 ===\n');
 
 for (const level of levels) {
-  const distDir = join(root, 'dist', `2026-06-${level}`);
+  const distDir = join(root, 'dist', '2026-06', `2026-06-${level}`);
   const srcPath = join(distDir, `2026-06-${level}.pdf`);
   const backupPath = join(distDir, `2026-06-${level}.raw.pdf`);
 

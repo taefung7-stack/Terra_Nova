@@ -138,7 +138,7 @@ console.log(`대상 레벨: ${levels.join(', ')}\n`);
 // Preflight
 const preflightResults = [];
 for (const level of levels) {
-  const srcPath = join(root, 'dist', `${MONTH}-${level}`, `${MONTH}-${level}.pdf`);
+  const srcPath = join(root, 'dist', MONTH, `${MONTH}-${level}`, `${MONTH}-${level}.pdf`);
   if (!existsSync(srcPath)) {
     console.log(`[${level}] FAIL: ${srcPath} 없음`);
     process.exit(2);
@@ -163,7 +163,7 @@ console.log('\n=== Protected PDF 생성 ===\n');
 const dispatchResults = [];
 
 for (const level of levels) {
-  const distDir = join(root, 'dist', `${MONTH}-${level}`);
+  const distDir = join(root, 'dist', MONTH, `${MONTH}-${level}`);
   const srcPath = join(distDir, `${MONTH}-${level}.pdf`);
   const tmpSamplePlain = join(tmpDir, `${MONTH}-${level}-sample-plain.pdf`);
   const outProtected = join(distDir, `${MONTH}-${level}-protected.pdf`);

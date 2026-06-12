@@ -1,7 +1,7 @@
 /**
  * MARS 미리보기 JPG 추출 (2026-06 업데이트본).
  *
- * 완성본 dist/2026-06-Mars/2026-06-Mars.pdf (156p = 표지1 + 저작권1 + 본문154) 에서
+ * 완성본 dist/2026-06/2026-06-Mars/2026-06-Mars.pdf (156p = 표지1 + 저작권1 + 본문154) 에서
  * passage 01 의 4페이지를 뽑아 ../assets/textbook-previews/mars-p[1-4].jpg 로 저장.
  *
  * 페이지 매핑 (표지+colophon 삽입으로 기존 p5-8 → p7-10 로 +2 이동):
@@ -17,7 +17,7 @@ import { resolve, join } from 'node:path';
 import * as mupdf from 'mupdf';
 import { createCanvas, loadImage } from 'canvas';
 
-const pdfPath = resolve('./dist/2026-06-Mars/2026-06-Mars.pdf');
+const pdfPath = resolve('./dist/2026-06/2026-06-Mars/2026-06-Mars.pdf');
 const outDir = resolve('../assets/textbook-previews');
 await mkdir(outDir, { recursive: true });
 

@@ -60,11 +60,14 @@ const reqLvls = values.levels
 
 const sb = createClient(SUPABASE_URL, SERVICE_KEY, { auth: { persistSession: false } });
 const distDir = resolve(root, 'dist');
+// 신규 레이아웃: dist/{month}/{month}-{Level}/ . 구 레이아웃(dist/{month}-{Level}/) 도 호환.
+const monthDir = resolve(distDir, month);
+const searchDir = existsSync(monthDir) && statSync(monthDir).isDirectory() ? monthDir : distDir;
 
 const targets = [];
 const levelsToTry = reqLvls || VALID_LEVELS;
 for (const lvl of levelsToTry) {
-  const dir = resolve(distDir, `${month}-${lvl}`);
+  const dir = resolve(searchDir, `${month}-${lvl}`);
   const fullPath = resolve(dir, `${month}-${lvl}-fullbook.pdf`);
   const sampPath = resolve(dir, `${month}-${lvl}-sample.pdf`);
   const has = { full: existsSync(fullPath), samp: existsSync(sampPath) };

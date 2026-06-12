@@ -70,7 +70,7 @@ function protect(src, out) {
 
 console.log('=== 2026-06 초등부 fullbook 압축 + 보안 ===\n');
 for (const level of LEVELS) {
-  const dir = join(root, 'dist', `${MONTH}-${level}`);
+  const dir = join(root, 'dist', MONTH, `${MONTH}-${level}`);
   const srcMerged = join(dir, `${MONTH}-${level}.pdf`);
   if (!existsSync(srcMerged)) { console.log(`[${level}] SKIP: ${srcMerged} 없음`); continue; }
   const tmpSafe = join(tmpDir, `${level.toLowerCase()}-safe.pdf`);

@@ -62,8 +62,12 @@ if (!existsSync(distDir)) {
   process.exit(1);
 }
 
-const dirs = readdirSync(distDir).filter(d => {
-  const p = resolve(distDir, d);
+// 신규 레이아웃: dist/{month}/{month}-{Level}/ . 구 레이아웃(dist/{month}-{Level}/) 도 호환.
+const monthDir = resolve(distDir, month);
+const searchDir = existsSync(monthDir) && statSync(monthDir).isDirectory() ? monthDir : distDir;
+
+const dirs = readdirSync(searchDir).filter(d => {
+  const p = resolve(searchDir, d);
   if (!statSync(p).isDirectory()) return false;
   return d.startsWith(month + '-');
 });
@@ -84,7 +88,7 @@ for (const dir of dirs) {
   if (!VALID_LEVELS.includes(level)) { console.warn('  - skip (invalid level):', level); skipped++; continue; }
   if (requestedLevels && !requestedLevels.includes(level)) { skipped++; continue; }
 
-  const pdfPath = resolve(distDir, dir, `${dir}.pdf`);
+  const pdfPath = resolve(searchDir, dir, `${dir}.pdf`);
   if (!existsSync(pdfPath)) { console.warn('  - skip (PDF 없음):', pdfPath); skipped++; continue; }
 
   const objectPath = `${month}/${month}-${level}.pdf`;

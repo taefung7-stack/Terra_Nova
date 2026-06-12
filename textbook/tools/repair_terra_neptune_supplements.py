@@ -10,7 +10,7 @@ FONT = Path("C:/Windows/Fonts/malgun.ttf")
 
 LEVELS = {
     "Terra": {
-        "path": ROOT / "dist/2026-06-Terra/terra.pdf",
+        "path": ROOT / "dist/2026-06/2026-06-Terra/terra.pdf",
         "answers": {
             1: ([1, 2, 3, 4], ("music", "beauty")),
             2: ([2, 3, 4, 5], ("closed", "segments")),
@@ -35,7 +35,7 @@ LEVELS = {
         },
     },
     "Neptune": {
-        "path": ROOT / "dist/2026-06-Neptune/neptune.pdf",
+        "path": ROOT / "dist/2026-06/2026-06-Neptune/neptune.pdf",
         "answers": {
             1: ([1, 2, 3, 4], ("50", "trembles")),
             2: ([2, 3, 4, 5], ("pair", "2500")),

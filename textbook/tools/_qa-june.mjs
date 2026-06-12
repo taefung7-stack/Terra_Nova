@@ -28,7 +28,7 @@ console.log('=== Terra Nova 2026-06 신간 QA Report ===\n');
 const summary = [];
 
 for (const level of levels) {
-  const distDir = join(root, 'dist', `2026-06-${level}`);
+  const distDir = join(root, 'dist', '2026-06', `2026-06-${level}`);
   const finalPath = join(distDir, `2026-06-${level}.pdf`);
   const txtPath = join(root, 'tmp', 'june-text', `${level}.txt`);
 

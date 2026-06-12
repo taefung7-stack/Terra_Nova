@@ -14,9 +14,9 @@ const here = dirname(fileURLToPath(import.meta.url));
 const root = resolve(here, '..');
 
 const targets = [
-  { level: 'Neptune', file: 'dist/2026-06-Neptune/2026-06-Neptune-fullbook.pdf', cover: 'dist/2026-06-Neptune/NEPTUNE 6월 표지.pdf' },
-  { level: 'Uranus',  file: 'dist/2026-06-Uranus/2026-06-Uranus-fullbook.pdf',   cover: 'dist/2026-06-Uranus/URANUS 6월 표지.pdf'   },
-  { level: 'Terra',   file: 'dist/2026-06-Terra/2026-06-Terra-fullbook.pdf',     cover: 'dist/2026-06-Terra/TERRA 6월 표지.pdf'     }
+  { level: 'Neptune', file: 'dist/2026-06/2026-06-Neptune/2026-06-Neptune-fullbook.pdf', cover: 'dist/2026-06/2026-06-Neptune/NEPTUNE 6월 표지.pdf' },
+  { level: 'Uranus',  file: 'dist/2026-06/2026-06-Uranus/2026-06-Uranus-fullbook.pdf',   cover: 'dist/2026-06/2026-06-Uranus/URANUS 6월 표지.pdf'   },
+  { level: 'Terra',   file: 'dist/2026-06/2026-06-Terra/2026-06-Terra-fullbook.pdf',     cover: 'dist/2026-06/2026-06-Terra/TERRA 6월 표지.pdf'     }
 ];
 
 for (const t of targets) {
