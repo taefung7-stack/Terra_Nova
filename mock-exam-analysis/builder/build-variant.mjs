@@ -477,8 +477,9 @@ async function buildHtml({ variants, examMeta, cssContent }) {
   const writingAnswerCards = [];
   for (const v of variants) {
     const list = (v.by_type && v.by_type.writing) || [];
-    // 본문포함 서술형은 원본 8문장 전문을 주입 (paraphrase 아닌 원본 passage)
-    const origPassage = v._orig_passage || (v.by_type.theme && v.by_type.theme.passage) || [];
+    // 본문포함 서술형은 원본 전문을 주입하되, 원본이 어법 문항용 오류를 포함하는 경우
+    // variant JSON의 writing_passage로 교정 지문을 별도 지정할 수 있다.
+    const origPassage = v.writing_passage || v._orig_passage || (v.by_type.theme && v.by_type.theme.passage) || [];
     for (const w of list) {
       const p = { ...w, kind: 'writing', no: no, source_no: v.passage_id, type_label: w.subtype_label || '서술형',
         full_passage: w.show_passage ? origPassage : null };
