@@ -1,0 +1,149 @@
+{
+  "$schema_version": "variant-v0.3-type-grouped",
+  "$ref_source": "43.json",
+  "passage_id": 43,
+  "topic_ko": "질투에서 우정으로 — 같은 무대 위 Emma와 Lisa",
+  "_note": "story 유형. 학술유형(주제/주장/요지/제목/빈칸/함축/무관) 없음. order/insert/grammar/vocab/summary/writing 만 작성. grammar/vocab 은 틀린 형태를 본문에 실제로 넣어 정답으로 표기.",
+
+  "by_type": {
+    "order": {
+      "given": "Emma was a gifted singer who could never seem to win the recognition she longed for, while Lisa, who attended the very same high school, had quickly risen to fame, and watching that success fill Emma with jealousy, she finally decided to enter a major vocal competition in the capital.",
+      "blocks": {
+        "A": "For months she prepared with all her energy, and when the day came she walked nervously into the concert hall, where she saw a huge crowd cheering for Lisa and could not help comparing herself to her rival.",
+        "B": "Yet when her turn arrived, Emma sang with her whole heart, and to her astonishment the judges named her first place, not Lisa.",
+        "C": "Moments later Lisa came over with a warm smile to congratulate her, saying she had always been moved by Emma's effort and had quietly supported her all along, and those words left Emma ashamed of her jealousy as the two hugged and their friendship grew stronger."
+      },
+      "choices": ["(A) - (C) - (B)", "(B) - (A) - (C)", "(B) - (C) - (A)", "(A) - (B) - (C)", "(C) - (B) - (A)"],
+      "answer": 4,
+      "explanation_ko": "대회 참가를 결심한 주어진 글 뒤에, (A)가 '몇 달 준비→대회 당일 입장'으로 이어지고, (B)가 'her turn(자기 차례)'에 공연하여 뜻밖의 1등을, (C)가 'Moments later(잠시 후)' Lisa의 축하와 화해로 마무리한다. (A)-(B)-(C). ④가 정답.",
+      "distractor_ko": "(B)의 'when her turn arrived'는 (A)에서 대회장에 들어간 뒤라야 자연스럽고, (C)의 'Moments later'는 1등 발표(B) 직후를 가리키므로 (C)는 마지막이다."
+    },
+
+    "insert": {
+      "insert_sentence": "To her astonishment, it was Emma, not Lisa, who was named first place.",
+      "passage_marked": [
+        { "text": "Emma, a talented but unrecognized singer, grew jealous of her famous schoolmate Lisa and entered a major vocal competition.", "slot_after": 1 },
+        { "text": "After months of hard preparation, she walked nervously into the hall and saw the audience cheering for Lisa.", "slot_after": 2 },
+        { "text": "When her turn came, Emma sang with all her heart and poured her long preparation into every note.", "slot_after": 3 },
+        { "text": "Moments later, Lisa came over with a warm smile to congratulate her.", "slot_after": 4 },
+        { "text": "Lisa said she had always been moved by Emma's effort and had supported her all along.", "slot_after": 5 }
+      ],
+      "choices": ["①", "②", "③", "④", "⑤"],
+      "answer": 3,
+      "explanation_ko": "주어진 문장은 '놀랍게도 Emma가 1등'이라는 결과로, Emma가 공연을 마친 문장(③) 뒤이자 Lisa가 축하하러 다가오는 문장(④ 'Moments later') 앞에 와야 한다. ③이 정답.",
+      "distractor_ko": "공연 결과가 나오기 전(①②)에 넣으면 너무 이르고, Lisa가 이미 축하한 뒤(④⑤)에 넣으면 시간 순서가 어긋난다."
+    },
+
+    "grammar": {
+      "passage": [
+        "Emma was a talented vocalist but struggled to gain recognition.",
+        "Lisa, which went to the same high school with her, had quickly become famous with powerful performances.",
+        "Watching Lisa's success, Emma felt jealous and decided to enter a major vocal competition.",
+        "When her turn arrived, Emma performed with all her heart, pouring her months of preparation into every note.",
+        "To her surprise, Emma got first place, and Lisa came over to congratulate her with a warm smile."
+      ],
+      "underlines": [
+        { "no": 1, "sent_index": 0, "text": "to gain", "correct": true },
+        { "no": 2, "sent_index": 1, "text": "which", "correct": false, "fix": "who" },
+        { "no": 3, "sent_index": 2, "text": "Watching", "correct": true },
+        { "no": 4, "sent_index": 3, "text": "pouring", "correct": true },
+        { "no": 5, "sent_index": 4, "text": "to congratulate", "correct": true }
+      ],
+      "choices": ["①", "②", "③", "④", "⑤"],
+      "answer": 2,
+      "explanation_ko": "② 선행사 Lisa는 사람이므로 사물을 가리키는 관계대명사 'which' 가 아니라 사람을 가리키는 'who' 가 와야 한다. ②가 정답.",
+      "distractor_ko": "①struggle to + V의 to gain, ③분사구문 Watching(동시동작), ④분사구문 pouring(동시동작), ⑤목적의 to부정사 to congratulate(축하하러)는 모두 옳다."
+    },
+
+    "vocab": {
+      "passage": [
+        "Emma was a talented vocalist but struggled to gain recognition.",
+        "Watching Lisa's rapid success, Emma felt jealous and entered a major competition.",
+        "When the results were announced, to her surprise Emma got last place, not Lisa.",
+        "Moments later, Lisa came over with a warm smile to congratulate her on the win.",
+        "These kind words made Emma feel embarrassed of her own jealousy and inspired to find a better path."
+      ],
+      "underlines": [
+        { "no": 1, "sent_index": 0, "text": "recognition", "correct": true },
+        { "no": 2, "sent_index": 1, "text": "jealous", "correct": true },
+        { "no": 3, "sent_index": 2, "text": "last place", "correct": false, "fix": "first place" },
+        { "no": 4, "sent_index": 3, "text": "congratulate", "correct": true },
+        { "no": 5, "sent_index": 4, "text": "embarrassed", "correct": true }
+      ],
+      "choices": ["①", "②", "③", "④", "⑤"],
+      "answer": 3,
+      "explanation_ko": "③ Emma가 놀랍게도 우승했고 Lisa가 '그 우승(the win)'을 축하했으므로, Emma는 '1등(first place)'을 차지했어야 한다. '꼴찌(last place)'는 정반대 의미라 부적절하므로 first place로 고쳐야 한다. ③이 정답.",
+      "distractor_ko": "①recognition(인정), ②jealous(질투하는), ④congratulate(축하하다), ⑤embarrassed(부끄러워하는)는 모두 문맥에 적절하다."
+    },
+
+    "summary": {
+      "passage": [
+        "Emma, a talented singer who had not yet been recognized, was jealous of her famous schoolmate Lisa.",
+        "Hoping to prove herself, she entered a major vocal competition and prepared for months.",
+        "On the day, nervous and comparing herself to Lisa, she still sang with all her heart.",
+        "To her surprise, Emma won first place instead of Lisa.",
+        "Lisa warmly congratulated her and revealed that she had quietly supported Emma all along.",
+        "Ashamed of her jealousy yet inspired, Emma embraced Lisa, and their friendship grew stronger."
+      ],
+      "summary_template": "Although Emma was at first __(A)__ of her rival Lisa, Lisa's warm and genuine support turned that feeling into a stronger __(B)__ between them.",
+      "options": [
+        { "no": 1, "A": "proud", "B": "friendship" },
+        { "no": 2, "A": "jealous", "B": "rivalry" },
+        { "no": 3, "A": "jealous", "B": "friendship" },
+        { "no": 4, "A": "afraid", "B": "distance" },
+        { "no": 5, "A": "fond", "B": "friendship" }
+      ],
+      "answer": 3,
+      "explanation_ko": "Emma는 처음에 라이벌 Lisa를 (A)jealous(질투)했지만, Lisa의 진심 어린 응원이 그 감정을 더 단단한 (B)friendship(우정)으로 바꾸었다. ③.",
+      "distractor_ko": "(A)는 jealous, (B)는 friendship여야 한다. proud/fond(질투와 반대), rivalry/distance(우정과 반대)는 글과 어긋난다."
+    },
+
+    "writing": [
+      {
+        "subtype": "word_order",
+        "subtype_label": "배열 영작",
+        "question": "다음 우리말과 같은 뜻이 되도록 <보기>의 단어를 모두 배열하여 영작하시오.",
+        "ko_prompt": "Emma는 Lisa의 성공을 지켜보며 질투를 느꼈다.",
+        "words": ["Emma", "felt", "jealous", "watching", "Lisa's", "success"],
+        "answer": "Emma felt jealous watching Lisa's success.",
+        "explanation_ko": "주어 Emma + 동사 felt + 보어 jealous + 분사구문 watching Lisa's success(동시동작)."
+      },
+      {
+        "subtype": "conditioned_write",
+        "subtype_label": "조건 영작",
+        "question": "다음 우리말을 <조건>에 맞게 영작하시오.",
+        "ko_prompt": "놀랍게도, Lisa가 아니라 Emma가 1등을 차지했다.",
+        "conditions": ["To her surprise로 시작할 것", "got first place 표현을 사용할 것", "not Lisa로 끝낼 것"],
+        "answer": "To her surprise, Emma got first place, not Lisa.",
+        "explanation_ko": "To her surprise(놀랍게도) + 주어 Emma + got first place + 대조의 not Lisa('Lisa가 아니라')."
+      },
+      {
+        "subtype": "fill_blank",
+        "subtype_label": "빈칸 완성",
+        "show_passage": true,
+        "question": "다음 글을 읽고, 흐름상 빈칸에 들어갈 한 단어를 본문에서 찾아 쓰시오.",
+        "context": "Lisa's warm words made Emma feel ___________ about the jealousy she had felt toward her rival.",
+        "answer": "embarrassed",
+        "explanation_ko": "Lisa의 진심 어린 응원을 알고 자신의 질투를 '부끄러워하게(embarrassed)' 되었다는 흐름이다."
+      },
+      {
+        "subtype": "translate_ko",
+        "subtype_label": "우리말 해석",
+        "question": "다음 밑줄 친 문장을 우리말로 해석하시오.",
+        "en_prompt": "Lisa added, \"I've always been moved by your effort and have been supporting you all along.\"",
+        "answer": "Lisa는 \"난 늘 네 노력에 감동했고, 줄곧 너를 응원해 왔어\"라고 덧붙였다.",
+        "explanation_ko": "have always been moved(늘 감동해 왔다, 현재완료), have been supporting ~ all along(줄곧 응원해 왔다, 현재완료진행)."
+      },
+      {
+        "subtype": "summary_word",
+        "subtype_label": "요약 빈칸",
+        "show_passage": true,
+        "question": "다음 글의 내용을 한 문장으로 요약할 때, 빈칸 (A), (B)에 들어갈 말을 본문에 근거하여 쓰시오.",
+        "summary": "Emma's early (A)___________ toward her rival Lisa was transformed into a strong (B)___________ after she learned that Lisa had supported her all along.",
+        "answer_a": "jealousy",
+        "answer_b": "friendship",
+        "explanation_ko": "(A) 처음 Emma가 Lisa에게 느낀 감정은 질투(jealousy), (B) Lisa의 진심 어린 응원을 알게 된 뒤 그것이 단단한 우정(friendship)으로 바뀌었다."
+      }
+    ]
+  }
+}
