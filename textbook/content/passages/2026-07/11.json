@@ -11,8 +11,8 @@
     "achievement_verified": true,
     "difficulty": "쉬움",
     "cognitive_skill": "요지",
-    "lexile": "880L",
-    "ar_level": 5.7,
+    "lexile": "780L",
+    "ar_level": 5.3,
     "key_concepts": [
       "생물 다양성",
       "생태계 안정성",
@@ -23,8 +23,8 @@
   "page1": {
     "title": "Why a Forest Needs More Than One Kind of Tree",
     "subtitle": "How variety quietly keeps nature safe.",
-    "body": "Imagine two forests sitting side by side. The first has only one kind of tree, planted in tidy rows. The second is a wild mix of many trees, shrubs, insects, and birds. Both look equally green and healthy to a visitor on a calm summer day. From the outside, you might guess they are basically the same. But when a new disease arrives, the two forests face very different fates, and that difference is the heart of <u>biodiversity</u>.\n\nIn the single-tree forest, one disease can spread from trunk to trunk and wipe out everything. There is no backup, no other species to survive and rebuild. In the mixed forest, the same disease might kill one kind of tree, but dozens of others keep living. Birds still find food, soil stays protected, and the forest slowly heals itself. The lost tree leaves a gap, but the living neighbors quickly grow to fill it. A rich variety of species acts like a hidden <mark>safety net</mark>, catching the whole system whenever one part fails.\n\nThis is why losing species is far more serious than losing a few pretty animals. Each species we erase removes one more thread from a net that holds everything up, including our farms, our water, and our air. A single bee, for example, helps pollinate the crops that end up on our plates. The frightening part is that we often cannot tell which thread is holding the most weight until it suddenly snaps. Protecting biodiversity is not just kindness toward nature; it is a wise insurance policy for ourselves. A world that is rich in many living things is simply a world that is much harder to <blank>, because it can lose a single piece and still keep standing.",
-    "illustration": "../../assets/illustrations/2026-07/11.png",
+    "body": "Imagine two forests sitting side by side. The first has only one kind of tree, planted in tidy rows. The second is a wild mix of many trees, shrubs, insects, and birds. Both look equally green and perfectly healthy to a visitor on a calm summer day. From the outside, you might guess they are basically the same. But when a new disease arrives, the two forests face very different fates, and that difference is the heart of <u>biodiversity</u>.\n\nIn the single-tree forest, one disease can spread from trunk to trunk and wipe out everything. There is no backup, no other species to survive and rebuild. In the mixed forest, the same disease might kill one kind of tree, but dozens of others keep living. Birds still find food, the soil stays protected, and the forest slowly heals itself. The lost tree leaves a gap, but the living neighbors quickly grow to fill it. A rich variety of species acts like a hidden <mark>safety net</mark>, catching the whole system whenever one part fails.\n\nThis is why losing species is far more serious than losing a few pretty animals. Each species we erase removes one more thread from a net that holds everything up, including our farms, our water, and our air. A single busy bee, for example, helps pollinate many of the crops that end up on our dinner plates. The frightening part is that we often cannot tell which thread holds the most weight until it suddenly snaps. Protecting biodiversity is not just kindness toward nature; it is a wise insurance policy for ourselves. A world rich in many living things is simply a world that is much harder to <blank>, because it can lose a single piece and still keep standing.",
+    "illustration": "../../assets/illustrations/2026-07/11.jpg",
     "illustration_caption": "A mixed forest survives shocks that wipe out a single-species one."
   },
   "page2": {
@@ -127,16 +127,15 @@
         "segments": [
           {
             "role": "V",
-            "text": "Imagine",
-            "note": "명령문"
+            "text": "Imagine"
           },
           {
             "role": "O",
             "text": "two forests sitting side by side.",
-            "note": "지각 목적어 + 현재분사"
+            "note": "현재분사 수식"
           }
         ],
-        "grammar_note": "imagine O -ing"
+        "grammar_note": "명령문 + 현재분사 수식"
       },
       {
         "index": 2,
@@ -155,7 +154,7 @@
             "note": "과거분사 수식"
           }
         ],
-        "grammar_note": "3형식 + 과거분사구"
+        "grammar_note": "3형식 + 과거분사 수식"
       },
       {
         "index": 3,
@@ -170,11 +169,10 @@
           },
           {
             "role": "C",
-            "text": "a wild mix of many trees, shrubs, insects, and birds.",
-            "note": "명사 병렬"
+            "text": "a wild mix of many trees, shrubs, insects, and birds."
           }
         ],
-        "grammar_note": "2형식 + of 병렬"
+        "grammar_note": "2형식"
       },
       {
         "index": 4,
@@ -185,17 +183,22 @@
           },
           {
             "role": "V",
-            "text": "look",
-            "note": "2형식 감각동사"
+            "text": "look"
           },
           {
             "role": "C",
-            "text": "equally green and healthy to a visitor on a calm summer day."
+            "text": "equally green and perfectly healthy"
+          },
+          {
+            "role": "M",
+            "text": "to a visitor on a calm summer day.",
+            "note": "look 형용사보어"
           }
         ],
-        "grammar_note": "look 형용사 보어"
+        "grammar_note": "look 형용사보어"
       },
       {
+        "index": 5,
         "segments": [
           {
             "role": "M",
@@ -212,19 +215,22 @@
           {
             "role": "O",
             "text": "they are basically the same.",
-            "note": "명사절 목적어"
+            "note": "that절 (생략)"
           }
         ],
-        "grammar_note": "조동사 might + 명사절 목적어",
-        "index": 5
+        "grammar_note": "guess (that)절"
       },
       {
         "index": 6,
         "segments": [
           {
+            "role": "CONJ",
+            "text": "But"
+          },
+          {
             "role": "M",
-            "text": "But when a new disease arrives,",
-            "note": "대조 + when 부사절"
+            "text": "when a new disease arrives,",
+            "note": "when 부사절"
           },
           {
             "role": "S",
@@ -255,14 +261,15 @@
             "text": "the heart of biodiversity."
           }
         ],
-        "grammar_note": "when 부사절 + 등위 and"
+        "grammar_note": "when 부사절 + and 2형식"
       },
       {
         "index": 7,
         "segments": [
           {
             "role": "M",
-            "text": "In the single-tree forest,"
+            "text": "In the single-tree forest,",
+            "note": "전치사구"
           },
           {
             "role": "S",
@@ -270,41 +277,39 @@
           },
           {
             "role": "V",
-            "text": "can spread and wipe out",
-            "note": "병렬 동사"
+            "text": "can spread from trunk to trunk and wipe out",
+            "note": "동사 병렬"
           },
           {
             "role": "O",
-            "text": "everything from trunk to trunk."
+            "text": "everything."
           }
         ],
-        "grammar_note": "조동사 can + 병렬 동사 + 구동사 wipe out"
+        "grammar_note": "동사 병렬 (wipe out)"
       },
       {
         "index": 8,
         "segments": [
           {
-            "role": "S",
-            "text": "There"
-          },
-          {
             "role": "V",
-            "text": "is"
+            "text": "There is",
+            "note": "유도부사"
           },
           {
-            "role": "C",
+            "role": "S",
             "text": "no backup, no other species to survive and rebuild.",
             "note": "to부정사 병렬"
           }
         ],
-        "grammar_note": "There is no + to부정사 병렬"
+        "grammar_note": "there be (부정) + to부정사 병렬"
       },
       {
         "index": 9,
         "segments": [
           {
             "role": "M",
-            "text": "In the mixed forest,"
+            "text": "In the mixed forest,",
+            "note": "전치사구"
           },
           {
             "role": "S",
@@ -320,8 +325,7 @@
           },
           {
             "role": "CONJ",
-            "text": "but",
-            "note": "대조"
+            "text": "but"
           },
           {
             "role": "S",
@@ -333,7 +337,7 @@
             "note": "keep -ing"
           }
         ],
-        "grammar_note": "조동사 might + 대조 but + keep -ing"
+        "grammar_note": "but 대조 (keep -ing)"
       },
       {
         "index": 10,
@@ -343,8 +347,12 @@
             "text": "Birds"
           },
           {
+            "role": "M",
+            "text": "still"
+          },
+          {
             "role": "V",
-            "text": "still find"
+            "text": "find"
           },
           {
             "role": "O",
@@ -352,16 +360,16 @@
           },
           {
             "role": "S",
-            "text": "soil"
+            "text": "the soil"
           },
           {
             "role": "V",
-            "text": "stays",
-            "note": "2형식"
+            "text": "stays"
           },
           {
             "role": "C",
-            "text": "protected,"
+            "text": "protected,",
+            "note": "stay 보어"
           },
           {
             "role": "CONJ",
@@ -384,9 +392,10 @@
             "text": "itself."
           }
         ],
-        "grammar_note": "병렬 3절 + 재귀대명사 itself"
+        "grammar_note": "3절 병렬 (stay 보어)"
       },
       {
+        "index": 11,
         "segments": [
           {
             "role": "S",
@@ -417,13 +426,12 @@
             "text": "grow"
           },
           {
-            "role": "M",
+            "role": "C",
             "text": "to fill it.",
-            "note": "to부정사 목적"
+            "note": "grow to V"
           }
         ],
-        "grammar_note": "대조 but + to부정사 목적",
-        "index": 11
+        "grammar_note": "but 대조 (grow to V)"
       },
       {
         "index": 12,
@@ -442,12 +450,17 @@
             "note": "act like"
           },
           {
-            "role": "M",
-            "text": "catching the whole system whenever one part fails.",
-            "note": "분사구문 + whenever"
+            "role": "V",
+            "text": "catching",
+            "note": "분사구문"
+          },
+          {
+            "role": "O",
+            "text": "the whole system whenever one part fails.",
+            "note": "whenever 부사절"
           }
         ],
-        "grammar_note": "act like + 분사구문 catching + whenever 절"
+        "grammar_note": "act like + 분사구문 (whenever 부사절)"
       },
       {
         "index": 13,
@@ -463,10 +476,10 @@
           {
             "role": "C",
             "text": "why losing species is far more serious than losing a few pretty animals.",
-            "note": "why 명사절 + 비교급"
+            "note": "관계부사 why + 동명사 + 비교급"
           }
         ],
-        "grammar_note": "This is why + 비교급 than"
+        "grammar_note": "be why + 동명사 비교급"
       },
       {
         "index": 14,
@@ -474,7 +487,7 @@
           {
             "role": "S",
             "text": "Each species we erase",
-            "note": "관계절 (목적격 생략)"
+            "note": "관계절"
           },
           {
             "role": "V",
@@ -482,17 +495,23 @@
           },
           {
             "role": "O",
-            "text": "one more thread from a net that holds everything up, including our farms, our water, and our air.",
-            "note": "관계대명사 that + including"
+            "text": "one more thread from a net that holds everything up,",
+            "note": "관계절 (hold O up)"
+          },
+          {
+            "role": "M",
+            "text": "including our farms, our water, and our air.",
+            "note": "including"
           }
         ],
-        "grammar_note": "관계절 + that holds + including 병렬"
+        "grammar_note": "관계절 (hold O up) + including"
       },
       {
+        "index": 15,
         "segments": [
           {
             "role": "S",
-            "text": "A single bee,"
+            "text": "A single busy bee,"
           },
           {
             "role": "M",
@@ -500,17 +519,15 @@
           },
           {
             "role": "V",
-            "text": "helps pollinate",
-            "note": "help 원형"
+            "text": "helps"
           },
           {
             "role": "O",
-            "text": "the crops that end up on our plates.",
-            "note": "관계대명사 that"
+            "text": "pollinate many of the crops that end up on our dinner plates.",
+            "note": "help (to) V + 관계절"
           }
         ],
-        "grammar_note": "help 원형 + 관계대명사 that",
-        "index": 15
+        "grammar_note": "help V + 관계절"
       },
       {
         "index": 16,
@@ -525,11 +542,11 @@
           },
           {
             "role": "C",
-            "text": "that we often cannot tell which thread is holding the most weight until it snaps.",
-            "note": "that 명사절 + 간접의문문 + until"
+            "text": "that we often cannot tell which thread holds the most weight until it suddenly snaps.",
+            "note": "that 보어절 + which 명사절 + until"
           }
         ],
-        "grammar_note": "that 보어절 + 간접의문문 which + until"
+        "grammar_note": "2형식 + that 보어절 (which 명사절, until)"
       },
       {
         "index": 17,
@@ -545,11 +562,8 @@
           },
           {
             "role": "M",
-            "text": "not just"
-          },
-          {
-            "role": "C",
-            "text": "kindness toward nature;"
+            "text": "not just kindness toward nature;",
+            "note": "not just"
           },
           {
             "role": "S",
@@ -564,14 +578,15 @@
             "text": "a wise insurance policy for ourselves."
           }
         ],
-        "grammar_note": "동명사 주어 + not just A; B 세미콜론"
+        "grammar_note": "동명사 주어 + 세미콜론 병렬"
       },
       {
         "index": 18,
         "segments": [
           {
             "role": "S",
-            "text": "A world rich in living things"
+            "text": "A world rich in many living things",
+            "note": "형용사구 수식"
           },
           {
             "role": "V",
@@ -583,13 +598,12 @@
           },
           {
             "role": "C",
-            "text": "a world that is harder to ____,",
-            "note": "관계대명사 that + 빈칸"
+            "text": "a world that is much harder to ____,",
+            "note": "관계절 + 비교급 + to부정사 + 빈칸"
           },
           {
             "role": "CONJ",
-            "text": "because",
-            "note": "원인절"
+            "text": "because"
           },
           {
             "role": "S",
@@ -597,14 +611,18 @@
           },
           {
             "role": "V",
-            "text": "can lose a piece and still stand.",
-            "note": "병렬 동사"
+            "text": "can lose"
+          },
+          {
+            "role": "O",
+            "text": "a single piece and still keep standing.",
+            "note": "동사 병렬 (keep -ing)"
           }
         ],
-        "grammar_note": "관계대명사 that + because 원인절 + 병렬"
+        "grammar_note": "형용사구 + 관계절 (harder to V 빈칸) + because (keep -ing)"
       }
     ],
-    "translation_ko": "[1] 나란히 놓인 두 숲을 상상해 보라. [2] 첫 번째 숲은 단정한 줄로 심긴 단 한 종류의 나무만 가지고 있다. [3] 두 번째 숲은 많은 나무, 관목, 곤충, 새가 어우러진 야생의 혼합이다. [4] 둘 다 고요한 여름날 방문객에게는 똑같이 푸르고 건강해 보인다. [5] 밖에서 보면 둘이 사실상 같다고 짐작할 수도 있다. [6] 그러나 새로운 질병이 닥치면 두 숲은 매우 다른 운명을 맞으며, 그 차이가 바로 생물 다양성의 핵심이다. [7] 단일 나무 숲에서는 질병 하나가 나무에서 나무로 퍼져 모든 것을 쓸어버릴 수 있다. [8] 살아남아 다시 세울 다른 종도, 어떤 예비책도 없다. [9] 혼합 숲에서는 같은 질병이 한 종류의 나무를 죽일 수는 있지만, 수십 종의 다른 나무들은 계속 살아간다. [10] 새들은 여전히 먹이를 찾고, 흙은 보호된 채로 남으며, 숲은 천천히 스스로 회복한다. [11] 사라진 나무는 빈자리를 남기지만, 살아 있는 이웃들이 빠르게 자라 그 자리를 메운다. [12] 풍부한 종의 다양성은 숨은 안전망처럼 작용하여, 한 부분이 무너질 때마다 전체 시스템을 받쳐 준다. [13] 이것이 종을 잃는 것이 예쁜 동물 몇 마리를 잃는 것보다 훨씬 더 심각한 이유다. [14] 우리가 지우는 각 종은, 우리의 농장과 물과 공기를 포함해 모든 것을 떠받치는 그물에서 한 가닥을 더 제거한다. [15] 예를 들어, 벌 한 마리는 우리 식탁에 오르는 작물을 수분하는 것을 돕는다. [16] 무서운 점은, 어떤 가닥이 가장 큰 무게를 견디고 있는지 그것이 갑자기 끊어지기 전까지는 우리가 흔히 알 수 없다는 것이다. [17] 생물 다양성을 보호하는 것은 단지 자연에 대한 친절이 아니라, 우리 자신을 위한 현명한 보험이다. [18] 살아 있는 것들이 풍부한 세계는, 한 조각을 잃어도 여전히 서 있을 수 있기 때문에, 그저 무너뜨리기 더 어려운 세계다."
+    "translation_ko": "[1] 나란히 앉아 있는 두 숲을 상상해 보라. [2] 첫째 숲은 단 한 종류의 나무만을, 가지런한 줄로 심어 가지고 있다. [3] 둘째 숲은 많은 나무, 관목, 곤충, 새가 어우러진 거친 혼합이다. [4] 둘 다 잔잔한 여름날 방문객에게는 똑같이 푸르고 완벽하게 건강해 보인다. [5] 바깥에서 보면, 너는 그것들이 기본적으로 같다고 짐작할지 모른다. [6] 그러나 새 질병이 닥치면, 두 숲은 매우 다른 운명을 맞으며, 그 차이가 생물 다양성의 핵심이다. [7] 단일 나무 숲에서는, 한 질병이 줄기에서 줄기로 퍼져 모든 것을 쓸어버릴 수 있다. [8] 살아남아 다시 세울 예비도, 다른 종도 없다. [9] 혼합 숲에서는, 같은 질병이 한 종류의 나무를 죽일 수 있지만, 수십 종의 다른 것들이 계속 산다. [10] 새들은 여전히 먹이를 찾고, 흙은 보호된 채로 있으며, 숲은 천천히 스스로를 치유한다. [11] 잃은 나무는 빈틈을 남기지만, 살아 있는 이웃들이 빠르게 자라 그것을 채운다. [12] 풍부한 종의 다양성은 숨은 안전망처럼 작용하여, 한 부분이 실패할 때마다 체계 전체를 받친다. [13] 이것이 종을 잃는 것이 예쁜 동물 몇 마리를 잃는 것보다 훨씬 더 심각한 이유다. [14] 우리가 지우는 각 종은, 우리의 농장, 물, 공기를 포함해 모든 것을 떠받치는 그물에서 실 한 가닥을 더 제거한다. [15] 예를 들어, 단 한 마리의 바쁜 벌은 우리 저녁 식탁에 오르는 많은 작물의 수분을 돕는다. [16] 무서운 부분은, 어느 실이 가장 무거운 무게를 지탱하는지를 그것이 갑자기 끊어질 때까지 우리가 흔히 알 수 없다는 것이다. [17] 생물 다양성을 보호하는 것은 단지 자연을 향한 친절이 아니다; 그것은 우리 자신을 위한 현명한 보험이다. [18] 많은 살아 있는 것으로 풍부한 세계는 그저 훨씬 더 무너뜨리기 어려운 세계인데, 한 조각을 잃고도 여전히 서 있을 수 있기 때문이다."
   },
   "answers": {
     "explanations": [
