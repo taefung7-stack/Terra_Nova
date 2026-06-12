@@ -11,8 +11,8 @@
     "achievement_verified": true,
     "difficulty": "중간",
     "cognitive_skill": "요지",
-    "lexile": "1110L",
-    "ar_level": 7.2,
+    "lexile": "1010L",
+    "ar_level": 6.9,
     "key_concepts": [
       "유전자",
       "돌연변이",
@@ -23,8 +23,8 @@
   "page1": {
     "title": "The Typos That Shaped Every Living Thing",
     "subtitle": "Why a single changed letter can matter so much.",
-    "body": "Your body runs on a set of instructions written in a four-letter chemical alphabet, copied faithfully every time a cell divides. But no copying machine is perfect, and once in a while a single letter is changed, dropped, or added. We call such a change a <u>mutation</u>, and despite its frightening reputation, it is simply a typo in the genetic text. Most of these typos are harmless, landing in a spot where the meaning barely shifts.\n\nThe real effect of a mutation depends almost entirely on where exactly it falls and what it happens to touch. A change in a long, unused stretch of DNA may quietly do nothing at all. A change in a single crucial instruction, however, can alter an important protein and so reshape a clearly visible trait, sometimes even causing serious disease. Yet the very same process is also the quiet engine of variety. Once in a great while, a random change happens to be useful, giving its owner a tiny advantage in survival. Over countless generations, such rare lucky <mark>errors</mark> accumulate, and this is the raw material on which evolution slowly works. A small change in fur color, for instance, might hide an animal better from a hunting predator. Across thousands of years, that tiny edge can reshape an entire species.\n\nThis double nature is what makes mutation so striking. The very same blind, mindless process that can quietly break a healthy body is also the only true source of genuinely new traits, the deep reason life is not frozen but endlessly inventive. Without faithful copying, life simply could not continue at all; yet without occasional copying mistakes, it could never <blank>. Perfection and progress, it quietly turns out, pull in opposite directions.",
-    "illustration": "../../assets/illustrations/2026-07-J/10.png",
+    "body": "Your body runs on a set of instructions written in a four-letter chemical alphabet. These instructions are copied faithfully every time a cell divides. But no copying machine is perfect, and once in a while a single letter is changed, dropped, or added. We call such a change a <u>mutation</u>, and despite its frightening reputation, it is simply a typo in the genetic text. Most of these typos are harmless, landing in a spot where the meaning barely shifts.\n\nThe real effect of a mutation depends almost entirely on where it falls and what it happens to touch. A change in a long, unused stretch of DNA may quietly do nothing at all. But a change in one crucial instruction can alter an important protein. That can reshape a visible trait, and sometimes even cause serious disease. Yet the very same process is also the quiet engine of variety. Once in a great while, a random change happens to be useful, giving its owner a tiny advantage in survival. Over countless generations, such rare lucky <mark>errors</mark> build up, and this is the raw material on which evolution slowly works. A small change in fur color, for instance, might hide an animal better from a hunting predator. Across thousands of years, that tiny edge can reshape an entire species.\n\nThis double nature is what makes mutation so striking. The very same blind, mindless process that can quietly break a healthy body is also the only true source of genuinely new traits. It is the deep reason life is not frozen but endlessly inventive. Without faithful copying, life simply could not continue at all. Yet without occasional copying mistakes, it could never <blank>. Perfection and progress, it quietly turns out, pull in opposite directions.",
+    "illustration": "../../assets/illustrations/2026-07-J/10.jpg",
     "illustration_caption": "A mutation is a typo in the genetic text — sometimes harmful, sometimes the seed of something new."
   },
   "page2": {
@@ -135,29 +135,38 @@
           },
           {
             "role": "M",
-            "text": "on a set of instructions written in a four-letter chemical alphabet,",
+            "text": "on a set of instructions written in a four-letter chemical alphabet.",
             "note": "과거분사 수식"
-          },
-          {
-            "role": "V",
-            "text": "copied",
-            "note": "과거분사 분사구문"
-          },
-          {
-            "role": "M",
-            "text": "faithfully every time a cell divides.",
-            "note": "every time 부사절"
           }
         ],
-        "grammar_note": "과거분사 written/copied + every time 부사절"
+        "grammar_note": "run on + 과거분사 수식"
       },
       {
         "index": 2,
         "segments": [
           {
+            "role": "S",
+            "text": "These instructions"
+          },
+          {
+            "role": "V",
+            "text": "are copied",
+            "note": "수동태"
+          },
+          {
+            "role": "M",
+            "text": "faithfully every time a cell divides.",
+            "note": "every time 접속사"
+          }
+        ],
+        "grammar_note": "수동태 + every time 접속사"
+      },
+      {
+        "index": 3,
+        "segments": [
+          {
             "role": "CONJ",
-            "text": "But",
-            "note": "대조"
+            "text": "But"
           },
           {
             "role": "S",
@@ -189,10 +198,10 @@
             "note": "수동태 병렬"
           }
         ],
-        "grammar_note": "대조 But + 수동태 병렬"
+        "grammar_note": "2형식 + and + 수동태 병렬"
       },
       {
-        "index": 3,
+        "index": 4,
         "segments": [
           {
             "role": "S",
@@ -233,10 +242,10 @@
             "text": "simply a typo in the genetic text."
           }
         ],
-        "grammar_note": "call O C + despite 명사구"
+        "grammar_note": "call O C + despite + 2형식"
       },
       {
-        "index": 4,
+        "index": 5,
         "segments": [
           {
             "role": "S",
@@ -248,8 +257,7 @@
           },
           {
             "role": "C",
-            "text": "harmless,",
-            "note": "2형식"
+            "text": "harmless,"
           },
           {
             "role": "V",
@@ -262,14 +270,14 @@
             "note": "관계부사 where"
           }
         ],
-        "grammar_note": "분사구문 landing + 관계부사 where"
+        "grammar_note": "2형식 + 분사구문 (where 관계절)"
       },
       {
-        "index": 5,
+        "index": 6,
         "segments": [
           {
             "role": "S",
-            "text": "The effect of a mutation"
+            "text": "The real effect of a mutation"
           },
           {
             "role": "V",
@@ -277,62 +285,93 @@
           },
           {
             "role": "M",
-            "text": "entirely on where it falls and what it touches.",
-            "note": "의문사 명사절 병렬"
+            "text": "almost entirely on where it falls and what it happens to touch.",
+            "note": "on + where/what 명사절"
           }
         ],
-        "grammar_note": "depend on + 의문사 명사절 병렬"
-      },
-      {
-        "index": 6,
-        "segments": [
-          {
-            "role": "S",
-            "text": "A change in an unused stretch of DNA"
-          },
-          {
-            "role": "V",
-            "text": "may do"
-          },
-          {
-            "role": "O",
-            "text": "nothing at all."
-          }
-        ],
-        "grammar_note": "조동사 may + 강조 at all"
+        "grammar_note": "depend on + where/what 명사절"
       },
       {
         "index": 7,
         "segments": [
           {
             "role": "S",
-            "text": "A change in a crucial instruction,"
-          },
-          {
-            "role": "M",
-            "text": "however,",
-            "note": "삽입 부사"
+            "text": "A change in a long, unused stretch of DNA"
           },
           {
             "role": "V",
-            "text": "can alter a protein and so reshape",
-            "note": "병렬 + 결과 so"
+            "text": "may quietly do"
           },
           {
             "role": "O",
-            "text": "a visible trait, sometimes causing disease.",
-            "note": "분사구문"
+            "text": "nothing at all.",
+            "note": "부정 목적어"
           }
         ],
-        "grammar_note": "삽입 however + 병렬 + 분사구문 causing"
+        "grammar_note": "3형식 (강조 부정)"
       },
       {
         "index": 8,
         "segments": [
           {
             "role": "CONJ",
-            "text": "Yet",
-            "note": "양보"
+            "text": "But"
+          },
+          {
+            "role": "S",
+            "text": "a change in one crucial instruction"
+          },
+          {
+            "role": "V",
+            "text": "can alter"
+          },
+          {
+            "role": "O",
+            "text": "an important protein."
+          }
+        ],
+        "grammar_note": "3형식"
+      },
+      {
+        "index": 9,
+        "segments": [
+          {
+            "role": "S",
+            "text": "That"
+          },
+          {
+            "role": "V",
+            "text": "can reshape"
+          },
+          {
+            "role": "O",
+            "text": "a visible trait,"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "M",
+            "text": "sometimes"
+          },
+          {
+            "role": "V",
+            "text": "even cause"
+          },
+          {
+            "role": "O",
+            "text": "serious disease."
+          }
+        ],
+        "grammar_note": "동사 병렬"
+      },
+      {
+        "index": 10,
+        "segments": [
+          {
+            "role": "CONJ",
+            "text": "Yet"
           },
           {
             "role": "S",
@@ -351,15 +390,14 @@
             "text": "the quiet engine of variety."
           }
         ],
-        "grammar_note": "양보 Yet + 강조 very same"
+        "grammar_note": "2형식"
       },
       {
-        "index": 9,
+        "index": 11,
         "segments": [
           {
             "role": "M",
-            "text": "Once in a great while,",
-            "note": "빈도 부사구"
+            "text": "Once in a great while,"
           },
           {
             "role": "S",
@@ -368,12 +406,11 @@
           {
             "role": "V",
             "text": "happens to be",
-            "note": "happen to-V"
+            "note": "happen to V"
           },
           {
             "role": "C",
-            "text": "useful,",
-            "note": "보어"
+            "text": "useful,"
           },
           {
             "role": "V",
@@ -382,13 +419,14 @@
           },
           {
             "role": "O",
-            "text": "its owner a tiny advantage in survival."
+            "text": "its owner a tiny advantage in survival.",
+            "note": "give O O"
           }
         ],
-        "grammar_note": "happen to be + 분사구문 giving 4형식"
+        "grammar_note": "happen to be + 분사구문 (give O O)"
       },
       {
-        "index": 10,
+        "index": 12,
         "segments": [
           {
             "role": "M",
@@ -401,7 +439,7 @@
           },
           {
             "role": "V",
-            "text": "accumulate,"
+            "text": "build up,"
           },
           {
             "role": "CONJ",
@@ -418,12 +456,13 @@
           {
             "role": "C",
             "text": "the raw material on which evolution slowly works.",
-            "note": "관계대명사 on which"
+            "note": "전치사+관계대명사"
           }
         ],
-        "grammar_note": "등위 and + 관계대명사 on which"
+        "grammar_note": "build up + and + on which 관계절"
       },
       {
+        "index": 13,
         "segments": [
           {
             "role": "S",
@@ -443,17 +482,19 @@
           },
           {
             "role": "M",
-            "text": "better from a hunting predator."
+            "text": "better from a hunting predator.",
+            "note": "비교급"
           }
         ],
-        "grammar_note": "조동사 might + 3형식",
-        "index": 11
+        "grammar_note": "3형식 + 비교급"
       },
       {
+        "index": 14,
         "segments": [
           {
             "role": "M",
-            "text": "Across thousands of years,"
+            "text": "Across thousands of years,",
+            "note": "전치사구"
           },
           {
             "role": "S",
@@ -468,11 +509,10 @@
             "text": "an entire species."
           }
         ],
-        "grammar_note": "전치사구 + 조동사 can + 3형식",
-        "index": 12
+        "grammar_note": "3형식"
       },
       {
-        "index": 13,
+        "index": 15,
         "segments": [
           {
             "role": "S",
@@ -485,18 +525,18 @@
           {
             "role": "C",
             "text": "what makes mutation so striking.",
-            "note": "관계대명사 what + make O C"
+            "note": "what 명사절 (make O C)"
           }
         ],
-        "grammar_note": "관계대명사 what 보어 + make O C"
+        "grammar_note": "be what 명사절 (make O C)"
       },
       {
-        "index": 14,
+        "index": 16,
         "segments": [
           {
             "role": "S",
-            "text": "The same blind process that can break a body",
-            "note": "관계대명사 that"
+            "text": "The very same blind, mindless process that can quietly break a healthy body",
+            "note": "관계절"
           },
           {
             "role": "V",
@@ -508,57 +548,88 @@
           },
           {
             "role": "C",
-            "text": "the only source of genuinely new traits,",
-            "note": "보어"
-          },
-          {
-            "role": "M",
-            "text": "the reason life is not frozen but endlessly inventive.",
-            "note": "동격 + not A but B"
+            "text": "the only true source of genuinely new traits."
           }
         ],
-        "grammar_note": "관계대명사 that + 동격 + not A but B"
+        "grammar_note": "주격 관계절 + 2형식"
       },
       {
-        "index": 15,
+        "index": 17,
+        "segments": [
+          {
+            "role": "S",
+            "text": "It"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "the deep reason life is not frozen but endlessly inventive.",
+            "note": "동격절 + not A but B"
+          }
+        ],
+        "grammar_note": "2형식 + reason 동격절 (not A but B)"
+      },
+      {
+        "index": 18,
         "segments": [
           {
             "role": "M",
-            "text": "Without copying,",
-            "note": "without 가정"
+            "text": "Without faithful copying,",
+            "note": "전치사구"
           },
           {
             "role": "S",
             "text": "life"
           },
           {
+            "role": "M",
+            "text": "simply"
+          },
+          {
             "role": "V",
-            "text": "could not continue;",
-            "note": "가정법"
+            "text": "could not continue",
+            "note": "가정법 could"
+          },
+          {
+            "role": "M",
+            "text": "at all."
+          }
+        ],
+        "grammar_note": "without 가정 + could not"
+      },
+      {
+        "index": 19,
+        "segments": [
+          {
+            "role": "CONJ",
+            "text": "Yet"
           },
           {
             "role": "M",
             "text": "without occasional copying mistakes,",
-            "note": "without 가정"
+            "note": "전치사구"
           },
           {
             "role": "S",
             "text": "it"
           },
           {
-            "role": "M",
+            "role": "V",
             "text": "could never"
           },
           {
-            "role": "V",
+            "role": "C",
             "text": "____.",
-            "note": "빈칸 동사"
+            "note": "빈칸 (동사)"
           }
         ],
-        "grammar_note": "Without ~ 가정법 병렬"
+        "grammar_note": "without 가정 + could never (빈칸 동사)"
       },
       {
-        "index": 16,
+        "index": 20,
         "segments": [
           {
             "role": "S",
@@ -566,7 +637,7 @@
           },
           {
             "role": "M",
-            "text": "it turns out,",
+            "text": "it quietly turns out,",
             "note": "삽입절"
           },
           {
@@ -578,10 +649,10 @@
             "text": "in opposite directions."
           }
         ],
-        "grammar_note": "삽입절 it turns out + 1형식"
+        "grammar_note": "삽입절 + 자동사 pull"
       }
     ],
-    "translation_ko": "[1] 당신의 몸은 네 글자의 화학 알파벳으로 쓰인 한 벌의 지시에 따라 작동하며, 그 지시는 세포가 분열할 때마다 충실하게 복제된다. [2] 그러나 어떤 복제 기계도 완벽하지 않아서, 이따금 글자 하나가 바뀌거나, 빠지거나, 더해진다. [3] 우리는 그런 변화를 돌연변이라 부르는데, 그 무서운 평판에도 불구하고 그것은 그저 유전 텍스트 속의 오타일 뿐이다. [4] 이 오타들 대부분은 무해하며, 의미가 거의 바뀌지 않는 자리에 떨어진다. [5] 돌연변이의 진짜 효과는 그것이 정확히 어디에 떨어지고 무엇을 건드리게 되는가에 거의 전적으로 달려 있다. [6] 길고 쓰이지 않는 DNA 구간의 변화는 조용히 아무 일도 하지 않을 수 있다. [7] 그러나 단 하나의 결정적인 지시의 변화는 중요한 단백질을 바꾸어 분명히 보이는 형질을 다시 빚을 수 있고, 때로는 심각한 질병까지 일으킨다. [8] 그렇지만 바로 그 같은 과정이 변이의 조용한 엔진이기도 하다. [9] 아주 드물게, 무작위 변화가 마침 유익해서, 그 주인에게 생존에서 작은 이점을 준다. [10] 헤아릴 수 없는 세대에 걸쳐 그런 드물고 운 좋은 오류들이 쌓이고, 이것이 진화가 천천히 작업하는 원재료다. [11] 예를 들어, 털 색의 작은 변화가 사냥하는 포식자로부터 동물을 더 잘 숨겨 줄 수 있다. [12] 수천 년에 걸쳐, 그 작은 우위가 종 전체를 다시 빚을 수 있다. [13] 이 양면적 본성이 돌연변이를 그토록 인상적으로 만드는 것이다. [14] 건강한 몸을 조용히 망가뜨릴 수 있는 바로 그 눈멀고 무심한 과정이, 진정으로 새로운 형질의 유일한 원천이기도 하며, 그것이 생명이 얼어붙지 않고 끝없이 창의적인 깊은 이유다. [15] 충실한 복제가 없으면 생명은 아예 이어질 수 없고, 그러나 이따금의 복제 실수가 없으면 생명은 결코 변화할 수 없다. [16] 알고 보면, 완벽함과 진보는 서로 반대 방향으로 잡아당긴다."
+    "translation_ko": "[1] 네 몸은 네 글자 화학 알파벳으로 쓰인 한 벌의 지시에 따라 돌아간다. [2] 이 지시들은 세포가 나뉠 때마다 충실히 복사된다. [3] 그러나 어떤 복사기도 완벽하지 않아서, 가끔 한 글자가 바뀌거나 빠지거나 더해진다. [4] 우리는 그런 변화를 돌연변이라 부르며, 그 무서운 평판에도 불구하고 그것은 그저 유전 텍스트의 오타다. [5] 이 오타들 대부분은 해롭지 않아, 의미가 거의 바뀌지 않는 자리에 떨어진다. [6] 돌연변이의 진짜 효과는 거의 전적으로 그것이 어디에 떨어지고 무엇을 건드리느냐에 달려 있다. [7] 길고 쓰이지 않는 DNA 구간의 변화는 조용히 아무 일도 하지 않을 수 있다. [8] 그러나 한 결정적인 지시의 변화는 중요한 단백질을 바꿀 수 있다. [9] 그것은 눈에 보이는 형질을 다시 빚을 수 있고, 때로는 심각한 질병까지 일으킬 수 있다. [10] 그러나 바로 그 똑같은 과정이 또한 다양성의 조용한 엔진이다. [11] 아주 드물게, 무작위 변화가 유용한 것으로 드러나, 그 주인에게 생존에서 작은 이점을 준다. [12] 수많은 세대에 걸쳐 그런 드물고 운 좋은 오류가 쌓이고, 이것이 진화가 천천히 작업하는 원료다. [13] 예를 들어, 털색의 작은 변화는 사냥하는 포식자로부터 동물을 더 잘 숨길 수 있다. [14] 수천 년에 걸쳐, 그 작은 우위가 종 전체를 다시 빚을 수 있다. [15] 이 이중적 본성이 돌연변이를 그토록 인상적으로 만드는 것이다. [16] 건강한 몸을 조용히 망가뜨릴 수 있는 바로 그 똑같은 눈멀고 무심한 과정이, 또한 진정 새로운 형질의 유일한 진짜 원천이다. [17] 그것은 생명이 얼어붙은 것이 아니라 끝없이 창의적인 깊은 이유다. [18] 충실한 복사가 없으면, 생명은 그저 전혀 이어질 수 없을 것이다. [19] 그러나 가끔의 복사 실수가 없으면, 그것은 결코 변할 수 없을 것이다. [20] 완벽함과 진보는, 알고 보면, 서로 반대 방향으로 당긴다."
   },
   "answers": {
     "explanations": [
