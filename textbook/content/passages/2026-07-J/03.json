@@ -11,8 +11,8 @@
     "achievement_verified": true,
     "difficulty": "중간",
     "cognitive_skill": "요지",
-    "lexile": "1090L",
-    "ar_level": 7.1,
+    "lexile": "990L",
+    "ar_level": 6.8,
     "key_concepts": [
       "세포 분열",
       "유전 정보",
@@ -23,8 +23,8 @@
   "page1": {
     "title": "How Life Copies Itself Without Ending",
     "subtitle": "Why one cell becomes two, and life goes on.",
-    "body": "You began your whole life as a single tiny cell, and now your grown body holds many tens of trillions of them. That staggering change happened through one repeated act: <u>cell division</u>, in which one cell carefully splits into two. Before it divides, the cell first copies its entire library of genetic instructions, so each daughter cell receives a complete and faithful set. This is how a body grows, heals a wound, and replaces worn-out parts day after day, all while keeping the same instructions intact. When you scrape your knee, this very process quietly rebuilds the missing skin cell by cell.\n\nBut copying perfectly, generation after generation, would make every offspring an exact clone of its parent. Sexual reproduction solves this through a special kind of division that <mark>halves</mark> the genetic information first. Each parent contributes only half of their instructions, and the two halves later combine to form a brand-new mixture. The shuffling that happens during this halving means that no two egg or sperm cells are ever quite the same. This is why you resemble your parents yet are identical to neither, and why siblings can differ so sharply despite sharing a home and a family tree.\n\nThis quiet shuffling of genes is not a flaw at all; it is in fact one of life's very greatest strengths. Variety gives a whole population many different chances when the surrounding environment suddenly shifts, so that at least some individuals are likely to survive exactly what others around them cannot. Cell division thus quietly carries two opposite missions at once: it must copy life faithfully enough to preserve it across the years, yet mix it freely enough to keep it ready for an unknown and ever-changing <blank>.",
-    "illustration": "../../assets/illustrations/2026-07-J/03.png",
+    "body": "You began your whole life as one tiny cell, and now your grown body holds many tens of trillions of them. That huge change happened through one act, repeated again and again: <u>cell division</u>, in which one cell splits into two. Before it divides, the cell first copies its whole library of genetic instructions. That way, each new cell gets a complete and faithful set. This is how a young body grows taller, heals a fresh wound, and quietly replaces worn-out parts day after day. When you scrape your knee, this quiet process rebuilds the missing skin, cell by cell.\n\nBut copying perfectly, over and over, would make every child an exact clone of its parent. Sexual reproduction solves this with a special kind of division that <mark>halves</mark> the genetic information first. Each parent gives only half of their instructions, and the two halves later join to form a brand-new mix. The shuffling during this halving means that no two egg or sperm cells are ever quite the same. This is why you look like your parents yet match neither of them exactly. It is also why siblings can differ so sharply, even though they share one home and one family tree.\n\nThis quiet shuffling of genes is not a flaw; it is one of life's greatest strengths. Variety gives a whole population many different chances to cope when the surrounding environment suddenly shifts. Some individuals can then survive exactly what others around them cannot. So in the end cell division quietly carries two opposite jobs at the very same time. It must copy life faithfully enough to keep it safe across the years, yet mix it freely enough to keep it ready for an unknown and ever-changing <blank>.",
+    "illustration": "../../assets/illustrations/2026-07-J/03.jpg",
     "illustration_caption": "Division copies a cell faithfully; sexual reproduction mixes the instructions."
   },
   "page2": {
@@ -134,8 +134,9 @@
             "text": "began"
           },
           {
-            "role": "M",
-            "text": "as a single tiny cell,"
+            "role": "O",
+            "text": "your whole life as one tiny cell,",
+            "note": "begin as"
           },
           {
             "role": "CONJ",
@@ -147,7 +148,7 @@
           },
           {
             "role": "S",
-            "text": "your body"
+            "text": "your grown body"
           },
           {
             "role": "V",
@@ -155,17 +156,17 @@
           },
           {
             "role": "O",
-            "text": "tens of trillions of them."
+            "text": "many tens of trillions of them."
           }
         ],
-        "grammar_note": "begin as + 등위 and"
+        "grammar_note": "begin as + and 병렬"
       },
       {
         "index": 2,
         "segments": [
           {
             "role": "S",
-            "text": "That staggering change"
+            "text": "That huge change"
           },
           {
             "role": "V",
@@ -173,8 +174,8 @@
           },
           {
             "role": "M",
-            "text": "through one repeated act:",
-            "note": "콜론 동격"
+            "text": "through one act, repeated again and again:",
+            "note": "과거분사 + 콜론"
           },
           {
             "role": "S",
@@ -182,11 +183,11 @@
           },
           {
             "role": "M",
-            "text": "in which one cell carefully splits into two.",
-            "note": "관계대명사 in which"
+            "text": "in which one cell splits into two.",
+            "note": "전치사+관계대명사"
           }
         ],
-        "grammar_note": "콜론 동격 + in which 관계절"
+        "grammar_note": "과거분사 수식 + 콜론 + in which 관계절"
       },
       {
         "index": 3,
@@ -210,30 +211,35 @@
           },
           {
             "role": "O",
-            "text": "its entire library of genetic instructions,"
-          },
+            "text": "its whole library of genetic instructions."
+          }
+        ],
+        "grammar_note": "before 부사절 + 3형식"
+      },
+      {
+        "index": 4,
+        "segments": [
           {
-            "role": "CONJ",
-            "text": "so",
-            "note": "결과"
+            "role": "M",
+            "text": "That way,"
           },
           {
             "role": "S",
-            "text": "each daughter cell"
+            "text": "each new cell"
           },
           {
             "role": "V",
-            "text": "receives"
+            "text": "gets"
           },
           {
             "role": "O",
             "text": "a complete and faithful set."
           }
         ],
-        "grammar_note": "before 부사절 + 결과 so"
+        "grammar_note": "3형식"
       },
       {
-        "index": 4,
+        "index": 5,
         "segments": [
           {
             "role": "S",
@@ -245,18 +251,14 @@
           },
           {
             "role": "C",
-            "text": "how a body grows, heals a wound, and replaces worn-out parts day after day,",
-            "note": "how 명사절 + 병렬"
-          },
-          {
-            "role": "M",
-            "text": "all while keeping the same instructions intact.",
-            "note": "분사구문"
+            "text": "how a young body grows taller, heals a fresh wound, and quietly replaces worn-out parts day after day.",
+            "note": "how 명사절 (동사 병렬)"
           }
         ],
-        "grammar_note": "This is how + 병렬 동사 + 분사구문 keeping"
+        "grammar_note": "be how 명사절 (동사 3개 병렬)"
       },
       {
+        "index": 6,
         "segments": [
           {
             "role": "M",
@@ -265,11 +267,7 @@
           },
           {
             "role": "S",
-            "text": "this very process"
-          },
-          {
-            "role": "M",
-            "text": "quietly"
+            "text": "this quiet process"
           },
           {
             "role": "V",
@@ -277,44 +275,38 @@
           },
           {
             "role": "O",
-            "text": "the missing skin cell by cell."
+            "text": "the missing skin, cell by cell."
           }
         ],
-        "grammar_note": "when 부사절 + 3형식",
-        "index": 5
+        "grammar_note": "when 부사절 + 3형식"
       },
       {
-        "index": 6,
+        "index": 7,
         "segments": [
           {
             "role": "CONJ",
-            "text": "But",
-            "note": "대조"
+            "text": "But"
           },
           {
             "role": "S",
-            "text": "copying perfectly, generation after generation,",
+            "text": "copying perfectly, over and over,",
             "note": "동명사 주어"
           },
           {
             "role": "V",
             "text": "would make",
-            "note": "가정 would"
+            "note": "가정법 would"
           },
           {
             "role": "O",
-            "text": "every offspring"
-          },
-          {
-            "role": "C",
-            "text": "an exact clone of its parent.",
+            "text": "every child an exact clone of its parent.",
             "note": "make O C"
           }
         ],
-        "grammar_note": "동명사 주어 + 가정 would make O C"
+        "grammar_note": "동명사 주어 + 가정법 make O C"
       },
       {
-        "index": 7,
+        "index": 8,
         "segments": [
           {
             "role": "S",
@@ -330,14 +322,14 @@
           },
           {
             "role": "M",
-            "text": "through a special kind of division that halves the genetic information first.",
-            "note": "관계대명사 that"
+            "text": "with a special kind of division that halves the genetic information first.",
+            "note": "관계절"
           }
         ],
-        "grammar_note": "solve A through B + 관계대명사 that"
+        "grammar_note": "solve with + 관계절"
       },
       {
-        "index": 8,
+        "index": 9,
         "segments": [
           {
             "role": "S",
@@ -345,7 +337,7 @@
           },
           {
             "role": "V",
-            "text": "contributes"
+            "text": "gives"
           },
           {
             "role": "O",
@@ -365,22 +357,23 @@
           },
           {
             "role": "V",
-            "text": "combine to form",
-            "note": "to부정사"
+            "text": "join"
           },
           {
-            "role": "O",
-            "text": "a brand-new mixture."
+            "role": "M",
+            "text": "to form a brand-new mix.",
+            "note": "to부정사"
           }
         ],
-        "grammar_note": "등위 and + combine to-V"
+        "grammar_note": "and 병렬 + to부정사 결과"
       },
       {
+        "index": 10,
         "segments": [
           {
             "role": "S",
-            "text": "The shuffling that happens during this halving",
-            "note": "관계대명사 that"
+            "text": "The shuffling during this halving",
+            "note": "전치사구 수식"
           },
           {
             "role": "V",
@@ -389,14 +382,13 @@
           {
             "role": "O",
             "text": "that no two egg or sperm cells are ever quite the same.",
-            "note": "that 명사절"
+            "note": "that 명사절 (부정 주어)"
           }
         ],
-        "grammar_note": "관계대명사 that + mean that 명사절",
-        "index": 9
+        "grammar_note": "mean that + 부정 주어 no two"
       },
       {
-        "index": 10,
+        "index": 11,
         "segments": [
           {
             "role": "S",
@@ -408,27 +400,18 @@
           },
           {
             "role": "C",
-            "text": "why you resemble your parents yet are identical to neither,",
-            "note": "why 명사절 + 양보 yet"
-          },
-          {
-            "role": "CONJ",
-            "text": "and"
-          },
-          {
-            "role": "M",
-            "text": "why siblings can differ so sharply despite sharing a home and a family tree.",
-            "note": "why 명사절 + despite"
+            "text": "why you look like your parents yet match neither of them exactly.",
+            "note": "관계부사 why + yet 대조"
           }
         ],
-        "grammar_note": "This is why A and why B + 양보 yet/despite"
+        "grammar_note": "be why 관계부사 (yet 대조)"
       },
       {
-        "index": 11,
+        "index": 12,
         "segments": [
           {
             "role": "S",
-            "text": "This quiet shuffling"
+            "text": "It"
           },
           {
             "role": "V",
@@ -436,7 +419,31 @@
           },
           {
             "role": "M",
-            "text": "not a flaw;"
+            "text": "also"
+          },
+          {
+            "role": "C",
+            "text": "why siblings can differ so sharply, even though they share one home and one family tree.",
+            "note": "관계부사 why + even though"
+          }
+        ],
+        "grammar_note": "be why + even though 양보절"
+      },
+      {
+        "index": 13,
+        "segments": [
+          {
+            "role": "S",
+            "text": "This quiet shuffling of genes"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "M",
+            "text": "not a flaw;",
+            "note": "부정 보어"
           },
           {
             "role": "S",
@@ -449,13 +456,13 @@
           {
             "role": "C",
             "text": "one of life's greatest strengths.",
-            "note": "one of the 최상급"
+            "note": "최상급"
           }
         ],
-        "grammar_note": "세미콜론 대조 + one of the 최상급"
+        "grammar_note": "세미콜론 병렬 + one of the 최상급"
       },
       {
-        "index": 12,
+        "index": 14,
         "segments": [
           {
             "role": "S",
@@ -467,45 +474,54 @@
           },
           {
             "role": "O",
-            "text": "a population many different chances",
-            "note": "4형식"
+            "text": "a whole population many different chances to cope",
+            "note": "4형식 + to부정사"
           },
           {
             "role": "M",
-            "text": "when the environment suddenly shifts,",
+            "text": "when the surrounding environment suddenly shifts.",
             "note": "when 부사절"
-          },
-          {
-            "role": "CONJ",
-            "text": "so that",
-            "note": "결과"
-          },
-          {
-            "role": "S",
-            "text": "some individuals"
-          },
-          {
-            "role": "V",
-            "text": "are likely to survive"
-          },
-          {
-            "role": "O",
-            "text": "what others cannot.",
-            "note": "관계대명사 what"
           }
         ],
-        "grammar_note": "4형식 give + when 절 + so that 결과 + 관계대명사 what"
+        "grammar_note": "4형식 + when 부사절"
       },
       {
-        "index": 13,
+        "index": 15,
         "segments": [
           {
             "role": "S",
-            "text": "Cell division"
+            "text": "Some individuals"
+          },
+          {
+            "role": "V",
+            "text": "can then survive"
+          },
+          {
+            "role": "O",
+            "text": "exactly what others around them cannot.",
+            "note": "what 명사절 + 대동사"
+          }
+        ],
+        "grammar_note": "survive + what 명사절 (대동사 cannot)"
+      },
+      {
+        "index": 16,
+        "segments": [
+          {
+            "role": "CONJ",
+            "text": "So"
           },
           {
             "role": "M",
-            "text": "thus"
+            "text": "in the end"
+          },
+          {
+            "role": "S",
+            "text": "cell division"
+          },
+          {
+            "role": "M",
+            "text": "quietly"
           },
           {
             "role": "V",
@@ -513,12 +529,17 @@
           },
           {
             "role": "O",
-            "text": "two missions at once:",
-            "note": "콜론"
-          },
+            "text": "two opposite jobs at the very same time."
+          }
+        ],
+        "grammar_note": "3형식"
+      },
+      {
+        "index": 17,
+        "segments": [
           {
             "role": "S",
-            "text": "it"
+            "text": "It"
           },
           {
             "role": "V",
@@ -526,13 +547,16 @@
           },
           {
             "role": "O",
-            "text": "life faithfully enough to preserve it,",
-            "note": "enough to"
+            "text": "life"
+          },
+          {
+            "role": "M",
+            "text": "faithfully enough to keep it safe across the years,",
+            "note": "enough to V"
           },
           {
             "role": "CONJ",
-            "text": "yet",
-            "note": "양보"
+            "text": "yet"
           },
           {
             "role": "V",
@@ -540,14 +564,18 @@
           },
           {
             "role": "O",
-            "text": "it freely enough to keep it ready for an unknown ____.",
-            "note": "enough to + keep O C + 빈칸"
+            "text": "it"
+          },
+          {
+            "role": "M",
+            "text": "freely enough to keep it ready for an unknown and ever-changing ____.",
+            "note": "enough to V + 빈칸"
           }
         ],
-        "grammar_note": "콜론 + enough to-V 병렬 + 양보 yet"
+        "grammar_note": "enough to V (yet 대조, 빈칸)"
       }
     ],
-    "translation_ko": "[1] 당신은 단 하나의 작은 세포로 시작했고, 지금 당신의 몸은 수십조 개의 세포를 품고 있다. [2] 그 엄청난 변화는 하나의 반복된 행위를 통해 일어났다 — 한 세포가 조심스럽게 둘로 갈라지는 세포 분열이다. [3] 분열하기 전에 세포는 먼저 자신의 유전 지시 전체 도서관을 복제하므로, 각 딸세포는 완전하고 충실한 한 벌을 받는다. [4] 이것이 몸이 자라고, 상처를 치유하고, 날마다 닳은 부분을 교체하는 방식이며, 그 모든 일을 같은 지시를 온전히 유지한 채 해낸다. [5] 무릎이 까졌을 때, 바로 이 과정이 사라진 피부를 세포 하나하나 조용히 다시 짓는다. [6] 그러나 세대를 거듭하며 완벽하게 복제하기만 한다면 모든 자손은 부모의 정확한 복제본이 될 것이다. [7] 유성 생식은 유전 정보를 먼저 반으로 줄이는 특별한 종류의 분열을 통해 이 문제를 푼다. [8] 각 부모는 자신의 지시 중 절반만 기여하고, 그 두 절반이 나중에 합쳐져 완전히 새로운 혼합을 이룬다. [9] 이 반으로 줄이는 과정에서 일어나는 뒤섞임은, 어떤 두 난자나 정자 세포도 결코 완전히 같지 않다는 것을 뜻한다. [10] 이것이 당신이 부모를 닮았으면서도 누구와도 똑같지 않은 이유이며, 형제가 한 집과 한 가계도를 공유하면서도 그토록 뚜렷이 다를 수 있는 이유다. [11] 이 조용한 뒤섞임은 결함이 아니다 — 그것은 생명의 가장 큰 강점 중 하나다. [12] 다양성은 환경이 갑자기 바뀔 때 집단에게 여러 다른 기회를 주어, 어떤 개체들은 다른 개체들이 견디지 못하는 것을 살아남을 가능성이 높아진다. [13] 따라서 세포 분열은 두 가지 사명을 동시에 짊어진다 — 생명을 보존할 만큼 충실하게 복제해야 하면서도, 알 수 없는 미래에 대비하도록 충분히 자유롭게 섞어야 한다."
+    "translation_ko": "[1] 너는 네 온 삶을 하나의 작은 세포로 시작했고, 이제 다 자란 네 몸은 수십조 개의 세포를 품는다. [2] 그 거대한 변화는 거듭거듭 반복된 하나의 행위로 일어났다: 한 세포가 둘로 갈라지는 세포 분열이다. [3] 나뉘기 전에, 세포는 먼저 자신의 유전 지시 전체 서고를 복사한다. [4] 그렇게 해서, 각 새 세포는 완전하고 충실한 한 벌을 받는다. [5] 이것이 어린 몸이 더 크게 자라고, 갓 난 상처를 아물게 하고, 날마다 닳은 부분을 조용히 교체하는 방식이다. [6] 무릎이 까지면, 이 조용한 과정이 사라진 피부를 한 세포씩 다시 짓는다. [7] 그러나 완벽하게 거듭 복사하면, 모든 자식이 부모의 정확한 복제가 될 것이다. [8] 유성 생식은 유전 정보를 먼저 절반으로 나누는 특별한 종류의 분열로 이를 해결한다. [9] 각 부모는 자기 지시의 절반만 주고, 그 두 절반이 나중에 합쳐져 완전히 새로운 혼합을 이룬다. [10] 이 절반 나누기 동안의 뒤섞임은 어떤 두 난자나 정자 세포도 결코 똑같지 않음을 뜻한다. [11] 이것이 네가 부모를 닮으면서도 그 어느 쪽과도 정확히 일치하지 않는 이유다. [12] 그것은 또한 형제자매가 한 집과 한 가계도를 공유하면서도 그토록 뚜렷이 다를 수 있는 이유다. [13] 이 조용한 유전자 뒤섞임은 결함이 아니다; 그것은 생명의 가장 큰 강점 중 하나다. [14] 다양성은 주변 환경이 갑자기 바뀔 때 집단 전체에 대처할 여러 다른 기회를 준다. [15] 그러면 어떤 개체들은 주변의 다른 것들이 견디지 못하는 바로 그것을 견뎌 낼 수 있다. [16] 그래서 결국 세포 분열은 조용히 두 가지 반대되는 임무를 바로 같은 시간에 진다. [17] 그것은 생명을 여러 해에 걸쳐 안전하게 지킬 만큼 충실히 복사해야 하면서도, 알 수 없고 늘 변하는 미래에 대비할 만큼 자유롭게 섞어야 한다."
   },
   "answers": {
     "explanations": [

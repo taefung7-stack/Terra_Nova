@@ -11,8 +11,8 @@
     "achievement_verified": true,
     "difficulty": "중간",
     "cognitive_skill": "요지",
-    "lexile": "1100L",
-    "ar_level": 7.2,
+    "lexile": "1000L",
+    "ar_level": 6.9,
     "key_concepts": [
       "극성",
       "전기 음성도",
@@ -23,8 +23,8 @@
   "page1": {
     "title": "Why Water Refuses to Mix With Oil",
     "subtitle": "The hidden charge that shapes a molecule.",
-    "body": "Pour oil into a glass of water and the two stubbornly refuse to blend, no matter how hard you shake them. The reason is not stickiness or weight but a hidden property called <u>polarity</u>. In a polar molecule, the shared electrons are pulled more strongly toward one atom than another, leaving one end slightly negative and the other slightly positive. The molecule, though neutral overall, behaves like a tiny magnet with two opposite ends.\n\nThis lopsided, one-sided pull comes directly from differences in how greedily each atom happens to grab the shared electrons. In water, the oxygen atom tugs the shared electrons noticeably harder than the hydrogen atoms do, so the oxygen end of the molecule quietly turns faintly negative. Because the water molecule is also bent into a wide V shape rather than lying perfectly straight, these opposite pulls do not cancel out, and the whole molecule ends up being clearly polar. Oil molecules, by contrast, are large and balanced, with no strong charged ends at all. Polar water clings eagerly to other polar things, while nonpolar oil keeps to its own kind, and so the two simply will not <mark>mix</mark>.\n\nThis quiet rule of \"like dissolves like\" reaches far beyond a kitchen glass. It explains why soap can lift greasy stains, why some medicines dissolve in the body while others do not, and why cell membranes form at all. A soap molecule is clever because it carries a polar end and a nonpolar end at once. The polar end grips the water while the nonpolar end grabs the grease, pulling the two apart. Once you can actually see the hidden charges tucked inside a molecule, a great deal of everyday chemistry suddenly stops looking random and starts quietly following one clear, predictable <blank>.",
-    "illustration": "../../assets/illustrations/2026-07-J/05.png",
+    "body": "Pour oil into a glass of water and the two stubbornly refuse to blend, no matter how hard you shake the glass. The reason is not stickiness or weight but a hidden property called <u>polarity</u>. In a polar molecule, the shared electrons are pulled more strongly toward one atom than another. This leaves one end slightly negative and the other slightly positive. The molecule is neutral overall, yet it behaves like a tiny magnet with two opposite ends.\n\nThis one-sided pull comes from how greedily each atom grabs the shared electrons. In water, the oxygen atom tugs the shared electrons much harder than the hydrogen atoms do. So the oxygen end of the molecule quietly turns faintly negative. The water molecule is also bent into a wide V shape instead of lying perfectly straight. Because of that bend, the opposite pulls do not cancel out, and the whole molecule ends up clearly polar. Oil molecules, by contrast, are large and balanced, with no strong charged ends at all. Polar water clings eagerly to other polar things, while nonpolar oil keeps to its own kind, so the two simply will not <mark>mix</mark>.\n\nThis quiet rule of \"like dissolves like\" reaches far beyond a kitchen glass. It explains why soap can lift greasy stains and why some medicines dissolve in the body while others do not. A soap molecule is clever because it carries a polar end and a nonpolar end at once. The polar end grips the water while the nonpolar end grabs the grease, pulling the two apart. Once you can see the hidden charges tucked inside a molecule, a great deal of everyday chemistry stops looking random. Instead, it starts quietly following one single clear and predictable <blank>.",
+    "illustration": "../../assets/illustrations/2026-07-J/05.jpg",
     "illustration_caption": "Polar water clings to polar things; nonpolar oil keeps to its own kind."
   },
   "page2": {
@@ -127,12 +127,12 @@
         "segments": [
           {
             "role": "V",
-            "text": "Pour",
-            "note": "명령문"
+            "text": "Pour"
           },
           {
             "role": "O",
-            "text": "oil into a glass of water"
+            "text": "oil into a glass of water",
+            "note": "명령문"
           },
           {
             "role": "CONJ",
@@ -148,16 +148,15 @@
           },
           {
             "role": "V",
-            "text": "refuse to blend,",
-            "note": "refuse to-V"
+            "text": "refuse"
           },
           {
-            "role": "M",
-            "text": "no matter how hard you shake them.",
-            "note": "no matter how 양보"
+            "role": "C",
+            "text": "to blend, no matter how hard you shake the glass.",
+            "note": "refuse to V + no matter how"
           }
         ],
-        "grammar_note": "명령문+and + refuse to-V + no matter how 양보"
+        "grammar_note": "명령문 + and 결과 + refuse to V + no matter how"
       },
       {
         "index": 2,
@@ -176,7 +175,7 @@
             "note": "not A but B + 과거분사"
           }
         ],
-        "grammar_note": "not A but B + 과거분사 called"
+        "grammar_note": "not A but B (과거분사 called)"
       },
       {
         "index": 3,
@@ -184,7 +183,7 @@
           {
             "role": "M",
             "text": "In a polar molecule,",
-            "note": "전치사구 부사"
+            "note": "전치사구"
           },
           {
             "role": "S",
@@ -197,32 +196,53 @@
           },
           {
             "role": "M",
-            "text": "more strongly toward one atom than another,",
+            "text": "more strongly toward one atom than another.",
             "note": "비교급"
-          },
-          {
-            "role": "V",
-            "text": "leaving",
-            "note": "분사구문"
-          },
-          {
-            "role": "O",
-            "text": "one end slightly negative and the other slightly positive."
           }
         ],
-        "grammar_note": "수동태 + 비교급 + 분사구문 leaving O C"
+        "grammar_note": "수동태 + 비교급 (than)"
       },
       {
         "index": 4,
         "segments": [
           {
             "role": "S",
-            "text": "The molecule,"
+            "text": "This"
           },
           {
-            "role": "M",
-            "text": "though neutral overall,",
-            "note": "양보 삽입"
+            "role": "V",
+            "text": "leaves"
+          },
+          {
+            "role": "O",
+            "text": "one end slightly negative and the other slightly positive.",
+            "note": "leave O C 병렬"
+          }
+        ],
+        "grammar_note": "leave O C (병렬)"
+      },
+      {
+        "index": 5,
+        "segments": [
+          {
+            "role": "S",
+            "text": "The molecule"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "neutral overall,"
+          },
+          {
+            "role": "CONJ",
+            "text": "yet"
+          },
+          {
+            "role": "S",
+            "text": "it"
           },
           {
             "role": "V",
@@ -231,17 +251,17 @@
           {
             "role": "M",
             "text": "like a tiny magnet with two opposite ends.",
-            "note": "behave like"
+            "note": "like 전치사"
           }
         ],
-        "grammar_note": "양보 삽입 though + behave like"
+        "grammar_note": "2형식 + yet + behave like"
       },
       {
-        "index": 5,
+        "index": 6,
         "segments": [
           {
             "role": "S",
-            "text": "This lopsided pull"
+            "text": "This one-sided pull"
           },
           {
             "role": "V",
@@ -249,14 +269,14 @@
           },
           {
             "role": "M",
-            "text": "from differences in how greedily each atom grabs electrons.",
-            "note": "간접의문문 how"
+            "text": "from how greedily each atom grabs the shared electrons.",
+            "note": "from + how 명사절"
           }
         ],
-        "grammar_note": "come from + 간접의문문 how"
+        "grammar_note": "come from + how 명사절"
       },
       {
-        "index": 6,
+        "index": 7,
         "segments": [
           {
             "role": "M",
@@ -265,7 +285,7 @@
           },
           {
             "role": "S",
-            "text": "oxygen"
+            "text": "the oxygen atom"
           },
           {
             "role": "V",
@@ -273,41 +293,77 @@
           },
           {
             "role": "O",
-            "text": "the shared electrons harder than hydrogen does,",
+            "text": "the shared electrons"
+          },
+          {
+            "role": "M",
+            "text": "much harder than the hydrogen atoms do.",
             "note": "비교급 + 대동사"
-          },
-          {
-            "role": "CONJ",
-            "text": "so",
-            "note": "결과"
-          },
-          {
-            "role": "S",
-            "text": "the oxygen end"
-          },
-          {
-            "role": "V",
-            "text": "turns",
-            "note": "2형식"
-          },
-          {
-            "role": "C",
-            "text": "faintly negative."
           }
         ],
-        "grammar_note": "비교급 + 대동사 does + 결과 so"
+        "grammar_note": "비교급 (than 대동사)"
       },
       {
-        "index": 7,
+        "index": 8,
         "segments": [
           {
             "role": "CONJ",
-            "text": "Because the water molecule is also bent rather than straight,",
-            "note": "because + rather than"
+            "text": "So"
           },
           {
             "role": "S",
-            "text": "these pulls"
+            "text": "the oxygen end of the molecule"
+          },
+          {
+            "role": "M",
+            "text": "quietly"
+          },
+          {
+            "role": "V",
+            "text": "turns"
+          },
+          {
+            "role": "C",
+            "text": "faintly negative.",
+            "note": "turn 형용사보어"
+          }
+        ],
+        "grammar_note": "turn 형용사보어"
+      },
+      {
+        "index": 9,
+        "segments": [
+          {
+            "role": "S",
+            "text": "The water molecule"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "M",
+            "text": "also"
+          },
+          {
+            "role": "C",
+            "text": "bent into a wide V shape instead of lying perfectly straight.",
+            "note": "과거분사 보어 + instead of -ing"
+          }
+        ],
+        "grammar_note": "be 과거분사 + instead of -ing"
+      },
+      {
+        "index": 10,
+        "segments": [
+          {
+            "role": "M",
+            "text": "Because of that bend,",
+            "note": "전치사구"
+          },
+          {
+            "role": "S",
+            "text": "the opposite pulls"
           },
           {
             "role": "V",
@@ -324,18 +380,18 @@
           },
           {
             "role": "V",
-            "text": "ends up",
-            "note": "end up 보어"
+            "text": "ends up"
           },
           {
             "role": "C",
-            "text": "clearly polar."
+            "text": "clearly polar.",
+            "note": "end up 형용사"
           }
         ],
-        "grammar_note": "because + rather than + end up 보어"
+        "grammar_note": "because of + cancel out + end up 형용사"
       },
       {
-        "index": 8,
+        "index": 11,
         "segments": [
           {
             "role": "S",
@@ -355,10 +411,10 @@
             "note": "with 부대상황"
           }
         ],
-        "grammar_note": "대조 by contrast + with 부대상황"
+        "grammar_note": "2형식 + with 부대상황"
       },
       {
-        "index": 9,
+        "index": 12,
         "segments": [
           {
             "role": "S",
@@ -370,12 +426,12 @@
           },
           {
             "role": "M",
-            "text": "eagerly to other polar things,"
+            "text": "eagerly to other polar things,",
+            "note": "cling to"
           },
           {
             "role": "CONJ",
-            "text": "while",
-            "note": "대조"
+            "text": "while"
           },
           {
             "role": "S",
@@ -391,25 +447,22 @@
           },
           {
             "role": "CONJ",
-            "text": "and so"
+            "text": "so"
           },
           {
             "role": "S",
             "text": "the two"
           },
           {
-            "role": "M",
-            "text": "simply"
-          },
-          {
             "role": "V",
-            "text": "will not mix."
+            "text": "will not mix.",
+            "note": "미래 부정"
           }
         ],
-        "grammar_note": "대조 while + 결과 and so"
+        "grammar_note": "cling to + while 대조 + so 결과"
       },
       {
-        "index": 10,
+        "index": 13,
         "segments": [
           {
             "role": "S",
@@ -424,10 +477,10 @@
             "text": "far beyond a kitchen glass."
           }
         ],
-        "grammar_note": "1형식 reach + 강조 far"
+        "grammar_note": "reach beyond + 부사"
       },
       {
-        "index": 11,
+        "index": 14,
         "segments": [
           {
             "role": "S",
@@ -439,13 +492,14 @@
           },
           {
             "role": "O",
-            "text": "why soap can lift greasy stains, why some medicines dissolve in the body while others do not, and why cell membranes form at all.",
-            "note": "why 명사절 병렬"
+            "text": "why soap can lift greasy stains and why some medicines dissolve in the body while others do not.",
+            "note": "why 명사절 병렬 + while"
           }
         ],
-        "grammar_note": "explain + why 명사절 3개 병렬"
+        "grammar_note": "explain + why 명사절 병렬 (while 대조)"
       },
       {
+        "index": 15,
         "segments": [
           {
             "role": "S",
@@ -460,27 +514,15 @@
             "text": "clever"
           },
           {
-            "role": "CONJ",
-            "text": "because",
-            "note": "because 원인절"
-          },
-          {
-            "role": "S",
-            "text": "it"
-          },
-          {
-            "role": "V",
-            "text": "carries"
-          },
-          {
-            "role": "O",
-            "text": "a polar end and a nonpolar end at once."
+            "role": "M",
+            "text": "because it carries a polar end and a nonpolar end at once.",
+            "note": "because 이유절"
           }
         ],
-        "grammar_note": "because 원인절 + 병렬 목적어",
-        "index": 12
+        "grammar_note": "2형식 + because 이유절"
       },
       {
+        "index": 16,
         "segments": [
           {
             "role": "S",
@@ -495,21 +537,9 @@
             "text": "the water"
           },
           {
-            "role": "CONJ",
-            "text": "while",
-            "note": "대조"
-          },
-          {
-            "role": "S",
-            "text": "the nonpolar end"
-          },
-          {
-            "role": "V",
-            "text": "grabs"
-          },
-          {
-            "role": "O",
-            "text": "the grease,"
+            "role": "M",
+            "text": "while the nonpolar end grabs the grease,",
+            "note": "while 부사절"
           },
           {
             "role": "V",
@@ -518,43 +548,65 @@
           },
           {
             "role": "O",
-            "text": "the two apart."
+            "text": "the two apart.",
+            "note": "pull O apart"
           }
         ],
-        "grammar_note": "대조 while + 분사구문 pulling",
-        "index": 13
+        "grammar_note": "while 부사절 + 분사구문 (pull O apart)"
       },
       {
-        "index": 14,
+        "index": 17,
         "segments": [
           {
             "role": "M",
-            "text": "Once you can see the hidden charges inside a molecule,",
-            "note": "once 부사절"
+            "text": "Once you can see the hidden charges tucked inside a molecule,",
+            "note": "once 부사절 + 과거분사"
           },
           {
             "role": "S",
             "text": "a great deal of everyday chemistry"
           },
           {
+            "role": "V",
+            "text": "stops"
+          },
+          {
+            "role": "C",
+            "text": "looking random.",
+            "note": "stop -ing"
+          }
+        ],
+        "grammar_note": "once 부사절 + stop -ing"
+      },
+      {
+        "index": 18,
+        "segments": [
+          {
             "role": "M",
-            "text": "suddenly"
+            "text": "Instead,"
+          },
+          {
+            "role": "S",
+            "text": "it"
           },
           {
             "role": "V",
-            "text": "stops being random and starts following",
-            "note": "stop/start -ing 병렬"
+            "text": "starts"
           },
           {
-            "role": "O",
-            "text": "a clear, predictable ____.",
-            "note": "빈칸"
+            "role": "M",
+            "text": "quietly"
+          },
+          {
+            "role": "C",
+            "text": "following one single clear and predictable ____.",
+            "note": "start -ing + 빈칸"
           }
         ],
-        "grammar_note": "once 부사절 + stop -ing / start -ing 병렬"
+        "grammar_note": "start -ing (빈칸)"
       }
     ],
-    "translation_ko": "[1] 물 한 잔에 기름을 부으면, 아무리 세게 흔들어도 그 둘은 고집스럽게 섞이기를 거부한다. [2] 그 이유는 끈적임이나 무게가 아니라, 극성이라 불리는 숨은 성질이다. [3] 극성 분자에서는 공유된 전자가 한 원자 쪽으로 다른 원자보다 더 강하게 당겨져, 한쪽 끝은 약하게 음전하를, 다른 쪽은 약하게 양전하를 띠게 된다. [4] 그 분자는 전체적으로는 중성이지만, 두 개의 반대 끝을 가진 작은 자석처럼 행동한다. [5] 이 한쪽으로 치우친 끌림은 각 원자가 공유 전자를 얼마나 탐욕스럽게 움켜쥐는지의 차이에서 곧바로 온다. [6] 물에서는 산소 원자가 수소 원자보다 공유 전자를 눈에 띄게 더 세게 당겨서, 분자의 산소 쪽 끝이 조용히 희미하게 음전하를 띤다. [7] 물 분자가 완전히 곧게 누워 있지 않고 넓은 V자 모양으로 굽어 있기 때문에, 이 반대되는 끌림들이 상쇄되지 않고 분자 전체가 분명히 극성이 된다. [8] 반대로 기름 분자는 크고 균형 잡혀 있어, 강하게 전하를 띤 끝이 전혀 없다. [9] 극성인 물은 다른 극성 물질에 열렬히 달라붙는 반면, 무극성인 기름은 자기 같은 것끼리만 모이고, 그래서 그 둘은 그냥 섞이지 않는다. [10] '비슷한 것끼리 녹는다'는 이 조용한 규칙은 부엌의 유리잔을 훨씬 넘어선다. [11] 그것은 비누가 왜 기름때를 들어 올리는지, 어떤 약은 몸에서 녹는데 다른 약은 그렇지 않은지, 그리고 세포막이 애초에 왜 형성되는지를 설명한다. [12] 비누 분자가 영리한 까닭은 극성 끝과 무극성 끝을 한꺼번에 지니기 때문이다. [13] 극성 끝은 물을 붙잡고, 무극성 끝은 기름을 움켜쥐어, 그 둘을 떼어 낸다. [14] 분자 안에 숨은 전하를 실제로 볼 수 있게 되면, 수많은 일상 화학이 갑자기 무작위로 보이기를 멈추고 하나의 분명하고 예측 가능한 패턴을 조용히 따르기 시작한다."
+    "translation_ko": "[1] 물 잔에 기름을 부으면, 아무리 세게 잔을 흔들어도 둘은 고집스럽게 섞이기를 거부한다. [2] 그 이유는 끈적임이나 무게가 아니라 극성이라 불리는 숨은 성질이다. [3] 극성 분자에서는 공유된 전자가 한 원자 쪽으로 다른 원자보다 더 세게 당겨진다. [4] 이것은 한쪽 끝을 약간 음성으로, 다른 쪽 끝을 약간 양성으로 남긴다. [5] 그 분자는 전체적으로는 중성이지만, 두 반대 끝을 가진 작은 자석처럼 행동한다. [6] 이 한쪽으로 치우친 당김은 각 원자가 공유된 전자를 얼마나 탐욕스럽게 붙잡는가에서 온다. [7] 물에서는 산소 원자가 수소 원자들보다 공유된 전자를 훨씬 더 세게 당긴다. [8] 그래서 분자의 산소 쪽 끝이 조용히 희미하게 음성으로 변한다. [9] 물 분자는 또한 완벽하게 곧게 누워 있는 대신 넓은 V자 모양으로 굽어 있다. [10] 그 굽음 때문에 반대되는 당김들이 상쇄되지 않고, 분자 전체가 분명히 극성으로 끝난다. [11] 반면 기름 분자는 크고 균형 잡혀 있어, 강하게 전하를 띤 끝이 전혀 없다. [12] 극성인 물은 다른 극성 물질에 열심히 들러붙는 반면, 비극성인 기름은 제 끼리만 어울려서, 둘은 그냥 섞이지 않는다. [13] '유유상종'이라는 이 조용한 규칙은 부엌의 잔을 훨씬 넘어선다. [14] 그것은 비누가 왜 기름때를 들어 올릴 수 있는지, 그리고 어떤 약은 몸에서 녹는데 다른 약은 왜 녹지 않는지를 설명한다. [15] 비누 분자가 영리한 까닭은 극성 끝과 비극성 끝을 동시에 지니기 때문이다. [16] 극성 끝은 물을 붙잡고 비극성 끝은 기름을 붙잡아, 그 둘을 떼어 낸다. [17] 분자 안에 숨은 전하를 일단 볼 수 있게 되면, 많은 일상 화학이 무작위로 보이기를 멈춘다. [18] 대신, 그것은 하나의 분명하고 예측 가능한 단 하나의 패턴을 조용히 따르기 시작한다."
   },
   "answers": {
     "explanations": [

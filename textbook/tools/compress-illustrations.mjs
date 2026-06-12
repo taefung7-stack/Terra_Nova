@@ -95,7 +95,7 @@ if (values['update-json']) {
     const before = readFileSync(p, 'utf8');
     // accept either .png, .webp, or .jpg currently in the JSON and rewrite to chosen ext
     const after = before.replace(
-      /(assets\/illustrations\/\d{4}-\d{2}\/\d{2})\.(png|webp|jpe?g)/g,
+      /(assets\/illustrations\/\d{4}-\d{2}(?:-[A-Za-z]+)?\/\d{2})\.(png|webp|jpe?g)/g,
       `$1.${ext}`
     );
     if (after !== before) {
