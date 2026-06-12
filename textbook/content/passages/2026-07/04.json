@@ -11,8 +11,8 @@
     "achievement_verified": true,
     "difficulty": "쉬움",
     "cognitive_skill": "요지",
-    "lexile": "860L",
-    "ar_level": 5.5,
+    "lexile": "760L",
+    "ar_level": 5.1,
     "key_concepts": [
       "매체",
       "메시지",
@@ -23,8 +23,8 @@
   "page1": {
     "title": "The Same News, Three Different Feelings",
     "subtitle": "Why the channel can quietly change the message.",
-    "body": "Imagine one simple fact: a small new public park just opened downtown. Now picture that very fact moving through three completely different <u>media</u>. A newspaper prints a calm paragraph with the exact date and the size of the park. A short video shows happy children running across the grass while bright, cheerful music plays. A social post adds a single sunny photo and an excited caption that is full of emojis. The plain fact itself never changed, and yet each version somehow makes you feel something quite different.\n\nThis happens because every medium shapes the same message in its own particular way. A newspaper has plenty of room for detail, so it sounds careful, calm, and complete. A video moves fast and uses sound and motion, so it pulls at your emotions before you even think. A social post is short and personal, so it feels like a close friend talking directly to you. None of these is actually lying, but each one quietly chooses what to show and what to leave out. The medium is never a clear glass window; it is more like a colored <mark>filter</mark> placed over the very same scene.\n\nThis is exactly why a smart reader asks questions instead of just absorbing everything. Who made this, and what do they want from me? What was cut out to make the story shorter or more exciting? Would the same story feel different somewhere else? Asking these questions does not mean you trust nothing at all. It simply means you stay awake while messages pour in all day long. In a world flooded with media, the most useful skill is not reading faster but reading with a careful, questioning <blank> that always looks past the surface.",
-    "illustration": "../../assets/illustrations/2026-07/04.png",
+    "body": "Imagine one simple fact: a small new public park just opened downtown. Now picture that fact moving through three completely different <u>media</u>. A newspaper prints a calm, careful paragraph with the exact date and the real size of the new park. A short video shows happy children running across the grass while bright, cheerful music plays. A social post adds one sunny photo and an excited caption full of emojis. The plain fact never changed, yet each version somehow makes you feel something quite different.\n\nThis happens because every single medium shapes the same plain message in its own particular way. A newspaper has plenty of room for detail, so it sounds careful, calm, and complete. A video moves fast and uses sound and motion, so it pulls at your emotions before you even think. A social post is short and personal, so it feels like a close friend talking right to you. None of these is actually lying, but each one quietly chooses what to show and what to leave out. The medium is never a clear glass window. It is more like a colored <mark>filter</mark> placed over the very same scene.\n\nThis is exactly why a smart reader asks questions instead of just absorbing everything. Who made this, and what do they want from me? What was cut out to make the story shorter or more exciting? Would the very same story feel quite different if you met it somewhere else? Asking these questions does not mean you trust nothing at all. It simply means you stay awake while messages pour in all day long. In a world flooded with media, the most useful skill is not reading faster but reading with a careful, questioning <blank> that always looks past the surface.",
+    "illustration": "../../assets/illustrations/2026-07/04.jpg",
     "illustration_caption": "One fact, three media, three different feelings."
   },
   "page2": {
@@ -127,16 +127,20 @@
         "segments": [
           {
             "role": "V",
-            "text": "Imagine",
-            "note": "명령문"
+            "text": "Imagine"
           },
           {
             "role": "O",
-            "text": "one simple fact:"
+            "text": "one simple fact:",
+            "note": "콜론"
           },
           {
             "role": "S",
-            "text": "a small park"
+            "text": "a small new public park"
+          },
+          {
+            "role": "M",
+            "text": "just"
           },
           {
             "role": "V",
@@ -147,7 +151,7 @@
             "text": "downtown."
           }
         ],
-        "grammar_note": "명령문 + 콜론 뒤 동격절"
+        "grammar_note": "명령문 + 콜론 부연"
       },
       {
         "index": 2,
@@ -158,16 +162,15 @@
           },
           {
             "role": "V",
-            "text": "picture",
-            "note": "명령문"
+            "text": "picture"
           },
           {
             "role": "O",
-            "text": "that fact moving through three different media.",
-            "note": "지각 목적어 + 현재분사"
+            "text": "that fact moving through three completely different media.",
+            "note": "picture O -ing"
           }
         ],
-        "grammar_note": "picture O -ing 구문"
+        "grammar_note": "명령문 picture O -ing"
       },
       {
         "index": 3,
@@ -182,10 +185,10 @@
           },
           {
             "role": "O",
-            "text": "a calm paragraph with the date and the size of the park."
+            "text": "a calm, careful paragraph with the exact date and the real size of the new park."
           }
         ],
-        "grammar_note": "3형식 + 전치사구 수식"
+        "grammar_note": "3형식"
       },
       {
         "index": 4,
@@ -200,16 +203,16 @@
           },
           {
             "role": "O",
-            "text": "happy children running",
-            "note": "지각동사 + 현재분사"
+            "text": "happy children running across the grass",
+            "note": "지각동사 show O -ing"
           },
           {
             "role": "M",
-            "text": "while bright music plays.",
-            "note": "while 동시동작"
+            "text": "while bright, cheerful music plays.",
+            "note": "while 부사절"
           }
         ],
-        "grammar_note": "show O -ing + while 부사절"
+        "grammar_note": "지각 show O -ing + while 부사절"
       },
       {
         "index": 5,
@@ -224,18 +227,17 @@
           },
           {
             "role": "O",
-            "text": "a single photo and an excited caption full of emojis.",
+            "text": "one sunny photo and an excited caption full of emojis.",
             "note": "형용사구 수식"
           }
         ],
-        "grammar_note": "3형식 + full of 수식"
+        "grammar_note": "3형식 (형용사구 수식)"
       },
       {
-        "index": 6,
         "segments": [
           {
             "role": "S",
-            "text": "The fact"
+            "text": "The plain fact"
           },
           {
             "role": "M",
@@ -247,12 +249,15 @@
           },
           {
             "role": "CONJ",
-            "text": "yet",
-            "note": "양보"
+            "text": "yet"
           },
           {
             "role": "S",
             "text": "each version"
+          },
+          {
+            "role": "M",
+            "text": "somehow"
           },
           {
             "role": "V",
@@ -260,15 +265,12 @@
           },
           {
             "role": "O",
-            "text": "you"
-          },
-          {
-            "role": "C",
-            "text": "feel something different.",
+            "text": "you feel something quite different.",
             "note": "사역 make O 원형"
           }
         ],
-        "grammar_note": "양보 yet + 사역동사 make O V"
+        "grammar_note": "yet 대조 + 사역 make O 원형",
+        "index": 6
       },
       {
         "index": 7,
@@ -283,47 +285,30 @@
           },
           {
             "role": "M",
-            "text": "because every medium shapes the message in its own way.",
-            "note": "because 원인절"
+            "text": "because every medium shapes the same message in its own way.",
+            "note": "because 이유절"
           }
         ],
-        "grammar_note": "because 원인 부사절"
+        "grammar_note": "자동사 + because 이유절"
       },
       {
         "index": 8,
         "segments": [
           {
             "role": "S",
-            "text": "A newspaper"
+            "text": "This"
           },
           {
             "role": "V",
-            "text": "has"
+            "text": "happens"
           },
           {
-            "role": "O",
-            "text": "room for detail,"
-          },
-          {
-            "role": "CONJ",
-            "text": "so",
-            "note": "결과"
-          },
-          {
-            "role": "S",
-            "text": "it"
-          },
-          {
-            "role": "V",
-            "text": "sounds",
-            "note": "2형식 감각동사"
-          },
-          {
-            "role": "C",
-            "text": "careful and complete."
+            "role": "M",
+            "text": "because every single medium shapes the same plain message in its own particular way.",
+            "note": "because 이유절"
           }
         ],
-        "grammar_note": "결과 so + sound 형용사 보어"
+        "grammar_note": "so 결과 (sound 형용사보어)"
       },
       {
         "index": 9,
@@ -334,13 +319,16 @@
           },
           {
             "role": "V",
-            "text": "moves fast and uses sound,",
-            "note": "병렬 동사"
+            "text": "moves"
+          },
+          {
+            "role": "M",
+            "text": "fast and uses sound and motion,",
+            "note": "동사 병렬"
           },
           {
             "role": "CONJ",
-            "text": "so",
-            "note": "결과"
+            "text": "so"
           },
           {
             "role": "S",
@@ -348,19 +336,15 @@
           },
           {
             "role": "V",
-            "text": "pulls at"
-          },
-          {
-            "role": "O",
-            "text": "your emotions"
+            "text": "pulls"
           },
           {
             "role": "M",
-            "text": "before you think.",
-            "note": "before 부사절"
+            "text": "at your emotions before you even think.",
+            "note": "pull at + before 부사절"
           }
         ],
-        "grammar_note": "병렬 동사 + 결과 so + before 절"
+        "grammar_note": "동사 병렬 + so (pull at, before 부사절)"
       },
       {
         "index": 10,
@@ -379,8 +363,7 @@
           },
           {
             "role": "CONJ",
-            "text": "so",
-            "note": "결과"
+            "text": "so"
           },
           {
             "role": "S",
@@ -388,16 +371,15 @@
           },
           {
             "role": "V",
-            "text": "feels",
-            "note": "2형식 감각동사"
+            "text": "feels"
           },
           {
             "role": "C",
-            "text": "like a friend talking to you.",
-            "note": "like + 명사 + 현재분사"
+            "text": "like a close friend talking right to you.",
+            "note": "feel like + 현재분사"
           }
         ],
-        "grammar_note": "결과 so + feel like 명사구"
+        "grammar_note": "so 결과 (feel like + 현재분사)"
       },
       {
         "index": 11,
@@ -408,16 +390,28 @@
           },
           {
             "role": "V",
-            "text": "is lying,"
+            "text": "is"
+          },
+          {
+            "role": "M",
+            "text": "actually"
+          },
+          {
+            "role": "C",
+            "text": "lying,",
+            "note": "진행형 부정"
           },
           {
             "role": "CONJ",
-            "text": "but",
-            "note": "대조"
+            "text": "but"
           },
           {
             "role": "S",
             "text": "each one"
+          },
+          {
+            "role": "M",
+            "text": "quietly"
           },
           {
             "role": "V",
@@ -426,10 +420,10 @@
           {
             "role": "O",
             "text": "what to show and what to leave out.",
-            "note": "의문사 + to부정사"
+            "note": "what to V 병렬"
           }
         ],
-        "grammar_note": "대조 but + what to-V 병렬"
+        "grammar_note": "but + choose what to V (병렬)"
       },
       {
         "index": 12,
@@ -444,30 +438,37 @@
           },
           {
             "role": "M",
-            "text": "never"
-          },
-          {
-            "role": "C",
-            "text": "a clear glass window;"
-          },
+            "text": "never a clear glass window.",
+            "note": "부정 보어"
+          }
+        ],
+        "grammar_note": "2형식 (부정 보어)"
+      },
+      {
+        "index": 13,
+        "segments": [
           {
             "role": "S",
-            "text": "it"
+            "text": "It"
           },
           {
             "role": "V",
             "text": "is"
           },
           {
+            "role": "M",
+            "text": "more"
+          },
+          {
             "role": "C",
-            "text": "more like a colored filter over the same scene.",
-            "note": "비교 more like"
+            "text": "like a colored filter placed over the very same scene.",
+            "note": "like + 과거분사"
           }
         ],
-        "grammar_note": "세미콜론 대조 + more like 비유"
+        "grammar_note": "be like + 과거분사 수식"
       },
       {
-        "index": 13,
+        "index": 14,
         "segments": [
           {
             "role": "S",
@@ -479,21 +480,22 @@
           },
           {
             "role": "C",
-            "text": "why a smart reader asks questions instead of just absorbing.",
-            "note": "why 명사절 + instead of -ing"
+            "text": "exactly why a smart reader asks questions instead of just absorbing everything.",
+            "note": "관계부사 why + instead of -ing"
           }
         ],
-        "grammar_note": "This is why + instead of -ing"
+        "grammar_note": "be why + instead of -ing"
       },
       {
-        "index": 14,
+        "index": 15,
         "segments": [
           {
             "role": "V",
-            "text": "Who made"
+            "text": "Who made",
+            "note": "의문문"
           },
           {
-            "role": "O",
+            "role": "S",
             "text": "this,"
           },
           {
@@ -501,42 +503,35 @@
             "text": "and"
           },
           {
-            "role": "S",
-            "text": "what"
-          },
-          {
             "role": "V",
-            "text": "do they want"
+            "text": "what do they want"
           },
           {
             "role": "M",
-            "text": "from me?"
+            "text": "from me?",
+            "note": "의문문 병렬"
           }
         ],
-        "grammar_note": "의문사 의문문 병렬"
-      },
-      {
-        "index": 15,
-        "segments": [
-          {
-            "role": "S",
-            "text": "What"
-          },
-          {
-            "role": "V",
-            "text": "was cut out",
-            "note": "수동태"
-          },
-          {
-            "role": "M",
-            "text": "to make it shorter or more exciting?",
-            "note": "to부정사 목적"
-          }
-        ],
-        "grammar_note": "수동태 의문문 + to부정사 목적"
+        "grammar_note": "의문문 병렬 (Who/what)"
       },
       {
         "index": 16,
+        "segments": [
+          {
+            "role": "V",
+            "text": "What was cut out",
+            "note": "의문문 수동"
+          },
+          {
+            "role": "M",
+            "text": "to make the story shorter or more exciting?",
+            "note": "to부정사 (make O C)"
+          }
+        ],
+        "grammar_note": "의문문 수동 + to부정사 (make O C)"
+      },
+      {
+        "index": 17,
         "segments": [
           {
             "role": "V",
@@ -548,42 +543,57 @@
           },
           {
             "role": "V",
-            "text": "feel",
-            "note": "2형식"
+            "text": "feel"
           },
           {
             "role": "C",
-            "text": "different somewhere else?"
-          }
-        ],
-        "grammar_note": "조동사 would 의문문 + feel 보어"
-      },
-      {
-        "index": 17,
-        "segments": [
-          {
-            "role": "S",
-            "text": "Asking these things",
-            "note": "동명사 주어"
+            "text": "different"
           },
           {
-            "role": "V",
-            "text": "does not mean"
-          },
-          {
-            "role": "O",
-            "text": "you trust nothing.",
-            "note": "명사절 목적어"
+            "role": "M",
+            "text": "somewhere else?",
+            "note": "의문문 (feel 보어)"
           }
         ],
-        "grammar_note": "동명사 주어 + 명사절 목적어"
+        "grammar_note": "의문문 (feel 형용사보어)"
       },
       {
         "index": 18,
         "segments": [
           {
+            "role": "V",
+            "text": "Would"
+          },
+          {
+            "role": "S",
+            "text": "the very same story"
+          },
+          {
+            "role": "V",
+            "text": "feel"
+          },
+          {
+            "role": "C",
+            "text": "quite different"
+          },
+          {
+            "role": "M",
+            "text": "if you met it somewhere else?",
+            "note": "if 조건절"
+          }
+        ],
+        "grammar_note": "동명사 주어 + mean (that)절"
+      },
+      {
+        "index": 19,
+        "segments": [
+          {
             "role": "S",
             "text": "It"
+          },
+          {
+            "role": "M",
+            "text": "simply"
           },
           {
             "role": "V",
@@ -591,43 +601,39 @@
           },
           {
             "role": "O",
-            "text": "you stay awake",
-            "note": "명사절"
-          },
-          {
-            "role": "M",
-            "text": "while messages pour in all day.",
-            "note": "while 부사절"
+            "text": "you stay awake while messages pour in all day long.",
+            "note": "that절 + while 부사절"
           }
         ],
-        "grammar_note": "명사절 목적어 + while 부사절"
+        "grammar_note": "mean (that)절 + while 부사절"
       },
       {
-        "index": 19,
         "segments": [
           {
             "role": "M",
             "text": "In a world flooded with media,",
-            "note": "과거분사구 수식"
+            "note": "과거분사 수식"
           },
           {
             "role": "S",
-            "text": "the most useful skill"
+            "text": "the most useful skill",
+            "note": "최상급"
           },
           {
             "role": "V",
             "text": "is"
           },
           {
-            "role": "C",
-            "text": "not reading faster but reading with a careful, questioning ____ that looks past the surface.",
-            "note": "not A but B + 빈칸 + 관계절"
+            "role": "M",
+            "text": "not reading faster but reading with a careful, questioning ____ that always looks past the surface.",
+            "note": "not A but B (동명사) + 관계절 + 빈칸"
           }
         ],
-        "grammar_note": "not A but B + 관계대명사 that"
+        "grammar_note": "최상급 + not A but B (동명사, 관계절 빈칸)",
+        "index": 20
       }
     ],
-    "translation_ko": "[1] 간단한 사실 하나를 상상해 보라 — 시내에 작은 공원이 문을 열었다. [2] 이제 그 사실이 세 개의 서로 다른 매체를 통해 움직이는 모습을 그려 보라. [3] 신문은 날짜와 공원의 크기를 담아 차분한 한 단락을 싣는다. [4] 짧은 영상은 밝은 음악이 흐르는 가운데 행복하게 뛰어노는 아이들을 보여 준다. [5] SNS 게시물은 사진 한 장과 이모지로 가득한 신난 캡션을 덧붙인다. [6] 사실은 결코 바뀌지 않았는데도, 각 버전은 당신에게 서로 다른 느낌을 들게 한다. [7] 이런 일이 생기는 까닭은 모든 매체가 저마다의 방식으로 메시지를 빚기 때문이다. [8] 신문은 자세히 담을 공간이 있어서 신중하고 완전하게 들린다. [9] 영상은 빠르게 움직이고 소리를 써서, 당신이 생각하기도 전에 감정을 끌어당긴다. [10] SNS 게시물은 짧고 개인적이라, 친구가 당신에게 말을 거는 것처럼 느껴진다. [11] 이 가운데 어느 것도 거짓말은 아니지만, 각각은 무엇을 보여 주고 무엇을 뺄지를 선택한다. [12] 매체는 결코 투명한 유리창이 아니라, 같은 장면 위에 덧씌운 색깔 있는 필터에 더 가깝다. [13] 그래서 똑똑한 독자는 그냥 빨아들이는 대신 질문을 던진다. [14] 누가 이것을 만들었고, 그들은 나에게서 무엇을 원하는가? [15] 더 짧거나 더 자극적으로 만들기 위해 무엇이 잘려 나갔는가? [16] 같은 이야기가 다른 곳에서는 다르게 느껴질까? [17] 이런 것을 묻는다고 해서 아무것도 믿지 않는다는 뜻은 아니다. [18] 그것은 하루 종일 메시지가 쏟아져 들어오는 동안 당신이 깨어 있다는 뜻이다. [19] 매체로 넘쳐나는 세상에서 가장 쓸모 있는 기술은 더 빨리 읽는 것이 아니라, 표면 너머를 보는 신중하고 질문하는 마음으로 읽는 것이다."
+    "translation_ko": "[1] 단순한 사실 하나를 상상해 보라: 작은 새 공원이 방금 시내에 문을 열었다. [2] 이제 그 사실이 완전히 다른 세 매체를 거쳐 가는 모습을 그려 보라. [3] 신문은 정확한 날짜와 새 공원의 실제 크기를 담은 차분하고 신중한 한 문단을 찍어 낸다. [4] 짧은 영상은 밝고 경쾌한 음악이 흐르는 가운데 행복한 아이들이 잔디밭을 가로질러 뛰는 모습을 보여 준다. [5] 소셜 게시물은 햇살 가득한 사진 한 장과 이모지로 가득한 들뜬 설명을 더한다. [6] 그 밋밋한 사실은 결코 변하지 않았지만, 각 버전은 어쩐지 너에게 꽤 다른 무언가를 느끼게 만든다. [7] 이런 일이 일어나는 까닭은 모든 매체가 같은 메시지를 자기 나름의 방식으로 빚기 때문이다. [8] 이런 일이 일어나는 까닭은 모든 매체 하나하나가 같은 밋밋한 메시지를 자기 나름의 특정한 방식으로 빚기 때문이다. [9] 영상은 빠르게 움직이고 소리와 동작을 써서, 네가 생각하기도 전에 네 감정을 잡아당긴다. [10] 소셜 게시물은 짧고 개인적이어서, 가까운 친구가 너에게 바로 말하는 것처럼 느껴진다. [11] 이 중 어느 것도 실제로 거짓말을 하는 것은 아니지만, 각각은 무엇을 보여 주고 무엇을 빼놓을지를 조용히 고른다. [12] 매체는 결코 맑은 유리창이 아니다. [13] 그것은 바로 같은 장면 위에 놓인 색 필터에 더 가깝다. [14] 이것이 바로 똑똑한 독자가 모든 것을 그냥 흡수하는 대신 질문을 던지는 이유다. [15] 누가 이걸 만들었고, 그들은 나에게서 무엇을 원하는가? [16] 이야기를 더 짧거나 더 흥미롭게 만들려고 무엇이 잘려 나갔는가? [17] 같은 이야기가 다른 곳에서는 다르게 느껴질까? [18] 바로 같은 이야기를 다른 곳에서 만난다면 꽤 다르게 느껴질까? [19] 그것은 그저 하루 종일 메시지가 쏟아져 들어오는 동안 네가 깨어 있다는 뜻이다. [20] 매체로 넘쳐나는 세상에서, 가장 유용한 기술은 더 빨리 읽는 것이 아니라 늘 표면 너머를 보는 신중하고 질문하는 마음으로 읽는 것이다."
   },
   "answers": {
     "explanations": [
