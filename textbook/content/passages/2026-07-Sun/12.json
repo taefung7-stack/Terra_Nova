@@ -1,0 +1,881 @@
+{
+  "schema_version": "2.2",
+  "id": "2026-07-Sun-12",
+  "meta": {
+    "month": "2026-07-Sun",
+    "sequence": 12,
+    "subject": "수학",
+    "linked_unit": "미적분II III-1 적분의 활용",
+    "part_ko": "쌓아서 구하는 넓이",
+    "achievement_standard": "12미적II03-03",
+    "achievement_verified": true,
+    "difficulty": "중간",
+    "cognitive_skill": "요지",
+    "lexile": "1210L",
+    "ar_level": 7.7,
+    "key_concepts": [
+      "정적분",
+      "넓이와 누적",
+      "극한과 분할",
+      "변화량의 합"
+    ]
+  },
+  "page1": {
+    "title": "Adding Up Infinitely Many Slivers",
+    "subtitle": "How calculus measures a curved, irregular area.",
+    "body": "Finding the area of a rectangle is child's play: multiply its width by its height. But what about the area trapped under a curving line, a shape with no neat formula at all? For centuries this problem seemed almost hopeless, until calculus offered a startlingly simple idea. The trick is to stop demanding an exact answer at once and instead build it from a swarm of crude approximations, a process the <u>definite integral</u> makes precise.\n\nImagine slicing the curved region into many thin vertical strips. Each strip is so narrow that its top is nearly flat, so we can treat it as a slender rectangle and find its area with ease. Add up the areas of all these rectangles and you get a rough estimate of the whole region. With only a handful of fat strips the answer is clumsy, overshooting here and falling short there. The estimate is only approximate, of course, because the flat tops never quite match the true curve. But here lies the genius of the method: make the strips thinner and more numerous, and the error shrinks. Push this slicing toward its <mark>limit</mark>, with infinitely many infinitely thin strips, and the sum of their areas settles onto one exact value. That precise total is what we call the definite integral. What once felt impossible has been tamed simply by refusing to stop slicing too soon.\n\nWhat makes this idea so powerful is how far it reaches beyond mere area. Whenever a quantity changes continuously, integration adds up all those tiny changes into a meaningful total. The distance a speeding car travels, the water that flows through a pipe, the work a varying force performs: each is found by the same patient summing of countless small contributions. So integration is, at its heart, the mathematics of <blank> the small to discover the large.",
+    "illustration": "../../assets/illustrations/2026-07-Sun/12.png",
+    "illustration_caption": "Infinitely many thin strips, summed at the limit, give the exact area under a curve."
+  },
+  "page2": {
+    "questions": [
+      {
+        "type": "mock_objective",
+        "style": "요지",
+        "stem": "다음 글의 요지로 가장 적절한 것은?",
+        "choices": [
+          "The area under a curve can never be measured by any method.",
+          "The definite integral finds a curved area by summing infinitely many thin strips at the limit, and the same idea adds up continuous change into a total.",
+          "Only rectangles, never curved regions, can have a measurable area.",
+          "Making the strips thinner makes the estimate worse.",
+          "Integration applies to area alone and to nothing else."
+        ],
+        "answer_index": 1
+      },
+      {
+        "type": "mock_objective",
+        "style": "빈칸 추론",
+        "stem": "윗글의 밑줄 친 빈칸에 들어갈 말로 가장 적절한 것은?",
+        "choices": [
+          "ignoring",
+          "summing",
+          "hiding",
+          "dividing",
+          "forgetting"
+        ],
+        "answer_index": 1
+      },
+      {
+        "type": "mock_objective",
+        "style": "함의 추론",
+        "stem": "윗글에서 make the strips thinner and more numerous, and the error shrinks 가 의미하는 바로 가장 적절한 것은?",
+        "choices": [
+          "thinner strips make the approximation less accurate",
+          "as the strips approach infinitely thin, the sum approaches the exact area",
+          "the curve can never be approximated by rectangles",
+          "fewer, wider strips give the best result",
+          "the error stays the same no matter the strip width"
+        ],
+        "answer_index": 1
+      },
+      {
+        "type": "school_descriptive",
+        "style": "요약문 빈칸 완성",
+        "prompt": "다음은 본문의 요약문이다. 본문의 내용을 바탕으로 빈칸 (A), (B)에 들어갈 말을 <조건>에 맞게 영어 한 단어로 각각 쓰시오. <조건> 본문에서 제시된 단어를 그대로 활용할 것.",
+        "hints": [
+          "integral",
+          "strips",
+          "limit",
+          "area",
+          "change"
+        ],
+        "summary_template": "The definite <blank> (A) measures a curved area by adding up many thin strips and pushing their number toward the <blank> (B). The same summing turns continuous change into a meaningful total.",
+        "model_answer": "(A) integral  (B) limit"
+      }
+    ],
+    "textbook_tieback": {
+      "unit_label": "미적분II III · 적분의 활용",
+      "body_ko": "고3 '미적분II'에서는 정적분의 의미와 활용을 배운다. 곡선 아래의 넓이처럼 딱 떨어지는 공식이 없는 영역의 넓이를, 영역을 가는 직사각형(구분구적)으로 잘게 나눠 근사한 뒤, 그 분할을 극한으로 보내면(무한히 많은 무한히 얇은 조각) 근삿값의 합이 하나의 정확한 값으로 수렴한다 — 이것이 정적분이다. 더 나아가 적분은 넓이뿐 아니라 '연속적으로 변하는 양의 미세한 변화를 모두 더해 의미 있는 총량을 구하는' 도구다(가변 속도에서 이동 거리, 유량, 변하는 힘이 한 일 등). 즉 적분은 작은 것을 무수히 합하여 큰 것을 알아내는 수학이다.",
+      "tags": [
+        "정적분",
+        "넓이누적",
+        "극한분할",
+        "변화량합"
+      ],
+      "visual_aid": {
+        "type": "emoji_flow",
+        "title": "조각을 쌓아 넓이를 구하다",
+        "steps": [
+          {
+            "emoji": "📊",
+            "label": "분할",
+            "note": "얇은 직사각형"
+          },
+          {
+            "emoji": "➕",
+            "label": "근사 합",
+            "note": "대략의 넓이"
+          },
+          {
+            "emoji": "♾️",
+            "label": "극한",
+            "note": "무한히 얇게"
+          },
+          {
+            "emoji": "🎯",
+            "label": "정적분",
+            "note": "정확한 총량"
+          }
+        ]
+      }
+    }
+  },
+  "page3": {
+    "sentences": [
+      {
+        "index": 1,
+        "segments": [
+          {
+            "role": "S",
+            "text": "Finding the area of a rectangle",
+            "note": "동명사 주어"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "child's play:",
+            "note": "콜론"
+          },
+          {
+            "role": "V",
+            "text": "multiply"
+          },
+          {
+            "role": "O",
+            "text": "its width by its height.",
+            "note": "명령문 multiply A by B"
+          }
+        ],
+        "grammar_note": "동명사 주어 + 콜론 + 명령문 (multiply A by B)"
+      },
+      {
+        "index": 2,
+        "segments": [
+          {
+            "role": "CONJ",
+            "text": "But"
+          },
+          {
+            "role": "M",
+            "text": "what about the area trapped under a curving line, a shape with no neat formula at all?",
+            "note": "what about + 과거분사 + 동격"
+          }
+        ],
+        "grammar_note": "what about + 과거분사 수식 + 동격 (강조 부정 at all)"
+      },
+      {
+        "index": 3,
+        "segments": [
+          {
+            "role": "M",
+            "text": "For centuries"
+          },
+          {
+            "role": "S",
+            "text": "this problem"
+          },
+          {
+            "role": "V",
+            "text": "seemed"
+          },
+          {
+            "role": "C",
+            "text": "almost hopeless,",
+            "note": "seem 형용사보어"
+          },
+          {
+            "role": "M",
+            "text": "until calculus offered a startlingly simple idea.",
+            "note": "until 부사절"
+          }
+        ],
+        "grammar_note": "seem 형용사보어 + until 부사절"
+      },
+      {
+        "index": 4,
+        "segments": [
+          {
+            "role": "S",
+            "text": "The trick"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "to stop demanding an exact answer at once and instead build it from a swarm of crude approximations,",
+            "note": "to부정사 보어 + stop -ing + 병렬"
+          },
+          {
+            "role": "M",
+            "text": "a process the definite integral makes precise.",
+            "note": "동격 + 관계절 (make O C)"
+          }
+        ],
+        "grammar_note": "to부정사 보어 (stop -ing) + 동격 (관계절 make O C)"
+      },
+      {
+        "index": 5,
+        "segments": [
+          {
+            "role": "V",
+            "text": "Imagine"
+          },
+          {
+            "role": "O",
+            "text": "slicing the curved region into many thin vertical strips.",
+            "note": "동명사 + slice A into B"
+          }
+        ],
+        "grammar_note": "imagine + 동명사 (slice A into B)"
+      },
+      {
+        "index": 6,
+        "segments": [
+          {
+            "role": "S",
+            "text": "Each strip"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "so narrow that its top is nearly flat,",
+            "note": "so ~ that 구문"
+          },
+          {
+            "role": "CONJ",
+            "text": "so"
+          },
+          {
+            "role": "S",
+            "text": "we"
+          },
+          {
+            "role": "V",
+            "text": "can treat"
+          },
+          {
+            "role": "O",
+            "text": "it as a slender rectangle and find its area with ease.",
+            "note": "treat A as B + 병렬"
+          }
+        ],
+        "grammar_note": "so ~ that 구문 + treat A as B (동사 병렬)"
+      },
+      {
+        "index": 7,
+        "segments": [
+          {
+            "role": "V",
+            "text": "Add up"
+          },
+          {
+            "role": "O",
+            "text": "the areas of all these rectangles",
+            "note": "명령문 구동사"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "S",
+            "text": "you"
+          },
+          {
+            "role": "V",
+            "text": "get"
+          },
+          {
+            "role": "O",
+            "text": "a rough estimate of the whole region."
+          }
+        ],
+        "grammar_note": "명령문 + and 결과"
+      },
+      {
+        "segments": [
+          {
+            "role": "M",
+            "text": "With only a handful of fat strips",
+            "note": "with 전치사구"
+          },
+          {
+            "role": "S",
+            "text": "the answer"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "clumsy, overshooting here and falling short there.",
+            "note": "분사구문 병렬"
+          }
+        ],
+        "grammar_note": "with 전치사구 + 2형식 + 분사구문 (overshooting/falling 병렬)",
+        "index": 8
+      },
+      {
+        "index": 9,
+        "segments": [
+          {
+            "role": "S",
+            "text": "The estimate"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "M",
+            "text": "only approximate, of course,"
+          },
+          {
+            "role": "M",
+            "text": "because the flat tops never quite match the true curve.",
+            "note": "because 이유절"
+          }
+        ],
+        "grammar_note": "2형식 + because 이유절"
+      },
+      {
+        "index": 10,
+        "segments": [
+          {
+            "role": "CONJ",
+            "text": "But"
+          },
+          {
+            "role": "M",
+            "text": "here"
+          },
+          {
+            "role": "V",
+            "text": "lies",
+            "note": "도치"
+          },
+          {
+            "role": "S",
+            "text": "the genius of the method:",
+            "note": "도치 주어 + 콜론"
+          },
+          {
+            "role": "V",
+            "text": "make"
+          },
+          {
+            "role": "O",
+            "text": "the strips thinner and more numerous,",
+            "note": "사역 make O C"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "S",
+            "text": "the error"
+          },
+          {
+            "role": "V",
+            "text": "shrinks."
+          }
+        ],
+        "grammar_note": "장소부사 도치 + 콜론 + 명령문 make O C + and 결과"
+      },
+      {
+        "index": 11,
+        "segments": [
+          {
+            "role": "V",
+            "text": "Push"
+          },
+          {
+            "role": "O",
+            "text": "this slicing toward its limit, with infinitely many infinitely thin strips,",
+            "note": "명령문 + with 부대상황"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "S",
+            "text": "the sum of their areas"
+          },
+          {
+            "role": "V",
+            "text": "settles"
+          },
+          {
+            "role": "M",
+            "text": "onto one exact value.",
+            "note": "settle onto"
+          }
+        ],
+        "grammar_note": "명령문 + with 부대상황 + and 결과 (settle onto)"
+      },
+      {
+        "index": 12,
+        "segments": [
+          {
+            "role": "S",
+            "text": "That precise total"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "what we call the definite integral.",
+            "note": "what 명사절 보어"
+          }
+        ],
+        "grammar_note": "what 명사절 보어 (call O C)"
+      },
+      {
+        "segments": [
+          {
+            "role": "S",
+            "text": "What once felt impossible",
+            "note": "what 명사절 주어"
+          },
+          {
+            "role": "V",
+            "text": "has been tamed",
+            "note": "현재완료 수동"
+          },
+          {
+            "role": "M",
+            "text": "simply by refusing to stop slicing too soon.",
+            "note": "by -ing + refuse to V"
+          }
+        ],
+        "grammar_note": "what 명사절 주어 + 현재완료 수동 + by -ing (refuse to V)",
+        "index": 13
+      },
+      {
+        "index": 14,
+        "segments": [
+          {
+            "role": "S",
+            "text": "What makes this idea so powerful",
+            "note": "what 명사절 주어 + make O C"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "how far it reaches beyond mere area.",
+            "note": "how 명사절 보어"
+          }
+        ],
+        "grammar_note": "what 명사절 주어 (make O C) + how 명사절 보어"
+      },
+      {
+        "index": 15,
+        "segments": [
+          {
+            "role": "M",
+            "text": "Whenever a quantity changes continuously,",
+            "note": "whenever 부사절"
+          },
+          {
+            "role": "S",
+            "text": "integration"
+          },
+          {
+            "role": "V",
+            "text": "adds up",
+            "note": "구동사"
+          },
+          {
+            "role": "O",
+            "text": "all those tiny changes into a meaningful total.",
+            "note": "add up A into B"
+          }
+        ],
+        "grammar_note": "whenever 부사절 + add up A into B"
+      },
+      {
+        "index": 16,
+        "segments": [
+          {
+            "role": "S",
+            "text": "The distance a speeding car travels, the water that flows through a pipe, the work a varying force performs:",
+            "note": "관계절 병렬 + 콜론"
+          },
+          {
+            "role": "S",
+            "text": "each"
+          },
+          {
+            "role": "V",
+            "text": "is found",
+            "note": "수동태"
+          },
+          {
+            "role": "M",
+            "text": "by the same patient summing of countless small contributions.",
+            "note": "by 동명사"
+          }
+        ],
+        "grammar_note": "관계절 병렬 주어 + 콜론 + 수동태 (by 동명사)"
+      },
+      {
+        "index": 17,
+        "segments": [
+          {
+            "role": "CONJ",
+            "text": "So"
+          },
+          {
+            "role": "S",
+            "text": "integration"
+          },
+          {
+            "role": "V",
+            "text": "is,"
+          },
+          {
+            "role": "M",
+            "text": "at its heart,"
+          },
+          {
+            "role": "C",
+            "text": "the mathematics of ____ the small to discover the large.",
+            "note": "of 동명사 + 빈칸 + to부정사"
+          }
+        ],
+        "grammar_note": "2형식 + of 동명사 (빈칸) + to부정사 목적"
+      }
+    ],
+    "translation_ko": "[1] 직사각형의 넓이를 구하는 것은 아주 쉬운 일이다: 가로에 세로를 곱하면 된다. [2] 그러나 휘어진 선 아래 갇힌 넓이, 곧 깔끔한 공식이 전혀 없는 도형은 어떨까? [3] 수 세기 동안 이 문제는 거의 가망 없어 보였는데, 미적분이 놀랍도록 단순한 생각을 내놓을 때까지 그랬다. [4] 그 묘책은 정확한 답을 단번에 요구하기를 멈추고 대신 그것을 거친 근삿값의 무리로부터 쌓아 올리는 것인데, 이는 정적분이 정밀하게 만드는 과정이다. [5] 곡선 영역을 많은 가는 세로 띠로 잘라 낸다고 상상해 보라. [6] 각 띠는 너무 좁아서 그 윗변이 거의 평평하므로, 우리는 그것을 가느다란 직사각형으로 취급해 그 넓이를 쉽게 구할 수 있다. [7] 이 모든 직사각형의 넓이를 더하면, 너는 전체 영역의 대략적인 어림값을 얻는다. [8] 굵은 띠 몇 개만으로는 그 답이 서툴러, 여기서는 넘치고 저기서는 모자란다. [9] 물론 그 어림값은 근사일 뿐인데, 평평한 윗변들이 결코 진짜 곡선과 꼭 들어맞지는 않기 때문이다. [10] 그러나 바로 여기에 그 방법의 천재성이 있다: 띠를 더 얇고 더 많게 만들면, 오차가 줄어든다. [11] 이 자르기를 그 극한까지, 무한히 많은 무한히 얇은 띠로 밀어붙이면, 그것들 넓이의 합은 하나의 정확한 값으로 자리 잡는다. [12] 그 정밀한 총합이 우리가 정적분이라 부르는 것이다. [13] 한때 불가능해 보였던 것이, 단지 너무 일찍 자르기를 멈추기를 거부함으로써 길들여졌다. [14] 이 생각을 그토록 강력하게 만드는 것은 그것이 단순한 넓이를 얼마나 멀리 넘어서 닿는가다. [15] 어떤 양이 연속적으로 변할 때마다, 적분은 그 모든 미세한 변화를 의미 있는 총량으로 더한다. [16] 빠르게 달리는 차가 이동한 거리, 관을 통해 흐르는 물, 변하는 힘이 한 일: 각각은 무수히 작은 기여들의 똑같이 끈기 있는 합으로 구해진다. [17] 그래서 적분은 그 본질에서 작은 것을 합하여 큰 것을 발견하는 수학이다."
+  },
+  "answers": {
+    "explanations": [
+      {
+        "q_index": 0,
+        "q_style": "요지",
+        "correct": 1,
+        "evidence": "글은 곡선 아래 넓이를 가는 직사각형으로 근사해 극한으로 보내면 정확한 값(정적분)이 되고(5~11번), 같은 원리가 연속적으로 변하는 양의 미세 변화를 총량으로 더한다(12~14번)고 한다. 따라서 '정적분은 무한히 얇은 조각의 합으로 곡선 넓이를 구하고, 같은 생각이 연속 변화를 총량으로 더한다'가 요지다.",
+        "rationales": [
+          "3·10번 '미적분이 곡선 넓이를 구한다'와 모순된다.",
+          "(정답) 무한 분할 합·극한·연속 변화 합산이라는 글 전체 주장을 요약한다.",
+          "6번 '띠를 직사각형으로 취급해 곡선 넓이를 근사한다'와 모순된다.",
+          "9번 '띠를 더 얇게 하면 오차가 줄어든다'와 정반대다.",
+          "12~14번 '넓이를 넘어 거리·유량·일에도 적용된다'와 모순된다."
+        ],
+        "key_terms": [
+          {
+            "en": "definite integral",
+            "ko": "정적분"
+          },
+          {
+            "en": "limit",
+            "ko": "극한"
+          }
+        ]
+      },
+      {
+        "q_index": 1,
+        "q_style": "빈칸 추론",
+        "correct": 1,
+        "evidence": "빈칸은 \"the mathematics of ___ the small to discover the large\"의 자리다. 7·13·14번이 모두 작은 것을 '더하기(add up/summing)'를 강조하므로 summing이 적절하다.",
+        "rationales": [
+          "'무시하기'는 작은 것을 더한다는 글의 핵심과 정반대다.",
+          "(정답) summing은 7·13·14번의 add up·summing과 일치한다.",
+          "'숨기기'는 본문 논지와 무관하다.",
+          "'나누기'는 분할은 중간 단계일 뿐, 핵심은 더해서 총량을 얻는 것이다.",
+          "'잊기'는 본문 맥락과 맞지 않는다."
+        ],
+        "key_terms": [
+          {
+            "en": "summing",
+            "ko": "합산"
+          },
+          {
+            "en": "integration",
+            "ko": "적분"
+          }
+        ]
+      },
+      {
+        "q_index": 2,
+        "q_style": "함의 추론",
+        "correct": 1,
+        "evidence": "9~10번은 띠를 더 얇고 많게 하면 오차가 줄고, 극한(무한히 얇은 띠)으로 보내면 합이 하나의 정확한 값으로 수렴한다고 한다. 즉 띠가 무한히 얇아질수록 합이 정확한 넓이에 다가간다는 뜻이다.",
+        "rationales": [
+          "'얇은 띠가 근사를 덜 정확하게 한다'는 9번(오차 감소)과 모순된다.",
+          "(정답) 띠가 무한히 얇아질수록 합이 정확한 넓이에 수렴한다는 본문 의미 그대로다.",
+          "'곡선을 직사각형으로 근사할 수 없다'는 6번과 모순된다.",
+          "'더 적고 넓은 띠가 최선'은 9번과 정반대다.",
+          "'띠 폭과 무관하게 오차가 같다'는 9번(오차 감소)과 모순된다."
+        ],
+        "key_terms": [
+          {
+            "en": "approximation",
+            "ko": "근사"
+          },
+          {
+            "en": "exact",
+            "ko": "정확한"
+          }
+        ]
+      },
+      {
+        "q_index": 3,
+        "q_style": "요약문 빈칸 완성",
+        "correct": null,
+        "model_answer_en": "(A) integral  (B) limit",
+        "evidence": "(A)는 띠의 합으로 곡선 넓이를 재는 것 → 11번 the definite integral. (B)는 띠 수를 밀어붙이는 곳 → 10번 toward its limit.",
+        "rationales": [
+          "(A) integral — '띠의 합으로 넓이를 재는 것'은 11번 definite integral과 일치한다.",
+          "(B) limit — '띠 수를 밀어붙이는 곳'은 10번 limit과 일치한다."
+        ],
+        "key_terms": [
+          {
+            "en": "integral",
+            "ko": "적분"
+          },
+          {
+            "en": "limit",
+            "ko": "극한"
+          }
+        ]
+      }
+    ]
+  },
+  "page4": {
+    "vocab": [
+      {
+        "word": "definite integral",
+        "pos": "n.",
+        "meaning_ko": "정적분",
+        "synonyms": [],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "The definite integral gives the exact area.",
+            "ko": "정적분은 정확한 넓이를 준다."
+          },
+          {
+            "en": "A definite integral sums infinitely thin strips.",
+            "ko": "정적분은 무한히 얇은 띠를 합한다."
+          }
+        ]
+      },
+      {
+        "word": "area",
+        "pos": "n.",
+        "meaning_ko": "넓이",
+        "synonyms": [],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "The area under a curve is hard to find directly.",
+            "ko": "곡선 아래 넓이는 직접 구하기 어렵다."
+          },
+          {
+            "en": "We estimate the area with rectangles.",
+            "ko": "우리는 직사각형으로 넓이를 어림한다."
+          }
+        ]
+      },
+      {
+        "word": "strip",
+        "pos": "n.",
+        "meaning_ko": "띠, 조각",
+        "synonyms": [],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "Slice the region into thin strips.",
+            "ko": "영역을 얇은 띠로 잘라라."
+          },
+          {
+            "en": "Each strip is treated as a rectangle.",
+            "ko": "각 띠는 직사각형으로 취급된다."
+          }
+        ]
+      },
+      {
+        "word": "approximation",
+        "pos": "n.",
+        "meaning_ko": "근사, 어림",
+        "synonyms": [
+          "estimate"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "The sum is at first only an approximation.",
+            "ko": "그 합은 처음엔 근사일 뿐이다."
+          },
+          {
+            "en": "A finer approximation lowers the error.",
+            "ko": "더 정밀한 근사는 오차를 낮춘다."
+          }
+        ]
+      },
+      {
+        "word": "limit",
+        "pos": "n.",
+        "meaning_ko": "극한",
+        "synonyms": [],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "Push the slicing toward its limit.",
+            "ko": "그 자르기를 극한까지 밀어붙여라."
+          },
+          {
+            "en": "At the limit, the sum becomes exact.",
+            "ko": "극한에서 합은 정확해진다."
+          }
+        ]
+      },
+      {
+        "word": "integration",
+        "pos": "n.",
+        "meaning_ko": "적분",
+        "synonyms": [],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "Integration adds up tiny changes.",
+            "ko": "적분은 미세한 변화를 더한다."
+          },
+          {
+            "en": "Integration reaches beyond area.",
+            "ko": "적분은 넓이를 넘어 닿는다."
+          }
+        ]
+      },
+      {
+        "word": "continuously",
+        "pos": "adv.",
+        "meaning_ko": "연속적으로",
+        "synonyms": [],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "When a quantity changes continuously, we integrate.",
+            "ko": "양이 연속적으로 변할 때 우리는 적분한다."
+          },
+          {
+            "en": "Speed can change continuously.",
+            "ko": "속도는 연속적으로 변할 수 있다."
+          }
+        ]
+      },
+      {
+        "word": "estimate",
+        "pos": "n.",
+        "meaning_ko": "어림값, 추정값",
+        "synonyms": [],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "Adding the strips gives a rough estimate.",
+            "ko": "띠를 더하면 대략의 어림값을 얻는다."
+          },
+          {
+            "en": "The estimate improves with thinner strips.",
+            "ko": "어림값은 더 얇은 띠로 나아진다."
+          }
+        ]
+      },
+      {
+        "word": "slender",
+        "pos": "adj.",
+        "meaning_ko": "가느다란",
+        "synonyms": [
+          "thin"
+        ],
+        "antonyms": [
+          "thick"
+        ],
+        "examples": [
+          {
+            "en": "Treat each strip as a slender rectangle.",
+            "ko": "각 띠를 가느다란 직사각형으로 취급하라."
+          },
+          {
+            "en": "A slender strip has a nearly flat top.",
+            "ko": "가느다란 띠는 거의 평평한 윗변을 가진다."
+          }
+        ]
+      },
+      {
+        "word": "numerous",
+        "pos": "adj.",
+        "meaning_ko": "수많은",
+        "synonyms": [
+          "many"
+        ],
+        "antonyms": [
+          "few"
+        ],
+        "examples": [
+          {
+            "en": "Make the strips thinner and more numerous.",
+            "ko": "띠를 더 얇고 더 많게 만들어라."
+          },
+          {
+            "en": "Numerous tiny pieces give a fine estimate.",
+            "ko": "수많은 작은 조각은 정밀한 어림을 준다."
+          }
+        ]
+      },
+      {
+        "word": "contribution",
+        "pos": "n.",
+        "meaning_ko": "기여, 몫",
+        "synonyms": [],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "Each small contribution is summed.",
+            "ko": "각 작은 기여가 합해진다."
+          },
+          {
+            "en": "The total is built from many contributions.",
+            "ko": "총량은 많은 기여로 지어진다."
+          }
+        ]
+      },
+      {
+        "word": "precise",
+        "pos": "adj.",
+        "meaning_ko": "정밀한, 정확한",
+        "synonyms": [
+          "exact"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "The integral makes the process precise.",
+            "ko": "적분은 그 과정을 정밀하게 만든다."
+          },
+          {
+            "en": "The sum settles onto a precise value.",
+            "ko": "그 합은 정밀한 값으로 자리 잡는다."
+          }
+        ]
+      }
+    ]
+  }
+}
