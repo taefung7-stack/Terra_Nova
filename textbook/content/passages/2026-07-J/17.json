@@ -11,8 +11,8 @@
     "achievement_verified": true,
     "difficulty": "중간",
     "cognitive_skill": "요지",
-    "lexile": "1120L",
-    "ar_level": 7.4,
+    "lexile": "1020L",
+    "ar_level": 7,
     "key_concepts": [
       "순간변화율",
       "접선의 기울기",
@@ -23,8 +23,8 @@
   "page1": {
     "title": "The Math of a Single Instant",
     "subtitle": "How the derivative captures change that lasts no time at all.",
-    "body": "A speedometer faces a strange puzzle. Average speed is easy: divide the distance you travel by the time it takes. But what does it mean to be going sixty kilometers an hour at one exact instant, when no time has yet passed and no distance has yet been covered? Calculus answers this with one powerful idea, the <u>derivative</u>, which measures how fast a quantity is changing at a single moment.\n\nPicture the graph of a function as a winding road on paper. If you pick two points and draw the straight line between them, its slope gives only the average rate of change across that stretch. Now slide the second point closer and closer to the first. The line tilts gently until, at the limit, it just grazes the curve at one point. That final touching line is the tangent, and its slope is exactly the derivative there. So the derivative is the <mark>slope</mark> of the tangent, a number that tells us the curve's direction at that precise spot. When the derivative is positive the function is climbing, when it is negative the function is falling, and where it briefly equals zero the curve has paused, flattening at a peak or a valley. Reading the sign of the derivative therefore lets us follow the function rise and fall without ever plotting every single point.\n\nThis last fact turns the derivative into a quiet problem-solver. To find the largest or smallest value a quantity can reach, we hunt for the places where its rate of change falls to zero, then check which of them sits highest or lowest. Engineers use this to minimize wasted fuel, and businesses use it to maximize profit. In each case the same simple step is repeated: set the rate of change to zero and let the equation reveal where the optimum hides. What began as a question about one impossible instant becomes a tool for finding the best possible <blank>.",
-    "illustration": "../../assets/illustrations/2026-07-J/17.png",
+    "body": "A speedometer faces a strange puzzle. Average speed is easy: divide the distance you travel by the time it takes. But what does it mean to be going sixty kilometers an hour at one exact instant, when no time has passed and no distance has been covered yet? Calculus answers this with one powerful idea, the <u>derivative</u>. It measures how fast a quantity is changing at a single moment.\n\nPicture the graph of a function as a winding road on paper. If you pick two points and draw the straight line between them, its slope gives only the average rate of change across that stretch. Now slide the second point closer and closer to the first. The line tilts gently until, at the limit, it just grazes the curve at one point. That final touching line is the tangent, and its slope is exactly the derivative there. So the derivative is the <mark>slope</mark> of the tangent, a number that tells us the curve's direction at that precise spot. When the derivative is positive, the function is climbing. When it is negative, the function is falling. And where it briefly equals zero, the curve has paused, flattening at a peak or a valley. Reading the sign of the derivative therefore lets us follow the function rise and fall without plotting every single point.\n\nThis last fact turns the derivative into a quiet problem-solver. To find the largest or smallest value a quantity can reach, we hunt for the places where its rate of change falls to zero, then check which of them sits highest or lowest. Engineers use this to minimize wasted fuel, and businesses use it to maximize profit. In each case the same simple step is repeated: set the rate of change to zero and let the equation reveal where the best point hides. What began as a question about one impossible instant becomes a tool for finding the best possible <blank>.",
+    "illustration": "../../assets/illustrations/2026-07-J/17.jpg",
     "illustration_caption": "A secant line tilts toward the tangent, whose slope is the derivative."
   },
   "page2": {
@@ -138,7 +138,7 @@
             "text": "a strange puzzle."
           }
         ],
-        "grammar_note": "3형식 (S+V+O)"
+        "grammar_note": "3형식"
       },
       {
         "index": 2,
@@ -162,10 +162,10 @@
           {
             "role": "O",
             "text": "the distance you travel by the time it takes.",
-            "note": "divide A by B + 관계절"
+            "note": "명령문 divide A by B + 관계절"
           }
         ],
-        "grammar_note": "명령문 divide A by B + 관계절 (목적격 생략)"
+        "grammar_note": "콜론 + 명령문 (divide A by B, 관계절)"
       },
       {
         "index": 3,
@@ -175,17 +175,21 @@
             "text": "But"
           },
           {
-            "role": "M",
-            "text": "what does it mean to be going sixty kilometers an hour at one exact instant,",
-            "note": "의문문 + to부정사 진주어"
+            "role": "V",
+            "text": "what does it mean"
           },
           {
             "role": "M",
-            "text": "when no time has yet passed and no distance has yet been covered?",
-            "note": "when 부사절 + 현재완료 수동"
+            "text": "to be going sixty kilometers an hour at one exact instant,",
+            "note": "가주어 + to부정사"
+          },
+          {
+            "role": "M",
+            "text": "when no time has passed and no distance has been covered yet?",
+            "note": "when 부사절 (현재완료)"
           }
         ],
-        "grammar_note": "가주어 it + to부정사 + when 부사절 (현재완료 수동)"
+        "grammar_note": "가주어 it + to부정사 + when 부사절"
       },
       {
         "index": 4,
@@ -204,14 +208,33 @@
           },
           {
             "role": "M",
-            "text": "with one powerful idea, the derivative, which measures how fast a quantity is changing at a single moment.",
-            "note": "동격 + 관계절 + how 명사절"
+            "text": "with one powerful idea, the derivative.",
+            "note": "동격"
           }
         ],
-        "grammar_note": "동격 명사구 + 계속적 관계절 which + how 명사절"
+        "grammar_note": "answer with + 동격"
       },
       {
         "index": 5,
+        "segments": [
+          {
+            "role": "S",
+            "text": "It"
+          },
+          {
+            "role": "V",
+            "text": "measures"
+          },
+          {
+            "role": "O",
+            "text": "how fast a quantity is changing at a single moment.",
+            "note": "how 명사절"
+          }
+        ],
+        "grammar_note": "measure + how 명사절"
+      },
+      {
+        "index": 6,
         "segments": [
           {
             "role": "V",
@@ -230,12 +253,12 @@
         "grammar_note": "명령문 picture A as B"
       },
       {
-        "index": 6,
+        "index": 7,
         "segments": [
           {
             "role": "M",
             "text": "If you pick two points and draw the straight line between them,",
-            "note": "if 조건절 병렬"
+            "note": "if 조건절 (병렬)"
           },
           {
             "role": "S",
@@ -253,7 +276,7 @@
         "grammar_note": "if 조건절 (동사 병렬) + 3형식"
       },
       {
-        "index": 7,
+        "index": 8,
         "segments": [
           {
             "role": "M",
@@ -273,10 +296,10 @@
             "note": "비교급 반복"
           }
         ],
-        "grammar_note": "명령문 + 비교급 반복 (점점 ~)"
+        "grammar_note": "명령문 + 비교급 반복"
       },
       {
-        "index": 8,
+        "index": 9,
         "segments": [
           {
             "role": "S",
@@ -288,18 +311,14 @@
           },
           {
             "role": "M",
-            "text": "gently"
-          },
-          {
-            "role": "M",
-            "text": "until, at the limit, it just grazes the curve at one point.",
+            "text": "gently until, at the limit, it just grazes the curve at one point.",
             "note": "until 부사절"
           }
         ],
-        "grammar_note": "자동사 tilt + until 부사절"
+        "grammar_note": "자동사 + until 부사절"
       },
       {
-        "index": 9,
+        "index": 10,
         "segments": [
           {
             "role": "S",
@@ -330,10 +349,10 @@
             "text": "exactly the derivative there."
           }
         ],
-        "grammar_note": "2형식 병렬 (and)"
+        "grammar_note": "2형식 병렬"
       },
       {
-        "index": 10,
+        "index": 11,
         "segments": [
           {
             "role": "CONJ",
@@ -350,17 +369,17 @@
           {
             "role": "C",
             "text": "the slope of the tangent, a number that tells us the curve's direction at that precise spot.",
-            "note": "동격 + 관계절 tell O O"
+            "note": "동격 + 관계절"
           }
         ],
-        "grammar_note": "2형식 + 동격 명사구 + 관계절 (tell 4형식)"
+        "grammar_note": "2형식 + 동격 (관계절 tell O O)"
       },
       {
-        "index": 11,
+        "index": 12,
         "segments": [
           {
             "role": "M",
-            "text": "When the derivative is positive",
+            "text": "When the derivative is positive,",
             "note": "when 부사절"
           },
           {
@@ -369,27 +388,66 @@
           },
           {
             "role": "V",
-            "text": "is climbing,",
+            "text": "is climbing.",
             "note": "진행형"
-          },
-          {
-            "role": "M",
-            "text": "when it is negative the function is falling,",
-            "note": "when 부사절 병렬"
-          },
-          {
-            "role": "CONJ",
-            "text": "and"
-          },
-          {
-            "role": "M",
-            "text": "where it briefly equals zero the curve has paused, flattening at a peak or a valley.",
-            "note": "where 부사절 + 분사구문"
           }
         ],
-        "grammar_note": "when/where 부사절 병렬 + 분사구문 flattening"
+        "grammar_note": "when 부사절 + 진행형"
       },
       {
+        "index": 13,
+        "segments": [
+          {
+            "role": "M",
+            "text": "When it is negative,",
+            "note": "when 부사절"
+          },
+          {
+            "role": "S",
+            "text": "the function"
+          },
+          {
+            "role": "V",
+            "text": "is falling."
+          }
+        ],
+        "grammar_note": "when 부사절 + 진행형"
+      },
+      {
+        "index": 14,
+        "segments": [
+          {
+            "role": "CONJ",
+            "text": "And"
+          },
+          {
+            "role": "M",
+            "text": "where it briefly equals zero,",
+            "note": "where 부사절"
+          },
+          {
+            "role": "S",
+            "text": "the curve"
+          },
+          {
+            "role": "V",
+            "text": "has paused,",
+            "note": "현재완료"
+          },
+          {
+            "role": "V",
+            "text": "flattening",
+            "note": "분사구문"
+          },
+          {
+            "role": "M",
+            "text": "at a peak or a valley."
+          }
+        ],
+        "grammar_note": "where 부사절 + 현재완료 + 분사구문"
+      },
+      {
+        "index": 15,
         "segments": [
           {
             "role": "S",
@@ -411,15 +469,14 @@
           },
           {
             "role": "M",
-            "text": "without ever plotting every single point.",
+            "text": "without plotting every single point.",
             "note": "without -ing"
           }
         ],
-        "grammar_note": "동명사 주어 + 사역 let O 원형 + without -ing",
-        "index": 12
+        "grammar_note": "동명사 주어 + 사역 let O 원형 + without -ing"
       },
       {
-        "index": 13,
+        "index": 16,
         "segments": [
           {
             "role": "S",
@@ -442,12 +499,12 @@
         "grammar_note": "turn A into B"
       },
       {
-        "index": 14,
+        "index": 17,
         "segments": [
           {
             "role": "M",
             "text": "To find the largest or smallest value a quantity can reach,",
-            "note": "to부정사 목적 + 관계절"
+            "note": "to부정사 + 관계절"
           },
           {
             "role": "S",
@@ -460,7 +517,7 @@
           {
             "role": "M",
             "text": "for the places where its rate of change falls to zero,",
-            "note": "관계부사 where"
+            "note": "where 관계절"
           },
           {
             "role": "CONJ",
@@ -473,13 +530,13 @@
           {
             "role": "O",
             "text": "which of them sits highest or lowest.",
-            "note": "의문사절 목적어"
+            "note": "의문사절"
           }
         ],
-        "grammar_note": "to부정사 목적 + hunt for + where 관계절 + which 명사절"
+        "grammar_note": "to부정사 + hunt for (where 관계절) + which 명사절"
       },
       {
-        "index": 15,
+        "index": 18,
         "segments": [
           {
             "role": "S",
@@ -496,7 +553,7 @@
           {
             "role": "M",
             "text": "to minimize wasted fuel,",
-            "note": "to부정사 목적"
+            "note": "to부정사"
           },
           {
             "role": "CONJ",
@@ -517,12 +574,13 @@
           {
             "role": "M",
             "text": "to maximize profit.",
-            "note": "to부정사 목적"
+            "note": "to부정사"
           }
         ],
-        "grammar_note": "use O to V 병렬 (목적)"
+        "grammar_note": "use O to V 병렬"
       },
       {
+        "index": 19,
         "segments": [
           {
             "role": "M",
@@ -556,20 +614,19 @@
           },
           {
             "role": "O",
-            "text": "the equation reveal where the optimum hides.",
+            "text": "the equation reveal where the best point hides.",
             "note": "사역 let O 원형 + where 명사절"
           }
         ],
-        "grammar_note": "수동태 + 명령문 set A to B + 사역 let O 원형 + where 명사절",
-        "index": 16
+        "grammar_note": "수동태 + 명령문 (set A to B + 사역 let O 원형, where 명사절)"
       },
       {
-        "index": 17,
+        "index": 20,
         "segments": [
           {
             "role": "S",
             "text": "What began as a question about one impossible instant",
-            "note": "관계대명사 what 주어"
+            "note": "what 명사절 주어"
           },
           {
             "role": "V",
@@ -578,13 +635,13 @@
           {
             "role": "C",
             "text": "a tool for finding the best possible ____.",
-            "note": "전치사 + 동명사 + 빈칸"
+            "note": "for -ing + 빈칸"
           }
         ],
-        "grammar_note": "what 명사절 주어 + become C + for -ing"
+        "grammar_note": "what 명사절 주어 + become C (for -ing, 빈칸)"
       }
     ],
-    "translation_ko": "[1] 속도계는 이상한 수수께끼와 마주한다. [2] 평균 속력은 쉽다: 네가 이동한 거리를 걸린 시간으로 나누면 된다. [3] 그러나 아직 시간도 흐르지 않고 거리도 지나오지 않았는데, 정확히 한 순간에 시속 60킬로미터로 가고 있다는 것은 무슨 뜻일까? [4] 미적분은 이것을 하나의 강력한 생각, 곧 도함수로 답하는데, 도함수는 한 순간에 어떤 양이 얼마나 빨리 변하는지를 잰다. [5] 함수의 그래프를 종이 위의 구불구불한 길이라고 그려 보라. [6] 두 점을 골라 그 사이에 직선을 그으면, 그 직선의 기울기는 그 구간 전체에 걸친 평균변화율만을 준다. [7] 이제 두 번째 점을 첫 번째 점에 점점 더 가까이 미끄러뜨려 보라. [8] 그 직선은 극한에서 한 점에서 곡선을 살짝 스칠 때까지 부드럽게 기운다. [9] 그 마지막으로 닿는 직선이 접선이고, 그 기울기가 바로 그 점에서의 도함수다. [10] 그래서 도함수는 접선의 기울기, 즉 그 정확한 지점에서 곡선의 방향을 우리에게 알려 주는 수다. [11] 도함수가 양수일 때 함수는 오르고, 음수일 때 함수는 내려가며, 그것이 잠시 0이 되는 곳에서 곡선은 멈춰 봉우리나 골짜기에서 평평해진다. [12] 따라서 도함수의 부호를 읽으면 모든 점을 일일이 찍지 않고도 함수의 오르내림을 따라갈 수 있다. [13] 이 마지막 사실은 도함수를 조용한 문제 해결사로 바꾼다. [14] 어떤 양이 도달할 수 있는 가장 크거나 작은 값을 찾으려면, 우리는 그 변화율이 0으로 떨어지는 곳들을 뒤진 다음, 그중 어느 것이 가장 높거나 낮은지 확인한다. [15] 공학자는 이것을 낭비되는 연료를 최소화하는 데 쓰고, 기업은 이윤을 최대화하는 데 쓴다. [16] 각 경우에 똑같은 단순한 절차가 반복된다: 변화율을 0으로 놓고 방정식이 최적값이 숨은 곳을 드러내게 하는 것이다. [17] 한 불가능한 순간에 대한 물음으로 시작한 것이, 가능한 최선의 값을 찾는 도구가 된다."
+    "translation_ko": "[1] 속도계는 이상한 수수께끼와 마주한다. [2] 평균 속력은 쉽다: 네가 이동한 거리를 걸린 시간으로 나누면 된다. [3] 그러나 아직 시간도 흐르지 않고 거리도 지나오지 않았는데, 정확히 한 순간에 시속 60킬로미터로 가고 있다는 것은 무슨 뜻일까? [4] 미적분은 이것을 하나의 강력한 생각, 곧 도함수로 답한다. [5] 그것은 한 순간에 어떤 양이 얼마나 빨리 변하는지를 잰다. [6] 함수의 그래프를 종이 위의 구불구불한 길이라고 그려 보라. [7] 두 점을 골라 그 사이에 직선을 그으면, 그 직선의 기울기는 그 구간 전체에 걸친 평균변화율만을 준다. [8] 이제 두 번째 점을 첫 번째 점에 점점 더 가까이 미끄러뜨려 보라. [9] 그 직선은 극한에서 한 점에서 곡선을 살짝 스칠 때까지 부드럽게 기운다. [10] 그 마지막으로 닿는 직선이 접선이고, 그 기울기가 바로 그 점에서의 도함수다. [11] 그래서 도함수는 접선의 기울기, 즉 그 정확한 지점에서 곡선의 방향을 우리에게 알려 주는 수다. [12] 도함수가 양수일 때, 함수는 오른다. [13] 그것이 음수일 때, 함수는 내려간다. [14] 그리고 그것이 잠시 0이 되는 곳에서, 곡선은 멈춰 봉우리나 골짜기에서 평평해진다. [15] 따라서 도함수의 부호를 읽으면 모든 점을 일일이 찍지 않고도 함수의 오르내림을 따라갈 수 있다. [16] 이 마지막 사실은 도함수를 조용한 문제 해결사로 바꾼다. [17] 어떤 양이 도달할 수 있는 가장 크거나 작은 값을 찾으려면, 우리는 그 변화율이 0으로 떨어지는 곳들을 뒤진 다음, 그중 어느 것이 가장 높거나 낮은지 확인한다. [18] 공학자는 이것을 낭비되는 연료를 최소화하는 데 쓰고, 기업은 이윤을 최대화하는 데 쓴다. [19] 각 경우에 똑같은 단순한 절차가 반복된다: 변화율을 0으로 놓고 방정식이 최선의 점이 숨은 곳을 드러내게 한다. [20] 한 불가능한 순간에 대한 물음으로 시작한 것이, 가능한 최선의 값을 찾는 도구가 된다."
   },
   "answers": {
     "explanations": [
