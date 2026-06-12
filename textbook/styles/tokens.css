@@ -33,9 +33,13 @@
   --role-REL:   #FEDCDC;   /* 관계사 — 연산호 */
   --role-REL-ink: #9A3B3B;
 
-  /* ===== Typography ===== */
-  --font-body:     'Axiforma', 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-  --font-display:  'Axiforma', 'Pretendard', -apple-system, sans-serif;
+  /* ===== Typography =====
+     NOTE: 'Axiforma'는 빌드 머신에 설치되어 있지 않다(@font-face도 없음).
+     이전에는 폰트 스택 1순위였으나, Chrome PDF 렌더 시 일부 글리프(하이픈 '-',
+     가운뎃점 '·', 합성 한글 자모)가 .notdef 박스(☰)로 깨지는 원인이었다.
+     실제 설치된 'Pretendard'를 1순위로 두어 글리프 누락을 제거한다. */
+  --font-body:     'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-display:  'Pretendard', -apple-system, sans-serif;
   --font-ko:       'Pretendard', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
   --font-mono:     'JetBrains Mono', Menlo, Consolas, monospace;
   --font-serif-display: 'Playfair Display', 'Cormorant Garamond', 'Nanum Myeongjo', Georgia, serif;
