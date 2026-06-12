@@ -1,0 +1,825 @@
+{
+  "schema_version": "2.2",
+  "id": "2026-07-J-02",
+  "meta": {
+    "month": "2026-07-J",
+    "sequence": 2,
+    "subject": "수학",
+    "linked_unit": "미적분 I-2 함수의 연속",
+    "part_ko": "끊기지 않는 길",
+    "achievement_standard": "12미적01-04",
+    "achievement_verified": true,
+    "difficulty": "중간",
+    "cognitive_skill": "요지",
+    "lexile": "1100L",
+    "ar_level": 7.2,
+    "key_concepts": [
+      "연속",
+      "극한",
+      "불연속",
+      "함수"
+    ]
+  },
+  "page1": {
+    "title": "The Line You Can Draw Without Lifting Your Pen",
+    "subtitle": "What it really means for a function to be continuous.",
+    "body": "There is a simple, almost childlike test for a <u>continuous</u> function: you can trace its whole graph without ever lifting your pen from the paper. There are no sudden jumps, no empty holes, and no places at all where the curve suddenly tears apart. That simple, intuitive picture, rather surprisingly, captures one of the very deepest ideas in all of calculus, and mathematicians have slowly learned to state it with perfect precision.\n\nTo make the loose idea exact and reliable, they rely on the careful notion of a limit. A function is continuous at a point when three conditions all agree: the function is actually defined there, the limit as you approach that point exists, and that limit equals the function's real value. If even one of these fails, the graph breaks, and we call that spot a point of <mark>discontinuity</mark>. A jump in a price chart, a gap in a heartbeat trace, a sudden drop in a signal — each is a discontinuity made visible. Spotting these breaks is often the first step in understanding messy real-world data.\n\nWhy does such a careful definition really matter so much? Because continuity is the quiet promise that lets the rest of calculus actually work. Many powerful theorems only hold for functions that flow smoothly, without any secret breaks hiding inside them. Without that guarantee, a proof built on a smooth curve could quietly collapse at a single hidden gap. By pinning down exactly what \"no gaps\" really means, mathematicians slowly built a foundation strong enough to support the entire study of change itself. Sometimes the most ordinary-looking idea, once it is defined with real care and patience, turns out to be the hidden <blank> lying quietly beneath an enormous structure.",
+    "illustration": "../../assets/illustrations/2026-07-J/02.png",
+    "illustration_caption": "A continuous graph has no jumps, holes, or tears — one unbroken line."
+  },
+  "page2": {
+    "questions": [
+      {
+        "type": "mock_objective",
+        "style": "요지",
+        "stem": "다음 글의 요지로 가장 적절한 것은?",
+        "choices": [
+          "A continuous function is one that always rises from left to right.",
+          "Continuity means a graph has no breaks, is defined precisely through limits, and forms the foundation that lets calculus work.",
+          "Discontinuities never appear in real-world data.",
+          "The pen test proves that calculus has no exact definitions.",
+          "Limits are useful only for drawing pictures, not for proving theorems."
+        ],
+        "answer_index": 1
+      },
+      {
+        "type": "mock_objective",
+        "style": "빈칸 추론",
+        "stem": "윗글의 밑줄 친 빈칸에 들어갈 말로 가장 적절한 것은?",
+        "choices": [
+          "obstacle",
+          "foundation",
+          "decoration",
+          "accident",
+          "barrier"
+        ],
+        "answer_index": 1
+      },
+      {
+        "type": "mock_objective",
+        "style": "함의 추론",
+        "stem": "윗글의 밑줄 친 표현 the quiet promise 가 의미하는 바로 가장 적절한 것은?",
+        "choices": [
+          "continuity is a rule that students must memorize silently",
+          "continuity is the dependable condition that allows other calculus results to hold",
+          "continuity only matters in quiet, simple problems",
+          "promises in math are never actually kept",
+          "continuity makes all functions identical"
+        ],
+        "answer_index": 1
+      },
+      {
+        "type": "school_descriptive",
+        "style": "요약문 빈칸 완성",
+        "prompt": "다음은 본문의 요약문이다. 본문의 내용을 바탕으로 빈칸 (A), (B)에 들어갈 말을 <조건>에 맞게 영어 한 단어로 각각 쓰시오. <조건> 본문에서 제시된 단어를 그대로 활용할 것.",
+        "hints": [
+          "continuous",
+          "limit",
+          "break",
+          "discontinuity",
+          "foundation"
+        ],
+        "summary_template": "A function is <blank> (A) when its graph has no breaks, a condition defined precisely using a <blank> (B). This idea is the foundation that allows the rest of calculus to work.",
+        "model_answer": "(A) continuous  (B) limit"
+      }
+    ],
+    "textbook_tieback": {
+      "unit_label": "미적분 I · 함수의 연속",
+      "body_ko": "고2 미적분에서는 함수의 연속을 극한 개념으로 엄밀하게 정의한다. 직관적으로 연속 함수는 '펜을 떼지 않고 그래프를 한 번에 그릴 수 있는' 함수다. 엄밀히는, 함수가 한 점에서 연속이려면 세 조건이 모두 성립해야 한다 — (1) 그 점에서 함숫값이 정의되고, (2) 그 점으로 다가갈 때 극한값이 존재하며, (3) 극한값과 함숫값이 같다. 하나라도 깨지면 그 점은 불연속점이다. 연속은 많은 미적분 정리(중간값 정리 등)가 성립하기 위한 전제이며, '끊김 없음'을 정밀하게 정의함으로써 변화를 다루는 미적분 전체의 토대가 된다.",
+      "tags": [
+        "연속",
+        "극한",
+        "불연속점",
+        "미적분 토대"
+      ],
+      "visual_aid": {
+        "type": "emoji_flow",
+        "title": "연속의 세 조건",
+        "steps": [
+          {
+            "emoji": "✏️",
+            "label": "펜 테스트",
+            "note": "안 떼고 그림"
+          },
+          {
+            "emoji": "📍",
+            "label": "함숫값 정의",
+            "note": "조건 1"
+          },
+          {
+            "emoji": "➡️",
+            "label": "극한 존재·일치",
+            "note": "조건 2·3"
+          },
+          {
+            "emoji": "🏗️",
+            "label": "미적분 토대",
+            "note": "정리의 전제"
+          }
+        ]
+      }
+    }
+  },
+  "page3": {
+    "sentences": [
+      {
+        "index": 1,
+        "segments": [
+          {
+            "role": "S",
+            "text": "There"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "a simple, almost childlike test for a continuous function:",
+            "note": "콜론 동격"
+          },
+          {
+            "role": "S",
+            "text": "you"
+          },
+          {
+            "role": "V",
+            "text": "can trace"
+          },
+          {
+            "role": "O",
+            "text": "its whole graph without ever lifting your pen from the paper.",
+            "note": "without -ing"
+          }
+        ],
+        "grammar_note": "유도부사 there + 콜론 + without -ing"
+      },
+      {
+        "index": 2,
+        "segments": [
+          {
+            "role": "C",
+            "text": "No sudden jumps, no holes, no places where the curve tears apart.",
+            "note": "명사 병렬 + 관계부사 where"
+          }
+        ],
+        "grammar_note": "병렬 명사구 강조 + 관계부사 where"
+      },
+      {
+        "index": 3,
+        "segments": [
+          {
+            "role": "S",
+            "text": "That intuitive picture,"
+          },
+          {
+            "role": "M",
+            "text": "surprisingly,"
+          },
+          {
+            "role": "V",
+            "text": "captures"
+          },
+          {
+            "role": "O",
+            "text": "one of the deepest ideas in all of calculus,",
+            "note": "one of the 최상급"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "S",
+            "text": "mathematicians"
+          },
+          {
+            "role": "V",
+            "text": "have learned to state",
+            "note": "현재완료"
+          },
+          {
+            "role": "O",
+            "text": "it with perfect precision."
+          }
+        ],
+        "grammar_note": "삽입 부사 + one of the 최상급 + 현재완료"
+      },
+      {
+        "index": 4,
+        "segments": [
+          {
+            "role": "M",
+            "text": "To make the idea exact,",
+            "note": "to부정사 목적"
+          },
+          {
+            "role": "S",
+            "text": "they"
+          },
+          {
+            "role": "V",
+            "text": "rely on"
+          },
+          {
+            "role": "O",
+            "text": "the notion of a limit."
+          }
+        ],
+        "grammar_note": "to부정사 목적 + rely on"
+      },
+      {
+        "index": 5,
+        "segments": [
+          {
+            "role": "S",
+            "text": "A function"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "continuous at a point"
+          },
+          {
+            "role": "M",
+            "text": "when three conditions all agree:",
+            "note": "when 부사절 + 콜론"
+          },
+          {
+            "role": "M",
+            "text": "the function is actually defined there, the limit as you approach that point exists, and that limit equals the function's real value.",
+            "note": "병렬 조건절"
+          }
+        ],
+        "grammar_note": "when 부사절 + 콜론 + 세 조건 병렬"
+      },
+      {
+        "index": 6,
+        "segments": [
+          {
+            "role": "M",
+            "text": "If even one of these fails,",
+            "note": "if 조건절"
+          },
+          {
+            "role": "S",
+            "text": "the graph"
+          },
+          {
+            "role": "V",
+            "text": "breaks,"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "S",
+            "text": "we"
+          },
+          {
+            "role": "V",
+            "text": "call"
+          },
+          {
+            "role": "O",
+            "text": "that spot"
+          },
+          {
+            "role": "C",
+            "text": "a point of discontinuity.",
+            "note": "call O C"
+          }
+        ],
+        "grammar_note": "if 조건절 + call O C"
+      },
+      {
+        "index": 7,
+        "segments": [
+          {
+            "role": "S",
+            "text": "A jump in a price chart, a gap in a heartbeat trace, a sudden drop in a signal",
+            "note": "병렬 주어"
+          },
+          {
+            "role": "M",
+            "text": "— each"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "a discontinuity made visible.",
+            "note": "과거분사 수식"
+          }
+        ],
+        "grammar_note": "병렬 주어 + each is + 과거분사 수식"
+      },
+      {
+        "segments": [
+          {
+            "role": "S",
+            "text": "Spotting these breaks",
+            "note": "동명사 주어"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "M",
+            "text": "often"
+          },
+          {
+            "role": "C",
+            "text": "the first step in understanding messy real-world data."
+          }
+        ],
+        "grammar_note": "동명사 주어 + 2형식",
+        "index": 8
+      },
+      {
+        "index": 9,
+        "segments": [
+          {
+            "role": "V",
+            "text": "Why does"
+          },
+          {
+            "role": "S",
+            "text": "such a careful definition"
+          },
+          {
+            "role": "V",
+            "text": "really matter"
+          },
+          {
+            "role": "M",
+            "text": "so much?"
+          }
+        ],
+        "grammar_note": "의문문 도치"
+      },
+      {
+        "index": 10,
+        "segments": [
+          {
+            "role": "CONJ",
+            "text": "Because",
+            "note": "원인절(답변)"
+          },
+          {
+            "role": "S",
+            "text": "continuity"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "the quiet promise that lets the rest of calculus actually work.",
+            "note": "관계대명사 that + let O V"
+          }
+        ],
+        "grammar_note": "Because 답변 + 관계대명사 that + let O V"
+      },
+      {
+        "index": 11,
+        "segments": [
+          {
+            "role": "S",
+            "text": "Many powerful theorems"
+          },
+          {
+            "role": "M",
+            "text": "only"
+          },
+          {
+            "role": "V",
+            "text": "hold"
+          },
+          {
+            "role": "M",
+            "text": "for functions that flow smoothly, without any secret breaks hiding inside them.",
+            "note": "관계대명사 that + 현재분사"
+          }
+        ],
+        "grammar_note": "hold for + 관계대명사 that + without 명사구"
+      },
+      {
+        "segments": [
+          {
+            "role": "M",
+            "text": "Without that guarantee,",
+            "note": "without 명사구"
+          },
+          {
+            "role": "S",
+            "text": "a proof built on a smooth curve",
+            "note": "과거분사 수식"
+          },
+          {
+            "role": "V",
+            "text": "could quietly collapse"
+          },
+          {
+            "role": "M",
+            "text": "at a single hidden gap."
+          }
+        ],
+        "grammar_note": "Without 명사구 + 과거분사 수식 + 조동사 could",
+        "index": 12
+      },
+      {
+        "index": 13,
+        "segments": [
+          {
+            "role": "M",
+            "text": "By pinning down exactly what \"no gaps\" means,",
+            "note": "by -ing + 관계대명사 what"
+          },
+          {
+            "role": "S",
+            "text": "mathematicians"
+          },
+          {
+            "role": "V",
+            "text": "built"
+          },
+          {
+            "role": "O",
+            "text": "a foundation strong enough to support the entire study of change.",
+            "note": "형용사 enough to"
+          }
+        ],
+        "grammar_note": "by -ing + 관계대명사 what + enough to-V"
+      },
+      {
+        "index": 14,
+        "segments": [
+          {
+            "role": "M",
+            "text": "Sometimes"
+          },
+          {
+            "role": "S",
+            "text": "the most ordinary-looking idea,"
+          },
+          {
+            "role": "M",
+            "text": "once defined with real care,",
+            "note": "분사구문(once)"
+          },
+          {
+            "role": "V",
+            "text": "turns out to be",
+            "note": "turn out to be"
+          },
+          {
+            "role": "C",
+            "text": "the hidden ____ beneath an enormous structure.",
+            "note": "빈칸 보어"
+          }
+        ],
+        "grammar_note": "분사구문 once p.p. + turn out to be 보어"
+      }
+    ],
+    "translation_ko": "[1] 연속 함수에는 단순하고 거의 어린아이 같은 시험이 있다 — 종이에서 펜을 한 번도 떼지 않고 그 그래프 전체를 그려 낼 수 있다는 것이다. [2] 갑작스러운 도약도, 구멍도, 곡선이 찢어지는 곳도 없다. [3] 그 직관적인 그림이, 놀랍게도, 미적분 전체에서 가장 깊은 개념 중 하나를 담아내며, 수학자들은 그것을 완벽한 정밀함으로 진술하는 법을 배워 왔다. [4] 그 개념을 엄밀하게 만들기 위해, 그들은 극한이라는 개념에 의지한다. [5] 함수가 한 점에서 연속이려면 세 조건이 모두 일치해야 한다 — 그 점에서 함수가 실제로 정의되고, 그 점에 다가갈 때 극한이 존재하며, 그 극한이 함수의 실제 값과 같아야 한다. [6] 이 중 단 하나라도 깨지면 그래프는 끊기고, 우리는 그 지점을 불연속점이라 부른다. [7] 가격 차트의 도약, 심박 기록의 틈, 신호의 갑작스러운 하강 — 각각은 눈에 보이게 된 불연속이다. [8] 이런 끊김을 알아채는 것은 흔히 지저분한 실세계 데이터를 이해하는 첫걸음이다. [9] 왜 그토록 신중한 정의가 그렇게나 중요할까? [10] 연속이 미적분의 나머지를 실제로 작동하게 해 주는 조용한 약속이기 때문이다. [11] 많은 강력한 정리들은 안에 숨은 어떤 은밀한 끊김도 없이 매끄럽게 흐르는 함수에 대해서만 성립한다. [12] 그 보장이 없으면, 매끄러운 곡선 위에 세운 증명도 단 하나의 숨은 틈에서 조용히 무너질 수 있다. [13] '틈 없음'이 정확히 무엇을 뜻하는지 못 박음으로써, 수학자들은 변화에 관한 연구 전체를 떠받칠 만큼 충분히 튼튼한 토대를 세웠다. [14] 때때로 가장 평범해 보이는 개념이, 일단 진정한 정성으로 정의되고 나면, 거대한 구조 아래 숨은 토대로 드러난다."
+  },
+  "answers": {
+    "explanations": [
+      {
+        "q_index": 0,
+        "q_style": "요지",
+        "correct": 1,
+        "evidence": "글은 연속을 '끊김 없는 그래프'로 직관화하고 극한으로 엄밀히 정의(세 조건)하며(1~6번), 연속이 미적분 정리들이 성립하는 토대라고 한다(9~11번). 따라서 '연속은 끊김 없음을 극한으로 정의한 것이며 미적분이 작동하는 토대'가 요지다.",
+        "rationales": [
+          "연속은 '왼→오 상승'이 아니라 '끊김 없음'이다. 상승과 무관하다.",
+          "(정답) 끊김 없음 + 극한 정의 + 미적분 토대라는 글 전체 주장을 요약한다.",
+          "7번에 가격·심박·신호의 불연속 예가 있으므로 '실세계에 안 나타난다'는 모순이다.",
+          "펜 테스트는 정의가 없음을 증명하는 게 아니라 직관을 준다(정밀 정의는 극한).",
+          "10~11번에서 극한·연속이 정리 증명의 전제라 했으므로 '그림용일 뿐'은 정반대다."
+        ],
+        "key_terms": [
+          {
+            "en": "continuity",
+            "ko": "연속"
+          },
+          {
+            "en": "limit",
+            "ko": "극한"
+          }
+        ]
+      },
+      {
+        "q_index": 1,
+        "q_style": "빈칸 추론",
+        "correct": 1,
+        "evidence": "빈칸 앞 \"the hidden ___ beneath an enormous structure\"과 11번 \"built a foundation strong enough to support\"가 단서다. 거대한 구조 아래 숨은 것은 '토대(foundation)'다.",
+        "rationales": [
+          "'장애물'은 구조를 떠받친다는 맥락과 반대다.",
+          "(정답) foundation은 11번 'foundation ... to support'와 직접 일치한다.",
+          "'장식'은 떠받치는 토대라는 의미와 다르다.",
+          "'우연'은 신중히 정의된 개념이라는 점과 어긋난다.",
+          "'장벽'도 토대(지지)와 반대 방향이다."
+        ],
+        "key_terms": [
+          {
+            "en": "foundation",
+            "ko": "토대"
+          },
+          {
+            "en": "structure",
+            "ko": "구조"
+          }
+        ]
+      },
+      {
+        "q_index": 2,
+        "q_style": "함의 추론",
+        "correct": 1,
+        "evidence": "9번은 연속을 \"the quiet promise that lets the rest of calculus work\"라 하고, 10번에서 많은 정리가 매끄러운 함수에서만 성립한다고 한다. 따라서 the quiet promise는 '다른 미적분 결과들이 성립하게 해 주는 믿을 만한 조건'을 뜻한다.",
+        "rationales": [
+          "'조용히 외우는 규칙'은 비유(약속=조건)의 의미가 아니다.",
+          "(정답) 다른 결과가 성립하게 해 주는 믿을 만한 조건이라는 본문 의미 그대로다.",
+          "'조용하고 단순한 문제에서만'은 본문 범위를 잘못 좁힌 오답이다.",
+          "'약속은 지켜지지 않는다'는 본문 취지와 반대다.",
+          "'모든 함수를 동일하게 만든다'는 근거 없는 비약이다."
+        ],
+        "key_terms": [
+          {
+            "en": "promise",
+            "ko": "약속"
+          },
+          {
+            "en": "theorem",
+            "ko": "정리"
+          }
+        ]
+      },
+      {
+        "q_index": 3,
+        "q_style": "요약문 빈칸 완성",
+        "correct": null,
+        "model_answer_en": "(A) continuous  (B) limit",
+        "evidence": "(A)는 그래프에 끊김이 없는 상태 → 1번 \"a continuous function\". (B)는 그것을 정밀하게 정의하는 데 쓰는 개념 → 4번 \"the notion of a limit\".",
+        "rationales": [
+          "(A) continuous — '그래프에 끊김이 없는'은 본문의 continuous와 일치한다.",
+          "(B) limit — '정밀하게 정의하는 데 쓰는 개념'은 4번의 limit와 일치한다."
+        ],
+        "key_terms": [
+          {
+            "en": "continuous",
+            "ko": "연속인"
+          },
+          {
+            "en": "limit",
+            "ko": "극한"
+          }
+        ]
+      }
+    ]
+  },
+  "page4": {
+    "vocab": [
+      {
+        "word": "continuous",
+        "pos": "adj.",
+        "meaning_ko": "연속인",
+        "synonyms": [
+          "unbroken"
+        ],
+        "antonyms": [
+          "discontinuous"
+        ],
+        "examples": [
+          {
+            "en": "A continuous graph has no breaks.",
+            "ko": "연속 그래프에는 끊김이 없다."
+          },
+          {
+            "en": "You can trace a continuous curve without lifting your pen.",
+            "ko": "연속 곡선은 펜을 떼지 않고 그릴 수 있다."
+          }
+        ]
+      },
+      {
+        "word": "trace",
+        "pos": "v.",
+        "meaning_ko": "(따라) 그리다, 덧그리다",
+        "synonyms": [
+          "draw"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "You can trace the whole graph in one stroke.",
+            "ko": "그래프 전체를 한 번에 그릴 수 있다."
+          },
+          {
+            "en": "She traced the line with her finger.",
+            "ko": "그녀는 손가락으로 그 선을 따라 그렸다."
+          }
+        ]
+      },
+      {
+        "word": "limit",
+        "pos": "n.",
+        "meaning_ko": "극한",
+        "synonyms": [],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "The exact idea relies on the notion of a limit.",
+            "ko": "그 엄밀한 개념은 극한이라는 개념에 의지한다."
+          },
+          {
+            "en": "The limit must exist for continuity to hold.",
+            "ko": "연속이 성립하려면 극한이 존재해야 한다."
+          }
+        ]
+      },
+      {
+        "word": "define",
+        "pos": "v.",
+        "meaning_ko": "정의하다",
+        "synonyms": [],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "The function must be defined at that point.",
+            "ko": "그 점에서 함수가 정의되어야 한다."
+          },
+          {
+            "en": "Mathematicians defined continuity with care.",
+            "ko": "수학자들은 연속을 정성껏 정의했다."
+          }
+        ]
+      },
+      {
+        "word": "discontinuity",
+        "pos": "n.",
+        "meaning_ko": "불연속(점)",
+        "synonyms": [
+          "break"
+        ],
+        "antonyms": [
+          "continuity"
+        ],
+        "examples": [
+          {
+            "en": "A jump in a chart is a discontinuity.",
+            "ko": "차트의 도약은 불연속이다."
+          },
+          {
+            "en": "A discontinuity appears where the graph breaks.",
+            "ko": "그래프가 끊기는 곳에 불연속이 나타난다."
+          }
+        ]
+      },
+      {
+        "word": "approach",
+        "pos": "v.",
+        "meaning_ko": "다가가다, 접근하다",
+        "synonyms": [
+          "near"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "The limit as you approach the point must exist.",
+            "ko": "그 점에 다가갈 때의 극한이 존재해야 한다."
+          },
+          {
+            "en": "As x approaches zero, the value settles.",
+            "ko": "x가 0에 다가갈수록 값이 안정된다."
+          }
+        ]
+      },
+      {
+        "word": "theorem",
+        "pos": "n.",
+        "meaning_ko": "정리",
+        "synonyms": [],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "Many theorems hold only for continuous functions.",
+            "ko": "많은 정리는 연속 함수에서만 성립한다."
+          },
+          {
+            "en": "A theorem must be proven, not assumed.",
+            "ko": "정리는 가정이 아니라 증명되어야 한다."
+          }
+        ]
+      },
+      {
+        "word": "smoothly",
+        "pos": "adv.",
+        "meaning_ko": "매끄럽게",
+        "synonyms": [
+          "evenly"
+        ],
+        "antonyms": [
+          "abruptly"
+        ],
+        "examples": [
+          {
+            "en": "Theorems hold for functions that flow smoothly.",
+            "ko": "정리는 매끄럽게 흐르는 함수에 대해 성립한다."
+          },
+          {
+            "en": "The curve rises smoothly without jumps.",
+            "ko": "곡선은 도약 없이 매끄럽게 오른다."
+          }
+        ]
+      },
+      {
+        "word": "pin down",
+        "pos": "v.",
+        "meaning_ko": "정확히 규정하다, 못 박다",
+        "synonyms": [
+          "define exactly"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "They pinned down what \"no gaps\" means.",
+            "ko": "그들은 '틈 없음'이 무엇인지 못 박았다."
+          },
+          {
+            "en": "It helps to pin down the exact rule.",
+            "ko": "정확한 규칙을 못 박아 두면 도움이 된다."
+          }
+        ]
+      },
+      {
+        "word": "foundation",
+        "pos": "n.",
+        "meaning_ko": "토대, 기초",
+        "synonyms": [
+          "base"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "en": "Continuity is the foundation of calculus.",
+            "ko": "연속은 미적분의 토대다."
+          },
+          {
+            "en": "They built a strong foundation for the theory.",
+            "ko": "그들은 그 이론의 튼튼한 토대를 세웠다."
+          }
+        ]
+      },
+      {
+        "word": "ordinary",
+        "pos": "adj.",
+        "meaning_ko": "평범한",
+        "synonyms": [
+          "common"
+        ],
+        "antonyms": [
+          "special"
+        ],
+        "examples": [
+          {
+            "en": "An ordinary-looking idea can be powerful.",
+            "ko": "평범해 보이는 개념이 강력할 수 있다."
+          },
+          {
+            "en": "The rule seems ordinary but runs deep.",
+            "ko": "그 규칙은 평범해 보이나 깊게 작용한다."
+          }
+        ]
+      },
+      {
+        "word": "enormous",
+        "pos": "adj.",
+        "meaning_ko": "거대한",
+        "synonyms": [
+          "huge"
+        ],
+        "antonyms": [
+          "tiny"
+        ],
+        "examples": [
+          {
+            "en": "The idea supports an enormous structure.",
+            "ko": "그 개념은 거대한 구조를 떠받친다."
+          },
+          {
+            "en": "Calculus is an enormous field of study.",
+            "ko": "미적분은 거대한 연구 분야다."
+          }
+        ]
+      }
+    ]
+  }
+}
