@@ -11,8 +11,8 @@
     "achievement_verified": true,
     "difficulty": "중간",
     "cognitive_skill": "요지",
-    "lexile": "1220L",
-    "ar_level": 7.8,
+    "lexile": "1120L",
+    "ar_level": 7.2,
     "key_concepts": [
       "반도체",
       "도핑",
@@ -23,7 +23,7 @@
   "page1": {
     "title": "The Material That Decides",
     "subtitle": "How a half-conductor became the brain of every gadget.",
-    "body": "Materials usually fall into two tidy camps. Metals let electric current pass freely, while insulators like glass or rubber block it almost completely. Silicon belongs to neither group, conducting only weakly on its own, and this in-between nature is exactly why it is called a <u>semiconductor</u>. At first glance such a lukewarm material seems useless, yet it sits at the heart of nearly every electronic device ever made. Its very mediocrity, it turns out, is the source of its power.\n\nThe secret is that a semiconductor can be precisely tuned. By adding a tiny, controlled amount of another element, a process called doping, engineers tilt silicon in one of two directions. One kind of doping leaves the crystal with a few extra mobile electrons, a so-called n-type; the other leaves it short of electrons, creating roving vacancies that behave like positive charges, a p-type. Neither is remarkable alone. The magic begins when a p-type region is joined to an n-type region, forming a <mark>junction</mark>. At that boundary, current can flow easily in one direction but is firmly blocked in the other. A device built on this one-way behavior is a diode, the simplest gatekeeper in electronics. With it, an engineer can finally decide which way electricity is allowed to go.\n\nFrom this humble valve, an entire digital world is built. Combine doped regions in cleverer arrangements and you get the transistor, a switch with no moving parts that can be flicked on or off billions of times a second. Pack billions of these switches onto a chip and you have the processor running your phone. So the device deciding the path of every signal is, at its core, just a carefully imperfect crystal, a material whose true gift is not to conduct or to block but to <blank>.",
+    "body": "Materials usually fall into two tidy camps. Metals let electric current pass freely, while insulators like glass or rubber block it almost completely. Silicon belongs to neither group, conducting only weakly on its own, and this in-between nature is exactly why it is called a <u>semiconductor</u>. At first glance such a lukewarm material seems useless, yet it sits at the heart of nearly every electronic device ever made. Its very plainness, it turns out, is the source of its power.\n\nThe secret is that a semiconductor can be precisely tuned. By adding a tiny, controlled amount of another element, a process called doping, engineers tilt silicon in one of two directions. One kind of doping leaves the crystal with a few extra mobile electrons, a so-called n-type; the other leaves it short of electrons, creating roving vacancies that behave like positive charges, a p-type. Neither is remarkable alone. The magic begins when a p-type region is joined to an n-type region, forming a <mark>junction</mark>. At that boundary, current can flow easily in one direction but is firmly blocked in the other. A device built on this one-way behavior is a diode, the simplest gatekeeper in electronics. With it, an engineer can finally decide which way electricity is allowed to go.\n\nFrom this humble valve, an entire digital world is built. Combine doped regions in cleverer arrangements and you get the transistor, a switch with no moving parts that can be flicked on or off billions of times a second. Pack billions of these switches onto a chip and you have the processor running your phone. So the device deciding the path of every signal is, at its core, just a carefully imperfect crystal, a material whose true gift is not to conduct or to block but to <blank>.",
     "illustration": "../../assets/illustrations/2026-07-Sun/16.png",
     "illustration_caption": "Doping and a p-n junction turn dull silicon into a one-way gate for current."
   },
@@ -135,15 +135,14 @@
           },
           {
             "role": "V",
-            "text": "fall into",
-            "note": "구동사"
+            "text": "fall into"
           },
           {
             "role": "O",
             "text": "two tidy camps."
           }
         ],
-        "grammar_note": "fall into + 목적어"
+        "grammar_note": "fall into (구동사)"
       },
       {
         "index": 2,
@@ -158,8 +157,12 @@
           },
           {
             "role": "O",
-            "text": "electric current pass freely,",
-            "note": "사역 let O 원형"
+            "text": "electric current"
+          },
+          {
+            "role": "C",
+            "text": "pass freely,",
+            "note": "사역 let O V"
           },
           {
             "role": "CONJ",
@@ -175,11 +178,10 @@
           },
           {
             "role": "O",
-            "text": "it almost completely.",
-            "note": "목적어"
+            "text": "it almost completely."
           }
         ],
-        "grammar_note": "사역 let O 원형 + while 대조"
+        "grammar_note": "사역(let O V) + while 대조"
       },
       {
         "index": 3,
@@ -190,16 +192,14 @@
           },
           {
             "role": "V",
-            "text": "belongs to",
-            "note": "구동사"
+            "text": "belongs to"
           },
           {
             "role": "O",
-            "text": "neither group,",
-            "note": "neither"
+            "text": "neither group,"
           },
           {
-            "role": "V",
+            "role": "M",
             "text": "conducting only weakly on its own,",
             "note": "분사구문"
           },
@@ -218,10 +218,10 @@
           {
             "role": "C",
             "text": "exactly why it is called a semiconductor.",
-            "note": "관계부사 why + 수동"
+            "note": "관계부사 why(수동)"
           }
         ],
-        "grammar_note": "belong to + 분사구문 + be why 관계부사 (call O C 수동)"
+        "grammar_note": "분사구문 + and (be why, 수동태 call)"
       },
       {
         "index": 4,
@@ -240,8 +240,7 @@
           },
           {
             "role": "C",
-            "text": "useless,",
-            "note": "seem 형용사보어"
+            "text": "useless,"
           },
           {
             "role": "CONJ",
@@ -261,18 +260,14 @@
             "note": "과거분사 수식"
           }
         ],
-        "grammar_note": "seem 형용사보어 + yet 대조 + 과거분사 수식"
+        "grammar_note": "seem 보어 + yet (과거분사 수식)"
       },
       {
+        "index": 5,
         "segments": [
           {
             "role": "S",
-            "text": "Its very mediocrity,"
-          },
-          {
-            "role": "M",
-            "text": "it turns out,",
-            "note": "삽입절"
+            "text": "Its very plainness, it turns out,"
           },
           {
             "role": "V",
@@ -280,12 +275,10 @@
           },
           {
             "role": "C",
-            "text": "the source of its power.",
-            "note": "보어"
+            "text": "the source of its power."
           }
         ],
-        "grammar_note": "삽입절 + 2형식",
-        "index": 5
+        "grammar_note": "2형식 (삽입 it turns out)"
       },
       {
         "index": 6,
@@ -301,10 +294,10 @@
           {
             "role": "C",
             "text": "that a semiconductor can be precisely tuned.",
-            "note": "that 보어절 + 수동"
+            "note": "that 명사절(수동)"
           }
         ],
-        "grammar_note": "2형식 + that 보어절 (수동)"
+        "grammar_note": "be that 명사절(수동태)"
       },
       {
         "index": 7,
@@ -312,7 +305,7 @@
           {
             "role": "M",
             "text": "By adding a tiny, controlled amount of another element, a process called doping,",
-            "note": "by -ing + 동격"
+            "note": "by V-ing + 동격"
           },
           {
             "role": "S",
@@ -324,11 +317,10 @@
           },
           {
             "role": "O",
-            "text": "silicon in one of two directions.",
-            "note": "목적어"
+            "text": "silicon in one of two directions."
           }
         ],
-        "grammar_note": "by -ing + 동격 (과거분사 called) + 3형식"
+        "grammar_note": "by V-ing(동격) + 3형식"
       },
       {
         "index": 8,
@@ -343,8 +335,7 @@
           },
           {
             "role": "O",
-            "text": "the crystal with a few extra mobile electrons, a so-called n-type;",
-            "note": "leave O with + 동격"
+            "text": "the crystal with a few extra mobile electrons, a so-called n-type;"
           },
           {
             "role": "S",
@@ -357,10 +348,10 @@
           {
             "role": "O",
             "text": "it short of electrons, creating roving vacancies that behave like positive charges, a p-type.",
-            "note": "leave O C + 분사구문 + 관계절"
+            "note": "분사구문 + 관계절"
           }
         ],
-        "grammar_note": "leave O with + 세미콜론 + leave O C + 분사구문 (관계절)"
+        "grammar_note": "세미콜론 병렬 (leave O C, 분사구문 관계절)"
       },
       {
         "index": 9,
@@ -375,11 +366,10 @@
           },
           {
             "role": "C",
-            "text": "remarkable alone.",
-            "note": "neither 부정 주어"
+            "text": "remarkable alone."
           }
         ],
-        "grammar_note": "neither 부정 주어 + 2형식"
+        "grammar_note": "2형식 (부정주어)"
       },
       {
         "index": 10,
@@ -395,18 +385,17 @@
           {
             "role": "M",
             "text": "when a p-type region is joined to an n-type region, forming a junction.",
-            "note": "when 수동 + 분사구문"
+            "note": "when 부사절(수동) + 분사구문"
           }
         ],
-        "grammar_note": "자동사 begin + when 수동절 + 분사구문 forming"
+        "grammar_note": "1형식 + when 부사절(수동, 분사구문)"
       },
       {
         "index": 11,
         "segments": [
           {
             "role": "M",
-            "text": "At that boundary,",
-            "note": "전치사구"
+            "text": "At that boundary,"
           },
           {
             "role": "S",
@@ -418,8 +407,7 @@
           },
           {
             "role": "M",
-            "text": "easily in one direction",
-            "note": "부사구"
+            "text": "easily in one direction"
           },
           {
             "role": "CONJ",
@@ -432,11 +420,10 @@
           },
           {
             "role": "M",
-            "text": "in the other.",
-            "note": "전치사구"
+            "text": "in the other."
           }
         ],
-        "grammar_note": "조동사 능동 + but 수동태 대조"
+        "grammar_note": "능동 + but 수동태"
       },
       {
         "index": 12,
@@ -456,39 +443,41 @@
             "note": "동격"
           }
         ],
-        "grammar_note": "과거분사 수식 + 2형식 + 동격"
+        "grammar_note": "2형식 (과거분사 수식, 동격)"
       },
       {
+        "index": 13,
         "segments": [
           {
             "role": "M",
-            "text": "With it,",
-            "note": "with 전치사구"
+            "text": "With it,"
           },
           {
             "role": "S",
             "text": "an engineer"
           },
           {
+            "role": "M",
+            "text": "finally"
+          },
+          {
             "role": "V",
-            "text": "can finally decide"
+            "text": "can decide"
           },
           {
             "role": "O",
             "text": "which way electricity is allowed to go.",
-            "note": "의문사절 + 수동 부정사"
+            "note": "간접의문(수동)"
           }
         ],
-        "grammar_note": "with 전치사구 + decide + which 명사절 (수동)",
-        "index": 13
+        "grammar_note": "3형식 (which way 명사절, 수동태)"
       },
       {
         "index": 14,
         "segments": [
           {
             "role": "M",
-            "text": "From this humble valve,",
-            "note": "전치사구"
+            "text": "From this humble valve,"
           },
           {
             "role": "S",
@@ -500,7 +489,7 @@
             "note": "수동태"
           }
         ],
-        "grammar_note": "전치사구 강조 + 수동태"
+        "grammar_note": "수동태 (전치사구 도치)"
       },
       {
         "index": 15,
@@ -511,8 +500,7 @@
           },
           {
             "role": "O",
-            "text": "doped regions in cleverer arrangements",
-            "note": "명령문"
+            "text": "doped regions in cleverer arrangements"
           },
           {
             "role": "CONJ",
@@ -529,10 +517,10 @@
           {
             "role": "O",
             "text": "the transistor, a switch with no moving parts that can be flicked on or off billions of times a second.",
-            "note": "동격 + 관계절 수동"
+            "note": "동격 + 관계절(수동)"
           }
         ],
-        "grammar_note": "명령문 + and 결과 + 동격 (관계절 수동)"
+        "grammar_note": "명령문 + and (동격, 관계절 수동)"
       },
       {
         "index": 16,
@@ -543,8 +531,7 @@
           },
           {
             "role": "O",
-            "text": "billions of these switches onto a chip",
-            "note": "명령문"
+            "text": "billions of these switches onto a chip"
           },
           {
             "role": "CONJ",
@@ -564,7 +551,7 @@
             "note": "현재분사 수식"
           }
         ],
-        "grammar_note": "명령문 + and 결과 + 현재분사 수식"
+        "grammar_note": "명령문 + and (현재분사 수식)"
       },
       {
         "index": 17,
@@ -589,13 +576,13 @@
           {
             "role": "C",
             "text": "just a carefully imperfect crystal, a material whose true gift is not to conduct or to block but to ____.",
-            "note": "동격 + 소유격 관계대명사 + not A but B + 빈칸"
+            "note": "동격 + 관계절(not to V but to V) + 빈칸"
           }
         ],
-        "grammar_note": "현재분사 수식 + 동격 (whose 관계절, not A but B 빈칸)"
+        "grammar_note": "2형식 (현재분사 수식, 동격 whose 관계절: not to A but to B, 빈칸)"
       }
     ],
-    "translation_ko": "[1] 물질은 보통 두 개의 깔끔한 진영으로 나뉜다. [2] 금속은 전류가 자유로이 지나게 두는 반면, 유리나 고무 같은 절연체는 그것을 거의 완전히 막는다. [3] 규소는 어느 무리에도 속하지 않아 혼자서는 약하게만 전도하는데, 이 중간적 본성이 바로 그것이 반도체라 불리는 이유다. [4] 언뜻 보면 그런 미적지근한 물질은 쓸모없어 보이지만, 그것은 지금껏 만들어진 거의 모든 전자 기기의 심장부에 자리한다. [5] 알고 보면 바로 그 평범함이 그 힘의 원천이다. [6] 비밀은 반도체가 정밀하게 조율될 수 있다는 것이다. [7] 또 다른 원소를 미량으로 통제해 첨가하는, 도핑이라 불리는 과정으로, 공학자들은 규소를 두 방향 중 하나로 기울인다. [8] 한 종류의 도핑은 결정에 여분의 움직이는 전자 몇 개를 남기는데, 이른바 n형이다; 다른 하나는 그것을 전자가 부족하게 만들어, 양전하처럼 행동하는 떠도는 빈자리를 만드는데, p형이다. [9] 어느 쪽도 혼자서는 주목할 만하지 않다. [10] 마법은 p형 영역이 n형 영역에 접합되어 접합부를 이룰 때 시작된다. [11] 그 경계에서, 전류는 한 방향으로는 쉽게 흐를 수 있지만 반대 방향으로는 단단히 막힌다. [12] 이 일방향 거동 위에 세워진 소자가 다이오드, 곧 전자공학에서 가장 단순한 문지기다. [13] 그것으로 공학자는 마침내 전기가 어느 쪽으로 가도록 허용될지를 결정할 수 있다. [14] 이 보잘것없는 밸브로부터 디지털 세계 전체가 지어진다. [15] 도핑된 영역을 더 영리한 배치로 조합하면, 너는 트랜지스터, 곧 움직이는 부품 없이 초당 수십억 번 켜고 끌 수 있는 스위치를 얻는다. [16] 이 스위치 수십억 개를 칩 위에 채워 넣으면, 너는 네 휴대폰을 돌리는 프로세서를 갖게 된다. [17] 그래서 모든 신호의 경로를 결정하는 소자는, 그 핵심에서, 그저 신중하게 불완전한 결정, 곧 그 진짜 재능이 통하게 하거나 막는 것이 아니라 통제하는 데 있는 물질이다."
+    "translation_ko": "[1] 물질은 보통 두 개의 깔끔한 진영으로 나뉜다. [2] 금속은 전류를 자유롭게 지나가게 하는 반면, 유리나 고무 같은 절연체는 그것을 거의 완전히 막는다. [3] 규소는 어느 무리에도 속하지 않고 혼자서는 약하게만 전도하는데, 이 중간적 성질이 바로 그것이 반도체라 불리는 이유다. [4] 언뜻 보면 그런 미지근한 물질은 쓸모없어 보이지만, 그것은 지금껏 만들어진 거의 모든 전자 기기의 심장에 자리한다. [5] 알고 보면, 그것의 바로 그 평범함이 그 힘의 원천이다. [6] 비밀은 반도체가 정밀하게 조율될 수 있다는 것이다. [7] 도핑이라 불리는 과정인, 또 다른 원소를 아주 작고 통제된 양만큼 더함으로써, 기술자들은 규소를 두 방향 중 하나로 기울인다. [8] 한 종류의 도핑은 결정에 움직일 수 있는 여분의 전자 몇 개를 남기는데, 이른바 n형이다; 다른 하나는 그것을 전자가 모자라게 남겨, 양전하처럼 행동하는 떠도는 빈자리를 만드는데, p형이다. [9] 어느 것도 홀로는 놀랍지 않다. [10] 그 마법은 p형 영역이 n형 영역에 이어져 접합을 이룰 때 시작된다. [11] 그 경계에서, 전류는 한 방향으로는 쉽게 흐를 수 있지만 다른 방향으로는 단단히 막힌다. [12] 이 한 방향 행동 위에 세워진 장치가 다이오드, 즉 전자공학에서 가장 단순한 문지기다. [13] 그것으로, 기술자는 마침내 전기가 어느 길로 가도록 허락되는지를 결정할 수 있다. [14] 이 보잘것없는 밸브로부터, 디지털 세계 전체가 지어진다. [15] 도핑된 영역들을 더 영리한 배열로 결합하면 너는 트랜지스터를 얻는데, 그것은 움직이는 부품이 없으면서 초당 수십억 번 켜지거나 꺼질 수 있는 스위치다. [16] 이 스위치 수십억 개를 칩 위에 채워 넣으면 너는 네 전화기를 돌리는 프로세서를 갖게 된다. [17] 그래서 모든 신호의 경로를 결정하는 그 장치는, 그 핵심에서, 그저 신중하게 불완전한 결정, 즉 그 진짜 재능이 전도하거나 막는 것이 아니라 ____하는 것인 물질이다."
   },
   "answers": {
     "explanations": [
