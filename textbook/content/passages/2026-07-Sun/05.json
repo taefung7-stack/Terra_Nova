@@ -11,8 +11,8 @@
     "achievement_verified": true,
     "difficulty": "중간",
     "cognitive_skill": "요지",
-    "lexile": "1220L",
-    "ar_level": 7.8,
+    "lexile": "1120L",
+    "ar_level": 7.2,
     "key_concepts": [
       "일과 에너지",
       "운동·위치 에너지",
@@ -23,7 +23,7 @@
   "page1": {
     "title": "The Bookkeeping of a Falling Ball",
     "subtitle": "Why energy is never lost, only moved around.",
-    "body": "Lift a heavy book onto a high shelf and you have done something the universe quietly records. Physicists describe that effort as <u>work</u>, which simply means a force acting over a distance. The work you spent lifting the book has not vanished; it has been deposited into the book as stored energy, a hidden account waiting to be drawn upon. Because of its height, the book now holds what we call potential energy, energy of position rather than of motion. Raise it twice as high, and you have stored twice as much, ready to be released the instant it is let go.\n\nLet the book slip off the shelf, and the account is suddenly spent. As the book falls, its height shrinks while its speed grows, and the stored potential energy is steadily converted into the energy of movement, called kinetic energy. The remarkable thing is the bookkeeping: at every instant of the fall, the amount of potential energy lost is exactly matched by the kinetic energy gained. Their sum never changes. The falling book is simply moving money between two accounts that always hold the same total. This is the heart of the <mark>conservation</mark> of energy, the principle that energy can be transformed from one form into another but can never be created or destroyed.\n\nAt first this seems to clash with everyday experience, since a bouncing ball clearly loses height with each bounce and finally stops. But the energy has not disappeared. It has merely scattered into forms we overlook, mostly heat and faint sound spread thinly into the floor and the air. Trace those subtle forms carefully and the books balance again, down to the last fraction. So whenever energy appears to go missing, a physicist does not assume it is gone; she assumes she has simply failed to follow where it chose to <blank>.",
+    "body": "Lift a heavy book onto a high shelf, and you have done something the universe quietly records. Physicists describe that effort as <u>work</u>, which simply means a force acting over a distance. The work you spent lifting the book has not vanished. It has been deposited into the book as stored energy, a hidden account waiting to be drawn upon. Because of its height, the book now holds what we call potential energy, energy of position rather than of motion. Raise it twice as high, and you have stored twice as much, ready to be released the instant it is let go.\n\nLet the book slip off the shelf, and the account is suddenly spent. As the book falls, its height shrinks while its speed grows, and the stored potential energy is steadily turned into the energy of movement, called kinetic energy. The remarkable thing is the bookkeeping: at every instant of the fall, the amount of potential energy lost is exactly matched by the kinetic energy gained. Their sum never changes. The falling book is simply moving money between two accounts that always hold the same total. This is the heart of the <mark>conservation</mark> of energy, the principle that energy can be transformed from one form into another but can never be created or destroyed.\n\nAt first this seems to clash with everyday experience, since a bouncing ball clearly loses height with each bounce and finally stops. But the energy has not disappeared. It has merely scattered into forms we overlook, mostly heat and faint sound spread thinly into the floor and the air. Trace those subtle forms carefully, and the books balance again, down to the last fraction. So whenever energy appears to go missing, a physicist does not assume it is gone; she assumes she has simply failed to follow where it chose to <blank>.",
     "illustration": "../../assets/illustrations/2026-07-Sun/05.png",
     "illustration_caption": "As a book falls, height becomes speed; the energy total never changes."
   },
@@ -131,8 +131,7 @@
           },
           {
             "role": "O",
-            "text": "a heavy book onto a high shelf",
-            "note": "명령문"
+            "text": "a heavy book onto a high shelf,"
           },
           {
             "role": "CONJ",
@@ -150,10 +149,10 @@
           {
             "role": "O",
             "text": "something the universe quietly records.",
-            "note": "관계절 (목적격 생략)"
+            "note": "관계절"
           }
         ],
-        "grammar_note": "명령문 + and 결과 + 현재완료 + 관계절"
+        "grammar_note": "명령문 + and (현재완료, 관계절)"
       },
       {
         "index": 2,
@@ -173,10 +172,10 @@
           {
             "role": "C",
             "text": "as work, which simply means a force acting over a distance.",
-            "note": "describe A as B + 관계절"
+            "note": "describe A as B + 계속적 관계절"
           }
         ],
-        "grammar_note": "describe A as B + 계속적 관계절 (현재분사 acting)"
+        "grammar_note": "describe A as B + which 관계절"
       },
       {
         "index": 3,
@@ -184,16 +183,22 @@
           {
             "role": "S",
             "text": "The work you spent lifting the book",
-            "note": "관계절 + spend -ing"
+            "note": "관계절"
           },
           {
             "role": "V",
-            "text": "has not vanished;",
+            "text": "has not vanished.",
             "note": "현재완료"
-          },
+          }
+        ],
+        "grammar_note": "관계절 주어 + 현재완료"
+      },
+      {
+        "index": 4,
+        "segments": [
           {
             "role": "S",
-            "text": "it"
+            "text": "It"
           },
           {
             "role": "V",
@@ -203,18 +208,17 @@
           {
             "role": "M",
             "text": "into the book as stored energy, a hidden account waiting to be drawn upon.",
-            "note": "as + 동격 + 현재분사"
+            "note": "동격 + 현재분사"
           }
         ],
-        "grammar_note": "관계절 + 현재완료 수동 + 동격 (현재분사 + 수동 부정사)"
+        "grammar_note": "현재완료 수동 + 동격(현재분사)"
       },
       {
-        "index": 4,
+        "index": 5,
         "segments": [
           {
             "role": "M",
-            "text": "Because of its height,",
-            "note": "전치사구"
+            "text": "Because of its height,"
           },
           {
             "role": "S",
@@ -231,12 +235,13 @@
           {
             "role": "O",
             "text": "what we call potential energy, energy of position rather than of motion.",
-            "note": "what 명사절 + 동격 + A rather than B"
+            "note": "관계대명사 what + 동격"
           }
         ],
-        "grammar_note": "what 명사절 목적어 + 동격 (A rather than B)"
+        "grammar_note": "3형식 (what절, call O C, 동격)"
       },
       {
+        "index": 6,
         "segments": [
           {
             "role": "V",
@@ -244,8 +249,7 @@
           },
           {
             "role": "O",
-            "text": "it twice as high,",
-            "note": "명령문 + 배수 비교"
+            "text": "it twice as high,"
           },
           {
             "role": "CONJ",
@@ -266,11 +270,10 @@
             "note": "형용사구 + the instant 접속사"
           }
         ],
-        "grammar_note": "명령문 + and 결과 + 현재완료 + the instant 접속사",
-        "index": 5
+        "grammar_note": "명령문 + and (현재완료, ready to V, the instant절)"
       },
       {
-        "index": 6,
+        "index": 7,
         "segments": [
           {
             "role": "V",
@@ -278,8 +281,12 @@
           },
           {
             "role": "O",
-            "text": "the book slip off the shelf,",
-            "note": "사역 let O 원형"
+            "text": "the book"
+          },
+          {
+            "role": "C",
+            "text": "slip off the shelf,",
+            "note": "사역 let O V"
           },
           {
             "role": "CONJ",
@@ -290,24 +297,19 @@
             "text": "the account"
           },
           {
-            "role": "V",
-            "text": "is",
-            "note": "be동사"
-          },
-          {
             "role": "M",
             "text": "suddenly"
           },
           {
-            "role": "C",
-            "text": "spent.",
-            "note": "과거분사 보어"
+            "role": "V",
+            "text": "is spent.",
+            "note": "수동태"
           }
         ],
-        "grammar_note": "사역 let O 원형 + and 결과 + 과거분사 보어"
+        "grammar_note": "명령문(let O V) + and (수동태)"
       },
       {
-        "index": 7,
+        "index": 8,
         "segments": [
           {
             "role": "M",
@@ -324,8 +326,7 @@
           },
           {
             "role": "M",
-            "text": "while its speed grows,",
-            "note": "while 대조"
+            "text": "while its speed grows,"
           },
           {
             "role": "CONJ",
@@ -337,19 +338,19 @@
           },
           {
             "role": "V",
-            "text": "is steadily converted",
+            "text": "is steadily turned",
             "note": "수동태"
           },
           {
             "role": "M",
             "text": "into the energy of movement, called kinetic energy.",
-            "note": "convert into + 과거분사"
+            "note": "과거분사 동격"
           }
         ],
-        "grammar_note": "as 부사절 + while 대조 + convert A into B 수동 + 과거분사"
+        "grammar_note": "as/while 부사절 + and (수동태 turn into)"
       },
       {
-        "index": 8,
+        "index": 9,
         "segments": [
           {
             "role": "S",
@@ -361,17 +362,11 @@
           },
           {
             "role": "C",
-            "text": "the bookkeeping:",
-            "note": "콜론 부연"
-          },
-          {
-            "role": "M",
-            "text": "at every instant of the fall,"
+            "text": "the bookkeeping:"
           },
           {
             "role": "S",
-            "text": "the amount of potential energy lost",
-            "note": "과거분사 수식"
+            "text": "the amount of potential energy lost"
           },
           {
             "role": "V",
@@ -381,34 +376,43 @@
           {
             "role": "M",
             "text": "by the kinetic energy gained.",
-            "note": "과거분사 수식"
+            "note": "과거분사"
           }
         ],
-        "grammar_note": "콜론 부연 + 과거분사 수식 + match 수동태"
+        "grammar_note": "2형식 + 콜론(수동태, 과거분사 수식)"
       },
       {
-        "index": 9,
+        "index": 10,
         "segments": [
           {
             "role": "S",
             "text": "Their sum"
           },
           {
+            "role": "M",
+            "text": "never"
+          },
+          {
             "role": "V",
-            "text": "never changes."
+            "text": "changes."
           }
         ],
-        "grammar_note": "빈도부사 never + 자동사"
+        "grammar_note": "1형식"
       },
       {
+        "index": 11,
         "segments": [
           {
             "role": "S",
             "text": "The falling book"
           },
           {
+            "role": "M",
+            "text": "simply"
+          },
+          {
             "role": "V",
-            "text": "is simply moving",
+            "text": "is moving",
             "note": "진행형"
           },
           {
@@ -417,11 +421,10 @@
             "note": "관계절"
           }
         ],
-        "grammar_note": "진행형 + 관계절 (비유)",
-        "index": 10
+        "grammar_note": "진행형 + 관계절"
       },
       {
-        "index": 11,
+        "index": 12,
         "segments": [
           {
             "role": "S",
@@ -437,10 +440,10 @@
             "note": "동격 that절"
           }
         ],
-        "grammar_note": "2형식 + 동격 that절 (조동사 병렬 수동)"
+        "grammar_note": "2형식 + 동격 that절(수동태 병렬)"
       },
       {
-        "index": 12,
+        "index": 13,
         "segments": [
           {
             "role": "M",
@@ -452,19 +455,22 @@
           },
           {
             "role": "V",
-            "text": "seems to clash",
-            "note": "seem to V"
+            "text": "seems"
+          },
+          {
+            "role": "C",
+            "text": "to clash with everyday experience,"
           },
           {
             "role": "M",
-            "text": "with everyday experience, since a bouncing ball clearly loses height with each bounce and finally stops.",
-            "note": "since 이유절"
+            "text": "since a bouncing ball clearly loses height with each bounce and finally stops.",
+            "note": "since 부사절"
           }
         ],
-        "grammar_note": "seem to V + since 이유절 (동사 병렬)"
+        "grammar_note": "seem to V + since(동사 병렬)"
       },
       {
-        "index": 13,
+        "index": 14,
         "segments": [
           {
             "role": "CONJ",
@@ -480,30 +486,34 @@
             "note": "현재완료"
           }
         ],
-        "grammar_note": "현재완료 부정"
+        "grammar_note": "현재완료"
       },
       {
-        "index": 14,
+        "index": 15,
         "segments": [
           {
             "role": "S",
             "text": "It"
           },
           {
+            "role": "M",
+            "text": "merely"
+          },
+          {
             "role": "V",
-            "text": "has merely scattered",
+            "text": "has scattered",
             "note": "현재완료"
           },
           {
             "role": "M",
             "text": "into forms we overlook, mostly heat and faint sound spread thinly into the floor and the air.",
-            "note": "관계절 + 동격 + 과거분사"
+            "note": "관계절 + 동격(분사)"
           }
         ],
-        "grammar_note": "현재완료 + 관계절 + 동격 (과거분사 spread)"
+        "grammar_note": "현재완료 + 관계절(동격 과거분사)"
       },
       {
-        "index": 15,
+        "index": 16,
         "segments": [
           {
             "role": "V",
@@ -511,8 +521,7 @@
           },
           {
             "role": "O",
-            "text": "those subtle forms carefully",
-            "note": "명령문"
+            "text": "those subtle forms carefully,"
           },
           {
             "role": "CONJ",
@@ -528,14 +537,13 @@
           },
           {
             "role": "M",
-            "text": "again, down to the last fraction.",
-            "note": "부사구"
+            "text": "again, down to the last fraction."
           }
         ],
-        "grammar_note": "명령문 + and 결과 + 자동사 balance"
+        "grammar_note": "명령문 + and (1형식)"
       },
       {
-        "index": 16,
+        "index": 17,
         "segments": [
           {
             "role": "CONJ",
@@ -544,7 +552,7 @@
           {
             "role": "M",
             "text": "whenever energy appears to go missing,",
-            "note": "whenever 부사절 + appear to V"
+            "note": "복합관계부사"
           },
           {
             "role": "S",
@@ -556,8 +564,7 @@
           },
           {
             "role": "O",
-            "text": "it is gone;",
-            "note": "that절 (that 생략)"
+            "text": "it is gone;"
           },
           {
             "role": "S",
@@ -570,13 +577,13 @@
           {
             "role": "O",
             "text": "she has simply failed to follow where it chose to ____.",
-            "note": "that절 + where 명사절 + 빈칸"
+            "note": "간접의문 + 빈칸"
           }
         ],
-        "grammar_note": "whenever 부사절 + 세미콜론 병렬 + where 명사절 (빈칸)"
+        "grammar_note": "whenever 부사절 + 세미콜론 병렬(where 명사절, 빈칸)"
       }
     ],
-    "translation_ko": "[1] 무거운 책을 높은 선반 위로 들어 올리면, 너는 우주가 조용히 기록하는 무언가를 한 것이다. [2] 물리학자들은 그 노력을 일이라 부르는데, 이는 그저 힘이 거리에 작용하는 것을 뜻한다. [3] 책을 들어 올리는 데 쓴 일은 사라지지 않았다; 그것은 저장된 에너지로, 곧 끌어 쓰이기를 기다리는 숨은 계좌로 책 안에 예치되었다. [4] 높이 때문에, 책은 이제 우리가 위치 에너지라 부르는 것, 즉 운동이 아니라 위치의 에너지를 지닌다. [5] 그것을 두 배 높이로 올리면, 너는 두 배만큼을 저장한 것이고, 그것이 놓이는 순간 방출될 준비가 되어 있다. [6] 책이 선반에서 미끄러지게 두면, 그 계좌는 갑자기 쓰인다. [7] 책이 떨어지면서 높이는 줄고 속도는 커지며, 저장된 위치 에너지는 운동 에너지라 불리는 움직임의 에너지로 꾸준히 전환된다. [8] 놀라운 점은 그 장부 정리다: 낙하의 매 순간, 잃은 위치 에너지의 양이 얻은 운동 에너지와 정확히 맞아떨어진다. [9] 그 둘의 합은 결코 변하지 않는다. [10] 떨어지는 책은 그저 늘 같은 총액을 지닌 두 계좌 사이에서 돈을 옮기고 있을 뿐이다. [11] 이것이 에너지 보존의 핵심, 곧 에너지는 한 형태에서 다른 형태로 변환될 수 있지만 결코 생기거나 사라질 수 없다는 원리다. [12] 처음에는 이것이 일상 경험과 부딪치는 듯한데, 튀는 공이 분명히 튈 때마다 높이를 잃고 마침내 멈추기 때문이다. [13] 그러나 에너지는 사라지지 않았다. [14] 그것은 그저 우리가 간과하는 형태들로, 대개 바닥과 공기 속으로 얇게 퍼진 열과 희미한 소리로 흩어졌을 뿐이다. [15] 그 미묘한 형태들을 주의 깊게 추적하면, 장부는 마지막 한 조각까지 다시 맞아떨어진다. [16] 그래서 에너지가 사라진 것처럼 보일 때마다, 물리학자는 그것이 없어졌다고 가정하지 않는다; 그녀는 단지 자신이 그것이 가기로 한 곳을 따라가지 못했을 뿐이라고 가정한다."
+    "translation_ko": "[1] 무거운 책을 높은 선반 위로 들어 올리면, 너는 우주가 조용히 기록하는 무언가를 한 것이다. [2] 물리학자들은 그 노력을 일이라고 기술하는데, 그것은 그저 거리에 걸쳐 작용하는 힘을 뜻한다. [3] 네가 책을 들어 올리는 데 쓴 그 일은 사라지지 않았다. [4] 그것은 저장된 에너지로서, 즉 꺼내어 쓰이기를 기다리는 숨은 계좌로서 책에 예치되었다. [5] 그 높이 덕분에, 책은 이제 우리가 위치 에너지라 부르는 것, 즉 운동이 아니라 위치의 에너지를 지닌다. [6] 그것을 두 배 높이로 올리면, 너는 두 배만큼을 저장한 것이고, 그것은 놓이는 순간 풀려날 준비가 되어 있다. [7] 책이 선반에서 미끄러져 떨어지게 두면, 그 계좌는 갑자기 지출된다. [8] 책이 떨어지면서 그 높이는 줄어드는 반면 속도는 커지고, 저장된 위치 에너지는 운동의 에너지, 즉 운동 에너지라 불리는 것으로 꾸준히 바뀐다. [9] 놀라운 점은 그 장부 정리다: 떨어지는 매 순간, 잃어버린 위치 에너지의 양은 얻어진 운동 에너지와 정확히 일치한다. [10] 그것들의 합은 결코 변하지 않는다. [11] 떨어지는 책은 그저 늘 같은 총액을 유지하는 두 계좌 사이에서 돈을 옮기고 있을 뿐이다. [12] 이것이 에너지 보존의 핵심, 즉 에너지가 한 형태에서 다른 형태로 변환될 수는 있지만 결코 만들어지거나 사라질 수는 없다는 원리다. [13] 처음에 이것은 일상 경험과 충돌하는 것처럼 보이는데, 튀는 공이 분명히 튈 때마다 높이를 잃고 마침내 멈추기 때문이다. [14] 그러나 그 에너지는 사라지지 않았다. [15] 그것은 그저 우리가 간과하는 형태들로, 대개 바닥과 공기 속으로 얇게 퍼지는 열과 희미한 소리로 흩어졌을 뿐이다. [16] 그 미묘한 형태들을 신중히 추적하면, 장부는 마지막 한 조각까지 다시 균형을 이룬다. [17] 그래서 에너지가 사라진 것처럼 보일 때면 언제나, 물리학자는 그것이 없어졌다고 가정하지 않는다; 그녀는 그저 그것이 ____하기로 택한 곳을 자신이 따라가지 못했을 뿐이라고 가정한다."
   },
   "answers": {
     "explanations": [
