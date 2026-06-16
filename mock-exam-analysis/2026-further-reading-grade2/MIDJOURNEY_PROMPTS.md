@@ -13,6 +13,7 @@
 | 폴더 | 번호 | 유형 | 제목 | 삽화 파일 |
 |---|---|---|---|---|
 | dist 루트 | 01 | 독해 분석 | David Swan — Asleep at the Crossroads of Fate | `dist/assets/illust-01.png` |
+| dist 루트 | 02 | 독해 분석 | The Open Window (Saki) — Romance at Short Notice | `dist/assets/illust-02.png` |
 | textbook | 01 | 독해 분석 | Ebony and Ivory — Black and White Keys, One Beautiful Song | `dist/textbook/assets/illust-01.png` |
 | textbook | 02 | 독해 분석 | Land Art — Art That Lives and Fades in Nature | `dist/textbook/assets/illust-02.png` |
 | textbook | 03 | 독해 분석 | Food Brings Us Together — Seasonal Food Wisdom Across Cultures | `dist/textbook/assets/illust-03.png` |
@@ -43,6 +44,31 @@ A peaceful young traveler in old colonial clothes napping beside a clear bubblin
 
 ```text
 A wide horizontal triptych storybook scene around one young man asleep by a bubbling spring under maple trees: on the left a kindly old wealthy couple pausing by their carriage, in the center a shy pretty girl gently brushing a bee from his eyelid with a handkerchief, on the right two harmless cartoonish sneaky men backing away from a friendly alert dog, all softly connected, warm golden afternoon light, soft pastel butter coral and sage tones, bright friendly non-scary mood, cinematic editorial + painterly 3D mix, --ar 16:5 --v 7
+```
+
+---
+
+## 02 · The Open Window (Hector Hugh Munro, Saki)
+**파일:** `assets/illust-02.png` (빌드 시 `dist/assets/illust-02.png`로 복사)
+**제목:** Romance at Short Notice (즉석에서 지어낸 이야기)
+**핵심 장면:** 열린 프렌치창이 있는 빅토리아풍 응접실에서, 침착한 소녀 Vera가 소심한 손님 Framton에게 이야기를 들려주고, 창밖 잔디로 사냥 차림의 세 사람과 갈색 스패니얼이 마치 백일몽처럼 돌아오는, 반전을 한 컷에 담은 메인 삽화.
+
+### 메인 (JSON 등록본)
+
+```text
+A cozy warm Victorian country drawing room with a large open French window letting in soft golden afternoon light, a calm clever fifteen-year-old girl in an old-fashioned dress sitting composedly on a sofa telling a story, a nervous fidgety gentleman guest perched on the edge of a chair looking uneasy, across the lawn outside three faint friendly figures with hunting gear and a small brown spaniel gently walking back toward the window like a soft daydream, autumn garden, soft pastel butter sage and coral tones, bright gentle storybook mood with a playful hint of mischief, cinematic editorial + painterly 3D mix, --ar 16:5 --v 7
+```
+
+### 대안 A — 창밖 귀환 클로즈업 (반전의 순간, 인물 군상 최소화)
+
+```text
+A large open French window in a warm Victorian drawing room at deepening twilight, seen from inside, three softly glowing figures with guns under their arms and a tired brown spaniel walking across the autumn lawn toward the window like a gentle dream, a faint silhouette of a girl watching calmly, soft golden and dusky lavender light, soft pastel sage butter and coral tones, bright gentle storybook mood, a touch of cozy mystery, cinematic editorial + painterly 3D mix, --ar 16:5 --v 7
+```
+
+### 대안 B — 소녀의 이야기 (Vera 중심, 즉석 창작의 표정)
+
+```text
+A clever calm fifteen-year-old girl in an old-fashioned Edwardian dress sitting on a sofa in a warm country drawing room, telling a tall tale with a serious composed face and a faint playful glint in her eye, an open French window behind her opening onto a soft autumn lawn, a nervous gentleman guest blurred in the foreground listening uneasily, warm golden afternoon light, soft pastel butter sage and coral tones, bright friendly storybook mood with gentle wit, cinematic editorial + painterly 3D mix, --ar 16:5 --v 7
 ```
 
 ---
