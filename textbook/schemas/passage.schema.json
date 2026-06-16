@@ -37,7 +37,22 @@
         "body": { "type": "string", "minLength": 1400, "maxLength": 3200 },
         "illustration": { "type": "string", "pattern": "^\\.\\./\\.\\./assets/illustrations/\\d{4}-\\d{2}(-[A-Z][a-zA-Z]*)?/\\d{2}\\.(svg|png|jpg|webp)$" },
         "illustration_caption": { "type": "string", "minLength": 3, "maxLength": 100 },
-        "illustration_max_height_mm": { "type": "number", "minimum": 10, "maximum": 100, "description": "본문이 길어 이미지가 페이지 하단을 침범할 때, 시각적으로 보일 최대 높이(mm). 파일은 그대로 두고 CSS overflow:hidden으로 아래쪽만 잘라 표시." }
+        "illustration_max_height_mm": { "type": "number", "minimum": 10, "maximum": 100, "description": "본문이 길어 이미지가 페이지 하단을 침범할 때, 시각적으로 보일 최대 높이(mm). 파일은 그대로 두고 CSS overflow:hidden으로 아래쪽만 잘라 표시." },
+        "gloss_extra": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 4,
+          "description": "page1 우측 하단 각주(빨간 칸)에 보일 어려운/전문 어휘 풀이. 본문 <u>/<mark> 자동 감지 단어 뒤에 덧붙고, 합쳐서 최대 4개까지 노출(MAX_PAGE1_GLOSSARY_TERMS). 모든 고1·2·3 지문은 자동+추가 합쳐 최소 3~4개를 채울 것.",
+          "items": {
+            "type": "object",
+            "required": ["term", "ko"],
+            "additionalProperties": false,
+            "properties": {
+              "term": { "type": "string", "minLength": 2, "maxLength": 40, "description": "본문에 실제 등장하는 영어 단어/표현" },
+              "ko": { "type": "string", "minLength": 1, "maxLength": 40, "description": "본문 맥락에 맞는 간결한 한국어 풀이" }
+            }
+          }
+        }
       }
     },
     "page2": {

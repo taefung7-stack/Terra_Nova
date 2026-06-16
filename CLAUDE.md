@@ -53,6 +53,11 @@
   - `migrations/` — DB 스키마 마이그레이션 (번호순).
 - **`textbook/`** — 월간 구독 교재 생산 파이프라인 (Schema v2.2, build-fullbook).
   자체 `package.json` / `node_modules` / `tools/` 보유.
+  - **각주 어휘 규칙 (모든 고1·2·3 지문, 2026-07~)**: 각 지문 page1 우측 하단 각주
+    글로서리는 **최소 3~4개** 단어를 보여야 함. 본문 `<u>`/`<mark>` 자동 감지(보통 1~2개) +
+    `page1.gloss_extra: [{ "term", "ko" }]`(그 지문에서 가장 어렵거나 전문/학술적인 단어,
+    본문에 실제 등장, ko≤40자)로 채운다. 렌더러가 합쳐 최대 4개 노출
+    (`render.js` MAX_PAGE1_GLOSSARY_TERMS=4). 스키마: `schemas/passage.schema.json` page1.gloss_extra.
 - **`mock-exam-analysis/`** — 모의고사 분석지·워크북 빌더 (v1.0 LOCKED).
   - `builder/build.mjs` (분석지), `build-workbook.mjs` (워크북), `pdf-image.mjs` (글리프 안전 PDF),
     `finalize-combined.mjs` (표지+본문 병합), `combine*.mjs` (합본).
