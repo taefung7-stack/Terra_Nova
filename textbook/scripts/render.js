@@ -74,9 +74,7 @@ const TERM_ALIASES = {
   'media': 'medium',
   'top predators': 'top predator',
   'sounds': 'sound',
-  'rational choice': 'rational choice',
-  'goryeo': 'goryeo',
-  'korea': 'korea'
+  'rational choice': 'rational choice'
 };
 
 const TERM_MEANINGS = {
@@ -98,9 +96,7 @@ const TERM_MEANINGS = {
   'stream of consciousness': '의식의 흐름',
   'basic rights': '기본권',
   'top predator': '최상위 포식자',
-  'rational choice': '합리적 선택',
-  'goryeo': '고려',
-  'korea': '한국'
+  'rational choice': '합리적 선택'
 };
 const MAX_PAGE1_GLOSSARY_TERMS = 4;
 
@@ -152,17 +148,11 @@ function renderPage1Glossary(data) {
   const markedTerms = [...body.matchAll(/<(u|mark)>(.*?)<\/\1>/g)].map(m => m[2]);
   const seen = new Set();
   const notes = [];
-  for (const term of markedTerms) {
-    const found = findTermMeaning(term, data.page4?.vocab || []);
-    if (!found || seen.has(found.key)) continue;
-    seen.add(found.key);
-    notes.push({ term, meaning: found.meaning });
-    if (notes.length >= MAX_PAGE1_GLOSSARY_TERMS) break;
-  }
-  // Author-supplied extra glosses: page1.gloss_extra = [{ term, ko }, ...].
-  // These are the "difficult / technical word" notes that should appear on every
-  // passage even when the body marks fewer than the minimum number of terms.
-  // Appended after auto-detected <u>/<mark> terms, deduped by normalized key.
+  // Author-supplied glosses come FIRST: page1.gloss_extra = [{ term, ko }, ...].
+  // These are the curated "difficult / technical word" notes. Putting them ahead of
+  // the auto-detected <u>/<mark> terms guarantees the hard words win the limited
+  // slots, so easy auto-marked words (e.g. proper nouns highlighted in the body for
+  // emphasis) never crowd them out.
   for (const extra of (data.page1?.gloss_extra || [])) {
     if (notes.length >= MAX_PAGE1_GLOSSARY_TERMS) break;
     const term = extra?.term;
@@ -172,6 +162,14 @@ function renderPage1Glossary(data) {
     if (!key || seen.has(key)) continue;
     seen.add(key);
     notes.push({ term, meaning });
+  }
+  // Then top up from auto-detected <u>/<mark> terms (deduped) until the cap.
+  for (const term of markedTerms) {
+    if (notes.length >= MAX_PAGE1_GLOSSARY_TERMS) break;
+    const found = findTermMeaning(term, data.page4?.vocab || []);
+    if (!found || seen.has(found.key)) continue;
+    seen.add(found.key);
+    notes.push({ term, meaning: found.meaning });
   }
   if (!notes.length) return '';
   return notes.map(n => `<span class="term-note"><span class="term">${escapeHTML(n.term)}</span>: <span class="meaning">${escapeHTML(n.meaning)}</span></span>`).join('');
