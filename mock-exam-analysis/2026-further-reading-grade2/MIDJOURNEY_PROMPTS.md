@@ -18,6 +18,8 @@
 | textbook | 02 | 독해 분석 | Land Art — Art That Lives and Fades in Nature | `dist/textbook/assets/illust-02.png` |
 | textbook | 03 | 독해 분석 | Food Brings Us Together — Seasonal Food Wisdom Across Cultures | `dist/textbook/assets/illust-03.png` |
 | textbook | 04 | 독해 분석 | The Last Wild Race — Proving That Limits Don't Exist | `dist/textbook/assets/illust-04.png` |
+| textbook | 05 | 독해 분석 | The Gifts of Failure — A Graduation Speech | `dist/textbook/assets/illust-05.png` |
+| textbook | 06 | 독해 분석 | The Power of the I-Message — Speak Up Without Blame | `dist/textbook/assets/illust-06.png` |
 
 ---
 
@@ -147,6 +149,56 @@ An uplifting wide storybook scene of a determined woman runner crossing an ultra
 
 ```text
 An inspiring wide storybook scene of an older grey-haired runner calmly crossing the finish line of a vast golden desert ultramarathon at sunrise, smiling with quiet pride, gentle wind and warm light over endless dunes, soft pastel butter and coral tones, bright hopeful never-give-up mood, cinematic editorial + painterly 3D mix, --ar 16:5 --v 7
+```
+
+---
+
+## 05 · The Gifts of Failure (A Graduation Speech)
+**파일:** `dist/textbook/assets/illust-05.png`
+**제목:** The Gifts of Failure (실패가 주는 선물)
+**핵심 장면:** 졸업식 연단에서 학생들에게 따뜻하게 연설하는 여성, 뒤편 어두운 구름 사이로 맑은 하늘이 열리고, 곁엔 글쓰기를 상징하는 빛나는 책과 펜 — 실패 후 다시 일어서는 희망의 한 컷.
+
+### 메인 (JSON 등록본)
+
+```text
+An uplifting wide storybook scene of a thoughtful woman at a graduation podium speaking warmly to students, soft morning light breaking through dark clouds behind her into a bright clear sky, a small glowing book and pen beside her symbolizing writing, hopeful never-give-up mood about rising after failure, soft pastel coral butter and sage tones, cinematic editorial + painterly 3D mix, --ar 16:5 --v 8.1
+```
+
+### 대안 A — 연사 클로즈업 (연단 위 여성 단독, 가장 잔잔한 컷)
+
+```text
+An inspiring wide storybook scene of a calm confident woman speaker at a graduation podium gently gesturing to an unseen audience, warm morning light from a window behind her, a faint clearing sky after storm, soft hopeful expression about overcoming failure, soft pastel butter coral and sage tones, bright gentle mood, cinematic editorial + painterly 3D mix, --ar 16:5 --v 8.1
+```
+
+### 대안 B — 상징 풍경 (인물 없이, 어둠을 뚫는 빛 + 책·펜)
+
+```text
+A symbolic wide storybook scene of a single beam of warm morning light breaking through dark grey clouds onto an open glowing notebook and a pen on a wooden desk, a distant graduation cap and bright horizon, quiet hopeful mood of new beginnings after failure, soft pastel coral butter and sage tones, cinematic editorial + painterly 3D mix, --ar 16:5 --v 8.1
+```
+
+---
+
+## 06 · The Power of the I-Message (Speak Up Without Blame)
+**파일:** `dist/textbook/assets/illust-06.png`
+**제목:** The Power of the I-Message (나-전달법의 힘)
+**핵심 장면:** 학교 책상에 마주 앉아 차분하고 솔직하게 대화하는 두 십대 친구 — 한 명은 가슴에 손을 얹고 자기 감정을 말하고, 다른 한 명은 진지하게 경청. 이해와 소통을 담은 따뜻한 한 컷.
+
+### 메인 (JSON 등록본)
+
+```text
+A warm wide storybook scene of two teenage classmates sitting at a school desk having a calm honest conversation, one gently speaking with a hand on chest expressing feelings while the other listens thoughtfully, soft speech bubble with a small heart symbol, bright friendly classroom light, gentle pastel coral butter and sage tones, kind respectful mood about understanding and communication, cinematic editorial + painterly 3D mix, --ar 16:5 --v 8.1
+```
+
+### 대안 A — 화해의 순간 (대화 끝, 가벼운 미소·끄덕임)
+
+```text
+An uplifting wide storybook scene of two teenage students at a school desk reaching gentle understanding after an honest talk, one giving a small reassuring smile while the other nods, soft warm classroom light, a faint heart-shaped glow between them, soft pastel butter coral and sage tones, kind hopeful mood about reconciliation, cinematic editorial + painterly 3D mix, --ar 16:5 --v 8.1
+```
+
+### 대안 B — 상징 (말풍선 두 개: 비난 vs 나-전달, 대비)
+
+```text
+A clean symbolic wide storybook scene of two contrasting speech bubbles over a school desk, one cool-toned bubble with a small pointing finger fading away and one warm glowing bubble with a heart shining brightly, soft pastel coral butter and sage tones, bright friendly educational mood about kind communication, cinematic editorial + painterly 3D mix, --ar 16:5 --v 8.1
 ```
 
 ---
