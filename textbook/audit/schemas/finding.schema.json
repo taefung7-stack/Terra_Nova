@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://terranova.app/audit/finding.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["lens", "findings"],
+  "properties": {
+    "lens": { "type": "string", "enum": ["language", "explanation", "translation", "answer"] },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["severity", "location", "issue", "evidence"],
+        "properties": {
+          "severity": { "type": "string", "enum": ["blocker", "warn", "minor"] },
+          "location": { "type": "string", "description": "예: page1.body 문장3 / answers[1].rationale / page3.translation_ko [12]" },
+          "issue": { "type": "string", "description": "무엇이 문제인지 한 문장" },
+          "evidence": { "type": "string", "description": "본문/해설 인용 근거" },
+          "suggestion": { "type": "string", "description": "권고 수정안(선택)" }
+        }
+      }
+    }
+  }
+}

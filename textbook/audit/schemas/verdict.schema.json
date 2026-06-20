@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://terranova.app/audit/verdict.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["isReal", "confidence", "reason"],
+  "properties": {
+    "isReal": { "type": "boolean", "description": "지적이 실제 결함이면 true. 반박되면 false." },
+    "confidence": { "type": "string", "enum": ["high", "medium", "low"] },
+    "reason": { "type": "string", "description": "판정 근거 한두 문장" }
+  }
+}
