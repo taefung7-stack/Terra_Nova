@@ -34,8 +34,8 @@ window.PORTONE_STORE_ID = 'store-bb4f1ef9-bd0f-444c-9315-5c5608a3c281';
 //   ▸ 폴백: card_monthly (KG이니시스 CARD 빌링, 카드 직접입력)
 //   모두 비어있으면 KG 폴백으로 동작. 채널키 채우면 해당 수단 버튼 자동 노출.
 window.PORTONE_CHANNEL_KEYS = {
-  // 월간 정기결제 — 카카오페이 직접 빌링(EASY_PAY). ⬇️ 가맹 심사 후 채널키 입력
-  card_kakao_billing: '',
+  // 월간 정기결제 — 카카오페이 직접 빌링(EASY_PAY). CID CA11298161 (정기결제용, 2026-06-20 가맹심사 완료)
+  card_kakao_billing: 'channel-key-bbbe7b87-5337-4b92-b909-8099229e599a',
   // 월간 정기결제 — NICE 카드 빌링(CARD, ISP/앱카드 자동결제). ⬇️ 가맹 심사 후 채널키 입력
   nice_card_billing: '',
   // 월간 정기결제 폴백 — KG이니시스 카드 빌링 (MID MOI2432342)
@@ -43,7 +43,9 @@ window.PORTONE_CHANNEL_KEYS = {
   // 연간 일반결제 1회성 (MID MOI5915678)
   card_annual:  'channel-key-9982c887-52f5-40cc-ba7e-3af5a8b64f1e',
   // 하위호환: 기존 card_inicis 참조 코드용 (월간 채널을 기본으로)
-  card_inicis:  'channel-key-bcea3c1d-7213-42ad-a549-e7c43ca80857'
+  card_inicis:  'channel-key-bcea3c1d-7213-42ad-a549-e7c43ca80857',
+  // 단건 결제 — 카카오페이 (마켓 단품, EASY_PAY). CID CA52035654 (2026-06-20 가맹심사 완료)
+  kakaopay:     'channel-key-b1ed98c9-820b-4baf-9e10-064b57232411'
 };
 window.PORTONE_PAY_METHODS = {
   card: 'CARD'
