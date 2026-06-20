@@ -1,0 +1,63 @@
+{
+  "grade": "jupiter-g2",
+  "seq": 5,
+  "confirmed": [
+    {
+      "severity": "blocker",
+      "location": "page3, sentences[0] (sentence 1), segments[2]",
+      "issue": "구문 역할 오태깅: 'to blend, no matter how hard you shake the glass'가 C(보어)로 표시되었으나 실제로는 refuse의 O(대상/목적어)임",
+      "evidence": "본문: 'Pour oil into a glass of water and the two stubbornly refuse to blend, no matter how hard you shake the glass.' — 'refuse to do'는 '동사 + to 부정사'로 'to blend...'는 infinitive object이지만, 현재 구조에서 C로 표시됨. grammar_note에는 'refuse to V + no matter how'로 올바르게 기술했으나 role 할당이 모순됨",
+      "suggestion": "역할을 C에서 O로 변경하거나, 또는 'to blend'의 구문 역할을 infinitive object로 명시. 현재 문법 설명과 역할 할당의 불일치 해소",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-07-J/05.json의 page3.sentences[0].segments[6]에서 'to blend, no matter how hard you shake the glass.'가 C(보어)로 태깅되어 있으나, 문법적으로 정확한 분석은 다음과 같다: (1) \"refuse\"는 to부정사를 직접 목적어로 취하는 단순 타동사. (2) \"the two stubbornly refuse to blend\"의 구조에서 \"to blend...\"는 refuse의 O(목적어)로 기능. (3) 파일의 grammar_note가 'refuse to V + no matter how'로 올바르게 기술한 것이 증명하는 바와 같이, to부정사는 infinitive object. (4) 따라서 현재 C 태깅은 오류이며 O로 수정되어야 함. 이는 객관적 문법 규칙 위반이므로 실제 결함(blocker)이 맞음."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3, sentences[15] (sentence 16), segments[4]",
+      "issue": "구문 역할과 설명의 모순: 'pulling'이 V(동사)로 표시되었으나 주석에는 '분사구문'으로 표시",
+      "evidence": "본문: 'The polar end grips the water while the nonpolar end grabs the grease, pulling the two apart.' — 'pulling the two apart'는 분사구문(participial phrase)으로 앞 절의 결과/보충 설명 역할이지, 독립적인 V(주동사)가 아님. 현재 role='V'는 주동사를 의미하므로 분사구문 설명과 불일치",
+      "suggestion": "역할을 수정하거나 명확히: 분사구문은 주동사(V)가 아니므로 별도의 문법 요소로 표시하거나, 'note'와 'role' 간의 일관성 재검토",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 검토 결과, 지적이 실제 결함임을 확인. JSON의 page3.sentences[15].segments[4]에서 \"pulling\"이 role='V'로 표시되었으나, 같은 segment의 note에 '분사구문'이라 명시되어 있음. 이는 모순. 영문법상 \"pulling the two apart\"는 현재분사로 이루어진 분사구문으로, 앞 절의 결과/보충 설명 역할을 하는 비정형동사(non-finite verb)임. 따라서 문장 구조 분석에서 주동사를 나타내는 'V'로 표시하는 것은 부적절. role과 note 사이의 일관성이 없음이 명확히 확인됨."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko, 문장 18번",
+      "issue": "번역에서 '단 하나의'가 중복되어 표현됨",
+      "evidence": "원문: 'Instead, it starts quietly following one single clear and predictable pattern' — 'one single'은 한 번만 나타남. 번역: '대신, 그것은 하나의 분명하고 예측 가능한 단 하나의 패턴을 조용히 따르기 시작한다' — '단 하나의'가 문장 앞뒤로 두 번 나타남",
+      "suggestion": "'그것은 하나의 분명하고 예측 가능한 패턴을 조용히 따르기 시작한다' 또는 '그것은 분명하고 예측 가능한 단 하나의 패턴을 조용히 따르기 시작한다'로 수정 권장",
+      "lens": "translation"
+    }
+  ],
+  "blockers": [
+    {
+      "severity": "blocker",
+      "location": "page3, sentences[0] (sentence 1), segments[2]",
+      "issue": "구문 역할 오태깅: 'to blend, no matter how hard you shake the glass'가 C(보어)로 표시되었으나 실제로는 refuse의 O(대상/목적어)임",
+      "evidence": "본문: 'Pour oil into a glass of water and the two stubbornly refuse to blend, no matter how hard you shake the glass.' — 'refuse to do'는 '동사 + to 부정사'로 'to blend...'는 infinitive object이지만, 현재 구조에서 C로 표시됨. grammar_note에는 'refuse to V + no matter how'로 올바르게 기술했으나 role 할당이 모순됨",
+      "suggestion": "역할을 C에서 O로 변경하거나, 또는 'to blend'의 구문 역할을 infinitive object로 명시. 현재 문법 설명과 역할 할당의 불일치 해소",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-07-J/05.json의 page3.sentences[0].segments[6]에서 'to blend, no matter how hard you shake the glass.'가 C(보어)로 태깅되어 있으나, 문법적으로 정확한 분석은 다음과 같다: (1) \"refuse\"는 to부정사를 직접 목적어로 취하는 단순 타동사. (2) \"the two stubbornly refuse to blend\"의 구조에서 \"to blend...\"는 refuse의 O(목적어)로 기능. (3) 파일의 grammar_note가 'refuse to V + no matter how'로 올바르게 기술한 것이 증명하는 바와 같이, to부정사는 infinitive object. (4) 따라서 현재 C 태깅은 오류이며 O로 수정되어야 함. 이는 객관적 문법 규칙 위반이므로 실제 결함(blocker)이 맞음."
+      }
+    }
+  ],
+  "counts": {
+    "raw": 3,
+    "verified": 2,
+    "confirmed": 2,
+    "minor": 1
+  }
+}

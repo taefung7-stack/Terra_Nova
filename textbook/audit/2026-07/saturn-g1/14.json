@@ -1,0 +1,57 @@
+{
+  "grade": "saturn-g1",
+  "seq": 14,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page3 - Sentence 7 (index 7)",
+      "issue": "2형식 문장의 보어 구조 오태깅",
+      "evidence": "본문: 'The problem is not the blanket itself, but its slowly growing thickness.' 여기서 'not the blanket itself, but its slowly growing thickness'는 'is'의 보어(C)인데, 구문분석에서 role='M'(수식어)으로 잘못 표시됨.",
+      "suggestion": "해당 세그먼트의 role을 'C'(보어)로 수정. 이는 2형식 V+C 구조 설명과 일치하게 함.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "The inspection finding is valid. In Sentence 7 (index 7), \"not the blanket itself, but its slowly growing thickness\" follows the linking verb \"is\" and functions as a complement (C) that identifies/describes the subject \"The problem.\" It should be tagged role=\"C\", not role=\"M\". This is a linking verb (2형식) complement, not a modifier. The error is confirmed by comparing to Sentence 6, which correctly uses role=\"C\" for a similar 2형식 structure. Sentence 15 exhibits the same tagging error with identical \"not A but B\" structure after \"is.\""
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3 - Sentence 15 (index 15)",
+      "issue": "2형식 문장의 보어 구조 오태깅",
+      "evidence": "본문: 'Climate is not one simple switch but a wide web of connected parts, where one small shift quietly pulls on all the others.' 여기서 'not one simple switch but a wide web of connected parts'는 'is'의 보어(C)인데, 구문분석에서 role='M'(수식어)으로 잘못 표시됨. grammar_note에는 'not A but B'로 올바르게 기술되어 있으나 segment 역할 표시가 불일치.",
+      "suggestion": "첫 번째 세그먼트(not...parts)의 role을 'M'에서 'C'로 수정. 'where' 절은 이미 'M'으로 표시된 것이 맞음.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "page3 Sentence 15의 segment에서 'not one simple switch but a wide web of connected parts'가 role='M'(수식어)으로 표시되었으나, 문장 구조상 이는 'is'의 보어(C)이어야 합니다. grammar_note에는 'not A but B'로 올바르게 기술되어 있으나 segment 레벨의 role 속성이 불일치하는 실제 오태깅입니다."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "answers - Q2 (q_index: 1, 빈칙 추론)",
+      "issue": "인용 부정확",
+      "evidence": "설명에서 인용: '\"the same human choices that thickened the blanket can also ... make it ___ again, with care and effort\"' 본문 정확한 표현: 'with enough care and shared effort' — 'enough'와 'shared'가 생략됨.",
+      "suggestion": "정확한 본문 인용으로 수정: 'with enough care and shared effort'로 변경하거나, 요약 시 명시적으로 '(요약)'임을 표시",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "[17]번 문장",
+      "issue": "\"spin completely out of control\" 번역의 자연스러움",
+      "evidence": "원문: \"before they spin completely out of control\" / 현역: \"완전히 통제 불능으로 돌아가기 전에\" — \"돌아가기\"는 \"spin\"의 의미를 정확히 살리지 못하고 자연스럽지 못함.",
+      "suggestion": "\"완전히 통제 불능이 되기 전에\" 또는 \"완전히 통제를 벗어나기 전에\"로 수정하여 원문의 의미를 더 명확하고 자연스럽게 전달",
+      "lens": "translation"
+    }
+  ],
+  "blockers": [],
+  "counts": {
+    "raw": 4,
+    "verified": 2,
+    "confirmed": 2,
+    "minor": 2
+  }
+}

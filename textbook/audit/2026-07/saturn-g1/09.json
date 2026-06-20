@@ -1,0 +1,49 @@
+{
+  "grade": "saturn-g1",
+  "seq": 9,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page3, sentences, index 9",
+      "issue": "구문 역할 오태깅: '주어(S)'를 '수식어(M)'로 잘못 표시",
+      "evidence": "원문: 'Because it stands above ordinary laws, even the most powerful leader must obey it.' — 'even the most powerful leader'는 명확한 주어(S)이나, 구문 분석에서 role=M으로 표시되어 있음. 'even'은 주어를 강조하는 부사이지만, 'the most powerful leader'는 S 역할을 함.",
+      "suggestion": "segments의 'even the most powerful leader' 항목의 role을 'M'에서 'S'로 수정. 'even'만 별도로 표시하거나 주석으로 처리하는 것이 명확함.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "File verification confirms the error. In sentence 9 of page3, the segment \"even the most powerful leader\" is tagged as role=\"M\" (modifier) when it grammatically functions as role=\"S\" (subject). This noun phrase is the agent performing the action \"must obey it.\" While \"even\" is an emphatic adverb within the phrase, the entire phrase serves as the main clause's subject. The current tagging incorrectly labels the subject as a modifier, which is a syntactic role mislabeling."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3, sentences, index 17",
+      "issue": "구문 역할 오태깅: '주어(S)'를 '수식어(M)'로 잘못 표시",
+      "evidence": "원문: 'When citizens fall silent and stop paying attention, even the finest constitution slowly turns into empty paper.' — 'even the finest constitution'은 'turns'의 주어(S)이나, 구문 분석에서 role=M으로 표시됨. 'even'은 강조 부사이지만, 'the finest constitution'은 명확한 S 역할.",
+      "suggestion": "segments의 'even the finest constitution' 항목의 role을 'M'에서 'S'로 수정. 'even'은 별도 표시나 주석으로 처리하는 것이 명확함.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "\"even the finest constitution\"은 문장 \"When citizens fall silent and stop paying attention, even the finest constitution slowly turns into empty paper.\"에서 동사 turns의 주어(S)이나, 현재 JSON 구문 분석에서 role=\"M\"(수식어)로 오태깅됨. 이는 명확한 구문 분석 오류입니다."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "answers.explanations, q_index 2",
+      "issue": "해설의 인용 표현이 본문과 불일치",
+      "evidence": "해설: '11번은 헌법이라는 한 편의 글이 \"a quiet but powerful shield for every person\"이 된다고 한다.' — 실제 본문: 'In this quiet way, a simple piece of writing becomes a **powerful shield** for every ordinary person.' 'quiet'은 별도 구절('In this quiet way')에 있으며, shield 수식어는 'powerful'만 있음.",
+      "suggestion": "해설을 수정: '11번에서 '한 편의 글'이 '(조용하고도) 강력한 방패'가 된다'로 표현하거나, 정확히 'a powerful shield'로만 인용하는 것이 정확함.",
+      "lens": "explanation"
+    }
+  ],
+  "blockers": [],
+  "counts": {
+    "raw": 3,
+    "verified": 2,
+    "confirmed": 2,
+    "minor": 1
+  }
+}

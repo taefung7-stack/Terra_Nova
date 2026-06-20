@@ -1,0 +1,87 @@
+{
+  "grade": "jupiter-g2",
+  "seq": 18,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page3.sentences[17] (sentence 18), segments role tagging",
+      "issue": "문법 역할 오태깅: 'much more likely'이 M(modifier)로 표기되었으나 C(complement/보어)로 표기되어야 함",
+      "evidence": "실제 문장: \"A community that debates these choices openly is much more likely to shape change than to be merely swept along by it.\" 여기서 'is much more likely'는 계사동사 + 주격보어 구조로, 'much more likely'는 주어의 상태를 나타내는 보어(complement)이지 수식어(modifier)가 아님. 현재는 segments에서 'much more likely'를 role 'M'으로, 'to shape change...'를 role 'C'로 분리했는데, 전체 'much more likely to shape change...'가 단일 보어(C)여야 함.",
+      "suggestion": "sentence[17]의 segments 재구성: 'much more likely'를 M에서 C로 변경하거나, 'much more likely to shape change than to be merely swept along by it' 전체를 단일 C 세그먼트로 통합",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 검증 결과, 문법 역할 오태깅이 실제 결함임을 확인했습니다. \n\n현재 상태: sentence 18에서 'much more likely'을 role 'M'(modifier)으로, 'to shape change than to be merely swept along by it'을 role 'C'(complement)로 분리 태깅\n\n정정 필요 사항: \"A community that debates these choices openly is much more likely to shape change than to be merely swept along by it\"는 S + be + complement 구조입니다. \n- 'is'는 계사동사\n- 'much more likely to shape change than to be merely swept along by it' 전체가 단일 주격보어(complement)\n\n이유: 'much more likely'는 형용사로서 주어의 상태를 설명하는 주격보어이며, 'to shape change than to be merely swept along by it'는 'likely'를 수정하는 to부정사구입니다. 둘 다 함께 copula 'is'의 complement를 이룹니다. 파일의 grammar_note \"be likely to V + than to V\"도 이를 뒷받침합니다."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "page3.translation_ko, sentence 19",
+      "issue": "한국어 번역이 영문의 빈칸을 채워버렸음 - 문제의 답을 미리 노출",
+      "evidence": "영문: 'we first have to understand the forces that drive its endless ____.' (blank). 한국어: '우리는 먼저 그 끝없는 변동을 추동하는 힘들을 이해해야 한다.' (변동이 채워짐). page2의 question 2(빈칸 추론) 정답은 'change'인데, 번역문에 답이 미리 노출되어 학생이 해당 문제를 풀 수 없음.",
+      "suggestion": "sentence 19를 다시 번역하여 빈칸을 유지: '그러므로 내일을 또렷이 생각하려면, 우리는 먼저 그 끝없는 ____을 추동하는 힘들을 이해해야 한다.' 또는 같은 의미로 빈칸 표시",
+      "lens": "translation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 직접 검증 결과, 영문에서 \"the forces that drive its endless ____\"의 빈칸 정답이 'change'(page2 question 2, answer_index: 2)인데, 한국어 번역문 [19]에서 \"그 끝없는 변동을 추동하는 힘들\"로 이미 '변동'이 명시되어 있음. 이는 학생이 영문 빈칸 추론 문제를 풀 때 한국어 번역문을 참고하면 답을 미리 노출받게 되는 실질적인 학습 장애임. 이는 빈칸 추론(빈칸 채우기) 유형 문제의 의도와 배치되는 명백한 결함."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "answers.explanations[0] (Q0, 요지문제) evidence",
+      "issue": "근거 제시 시 문장 번호 오류: 두 관점이 제시된 위치를 '10~12번'으로 표기",
+      "evidence": "실제 문장 확인: 문장 10(index 9)은 'More often they mix together until cause and effect are hard to tell apart.'이고, 진화론적 관점은 문장 12(index 11)에서, 갈등론적 관점은 문장 13(index 12)에서 처음 나타남. 따라서 '10~12번'이 아니라 '12~13번'이 정확함.",
+      "suggestion": "evidence 수정: '두 관점(진화론·갈등론, 12~13번)'으로 정정",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "answers.explanations[0] (Q0, 요지문제) evidence",
+      "issue": "근거 제시 시 문장 번호 오류: 사회의 선택에 의한 미래 결정이 논의되는 범위를 '13~16번'으로 표기",
+      "evidence": "문장 17(index 16)이 핵심: \"So a society's future is not simply something that happens to it from the outside; it is partly something a society chooses, through the values it protects and the policies it builds.\" 미래의 선택적 구성에 관한 논의는 문장 15(index 14)의 '방향이 확실하지 않다'는 조건과 함께 문장 15~17에 걸쳐 전개되므로, '13~16번'이 아니라 '15~17번'으로 표기해야 정확함.",
+      "suggestion": "evidence 수정: '그리고 방향이 보장되지 않아 사회가 가치·정책으로 미래를 부분적으로 선택한다(15~17번)고 한다.'",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "answers.explanations[1] (Q1, 빈칸 추론) evidence",
+      "issue": "근거 제시 시 문장 번호 오류: 변동의 빠름과 방향을 논의하는 문장을 '13번'으로 표기",
+      "evidence": "문장 13(index 12)은 '다른 이들은 갈등 관점을 취하며...'이고, 실제로 '변동이 이제 그 어느 때보다 빠르고'라는 내용은 문장 15(index 14)에 있음: \"All of this matters because change is now faster than ever, and its direction is far from certain.\"",
+      "suggestion": "evidence 수정: '13번도 변동의 빠름과 방향을 말한다' → '15번도 변동의 빠름과 방향을 말한다'로 정정",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "answers.explanations[2] (Q2, 함의 추론) evidence",
+      "issue": "근거 제시 시 문장 번호 오류: 'Each lens captures something the other tends to miss' 문장을 '12번'으로 표기",
+      "evidence": "이 문장은 실제로 문장 14(index 13)에 위치함. 문장 12(index 11)는 '진화론적 관점을 선호하는 이들은 변동을 더 큰 복잡성을 향한 느린 상승으로 본다'는 내용.",
+      "suggestion": "evidence 수정: '12번은' → '14번은'으로 정정",
+      "lens": "explanation"
+    }
+  ],
+  "blockers": [
+    {
+      "severity": "blocker",
+      "location": "page3.translation_ko, sentence 19",
+      "issue": "한국어 번역이 영문의 빈칸을 채워버렸음 - 문제의 답을 미리 노출",
+      "evidence": "영문: 'we first have to understand the forces that drive its endless ____.' (blank). 한국어: '우리는 먼저 그 끝없는 변동을 추동하는 힘들을 이해해야 한다.' (변동이 채워짐). page2의 question 2(빈칸 추론) 정답은 'change'인데, 번역문에 답이 미리 노출되어 학생이 해당 문제를 풀 수 없음.",
+      "suggestion": "sentence 19를 다시 번역하여 빈칸을 유지: '그러므로 내일을 또렷이 생각하려면, 우리는 먼저 그 끝없는 ____을 추동하는 힘들을 이해해야 한다.' 또는 같은 의미로 빈칸 표시",
+      "lens": "translation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 직접 검증 결과, 영문에서 \"the forces that drive its endless ____\"의 빈칸 정답이 'change'(page2 question 2, answer_index: 2)인데, 한국어 번역문 [19]에서 \"그 끝없는 변동을 추동하는 힘들\"로 이미 '변동'이 명시되어 있음. 이는 학생이 영문 빈칸 추론 문제를 풀 때 한국어 번역문을 참고하면 답을 미리 노출받게 되는 실질적인 학습 장애임. 이는 빈칸 추론(빈칸 채우기) 유형 문제의 의도와 배치되는 명백한 결함."
+      }
+    }
+  ],
+  "counts": {
+    "raw": 6,
+    "verified": 2,
+    "confirmed": 2,
+    "minor": 4
+  }
+}

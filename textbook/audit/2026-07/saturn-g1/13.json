@@ -1,0 +1,80 @@
+{
+  "grade": "saturn-g1",
+  "seq": 13,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page3, sentence 15, segments",
+      "issue": "Role tagging error: 'turning'은 동사가 아닌 분사구문",
+      "evidence": "문장 원문: \"Even a familiar recipe is a kind of function, turning a fixed list of ingredients into one finished dish.\"\n파일 태깅: V(\"turning\") - 하지만 turning은 분사구문으로 주절을 수식하는 수식어이며, 독립된 동사가 아님.\n올바른 분석: \"is\"가 유일한 V이고, \"turning...\"은 분사구문 M 역할을 해야 함.",
+      "suggestion": "\"turning\"의 role을 V에서 M으로 변경하거나, 분사구문 구조로 명확히 표기할 것. 현재는 \"is\"와 \"turning\"이 대등한 동사처럼 보이어 오해 소지 있음.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 검증 결과, sentence 15에서 \"turning\"이 V(동사)로 태깅되어 있으나, 실제로는 M(수식어/분사구문)으로 태깅되어야 함. 문장의 유일한 주절 동사는 \"is\"이며, \"turning...\"은 주절 뒤의 쉼표로 시작하는 분사구문으로 앞의 내용을 설명/수식하는 역할을 함. 파일 자체의 grammar_note에서도 \"분사구문\"이라고 올바르게 명시되어 있으나, role 속성 할당이 불일치함. 적대적 검증 입장에서 명백한 태깅 오류임."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "page3, sentence 18, segments line 550-567",
+      "issue": "문법 역할 태깅의 구조적 오류: 세미콜론 이후 독립절이 M으로 잘못 태깅됨",
+      "evidence": "원문: \"The deepest lesson here is that math is not really about scary symbols at all; it is about simple, trustworthy ____ you can count on, giving the same answer for the same question, every single time.\"\n\n파일 태깅 (line 563-567):\n- role M, text: \"about simple, trustworthy ____ you can count on, giving the same answer...\"\n\n문제: 세미콜론(;) 이후 \"it is about...\"은 문법적으로 독립절(independent clause)이며, 이전 절과 병렬 구조임. M(수식어)이 아니라 별도의 S-V 구조를 가져야 함. \"about\"은 전치사이므로 C(보어)의 일부이지 M이 아님.",
+      "suggestion": "세미콜론 이후 내용을 올바르게 재태깅할 것:\n- S(\"it\")\n- V(\"is\")\n- C(\"about simple, trustworthy ____ you can count on, giving the same answer for the same question, every single time.\")\n그리고 \"giving...\"은 분사구문 M으로 명시하거나 동격 표기를 추가할 것.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "The tagging error is confirmed by direct file inspection. Line 563-567 labels the entire phrase starting with \"about simple, trustworthy...\" as M (modifier). However, grammatically, after the semicolon, the second independent clause \"it is about simple, trustworthy ____ you can count on...\" has the structure S-V-C (it / is / about-phrase). The \"about\" phrase is the predicate complement (C) describing what the lesson is, not a modifier (M). While \"giving the same answer...\" is a participial phrase providing additional description, the core \"about simple, trustworthy ____\" following the copula \"is\" must be tagged as C, not M. The file's current M designation is structurally incorrect for this position in a 2형식 sentence."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "page3.translation_ko, 문장 18",
+      "issue": "빈칸 시험 정답 노출 - 번역에서 빈칸 위치에 이미 단어를 삽입하여 학생이 추론하기 전에 정답을 읽게 됨",
+      "evidence": "영문: \"it is about simple, trustworthy <blank> you can count on\" / 한글: \"그것은 네가 믿고 의지할 수 있는, 같은 질문에 매번 같은 답을 주는 단순하고 믿을 만한 연결 규칙에 관한 것이다.\" - 영문은 빈칸 + 관계절(you can count on) 구조인데, 한글은 빈칸에 '연결 규칙'을 직접 삽입했으므로 page2.questions[1]의 빈칸 추론 정답(rules of connection 또는 rules)이 노출됨",
+      "suggestion": "한글 번역을 \"그것은 네가 믿고 의지할 수 있는 ____, 같은 질문에 매번 같은 답을 주는 단순하고 믿을 만한 ____에 관한 것이다\" 또는 유사한 구조로 수정하여 빈칸을 명시적으로 표기",
+      "lens": "translation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "page3.translation_ko의 18번 문장에서 한글 번역이 \"단순하고 믿을 만한 연결 규칙에 관한 것이다\"로 번역되어, 영문의 빈칸 \"<blank> you can count on\" 위치에 정확한 정답 \"rules of connection(연결 규칙)\"을 직접 삽입했습니다. 이로 인해 page2.questions[1]의 빈칸 추론 문제 정답(2번 \"rules of connection\")이 번역 텍스트에서 사전에 노출되므로 학생이 추론하기 전에 정답을 읽게 되는 실질적 결함입니다."
+      }
+    }
+  ],
+  "minors": [],
+  "blockers": [
+    {
+      "severity": "blocker",
+      "location": "page3, sentence 18, segments line 550-567",
+      "issue": "문법 역할 태깅의 구조적 오류: 세미콜론 이후 독립절이 M으로 잘못 태깅됨",
+      "evidence": "원문: \"The deepest lesson here is that math is not really about scary symbols at all; it is about simple, trustworthy ____ you can count on, giving the same answer for the same question, every single time.\"\n\n파일 태깅 (line 563-567):\n- role M, text: \"about simple, trustworthy ____ you can count on, giving the same answer...\"\n\n문제: 세미콜론(;) 이후 \"it is about...\"은 문법적으로 독립절(independent clause)이며, 이전 절과 병렬 구조임. M(수식어)이 아니라 별도의 S-V 구조를 가져야 함. \"about\"은 전치사이므로 C(보어)의 일부이지 M이 아님.",
+      "suggestion": "세미콜론 이후 내용을 올바르게 재태깅할 것:\n- S(\"it\")\n- V(\"is\")\n- C(\"about simple, trustworthy ____ you can count on, giving the same answer for the same question, every single time.\")\n그리고 \"giving...\"은 분사구문 M으로 명시하거나 동격 표기를 추가할 것.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "The tagging error is confirmed by direct file inspection. Line 563-567 labels the entire phrase starting with \"about simple, trustworthy...\" as M (modifier). However, grammatically, after the semicolon, the second independent clause \"it is about simple, trustworthy ____ you can count on...\" has the structure S-V-C (it / is / about-phrase). The \"about\" phrase is the predicate complement (C) describing what the lesson is, not a modifier (M). While \"giving the same answer...\" is a participial phrase providing additional description, the core \"about simple, trustworthy ____\" following the copula \"is\" must be tagged as C, not M. The file's current M designation is structurally incorrect for this position in a 2형식 sentence."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "page3.translation_ko, 문장 18",
+      "issue": "빈칸 시험 정답 노출 - 번역에서 빈칸 위치에 이미 단어를 삽입하여 학생이 추론하기 전에 정답을 읽게 됨",
+      "evidence": "영문: \"it is about simple, trustworthy <blank> you can count on\" / 한글: \"그것은 네가 믿고 의지할 수 있는, 같은 질문에 매번 같은 답을 주는 단순하고 믿을 만한 연결 규칙에 관한 것이다.\" - 영문은 빈칸 + 관계절(you can count on) 구조인데, 한글은 빈칸에 '연결 규칙'을 직접 삽입했으므로 page2.questions[1]의 빈칸 추론 정답(rules of connection 또는 rules)이 노출됨",
+      "suggestion": "한글 번역을 \"그것은 네가 믿고 의지할 수 있는 ____, 같은 질문에 매번 같은 답을 주는 단순하고 믿을 만한 ____에 관한 것이다\" 또는 유사한 구조로 수정하여 빈칸을 명시적으로 표기",
+      "lens": "translation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "page3.translation_ko의 18번 문장에서 한글 번역이 \"단순하고 믿을 만한 연결 규칙에 관한 것이다\"로 번역되어, 영문의 빈칸 \"<blank> you can count on\" 위치에 정확한 정답 \"rules of connection(연결 규칙)\"을 직접 삽입했습니다. 이로 인해 page2.questions[1]의 빈칸 추론 문제 정답(2번 \"rules of connection\")이 번역 텍스트에서 사전에 노출되므로 학생이 추론하기 전에 정답을 읽게 되는 실질적 결함입니다."
+      }
+    }
+  ],
+  "counts": {
+    "raw": 4,
+    "verified": 4,
+    "confirmed": 3,
+    "minor": 0
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "grade": "saturn-g1",
+  "seq": 19,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page3/sentences[0] (Sentence 1)",
+      "issue": "구문 역할 중복 및 혼동 — 세미콜론 대조절 분석 오류",
+      "evidence": "본문: \"There is an old saying: we do not inherit the Earth from our parents; we borrow it from our children.\" 현재 분석에서 'we do not inherit the Earth from our parents'를 role: S로, 그 다음 'we'를 다시 role: S로 표시하여 주어 역할이 중복됨. 또한 세미콜론으로 연결된 독립절 구조를 명확히 반영하지 못함.",
+      "suggestion": "세미콜론 대조절 구조를 정확히 표시하기 위해 재분석 필요. 예: There is (V) + an old saying (S) + [절1: we do not inherit...] (대조절1, S+V+O) + [절2: we borrow...] (대조절2, S+V+O)로 계층화하여 표시하는 것이 더 명확함.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 내용 직접 확인 결과, page3/sentences[0]의 segments에서 '주어 중복' 문제가 명백히 확인됨. segment[3]에서 'we do not inherit the Earth from our parents;'를 role: S로 표시하고, segment[4]에서 'we'를 다시 role: S로 표시하여 역할 중복 발생. 또한 세미콜론으로 연결된 두 독립절의 등격 대조 구조가 명확하게 분석되지 못함. 음운/note 필드에는 '콜론(풀이절)' 표시만 있고 세미콜론 대조절 구조는 grammar_note에 '세미콜론 대조'라고만 기록되어 있을 뿐 segments 분석에 반영되지 않음."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko, 문장 8 [8]",
+      "issue": "시간 개념 '내일(tomorrow)'의 추상화 수준 불일치",
+      "evidence": "원문: \"without stealing from tomorrow\" / 번역: \"내일에서 훔치지 않으면서\" / 교재 page2 textbook_tieback에서 '미래 세대'로 명시된 개념과 비교할 때, 문장 8에서 'tomorrow'를 '내일'로 번역한 것은 구체적인 시간 개념으로 축소됨. 지속 가능한 발전의 맥락에서는 '미래'(future)가 교육적으로 더 적절함.",
+      "suggestion": "문장 8을 '어떻게 우리는 미래에서 훔치지 않으면서 오늘 우리의 필요를 충분히 채울 수 있을까?'로 수정하여 page2 textbook_tieback의 '미래 세대' 개념과 일관성 유지",
+      "lens": "translation"
+    }
+  ],
+  "blockers": [],
+  "counts": {
+    "raw": 3,
+    "verified": 2,
+    "confirmed": 1,
+    "minor": 1
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "grade": "sun-g3",
+  "seq": 20,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page3 > sentences > index 5",
+      "issue": "Sentence 5에서 '\"over us, powerful\"을 M(Modifier)으로 표기했으나, \"powerful\"은 주어보어(C)여야 함",
+      "evidence": "원문: \"Frame a character from far below and she looms over us, powerful; shoot the same person from high above and she suddenly seems small and trapped.\" — \"looms\"는 2형식 동사로 S-V-C 구조를 가지며, \"powerful\"은 주어 \"she\"의 상태를 나타내는 형용사 보어입니다. 현재 분석에서는 \"over us, powerful;\"을 전부 M으로 처리했으나, \"powerful\"은 독립적인 C 역할을 합니다.",
+      "suggestion": "Sentence 5의 segments를 다음과 같이 수정: \"looms over us\"(V+M)와 \"powerful\"(C)을 분리하거나, \"over us, powerful\"을 \"M(over us) + C(powerful)\"로 명확히 분리.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "Sentence 5 contains a segmentation error. The phrase \"over us, powerful;\" is marked entirely as M (modifier), but \"powerful\" functions as a subject complement (C) describing the state of the subject \"she\" after the 2-형식 linking verb \"looms.\" The parallel structure with \"seems small and trapped\" (where complement role is correctly identified) confirms this. The grammatical_note mentions \"seem 보어\" (seem's complement) for the second clause but fails to apply the same analysis to the first clause's \"powerful.\" The correct segmentation should separate \"over us\" (M: adverbial modifier) from \"powerful\" (C: subject complement)."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3 > sentences > index 8",
+      "issue": "Sentence 8에서 마지막 O 표기 범위 오류",
+      "evidence": "원문 분석: \"show the same face, then a coffin, and we read grief.\" — 마지막 segment의 O가 \"the same face, then a coffin, and we read grief.\"로 표기되어 있으나, 이는 부정확합니다. \"the same face, then a coffin\"은 두 번째 show의 목적어(O)이고, \"and we read grief\"는 독립절로 and로 연결된 별개의 문장입니다. 따라서 O는 \"the same face, then a coffin\"까지만 포함되어야 합니다.",
+      "suggestion": "Sentence 8의 마지막 segment를 수정하여 O를 \"the same face, then a coffin\"으로 제한하고, \"and we read grief\"를 별개의 절(S+V+O)로 분석하거나 grammar_note에서 '명령문 병렬(세미콜론)' 구조를 명확히 표기.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "Index 8, 마지막 segment의 O(목적어) 범위가 실제 오류입니다. 현재 파일에서 두 번째 \"show\"의 목적어가 \"the same face, then a coffin, and we read grief.\"로 표기되어 있으나, \"and we read grief\"는 주어와 동사를 가진 독립절로 세미콜론으로 분리된 별개 문장입니다. O는 \"the same face, then a coffin\"까지만 포함되어야 합니다. 근거: 파일 line 380에서 \"text\": \"the same face, then a coffin, and we read grief.\"로 확인됨."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page3 > sentences > index 7",
+      "issue": "Sentence 7의 \"named montage\" 분석 불명확",
+      "evidence": "원문: \"a trick of editing the Soviet filmmakers named montage\" — 이 구조는 관계절(relative clause)이 아니라 수동태 분사구문입니다. \"named montage\"는 과거분사로 \"which the Soviet filmmakers named montage\"의 축약형입니다. 현재 note에서 \"동격 + 관계절\"이라 표기했으나, 정확히는 \"동격 + 수동태 분사구문(과거분사)\"입니다.",
+      "suggestion": "Sentence 7의 grammar_note를 \"when 부사절(수동) + weld A into B (동격 + 수동태 분사구문)\"으로 수정하거나, note를 \"관계절\"에서 \"과거분사 수식\"으로 변경.",
+      "lens": "explanation"
+    }
+  ],
+  "blockers": [],
+  "counts": {
+    "raw": 3,
+    "verified": 2,
+    "confirmed": 2,
+    "minor": 1
+  }
+}

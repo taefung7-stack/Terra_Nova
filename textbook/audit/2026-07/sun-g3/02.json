@@ -1,0 +1,57 @@
+{
+  "grade": "sun-g3",
+  "seq": 2,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page3 > sentences > index 10 (Sentence 11)",
+      "issue": "Grammar note 분사구문 오태깅 — 실제 구조는 appositive 명사구(동격)이지 분사구문이 아님",
+      "evidence": "원문: \"To make calculation easy, we usually pin the tail at the origin and describe the tip with a pair of numbers, its components, one measuring how far it reaches across and one how far up.\" 여기서 \"one measuring...and one how far up\"는 \"a pair of numbers\"를 수식하는 동격명사구이지, 분사구문이 아니다.",
+      "suggestion": "grammar_note를 \"동격명사구(appositive)\" 또는 \"명사구 병렬 + 동격\"로 수정. 분사구문 표기 제거.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-07-Sun/02.json의 page3 > sentences > index 11 항목에서, grammar_note가 \"동격 + 분사구문\"으로 표기되어 있습니다. 지적된 문장 \"one measuring how far it reaches across and one how far up\"은 독립적 분사구문(independent participial phrase)이 아니라, 동격 명사구 \"a pair of numbers, its components\" 내에서 \"one\"이라는 명사를 수식하는 현재분사 구조(participial modifier within appositive phrase)입니다. 따라서 분사구문이라는 태그는 부정확하며, \"동격 명사구 + 분사 수식어\" 또는 \"appositive noun phrase with participial modifiers\"가 더 정확한 분석입니다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "answers > explanations > q_index 0 (main idea answer)",
+      "issue": "증거 문장 인용 부정확 — 벡터 정의가 4·6번이 아니라 5번에 있음",
+      "evidence": "answer evidence는 \"글은 벡터가 크기와 방향을 함께 지니고(4·6번)\" 이라 하나, 실제로 4번은 \"Others stubbornly demand a direction as well\"이고 6번은 \"A vector is usually drawn as an arrow\"다. 벡터의 명확한 정의는 Sentence 5: \"Mathematicians handle this second kind with an object called a vector, a quantity that carries both a size and a heading at once.\"에 있다.",
+      "suggestion": "evidence 수정: \"글은 벡터가 크기와 방향을 함께 지니고(5번)\"로 수정. 논리적 흐름: 스칼라/벡터 구분(2~4번) → 벡터 정의(5번) → 벡터 표현법(6~11번) → 벡터 합성(12~15번).",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 내용 직접 확인 결과, Sentence 5에서 벡터 정의가 명확히 \"a quantity that carries both a size and a heading at once\"로 표현되어 있습니다. 하지만 evidence 필드는 이를 \"4·6번\"으로 잘못 인용하고 있습니다. 문장 4는 \"Others stubbornly demand a direction\"이고 문장 6은 \"A vector is usually drawn as an arrow\"로, 둘 다 벡터의 정의 자체가 아닙니다. 지적이 정확합니다."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page3 > sentences > index 6 (Sentence 7)",
+      "issue": "Grammar note에서 \"관계절 주어\" 표현 부정확 — \"which way\"는 관계절 주어가 아니라 appositive 구",
+      "evidence": "원문에서 \"the magnitude, how much,\"와 \"the direction, which way.\"는 대응된다. \"how much\"와 \"which way\"는 각각 선행사(magnitude, direction)를 명확히 하는 appositive 구이지, \"관계절 주어\"가 아니다. \"the way it points\"가 실제 관계절이다.",
+      "suggestion": "Grammar note 수정: \"관계절 주어\" → \"appositive clarification\" 또는 \"명확화 명사구\"로 표기.",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3 > sentences > index 7 (Sentence 8)",
+      "issue": "Causal clause 내부의 동사(count) 구조가 segmentation에서 미표기",
+      "evidence": "\"because only its length and tilt count, not where it happens to sit\"에서 count는 이유절 내의 주동사이나, 현재 segmentation은 \"count\"를 V로 표시하지 않았다. Grammar note는 \"because(not where)\"로 표기했으나 count의 역할이 명시되지 않음.",
+      "suggestion": "Segmentation 추가 정밀화: \"because only its length and tilt [V: count], not where it happens to sit\" 형태로 표시. 또는 주석(note) 추가하여 \"because절 내 주동사\"임을 명시.",
+      "lens": "explanation"
+    }
+  ],
+  "blockers": [],
+  "counts": {
+    "raw": 4,
+    "verified": 2,
+    "confirmed": 2,
+    "minor": 2
+  }
+}

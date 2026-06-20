@@ -1,0 +1,119 @@
+{
+  "grade": "saturn-g1",
+  "seq": 4,
+  "confirmed": [
+    {
+      "severity": "blocker",
+      "location": "page3 > sentences[7] (Sentence 8, index 8)",
+      "issue": "Grammar note에 본문과 무관한 텍스트 기재 — 'so 결과 (sound 형용사보어)'는 이 문장의 구조와 맞지 않음",
+      "evidence": "파일 310-316줄, 문장 본문: \"This happens because every single medium shapes the same plain message in its own particular way.\" — 이는 이유절(because)을 설명하는 문장이며, \"sound 형용사보어\"는 본문 어디에도 나타나지 않음. Sentence 7(index 7)과 동일한 구조인데 정상 기술됨.",
+      "suggestion": "grammar_note를 \"자동사 + because 이유절\"로 수정 (Sentence 7과 동일)",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "Sentence 8 (index 8, page3 > sentences[7]) has a grammar note \"so 결과 (sound 형용사보어)\" that directly contradicts the actual sentence structure. The sentence text is \"This happens because every single medium shapes the same plain message in its own particular way.\" — which contains only a 'because' reason clause with no 'so' conjunction or 'sound' verb. This is identical in structure to Sentence 7 (index 7) which correctly notes \"자동사 + because 이유절\". The erroneous grammar note appears to be copied from Sentence 9 or elsewhere where 'so 결과' actually occurs. File evidence: lines 300-316 show sentences[7] with index 8 containing the mismatched note."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "page3 > sentences[17] (Sentence 18, index 18)",
+      "issue": "Grammar note가 실제 문장 구조를 설명하지 못함 — '동명사 주어 + mean (that)절'은 이 문장의 문법 구조가 아님",
+      "evidence": "파일 567-590줄, 문장 본문: \"Would the very same story feel quite different if you met it somewhere else?\" — 이는 조건절(if)을 포함한 의문문이며, 동명사 주어는 없음. 이 grammar_note는 Sentence 19(index 19)의 \"It simply means you stay awake...\" 구조를 설명하는 것으로 보임(오배치).",
+      "suggestion": "grammar_note를 \"의문문 (feel 형용사보어 + if 조건절)\"로 수정",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일의 라인 566-590(Sentence 18)과 593-613(Sentence 19)을 직접 읽어 확인했습니다. Sentence 18(\"Would the very same story feel quite different if you met it somewhere else?\")의 실제 문법 구조는 의문문 + if 조건절이며, 동명사 주어가 없습니다. 반면 Sentence 19(\"It simply means you stay awake...\")가 정확히 \"mean (that)절\" 구조를 갖고 있습니다. 따라서 Sentence 18에 기재된 grammar note는 명확한 오류(오배치)입니다."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "page3 > sentences[11] (Sentence 12, index 12)",
+      "issue": "구문 역할 오태깅 — '2형식'이지만 C(보어)와 M(수식어)의 구분이 모호하게 표기됨",
+      "evidence": "파일 442-450줄, 문장 본문: \"The medium is never a clear glass window.\" — \"never\"는 M(부사), \"a clear glass window\"는 C(보어)인데, 현재는 \"never a clear glass window.\"를 통합된 M 역할로만 표기함. 2형식(SVC) 문장에서 V=is, C=a clear glass window가 명확해야 함.",
+      "suggestion": "segments를 분리하여 \"never\"(M)와 \"a clear glass window\"(C)를 구별하여 표기",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 라인 434-450에서 sentences[11](index 12)의 segment가 \"never a clear glass window.\"를 단일 M role로 표기하고 있음. 2형식 문장에서 V=is와 C=a clear glass window 사이의 부사 never가 분리되지 않아, 학습자가 2형식(SVC) 구조를 명확히 파악하기 어려움. 올바른 표기는 never(M)와 a clear glass window(C)를 별도 segment로 분리해야 함."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "page3.translation_ko, 문장 [7]-[8]",
+      "issue": "신문의 특성에 대한 영문 원문 누락. 번역 문장 [7]과 [8]이 동일한 내용(매체가 메시지를 빚는 이유)을 반복하면서, 영문 본문의 'A newspaper has plenty of room for detail, so it sounds careful, calm, and complete.'이 번역되지 않음.",
+      "evidence": "영문: 'This happens because every single medium shapes the same plain message in its own particular way. A newspaper has plenty of room for detail, so it sounds careful, calm, and complete.' | 번역: [7]과 [8]에서 신문에 대한 설명문이 없고, 두 문장이 같은 내용을 반복함.",
+      "suggestion": "번역 문장 [8]을 '신문은 세부 사항을 위한 충분한 공간이 있어서, 차분하고 차근차근하고 완벽해 보인다.'와 같이 수정하여 원문의 신문 설명을 포함시켜야 함.",
+      "lens": "translation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 검토 결과, 영문 원본 \"A newspaper has plenty of room for detail, so it sounds careful, calm, and complete.\" 문장이 한국어 번역에 누락되었으며, 동시에 [7]과 [8]이 \"매체가 메시지를 자기 나름의 방식으로 빚는다\"는 동일한 내용을 반복하고 있습니다. 이는 번역 과정에서의 실제 오류입니다."
+      }
+    }
+  ],
+  "minors": [],
+  "blockers": [
+    {
+      "severity": "blocker",
+      "location": "page3 > sentences[7] (Sentence 8, index 8)",
+      "issue": "Grammar note에 본문과 무관한 텍스트 기재 — 'so 결과 (sound 형용사보어)'는 이 문장의 구조와 맞지 않음",
+      "evidence": "파일 310-316줄, 문장 본문: \"This happens because every single medium shapes the same plain message in its own particular way.\" — 이는 이유절(because)을 설명하는 문장이며, \"sound 형용사보어\"는 본문 어디에도 나타나지 않음. Sentence 7(index 7)과 동일한 구조인데 정상 기술됨.",
+      "suggestion": "grammar_note를 \"자동사 + because 이유절\"로 수정 (Sentence 7과 동일)",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "Sentence 8 (index 8, page3 > sentences[7]) has a grammar note \"so 결과 (sound 형용사보어)\" that directly contradicts the actual sentence structure. The sentence text is \"This happens because every single medium shapes the same plain message in its own particular way.\" — which contains only a 'because' reason clause with no 'so' conjunction or 'sound' verb. This is identical in structure to Sentence 7 (index 7) which correctly notes \"자동사 + because 이유절\". The erroneous grammar note appears to be copied from Sentence 9 or elsewhere where 'so 결과' actually occurs. File evidence: lines 300-316 show sentences[7] with index 8 containing the mismatched note."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "page3 > sentences[17] (Sentence 18, index 18)",
+      "issue": "Grammar note가 실제 문장 구조를 설명하지 못함 — '동명사 주어 + mean (that)절'은 이 문장의 문법 구조가 아님",
+      "evidence": "파일 567-590줄, 문장 본문: \"Would the very same story feel quite different if you met it somewhere else?\" — 이는 조건절(if)을 포함한 의문문이며, 동명사 주어는 없음. 이 grammar_note는 Sentence 19(index 19)의 \"It simply means you stay awake...\" 구조를 설명하는 것으로 보임(오배치).",
+      "suggestion": "grammar_note를 \"의문문 (feel 형용사보어 + if 조건절)\"로 수정",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일의 라인 566-590(Sentence 18)과 593-613(Sentence 19)을 직접 읽어 확인했습니다. Sentence 18(\"Would the very same story feel quite different if you met it somewhere else?\")의 실제 문법 구조는 의문문 + if 조건절이며, 동명사 주어가 없습니다. 반면 Sentence 19(\"It simply means you stay awake...\")가 정확히 \"mean (that)절\" 구조를 갖고 있습니다. 따라서 Sentence 18에 기재된 grammar note는 명확한 오류(오배치)입니다."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "page3 > sentences[11] (Sentence 12, index 12)",
+      "issue": "구문 역할 오태깅 — '2형식'이지만 C(보어)와 M(수식어)의 구분이 모호하게 표기됨",
+      "evidence": "파일 442-450줄, 문장 본문: \"The medium is never a clear glass window.\" — \"never\"는 M(부사), \"a clear glass window\"는 C(보어)인데, 현재는 \"never a clear glass window.\"를 통합된 M 역할로만 표기함. 2형식(SVC) 문장에서 V=is, C=a clear glass window가 명확해야 함.",
+      "suggestion": "segments를 분리하여 \"never\"(M)와 \"a clear glass window\"(C)를 구별하여 표기",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 라인 434-450에서 sentences[11](index 12)의 segment가 \"never a clear glass window.\"를 단일 M role로 표기하고 있음. 2형식 문장에서 V=is와 C=a clear glass window 사이의 부사 never가 분리되지 않아, 학습자가 2형식(SVC) 구조를 명확히 파악하기 어려움. 올바른 표기는 never(M)와 a clear glass window(C)를 별도 segment로 분리해야 함."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "page3.translation_ko, 문장 [7]-[8]",
+      "issue": "신문의 특성에 대한 영문 원문 누락. 번역 문장 [7]과 [8]이 동일한 내용(매체가 메시지를 빚는 이유)을 반복하면서, 영문 본문의 'A newspaper has plenty of room for detail, so it sounds careful, calm, and complete.'이 번역되지 않음.",
+      "evidence": "영문: 'This happens because every single medium shapes the same plain message in its own particular way. A newspaper has plenty of room for detail, so it sounds careful, calm, and complete.' | 번역: [7]과 [8]에서 신문에 대한 설명문이 없고, 두 문장이 같은 내용을 반복함.",
+      "suggestion": "번역 문장 [8]을 '신문은 세부 사항을 위한 충분한 공간이 있어서, 차분하고 차근차근하고 완벽해 보인다.'와 같이 수정하여 원문의 신문 설명을 포함시켜야 함.",
+      "lens": "translation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 검토 결과, 영문 원본 \"A newspaper has plenty of room for detail, so it sounds careful, calm, and complete.\" 문장이 한국어 번역에 누락되었으며, 동시에 [7]과 [8]이 \"매체가 메시지를 자기 나름의 방식으로 빚는다\"는 동일한 내용을 반복하고 있습니다. 이는 번역 과정에서의 실제 오류입니다."
+      }
+    }
+  ],
+  "counts": {
+    "raw": 4,
+    "verified": 4,
+    "confirmed": 4,
+    "minor": 0
+  }
+}

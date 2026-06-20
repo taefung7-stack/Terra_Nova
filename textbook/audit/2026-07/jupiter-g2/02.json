@@ -1,0 +1,106 @@
+{
+  "grade": "jupiter-g2",
+  "seq": 2,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page3 - sentence 12 - segments role tagging",
+      "issue": "\"each\"의 role 분류 오류",
+      "evidence": "본문: \"A jump in a price chart, a gap in a heartbeat line, or a sudden drop in a signal is each a break you can see.\" → 파일은 \"each\"를 M(수식어)로 태깅했으나, 실제로 \"each\"는 보어(C) 내에서 \"a break\"를 수식하는 한정자이므로 C의 구성 요소이거나, 최소한 C와의 관계가 명확해야 함.",
+      "suggestion": "\"each\"의 role을 C의 구성 요소로 재분류하거나, 주석에서 \"보어 내 한정자\"로 명확히 기술",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일의 sentence 12에서 \"each\"는 M(수식어)으로 태깅되어 있으나, 문법적으로는 보어(C) \"a break you can see\"를 한정하는 한정사(determiner)입니다. 2형식 문장 \"S is C\" 구조에서 \"is each a break\"를 분석하면, \"each a break\"가 하나의 보어 단위를 이루며, \"each\"는 그 내부에서 \"a break\"를 수식하는 요소입니다. 따라서 \"each\"를 순수한 문장 차원의 수식어 M이 아니라, 보어 C의 구성 요소(또는 보어를 한정하는 한정사)로 분류하는 것이 더 정확합니다. 파일의 현재 태깅은 이 관계를 명확히 반영하지 못했습니다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3 - sentence 15 - segments role tagging",
+      "issue": "의문문 도치 구조의 V 분류 불명확",
+      "evidence": "본문: \"Why does such a careful definition matter so much?\" → 파일은 role을 [V(\"Why does\"), S(...), V(\"matter\")]로 태깅했으나, V가 중복되고 \"Why does\"를 하나의 V 단위로 보는 것은 구문론적으로 명확하지 않습니다. 실제로는 \"does matter\"가 V이고 \"Why\"는 의문사 부사입니다.",
+      "suggestion": "의문문의 V를 \"does matter\" 또는 \"matter(조동사: does)\"로 명확히 표기하고, \"Why\"를 별도의 요소(의문사)로 분류",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 내용 검증 완료: page3의 sentence 15에서 의문문 도치 구조를 V(\"Why does\")와 V(\"matter\")로 분리 태깅했으나, 이는 구문론적으로 부정확합니다. 정확한 구조는 \"Why\"(의문사 부사) + \"does matter\"(도치된 동사구)이므로, \"Why does\"를 하나의 V 단위로 분류하는 것은 영어 구문론 기준상 명확하지 않습니다. 지적이 타당합니다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3 - sentence 18 - grammar_note",
+      "issue": "\"could\"의 문법 분류가 불완전",
+      "evidence": "본문: \"Without that promise, even a careful proof built on a smooth curve could quietly fall apart at one single hidden gap.\" → 파일의 주석 \"가정법 could\"는 부정확합니다. 이는 \"가정법\"이라기보다 조건부 구문 내의 \"조건부 가능성\" 또는 \"추측의 조동사\"입니다.",
+      "suggestion": "\"could\"를 \"조건부 가능성을 나타내는 조동사\" 또는 \"if-절 암시적 혼성 조건문\"으로 재설명하거나, 고등 수준의 설명 범위 내에서는 \"조건부\"로 수정",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일의 sentence 18에서 \"could quietly fall apart\"에 붙인 주석 \"가정법 could\"는 문법적으로 불완전합니다. 이 문장의 \"could\"는 순수 가정법이 아니라, \"Without that promise\"라는 조건부 상황 내에서 \"조건부 가능성\"이나 \"추측의 조동사\"로 분류하는 것이 더 정확합니다. 따라서 지적은 실제 결함입니다."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "answers - explanations[2] (Q2: the quiet promise) - evidence",
+      "issue": "정답 설명의 문장 번호가 오류: '9번'이라고 했으나 실제는 문장 16",
+      "evidence": "파일 evidence: \"9번은 연속을 \\\"the quiet promise that lets the rest of calculus work\\\"라 하고...\" → 그러나 본문 문장 9는 \"Second, the limit as you move toward that point exists.\"이고, \"the quiet promise\" 표현은 문장 16에만 존재합니다: \"Because continuity is the quiet promise that lets all the rest of calculus actually work.\"",
+      "suggestion": "evidence를 \"16번은 연속을 \\\"the quiet promise that lets all the rest of calculus actually work\\\"라 하고...\"로 수정",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "File verification confirms the defect. The evidence field in answers.explanations[2] (Q2) states \"9번은 연속을 \\\"the quiet promise that lets the rest of calculus work\\\"라 하고...\" but the phrase \"the quiet promise that lets all the rest of calculus actually work\" is found in sentence 16 (lines 476-497), not sentence 9 (lines 302-319). Sentence 9 actually reads \"Second, the limit as you move toward that point exists.\" This is a clear factual error in sentence attribution."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "answers - explanations[1] (Q1: foundation) - evidence",
+      "issue": "근거 인용이 부정확: \"built a foundation strong enough to support\"라고 했으나 실제 표현은 다름",
+      "evidence": "파일 evidence: \"11번 \\\"built a foundation strong enough to support\\\"\" → 실제 본문 문장 19: \"mathematicians built a base strong enough to hold up the whole study of change.\" (\"base\"이지 \"foundation\"이 아니고, \"support\"가 아니라 \"hold up\")",
+      "suggestion": "evidence를 정확한 인용으로 수정: \"19번 \\\"built a base strong enough to hold up the whole study of change\\\"\"",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 라인 560의 실제 본문은 'a base strong enough to hold up the whole study of change'이나, 라인 626의 evidence 인용은 'built a foundation strong enough to support'로 기재되어 있음. 단어 'foundation'과 'base', 표현 'support'와 'hold up'이 모두 다름. 파일 내용 직접 확인으로 근거 인용 부정확 확정."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "answers - explanations[3] (Q3: summary) - evidence",
+      "issue": "근거 인용의 문장 번호가 부정확: (B) limit의 근거로 \"4번\"을 제시했으나 극한이 언급되지 않음",
+      "evidence": "파일 evidence: \"(B)는 그것을 정밀하게 정의하는 데 쓰는 개념 → 4번 \\\"the notion of a limit\\\"\" → 그러나 본문 문장 4는 \"That easy picture, surprisingly, holds one of the deepest ideas in all of calculus.\"이며, \"limit\"는 언급되지 않습니다. 극한이 명시적으로 언급되는 문장은 6번입니다: \"they lean on a careful tool called the limit.\"",
+      "suggestion": "evidence의 문장 번호를 \"6번\"으로 수정하고, 인용문을 \"called the limit\"로 조정",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 evidence 섹션의 answers.explanations[3] 항목을 읽어보니, (B) limit의 근거로 \"4번 \\\"the notion of a limit\\\"\"을 제시했습니다. 그러나 page3.sentences에서 확인한 결과: 문장 4는 \"That easy picture, surprisingly, holds one of the deepest ideas in all of calculus.\"이며 \"limit\"이 언급되지 않습니다. 반면 문장 6은 \"To make the loose idea exact, they lean on a careful tool called the limit.\"로 명시적으로 \"limit\"을 언급합니다. 따라서 지적된 대로 근거 인용의 문장 번호가 부정확합니다(4번이 아닌 6번이 정확). 이는 실제 오류입니다."
+      }
+    }
+  ],
+  "minors": [],
+  "blockers": [
+    {
+      "severity": "blocker",
+      "location": "answers - explanations[2] (Q2: the quiet promise) - evidence",
+      "issue": "정답 설명의 문장 번호가 오류: '9번'이라고 했으나 실제는 문장 16",
+      "evidence": "파일 evidence: \"9번은 연속을 \\\"the quiet promise that lets the rest of calculus work\\\"라 하고...\" → 그러나 본문 문장 9는 \"Second, the limit as you move toward that point exists.\"이고, \"the quiet promise\" 표현은 문장 16에만 존재합니다: \"Because continuity is the quiet promise that lets all the rest of calculus actually work.\"",
+      "suggestion": "evidence를 \"16번은 연속을 \\\"the quiet promise that lets all the rest of calculus actually work\\\"라 하고...\"로 수정",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "File verification confirms the defect. The evidence field in answers.explanations[2] (Q2) states \"9번은 연속을 \\\"the quiet promise that lets the rest of calculus work\\\"라 하고...\" but the phrase \"the quiet promise that lets all the rest of calculus actually work\" is found in sentence 16 (lines 476-497), not sentence 9 (lines 302-319). Sentence 9 actually reads \"Second, the limit as you move toward that point exists.\" This is a clear factual error in sentence attribution."
+      }
+    }
+  ],
+  "counts": {
+    "raw": 7,
+    "verified": 7,
+    "confirmed": 6,
+    "minor": 0
+  }
+}

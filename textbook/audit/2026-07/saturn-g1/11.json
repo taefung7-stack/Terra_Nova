@@ -1,0 +1,40 @@
+{
+  "grade": "saturn-g1",
+  "seq": 11,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page3 > sentences > index 12 (Sentence 12)",
+      "issue": "\"catching\"의 구문 역할 오태깅 — 동사(V)로 표기하면 문장이 2개 술어처럼 보이나, 실제는 \"acts\"의 의미를 보충하는 분사구문(현재분사)임",
+      "evidence": "본문: \"A rich variety of species acts like a hidden safety net, catching the whole system whenever one part fails.\" — \"catching\"은 \"acts\"에 종속하는 현재분사로, 독립적 동사가 아닙니다. 현재 \"V\" 태깅은 정확하지 않습니다.",
+      "suggestion": "\"catching\"의 role을 \"M\"(분사구문) 또는 명확한 보어 표기로 수정하고, 문장 전체 구조를 \"acts like + 분사구문\"으로 재정리할 것",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일의 page3 > sentences > index 12에서 \"catching\"은 role \"V\"(동사)로 태깅되어 있으나, 문법적으로는 \"acts\"에 종속하는 현재분사구문(participial phrase)입니다. 원문 \"A rich variety of species acts like a hidden safety net, catching the whole system whenever one part fails\"에서 \"acts\"만이 주동사이고, \"catching\"은 \"acts\"의 의미를 보충하는 부사적 분사구문입니다. grammar_note에는 올바르게 \"분사구문\"이라고 표기되었으나, segment의 role 필드는 부정확하게 \"V\"로 표기된 것이 실제 결함입니다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3 > sentences > index 4 (Sentence 4)",
+      "issue": "\"to a visitor on a calm summer day.\"에 대한 note 오기재 — \"look 형용사보어\"라 했으나, 실제로는 간접 대상자를 나타내는 전치사구(부사)임",
+      "evidence": "본문: \"Both look equally green and perfectly healthy to a visitor on a calm summer day.\" — \"to a visitor\"는 \"look~한 것으로 보인다\"의 간접 대상자(수여자)를 나타내는 전치사구이며, \"look\"의 보어는 \"equally green and perfectly healthy\"(형용사구)입니다. 현재 note는 \"look 형용사보어\"라 기재되어 정확하지 않습니다.",
+      "suggestion": "Sentence 4의 \"to a visitor on a calm summer day.\"에 대한 note를 \"전치사구 + 간접 대상자\" 또는 \"~에게 보이다\"의 대상을 나타내는 M(수정자)으로 명확히 수정할 것",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "The note at page3 > sentences > index 4 incorrectly labels \"to a visitor on a calm summer day\" as \"look 형용사보어\" (complement to look). In reality, this prepositional phrase functions as an adverbial modifier indicating the perspective or agent of perception, not as a complement. The actual complement is \"equally green and perfectly healthy\" (the adjective phrase describing how the subject appears). The current note mischaracterizes the grammatical function of this segment by treating it as part of the look-complement structure when it serves a distinct adverbial role expressing from whose perspective the appearance is observed."
+      }
+    }
+  ],
+  "minors": [],
+  "blockers": [],
+  "counts": {
+    "raw": 2,
+    "verified": 2,
+    "confirmed": 2,
+    "minor": 0
+  }
+}

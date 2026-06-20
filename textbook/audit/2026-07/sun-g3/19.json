@@ -1,0 +1,49 @@
+{
+  "grade": "sun-g3",
+  "seq": 19,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page3.sentences[2] (Sentence 3)",
+      "issue": "세미콜론 이후 독립절의 구조 표시 순서 부정확",
+      "evidence": "현재 세그먼트: ... CONJ(instead) S(it) M(endlessly) V(moves) O(the same supply...). 그러나 세미콜론 후 'instead it endlessly moves the same supply...'는 새로운 절이므로, M(instead)이 첫 번째가 아닌 전체 절을 연결하는 표시여야 함. 본문: '... instead it endlessly moves the same supply around in a great loop we call the water cycle.'",
+      "suggestion": "세미콜론 후의 부분을 별도의 절로 명확히 구분하고, 'instead'를 문장 연결 부사(conjunctive adverb)로 표시하거나, 같은 Sentence index 내에서도 두 절을 명확히 분리하여 구조 표시",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "세미콜론 후 독립절에서 \"instead\"는 단순 M(modifier) 역할 표시로는 불충분합니다. 이는 세미콜론으로 연결된 두 독립절 사이의 **논리적 관계(대조/전환)**를 나타내야 하므로, 현재 segments 배열 내 단순 역할 표시보다 명확한 구조 표시가 필요합니다. 예를 들어 \"instead\"를 별도의 절-연결 표시 역할(예: CONJ_transitional 또는 clause_connector)로 구분하거나, grammar_note에서 더 구체하게 \"세미콜론 병렬: 첫 절 vs. 'instead' 도입 전환절\"과 같이 명시해야 명확성이 개선됩니다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.sentences[8] (Sentence 9)",
+      "issue": "'starve a forest of rain and its capacity to store carbon collapses'의 구조 부정확",
+      "evidence": "현재 세그먼트: ... V(starve) O(a forest of rain and its capacity to store carbon collapses). 그러나 'starve' 뒤는 'starve + O + of + N' 구조로, 'a forest'가 O이고 'of rain'이 뒤따름. 'and its capacity to store carbon collapses'는 별도의 절(독립절 또는 results clause)로, O의 일부가 아님. 본문: '; starve a forest of rain and its capacity to store carbon collapses.'",
+      "suggestion": "'starve a forest of rain'을 하나의 동작으로, 'and its capacity to store carbon collapses'를 결과를 나타내는 별도의 절로 명확히 분리. 현재 O 표시를 수정하여 'a forest of rain'(또는 'a forest' as O + 'of rain' as postmodifier)로 재구성",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "The file shows page3.sentences[8] (Sentence 9) with O role containing \"a forest of rain and its capacity to store carbon collapses\" as a single object. However, the actual grammar is: starve (V) + a forest of rain (O + prepositional phrase) + and its capacity to store carbon collapses (independent/results clause). The 'and' clause is not part of the object but a separate predicate showing consequence. The segmentation incorrectly treats the entire phrase including the conjunction as a single object unit, when the conjunction should mark a structural boundary between the imperative command and its consequential statement."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page3.sentences[12] (Sentence 13)",
+      "issue": "부사 'quietly'의 역할 표시 오류",
+      "evidence": "현재 세그먼트의 마지막: O(a region's carbon balance quietly). 'quietly'는 동사 'alter'를 수식하는 부사이므로 O의 일부가 아님. 본문: '... a project that reroutes a river may quietly alter a region's carbon balance.'",
+      "suggestion": "O를 'a region's carbon balance'로 재정의하고, 'quietly'를 M(Modifier, 부사)로 별도 표시",
+      "lens": "explanation"
+    }
+  ],
+  "blockers": [],
+  "counts": {
+    "raw": 3,
+    "verified": 2,
+    "confirmed": 2,
+    "minor": 1
+  }
+}

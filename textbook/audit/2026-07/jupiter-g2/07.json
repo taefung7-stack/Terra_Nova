@@ -1,0 +1,62 @@
+{
+  "grade": "jupiter-g2",
+  "seq": 7,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page3 > sentences[0] (Sentence 1) > segments[5] > note",
+      "issue": "구문분석에서 \"관계부사 speed\" 오류 태깅",
+      "evidence": "원문: \"at about the speed your fingernails grow\" - \"speed\"는 관계부사가 아니라 관계대명사의 선행사. \"your fingernails grow\" 절은 불완전절(목적어 부재)이므로 관계대명사 that/which가 생략된 형태. 따라서 speed는 선행사(antecedent)이지 관계부사(adverbial conjunction)가 아님.",
+      "suggestion": "note를 \"관계대명사(that/which 생략) 선행사\"로 수정하거나, 간단히 \"관계절(목적어 생략)\"로 표시할 것.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "The file at C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-07-J/07.json, line 161, contains the note \"관계부사 speed\". This is grammatically incorrect. \"Speed\" is a noun serving as the antecedent of the relative clause \"your fingernails grow,\" not an adverbial conjunction (관계부사). The noun \"speed\" is modified by the relative clause, and while the relative pronoun/adverb may be omitted in the surface structure, \"speed\" itself is never a 관계부사. The correct analysis should identify \"speed\" as the antecedent (선행사) of the relative clause, not as a 관계부사."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3, 문장 5",
+      "issue": "\"gently churning\"의 번역이 문법적으로 어색함",
+      "evidence": "영문 원문: \"These huge plates float slowly on a hot, gently churning layer of rock beneath them.\" / 현재 번역: \"이 거대한 판들은 그 아래의 뜨겁고 부드럽게 휘도는 암석층 위를 천천히 떠다닌다.\" / \"부드럽게 휘도는\"은 한국어 문법상 어색하며, \"churn\"은 \"휘젓다\" 또는 \"대류하다\"이므로 \"부드럽게 휘젓는\" 또는 \"천천히 대류하는\"이 적절함",
+      "suggestion": "\"부드럽게 휘젓는 암석층\" 또는 \"천천히 대류하는 암석층\"으로 수정",
+      "lens": "translation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "\"부드럽게 휘도는\"은 한국어 문법상 존재하지 않는 오류 표현입니다. \"휘다\"의 현재분사는 \"휘는/휘어지는\"이며, \"휘도는\"은 비표준 어형입니다. 또한 같은 파일의 page4 vocab 섹션에서 churn의 예문을 \"천천히 휘젓는\"으로 처리한 것과 불일치하며, \"gently churning\"의 정확한 의미는 \"부드럽게 휘젓는\" 또는 \"천천히 대류하는\"이어야 합니다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3, 문장 9",
+      "issue": "\"force its way up to build\"의 번역이 부자연스러움",
+      "evidence": "영문 원문: \"molten rock can force its way up to build volcanoes\" / 현재 번역: \"용암이 위로 길을 밀어 올려 화산을 세울 수 있다\" / \"force its way up\"은 \"길을 강제로 열고 올라가다\" 또는 \"강제로 위로 이동하다\"라는 의미이나, \"위로 길을 밀어 올려\"는 의미 전달이 불명확하고 표현이 어색함",
+      "suggestion": "\"용암이 위로의 길을 강제로 뚫고 올라 화산을 만들 수 있다\" 또는 \"용암이 강제로 위로 길을 열어 화산을 만들 수 있다\"로 수정",
+      "lens": "translation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "\"force its way up\"은 확립된 영어 관용구(강제로/억지로 올라가다)인데, 현재 번역 \"위로 길을 밀어 올려\"는 (1) 어순이 부자연스럽고 (2) 의미 전달이 불명확합니다. 한국어로는 \"강제로 올라가다\", \"억지로 올라가다\", \"길을 밀치며 올라가다\" 등이 더 자연스럽고 명확합니다. 파일 내용에서 영문과 현재 한글 번역을 직접 확인했습니다."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page3 > sentences[10] (Sentence 11) > segments 배열",
+      "issue": "부사 역할 표시 구조 모호성",
+      "evidence": "현재: role M으로 \"really just\"를 별도 좌표로 표시 후 C: \"one long chain...\"을 별도로 표시. 그러나 \"really just\"는 보어를 수식하는 부사이므로, C 내의 note나 다른 방식으로 표시하는 것이 더 명확함.",
+      "suggestion": "\"really just\"를 M으로 표시하되, 보어 수식 부사임을 명확히 하거나, 보어(C) 앞의 수식 요소로 통합 표시. 현재 형식도 허용되지만, 한국 고등학교 교재 기준으로 조정 필요 시 검토.",
+      "lens": "explanation"
+    }
+  ],
+  "blockers": [],
+  "counts": {
+    "raw": 4,
+    "verified": 3,
+    "confirmed": 3,
+    "minor": 1
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "grade": "sun-g3",
+  "seq": 13,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page3 > sentences[14] (Sentence 15)",
+      "issue": "There의 구문 역할 오태깅",
+      "evidence": "Text: 'There is rarely a perfect level, only trade-offs to be balanced.' There-be 구문에서 There는 형식주어(dummy subject)이나, 현재 M(Modifier)으로 표기됨.",
+      "suggestion": "segments[0]의 role을 M에서 표준 표기(예: S with note 'dummy subject')로 수정할 것",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "The file clearly shows sentence 15 marks \"There\" with role=\"M\" (Modifier) in the There-be construction \"There is rarely a perfect level, only trade-offs to be balanced.\" This is incorrect. In standard English grammar, \"There\" in There-be constructions is a dummy/formal subject (형식주어), not a modifier. It has no semantic content and exists only to occupy the subject position. The role should not be \"M\" but rather \"S\" (as a formal subject) or noted distinctly as a dummy subject. The claim that \"There는 형식주어(dummy subject)이나, 현재 M(Modifier)으로 표기됨\" is factually accurate—this is a real annotation error in the JSON file."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3 > sentences[14] > grammar_note",
+      "issue": "to be balanced의 역할 오설명",
+      "evidence": "현재 grammar_note: 'There is + 동격(to be p.p.)' 그러나 'to be balanced'는 동격이 아니라 trade-offs를 수식하는 to부정사 후치수식",
+      "suggestion": "grammar_note를 '분사/to부정사 후치수식' 또는 '명사 + to부정사 수식'으로 수정",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "The grammar_note at page3 > sentences[14] (line 539) incorrectly labels \"to be balanced\" as part of a \"There is + 동격(to be p.p.)\" construction. However, \"to be balanced\" does not function as an appositive (which would rename/restate the noun). Instead, it is a postpositive to-infinitive phrase modifying \"trade-offs\" — it specifies what action must be taken regarding the trade-offs. The correct structure is \"There is + noun + 후치수식(postpositive modifier)\" not appositive. The critical distinction: appositives rename (A, B = same thing), while postpositive modifiers qualify/constrain (what property/action applies to the noun)."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko, sentence [15]",
+      "issue": "문장 15의 어휘 선택 부자연스러움",
+      "evidence": "영문: 'There is rarely a perfect level, only trade-offs to be balanced' — 한글 번역: '완벽한 수준은 좀처럼 없고, 오직 균형을 맞춰야 할 맞교환들만 있을 뿐이다' — '맞교환'이라는 표현이 trade-off의 의미를 전달하기에 부자연스러움",
+      "suggestion": "'맞교환'을 '상충' 또는 '절충'으로 수정하면 더 명확함. '완벽한 수준은 좀처럼 없고, 오직 균형을 맞춰야 할 상충들만 있을 뿐이다' 정도",
+      "lens": "translation"
+    }
+  ],
+  "blockers": [],
+  "counts": {
+    "raw": 4,
+    "verified": 3,
+    "confirmed": 2,
+    "minor": 1
+  }
+}

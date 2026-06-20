@@ -1,0 +1,27 @@
+{
+  "grade": "saturn-g1",
+  "seq": 16,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page3/sentences/index 4/segments",
+      "issue": "Sentence 4 문장 구문분석에서 보어(C)가 수식어(M)로 잘못 태깅됨",
+      "evidence": "원문: 'Good persuasive writing is not louder shouting; it is simply better building.' - grammar_note에서 '세미콜론 병렬 (보어 대조)'라고 정확히 명시했으나, segments 분석에서 'not louder shouting'과 'simply better building'의 role을 M(modifier)으로 표기함. 이는 모순. 'is + 명사구'는 2형식이므로 보어(C)로 분석되어야 함.",
+      "suggestion": "Sentence 4의 segments를 다음과 같이 수정: (1) role: 'S', text: 'Good persuasive writing' (2) role: 'V', text: 'is' (3) role: 'C', text: 'not louder shouting;' (4) role: 'CONJ', text: '' (5) role: 'S', text: 'it' (6) role: 'V', text: 'is' (7) role: 'C', text: 'simply better building.' - grammar_note의 '보어 대조' 설명과 일치하도록 수정",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "File directly confirms the error. The grammar_note at line 236 states \"세미콜론 병렬 (보어 대조)\" (semicolon parallel - complement contrast), explicitly documenting that the elements are complements. However, the segments data tags both \"not louder shouting\" and \"simply better building\" with role=\"M\" (modifier) at lines 220-222 and 232-234 respectively, when they should be role=\"C\" (complement). This is a clear internal contradiction: the grammar analysis correctly identifies the construction as complement contrast, but the structural role assignments are wrong. In the pattern \"S + is + complement\", both post-copular elements must be complements (보어), not modifiers."
+      }
+    }
+  ],
+  "minors": [],
+  "blockers": [],
+  "counts": {
+    "raw": 1,
+    "verified": 1,
+    "confirmed": 1,
+    "minor": 0
+  }
+}

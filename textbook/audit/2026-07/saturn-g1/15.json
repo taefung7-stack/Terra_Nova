@@ -1,0 +1,123 @@
+{
+  "grade": "saturn-g1",
+  "seq": 15,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page1.body, first paragraph, third sentence",
+      "issue": "Vocabulary mismatch: 'nice' is used in the passage, but page4 vocabulary section uses 'tempting' in the identical context",
+      "evidence": "Body text: 'Each choice feels nice in its own way, yet none of them is perfect by itself.' vs. Page4 vocab example: 'Each choice feels tempting in its own way.'",
+      "suggestion": "Replace 'nice' with 'tempting' to align with the textbook's vocabulary learning objective. 'Tempting' is also semantically more appropriate (emphasizes the allure yet imperfection of each option).",
+      "lens": "language",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "File evidence confirms: page1.body contains 'Each choice feels nice in its own way' (line 26), while page4.vocab[5] lists 'tempting' with example 'Each choice feels tempting in its own way' (line 784). This is a word choice inconsistency within the same passage between body text and vocabulary section."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3, sentences[0] (Sentence 1)",
+      "issue": "\"Suppose\"의 구문 역할 오태깅",
+      "evidence": "segments[0]: {\"role\": \"M\", \"text\": \"Suppose\"} — 그러나 본문 \"Suppose you receive some money\"에서 Suppose는 명령형 동사로 문장의 주동사 역할을 함. M이 아니라 V여야 함.",
+      "suggestion": "Suppose의 role을 \"V\"로 수정. 명령형 구조: Suppose + S + V + O",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일의 JSON에서 segments[0]이 \"M\"으로 태깅되어 있으나, 같은 문장의 grammar_note에서 스스로 \"명령형 Suppose\"라고 명시함. \"Suppose\"는 문장의 주동사(V) 역할을 하는 명령형 동사이므로 M(수식어)이 아니라 V로 태깅되어야 함. 파일 내부의 일관성 오류 확인됨."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3, sentences[0] (Sentence 1) grammar_note",
+      "issue": "grammar_note의 구조 설명 불명확",
+      "evidence": "현재 note: \"명령형 Suppose + and (want to V)\" — \"and\" 뒤의 병렬 구조 설명이 불완전. \"Suppose you receive... and (you) want...\" 형태의 S 생략이 표시되지 않음.",
+      "suggestion": "grammar_note를 \"Suppose (imperative) + S + V병렬 (and want to V)\" 또는 더 명확하게 병렬 구조를 명시",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 검증 결과, page3 sentences[0]의 grammar_note \"명령형 Suppose + and (want to V)\"는 \"and\" 뒤의 주어 생략 현상(\"you want\"에서 \"you\" 생략)을 명시적으로 표현하지 않아 불완전합니다. 병렬 구조에서 subject ellipsis가 일반적이며, 이를 명확히 표시해야 학습자가 구조를 정확히 이해할 수 있습니다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3, sentences[13] (Sentence 14)",
+      "issue": "\"to grow\"의 구문 역할 오태깅",
+      "evidence": "segments[5]: {\"role\": \"M\", \"text\": \"to grow slowly for the far future.\"} — 그러나 \"is left to grow\"에서 \"to grow\"는 결과/상태를 나타내는 부정사로, C(보어) 또는 목적어의 역할. M(부사구)이 아님.",
+      "suggestion": "role을 \"C\" 또는 \"O\" 중 적절한 것으로 수정. \"to grow\"는 수동태 보문의 일부",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "\"is left to grow slowly for the far future\"에서 \"to grow ~\" 부정사 구는 \"is left\"의 목적 보어(C, Complement)로 기능합니다. \"leave O to V\" 수동태 구문에서 부정사는 결과/상태를 나타내는 보어이며, 단순 부사구(M)가 아닙니다. \"slowly\"와 \"for the far future\"는 부정사를 수식하는 부사/전치사구이지만, \"to grow ~\" 전체는 \"is left\"와의 주요 문법 관계에서 C 역할을 하므로, 현재의 M 태깅은 오류입니다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3, sentences[14] (Sentence 15) segments[1]",
+      "issue": "\"not the same for everyone;\"의 역할 오분류",
+      "evidence": "현재 분석: segments[1]: {\"role\": \"M\", \"text\": \"not the same for everyone;\"} — 그러나 이는 V.C 구조의 완전한 술어로, \"is\"의 보어(C)이지 M이 아님. 세미콜론 이전의 완전한 절.",
+      "suggestion": "role을 \"C\"로 수정. 세미콜론은 절을 분리하는 것이지, C를 M으로 재분류하는 이유가 아님",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일의 Sentence 15, segments[1] (\"not the same for everyone;\")은 현재 M(Modifier)로 분류되어 있으나, 동사 \"is\" 뒤에 오는 형용사로서 주격보어(C)의 역할을 수행합니다. \"The right mix is [not the same for everyone]\"은 2형식 문장의 전형적인 S+V+C 구조이며, 세미콜론 이전의 완전한 독립절입니다. 따라서 이는 실제 분류 오류입니다."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "page3, answers.explanations[2] (Q2 - 빈칸 추론)",
+      "issue": "본문 인용 오류 — \"travel together\"가 본문에 없음",
+      "evidence": "explanations[2].evidence: \"4번은 세 목표가 \\\"almost never travel together\\\"라 하고\" — 그러나 실제 본문 Sentence 4는 \"almost never come together\"라고 명시. \"travel\"이라는 단어는 본문 전체(page1, page3)에 없음.",
+      "suggestion": "증거 문구를 정정: \"4번은 세 목표가 \\\"almost never come together\\\"라 하고\"",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "File verification confirms the blocker is a real defect. The explanation's evidence text (page 3, answers.explanations[2], line 633) incorrectly quotes \"almost never travel together\" when the actual passage (page3, sentences[3], line 228) states \"almost never come together.\" The word \"travel\" does not exist in the passage at all — this is a direct misquotation in the explanations evidence section."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page3, sentences[3] (Sentence 4)",
+      "issue": "관계절의 역할 분류가 독립적 segment으로 과도하게 분리됨",
+      "evidence": "segments[3]: {\"role\": \"M\", \"text\": \"that almost never come together.\", \"note\": \"관계절\"} — 이 관계절은 \"three simple goals\"를 수식하는 목적격 관계절로서 C의 일부이며, 독립적 M이 아님.",
+      "suggestion": "이 관계절을 segments[2] (C)의 text 내에 통합하거나, 별도 segment일 경우 role을 수정하여 구조를 명확히 함",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko, 문장 [9]",
+      "issue": "\"drop hard and fast\"의 번역이 \"세고 빠르게\" → 부자연스러운 표현",
+      "evidence": "영문: \"they can also drop hard and fast.\" / 번역: \"세고 빠르게 떨어질 수도 있다.\" — \"hard\"의 번역으로 \"세고\"는 자연스럽지 못함. \"크게\" 또는 \"심하게\"가 적절.",
+      "suggestion": "\"주식은 많이 벌 수도 있지만, 크게 빠르게 떨어질 수도 있다.\" 또는 \"심하게 빠르게 떨어질 수도 있다.\"로 수정 권장.",
+      "lens": "translation"
+    }
+  ],
+  "blockers": [
+    {
+      "severity": "blocker",
+      "location": "page3, answers.explanations[2] (Q2 - 빈칸 추론)",
+      "issue": "본문 인용 오류 — \"travel together\"가 본문에 없음",
+      "evidence": "explanations[2].evidence: \"4번은 세 목표가 \\\"almost never travel together\\\"라 하고\" — 그러나 실제 본문 Sentence 4는 \"almost never come together\"라고 명시. \"travel\"이라는 단어는 본문 전체(page1, page3)에 없음.",
+      "suggestion": "증거 문구를 정정: \"4번은 세 목표가 \\\"almost never come together\\\"라 하고\"",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "File verification confirms the blocker is a real defect. The explanation's evidence text (page 3, answers.explanations[2], line 633) incorrectly quotes \"almost never travel together\" when the actual passage (page3, sentences[3], line 228) states \"almost never come together.\" The word \"travel\" does not exist in the passage at all — this is a direct misquotation in the explanations evidence section."
+      }
+    }
+  ],
+  "counts": {
+    "raw": 8,
+    "verified": 6,
+    "confirmed": 6,
+    "minor": 2
+  }
+}

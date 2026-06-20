@@ -1,0 +1,105 @@
+{
+  "grade": "jupiter-g2",
+  "seq": 17,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page1.body, Sentence 15 (line: 'Reading the sign of the derivative therefore lets us follow the function rise and fall without plotting every single point.')",
+      "issue": "사역동사 구조의 모호성: 'let us follow the function rise and fall'에서 'follow'는 타동사인데 '목적어 + 원형동사' 구조가 고2 학생에게 명확하지 않을 수 있음",
+      "evidence": "\"Reading the sign of the derivative therefore lets us follow the function rise and fall without plotting every single point.\" — 'follow'의 목적어가 'the function'이고 뒤의 'rise and fall'이 보어 역할을 하는 구조로, 더 명확하게는 'follow the function as it rises and falls' 또는 'follow [the function rise and fall]'이 필요",
+      "suggestion": "'lets us follow the function as it rises and falls' 또는 'lets us follow the function's rise and fall'로 수정하여 고2 수준의 명확성 강화",
+      "lens": "language",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 content/passages/2026-07-J/17.json의 Sentence 15에서 확인된 실제 결함. 'let us follow the function rise and fall' 구조에서 follow의 목적어(the function)와 보어(rise and fall)의 관계가 고2 학생 수준에서 명확하지 않음. page3의 grammar_note에서도 '사역 let O 원형'으로만 표시되어 보어 역할 설명 부재. 더 명확한 표현으로 '~as it rises and falls' 또는 구조 명시 필요."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3, sentence 11, segments (role C)",
+      "issue": "동격 구조 표현 혼동",
+      "evidence": "본문: 'So the derivative is the slope of the tangent, a number that tells us the curve's direction at that precise spot.' — 'a number that tells us...'는 'the slope of the tangent'의 동격이지만, page3에서는 이 전체를 단일 C(보어)로 태깅하고 있습니다. 동격은 맞으나 구조 표현이 혼동을 줍니다.",
+      "suggestion": "구문분석에서 보어(C)와 동격 표현을 명확히 분리하거나, 동격 부분을 별도 segment로 구분하여 'C: the slope of the tangent / Appositive: a number that...' 형태로 표현할 것",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "The appositive structure exists in sentence 11: \"the slope of the tangent, a number that tells us the curve's direction\" shows clear apposition (one NP renames another). While the current tagging combines both elements into a single C segment and acknowledges the relationship via grammar_note (\"동격\"), the segment boundary does obscure the distinct appositive pairing. This creates potential confusion for learners who need to see where the appositive boundary lies. The concern is valid: appositives could be tagged more clearly with separate segments to show the relationship structure explicitly, rather than combining them into one undifferentiated complement segment. This is a genuine structural representation issue, not a factual error about grammar—but it does cause the kind of confusion the reviewer identified."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3, sentence 14, segments (role V for 'flattening')",
+      "issue": "분사구문의 오태깅",
+      "evidence": "본문: 'And where it briefly equals zero, the curve has paused, flattening at a peak or a valley.' — 'flattening'은 분사구문으로, 'has paused'의 결과·동시 상황을 나타냅니다. page3에서는 이를 V(동사)로 태깅했으나, 분사는 동사 역할이 아니라 수식어(M) 역할입니다.",
+      "suggestion": "'flattening'의 role을 'V'에서 'M'으로 수정하고, note를 '분사구문(현재분사로 시작)'으로 명확히 할 것",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 검증 결과, page3 sentence 14에서 'flattening'이 role: \"V\"(동사)로 태깅되어 있습니다. 그러나 이 단어는 'has paused'의 결과 상황을 설명하는 현재분사로, 분사구문입니다. 분사구문은 독립적인 술어가 아니라 명사나 동사를 수식하는 역할을 하므로, M(수식어)으로 태깅되어야 합니다. 현재 V로 표시된 것은 태깅 오류입니다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3, sentence 19, structure",
+      "issue": "명령문과 주절의 역할 구분 모호",
+      "evidence": "본문: 'In each case the same simple step is repeated: set the rate of change to zero and let the equation reveal where the best point hides.' — 'set'과 'let'은 명령문이지만, 콜론 뒤에서 'is repeated'의 내용을 설명하는 부분입니다. page3에서는 'is repeated', 'set', 'let'을 모두 동등한 V(동사)로 처리하여, 이것이 세 개의 독립된 절처럼 보입니다.",
+      "suggestion": "콜론 뒤 명령문들이 'the same simple step is repeated'의 설명 내용임을 명확히 하도록, 구조를 'is repeated: [명령문 내용]' 형태로 재구성하거나 주석을 명확히 할 것",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 분석에서 sentence 19의 segments는 'is repeated'(주절 수동태), 'set'(명령문), 'let'(사역 명령문)을 모두 role=\"V\"로 동등하게 표기했습니다. grammar_note에는 \"수동태 + 명령문\"으로 구분이 있지만, segments 수준에서는 세 동사가 동일 계층으로 표시되어 구조적 계층 구분이 불명확합니다. 이는 콜론 뒤의 명령문들이 주절의 설명/예시임을 segments 구조로 명확히 드러내지 못한 것으로, 실제 표기상 모호성입니다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "answers.explanations[0], Q0 (요지)",
+      "issue": "문장 번호 오류 및 근거 부정확",
+      "evidence": "해설: '부호로 증가·감소를(11번), 0이 되는 점으로 극값과 최대·최소를 찾는다(11·13번)' — 문장 11은 '도함수 부호의 의미'만 다룹니다. '최댓값·최솟값 찾기'는 문장 17에서만 명시됩니다: 'To find the largest or smallest value a quantity can reach, we hunt for the places where its rate of change falls to zero...' 문장 13은 음수 도함수만 설명하고, 극값 찾기는 포함하지 않습니다.",
+      "suggestion": "해설을 '부호로 증가·감소를(12~13번), 0이 되는 점으로 극값을 찾고(14번), 최대·최소를 찾는다(17번)'로 수정하여 정확한 문장 번호를 참조할 것",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일의 sentences 배열에서 각 문장을 직접 확인했습니다. 검수 지적이 명확히 근거 있습니다:\n\n1. \"부호로 증가·감소를(11번)\" — 문장 11은 \"도함수는 접선의 기울기, 즉 그 정확한 지점에서 곡선의 방향을 우리에게 알려 주는 수다\"로 정의만 제시하며, 증가·감소는 문장 12·13에서 설명됩니다.\n\n2. \"0이 되는 점으로 극값과 최대·최소를 찾는다(11·13번)\" — 더 심각한 오류입니다:\n   - 문장 11: 도함수의 정의 (극값 찾기 없음)\n   - 문장 13: \"음수일 때 함수는 내려간다\" (극값 찾기 없음)\n   - 극값(봉우리·골짜기) 표현: 문장 14\n   - 최댓값·최솟값 찾기의 명시적 설명: 문장 17 \"어떤 양이 도달할 수 있는 가장 크거나 작은 값을 찾으려면...\"\n\n해설의 문장 참조 번호(11·13번)는 실제 내용을 반영하지 않으며, 올바른 참조는 (14·17번) 또는 최소 (17번)이어야 합니다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "answers.explanations[2], Q2 (함의 추론)",
+      "issue": "인용 문장 번호 오류",
+      "evidence": "해설: '11번은 \"where it briefly equals zero the curve has paused...\"라고 한다.' — 이 인용문은 실제로 문장 14에 있습니다. 문장 11은 '도함수의 기울기 의미'이고, 문장 12~13은 부호의 의미, 문장 14가 'where it briefly equals zero'를 포함합니다.",
+      "suggestion": "해설의 문장 번호를 '11번'에서 '14번'으로 수정할 것",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일의 page3.sentences 섹션에서 \"where it briefly equals zero the curve has paused, flattening at a peak or a valley\"는 sentence index 14에 정확히 위치합니다 (lines 421-453). 하지만 answers.explanations[2]의 evidence 필드에서는 이 인용문을 \"11번은...라고 한다\"고 잘못 표기했습니다. 문장 11은 실제로 \"도함수는 접선의 기울기\"에 관한 내용이므로, 인용 문장 번호 오류가 명백합니다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "answers.explanations[3], Q3 (요약문)",
+      "issue": "인용 문장 번호 부정확",
+      "evidence": "해설: '(B)는 곡선이 평평해지는 변화율 값 → 11·13번에서 rate가 falls to zero' — 'rate falls to zero'는 문장 14('where it briefly equals zero')와 문장 17('where its rate of change falls to zero')에 명시됩니다. 문장 11과 13은 부호의 의미만 다루고 'rate falls to zero'를 직접 언급하지 않습니다.",
+      "suggestion": "해설 근거를 '14번 또는 17번에서 rate가 zero'로 수정할 것",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "JSON 파일 answers.explanations[3].evidence에서 \"(B)는 곡선이 평평해지는 변화율 값 → 11·13번에서 rate가 falls to zero\"라고 명시했지만, 파일의 sentences 배열을 확인하면 \"rate falls to zero\"는 문장 17(lines 507-541)에만 직접 명시되어 있습니다. 문장 11(lines 360-380)과 13(lines 403-419)에는 이 표현이 없고, 부호의 의미만 다룹니다. 문장 14(lines 422-452)에는 \"where it briefly equals zero\"로 표현되어 있으므로, \"11·13번\"이라는 인용이 부정확합니다. 정확한 출처는 문장 17이 주요이고, 문장 14는 보조적입니다."
+      }
+    }
+  ],
+  "minors": [],
+  "blockers": [],
+  "counts": {
+    "raw": 7,
+    "verified": 7,
+    "confirmed": 7,
+    "minor": 0
+  }
+}

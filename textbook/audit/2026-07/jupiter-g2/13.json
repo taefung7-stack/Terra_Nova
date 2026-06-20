@@ -1,0 +1,57 @@
+{
+  "grade": "jupiter-g2",
+  "seq": 13,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page3 > sentences > index 2",
+      "issue": "동사 병렬 구조에서 'and'를 별도의 CONJ segment로 표시",
+      "evidence": "Sentence 2의 segments에서 'and'가 독립적인 역할 항목으로 표시되어 있으나, 'call any act a crime and punish anyone'은 단일 S-V-O 구조의 동사 병렬이다. 고등학교 구문분석에서는 'and'를 주요 구문 역할로 표시하지 않으며, 동사 병렬은 하나의 술어 구조로 처리한다.",
+      "suggestion": "segments를 재구성하여 V 역할에 'could simply call...and punish'를 통합 표기하거나, 'and'를 그래마 노트의 부대 설명('동사 병렬')으로 옮기고 segments에서는 제거할 것",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "File verification confirms: Sentence 2 displays 'and' as an independent CONJ segment (line 162-163) between two verb phrases. The underlying sentence structure \"could simply call any act a crime and punish anyone at will\" is a single S-V-O construction with coordinate verbs. In standard high school Korean grammar analysis (고등학교 구문분석), conjunctions joining parallel verbs should not receive independent structural role labels. The 'and' is a coordinating element within the predicate, not a separate grammatical role deserving its own segment alongside S/V/O/M. This violates the conventional high school syntax annotation standard where parallel verbs are treated as a unified predicate structure."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3 > sentences > index 9",
+      "issue": "수동태 술어를 두 개의 V로 분리하여 구조 오인 유발",
+      "evidence": "Sentence 9에서 'are'(index: 320)과 'built'(index: 329)이 별도의 V segments로 표시되어 있다. 그러나 원문 'the three branches are also built to watch and limit one another'에서 'are built'는 단일의 수동태 술어이며, 'also'는 술어를 수식하는 부사다. 현재 구조는 '보조동사 are' + '본동사 built'로 오인하게 한다.",
+      "suggestion": "V 역할을 'are also built'로 통합하거나, 'are built'를 하나의 V로 표시하고 'also'를 별도의 M segment로 분리하여 수동태 구조를 명확히 할 것",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일의 Sentence 9 구조에서 'are'(index 320)과 'built'(index 329)이 별도의 V segments로 표시되어 있으며, 'also'가 그 사이에 M(modifier)으로 삽입되어 있습니다. 원문 'are also built'는 문법적으로 하나의 수동태 술어(be + past participle)이나, 현재 구조는 이를 두 개의 동사로 분리하여 학생들이 보조동사와 본동사로 오인할 가능성이 높습니다. 'also'는 전체 술어를 수식하는 부사로 분리되어 있어, 구조적 명확성이 부족합니다."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page3 > sentences > index 17",
+      "issue": "'So'의 역할 분류 부정확 - CONJ로 표시되나 문장 내 논리 연결자",
+      "evidence": "Sentence 17에서 'So'가 CONJ(conjunction/종속접속사)로 분류되어 있으나, 원문 'So instead of trusting rulers to be saints, it arranges institutions...'에서 'So'는 이전 문장과의 인과 관계를 나타내는 담화 표지(discourse marker)이거나 부사다. 전형적인 종속접속사가 아니다.",
+      "suggestion": "'So'를 M(담화 표지/부사)으로 재분류하거나, CONJ 표시를 유지하되 그래마 노트에서 '담화 표지'로 명기할 것",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "answers > explanations > q_index 0 > rationales[2]",
+      "issue": "선택지 3 반박 근거 표현이 모호함",
+      "evidence": "rationales[2]의 기술: '6번 \"서로 지켜보도록 만들어졌다\"와 모순된다. 서로 제한해야 한다.' 그러나 Sentence 9는 'are also built to watch AND limit one another'이므로 '제한'이 이미 본문에 명시되어 있다. 실제 선택지 3의 모순점은 'should NEVER be allowed to limit'(절대 제한하면 안 된다)라는 표현인데, 이를 명확히 지적하지 않았다.",
+      "suggestion": "rationale을 수정하여 '선택지는 branches가 서로를 제한하면 안 된다(should never be allowed)고 하지만, 본문은 제한하도록 구조화되어 있다(are built to limit)고 명시한다'고 명확히 기술할 것",
+      "lens": "explanation"
+    }
+  ],
+  "blockers": [],
+  "counts": {
+    "raw": 4,
+    "verified": 2,
+    "confirmed": 2,
+    "minor": 2
+  }
+}

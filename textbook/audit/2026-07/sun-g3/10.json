@@ -1,0 +1,36 @@
+{
+  "grade": "sun-g3",
+  "seq": 10,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page3 > sentences[2] (index 3) > segments[0]",
+      "issue": "구문 역할 태깅 오류: 'Hidden inside this ordinary scene'이 M(수식어)로 표시되었으나, 도치 구문에서 보어(C)로 기능함",
+      "evidence": "본문: 'Hidden inside this ordinary scene is a transfer of tiny charged particles'. 도치 구문의 원래 형태는 'A transfer of tiny charged particles is hidden inside this ordinary scene'이므로, 'Hidden inside this ordinary scene'은 과거분사 보어로 기능합니다. 파일의 grammar_note에도 '보어 도치(Hidden ~ is S)'라고 명시되어 있음.",
+      "suggestion": "segments[0]의 role을 'M'에서 'C'로 수정",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일의 page3 sentences[2]에서 'Hidden inside this ordinary scene'이 M(수식어)로 태깅되었으나, grammar_note에 \"보어 도치(Hidden ~ is S)\"라고 명시하고, 본문 구문 분석상 이 구문은 원래 형태 'A transfer is hidden inside this ordinary scene'의 도치 형태이므로, 'Hidden inside this ordinary scene'은 과거분사 보어로 기능하여 C(보어)로 태깅되어야 합니다. 파일의 grammar_note 메타데이터가 이를 이미 인정하면서도 segment role이 모순적으로 M으로 설정되어 있는 명백한 태깅 오류입니다."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page3 > sentences[0] (index 1) > grammar_note",
+      "issue": "문법 형식 표기 부정확: '명령문 + and (1형식)' → Drop(3형식)과 begins(1형식)가 혼합되어 있음",
+      "evidence": "본문: 'Drop a strip of zinc into a solution of copper ions and a quiet transformation begins.' Drop은 O(a strip of zinc)와 M(into a solution of copper ions)을 가지므로 3형식이고, begins는 S만 가지므로 1형식입니다.",
+      "suggestion": "grammar_note를 '명령문(3형식) + and 평서문(1형식)' 또는 '명령문 + and(병렬)'으로 수정하여 명확히 함",
+      "lens": "explanation"
+    }
+  ],
+  "blockers": [],
+  "counts": {
+    "raw": 2,
+    "verified": 1,
+    "confirmed": 1,
+    "minor": 1
+  }
+}

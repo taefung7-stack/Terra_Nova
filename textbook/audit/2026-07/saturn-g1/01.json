@@ -1,0 +1,40 @@
+{
+  "grade": "saturn-g1",
+  "seq": 1,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page3.sentences[11] (Sentence 12, index 12), lines 498-506",
+      "issue": "Incorrect O (Object) role tagging — combines verb object with coordinated clause",
+      "evidence": "Segments show O: 'the missing energy from around it and that area gets colder' as single object. Actual text: 'the reaction takes the missing energy from around it and that area gets colder.' The phrase 'and that area gets colder' is a coordinated independent clause, not part of the object.",
+      "suggestion": "Separate into: O: 'the missing energy from around it' / CONJ: 'and' / S: 'that area' / V: 'gets' / C: 'colder'. Grammar note should be '비교급 + so 결과 (take A from B + 병렬 구문)' to reflect coordinate structure.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "The grammatical annotation in sentence 12 (index 12) incorrectly marks the Object role as 'the missing energy from around it and that area gets colder.' This incorrectly combines the direct object of the verb 'takes' with a coordinated independent clause. The phrase 'and that area gets colder' is a separate coordinated clause (S-V-C), not part of the object. While the grammar_note acknowledges \"병렬\" (parallel structure), the segment boundaries are wrong—'and that area gets colder' should be tagged as separate segments (CONJ + S + V + C), not bundled into the O role. Verified in file: C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-07/01.json, lines 469-507."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.sentences[13] (Sentence 14, index 14), line 543",
+      "issue": "Incorrect role classification — marks complement as modifier",
+      "evidence": "Segments show M (Modifier): 'not just for a science test;' with note '부정 보어' (negative complement). But 'not just for a science test' is the predicate complement in 'This simple rule is not just for a science test.' Structure: S(This simple rule) + V(is) + C(not just for a science test), per 2형식.",
+      "suggestion": "Change role from 'M' to 'C' to match 2형식 (linking verb) structure. Grammar note is correct conceptually but role tag contradicts it.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "File shows sentence 14 segment marked as role \"M\" (Modifier) with note \"부정 보어\" (negative complement), but the actual grammatical element \"not just for a science test\" is a predicate complement following the linking verb \"is\". Per 2-sentence structure rules (S + V + C), this should be classified as role \"C\" (Complement), not \"M\" (Modifier). The note text contradicts the role assignment."
+      }
+    }
+  ],
+  "minors": [],
+  "blockers": [],
+  "counts": {
+    "raw": 2,
+    "verified": 2,
+    "confirmed": 2,
+    "minor": 0
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "grade": "saturn-g1",
+  "seq": 6,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page3 > sentences[14] (Sentence 15) > grammar_note",
+      "issue": "시제 불일치 구조에 대한 설명 누락",
+      "evidence": "Sentence 15: \"A holiday that gains a new song has not lost its meaning, but found a fresh way to share it.\" — \"has not lost\"(현재완료 부정)과 \"found\"(과거형)의 병렬 구조는 명시적 설명이 필요합니다. grammar_note에서 \"관계절 + not A but B (현재완료)\"라고만 했으나, 실제로는 'has not lost ... but [has] found' 형태로 앞의 auxiliary가 생략된 것을 명시해야 합니다.",
+      "suggestion": "grammar_note를 '관계절 + not A but B (현재완료, auxiliary 생략)'으로 수정하거나, segments에서 \"found\"의 역할을 더 명확히 '(과거분사 또는 생략된 has와 함께의 동사)'로 명시하기",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일에서 Sentence 15의 grammar_note가 \"관계절 + not A but B (현재완료)\"라고만 기술되어 있으나, 실제 문장 구조는 \"has not lost ... but [has] found\"로 두 번째 auxiliary \"has\"가 생략되었습니다. 현재 설명에는 이 핵심적인 생략 구조에 대한 명시적 언급이 없어 불완전합니다. 외형상 과거형으로 보이는 \"found\"가 실제로는 현재완료 구조의 일부임을 명확히 해야 합니다."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page3 > sentences[17] (Sentence 18) > segments",
+      "issue": "수식어 역할 태깅의 모호성",
+      "evidence": "Sentence 18: \"The healthiest cultures are not the ones that stay frozen in place.\" — C(보어) 역할로 태그된 \"not the ones that stay frozen in place\"에서 'not'이 단순 부사로만 처리되었으나, 실제로는 2형식 보어 전체를 부정하는 구조(negation of predicate complement)입니다. segments에서 'not'을 M(수식어)으로 태깅했는데, 보어의 일부이므로 명확성이 떨어집니다.",
+      "suggestion": "주석을 더 명확히 하거나, \"not the ones that stay frozen in place\"를 하나의 C(보어) 단위로 통합 표시하기",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3 > sentences[18] (Sentence 19) > segments",
+      "issue": "분사 역할의 모호한 분류",
+      "evidence": "Sentence 19에서 \"flowing\"과 \"staying\"이 모두 분사로 처리되었으나, segments에서 \"flowing\"은 V(동사)로, \"staying true to one steady ____\"는 M(수식어)로 태깅되어 일관성이 없습니다. 둘 다 분사구문이므로 동등하게 취급되어야 합니다.",
+      "suggestion": "\"flowing bravely forward while staying true to one steady ____\"를 하나의 분사구문 단위로 명확히 처리하고, 두 분사의 역할을 동등하게 표시하기",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko, sentence [14]",
+      "issue": "강조 표현 'brand-new'의 약한 번역",
+      "evidence": "영문: 'answering brand-new needs' / 한글: '새로운 필요에 답하고 있다' — 'brand-new'는 단순 '새로운'보다 '완전히 새로운, 최신의'라는 강한 강조를 담음",
+      "suggestion": "'새로운 필요'를 '새로 생긴 필요' 또는 '완전히 새로운 필요'로 수정하여 원문의 강조 의도를 더 충실히 반영",
+      "lens": "translation"
+    }
+  ],
+  "blockers": [],
+  "counts": {
+    "raw": 5,
+    "verified": 2,
+    "confirmed": 1,
+    "minor": 3
+  }
+}

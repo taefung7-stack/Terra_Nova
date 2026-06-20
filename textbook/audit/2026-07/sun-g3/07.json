@@ -1,0 +1,60 @@
+{
+  "grade": "sun-g3",
+  "seq": 7,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page3 > sentences[2] (Sentence 3)",
+      "issue": "콜론 구조의 불완전한 분석 - \"a clear meaning: the source is moving away\"의 관계 설명 미흡",
+      "evidence": "본문: \"This stretching is called redshift, and for light it carries a clear meaning: the source is moving away.\" / 현재 grammar_note: \"수동태(call) + and (콜론 동격)\" — 콜론이 동격이긴 하나, \"a clear meaning\"의 내용을 설명하는 구조로서 더 명확하게 \"C: the source is moving away\"의 역할을 명시해야 함",
+      "suggestion": "grammar_note를 \"수동태(is called) + 병렬 절(and) + 콜론(동격 설명)\"으로 수정하거나, 콜론 이후 절을 C(complement of 'carries')로 재분석",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 근거 명확함. 현재 문법 노트는 \"콜론 동격\"이라고만 표기했으나, 이것이 단순한 동격이 아니라 \"a clear meaning\"이라는 명사구의 내용을 구체적으로 설명하는 '의미 정의적 동격(meaning-specifying apposition)'임을 명시하지 않았다. 본문 구조 \"carries a clear meaning: the source is moving away\"에서 콜론 뒤의 절이 'meaning'의 정체를 밝히는 핵심 구조인데, 이 관계가 grammar_note에 충분히 드러나지 않은 것이 분석 미흡이다."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "answers > explanations[0] > rationales[0]",
+      "issue": "근거 문장 번호 오인용",
+      "evidence": "rationale[0]: \"8·10번 '특별한 중심이 없다(건포도 비유)'와 모순된다.\" — 그러나 Sentence 8과 10은 \"특별한 중심이 없다\"를 직접 언급하지 않음. 올바른 근거는 Sentence 12-13에 있음 (\"We are simply one raisin... would be just as wrong to call itself the center\")",
+      "suggestion": "rationale[0]을 \"12·13번 '특별한 중심이 없다'와 모순된다\"로 수정",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko, 문장 [1]",
+      "issue": "\"deeply puzzling\"의 번역이 문법적으로 어색함",
+      "evidence": "원문: 'they found something deeply puzzling' / 번역: '깊이 어리둥절하게 하는 무언가를 발견했다' → 'deeply puzzling'은 형용사구로 \"깊이 수수께끼 같은\" 또는 \"대단히 이상한\" 의미이나, \"깊이 어리둥절하게 하는\"은 동사적 표현으로 어색함",
+      "suggestion": "\"깊이 수수께끼 같은\" 또는 \"매우 이상한\" 정도로 수정",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko, 문장 [3]",
+      "issue": "\"for light it carries\"의 번역이 부자연스러움",
+      "evidence": "원문: 'for light it carries a clear meaning' / 번역: '빛에게 그것은 분명한 의미를 지닌다' → \"빛에게\"라는 표현은 의인화로 어색",
+      "suggestion": "\"빛의 경우 그것은 분명한 의미를 가진다\" 또는 \"빛에 대해서는 그것이 분명한 의미를 가진다\" 정도로 수정",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko, 문장 [16]",
+      "issue": "\"a curiosity of color\"의 번역이 부자연스러움",
+      "evidence": "원문: 'is far more than a curiosity of color' / 번역: '색의 호기심거리를 훨씬 넘어서는 것' → \"색의 호기심거리\"는 한국어로 부자연스러운 표현",
+      "suggestion": "\"색깔에 대한 단순한 호기심\" 또는 \"색깔의 신기함\"이나 \"색깔 따위\" 정도로 수정",
+      "lens": "translation"
+    }
+  ],
+  "blockers": [],
+  "counts": {
+    "raw": 5,
+    "verified": 1,
+    "confirmed": 1,
+    "minor": 4
+  }
+}

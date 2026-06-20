@@ -1,0 +1,73 @@
+{
+  "grade": "jupiter-g2",
+  "seq": 19,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page3 > sentences[4] (Sentence 5, lines 232-266)",
+      "issue": "Role 태깅 혼재 - leave O C 구조에서 O와 C 경계 불명확",
+      "evidence": "Segment 244: '\"role\": \"O\", \"text\": \"the tropics far warmer than the poles,\"' — 실제로는 'the tropics'[O] + 'far warmer than the poles'[C]로 분리되어야 함. 현재 표시는 전체를 O로 처리함.",
+      "suggestion": "Segment 244를 두 부분으로 분리: (1) role=\"O\", text=\"the tropics\" (2) role=\"C\", text=\"far warmer than the poles\"",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "Verified mismatch between grammar note and segment tagging in page3 > sentences[4] (Sentence 5). The note correctly identifies \"leave O C + 비교급\" structure, but segment at line 244 bundles both O and C content (\"the tropics far warmer than the poles,\") under single \"O\" role. Grammatically, \"the tropics\" is the object and \"far warmer than the poles\" is the complement in the leave O C structure. The segmentation should separate these into distinct O and C segments to match the documented grammar. File path confirms location: C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-07-J/19.json, lines 232-246."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "answers > explanations[2] (Q3 함의 추론, line 700)",
+      "issue": "본문 문장 번호 인용 오류",
+      "evidence": "Evidence: '9번은 \"As Earth turns beneath it, moving air is deflected sideways...\"라고 한다' — 실제로 본문에서 'As Earth turns beneath it, moving air is deflected sideways'는 **Sentence 10**에 위치함. Sentence 9는 'On a spinning planet, though, the path is not straight.'",
+      "suggestion": "Evidence를 수정: '10번은 \"As Earth turns beneath it, moving air is deflected sideways\"라고 한다'로 정정",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 내용 확인 결과, explanations[2]의 evidence 섹션에서 \"9번은 \\\"As Earth turns beneath it, moving air is deflected sideways\\\"라고 한다\"고 명시했으나, 실제로 이 구문은 Sentence 10에 위치합니다. Sentence 9는 \"On a spinning planet, though, the path is not straight.\"입니다. 따라서 본문 문장 번호 인용 오류가 실제 결함으로 확인됩니다."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "answers > explanations[1] (Q2 빈칸, line 654)",
+      "issue": "근거 문장 번호 부정확 - 개념은 정확하나 인용처 불분명",
+      "evidence": "Evidence: '글의 출발점이자 모든 인과의 근원이 4번 \"This uneven heating\"' — Sentence 4는 'Near the poles the same rays spread...'이며, Sentence 5에 'This uneven heating'이 있음. 또한 Sentence 2에서 'begins with a simple imbalance'라는 표현이 먼저 출현.",
+      "suggestion": "Evidence 수정: '출발점은 Sentence 2의 \"begins with a simple imbalance\"이고, Sentence 5의 \"This uneven heating\"이 구체적 근거이며, 제목·도입도 가열차를 강조한다'",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "answers > explanations[3] (Q4 요약, line 724)",
+      "issue": "근거 문장 번호 부정확 - 개념은 맞으나 인용처 분명하지 않음",
+      "evidence": "Evidence: '(A)는...그 사이를 흐르는 공기가 바람이 되는 것 → 7번 pressure' — Sentence 7은 'Cooler air is denser and sinks'이며, pressure의 정의는 Sentence 8에 'Air always flows from where the pressure is high toward where it is low'로 나타남.",
+      "suggestion": "Evidence 수정: '(A) pressure는 Sentence 8의 \"Air always flows from where the pressure is high toward where it is low\"에 기반하며, 가열차가 만드는 기압차를 의미함'",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "문장 11 (page3.translation_ko)",
+      "issue": "전치사 'into'의 표현이 부정확함",
+      "evidence": "영문: 'This effect bends winds into the great curved belts we see on every weather map.' / 번역: '이 효과가 바람을 우리가 모든 일기도에서 보는 거대한 곡선 띠로 굽힌다.'",
+      "suggestion": "번역에서 '~으로 굽힌다' 구문이 'bend A into B' 구조를 명확히 전달하지 못함. '곡선 띠로 휘게 한다' 또는 '곡선 띠 모양으로 굽혀지게 한다'로 수정하면 더 정확함.",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "문장 18 (page3.translation_ko)",
+      "issue": "2인칭 표현 톤이 부적절함",
+      "evidence": "영문: 'So the storm outside your window is not random at all.' / 번역: '그러므로 네 창밖의 폭풍은 결코 무작위가 아니다.'",
+      "suggestion": "고등학교 교재 톤으로는 '네'라는 친근한 2인칭 표현이 부적절함. '당신 창밖의' 또는 '어떤 창밖의'로 수정하여 더 중립적인 톤을 유지하는 것이 좋음.",
+      "lens": "translation"
+    }
+  ],
+  "blockers": [],
+  "counts": {
+    "raw": 6,
+    "verified": 2,
+    "confirmed": 2,
+    "minor": 4
+  }
+}

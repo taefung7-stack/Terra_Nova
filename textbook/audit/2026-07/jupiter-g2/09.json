@@ -1,0 +1,62 @@
+{
+  "grade": "jupiter-g2",
+  "seq": 9,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "answers.explanations[2] (Q3 함의 추론)",
+      "issue": "Sentence number reference error - 답변 근거에서 문장 번호 오류",
+      "evidence": "Line 606에서 '10번은 윤리가 \"not a soft add-on to a career but its load-bearing wall\"이라 한다'고 했으나, translation_ko 검증 결과 이 표현은 [14] 문장에 있음: '[14] 이렇게 보면, 윤리는 경력에 붙은 무르고 선택적인 부가물이 아니라 그 진짜 하중벽이다.' 반면 [10] 문장은 '건축가가 돈을 아끼려 몰래 더 싸고 약한 재료를 쓰면...'으로 완전히 다른 내용임",
+      "suggestion": "Line 606의 '10번'을 '14번'으로 수정할 것",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "The evidence field at line 606 incorrectly cites sentence 10 as containing the \"not a soft add-on to a career but its load-bearing wall\" phrase. File verification confirms: (1) sentence [10] describes a builder secretly using cheaper materials; (2) sentence [14] contains the exact phrase about ethics and load-bearing wall. This is a clear and verifiable citation error in the answer explanation."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "answers.explanations[0] (Q1 요지)",
+      "issue": "Sentence range reference inaccuracy - 첫 번째 근거 범위 부정확",
+      "evidence": "Line 560에서 '능력 외에 모든 직업이 정직의 약속을 지니며(2~4번)'이라 했으나, [2]는 '그러나 기술은, 아무리 인상적이어도, 이야기의 전부가 아니다'로 약속에 대해 언급하지 않음. [3]번 '모든 직업은 또한 그것에 의지하는 사람들에게 조용한 약속을 진다'와 [4]번 '그 약속을 어기는 것은...'이 직접적인 근거임",
+      "suggestion": "Line 560의 '2~4번'을 '3~4번'으로 수정할 것",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "Sentence range reference is demonstrably inaccurate. The explanation claims sentences [2~4] support the concept of \"정직의 약속\" (promise of honesty), but sentence [2] states \"그러나 기술은, 아무리 인상적이어도, 이야기의 전부가 아니다\" which discusses skill's insufficiency, not promise. Only sentences [3] (\"모든 직업은...조용한 약속을 진다\") and [4] (\"그 약속을 어기는 것은...\") directly support the promise concept. The correct range should be [3~4번], not [2~4번]. This is a clear factual error in the sentence range citation."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.translation_ko, 문장 14 [14]",
+      "issue": "\"하중벽\"은 부정확한 번역. 원문의 \"load-bearing wall\"은 건축 용어로 \"내력벽\"으로 옮겨야 함",
+      "evidence": "영문: 'ethics is not a soft, optional add-on to a career but its true load-bearing wall' / 한글: '윤리는 경력에 붙은 무르고 선택적인 부가물이 아니라 그 진짜 하중벽이다.' / 정책어 확인: page1.gloss_extra에서 'load-bearing'을 '내력의, 무게를 떠받치는'으로 명시함",
+      "suggestion": "[14] 마지막 부분을 '그 진짜 내력벽이다.'로 수정",
+      "lens": "translation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일에서 load-bearing의 정책어는 page1.gloss_extra에서 '내력의, 무게를 떠받치는'으로 명시되어 있으며, page2.textbook_tieback(line 93)과 page2.answers(line 606), page4.vocab(line 827)에서는 모두 '내력벽'으로 통일하여 사용하고 있습니다. 그러나 page3.translation_ko 문장 14에서만 '하중벽'이라고 번역되어 있어 명확한 불일치가 확인됩니다. 이는 정책어와 문서 내 다른 섹션과의 일관성을 벗어나는 실제 번역 오류입니다."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "answers.explanations[0] (Q1 요지)",
+      "issue": "Sentence range reference imprecision - 두 번째 근거 범위 부정확",
+      "evidence": "Line 560에서 '사회가 검증 불가한 전문가를 신뢰해야 하므로 청렴이 핵심이라고 한다(6~9번)'이라 했으나, [6]은 '이 단순한 생각 뒤의 이유는 놀랍도록 깊다'로 이 주제를 직접 다루지 않음. [7]은 검증 불가, [8]은 신뢰, [9]는 신뢰가 사회를 작동시킴을 설명하므로 '7~9번'이 더 정확함",
+      "suggestion": "Line 560의 두 번째 근거 '6~9번'을 '7~9번'으로 수정 권장",
+      "lens": "explanation"
+    }
+  ],
+  "blockers": [],
+  "counts": {
+    "raw": 4,
+    "verified": 3,
+    "confirmed": 3,
+    "minor": 1
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "grade": "sun-g3",
+  "seq": 12,
+  "confirmed": [],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page3 > sentences[5] (Sentence 6)",
+      "issue": "grammar_note 표기 중복 및 과도함",
+      "evidence": "\"Each strip is so narrow that its top is nearly flat, so we can treat it as a slender rectangle and find its area with ease.\" - 현재 grammar_note: \"so~that + so (treat A as B, 동사 병렬)\"로 표기되어 있으나, 실제 구조는 첫 번째 so~that(원인-결과)로 충분하며, 두 번째 so는 결과절의 반복 표현일 뿐입니다.",
+      "suggestion": "grammar_note를 \"so...that의 결과로 so절 형성 (treat A as B, 동사 병렬)\" 또는 단순히 \"so...that + so (결과)\"로 수정하여 중복성 제거",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3 > sentences[9] (Sentence 10)",
+      "issue": "grammar_note 표기 불완전",
+      "evidence": "\"But here lies the genius of the method: make the strips thinner and more numerous, and the error shrinks.\" - 현재 표기: \"장소 도치(here lies S) + 콜론(make O C + and)\"이지만, 실제 콜론 이후 구조는 \"명령문 + and 결과절\"입니다. 현재 표기는 make O C 부분만 강조되어 and 이후의 독립절(the error shrinks)의 역할 설명이 부족합니다.",
+      "suggestion": "grammar_note를 \"장소 도치(here lies S) + 콜론(명령문 + and 결과절)\"로 수정하여 and 이후 구조의 역할을 명시",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3 > sentences[15] (Sentence 16)",
+      "issue": "S/V 구조 표기 순서 및 명확성 부족",
+      "evidence": "\"The distance a speeding car travels, the water that flows through a pipe, the work a varying force performs: each is found by the same patient summing of countless small contributions.\" - 현재는 두 개의 S 항목(콜론 앞 병렬 구조와 \"each\")을 모두 role S로 표기했으나, 콜론의 동격 관계(appositive)가 명확하지 않아 학습자가 주어 구조를 혼동할 수 있습니다.",
+      "suggestion": "첫 번째 segment에 주석 추가: \"관계절 수식 병렬 주어(콜론 동격, each로 이어짐)\" 또는 segment 순서를 재정렬하여 콜론 이후 각각의 구조 역할을 명확히 함.",
+      "lens": "explanation"
+    }
+  ],
+  "blockers": [],
+  "counts": {
+    "raw": 3,
+    "verified": 0,
+    "confirmed": 0,
+    "minor": 3
+  }
+}

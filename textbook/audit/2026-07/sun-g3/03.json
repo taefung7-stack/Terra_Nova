@@ -1,0 +1,57 @@
+{
+  "grade": "sun-g3",
+  "seq": 3,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page3 > sentences > index 4",
+      "issue": "S/V/O/C/M 역할 태깅 오류: 'C(to completion ... ATP out)'로 표기된 부분은 실제로 두 개의 병렬 동사 구조로, 정확한 분석이 필요",
+      "evidence": "본문: \"this process runs to completion and squeezes a remarkable amount of ATP out of each sugar\" — 'runs to completion'(V + M 구조)과 'squeezes a remarkable amount of ATP out'(V + O + M 구조)이 and로 병렬되므로, 후자를 단순히 'C'로 표기는 불충분함",
+      "suggestion": "Sentence 4의 두 번째 동사 구조를 명확히 분리: {role: 'V', text: 'squeezes'}, {role: 'O', text: 'a remarkable amount of ATP'}, {role: 'M', text: 'out of each sugar'} 로 재분석",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "The annotation in page3 > sentences > index 4 incorrectly tags \"to completion ... a remarkable amount of ATP out of each sugar\" as role \"C\" (complement). The actual structure is two parallel verbs: \"runs to completion\" (V + M/adverbial phrase) AND \"squeezes a remarkable amount of ATP out of each sugar\" (V + O + M). The role \"C\" is grammatically incorrect because: (1) \"to completion\" is an adverbial modifier, not a complement; (2) \"a remarkable amount of ATP out of each sugar\" is the direct object (O) of \"squeezes,\" not a complement. The annotation conflates separate grammatical functions into an inaccurate \"C\" label, masking the parallel V+M and V+O+M structure. File path: C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-07-Sun/03.json (lines 208-231)"
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3 > sentences > index 10",
+      "issue": "의문문의 '주어와 목적어' 구분 오류: 'what'을 M(부사)로 표기했으나 실제로는 O(직목)",
+      "evidence": "본문: \"But what happens when oxygen runs short...\" — 'what'은 의문 대명사로서 'happens'의 직목(O)을 담당. 현재 분석에서 'what'을 'M'으로 표기한 것은 오류",
+      "suggestion": "Sentence 10 수정: {role: 'O', text: 'what'} 로 변경, 'when' 절은 M으로 유지",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일의 page3 > sentences > index 10에서 'what'이 실제로 M(부사)로 표기되어 있음을 확인했습니다. 그러나 지적의 근거 자체(O/직목)는 오류입니다. 본 문장 \"But what happens when oxygen runs short...\"에서 'what'은 자동사 'happens'의 주어(S)를 담당하는 의문 대명사이므로, 정확한 표기는 S여야 합니다. 따라서 현재 파일의 M 표기는 실제 결함이지만, 지적이 제시한 대안(O)도 문법적으로 정확하지 않습니다."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko, 문장 11",
+      "issue": "\"더 이상의 ATP를 얻지 못하면서도\" — 문체상 모호성",
+      "evidence": "영문: \"a backup route that claims no further ATP yet does one essential job\" / 번역: \"더 이상의 ATP를 얻지 못하면서도 한 가지 필수적인 일을 하는 예비 경로다\"",
+      "suggestion": "\"더 이상의 ATP를 만들지 않으면서도\" 또는 \"추가 ATP를 얻지 못하면서도\"로 개선하면 원문의 직접성을 더 잘 반영",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko, 문장 17",
+      "issue": "\"넘겨받는다\" — 동사 선택의 자연스러움",
+      "evidence": "영문: \"the slower but far richer route quietly takes over again\" / 번역: \"더 느리지만 훨씬 더 풍부한 경로가 조용히 다시 넘겨받는다\"",
+      "suggestion": "\"다시 주도권을 잡는다\" 또는 \"다시 지배한다\"로 개선하면 원문의 의도(경로의 활성화)를 더 명확하게 전달",
+      "lens": "translation"
+    }
+  ],
+  "blockers": [],
+  "counts": {
+    "raw": 4,
+    "verified": 2,
+    "confirmed": 2,
+    "minor": 2
+  }
+}

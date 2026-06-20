@@ -1,0 +1,30 @@
+{
+  "grade": "saturn-g1",
+  "seq": 2,
+  "confirmed": [],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page3 > sentences[18] (sentence index 19)",
+      "issue": "grammar_note가 문장 구조를 불완전하게 표기",
+      "evidence": "문장: \"A scary line of symbols is often just a simple machine wearing a clever ____, quietly waiting for someone patient enough to take it apart.\" \n현재 grammar_note: \"2형식 + 현재분사 (빈칸) + enough to V\"\n실제 구조: \"often\"과 \"just\"는 both intensifiers modifying the complement; \"wearing\"은 predicative participle (machine을 수식); \"quietly\"는 \"waiting\"을 수식하는 adverb",
+      "suggestion": "grammar_note를 \"2형식 + intensifiers(often/just) + 현재분사(형용사) + 부사 + enough to V 구문\"으로 수정하여 문장 구조를 정확히 표기",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko, sentence [4]",
+      "issue": "Awkward Korean structure with redundant particle placement",
+      "evidence": "English: 'This building process is called expanding the polynomial.' Korean: '이 짓는 과정을 다항식을 전개한다고 부른다.' The Korean text uses '다항식을 전개한다' (literally 'expanding the polynomial') within a call structure, creating awkward redundancy.",
+      "suggestion": "Restructure to: '이 짓는 과정을 다항식의 전개라고 부른다' or '이 과정을 전개라고 부른다.' for cleaner, more natural Korean. The meaning is preserved but the grammatical flow is improved.",
+      "lens": "translation"
+    }
+  ],
+  "blockers": [],
+  "counts": {
+    "raw": 2,
+    "verified": 0,
+    "confirmed": 0,
+    "minor": 2
+  }
+}

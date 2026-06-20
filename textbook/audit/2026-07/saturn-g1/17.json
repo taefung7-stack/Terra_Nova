@@ -1,0 +1,67 @@
+{
+  "grade": "saturn-g1",
+  "seq": 17,
+  "confirmed": [
+    {
+      "severity": "blocker",
+      "location": "page3, sentence 10, segments[0]",
+      "issue": "Incorrect structural role tagging: 'So many foreign traders' tagged as M (Modifier) but is the Subject",
+      "evidence": "Sentence 10 text: 'So many foreign traders sailed to its ports that the country's own name spread with them.' In the so...that structure, 'So many foreign traders' is the subject performing the action 'sailed', not a modifier. The current tagging shows role M with text 'So many foreign traders' which contradicts the canonical SVO order and the grammar_note stating 'so ~ that 결과절'.",
+      "suggestion": "Change segments[0].role from 'M' to 'S' for 'So many foreign traders'. Remove the redundant segments[1] with role 'S' and text '(foreign traders)' since it duplicates the subject. The corrected structure should be: S='So many foreign traders', V='sailed', M='to its ports that the country's own name spread with them.'",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "Sentence 10, segments[0] is incorrectly tagged as role 'M' (Modifier) when it should be 'S' (Subject). The phrase 'So many foreign traders' is the subject performing the action 'sailed', conforming to SVO word order. Although segments[1] correctly identifies the subject role, segments[0]'s 'M' tag contradicts both canonical English grammar structure and the grammar_note's own description of the 'so ~ that result clause' pattern, where the fronted intensifier phrase must still function as the subject of the main clause."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "answers.explanations[1] (Q2 빈칙 추론), evidence field",
+      "issue": "Incorrect sentence citation: References sentence 14 for 'openness can be a kind of strength' which actually appears in sentence 18",
+      "evidence": "Evidence states: '14번 \"openness can be a kind of strength\"가 단서다' but sentence 14 reads 'Instead of closing its gates, Goryeo treated meeting strangers as a normal part of daily life.' The phrase 'openness can be a kind of strength' actually appears in sentence 18: 'Yet its long life shows that openness can be a kind of strength, not a weakness.'",
+      "suggestion": "Correct the evidence field to cite sentence 18 instead of 14. Change '14번 \"openness can be a kind of strength\"' to '18번 \"openness can be a kind of strength\"'.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "The verification claim is CORRECT. The evidence field in answers.explanations[1] (Q2 - 빈칙 추론) incorrectly cites sentence 14 as containing the phrase \"openness can be a kind of strength\". However, sentence 14 actually reads: \"Instead of closing its gates, Goryeo treated meeting strangers as a normal part of daily life.\" The cited phrase appears in sentence 18: \"Yet its long life shows that openness can be a kind of strength, not a weakness.\" This is a clear sentence citation error. File location: C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-07/17.json, lines 634-656 (evidence field of Q2 explanation)."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "answers.explanations[1] (Q2 빈칙 추론), rationales[0]",
+      "issue": "Incorrect sentence citation: References sentence 14 for openness=strength concept which actually derives from sentence 18",
+      "evidence": "Rationale states: \"'닫힌'은 10번·14번의 개방성=강점과 정반대다\" but sentence 14 discusses treating strangers as normal, not about openness as strength. The '개방성=강점' concept is established in sentence 18: 'openness can be a kind of strength'.",
+      "suggestion": "Change rationales[0] to cite sentence 18 rather than 14: Replace '10번·14번의 개방성=강점과' with '10번·18번의 개방성=강점과'",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 검증 결과, answers.explanations[1].rationales[0]의 지적이 실제 결함입니다. 문장 14 (\"Instead of closing its gates, Goryeo treated meeting strangers as a normal part of daily life\")는 낯선 사람을 대하는 태도만 다루며, \"개방성=강점\"이라는 개념을 포함하지 않습니다. \"openness can be a kind of strength\"라는 명시적인 표현은 문장 18에만 나타납니다. 따라서 rationales[0]이 문장 14를 \"개방성=강점\"의 근거로 인용한 것은 부정확한 문장 인용입니다."
+      }
+    }
+  ],
+  "minors": [],
+  "blockers": [
+    {
+      "severity": "blocker",
+      "location": "page3, sentence 10, segments[0]",
+      "issue": "Incorrect structural role tagging: 'So many foreign traders' tagged as M (Modifier) but is the Subject",
+      "evidence": "Sentence 10 text: 'So many foreign traders sailed to its ports that the country's own name spread with them.' In the so...that structure, 'So many foreign traders' is the subject performing the action 'sailed', not a modifier. The current tagging shows role M with text 'So many foreign traders' which contradicts the canonical SVO order and the grammar_note stating 'so ~ that 결과절'.",
+      "suggestion": "Change segments[0].role from 'M' to 'S' for 'So many foreign traders'. Remove the redundant segments[1] with role 'S' and text '(foreign traders)' since it duplicates the subject. The corrected structure should be: S='So many foreign traders', V='sailed', M='to its ports that the country's own name spread with them.'",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "Sentence 10, segments[0] is incorrectly tagged as role 'M' (Modifier) when it should be 'S' (Subject). The phrase 'So many foreign traders' is the subject performing the action 'sailed', conforming to SVO word order. Although segments[1] correctly identifies the subject role, segments[0]'s 'M' tag contradicts both canonical English grammar structure and the grammar_note's own description of the 'so ~ that result clause' pattern, where the fronted intensifier phrase must still function as the subject of the main clause."
+      }
+    }
+  ],
+  "counts": {
+    "raw": 3,
+    "verified": 3,
+    "confirmed": 3,
+    "minor": 0
+  }
+}

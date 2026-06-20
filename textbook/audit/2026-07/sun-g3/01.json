@@ -1,0 +1,36 @@
+{
+  "grade": "sun-g3",
+  "seq": 1,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "answers.explanations[1] (Q1 빈칸 추론)",
+      "issue": "evidence와 rationales의 문장 참조 오류",
+      "evidence": "Evidence 문장: '글 전체가 평형을 \"교란(disturb)\"하면 계가 맞선다는 내용이고(5번 disturb, 6번 push), 14번도 맞설 준비가 되어 있다고 한다.' / Rationales[1]: '(정답) disturb는 5번 disturb·6번 push와 호응하며' — 그러나 실제 본문에서: 문장 5는 'Chemists call this restless standstill a state of dynamic equilibrium'로 disturb 없음 / 문장 6은 'It is a balance kept alive by two opposing motions, not by stillness'로 push 없음 / 'disturb'는 문장 7에, 'push'는 문장 8에 각각 존재 / 또한 '14번도 맞설 준비'라 하나 빈칸은 문장 19에 위치함",
+      "suggestion": "Evidence와 rationales에서 문장 참조를 수정: '(5번 disturb, 6번 push)' → '(7번 disturb, 8번 push)' 및 '14번' → '19번' 으로 변경",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 근거로 명확히 확인된 문장 참조 오류. Evidence의 '5번 disturb, 6번 push' 표기는 실제 문장 내용과 불일치. disturb는 문장 7에, push는 문장 8에 위치. 또한 빈칸은 문장 19에 있으나 '14번도 맞설 준비'라는 표현은 문장 14의 내용(shift 관련)과 무관하고 실제 빈칸은 문장 19의 'ready to ____ it'이 맞다. 문장 인덱싱 오류는 학습자 혼동을 초래하는 실질적 결함."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "answers.explanations[0] (Q0 요지)",
+      "issue": "evidence의 문장 범위 부정확",
+      "evidence": "Evidence: '르샤틀리에 원리에 따라 교란을 완화하는 방향으로 평형이 이동한다(6~10번)고 한다.' — 그러나 르샤틀리에 원리가 명시적으로 제시되는 것은 문장 8부터: '\"The interesting question is what happens when we disturb such a system\"(문장 7) 다음에 \"Le Chatelier's principle gives...\"(문장 8)로 시작됨",
+      "suggestion": "문장 범위를 '(6~10번)' → '(8~10번)' 또는 '(7~10번)'로 수정하면 더 정확함 (문장 7-8에서 질문 제시 및 원리 도입, 문장 9-10에서 예시)",
+      "lens": "explanation"
+    }
+  ],
+  "blockers": [],
+  "counts": {
+    "raw": 2,
+    "verified": 1,
+    "confirmed": 1,
+    "minor": 1
+  }
+}

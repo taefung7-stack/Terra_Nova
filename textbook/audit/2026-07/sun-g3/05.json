@@ -1,0 +1,70 @@
+{
+  "grade": "sun-g3",
+  "seq": 5,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page3, sentence 7, segments (lines 293-322)",
+      "issue": "사역동사 let 구문에서 보어(C) 역할 오태깅",
+      "evidence": "원문: \"Let the book slip off the shelf, and the account is suddenly spent.\" / 현 분석: \"slip off the shelf\"를 C로 표기 / 정확한 구조: Let O V에서 'slip'은 기저 동사(V)이고 'off the shelf'는 수식 부사구(M)입니다. 보어가 존재하지 않습니다.",
+      "suggestion": "세그먼트 재정렬 필요: (V)=\"Let\", (O)=\"the book\", (V)=\"slip\", (M)=\"off the shelf,\"",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "The annotation at lines 300-303 marks \"slip off the shelf,\" as C (complement) in the causative \"let\" structure. However, in \"Let O V\" constructions, the bare infinitive verb is \"slip\" and \"off the shelf\" is a prepositional phrase modifier, not a complement. The correct parse should separate: V=\"slip\" and M=\"off the shelf\". The current annotation incorrectly treats the entire verb phrase as a single complement element."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3, sentence 1, segments (lines 141-168)",
+      "issue": "목적어와 부사구 역할 미분리",
+      "evidence": "원문: \"Lift a heavy book onto a high shelf, and...\" / 현 분석: (O)=\"a heavy book onto a high shelf,\" / 정확한 구조: 'a heavy book'은 직접 목적어(O)이고 'onto a high shelf'는 위치를 나타내는 부사구(M)로 분리되어야 합니다.",
+      "suggestion": "세그먼트 분리: (O)=\"a heavy book\", (M)=\"onto a high shelf,\"",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일의 page3, sentence 1 (lines 141-148)에서 segment의 role을 확인했습니다. 현재 분석은 \"a heavy book onto a high shelf,\"를 모두 O(목적어)로 마크했으나, 문법상 \"onto a high shelf\"는 전치사구로서 위치를 나타내는 부사구(M)입니다. 직접 목적어는 \"a heavy book\"만 해당하므로, 분리 마크가 필요합니다. 지적이 정확한 결함입니다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3, sentence 9, segments (lines 367-396), grammar_note (line 396)",
+      "issue": "콜론으로 도입되는 설명절 구조 표기 모호",
+      "evidence": "원문: \"The remarkable thing is the bookkeeping: at every instant of the fall, the amount of potential energy lost is exactly matched by the kinetic energy gained.\" / 현 분석: 콜론 뒤의 'the amount of potential energy lost is exactly matched...'를 주절과 동등한 S-V 구조로 분리 표기 / 한국 교재의 관례상 콜론 설명절은 한 문장 내 종속 설명부로 처리되어야 합니다.",
+      "suggestion": "grammar_note 수정: '2형식 + 콜론(설명절: 수동태 문장)'으로 명확히 하거나, 콜론 뒤 부분을 별도 구조로 명시하되 '예시/설명절'임을 표기",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "콜론 뒤의 'the amount of potential energy lost is exactly matched by the kinetic energy gained'가 현재 JSON에서 독립된 주절(S-V-M)로 재분석되어 표기되었으나, 한국 교재 관례상 이는 주절 보어('the bookkeeping')의 상세 설명으로 처리되어야 합니다. 현재 segments 구조(line 382-394)가 콜론 뒤 내용을 마치 별도 문장처럼 S-V 구조로 분리한 것이 모호하며, grammar_note(line 396)도 이 구조를 명확히 반영하지 못하고 있습니다. \"2형식 + 콜론(수동태, 과거분사 수식)\"은 콜론이 종속 관계임을 제시하나, segments의 실제 구성은 이를 일관되게 표현하지 않습니다."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "answers, explanations[2] (Q3, line 654), evidence field",
+      "issue": "근거 문장 번호 오류",
+      "evidence": "Evidence: \"7~8번은...\" / 실제 해당 내용: 원문 sentence 9-10 / 원본 인용문 \"the amount of potential energy lost is exactly matched by the kinetic energy gained. Their sum never changes.\"는 sentence 9와 10에 걸쳐 있으며, sentence 7-8은 'Let the book slip off the shelf' 사례 부분입니다.",
+      "suggestion": "evidence 수정: \"9~10번은 \\\"the amount of potential energy lost is exactly matched by the kinetic energy gained. Their sum never changes\\\"라고 한다.\"로 변경",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "answers, explanations[0] (Q1, line 608), evidence field",
+      "issue": "근거 문장 번호 범위 부정확",
+      "evidence": "Evidence에서 보존 법칙 언급 범위를 \"(9~12번)\"으로 표기했으나, 실제로는 문장 12-15번에서 에너지 보존 원리와 열/소리로의 흩어짐을 설명합니다. 문장 9-10은 에너지 보존 원리의 증거(potential↔kinetic 전환)이고, 12-15번이 더 넓은 보존 개념입니다.",
+      "suggestion": "evidence 수정: \"(9~10번에서 위치↔운동 에너지 전환, 12~15번에서 열·소리로 흩어지는 사례)\"로 명확화",
+      "lens": "explanation"
+    }
+  ],
+  "blockers": [],
+  "counts": {
+    "raw": 5,
+    "verified": 3,
+    "confirmed": 3,
+    "minor": 2
+  }
+}

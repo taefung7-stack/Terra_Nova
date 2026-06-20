@@ -1,0 +1,57 @@
+{
+  "grade": "saturn-g1",
+  "seq": 20,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page3/sentences[4] (Sentence 5)",
+      "issue": "보어(C) 표기에 분사 수식구가 포함됨 — 구조 분석 오류",
+      "evidence": "본문: 'An algorithm is just a clear plan for solving a problem, written so plainly that even a machine can follow it without guessing.' 현재 표기에서 C = 'just a clear plan for solving a problem, written so plainly that even a machine can follow it without guessing.' 하지만 'written so plainly that~'는 과거분사구로 main complement를 수식하는 부사 역할이며, 보어의 범위에 포함되어서는 안 됨.",
+      "suggestion": "C(보어)는 'a clear plan for solving a problem'으로만 제한하고, 분사 수식구는 별도 note로 '과거분사 수식구(written so plainly that)'로 표기하여 구문 계층을 명확히 하라.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "medium",
+        "reason": "The flagged issue identifies a legitimate structural ambiguity. The C segment includes \"written so plainly that even a machine can follow it without guessing,\" which is indeed a past participle phrase. While this phrase modifies the noun \"plan,\" there is valid debate in English grammar pedagogy about whether restrictive/appositive participle phrases should be classified as part of the complement itself (integrated reading) or as separate modifying elements (strict reading). The file's own annotation acknowledges the presence of 과거분사(past participle), suggesting the mixed structure was noted. A stricter pedagogical stance would separate the core complement \"just a clear plan for solving a problem\" from its participial modifier. The concern reflects a reasonable structural interpretation, though reasonable linguists could classify it inclusively as a single extended nominal complement."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3/sentences[8] (Sentence 9)",
+      "issue": "목적어(O) 범위 오류 — with 분사구문이 목적어로 포함됨",
+      "evidence": "본문: 'So before we write any code, we first design a careful algorithm, with every step spelled out, every choice decided, and nothing left vague.' 현재 표기에서 O = 'a careful algorithm, with every step spelled out, every choice decided, and nothing left vague.' 하지만 with 구문은 디자인의 대상이 아니라, algorithm의 상태를 설명하는 수식 기능을 함.",
+      "suggestion": "O(목적어)는 'a careful algorithm'으로만 제한하고, with 분사구문을 별도 note로 표기하라. 문법_note도 'with 분사구문'의 부사 역할을 명시하도록 수정.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "Sentence 9 현재 표기에서 목적어(O)가 \"a careful algorithm, with every step spelled out, every choice decided, and nothing left vague.\"로 marked되었는데, with 분사구문은 algorithm의 목적어 범위에 포함되지 않아야 함. 문법적으로 design의 직접 목적어는 \"a careful algorithm\"이며, with 전치사구는 algorithm을 수식하는 부사적 수식어로 기능. 목적어는 verb의 직접적 대상이고, with 구문은 그 대상의 속성을 설명하는 modifier이므로 분리되어야 정확함."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page3/sentences[17] (Sentence 18)",
+      "issue": "결과절과 보어의 경계 불명확 — 구조 표기 개선 필요",
+      "evidence": "본문: 'It is learning to think clearly and patiently, so that your steps can be followed by anyone, or anything, without a single confused ____.' 현재: C = 'learning to think clearly and patiently,' / M = 'so that your steps can be followed by anyone, or anything, without a single confused ____.' so that 절은 결과/목적을 나타내는 독립적인 수사 단위로, M으로만 표기하기에는 그 구조적 중요성이 과소평가됨.",
+      "suggestion": "현재 표기는 허용 범위이나, grammar_note에서 'so that 결과절' 또는 'so that 목적절'의 역할을 더 명시적으로 기재하여 학생의 이해도를 높이라.",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko, 문장 15 (Sentence 15)",
+      "issue": "표현의 부자연스러움",
+      "evidence": "영문: 'Even putting a shelf of books in order is just a small algorithm you run by hand.' / 번역: '[15] 한 선반의 책을 순서대로 놓는 것조차 네가 손으로 돌리는 작은 알고리즘일 뿐이다.'",
+      "suggestion": "'손으로 돌리는'보다는 '손으로 실행하는' 또는 '손으로 수행하는'이 원문의 'run by hand'를 더 자연스럽게 옮김. 의미 전달에는 문제 없으나 표현이 다소 어색함.",
+      "lens": "translation"
+    }
+  ],
+  "blockers": [],
+  "counts": {
+    "raw": 4,
+    "verified": 2,
+    "confirmed": 2,
+    "minor": 2
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "grade": "sun-g3",
+  "seq": 11,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page3 > sentences > sentence 6",
+      "issue": "구문분석 보어(C)가 수식어(M)로 오태깅됨",
+      "evidence": "Sentence 6: 'Poverty is rarely a simple matter of laziness.' — 현재 'rarely a simple matter of laziness'가 모두 M으로 표시되어 있으나, 'a simple matter of laziness'는 'is'의 보어(C)이고 'rarely'만 빈도부사(M)입니다. 2형식 문장에서 보어가 명시되어야 합니다.",
+      "suggestion": "segments를 S(Poverty) - V(is) - M(rarely) - C(a simple matter of laziness)로 분리하여 역할을 명확히 하기",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "File inspection confirms: Sentence 6 is tagged with \"rarely a simple matter of laziness\" entirely as M (modifier). However, in the 2-형식 structure (S + V + C), the noun phrase \"a simple matter of laziness\" functions as a predicate nominal (complement) describing the subject \"Poverty\" after the linking verb \"is\". Only \"rarely\" (frequency adverb) should be M. The current annotation violates fundamental 2-형식 sentence structure rules by failing to distinguish the complement from the adverbial modifier. The grammar note itself says \"2형식 (빈도부사)\" but does not mark the complement position, confirming the mislabeling."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3 > sentences > sentence 13",
+      "issue": "구문분석 보어(C)가 수식어(M)로 오태깅됨",
+      "evidence": "Sentence 13 두 번째 절: 'the worry is not foolish.' — 'not foolish'가 M으로 표시되어 있으나, 'is' 뒤에 나오는 형용사구이므로 보어(C)입니다.",
+      "suggestion": "segment의 role을 'C'로 변경하여 2형식 구조 명확히 하기",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "Sentence 13의 두 번째 절 \"the worry is not foolish\"에서 \"not foolish\"는 동사 \"is\" 뒤에 오는 형용사구로서 2형식(SVC) 구문의 보어(C)입니다. 현재 파일에 M(수식어)으로 태깅된 것은 문법적으로 명백히 오류입니다. 파일 라인 455-457에서 이 오태깅이 확인되었습니다."
+      }
+    }
+  ],
+  "minors": [],
+  "blockers": [],
+  "counts": {
+    "raw": 2,
+    "verified": 2,
+    "confirmed": 2,
+    "minor": 0
+  }
+}

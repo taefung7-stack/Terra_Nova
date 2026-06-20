@@ -1,0 +1,53 @@
+{
+  "grade": "saturn-g1",
+  "seq": 8,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page3, sentence 12 (index 12) - segments tagging",
+      "issue": "Role tagging error in comparative construction: 'the less energy' is incorrectly tagged as M (modifier) when it should be S (subject) of the verb 'remains'",
+      "evidence": "Original text: 'The higher you climb up the chain, the less energy remains, which is why top predators are always rare.' In the 'the...the' comparative structure, 'the less energy' is the subject performing the action of 'remains.' Current tags show segment 2 as role=M and segment 3 as role=V, but it should be: segment 2 role=S ('the less energy'), segment 3 role=V ('remains').",
+      "suggestion": "Correct the role tagging for sentence 12: Change 'the less energy' from M to S, keeping 'remains' as V. The grammar_note should reflect this standard comparative structure.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "The file shows sentence 12, segment 2 (\"the less energy\") is tagged role=\"M\" (modifier), but grammatically it is the subject of the verb \"remains\" and should be tagged role=\"S\" (subject). In the comparative construction \"the higher..., the less energy remains,\" the phrase \"the less energy\" performs the action of the verb \"remains\" and is therefore the subject, not a modifier."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "answers.explanations[2] (q_index 2, 함의 추론)",
+      "issue": "Sentence reference error: The explanation cites sentence 9 ('9번') but the actual sentence containing the quoted text is sentence 12",
+      "evidence": "The explanation states: \"9번은 \\\"The higher you climb ... the less energy remains, which is why top predators are always rare\\\"라고 한다.\" However, according to the translation_ko section, this text appears in sentence 12 (\"[12] 사슬을 높이 오를수록 남는 에너지는 적어지는데...\"), not sentence 9 (\"[9] 토끼는 그저 뛰고 숨 쉬고...\"). Sentence 9 is about rabbit energy expenditure, not the comparative structure.",
+      "suggestion": "Change '9번은' to '12번은' in the evidence section of q_index 2 to correctly reference where this sentence appears in the text.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "The explanation in answers.explanations[2] (q_index 2, 함의 추론) explicitly states \"9번은 \\\"The higher you climb ... the less energy remains, which is why top predators are always rare\\\"라고 한다\" However, the sentence analysis clearly shows: Sentence 9 (line 341-379) contains \"A rabbit uses much of its energy just to hop, breathe, and stay warm...\" while Sentence 12 (line 424-454) contains the exact quoted text \"The higher you climb up the chain, the less energy remains, which is why top predators are always rare.\" The Korean translation section (line 605) further confirms [9] is about rabbit energy expenditure and [12] is about the energy decrease with trophic level. This is a clear sentence reference error."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3, sentence 1 (translation_ko)",
+      "issue": "'runs on'의 오역 - '돌아간다'는 부정확한 표현",
+      "evidence": "원문: \"Almost every ecosystem on Earth runs on a single power source: the sun.\" / 현재 번역: \"지구의 거의 모든 생태계는 단 하나의 동력원, 곧 태양으로 돌아간다.\" / 'runs on'은 '~에 의해 작동한다/움직인다'는 의미로, '돌아간다'는 의도를 충분히 전달하지 못합니다.",
+      "suggestion": "'~으로 움직인다' 또는 '~에 의존하여 작동한다' 정도로 수정하거나, 더 자연스럽게 '~로 돌아간다'가 아닌 '~에 의존한다'로 번역하는 것이 적절합니다. 예: '지구의 거의 모든 생태계는 하나의 동력원 곧 태양에 의존하여 작동한다.'",
+      "lens": "translation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "'runs on'은 '~을 동력/에너지원으로 하여 작동하다'는 의미이나, 현재 번역 '돌아간다'는 이 의미를 명확하게 전달하지 못합니다. 문맥상 '작동한다', '움직인다' 등이 더 적절한 표현이며, 이 오역은 page3 sentence 1과 page4 vocab 예시에서 반복 확인됩니다."
+      }
+    }
+  ],
+  "minors": [],
+  "blockers": [],
+  "counts": {
+    "raw": 3,
+    "verified": 3,
+    "confirmed": 3,
+    "minor": 0
+  }
+}

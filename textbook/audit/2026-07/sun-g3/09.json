@@ -1,0 +1,70 @@
+{
+  "grade": "sun-g3",
+  "seq": 9,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page3, sentences[11] (Sentence 12), segments[6]",
+      "issue": "구문 역할 태깅 오류: 부사를 목적어로 표시",
+      "evidence": "본문: 'even a rival's success may quietly serve your own gain.' — 'quietly'는 동사 'serve'를 수식하는 부사(M)이지만, 현재 분석에서는 'your own gain quietly.'를 전체 목적어(O)로 표시했습니다.",
+      "suggestion": "구문 분석을 수정하여 'your own gain'만 O로, 'quietly'를 별도의 M 세그먼트로 분리하거나, 보기를 '\"role\": \"O\", \"text\": \"your own gain\"'로 수정할 것. 부사 'quietly'는 M(수식어)으로 표시되어야 합니다.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 검증 결과, page3 sentences[11] segments[6]의 \"O\" 태깅이 명백한 오류. 'quietly'는 부사(M)로 'serve' 동사를 수식하는데, 현재 분석에서는 'your own gain quietly.'를 전체 목적어(O)로 표시하여 부사를 목적어에 포함시켰음. 올바른 분석: 'your own gain'만 O, 'quietly'는 M으로 분리 필요."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3, sentences[18] (Sentence 19), segments[2]",
+      "issue": "구문 역할 태깅 오류: 보어를 수식어로 표시",
+      "evidence": "본문: 'Treaties, alliances, and trade deals are not acts of pure generosity.' — 'not acts of pure generosity'는 be동사 뒤의 보어(C)입니다. 현재 분석에서는 이를 수식어(M)로 표시했습니다.",
+      "suggestion": "구문 분석을 수정하여 'role'을 'M'에서 'C'(보어)로 변경할 것. grammar_note도 '2형식 (not)'이므로 C가 맞습니다.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "The segment \"not acts of pure generosity\" appears after the linking verb \"are\" in the sentence \"Treaties, alliances, and trade deals are not acts of pure generosity.\" In English grammar, an element following a linking verb (be동사) is a predicate nominative/complement (보어), not a modifier (수식어). The current tagging shows role M (modifier), but it should be role C (complement). The grammar_note correctly identifies this as \"2형식 (not)\", which is the linking verb pattern that requires a complement. The file path C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-07-Sun/09.json at index 19, segments[2] confirms this tagging error."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "[16]",
+      "issue": "quieter interests를 '더 조용한 이익들'로 번역하여 은유적 의미가 손실됨",
+      "evidence": "원문: 'The skilled diplomat looks past the loud clash of demands to the quieter interests hidden beneath them.' / 번역: '능숙한 외교관은 요구들의 시끄러운 충돌 너머로, 그 아래 숨은 더 조용한 이익들을 바라본다.' / 'quieter'는 음성적 의미가 아니라 '덜 드러난, 은근한'이라는 은유적 의미입니다.",
+      "suggestion": "'더 은근한 이익들' 또는 '덜 두드러진 이익들'로 수정",
+      "lens": "translation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "원문의 \"quieter interests\"는 음성적 의미가 아니라 '덜 드러난, 은근한'이라는 은유적 의미이며, \"louder clash\"에 대비되는 개념이다. 번역 \"더 조용한 이익들\"은 소리 의미로 오독되기 쉬우므로, \"더 은근한 이익들\" 등이 더 정확하다."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page1.body, paragraph 2, sentence 12",
+      "issue": "Awkward adverb placement: 'may serve your own gain quietly' should be 'may quietly serve your own gain' for more natural English expression",
+      "evidence": "A partner who prospers can buy more of your goods, so even a rival's success may serve your own gain quietly.",
+      "suggestion": "Rewrite as: 'even a rival's success may quietly serve your own gain' for standard English word order",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "[12]",
+      "issue": "may quietly serve를 '조용히...보탐이 될 수 있다'로 번역하여 'quietly'의 의미가 부정확함",
+      "evidence": "원문: 'even a rival's success may quietly serve your own gain' / 번역: '심지어 경쟁자의 성공조차 조용히 너 자신의 이득에 보탐이 될 수 있다' / 'quietly'는 '은밀하게, 은근히'라는 의미로 음성적 의미보다는 은유적 의미를 가집니다.",
+      "suggestion": "'은근히', '은밀하게' 또는 '은연중에'로 수정",
+      "lens": "translation"
+    }
+  ],
+  "blockers": [],
+  "counts": {
+    "raw": 6,
+    "verified": 4,
+    "confirmed": 3,
+    "minor": 2
+  }
+}

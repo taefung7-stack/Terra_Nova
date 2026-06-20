@@ -1,0 +1,70 @@
+{
+  "grade": "sun-g3",
+  "seq": 14,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page3, sentences[0] (Sentence 1)",
+      "issue": "M(modifier) 역할 오태깅",
+      "evidence": "\"It is tempting to picture evolution...\" 문장에서 to부정사구 \"to picture evolution as a single animal straining to improve itself, growing a longer neck or a thicker coat through sheer effort\"가 M으로 표시됨. 그러나 \"It is tempting TO PICTURE...\" 구조에서 to부정사는 2형식의 보어(C)임. It은 가주어, to picture는 진주어이자 보어 역할을 함.",
+      "suggestion": "segments[3]의 role을 \"M\"에서 \"C\"로 변경. grammar_note를 \"가주어 it + to V (2형식 보어)\"로 수정",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 page3 sentences[0]에서 to부정사구 \"to picture evolution as...\"가 M(modifier)으로 태깅되어 있으나, \"It is tempting to picture...\" 구조에서 to부정사는 2형식의 보어(C) 역할을 함. 진주어-가주어 구조로 to부정사는 실질적 보어이므로 C로 표시되어야 함."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3, sentences[6] (Sentence 7)",
+      "issue": "부사 simply을 보어에 포함시킴",
+      "evidence": "\"Evolution, defined precisely, is simply a change in these frequencies over time.\" 문장에서 C로 표시된 텍스트가 \"simply a change in these frequencies over time\"인데, \"simply\"는 부사(modifier)이고 \"a change in these frequencies over time\"만이 보어(complement)임.",
+      "suggestion": "segments를 재분리: \"simply\"를 별도 M으로, \"a change in these frequencies over time\"만을 C로 표시. 또는 simply을 C에 포함시키되 명확히 주석 추가",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "The criticism is valid. In sentence 7, \"simply\" is an adverb that modifies the entire predicate, not part of the complement. The true complement (C) is \"a change in these frequencies over time\" alone. The JSON currently marks \"simply a change in these frequencies over time\" as a single modifier (M), which conflates the adverbial modifier with the complement. Correct segmentation should separate \"simply\" (adverbial modifier of manner/degree) from \"a change in these frequencies over time\" (the nominal complement that defines \"Evolution\"). This is standard English grammar analysis where linking verb complements consist of nominal phrases, not adverbial+nominal combinations."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.translation_ko, 문장 [13]",
+      "issue": "숙어 번역의 부정확성 - 의미 전달은 되나 표현이 어색",
+      "evidence": "영문: 'The giraffe did not stretch its way to a long neck' (숙어: 노력/애씀으로 ~을 이루다, 여기서는 '목을 늘려가며 진화한 것이 아니다'의 의미) / 한글: '기린은 긴 목으로 가는 길을 늘려 만든 것이 아니다' — '긴 목으로 가는 길을 늘려 만든'은 영문의 관용표현을 정확히 포착하지 못함. 학생이 맥락에서 의미를 유추할 수는 있지만, 직역이 아니라 의역이 필요한 부분.",
+      "suggestion": "'기린이 목을 늘려 가며 긴 목으로 진화한 것이 아니다' 또는 '기린이 노력으로 목을 길게 늘린 것이 아니다'로 개선할 수 있음",
+      "lens": "translation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "영문의 \"stretch its way to X\" 숙어는 \"노력/애씀으로 X를 이루다\"의 의미인데, 한글 번역 \"긴 목으로 가는 길을 늘려 만든 것이 아니다\"는 직역에 가까워 이 숙어의 관용적 의미(노력·애씀)를 정확히 포착하지 못했다. 학생이 문맥에서 의미를 유추할 수는 있으나, 숙어의 표현 강도가 약해졌으므로 지적은 타당하다."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page3, sentences[7] (Sentence 8)",
+      "issue": "명사절 내 구문분석 불완전",
+      "evidence": "\"Suppose a darker coat helps a mouse hide on volcanic rock.\" 문장에서 O로 표시된 명사절 내부에 S(\"a darker coat\"), V(\"helps\"), O(\"a mouse to hide on volcanic rock\")의 세부 구문이 분석되지 않음. grammar_note는 올바르게 \"명령형 Suppose + 명사절(help O V)\"이라 하지만 segments는 단층 구조만 보임.",
+      "suggestion": "명사절 내부를 세부 분석하거나, O 필드에 주석으로 \"[명사절: S(a darker coat) V(helps) O(a mouse to hide on volcanic rock)]\" 명시",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko, 문장 [3]",
+      "issue": "번역 표현의 어색함 - 중복적 구조",
+      "evidence": "영문: 'an organism is born with whatever genes it has and dies with the same set' / 한글: '한 생물은 자신이 가진 어떤 유전자를 가지고 태어나 똑같은 한 벌을 가지고 죽는다' — '자신이 가진 어떤 유전자를 가지고'에서 '가진...가지고' 구조가 중복적으로 느껴짐. 의미는 전달되나 문체가 다소 어색함.",
+      "suggestion": "'자신이 가진 어떤 유전자로 태어나' 또는 '타고난 어떤 유전자를 가지고 태어나'로 개선 가능",
+      "lens": "translation"
+    }
+  ],
+  "blockers": [],
+  "counts": {
+    "raw": 5,
+    "verified": 3,
+    "confirmed": 3,
+    "minor": 2
+  }
+}

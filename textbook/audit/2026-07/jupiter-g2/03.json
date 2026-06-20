@@ -1,0 +1,123 @@
+{
+  "grade": "jupiter-g2",
+  "seq": 3,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page1.body, paragraph 2, sentence 9",
+      "issue": "용어 일관성 오류: 'brand-new mix' vs 'brand-new mixture'",
+      "evidence": "본문: \"the two halves later join to form a brand-new mix.\" (line 26)\n질문 3번 지문: \"윗글의 밑줄 친 표현 a brand-new mixture 가 의미하는 바로...\" (line 66)\n본문과 질문이 다른 표현을 사용 중. 질문에서 'mixture'로 지칭하는 표현이 본문에는 'mix'로 되어 있음.",
+      "suggestion": "본문의 'mix'를 'mixture'로 수정하여 질문의 답안과 일관성 유지. 또는 질문을 본문 표현에 맞게 수정.",
+      "lens": "language",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 검증 결과 본문 page1.body line 369에는 'a brand-new mix'가, 질문 3번 line 66에는 'a brand-new mixture'가 기록되어 있습니다. 동의어이지만 서로 다른 표현이 사용되어 있어 용어 일관성 오류입니다."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "page2 Q3 stem + page3 answers explanation",
+      "issue": "Question asks about 'a brand-new mixture' but source text contains 'a brand-new mix' - these are different words with different meanings",
+      "evidence": "page1 body: 'the two halves later join to form a brand-new mix' (line 369 in sentences, confirmed in page1 body). page2 Q3 stem: 'a brand-new mixture가 의미하는 바로...' Students cannot correctly answer a comprehension question when the vocabulary word in the question does not match the text.",
+      "suggestion": "Either: (A) change question stem to ask about 'a brand-new mix' (명사), or (B) verify if the source text should actually say 'mixture'. Currently, this creates a mismatch between what students read and what they are tested on.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "File verification confirms the defect: Page 1 body contains 'a brand-new mix' (sentence 9, segment 369), but Page 2 Q3 stem and Page 3 explanation both reference 'a brand-new mixture'. This is a genuine vocabulary mismatch that prevents students from accurately matching question text to source text. The explanation further misquotes the source by claiming it says 'mixture' when it actually says 'mix'."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "page3 answers explanation Q3 (line 637)",
+      "issue": "The evidence quote misrepresents the source text - claims text says 'combine' when it says 'join', and 'mixture' when it says 'mix'",
+      "evidence": "Explanation states: '\"the two halves combine to form a brand-new mixture\"라고 한다' but actual text reads: 'the two halves later join to form a brand-new mix' (page1 body, sentence 9 in page3 segments). The verb is wrong (join≠combine) and the noun is wrong (mix≠mixture).",
+      "suggestion": "Correct the evidence quotation to match actual source text: 'the two halves later join to form a brand-new mix' and verify explanation logic still holds. If 'mixture' is intentional, update source text for consistency.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "File verification confirms the evidence quote at line 637 is inaccurate. The explanation states: '\\\"the two halves combine to form a brand-new mixture\\\"라고 한다' (claims the text says this), but the actual source text (page1 body, sentence 9 in page3 segments) reads: 'the two halves later join to form a brand-new mix'. Two distinct word errors: (1) verb 'combine' vs actual 'join' (line 365), (2) noun 'mixture' vs actual 'mix' (line 369). This is a textual misrepresentation that should be corrected."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3 sentence 2 segmentation",
+      "issue": "Segmentation of appositive structure is misleading - 'cell division' is labeled as subject (S) in parallel with main clause, but it is actually an appositive explaining 'one act'",
+      "evidence": "Text: 'That huge change happened through one act, repeated again and again: cell division, in which one cell splits into two.' The segmentation shows 'cell division,' as a new subject-verb clause, but grammatically it is an appositive noun phrase following the colon that clarifies what 'one act' means. The main clause has only one subject-verb pair: 'That huge change happened'.",
+      "suggestion": "Revise segmentation to show 'cell division, in which one cell splits into two' as an appositive phrase (APP) rather than as a separate S-V unit. This will correctly represent the sentence structure to students.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "The segmentation in sentence 2 of page3 incorrectly labels \"cell division,\" as role S (subject), placing it in parallel with \"That huge change\" as if it were a coordinate subject. Grammatically, the sentence contains only one independent clause with a single subject-verb pair: \"That huge change happened\". The text \"cell division\" is an appositive noun phrase following the colon that clarifies/renames \"one act\" in the preceding prepositional phrase. The relative clause \"in which one cell splits into two\" modifies this appositive, but does not make \"cell division\" a sentence subject. The grammar note correctly identifies \"콜론 + in which 관계절\" (colon + relative clause), acknowledging the appositive structure, but the role assignment contradicts this analysis. This is a genuine annotation error: the role should reflect appositive status, not independent subject status."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.translation_ko, 문장 16",
+      "issue": "불완전한 문장 구조 - 술어동사 생략",
+      "evidence": "영문: 'cell division quietly carries two opposite jobs at the very same time.' / 현재 번역: '세포 분열은 조용히 두 가지 반대되는 임무를 바로 같은 시간에 진다.' — 'carries'에 해당하는 동사 '진다'가 문법적으로 불완전합니다.",
+      "suggestion": "동사를 '수행한다', '담당한다', '진행한다' 등으로 수정: '세포 분열은 조용히 두 가지 반대되는 임무를 바로 같은 시간에 수행한다.'",
+      "lens": "translation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 검증 결과, page3.translation_ko의 문장 [16]에서 \"세포 분열은 조용히 두 가지 반대되는 임무를 바로 같은 시간에 진다\"라는 번역은 영문의 \"carries\"를 제대로 반영하지 못했습니다. \"진다\"는 자동사 성격이 강하거나 문맥상 의미가 불명확하여, 목적어 \"임무를\"과 함께 타동사로 작용하는 술어가 필요합니다. 올바른 번역은 \"수행한다\" 또는 \"담당한다\" 등의 타동사를 사용해야 합니다. 따라서 지적은 실제 결함입니다."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page1.body, paragraph 1, sentence 6",
+      "issue": "문체: 'the missing skin'의 어색한 표현",
+      "evidence": "\"When you scrape your knee, this quiet process rebuilds the missing skin, cell by cell.\"\n'missing'은 '사라진' 의미로, '손상된' 또는 '벗겨진' 피부를 나타내기에 다소 어색함.",
+      "suggestion": "고2 수준에서 이해도 높이기 위해 'the damaged skin' 또는 'the skin that was scraped away' 고려.",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "page3 sentence 1 segmentation",
+      "issue": "Object and complement not cleanly separated in 'begin as' structure",
+      "evidence": "Segmentation lists O as 'your whole life as one tiny cell,' but grammatically 'your whole life' is the object and 'as one tiny cell' is an adverbial complement. The note mentions 'begin as' idiom but the O slot combines both. Compare to how other O+Complement structures are typically handled.",
+      "suggestion": "For clarity in teaching, consider separating: O='your whole life' and complement='as one tiny cell' in the segmentation, or explicitly label 'your whole life as one tiny cell' as O+Complement. This teaches more precise role distinction.",
+      "lens": "explanation"
+    }
+  ],
+  "blockers": [
+    {
+      "severity": "blocker",
+      "location": "page2 Q3 stem + page3 answers explanation",
+      "issue": "Question asks about 'a brand-new mixture' but source text contains 'a brand-new mix' - these are different words with different meanings",
+      "evidence": "page1 body: 'the two halves later join to form a brand-new mix' (line 369 in sentences, confirmed in page1 body). page2 Q3 stem: 'a brand-new mixture가 의미하는 바로...' Students cannot correctly answer a comprehension question when the vocabulary word in the question does not match the text.",
+      "suggestion": "Either: (A) change question stem to ask about 'a brand-new mix' (명사), or (B) verify if the source text should actually say 'mixture'. Currently, this creates a mismatch between what students read and what they are tested on.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "File verification confirms the defect: Page 1 body contains 'a brand-new mix' (sentence 9, segment 369), but Page 2 Q3 stem and Page 3 explanation both reference 'a brand-new mixture'. This is a genuine vocabulary mismatch that prevents students from accurately matching question text to source text. The explanation further misquotes the source by claiming it says 'mixture' when it actually says 'mix'."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "page3 answers explanation Q3 (line 637)",
+      "issue": "The evidence quote misrepresents the source text - claims text says 'combine' when it says 'join', and 'mixture' when it says 'mix'",
+      "evidence": "Explanation states: '\"the two halves combine to form a brand-new mixture\"라고 한다' but actual text reads: 'the two halves later join to form a brand-new mix' (page1 body, sentence 9 in page3 segments). The verb is wrong (join≠combine) and the noun is wrong (mix≠mixture).",
+      "suggestion": "Correct the evidence quotation to match actual source text: 'the two halves later join to form a brand-new mix' and verify explanation logic still holds. If 'mixture' is intentional, update source text for consistency.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "File verification confirms the evidence quote at line 637 is inaccurate. The explanation states: '\\\"the two halves combine to form a brand-new mixture\\\"라고 한다' (claims the text says this), but the actual source text (page1 body, sentence 9 in page3 segments) reads: 'the two halves later join to form a brand-new mix'. Two distinct word errors: (1) verb 'combine' vs actual 'join' (line 365), (2) noun 'mixture' vs actual 'mix' (line 369). This is a textual misrepresentation that should be corrected."
+      }
+    }
+  ],
+  "counts": {
+    "raw": 7,
+    "verified": 5,
+    "confirmed": 5,
+    "minor": 2
+  }
+}

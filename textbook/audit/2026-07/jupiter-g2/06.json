@@ -1,0 +1,57 @@
+{
+  "grade": "jupiter-g2",
+  "seq": 6,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "answers.explanations[1] (Q1 빈칸 추론)",
+      "issue": "Evidence의 문장 참조 번호 오류",
+      "evidence": "Evidence: '9번 without chaos, 12번 fine-tunes' — 실제로 'without chaos'는 sentence 11번에 있고, 'fine-tunes'는 sentence 16번에 있습니다.",
+      "suggestion": "Evidence를 '11번 without chaos, 16번 fine-tunes'로 수정하세요.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "File verification confirms the defect. The evidence in answers.explanations[1] (Q1 빈칸 추론) references sentence numbers that are factually incorrect. Line 655 states '9번 \"without chaos\", 12번 \"fine-tunes\"' but the actual JSON sentence data shows: \"without chaos\" is in sentence index 11 (line 371-388), and \"fine-tunes\" is in sentence index 16 (line 533-549). Sentence 9 contains \"lowers that stubborn barrier\" and sentence 12 contains \"sensitive to their surroundings.\" The sentence reference numbers in the evidence are demonstrably wrong by 2-4 sentence positions."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "answers.explanations[3] (Q3 요약 빈칸)",
+      "issue": "Evidence의 문장 참조 번호 오류",
+      "evidence": "Evidence: '10번 a cell can control its chemistry' — 실제로는 sentence 14번에 있습니다. Sentence 10번은 다른 내용입니다.",
+      "suggestion": "Evidence를 '14번 a cell can control its chemistry'로 수정하세요.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 라인 457-483 (Sentence 14)에 명확히 \"a cell can control its chemistry\" 표현이 있고, Sentence 10 (라인 339-369)은 \"Each enzyme is also very picky\"라는 전혀 다른 내용입니다. Evidence에서 인용한 문장이 실제로는 10번이 아닌 14번에 위치하므로 참조 번호 오류가 확실합니다."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page1.body, paragraph 3",
+      "issue": "병렬 구조의 어색함 — 'It releases... and quietly saves it' 구문에서 두 동사의 형태 불일치",
+      "evidence": "\"It releases a burst of energy when you suddenly sprint and quietly saves it when you finally rest.\" — 'releases'와 'saves' 앞의 부사 위치가 다르고, 암묵적 주어 처리가 부자연스러움",
+      "suggestion": "명확한 병렬을 위해 'and it quietly saves it' 또는 'and quietly saves it' 형태로 수정하거나, 'releases... and (when you finally rest) saves' 구조로 재정렬 권장. 현재 형태는 네이티브 표현이 아님.",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.sentences[17] (Sentence 18)",
+      "issue": "구문 분석 라벨의 부정확성",
+      "evidence": "Sentence 18의 'each one quietly kept in perfect ____'에 대해 'independent participial phrase'로 표기했으나, 이는 명사 + 과거분사 구조로 절대구문 또는 분사구문으로 더 정확합니다.",
+      "suggestion": "grammar_note를 'not A but B + absolute phrase (each one kept in perfect ____)'로 수정하여 정확성을 높이세요.",
+      "lens": "explanation"
+    }
+  ],
+  "blockers": [],
+  "counts": {
+    "raw": 4,
+    "verified": 2,
+    "confirmed": 2,
+    "minor": 2
+  }
+}

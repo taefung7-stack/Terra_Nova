@@ -1,0 +1,84 @@
+{
+  "grade": "sun-g3",
+  "seq": 6,
+  "confirmed": [
+    {
+      "severity": "blocker",
+      "location": "answers.explanations[2] (Q3 함의 추론)",
+      "issue": "근거 문장 번호 오류: Evidence에서 '11번'이라고 명시했으나 실제 인용 문장은 Sentence 14",
+      "evidence": "파일 line 661-664: 'evidence'에서 '11번은 \"Because the blame is so scattered, each party finds it easy to feel personally innocent...\"'라고 기술. 그러나 JSON의 page3.sentences 배열에서 해당 텍스트는 index 14 (line 454-478의 Sentence 14)에 위치. translation_ko의 [11]번 문장('[11] 하나의 무해한 목적을 위해 모은 데이터가...')과 일치하지 않음.",
+      "suggestion": "Evidence의 문장 번호를 '11번'에서 '14번'으로 수정. 또는 번역본의 문장 번호(Sentence index)와 한국어 번역 분절 번호([] 표기)를 명확히 구분하여 혼동 방지.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "Direct file verification confirms the allegation. The evidence field in answers.explanations[2] (line 664) states '11번은 \"Because the blame is so scattered...\"' but this exact quote is found in Sentence 14 (lines 453-479), not Sentence 11 (lines 385-408). Sentence 11 actually discusses data being merged for different purposes. This is a clear sentence number reference error."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "answers.explanations[1] (Q2 빈칸 추론)",
+      "issue": "Evidence의 근거 제시가 부정확: '5·10번의 책임 분산 논의'라고 했으나 Sentence 10은 책임과 무관",
+      "evidence": "파일 line 641: '5·10번의 책임 분산 논의, 결론과 일치한다'고 기술. 그러나 Sentence 10 (line 363-382)은 'More often it is a slow buildup'으로 책임(responsibility)을 명시하지 않음. Sentence 5 (line 269-290)에서만 'responsibility'라는 단어가 명확히 나타남.",
+      "suggestion": "Evidence를 '5번과 전체 문맥의 책임 분산 논의, 결론과 일치한다'로 수정하거나, 더 정확한 근거 문장(예: Sentence 5, Sentence 13, Sentence 16)만 명시.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "Line 641과 644의 evidence/rationales에서 '5·10번의 책임 분산 논의'라고 명시했으나, Sentence 10 (line 363-382)은 'More often it is a slow buildup'으로 책임과 무관한 내용입니다. Sentence 5는 'how do we assign responsibility'로 책임을 명확히 다루지만, Sentence 10은 데이터 위험의 특성(느린 축적)만 설명합니다. 책임 분산을 실제로 다루는 문장은 Sentence 12-13입니다. 따라서 지적된 근거 오류가 실제 결함입니다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.translation_ko, sentence 18",
+      "issue": "부정확한 의역 '돌아가는'",
+      "evidence": "원문: 'in a world run by shared systems' / 번역: '공유 시스템으로 돌아가는 세상에서' — 'run by'는 '~에 의해 운영되는' 의미이지 '돌아가는'은 부정확. 'run'의 의미를 잘못 해석",
+      "suggestion": "'공유 시스템에 의해 운영되는 세상에서' 또는 '공유 시스템으로 움직이는 세상에서'로 수정",
+      "lens": "translation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "\"in a world run by shared systems\" uses \"run by\" in the passive sense meaning \"operated/managed by,\" but the Korean translation \"공유 시스템으로 돌아가는 세상에서\" uses \"돌아가는\" which means \"turning/going around/cycling\" rather than \"being operated/managed by.\" The verb choice misrepresents the original meaning. Correct translation should use \"운영되는\" (operated) or similar management-focused verb."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko, sentence 14",
+      "issue": "비표준 어법 '쉬워한다'",
+      "evidence": "원문: 'each party finds it easy to feel personally innocent' / 번역: '각 당사자는 진짜 해악이 조용히 쌓이는데도 자신이 개인적으로 무죄라고 느끼기 쉬워한다' — '쉬워한다'는 비표준 표현. 표준형은 '쉽다' 또는 '쉬워진다'",
+      "suggestion": "'각 당사자는 진짜 해악이 조용히 쌓이는데도 자신이 개인적으로 무죄라고 느끼기 쉽다'로 수정",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko, sentence 16",
+      "issue": "어색한 표현 '있음 직한'",
+      "evidence": "원문: 'the likely results of ordinary choices' / 번역: '평범한 선택의 있음 직한 결과' — '있음직한'은 의미는 전달하나 고등학생 교재로서 어색함. 더 자연스러운 표현 필요",
+      "suggestion": "'평범한 선택의 가능성 있는 결과' 또는 '평범한 선택의 예상되는 결과'로 수정",
+      "lens": "translation"
+    }
+  ],
+  "blockers": [
+    {
+      "severity": "blocker",
+      "location": "answers.explanations[2] (Q3 함의 추론)",
+      "issue": "근거 문장 번호 오류: Evidence에서 '11번'이라고 명시했으나 실제 인용 문장은 Sentence 14",
+      "evidence": "파일 line 661-664: 'evidence'에서 '11번은 \"Because the blame is so scattered, each party finds it easy to feel personally innocent...\"'라고 기술. 그러나 JSON의 page3.sentences 배열에서 해당 텍스트는 index 14 (line 454-478의 Sentence 14)에 위치. translation_ko의 [11]번 문장('[11] 하나의 무해한 목적을 위해 모은 데이터가...')과 일치하지 않음.",
+      "suggestion": "Evidence의 문장 번호를 '11번'에서 '14번'으로 수정. 또는 번역본의 문장 번호(Sentence index)와 한국어 번역 분절 번호([] 표기)를 명확히 구분하여 혼동 방지.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "Direct file verification confirms the allegation. The evidence field in answers.explanations[2] (line 664) states '11번은 \"Because the blame is so scattered...\"' but this exact quote is found in Sentence 14 (lines 453-479), not Sentence 11 (lines 385-408). Sentence 11 actually discusses data being merged for different purposes. This is a clear sentence number reference error."
+      }
+    }
+  ],
+  "counts": {
+    "raw": 6,
+    "verified": 4,
+    "confirmed": 3,
+    "minor": 2
+  }
+}

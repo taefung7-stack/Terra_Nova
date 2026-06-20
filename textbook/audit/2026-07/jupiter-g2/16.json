@@ -1,0 +1,112 @@
+{
+  "grade": "jupiter-g2",
+  "seq": 16,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page3 sentences[0] (Sentence 1)",
+      "issue": "Incomplete segmentation of watch + object pattern in perceptual verb construction",
+      "evidence": "Segment \"bands of color slide across its skin\" is tagged entirely as O(object), but correct perceptual verb pattern is \"watch + O + bare infinitive\". Should split: O=\"bands of color\" + predicate=\"slide across its skin\" as the infinitive clause. Current tag groups both as one O role, making the structure incomplete.",
+      "suggestion": "Split the O segment into two: O(\"bands of color\") and mark \"slide across its skin\" separately as the infinitive complement describing what's watched, not an extension of the object.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "The file shows Sentence 1 segments \"bands of color slide across its skin\" entirely as role O. However, the correct perceptual verb pattern \"watch + O + bare infinitive\" requires splitting this into: O=\"bands of color\" and the infinitive predicate \"slide across its skin\" as separate elements. The existing note acknowledges the pattern (지각동사 watch O 원형) but the actual segmentation fails to implement this structure. This is a confirmed segmentation defect in the grammatical analysis."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3 sentences[13] (Sentence 14)",
+      "issue": "Structural segmentation error in 'the...the' comparative correlation construction",
+      "evidence": "Sentence 14 \"The narrower the gap becomes, the more dramatically the spreading grows\" uses parallel structure \"the comparative...the comparative\". Current segmentation shows M(\"The narrower the gap becomes\"), M(\"the more dramatically\"), S(\"the spreading\"), V(\"grows\"), which fragments the second comparative clause. Grammar_note correctly identifies \"the 비교급, the 비교급\" but the segment breakdown doesn't reflect this parallel clause structure.",
+      "suggestion": "Revise segmentation to show two parallel adverbial clauses: M(\"The narrower the gap becomes\") / [main clause: \"the more dramatically the spreading grows\"] rather than splitting the main clause across multiple role tags that obscure the parallel structure.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "Sentence 14 \"The narrower the gap becomes, the more dramatically the spreading grows\" exhibits the \"the comparative..., the comparative\" pattern correctly identified in grammar_note. However, the segment breakdown fragments the second comparative clause by separating M(\"the more dramatically\"), S(\"the spreading\"), and V(\"grows\") into distinct roles. In parallel comparative constructions, \"the more dramatically the spreading grows\" functions as a single adverbial comparative clause parallel to \"The narrower the gap becomes,\" not as decomposable M-S-V units. The segmentation obscures the parallel clause structure by treating the components separately rather than showing them as a cohesive second comparative clause."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "answers.explanations[0] (Q0 요지 - main idea)",
+      "issue": "Incorrect sentence reference in evidence of answer explanation",
+      "evidence": "Evidence states: '빛을 입자로 보면 둘 다 말이 안 되고 파동으로 보면 단번에 설명된다(13~14번)고 한다.' However, sentences 13-14 discuss doorways, slits, and diffraction spreading. Sentences 16-17 contain the actual particle vs. wave comparison: S16 \"Neither interference nor diffraction makes any sense if light is imagined as a stream of tiny bullets\" and S17 \"Both fall into place at once, however, the moment we accept that light truly travels as a ____.\"",
+      "suggestion": "Correct citation from (13~14번) to (16~17번) to accurately reference where the particle-wave contrast appears.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "The evidence statement in answers.explanations[0] references sentences 13-14 for the particle vs. wave comparison claim. However, sentences 13-14 discuss doorway/slit diffraction behavior. The actual explicit comparison (\"빛을 입자로 보면 둘 다 말이 안 되고 파동으로 보면 단번에 설명된다\") appears in sentences 16-17: S16 states interference/diffraction \"makes no sense if light is imagined as a stream of tiny bullets\" and S17 states \"both fall into place at once...the moment we accept that light truly travels as a [wave]\". The citation (13~14번) is factually incorrect; it should be (16~17번)."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "answers.explanations[1] (Q1 빈칸 추론 - blank inference)",
+      "issue": "Same citation error as Q0 explanation - incorrect sentence reference",
+      "evidence": "Evidence states: '13~14번은 빛을 입자(총알)로 보면 안 되고 파동으로 받아들이는 순간 모두 설명된다고 한다.' But sentences 16-17 contain this contrast, not 13-14. S16 explicitly mentions \"tiny bullets\" (입자 as 총알) and S17 discusses accepting light as wave.",
+      "suggestion": "Correct citation from (13~14번) to (16~17번).",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "The explanation for Q1 (answers.explanations[1]) contains an incorrect sentence reference. It states: \"13~14번은 빛을 입자(총알)로 보면 안 되고 파동으로 받아들이는 순간 모두 설명된다고 한다\" but sentences 13-14 describe diffraction through doorways and slits, with no mention of particles/bullets or waves. The actual content about the particle (총알) vs. wave contrast is in sentences 16-17: S16 says \"Neither interference nor diffraction makes any sense if light is imagined as a stream of tiny bullets\" (빛이 작은 총알의 흐름으로 상상되면), and S17 explains that accepting light as a wave makes everything clear (빛이 정말로 파동으로 이동한다는 것을 받아들이는 순간). The explanation's citation is factually incorrect."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "answers.explanations[2] (Q2 함의 추론 - implication)",
+      "issue": "Sentence number error in evidence quotation",
+      "evidence": "Evidence states: '7번은 \"Where a crest instead meets a trough, the waves cancel...\"라고 한다.' But this quote appears in sentence 8, not 7. S7 describes constructive interference (crest meets crest). S8 describes destructive interference and contains the exact quoted phrase.",
+      "suggestion": "Correct sentence reference from '7번' to '8번'.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "Evidence statement incorrectly attributes the quoted phrase \"Where a crest instead meets a trough, the waves cancel and the light dims toward darkness\" to sentence 7, but the phrase is actually located in sentence 8. Sentence 7 describes constructive interference (crest meets crest), while sentence 8 describes destructive interference and contains the exact quoted phrase."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "Paragraph 3, sentence starting with 'Light also bends when...'",
+      "issue": "Awkward nominalization in appositive: 'a spreading known as diffraction'",
+      "evidence": "\"Light also bends when it squeezes past an edge or through a narrow opening, a spreading known as diffraction.\" The appositive 'a spreading' is grammatically defensible but stylistically stilted for CEFR B2 readers.",
+      "suggestion": "Rephrase for clarity: 'Light also bends when it squeezes past an edge or through a narrow opening—a phenomenon known as diffraction' or restructure: '...this spreading is known as diffraction.'",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "Final sentence of passage",
+      "issue": "Ambiguous comma punctuation before 'however'",
+      "evidence": "\"Both fall into place at once, however, the moment we accept that light truly travels as a ____.\" The commas around 'however' are unclear—it reads as incomplete main clause structure.",
+      "suggestion": "Either: (1) Restructure: 'Both fall into place at once; however, the moment we accept...' or (2) Clarify: 'Both, however, fall into place at once the moment we accept...'",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "page3 sentences[3] (Sentence 4)",
+      "issue": "Imprecise grammatical role label for 'crest upon crest and trough upon trough'",
+      "evidence": "Segment tagged as \"동격 부사구\" (appositive adverbial phrase), but this phrase is not in apposition. It functions as an adverbial phrase of manner explaining HOW the waves add together. Apposition would be a noun phrase renaming another noun, not a manner descriptor.",
+      "suggestion": "Relabel as 'manner adverbial phrase' or simply 'adverbial phrase explaining method' rather than '동격' which implies appositive/in-apposition structure.",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "answers.explanations[3] (Q3 요약문 빈칸 - summary fill-in)",
+      "issue": "Vague sentence citation for 'color' evidence",
+      "evidence": "Evidence cites '8~9번의 color(색의 띠)' for answer (B)=color. However: S8 is about destructive interference (no mention of colors). S9 discusses overlapping light reflection (no explicit color mention). The strongest textual support for 'shifting colors/bands' appears in S1 ('bands of color slide') and S11 ('the bands shift'). S10 mentions 'each color has its own wavelength' which better supports why color is the answer.",
+      "suggestion": "Improve citation clarity by referencing S10 (explicitly states each color has wavelength causing different brightening) and S11 (bands shift), which more directly support why colors are the answer for the summary's shifting phenomenon.",
+      "lens": "explanation"
+    }
+  ],
+  "blockers": [],
+  "counts": {
+    "raw": 9,
+    "verified": 5,
+    "confirmed": 5,
+    "minor": 4
+  }
+}

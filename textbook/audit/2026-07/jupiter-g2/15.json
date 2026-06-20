@@ -1,0 +1,53 @@
+{
+  "grade": "jupiter-g2",
+  "seq": 15,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page3 > sentences > sentence 13 > segments[2]",
+      "issue": "구문 역할 오태깅: \"exactly where a government can step in, not to replace the market but to repair it.\" 부분이 M(Modifier)으로 태깅되었으나, 링킹동사 is의 보어절이므로 C(Complement)로 태깅되어야 함",
+      "evidence": "본문 \"This is exactly where a government can step in...\"에서 where절은 주어 This를 설명하는 링킹동사의 보어. grammar_note에서도 \"be where 관계부사\"라고 명시했으나 역할 태그는 M으로 표기됨. 올바른 분석: This(S) + is(V) + [where절](C)",
+      "suggestion": "sentence 13의 segments[2]의 role을 \"M\"에서 \"C\"로 수정",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "JSON 파일의 sentence 13, segments[2]에서 role이 \"M\"으로 태깅되어 있지만, grammar_note에 \"be where 관계부사\"라고 명시되어 있습니다. 링킹동사 is의 보어 역할을 하는 where절이 Modifier(M)로 태깅된 것은 오류입니다. 올바른 태그는 C(Complement)이어야 합니다. 파일 구조와 문법 노트의 직접적 불일치로 인해 실제 결함임이 확실합니다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "answers > explanations > q_index 3 > evidence",
+      "issue": "문장번호 오류: Q4(요약문) 답안 설명에서 \"12번 government\"이라고 잘못 인용함",
+      "evidence": "한국어 번역 [13]번: \"바로 이 지점에서 정부가 개입할 수 있는데...\" 정부 언급은 13번에만 있음. 12번은 \"그 결과는 우리를 해치는 것은 너무 많고 우리를 돕는 것은 너무 적은 상태다.\"로 정부가 없음. 해설 evidence에서 \"(B)는 시장을 대체가 아니라 보완하러 개입하는 주체 → 12번 government\"라고 했으나 정확히는 13번이어야 함.",
+      "suggestion": "Q4 explanation의 evidence 문구를 \"(B)는 시장을 대체가 아니라 보완하러 개입하는 주체 → 13번 government.\"로 수정",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일의 translation_ko 섹션을 통해 문장 번호와 내용을 직접 확인했습니다. [12]번 문장은 \"그 결과는 우리를 해치는 것은 너무 많고 우리를 돕는 것은 너무 적은 상태다.\"로 '정부'나 '보완'이라는 개념이 없습니다. 해설에서 \"(B)는 시장을 대체가 아니라 보완하러 개입하는 주체 → 12번 government\"라고 했으나, 이 설명(정부의 보완적 역할)은 실제로 [13]번 \"바로 이 지점에서 정부가 개입할 수 있는데, 시장을 대체하기 위해서가 아니라 그것을 고치기 위해서다\"에만 명시되어 있습니다. 따라서 인용 문장 번호 오류가 실제 결함입니다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "answers > explanations > q_index 0 > evidence",
+      "issue": "문장번호 오류: Q1(요지) 답안 설명에서 \"(12~13번)\"이라고 인용하였으나 정부 언급은 13번에만 있음",
+      "evidence": "evidence에서 \"이때 정부가 시장을 대체가 아니라 보완해(12~13번) 사적 유인을 공익과 일치시킨다(15번)고 한다\"고 했으나, 12번에는 정부 언급이 없고 13번 \"This is exactly where a government can step in, not to replace the market but to repair it.\"에서만 정부의 역할(대체 vs 보완)이 명시됨.",
+      "suggestion": "Q1 explanation의 evidence 문구를 \"...이때 정부가 시장을 대체가 아니라 보완해(13번) 사적 유인을 공익과 일치시킨다...\"로 수정",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 검증 결과, sentence 12는 \"The result is too much of what harms us and too little of what helps\"로 정부 역할 언급 없음. sentence 13만 \"a government can step in, not to replace the market but to repair it\"로 정부의 보완(repair) vs 대체(replace) 구분을 명시함. 따라서 evidence의 인용 범위 \"(12~13번)\"은 부정확하며 \"(13번)\"이 정확함."
+      }
+    }
+  ],
+  "minors": [],
+  "blockers": [],
+  "counts": {
+    "raw": 3,
+    "verified": 3,
+    "confirmed": 3,
+    "minor": 0
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "grade": "jupiter-g2",
+  "seq": 10,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "answers.explanations[1] (q_index=1, 빈칙 추론)",
+      "issue": "Evidence와 rationales에서 문장 번호 오류: \"12번\"과 \"14번\"으로 기재했으나, 인용된 구문은 실제로 문장 17과 20에 위치",
+      "evidence": "evidence 필드: \"12번 \\\"life is not frozen but endlessly inventive\\\", 14번 \\\"Perfection and progress pull in opposite directions\\\"\" — 그러나 page3.sentences 배열에 따르면 해당 구문은 문장 17(index:17)과 문장 20(index:20)에 위치. 또한 rationales[3]과 rationales[4]도 같은 오류로 \"12번\"과 \"14번\"을 참조함.",
+      "suggestion": "evidence를 \"17번 \\\"life is not frozen but endlessly inventive\\\", 20번 \\\"Perfection and progress pull in opposite directions\\\"\"로 수정하고, rationales의 문장 번호 참조도 일치하도록 업데이트",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "File C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-07-J/10.json의 answers.explanations[1] (q_index=1)에서 evidence 필드와 rationales[3], rationales[4]가 잘못된 문장 번호를 참조하고 있음이 확인됨. \"life is not frozen but endlessly inventive\" 구문은 실제로 문장 17(page3.sentences[17], line 562-579)에 위치하지만 \"12번\"으로 기재되어 있고, \"Perfection and progress pull in opposite directions\" 구문은 실제로 문장 20(page3.sentences[20], line 637-658)에 위치하지만 \"14번\"으로 기재되어 있음. 이는 page3.sentences 배열의 인덱스와 실제 인용 구문의 위치 불일치를 나타내는 실제 결함입니다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "answers.explanations[0] (q_index=0, 요지)",
+      "issue": "Evidence에서 문장 범위 오류: DNA 복제와 돌연변이 해롭지 않음을 설명하는 부분의 문장 범위가 부정확",
+      "evidence": "evidence 필드: \"DNA 복제 중 생긴 변화로 형질을 바꾸거나 질병을 일으킬 수 있지만(2~7번)\" — 그러나 형질 변화와 질병 언급은 문장 8-9에 위치: \"But a change in one crucial instruction can alter an important protein. That can reshape a visible trait, and sometimes even cause serious disease.\" 문장 2-7은 돌연변이의 정의와 대부분이 해롭지 않음을 설명할 뿐, 형질 변화/질병 구체 사항은 포함하지 않음.",
+      "suggestion": "evidence를 \"DNA 복제 중 생긴 변화(문장 2-4)로, 형질을 바꾸거나 질병을 일으킬 수 있지만(문장 8-9), 드문 유익한 변이가 진화의 재료가 된다(문장 11-12)\"로 명확히 정정 또는 문장 범위를 \"8~9번\"으로 수정",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "Evidence 필드의 문장 범위 표시 \"(2~7번)\"은 부정확합니다. 실제 문장 2-7은 돌연변이의 정의와 대부분이 무해함을 설명할 뿐, 형질 변화와 질병 유발은 문장 8-9에서 구체적으로 설명됩니다. 특히 \"reshape a visible trait\"과 \"cause serious disease\"는 문장 9번에만 명시되어 있습니다. Evidence는 \"(8~9번)\" 또는 최소한 \"문장 8-9\"로 수정되어야 합니다."
+      }
+    }
+  ],
+  "minors": [],
+  "blockers": [],
+  "counts": {
+    "raw": 2,
+    "verified": 2,
+    "confirmed": 2,
+    "minor": 0
+  }
+}

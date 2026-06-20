@@ -1,0 +1,36 @@
+{
+  "grade": "sun-g3",
+  "seq": 17,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "answers.explanations[1] (빈칸 추론, Q index 1, line 633)",
+      "issue": "해설의 근거 제시 불완전 — \"12번\"만 인용하여 균형점 개념 설명이 부실",
+      "evidence": "해설: \"12번이 균형이 뒤집히는 지점에서 멈춘다고 했고, 균형이 '자리잡는(comes to rest)' 곳을 찾는 흐름이다.\"\n본문에서 \"balance tips\" → \"stop\"의 의미를 강화하는 더 명확한 근거는 Sentence 13 (line 519-529): \"the moment that balance tips, we stop\" 입니다. 이 문장이 균형의 '전환점'을 직접 설명하므로 \"comes to rest\"와의 연결이 더 명확합니다.",
+      "suggestion": "해설을 \"Sentence 13의 'the moment that balance tips, we stop'과 Sentence 12의 한계 분석 개념을 통해, 균형이 뒤집히는 그 지점(rest)을 찾는다는 의미임\"으로 보강할 것.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "해설이 Sentence 12만 인용하여 \"균형이 뒤집히는 지점\"을 설명했으나, 정작 \"balance tips, we stop\"을 직접 명시하는 것은 Sentence 13(lines 519-529)입니다. \"comes to rest\"와 균형점의 연결을 위해서는 Sentence 13의 \"the moment that balance tips, we stop\"이 더 직접적이고 강력한 근거이므로, 지적된 \"근거 제시 불완전\"이 확인됩니다."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page3, sentence 14 (line 548-551)",
+      "issue": "부사 수식어 구분 부재 — \"step by patient step\"과 \"toward the optimum\"이 단일 M으로 묶여있음",
+      "evidence": "본문: \"This marginal test points us, step by patient step, toward the optimum.\" 이 문장은 두 개의 분리된 부사구를 가집니다: (1) \"step by patient step\" (방식/양식), (2) \"toward the optimum\" (방향). 현재 page3 line 549-550은 둘을 합쳐 단일 M으로 표기했습니다.",
+      "suggestion": "\"step by patient step\"과 \"toward the optimum\"을 별도의 부사구 수식어로 분리 표기할 것을 권장합니다.",
+      "lens": "explanation"
+    }
+  ],
+  "blockers": [],
+  "counts": {
+    "raw": 2,
+    "verified": 1,
+    "confirmed": 1,
+    "minor": 1
+  }
+}

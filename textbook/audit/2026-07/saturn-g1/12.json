@@ -1,0 +1,70 @@
+{
+  "grade": "saturn-g1",
+  "seq": 12,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "answers.explanations[3] (Q3 요약문 빈칸 완성) - evidence 및 rationales",
+      "issue": "문장 인용 오류: (B) benefit 설명에서 '14번의 benefit과 일치'라고 했으나 실제로 '14번'은 'This way of thinking turns choosing into a kind of quiet math'이며 benefit이 없음",
+      "evidence": "explanation evidence: '(B)는 합리적 선택에서 잃는 것과 견주는 얻는 것 → 14번 \"weighing what you gain\" = benefit' 그러나 본문 sentence 14는 \"This way of thinking turns choosing into a kind of quiet math.\" 이고, \"weighing what you gain against what you lose\"는 sentence 16에 위치함",
+      "suggestion": "sentence 16 인용으로 수정: '(B)는 합리적 선택에서 잃는 것과 견주는 얻는 것 → 16번 \"weighing what you gain against what you lose, then choosing where the benefit is largest\" = benefit'",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 검증 결과, 검수 지적이 정확합니다. Sentence 14는 \"This way of thinking turns choosing into a kind of quiet math\"이며 \"benefit\"이 포함되어 있지 않습니다. \"weighing what you gain against what you lose\"는 Sentence 16에 위치합니다. 답안의 explanation에서 \"(B) benefit\"을 설명하면서 \"14번 weighing what you gain = benefit\"이라고 잘못 인용한 오류가 확인되었습니다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "answers.explanations[0] (Q1 요지) - evidence",
+      "issue": "문장 인용 부정확: '합리적 선택은 편익과 잃는 것을 견주는 것(13~14번)'이라 했으나 실제 해당 내용은 sentence 16에 위치",
+      "evidence": "Q1 evidence: '합리적 선택은 편익과 잃는 것을 견주는 것(13~14번)' 그러나 sentence 13은 '\"Is this worth more to me than the best thing I am giving up?\"' (직접 인용문), sentence 14는 '\"This way of thinking turns choosing into a kind of quiet math.\"' 이고, 실제로 'weighing what you gain against what you lose'는 sentence 16: 'It is about weighing what you gain against what you lose, then choosing where the benefit is largest'에서 처음 명시됨",
+      "suggestion": "Q1 evidence를 수정하여 sentence 16을 주요 근거로 인용: '합리적 선택은 편익과 잃는 것을 견주는 것(16번)이라 한다'",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일의 sentence 13은 직접 인용문(\\\"Is this worth more to me...\\\"), sentence 14는 사고방식 변환 설명이며, \\\"편익과 잃는 것을 견주는\\\"(weighing what you gain against what you lose) 개념은 sentence 16에 명확히 위치. answers.explanations[0].evidence 필드의 인용 위치(13~14번)가 부정확함."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.translation_ko, 문장 6",
+      "issue": "\"shapes\"의 부적절한 번역",
+      "evidence": "영문: \"because it shapes almost every decision we make\" / 현재 번역: \"그것이 우리가 내리는 거의 모든 결정을 빚기 때문이다\" / 문제점: \"shapes\"는 \"형성하다\", \"좌우하다\", \"결정짓다\" 의미인데, \"빚다\"는 재정 관련 용어로 문맥상 부자연스러움.",
+      "suggestion": "\"그것이 우리가 내리는 거의 모든 결정을 좌우하기 때문이다\" 또는 \"...결정을 형성하기 때문이다\"로 수정",
+      "lens": "translation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 확인 결과 지적이 명확한 번역 오류입니다. page3.translation_ko 문장 [6]에서 \"shapes almost every decision we make\"를 \"빚기 때문이다\"로 번역한 것은 부적절합니다. \"shapes\"는 \"형성하다\", \"좌우하다\" 등의 의미인데, \"빚다\"는 재정/채무 관련 용어로 문맥상 완전히 부자연스럽습니다. 올바른 번역은 \"형성하기\", \"좌우하기\", \"영향을 미치기\" 등이어야 합니다."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko, 문장 2",
+      "issue": "\"sleep\"의 번역 불완전",
+      "evidence": "영문: \"You could see a movie, study for a test, or sleep.\" / 현재 번역: \"너는 영화를 보거나, 시험공부를 하거나, 잘 수 있다.\" / 문제점: \"sleep\"을 \"잘\"로 축약 번역했으나, 문맥상 \"자거나\"가 자연스러움.",
+      "suggestion": "\"너는 영화를 보거나, 시험공부를 하거나, 자거나 할 수 있다.\"로 수정",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko, 문장 9",
+      "issue": "문법적 부자연스러움 - 주어와 동사 연결의 어색함",
+      "evidence": "영문: \"It also includes the higher test score you might have earned by studying at home instead.\" / 현재 번역: \"그것은 대신 집에서 공부함으로써 얻었을지도 모르는 더 높은 시험 점수도 포함한다.\" / 문제점: \"대신\"의 위치가 앞으로 나와 주어-동사 관계가 부자연스러움.",
+      "suggestion": "\"그것은 또한 집에서 공부함으로써 대신 얻었을지도 모르는 더 높은 시험 점수도 포함한다.\" 또는 \"그것은 또한 대신 집에서 공부해서 얻었을 더 높은 시험 점수도 포함한다.\"로 수정",
+      "lens": "translation"
+    }
+  ],
+  "blockers": [],
+  "counts": {
+    "raw": 5,
+    "verified": 3,
+    "confirmed": 3,
+    "minor": 2
+  }
+}

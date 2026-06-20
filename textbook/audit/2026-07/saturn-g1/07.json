@@ -1,0 +1,93 @@
+{
+  "grade": "saturn-g1",
+  "seq": 7,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page3 > sentences > index 5",
+      "issue": "부정구조에서 V와 보어 역할 표기 부정확",
+      "evidence": "\"A sentence like 'blue is the best color' is not, because...\" — \"is not\" 다음에 보어 '[a statement]'가 생략됨. 현재는 \"not\"을 M으로만 표기했으나, 2형식 동사 \"is\"의 보어 생략을 명시하지 않아 문장 구조가 불명확함.",
+      "suggestion": "C 역할을 추가하여 \"C: 'not [a statement - understood]'\" 또는 보어 생략임을 grammar_note에 명시할 것. 현재: \"대동사 부정 + because (there be)\" → 개선: \"2형식 + 보어 생략 + because 이유절\"",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "page3 > sentences > index 5에서 \"is not\" 구조에 2형식 동사 \"is\"의 보어 \"[a statement]\"가 실제로 생략되었으나, 현재 표기는 \"not\"을 M(수식어)로만 표기하고 보어 생략을 명시하지 않았습니다. index 4의 \"is a statement\"와 대조되는 구조이며, 2형식 문장의 보어 생략을 표기하지 않으면 문장 구조가 불명확해져 학습자의 이해를 방해합니다. 이는 명백한 표기 결함입니다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3 > sentences > index 19",
+      "issue": "부사와 보어 역할의 혼재로 5형식 구조 오도",
+      "evidence": "\"In a world full of loud, confident voices, the sharpest question is often not 'how many people agree?' but 'can you find even one honest ____?'\" — 현재 \"is\"를 V로 표기했으나, \"often not X but Y\"가 하나의 M으로 묶여 있어, \"is\" 다음의 보어 구조(not A but B = C)가 불명확함.",
+      "suggestion": "구조를 명확히 분리할 것: V: \"is\" → M: \"often\" → C: \"not 'how many people agree?' but 'can you find...?'\"로 재정렬. grammar_note를 \"2형식 + M(often) + C(not A but B 의문문 인용)\"으로 개선할 것.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일의 index 19에서 \"often not 'X' but 'Y'\"를 단일 M(부사)으로 표기했으나, 실제로는 \"often\"(M)과 \"not 'X' but 'Y'\"(C, 보어)가 분리되어야 함. 불완전동사 \"is\" 다음의 보어 구조(주어 \"the sharpest question\"을 설명하는 부분)가 명확하지 않음. 부사와 보어 역할이 혼재되어 있는 것이 확인됨."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "page3.translation_ko - Sentence 19",
+      "issue": "The Korean translation fills in the blank with a specific word '예외' (exception), but the English source contains a blank '____?' intended for students to fill in. The blank should remain unfilled in the translation, or if clarification is needed, it should indicate that the answer is '반례'(counterexample) based on the passage content, not '예외'(exception). This compromises the reading comprehension question.",
+      "evidence": "EN source: '\"can you find even one honest ____?\"' vs. KO translation: '\"단 하나의 정직한 예외라도 찾을 수 있는가?\"' The English preserves the blank for student response; the Korean prematurely supplies '예외'. The passage emphasizes '반례'(counterexample) as the key concept throughout.",
+      "lens": "translation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "The Korean translation of Sentence 19 (page3.translation_ko) explicitly fills the blank with '예외' ('단 하나의 정직한 예외라도 찾을 수 있는가?'), while the English source preserves it as a blank: 'can you find even one honest ____?'. This is corroborated by page2 which contains a reading comprehension question specifically asking students to fill this blank ('윗글의 밑줄 친 빈칸에 들어갈 말로 가장 적절한 것은?', Q Index 1). The translation removes the pedagogical blank-filling task and prematurely supplies an answer, compromising the reading comprehension assessment. Additionally, while the gloss entry maps \"exception\" to \"예외\", the passage's key concepts and curriculum tieback emphasize '반례' (counterexample) as the core term, making '예외' a less precise answer than the conceptually motivated '반례'."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.translation_ko - Sentence 16",
+      "issue": "Awkward word order and phrasing in translating 'reaches far past the math classroom'. The structure '수학 교실을 훨씬 넘어서까지 닿는' is unnatural Korean; the particle placement and verb relationship are strained.",
+      "evidence": "EN: 'a thinking habit that reaches far past the math classroom' vs. KO: '수학 교실을 훨씬 넘어서까지 닿는 사고 습관'. Better alternatives: '수학 교실을 훨씬 넘어 뻗어나가는' or '수학 교실의 범위를 훨씬 넘어가는'.",
+      "lens": "translation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "현재 번역 '수학 교실을 훨씬 넘어서까지 닿는'은 한국어 문법 및 자연스러움 측면에서 실제 결함입니다. 입자 '까지'와 동사 '닿는'의 조합이 부자연스럽고, '뻗어나가는' 또는 '넘어가는'이 원문 'reaches far past'의 능동적 의미를 더 정확히 전달합니다. 제시된 대안들이 더 자연스러운 한국어 표현입니다."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page3 > sentences > index 9",
+      "issue": "문장 선형 순서와 segment 배열 불일치",
+      "evidence": "\"That sounds hard to do, and very often it really is.\" — 현재 segment: [S:That][V:sounds][C:hard to do][CONJ:and][M:very often][S:it][M:really][V:is] 순서인데, 본문은 \"sounds hard ... and very often it really is\"이므로 선형 순서 배치가 일관성 없음.",
+      "suggestion": "Segment 순서를 문장 선형 순서에 맞춰 재정렬하거나, 일관된 배치 기준을 적용할 것.",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko - Sentence 8",
+      "issue": "Slightly awkward word order in translating 'not just in a few easy ones'. The Korean '쉬운 몇 경우만이 아니라' reverses the expected adjective-noun order.",
+      "evidence": "EN: 'not just in a few easy ones' vs. KO: '쉬운 몇 경우만이 아니라'. Standard Korean order would prefer '몇 가지 쉬운 경우' or '겨우 몇 가지 쉬운 경우'.",
+      "lens": "translation"
+    }
+  ],
+  "blockers": [
+    {
+      "severity": "blocker",
+      "location": "page3.translation_ko - Sentence 19",
+      "issue": "The Korean translation fills in the blank with a specific word '예외' (exception), but the English source contains a blank '____?' intended for students to fill in. The blank should remain unfilled in the translation, or if clarification is needed, it should indicate that the answer is '반례'(counterexample) based on the passage content, not '예외'(exception). This compromises the reading comprehension question.",
+      "evidence": "EN source: '\"can you find even one honest ____?\"' vs. KO translation: '\"단 하나의 정직한 예외라도 찾을 수 있는가?\"' The English preserves the blank for student response; the Korean prematurely supplies '예외'. The passage emphasizes '반례'(counterexample) as the key concept throughout.",
+      "lens": "translation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "The Korean translation of Sentence 19 (page3.translation_ko) explicitly fills the blank with '예외' ('단 하나의 정직한 예외라도 찾을 수 있는가?'), while the English source preserves it as a blank: 'can you find even one honest ____?'. This is corroborated by page2 which contains a reading comprehension question specifically asking students to fill this blank ('윗글의 밑줄 친 빈칸에 들어갈 말로 가장 적절한 것은?', Q Index 1). The translation removes the pedagogical blank-filling task and prematurely supplies an answer, compromising the reading comprehension assessment. Additionally, while the gloss entry maps \"exception\" to \"예외\", the passage's key concepts and curriculum tieback emphasize '반례' (counterexample) as the core term, making '예외' a less precise answer than the conceptually motivated '반례'."
+      }
+    }
+  ],
+  "counts": {
+    "raw": 6,
+    "verified": 4,
+    "confirmed": 4,
+    "minor": 2
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "grade": "sun-g3",
+  "seq": 8,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "answers.explanations[1] (Q_index 1, blank-filling question)",
+      "issue": "Evidence citation references wrong sentence number",
+      "evidence": "Answer states: '14번 뒤 동격이 \"the patient construction of new understanding\"' but this phrase appears in sentence 17 (final sentence), not sentence 14. Sentence 14 reads: 'A good synthesis dissolves its sources into a fresh line of reasoning that belongs to the writer...' The quoted phrase 'the patient construction of new understanding from scattered and imperfect parts' is in sentence 17: 'So genuine research is less an act of finding than an act of ____, the patient construction...'",
+      "suggestion": "Correct the citation from '14번' to '17번' in the evidence explanation for Q_index 1",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "The evidence in answers.explanations[1] (Q_index 1) states: \"14번 뒤 동격이 \\\"the patient construction of new understanding\\\"이므로\" (After sentence 14, the appositive is \"the patient construction of new understanding\"). However, reading the actual sentences in page3.sentences shows: Sentence 14 reads \"A good synthesis dissolves its sources into a fresh line of reasoning...\" with no mention of \"the patient construction.\" Sentence 17 reads \"So genuine research is less an act of finding than an act of ____, the patient construction of new understanding from scattered and imperfect parts.\" The phrase \"the patient construction of new understanding\" is definitively in sentence 17, not sentence 14. This is a clear factual error in the evidence citation."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.sentences[11] (Sentence 12 - segment role tagging)",
+      "issue": "Complement (C) incorrectly tagged as modifier (M) in linking verb sentence",
+      "evidence": "Sentence 12: 'The reader is no longer a passive collector but an active builder, arranging fragments into a structure none of them held alone.' Segment 'no longer a passive collector but an active builder' is tagged role='M' but should be role='C' since it is the complement (predicate nominative) of the linking verb 'is'. The grammar_note correctly identifies this as '2형식(no longer A but B)' where the pattern is S-V-C, not S-V-M.",
+      "suggestion": "Change segment role from 'M' to 'C' for 'no longer a passive collector but an active builder' in sentence 12",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "File evidence (C:\\Users\\user\\OneDrive\\Desktop\\Terra Nova\\textbook\\content\\passages\\2026-07-Sun\\08.json, page3.sentences[11], Sentence 12) shows role=\"M\" for 'no longer a passive collector but an active builder', but the grammar_note explicitly states '2형식(no longer A but B)' where 2형식 means Subject-Linking Verb-Complement. The linking verb 'is' requires a predicate nominative (complement), not a modifier. The role tag contradicts both the grammar note and standard English grammar principles."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.sentences[12] (Sentence 13 - segment role tagging)",
+      "issue": "Complement (C) incorrectly tagged as modifier (M) in infinitive complement",
+      "evidence": "Sentence 13: 'The goal is never to stitch quotations end to end like beads on a string.' The infinitive phrase 'never to stitch quotations end to end like beads on a string' is tagged role='M' but should be role='C'. The grammar_note correctly identifies this as '2형식 (to V 보어)' showing the infinitive is a complement, not a modifier. In S-V-C structure with linking verbs, to-infinitives are complements.",
+      "suggestion": "Change segment role from 'M' to 'C' for 'never to stitch quotations end to end like beads on a string' in sentence 13",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "The file explicitly confirms the issue. Sentence 13, segment 3 is tagged role='M' but the grammar_note field states '2형식 (to V 보어)' (Form 2: to-infinitive complement) and the note field says 'to부정사 보어' (to-infinitive complement). In S-V-C structure with linking verbs, the to-infinitive phrase 'never to stitch...' is a complement, not a modifier. The role tag contradicts the document's own grammatical analysis. This is a structural inconsistency requiring correction from 'M' to 'C'."
+      }
+    }
+  ],
+  "minors": [],
+  "blockers": [],
+  "counts": {
+    "raw": 3,
+    "verified": 3,
+    "confirmed": 3,
+    "minor": 0
+  }
+}

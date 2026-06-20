@@ -1,0 +1,40 @@
+{
+  "grade": "sun-g3",
+  "seq": 16,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page3.translation_ko, sentence 16",
+      "issue": "Mistranslation of 'running your phone'",
+      "evidence": "English: \"Pack billions of these switches onto a chip and you have the processor running your phone.\" Korean: \"네 전화기를 돌리는 프로세서를 갖게 된다.\" The verb '돌리는' (to turn/rotate/run in circles) does not accurately convey 'running' (operating/executing). Should be '실행시키는' or '구동하는'.",
+      "suggestion": "Change '네 전화기를 돌리는 프로세서' to '네 전화기를 구동하는 프로세서' or '네 휴대전화를 실행시키는 프로세서'",
+      "lens": "translation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "The Korean phrase \"네 전화기를 돌리는 프로세서\" uses \"돌리는\" (to turn/rotate/run in circles), which does not accurately convey the English meaning of \"running\" (operating/executing). The verb \"돌리는\" implies physical rotation rather than computational execution. More appropriate terms would be \"실행시키는\" (execute), \"구동하는\" (drive/operate), or \"작동시키는\" (operate). This is a genuine lexical mistranslation in sentence 16 of page3.translation_ko."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.translation_ko, sentence 17",
+      "issue": "Imprecise translation of 'carefully imperfect'",
+      "evidence": "English: \"just a carefully imperfect crystal\" Korean: \"신중하게 불완전한 결정\" The original 'carefully imperfect' refers to the precision/intentionality of the design (carefully made to be imperfect), but the Korean '신중하게 불완전한' suggests 'imperfect in a careful manner', which changes the meaning.",
+      "suggestion": "Consider '신중히 설계된 불완전한 결정' or '정밀하게 불완전하게 만들어진 결정' to better convey the intentional imperfection",
+      "lens": "translation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "The Korean translation \"신중하게 불완전한 결정\" does misrepresent the English \"carefully imperfect crystal\". In English, \"carefully imperfect\" emphasizes the intentionality and precision of the design (the crystal was carefully engineered to be imperfect). The Korean version uses adverb + adjective structure that describes the imperfection as having a careful quality, rather than conveying that the imperfection was deliberately designed. The context of the passage (doping semiconductors creates intentional, precise defects) supports that the meaning should emphasize deliberate design, not just careful imperfection. The translation shifts focus from \"deliberately designed to be imperfect\" to \"imperfect in a careful manner.\""
+      }
+    }
+  ],
+  "minors": [],
+  "blockers": [],
+  "counts": {
+    "raw": 2,
+    "verified": 2,
+    "confirmed": 2,
+    "minor": 0
+  }
+}

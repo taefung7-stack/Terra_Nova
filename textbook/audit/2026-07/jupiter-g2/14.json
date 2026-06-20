@@ -1,0 +1,49 @@
+{
+  "grade": "jupiter-g2",
+  "seq": 14,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page3 > sentences[9] (Sentence 10)",
+      "issue": "O 역할 분석 부정확 — 'feel physical and heavy'를 모두 O로 태깅하되, 실제는 O + C 관계",
+      "evidence": "현재: segments[3] = {role: 'O', text: 'the loneliness feel physical and heavy.'} / 정정: 'the loneliness' = O, 'feel' = 원형부정사(bare infinitive), 'physical and heavy' = C(보어). 본문 \"the comparison makes the loneliness feel physical and heavy\"에서 'makes'는 사역동사로 O와 원형부정사를 취함",
+      "suggestion": "segments를 재분석: [{role:'O', text:'the loneliness'}, {role:'원형부정사', text:'feel'}, {role:'C', text:'physical and heavy.'}]로 분리하거나, O 설명을 '사역동사 make O 원형부정사+보어'로 수정",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 확인 결과, Sentence 10의 segment[3]에서 \"the loneliness feel physical and heavy.\"를 모두 O로 태깅한 것이 실제 결함입니다. 사역동사 'makes' 이후는 'make O 원형부정사 보어' 구조이므로, 'the loneliness'는 O, 'feel'은 원형부정사, 'physical and heavy'는 C(보어)로 분리되어야 합니다. 현재 파일의 note에 \"make O 원형 + 형용사\"라고 명시되어 있으나 segment 분할이 이를 반영하지 않았습니다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "answers > explanations[1] (q_index: 1, 빈칸 추론)",
+      "issue": "evidence의 문법 설명 오류 — 빈칸을 '주어'로 잘못 표현",
+      "evidence": "현재 evidence: \"빈칭은 \\\"the fresh act of seeing that its ___ quietly trains us to perform\\\"의 주어다\" / 실제 본문과 구조: 빈칸은 '주어'가 아니라 'seeing'을 수식하는 소유격 결정자(determiner) 역할. \"its language\" = 'the fresh act of seeing'이 훈련시키는 것이 무엇인지를 나타냄",
+      "suggestion": "evidence를 \"빈칸은 \\\"the fresh act of seeing that its ___ quietly trains us to perform\\\"에서 소유격 수식어로, 글 전체가 강조한 시의 '언어(language)'가 새롭게 보게 만든다는 주체를 나타낸다\"로 수정",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 검증 결과, evidence의 문법 설명이 실제로 오류입니다. 빈칸(language)은 \"the fresh act of seeing that its ___ quietly trains us to perform\"에서 관계절의 주어가 아니라, 소유격 한정사 'its'를 따르는 명사입니다. 즉, 'its'의 목적어 역할을 하면서 'seeing'을 수식하는 소유격 결정자 구조의 일부입니다. 현재 설명 \"빈칭은 ... 의 주어다\"는 문법적으로 부정확합니다."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page3 > sentences[12] (Sentence 13)",
+      "issue": "grammar_note가 'make O 원형'으로 표기되었으나, 두 개의 사역 구조(slow + make)를 명확히 구분하지 않음",
+      "evidence": "본문: \"the rhythm and repetition of a line can slow our reading and make a single word ring in the ear\" / 현재 note: \"사역 make\" — 하지만 앞의 'slow'도 사역구조이므로 '연쇄 사역'(double causative)의 특성을 명시 필요",
+      "suggestion": "grammar_note를 \"slow O + make O 원형 (연쇄 사역)\" 또는 \"사역 slow와 make O 원형의 병렬\"로 수정하여 두 구조의 관계 명확화",
+      "lens": "explanation"
+    }
+  ],
+  "blockers": [],
+  "counts": {
+    "raw": 4,
+    "verified": 3,
+    "confirmed": 2,
+    "minor": 1
+  }
+}

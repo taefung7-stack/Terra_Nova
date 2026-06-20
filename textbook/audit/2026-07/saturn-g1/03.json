@@ -1,0 +1,97 @@
+{
+  "grade": "saturn-g1",
+  "seq": 3,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page1.body, paragraph 2, sentence 13",
+      "issue": "Tense inconsistency: Past tense verb in present-tense narrative",
+      "evidence": "\"Climate, crops, and belief slowly mixed into one shared way of life.\" — The verb 'mixed' (past tense) appears in a paragraph explaining how environments shape cultures as general truths. Surrounding sentences use present tense (e.g., 'Religion then adds', 'A shared faith can tie') or present perfect context. This single sentence breaks the tense pattern of the explanation.",
+      "suggestion": "Change 'mixed' to 'mix' (present tense) to maintain consistency with the expository mode: \"Climate, crops, and belief slowly mix into one shared way of life.\" This aligns with the instructional register of the passage.",
+      "lens": "language",
+      "verdict": {
+        "isReal": true,
+        "confidence": "medium",
+        "reason": "The identified issue is a genuine tense inconsistency. Sentence 13 (\"Climate, crops, and belief slowly mixed into one shared way of life.\") uses past tense \"mixed\" while sentences 10-12 immediately preceding it use present tense (\"adds,\" \"can tie,\" \"is\") to explain general principles about how culture zones form. The verb \"mixed\" breaks the present-tense pattern of the explanatory section, though this may be a stylistic choice to emphasize historical process rather than a clear error. The inconsistency is real but not severe."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3, sentences array, sentence 18 (index: 18), segments",
+      "issue": "Predicate adjectives mistagged as modifiers (M instead of C)",
+      "evidence": "Sentence 18: 'Cultures are not random, and they are not simply better or worse; they are smart answers to where people actually live.' The segments show role=\"M\" for 'not random,' and 'not simply better or worse;' but these are predicate adjectives after linking verbs (are), which should be tagged as role=\"C\" (complement), not \"M\" (modifier). The grammar_note correctly identifies this as '2형식 병렬' (parallel linking verb structures) but the role tagging contradicts this.",
+      "suggestion": "Change the role tag from M to C for the following segments: (1) 'not random,' following 'Cultures are' and (2) 'not simply better or worse;' following 'they are'. These are predicate adjectives (complements), not adverbial modifiers. Only the third occurrence 'smart answers to where people actually live' is correctly tagged as C.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "Verified defect in /2026-07/03.json, sentence 18. The grammar note correctly identifies \"2형식 병렬\" (parallel linking verb/Form 2 structure), where complements follow linking verbs (are). However, segments 3 and 7 are tagged role=\"M\" (modifier) when they should be role=\"C\" (complement). In English SVC grammar: \"are not random\" and \"are not simply better or worse\" are predicate adjectives that function as complements, not modifiers. Segment 10 (\"smart answers\") is correctly tagged role=\"C\", proving the inconsistency. The grammar note contradicts its own role tagging."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "page3, 문장 19번 (translation_ko)",
+      "issue": "빈칸 정답을 사전에 공개하여 학습자용 지문으로 부적절함",
+      "evidence": "원문: 'Seeing this map of zones teaches us that difference is not a problem to fix but a pattern to ____, shaped by the land each group calls home.' / 번역: '이 권의 지도를 보는 것은, 차이가 고쳐야 할 문제가 아니라 이해하고 존중해야 할 패턴, 곧 각 집단이 고향이라 부르는 땅이 빚은 패턴임을 우리에게 가르쳐 준다.' — 원문의 빈칸 공간이 한글 번역에서 '이해하고 존중해야 할'로 선택지를 미리 삽입됨",
+      "suggestion": "번역에서도 원문처럼 빈칸을 유지하거나, 또는 빈칸을 명시해야 함. 예: '차이가 고쳐야 할 문제가 아니라 ____할 패턴' 형태로 번역하여 학생이 직접 채우도록 유도해야 함.",
+      "lens": "translation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "원문은 \"not a problem to fix but a pattern to ____\"으로 빈칸 존재. 한글 번역에서 \"이해하고 존중해야 할 패턴\"으로 정답을 직역 삽입하여 학습자용으로 부적절함. page2 빈칸 추론 문제의 정답(understand and respect)이 page3 번역에 노출됨."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3, 문장 8번 (translation_ko)",
+      "issue": "형용사 병렬 구조('loose, covering')의 의미 축약",
+      "evidence": "원문: 'wear loose, covering clothes for shade' (loose와 covering이 병렬 형용사, 둘 다 옷을 수식) / 번역: '헐렁하게 덮는 옷을 입는' (covering을 동사화하여 '덮는'으로 표현, 원문의 형용사 병렬 구조 손실)",
+      "suggestion": "번역을 '헐렁하고 몸을 덮는 옷을 입다' 또는 '헐렁하게 몸을 덮는 옷을 입다'로 수정하여 'covering'의 형용사 역할을 명확히 할 것",
+      "lens": "translation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "The defect is real. The English original contains two parallel adjectives ('loose' and 'covering') that equally modify 'clothes'. The Korean translation converts 'covering' from an adjective into a participle/verb form ('덮는'), destroying the parallel adjective structure. The translation reads '헐렁하게 덮는 옷' (loosely-covering clothes) instead of preserving the two independent adjectives. While the overall meaning is still conveyed, the parallel syntactic structure is lost, which is a legitimate translation concern—especially for a textbook focused on grammar instruction."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page1.body, paragraph 3, final sentence (sentence 19 in segmentation)",
+      "issue": "Grammatical parallelism issue in blank completion",
+      "evidence": "\"Seeing this map of zones teaches us that difference is not a problem to fix but a pattern to ____\" — The answer key provides \"understand and respect\" as a two-word phrase, but the parallel structure demands a single infinitive verb form matching 'to fix'. The phrase 'to understand and respect' would be complete, but the given answer omits the second 'to', creating asymmetrical structure.",
+      "suggestion": "Either correct the blank to require a single word (e.g., \"understand\" alone) or adjust the answer key to 'understand and respect' while noting that in the actual textbook presentation, 'to' should precede both verbs for grammatical completeness: 'to understand and [to] respect'.",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "answers, explanations, q_index 1 (blank question inference), evidence field line 650",
+      "issue": "Incomplete/inaccurate textual reference in explanation",
+      "evidence": "The explanation references sentence 14 as: '14번 \"kinder eyes\"' but the actual English phrase in sentence 14 is 'kinder, calmer eyes' (not just 'kinder eyes'). The Korean translation [14] correctly has '더 친절하고 차분한 눈' but the English reference omits the second adjective 'calmer'.",
+      "suggestion": "Update the reference to read: '14번 \"kinder, calmer eyes\"' to accurately match the full English phrase in the passage. The explanation logic is correct; this is a completeness issue in the citation.",
+      "lens": "explanation"
+    }
+  ],
+  "blockers": [
+    {
+      "severity": "blocker",
+      "location": "page3, 문장 19번 (translation_ko)",
+      "issue": "빈칸 정답을 사전에 공개하여 학습자용 지문으로 부적절함",
+      "evidence": "원문: 'Seeing this map of zones teaches us that difference is not a problem to fix but a pattern to ____, shaped by the land each group calls home.' / 번역: '이 권의 지도를 보는 것은, 차이가 고쳐야 할 문제가 아니라 이해하고 존중해야 할 패턴, 곧 각 집단이 고향이라 부르는 땅이 빚은 패턴임을 우리에게 가르쳐 준다.' — 원문의 빈칸 공간이 한글 번역에서 '이해하고 존중해야 할'로 선택지를 미리 삽입됨",
+      "suggestion": "번역에서도 원문처럼 빈칸을 유지하거나, 또는 빈칸을 명시해야 함. 예: '차이가 고쳐야 할 문제가 아니라 ____할 패턴' 형태로 번역하여 학생이 직접 채우도록 유도해야 함.",
+      "lens": "translation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "원문은 \"not a problem to fix but a pattern to ____\"으로 빈칸 존재. 한글 번역에서 \"이해하고 존중해야 할 패턴\"으로 정답을 직역 삽입하여 학습자용으로 부적절함. page2 빈칸 추론 문제의 정답(understand and respect)이 page3 번역에 노출됨."
+      }
+    }
+  ],
+  "counts": {
+    "raw": 6,
+    "verified": 4,
+    "confirmed": 4,
+    "minor": 2
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "grade": "saturn-g1",
+  "seq": 10,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page3 > sentences > index 5",
+      "issue": "분사구문(분사)을 동사 V로 잘못 태깅 및 구문 분석 오류",
+      "evidence": "본문: \"It is a hidden rule of language quietly doing its job, smoothing the way our mouths move from one sound to the next.\" - 여기서 \"smoothing\"은 분사구문이며, 그 목적어는 \"the way our mouths move from one sound to the next\"입니다. 현재 태깅에서는 \"smoothing\"을 V(동사)로 표기하고 \"the way...\"를 그 O(목적어)로 분류했으나, 이는 주절의 V(is) 다음에 또 다른 V가 올 수 없다는 문법과 모순됩니다.",
+      "suggestion": "\"smoothing\"의 role을 분사(participle)를 나타내거나, 분사구문 전체를 하나의 세그먼트로 재정리하여 2형식 보어 구조의 모순을 해결할 것. grammar_note도 \"2형식(현재분사 수식) + 분사구문\"에서 더 명확하게 \"분사구문이 smoothing 형태로 이어지며 그 목적어가 the way...\"로 표기할 것.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일에서 확인한 page3 > sentences > index 5의 태깅 구조가 실제로 오류입니다. \"smoothing\"을 독립적인 V(동사)로 분류했으나, 이는 주절의 술어동사 \"is\" 다음에 또 다른 독립적 V가 올 수 없다는 영문법 규칙에 위배됩니다. \"smoothing\"은 \"a hidden rule of language quietly doing its job\"을 수식하는 분사 수식어(participial modifier)이며, 분사구문의 일부입니다. 현재 태깅은 이를 독립적 동사로 잘못 분류하여 구문 분석이 모순됩니다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3 > sentences > index 7",
+      "issue": "보어절을 수식어(M)로 잘못 태깅",
+      "evidence": "본문: \"One common pattern is when a sound copies the sound next to it, so the two become easier to say together.\" - \"when a sound copies...\" 절은 \"is\"의 보어(complement)로 기능하며, \"One common pattern is [when a sound copies...]\" 구조에서 when절이 be동사 뒤의 보어입니다. 현재 role \"M\"은 수식어를 나타내므로 역할 분류가 부정확합니다.",
+      "suggestion": "\"when a sound copies the sound next to it,\"의 role을 M(수식어)에서 C(보어)로 수정할 것. grammar_note도 \"be when 절 + so (become 비교급)\"에서 when절이 보어절임을 명시하여 \"2형식 + when 보어절 + so 결과절\"로 정밀화할 것.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "The verification claim is valid. At page3, sentences[7], the when-clause \"when a sound copies the sound next to it\" is incorrectly tagged as role \"M\" (modifier) when it should be tagged as role \"C\" (complement). The note in the annotation itself says \"when 보어절\" (when complement clause), confirming it's a complement, not a modifier. In the structure \"One common pattern is [when...]\", the when-clause functions as a subject complement that completes the meaning of the copula \"is\" - it defines what the pattern is. This is essential (not removable) information required by the be-verb, making it a complement (C), not a modifier (M). The tagging error is confirmed by the internal contradiction: the note correctly identifies it as a complement clause, but the role field incorrectly marks it as \"M\"."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.translation_ko, 문장 [1]",
+      "issue": "\"listen closely\" 의역으로 원문의 정확한 의미 전달 부족",
+      "evidence": "원문: \"Say the words 'handbag' or 'input' quickly and listen closely.\"\n번역: \"'핸드백'이나 '인풋' 같은 단어를 빠르게 말하고 가까이 들어 보라.\"\n- 'closely'는 '가까이'(근거리)가 아니라 '주의 깊게' 또는 '자세히'를 의미함",
+      "suggestion": "'가까이 들어 보라' → '자세히 들어 보라' 또는 '주의 깊게 들어 보라'로 수정",
+      "lens": "translation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "The original English phrase \"listen closely\" uses \"closely\" as a manner adverb meaning to listen carefully, attentively, or with close attention. The Korean translation \"가까이 들어 보라\" translates \"closely\" as a spatial adverb meaning to listen from a physically near distance. These are fundamentally different semantic meanings. The correct Korean equivalents for the English meaning would be \"주의 깊게 들어 보라\" (listen carefully) or \"자세히 들어 보라\" (listen closely/attentively), not \"가까이 들어 보라\" (listen from nearby). This is a clear translation error where the adverbial sense of \"closely\" (manner: attentively) has been confused with spatial proximity (location)."
+      }
+    }
+  ],
+  "minors": [],
+  "blockers": [],
+  "counts": {
+    "raw": 3,
+    "verified": 3,
+    "confirmed": 3,
+    "minor": 0
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "grade": "jupiter-g2",
+  "seq": 12,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page1.body, 문단 2, 문장 \"This quiet magic only works if the sample is chosen truly fairly.\"",
+      "issue": "관형사 \"truly fairly\"의 중복 및 어색한 표현",
+      "evidence": "본문: \"This quiet magic only works if the sample is chosen truly fairly.\" — \"truly\"와 \"fairly\"는 모두 '공정하게/진정으로' 의미의 부사인데 연쇄되어 의미 중복이고 어색합니다. 표준적 영어는 \"chosen fairly\" 또는 \"chosen truly at random\" 정도입니다.",
+      "suggestion": "\"This quiet magic only works if the sample is chosen fairly.\" 또는 \"This quiet magic only works if the sample is truly chosen fairly.\" (구조 재배열)로 수정",
+      "lens": "language",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-07-J/12.json의 page1.body 문단 2에서 문장 \"This quiet magic only works if the sample is chosen truly fairly.\"가 확인되었습니다. \"truly\"(진정으로)와 \"fairly\"(공정하게)는 모두 부사이며, 두 단어 모두 공정성과 관련된 의미를 담고 있어 의미 중복입니다. 표준 영어 관례상 \"chosen fairly\" 또는 \"chosen truly at random\" 등의 단일 수식어 구조가 일반적이므로, 부사의 중복 연쇄는 표준 영어 표현으로 보기 어렵습니다."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "answers.explanations[2] (Q2 함의 추론)",
+      "issue": "잘못된 문장 번호 인용: 설명에서 \"8번은 공정한 표본이 작지만 'a true mirror of the larger whole'이라 한다\"고 했으나, 실제로는 문장 10에 이 표현이 있음.",
+      "evidence": "Page3 sentence 8 text: 'A spoonful taken carelessly from an unstirred pot, scooped all from the salty bottom, would badly mislead even the best cook.' / Page3 sentence 10 text: 'A fair sample is small, but it is a true mirror of the larger whole.' — 거울(mirror) 표현은 문장 10에만 있음.",
+      "suggestion": "설명의 문장 번호를 '8번'에서 '10번'으로 수정. '10번은 공정한 표본이 작지만 \"a true mirror of the larger whole\"이라 한다'로 정정.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-07-J/12.json의 answers.explanations[2] (Q2 함의 추론)에서 evidence 필드(line 616)가 \"8번은 공정한 표본이 작지만 'a true mirror of the larger whole'이라 한다\"고 명시하고 있습니다. 그러나 page3.sentences[7] (문장 8, line 293-312)의 실제 내용은 \"A spoonful taken carelessly from an unstirred pot, scooped all from the salty bottom, would badly mislead even the best cook\"로서 편향된 표본의 위험성을 설명하며 mirror 표현이 없습니다. 반면 page3.sentences[9] (문장 10, line 338-370)의 내용이 \"A fair sample is small, but it is a true mirror of the larger whole\"로 \"true mirror of the larger whole\"이라는 정확한 표현을 포함하고 있습니다. 따라서 설명에서 인용한 표현은 실제로 문장 8이 아닌 문장 10에 있으며, 이는 명확한 문장 번호 오류입니다."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko, 문장 17번",
+      "issue": "'deserves'의 의미가 정확히 전달되지 않음",
+      "evidence": "영문: \"it states clearly how much trust the number deserves\" vs 번역: \"그 수가 얼마나 신뢰받을 만한지를 분명히 말해 주기\" — 'deserves'는 '~할 자격이 있다'의 능동적 의미지만, 번역은 '신뢰받을 만한(가능성)'이라는 수동적 뉘앙스를 강함",
+      "suggestion": "'신뢰받을 자격이 있는지'로 수정하면 영문의 능동적 의미가 더 정확히 전달됨",
+      "lens": "translation"
+    }
+  ],
+  "blockers": [
+    {
+      "severity": "blocker",
+      "location": "answers.explanations[2] (Q2 함의 추론)",
+      "issue": "잘못된 문장 번호 인용: 설명에서 \"8번은 공정한 표본이 작지만 'a true mirror of the larger whole'이라 한다\"고 했으나, 실제로는 문장 10에 이 표현이 있음.",
+      "evidence": "Page3 sentence 8 text: 'A spoonful taken carelessly from an unstirred pot, scooped all from the salty bottom, would badly mislead even the best cook.' / Page3 sentence 10 text: 'A fair sample is small, but it is a true mirror of the larger whole.' — 거울(mirror) 표현은 문장 10에만 있음.",
+      "suggestion": "설명의 문장 번호를 '8번'에서 '10번'으로 수정. '10번은 공정한 표본이 작지만 \"a true mirror of the larger whole\"이라 한다'로 정정.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-07-J/12.json의 answers.explanations[2] (Q2 함의 추론)에서 evidence 필드(line 616)가 \"8번은 공정한 표본이 작지만 'a true mirror of the larger whole'이라 한다\"고 명시하고 있습니다. 그러나 page3.sentences[7] (문장 8, line 293-312)의 실제 내용은 \"A spoonful taken carelessly from an unstirred pot, scooped all from the salty bottom, would badly mislead even the best cook\"로서 편향된 표본의 위험성을 설명하며 mirror 표현이 없습니다. 반면 page3.sentences[9] (문장 10, line 338-370)의 내용이 \"A fair sample is small, but it is a true mirror of the larger whole\"로 \"true mirror of the larger whole\"이라는 정확한 표현을 포함하고 있습니다. 따라서 설명에서 인용한 표현은 실제로 문장 8이 아닌 문장 10에 있으며, 이는 명확한 문장 번호 오류입니다."
+      }
+    }
+  ],
+  "counts": {
+    "raw": 3,
+    "verified": 2,
+    "confirmed": 2,
+    "minor": 1
+  }
+}

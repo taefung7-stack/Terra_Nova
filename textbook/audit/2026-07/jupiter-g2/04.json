@@ -1,0 +1,40 @@
+{
+  "grade": "jupiter-g2",
+  "seq": 4,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "answers.explanations[2] (q_index 2, 함의 추론 - masks slip)",
+      "issue": "evidence 필드의 문장 참조 번호 및 인용문이 부정확함",
+      "evidence": "explanation evidence: \"8번은 \\\"Under pressure, masks slip, and the gap between what a character claims and what they actually do becomes visible\\\"라고 한다.\" | actual text: sentence 14 = \"Under real pressure, the masks people wear begin to slip.\" + sentence 15 = \"The gap between what a character loudly claims and what they actually do becomes painfully clear.\"",
+      "suggestion": "evidence를 '14-15번은 \"Under real pressure, the masks people wear begin to slip. The gap between what a character loudly claims and what they actually do becomes painfully clear.\"라고 한다.'로 수정 필요. 또는 정확한 문장 참조와 원문 그대로의 인용(painfully clear 유지)으로 교정",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "The evidence in answers.explanations[2] is demonstrably inaccurate. The evidence field incorrectly attributes content to sentence 8 when the relevant text appears in sentences 14-15. Additionally, the quoted text does not match the actual sentences: it omits \"real,\" \"loudly,\" and \"painfully\"; simplifies \"begin to slip\" to just \"slip\"; and uses \"becomes visible\" instead of \"becomes painfully clear.\" The evidence is a loose paraphrase rather than an accurate citation of the source material."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.translation_ko, 문장 [9]",
+      "issue": "영문에 없는 수식어 '정직하게' 삽입으로 의미 왜곡",
+      "evidence": "영문: 'decisions reveal character far better than description can' / 현재 번역: '결정은 묘사가 할 수 있는 것보다 훨씬 더 **정직하게** 성격을 드러낸다' / 교과서 본문(textbook_tieback)은 '훨씬 설득력 있게'로 기록 / 원문에는 '정직하게'에 해당하는 부사가 없음",
+      "suggestion": "번역을 '결정은 묘사가 할 수 있는 것보다 훨씬 더 잘 성격을 드러낸다' 또는 '훨씬 더 명확하게 드러낸다'로 수정. 또는 교과서 본문과의 일관성을 위해 '훨씬 더 설득력 있게'로 수정",
+      "lens": "translation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "영문 원문 page1에 \"decisions reveal character far better than description can\"이라고 명시되어 있으며, \"정직하게(honestly)\"에 해당하는 부사가 존재하지 않습니다. 현재 번역에서 \"정직하게\"가 삽입되어 있고, 이는 교과서 본문(textbook_tieback)의 \"훨씬 설득력 있게\"와도 불일치합니다. 또한 page4 vocab 섹션에서도 원문에 없는 \"honestly\"를 영문 예시로 추가하여 일관성 문제가 있습니다."
+      }
+    }
+  ],
+  "minors": [],
+  "blockers": [],
+  "counts": {
+    "raw": 2,
+    "verified": 2,
+    "confirmed": 2,
+    "minor": 0
+  }
+}
