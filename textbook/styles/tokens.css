@@ -1,3 +1,25 @@
+/* ===== Pretendard 글리프 결함 보정 (PretendardTN) =====
+   빌드 머신의 'Pretendard'(OTF/CFF)는 Chromium PDF 렌더 시 일부 ASCII 구두점
+   글리프('-' 하이픈, '[' ']' 대괄호, '·' 가운뎃점 등)가 .notdef 박스(☰)로 깨진다.
+   브로큰 cmap이라 일반 폰트 폴백으로는 회피되지 않는다.
+   → 합성 패밀리 'PretendardTN' 정의: 문제 구두점 코드포인트만 'Arial'(TTF)로,
+     나머지(영문/숫자/한글)는 'Pretendard'로 렌더. 모든 weight(100~900) 적용.
+   영향: 한글·본문 미관 변화 없음(깨지던 구두점만 정상화). */
+@font-face {
+  font-family: 'PretendardTN';
+  src: local('Arial');
+  font-weight: 100 900;
+  font-style: normal;
+  /* '-' '[' ']' '·' 및 유니코드 하이픈/대시 계열 */
+  unicode-range: U+002D, U+005B, U+005D, U+00B7, U+2010, U+2011, U+2012, U+2013, U+2014, U+2015;
+}
+@font-face {
+  font-family: 'PretendardTN';
+  src: local('Pretendard');
+  font-weight: 100 900;
+  font-style: normal;
+}
+
 :root {
   /* ===== Terra Nova base brand palette ===== */
   --tn-bg:         #F8FAF9;
@@ -38,11 +60,14 @@
      이전에는 폰트 스택 1순위였으나, Chrome PDF 렌더 시 일부 글리프(하이픈 '-',
      가운뎃점 '·', 합성 한글 자모)가 .notdef 박스(☰)로 깨지는 원인이었다.
      실제 설치된 'Pretendard'를 1순위로 두어 글리프 누락을 제거한다. */
-  --font-body:     'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-  --font-display:  'Pretendard', -apple-system, sans-serif;
-  --font-ko:       'Pretendard', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+  --font-body:     'PretendardTN', 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-display:  'PretendardTN', 'Pretendard', -apple-system, sans-serif;
+  --font-ko:       'PretendardTN', 'Pretendard', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
   --font-mono:     'JetBrains Mono', Menlo, Consolas, monospace;
   --font-serif-display: 'Playfair Display', 'Cormorant Garamond', 'Nanum Myeongjo', Georgia, serif;
+  /* 문장번호 [n]·역할태그 [S][V][접][관] 전용. PretendardTN 이 대괄호는 Arial,
+     한글(접/관)은 Pretendard 로 합성 렌더하므로 깨짐 없이 일관 표기된다. */
+  --font-num:      'PretendardTN', Arial, 'Malgun Gothic', 'Segoe UI', sans-serif;
 
   /* ===== Type scale (print-first) ===== */
   --fs-title:      22pt;

@@ -555,7 +555,7 @@ body { font-size: var(--fs-body); line-height: var(--lh-body); }
   display: inline-block;
   width: 16pt;
   text-indent: 0;
-  font-family: var(--font-display);
+  font-family: var(--font-num); /* Pretendard 대괄호 .notdef 회피 */
   font-weight: 700;
   color: var(--tn-theme-deep);
   font-size: 9pt;
@@ -585,7 +585,7 @@ body { font-size: var(--fs-body); line-height: var(--lh-body); }
 .p3-sentence .seg[data-role="REL"]  { background: var(--role-REL);  color: var(--role-REL-ink); }
 .p3-sentence .seg[data-role=""]     { background: transparent;      color: var(--tn-ink); padding: 0.5pt 1pt; }
 .p3-sentence .seg .seg-tag {
-  font-family: var(--font-display);
+  font-family: var(--font-num); /* '[' ']' 대괄호 .notdef 회피 (S/V/O 라벨 포함) */
   font-size: 6.2pt;
   font-weight: 700;
   vertical-align: 3pt;
@@ -651,7 +651,7 @@ body { font-size: var(--fs-body); line-height: var(--lh-body); }
   text-align: justify;
 }
 .p3-translation .body .tr-num {
-  font-family: var(--font-display);
+  font-family: var(--font-num); /* Pretendard 대괄호 .notdef 회피 */
   font-weight: 700;
   color: var(--tn-theme-deep);
   font-size: 8.5pt;
