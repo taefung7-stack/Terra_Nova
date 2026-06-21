@@ -39,10 +39,81 @@ async function waitFor(url, ms = 15000) {
   throw new Error(`server did not start at ${url}`);
 }
 
-async function renderPdf(browser, url, outPath) {
+async function renderPdf(browser, url, outPath, expectedPages = 1) {
   const page = await browser.newPage();
-  await page.goto(url, { waitUntil: 'networkidle0', timeout: 90000 });
+  await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 90000 });
   await page.waitForSelector('.page,.cover', { timeout: 15000 });
+  await page.waitForFunction(
+    () => document.body.dataset.renderReady === '1',
+    { timeout: 30000 }
+  );
+  await page.waitForFunction(
+    count => document.querySelectorAll('.page,.cover').length >= count,
+    { timeout: 30000 },
+    expectedPages
+  );
+  // ★ renderReady 는 DOM 조립 직후 세팅돼 <img> 로드를 기다리지 않는다.
+  //   domcontentloaded 로 바꾼 뒤(networkidle0 제거) 삽화가 그려지기 전에
+  //   PDF 가 캡처되어 placeholder 로 굳는 회귀가 있었음.
+  //   img.complete 만으로는 부족하다 — src 네트워크가 시작되기 전 잠깐
+  //   complete=true 로 보일 수 있어, 풀북 일괄 렌더(웜 캐시)에서 디코드 전
+  //   캡처가 발생했다. src 가 있는 이미지는 naturalWidth>0(실제 픽셀 디코드)
+  //   까지, 로드 실패한 것은 error 로 complete=true 가 되어 통과시킨다.
+  //   await img.decode() 로 픽셀 디코드를 강제 보장한 뒤 캡처한다.
+  await page.evaluate(async () => {
+    const imgs = [...document.images];
+    await Promise.all(imgs.map(async (img) => {
+      if (!img.getAttribute('src')) return;
+      try {
+        if (!img.complete) {
+          await new Promise((res) => {
+            img.addEventListener('load', res, { once: true });
+            img.addEventListener('error', res, { once: true });
+          });
+        }
+        await img.decode().catch(() => {});
+      } catch { /* 깨진 이미지는 통과 */ }
+    }));
+  }).catch(() => {});
+  // 자가복구: 첫 본문 페이지 등에서 이미지 요청이 워밍업 레이스로 한 번
+  //   error 를 내면 render.js 가 .illustration-empty placeholder 로 굳히고
+  //   img 를 display:none 처리한다(이때 img 자체는 이후 정상 디코드되어
+  //   naturalWidth>0 이라 단순 naturalWidth 체크로는 못 잡음).
+  //   파일은 실존하므로: (1) placeholder 가 남았으면 강제로 img 를 복원하고,
+  //   그래도 naturalWidth===0(진짜 실패)이면 새로고침으로 재시도(최대 3회).
+  for (let retry = 0; retry < 3; retry++) {
+    const state = await page.evaluate(() => {
+      const out = { restored: 0, broken: 0 };
+      document.querySelectorAll('.illustration-empty').forEach((wrap) => {
+        const img = wrap.querySelector('img[data-slot="illustration"]');
+        if (img && img.naturalWidth > 0) {
+          // 이미지는 실제로 디코드됨 — placeholder 만 잘못 남은 것. 복원.
+          wrap.classList.remove('illustration-empty');
+          delete wrap.dataset.placeholderId;
+          img.style.display = '';
+          out.restored++;
+        } else {
+          out.broken++;
+        }
+      });
+      return out;
+    }).catch(() => ({ restored: 0, broken: 0 }));
+    if (!state.broken) break;
+    await page.reload({ waitUntil: 'domcontentloaded', timeout: 90000 });
+    await page.waitForSelector('.page,.cover', { timeout: 15000 });
+    await page.waitForFunction(() => document.body.dataset.renderReady === '1', { timeout: 30000 });
+    await page.evaluate(async () => {
+      await Promise.all([...document.images].map(async (img) => {
+        if (!img.getAttribute('src')) return;
+        if (!img.complete) await new Promise((res) => {
+          img.addEventListener('load', res, { once: true });
+          img.addEventListener('error', res, { once: true });
+        });
+        await img.decode().catch(() => {});
+      }));
+    }).catch(() => {});
+  }
+  await page.evaluate(() => document.fonts?.ready).catch(() => {});
   await page.pdf({
     path: outPath,
     format: 'A4',
@@ -100,13 +171,13 @@ async function main() {
     console.log('[1/5] Textbook');
     console.log('  → TOC');
     const tocPath = join(tmpDir, 'toc.pdf');
-    await renderPdf(browser, `http://127.0.0.1:${port}/cover.html?mode=toc&month=${month}`, tocPath);
+    await renderPdf(browser, `http://127.0.0.1:${port}/cover.html?mode=toc&month=${month}`, tocPath, 2);
     collected.push(tocPath);
 
     for (let w = 1; w <= 4; w++) {
       console.log(`  → WEEK ${w} divider`);
       const wPath = join(tmpDir, `week-${w}.pdf`);
-      await renderPdf(browser, `http://127.0.0.1:${port}/cover.html?mode=week&month=${month}&week=${w}`, wPath);
+      await renderPdf(browser, `http://127.0.0.1:${port}/cover.html?mode=week&month=${month}&week=${w}`, wPath, 2);
       collected.push(wPath);
 
       const weekStart = (w - 1) * 5 + 1;
@@ -120,7 +191,8 @@ async function main() {
         const pPath = join(tmpDir, `p-${seq}.pdf`);
         await renderPdf(browser,
           `http://127.0.0.1:${port}/textbook.html?month=${month}&passage=${seq}&startPage=${startPage}`,
-          pPath
+          pPath,
+          4
         );
         collected.push(pPath);
       }
@@ -131,7 +203,8 @@ async function main() {
     const ansDivPath = join(tmpDir, 'div-answers.pdf');
     await renderPdf(browser,
       `http://127.0.0.1:${port}/supplements.html?type=divider&which=answers&month=${month}&startPage=91`,
-      ansDivPath
+      ansDivPath,
+      2
     );
     collected.push(ansDivPath);
 
@@ -140,7 +213,8 @@ async function main() {
     const ansPath = join(tmpDir, 'answers-all.pdf');
     await renderPdf(browser,
       `http://127.0.0.1:${port}/supplements.html?type=answers-all&month=${month}&startPage=93`,
-      ansPath
+      ansPath,
+      20
     );
     collected.push(ansPath);
 
@@ -149,7 +223,8 @@ async function main() {
     const wbDivPath = join(tmpDir, 'div-wordbook.pdf');
     await renderPdf(browser,
       `http://127.0.0.1:${port}/supplements.html?type=divider&which=wordbook&month=${month}&startPage=113`,
-      wbDivPath
+      wbDivPath,
+      2
     );
     collected.push(wbDivPath);
 
@@ -158,7 +233,8 @@ async function main() {
     const wpPath = join(tmpDir, 'wordpack.pdf');
     await renderPdf(browser,
       `http://127.0.0.1:${port}/supplements.html?type=wordpack&month=${month}&startPage=115`,
-      wpPath
+      wpPath,
+      20
     );
     collected.push(wpPath);
 
