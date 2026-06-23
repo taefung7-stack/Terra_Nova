@@ -1,0 +1,433 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "33.json",
+  "_note": "33번 워크북 — 본문 9문장 풀커버.",
+  "_template_for_new_rounds": "이 파일을 새 회차의 {N}-workbook.json 작성 시 템플릿으로 사용. en_template의 {{N:A/B}} 토큰 = 양자택일 박스, hints 배열 = 빈칸 첫글자, jumble.words = 단어 배열 (셔플 X, 의도 유지).",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "imagination",       "pos": "명" },
+      { "word": "perception",        "pos": "명" },
+      { "word": "discern",           "pos": "동" },
+      { "word": "dispose",           "pos": "동" },
+      { "word": "distorted",         "pos": "형" },
+      { "word": "disposition",       "pos": "명" },
+      { "word": "misidentification", "pos": "명" },
+      { "word": "inaccurately",      "pos": "부" },
+      { "word": "biased",            "pos": "형" },
+      { "word": "investment",        "pos": "명" }
+    ],
+    "ko_to_en": [
+      { "meaning": "상상력",              "pos": "명", "answer": "imagination" },
+      { "meaning": "지각, 인식",          "pos": "명", "answer": "perception" },
+      { "meaning": "식별하다, 구별하다",  "pos": "동", "answer": "discern" },
+      { "meaning": "성향, 기질",          "pos": "명", "answer": "disposition" },
+      { "meaning": "왜곡된",              "pos": "형", "answer": "distorted" },
+      { "meaning": "유사성, 비슷함",      "pos": "명", "answer": "similarity" },
+      { "meaning": "욕망, 바람",          "pos": "명", "answer": "desire" },
+      { "meaning": "편향된",              "pos": "형", "answer": "biased" },
+      { "meaning": "기대, 예상",          "pos": "명", "answer": "expectation" },
+      { "meaning": "부정확하게",          "pos": "부", "answer": "inaccurately" }
+    ],
+    "expressions": [
+      { "ko": "~로 이어지다, 초래하다",   "answer": "lead to" },
+      { "ko": "~하도록 만들다(성향)",     "answer": "dispose one to" },
+      { "ko": "~할수록 더 ~하다",         "answer": "the more ~ the more" },
+      { "ko": "왜곡된 방식으로",          "answer": "in a distorted way" },
+      { "ko": "부정확하게 식별하다",      "answer": "discern inaccurately" }
+    ],
+    "definitions": [
+      { "def": "the way of understanding or becoming aware of things through the senses",               "answer": "perception" },
+      { "def": "to recognize or identify something that is not completely clear",                       "answer": "discern" },
+      { "def": "influenced by personal feelings in a way that is unfair or inaccurate",                 "answer": "biased" },
+      { "def": "a natural tendency to behave in a particular way",                                      "answer": "disposition" },
+      { "def": "the act of wrongly identifying someone or something",                                   "answer": "misidentification" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Imagination continues to {{1:function/functioning}} when perception is not actively {{2:discerning/discerned}} objects, in cases of emotion, disease, and sleep.",
+      "ko_full": "상상력은 지각이 사물을 능동적으로 식별하지 않을 때, 즉 감정, 질병, 수면의 경우에도 계속 작용한다.",
+      "answers": ["function", "discerning"],
+      "explain": [
+        "continues to + 동사원형 — to부정사 뒤에 원형 function.",
+        "지각이 능동적으로 '식별하는' 것이므로 능동 현재분사 discerning."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "Emotions {{1:dispose/disposes}} one {{2:to see/seeing}} the world in a distorted way.",
+      "ko_full": "감정은 사람이 세상을 왜곡된 방식으로 보도록 만든다.",
+      "answers": ["dispose", "to see"],
+      "explain": [
+        "주어 Emotions(복수) → 동사 dispose.",
+        "dispose + 목적어 + to-V — to부정사 to see."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "A coward's perceptual disposition {{1:is/are}} affected by his disposition to {{2:experience/experiencing}} fear.",
+      "ko_full": "겁쟁이의 지각적 성향은 두려움을 경험하려는 그의 성향에 의해 영향을 받는다.",
+      "answers": ["is", "experience"],
+      "explain": [
+        "주어 핵 disposition(단수) → is.",
+        "disposition to + 동사원형 — to부정사 experience."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "A lover's expectations {{1:are/is}} affected by {{2:desire/desired}}.",
+      "ko_full": "연인의 기대는 욕망에 의해 영향을 받는다.",
+      "answers": ["are", "desire"],
+      "explain": [
+        "주어 expectations(복수) → are.",
+        "전치사 by의 목적어는 명사 desire."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "In such cases, a small similarity between a perceived object and the thing one expects to see can lead to {{1:the misidentification/misidentify}} of the perceived object {{2:as/like}} that thing.",
+      "ko_full": "이러한 경우, 지각된 대상과 보기를 기대하는 대상 사이의 작은 유사성이 지각된 대상을 그 대상으로 잘못 인식하게 이끌 수 있다.",
+      "answers": ["the misidentification", "as"],
+      "explain": [
+        "lead to 뒤에 명사구 — the misidentification(명사) 형태.",
+        "A로서 B를 오인하다 — identify A as B → misidentification of A as B."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "The coward {{1:sees/see}} the enemy, while the lover sees the object of desire {{2:everywhere/somewhere}}.",
+      "ko_full": "겁쟁이는 적을 보고, 연인은 어디서나 욕망의 대상을 본다.",
+      "answers": ["sees", "everywhere"],
+      "explain": [
+        "주어 The coward(단수 3인칭) → sees.",
+        "'어디서나' 욕망의 대상을 보는 연인의 특성 — everywhere."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "The {{1:more/most}} affected one is, the {{2:less/least}} similarity is required for the thing to appear.",
+      "ko_full": "감정에 더 많이 휘둘릴수록, 그 대상이 나타나는 데 필요한 유사성은 더 적어진다.",
+      "answers": ["more", "less"],
+      "explain": [
+        "The 비교급 ~, the 비교급 ~ 구문 — 비교급 more (최상급 most 아님).",
+        "두 번째 비교급 — less (최상급 least 아님)."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "While the central organ of sense normally {{1:functions/function}} by comparing similarities and differences, emotions dispose one {{2:to discern/discerning}} objects inaccurately.",
+      "ko_full": "감각의 중추 기관은 정상적으로는 유사점과 차이점을 비교하여 기능하지만, 감정은 사람이 사물을 부정확하게 식별하도록 만든다.",
+      "answers": ["functions", "to discern"],
+      "explain": [
+        "주어 핵 organ(단수 3인칭) → functions.",
+        "dispose + 목적어 + to-V — to부정사 to discern."
+      ]
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "en_template": "The {{1:greater/greatest}} the emotional investment, the {{2:more/most}} biased one's perception.",
+      "ko_full": "감정적 투자가 클수록 지각이 더 편향된다.",
+      "answers": ["greater", "more"],
+      "explain": [
+        "The 비교급 ~, the 비교급 ~ 구문 — 비교급 greater.",
+        "두 번째 비교급 — more (more biased)."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Imagination continues to function when {{1:perception/imagination}} is not actively {{2:discerning/ignoring}} objects, in cases of emotion, disease, and sleep.",
+      "ko_full": "상상력은 지각이 사물을 능동적으로 식별하지 않을 때, 즉 감정, 질병, 수면의 경우에도 계속 작용한다.",
+      "answers": ["perception", "discerning"],
+      "explain": [
+        "'지각'이 사물을 식별하지 않는 경우 — perception.",
+        "사물을 '식별하다' — discerning(ignore는 의도적 무시)."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "Emotions {{1:dispose/force}} one to see the world in a {{2:distorted/accurate}} way.",
+      "ko_full": "감정은 사람이 세상을 왜곡된 방식으로 보도록 만든다.",
+      "answers": ["dispose", "distorted"],
+      "explain": [
+        "'성향을 갖게 하다/만들다' — dispose(force는 물리적 강제).",
+        "감정이 만드는 왜곡된 시각 — distorted(accurate는 반대 의미)."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "A coward's {{1:perceptual/emotional}} disposition is affected by his disposition to experience {{2:fear/desire}}.",
+      "ko_full": "겁쟁이의 지각적 성향은 두려움을 경험하려는 그의 성향에 의해 영향을 받는다.",
+      "answers": ["perceptual", "fear"],
+      "explain": [
+        "지각과 관련된 성향 — perceptual(emotional은 감정적 성향).",
+        "겁쟁이가 경험하는 감정 — fear(desire는 연인의 감정)."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "A lover's {{1:expectations/fears}} are affected by {{2:desire/reason}}.",
+      "ko_full": "연인의 기대는 욕망에 의해 영향을 받는다.",
+      "answers": ["expectations", "desire"],
+      "explain": [
+        "연인이 영향을 받는 것은 '기대' — expectations.",
+        "연인을 움직이는 감정 — desire(reason은 이성이므로 반대 맥락)."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "In such cases, a {{1:small/large}} similarity between a perceived object and the thing one expects to see can lead to the {{2:misidentification/identification}} of the perceived object as that thing.",
+      "ko_full": "이러한 경우, 지각된 대상과 보기를 기대하는 대상 사이의 작은 유사성이 지각된 대상을 그 대상으로 잘못 인식하게 이끌 수 있다.",
+      "answers": ["small", "misidentification"],
+      "explain": [
+        "'작은' 유사성만으로도 오인 발생 — small.",
+        "오인을 뜻하는 단어 — misidentification(identification은 정확한 인식)."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "The coward sees the {{1:enemy/friend}}, while the lover sees the {{2:object of desire/source of fear}} everywhere.",
+      "ko_full": "겁쟁이는 적을 보고, 연인은 어디서나 욕망의 대상을 본다.",
+      "answers": ["enemy", "object of desire"],
+      "explain": [
+        "겁쟁이의 두려움이 투영하는 대상 — enemy.",
+        "연인의 욕망이 투영하는 대상 — object of desire."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "The more {{1:affected/detached}} one is, the less similarity is {{2:required/rejected}} for the thing to appear.",
+      "ko_full": "감정에 더 많이 휘둘릴수록, 그 대상이 나타나는 데 필요한 유사성은 더 적어진다.",
+      "answers": ["affected", "required"],
+      "explain": [
+        "감정에 '영향을 받은/휘둘린' — affected(detached는 감정에서 분리된).",
+        "나타나기 위해 '필요한' — required."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "While the central organ of sense normally functions by {{1:comparing/ignoring}} similarities and differences, emotions dispose one to discern objects {{2:inaccurately/precisely}}.",
+      "ko_full": "감각의 중추 기관은 정상적으로는 유사점과 차이점을 비교하여 기능하지만, 감정은 사람이 사물을 부정확하게 식별하도록 만든다.",
+      "answers": ["comparing", "inaccurately"],
+      "explain": [
+        "정상 기능은 유사점과 차이점을 '비교'하는 것 — comparing.",
+        "감정이 야기하는 식별 방식은 '부정확하게' — inaccurately."
+      ]
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "en_template": "The greater the emotional {{1:investment/detachment}}, the more {{2:biased/accurate}} one's perception.",
+      "ko_full": "감정적 투자가 클수록 지각이 더 편향된다.",
+      "answers": ["investment", "biased"],
+      "explain": [
+        "감정적 '투자/관여' — investment(detachment는 감정적 거리).",
+        "감정 투자가 클수록 지각은 '편향된' — biased(accurate는 반대)."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "p", "answer": "perception",  "after": "is not actively" },
+        { "pos": 2, "letter": "d", "answer": "discerning",  "after": "objects, in cases of" },
+        { "pos": 3, "letter": "e", "answer": "emotion",     "after": "disease, and sleep" }
+      ],
+      "ko_full": "상상력은 지각이 사물을 능동적으로 식별하지 않을 때, 즉 감정, 질병, 수면의 경우에도 계속 작용한다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "d", "answer": "dispose",    "after": "one to see" },
+        { "pos": 2, "letter": "d", "answer": "distorted",  "after": "way" }
+      ],
+      "ko_full": "감정은 사람이 세상을 왜곡된 방식으로 보도록 만든다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "p", "answer": "perceptual",  "after": "disposition is" },
+        { "pos": 2, "letter": "d", "answer": "disposition", "after": "to experience fear" },
+        { "pos": 3, "letter": "f", "answer": "fear",        "after": "" }
+      ],
+      "ko_full": "겁쟁이의 지각적 성향은 두려움을 경험하려는 그의 성향에 의해 영향을 받는다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "e", "answer": "expectations", "after": "are affected" },
+        { "pos": 2, "letter": "d", "answer": "desire",       "after": "" }
+      ],
+      "ko_full": "연인의 기대는 욕망에 의해 영향을 받는다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "s", "answer": "similarity",        "after": "between a perceived" },
+        { "pos": 2, "letter": "e", "answer": "expects",           "after": "to see can lead" },
+        { "pos": 3, "letter": "m", "answer": "misidentification", "after": "of the perceived" }
+      ],
+      "ko_full": "이러한 경우, 지각된 대상과 보기를 기대하는 대상 사이의 작은 유사성이 지각된 대상을 그 대상으로 잘못 인식하게 이끌 수 있다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "e", "answer": "enemy",   "after": "while the lover" },
+        { "pos": 2, "letter": "d", "answer": "desire",  "after": "everywhere" }
+      ],
+      "ko_full": "겁쟁이는 적을 보고, 연인은 어디서나 욕망의 대상을 본다."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "hints": [
+        { "pos": 1, "letter": "a", "answer": "affected",   "after": "one is, the less" },
+        { "pos": 2, "letter": "s", "answer": "similarity", "after": "is required for" },
+        { "pos": 3, "letter": "r", "answer": "required",   "after": "for the thing to appear" }
+      ],
+      "ko_full": "감정에 더 많이 휘둘릴수록, 그 대상이 나타나는 데 필요한 유사성은 더 적어진다."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "hints": [
+        { "pos": 1, "letter": "c", "answer": "comparing",    "after": "similarities and" },
+        { "pos": 2, "letter": "d", "answer": "discern",      "after": "objects inaccurately" },
+        { "pos": 3, "letter": "i", "answer": "inaccurately", "after": "" }
+      ],
+      "ko_full": "감각의 중추 기관은 정상적으로는 유사점과 차이점을 비교하여 기능하지만, 감정은 사람이 사물을 부정확하게 식별하도록 만든다."
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "hints": [
+        { "pos": 1, "letter": "e", "answer": "emotional",  "after": "investment, the more" },
+        { "pos": 2, "letter": "i", "answer": "investment", "after": "the more biased" },
+        { "pos": 3, "letter": "b", "answer": "biased",     "after": "one's perception" }
+      ],
+      "ko_full": "감정적 투자가 클수록 지각이 더 편향된다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 },
+    { "no": 7, "ref_sentence": 7 },
+    { "no": 8, "ref_sentence": 8 },
+    { "no": 9, "ref_sentence": 9 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["Imagination", "continues", "to", "function", "when", "perception", "is", "not", "actively", "discerning", "objects", "in", "cases", "of", "emotion", "disease", "and", "sleep"],
+      "answer": "Imagination continues to function when perception is not actively discerning objects, in cases of emotion, disease, and sleep."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["Emotions", "dispose", "one", "to", "see", "the", "world", "in", "a", "distorted", "way"],
+      "answer": "Emotions dispose one to see the world in a distorted way."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["A", "coward's", "perceptual", "disposition", "is", "affected", "by", "his", "disposition", "to", "experience", "fear"],
+      "answer": "A coward's perceptual disposition is affected by his disposition to experience fear."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["A", "lover's", "expectations", "are", "affected", "by", "desire"],
+      "answer": "A lover's expectations are affected by desire."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["In", "such", "cases", "a", "small", "similarity", "between", "a", "perceived", "object", "and", "the", "thing", "one", "expects", "to", "see", "can", "lead", "to", "the", "misidentification", "of", "the", "perceived", "object", "as", "that", "thing"],
+      "answer": "In such cases, a small similarity between a perceived object and the thing one expects to see can lead to the misidentification of the perceived object as that thing."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["The", "coward", "sees", "the", "enemy", "while", "the", "lover", "sees", "the", "object", "of", "desire", "everywhere"],
+      "answer": "The coward sees the enemy, while the lover sees the object of desire everywhere."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "words": ["The", "more", "affected", "one", "is", "the", "less", "similarity", "is", "required", "for", "the", "thing", "to", "appear"],
+      "answer": "The more affected one is, the less similarity is required for the thing to appear."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "words": ["While", "the", "central", "organ", "of", "sense", "normally", "functions", "by", "comparing", "similarities", "and", "differences", "emotions", "dispose", "one", "to", "discern", "objects", "inaccurately"],
+      "answer": "While the central organ of sense normally functions by comparing similarities and differences, emotions dispose one to discern objects inaccurately."
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "words": ["The", "greater", "the", "emotional", "investment", "the", "more", "biased", "one's", "perception"],
+      "answer": "The greater the emotional investment, the more biased one's perception."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" },
+    { "no": 7, "ref_sentence": 7, "given": "ko" },
+    { "no": 8, "ref_sentence": 8, "given": "ko" },
+    { "no": 9, "ref_sentence": 9, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 2, "no": 1 },
+    { "kind": "vocab",   "ref": 5, "no": 2 },
+    { "kind": "fill",    "ref": 7, "no": 3 },
+    { "kind": "ko",      "ref": 8, "no": 4 },
+    { "kind": "jumble",  "ref": 9, "no": 5 },
+    { "kind": "sent",    "ref": 3, "no": 6 },
+    { "kind": "grammar", "ref": 8, "no": 7 },
+    { "kind": "vocab",   "ref": 7, "no": 8 }
+  ]
+}

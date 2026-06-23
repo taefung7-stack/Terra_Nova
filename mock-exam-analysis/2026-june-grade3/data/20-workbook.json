@@ -1,0 +1,396 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "20.json",
+  "_note": "20번 워크북 — 본문 8문장 풀커버.",
+  "_template_for_new_rounds": "이 파일을 새 회차의 {N}-workbook.json 작성 시 템플릿으로 사용. en_template의 {{N:A/B}} 토큰 = 양자택일 박스, hints 배열 = 빈칸 첫글자, jumble.words = 단어 배열 (셔플 X, 의도 유지).",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "instructor",   "pos": "명" },
+      { "word": "participant",  "pos": "명" },
+      { "word": "determine",    "pos": "동" },
+      { "word": "sufficient",   "pos": "형" },
+      { "word": "blindly",      "pos": "부" },
+      { "word": "enhance",      "pos": "동" },
+      { "word": "performance",  "pos": "명" },
+      { "word": "explicitly",   "pos": "부" },
+      { "word": "gradually",    "pos": "부" },
+      { "word": "ownership",    "pos": "명" }
+    ],
+    "ko_to_en": [
+      { "meaning": "지도자, 강사",           "pos": "명", "answer": "instructor" },
+      { "meaning": "참여자",                  "pos": "명", "answer": "participant" },
+      { "meaning": "신체적인, 체육의",        "pos": "형", "answer": "physical" },
+      { "meaning": "태도",                    "pos": "명", "answer": "attitude" },
+      { "meaning": "전략",                    "pos": "명", "answer": "strategy" },
+      { "meaning": "충분한",                  "pos": "형", "answer": "sufficient" },
+      { "meaning": "향상시키다",              "pos": "동", "answer": "enhance" },
+      { "meaning": "원리, 원칙",              "pos": "명", "answer": "principle" },
+      { "meaning": "점차, 서서히",            "pos": "부", "answer": "gradually" },
+      { "meaning": "주인 의식, 소유권",       "pos": "명", "answer": "ownership" }
+    ],
+    "expressions": [
+      { "ko": "인식을 높이다",         "answer": "raise awareness" },
+      { "ko": "준비 운동을 하다",       "answer": "warm up" },
+      { "ko": "지시를 따르다",          "answer": "follow directions" },
+      { "ko": "~와 무관한",             "answer": "unrelated to" },
+      { "ko": "주인 의식을 갖다",       "answer": "take ownership" }
+    ],
+    "definitions": [
+      { "def": "a person who teaches or trains others in a particular skill or activity",   "answer": "instructor" },
+      { "def": "to be the deciding factor in something",                                    "answer": "determine" },
+      { "def": "to make something better in quality, value, or extent",                     "answer": "enhance" },
+      { "def": "said or done clearly and directly, leaving nothing implied",                "answer": "explicitly" },
+      { "def": "the legal right or responsibility for controlling or managing something",   "answer": "ownership" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Instructors of physical activities often focus {{1:more/most}} on the activities themselves than on the participants {{2:who/which}} perform them.",
+      "ko_full": "체육 활동 지도자들은 활동에 참여하는 참여자보다 활동 자체에 더 집중하는 경우가 많다.",
+      "answers": ["more", "who"],
+      "explain": [
+        "than 이 있으므로 비교급 more (most 아님).",
+        "선행사 the participants(사람) → 주격 관계대명사 who."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "People may believe that {{1:training/to train}} our bodies is {{2:unrelated/relating}} to training our minds.",
+      "ko_full": "사람들은 신체를 훈련하는 것이 정신을 훈련하는 것과 무관하다고 생각할 수도 있다.",
+      "answers": ["training", "unrelated"],
+      "explain": [
+        "주어 자리 → 동명사 training (동사 to train 아님).",
+        "문맥상 '무관하다' → unrelated (relating은 '관련시키는' 능동 분사라 부적절)."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "However, participants' minds {{1:determine/determines}} their attitudes and level of effort {{2:toward/against}} physical development.",
+      "ko_full": "그러나 참여자들의 정신 자세가 신체 발달에 대한 태도와 노력의 수준을 결정한다.",
+      "answers": ["determine", "toward"],
+      "explain": [
+        "주어 participants' minds(복수) → determine (3인칭 단수 s 불필요).",
+        "'~를 향한, ~에 대한' 방향 → toward."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "In usual practice, instructors may just {{1:tell/telling}} their participants to exercise regularly, {{2:warm/warming}} up before exercising, or use a particular strategy.",
+      "ko_full": "일반적인 연습에서 지도자들은 참여자들에게 규칙적으로 운동하거나, 운동 전에 준비 운동을 하거나, 특정 전략을 사용하라고 그냥 말할 수도 있다.",
+      "answers": ["tell", "warm"],
+      "explain": [
+        "조동사 may 뒤 → 동사원형 tell.",
+        "병렬 구조: to exercise, (to) warm up, (to) use — to 생략형 원형 warm."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "However, it is not sufficient for instructors {{1:to expect/expecting}} participants to blindly {{2:follow/following}} their directions in physical activities.",
+      "ko_full": "그러나 지도자들이 참여자들로 하여금 체육 활동에서 자신의 지시를 맹목적으로 따르도록 기대하는 것으로는 충분하지 않다.",
+      "answers": ["to expect", "follow"],
+      "explain": [
+        "It is ... for + 의미상 주어 + to V — 진주어 to부정사 to expect.",
+        "expect + 목적어 + to V — to 뒤 동사원형 follow."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "Instructors must raise participants' awareness of {{1:how/what}} these activities enhance {{2:their/them}} physical performance.",
+      "ko_full": "지도자들은 이러한 활동들이 어떻게 참여자들의 신체 능력을 향상시키는지에 대한 참여자들의 인식을 높여야 한다.",
+      "answers": ["how", "their"],
+      "explain": [
+        "간접의문문으로 '어떻게'의 의미 → how.",
+        "physical performance를 수식하는 소유격 → their."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "For example, an instructor could explicitly {{1:explain/explains}} how warming up before exercising {{2:improves/improve}} their performances.",
+      "ko_full": "예를 들어, 지도자는 운동 전 준비 운동이 어떻게 수행 능력을 향상시키는지 명확히 설명할 수 있다.",
+      "answers": ["explain", "improves"],
+      "explain": [
+        "조동사 could 뒤 → 동사원형 explain.",
+        "간접의문문의 주어 warming up(동명사, 단수 취급) → improves."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "If participants understand the principles of these activities, it {{1:enables/enable}} them to gradually {{2:take/taking}} fuller ownership of their own development.",
+      "ko_full": "참여자들이 이러한 활동들의 원리를 이해한다면, 그것은 그들이 자신의 발전에 대해 점차 더 충분한 주인 의식을 갖도록 해준다.",
+      "answers": ["enables", "take"],
+      "explain": [
+        "주절 주어 it(단수) → enables.",
+        "enable + 목적어 + to V → to 뒤 동사원형 take."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Instructors of physical activities often focus more on the activities {{1:themselves/themselves alone}} than on the {{2:participants/spectators}} who perform them.",
+      "ko_full": "체육 활동 지도자들은 활동에 참여하는 참여자보다 활동 자체에 더 집중하는 경우가 많다.",
+      "answers": ["themselves", "participants"],
+      "explain": [
+        "'활동 자체' → themselves (재귀 강조 용법).",
+        "활동을 '수행하는' 사람 → participants(참여자), spectators(관중)는 수행하지 않음."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "People may believe that training our bodies is {{1:unrelated/closely related}} to training our {{2:minds/muscles}}.",
+      "ko_full": "사람들은 신체를 훈련하는 것이 정신을 훈련하는 것과 무관하다고 생각할 수도 있다.",
+      "answers": ["unrelated", "minds"],
+      "explain": [
+        "잘못된 통념: '무관하다' → unrelated.",
+        "신체 훈련과 대비되는 것 → minds(정신), muscles(근육)는 신체와 동일 영역."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "However, participants' minds {{1:determine/overlook}} their attitudes and level of {{2:effort/talent}} toward physical development.",
+      "ko_full": "그러나 참여자들의 정신 자세가 신체 발달에 대한 태도와 노력의 수준을 결정한다.",
+      "answers": ["determine", "effort"],
+      "explain": [
+        "정신 자세가 태도를 '결정한다' → determine(overlook은 '간과하다').",
+        "'노력'의 수준 → effort(talent는 '재능')."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "In usual practice, instructors may just tell their participants to exercise {{1:regularly/intensely}}, warm up before exercising, or use a {{2:particular/general}} strategy.",
+      "ko_full": "일반적인 연습에서 지도자들은 참여자들에게 규칙적으로 운동하거나, 운동 전에 준비 운동을 하거나, 특정 전략을 사용하라고 그냥 말할 수도 있다.",
+      "answers": ["regularly", "particular"],
+      "explain": [
+        "'규칙적으로' → regularly (intensely는 '격렬하게').",
+        "'특정' 전략 → particular (general은 '일반적인')."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "However, it is not {{1:sufficient/unnecessary}} for instructors to expect participants to {{2:blindly/carefully}} follow their directions in physical activities.",
+      "ko_full": "그러나 지도자들이 참여자들로 하여금 체육 활동에서 자신의 지시를 맹목적으로 따르도록 기대하는 것으로는 충분하지 않다.",
+      "answers": ["sufficient", "blindly"],
+      "explain": [
+        "'충분하지 않다' → not sufficient (unnecessary는 '불필요한').",
+        "이해 없이 지시를 따르는 것 → blindly (맹목적으로)."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "Instructors must {{1:raise/reduce}} participants' awareness of how these activities {{2:enhance/ignore}} their physical performance.",
+      "ko_full": "지도자들은 이러한 활동들이 어떻게 참여자들의 신체 능력을 향상시키는지에 대한 참여자들의 인식을 높여야 한다.",
+      "answers": ["raise", "enhance"],
+      "explain": [
+        "'인식을 높이다' → raise awareness (reduce는 '낮추다').",
+        "신체 능력을 '향상시키다' → enhance (ignore는 '무시하다')."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "For example, an instructor could {{1:explicitly/vaguely}} explain how warming up before exercising {{2:improves/worsens}} their performances.",
+      "ko_full": "예를 들어, 지도자는 운동 전 준비 운동이 어떻게 수행 능력을 향상시키는지 명확히 설명할 수 있다.",
+      "answers": ["explicitly", "improves"],
+      "explain": [
+        "'명확히' 설명 → explicitly (vaguely는 '모호하게').",
+        "준비 운동이 능력을 '향상시킨다' → improves (worsens는 '나빠지게 하다')."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "If participants understand the {{1:principles/results}} of these activities, it enables them to gradually take fuller {{2:ownership/advantage}} of their own development.",
+      "ko_full": "참여자들이 이러한 활동들의 원리를 이해한다면, 그것은 그들이 자신의 발전에 대해 점차 더 충분한 주인 의식을 갖도록 해준다.",
+      "answers": ["principles", "ownership"],
+      "explain": [
+        "활동의 '원리' → principles (results는 '결과').",
+        "자신의 발전에 대한 '주인 의식' → ownership (take advantage는 '이용하다'의 숙어라 의미 부적합)."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "i", "answer": "instructors",  "after": "of physical activities" },
+        { "pos": 2, "letter": "a", "answer": "activities",   "after": "themselves" },
+        { "pos": 3, "letter": "p", "answer": "participants", "after": "who perform them" }
+      ],
+      "ko_full": "체육 활동 지도자들은 활동에 참여하는 참여자보다 활동 자체에 더 집중하는 경우가 많다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "t", "answer": "training",  "after": "our bodies" },
+        { "pos": 2, "letter": "u", "answer": "unrelated", "after": "to training" },
+        { "pos": 3, "letter": "m", "answer": "minds",     "after": "" }
+      ],
+      "ko_full": "사람들은 신체를 훈련하는 것이 정신을 훈련하는 것과 무관하다고 생각할 수도 있다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "m", "answer": "minds",       "after": "determine" },
+        { "pos": 2, "letter": "d", "answer": "determine",   "after": "their attitudes" },
+        { "pos": 3, "letter": "e", "answer": "effort",      "after": "toward physical development" }
+      ],
+      "ko_full": "그러나 참여자들의 정신 자세가 신체 발달에 대한 태도와 노력의 수준을 결정한다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "e", "answer": "exercise",  "after": "regularly" },
+        { "pos": 2, "letter": "w", "answer": "warm",      "after": "up before exercising" },
+        { "pos": 3, "letter": "s", "answer": "strategy",  "after": "" }
+      ],
+      "ko_full": "일반적인 연습에서 지도자들은 참여자들에게 규칙적으로 운동하거나, 운동 전에 준비 운동을 하거나, 특정 전략을 사용하라고 그냥 말할 수도 있다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "s", "answer": "sufficient", "after": "for instructors" },
+        { "pos": 2, "letter": "b", "answer": "blindly",    "after": "follow their directions" },
+        { "pos": 3, "letter": "d", "answer": "directions", "after": "in physical activities" }
+      ],
+      "ko_full": "그러나 지도자들이 참여자들로 하여금 체육 활동에서 자신의 지시를 맹목적으로 따르도록 기대하는 것으로는 충분하지 않다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "r", "answer": "raise",       "after": "participants' awareness" },
+        { "pos": 2, "letter": "a", "answer": "awareness",   "after": "of how" },
+        { "pos": 3, "letter": "e", "answer": "enhance",     "after": "their physical performance" }
+      ],
+      "ko_full": "지도자들은 이러한 활동들이 어떻게 참여자들의 신체 능력을 향상시키는지에 대한 참여자들의 인식을 높여야 한다."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "hints": [
+        { "pos": 1, "letter": "e", "answer": "explicitly",  "after": "explain" },
+        { "pos": 2, "letter": "w", "answer": "warming",     "after": "up before exercising" },
+        { "pos": 3, "letter": "p", "answer": "performances","after": "" }
+      ],
+      "ko_full": "예를 들어, 지도자는 운동 전 준비 운동이 어떻게 수행 능력을 향상시키는지 명확히 설명할 수 있다."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "hints": [
+        { "pos": 1, "letter": "p", "answer": "principles",  "after": "of these activities" },
+        { "pos": 2, "letter": "g", "answer": "gradually",   "after": "take fuller" },
+        { "pos": 3, "letter": "o", "answer": "ownership",   "after": "of their own development" }
+      ],
+      "ko_full": "참여자들이 이러한 활동들의 원리를 이해한다면, 그것은 그들이 자신의 발전에 대해 점차 더 충분한 주인 의식을 갖도록 해준다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 },
+    { "no": 7, "ref_sentence": 7 },
+    { "no": 8, "ref_sentence": 8 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["Instructors", "of", "physical", "activities", "often", "focus", "more", "on", "the", "activities", "themselves", "than", "on", "the", "participants", "who", "perform", "them"],
+      "answer": "Instructors of physical activities often focus more on the activities themselves than on the participants who perform them."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["People", "may", "believe", "that", "training", "our", "bodies", "is", "unrelated", "to", "training", "our", "minds"],
+      "answer": "People may believe that training our bodies is unrelated to training our minds."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["However", "participants'", "minds", "determine", "their", "attitudes", "and", "level", "of", "effort", "toward", "physical", "development"],
+      "answer": "However, participants' minds determine their attitudes and level of effort toward physical development."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["In", "usual", "practice", "instructors", "may", "just", "tell", "their", "participants", "to", "exercise", "regularly", "warm", "up", "before", "exercising", "or", "use", "a", "particular", "strategy"],
+      "answer": "In usual practice, instructors may just tell their participants to exercise regularly, warm up before exercising, or use a particular strategy."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["However", "it", "is", "not", "sufficient", "for", "instructors", "to", "expect", "participants", "to", "blindly", "follow", "their", "directions", "in", "physical", "activities"],
+      "answer": "However, it is not sufficient for instructors to expect participants to blindly follow their directions in physical activities."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["Instructors", "must", "raise", "participants'", "awareness", "of", "how", "these", "activities", "enhance", "their", "physical", "performance"],
+      "answer": "Instructors must raise participants' awareness of how these activities enhance their physical performance."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "words": ["For", "example", "an", "instructor", "could", "explicitly", "explain", "how", "warming", "up", "before", "exercising", "improves", "their", "performances"],
+      "answer": "For example, an instructor could explicitly explain how warming up before exercising improves their performances."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "words": ["If", "participants", "understand", "the", "principles", "of", "these", "activities", "it", "enables", "them", "to", "gradually", "take", "fuller", "ownership", "of", "their", "own", "development"],
+      "answer": "If participants understand the principles of these activities, it enables them to gradually take fuller ownership of their own development."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" },
+    { "no": 7, "ref_sentence": 7, "given": "ko" },
+    { "no": 8, "ref_sentence": 8, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 1, "no": 1 },
+    { "kind": "vocab",   "ref": 2, "no": 2 },
+    { "kind": "fill",    "ref": 5, "no": 3 },
+    { "kind": "ko",      "ref": 6, "no": 4 },
+    { "kind": "jumble",  "ref": 7, "no": 5 },
+    { "kind": "sent",    "ref": 8, "no": 6 },
+    { "kind": "grammar", "ref": 4, "no": 7 },
+    { "kind": "vocab",   "ref": 3, "no": 8 }
+  ]
+}

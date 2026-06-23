@@ -1,0 +1,467 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "24.json",
+  "_note": "24번 워크북 — 본문 10문장 풀커버.",
+  "_template_for_new_rounds": "이 파일을 새 회차의 {N}-workbook.json 작성 시 템플릿으로 사용. en_template의 {{N:A/B}} 토큰 = 양자택일 박스, hints 배열 = 빈칸 첫글자, jumble.words = 단어 배열 (셔플 X, 의도 유지).",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "fragmented",   "pos": "형" },
+      { "word": "integrated",   "pos": "형" },
+      { "word": "independently","pos": "부" },
+      { "word": "accommodation","pos": "명" },
+      { "word": "integral",     "pos": "형" },
+      { "word": "essentially",  "pos": "부" },
+      { "word": "onwards",      "pos": "부" },
+      { "word": "increase",     "pos": "동" },
+      { "word": "insurance",    "pos": "명" },
+      { "word": "booking",      "pos": "명" }
+    ],
+    "ko_to_en": [
+      { "meaning": "분절된, 파편화된",          "pos": "형", "answer": "fragmented" },
+      { "meaning": "통합된",                    "pos": "형", "answer": "integrated" },
+      { "meaning": "숙박(시설)",                "pos": "명", "answer": "accommodation" },
+      { "meaning": "불가결한, 필수적인",        "pos": "형", "answer": "integral" },
+      { "meaning": "본질적으로",                "pos": "부", "answer": "essentially" },
+      { "meaning": "독립적으로",                "pos": "부", "answer": "independently" },
+      { "meaning": "보험",                      "pos": "명", "answer": "insurance" },
+      { "meaning": "예약",                      "pos": "명", "answer": "booking" },
+      { "meaning": "이후로, ~부터 계속",        "pos": "부", "answer": "onwards" },
+      { "meaning": "늘리다, 증가시키다",        "pos": "동", "answer": "increase" }
+    ],
+    "expressions": [
+      { "ko": "~보다는, ~ 대신에",     "answer": "rather than" },
+      { "ko": "다양한 종류의",          "answer": "a range of" },
+      { "ko": "~에 불가결한",          "answer": "integral to" },
+      { "ko": "~하는 사업에 종사하다", "answer": "be in the business of" },
+      { "ko": "A를 B로 보다",          "answer": "see A as B" }
+    ],
+    "definitions": [
+      { "def": "broken into many small separate parts, not connected",          "answer": "fragmented" },
+      { "def": "combined into one system or whole",                             "answer": "integrated" },
+      { "def": "necessary as a part of a whole; unable to be removed",         "answer": "integral" },
+      { "def": "in every important way; at the most basic level",              "answer": "essentially" },
+      { "def": "an arrangement that guarantees compensation for loss or damage", "answer": "insurance" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Before the 1950s, tourism was very much an industry {{1:which/what}} was fragmented; hotels, transport operators, travel agents, and tour operators all {{2:tended/tend}} to work independently of each other.",
+      "ko_full": "1950년대 이전에는 관광 산업이 매우 분절되어 있었다; 호텔, 운송 업체, 여행사, 그리고 투어 오퍼레이터 모두 서로 독립적으로 운영되는 경향이 있었다.",
+      "answers": ["which", "tended"],
+      "explain": [
+        "선행사 industry(사물)를 수식하는 주격 관계대명사 which — what은 선행사 없이 쓰임.",
+        "과거 시제 서술 문맥 → tended(과거형)."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "Hotels were largely in the business of {{1:selling/sell}} {{2:bed nights/nightly beds}}.",
+      "ko_full": "호텔은 주로 숙박 판매 사업에 종사했다.",
+      "answers": ["selling", "bed nights"],
+      "explain": [
+        "be in the business of + 동명사 — selling.",
+        "업계 용어 'bed nights'(1박 숙박 단위) — 'nightly beds'는 비표준."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "Airlines and railways {{1:were/was}} in the business of {{2:selling/to sell}} seats.",
+      "ko_full": "항공사와 철도는 좌석 판매 사업에 종사했다.",
+      "answers": ["were", "selling"],
+      "explain": [
+        "주어 Airlines and railways(복수) → were.",
+        "be in the business of + 동명사 → selling."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "Travel agents, of course, were selling travel and holidays, but in each case they tended to operate {{1:very much/so much}} as {{2:individual/individuate}} businesses.",
+      "ko_full": "물론 여행사는 여행과 휴가를 판매하고 있었지만, 각 경우에 그들은 매우 개별 사업체로서 운영되는 경향이 있었다.",
+      "answers": ["very much", "individual"],
+      "explain": [
+        "'매우 ~로서'의 강조 부사 very much — so much는 이 구조에서 자연스럽지 않음.",
+        "'개별적인' 사업체 → individual(형용사) — individuate는 동사."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "From the mid-1950s onwards, particularly in the UK, the growth of tour operators began to {{1:change/changing}} the nature of the industry from essentially individual business activities to more {{2:integrated/integrating}} activities.",
+      "ko_full": "1950년대 중반 이후, 특히 영국에서, 투어 오퍼레이터의 성장은 본질적으로 개별적인 사업 활동에서 보다 통합된 활동으로 산업의 성격을 바꾸기 시작했다.",
+      "answers": ["change", "integrated"],
+      "explain": [
+        "begin to + 동사원형 → to change.",
+        "'통합된 상태'를 수식하는 형용사 integrated — integrating(능동 현재분사)은 문맥 부적합."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "Hotels, for example, were beginning to {{1:see/seeing}} customers as {{2:wanting/to want}} a range of services rather than simply buying accommodation.",
+      "ko_full": "예를 들어, 호텔들은 단순히 숙박을 구매하는 것보다 오히려 다양한 서비스를 원하는 고객들을 바라보기 시작했다.",
+      "answers": ["see", "wanting"],
+      "explain": [
+        "begin to + 동사원형 → to see.",
+        "see A as + 동명사(wanting) — 지각동사 see의 목적격보어."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "So hotels began to develop shopping arcades and later to offer secretarial centres to try {{1:to increase/increasing}} the spend of guests within the {{2:hotel complex/hotel's complex}}.",
+      "ko_full": "그래서 호텔들은 쇼핑 아케이드를 개발하고 나중에는 호텔 단지 내에서 투숙객의 지출을 늘리려 비서 센터를 제공하기 시작했다.",
+      "answers": ["to increase", "hotel complex"],
+      "explain": [
+        "try to + 동사원형(목적) → to increase.",
+        "'호텔 단지'는 복합명사 hotel complex — 소유격 hotel's complex는 비관용적."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "Transport operators, particularly in the airline business, {{1:saw/had seen}} the sale of transport services as {{2:being/to be}} integral to a much wider need.",
+      "ko_full": "운송 업체들, 특히 항공업계에서는, 교통 서비스의 판매가 훨씬 더 광범위한 필요와 불가분의 관계에 있다고 보았다.",
+      "answers": ["saw", "being"],
+      "explain": [
+        "서술의 전반적인 과거 시제 흐름 → saw.",
+        "see A as + 동명사(being) — 전치사 as 뒤는 동명사."
+      ]
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "en_template": "Airlines {{1:offered/were offered}} insurance and accommodation {{2:booking/booked}} for travellers.",
+      "ko_full": "항공사들은 여행자들을 위한 보험 및 숙박 예약 서비스를 제공했다.",
+      "answers": ["offered", "booking"],
+      "explain": [
+        "항공사가 서비스를 '제공한' 능동태 → offered.",
+        "accommodation booking(숙박 예약) — 명사구 수식 → 동명사 booking."
+      ]
+    },
+    {
+      "no": 10,
+      "ref_sentence": 10,
+      "en_template": "So the tourism industry moved from {{1:being/to be}} essentially fragmented to {{2:being/be}} essentially integrated.",
+      "ko_full": "그래서 관광 산업은 본질적으로 분절된 상태에서 본질적으로 통합된 상태로 이동했다.",
+      "answers": ["being", "being"],
+      "explain": [
+        "from + 동명사(being) — 전치사 from 뒤에 동명사.",
+        "to + 동명사(being) — 전치사 to 뒤에 동명사(구조 병렬)."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Tourism was very much an industry which was {{1:fragmented/integrated}}; hotels, transport operators, travel agents, and tour operators all tended to work {{2:independently/collectively}} of each other.",
+      "ko_full": "관광 산업이 매우 분절되어 있었다; 호텔, 운송 업체, 여행사, 투어 오퍼레이터 모두 서로 독립적으로 운영되는 경향이 있었다.",
+      "answers": ["fragmented", "independently"],
+      "explain": [
+        "서로 협력이 없던 상태 → fragmented(분절된).",
+        "각자 따로 움직임 → independently(독립적으로)."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "Hotels were largely in the business of selling {{1:bed nights/flight seats}}.",
+      "ko_full": "호텔은 주로 숙박 판매 사업에 종사했다.",
+      "answers": ["bed nights"],
+      "explain": [
+        "호텔의 핵심 상품은 '1박 숙박(bed nights)' — flight seats는 항공사 상품."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "Airlines and {{1:railways/hotels}} were in the business of selling {{2:seats/rooms}}.",
+      "ko_full": "항공사와 철도는 좌석 판매 사업에 종사했다.",
+      "answers": ["railways", "seats"],
+      "explain": [
+        "본문에서 항공사와 함께 언급된 운송 수단 → railways(철도).",
+        "항공·철도의 상품 → seats(좌석)."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "Travel agents were selling travel and holidays, but they tended to operate as {{1:individual/collective}} businesses.",
+      "ko_full": "여행사는 여행과 휴가를 판매하고 있었지만, 그들은 개별 사업체로서 운영되는 경향이 있었다.",
+      "answers": ["individual"],
+      "explain": [
+        "분절 시대 특성 → individual(개별적인)."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "The growth of tour operators began to change the nature of the industry from individual to more {{1:integrated/fragmented}} activities.",
+      "ko_full": "투어 오퍼레이터의 성장은 산업의 성격을 개별적인 것에서 보다 통합된 활동으로 바꾸기 시작했다.",
+      "answers": ["integrated"],
+      "explain": [
+        "변화의 방향은 분절(fragmented)에서 '통합(integrated)'으로."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "Hotels were beginning to see customers as wanting {{1:a range of/a single}} services rather than simply buying {{2:accommodation/insurance}}.",
+      "ko_full": "호텔들은 단순히 숙박을 구매하는 것보다 오히려 다양한 서비스를 원하는 고객들을 바라보기 시작했다.",
+      "answers": ["a range of", "accommodation"],
+      "explain": [
+        "'다양한 종류의' → a range of.",
+        "이전에 판매하던 단일 상품은 숙박 → accommodation."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "Hotels began to develop shopping arcades and offer secretarial centres to try to {{1:increase/decrease}} the {{2:spend/revenue}} of guests within the hotel complex.",
+      "ko_full": "호텔들은 쇼핑 아케이드를 개발하고 비서 센터를 제공하기 시작했다.",
+      "answers": ["increase", "spend"],
+      "explain": [
+        "부가 서비스로 투숙객 지출을 '늘리려' 함 → increase.",
+        "'투숙객의 지출(액)' → spend(명사)."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "Transport operators saw the sale of transport services as being {{1:integral/irrelevant}} to a much {{2:wider/narrower}} need.",
+      "ko_full": "운송 업체들은 교통 서비스의 판매가 훨씬 더 광범위한 필요와 불가분의 관계에 있다고 보았다.",
+      "answers": ["integral", "wider"],
+      "explain": [
+        "교통이 더 넓은 수요와 '불가결한' 관계 → integral.",
+        "더 많은 서비스를 포괄 → wider(더 넓은)."
+      ]
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "en_template": "Airlines offered {{1:insurance/discounts}} and {{2:accommodation/transport}} booking for travellers.",
+      "ko_full": "항공사들은 여행자들을 위한 보험 및 숙박 예약 서비스를 제공했다.",
+      "answers": ["insurance", "accommodation"],
+      "explain": [
+        "항공사가 제공한 첫 번째 확장 서비스 → insurance(보험).",
+        "두 번째 확장 서비스 → accommodation booking(숙박 예약)."
+      ]
+    },
+    {
+      "no": 10,
+      "ref_sentence": 10,
+      "en_template": "So the tourism industry moved from being essentially {{1:fragmented/unified}} to being essentially {{2:integrated/divided}}.",
+      "ko_full": "그래서 관광 산업은 본질적으로 분절된 상태에서 본질적으로 통합된 상태로 이동했다.",
+      "answers": ["fragmented", "integrated"],
+      "explain": [
+        "변화 이전 상태 → fragmented(분절된).",
+        "변화 이후 상태 → integrated(통합된)."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "f", "answer": "fragmented",    "after": "hotels, transport" },
+        { "pos": 2, "letter": "i", "answer": "independently", "after": "of each other" }
+      ],
+      "ko_full": "1950년대 이전에는 관광 산업이 매우 분절되어 있었다; 호텔, 운송 업체, 여행사, 그리고 투어 오퍼레이터 모두 서로 독립적으로 운영되는 경향이 있었다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "b", "answer": "business",  "after": "of selling bed nights" },
+        { "pos": 2, "letter": "b", "answer": "bed nights","after": "" }
+      ],
+      "ko_full": "호텔은 주로 숙박 판매 사업에 종사했다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "r", "answer": "railways", "after": "were in the business" },
+        { "pos": 2, "letter": "s", "answer": "seats",    "after": "" }
+      ],
+      "ko_full": "항공사와 철도는 좌석 판매 사업에 종사했다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "h", "answer": "holidays",     "after": "but in each case" },
+        { "pos": 2, "letter": "i", "answer": "individual",   "after": "businesses" },
+        { "pos": 3, "letter": "o", "answer": "operate",      "after": "very much as" }
+      ],
+      "ko_full": "물론 여행사는 여행과 휴가를 판매하고 있었지만, 각 경우에 그들은 매우 개별 사업체로서 운영되는 경향이 있었다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "o", "answer": "onwards",    "after": "particularly in the UK" },
+        { "pos": 2, "letter": "n", "answer": "nature",     "after": "of the industry" },
+        { "pos": 3, "letter": "i", "answer": "integrated", "after": "activities" }
+      ],
+      "ko_full": "1950년대 중반 이후, 특히 영국에서, 투어 오퍼레이터의 성장은 본질적으로 개별적인 사업 활동에서 보다 통합된 활동으로 산업의 성격을 바꾸기 시작했다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "r", "answer": "range",          "after": "of services" },
+        { "pos": 2, "letter": "a", "answer": "accommodation",  "after": "" }
+      ],
+      "ko_full": "예를 들어, 호텔들은 단순히 숙박을 구매하는 것보다 오히려 다양한 서비스를 원하는 고객들을 바라보기 시작했다."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "hints": [
+        { "pos": 1, "letter": "s", "answer": "shopping",       "after": "arcades and later" },
+        { "pos": 2, "letter": "s", "answer": "secretarial",    "after": "centres to try" },
+        { "pos": 3, "letter": "s", "answer": "spend",          "after": "of guests within" }
+      ],
+      "ko_full": "그래서 호텔들은 쇼핑 아케이드를 개발하고 나중에는 호텔 단지 내에서 투숙객의 지출을 늘리려 비서 센터를 제공하기 시작했다."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "hints": [
+        { "pos": 1, "letter": "t", "answer": "transport",  "after": "services as being" },
+        { "pos": 2, "letter": "i", "answer": "integral",   "after": "to a much wider need" }
+      ],
+      "ko_full": "운송 업체들, 특히 항공업계에서는, 교통 서비스의 판매가 훨씬 더 광범위한 필요와 불가분의 관계에 있다고 보았다."
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "hints": [
+        { "pos": 1, "letter": "i", "answer": "insurance",      "after": "and accommodation" },
+        { "pos": 2, "letter": "a", "answer": "accommodation",  "after": "booking for" },
+        { "pos": 3, "letter": "t", "answer": "travellers",     "after": "" }
+      ],
+      "ko_full": "항공사들은 여행자들을 위한 보험 및 숙박 예약 서비스를 제공했다."
+    },
+    {
+      "no": 10,
+      "ref_sentence": 10,
+      "hints": [
+        { "pos": 1, "letter": "f", "answer": "fragmented", "after": "to being essentially" },
+        { "pos": 2, "letter": "i", "answer": "integrated", "after": "" }
+      ],
+      "ko_full": "그래서 관광 산업은 본질적으로 분절된 상태에서 본질적으로 통합된 상태로 이동했다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1,  "ref_sentence": 1  },
+    { "no": 2,  "ref_sentence": 2  },
+    { "no": 3,  "ref_sentence": 3  },
+    { "no": 4,  "ref_sentence": 4  },
+    { "no": 5,  "ref_sentence": 5  },
+    { "no": 6,  "ref_sentence": 6  },
+    { "no": 7,  "ref_sentence": 7  },
+    { "no": 8,  "ref_sentence": 8  },
+    { "no": 9,  "ref_sentence": 9  },
+    { "no": 10, "ref_sentence": 10 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["Before", "the", "1950s", "tourism", "was", "very", "much", "an", "industry", "which", "was", "fragmented", "hotels", "transport", "operators", "travel", "agents", "and", "tour", "operators", "all", "tended", "to", "work", "independently", "of", "each", "other"],
+      "answer": "Before the 1950s, tourism was very much an industry which was fragmented; hotels, transport operators, travel agents, and tour operators all tended to work independently of each other."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["Hotels", "were", "largely", "in", "the", "business", "of", "selling", "bed", "nights"],
+      "answer": "Hotels were largely in the business of selling bed nights."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["Airlines", "and", "railways", "were", "in", "the", "business", "of", "selling", "seats"],
+      "answer": "Airlines and railways were in the business of selling seats."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["Travel", "agents", "of", "course", "were", "selling", "travel", "and", "holidays", "but", "in", "each", "case", "they", "tended", "to", "operate", "very", "much", "as", "individual", "businesses"],
+      "answer": "Travel agents, of course, were selling travel and holidays, but in each case they tended to operate very much as individual businesses."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["From", "the", "mid-1950s", "onwards", "particularly", "in", "the", "UK", "the", "growth", "of", "tour", "operators", "began", "to", "change", "the", "nature", "of", "the", "industry", "from", "essentially", "individual", "business", "activities", "to", "more", "integrated", "activities"],
+      "answer": "From the mid-1950s onwards, particularly in the UK, the growth of tour operators began to change the nature of the industry from essentially individual business activities to more integrated activities."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["Hotels", "for", "example", "were", "beginning", "to", "see", "customers", "as", "wanting", "a", "range", "of", "services", "rather", "than", "simply", "buying", "accommodation"],
+      "answer": "Hotels, for example, were beginning to see customers as wanting a range of services rather than simply buying accommodation."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "words": ["So", "hotels", "began", "to", "develop", "shopping", "arcades", "and", "later", "to", "offer", "secretarial", "centres", "to", "try", "to", "increase", "the", "spend", "of", "guests", "within", "the", "hotel", "complex"],
+      "answer": "So hotels began to develop shopping arcades and later to offer secretarial centres to try to increase the spend of guests within the hotel complex."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "words": ["Transport", "operators", "particularly", "in", "the", "airline", "business", "saw", "the", "sale", "of", "transport", "services", "as", "being", "integral", "to", "a", "much", "wider", "need"],
+      "answer": "Transport operators, particularly in the airline business, saw the sale of transport services as being integral to a much wider need."
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "words": ["Airlines", "offered", "insurance", "and", "accommodation", "booking", "for", "travellers"],
+      "answer": "Airlines offered insurance and accommodation booking for travellers."
+    },
+    {
+      "no": 10,
+      "ref_sentence": 10,
+      "words": ["So", "the", "tourism", "industry", "moved", "from", "being", "essentially", "fragmented", "to", "being", "essentially", "integrated"],
+      "answer": "So the tourism industry moved from being essentially fragmented to being essentially integrated."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1,  "ref_sentence": 1,  "given": "ko" },
+    { "no": 2,  "ref_sentence": 2,  "given": "ko" },
+    { "no": 3,  "ref_sentence": 3,  "given": "ko" },
+    { "no": 4,  "ref_sentence": 4,  "given": "ko" },
+    { "no": 5,  "ref_sentence": 5,  "given": "ko" },
+    { "no": 6,  "ref_sentence": 6,  "given": "ko" },
+    { "no": 7,  "ref_sentence": 7,  "given": "ko" },
+    { "no": 8,  "ref_sentence": 8,  "given": "ko" },
+    { "no": 9,  "ref_sentence": 9,  "given": "ko" },
+    { "no": 10, "ref_sentence": 10, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 1,  "no": 1 },
+    { "kind": "vocab",   "ref": 5,  "no": 2 },
+    { "kind": "fill",    "ref": 7,  "no": 3 },
+    { "kind": "ko",      "ref": 10, "no": 4 },
+    { "kind": "jumble",  "ref": 5,  "no": 5 },
+    { "kind": "sent",    "ref": 8,  "no": 6 },
+    { "kind": "grammar", "ref": 10, "no": 7 },
+    { "kind": "vocab",   "ref": 1,  "no": 8 }
+  ]
+}

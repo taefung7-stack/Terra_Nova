@@ -1,0 +1,436 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "36.json",
+  "_note": "36번 워크북 — 본문 9문장 풀커버.",
+  "_template_for_new_rounds": "이 파일을 새 회차의 {N}-workbook.json 작성 시 템플릿으로 사용. en_template의 {{N:A/B}} 토큰 = 양자택일 박스, hints 배열 = 빈칸 첫글자, jumble.words = 단어 배열 (셔플 X, 의도 유지).",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "evolve",        "pos": "동" },
+      { "word": "defense",       "pos": "명" },
+      { "word": "diverse",       "pos": "형" },
+      { "word": "intoxicate",    "pos": "동" },
+      { "word": "structural",    "pos": "형" },
+      { "word": "release",       "pos": "동" },
+      { "word": "cue",           "pos": "명" },
+      { "word": "predator",      "pos": "명" },
+      { "word": "resilient",     "pos": "형" },
+      { "word": "stalemate",     "pos": "명" }
+    ],
+    "ko_to_en": [
+      { "meaning": "진화하다",              "pos": "동", "answer": "evolve" },
+      { "meaning": "방어 수단",             "pos": "명", "answer": "defense" },
+      { "meaning": "다양한",                "pos": "형", "answer": "diverse" },
+      { "meaning": "중독시키다",            "pos": "동", "answer": "intoxicate" },
+      { "meaning": "방출하다, 내보내다",    "pos": "동", "answer": "release" },
+      { "meaning": "신호, 단서",            "pos": "명", "answer": "cue" },
+      { "meaning": "포식자",                "pos": "명", "answer": "predator" },
+      { "meaning": "협력자",                "pos": "명", "answer": "collaborator" },
+      { "meaning": "교착 상태",             "pos": "명", "answer": "stalemate" },
+      { "meaning": "의도치 않게",           "pos": "부", "answer": "unintentionally" }
+    ],
+    "expressions": [
+      { "ko": "A에 B를 채우다",           "answer": "load A with B" },
+      { "ko": "A가 ~하지 못하도록 막다",  "answer": "prevent A from V-ing" },
+      { "ko": "~에 유리하게 작용하다(선택)",        "answer": "select for" },
+      { "ko": "차례로, 다시",             "answer": "in turn" },
+      { "ko": "~을 야기하다",             "answer": "bring about" }
+    ],
+    "definitions": [
+      { "def": "to develop gradually over a long period of time",                               "answer": "evolve" },
+      { "def": "actions or structures intended to protect something from harm",                  "answer": "defense" },
+      { "def": "an animal that naturally kills and eats other animals",                          "answer": "predator" },
+      { "def": "a situation in which neither side can win or make progress",                     "answer": "stalemate" },
+      { "def": "able to recover quickly from difficult conditions",                              "answer": "resilient" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Plants {{1:have evolved/evolved}} defenses almost as {{2:diverse/diversity}} as the number of genera.",
+      "ko_full": "식물은 속(屬)의 수만큼이나 다양한 방어 수단을 진화시켜 왔다.",
+      "answers": ["have evolved", "diverse"],
+      "explain": [
+        "과거부터 현재까지 이어진 진화 과정 → 현재완료 have evolved.",
+        "as ... as 사이는 형용사 → diverse (명사 diversity 불가)."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "Some load their tissues with harsh compounds {{1:that/what}} either are unpleasant to insects or intoxicate them, {{2:encouraging/encouraged}} the insects to go bother another plant.",
+      "ko_full": "일부는 조직에 곤충에게 불쾌하거나 중독되게 하는 거친 화합물을 채워, 곤충이 다른 식물로 가서 귀찮게 한다.",
+      "answers": ["that", "encouraging"],
+      "explain": [
+        "선행사 compounds를 수식하는 주격 관계대명사 that (what은 선행사 없이 씀).",
+        "앞 절의 결과를 나타내는 분사구문 → 능동 현재분사 encouraging."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "Structural defenses like thick coats of wax on leaves may prevent some insect species {{1:from damaging/to damage}} the plant tissues {{2:altogether/together}}.",
+      "ko_full": "잎의 두꺼운 왁스 코팅과 같은 구조적 방어 수단은 일부 곤충 종이 식물 조직을 전혀 손상시키지 못하도록 막을 수 있다.",
+      "answers": ["from damaging", "altogether"],
+      "explain": [
+        "prevent A from V-ing — 'A가 ~하지 못하도록 막다'. to-부정사 불가.",
+        "altogether(전혀, 완전히) vs. together(함께) — 완전한 차단의 강조 → altogether."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "{{1:Nor/Neither}} are individual plants entirely on their own {{2:while/during}} under attack.",
+      "ko_full": "또한 개별 식물이 공격받는 동안 완전히 혼자인 것도 아니다.",
+      "answers": ["Nor", "while"],
+      "explain": [
+        "Nor + 조동사 + 주어 도치 구문 — 'Nor are ...' (Neither는 neither ... nor와 짝을 이룸).",
+        "뒤에 주어+동사 없이 분사구 under attack이 오므로 접속사 while (during은 전치사)."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "Plants can release chemical compounds that {{1:let/make}} their same-species neighbors know that an attack is likely coming, pushing those nearby plants to start {{2:building up/to build up}} defensive compounds.",
+      "ko_full": "식물은 화학 화합물을 방출하여 같은 종의 이웃 식물에게 공격이 곧 올 것 같다고 알리고, 그 주변 식물들이 방어 화합물을 축적하기 시작하도록 한다.",
+      "answers": ["let", "building up"],
+      "explain": [
+        "let + 목적어 + 원형부정사 know — 사역동사 let (make는 make+목적어+원형으로 know 앞에 이미 있음).",
+        "start + 동명사 V-ing — start V-ing(시작하다). to-부정사도 가능하나 본문은 building up."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "Some of these cues even attract insect {{1:predators/preys}}, a call for an assist {{2:that/what}} benefits both the plant and its bug-eating collaborators.",
+      "ko_full": "이러한 신호 중 일부는 심지어 곤충 포식자를 유인하기도 하는데, 이는 식물과 해충을 잡아먹는 협력자 모두에게 이득이 되는 도움 요청이다.",
+      "answers": ["predators", "that"],
+      "explain": [
+        "도움을 받으려면 해충을 잡아먹는 '포식자(predators)'를 유인해야 한다 (prey = 먹이감).",
+        "선행사 a call을 수식하는 주격 관계대명사 that (what은 선행사 없이 씀)."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "The back-and-forth is {{1:not/never}} a matter of natural balance, but more like {{2:a drawn-out/a prolonged}} evolutionary conversation.",
+      "ko_full": "이 밀고 당기기는 자연적 균형의 문제가 아니라, 오히려 길게 이어지는 진화적 대화에 가깝다.",
+      "answers": ["not", "a drawn-out"],
+      "explain": [
+        "not A, but B 구조 (never는 '결코 ~않다'로 과도한 부정).",
+        "본문 원문 어구 drawn-out(길게 이어지는)이 정확한 표현."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "New plant defenses unintentionally select for insects with ways {{1:to get/getting}} around them, {{2:which/that}} in turn help bring about more resilient and resistant plant species.",
+      "ko_full": "새로운 식물 방어 수단은 의도치 않게 그것을 우회하는 방법을 가진 곤충을 선택하고, 이는 다시 더 회복력 있고 저항성 있는 식물 종의 출현을 촉진한다.",
+      "answers": ["to get", "which"],
+      "explain": [
+        "ways to get around — 'to부정사가 명사 ways를 수식' (형용사적 용법).",
+        "앞 절 전체를 선행사로 받는 계속적 용법 관계대명사 which (that은 계속적 용법 불가)."
+      ]
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "en_template": "New variations, {{1:shading/shaded}} into entire new forms and adaptations, {{2:maintain/maintains}} the stalemate.",
+      "ko_full": "전혀 새로운 형태와 적응으로 점차 변해 가는 새로운 변이들이 교착 상태를 유지한다.",
+      "answers": ["shading", "maintain"],
+      "explain": [
+        "삽입 분사구문 — 주어(New variations)가 능동적으로 변해 가는 것이므로 능동 shading.",
+        "주어 핵 = New variations(복수) → 복수 동사 maintain."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Plants have {{1:evolved/invented}} defenses almost as {{2:diverse/similar}} as the number of genera.",
+      "ko_full": "식물은 속(屬)의 수만큼이나 다양한 방어 수단을 진화시켜 왔다.",
+      "answers": ["evolved", "diverse"],
+      "explain": [
+        "생물학적 '진화'에 맞는 단어 — evolved.",
+        "'속의 수만큼이나 다양하다' — diverse (similar는 반의미)."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "Some load their tissues with {{1:harsh/mild}} compounds that either are unpleasant to insects or {{2:intoxicate/attract}} them.",
+      "ko_full": "일부는 조직에 곤충에게 불쾌하거나 중독되게 하는 거친 화합물을 채운다.",
+      "answers": ["harsh", "intoxicate"],
+      "explain": [
+        "방어 목적에 맞는 '독한, 거친' 화합물 — harsh (mild = 온화한, 반대).",
+        "곤충을 '중독시키다' — intoxicate (attract = 유인하다, 의미 반전)."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "{{1:Structural/Chemical}} defenses like thick coats of wax on leaves may prevent some insect species from damaging the plant tissues {{2:altogether/partially}}.",
+      "ko_full": "잎의 두꺼운 왁스 코팅과 같은 구조적 방어 수단은 일부 곤충 종이 식물 조직을 전혀 손상시키지 못하도록 막을 수 있다.",
+      "answers": ["Structural", "altogether"],
+      "explain": [
+        "왁스 코팅은 물리적·구조적 방어 — Structural (Chemical은 화합물 분비).",
+        "'전혀' 손상을 막는 완전 차단 — altogether (partially = 부분적으로, 반의미)."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "Nor are individual plants entirely {{1:on their own/in their prime}} while under {{2:attack/observation}}.",
+      "ko_full": "또한 개별 식물이 공격받는 동안 완전히 혼자인 것도 아니다.",
+      "answers": ["on their own", "attack"],
+      "explain": [
+        "'혼자서' — on their own (in their prime = 한창때에, 무관).",
+        "방어 맥락에서 위협은 '공격(attack)' — (observation = 관찰, 무관)."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "Plants can release chemical {{1:compounds/barriers}} that let their same-species neighbors know that an attack is likely {{2:coming/ending}}.",
+      "ko_full": "식물은 화학 화합물을 방출하여 같은 종의 이웃 식물에게 공격이 곧 올 것 같다고 알린다.",
+      "answers": ["compounds", "coming"],
+      "explain": [
+        "'방출하는 것은 화합물' — compounds (barriers = 장벽, 방출 대상 아님).",
+        "공격이 곧 '올 것 같다' — coming (ending = 끝날 것, 의미 반전)."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "Some of these {{1:cues/traps}} even attract insect predators, a call for an assist that {{2:benefits/harms}} both the plant and its bug-eating collaborators.",
+      "ko_full": "이러한 신호 중 일부는 심지어 곤충 포식자를 유인하기도 하는데, 이는 식물과 해충을 잡아먹는 협력자 모두에게 이득이 되는 도움 요청이다.",
+      "answers": ["cues", "benefits"],
+      "explain": [
+        "식물이 내보내는 '신호(cues)' (traps = 덫, 물리적 장치로 맥락 다름).",
+        "협력이므로 '이득을 준다' — benefits (harms = 해친다, 반의미)."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "The back-and-forth is not a matter of {{1:natural balance/random chance}}, but more like a {{2:drawn-out/quick}} evolutionary conversation.",
+      "ko_full": "이 밀고 당기기는 자연적 균형의 문제가 아니라, 오히려 길게 이어지는 진화적 대화에 가깝다.",
+      "answers": ["natural balance", "drawn-out"],
+      "explain": [
+        "NOT 대상은 '자연적 균형(natural balance)' (random chance = 무작위 우연, 본문 부정 내용 다름).",
+        "오래 끄는 진화적 대화 — drawn-out (quick = 빠른, 반의미)."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "New plant defenses {{1:unintentionally/deliberately}} select for insects with ways to get around them, which in turn help bring about more {{2:resilient/vulnerable}} and resistant plant species.",
+      "ko_full": "새로운 식물 방어 수단은 의도치 않게 그것을 우회하는 방법을 가진 곤충을 선택하고, 이는 다시 더 회복력 있고 저항성 있는 식물 종의 출현을 촉진한다.",
+      "answers": ["unintentionally", "resilient"],
+      "explain": [
+        "식물이 의도한 게 아니라 '의도치 않게' 선택압이 가해지는 것 — unintentionally.",
+        "더 강해진 식물은 '회복력 있는' — resilient (vulnerable = 취약한, 반의미)."
+      ]
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "en_template": "New {{1:variations/invasions}}, shading into entire new forms and adaptations, maintain the {{2:stalemate/balance}}.",
+      "ko_full": "전혀 새로운 형태와 적응으로 점차 변해 가는 새로운 변이들이 교착 상태를 유지한다.",
+      "answers": ["variations", "stalemate"],
+      "explain": [
+        "진화적 맥락의 '변이' — variations (invasions = 침입, 무관).",
+        "'교착 상태' — stalemate (balance = 균형; 글은 자연적 균형이 아님을 명시)."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "e", "answer": "evolved",   "after": "defenses almost" },
+        { "pos": 2, "letter": "d", "answer": "defenses",  "after": "almost as diverse" },
+        { "pos": 3, "letter": "g", "answer": "genera",    "after": "the number of" }
+      ],
+      "ko_full": "식물은 속(屬)의 수만큼이나 다양한 방어 수단을 진화시켜 왔다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "h", "answer": "harsh",       "after": "compounds that" },
+        { "pos": 2, "letter": "i", "answer": "intoxicate",  "after": "them" },
+        { "pos": 3, "letter": "e", "answer": "encouraging", "after": "the insects to" }
+      ],
+      "ko_full": "일부는 조직에 곤충에게 불쾌하거나 중독되게 하는 거친 화합물을 채워, 곤충이 다른 식물로 가서 귀찮게 하거나 적어도 식사 속도를 늦춘다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "s", "answer": "structural", "after": "defenses like" },
+        { "pos": 2, "letter": "p", "answer": "prevent",    "after": "some insect species" },
+        { "pos": 3, "letter": "a", "answer": "altogether", "after": "" }
+      ],
+      "ko_full": "잎의 두꺼운 왁스 코팅과 같은 구조적 방어 수단은 일부 곤충 종이 식물 조직을 전혀 손상시키지 못하도록 막을 수 있다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "i", "answer": "individual",  "after": "plants entirely" },
+        { "pos": 2, "letter": "e", "answer": "entirely",    "after": "on their own" },
+        { "pos": 3, "letter": "a", "answer": "attack",      "after": "while under" }
+      ],
+      "ko_full": "또한 개별 식물이 공격받는 동안 완전히 혼자인 것도 아니다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "r", "answer": "release",     "after": "chemical compounds" },
+        { "pos": 2, "letter": "n", "answer": "neighbors",   "after": "same-species" },
+        { "pos": 3, "letter": "b", "answer": "building up", "after": "start" }
+      ],
+      "ko_full": "식물은 화학 화합물을 방출하여 같은 종의 이웃 식물에게 공격이 곧 올 것 같다고 알리고, 그 주변 식물들이 조직 내에 방어 화합물을 축적하기 시작하도록 한다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "c", "answer": "cues",           "after": "even attract" },
+        { "pos": 2, "letter": "p", "answer": "predators",      "after": "insect" },
+        { "pos": 3, "letter": "c", "answer": "collaborators",  "after": "bug-eating" }
+      ],
+      "ko_full": "이러한 신호 중 일부는 심지어 곤충 포식자를 유인하기도 하는데, 이는 식물과 해충을 잡아먹는 협력자 모두에게 이득이 되는 도움 요청이다."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "hints": [
+        { "pos": 1, "letter": "b", "answer": "balance",       "after": "not a matter of natural" },
+        { "pos": 2, "letter": "d", "answer": "drawn-out",     "after": "like a" },
+        { "pos": 3, "letter": "e", "answer": "evolutionary",  "after": "drawn-out" }
+      ],
+      "ko_full": "이 밀고 당기기는 자연적 균형의 문제가 아니라, 오히려 길게 이어지는 진화적 대화에 가깝다."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "hints": [
+        { "pos": 1, "letter": "u", "answer": "unintentionally", "after": "select for" },
+        { "pos": 2, "letter": "r", "answer": "resilient",       "after": "more" },
+        { "pos": 3, "letter": "r", "answer": "resistant",       "after": "resilient and" }
+      ],
+      "ko_full": "새로운 식물 방어 수단은 의도치 않게 그것을 우회하는 방법을 가진 곤충을 선택하고, 이는 다시 더 회복력 있고 저항성 있는 식물 종의 출현을 촉진한다."
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "hints": [
+        { "pos": 1, "letter": "v", "answer": "variations",  "after": "New" },
+        { "pos": 2, "letter": "a", "answer": "adaptations", "after": "forms and" },
+        { "pos": 3, "letter": "s", "answer": "stalemate",   "after": "maintain the" }
+      ],
+      "ko_full": "전혀 새로운 형태와 적응으로 점차 변해 가는 새로운 변이들이 교착 상태를 유지한다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 },
+    { "no": 7, "ref_sentence": 7 },
+    { "no": 8, "ref_sentence": 8 },
+    { "no": 9, "ref_sentence": 9 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["Plants", "have", "evolved", "defenses", "almost", "as", "diverse", "as", "the", "number", "of", "genera"],
+      "answer": "Plants have evolved defenses almost as diverse as the number of genera."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["Some", "load", "their", "tissues", "with", "harsh", "compounds", "that", "either", "are", "unpleasant", "to", "insects", "or", "intoxicate", "them", "encouraging", "the", "insects", "to", "go", "bother", "another", "plant", "or", "at", "least", "slowing", "down", "their", "eating"],
+      "answer": "Some load their tissues with harsh compounds that either are unpleasant to insects or intoxicate them, encouraging the insects to go bother another plant or at least slowing down their eating."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["Structural", "defenses", "like", "thick", "coats", "of", "wax", "on", "leaves", "may", "prevent", "some", "insect", "species", "from", "damaging", "the", "plant", "tissues", "altogether"],
+      "answer": "Structural defenses like thick coats of wax on leaves may prevent some insect species from damaging the plant tissues altogether."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["Nor", "are", "individual", "plants", "entirely", "on", "their", "own", "while", "under", "attack"],
+      "answer": "Nor are individual plants entirely on their own while under attack."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["Plants", "can", "release", "chemical", "compounds", "that", "let", "their", "same-species", "neighbors", "know", "that", "an", "attack", "is", "likely", "coming", "pushing", "those", "nearby", "plants", "to", "start", "building", "up", "defensive", "compounds", "in", "their", "tissues"],
+      "answer": "Plants can release chemical compounds that let their same-species neighbors know that an attack is likely coming, pushing those nearby plants to start building up defensive compounds in their tissues."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["Some", "of", "these", "cues", "even", "attract", "insect", "predators", "a", "call", "for", "an", "assist", "that", "benefits", "both", "the", "plant", "and", "its", "bug-eating", "collaborators"],
+      "answer": "Some of these cues even attract insect predators, a call for an assist that benefits both the plant and its bug-eating collaborators."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "words": ["The", "back-and-forth", "is", "not", "a", "matter", "of", "natural", "balance", "but", "more", "like", "a", "drawn-out", "evolutionary", "conversation"],
+      "answer": "The back-and-forth is not a matter of natural balance, but more like a drawn-out evolutionary conversation."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "words": ["New", "plant", "defenses", "unintentionally", "select", "for", "insects", "with", "ways", "to", "get", "around", "them", "which", "in", "turn", "help", "bring", "about", "more", "resilient", "and", "resistant", "plant", "species"],
+      "answer": "New plant defenses unintentionally select for insects with ways to get around them, which in turn help bring about more resilient and resistant plant species."
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "words": ["New", "variations", "shading", "into", "entire", "new", "forms", "and", "adaptations", "maintain", "the", "stalemate"],
+      "answer": "New variations, shading into entire new forms and adaptations, maintain the stalemate."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" },
+    { "no": 7, "ref_sentence": 7, "given": "ko" },
+    { "no": 8, "ref_sentence": 8, "given": "ko" },
+    { "no": 9, "ref_sentence": 9, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 1, "no": 1 },
+    { "kind": "vocab",   "ref": 3, "no": 2 },
+    { "kind": "fill",    "ref": 5, "no": 3 },
+    { "kind": "ko",      "ref": 7, "no": 4 },
+    { "kind": "jumble",  "ref": 8, "no": 5 },
+    { "kind": "sent",    "ref": 9, "no": 6 },
+    { "kind": "grammar", "ref": 4, "no": 7 },
+    { "kind": "vocab",   "ref": 6, "no": 8 }
+  ]
+}

@@ -1,0 +1,396 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "23.json",
+  "_note": "23번 워크북 — 본문 8문장 풀커버.",
+  "_template_for_new_rounds": "이 파일을 새 회차의 {N}-workbook.json 작성 시 템플릿으로 사용. en_template의 {{N:A/B}} 토큰 = 양자택일 박스, hints 배열 = 빈칸 첫글자, jumble.words = 단어 배열 (셔플 X, 의도 유지).",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "telescoping",      "pos": "명" },
+      { "word": "reflex",           "pos": "명" },
+      { "word": "streamlined",      "pos": "형" },
+      { "word": "predator",         "pos": "명" },
+      { "word": "preprogrammed",    "pos": "형" },
+      { "word": "fine-tuning",      "pos": "명" },
+      { "word": "optimize",         "pos": "동" },
+      { "word": "capacity",         "pos": "명" },
+      { "word": "expose",           "pos": "동" },
+      { "word": "significant",      "pos": "형" }
+    ],
+    "ko_to_en": [
+      { "meaning": "상관관계가 있다",        "pos": "구", "answer": "correlate with" },
+      { "meaning": "(동물의) 사지",           "pos": "명", "answer": "limb" },
+      { "meaning": "신진대사율",              "pos": "구", "answer": "metabolic rate" },
+      { "meaning": "비축량, 저장량",         "pos": "명", "answer": "reserve" },
+      { "meaning": "~에 높은 가치를 두다",   "pos": "구", "answer": "put a premium on" },
+      { "meaning": "그럭저럭 살아가다",      "pos": "구", "answer": "get by" },
+      { "meaning": "~할 여유가 있다",         "pos": "구", "answer": "afford to" },
+      { "meaning": "시행착오",                "pos": "구", "answer": "trial and error" },
+      { "meaning": "자동적인, 무의식적인",   "pos": "형", "answer": "automatic" },
+      { "meaning": "단명하는",                "pos": "형", "answer": "short-lived" }
+    ],
+    "expressions": [
+      { "ko": "~와 상관관계가 있다",         "answer": "correlate with" },
+      { "ko": "~에 높은 가치를 두다",        "answer": "put a premium on" },
+      { "ko": "~할 여유가 있다",              "answer": "afford to" },
+      { "ko": "시행착오",                     "answer": "trial and error" },
+      { "ko": "A를 B에 노출시키다",          "answer": "expose A to B" }
+    ],
+    "definitions": [
+      { "def": "a quick automatic response to a stimulus without conscious thought",                              "answer": "reflex" },
+      { "def": "made simpler or more efficient by removing unnecessary parts",                                    "answer": "streamlined" },
+      { "def": "an animal that hunts and eats other animals",                                                    "answer": "predator" },
+      { "def": "to make something as good or effective as possible",                                             "answer": "optimize" },
+      { "def": "the physical or mental power needed to do something",                                            "answer": "capacity" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "A telescoping of time {{1:correlates/correlate}} with {{2:size/sized}}.",
+      "ko_full": "시간의 압축(telescoping)은 크기와 상관관계가 있다.",
+      "answers": ["correlates", "size"],
+      "explain": [
+        "주어 A telescoping(단수) → 3인칭 단수 correlates.",
+        "correlate with + 명사 — 전치사 뒤 원형 명사 size."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "Small animals' reflexes must {{1:be quicker/be more quick}} in order to {{2:control/controlling}} much smaller limbs.",
+      "ko_full": "소형 동물의 반사 신경은 훨씬 작은 사지를 통제하기 위해 더 빨라야 한다.",
+      "answers": ["be quicker", "control"],
+      "explain": [
+        "quick는 단음절 형용사 → 비교급 quicker (more quick 아님).",
+        "in order to + 동사원형 → control."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "Decision making must be {{1:streamlined/streamlining}} because their high metabolic rates offer {{2:few/little}} choices.",
+      "ko_full": "소형 종에서는 높은 신진대사율과 최소한의 에너지 비축량이 선택의 폭을 거의 주지 않기 때문에 의사 결정이 간소화되어야 한다.",
+      "answers": ["streamlined", "few"],
+      "explain": [
+        "must be + 과거분사 수동태 → streamlined.",
+        "가산명사 choices 수식 → few (불가산은 little)."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "A short lifetime offers {{1:little/few}} time for {{2:learning/learn}} from experience.",
+      "ko_full": "짧은 수명은 경험으로부터 배울 시간을 거의 주지 않는다.",
+      "answers": ["little", "learning"],
+      "explain": [
+        "time은 불가산명사 → little (가산이면 few).",
+        "전치사 for의 목적어 → 동명사 learning."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "{{1:Being/Be}} short-lived puts a premium on preprogrammed behavior patterns that {{2:require/requires}} little in the way of fine-tuning.",
+      "ko_full": "수명이 짧다는 것은 환경적 미세 조정이 거의 필요하지 않은 사전 프로그램된 행동 패턴의 효과성에 높은 가치를 둔다.",
+      "answers": ["Being", "require"],
+      "explain": [
+        "주어 역할의 동명사구 → Being short-lived (원형 Be 아님).",
+        "선행사 patterns(복수)를 받는 관계사절 → 복수 동사 require."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "Large animals can get by {{1:with/by}} rather slower reflexes and may have a considerable opportunity to learn by {{2:observation/observing}} and trial and error.",
+      "ko_full": "이에 비해 대형 동물은 다소 느린 반사 신경으로도 살아갈 수 있고, 관찰과 시행착오를 통해 배울 상당한 기회를 가질 수 있다.",
+      "answers": ["with", "observation"],
+      "explain": [
+        "get by with + 명사 — '~을 가지고 살아가다' 고정 표현.",
+        "by observation and trial and error — 병렬 명사구 (동명사 observing 아님)."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "Being longer-lived {{1:puts/put}} a greater premium on learning and memory, and less on {{2:automatic/automatically}} preprogrammed behaviors.",
+      "ko_full": "수명이 더 길다는 것은 학습과 기억에 더 높은 가치를 두고, 자동화된 사전 프로그램 행동에는 덜 중점을 둔다.",
+      "answers": ["puts", "automatic"],
+      "explain": [
+        "동명사 주어 Being longer-lived(단수) → puts.",
+        "명사 behaviors를 수식하는 형용사 → automatic (부사 automatically 아님)."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "Living a long time or having the capacity to travel {{1:is/are}} more likely to {{2:expose/exposing}} an animal to significant changes.",
+      "ko_full": "오랫동안 살거나 장거리를 이동할 능력을 갖는 것은 동물이 환경의 중요한 변화에 노출될 가능성을 더 높인다.",
+      "answers": ["is", "expose"],
+      "explain": [
+        "or로 연결된 동명사 주어 → 단수 is.",
+        "be likely to + 동사원형 → expose."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "A {{1:telescoping/lengthening}} of time {{2:correlates/contrasts}} with size.",
+      "ko_full": "시간의 압축(telescoping)은 크기와 상관관계가 있다.",
+      "answers": ["telescoping", "correlates"],
+      "explain": [
+        "시간이 '압축'되는 것 — telescoping (lengthening은 반대).",
+        "크기와 '상관관계를 이루다' — correlates."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "Small animals' {{1:reflexes/reserves}} must be quicker to respond to rapid {{2:locomotor/behavioral}} feedback.",
+      "ko_full": "소형 동물의 반사 신경은 빠른 운동 피드백에 반응하기 위해 더 빨라야 한다.",
+      "answers": ["reflexes", "locomotor"],
+      "explain": [
+        "빠른 반응을 담당하는 것 — reflexes(반사 신경).",
+        "이동 운동과 관련된 피드백 — locomotor."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "Decision making must be {{1:streamlined/complicated}} because high metabolic rates offer {{2:few/many}} choices.",
+      "ko_full": "소형 종에서는 높은 신진대사율과 최소한의 에너지 비축량이 선택의 폭을 거의 주지 않기 때문에 의사 결정이 간소화되어야 한다.",
+      "answers": ["streamlined", "few"],
+      "explain": [
+        "선택지가 적으므로 의사결정이 '간소화' — streamlined.",
+        "선택의 폭이 거의 없음 — few choices."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "A {{1:short/long}} lifetime offers little time for {{2:learning/competing}} from experience.",
+      "ko_full": "짧은 수명은 경험으로부터 배울 시간을 거의 주지 않는다.",
+      "answers": ["short", "learning"],
+      "explain": [
+        "학습 기회가 없는 것은 '짧은' 수명 — short.",
+        "경험으로부터 얻는 것 — learning."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "Being short-lived puts a premium on {{1:preprogrammed/acquired}} behavior patterns that require little {{2:environmental/social}} fine-tuning.",
+      "ko_full": "수명이 짧다는 것은 환경적 미세 조정이 거의 필요하지 않은 사전 프로그램된 행동 패턴의 효과성에 높은 가치를 둔다.",
+      "answers": ["preprogrammed", "environmental"],
+      "explain": [
+        "학습 없이 즉시 작동하는 '사전 프로그램된' 행동 — preprogrammed.",
+        "외부 세계의 '환경적' 미세 조정 — environmental."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "Large animals can {{1:afford/refuse}} to vary their behaviors in an effort to better {{2:optimize/simplify}} them.",
+      "ko_full": "이에 비해 대형 동물은 행동을 더 잘 최적화하기 위해 짝짓기 및 먹이 탐색 행동을 다양화할 여유가 있다.",
+      "answers": ["afford", "optimize"],
+      "explain": [
+        "여유가 있어 다양화할 수 있음 — afford.",
+        "행동을 더 잘 '최적화'하기 위해 — optimize."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "Being longer-lived puts a greater premium on {{1:learning/instinct}} and memory, and less on {{2:automatic/flexible}} preprogrammed behaviors.",
+      "ko_full": "수명이 더 길다는 것은 학습과 기억에 더 높은 가치를 두고, 자동화된 사전 프로그램 행동에는 덜 중점을 둔다.",
+      "answers": ["learning", "automatic"],
+      "explain": [
+        "장수하면 경험 축적이 가능하므로 '학습'에 높은 가치 — learning.",
+        "의식 없이 작동하는 '자동화된' 행동 — automatic."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "Having the capacity to travel long distances is more likely to {{1:expose/protect}} an animal to {{2:significant/minor}} changes in the environment.",
+      "ko_full": "장거리를 이동할 능력을 갖는 것은 동물이 환경의 중요한 변화에 노출될 가능성을 더 높인다.",
+      "answers": ["expose", "significant"],
+      "explain": [
+        "변화에 '노출되다' — expose.",
+        "사소한 것이 아닌 '중요한' 변화 — significant."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "t", "answer": "telescoping", "after": "of time" },
+        { "pos": 2, "letter": "c", "answer": "correlates",  "after": "with size" },
+        { "pos": 3, "letter": "s", "answer": "size",        "after": "" }
+      ],
+      "ko_full": "시간의 압축(telescoping)은 크기와 상관관계가 있다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "r", "answer": "reflexes",    "after": "must be quicker" },
+        { "pos": 2, "letter": "l", "answer": "limbs",       "after": "and respond to" },
+        { "pos": 3, "letter": "l", "answer": "locomotor",   "after": "feedback" }
+      ],
+      "ko_full": "소형 동물의 반사 신경은 훨씬 작은 사지를 통제하고 빠른 운동 피드백에 반응하기 위해 더 빨라야 한다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "s", "answer": "streamlined",  "after": "in small species" },
+        { "pos": 2, "letter": "m", "answer": "metabolic",    "after": "rates" },
+        { "pos": 3, "letter": "p", "answer": "predators",    "after": "or mating behaviors" }
+      ],
+      "ko_full": "소형 종에서는 높은 신진대사율과 최소한의 에너지 비축량이 먹이 탐색 활동, 포식자 방어, 혹은 짝짓기 행동에서 선택의 폭을 거의 주지 않기 때문에 의사 결정이 간소화되어야 한다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "s", "answer": "short",     "after": "lifetime" },
+        { "pos": 2, "letter": "l", "answer": "little",    "after": "time for learning" },
+        { "pos": 3, "letter": "l", "answer": "learning",  "after": "from experience" }
+      ],
+      "ko_full": "짧은 수명은 경험으로부터 배울 시간을 거의 주지 않는다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "s", "answer": "short-lived",    "after": "puts a premium" },
+        { "pos": 2, "letter": "p", "answer": "preprogrammed",  "after": "behavior patterns" },
+        { "pos": 3, "letter": "f", "answer": "fine-tuning",    "after": "" }
+      ],
+      "ko_full": "수명이 짧다는 것은 환경적 미세 조정이 거의 필요하지 않은 사전 프로그램된 행동 패턴의 효과성에 높은 가치를 둔다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "a", "answer": "afford",    "after": "to vary" },
+        { "pos": 2, "letter": "o", "answer": "optimize",  "after": "their behaviors" },
+        { "pos": 3, "letter": "o", "answer": "observation", "after": "and trial and error" }
+      ],
+      "ko_full": "이에 비해 대형 동물은 다소 느린 반사 신경으로도 살아갈 수 있고, 행동을 더 잘 최적화하기 위해 짝짓기 및 먹이 탐색 행동을 다양화할 여유가 있으며, 관찰과 시행착오를 통해 배울 상당한 기회를 가질 수 있다."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "hints": [
+        { "pos": 1, "letter": "l", "answer": "longer-lived", "after": "puts a greater" },
+        { "pos": 2, "letter": "l", "answer": "learning",     "after": "and memory" },
+        { "pos": 3, "letter": "a", "answer": "automatic",    "after": "preprogrammed behaviors" }
+      ],
+      "ko_full": "수명이 더 길다는 것은 학습과 기억에 더 높은 가치를 두고, 자동화된 사전 프로그램 행동에는 덜 중점을 둔다."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "hints": [
+        { "pos": 1, "letter": "c", "answer": "capacity",    "after": "to travel" },
+        { "pos": 2, "letter": "e", "answer": "expose",      "after": "an animal to" },
+        { "pos": 3, "letter": "s", "answer": "significant", "after": "changes in the environment" }
+      ],
+      "ko_full": "오랫동안 살거나 장거리를 이동할 능력을 갖는 것은 동물이 환경의 중요한 변화에 노출될 가능성을 더 높인다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 },
+    { "no": 7, "ref_sentence": 7 },
+    { "no": 8, "ref_sentence": 8 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["A", "telescoping", "of", "time", "correlates", "with", "size"],
+      "answer": "A telescoping of time correlates with size."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["Small", "animals'", "reflexes", "must", "be", "quicker", "in", "order", "to", "control", "much", "smaller", "limbs", "and", "respond", "to", "rapid", "locomotor", "feedback"],
+      "answer": "Small animals' reflexes must be quicker in order to control much smaller limbs and respond to rapid locomotor feedback."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["Further,", "decision", "making", "must", "be", "streamlined", "in", "small", "species", "because", "their", "high", "metabolic", "rates", "and", "minimal", "energy", "reserves", "offer", "few", "choices", "in", "food-searching", "activities", "defending", "against", "predators", "or", "mating", "behaviors"],
+      "answer": "Further, decision making must be streamlined in small species because their high metabolic rates and minimal energy reserves offer few choices in food-searching activities, defending against predators, or mating behaviors."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["And,", "perhaps", "most", "important,", "a", "short", "lifetime", "offers", "little", "time", "for", "learning", "from", "experience"],
+      "answer": "And, perhaps most important, a short lifetime offers little time for learning from experience."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["As", "a", "result,", "being", "short-lived", "puts", "a", "premium", "on", "the", "effectiveness", "of", "preprogrammed", "behavior", "patterns", "that", "require", "little", "in", "the", "way", "of", "environmental", "fine-tuning"],
+      "answer": "As a result, being short-lived puts a premium on the effectiveness of preprogrammed behavior patterns that require little in the way of environmental fine-tuning."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["Large", "animals", "in", "comparison", "can", "get", "by", "with", "rather", "slower", "reflexes", "can", "afford", "to", "vary", "their", "mating", "and", "food-searching", "behaviors", "in", "an", "effort", "to", "better", "optimize", "their", "behaviors", "and", "may", "have", "a", "considerable", "opportunity", "to", "learn", "by", "observation", "and", "trial", "and", "error"],
+      "answer": "Large animals, in comparison, can get by with rather slower reflexes, can afford to vary their mating and food-searching behaviors in an effort to better optimize their behaviors, and may have a considerable opportunity to learn by observation and trial and error."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "words": ["Being", "longer-lived", "puts", "a", "greater", "premium", "on", "learning", "and", "memory", "and", "less", "on", "automatic", "preprogrammed", "behaviors"],
+      "answer": "Being longer-lived puts a greater premium on learning and memory, and less on automatic preprogrammed behaviors."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "words": ["In", "addition,", "living", "a", "long", "time", "or", "having", "the", "capacity", "to", "travel", "for", "long", "distances", "is", "more", "likely", "to", "expose", "an", "animal", "to", "significant", "changes", "in", "the", "environment"],
+      "answer": "In addition, living a long time or having the capacity to travel for long distances is more likely to expose an animal to significant changes in the environment."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" },
+    { "no": 7, "ref_sentence": 7, "given": "ko" },
+    { "no": 8, "ref_sentence": 8, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 1, "no": 1 },
+    { "kind": "vocab",   "ref": 3, "no": 2 },
+    { "kind": "fill",    "ref": 5, "no": 3 },
+    { "kind": "ko",      "ref": 4, "no": 4 },
+    { "kind": "jumble",  "ref": 7, "no": 5 },
+    { "kind": "sent",    "ref": 6, "no": 6 },
+    { "kind": "grammar", "ref": 8, "no": 7 },
+    { "kind": "vocab",   "ref": 2, "no": 8 }
+  ]
+}

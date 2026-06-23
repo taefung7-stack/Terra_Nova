@@ -1,0 +1,434 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "18.json",
+  "_note": "18번 워크북 — 본문 9문장 풀커버.",
+  "_template_for_new_rounds": "이 파일을 새 회차의 {N}-workbook.json 작성 시 템플릿으로 사용. en_template의 {{N:A/B}} 토큰 = 양자택일 박스, hints 배열 = 빈칸 첫글자, jumble.words = 단어 배열 (셔플 X, 의도 유지).",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "recently",    "pos": "부" },
+      { "word": "especially",  "pos": "부" },
+      { "word": "impressed",   "pos": "형" },
+      { "word": "gather",      "pos": "동" },
+      { "word": "competition", "pos": "명" },
+      { "word": "popular",     "pos": "형" },
+      { "word": "community",   "pos": "명" },
+      { "word": "participant", "pos": "명" },
+      { "word": "popularity",  "pos": "명" },
+      { "word": "response",    "pos": "명" }
+    ],
+    "ko_to_en": [
+      { "meaning": "최근에",             "pos": "부", "answer": "recently" },
+      { "meaning": "특히, 특별히",       "pos": "부", "answer": "especially" },
+      { "meaning": "깊은 인상을 받은",   "pos": "형", "answer": "impressed" },
+      { "meaning": "참가하다, 합류하다", "pos": "동", "answer": "join" },
+      { "meaning": "훌륭한, 뛰어난",     "pos": "형", "answer": "excellent" },
+      { "meaning": "참가자",             "pos": "명", "answer": "participant" },
+      { "meaning": "인기",               "pos": "명", "answer": "popularity" },
+      { "meaning": "얻다, 획득하다",     "pos": "동", "answer": "gain" },
+      { "meaning": "관중, 군중",         "pos": "명", "answer": "crowd" },
+      { "meaning": "응답, 답변",         "pos": "명", "answer": "response" }
+    ],
+    "expressions": [
+      { "ko": "~에서 일하다",     "answer": "work for" },
+      { "ko": "~에 근거하여",     "answer": "based on" },
+      { "ko": "확신하다",         "answer": "have no doubt" },
+      { "ko": "~을 기대하다",     "answer": "look forward to" },
+      { "ko": "~을 부탁하다",     "answer": "would like to ask" }
+    ],
+    "definitions": [
+      { "def": "a formal event where people compete against each other",               "answer": "competition" },
+      { "def": "liked and enjoyed by many people",                                     "answer": "popular" },
+      { "def": "a person who takes part in an activity or event",                      "answer": "participant" },
+      { "def": "the quality of being known and liked by a large number of people",    "answer": "popularity" },
+      { "def": "something said or written in answer to a question or request",         "answer": "response" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 2,
+      "en_template": "My name is Reese Johnson, and I {{1:work/working}} for the Tuscanyville Homerun {{2:Derby/Derbyness}}.",
+      "ko_full": "제 이름은 Reese Johnson이며, 저는 Tuscanyville 홈런 더비에서 일합니다.",
+      "answers": ["work", "Derby"],
+      "explain": [
+        "주어 I 에 이어지는 동사 → 동사원형 work (I working은 진행형이므로 be 동사 필요).",
+        "고유명사 Derby — 조어 접미사 -ness를 붙이지 않음."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 3,
+      "en_template": "We recently {{1:saw/seen}} a video of your baseball team and were especially {{2:impressed/impressing}} by your power hitting.",
+      "ko_full": "저희는 최근 귀하의 야구팀 영상을 보았고, 특히 귀하의 강력한 타격에 깊은 인상을 받았습니다.",
+      "answers": ["saw", "impressed"],
+      "explain": [
+        "과거시제 문장 → 일반동사 과거형 saw (seen은 과거분사, 완료·수동에 사용).",
+        "주어(we)가 감명을 '받은' 것 → 수동 과거분사 impressed (impressing은 능동 현재분사)."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 4,
+      "en_template": "Every year, we gather together all of {{1:the/a}} best baseball hitters from Tuscanyville for {{2:a/an}} homerun competition.",
+      "ko_full": "매년, 저희는 홈런 대회를 위해 Tuscanyville의 최고의 야구 타자들을 모두 한자리에 모읍니다.",
+      "answers": ["the", "a"],
+      "explain": [
+        "all of the best — 이미 정해진 '최고 선수 전원'을 가리키므로 정관사 the.",
+        "homerun competition — 불특정 대회 단수 → 부정관사 a (자음 시작)."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 5,
+      "en_template": "It is a very popular event in our community, and we would like {{1:to ask/asking}} you to {{2:join/joining}} the competition this year.",
+      "ko_full": "이것은 저희 지역 사회에서 매우 인기 있는 행사이며, 저희는 귀하께서 올해 대회에 참가해 주시기를 요청드리고 싶습니다.",
+      "answers": ["to ask", "join"],
+      "explain": [
+        "would like + to부정사 → to ask (would like asking은 비표준).",
+        "ask + 목적어 + to부정사 → to join (ask ... to join the competition)."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 6,
+      "en_template": "You would be an {{1:excellent/excellence}} participant, and we know you would {{2:enjoy/enjoying}} the experience.",
+      "ko_full": "귀하는 훌륭한 참가자가 될 것이며, 저희는 귀하가 그 경험을 즐기실 것이라 확신합니다.",
+      "answers": ["excellent", "enjoy"],
+      "explain": [
+        "명사 participant를 수식하는 자리 → 형용사 excellent (excellence는 명사).",
+        "조동사 would 뒤 → 동사원형 enjoy."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 7,
+      "en_template": "Based on {{1:the/a}} popularity you gained from the video, we have no doubt the crowds here {{2:will/would}} love you.",
+      "ko_full": "귀하가 영상을 통해 얻으신 인기를 바탕으로, 저희는 이곳의 관중들이 귀하를 매우 좋아할 것이라 의심치 않습니다.",
+      "answers": ["the", "will"],
+      "explain": [
+        "you gained from the video로 이미 특정된 인기 → 정관사 the.",
+        "미래의 실제 가능성에 대한 확신 표현 → will (will이 직접적 미래 예측, would는 더 가정적)."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 8,
+      "en_template": "We are looking forward to {{1:your/you}} {{2:positive/positively}} response.",
+      "ko_full": "저희는 귀하의 긍정적인 답변을 기대합니다.",
+      "answers": ["your", "positive"],
+      "explain": [
+        "전치사 to의 목적어 자리 → 명사구 your positive response (소유격 your + 명사).",
+        "명사 response를 수식하는 자리 → 형용사 positive (positively는 부사)."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 3,
+      "en_template": "We recently saw a video of your baseball team and {{1:were/was}} especially impressed by your power {{2:hitting/hit}}.",
+      "ko_full": "저희는 최근 귀하의 야구팀 영상을 보았고, 특히 귀하의 강력한 타격에 깊은 인상을 받았습니다.",
+      "answers": ["were", "hitting"],
+      "explain": [
+        "주어 We(복수) → be동사 복수형 were.",
+        "power hitting — 복합명사(power + 동명사). hit는 단순 과거형이어서 복합명사 용법에 부적절."
+      ]
+    },
+    {
+      "no": 9,
+      "ref_sentence": 7,
+      "en_template": "Based on the popularity {{1:you gained/you gain}} from the video, we have no doubt the crowds {{2:here/there}} will love you.",
+      "ko_full": "귀하가 영상을 통해 얻으신 인기를 바탕으로, 저희는 이곳의 관중들이 귀하를 매우 좋아할 것이라 의심치 않습니다.",
+      "answers": ["you gained", "here"],
+      "explain": [
+        "영상이 이미 공개된 과거 사건 → 과거시제 you gained.",
+        "발신자 측 장소(대회가 열리는 Tuscanyville) → here(이곳). there는 편지 수신인 쪽을 가리킴."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 2,
+      "en_template": "My name is Reese Johnson, and I work {{1:for/to}} the Tuscanyville Homerun {{2:Derby/Race}}.",
+      "ko_full": "제 이름은 Reese Johnson이며, 저는 Tuscanyville 홈런 더비에서 일합니다.",
+      "answers": ["for", "Derby"],
+      "explain": [
+        "work for — '~에서 일하다' 전치사 for. work to는 '~하기 위해 일하다' 의미.",
+        "Homerun Derby — 고유명사 그대로 사용. Race는 경주/레이스."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 3,
+      "en_template": "We recently saw a video of your baseball team and were especially {{1:impressed/confused}} by your {{2:power/weak}} hitting.",
+      "ko_full": "저희는 최근 귀하의 야구팀 영상을 보았고, 특히 귀하의 강력한 타격에 깊은 인상을 받았습니다.",
+      "answers": ["impressed", "power"],
+      "explain": [
+        "좋은 인상을 받았다는 내용 → impressed(깊은 인상을 받은). confused는 혼란스러운.",
+        "강력한 타격 → power hitting. weak(약한)는 문맥에 반대."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 4,
+      "en_template": "Every year, we {{1:gather together/separate}} all of the best baseball hitters from Tuscanyville for a homerun {{2:competition/practice}}.",
+      "ko_full": "매년, 저희는 홈런 대회를 위해 Tuscanyville의 최고의 야구 타자들을 모두 한자리에 모읍니다.",
+      "answers": ["gather together", "competition"],
+      "explain": [
+        "선수들을 한자리에 '모으다' → gather together. separate는 분리하다.",
+        "경쟁하는 행사 → competition(대회). practice는 연습."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 5,
+      "en_template": "It is a very {{1:popular/unpopular}} event in our community, and we would like to ask you to join the competition {{2:this year/last year}}.",
+      "ko_full": "이것은 저희 지역 사회에서 매우 인기 있는 행사이며, 저희는 귀하께서 올해 대회에 참가해 주시기를 요청드리고 싶습니다.",
+      "answers": ["popular", "this year"],
+      "explain": [
+        "지역 사회에서 사랑받는 행사 → popular(인기 있는). unpopular는 정반대.",
+        "현재 참가 요청 → this year(올해). last year는 이미 지난 연도."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 6,
+      "en_template": "You would be an {{1:excellent/average}} participant, and we know you would enjoy the {{2:experience/expense}}.",
+      "ko_full": "귀하는 훌륭한 참가자가 될 것이며, 저희는 귀하가 그 경험을 즐기실 것이라 확신합니다.",
+      "answers": ["excellent", "experience"],
+      "explain": [
+        "상대를 칭찬하는 맥락 → excellent(훌륭한). average는 평범한.",
+        "대회 참가를 통해 얻는 것 → experience(경험). expense는 비용."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 7,
+      "en_template": "Based on the {{1:popularity/obscurity}} you gained from the video, we have no doubt the {{2:crowds/judges}} here will love you.",
+      "ko_full": "귀하가 영상을 통해 얻으신 인기를 바탕으로, 저희는 이곳의 관중들이 귀하를 매우 좋아할 것이라 의심치 않습니다.",
+      "answers": ["popularity", "crowds"],
+      "explain": [
+        "영상 통해 얻은 것 → popularity(인기). obscurity는 무명."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 8,
+      "en_template": "We are looking forward to your {{1:positive/negative}} {{2:response/request}}.",
+      "ko_full": "저희는 귀하의 긍정적인 답변을 기대합니다.",
+      "answers": ["positive", "response"],
+      "explain": [
+        "참가 동의를 기대 → positive(긍정적인). negative는 부정적인.",
+        "편지에 대한 답변 → response(답변). request는 요청."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 5,
+      "en_template": "It is a very popular {{1:event/accident}} in our {{2:community/competition}}, and we would like to ask you to join the competition this year.",
+      "ko_full": "이것은 저희 지역 사회에서 매우 인기 있는 행사이며, 저희는 귀하께서 올해 대회에 참가해 주시기를 요청드리고 싶습니다.",
+      "answers": ["event", "community"],
+      "explain": [
+        "의도적으로 개최되는 행사 → event(행사). accident는 사고.",
+        "지역 사회 → community. competition은 대회(앞서 이미 사용된 단어로 중복 부적절)."
+      ]
+    },
+    {
+      "no": 9,
+      "ref_sentence": 3,
+      "en_template": "We {{1:recently/rarely}} saw a video of your baseball team and were especially impressed by your power hitting.",
+      "ko_full": "저희는 최근 귀하의 야구팀 영상을 보았고, 특히 귀하의 강력한 타격에 깊은 인상을 받았습니다.",
+      "answers": ["recently"],
+      "explain": [
+        "편지 작성 직전에 영상을 보았다는 맥락 → recently(최근에). rarely는 '거의 ~않다'로 의미 반전."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "R", "answer": "Reese",    "after": "Johnson" },
+        { "pos": 2, "letter": "w", "answer": "work",     "after": "for the" },
+        { "pos": 3, "letter": "H", "answer": "Homerun",  "after": "Derby" }
+      ],
+      "ko_full": "제 이름은 Reese Johnson이며, 저는 Tuscanyville 홈런 더비에서 일합니다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "r", "answer": "recently",   "after": "saw a video" },
+        { "pos": 2, "letter": "i", "answer": "impressed",  "after": "by your power" },
+        { "pos": 3, "letter": "h", "answer": "hitting",    "after": "" }
+      ],
+      "ko_full": "저희는 최근 귀하의 야구팀 영상을 보았고, 특히 귀하의 강력한 타격에 깊은 인상을 받았습니다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "g", "answer": "gather",      "after": "together all of" },
+        { "pos": 2, "letter": "h", "answer": "hitters",     "after": "from Tuscanyville" },
+        { "pos": 3, "letter": "c", "answer": "competition", "after": "" }
+      ],
+      "ko_full": "매년, 저희는 홈런 대회를 위해 Tuscanyville의 최고의 야구 타자들을 모두 한자리에 모읍니다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "p", "answer": "popular",   "after": "event in our" },
+        { "pos": 2, "letter": "c", "answer": "community", "after": "and we would" },
+        { "pos": 3, "letter": "j", "answer": "join",      "after": "the competition this year" }
+      ],
+      "ko_full": "이것은 저희 지역 사회에서 매우 인기 있는 행사이며, 저희는 귀하께서 올해 대회에 참가해 주시기를 요청드리고 싶습니다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "e", "answer": "excellent",   "after": "participant" },
+        { "pos": 2, "letter": "p", "answer": "participant", "after": "and we know" },
+        { "pos": 3, "letter": "e", "answer": "experience",  "after": "" }
+      ],
+      "ko_full": "귀하는 훌륭한 참가자가 될 것이며, 저희는 귀하가 그 경험을 즐기실 것이라 확신합니다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 7,
+      "hints": [
+        { "pos": 1, "letter": "p", "answer": "popularity", "after": "you gained from" },
+        { "pos": 2, "letter": "d", "answer": "doubt",      "after": "here will love you" },
+        { "pos": 3, "letter": "c", "answer": "crowds",     "after": "here will love you" }
+      ],
+      "ko_full": "귀하가 영상을 통해 얻으신 인기를 바탕으로, 저희는 이곳의 관중들이 귀하를 매우 좋아할 것이라 의심치 않습니다."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 8,
+      "hints": [
+        { "pos": 1, "letter": "l", "answer": "looking",  "after": "forward to your" },
+        { "pos": 2, "letter": "p", "answer": "positive", "after": "response" },
+        { "pos": 3, "letter": "r", "answer": "response", "after": "" }
+      ],
+      "ko_full": "저희는 귀하의 긍정적인 답변을 기대합니다."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "v", "answer": "video",    "after": "of your baseball team" },
+        { "pos": 2, "letter": "e", "answer": "especially", "after": "impressed by your" },
+        { "pos": 3, "letter": "p", "answer": "power",    "after": "hitting" }
+      ],
+      "ko_full": "저희는 최근 귀하의 야구팀 영상을 보았고, 특히 귀하의 강력한 타격에 깊은 인상을 받았습니다."
+    },
+    {
+      "no": 9,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "e", "answer": "event",       "after": "in our community" },
+        { "pos": 2, "letter": "a", "answer": "ask",         "after": "you to join" },
+        { "pos": 3, "letter": "y", "answer": "year",        "after": "" }
+      ],
+      "ko_full": "이것은 저희 지역 사회에서 매우 인기 있는 행사이며, 저희는 귀하께서 올해 대회에 참가해 주시기를 요청드리고 싶습니다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 },
+    { "no": 7, "ref_sentence": 7 },
+    { "no": 8, "ref_sentence": 8 },
+    { "no": 9, "ref_sentence": 9 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 2,
+      "words": ["My", "name", "is", "Reese", "Johnson", "and", "I", "work", "for", "the", "Tuscanyville", "Homerun", "Derby"],
+      "answer": "My name is Reese Johnson, and I work for the Tuscanyville Homerun Derby."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 3,
+      "words": ["We", "recently", "saw", "a", "video", "of", "your", "baseball", "team", "and", "were", "especially", "impressed", "by", "your", "power", "hitting"],
+      "answer": "We recently saw a video of your baseball team and were especially impressed by your power hitting."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 4,
+      "words": ["Every", "year", "we", "gather", "together", "all", "of", "the", "best", "baseball", "hitters", "from", "Tuscanyville", "for", "a", "homerun", "competition"],
+      "answer": "Every year, we gather together all of the best baseball hitters from Tuscanyville for a homerun competition."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 5,
+      "words": ["It", "is", "a", "very", "popular", "event", "in", "our", "community", "and", "we", "would", "like", "to", "ask", "you", "to", "join", "the", "competition", "this", "year"],
+      "answer": "It is a very popular event in our community, and we would like to ask you to join the competition this year."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 6,
+      "words": ["You", "would", "be", "an", "excellent", "participant", "and", "we", "know", "you", "would", "enjoy", "the", "experience"],
+      "answer": "You would be an excellent participant, and we know you would enjoy the experience."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 7,
+      "words": ["Based", "on", "the", "popularity", "you", "gained", "from", "the", "video", "we", "have", "no", "doubt", "the", "crowds", "here", "will", "love", "you"],
+      "answer": "Based on the popularity you gained from the video, we have no doubt the crowds here will love you."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 8,
+      "words": ["We", "are", "looking", "forward", "to", "your", "positive", "response"],
+      "answer": "We are looking forward to your positive response."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 5,
+      "words": ["we", "would", "like", "to", "ask", "you", "to", "join", "the", "competition", "this", "year"],
+      "answer": "we would like to ask you to join the competition this year."
+    },
+    {
+      "no": 9,
+      "ref_sentence": 7,
+      "words": ["Based", "on", "the", "popularity", "you", "gained", "from", "the", "video", "we", "have", "no", "doubt", "the", "crowds", "here", "will", "love", "you"],
+      "answer": "Based on the popularity you gained from the video, we have no doubt the crowds here will love you."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" },
+    { "no": 7, "ref_sentence": 7, "given": "ko" },
+    { "no": 8, "ref_sentence": 8, "given": "ko" },
+    { "no": 9, "ref_sentence": 9, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 2, "no": 1 },
+    { "kind": "vocab",   "ref": 3, "no": 2 },
+    { "kind": "fill",    "ref": 5, "no": 3 },
+    { "kind": "ko",      "ref": 5, "no": 4 },
+    { "kind": "jumble",  "ref": 6, "no": 5 },
+    { "kind": "sent",    "ref": 7, "no": 6 },
+    { "kind": "grammar", "ref": 8, "no": 7 },
+    { "kind": "vocab",   "ref": 4, "no": 8 }
+  ]
+}

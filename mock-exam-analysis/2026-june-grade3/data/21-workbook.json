@@ -1,0 +1,433 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "21.json",
+  "_note": "21번 워크북 — 본문 9문장 풀커버.",
+  "_template_for_new_rounds": "이 파일을 새 회차의 {N}-workbook.json 작성 시 템플릿으로 사용. en_template의 {{N:A/B}} 토큰 = 양자택일 박스, hints 배열 = 빈칸 첫글자, jumble.words = 단어 배열 (셔플 X, 의도 유지).",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "consciousness",   "pos": "명" },
+      { "word": "cognition",       "pos": "명" },
+      { "word": "echolocation",    "pos": "명" },
+      { "word": "flexible",        "pos": "형" },
+      { "word": "hallmark",        "pos": "명" },
+      { "word": "flourishing",     "pos": "형" },
+      { "word": "hallowed",        "pos": "형" },
+      { "word": "neuroscience",    "pos": "명" },
+      { "word": "exhibit",         "pos": "동" },
+      { "word": "convince",        "pos": "동" }
+    ],
+    "ko_to_en": [
+      { "meaning": "의식, 의식 상태",           "pos": "명", "answer": "consciousness" },
+      { "meaning": "인지, 인식",               "pos": "명", "answer": "cognition" },
+      { "meaning": "유연한",                   "pos": "형", "answer": "flexible" },
+      { "meaning": "지표, 특징",               "pos": "명", "answer": "hallmark" },
+      { "meaning": "신성시되는, 매우 존중받는", "pos": "형", "answer": "hallowed" },
+      { "meaning": "보이다, 나타내다",          "pos": "동", "answer": "exhibit" },
+      { "meaning": "확신시키다",               "pos": "동", "answer": "convince" },
+      { "meaning": "방향을 찾다, 항해하다",     "pos": "동", "answer": "navigate" },
+      { "meaning": "번성하는, 번창하는",        "pos": "형", "answer": "flourishing" },
+      { "meaning": "~에도 불구하고",           "pos": "전", "answer": "despite" }
+    ],
+    "expressions": [
+      { "ko": "~에만 고유한",          "answer": "unique to" },
+      { "ko": "즉흥적으로, 그 자리에서", "answer": "on the fly" },
+      { "ko": "(믿음을) 포기하다, 버리다", "answer": "give up the ghost" },
+      { "ko": "~을 귀속시키다",         "answer": "attribute ~ to" },
+      { "ko": "~에 공로가 있다",         "answer": "be responsible for" }
+    ],
+    "definitions": [
+      { "def": "the state of being awake and aware of one's surroundings; the ability to think and feel",  "answer": "consciousness" },
+      { "def": "the mental process of knowing, understanding, and learning",                              "answer": "cognition" },
+      { "def": "a distinctive feature or quality that makes something recognizable",                      "answer": "hallmark" },
+      { "def": "regarded as sacred and deserving great respect",                                          "answer": "hallowed" },
+      { "def": "growing or developing in a healthy and vigorous way",                                     "answer": "flourishing" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "In fact, scientists {{1:attributing/attributed}} consciousness to any animal is so recent {{2:that/which}} the internet is older.",
+      "ko_full": "사실, 과학자들이 어떤 동물에게라도 의식을 귀속시키는 것은 매우 최근의 일이라 인터넷이 더 오래되었을 정도다.",
+      "answers": ["attributing", "that"],
+      "explain": [
+        "동명사구 주어에서 scientists는 의미상 주어 — 현재분사/동명사 attributing으로 이어지는 구조.",
+        "so ~ that ... (결과 구문) — that이 정답."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "In 1976 a zoologist named Donald Griffin published The Question of Animal Awareness, a book {{1:arguing/argued}} that animal cognition ought {{2:to be taken/be taking}} seriously.",
+      "ko_full": "1976년에 Donald Griffin이라는 동물학자가 『동물 인식의 문제』를 출판했는데, 이 책은 동물의 인지가 진지하게 다루어져야 한다고 주장했다.",
+      "answers": ["arguing", "to be taken"],
+      "explain": [
+        "a book을 수식하는 동격 현재분사구 → arguing.",
+        "ought to + 원형부정사, 수동이므로 to be taken."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "He and a colleague had been {{1:responsible/responsibly}} in 1944 for {{2:discovering/discover}} that bats navigate by echolocation.",
+      "ko_full": "그와 한 동료는 1944년에 박쥐가 반향정위(echolocation)로 방향을 찾는다는 사실을 발견한 것으로 명성을 얻었다.",
+      "answers": ["responsible", "discovering"],
+      "explain": [
+        "be responsible for — 형용사 responsible.",
+        "전치사 for 뒤 → 동명사 discovering."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "Now, after a lifetime {{1:spent/spending}} watching those creatures, he became {{2:convinced/convincing}} they had inner worlds.",
+      "ko_full": "이제, 그 생물들을 관찰하며 평생을 보낸 후, 그는 그것들이 내면 세계를 가지고 있다고 확신하게 되었다.",
+      "answers": ["spent", "convinced"],
+      "explain": [
+        "a lifetime이 '보내진' 것이므로 수동 과거분사 spent.",
+        "become convinced (that) — '확신하게 되다' 수동형용사."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "They had flexible behavior, he said, or the ability to change their behavior {{1:as/while}} external circumstances changed, {{2:a hallmark/the hallmarks}} of true intelligence.",
+      "ko_full": "그는 박쥐들이 유연한 행동, 즉 외부 상황이 바뀌면 행동을 바꿀 수 있는 능력을 가졌다고 말했는데, 그것은 진정한 지능의 지표였다.",
+      "answers": ["as", "a hallmark"],
+      "explain": [
+        "상황 변화에 '따라' — as(~할 때, ~함에 따라).",
+        "앞 내용 전체를 받는 단수 동격 명사구 — a hallmark."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "He'd watched bats {{1:develop/to develop}} clever techniques for finding food; they could clearly make decisions on the fly, and {{2:exhibited/exhibiting}} many of the same problem-solving abilities as humans did.",
+      "ko_full": "그는 박쥐들이 먹이를 찾는 영리한 기술을 발달시키는 것을 관찰했고, 박쥐들은 즉흥적으로 결정을 내릴 수 있었으며, 인간이 했던 것과 동일한 문제 해결 능력 중 상당수를 보였다.",
+      "answers": ["develop", "exhibited"],
+      "explain": [
+        "지각동사 watch + 목적어 + 동사원형(develop).",
+        "병렬 구조: could make … and exhibited — 동사 과거형."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "Animal thought and reason {{1:ought to be/ought be}} seriously {{2:studied/studying}}, he argued.",
+      "ko_full": "동물의 사고와 이성은 진지하게 연구되어야 한다고 그는 주장했다.",
+      "answers": ["ought to be", "studied"],
+      "explain": [
+        "ought to + 원형부정사 — to 생략 불가.",
+        "수동 당위: ought to be + 과거분사 studied."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "After all, despite the flourishing of neuroscience, no one {{1:had yet found/has yet found}} any part of the brain unique to humans {{2:that/what}} might be responsible for this hallowed \"consciousness.\"",
+      "ko_full": "무엇보다도, 신경과학이 번성하고 있음에도 불구하고, 아직 아무도 인간에게만 고유하며 이 신성시되는 '의식'을 담당할지도 모를 뇌의 어떤 부분도 발견하지 못했다.",
+      "answers": ["had yet found", "that"],
+      "explain": [
+        "과거 이전 상황(과거완료) — had yet found.",
+        "선행사 any part of the brain 수식 주격 관계대명사 that."
+      ]
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "en_template": "{{1:Wasn't/Isn't}} it time to {{2:give up/give out}} the ghost?",
+      "ko_full": "이제 the ghost를 버릴 때가 되지 않았을까?",
+      "answers": ["Wasn't", "give up"],
+      "explain": [
+        "과거 시제 맥락(앞 문장 had found 등 과거완료) → Wasn't.",
+        "give up the ghost(숙어: 포기하다) — give out(방출하다)이 아님."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "In fact, scientists {{1:attributing/denying}} consciousness to any animal is so recent that the {{2:internet/science}} is older.",
+      "ko_full": "사실, 과학자들이 어떤 동물에게라도 의식을 귀속시키는 것은 매우 최근의 일이라 인터넷이 더 오래되었을 정도다.",
+      "answers": ["attributing", "internet"],
+      "explain": [
+        "동물에게 의식을 '귀속시키다' — attributing.",
+        "그보다 오래된 것은 인터넷 — internet."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "a book arguing that animal {{1:cognition/emotion}} ought to be taken {{2:seriously/casually}}.",
+      "ko_full": "동물의 인지가 진지하게 다루어져야 한다고 주장한 책.",
+      "answers": ["cognition", "seriously"],
+      "explain": [
+        "사고·인식 능력 — cognition(인지).",
+        "진지하게 다루어져야 — seriously."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "bats {{1:navigate/migrate}} by {{2:echolocation/instinct}}.",
+      "ko_full": "박쥐가 반향정위(echolocation)로 방향을 찾는다.",
+      "answers": ["navigate", "echolocation"],
+      "explain": [
+        "방향을 찾다 — navigate(항법); migrate는 이동.",
+        "음파로 위치를 파악하는 능력 — echolocation."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "after a lifetime spent watching those creatures, he became {{1:convinced/confused}} they had {{2:inner/outer}} worlds.",
+      "ko_full": "그 생물들을 관찰하며 평생을 보낸 후, 그는 그것들이 내면 세계를 가지고 있다고 확신하게 되었다.",
+      "answers": ["convinced", "inner"],
+      "explain": [
+        "확신하게 되었다 — convinced(확신).",
+        "내면 세계 — inner(내면의) ↔ outer(외부의)."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "the ability to change their behavior as {{1:external/internal}} circumstances changed, a {{2:hallmark/stumbling block}} of true intelligence.",
+      "ko_full": "외부 상황이 바뀌면 행동을 바꿀 수 있는 능력, 이는 진정한 지능의 지표였다.",
+      "answers": ["external", "hallmark"],
+      "explain": [
+        "외부 환경 변화 — external(외부의).",
+        "진정한 지능의 '지표' — hallmark."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "they could clearly {{1:make decisions/avoid decisions}} on the fly, and exhibited many of the same {{2:problem-solving/problem-creating}} abilities as humans did.",
+      "ko_full": "박쥐들은 즉흥적으로 결정을 내릴 수 있었으며, 인간이 했던 것과 동일한 문제 해결 능력 중 상당수를 보였다.",
+      "answers": ["make decisions", "problem-solving"],
+      "explain": [
+        "즉흥적으로 '결정을 내리다' — make decisions.",
+        "문제를 '해결하는' 능력 — problem-solving."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "Animal {{1:thought and reason/instinct and reflex}} ought to be {{2:seriously/briefly}} studied.",
+      "ko_full": "동물의 사고와 이성은 진지하게 연구되어야 한다.",
+      "answers": ["thought and reason", "seriously"],
+      "explain": [
+        "Griffin이 연구를 촉구한 것은 '사고와 이성' — thought and reason.",
+        "진지하게(seriously) 연구되어야."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "despite the {{1:flourishing/collapse}} of neuroscience, no one had yet found any part of the brain {{2:unique/common}} to humans.",
+      "ko_full": "신경과학이 번성하고 있음에도 불구하고, 아직 아무도 인간에게만 고유한 뇌의 어떤 부분도 발견하지 못했다.",
+      "answers": ["flourishing", "unique"],
+      "explain": [
+        "신경과학이 '번성'함 — flourishing.",
+        "인간에게만 '고유한' — unique to humans."
+      ]
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "en_template": "Wasn't it time to {{1:give up/hold on to}} the ghost?",
+      "ko_full": "이제 the ghost를 버릴 때가 되지 않았을까?",
+      "answers": ["give up"],
+      "explain": [
+        "give up the ghost — 포기하다, 버리다; hold on to = 계속 붙들다(반의)."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "a", "answer": "attributing",   "after": "consciousness to any animal" },
+        { "pos": 2, "letter": "c", "answer": "consciousness", "after": "to any animal" },
+        { "pos": 3, "letter": "r", "answer": "recent",        "after": "that the internet" }
+      ],
+      "ko_full": "사실, 과학자들이 어떤 동물에게라도 의식을 귀속시키는 것은 매우 최근의 일이라 인터넷이 더 오래되었을 정도다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "z", "answer": "zoologist",  "after": "named Donald Griffin" },
+        { "pos": 2, "letter": "c", "answer": "cognition",  "after": "ought to be taken" },
+        { "pos": 3, "letter": "s", "answer": "seriously",  "after": "" }
+      ],
+      "ko_full": "1976년에 Donald Griffin이라는 동물학자가 『동물 인식의 문제』를 출판했는데, 이 책은 동물의 인지가 진지하게 다루어져야 한다고 주장했다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "r", "answer": "responsible",  "after": "in 1944 for" },
+        { "pos": 2, "letter": "d", "answer": "discovering",  "after": "that bats navigate" },
+        { "pos": 3, "letter": "e", "answer": "echolocation", "after": "" }
+      ],
+      "ko_full": "그와 한 동료는 1944년에 박쥐가 반향정위(echolocation)로 방향을 찾는다는 사실을 발견한 것으로 명성을 얻었다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "l", "answer": "lifetime",  "after": "spent watching" },
+        { "pos": 2, "letter": "c", "answer": "convinced", "after": "they had inner worlds" },
+        { "pos": 3, "letter": "i", "answer": "inner",     "after": "worlds" }
+      ],
+      "ko_full": "이제, 그 생물들을 관찰하며 평생을 보낸 후, 그는 그것들이 내면 세계를 가지고 있다고 확신하게 되었다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "f", "answer": "flexible",     "after": "behavior" },
+        { "pos": 2, "letter": "c", "answer": "circumstances","after": "changed" },
+        { "pos": 3, "letter": "h", "answer": "hallmark",     "after": "of true intelligence" }
+      ],
+      "ko_full": "그는 박쥐들이 유연한 행동, 즉 외부 상황이 바뀌면 행동을 바꿀 수 있는 능력을 가졌다고 말했는데, 그것은 진정한 지능의 지표였다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "t", "answer": "techniques",     "after": "for finding food" },
+        { "pos": 2, "letter": "d", "answer": "decisions",      "after": "on the fly" },
+        { "pos": 3, "letter": "p", "answer": "problem-solving","after": "abilities as humans" }
+      ],
+      "ko_full": "그는 박쥐들이 먹이를 찾는 영리한 기술을 발달시키는 것을 관찰했고, 박쥐들은 즉흥적으로 결정을 내릴 수 있었으며, 인간이 했던 것과 동일한 문제 해결 능력 중 상당수를 보였다."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "hints": [
+        { "pos": 1, "letter": "r", "answer": "reason",   "after": "ought to be" },
+        { "pos": 2, "letter": "s", "answer": "seriously", "after": "studied" }
+      ],
+      "ko_full": "동물의 사고와 이성은 진지하게 연구되어야 한다고 그는 주장했다."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "hints": [
+        { "pos": 1, "letter": "f", "answer": "flourishing",  "after": "of neuroscience" },
+        { "pos": 2, "letter": "u", "answer": "unique",       "after": "to humans that might" },
+        { "pos": 3, "letter": "h", "answer": "hallowed",     "after": "\"consciousness\"" }
+      ],
+      "ko_full": "무엇보다도, 신경과학이 번성하고 있음에도 불구하고, 아직 아무도 인간에게만 고유하며 이 신성시되는 '의식'을 담당할지도 모를 뇌의 어떤 부분도 발견하지 못했다."
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "hints": [
+        { "pos": 1, "letter": "g", "answer": "give",  "after": "up the ghost" },
+        { "pos": 2, "letter": "g", "answer": "ghost", "after": "" }
+      ],
+      "ko_full": "이제 the ghost를 버릴 때가 되지 않았을까?"
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 },
+    { "no": 7, "ref_sentence": 7 },
+    { "no": 8, "ref_sentence": 8 },
+    { "no": 9, "ref_sentence": 9 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["In", "fact", "scientists", "attributing", "consciousness", "to", "any", "animal", "is", "so", "recent", "that", "the", "internet", "is", "older"],
+      "answer": "In fact, scientists attributing consciousness to any animal is so recent that the internet is older."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["In", "1976", "a", "zoologist", "named", "Donald", "Griffin", "published", "The", "Question", "of", "Animal", "Awareness", "a", "book", "arguing", "that", "animal", "cognition", "ought", "to", "be", "taken", "seriously"],
+      "answer": "In 1976 a zoologist named Donald Griffin published The Question of Animal Awareness, a book arguing that animal cognition ought to be taken seriously."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["He", "and", "a", "colleague", "had", "been", "responsible", "in", "1944", "for", "discovering", "that", "bats", "navigate", "by", "echolocation"],
+      "answer": "He and a colleague had been responsible in 1944 for discovering that bats navigate by echolocation."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["Now", "after", "a", "lifetime", "spent", "watching", "those", "creatures", "he", "became", "convinced", "they", "had", "inner", "worlds"],
+      "answer": "Now, after a lifetime spent watching those creatures, he became convinced they had inner worlds."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["They", "had", "flexible", "behavior", "he", "said", "or", "the", "ability", "to", "change", "their", "behavior", "as", "external", "circumstances", "changed", "a", "hallmark", "of", "true", "intelligence"],
+      "answer": "They had flexible behavior, he said, or the ability to change their behavior as external circumstances changed, a hallmark of true intelligence."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["He'd", "watched", "bats", "develop", "clever", "techniques", "for", "finding", "food", "they", "could", "clearly", "make", "decisions", "on", "the", "fly", "and", "exhibited", "many", "of", "the", "same", "problem-solving", "abilities", "as", "humans", "did"],
+      "answer": "He'd watched bats develop clever techniques for finding food; they could clearly make decisions on the fly, and exhibited many of the same problem-solving abilities as humans did."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "words": ["Animal", "thought", "and", "reason", "ought", "to", "be", "seriously", "studied", "he", "argued"],
+      "answer": "Animal thought and reason ought to be seriously studied, he argued."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "words": ["After", "all", "despite", "the", "flourishing", "of", "neuroscience", "no", "one", "had", "yet", "found", "any", "part", "of", "the", "brain", "unique", "to", "humans", "that", "might", "be", "responsible", "for", "this", "hallowed", "consciousness"],
+      "answer": "After all, despite the flourishing of neuroscience, no one had yet found any part of the brain unique to humans that might be responsible for this hallowed \"consciousness.\""
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "words": ["Wasn't", "it", "time", "to", "give", "up", "the", "ghost"],
+      "answer": "Wasn't it time to give up the ghost?"
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" },
+    { "no": 7, "ref_sentence": 7, "given": "ko" },
+    { "no": 8, "ref_sentence": 8, "given": "ko" },
+    { "no": 9, "ref_sentence": 9, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 1, "no": 1 },
+    { "kind": "vocab",   "ref": 3, "no": 2 },
+    { "kind": "fill",    "ref": 5, "no": 3 },
+    { "kind": "ko",      "ref": 6, "no": 4 },
+    { "kind": "jumble",  "ref": 8, "no": 5 },
+    { "kind": "sent",    "ref": 9, "no": 6 },
+    { "kind": "grammar", "ref": 7, "no": 7 },
+    { "kind": "vocab",   "ref": 4, "no": 8 }
+  ]
+}

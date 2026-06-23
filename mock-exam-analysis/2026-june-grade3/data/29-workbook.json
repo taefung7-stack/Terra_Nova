@@ -1,0 +1,392 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "29.json",
+  "_note": "29번 워크북 — 본문 8문장 풀커버.",
+  "_template_for_new_rounds": "이 파일을 새 회차의 {N}-workbook.json 작성 시 템플릿으로 사용. en_template의 {{N:A/B}} 토큰 = 양자택일 박스, hints 배열 = 빈칸 첫글자, jumble.words = 단어 배열 (셔플 X, 의도 유지).",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "evolution",    "pos": "명" },
+      { "word": "elaborate",    "pos": "형" },
+      { "word": "refined",      "pos": "형" },
+      { "word": "pronounced",   "pos": "형" },
+      { "word": "enact",        "pos": "동" },
+      { "word": "luxury",       "pos": "명" },
+      { "word": "demonstrate",  "pos": "동" },
+      { "word": "standing",     "pos": "명" },
+      { "word": "reinforce",    "pos": "동" },
+      { "word": "incorporate",  "pos": "동" }
+    ],
+    "ko_to_en": [
+      { "meaning": "진화, 변천",            "pos": "명", "answer": "evolution" },
+      { "meaning": "정교한, 공들인",        "pos": "형", "answer": "elaborate" },
+      { "meaning": "세련된, 정제된",        "pos": "형", "answer": "refined" },
+      { "meaning": "뚜렷한, 두드러진",      "pos": "형", "answer": "pronounced" },
+      { "meaning": "(법률을) 제정하다",      "pos": "동", "answer": "enact" },
+      { "meaning": "사치, 사치품",          "pos": "명", "answer": "luxury" },
+      { "meaning": "과시하다, 입증하다",    "pos": "동", "answer": "demonstrate" },
+      { "meaning": "지위, 위상",            "pos": "명", "answer": "standing" },
+      { "meaning": "강화하다, 보강하다",    "pos": "동", "answer": "reinforce" },
+      { "meaning": "통합하다, 포함시키다",  "pos": "동", "answer": "incorporate" }
+    ],
+    "expressions": [
+      { "ko": "~로 이동하기 시작하다",     "answer": "begin moving toward" },
+      { "ko": "~에 강조점이 놓이다",        "answer": "emphasis being placed on" },
+      { "ko": "~하는 수단",                "answer": "a means of" },
+      { "ko": "~에 통합되다",              "answer": "be incorporated into" },
+      { "ko": "~를 제한하기 위해",         "answer": "to limit" }
+    ],
+    "definitions": [
+      { "def": "the gradual development or change of something over time",              "answer": "evolution" },
+      { "def": "containing a lot of careful detail or many different parts",            "answer": "elaborate" },
+      { "def": "so obvious that it cannot be missed or ignored",                        "answer": "pronounced" },
+      { "def": "to make a law official",                                                "answer": "enact" },
+      { "def": "the position or reputation that someone has in the eyes of others",     "answer": "standing" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Fashion is always deeply cultural, and an excellent example of this can {{1:be seen/see}} in the evolution of European {{2:clothing/clothe}}.",
+      "ko_full": "패션은 항상 문화와 깊이 연결되어 있으며, 이에 대한 훌륭한 예시를 유럽 복식의 변천 과정에서 찾아볼 수 있다.",
+      "answers": ["be seen", "clothing"],
+      "explain": [
+        "can + 수동태 → be seen(찾아볼 수 있다).",
+        "명사 자리 → clothing(의복). clothe는 동사."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "At the beginning of the Middle Ages, clothing tended {{1:to be/being}} simple and was frequently made {{2:of/from}} rough wool or animal furs.",
+      "ko_full": "중세 초기에 의복은 단순한 경향이 있었고, 거친 양모나 동물 모피로 자주 만들어졌다.",
+      "answers": ["to be", "of"],
+      "explain": [
+        "tend to + 동사원형 → to be.",
+        "재료를 나타낼 때 원형이 유지되면 made of; made of rough wool(원형 재료 유지) → of."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "With advances in cloth making, however, fashion began moving toward styles {{1:that/what}} were more elaborate and form-fitting.",
+      "ko_full": "그러나 직물 제조의 발전에 따라 패션은 더 정교하고 몸에 딱 맞는 스타일로 이동하기 시작했다.",
+      "answers": ["that"],
+      "explain": [
+        "선행사 styles가 있으므로 관계대명사는 that 또는 which. what은 선행사를 포함하는 관계대명사이므로 선행사 뒤에 쓸 수 없다 — that이 정답."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "In the Renaissance and Elizabethan eras, styles {{1:became/become}} even {{2:more refined/most refined}}.",
+      "ko_full": "르네상스와 엘리자베스 시대에는 스타일이 한층 더 세련되어졌다.",
+      "answers": ["became", "more refined"],
+      "explain": [
+        "과거 시제 서술 → became.",
+        "even + 비교급 강조 → more refined(비교급). most refined는 최상급."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "The clothes {{1:that/which}} wealthy people were wearing became increasingly fancier, with a particular emphasis {{2:being placed/to place}} on smaller waists.",
+      "ko_full": "부유한 사람들이 입는 옷은 점점 더 화려해졌으며, 특히 더 가는 허리에 강조점이 놓였다.",
+      "answers": ["that", "being placed"],
+      "explain": [
+        "선행사 The clothes를 수식하는 관계사절 — that(또는 which) 모두 가능; that.",
+        "with + 명사 + 분사 구문: emphasis가 놓이는 대상 → 수동 현재분사 being placed."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "The connection between clothing and social status was so {{1:pronounced/pronouncing}} that laws were {{2:enacted/enacting}} to limit the wearing of certain luxury items.",
+      "ko_full": "의복과 사회적 지위 사이의 연관성은 너무나 뚜렷하여 특정 사치품의 착용을 제한하는 법률이 제정되었다.",
+      "answers": ["pronounced", "enacted"],
+      "explain": [
+        "서술적 형용사 자리 → pronounced(뚜렷한). pronouncing은 현재분사·동명사.",
+        "laws가 제정되는 대상 → 수동태 were enacted."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "{{1:Allowed/Allowing}} only for higher social classes, luxurious styles and decorations such as feathers, silk, or velvet {{2:were used/used}} as a means of demonstrating one's standing in society.",
+      "ko_full": "높은 사회 계층에게만 허용된 화려한 스타일과 장식들은 사회에서 자신의 위치를 과시하는 수단으로 사용되었다.",
+      "answers": ["Allowed", "were used"],
+      "explain": [
+        "주어 luxurious styles가 허용을 받는 대상 → 수동 분사구문 Allowed.",
+        "주어가 사용된 것이므로 수동태 were used."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "This was further reinforced as upperclass styles came {{1:to be/being}} explicitly incorporated into cultural ceremonies so that their wearers' roles could be {{2:identified/identifying}} clearly.",
+      "ko_full": "이는 상류층의 스타일이 문화적 의식에 명시적으로 통합되어 참여자들의 역할이 명확하게 식별될 수 있게 됨에 따라 더욱 강화되었다.",
+      "answers": ["to be", "identified"],
+      "explain": [
+        "come to + 동사원형 → to be (come to be incorporated = 통합되게 되다).",
+        "wearers' roles가 식별되는 대상 → 수동태 be identified."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Fashion is always deeply {{1:cultural/natural}}, and an excellent example of this can be seen in the {{2:evolution/regression}} of European clothing.",
+      "ko_full": "패션은 항상 문화와 깊이 연결되어 있으며, 이에 대한 훌륭한 예시를 유럽 복식의 변천 과정에서 찾아볼 수 있다.",
+      "answers": ["cultural", "evolution"],
+      "explain": [
+        "'문화와 깊이 연결됨' — cultural(문화적인). natural은 문맥과 반대.",
+        "변천·발전의 역사 → evolution(변천). regression(퇴보)은 반대말."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "At the beginning of the Middle Ages, clothing tended to be {{1:simple/ornate}} and was {{2:frequently/rarely}} made of rough wool or animal furs.",
+      "ko_full": "중세 초기에 의복은 단순한 경향이 있었고, 거친 양모나 동물 모피로 자주 만들어졌다.",
+      "answers": ["simple", "frequently"],
+      "explain": [
+        "중세 초기의 소박한 복식 → simple(단순한). ornate(화려한)는 이후 시대에 해당.",
+        "'자주' 만들어졌다 — frequently. rarely(드물게)는 반대 의미."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "With advances in cloth making, however, fashion began moving toward styles that were more {{1:elaborate/crude}} and {{2:form-fitting/loose}}.",
+      "ko_full": "그러나 직물 제조의 발전에 따라 패션은 더 정교하고 몸에 딱 맞는 스타일로 이동하기 시작했다.",
+      "answers": ["elaborate", "form-fitting"],
+      "explain": [
+        "발전 후 더 '정교한' 스타일 → elaborate. crude(조잡한)는 발전 이전.",
+        "'몸에 딱 맞는' — form-fitting. loose(헐렁한)는 반대말."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "In the Renaissance and Elizabethan eras, styles became even more {{1:refined/coarse}}.",
+      "ko_full": "르네상스와 엘리자베스 시대에는 스타일이 한층 더 세련되어졌다.",
+      "answers": ["refined"],
+      "explain": [
+        "점점 더 '세련되어진' — refined(세련된). coarse(거친)는 앞 시대에 해당하는 반대말."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "The clothes that wealthy people were wearing became {{1:increasingly/decreasingly}} fancier, with a particular {{2:emphasis/neglect}} being placed on smaller waists.",
+      "ko_full": "부유한 사람들이 입는 옷은 점점 더 화려해졌으며, 특히 더 가는 허리에 강조점이 놓였다.",
+      "answers": ["increasingly", "emphasis"],
+      "explain": [
+        "'점점 더' 화려해졌다 — increasingly. decreasingly(점점 덜)는 의미 반전.",
+        "가는 허리에 '강조점'이 놓였다 — emphasis(강조). neglect(방치)는 반대."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "The connection between clothing and social status was so {{1:pronounced/faint}} that laws were enacted to {{2:limit/promote}} the wearing of certain luxury items.",
+      "ko_full": "의복과 사회적 지위 사이의 연관성은 너무나 뚜렷하여 특정 사치품의 착용을 제한하는 법률이 제정되었다.",
+      "answers": ["pronounced", "limit"],
+      "explain": [
+        "'뚜렷한' 연관성 — pronounced. faint(희미한)는 반대.",
+        "착용을 '제한'하는 법률 → limit. promote(장려)는 반대."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "Allowed only for higher social classes, {{1:luxurious/modest}} styles and decorations such as feathers, silk, or velvet were used as a means of {{2:demonstrating/concealing}} one's standing in society.",
+      "ko_full": "높은 사회 계층에게만 허용된 화려한 스타일과 장식들은 사회에서 자신의 위치를 과시하는 수단으로 사용되었다.",
+      "answers": ["luxurious", "demonstrating"],
+      "explain": [
+        "깃털·실크·벨벳 등 '화려한' — luxurious. modest(소박한)는 반대.",
+        "지위를 '과시하는' 수단 → demonstrating. concealing(숨기는)은 반대."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "This was further {{1:reinforced/weakened}} as upperclass styles came to be {{2:explicitly/vaguely}} incorporated into cultural ceremonies so that their wearers' roles could be identified clearly.",
+      "ko_full": "이는 상류층의 스타일이 문화적 의식에 명시적으로 통합되어 참여자들의 역할이 명확하게 식별될 수 있게 됨에 따라 더욱 강화되었다.",
+      "answers": ["reinforced", "explicitly"],
+      "explain": [
+        "더욱 '강화되었다' — reinforced. weakened(약화됨)는 반대.",
+        "'명시적으로' 통합됨 — explicitly. vaguely(모호하게)는 반대."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "c", "answer": "cultural",   "after": "and an excellent example" },
+        { "pos": 2, "letter": "e", "answer": "evolution",  "after": "of European clothing" }
+      ],
+      "ko_full": "패션은 항상 문화와 깊이 연결되어 있으며, 이에 대한 훌륭한 예시를 유럽 복식의 변천 과정에서 찾아볼 수 있다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "s", "answer": "simple",      "after": "and was frequently made" },
+        { "pos": 2, "letter": "f", "answer": "frequently",  "after": "made of rough wool" },
+        { "pos": 3, "letter": "r", "answer": "rough",       "after": "wool or animal furs" }
+      ],
+      "ko_full": "중세 초기에 의복은 단순한 경향이 있었고, 거친 양모나 동물 모피로 자주 만들어졌다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "a", "answer": "advances",    "after": "in cloth making" },
+        { "pos": 2, "letter": "e", "answer": "elaborate",   "after": "and form-fitting" },
+        { "pos": 3, "letter": "f", "answer": "form-fitting", "after": "" }
+      ],
+      "ko_full": "그러나 직물 제조의 발전에 따라 패션은 더 정교하고 몸에 딱 맞는 스타일로 이동하기 시작했다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "R", "answer": "Renaissance", "after": "and Elizabethan eras" },
+        { "pos": 2, "letter": "r", "answer": "refined",     "after": "" }
+      ],
+      "ko_full": "르네상스와 엘리자베스 시대에는 스타일이 한층 더 세련되어졌다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "i", "answer": "increasingly", "after": "fancier" },
+        { "pos": 2, "letter": "e", "answer": "emphasis",     "after": "being placed on" },
+        { "pos": 3, "letter": "w", "answer": "waists",       "after": "" }
+      ],
+      "ko_full": "부유한 사람들이 입는 옷은 점점 더 화려해졌으며, 특히 더 가는 허리에 강조점이 놓였다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "p", "answer": "pronounced", "after": "that laws were" },
+        { "pos": 2, "letter": "e", "answer": "enacted",    "after": "to limit the wearing" },
+        { "pos": 3, "letter": "l", "answer": "luxury",     "after": "items" }
+      ],
+      "ko_full": "의복과 사회적 지위 사이의 연관성은 너무나 뚜렷하여 특정 사치품의 착용을 제한하는 법률이 제정되었다."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "hints": [
+        { "pos": 1, "letter": "l", "answer": "luxurious",    "after": "styles and decorations" },
+        { "pos": 2, "letter": "d", "answer": "demonstrating","after": "one's standing" },
+        { "pos": 3, "letter": "s", "answer": "standing",     "after": "in society" }
+      ],
+      "ko_full": "높은 사회 계층에게만 허용된 화려한 스타일과 장식들은 사회에서 자신의 위치를 과시하는 수단으로 사용되었다."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "hints": [
+        { "pos": 1, "letter": "r", "answer": "reinforced",   "after": "as upperclass styles" },
+        { "pos": 2, "letter": "i", "answer": "incorporated", "after": "into cultural ceremonies" },
+        { "pos": 3, "letter": "i", "answer": "identified",   "after": "clearly" }
+      ],
+      "ko_full": "이는 상류층의 스타일이 문화적 의식에 명시적으로 통합되어 참여자들의 역할이 명확하게 식별될 수 있게 됨에 따라 더욱 강화되었다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 },
+    { "no": 7, "ref_sentence": 7 },
+    { "no": 8, "ref_sentence": 8 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["Fashion", "is", "always", "deeply", "cultural", "and", "an", "excellent", "example", "of", "this", "can", "be", "seen", "in", "the", "evolution", "of", "European", "clothing"],
+      "answer": "Fashion is always deeply cultural, and an excellent example of this can be seen in the evolution of European clothing."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["At", "the", "beginning", "of", "the", "Middle", "Ages", "clothing", "tended", "to", "be", "simple", "and", "was", "frequently", "made", "of", "rough", "wool", "or", "animal", "furs"],
+      "answer": "At the beginning of the Middle Ages, clothing tended to be simple and was frequently made of rough wool or animal furs."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["With", "advances", "in", "cloth", "making", "however", "fashion", "began", "moving", "toward", "styles", "what", "were", "more", "elaborate", "and", "form-fitting"],
+      "answer": "With advances in cloth making, however, fashion began moving toward styles what were more elaborate and form-fitting."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["In", "the", "Renaissance", "and", "Elizabethan", "eras", "styles", "became", "even", "more", "refined"],
+      "answer": "In the Renaissance and Elizabethan eras, styles became even more refined."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["The", "clothes", "that", "wealthy", "people", "were", "wearing", "became", "increasingly", "fancier", "with", "a", "particular", "emphasis", "being", "placed", "on", "smaller", "waists"],
+      "answer": "The clothes that wealthy people were wearing became increasingly fancier, with a particular emphasis being placed on smaller waists."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["The", "connection", "between", "clothing", "and", "social", "status", "was", "so", "pronounced", "that", "laws", "were", "enacted", "to", "limit", "the", "wearing", "of", "certain", "luxury", "items"],
+      "answer": "The connection between clothing and social status was so pronounced that laws were enacted to limit the wearing of certain luxury items."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "words": ["Allowed", "only", "for", "higher", "social", "classes", "luxurious", "styles", "and", "decorations", "such", "as", "feathers", "silk", "or", "velvet", "were", "used", "as", "a", "means", "of", "demonstrating", "one's", "standing", "in", "society"],
+      "answer": "Allowed only for higher social classes, luxurious styles and decorations such as feathers, silk, or velvet were used as a means of demonstrating one's standing in society."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "words": ["This", "was", "further", "reinforced", "as", "upperclass", "styles", "came", "to", "be", "explicitly", "incorporated", "into", "cultural", "ceremonies", "so", "that", "their", "wearers'", "roles", "could", "be", "identified", "clearly"],
+      "answer": "This was further reinforced as upperclass styles came to be explicitly incorporated into cultural ceremonies so that their wearers' roles could be identified clearly."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" },
+    { "no": 7, "ref_sentence": 7, "given": "ko" },
+    { "no": 8, "ref_sentence": 8, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 3, "no": 1 },
+    { "kind": "vocab",   "ref": 6, "no": 2 },
+    { "kind": "fill",    "ref": 7, "no": 3 },
+    { "kind": "ko",      "ref": 1, "no": 4 },
+    { "kind": "jumble",  "ref": 5, "no": 5 },
+    { "kind": "sent",    "ref": 8, "no": 6 },
+    { "kind": "grammar", "ref": 7, "no": 7 },
+    { "kind": "vocab",   "ref": 3, "no": 8 }
+  ]
+}

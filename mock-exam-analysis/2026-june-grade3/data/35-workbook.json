@@ -1,0 +1,353 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "35.json",
+  "_note": "35번 워크북 — 본문 7문장 풀커버. 무관문장 유형.",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "innocuous",      "pos": "형" },
+      { "word": "sustain",        "pos": "동" },
+      { "word": "relatively",     "pos": "부" },
+      { "word": "mass",           "pos": "명" },
+      { "word": "compounded",     "pos": "형" },
+      { "word": "impact",         "pos": "동" },
+      { "word": "nonlinear",      "pos": "형" },
+      { "word": "compensate",     "pos": "동" },
+      { "word": "non-expert",     "pos": "명" },
+      { "word": "hip break",      "pos": "구" }
+    ],
+    "ko_to_en": [
+      { "meaning": "무해한, 악의 없는",        "pos": "형", "answer": "innocuous" },
+      { "meaning": "(부상을) 입다",             "pos": "동", "answer": "sustain" },
+      { "meaning": "상대적으로",               "pos": "부", "answer": "relatively" },
+      { "meaning": "질량; 덩어리",             "pos": "명", "answer": "mass" },
+      { "meaning": "악화된, 복합된",           "pos": "형", "answer": "compounded" },
+      { "meaning": "충격을 주다; 충격",        "pos": "동/명", "answer": "impact" },
+      { "meaning": "비선형의",                 "pos": "형", "answer": "nonlinear" },
+      { "meaning": "보상하다, 상쇄하다",       "pos": "동", "answer": "compensate" },
+      { "meaning": "비전문가",                 "pos": "명", "answer": "non-expert" },
+      { "meaning": "고관절 골절",              "pos": "구", "answer": "hip break" }
+    ],
+    "expressions": [
+      { "ko": "~에 비해",          "answer": "in comparison to" },
+      { "ko": "(에너지를) 축적하다", "answer": "build up" },
+      { "ko": "~로 활용되다",      "answer": "serve as" },
+      { "ko": "절대적인 면에서",   "answer": "in absolute terms" },
+      { "ko": "낙상 관련의",       "answer": "fall-related" }
+    ],
+    "definitions": [
+      { "def": "not harmful or offensive in any way",                                          "answer": "innocuous" },
+      { "def": "to experience or suffer something, especially an injury or damage",            "answer": "sustain" },
+      { "def": "to make up for something; to reduce or balance the effect of something bad",   "answer": "compensate" },
+      { "def": "the quantity of matter that a body contains, often measured in kilograms",     "answer": "mass" },
+      { "def": "a person who does not have specialized knowledge or training in a subject",    "answer": "non-expert" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "The {{1:bigger/biggest}} someone is, the more damage they can do to themselves through even a relatively innocuous {{2:accident/accidentally}}.",
+      "ko_full": "누군가가 클수록, 비교적 무해한 사고를 통해서도 그들이 자신에게 입힐 수 있는 피해가 더 커진다.",
+      "answers": ["bigger", "accident"],
+      "explain": [
+        "The 비교급 ~, the 비교급 ~ 구문 → bigger(비교급).",
+        "전치사 through의 목적어 자리 → 명사 accident."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "Despite {{1:toddlers falling/toddlers to fall}} over and bumping themselves regularly, the injuries they sustain {{2:are/is}} rarely serious.",
+      "ko_full": "아기들이 정기적으로 넘어지고 부딪히지만, 그들이 입는 부상은 거의 심각하지 않다.",
+      "answers": ["toddlers falling", "are"],
+      "explain": [
+        "despite + 동명사(falling) — despite 뒤에는 명사/동명사, to부정사 불가.",
+        "주어 핵 = the injuries(복수) → are."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "Their relatively thick bones in comparison to their mass {{1:mean/means}} they rarely build up enough energy, even at top speed, {{2:to do/doing}} themselves much damage.",
+      "ko_full": "그들의 질량에 비해 상대적으로 두꺼운 뼈는, 최고 속도에서도 자신에게 큰 피해를 줄 만큼의 에너지를 거의 축적하지 않는다는 것을 의미한다.",
+      "answers": ["mean", "to do"],
+      "explain": [
+        "주어 핵 = Their ... bones(복수) → mean.",
+        "enough ... to V(~할 만큼 충분한) 구문 → to do."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "Because of their increased mass ({{1:compounded/compounding}} by the fact that they are falling from a greater height and that their reactions may be slower), adults falling over will impact the ground with a {{2:much/very}} larger force.",
+      "ko_full": "증가된 질량(더 높은 곳에서 떨어지고 반응이 더 느릴 수 있다는 사실로 인해 가중됨) 때문에, 넘어지는 어른은 훨씬 큰 힘으로 지면에 충격을 가하게 될 것이다.",
+      "answers": ["compounded", "much"],
+      "explain": [
+        "삽입구에서 수동의 의미 → 과거분사 compounded(악화된).",
+        "비교급 larger 강조 → much(very는 비교급 강조 불가)."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "The nonlinear relationship between mass and bone strength means {{1:that/what}} although their bones are thicker than a toddler's in absolute terms, they may not be relatively thick {{2:enough/too}} to compensate for the larger impact.",
+      "ko_full": "질량과 뼈 강도 사이의 비선형 관계는, 그들의 뼈가 절대적인 면에서는 아기의 것보다 두껍지만, 증가된 질량으로 인한 더 큰 충격을 보완하기에 상대적으로 충분히 두껍지 않을 수 있다는 것을 의미한다.",
+      "answers": ["that", "enough"],
+      "explain": [
+        "means 뒤 명사절을 이끄는 접속사 → that(의문사 what 불가).",
+        "thick enough to V(V할 만큼 충분히 두꺼운) 구문 → enough."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "The body mass index (BMI) can {{1:serve/serving}} as a convenient way for non-experts to {{2:examine/examining}} their health conditions in daily lives.",
+      "ko_full": "체질량지수(BMI)는 비전문가들이 일상에서 자신의 건강 상태를 점검하는 편리한 방법으로 활용될 수 있다.",
+      "answers": ["serve", "examine"],
+      "explain": [
+        "조동사 can 뒤 → 동사원형 serve.",
+        "for non-experts to V — to부정사 형태 → examine."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "For the same reasons, taller people {{1:have been found/was found}} to suffer more fall-related injuries ― like hip breaks ― {{2:than/as}} shorter people.",
+      "ko_full": "같은 이유로, 키가 큰 사람들은 키가 작은 사람들보다 고관절 골절 같은 낙상 관련 부상을 더 많이 겪는 것으로 밝혀졌다.",
+      "answers": ["have been found", "than"],
+      "explain": [
+        "주어 taller people(복수) + 과거~현재의 연구 결과 → 현재완료 수동 have been found.",
+        "비교급 more ... than(~보다) → than."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "The bigger someone is, the more damage they can do to themselves through even a relatively {{1:innocuous/dangerous}} accident.",
+      "ko_full": "누군가가 클수록, 비교적 무해한 사고를 통해서도 그들이 자신에게 입힐 수 있는 피해가 더 커진다.",
+      "answers": ["innocuous"],
+      "explain": [
+        "'별것 아닌(무해한)' 사고에서도 — innocuous."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "Despite toddlers falling over and bumping themselves regularly, the injuries they {{1:sustain/inflict}} are rarely {{2:serious/minor}}.",
+      "ko_full": "아기들이 정기적으로 넘어지고 부딪히지만, 그들이 입는 부상은 거의 심각하지 않다.",
+      "answers": ["sustain", "serious"],
+      "explain": [
+        "'부상을 입다' — sustain(inflict는 남에게 가하다).",
+        "rarely ... serious — 거의 심각하지 않다."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "Their {{1:relatively/absolutely}} thick bones in comparison to their mass mean they rarely {{2:build up/give up}} enough energy to do themselves much damage.",
+      "ko_full": "그들의 질량에 비해 상대적으로 두꺼운 뼈는, 자신에게 큰 피해를 줄 만큼의 에너지를 거의 축적하지 않는다는 것을 의미한다.",
+      "answers": ["relatively", "build up"],
+      "explain": [
+        "in comparison to 질량 대비 '상대적으로' → relatively.",
+        "에너지를 '축적하다' — build up."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "Because of their increased {{1:mass/height}} (compounded by the fact that they are falling from a greater height and that their reactions may be slower), adults falling over will {{2:impact/avoid}} the ground with a much larger force.",
+      "ko_full": "증가된 질량(더 높은 곳에서 떨어지고 반응이 더 느릴 수 있다는 사실로 인해 가중됨) 때문에, 넘어지는 어른은 훨씬 큰 힘으로 지면에 충격을 가하게 될 것이다.",
+      "answers": ["mass", "impact"],
+      "explain": [
+        "증가된 '질량' — mass(height는 따로 언급).",
+        "지면에 '충격을 주다' — impact."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "The {{1:nonlinear/linear}} relationship between mass and bone strength means that although their bones are thicker than a toddler's in absolute terms, they may not be relatively thick enough to {{2:compensate/worsen}} for the larger impact.",
+      "ko_full": "질량과 뼈 강도 사이의 비선형 관계는, 그들의 뼈가 절대적인 면에서는 아기의 것보다 두껍지만, 증가된 질량으로 인한 더 큰 충격을 보완하기에 상대적으로 충분히 두껍지 않을 수 있다는 것을 의미한다.",
+      "answers": ["nonlinear", "compensate"],
+      "explain": [
+        "질량과 뼈 강도가 같은 비율로 늘지 않음 — nonlinear(비선형).",
+        "더 큰 충격을 '상쇄하다' — compensate."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "The body mass index (BMI) can serve as a convenient way for {{1:non-experts/specialists}} to examine their {{2:health conditions/bone density}} in daily lives.",
+      "ko_full": "체질량지수(BMI)는 비전문가들이 일상에서 자신의 건강 상태를 점검하는 편리한 방법으로 활용될 수 있다.",
+      "answers": ["non-experts", "health conditions"],
+      "explain": [
+        "'비전문가들'을 위한 편의 도구 — non-experts.",
+        "일상에서 '건강 상태'를 점검 — health conditions."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "For the same reasons, taller people have been found to {{1:suffer/prevent}} more {{2:fall-related/sport-related}} injuries ― like hip breaks ― than shorter people.",
+      "ko_full": "같은 이유로, 키가 큰 사람들은 키가 작은 사람들보다 고관절 골절 같은 낙상 관련 부상을 더 많이 겪는 것으로 밝혀졌다.",
+      "answers": ["suffer", "fall-related"],
+      "explain": [
+        "부상을 '겪다' — suffer(prevent는 반대).",
+        "'낙상 관련' 부상 — fall-related(sport-related는 전혀 다른 맥락)."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "i", "answer": "innocuous", "after": "accident" },
+        { "pos": 2, "letter": "d", "answer": "damage",    "after": "they can do" }
+      ],
+      "ko_full": "누군가가 클수록, 비교적 무해한 사고를 통해서도 그들이 자신에게 입힐 수 있는 피해가 더 커진다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "t", "answer": "toddlers",  "after": "falling over" },
+        { "pos": 2, "letter": "s", "answer": "sustain",   "after": "are rarely serious" },
+        { "pos": 3, "letter": "s", "answer": "serious",   "after": "" }
+      ],
+      "ko_full": "아기들이 정기적으로 넘어지고 부딪히지만, 그들이 입는 부상은 거의 심각하지 않다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "r", "answer": "relatively", "after": "thick bones" },
+        { "pos": 2, "letter": "b", "answer": "build",      "after": "up enough energy" },
+        { "pos": 3, "letter": "d", "answer": "damage",     "after": "" }
+      ],
+      "ko_full": "그들의 질량에 비해 상대적으로 두꺼운 뼈는, 최고 속도에서도 자신에게 큰 피해를 줄 만큼의 에너지를 거의 축적하지 않는다는 것을 의미한다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "m", "answer": "mass",       "after": "compounded by" },
+        { "pos": 2, "letter": "r", "answer": "reactions",  "after": "may be slower" },
+        { "pos": 3, "letter": "i", "answer": "impact",     "after": "the ground with" }
+      ],
+      "ko_full": "증가된 질량(더 높은 곳에서 떨어지고 반응이 더 느릴 수 있다는 사실로 인해 가중됨) 때문에, 넘어지는 어른은 훨씬 큰 힘으로 지면에 충격을 가하게 될 것이다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "n", "answer": "nonlinear",  "after": "relationship" },
+        { "pos": 2, "letter": "a", "answer": "absolute",   "after": "terms" },
+        { "pos": 3, "letter": "c", "answer": "compensate", "after": "for the larger impact" }
+      ],
+      "ko_full": "질량과 뼈 강도 사이의 비선형 관계는, 그들의 뼈가 절대적인 면에서는 아기의 것보다 두껍지만, 증가된 질량으로 인한 더 큰 충격을 보완하기에 상대적으로 충분히 두껍지 않을 수 있다는 것을 의미한다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "b", "answer": "body",       "after": "mass index" },
+        { "pos": 2, "letter": "c", "answer": "convenient", "after": "way for non-experts" },
+        { "pos": 3, "letter": "e", "answer": "examine",    "after": "their health conditions" }
+      ],
+      "ko_full": "체질량지수(BMI)는 비전문가들이 일상에서 자신의 건강 상태를 점검하는 편리한 방법으로 활용될 수 있다."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "hints": [
+        { "pos": 1, "letter": "t", "answer": "taller",     "after": "people have been found" },
+        { "pos": 2, "letter": "f", "answer": "fall-related", "after": "injuries" },
+        { "pos": 3, "letter": "h", "answer": "hip",        "after": "breaks" }
+      ],
+      "ko_full": "같은 이유로, 키가 큰 사람들은 키가 작은 사람들보다 고관절 골절 같은 낙상 관련 부상을 더 많이 겪는 것으로 밝혀졌다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 },
+    { "no": 7, "ref_sentence": 7 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["The", "bigger", "someone", "is", "the", "more", "damage", "they", "can", "do", "to", "themselves", "through", "even", "a", "relatively", "innocuous", "accident"],
+      "answer": "The bigger someone is, the more damage they can do to themselves through even a relatively innocuous accident."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["Despite", "toddlers", "falling", "over", "and", "bumping", "themselves", "regularly", "the", "injuries", "they", "sustain", "are", "rarely", "serious"],
+      "answer": "Despite toddlers falling over and bumping themselves regularly, the injuries they sustain are rarely serious."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["Their", "relatively", "thick", "bones", "in", "comparison", "to", "their", "mass", "mean", "they", "rarely", "build", "up", "enough", "energy", "even", "at", "top", "speed", "to", "do", "themselves", "much", "damage"],
+      "answer": "Their relatively thick bones in comparison to their mass mean they rarely build up enough energy, even at top speed, to do themselves much damage."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["Because", "of", "their", "increased", "mass", "compounded", "by", "the", "fact", "that", "they", "are", "falling", "from", "a", "greater", "height", "and", "that", "their", "reactions", "may", "be", "slower", "adults", "falling", "over", "will", "impact", "the", "ground", "with", "a", "much", "larger", "force"],
+      "answer": "Because of their increased mass (compounded by the fact that they are falling from a greater height and that their reactions may be slower), adults falling over will impact the ground with a much larger force."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["The", "nonlinear", "relationship", "between", "mass", "and", "bone", "strength", "means", "that", "although", "their", "bones", "are", "thicker", "than", "a", "toddler's", "in", "absolute", "terms", "they", "may", "not", "be", "relatively", "thick", "enough", "to", "compensate", "for", "the", "larger", "impact", "caused", "by", "their", "increased", "mass"],
+      "answer": "The nonlinear relationship between mass and bone strength means that although their bones are thicker than a toddler's in absolute terms, they may not be relatively thick enough to compensate for the larger impact caused by their increased mass."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["The", "body", "mass", "index", "BMI", "can", "serve", "as", "a", "convenient", "way", "for", "non-experts", "to", "examine", "their", "health", "conditions", "in", "daily", "lives"],
+      "answer": "The body mass index (BMI) can serve as a convenient way for non-experts to examine their health conditions in daily lives."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "words": ["For", "the", "same", "reasons", "taller", "people", "have", "been", "found", "to", "suffer", "more", "fall-related", "injuries", "like", "hip", "breaks", "than", "shorter", "people"],
+      "answer": "For the same reasons, taller people have been found to suffer more fall-related injuries ― like hip breaks ― than shorter people."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" },
+    { "no": 7, "ref_sentence": 7, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 1, "no": 1 },
+    { "kind": "vocab",   "ref": 3, "no": 2 },
+    { "kind": "fill",    "ref": 4, "no": 3 },
+    { "kind": "ko",      "ref": 5, "no": 4 },
+    { "kind": "jumble",  "ref": 2, "no": 5 },
+    { "kind": "sent",    "ref": 7, "no": 6 },
+    { "kind": "grammar", "ref": 5, "no": 7 },
+    { "kind": "vocab",   "ref": 6, "no": 8 }
+  ]
+}

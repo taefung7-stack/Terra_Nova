@@ -1,0 +1,470 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "26.json",
+  "_note": "26번 워크북 — 본문 10문장 풀커버.",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "philosopher",   "pos": "명" },
+      { "word": "influential",   "pos": "형" },
+      { "word": "linguistics",   "pos": "명" },
+      { "word": "appoint",       "pos": "동" },
+      { "word": "lecturer",      "pos": "명" },
+      { "word": "serve",         "pos": "동" },
+      { "word": "contribution",  "pos": "명" },
+      { "word": "foundational",  "pos": "형" },
+      { "word": "retire",        "pos": "동" },
+      { "word": "scholar",       "pos": "명" }
+    ],
+    "ko_to_en": [
+      { "meaning": "철학자",              "pos": "명", "answer": "philosopher" },
+      { "meaning": "영향력 있는",          "pos": "형", "answer": "influential" },
+      { "meaning": "임명하다",             "pos": "동", "answer": "appoint" },
+      { "meaning": "강사",                "pos": "명", "answer": "lecturer" },
+      { "meaning": "복무하다, 봉사하다",    "pos": "동", "answer": "serve" },
+      { "meaning": "공헌, 기여",           "pos": "명", "answer": "contribution" },
+      { "meaning": "토대가 되는",          "pos": "형", "answer": "foundational" },
+      { "meaning": "퇴직하다",             "pos": "동", "answer": "retire" },
+      { "meaning": "학자",                "pos": "명", "answer": "scholar" },
+      { "meaning": "언어학",              "pos": "명", "answer": "linguistics" }
+    ],
+    "expressions": [
+      { "ko": "~로 임명된",          "answer": "appointed as" },
+      { "ko": "~해서야 비로소",       "answer": "not ... until" },
+      { "ko": "~뿐만 아니라",        "answer": "in addition to" },
+      { "ko": "~에 뛰어나다",        "answer": "be excellent at" },
+      { "ko": "우수한 성적을 거두다", "answer": "earn high honors" }
+    ],
+    "definitions": [
+      { "def": "a person who studies and writes about the nature of knowledge, truth, or existence", "answer": "philosopher" },
+      { "def": "having a great effect on the way that people think or behave",                       "answer": "influential" },
+      { "def": "to work in a particular job or organization, especially for a period of time",       "answer": "serve" },
+      { "def": "something that you do that helps to achieve something or that helps make it successful", "answer": "contribution" },
+      { "def": "forming the most important part of something from which everything else develops",   "answer": "foundational" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Paul Grice was a famous philosopher of language {{1:whose/which}} work was very influential in many areas of {{2:linguistics/linguistic}}.",
+      "ko_full": "Paul Grice는 언어철학 분야에서 저명한 철학자로, 그의 연구는 언어학의 여러 영역에 매우 큰 영향을 미쳤다.",
+      "answers": ["whose", "linguistics"],
+      "explain": [
+        "선행사 Paul Grice(사람)의 소유격 관계대명사 → whose work(그의 연구).",
+        "전치사 of의 목적어 → 명사 linguistics(언어학). 형용사 linguistic(X)."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "{{1:Born/Bearing}} in 1913 in Birmingham, England, he was the son of Herbert Grice, a businessman {{2:and/or}} musician.",
+      "ko_full": "1913년 영국 버밍엄에서 태어났으며, 사업가이자 음악가인 Herbert Grice의 아들이었다.",
+      "answers": ["Born", "and"],
+      "explain": [
+        "주어 he(사람)가 '태어난' 것이므로 수동 분사구문 Born. Bearing(낳는)은 의미 불일치.",
+        "두 신분(사업가 + 음악가)을 연결 → 등위접속사 and."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "As an undergraduate, he {{1:earned/earns}} high honors from Corpus Christi {{2:College/Colleges}}.",
+      "ko_full": "학부생 시절 Corpus Christi College에서 우수한 성적으로 졸업했다.",
+      "answers": ["earned", "College"],
+      "explain": [
+        "과거 사건을 서술하는 전기문 → 과거시제 earned.",
+        "Corpus Christi College는 고유명사 단수 → College(단수)."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "After finishing graduate school, he was {{1:appointed/appointing}} as a lecturer at Oxford in the field of {{2:philosophy/philosophical}}.",
+      "ko_full": "대학원을 마친 후, 그는 철학 분야에서 옥스퍼드 대학교 강사로 임명되었다.",
+      "answers": ["appointed", "philosophy"],
+      "explain": [
+        "he가 임명을 '받은' 것이므로 수동태 was appointed. was appointing(능동 진행)은 의미 불일치.",
+        "전치사 of 뒤 명사 자리 → philosophy(명사). philosophical(형용사)은 불가."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "During World War II, however, he {{1:served/was serving}} in the British military for about {{2:five/fifth}} years.",
+      "ko_full": "그러나 제2차 세계대전 중에 그는 약 5년간 영국 군에서 복무했다.",
+      "answers": ["served", "five"],
+      "explain": [
+        "완료·완결된 과거 복무 기간을 단순과거로 표현 → served.",
+        "연도 앞 수량 표현 → 기수 five(다섯). fifth는 서수(다섯 번째)."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "One of his greatest {{1:contributions/contribution}} was to the study of language and {{2:communication/communicating}}.",
+      "ko_full": "그의 가장 큰 공헌 중 하나는 언어와 의사소통 연구 분야에 관한 것이었다.",
+      "answers": ["contributions", "communication"],
+      "explain": [
+        "One of + 복수명사 → contributions(복수형).",
+        "등위접속사 and로 language와 병렬 → 명사 communication."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "His article \"Meaning\" was {{1:written/writing}} in 1948, but he did not have it {{2:published/publish}} until 1957.",
+      "ko_full": "그의 논문 「Meaning」은 1948년에 집필되었지만, 그는 1957년이 되어서야 그것을 출판했다.",
+      "answers": ["written", "published"],
+      "explain": [
+        "논문이 집필된 것이므로 수동태 was written(쓰여진). writing(능동 현재분사)은 불가.",
+        "have + 목적어(it) + 목적격보어: 목적어가 '출판되는' 것이므로 과거분사 published."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "This article was {{1:foundational/foundation}} in the study of language and {{2:communication/communicate}}.",
+      "ko_full": "이 논문은 언어와 의사소통 연구의 토대가 되었다.",
+      "answers": ["foundational", "communication"],
+      "explain": [
+        "be동사 뒤 서술어 자리 → 형용사 foundational. 명사 foundation은 직접 서술어 불가.",
+        "등위접속사 and로 language(명사)와 병렬 → 명사 communication."
+      ]
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "en_template": "In 1967, he left Oxford {{1:to take/taking}} a job at UC Berkeley and {{2:retired/was retired}} from there in 1979.",
+      "ko_full": "1967년 그는 UC 버클리에 자리를 잡기 위해 옥스퍼드를 떠났고, 1979년에 그곳에서 퇴직했다.",
+      "answers": ["to take", "retired"],
+      "explain": [
+        "목적의 부사적 to부정사 → to take. 분사구문 taking 이면 '자리를 잡으면서'로 의미 변질.",
+        "he 스스로 퇴직한 능동의 과거 → retired. was retired(수동)는 '강제 퇴직' 의미로 다름."
+      ]
+    },
+    {
+      "no": 10,
+      "ref_sentence": 10,
+      "en_template": "In addition to {{1:being/be}} a great scholar, he was excellent {{2:at/in}} cricket and chess.",
+      "ko_full": "위대한 학자였을 뿐만 아니라, 그는 크리켓과 체스에도 뛰어났다.",
+      "answers": ["being", "at"],
+      "explain": [
+        "In addition to는 전치사 → 목적어 자리에 동명사 being.",
+        "be excellent at ~ — 고정 표현. 전치사 at(~에 능숙한). in은 의미 불일치."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Paul Grice was a famous {{1:philosopher/psychologist}} of language whose work was very {{2:influential/accidental}} in many areas of linguistics.",
+      "ko_full": "Paul Grice는 언어철학 분야에서 저명한 철학자로, 그의 연구는 언어학의 여러 영역에 매우 큰 영향을 미쳤다.",
+      "answers": ["philosopher", "influential"],
+      "explain": [
+        "언어철학자를 소개하는 지문 → philosopher(철학자). psychologist(심리학자)는 다른 분야.",
+        "연구가 언어학에 미친 긍정적 파급력 → influential(영향력 있는). accidental(우연의)은 부정적·비의도적 의미."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "{{1:Born/Raised}} in 1913 in Birmingham, England, he was the son of Herbert Grice, a {{2:businessman/professor}} and musician.",
+      "ko_full": "1913년 영국 버밍엄에서 태어났으며, 사업가이자 음악가인 Herbert Grice의 아들이었다.",
+      "answers": ["Born", "businessman"],
+      "explain": [
+        "출생지를 밝히는 전기 서술 → Born(태어난). Raised(양육된)는 출생이 아닌 성장 과정.",
+        "본문에서 Herbert Grice의 직업이 명시됨 → businessman(사업가). professor는 본문에 없음."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "As an undergraduate, he {{1:earned/lost}} high honors from Corpus Christi {{2:College/Institute}}.",
+      "ko_full": "학부생 시절 Corpus Christi College에서 우수한 성적으로 졸업했다.",
+      "answers": ["earned", "College"],
+      "explain": [
+        "우수 성적을 '받았다' → earned(획득했다). lost(잃었다)는 반대 의미.",
+        "고유명사 Corpus Christi College — College가 정확한 명칭. Institute로 바꾸면 사실 오류."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "After finishing graduate school, he was {{1:appointed/dismissed}} as a lecturer at Oxford in the field of {{2:philosophy/medicine}}.",
+      "ko_full": "대학원을 마친 후, 그는 철학 분야에서 옥스퍼드 대학교 강사로 임명되었다.",
+      "answers": ["appointed", "philosophy"],
+      "explain": [
+        "강사직을 얻은 것 → appointed(임명된). dismissed(해고된)는 반대 의미.",
+        "Grice의 전문 분야 → philosophy(철학). medicine(의학)은 완전히 다른 분야."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "During World War II, however, he {{1:served/studied}} in the British military for about {{2:five/two}} years.",
+      "ko_full": "그러나 제2차 세계대전 중에 그는 약 5년간 영국 군에서 복무했다.",
+      "answers": ["served", "five"],
+      "explain": [
+        "군에서 '복무했다' → served. studied(공부했다)는 군 활동과 다름.",
+        "본문에서 복무 기간은 명시적으로 'about five years' → five(5년)."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "One of his greatest {{1:contributions/limitations}} was to the study of language and {{2:communication/translation}}.",
+      "ko_full": "그의 가장 큰 공헌 중 하나는 언어와 의사소통 연구 분야에 관한 것이었다.",
+      "answers": ["contributions", "communication"],
+      "explain": [
+        "학자의 업적을 긍정적으로 서술 → contributions(공헌). limitations(한계)는 의미 반전.",
+        "Grice의 연구 영역 → communication(의사소통). translation(번역)은 본문과 다른 분야."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "His article \"Meaning\" was {{1:written/published}} in 1948, but he did not have it published until {{2:1957/1967}}.",
+      "ko_full": "그의 논문 「Meaning」은 1948년에 집필되었지만, 그는 1957년이 되어서야 그것을 출판했다.",
+      "answers": ["written", "1957"],
+      "explain": [
+        "1948년은 집필 연도 → written(집필된). published이면 '1948년에 출판'으로 선지 ③ 오류와 같아짐.",
+        "출판 연도는 본문 명시 → 1957. 1967은 버클리 이직 연도로 혼동 유도."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "This article was {{1:foundational/controversial}} in the study of {{2:language/history}} and communication.",
+      "ko_full": "이 논문은 언어와 의사소통 연구의 토대가 되었다.",
+      "answers": ["foundational", "language"],
+      "explain": [
+        "논문이 연구의 '토대'가 됨 → foundational(기초적인). controversial(논쟁적인)은 부정적 의미.",
+        "Grice의 연구 분야 → language(언어). history(역사)는 관련 없음."
+      ]
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "en_template": "In 1967, he left Oxford to take a job at UC Berkeley and {{1:retired/resigned}} from there in {{2:1979/1957}}.",
+      "ko_full": "1967년 그는 UC 버클리에 자리를 잡기 위해 옥스퍼드를 떠났고, 1979년에 그곳에서 퇴직했다.",
+      "answers": ["retired", "1979"],
+      "explain": [
+        "오랜 교수 생활 끝 은퇴 → retired(퇴직했다). resigned(사임했다)는 자발적 중도 퇴장 뉘앙스.",
+        "퇴직 연도는 본문 명시 → 1979. 1957은 논문 출판 연도로 혼동 유도."
+      ]
+    },
+    {
+      "no": 10,
+      "ref_sentence": 10,
+      "en_template": "In addition to being a great scholar, he was {{1:excellent/poor}} at cricket and {{2:chess/golf}}.",
+      "ko_full": "위대한 학자였을 뿐만 아니라, 그는 크리켓과 체스에도 뛰어났다.",
+      "answers": ["excellent", "chess"],
+      "explain": [
+        "두 종목 모두 잘했다고 서술 → excellent(뛰어난). poor(서툰)는 반대 의미.",
+        "본문에서 두 취미 cricket and chess로 명시 → chess. golf는 본문에 없음."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "p", "answer": "philosopher", "after": "of language" },
+        { "pos": 2, "letter": "i", "answer": "influential",  "after": "in many areas" },
+        { "pos": 3, "letter": "l", "answer": "linguistics",  "after": "" }
+      ],
+      "ko_full": "Paul Grice는 언어철학 분야에서 저명한 철학자로, 그의 연구는 언어학의 여러 영역에 매우 큰 영향을 미쳤다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "B", "answer": "Birmingham", "after": "England" },
+        { "pos": 2, "letter": "b", "answer": "businessman", "after": "and musician" }
+      ],
+      "ko_full": "1913년 영국 버밍엄에서 태어났으며, 사업가이자 음악가인 Herbert Grice의 아들이었다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "u", "answer": "undergraduate", "after": "he earned" },
+        { "pos": 2, "letter": "h", "answer": "honors",         "after": "from Corpus Christi" },
+        { "pos": 3, "letter": "C", "answer": "College",        "after": "" }
+      ],
+      "ko_full": "학부생 시절 Corpus Christi College에서 우수한 성적으로 졸업했다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "a", "answer": "appointed",  "after": "as a lecturer" },
+        { "pos": 2, "letter": "l", "answer": "lecturer",   "after": "at Oxford" },
+        { "pos": 3, "letter": "p", "answer": "philosophy", "after": "" }
+      ],
+      "ko_full": "대학원을 마친 후, 그는 철학 분야에서 옥스퍼드 대학교 강사로 임명되었다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "s", "answer": "served",   "after": "in the British" },
+        { "pos": 2, "letter": "m", "answer": "military", "after": "for about five" }
+      ],
+      "ko_full": "그러나 제2차 세계대전 중에 그는 약 5년간 영국 군에서 복무했다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "c", "answer": "contributions",  "after": "was to the study" },
+        { "pos": 2, "letter": "c", "answer": "communication",  "after": "" }
+      ],
+      "ko_full": "그의 가장 큰 공헌 중 하나는 언어와 의사소통 연구 분야에 관한 것이었다."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "hints": [
+        { "pos": 1, "letter": "w", "answer": "written",   "after": "in 1948" },
+        { "pos": 2, "letter": "p", "answer": "published", "after": "until 1957" }
+      ],
+      "ko_full": "그의 논문 「Meaning」은 1948년에 집필되었지만, 그는 1957년이 되어서야 그것을 출판했다."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "hints": [
+        { "pos": 1, "letter": "f", "answer": "foundational", "after": "in the study" },
+        { "pos": 2, "letter": "c", "answer": "communication", "after": "" }
+      ],
+      "ko_full": "이 논문은 언어와 의사소통 연구의 토대가 되었다."
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "hints": [
+        { "pos": 1, "letter": "O", "answer": "Oxford",   "after": "to take a job" },
+        { "pos": 2, "letter": "B", "answer": "Berkeley", "after": "and retired" },
+        { "pos": 3, "letter": "r", "answer": "retired",  "after": "from there in 1979" }
+      ],
+      "ko_full": "1967년 그는 UC 버클리에 자리를 잡기 위해 옥스퍼드를 떠났고, 1979년에 그곳에서 퇴직했다."
+    },
+    {
+      "no": 10,
+      "ref_sentence": 10,
+      "hints": [
+        { "pos": 1, "letter": "s", "answer": "scholar",   "after": "he was excellent" },
+        { "pos": 2, "letter": "e", "answer": "excellent", "after": "at cricket" },
+        { "pos": 3, "letter": "c", "answer": "chess",     "after": "" }
+      ],
+      "ko_full": "위대한 학자였을 뿐만 아니라, 그는 크리켓과 체스에도 뛰어났다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1,  "ref_sentence": 1  },
+    { "no": 2,  "ref_sentence": 2  },
+    { "no": 3,  "ref_sentence": 3  },
+    { "no": 4,  "ref_sentence": 4  },
+    { "no": 5,  "ref_sentence": 5  },
+    { "no": 6,  "ref_sentence": 6  },
+    { "no": 7,  "ref_sentence": 7  },
+    { "no": 8,  "ref_sentence": 8  },
+    { "no": 9,  "ref_sentence": 9  },
+    { "no": 10, "ref_sentence": 10 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["Paul", "Grice", "was", "a", "famous", "philosopher", "of", "language", "whose", "work", "was", "very", "influential", "in", "many", "areas", "of", "linguistics"],
+      "answer": "Paul Grice was a famous philosopher of language whose work was very influential in many areas of linguistics."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["Born", "in", "1913", "in", "Birmingham", "England", "he", "was", "the", "son", "of", "Herbert", "Grice", "a", "businessman", "and", "musician"],
+      "answer": "Born in 1913 in Birmingham, England, he was the son of Herbert Grice, a businessman and musician."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["As", "an", "undergraduate", "he", "earned", "high", "honors", "from", "Corpus", "Christi", "College"],
+      "answer": "As an undergraduate, he earned high honors from Corpus Christi College."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["After", "finishing", "graduate", "school", "he", "was", "appointed", "as", "a", "lecturer", "at", "Oxford", "in", "the", "field", "of", "philosophy"],
+      "answer": "After finishing graduate school, he was appointed as a lecturer at Oxford in the field of philosophy."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["During", "World", "War", "II", "however", "he", "served", "in", "the", "British", "military", "for", "about", "five", "years"],
+      "answer": "During World War II, however, he served in the British military for about five years."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["One", "of", "his", "greatest", "contributions", "was", "to", "the", "study", "of", "language", "and", "communication"],
+      "answer": "One of his greatest contributions was to the study of language and communication."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "words": ["His", "article", "Meaning", "was", "written", "in", "1948", "but", "he", "did", "not", "have", "it", "published", "until", "1957"],
+      "answer": "His article \"Meaning\" was written in 1948, but he did not have it published until 1957."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "words": ["This", "article", "was", "foundational", "in", "the", "study", "of", "language", "and", "communication"],
+      "answer": "This article was foundational in the study of language and communication."
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "words": ["In", "1967", "he", "left", "Oxford", "to", "take", "a", "job", "at", "UC", "Berkeley", "and", "retired", "from", "there", "in", "1979"],
+      "answer": "In 1967, he left Oxford to take a job at UC Berkeley and retired from there in 1979."
+    },
+    {
+      "no": 10,
+      "ref_sentence": 10,
+      "words": ["In", "addition", "to", "being", "a", "great", "scholar", "he", "was", "excellent", "at", "cricket", "and", "chess"],
+      "answer": "In addition to being a great scholar, he was excellent at cricket and chess."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1,  "ref_sentence": 1,  "given": "ko" },
+    { "no": 2,  "ref_sentence": 2,  "given": "ko" },
+    { "no": 3,  "ref_sentence": 3,  "given": "ko" },
+    { "no": 4,  "ref_sentence": 4,  "given": "ko" },
+    { "no": 5,  "ref_sentence": 5,  "given": "ko" },
+    { "no": 6,  "ref_sentence": 6,  "given": "ko" },
+    { "no": 7,  "ref_sentence": 7,  "given": "ko" },
+    { "no": 8,  "ref_sentence": 8,  "given": "ko" },
+    { "no": 9,  "ref_sentence": 9,  "given": "ko" },
+    { "no": 10, "ref_sentence": 10, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 1,  "no": 1 },
+    { "kind": "vocab",   "ref": 3,  "no": 2 },
+    { "kind": "fill",    "ref": 7,  "no": 3 },
+    { "kind": "ko",      "ref": 5,  "no": 4 },
+    { "kind": "jumble",  "ref": 9,  "no": 5 },
+    { "kind": "sent",    "ref": 10, "no": 6 },
+    { "kind": "grammar", "ref": 7,  "no": 7 },
+    { "kind": "vocab",   "ref": 9,  "no": 8 }
+  ]
+}

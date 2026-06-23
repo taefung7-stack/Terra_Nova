@@ -1,0 +1,316 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "30.json",
+  "_note": "30번 워크북 — 본문 6문장 풀커버. 어휘(문맥) 유형.",
+  "_template_for_new_rounds": "이 파일을 새 회차의 {N}-workbook.json 작성 시 템플릿으로 사용. en_template의 {{N:A/B}} 토큰 = 양자택일 박스, hints 배열 = 빈칸 첫글자, jumble.words = 단어 배열 (셔플 X, 의도 유지).",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "playwright",     "pos": "명" },
+      { "word": "unconventional", "pos": "형" },
+      { "word": "archaic",        "pos": "형" },
+      { "word": "mindful",        "pos": "형" },
+      { "word": "revealing",      "pos": "형" },
+      { "word": "nuance",         "pos": "명" },
+      { "word": "diminished",     "pos": "형" },
+      { "word": "visualize",      "pos": "동" },
+      { "word": "libretto",       "pos": "명" },
+      { "word": "time-consuming", "pos": "형" }
+    ],
+    "ko_to_en": [
+      { "meaning": "극작가",                    "pos": "명", "answer": "playwright" },
+      { "meaning": "인습적이지 않은",           "pos": "형", "answer": "unconventional" },
+      { "meaning": "고어의, 낡은",              "pos": "형", "answer": "archaic" },
+      { "meaning": "유의하는, 명심하는",        "pos": "형", "answer": "mindful" },
+      { "meaning": "드러내는, 폭로하는",        "pos": "형", "answer": "revealing" },
+      { "meaning": "뉘앙스, 미묘한 차이",       "pos": "명", "answer": "nuance" },
+      { "meaning": "줄어든, 감소한",            "pos": "형", "answer": "diminished" },
+      { "meaning": "시각화하다",                "pos": "동", "answer": "visualize" },
+      { "meaning": "상당한, 중요한",            "pos": "형", "answer": "significant" },
+      { "meaning": "시간이 많이 걸리는",        "pos": "형", "answer": "time-consuming" }
+    ],
+    "expressions": [
+      { "ko": "~을 방해하다",         "answer": "get in the way of" },
+      { "ko": "인습적이지 않은",      "answer": "unconventional" },
+      { "ko": "시각화하다",           "answer": "visualize" },
+      { "ko": "리브레토, 오페라 대본", "answer": "libretto" },
+      { "ko": "매우 적은 공간을 차지하다", "answer": "take very little space" }
+    ],
+    "definitions": [
+      { "def": "a person who writes plays for the theater",                              "answer": "playwright" },
+      { "def": "belonging to an early period in the development of a language; old-fashioned", "answer": "archaic" },
+      { "def": "a small difference in meaning, feeling, or tone",                        "answer": "nuance" },
+      { "def": "to form a mental image or picture of something",                         "answer": "visualize" },
+      { "def": "taking more time than seems necessary or expected",                      "answer": "time-consuming" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Classical works by playwrights such as Shakespeare or Euripides or even American musical song lyrics {{1:contain/contains}} unconventional and unrealistic methods of communicating characters' thoughts and feelings, and take a bit more skill and patience {{2:to understand/understanding}}.",
+      "ko_full": "셰익스피어나 에우리피데스 같은 극작가들의 고전 작품이나 심지어 미국 뮤지컬 가사는 등장인물의 생각과 감정을 전달하는 데 있어 인습적이지 않고 비현실적인 방식을 담고 있으며, 이해하는 데 좀 더 많은 기술과 인내가 필요하다.",
+      "answers": ["contain", "to understand"],
+      "explain": [
+        "주어 Classical works(복수) → 동사 contain.",
+        "take + 시간·노력 + to V — to부정사 to understand."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "The reader must be mindful not to let the poetic form or archaic word usage {{1:get/gets}} in the way of getting meaningful information about the story, but instead see the form itself as a {{2:revealing/reveal}} stylistic technique.",
+      "ko_full": "독자는 시적 형식이나 고어 사용이 이야기에 대한 의미 있는 정보를 얻는 데 방해가 되지 않도록 유의해야 하며, 그 대신 형식 자체를 드러내는 문체적 기법으로 봐야 한다.",
+      "answers": ["get", "revealing"],
+      "explain": [
+        "let + O + 동사원형(원형부정사) → get(not gets).",
+        "명사 technique을 수식하는 현재분사 형용사 revealing."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "Scripts with complex language or unfamiliar styles may require several additional readings in order for the nuance {{1:to become/becoming}} clear, {{2:which/what}} can take multiple sessions.",
+      "ko_full": "복잡한 언어나 낯선 문체를 가진 대본은 뉘앙스가 명확해지기 위해 여러 번 추가로 읽어야 할 수도 있으며, 이는 여러 번의 세션이 필요할 수 있다.",
+      "answers": ["to become", "which"],
+      "explain": [
+        "in order for A to V — 'A가 V하도록': to become.",
+        "앞 절 전체를 선행사로 받는 관계대명사 which(what은 선행사 포함 불가)."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "Musical theater pieces are particularly {{1:difficult/difficulty}} to visualize when reading because of the {{2:diminished/diminishing}} emphasis on dialogue and a significant emphasis on song and dance.",
+      "ko_full": "뮤지컬 작품은 대화에 대한 비중이 줄어들고 노래와 춤에 대한 상당한 비중이 높아지기 때문에 읽을 때 시각화하기가 특히 어렵다.",
+      "answers": ["difficult", "diminished"],
+      "explain": [
+        "be + 형용사 자리 → difficult(명사 difficulty 아님).",
+        "이미 줄어든 상태를 묘사 → 과거분사 diminished(현재분사 diminishing은 진행·능동 의미)."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "For example, when the music and lyrics {{1:are removed/remove}} from a musical theater script, {{2:what/that}} is left is the dialogue, known as the book or libretto, and it can be very thick.",
+      "ko_full": "예를 들어, 뮤지컬 대본에서 음악과 가사를 제거했을 때 남는 것은 대화, 즉 대본(book)이나 리브레토(libretto)로 알려진 것인데, 그것은 매우 두꺼울(thick) 수 있다.",
+      "answers": ["are removed", "what"],
+      "explain": [
+        "음악·가사는 제거되는 대상 → 수동 are removed.",
+        "명사절 주어로 선행사를 포함하는 관계대명사 what(that은 불가)."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "There is an emphasis on dance, movement, or action in musical theater that can be {{1:time-consuming/time-consume}} when actually performed on stage, but can take very {{2:little/few}} space when typed into a play script.",
+      "ko_full": "뮤지컬 공연에서는 실제로 무대에서 공연될 때 시간이 오래 걸릴 수 있는 춤, 움직임, 또는 행위에 중점을 두지만, 희곡 대본으로 타이핑되면 매우 적은 공간을 차지할 수 있다.",
+      "answers": ["time-consuming", "little"],
+      "explain": [
+        "복합형용사 time-consuming(시간이 오래 걸리는) — time-consume는 비문법.",
+        "공간(space)은 불가산명사 → little(가산 복수 앞에는 few)."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Classical works by playwrights such as Shakespeare or Euripides contain {{1:unconventional/conventional}} and unrealistic methods of communicating characters' thoughts and feelings, and take a bit more skill and {{2:patience/impatience}} to understand.",
+      "ko_full": "셰익스피어나 에우리피데스 같은 극작가들의 고전 작품이나 심지어 미국 뮤지컬 가사는 등장인물의 생각과 감정을 전달하는 데 있어 인습적이지 않고 비현실적인 방식을 담고 있으며, 이해하는 데 좀 더 많은 기술과 인내가 필요하다.",
+      "answers": ["unconventional", "patience"],
+      "explain": [
+        "인습적이지 않은 방식 — unconventional(conventional의 반대).",
+        "더 많은 인내가 필요하다 — patience(impatience는 '조급함')."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "The reader must be {{1:mindful/careless}} not to let the poetic form or archaic word usage get in the way of getting meaningful information about the story, but instead see the form itself as a revealing {{2:stylistic/scientific}} technique.",
+      "ko_full": "독자는 시적 형식이나 고어 사용이 이야기에 대한 의미 있는 정보를 얻는 데 방해가 되지 않도록 유의해야 하며, 그 대신 형식 자체를 드러내는 문체적 기법으로 봐야 한다.",
+      "answers": ["mindful", "stylistic"],
+      "explain": [
+        "'유의하는' — mindful(careless는 '부주의한').",
+        "문체·스타일의 기법 — stylistic(scientific은 '과학적인')."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "Scripts with {{1:complex/simple}} language or unfamiliar styles may require several additional readings in order for the nuance to become {{2:clear/vague}}.",
+      "ko_full": "복잡한 언어나 낯선 문체를 가진 대본은 뉘앙스가 명확해지기 위해 여러 번 추가로 읽어야 할 수도 있다.",
+      "answers": ["complex", "clear"],
+      "explain": [
+        "이해하기 어려운 대본 — complex(simple은 '단순한').",
+        "여러 번 읽어 뉘앙스가 '명확해지도록' — clear(vague는 '모호한')."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "Musical theater pieces are particularly difficult to {{1:visualize/memorize}} when reading because of the {{2:diminished/increased}} emphasis on dialogue and a significant emphasis on song and dance.",
+      "ko_full": "뮤지컬 작품은 대화에 대한 비중이 줄어들고 노래와 춤에 대한 상당한 비중이 높아지기 때문에 읽을 때 시각화하기가 특히 어렵다.",
+      "answers": ["visualize", "diminished"],
+      "explain": [
+        "읽으면서 '시각화하기' 어렵다 — visualize(memorize는 '암기하다').",
+        "대화에 대한 비중이 '줄어든' — diminished(increased는 반대)."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "When the music and lyrics are removed from a musical theater script, what is left is the dialogue, known as the book or {{1:libretto/preface}}, and it can be very {{2:thin/thick}}.",
+      "ko_full": "예를 들어, 뮤지컬 대본에서 음악과 가사를 제거했을 때 남는 것은 대화, 즉 대본(book)이나 리브레토(libretto)로 알려진 것인데, 그것은 매우 얇을(thin) 수 있다.",
+      "answers": ["libretto", "thin"],
+      "explain": [
+        "오페라·뮤지컬 대사 대본 — libretto(preface는 '서문').",
+        "음악·가사를 빼면 남는 대사는 매우 '얇고 빈약한(thin)' — thick(두꺼운)은 문맥 반대."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "There is an emphasis on dance, movement, or action in musical theater that can be {{1:time-consuming/time-saving}} when actually performed on stage, but can take very little {{2:space/time}} when typed into a play script.",
+      "ko_full": "뮤지컬 공연에서는 실제로 무대에서 공연될 때 시간이 오래 걸릴 수 있는 춤, 움직임, 또는 행위에 중점을 두지만, 희곡 대본으로 타이핑되면 매우 적은 공간을 차지할 수 있다.",
+      "answers": ["time-consuming", "space"],
+      "explain": [
+        "무대 공연은 '시간이 오래 걸리는' — time-consuming(time-saving은 '시간을 절약하는').",
+        "대본으로 타이핑되면 매우 적은 '공간'을 차지한다 — space."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "p", "answer": "playwrights",    "after": "such as Shakespeare" },
+        { "pos": 2, "letter": "u", "answer": "unconventional", "after": "and unrealistic methods" },
+        { "pos": 3, "letter": "p", "answer": "patience",       "after": "to understand" }
+      ],
+      "ko_full": "셰익스피어나 에우리피데스 같은 극작가들의 고전 작품이나 심지어 미국 뮤지컬 가사는 등장인물의 생각과 감정을 전달하는 데 있어 인습적이지 않고 비현실적인 방식을 담고 있으며, 이해하는 데 좀 더 많은 기술과 인내가 필요하다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "m", "answer": "mindful",  "after": "not to let" },
+        { "pos": 2, "letter": "a", "answer": "archaic",  "after": "word usage" },
+        { "pos": 3, "letter": "r", "answer": "revealing", "after": "stylistic technique" }
+      ],
+      "ko_full": "독자는 시적 형식이나 고어 사용이 이야기에 대한 의미 있는 정보를 얻는 데 방해가 되지 않도록 유의해야 하며, 그 대신 형식 자체를 드러내는 문체적 기법으로 봐야 한다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "c", "answer": "complex",   "after": "language or unfamiliar" },
+        { "pos": 2, "letter": "n", "answer": "nuance",    "after": "to become clear" },
+        { "pos": 3, "letter": "c", "answer": "clear",     "after": "" }
+      ],
+      "ko_full": "복잡한 언어나 낯선 문체를 가진 대본은 뉘앙스가 명확해지기 위해 여러 번 추가로 읽어야 할 수도 있다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "v", "answer": "visualize",  "after": "when reading" },
+        { "pos": 2, "letter": "d", "answer": "diminished", "after": "emphasis on dialogue" },
+        { "pos": 3, "letter": "s", "answer": "significant", "after": "emphasis on song" }
+      ],
+      "ko_full": "뮤지컬 작품은 대화에 대한 비중이 줄어들고 노래와 춤에 대한 상당한 비중이 높아지기 때문에 읽을 때 시각화하기가 특히 어렵다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "l", "answer": "lyrics",   "after": "are removed from" },
+        { "pos": 2, "letter": "l", "answer": "libretto", "after": "and it can be" },
+        { "pos": 3, "letter": "t", "answer": "thick",    "after": "" }
+      ],
+      "ko_full": "예를 들어, 뮤지컬 대본에서 음악과 가사를 제거했을 때 남는 것은 대화, 즉 대본(book)이나 리브레토(libretto)로 알려진 것인데, 그것은 매우 두꺼울(thick) 수 있다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "d", "answer": "dance",          "after": "movement, or action" },
+        { "pos": 2, "letter": "t", "answer": "time-consuming", "after": "when actually performed" },
+        { "pos": 3, "letter": "s", "answer": "space",          "after": "when typed into" }
+      ],
+      "ko_full": "뮤지컬 공연에서는 실제로 무대에서 공연될 때 시간이 오래 걸릴 수 있는 춤, 움직임, 또는 행위에 중점을 두지만, 희곡 대본으로 타이핑되면 매우 적은 공간을 차지할 수 있다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["Classical", "works", "by", "playwrights", "such", "as", "Shakespeare", "or", "Euripides", "or", "even", "American", "musical", "song", "lyrics", "contain", "unconventional", "and", "unrealistic", "methods", "of", "communicating", "characters'", "thoughts", "and", "feelings", "and", "take", "a", "bit", "more", "skill", "and", "patience", "to", "understand"],
+      "answer": "Classical works by playwrights such as Shakespeare or Euripides or even American musical song lyrics contain unconventional and unrealistic methods of communicating characters' thoughts and feelings, and take a bit more skill and patience to understand."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["The", "reader", "must", "be", "mindful", "not", "to", "let", "the", "poetic", "form", "or", "archaic", "word", "usage", "get", "in", "the", "way", "of", "getting", "meaningful", "information", "about", "the", "story", "but", "instead", "see", "the", "form", "itself", "as", "a", "revealing", "stylistic", "technique"],
+      "answer": "The reader must be mindful not to let the poetic form or archaic word usage get in the way of getting meaningful information about the story, but instead see the form itself as a revealing stylistic technique."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["Scripts", "with", "complex", "language", "or", "unfamiliar", "styles", "may", "require", "several", "additional", "readings", "in", "order", "for", "the", "nuance", "to", "become", "clear"],
+      "answer": "Scripts with complex language or unfamiliar styles may require several additional readings in order for the nuance to become clear."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["Musical", "theater", "pieces", "are", "particularly", "difficult", "to", "visualize", "when", "reading", "because", "of", "the", "diminished", "emphasis", "on", "dialogue", "and", "a", "significant", "emphasis", "on", "song", "and", "dance"],
+      "answer": "Musical theater pieces are particularly difficult to visualize when reading because of the diminished emphasis on dialogue and a significant emphasis on song and dance."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["For", "example", "when", "the", "music", "and", "lyrics", "are", "removed", "from", "a", "musical", "theater", "script", "what", "is", "left", "is", "the", "dialogue", "known", "as", "the", "book", "or", "libretto", "and", "it", "can", "be", "very", "thick"],
+      "answer": "For example, when the music and lyrics are removed from a musical theater script, what is left is the dialogue, known as the book or libretto, and it can be very thick."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["There", "is", "an", "emphasis", "on", "dance", "movement", "or", "action", "in", "musical", "theater", "that", "can", "be", "time-consuming", "when", "actually", "performed", "on", "stage", "but", "can", "take", "very", "little", "space", "when", "typed", "into", "a", "play", "script"],
+      "answer": "There is an emphasis on dance, movement, or action in musical theater that can be time-consuming when actually performed on stage, but can take very little space when typed into a play script."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 1, "no": 1 },
+    { "kind": "vocab",   "ref": 3, "no": 2 },
+    { "kind": "fill",    "ref": 4, "no": 3 },
+    { "kind": "ko",      "ref": 5, "no": 4 },
+    { "kind": "jumble",  "ref": 2, "no": 5 },
+    { "kind": "sent",    "ref": 6, "no": 6 },
+    { "kind": "grammar", "ref": 5, "no": 7 },
+    { "kind": "vocab",   "ref": 6, "no": 8 }
+  ]
+}

@@ -1,0 +1,356 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "19.json",
+  "_note": "19번 워크북 — 본문 7문장 풀커버.",
+  "_template_for_new_rounds": "이 파일을 새 회차의 {N}-workbook.json 작성 시 템플릿으로 사용. en_template의 {{N:A/B}} 토큰 = 양자택일 박스, hints 배열 = 빈칸 첫글자, jumble.words = 단어 배열 (셔플 X, 의도 유지).",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "invite",     "pos": "동" },
+      { "word": "depart",     "pos": "동" },
+      { "word": "blankly",    "pos": "부" },
+      { "word": "surround",   "pos": "동" },
+      { "word": "rise above", "pos": "구" },
+      { "word": "marvelous",  "pos": "형" },
+      { "word": "wonder",     "pos": "동" },
+      { "word": "miss",       "pos": "동" },
+      { "word": "spread out", "pos": "구" },
+      { "word": "sleepy",     "pos": "형" }
+    ],
+    "ko_to_en": [
+      { "meaning": "초대하다",              "pos": "동", "answer": "invite" },
+      { "meaning": "출발하다",              "pos": "동", "answer": "depart" },
+      { "meaning": "멍하니, 표정 없이",     "pos": "부", "answer": "blankly" },
+      { "meaning": "둘러싸다",              "pos": "동", "answer": "surround" },
+      { "meaning": "경이로운, 놀라운",      "pos": "형", "answer": "marvelous" },
+      { "meaning": "놓치다",                "pos": "동", "answer": "miss" },
+      { "meaning": "펼쳐지다",              "pos": "구", "answer": "spread out" },
+      { "meaning": "졸린",                  "pos": "형", "answer": "sleepy" },
+      { "meaning": "궁금해하다",            "pos": "동", "answer": "wonder" },
+      { "meaning": "가고 싶다 (부정: 가기 싫다)", "pos": "구", "answer": "feel like going" }
+    ],
+    "expressions": [
+      { "ko": "~하고 싶다",                "answer": "feel like" },
+      { "ko": "달리 더 나은 할 일이 없는", "answer": "nothing better to do" },
+      { "ko": "영원처럼 느껴지는 시간 동안", "answer": "for what felt like forever" },
+      { "ko": "막 ~하려던 순간",           "answer": "just as" },
+      { "ko": "~까지 멀리",               "answer": "all the way to" }
+    ],
+    "definitions": [
+      { "def": "to look or speak in a way that shows no expression or understanding",  "answer": "blankly" },
+      { "def": "causing great wonder and admiration",                                  "answer": "marvelous" },
+      { "def": "to fail to take advantage of something; to lose out on an opportunity", "answer": "miss" },
+      { "def": "feeling a need or desire to sleep",                                    "answer": "sleepy" },
+      { "def": "to ask someone to come to a place or event",                           "answer": "invite" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Mark's friends {{1:had invited/have invited}} him to Sky National Park to ride the Cloud Monorail, {{2:which/what}} went to the top of the mountain.",
+      "ko_full": "Mark의 친구들은 산 정상까지 가는 Cloud Monorail을 타러 Sky National Park에 그를 초대했다.",
+      "answers": ["had invited", "which"],
+      "explain": [
+        "이미 초대된 상태가 과거보다 이전 → 과거완료 had invited.",
+        "선행사 the Cloud Monorail(사물)을 수식하는 주격 관계대명사 → which (what은 선행사 불필요)."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "Mark {{1:didn't feel like/didn't feel}} going, but he went because he had {{2:nothing/anything}} better to do.",
+      "ko_full": "Mark는 가고 싶지 않았지만, 딱히 더 나은 할 일이 없었기 때문에 갔다.",
+      "answers": ["didn't feel like", "nothing"],
+      "explain": [
+        "feel like + -ing = '~하고 싶다'. 부정이므로 didn't feel like going.",
+        "부정 맥락(아무것도 없는 상태) → nothing better to do."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "He checked his watch {{1:as/while}} the monorail departed and then blankly {{2:looked out/looked into}} the window.",
+      "ko_full": "그는 모노레일이 출발할 때 시계를 확인하고는 멍하니 창밖을 내다봤다.",
+      "answers": ["as", "looked out"],
+      "explain": [
+        "동시 발생 사건의 순간적 타이밍 → as (while도 가능하나 as가 원문).",
+        "창밖을 내다보다 → look out the window (look into는 '~안을 들여다보다')."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "Clouds {{1:surrounded/were surrounding}} the monorail, so all he {{2:saw/had seen}} was grey for what felt like forever.",
+      "ko_full": "구름이 모노레일을 둘러쌌고, 그래서 그는 영원처럼 느껴지는 시간 동안 회색 빛만 봤다.",
+      "answers": ["surrounded", "saw"],
+      "explain": [
+        "단순 과거 사실 묘사 → surrounded (진행형도 가능하나 원문은 단순과거).",
+        "앞 문장과 같은 시제 단순과거 → saw."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "{{1:Just as/As soon as}} he started feeling sleepy, the monorail rose {{2:above/over}} the clouds.",
+      "ko_full": "막 잠이 들려고 하던 순간, 모노레일이 구름 위로 솟아올랐다.",
+      "answers": ["Just as", "above"],
+      "explain": [
+        "바로 그 순간의 타이밍 강조 → Just as (as soon as는 '~하자마자'로 뉘앙스 다름).",
+        "구름의 위쪽 공간으로 솟아오름 → above (over는 '~너머/가로질러'에 가까움)."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "He opened his mouth as he saw the most beautiful mountains {{1:spreading out/spread out}} before him all the way {{2:to/toward}} the ocean.",
+      "ko_full": "그는 가장 아름다운 산들이 바다까지 눈앞으로 펼쳐지는 광경을 보며 입을 벌렸다.",
+      "answers": ["spreading out", "to"],
+      "explain": [
+        "지각동사 saw + 목적어 + 분사 → 진행·동시 묘사이므로 현재분사 spreading out.",
+        "목적지 도달 → all the way to the ocean (toward는 '방향'이고 도달을 의미하지 않음)."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "He couldn't believe {{1:how marvelous/how marvelously}} nature could be and wondered what he {{2:would have missed/would miss}} if he hadn't come.",
+      "ko_full": "그는 자연이 얼마나 경이로울 수 있는지 믿을 수 없었고, 만약 오지 않았다면 무엇을 놓쳤을지 궁금해했다.",
+      "answers": ["how marvelous", "would have missed"],
+      "explain": [
+        "간접의문문 how + 형용사(서술어) + 주어 + 동사 → how marvelous nature could be (부사 marvelously 불가).",
+        "가정법 과거완료 — 과거 사실 반대 가정 (if he hadn't come → 과거완료 조건) → would have missed."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Mark's friends had {{1:invited/called}} him to Sky National Park to ride the Cloud Monorail, which {{2:went/fell}} to the top of the mountain.",
+      "ko_full": "Mark의 친구들은 산 정상까지 가는 Cloud Monorail을 타러 Sky National Park에 그를 초대했다.",
+      "answers": ["invited", "went"],
+      "explain": [
+        "'초대하다' — invited (called는 '전화하다/부르다' 뉘앙스).",
+        "모노레일이 정상까지 '갔다(운행했다)' — went."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "Mark didn't {{1:feel like/look like}} going, but he went because he had nothing better {{2:to do/to say}}.",
+      "ko_full": "Mark는 가고 싶지 않았지만, 딱히 더 나은 할 일이 없었기 때문에 갔다.",
+      "answers": ["feel like", "to do"],
+      "explain": [
+        "'~하고 싶다' — feel like (look like는 '~처럼 보이다').",
+        "'할 일이 없는' — nothing better to do."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "He checked his watch as the monorail {{1:departed/arrived}} and then {{2:blankly/sharply}} looked out the window.",
+      "ko_full": "그는 모노레일이 출발할 때 시계를 확인하고는 멍하니 창밖을 내다봤다.",
+      "answers": ["departed", "blankly"],
+      "explain": [
+        "모노레일이 '출발할 때' — departed (arrived는 '도착했을 때').",
+        "무관심하고 멍하니 — blankly (sharply는 '날카롭게/예리하게')."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "Clouds {{1:surrounded/covered}} the monorail, so all he saw was grey for what {{2:felt like/seemed like}} forever.",
+      "ko_full": "구름이 모노레일을 둘러쌌고, 그래서 그는 영원처럼 느껴지는 시간 동안 회색 빛만 봤다.",
+      "answers": ["surrounded", "felt like"],
+      "explain": [
+        "'둘러싸다' — surrounded (covered는 '덮다').",
+        "'~처럼 느껴지다' — felt like (원문 그대로)."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "Just as he started feeling {{1:sleepy/angry}}, the monorail {{2:rose above/fell below}} the clouds.",
+      "ko_full": "막 잠이 들려고 하던 순간, 모노레일이 구름 위로 솟아올랐다.",
+      "answers": ["sleepy", "rose above"],
+      "explain": [
+        "지루함의 극치 '졸린' — sleepy (angry는 '화난').",
+        "구름 위로 '솟아올랐다' — rose above (fell below는 '밑으로 떨어졌다')."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "He opened his mouth as he saw the most {{1:beautiful/ordinary}} mountains {{2:spreading out/closing in}} before him all the way to the ocean.",
+      "ko_full": "그는 가장 아름다운 산들이 바다까지 눈앞으로 펼쳐지는 광경을 보며 입을 벌렸다.",
+      "answers": ["beautiful", "spreading out"],
+      "explain": [
+        "'아름다운' 산 — beautiful (ordinary는 '평범한').",
+        "'펼쳐지는' — spreading out (closing in은 '좁혀드는')."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "He couldn't believe how {{1:marvelous/monotonous}} nature could be and wondered what he would have {{2:missed/gained}} if he hadn't come.",
+      "ko_full": "그는 자연이 얼마나 경이로울 수 있는지 믿을 수 없었고, 만약 오지 않았다면 무엇을 놓쳤을지 궁금해했다.",
+      "answers": ["marvelous", "missed"],
+      "explain": [
+        "'경이로운' — marvelous (monotonous는 '단조로운' — 문맥 반대).",
+        "오지 않았다면 '놓쳤을' 것 — missed (gained는 '얻었을')."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "i", "answer": "invited",   "after": "him to Sky National Park" },
+        { "pos": 2, "letter": "m", "answer": "monorail",  "after": "which went to the top" },
+        { "pos": 3, "letter": "m", "answer": "mountain",  "after": "" }
+      ],
+      "ko_full": "Mark의 친구들은 산 정상까지 가는 Cloud Monorail을 타러 Sky National Park에 그를 초대했다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "f", "answer": "feel",    "after": "like going" },
+        { "pos": 2, "letter": "n", "answer": "nothing", "after": "better to do" },
+        { "pos": 3, "letter": "b", "answer": "better",  "after": "to do" }
+      ],
+      "ko_full": "Mark는 가고 싶지 않았지만, 딱히 더 나은 할 일이 없었기 때문에 갔다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "w", "answer": "watch",    "after": "as the monorail departed" },
+        { "pos": 2, "letter": "d", "answer": "departed", "after": "and then blankly" },
+        { "pos": 3, "letter": "b", "answer": "blankly",  "after": "looked out the window" }
+      ],
+      "ko_full": "그는 모노레일이 출발할 때 시계를 확인하고는 멍하니 창밖을 내다봤다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "s", "answer": "surrounded", "after": "the monorail" },
+        { "pos": 2, "letter": "g", "answer": "grey",        "after": "for what felt" },
+        { "pos": 3, "letter": "f", "answer": "forever",     "after": "" }
+      ],
+      "ko_full": "구름이 모노레일을 둘러쌌고, 그래서 그는 영원처럼 느껴지는 시간 동안 회색 빛만 봤다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "s", "answer": "sleepy", "after": "the monorail rose" },
+        { "pos": 2, "letter": "r", "answer": "rose",   "after": "above the clouds" },
+        { "pos": 3, "letter": "c", "answer": "clouds", "after": "" }
+      ],
+      "ko_full": "막 잠이 들려고 하던 순간, 모노레일이 구름 위로 솟아올랐다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "m", "answer": "mouth",    "after": "as he saw" },
+        { "pos": 2, "letter": "s", "answer": "spreading", "after": "out before him" },
+        { "pos": 3, "letter": "o", "answer": "ocean",    "after": "" }
+      ],
+      "ko_full": "그는 가장 아름다운 산들이 바다까지 눈앞으로 펼쳐지는 광경을 보며 입을 벌렸다."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "hints": [
+        { "pos": 1, "letter": "m", "answer": "marvelous", "after": "nature could be" },
+        { "pos": 2, "letter": "w", "answer": "wondered",  "after": "what he would have" },
+        { "pos": 3, "letter": "m", "answer": "missed",    "after": "if he hadn't come" }
+      ],
+      "ko_full": "그는 자연이 얼마나 경이로울 수 있는지 믿을 수 없었고, 만약 오지 않았다면 무엇을 놓쳤을지 궁금해했다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 },
+    { "no": 7, "ref_sentence": 7 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["Mark's", "friends", "had", "invited", "him", "to", "Sky", "National", "Park", "to", "ride", "the", "Cloud", "Monorail", "which", "went", "to", "the", "top", "of", "the", "mountain"],
+      "answer": "Mark's friends had invited him to Sky National Park to ride the Cloud Monorail, which went to the top of the mountain."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["Mark", "didn't", "feel", "like", "going", "but", "he", "went", "because", "he", "had", "nothing", "better", "to", "do"],
+      "answer": "Mark didn't feel like going, but he went because he had nothing better to do."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["He", "checked", "his", "watch", "as", "the", "monorail", "departed", "and", "then", "blankly", "looked", "out", "the", "window"],
+      "answer": "He checked his watch as the monorail departed and then blankly looked out the window."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["Clouds", "surrounded", "the", "monorail", "so", "all", "he", "saw", "was", "grey", "for", "what", "felt", "like", "forever"],
+      "answer": "Clouds surrounded the monorail, so all he saw was grey for what felt like forever."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["Just", "as", "he", "started", "feeling", "sleepy", "the", "monorail", "rose", "above", "the", "clouds"],
+      "answer": "Just as he started feeling sleepy, the monorail rose above the clouds."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["He", "opened", "his", "mouth", "as", "he", "saw", "the", "most", "beautiful", "mountains", "spreading", "out", "before", "him", "all", "the", "way", "to", "the", "ocean"],
+      "answer": "He opened his mouth as he saw the most beautiful mountains spreading out before him all the way to the ocean."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "words": ["He", "couldn't", "believe", "how", "marvelous", "nature", "could", "be", "and", "wondered", "what", "he", "would", "have", "missed", "if", "he", "hadn't", "come"],
+      "answer": "He couldn't believe how marvelous nature could be and wondered what he would have missed if he hadn't come."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" },
+    { "no": 7, "ref_sentence": 7, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 1, "no": 1 },
+    { "kind": "vocab",   "ref": 2, "no": 2 },
+    { "kind": "fill",    "ref": 4, "no": 3 },
+    { "kind": "ko",      "ref": 5, "no": 4 },
+    { "kind": "jumble",  "ref": 6, "no": 5 },
+    { "kind": "sent",    "ref": 7, "no": 6 },
+    { "kind": "grammar", "ref": 3, "no": 7 },
+    { "kind": "vocab",   "ref": 6, "no": 8 }
+  ]
+}

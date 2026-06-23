@@ -1,0 +1,243 @@
+{
+  "$schema_version": "variant-v0.3-type-grouped",
+  "$ref_source": "18.json",
+  "passage_id": 18,
+  "topic_ko": "홈런 대회 참가 요청 편지",
+  "_note": "목적(편지·실용문) FULL set. 유형마다 passage 를 다르게 paraphrase. grammar/vocab 의 밑줄 어구는 해당 passage 문장에 글자 그대로 존재.",
+
+  "by_type": {
+    "purpose": {
+      "passage": [
+        "Dear Ben Harper,",
+        "I am Reese Johnson, and I represent the Tuscanyville Homerun Derby organization.",
+        "Our team came across a recording of your baseball team and were particularly struck by the strength of your hitting.",
+        "Each year, we host a homerun contest that brings together the finest hitters in the Tuscanyville area.",
+        "This event draws a large and enthusiastic audience from throughout our community.",
+        "We would very much like to extend a formal invitation for you to compete in this year's event.",
+        "We are confident that both you and the crowd would have a wonderful time.",
+        "We hope to receive a favorable reply from you at your earliest convenience.",
+        "Sincerely, Reese Johnson"
+      ],
+      "choices": [
+        "야구팀의 훈련 일정에 대해 문의하려고",
+        "홈런 대회 우승자에게 시상 소식을 전하려고",
+        "홈런 대회에 참가해 줄 것을 요청하려고",
+        "지역 사회 야구 팀 후원을 부탁하려고",
+        "영상 촬영에 참여해 줄 것을 권유하려고"
+      ],
+      "answer": 3,
+      "explanation_ko": "\"We would very much like to extend a formal invitation for you to compete in this year's event.\"에서 홈런 대회 참가를 요청하는 것이 편지의 목적임을 직접 밝히고 있다. ③이 정답.",
+      "distractor_ko": "①훈련 일정 문의, ②시상 소식 전달, ④후원 요청, ⑤영상 촬영 권유는 본문에 없는 내용이다."
+    },
+
+    "content_check": {
+      "passage": [
+        "Dear Ben Harper,",
+        "My name is Reese Johnson, and I work for the Tuscanyville Homerun Derby.",
+        "We recently saw a video of your baseball team and were especially impressed by your power hitting.",
+        "Every year, we gather together all of the best baseball hitters from Tuscanyville for a homerun competition.",
+        "It is a very popular event in our community, and we would like to ask you to join the competition this year.",
+        "You would be an excellent participant, and we know you would enjoy the experience.",
+        "Based on the popularity you gained from the video, we have no doubt the crowds here will love you.",
+        "We are looking forward to your positive response.",
+        "Sincerely, Reese Johnson"
+      ],
+      "choices": [
+        "Reese Johnson은 Tuscanyville 홈런 더비에서 일한다.",
+        "저자는 Ben Harper의 야구팀 영상을 최근에 보았다.",
+        "저자는 Ben Harper가 이미 대회에서 우승한 것을 칭찬하고 있다.",
+        "홈런 대회는 지역 사회에서 인기 있는 행사이다.",
+        "저자는 Ben Harper가 대회에서 관중의 사랑을 받을 것이라 확신한다."
+      ],
+      "answer": 3,
+      "explanation_ko": "③ '이미 대회에서 우승했다'는 내용은 없다. 편지는 아직 열리지 않은 올해 대회에 참가를 요청하는 것이다. (불일치 ③)",
+      "distractor_ko": "①②④⑤는 모두 본문 내용과 일치하는 진술이다."
+    },
+
+    "grammar": {
+      "passage": [
+        "My name is Reese Johnson, and I work for the Tuscanyville Homerun Derby.",
+        "We recently saw a video of your baseball team and were especially impressing by your power hitting.",
+        "Every year, we gather together all of the best baseball hitters from Tuscanyville for a homerun competition.",
+        "It is a very popular event in our community, and we would like to ask you to join the competition this year.",
+        "You would be an excellent participant, and we know you would enjoy the experience.",
+        "Based on the popularity you gained from the video, we have no doubt the crowds here will love you.",
+        "We are looking forward to your positive response."
+      ],
+      "underlines": [
+        { "no": 1, "sent_index": 0, "text": "work for", "correct": true },
+        { "no": 2, "sent_index": 1, "text": "impressing", "correct": false, "fix": "impressed" },
+        { "no": 3, "sent_index": 3, "text": "to ask you to join", "correct": true },
+        { "no": 4, "sent_index": 4, "text": "we know you would enjoy", "correct": true },
+        { "no": 5, "sent_index": 5, "text": "Based on the popularity you gained", "correct": true }
+      ],
+      "choices": ["①", "②", "③", "④", "⑤"],
+      "answer": 2,
+      "explanation_ko": "② 주어 We가 인상을 '받은' 것이므로 수동태 impressed가 옳다. impressing(능동 현재분사)은 '인상을 주는'이라는 뜻으로 문맥에 어긋난다 → impressed로 고쳐야 한다.",
+      "distractor_ko": "①work for, ③to ask you to join, ④we know + 목적절, ⑤Based on 분사구문 모두 문법적으로 옳다."
+    },
+
+    "grammar_error": {
+      "passage": [
+        "My name is Reese Johnson, and I work for the Tuscanyville Homerun Derby.",
+        "We recently saw a video of your baseball team and were especially impressing by your power hitting.",
+        "Every year, we gather together all of the best baseball hitters from Tuscanyville for a homerun competition.",
+        "It is a very popular event in our community, and we would like to ask you to join the competition this year.",
+        "You would be an excellent participant, and we know you would enjoy the experience.",
+        "Based on the popularity you gained from the video, we have no doubt the crowds here will love you.",
+        "We are looking forward to your positive response."
+      ],
+      "underlines": [
+        { "no": 1, "sent_index": 0, "text": "work for", "correct": true },
+        { "no": 2, "sent_index": 1, "text": "impressing", "correct": false, "fix": "impressed" },
+        { "no": 3, "sent_index": 3, "text": "to ask you to join", "correct": true },
+        { "no": 4, "sent_index": 4, "text": "we know you would enjoy", "correct": true },
+        { "no": 5, "sent_index": 5, "text": "Based on the popularity you gained", "correct": true }
+      ],
+      "choices": ["①", "②", "③", "④", "⑤"],
+      "answer": 2,
+      "explanation_ko": "② 주어 We가 인상을 '받은' 것이므로 수동태 impressed가 옳다. impressing(능동 현재분사)은 '인상을 주는'이라는 뜻으로 문맥에 어긋난다 → impressed로 고쳐야 한다.",
+      "distractor_ko": "①work for(~에서 일하다), ③to ask you to join(ask+목적어+to V), ④접속사 that 생략 목적절, ⑤Based on 분사구문은 모두 문법적으로 옳다."
+    },
+
+    "vocab": {
+      "passage": [
+        "My name is Reese Johnson, and I work for the Tuscanyville Homerun Derby.",
+        "We recently saw a video of your baseball team and were especially impressed by your power hitting.",
+        "Every year, we gather together all of the best baseball hitters from Tuscanyville for a homerun competition.",
+        "It is a very popular event in our community, and we would like to ask you to join the competition this year.",
+        "You would be an average participant, and we know you would enjoy the experience.",
+        "Based on the popularity you gained from the video, we have no doubt the crowds here will love you.",
+        "We are looking forward to your positive response."
+      ],
+      "underlines": [
+        { "no": 1, "sent_index": 1, "text": "especially", "correct": true },
+        { "no": 2, "sent_index": 2, "text": "gather together", "correct": true },
+        { "no": 3, "sent_index": 3, "text": "popular", "correct": true },
+        { "no": 4, "sent_index": 4, "text": "average", "correct": false, "fix": "excellent" },
+        { "no": 5, "sent_index": 5, "text": "popularity", "correct": true }
+      ],
+      "choices": ["①", "②", "③", "④", "⑤"],
+      "answer": 4,
+      "explanation_ko": "④ 편지 전체가 Ben Harper를 칭찬하며 참가를 요청하는 내용이다. 'average(평범한)'는 상대를 칭찬하는 맥락과 맞지 않는다 → excellent(훌륭한)로 고쳐야 한다.",
+      "distractor_ko": "①especially(특히), ②gather together(한자리에 모으다), ③popular(인기 있는), ⑤popularity(인기)는 모두 문맥에 적절하다."
+    },
+
+    "order": {
+      "given": "Dear Ben Harper, My name is Reese Johnson, and I work for the Tuscanyville Homerun Derby.",
+      "blocks": {
+        "A": "You would be an excellent participant, and we know you would enjoy the experience. Based on the popularity you gained from the video, we have no doubt the crowds here will love you.",
+        "B": "We recently saw a video of your baseball team and were especially impressed by your power hitting. Every year, we gather together all of the best baseball hitters from Tuscanyville for a homerun competition.",
+        "C": "It is a very popular event in our community, and we would like to ask you to join the competition this year."
+      },
+      "choices": ["(A) - (C) - (B)", "(B) - (A) - (C)", "(B) - (C) - (A)", "(C) - (A) - (B)", "(C) - (B) - (A)"],
+      "answer": 3,
+      "explanation_ko": "자기소개(주어진 글) → (B) 영상 시청으로 인상 받은 내용과 대회 소개 → (C) 대회 참가 요청 → (A) 참가자로서의 장점 강조 및 관중 사랑 확신. 즉 (B)-(C)-(A) 순서.",
+      "distractor_ko": "(C)의 참가 요청은 (B)에서 대회를 소개한 뒤에 나와야 하고, (A)의 '훌륭한 참가자'는 (C)의 요청 이후 상대를 설득하는 내용이므로 (C) 다음에 온다."
+    },
+
+    "insert": {
+      "insert_sentence": "It is a very popular event in our community, and we would like to ask you to join the competition this year.",
+      "passage_marked": [
+        { "text": "My name is Reese Johnson, and I work for the Tuscanyville Homerun Derby.", "slot_after": 1 },
+        { "text": "We recently saw a video of your baseball team and were especially impressed by your power hitting.", "slot_after": 2 },
+        { "text": "Every year, we gather together all of the best baseball hitters from Tuscanyville for a homerun competition.", "slot_after": 3 },
+        { "text": "You would be an excellent participant, and we know you would enjoy the experience.", "slot_after": 4 },
+        { "text": "We are looking forward to your positive response.", "slot_after": 5 }
+      ],
+      "choices": ["①", "②", "③", "④", "⑤"],
+      "answer": 3,
+      "explanation_ko": "주어진 문장은 대회를 '인기 있는 지역 행사'로 소개하면서 참가를 요청하는 문장이다. 앞 문장(③)에서 '매년 최고의 타자들을 모은다'며 대회 성격을 설명하고, 그 뒤에 대회의 인기와 참가 요청이 이어지는 것이 자연스럽다. ③이 정답.",
+      "distractor_ko": "①② 자기소개·영상 감상 단계에서는 아직 참가 요청이 이르고, ④⑤는 참가 요청 이후 내용이 이미 연결되어 있어 맞지 않는다."
+    },
+
+    "summary": {
+      "passage": [
+        "Reese Johnson introduces himself as a representative of the Tuscanyville Homerun Derby.",
+        "He mentions that the organization recently watched a video featuring Ben Harper's baseball team.",
+        "They were particularly impressed by Ben Harper's powerful batting skills.",
+        "Every year, the Derby gathers the best hitters from the area for a homerun competition.",
+        "The event is well-loved by the local community.",
+        "Reese Johnson officially invites Ben Harper to participate in this year's competition.",
+        "He expresses confidence that the audience will warmly receive Ben Harper.",
+        "The letter closes with a request for a positive reply."
+      ],
+      "summary_template": "Reese Johnson writes a letter to __(A)__ Ben Harper to participate in the Tuscanyville Homerun Derby, expressing confidence that Ben Harper's __(B)__ will make him popular with the crowds.",
+      "options": [
+        { "no": 1, "A": "invite",    "B": "power hitting" },
+        { "no": 2, "A": "warn",      "B": "power hitting" },
+        { "no": 3, "A": "invite",    "B": "academic background" },
+        { "no": 4, "A": "congratulate", "B": "video skills" },
+        { "no": 5, "A": "invite",    "B": "coaching experience" }
+      ],
+      "answer": 1,
+      "explanation_ko": "(A) 편지의 목적은 참가를 '초대(invite)'하는 것. (B) 인상을 준 것은 'power hitting(강력한 타격)'. ①이 정답.",
+      "distractor_ko": "(A)에 warn/congratulate는 맥락과 다르고, (B)에 academic background/video skills/coaching experience는 본문에 없는 내용이다."
+    },
+
+    "writing": [
+      {
+        "subtype": "word_order",
+        "subtype_label": "배열 영작",
+        "question": "다음 우리말과 같은 뜻이 되도록 <보기>의 단어를 모두 배열하여 영작하시오.",
+        "ko_prompt": "저희는 귀하께서 올해 대회에 참가해 주시기를 요청드리고 싶습니다.",
+        "words": ["we", "would", "like", "to", "ask", "you", "to", "join", "the", "competition", "this", "year"],
+        "answer": "we would like to ask you to join the competition this year.",
+        "explanation_ko": "would like to ask + 목적어(you) + to부정사(to join) + 목적어(the competition) + 시간 부사구(this year)."
+      },
+      {
+        "subtype": "word_order",
+        "subtype_label": "배열 영작",
+        "question": "다음 우리말과 같은 뜻이 되도록 <보기>의 단어를 모두 배열하여 영작하시오.",
+        "ko_prompt": "귀하가 영상을 통해 얻으신 인기를 바탕으로, 저희는 이곳의 관중들이 귀하를 매우 좋아할 것이라 의심치 않습니다.",
+        "words": ["Based", "on", "the", "popularity", "you", "gained", "from", "the", "video", "we", "have", "no", "doubt", "the", "crowds", "here", "will", "love", "you"],
+        "answer": "Based on the popularity you gained from the video, we have no doubt the crowds here will love you.",
+        "explanation_ko": "Based on + 명사구(분사 전치사구), have no doubt (that) + 절(S+will+V)."
+      },
+      {
+        "subtype": "conditioned_write",
+        "subtype_label": "조건 영작",
+        "question": "다음 우리말을 <조건>에 맞게 영작하시오.",
+        "ko_prompt": "저희는 최근 귀하의 야구팀 영상을 보았고, 특히 귀하의 강력한 타격에 깊은 인상을 받았습니다.",
+        "conditions": [
+          "과거시제를 사용할 것",
+          "be impressed by 구문을 사용할 것",
+          "especially 를 포함할 것"
+        ],
+        "answer": "We recently saw a video of your baseball team and were especially impressed by your power hitting.",
+        "explanation_ko": "saw(과거), were especially impressed by(수동 과거 + especially 강조), power hitting(강력한 타격)."
+      },
+      {
+        "subtype": "translate_ko",
+        "subtype_label": "우리말 해석",
+        "question": "다음 밑줄 친 문장을 우리말로 해석하시오.",
+        "en_prompt": "It is a very popular event in our community, and we would like to ask you to join the competition this year.",
+        "answer": "이것은 저희 지역 사회에서 매우 인기 있는 행사이며, 저희는 귀하께서 올해 대회에 참가해 주시기를 요청드리고 싶습니다.",
+        "explanation_ko": "would like to ask + 목적어 + to부정사 = '~에게 …해 달라고 요청하다'. join the competition = 대회에 참가하다."
+      },
+      {
+        "subtype": "summary_word",
+        "subtype_label": "요약 단어",
+        "show_passage": true,
+        "question": "다음 글을 읽고, 요약문의 빈칸 (A), (B)에 들어갈 단어를 본문에 근거하여 쓰시오.",
+        "summary": "The letter is written to (A)___________ Ben Harper to compete in the Tuscanyville Homerun Derby, as the writer believes his (B)___________ hitting will impress the crowds.",
+        "answer_a": "invite",
+        "answer_b": "power",
+        "explanation_ko": "(A) 편지의 목적은 참가를 '초대(invite)'하는 것. (B) Ben Harper의 장점으로 강조된 것은 'power hitting'에서 power."
+      },
+      {
+        "subtype": "topic_write",
+        "subtype_label": "주제문 영작",
+        "question": "이 편지의 목적을 한 문장의 영어로 쓰시오.",
+        "ko_prompt": "이 편지는 Ben Harper에게 Tuscanyville 홈런 대회에 참가해 달라고 요청하기 위해 쓴 것이다.",
+        "conditions": [
+          "The purpose of this letter 로 시작할 것",
+          "to부정사를 사용할 것",
+          "invite 또는 ask 를 포함할 것"
+        ],
+        "answer": "The purpose of this letter is to invite Ben Harper to join the Tuscanyville Homerun Derby.",
+        "explanation_ko": "The purpose of this letter is + to부정사 구조. invite + 목적어 + to join."
+      }
+    ]
+  }
+}

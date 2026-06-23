@@ -1,0 +1,352 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "39.json",
+  "_note": "39번 워크북 — 본문 7문장(삽입 문장 포함 총 8문장 기준으로 7문장) 풀커버.",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "hierarchical",  "pos": "형" },
+      { "word": "exceed",        "pos": "동" },
+      { "word": "comparable",    "pos": "형" },
+      { "word": "chromatic",     "pos": "형" },
+      { "word": "diversify",     "pos": "동" },
+      { "word": "palette",       "pos": "명" },
+      { "word": "demonstrate",   "pos": "동" },
+      { "word": "lexicon",       "pos": "명" },
+      { "word": "pictorial",     "pos": "형" },
+      { "word": "context",       "pos": "명" }
+    ],
+    "ko_to_en": [
+      { "meaning": "위계적인, 계층적인",           "pos": "형", "answer": "hierarchical" },
+      { "meaning": "능가하다, 초과하다",           "pos": "동", "answer": "exceed" },
+      { "meaning": "비교할 만한, 필적하는",        "pos": "형", "answer": "comparable" },
+      { "meaning": "색채의, 색조의",               "pos": "형", "answer": "chromatic" },
+      { "meaning": "다양화하다",                   "pos": "동", "answer": "diversify" },
+      { "meaning": "입증하다, 보여 주다",          "pos": "동", "answer": "demonstrate" },
+      { "meaning": "어휘 체계, 어휘집",            "pos": "명", "answer": "lexicon" },
+      { "meaning": "회화의, 그림의",               "pos": "형", "answer": "pictorial" },
+      { "meaning": "맥락, 문맥",                   "pos": "명", "answer": "context" },
+      { "meaning": "(색의) 농도, 뉘앙스",          "pos": "명", "answer": "shade" }
+    ],
+    "expressions": [
+      { "ko": "~에 걸맞은",               "answer": "worthy of" },
+      { "ko": "~와 일치하여",             "answer": "in keeping with" },
+      { "ko": "맥락에 따라",              "answer": "depending on the context" },
+      { "ko": "바로 ~을 통해서 …했다",    "answer": "It was with ~ that" },
+      { "ko": "~이 아니라 …이다",         "answer": "Not that ~ but" }
+    ],
+    "definitions": [
+      { "def": "relating to color or colors",                                              "answer": "chromatic" },
+      { "def": "the complete set of words or expressions in a language or subject area",   "answer": "lexicon" },
+      { "def": "to be greater or better than something",                                   "answer": "exceed" },
+      { "def": "to show clearly that something is true by providing evidence",             "answer": "demonstrate" },
+      { "def": "similar enough to be judged against each other",                           "answer": "comparable" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "For thousands of years in the West, red was the only color {{1:worthy of/worthy for}} that name, {{2:the only/an only}} true color.",
+      "ko_full": "수천 년 동안 서구에서 빨강은 그 이름에 걸맞은 유일한 색, 유일한 진정한 색이었다.",
+      "answers": ["worthy of", "the only"],
+      "explain": [
+        "worthy of + 명사 — '~에 걸맞은'. worthy for는 비문.",
+        "유일함을 나타낼 때 the only가 맞다. an only는 비표준."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "As much on the historical {{1:as/than}} hierarchical level, it {{2:exceeded/exceeded to}} all others.",
+      "ko_full": "역사적 차원에서나 위계적 차원에서나 마찬가지로, 빨강은 다른 모든 것을 능가했다.",
+      "answers": ["as", "exceeded"],
+      "explain": [
+        "as much on A as B — 'A에서만큼 B에서도'. as가 맞다.",
+        "exceed는 타동사. 목적어 all others를 바로 취함 — to 불필요."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "Not that they did not exist, but they had to wait a long time before they {{1:were considered/considered}} colors and then {{2:played/play}} a comparable role.",
+      "ko_full": "다른 색들이 존재하지 않았던 것이 아니라, 그것들은 색으로 여겨지기까지 오랜 시간을 기다려야 했으며, 그런 다음에야 비교할 만한 역할을 하게 되었다.",
+      "answers": ["were considered", "played"],
+      "explain": [
+        "색들이 '여겨지는' 대상 → 수동태 were considered.",
+        "과거 사실의 병렬 서술 → 과거시제 played."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "It was with red {{1:that/which}} humans did their first color experiments, {{2:achieved/achieving}} their first successes, and then constructed a chromatic universe.",
+      "ko_full": "인류가 최초의 색 실험을 하고, 최초의 성과를 이루고, 그런 다음 색채 세계를 구축한 것은 바로 빨강을 통해서였다.",
+      "answers": ["that", "achieved"],
+      "explain": [
+        "It was ~ that ... 강조 분열문 → that.",
+        "did / achieved / constructed 병렬 구조 → 과거동사 achieved."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "Here the lexicon {{1:seems/seem}} in keeping {{2:with/for}} pictorial practices and coloring techniques.",
+      "ko_full": "이 점에서 어휘 체계는 회화적 관행 및 채색 기법과 일치하는 것으로 보인다.",
+      "answers": ["seems", "with"],
+      "explain": [
+        "주어 the lexicon(단수) → 단수 동사 seems.",
+        "in keeping with ~ — '~와 일치하여' 고정 전치사 with."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "In certain languages, the same word can mean \"red\" or simply \"colored,\" {{1:depending on/depended on}} the context, such as coloratus in classical Latin {{2:or/nor}} colorado in modern Castilian.",
+      "ko_full": "어떤 언어들에서는 동일한 단어가 맥락에 따라 '빨간색' 또는 단순히 '색이 있는'을 의미할 수 있는데, 고전 라틴어의 coloratus나 현대 카스티야어의 colorado가 그 예이다.",
+      "answers": ["depending on", "or"],
+      "explain": [
+        "분사구문 depending on('~에 따라') — depended on은 수동이라 문맥 불일치.",
+        "coloratus와 colorado를 선택적으로 나열 → or. nor는 부정 상관접속사."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "In other languages, the words meaning \"red\" and \"beautiful\" share a common root; for example, that is the case in Russian, in {{1:which/what}} the terms krasnyy (red) and krasivy (beautiful) {{2:belong to/belong for}} the same lexical family.",
+      "ko_full": "또 다른 언어들에서는 '빨간색'과 '아름다운'을 의미하는 단어들이 공통 어근을 공유한다. 예를 들어, 러시아어에서는 krasnyy(빨간색)와 krasivy(아름다운)라는 용어가 동일한 어휘 계열에 속한다는 것이 그 경우이다.",
+      "answers": ["which", "belong to"],
+      "explain": [
+        "선행사 Russian(명사) → 관계대명사 which. what은 선행사 없을 때 사용.",
+        "belong to ~ — '~에 속하다' 고정 전치사 to."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "For thousands of years in the West, red was the only color {{1:worthy of/unworthy of}} that name, the only {{2:true/false}} color.",
+      "ko_full": "수천 년 동안 서구에서 빨강은 그 이름에 걸맞은 유일한 색, 유일한 진정한 색이었다.",
+      "answers": ["worthy of", "true"],
+      "explain": [
+        "빨강이 '그 이름에 걸맞은' → worthy of.",
+        "유일한 '진정한' 색 → true. false는 의미 반전."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "As much on the {{1:historical/recent}} as hierarchical level, it {{2:exceeded/lagged behind}} all others.",
+      "ko_full": "역사적 차원에서나 위계적 차원에서나 마찬가지로, 빨강은 다른 모든 것을 능가했다.",
+      "answers": ["historical", "exceeded"],
+      "explain": [
+        "수천 년의 역사 맥락 → historical(역사적인).",
+        "모든 색을 '능가했다' → exceeded. lagged behind(뒤처졌다)는 반의."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "They had to wait a long time before they were considered colors and then played a {{1:comparable/incomparable}} role in material culture, social codes, and systems of {{2:thought/doubt}}.",
+      "ko_full": "그것들은 색으로 여겨지기까지 오랜 시간을 기다려야 했으며, 그런 다음에야 물질문화, 사회적 규범, 사상 체계에서 비교할 만한 역할을 하게 되었다.",
+      "answers": ["comparable", "thought"],
+      "explain": [
+        "빨강에 '필적하는' 역할 → comparable(비교할 만한). incomparable은 '비교 불가'.",
+        "systems of thought — '사상 체계'. systems of doubt는 의미가 없음."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "It was with red that humans did their first color experiments, achieved their first {{1:successes/failures}}, and then {{2:constructed/destroyed}} a chromatic universe.",
+      "ko_full": "인류가 최초의 색 실험을 하고, 최초의 성과를 이루고, 그런 다음 색채 세계를 구축한 것은 바로 빨강을 통해서였다.",
+      "answers": ["successes", "constructed"],
+      "explain": [
+        "빨강을 통해 '성과'를 이룸 → successes. failures는 반의.",
+        "색채 세계를 '구축했다' → constructed. destroyed는 반의."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "Here the {{1:lexicon/syntax}} seems in keeping with {{2:pictorial/literary}} practices and coloring techniques.",
+      "ko_full": "이 점에서 어휘 체계는 회화적 관행 및 채색 기법과 일치하는 것으로 보인다.",
+      "answers": ["lexicon", "pictorial"],
+      "explain": [
+        "어휘 '체계' → lexicon. syntax는 통사론/문법 구조.",
+        "'그림의, 회화의' 관행 → pictorial. literary는 '문학의'."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "The same word can mean \"red\" or simply \"colored,\" depending on the {{1:context/consequence}}, such as {{2:coloratus/colorblind}} in classical Latin.",
+      "ko_full": "어떤 언어들에서는 동일한 단어가 맥락에 따라 '빨간색' 또는 단순히 '색이 있는'을 의미할 수 있는데, 고전 라틴어의 coloratus가 그 예이다.",
+      "answers": ["context", "coloratus"],
+      "explain": [
+        "'맥락'에 따라 의미가 달라짐 → context. consequence는 '결과'.",
+        "고전 라틴어의 사례 → coloratus. colorblind(색맹)는 무관."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "The words meaning \"red\" and \"beautiful\" {{1:share/lack}} a common root; krasnyy (red) and krasivy (beautiful) belong to the same {{2:lexical/logical}} family.",
+      "ko_full": "또 다른 언어들에서는 '빨간색'과 '아름다운'을 의미하는 단어들이 공통 어근을 공유한다. krasnyy(빨간색)와 krasivy(아름다운)는 동일한 어휘 계열에 속한다.",
+      "answers": ["share", "lexical"],
+      "explain": [
+        "두 단어가 어근을 '공유한다' → share. lack(결여하다)은 반의.",
+        "'어휘' 계열 → lexical. logical(논리적)은 무관."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "w", "answer": "worthy",    "after": "of that name" },
+        { "pos": 2, "letter": "t", "answer": "true",      "after": "color" }
+      ],
+      "ko_full": "수천 년 동안 서구에서 빨강은 그 이름에 걸맞은 유일한 색, 유일한 진정한 색이었다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "h", "answer": "historical",   "after": "as hierarchical level" },
+        { "pos": 2, "letter": "e", "answer": "exceeded",     "after": "all others" }
+      ],
+      "ko_full": "역사적 차원에서나 위계적 차원에서나 마찬가지로, 빨강은 다른 모든 것을 능가했다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "c", "answer": "considered",   "after": "colors" },
+        { "pos": 2, "letter": "c", "answer": "comparable",   "after": "role in" },
+        { "pos": 3, "letter": "m", "answer": "material",     "after": "culture" }
+      ],
+      "ko_full": "다른 색들이 존재하지 않았던 것이 아니라, 그것들은 색으로 여겨지기까지 오랜 시간을 기다려야 했으며, 그런 다음에야 물질문화, 사회적 규범, 사상 체계에서 비교할 만한 역할을 하게 되었다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "e", "answer": "experiments",  "after": "achieved their" },
+        { "pos": 2, "letter": "c", "answer": "constructed",  "after": "a chromatic" },
+        { "pos": 3, "letter": "c", "answer": "chromatic",    "after": "universe" }
+      ],
+      "ko_full": "인류가 최초의 색 실험을 하고, 최초의 성과를 이루고, 그런 다음 색채 세계를 구축한 것은 바로 빨강을 통해서였다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "l", "answer": "lexicon",     "after": "seems in keeping" },
+        { "pos": 2, "letter": "p", "answer": "pictorial",   "after": "practices and" }
+      ],
+      "ko_full": "이 점에서 어휘 체계는 회화적 관행 및 채색 기법과 일치하는 것으로 보인다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "c", "answer": "colored",    "after": "depending on the" },
+        { "pos": 2, "letter": "c", "answer": "context",    "after": "such as coloratus" },
+        { "pos": 3, "letter": "c", "answer": "classical",  "after": "Latin" }
+      ],
+      "ko_full": "어떤 언어들에서는 동일한 단어가 맥락에 따라 '빨간색' 또는 단순히 '색이 있는'을 의미할 수 있는데, 고전 라틴어의 coloratus나 현대 카스티야어의 colorado가 그 예이다."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "hints": [
+        { "pos": 1, "letter": "r", "answer": "root",         "after": "for example" },
+        { "pos": 2, "letter": "l", "answer": "lexical",      "after": "family" },
+        { "pos": 3, "letter": "b", "answer": "beautiful",    "after": "belong to the same" }
+      ],
+      "ko_full": "또 다른 언어들에서는 '빨간색'과 '아름다운'을 의미하는 단어들이 공통 어근을 공유한다. 예를 들어, 러시아어에서는 krasnyy(빨간색)와 krasivy(아름다운)라는 용어가 동일한 어휘 계열에 속한다는 것이 그 경우이다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 },
+    { "no": 7, "ref_sentence": 7 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["For", "thousands", "of", "years", "in", "the", "West", "red", "was", "the", "only", "color", "worthy", "of", "that", "name", "the", "only", "true", "color"],
+      "answer": "For thousands of years in the West, red was the only color worthy of that name, the only true color."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["As", "much", "on", "the", "historical", "as", "hierarchical", "level", "it", "exceeded", "all", "others"],
+      "answer": "As much on the historical as hierarchical level, it exceeded all others."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["Not", "that", "they", "did", "not", "exist", "but", "they", "had", "to", "wait", "a", "long", "time", "before", "they", "were", "considered", "colors", "and", "then", "played", "a", "comparable", "role", "in", "material", "culture", "social", "codes", "and", "systems", "of", "thought"],
+      "answer": "Not that they did not exist, but they had to wait a long time before they were considered colors and then played a comparable role in material culture, social codes, and systems of thought."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["It", "was", "with", "red", "that", "humans", "did", "their", "first", "color", "experiments", "achieved", "their", "first", "successes", "and", "then", "constructed", "a", "chromatic", "universe"],
+      "answer": "It was with red that humans did their first color experiments, achieved their first successes, and then constructed a chromatic universe."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["Here", "the", "lexicon", "seems", "in", "keeping", "with", "pictorial", "practices", "and", "coloring", "techniques"],
+      "answer": "Here the lexicon seems in keeping with pictorial practices and coloring techniques."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["In", "certain", "languages", "the", "same", "word", "can", "mean", "red", "or", "simply", "colored", "depending", "on", "the", "context", "such", "as", "coloratus", "in", "classical", "Latin", "or", "colorado", "in", "modern", "Castilian"],
+      "answer": "In certain languages, the same word can mean \"red\" or simply \"colored,\" depending on the context, such as coloratus in classical Latin or colorado in modern Castilian."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "words": ["In", "other", "languages", "the", "words", "meaning", "red", "and", "beautiful", "share", "a", "common", "root", "for", "example", "that", "is", "the", "case", "in", "Russian", "in", "which", "the", "terms", "krasnyy", "red", "and", "krasivy", "beautiful", "belong", "to", "the", "same", "lexical", "family"],
+      "answer": "In other languages, the words meaning \"red\" and \"beautiful\" share a common root; for example, that is the case in Russian, in which the terms krasnyy (red) and krasivy (beautiful) belong to the same lexical family."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" },
+    { "no": 7, "ref_sentence": 7, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 1, "no": 1 },
+    { "kind": "vocab",   "ref": 3, "no": 2 },
+    { "kind": "fill",    "ref": 4, "no": 3 },
+    { "kind": "ko",      "ref": 5, "no": 4 },
+    { "kind": "jumble",  "ref": 6, "no": 5 },
+    { "kind": "sent",    "ref": 7, "no": 6 },
+    { "kind": "grammar", "ref": 7, "no": 7 },
+    { "kind": "vocab",   "ref": 2, "no": 8 }
+  ]
+}

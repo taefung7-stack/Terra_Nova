@@ -30,7 +30,14 @@
     "variant:june1": "node builder/build-variant.mjs 2026-june-grade1/data 2026-june-grade1/dist",
     "pdf:june1": "node builder/pdf.mjs 2026-june-grade1/dist",
     "combine:june1": "node builder/combine.mjs 2026-june-grade1/dist 2026-6월-고1-영어-분석지-합본.pdf",
-    "combine-wb:june1": "node builder/combine-workbook.mjs 2026-june-grade1/dist 2026-6월-고1-영어-워크북-합본.pdf"
+    "combine-wb:june1": "node builder/combine-workbook.mjs 2026-june-grade1/dist 2026-6월-고1-영어-워크북-합본.pdf",
+    "build:june3": "node builder/build.mjs 2026-june-grade3/data 2026-june-grade3/dist",
+    "workbook:june3": "node builder/build-workbook.mjs 2026-june-grade3/data 2026-june-grade3/dist",
+    "variant:june3": "node builder/build-variant.mjs 2026-june-grade3/data 2026-june-grade3/dist",
+    "pdf:june3": "node builder/pdf.mjs 2026-june-grade3/dist",
+    "combine:june3": "node builder/combine.mjs 2026-june-grade3/dist 2026-6월-고3-영어-분석지-합본.pdf",
+    "combine-wb:june3": "node builder/combine-workbook.mjs 2026-june-grade3/dist 2026-6월-고3-영어-워크북-합본.pdf",
+    "all:june3": "npm run build:june3 && npm run workbook:june3 && npm run variant:june3 && npm run pdf:june3"
   },
   "dependencies": {
     "puppeteer": "^22.15.0"

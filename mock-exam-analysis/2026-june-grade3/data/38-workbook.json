@@ -1,0 +1,396 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "38.json",
+  "_note": "38번 워크북 — 본문 8문장 풀커버.",
+  "_template_for_new_rounds": "이 파일을 새 회차의 {N}-workbook.json 작성 시 템플릿으로 사용. en_template의 {{N:A/B}} 토큰 = 양자택일 박스, hints 배열 = 빈칸 첫글자, jumble.words = 단어 배열 (셔플 X, 의도 유지).",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "aerodynamic",    "pos": "형" },
+      { "word": "vortex",         "pos": "명" },
+      { "word": "rectangular",    "pos": "형" },
+      { "word": "maximize",       "pos": "동" },
+      { "word": "minimize",       "pos": "동" },
+      { "word": "phenomenon",     "pos": "명" },
+      { "word": "perpendicular",  "pos": "형" },
+      { "word": "self-sustaining","pos": "형" },
+      { "word": "prevailing",     "pos": "형" },
+      { "word": "disturb",        "pos": "동" }
+    ],
+    "ko_to_en": [
+      { "meaning": "공기역학적인",                "pos": "형", "answer": "aerodynamic" },
+      { "meaning": "소용돌이, 와류",              "pos": "명", "answer": "vortex" },
+      { "meaning": "현상",                        "pos": "명", "answer": "phenomenon" },
+      { "meaning": "수직의, 직각의",              "pos": "형", "answer": "perpendicular" },
+      { "meaning": "평행한",                      "pos": "형", "answer": "parallel" },
+      { "meaning": "지배적인, 우세한",            "pos": "형", "answer": "prevailing" },
+      { "meaning": "마찬가지로, 또한",            "pos": "부", "answer": "likewise" },
+      { "meaning": "방해하다, 교란하다",          "pos": "동", "answer": "disturb" },
+      { "meaning": "배치",                        "pos": "명", "answer": "placement" },
+      { "meaning": "교란하다, 혼란시키다",        "pos": "동", "answer": "confuse" }
+    ],
+    "expressions": [
+      { "ko": "~을 일으키다, 야기하다",   "answer": "give rise to" },
+      { "ko": "~에서 분리되다",           "answer": "separate from" },
+      { "ko": "하류 방향으로",            "answer": "downstream" },
+      { "ko": "잘라내다",                 "answer": "chop off" },
+      { "ko": "마찬가지로",               "answer": "likewise" }
+    ],
+    "definitions": [
+      { "def": "designed or shaped to move through the air with very little resistance",        "answer": "aerodynamic" },
+      { "def": "a mass of air that spins rapidly around a central point",                       "answer": "vortex" },
+      { "def": "a fact or event that can be seen to exist or happen",                           "answer": "phenomenon" },
+      { "def": "meeting another line or surface at a right angle",                              "answer": "perpendicular" },
+      { "def": "most noticeable or most common in a particular place at a particular time",     "answer": "prevailing" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "{{1:To minimize/Minimizing}} building costs and maximize revenues, skyscrapers generally take the shape of squares or {{2:rectangles/rectangular}}.",
+      "ko_full": "건축 비용을 최소화하고 수익을 극대화하기 위해, 초고층 건물은 일반적으로 정사각형이나 직사각형 형태를 취한다.",
+      "answers": ["To minimize", "rectangles"],
+      "explain": [
+        "목적을 나타내는 부사적 to부정사 — To minimize (병렬 구조: To minimize ... and maximize ...).",
+        "전치사 or 뒤 병렬 명사 자리 → rectangles(명사); rectangular는 형용사."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "These are not particularly {{1:aerodynamic/aerodynamics}} shapes, and this {{2:results in/results from}} a wind phenomenon called \"vortex shedding.\"",
+      "ko_full": "이것들은 특별히 공기역학적인 형태가 아니며, 이것은 '와류 현상(vortex shedding)'이라고 불리는 바람 현상을 초래한다.",
+      "answers": ["aerodynamic", "results in"],
+      "explain": [
+        "명사 shapes를 수식하는 형용사 자리 → aerodynamic(형용사); aerodynamics는 명사.",
+        "result in(~을 초래하다) vs result from(~에서 비롯되다) — 원인이 앞에 있으므로 result in."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "As wind meets a rectangular skyscraper it pushes on the flat face of the building before {{1:flowing/flowed}} around its sides, where eventually it {{2:separates/is separated}} from the face of the structure.",
+      "ko_full": "바람이 직사각형 초고층 건물과 맞닥뜨리면, 결국 건물의 면에서 분리되는 측면 주위로 흘러가기 전에 건물의 평평한 면을 밀어붙인다.",
+      "answers": ["flowing", "separates"],
+      "explain": [
+        "before + 동명사 — before flowing: 전치사 뒤 동명사.",
+        "주어 it(바람)이 능동적으로 분리됨 → 능동태 separates."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "The difference in pressures on the front and back faces of the building {{1:gives rise to/gives rise of}} vortices, or spinning currents of wind, {{2:that/which}} flow downstream from the building.",
+      "ko_full": "건물의 전면과 후면의 기압 차이는 건물로부터 하류 방향으로 흐르는 와류, 즉 소용돌이치는 바람 기류를 만들어낸다.",
+      "answers": ["gives rise to", "that"],
+      "explain": [
+        "고정 표현 give rise to(야기하다) — give rise of는 존재하지 않음.",
+        "선행사 vortices를 수식하는 주격 관계대명사 — that (또는 which 모두 가능하나 원문은 that)."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "The vortices pull and push the building in a direction {{1:perpendicular/parallel}} to the wind at frequencies that can become {{2:dangerously/dangerous}} self-sustaining.",
+      "ko_full": "와류는 위험할 정도로 자기 지속적이 될 수 있는 주파수로 바람에 수직인 방향으로 건물을 당기고 민다.",
+      "answers": ["perpendicular", "dangerously"],
+      "explain": [
+        "바람 방향에 '수직인' 방향 → perpendicular(수직); parallel(평행)은 반대 의미.",
+        "형용사 self-sustaining을 수식하는 부사 → dangerously; dangerous는 형용사."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "{{1:Orienting/Oriented}} the building so that the longer face of the structure is {{2:parallel/perpendicular}} with prevailing winds can help.",
+      "ko_full": "건물의 더 긴 면이 지배적인 바람의 방향과 평행하도록 건물의 방향을 잡는 것이 도움이 될 수 있다.",
+      "answers": ["Orienting", "parallel"],
+      "explain": [
+        "주어 자리에서 동작의 주체 → 동명사 Orienting; Oriented는 수동 분사.",
+        "바람 방향과 '평행하도록' → parallel; perpendicular(수직)는 와류를 더 키움."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "{{1:Chopping or rounding off/Chop or round off}} corners of a building can likewise {{2:make/making}} it more aerodynamic.",
+      "ko_full": "건물의 모서리를 잘라내거나 둥글게 하는 것도 마찬가지로 건물을 더 공기역학적으로 만들 수 있다.",
+      "answers": ["Chopping or rounding off", "make"],
+      "explain": [
+        "주어 자리 → 동명사 Chopping or rounding off; 동사원형 Chop or round off는 주어 불가.",
+        "조동사 can 뒤 → 동사원형 make; making은 진행형으로 can 뒤 불가."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "Roughing up the corners of the building through the careful placement of balconies or stepped corners can help by {{1:disturbing or delaying/disturb or delay}} the formation of {{2:strong/strongly}} vortices.",
+      "ko_full": "발코니나 단차진 모서리의 신중한 배치를 통해 건물의 모서리를 거칠게 만드는 것은 강한 와류의 형성을 방해하거나 지연시킴으로써 도움이 될 수 있다.",
+      "answers": ["disturbing or delaying", "strong"],
+      "explain": [
+        "전치사 by 뒤 → 동명사 disturbing or delaying; 동사원형 disturb or delay는 불가.",
+        "명사 vortices를 수식하는 형용사 자리 → strong; strongly는 부사."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "To {{1:minimize/maximize}} building costs and maximize revenues, skyscrapers generally take the shape of {{2:squares or rectangles/circles or ovals}}.",
+      "ko_full": "건축 비용을 최소화하고 수익을 극대화하기 위해, 초고층 건물은 일반적으로 정사각형이나 직사각형 형태를 취한다.",
+      "answers": ["minimize", "squares or rectangles"],
+      "explain": [
+        "비용을 '최소화'하려는 목적 → minimize; maximize는 '극대화'로 반의어.",
+        "본문에서 직사각형 형태가 와류 문제의 원인 → squares or rectangles."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "These are not particularly {{1:aerodynamic/symmetric}} shapes, and this results in a wind {{2:phenomenon/solution}} called \"vortex shedding.\"",
+      "ko_full": "이것들은 특별히 공기역학적인 형태가 아니며, 이것은 '와류 현상(vortex shedding)'이라고 불리는 바람 현상을 초래한다.",
+      "answers": ["aerodynamic", "phenomenon"],
+      "explain": [
+        "바람에 적합하지 않은 형태 → aerodynamic(공기역학적인); symmetric(대칭적)은 바람과 무관.",
+        "vortex shedding은 '현상(phenomenon)' — solution(해결책)은 반대 의미."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "As wind meets a {{1:rectangular/circular}} skyscraper it pushes on the flat face of the building before flowing around its sides, where eventually it {{2:separates from/adheres to}} the face of the structure.",
+      "ko_full": "바람이 직사각형 초고층 건물과 맞닥뜨리면, 결국 건물의 면에서 분리되는 측면 주위로 흘러가기 전에 건물의 평평한 면을 밀어붙인다.",
+      "answers": ["rectangular", "separates from"],
+      "explain": [
+        "본문 전체가 '직사각형' 형태의 문제를 다룸 → rectangular; circular는 오히려 공기역학적.",
+        "바람이 건물 면에서 '분리된다' → separates from; adheres to(달라붙다)는 반대."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "The difference in pressures on the front and back faces of the building gives rise to vortices, or {{1:spinning/slowing}} currents of wind, that flow {{2:downstream/upstream}} from the building.",
+      "ko_full": "건물의 전면과 후면의 기압 차이는 건물로부터 하류 방향으로 흐르는 와류, 즉 소용돌이치는 바람 기류를 만들어낸다.",
+      "answers": ["spinning", "downstream"],
+      "explain": [
+        "vortices는 '소용돌이치는' 기류 → spinning; slowing(느려지는)은 vortex와 무관.",
+        "바람이 건물을 지나 '하류 방향으로' 흐름 → downstream; upstream은 반대 방향."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "The vortices pull and push the building in a direction perpendicular to the wind at {{1:frequencies/amplitudes}} that can become dangerously {{2:self-sustaining/self-limiting}}.",
+      "ko_full": "와류는 위험할 정도로 자기 지속적이 될 수 있는 주파수로 바람에 수직인 방향으로 건물을 당기고 민다.",
+      "answers": ["frequencies", "self-sustaining"],
+      "explain": [
+        "주기적 진동의 '주파수' → frequencies; amplitudes(진폭)는 다른 물리량.",
+        "외력 없이 스스로 유지·증폭 → self-sustaining; self-limiting(자기 제한적)은 반대."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "Orienting the building so that the longer face of the structure is {{1:parallel/perpendicular}} with {{2:prevailing/weakest}} winds can help.",
+      "ko_full": "건물의 더 긴 면이 지배적인 바람의 방향과 평행하도록 건물의 방향을 잡는 것이 도움이 될 수 있다.",
+      "answers": ["parallel", "prevailing"],
+      "explain": [
+        "바람과 '평행'하게 → parallel; perpendicular(수직)는 와류를 키우는 방향.",
+        "'지배적인(주된)' 바람 방향 → prevailing; weakest(가장 약한)는 설계 기준이 아님."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "{{1:Chopping or rounding off/Extending or sharpening}} corners of a building can likewise make it more {{2:aerodynamic/rectangular}}.",
+      "ko_full": "건물의 모서리를 잘라내거나 둥글게 하는 것도 마찬가지로 건물을 더 공기역학적으로 만들 수 있다.",
+      "answers": ["Chopping or rounding off", "aerodynamic"],
+      "explain": [
+        "와류 줄이려면 모서리 '잘라내기/둥글게 하기' → Chopping or rounding off; extending/sharpening은 오히려 날카로운 형태를 만듦.",
+        "목적은 건물을 더 '공기역학적으로' 만드는 것 → aerodynamic; rectangular는 와류의 원인."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "Roughing up the corners through the careful placement of balconies or stepped corners can help by {{1:disturbing or delaying/accelerating or strengthening}} the formation of {{2:strong/weak}} vortices.",
+      "ko_full": "발코니나 단차진 모서리의 신중한 배치를 통해 건물의 모서리를 거칠게 만드는 것은 강한 와류의 형성을 방해하거나 지연시킴으로써 도움이 될 수 있다.",
+      "answers": ["disturbing or delaying", "strong"],
+      "explain": [
+        "바람을 '교란하고 지연'시키는 것이 목적 → disturbing or delaying; accelerating/strengthening은 반대 효과.",
+        "건물에 위험한 것은 '강한' 와류 → strong; weak(약한) 와류는 문제가 아님."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "m", "answer": "minimize",   "after": "building costs" },
+        { "pos": 2, "letter": "r", "answer": "revenues",   "after": "skyscrapers generally" },
+        { "pos": 3, "letter": "r", "answer": "rectangles", "after": "squares or" }
+      ],
+      "ko_full": "건축 비용을 최소화하고 수익을 극대화하기 위해, 초고층 건물은 일반적으로 정사각형이나 직사각형 형태를 취한다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "a", "answer": "aerodynamic", "after": "shapes" },
+        { "pos": 2, "letter": "r", "answer": "results",     "after": "in a wind phenomenon" },
+        { "pos": 3, "letter": "p", "answer": "phenomenon",  "after": "called" }
+      ],
+      "ko_full": "이것들은 특별히 공기역학적인 형태가 아니며, 이것은 '와류 현상(vortex shedding)'이라고 불리는 바람 현상을 초래한다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "f", "answer": "flat",       "after": "face of the building" },
+        { "pos": 2, "letter": "f", "answer": "flowing",    "after": "around its sides" },
+        { "pos": 3, "letter": "s", "answer": "separates",  "after": "from the face" }
+      ],
+      "ko_full": "바람이 직사각형 초고층 건물과 맞닥뜨리면, 결국 건물의 면에서 분리되는 측면 주위로 흘러가기 전에 건물의 평평한 면을 밀어붙인다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "p", "answer": "pressures",  "after": "on the front and back" },
+        { "pos": 2, "letter": "v", "answer": "vortices",   "after": "or spinning currents" },
+        { "pos": 3, "letter": "d", "answer": "downstream", "after": "from the building" }
+      ],
+      "ko_full": "건물의 전면과 후면의 기압 차이는 건물로부터 하류 방향으로 흐르는 와류, 즉 소용돌이치는 바람 기류를 만들어낸다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "p", "answer": "perpendicular", "after": "to the wind" },
+        { "pos": 2, "letter": "f", "answer": "frequencies",   "after": "that can become" },
+        { "pos": 3, "letter": "s", "answer": "self-sustaining", "after": "" }
+      ],
+      "ko_full": "와류는 위험할 정도로 자기 지속적이 될 수 있는 주파수로 바람에 수직인 방향으로 건물을 당기고 민다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "o", "answer": "Orienting",  "after": "the building so that" },
+        { "pos": 2, "letter": "p", "answer": "parallel",   "after": "with prevailing winds" },
+        { "pos": 3, "letter": "p", "answer": "prevailing", "after": "winds can help" }
+      ],
+      "ko_full": "건물의 더 긴 면이 지배적인 바람의 방향과 평행하도록 건물의 방향을 잡는 것이 도움이 될 수 있다."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "hints": [
+        { "pos": 1, "letter": "c", "answer": "Chopping",    "after": "or rounding off corners" },
+        { "pos": 2, "letter": "l", "answer": "likewise",    "after": "make it more" },
+        { "pos": 3, "letter": "a", "answer": "aerodynamic", "after": "" }
+      ],
+      "ko_full": "건물의 모서리를 잘라내거나 둥글게 하는 것도 마찬가지로 건물을 더 공기역학적으로 만들 수 있다."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "hints": [
+        { "pos": 1, "letter": "p", "answer": "placement",  "after": "of balconies" },
+        { "pos": 2, "letter": "d", "answer": "disturbing", "after": "or delaying" },
+        { "pos": 3, "letter": "v", "answer": "vortices",   "after": "" }
+      ],
+      "ko_full": "발코니나 단차진 모서리의 신중한 배치를 통해 건물의 모서리를 거칠게 만드는 것은 강한 와류의 형성을 방해하거나 지연시킴으로써 도움이 될 수 있다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 },
+    { "no": 7, "ref_sentence": 7 },
+    { "no": 8, "ref_sentence": 8 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["To", "minimize", "building", "costs", "and", "maximize", "revenues", "skyscrapers", "generally", "take", "the", "shape", "of", "squares", "or", "rectangles"],
+      "answer": "To minimize building costs and maximize revenues, skyscrapers generally take the shape of squares or rectangles."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["These", "are", "not", "particularly", "aerodynamic", "shapes", "and", "this", "results", "in", "a", "wind", "phenomenon", "called", "vortex", "shedding"],
+      "answer": "These are not particularly aerodynamic shapes, and this results in a wind phenomenon called \"vortex shedding.\""
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["As", "wind", "meets", "a", "rectangular", "skyscraper", "it", "pushes", "on", "the", "flat", "face", "of", "the", "building", "before", "flowing", "around", "its", "sides", "where", "eventually", "it", "separates", "from", "the", "face", "of", "the", "structure"],
+      "answer": "As wind meets a rectangular skyscraper it pushes on the flat face of the building before flowing around its sides, where eventually it separates from the face of the structure."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["The", "difference", "in", "pressures", "on", "the", "front", "and", "back", "faces", "of", "the", "building", "gives", "rise", "to", "vortices", "or", "spinning", "currents", "of", "wind", "that", "flow", "downstream", "from", "the", "building"],
+      "answer": "The difference in pressures on the front and back faces of the building gives rise to vortices, or spinning currents of wind, that flow downstream from the building."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["The", "vortices", "pull", "and", "push", "the", "building", "in", "a", "direction", "perpendicular", "to", "the", "wind", "at", "frequencies", "that", "can", "become", "dangerously", "self-sustaining"],
+      "answer": "The vortices pull and push the building in a direction perpendicular to the wind at frequencies that can become dangerously self-sustaining."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["Orienting", "the", "building", "so", "that", "the", "longer", "face", "of", "the", "structure", "is", "parallel", "with", "prevailing", "winds", "can", "help"],
+      "answer": "Orienting the building so that the longer face of the structure is parallel with prevailing winds can help."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "words": ["Chopping", "or", "rounding", "off", "corners", "of", "a", "building", "can", "likewise", "make", "it", "more", "aerodynamic"],
+      "answer": "Chopping or rounding off corners of a building can likewise make it more aerodynamic."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "words": ["Roughing", "up", "the", "corners", "of", "the", "building", "through", "the", "careful", "placement", "of", "balconies", "or", "stepped", "corners", "can", "help", "by", "disturbing", "or", "delaying", "the", "formation", "of", "strong", "vortices"],
+      "answer": "Roughing up the corners of the building through the careful placement of balconies or stepped corners can help by disturbing or delaying the formation of strong vortices."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" },
+    { "no": 7, "ref_sentence": 7, "given": "ko" },
+    { "no": 8, "ref_sentence": 8, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 1, "no": 1 },
+    { "kind": "vocab",   "ref": 2, "no": 2 },
+    { "kind": "fill",    "ref": 4, "no": 3 },
+    { "kind": "ko",      "ref": 5, "no": 4 },
+    { "kind": "jumble",  "ref": 6, "no": 5 },
+    { "kind": "sent",    "ref": 8, "no": 6 },
+    { "kind": "grammar", "ref": 7, "no": 7 },
+    { "kind": "vocab",   "ref": 3, "no": 8 }
+  ]
+}

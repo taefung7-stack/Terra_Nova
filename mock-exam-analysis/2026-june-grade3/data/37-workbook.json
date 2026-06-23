@@ -1,0 +1,353 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "37.json",
+  "_note": "37번 워크북 — 본문 7문장 풀커버. 순서(order) 유형 3점.",
+  "_template_for_new_rounds": "이 파일을 새 회차의 {N}-workbook.json 작성 시 템플릿으로 사용. en_template의 {{N:A/B}} 토큰 = 양자택일 박스, hints 배열 = 빈칸 첫글자, jumble.words = 단어 배열(셔플 X, 의도 유지).",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "instinctive",  "pos": "형" },
+      { "word": "prevailing",   "pos": "형" },
+      { "word": "perception",   "pos": "명" },
+      { "word": "inevitable",   "pos": "형" },
+      { "word": "strategy",     "pos": "명" },
+      { "word": "originality",  "pos": "명" },
+      { "word": "innovative",   "pos": "형" },
+      { "word": "deploy",       "pos": "동" },
+      { "word": "imitation",    "pos": "명" },
+      { "word": "collective",   "pos": "형" }
+    ],
+    "ko_to_en": [
+      { "meaning": "본능적인",          "pos": "형", "answer": "instinctive" },
+      { "meaning": "지배적인, 우세한",  "pos": "형", "answer": "prevailing" },
+      { "meaning": "인식, 지각",        "pos": "명", "answer": "perception" },
+      { "meaning": "보편적인",          "pos": "형", "answer": "universal" },
+      { "meaning": "불가피한",          "pos": "형", "answer": "inevitable" },
+      { "meaning": "독창성",            "pos": "명", "answer": "originality" },
+      { "meaning": "혁신적인",          "pos": "형", "answer": "innovative" },
+      { "meaning": "모방",              "pos": "명", "answer": "imitation" },
+      { "meaning": "능가하다",          "pos": "동", "answer": "outdo" },
+      { "meaning": "장관을 이루는",     "pos": "형", "answer": "spectacular" }
+    ],
+    "expressions": [
+      { "ko": "~의 지배를 받다",       "answer": "be subject to" },
+      { "ko": "~에 비유하다",          "answer": "liken to" },
+      { "ko": "이를 확장하면",         "answer": "by extension" },
+      { "ko": "~에서 끌어오다, 활용하다", "answer": "draw on" },
+      { "ko": "(힘·지식을) 적용하다",   "answer": "bring to bear" }
+    ],
+    "definitions": [
+      { "def": "the ability to produce or use new and effective ideas",                         "answer": "originality" },
+      { "def": "existing or most commonly accepted at a particular time",                       "answer": "prevailing" },
+      { "def": "the way in which something is regarded, understood, or interpreted",            "answer": "perception" },
+      { "def": "impossible to avoid or prevent",                                                "answer": "inevitable" },
+      { "def": "something done to copy someone else's actions, behavior, or style",             "answer": "imitation" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Although there may be elements that trigger instinctive response, spectacle {{1:works/working}} primarily within a cultural frame and {{2:is/are}} subject to prevailing modes of perception that observers bring to bear.",
+      "ko_full": "본능적 반응을 유발하는 요소들이 있을 수 있지만, 스펙터클은 주로 문화적 틀 안에서 작동하며, 관찰자들이 적용하는 지배적인 인식 양식의 지배를 받는다.",
+      "answers": ["works", "is"],
+      "explain": [
+        "주어 spectacle(단수) + 3인칭 단수 현재 → works.",
+        "주어 spectacle(단수) + be subject to → is subject to."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "We stress that creation of spectacle is neither a universal {{1:nor/or}} even an inevitable expression of culture, but is a strategy commonly {{2:used/using}} by people from many different cultures.",
+      "ko_full": "우리는, 스펙터클의 창조가 문화의 보편적이거나 불가피한 표현이 아니라, 특정한 필요를 충족하기 위해 다양한 문화권 사람들이 공통으로 사용하는 전략임을 강조한다.",
+      "answers": ["nor", "used"],
+      "explain": [
+        "neither A nor B — 상관접속사 neither와 짝을 이루는 nor.",
+        "strategy를 수식하는 과거분사 used(수동 — 사람들에 의해 사용되는)."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "The task of creating spectacle has been {{1:likened/liking}} to creating new works of literature, where writers normally feel {{2:bound/binding}} by the rules and traditions of their genre.",
+      "ko_full": "스펙터클을 창조하는 과제는 새로운 문학 작품을 창조하는 것에 비유되어 왔는데, 그 경우 작가들은 일반적으로 장르의 규칙과 전통에 얽매인다.",
+      "answers": ["likened", "bound"],
+      "explain": [
+        "has been + p.p. 수동완료 → likened(liken의 과거분사).",
+        "feel bound by(~에 얽매이다) — feel + 형용사(bound), binding은 현재분사라 부적절."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "By extension, spectacle is {{1:produced/producing}} by working with the grain of a particular culture, {{2:blending/blended}} the innovative with the established.",
+      "ko_full": "이를 확장하면, 스펙터클은 특정 문화의 흐름에 맞춰 작업함으로써, 즉 혁신적인 것과 기존의 것을 혼합함으로써 만들어진다.",
+      "answers": ["produced", "blending"],
+      "explain": [
+        "spectacle이 만들어지는 대상 → 수동 is produced.",
+        "앞 내용을 부연하는 분사구문 → 능동 현재분사 blending."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "Thus anyone {{1:deploying/deployed}} spectacle may draw on a repertoire of techniques and conventions {{2:developed/developing}} from previous festivals or related activities.",
+      "ko_full": "따라서 스펙터클을 활용하는 누구든 이전 축제나 관련 활동에서 발전된 기술과 관습의 레퍼토리를 끌어올 수 있다.",
+      "answers": ["deploying", "developed"],
+      "explain": [
+        "anyone을 수식하는 능동 현재분사 deploying('스펙터클을 활용하는').",
+        "techniques and conventions를 수식하는 수동 과거분사 developed('발전된')."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "Spectacle {{1:must/could}} also {{2:be/being}} spectacular.",
+      "ko_full": "스펙터클은 또한 장관을 이루어야 한다.",
+      "answers": ["must", "be"],
+      "explain": [
+        "강한 당위성을 나타내는 조동사 must('~해야만 한다').",
+        "조동사 must 뒤 → 동사원형 be."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "A spectacle has to amaze spectators, {{1:outdoing/outdone}} previous efforts if it {{2:is to/will}} become part of the collective memory of those who witnessed and participated in it.",
+      "ko_full": "스펙터클은 관중을 놀라게 해야 하며, 이를 목격하고 참여한 사람들의 집단 기억의 일부가 되려면 이전의 노력을 능가해야 한다.",
+      "answers": ["outdoing", "is to"],
+      "explain": [
+        "spectacle이 능동으로 이전 노력을 능가하는 상황 → 능동 분사구문 outdoing.",
+        "if it is to V(~하려면, 목적/의지) — if 조건절의 be to 용법."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Although there may be elements that trigger {{1:instinctive/deliberate}} response, spectacle works primarily within a {{2:cultural/natural}} frame.",
+      "ko_full": "본능적 반응을 유발하는 요소들이 있을 수 있지만, 스펙터클은 주로 문화적 틀 안에서 작동한다.",
+      "answers": ["instinctive", "cultural"],
+      "explain": [
+        "의도 없이 반사적으로 나오는 반응 → instinctive(본능적인).",
+        "글 전체 핵심 틀 → cultural(문화적인)."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "Creation of spectacle is neither {{1:universal/particular}} nor even an {{2:inevitable/optional}} expression of culture.",
+      "ko_full": "스펙터클의 창조가 문화의 보편적이거나 불가피한 표현이 아님을 강조한다.",
+      "answers": ["universal", "inevitable"],
+      "explain": [
+        "모든 문화에 공통으로 나타나는 → universal(보편적인).",
+        "반드시 나타날 수밖에 없는 → inevitable(불가피한)."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "Writers normally feel {{1:bound/free}} by the rules of their genre yet need to show sufficient {{2:originality/conformity}} to impress their audiences.",
+      "ko_full": "작가들은 일반적으로 장르의 규칙에 얽매이면서도 청중을 감동시키기 위해 충분한 독창성을 보여줄 필요가 있다.",
+      "answers": ["bound", "originality"],
+      "explain": [
+        "규칙에 억제되는 → bound(얽매인).",
+        "청중을 감동시키기 위한 새로운 요소 → originality(독창성)."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "Spectacle is produced by working with the {{1:grain/current}} of a particular culture, blending the {{2:innovative/imitative}} with the established.",
+      "ko_full": "스펙터클은 특정 문화의 흐름에 맞춰 작업함으로써, 즉 혁신적인 것과 기존의 것을 혼합함으로써 만들어진다.",
+      "answers": ["grain", "innovative"],
+      "explain": [
+        "with the grain(흐름/결에 맞춰) — 문화의 방향에 따르는 것.",
+        "기존 것과 혼합할 새로운 요소 → innovative(혁신적인)."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "Anyone deploying spectacle may {{1:draw on/draw up}} a repertoire of techniques, but {{2:imitation/innovation}} is not enough.",
+      "ko_full": "스펙터클을 활용하는 누구든 기술의 레퍼토리를 끌어올 수 있지만, 모방만으로는 충분하지 않다.",
+      "answers": ["draw on", "imitation"],
+      "explain": [
+        "draw on(~을 끌어오다, 활용하다) ↔ draw up(작성하다).",
+        "글이 부족하다고 비판하는 것 → imitation(모방)."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "Spectacle must also be {{1:spectacular/superficial}}.",
+      "ko_full": "스펙터클은 또한 장관을 이루어야 한다.",
+      "answers": ["spectacular"],
+      "explain": [
+        "스펙터클의 핵심 특성 → spectacular(장관을 이루는). superficial(피상적인)은 반대 의미."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "A spectacle has to {{1:amaze/disappoint}} spectators, outdoing previous efforts if it is to become part of the {{2:collective/personal}} memory.",
+      "ko_full": "스펙터클은 관중을 놀라게 해야 하며, 목격자들의 집단 기억의 일부가 되려면 이전의 노력을 능가해야 한다.",
+      "answers": ["amaze", "collective"],
+      "explain": [
+        "스펙터클이 관중에게 줘야 하는 경험 → amaze(놀라게 하다).",
+        "집단이 공유하는 기억 → collective(집단적인)."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "i", "answer": "instinctive",  "after": "response, spectacle works" },
+        { "pos": 2, "letter": "p", "answer": "prevailing",   "after": "modes of perception" },
+        { "pos": 3, "letter": "b", "answer": "bring",        "after": "to bear" }
+      ],
+      "ko_full": "본능적 반응을 유발하는 요소들이 있을 수 있지만, 스펙터클은 주로 문화적 틀 안에서 작동하며, 관찰자들이 적용하는 지배적인 인식 양식의 지배를 받는다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "u", "answer": "universal",   "after": "nor even an inevitable" },
+        { "pos": 2, "letter": "i", "answer": "inevitable",  "after": "expression of culture" },
+        { "pos": 3, "letter": "s", "answer": "strategy",    "after": "commonly used by people" }
+      ],
+      "ko_full": "우리는, 스펙터클의 창조가 문화의 보편적이거나 불가피한 표현이 아니라, 특정한 필요를 충족하기 위해 다양한 문화권 사람들이 공통으로 사용하는 전략임을 강조한다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "l", "answer": "likened",     "after": "to creating new works" },
+        { "pos": 2, "letter": "b", "answer": "bound",       "after": "by the rules and traditions" },
+        { "pos": 3, "letter": "o", "answer": "originality", "after": "to impress their audiences" }
+      ],
+      "ko_full": "스펙터클을 창조하는 과제는 새로운 문학 작품을 창조하는 것에 비유되어 왔는데, 작가들은 장르의 규칙과 전통에 얽매이면서도 청중을 감동시키기 위해 충분한 독창성을 보여줄 필요가 있다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "g", "answer": "grain",       "after": "of a particular culture" },
+        { "pos": 2, "letter": "i", "answer": "innovative",  "after": "with the established" },
+        { "pos": 3, "letter": "e", "answer": "established", "after": "" }
+      ],
+      "ko_full": "이를 확장하면, 스펙터클은 특정 문화의 흐름에 맞춰 작업함으로써, 즉 혁신적인 것과 기존의 것을 혼합함으로써 만들어진다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "d", "answer": "deploying",   "after": "spectacle may draw on" },
+        { "pos": 2, "letter": "r", "answer": "repertoire",  "after": "of techniques and conventions" },
+        { "pos": 3, "letter": "i", "answer": "imitation",   "after": "is not enough" }
+      ],
+      "ko_full": "따라서 스펙터클을 활용하는 누구든 이전 축제나 관련 활동에서 발전된 기술과 관습의 레퍼토리를 끌어올 수 있지만, 모방만으로는 충분하지 않다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "s", "answer": "spectacular", "after": "" }
+      ],
+      "ko_full": "스펙터클은 또한 장관을 이루어야 한다."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "hints": [
+        { "pos": 1, "letter": "a", "answer": "amaze",      "after": "spectators, outdoing" },
+        { "pos": 2, "letter": "o", "answer": "outdoing",   "after": "previous efforts" },
+        { "pos": 3, "letter": "c", "answer": "collective", "after": "memory of those" }
+      ],
+      "ko_full": "스펙터클은 관중을 놀라게 해야 하며, 이를 목격하고 참여한 사람들의 집단 기억의 일부가 되려면 이전의 노력을 능가해야 한다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 },
+    { "no": 7, "ref_sentence": 7 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["Although", "there", "may", "be", "elements", "that", "trigger", "instinctive", "response", "spectacle", "works", "primarily", "within", "a", "cultural", "frame", "and", "is", "subject", "to", "prevailing", "modes", "of", "perception", "that", "observers", "bring", "to", "bear"],
+      "answer": "Although there may be elements that trigger instinctive response, spectacle works primarily within a cultural frame and is subject to prevailing modes of perception that observers bring to bear."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["In", "saying", "that", "we", "stress", "that", "creation", "of", "spectacle", "is", "neither", "a", "universal", "nor", "even", "an", "inevitable", "expression", "of", "culture", "but", "is", "a", "strategy", "commonly", "used", "by", "people", "from", "many", "different", "cultures", "to", "address", "specific", "needs"],
+      "answer": "In saying that, we stress that creation of spectacle is neither a universal nor even an inevitable expression of culture, but is a strategy commonly used by people from many different cultures to address specific needs."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["The", "task", "of", "creating", "spectacle", "has", "been", "likened", "to", "creating", "new", "works", "of", "literature", "where", "writers", "normally", "feel", "bound", "by", "the", "rules", "and", "traditions", "of", "their", "genre", "yet", "need", "to", "show", "sufficient", "originality", "to", "impress", "their", "audiences"],
+      "answer": "The task of creating spectacle has been likened to creating new works of literature, where writers normally feel bound by the rules and traditions of their genre yet need to show sufficient originality to impress their audiences."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["By", "extension", "spectacle", "is", "produced", "by", "working", "with", "the", "grain", "of", "a", "particular", "culture", "blending", "the", "innovative", "with", "the", "established"],
+      "answer": "By extension, spectacle is produced by working with the grain of a particular culture, blending the innovative with the established."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["Thus", "anyone", "deploying", "spectacle", "may", "draw", "on", "a", "repertoire", "of", "techniques", "and", "conventions", "developed", "from", "previous", "festivals", "or", "related", "activities", "but", "imitation", "is", "not", "enough"],
+      "answer": "Thus anyone deploying spectacle may draw on a repertoire of techniques and conventions developed from previous festivals or related activities, but imitation is not enough."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["Spectacle", "must", "also", "be", "spectacular"],
+      "answer": "Spectacle must also be spectacular."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "words": ["A", "spectacle", "has", "to", "amaze", "spectators", "outdoing", "previous", "efforts", "if", "it", "is", "to", "become", "part", "of", "the", "collective", "memory", "of", "those", "who", "witnessed", "and", "participated", "in", "it"],
+      "answer": "A spectacle has to amaze spectators, outdoing previous efforts if it is to become part of the collective memory of those who witnessed and participated in it."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" },
+    { "no": 7, "ref_sentence": 7, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 1, "no": 1 },
+    { "kind": "vocab",   "ref": 2, "no": 2 },
+    { "kind": "fill",    "ref": 3, "no": 3 },
+    { "kind": "ko",      "ref": 4, "no": 4 },
+    { "kind": "jumble",  "ref": 5, "no": 5 },
+    { "kind": "sent",    "ref": 7, "no": 6 },
+    { "kind": "grammar", "ref": 6, "no": 7 },
+    { "kind": "vocab",   "ref": 4, "no": 8 }
+  ]
+}
