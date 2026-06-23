@@ -1,0 +1,395 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "32.json",
+  "_note": "32번 워크북 — 본문 8문장 풀커버.",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "nonverbal",      "pos": "형" },
+      { "word": "observe",        "pos": "동" },
+      { "word": "misinterpret",   "pos": "동" },
+      { "word": "verbally",       "pos": "부" },
+      { "word": "confirm",        "pos": "동" },
+      { "word": "indicate",       "pos": "동" },
+      { "word": "convey",         "pos": "동" },
+      { "word": "mortal",         "pos": "명" },
+      { "word": "betrayal",       "pos": "명" },
+      { "word": "conceal",        "pos": "동" }
+    ],
+    "ko_to_en": [
+      { "meaning": "비언어적인",            "pos": "형", "answer": "nonverbal" },
+      { "meaning": "관찰하다",              "pos": "동", "answer": "observe" },
+      { "meaning": "구두로, 말로",          "pos": "부", "answer": "verbally" },
+      { "meaning": "확인하다",              "pos": "동", "answer": "confirm" },
+      { "meaning": "나타내다, 가리키다",    "pos": "동", "answer": "indicate" },
+      { "meaning": "전달하다",              "pos": "동", "answer": "convey" },
+      { "meaning": "스며 나오다",           "pos": "동", "answer": "ooze" },
+      { "meaning": "배반, 배신",            "pos": "명", "answer": "betrayal" },
+      { "meaning": "숨기다, 감추다",        "pos": "동", "answer": "conceal" },
+      { "meaning": "해석, 이해",            "pos": "명", "answer": "interpretation" }
+    ],
+    "expressions": [
+      { "ko": "말로 표현하다",              "answer": "put ~ into words" },
+      { "ko": "같은 이해를 공유하다",       "answer": "on the same wavelength" },
+      { "ko": "비언어적으로 전달되다",      "answer": "conveyed nonverbally" },
+      { "ko": "모든 모공에서 스며 나오다",  "answer": "ooze out at every pore" },
+      { "ko": "~하는 것은 당연하다",        "answer": "no wonder" }
+    ],
+    "definitions": [
+      { "def": "to watch carefully in order to gain information",           "answer": "observe" },
+      { "def": "to hide something or keep it secret",                       "answer": "conceal" },
+      { "def": "to communicate a message or idea",                          "answer": "convey" },
+      { "def": "an act of disloyalty; the unintentional revealing of a secret", "answer": "betrayal" },
+      { "def": "to understand something incorrectly",                       "answer": "misinterpret" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Speakers don't always {{1:put/puts}} everything that's important to them {{2:into/in}} words.",
+      "ko_full": "화자는 자신에게 중요한 모든 것을 항상 말로 표현하지는 않는다.",
+      "answers": ["put", "into"],
+      "explain": [
+        "주어 Speakers(복수) + don't → 동사원형 put.",
+        "put ~ into words: '~을 말로 표현하다' 관용 표현 — into가 필수."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "Very often you can understand a speaker's meaning by {{1:observing/observe}} their nonverbal behaviors such as a change in a vocal tone or volume, eye contact, {{2:facial/face}} expressions and gestures.",
+      "ko_full": "매우 자주 당신은 음성 톤이나 음량의 변화, 눈 맞춤, 표정, 몸짓과 같은 비언어적 행동을 관찰함으로써 화자의 의미를 파악할 수 있다.",
+      "answers": ["observing", "facial"],
+      "explain": [
+        "전치사 by의 목적어 → 동명사 observing.",
+        "'표정'은 facial expressions — 명사 face가 아니라 형용사 facial."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "As it is easy {{1:to misinterpret/misinterpreting}} nonverbal behavior, effective listeners verbally confirm their {{2:interpretations/interprets}} of someone's nonverbal communication.",
+      "ko_full": "비언어적 행동을 오해하기 쉽기 때문에, 효과적인 청자는 누군가의 비언어적 의사소통에 대한 자신의 해석을 구두로 확인한다.",
+      "answers": ["to misinterpret", "interpretations"],
+      "explain": [
+        "it is easy to V — 가주어 구문에서 to부정사가 진주어.",
+        "소유격(their) 뒤 명사 자리 → 복수 명사 interpretations."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "A question as simple as \"Do your nods {{1:indicate/indicates}} a yes vote?\" can make sure that everyone is on {{2:the same/a same}} wavelength.",
+      "ko_full": "\"당신의 고개 끄덕임이 찬성 투표를 의미하나요?\"와 같이 단순한 질문이 모두가 같은 이해를 공유하고 있는지를 확인해 줄 수 있다.",
+      "answers": ["indicate", "the same"],
+      "explain": [
+        "주어 your nods(복수) → indicate(3인칭 복수 동사원형).",
+        "on the same wavelength — 관용 표현, the same으로 고정."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "If, as nonverbal research indicates, more than half of a speaker's meaning {{1:is conveyed/are conveyed}} nonverbally, we are missing a lot of important information if we fail {{2:to listen/listening}} to nonverbal behavior.",
+      "ko_full": "만약 비언어적 연구가 나타내듯 화자 의미의 절반 이상이 비언어적으로 전달된다면, 비언어적 행동을 '듣는' 것에 실패한다면 우리는 많은 중요한 정보를 놓치고 있는 것이다.",
+      "answers": ["is conveyed", "to listen"],
+      "explain": [
+        "주어 핵 = more than half(단수 취급) → is conveyed(수동).",
+        "fail to V — 'to부정사'를 목적어로 취하는 동사."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "Even Freud suggested that \"he {{1:that/who}} has eyes to see and ears to hear may convince {{2:himself/him}} that no mortal can keep a secret.",
+      "ko_full": "프로이트조차도 \"눈으로 보고 귀로 들을 수 있는 사람은 어떤 인간도 비밀을 지킬 수 없다는 것을 스스로 확신할 수 있다.",
+      "answers": ["that", "himself"],
+      "explain": [
+        "고어체에서 선행사 he를 수식하는 관계대명사 — that 사용(that has eyes to see).",
+        "주어 he와 동일 인물 → 재귀대명사 himself."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "If his lips are {{1:silent/silence}}, he chatters with his fingertips; betrayal {{2:oozes/ooze}} out of him at every pore.\"",
+      "ko_full": "만약 그의 입술이 말이 없다면, 그는 손가락 끝으로 수다를 떨며; 배반은 그의 모든 모공에서 스며 나온다.\"",
+      "answers": ["silent", "oozes"],
+      "explain": [
+        "be 동사 뒤 보어 자리 → 형용사 silent(명사 silence 아님).",
+        "주어 betrayal(단수) → 3인칭 단수 현재 oozes."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "No wonder it is difficult for most people {{1:to conceal/concealing}} what they mean and feel {{2:in/on}} a face-to-face group discussion.",
+      "ko_full": "대부분의 사람들이 대면 집단 토론에서 자신이 의미하고 느끼는 것을 숨기기가 어렵다는 것은 당연하다.",
+      "answers": ["to conceal", "in"],
+      "explain": [
+        "it is difficult for sb to V — 가주어 구문, to부정사가 진주어.",
+        "토론에 참여하는 상황 → 'in a discussion'(전치사 in)."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Speakers don't always {{1:put/hide}} everything that's important to them into {{2:words/speech}}.",
+      "ko_full": "화자는 자신에게 중요한 모든 것을 항상 말로 표현하지는 않는다.",
+      "answers": ["put", "words"],
+      "explain": [
+        "put ~ into words: '~을 말로 표현하다' 관용 표현 — put.",
+        "put ~ into words: 말(words) 속에 넣다."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "You can understand a speaker's meaning by observing their {{1:nonverbal/verbal}} behaviors such as {{2:gestures/lectures}} and facial expressions.",
+      "ko_full": "매우 자주 당신은 비언어적 행동을 관찰함으로써 화자의 의미를 파악할 수 있다.",
+      "answers": ["nonverbal", "gestures"],
+      "explain": [
+        "말 이외의 신체 신호 → nonverbal behaviors.",
+        "신체 동작 예시 → gestures(몸짓); lectures(강의)는 오히려 언어적."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "As it is easy to {{1:misinterpret/understand}} nonverbal behavior, effective listeners verbally {{2:confirm/ignore}} their interpretations.",
+      "ko_full": "비언어적 행동을 오해하기 쉽기 때문에, 효과적인 청자는 누군가의 비언어적 의사소통에 대한 자신의 해석을 구두로 확인한다.",
+      "answers": ["misinterpret", "confirm"],
+      "explain": [
+        "비언어 행동은 '오해하기'(misinterpret) 쉽다 — 정반대 의미 understand(이해하다)는 맥락상 오류.",
+        "오해를 방지하려면 구두로 '확인한다'(confirm)."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "A question as simple as \"Do your nods {{1:indicate/deny}} a yes vote?\" can make sure that everyone is on the same {{2:wavelength/frequency}}.",
+      "ko_full": "\"당신의 고개 끄덕임이 찬성 투표를 의미하나요?\"와 같이 단순한 질문이 모두가 같은 이해를 공유하고 있는지를 확인해 줄 수 있다.",
+      "answers": ["indicate", "wavelength"],
+      "explain": [
+        "고개 끄덕임이 찬성을 '나타내는지' → indicate.",
+        "on the same wavelength — 관용 표현으로 wavelength가 고정."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "If more than half of a speaker's meaning is {{1:conveyed/withheld}} nonverbally, we are missing important information if we fail to {{2:notice/ignore}} nonverbal behavior.",
+      "ko_full": "만약 화자 의미의 절반 이상이 비언어적으로 전달된다면, 비언어적 행동에 주목하지 못하면 우리는 중요한 정보를 놓치고 있는 것이다.",
+      "answers": ["conveyed", "notice"],
+      "explain": [
+        "의미가 비언어적으로 '전달된다'(conveyed) — withheld(보류된다)는 반대.",
+        "비언어 행동을 '주목하지' 못하면(notice) 정보를 놓친다."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "Freud suggested that he that has eyes to see may {{1:convince/deceive}} himself that no {{2:mortal/immortal}} can keep a secret.",
+      "ko_full": "프로이트조차도 눈으로 보고 귀로 들을 수 있는 사람은 어떤 인간도 비밀을 지킬 수 없다는 것을 스스로 확신할 수 있다.",
+      "answers": ["convince", "mortal"],
+      "explain": [
+        "스스로 '확신할 수 있다'(convince himself) — deceive(속이다)는 반대.",
+        "no mortal(어떤 인간도 ~못한다) — immortal(불멸자)은 문맥 오류."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "If his lips are silent, he {{1:chatters/whispers}} with his fingertips; {{2:betrayal/loyalty}} oozes out of him at every pore.",
+      "ko_full": "만약 그의 입술이 말이 없다면, 그는 손가락 끝으로 수다를 떨며; 배반은 그의 모든 모공에서 스며 나온다.",
+      "answers": ["chatters", "betrayal"],
+      "explain": [
+        "'수다를 떤다'(chatters) — whispers(속삭이다)는 작은 소리로 말함, 비언어와 다름.",
+        "'배반'(betrayal)이 스며 나온다 — loyalty(충성심)는 정반대 의미."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "No wonder it is difficult for most people to {{1:conceal/reveal}} what they mean and feel in a {{2:face-to-face/written}} group discussion.",
+      "ko_full": "대부분의 사람들이 대면 집단 토론에서 자신이 의미하고 느끼는 것을 숨기기가 어렵다는 것은 당연하다.",
+      "answers": ["conceal", "face-to-face"],
+      "explain": [
+        "비언어 신호가 모든 것을 드러내므로 '숨기기'(conceal) 어렵다 — reveal(드러내다)은 반대.",
+        "'대면' 토론(face-to-face) — written(서면)은 비언어 신호가 없는 상황."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "p", "answer": "put",       "after": "everything that's important" },
+        { "pos": 2, "letter": "i", "answer": "important",  "after": "to them into words" },
+        { "pos": 3, "letter": "w", "answer": "words",      "after": "" }
+      ],
+      "ko_full": "화자는 자신에게 중요한 모든 것을 항상 말로 표현하지는 않는다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "o", "answer": "observing",   "after": "their nonverbal behaviors" },
+        { "pos": 2, "letter": "n", "answer": "nonverbal",   "after": "behaviors such as" },
+        { "pos": 3, "letter": "g", "answer": "gestures",    "after": "" }
+      ],
+      "ko_full": "매우 자주 당신은 음성 톤이나 음량의 변화, 눈 맞춤, 표정, 몸짓과 같은 비언어적 행동을 관찰함으로써 화자의 의미를 파악할 수 있다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "m", "answer": "misinterpret",    "after": "nonverbal behavior" },
+        { "pos": 2, "letter": "v", "answer": "verbally",        "after": "confirm their" },
+        { "pos": 3, "letter": "i", "answer": "interpretations", "after": "of someone's" }
+      ],
+      "ko_full": "비언어적 행동을 오해하기 쉽기 때문에, 효과적인 청자는 누군가의 비언어적 의사소통에 대한 자신의 해석을 구두로 확인한다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "n", "answer": "nods",       "after": "indicate a yes vote" },
+        { "pos": 2, "letter": "i", "answer": "indicate",   "after": "a yes vote" },
+        { "pos": 3, "letter": "w", "answer": "wavelength", "after": "" }
+      ],
+      "ko_full": "\"당신의 고개 끄덕임이 찬성 투표를 의미하나요?\"와 같이 단순한 질문이 모두가 같은 이해를 공유하고 있는지를 확인해 줄 수 있다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "c", "answer": "conveyed",   "after": "nonverbally" },
+        { "pos": 2, "letter": "m", "answer": "missing",    "after": "a lot of important" },
+        { "pos": 3, "letter": "f", "answer": "fail",       "after": "to listen to nonverbal" }
+      ],
+      "ko_full": "만약 비언어적 연구가 나타내듯 화자 의미의 절반 이상이 비언어적으로 전달된다면, 비언어적 행동을 '듣는' 것에 실패한다면 우리는 많은 중요한 정보를 놓치고 있는 것이다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "c", "answer": "convince",   "after": "himself that no mortal" },
+        { "pos": 2, "letter": "m", "answer": "mortal",     "after": "can keep a secret" },
+        { "pos": 3, "letter": "s", "answer": "secret",     "after": "" }
+      ],
+      "ko_full": "프로이트조차도 \"눈으로 보고 귀로 들을 수 있는 사람은 어떤 인간도 비밀을 지킬 수 없다는 것을 스스로 확신할 수 있다."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "hints": [
+        { "pos": 1, "letter": "c", "answer": "chatters",   "after": "with his fingertips" },
+        { "pos": 2, "letter": "b", "answer": "betrayal",   "after": "oozes out of him" },
+        { "pos": 3, "letter": "p", "answer": "pore",       "after": "" }
+      ],
+      "ko_full": "만약 그의 입술이 말이 없다면, 그는 손가락 끝으로 수다를 떨며; 배반은 그의 모든 모공에서 스며 나온다."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "hints": [
+        { "pos": 1, "letter": "d", "answer": "difficult",   "after": "for most people to" },
+        { "pos": 2, "letter": "c", "answer": "conceal",     "after": "what they mean and feel" },
+        { "pos": 3, "letter": "f", "answer": "face-to-face","after": "group discussion" }
+      ],
+      "ko_full": "대부분의 사람들이 대면 집단 토론에서 자신이 의미하고 느끼는 것을 숨기기가 어렵다는 것은 당연하다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 },
+    { "no": 7, "ref_sentence": 7 },
+    { "no": 8, "ref_sentence": 8 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["Speakers", "don't", "always", "put", "everything", "that's", "important", "to", "them", "into", "words"],
+      "answer": "Speakers don't always put everything that's important to them into words."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["Very", "often", "you", "can", "understand", "a", "speaker's", "meaning", "by", "observing", "their", "nonverbal", "behaviors", "such", "as", "a", "change", "in", "a", "vocal", "tone", "or", "volume", "eye", "contact", "facial", "expressions", "and", "gestures"],
+      "answer": "Very often you can understand a speaker's meaning by observing their nonverbal behaviors such as a change in a vocal tone or volume, eye contact, facial expressions and gestures."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["As", "it", "is", "easy", "to", "misinterpret", "nonverbal", "behavior", "effective", "listeners", "verbally", "confirm", "their", "interpretations", "of", "someone's", "nonverbal", "communication"],
+      "answer": "As it is easy to misinterpret nonverbal behavior, effective listeners verbally confirm their interpretations of someone's nonverbal communication."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["A", "question", "as", "simple", "as", "Do", "your", "nods", "indicate", "a", "yes", "vote", "can", "make", "sure", "that", "everyone", "is", "on", "the", "same", "wavelength"],
+      "answer": "A question as simple as \"Do your nods indicate a yes vote?\" can make sure that everyone is on the same wavelength."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["If", "as", "nonverbal", "research", "indicates", "more", "than", "half", "of", "a", "speaker's", "meaning", "is", "conveyed", "nonverbally", "we", "are", "missing", "a", "lot", "of", "important", "information", "if", "we", "fail", "to", "listen", "to", "nonverbal", "behavior"],
+      "answer": "If, as nonverbal research indicates, more than half of a speaker's meaning is conveyed nonverbally, we are missing a lot of important information if we fail to \"listen\" to nonverbal behavior."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["Even", "Freud", "suggested", "that", "he", "that", "has", "eyes", "to", "see", "and", "ears", "to", "hear", "may", "convince", "himself", "that", "no", "mortal", "can", "keep", "a", "secret"],
+      "answer": "Even Freud suggested that \"he that has eyes to see and ears to hear may convince himself that no mortal can keep a secret."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "words": ["If", "his", "lips", "are", "silent", "he", "chatters", "with", "his", "fingertips", "betrayal", "oozes", "out", "of", "him", "at", "every", "pore"],
+      "answer": "If his lips are silent, he chatters with his fingertips; betrayal oozes out of him at every pore.\""
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "words": ["No", "wonder", "it", "is", "difficult", "for", "most", "people", "to", "conceal", "what", "they", "mean", "and", "feel", "in", "a", "face-to-face", "group", "discussion"],
+      "answer": "No wonder it is difficult for most people to conceal what they mean and feel in a face-to-face group discussion."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" },
+    { "no": 7, "ref_sentence": 7, "given": "ko" },
+    { "no": 8, "ref_sentence": 8, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar",  "ref": 2,  "no": 1 },
+    { "kind": "vocab",    "ref": 3,  "no": 2 },
+    { "kind": "fill",     "ref": 5,  "no": 3 },
+    { "kind": "ko",       "ref": 7,  "no": 4 },
+    { "kind": "jumble",   "ref": 4,  "no": 5 },
+    { "kind": "sent",     "ref": 8,  "no": 6 },
+    { "kind": "grammar",  "ref": 6,  "no": 7 },
+    { "kind": "vocab",    "ref": 1,  "no": 8 }
+  ]
+}
