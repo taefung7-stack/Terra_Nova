@@ -1,0 +1,354 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "34.json",
+  "_note": "34번 워크북 — 본문 7문장 풀커버.",
+  "_template_for_new_rounds": "이 파일을 새 회차의 {N}-workbook.json 작성 시 템플릿으로 사용. en_template의 {{N:A/B}} 토큰 = 양자택일 박스, hints 배열 = 빈칸 첫글자, jumble.words = 단어 배열(셔플 X, 의도 유지).",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "inherently",    "pos": "부" },
+      { "word": "uppermost",     "pos": "형" },
+      { "word": "acquire",       "pos": "동" },
+      { "word": "assert",        "pos": "동" },
+      { "word": "significant",   "pos": "형" },
+      { "word": "attain",        "pos": "동" },
+      { "word": "consensus",     "pos": "명" },
+      { "word": "displace",      "pos": "동" },
+      { "word": "affirm",        "pos": "동" },
+      { "word": "conviction",    "pos": "명" }
+    ],
+    "ko_to_en": [
+      { "meaning": "본질적으로, 내재적으로",  "pos": "부", "answer": "inherently" },
+      { "meaning": "가장 중요한, 최상의",     "pos": "형", "answer": "uppermost" },
+      { "meaning": "획득하다, 취득하다",      "pos": "동", "answer": "acquire" },
+      { "meaning": "주장하다, 천명하다",      "pos": "동", "answer": "assert" },
+      { "meaning": "달성하다, 도달하다",      "pos": "동", "answer": "attain" },
+      { "meaning": "검증, 확인",             "pos": "명", "answer": "validation" },
+      { "meaning": "합의, 일치된 의견",       "pos": "명", "answer": "consensus" },
+      { "meaning": "대체하다, 밀어내다",      "pos": "동", "answer": "displace" },
+      { "meaning": "확언하다, 단언하다",      "pos": "동", "answer": "affirm" },
+      { "meaning": "확신, 신념",             "pos": "명", "answer": "conviction" }
+    ],
+    "expressions": [
+      { "ko": "기껏해야",                   "answer": "at best" },
+      { "ko": "거의 ~인",                   "answer": "all but" },
+      { "ko": "최종적으로 분석해 보면",       "answer": "in the last analysis" },
+      { "ko": "~와 같은 부류의",             "answer": "in the same class as" },
+      { "ko": "어떤 출처에서 비롯되었든",     "answer": "from whatever source it be derived" }
+    ],
+    "definitions": [
+      { "def": "a general agreement among a group of people",                            "answer": "consensus" },
+      { "def": "a strong belief or opinion that you are sure is right",                  "answer": "conviction" },
+      { "def": "to state publicly and firmly that something is true",                    "answer": "affirm" },
+      { "def": "to take the place of someone or something, forcing them out",            "answer": "displace" },
+      { "def": "to succeed in reaching a particular goal or standard",                   "answer": "attain" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "The dependent and shifting nature of art values, not only on the market but inherently, {{1:is/are}} uppermost in the mind of today's art collector, whether he buys for himself or as the representative of {{2:an/a}} institution.",
+      "ko_full": "미술 가치의 의존적이고 변동하는 속성은, 시장에서뿐 아니라 본질적으로도, 오늘날의 미술품 수집가의 마음에 가장 중요한 것으로 자리하고 있는데, 그가 자신을 위해 구매하든 기관의 대리인으로 구매하든 마찬가지다.",
+      "answers": ["is", "an"],
+      "explain": [
+        "주어 핵 = nature(단수) → is.",
+        "institution은 자음 /ɪ/ 발음으로 시작 → an."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "{{1:Acquiring/Acquired}} a work is acquiring a piece of art history, or it is acquiring nothing (beyond, that is, an object of personal enjoyment in the same class {{2:as/than}} a cat or a souvenir).",
+      "ko_full": "작품을 구입하는 것은 미술사의 한 조각을 획득하는 것이며, 그렇지 않으면 아무것도 획득하지 못하는 것이다(즉, 고양이나 기념품과 같은 부류의 개인적 즐거움의 대상에 그치는 것이다).",
+      "answers": ["Acquiring", "as"],
+      "explain": [
+        "주어 자리에서 명사 역할 → 동명사 Acquiring.",
+        "in the same class as — 동등 비교 as."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "In {{1:signing/having signed}} his check the collector asserts his belief in the future presence of the work as a significant point {{2:attained/attaining}} by art as a whole.",
+      "ko_full": "수표에 서명함으로써 수집가는 그 작품이 미술 전체가 도달한 중요한 지점으로서 미래에도 존재할 것이라는 믿음을 천명한다.",
+      "answers": ["signing", "attained"],
+      "explain": [
+        "In + 동명사(signing) — '서명하는 행위 속에서'.",
+        "a significant point가 수동적으로 달성되는 대상 → 과거분사 attained."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "History, however, is open to anything and the merit of the chosen painting or sculpture {{1:has/have}} ―at best― only {{2:the validation/a validate}} of a present-day consensus.",
+      "ko_full": "그러나 역사는 어떤 것에도 열려 있으며, 선택된 회화나 조각의 가치는 ―기껏해야― 현재의 합의에 의한 검증만을 지닐 뿐이다.",
+      "answers": ["has", "the validation"],
+      "explain": [
+        "주어 핵 = the merit(단수) → has.",
+        "명사형 validation에 정관사 the — 'the validation of'로 쓰는 것이 맞음."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "This consensus is all but certain to {{1:be displaced/displace}}, as others {{2:have been/had been}} in the past.",
+      "ko_full": "이 합의는 과거에 다른 합의들이 그랬던 것처럼 거의 틀림없이 대체될 것이다.",
+      "answers": ["be displaced", "have been"],
+      "explain": [
+        "합의가 대체되는 것(수동) → to be displaced.",
+        "과거부터 현재까지의 반복 경험 → 현재완료 have been."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "In the last analysis, {{1:committing/committed}} himself to a painting is {{2:the/a}} collector's own act.",
+      "ko_full": "최종적으로 분석해 보면, 한 회화에 자신을 헌신하는 것은 수집가 자신의 행위다.",
+      "answers": ["committing", "the"],
+      "explain": [
+        "주어 자리 명사 역할 → 동명사 committing.",
+        "앞서 언급한 수집가를 특정 → 정관사 the collector's."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "Through it he courageously affirms not only his aesthetic judgment, from {{1:whatever/wherever}} source it be derived, but the conviction {{2:that/what}} he can predict where art is going.",
+      "ko_full": "그것을 통해 그는 자신의 미적 판단 ―그것이 어떤 출처에서 비롯되었든― 뿐만 아니라, 미술이 어디로 향하는지 예측할 수 있다는 확신도 용감하게 확언한다.",
+      "answers": ["whatever", "that"],
+      "explain": [
+        "양보 부사절에서 명사(source)를 수식 → whatever.",
+        "the conviction과 동격절을 이끄는 접속사 → that."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "The {{1:dependent/independent}} and shifting nature of art values, not only on the market but {{2:inherently/externally}}, is uppermost in the mind of today's art collector.",
+      "ko_full": "미술 가치의 의존적이고 변동하는 속성은, 시장에서뿐 아니라 본질적으로도, 오늘날의 미술품 수집가의 마음에 가장 중요한 것으로 자리하고 있다.",
+      "answers": ["dependent", "inherently"],
+      "explain": [
+        "미술 가치는 '의존적(dependent)'이라고 본문이 명시.",
+        "'본질적으로(inherently)'가 시장 외 내재적 속성을 설명."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "{{1:Acquiring/Discarding}} a work is acquiring a piece of art history, or it is acquiring nothing beyond an object of personal {{2:enjoyment/achievement}}.",
+      "ko_full": "작품을 구입하는 것은 미술사의 한 조각을 획득하는 것이며, 아니면 개인적 즐거움의 대상에 그치는 것에 불과하다.",
+      "answers": ["Acquiring", "enjoyment"],
+      "explain": [
+        "작품을 '구입(acquiring)'하는 것 — discarding(버리다)는 반대.",
+        "고양이나 기념품과 같은 '개인적 즐거움(enjoyment)'."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "The collector {{1:asserts/denies}} his belief in the future presence of the work as a {{2:significant/insignificant}} point attained by art as a whole.",
+      "ko_full": "수집가는 그 작품이 미술 전체가 도달한 중요한 지점으로서 미래에도 존재할 것이라는 믿음을 천명한다.",
+      "answers": ["asserts", "significant"],
+      "explain": [
+        "믿음을 '천명(asserts)'함 — denies(부인하다)는 반대.",
+        "미술사에서 '중요한(significant)' 지점."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "The merit of the chosen painting or sculpture has ―at best― only the {{1:validation/rejection}} of a {{2:present-day/past}} consensus.",
+      "ko_full": "선택된 회화나 조각의 가치는 ―기껏해야― 현재의 합의에 의한 검증만을 지닐 뿐이다.",
+      "answers": ["validation", "present-day"],
+      "explain": [
+        "'검증(validation)' — rejection(거부)은 의미 반대.",
+        "지금의 합의 → 현재의(present-day)."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "This consensus is all but certain to be {{1:displaced/preserved}}, as others have been {{2:in the past/in the future}}.",
+      "ko_full": "이 합의는 과거에 다른 합의들이 그랬던 것처럼 거의 틀림없이 대체될 것이다.",
+      "answers": ["displaced", "in the past"],
+      "explain": [
+        "역사적으로 합의는 '대체(displaced)'된다.",
+        "과거 패턴을 근거로 들므로 'in the past'."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "In the last analysis, {{1:committing/abandoning}} himself to a painting is the {{2:collector's/dealer's}} own act.",
+      "ko_full": "최종적으로 분석해 보면, 한 회화에 자신을 헌신하는 것은 수집가 자신의 행위다.",
+      "answers": ["committing", "collector's"],
+      "explain": [
+        "작품에 '헌신(committing)'하는 것 — abandoning(포기)은 반대.",
+        "구매·서명하는 주체는 '수집가(collector)'."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "He courageously {{1:affirms/denies}} not only his aesthetic judgment but the {{2:conviction/doubt}} that he can predict where art is going.",
+      "ko_full": "그는 자신의 미적 판단뿐만 아니라, 미술이 어디로 향하는지 예측할 수 있다는 확신도 용감하게 확언한다.",
+      "answers": ["affirms", "conviction"],
+      "explain": [
+        "용감하게 '확언(affirms)'함 — denies(부인)은 반대.",
+        "예측할 수 있다는 '확신(conviction)' — doubt(의심)는 반대."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "d", "answer": "dependent",    "after": "and shifting nature" },
+        { "pos": 2, "letter": "i", "answer": "inherently",   "after": "is uppermost" },
+        { "pos": 3, "letter": "r", "answer": "representative", "after": "of an institution" }
+      ],
+      "ko_full": "미술 가치의 의존적이고 변동하는 속성은, 시장에서뿐 아니라 본질적으로도, 오늘날의 미술품 수집가의 마음에 가장 중요한 것으로 자리하고 있는데, 그가 자신을 위해 구매하든 기관의 대리인으로 구매하든 마찬가지다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "a", "answer": "acquiring",    "after": "a piece of art history" },
+        { "pos": 2, "letter": "s", "answer": "souvenir",     "after": "" },
+        { "pos": 3, "letter": "e", "answer": "enjoyment",    "after": "in the same class" }
+      ],
+      "ko_full": "작품을 구입하는 것은 미술사의 한 조각을 획득하는 것이며, 그렇지 않으면 아무것도 획득하지 못하는 것이다(즉, 고양이나 기념품과 같은 부류의 개인적 즐거움의 대상에 그치는 것이다)."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "a", "answer": "asserts",    "after": "his belief" },
+        { "pos": 2, "letter": "p", "answer": "presence",   "after": "of the work" },
+        { "pos": 3, "letter": "s", "answer": "significant", "after": "point attained" }
+      ],
+      "ko_full": "수표에 서명함으로써 수집가는 그 작품이 미술 전체가 도달한 중요한 지점으로서 미래에도 존재할 것이라는 믿음을 천명한다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "m", "answer": "merit",      "after": "of the chosen painting" },
+        { "pos": 2, "letter": "v", "answer": "validation", "after": "of a present-day consensus" },
+        { "pos": 3, "letter": "c", "answer": "consensus",  "after": "" }
+      ],
+      "ko_full": "그러나 역사는 어떤 것에도 열려 있으며, 선택된 회화나 조각의 가치는 ―기껏해야― 현재의 합의에 의한 검증만을 지닐 뿐이다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "c", "answer": "consensus",  "after": "is all but certain" },
+        { "pos": 2, "letter": "d", "answer": "displaced",  "after": "as others have been" }
+      ],
+      "ko_full": "이 합의는 과거에 다른 합의들이 그랬던 것처럼 거의 틀림없이 대체될 것이다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "a", "answer": "analysis",   "after": "committing himself" },
+        { "pos": 2, "letter": "c", "answer": "committing", "after": "to a painting" }
+      ],
+      "ko_full": "최종적으로 분석해 보면, 한 회화에 자신을 헌신하는 것은 수집가 자신의 행위다."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "hints": [
+        { "pos": 1, "letter": "a", "answer": "affirms",    "after": "not only his aesthetic" },
+        { "pos": 2, "letter": "c", "answer": "conviction", "after": "that he can predict" },
+        { "pos": 3, "letter": "p", "answer": "predict",    "after": "where art is going" }
+      ],
+      "ko_full": "그것을 통해 그는 자신의 미적 판단 ―그것이 어떤 출처에서 비롯되었든― 뿐만 아니라, 미술이 어디로 향하는지 예측할 수 있다는 확신도 용감하게 확언한다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 },
+    { "no": 7, "ref_sentence": 7 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["The", "dependent", "and", "shifting", "nature", "of", "art", "values", "not", "only", "on", "the", "market", "but", "inherently", "is", "uppermost", "in", "the", "mind", "of", "today's", "art", "collector", "whether", "he", "buys", "for", "himself", "or", "as", "the", "representative", "of", "an", "institution"],
+      "answer": "The dependent and shifting nature of art values, not only on the market but inherently, is uppermost in the mind of today's art collector, whether he buys for himself or as the representative of an institution."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["Acquiring", "a", "work", "is", "acquiring", "a", "piece", "of", "art", "history", "or", "it", "is", "acquiring", "nothing", "beyond", "that", "is", "an", "object", "of", "personal", "enjoyment", "in", "the", "same", "class", "as", "a", "cat", "or", "a", "souvenir"],
+      "answer": "Acquiring a work is acquiring a piece of art history, or it is acquiring nothing (beyond, that is, an object of personal enjoyment in the same class as a cat or a souvenir)."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["In", "signing", "his", "check", "the", "collector", "asserts", "his", "belief", "in", "the", "future", "presence", "of", "the", "work", "as", "a", "significant", "point", "attained", "by", "art", "as", "a", "whole"],
+      "answer": "In signing his check the collector asserts his belief in the future presence of the work as a significant point attained by art as a whole."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["History", "however", "is", "open", "to", "anything", "and", "the", "merit", "of", "the", "chosen", "painting", "or", "sculpture", "has", "at", "best", "only", "the", "validation", "of", "a", "present-day", "consensus"],
+      "answer": "History, however, is open to anything and the merit of the chosen painting or sculpture has ―at best ―only the validation of a present-day consensus."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["This", "consensus", "is", "all", "but", "certain", "to", "be", "displaced", "as", "others", "have", "been", "in", "the", "past"],
+      "answer": "This consensus is all but certain to be displaced, as others have been in the past."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["In", "the", "last", "analysis", "committing", "himself", "to", "a", "painting", "is", "the", "collector's", "own", "act"],
+      "answer": "In the last analysis, committing himself to a painting is the collector's own act."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "words": ["Through", "it", "he", "courageously", "affirms", "not", "only", "his", "aesthetic", "judgment", "from", "whatever", "source", "it", "be", "derived", "but", "the", "conviction", "that", "he", "can", "predict", "where", "art", "is", "going"],
+      "answer": "Through it he courageously affirms not only his aesthetic judgment, from whatever source it be derived, but the conviction that he can predict where art is going."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" },
+    { "no": 7, "ref_sentence": 7, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 1, "no": 1 },
+    { "kind": "vocab",   "ref": 3, "no": 2 },
+    { "kind": "fill",    "ref": 4, "no": 3 },
+    { "kind": "ko",      "ref": 5, "no": 4 },
+    { "kind": "jumble",  "ref": 6, "no": 5 },
+    { "kind": "sent",    "ref": 7, "no": 6 },
+    { "kind": "grammar", "ref": 7, "no": 7 },
+    { "kind": "vocab",   "ref": 2, "no": 8 }
+  ]
+}
