@@ -1,0 +1,276 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "40.json",
+  "_note": "40번 워크북 — 본문 5문장 풀커버.",
+  "_template_for_new_rounds": "이 파일을 새 회차의 {N}-workbook.json 작성 시 템플릿으로 사용. en_template의 {{N:A/B}} 토큰 = 양자택일 박스, hints 배열 = 빈칸 첫글자, jumble.words = 단어 배열 (셔플 X, 의도 유지).",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "pharmaceutical",    "pos": "형" },
+      { "word": "algorithm",         "pos": "명" },
+      { "word": "employ",            "pos": "동" },
+      { "word": "prevalent",         "pos": "형" },
+      { "word": "neglect",           "pos": "동" },
+      { "word": "offset",            "pos": "동" },
+      { "word": "imbalance",         "pos": "명" },
+      { "word": "democratize",       "pos": "동" },
+      { "word": "broaden",           "pos": "동" },
+      { "word": "demographic",       "pos": "명" }
+    ],
+    "ko_to_en": [
+      { "meaning": "제약의, 의약품의",                "pos": "형", "answer": "pharmaceutical" },
+      { "meaning": "알고리즘, 연산 절차",              "pos": "명", "answer": "algorithm" },
+      { "meaning": "활용하다, 고용하다",              "pos": "동", "answer": "employ" },
+      { "meaning": "만연한, 널리 퍼진",              "pos": "형", "answer": "prevalent" },
+      { "meaning": "외면하다, 방치하다",              "pos": "동", "answer": "neglect" },
+      { "meaning": "상쇄하다, 균형을 맞추다",        "pos": "동", "answer": "offset" },
+      { "meaning": "불균형",                          "pos": "명", "answer": "imbalance" },
+      { "meaning": "민주화하다, 대중화하다",          "pos": "동", "answer": "democratize" },
+      { "meaning": "넓히다, 확장하다",                "pos": "동", "answer": "broaden" },
+      { "meaning": "치료(법)",                        "pos": "명", "answer": "treatment" }
+    ],
+    "expressions": [
+      { "ko": "~와 연결 짓다",       "answer": "associate with" },
+      { "ko": "~에 바치다, 쏟다",     "answer": "devote to" },
+      { "ko": "연구·개발",            "answer": "research and development" },
+      { "ko": "임상 시험",            "answer": "clinical trial" },
+      { "ko": "즉, 다시 말해",        "answer": "that is" }
+    ],
+    "definitions": [
+      { "def": "to make something available or accessible to all people equally",      "answer": "democratize" },
+      { "def": "to be present or accepted widely in a place or at a time",             "answer": "prevalent" },
+      { "def": "to balance or compensate for something",                               "answer": "offset" },
+      { "def": "a lack of proportion or equality between things",                      "answer": "imbalance" },
+      { "def": "to fail to care for or give attention to something",                   "answer": "neglect" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "In the pharmaceutical industry, algorithms are {{1:being employed/been employed}} to find treatments and drugs for rare diseases that to date {{2:haven't/hasn't}} received much attention.",
+      "ko_full": "제약 산업에서, 알고리즘은 지금까지 많은 주목을 받지 못한 희귀 질환의 치료법과 약물을 찾는 데 활용되고 있다.",
+      "answers": ["being employed", "haven't"],
+      "explain": [
+        "현재 진행 수동태: are + being + p.p. → being employed.",
+        "선행사 diseases(복수) 수식 관계절의 주어 that → 복수 동사 haven't."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "The hard truth has always been {{1:that/what}} pharma devotes more research and development resources to diseases {{2:that/what}} affect the rich.",
+      "ko_full": "냉혹한 진실은 제약 업계가 부유층에게 영향을 미치는 질환에 더 많은 연구·개발 자원을 쏟아 왔다는 것이다.",
+      "answers": ["that", "that"],
+      "explain": [
+        "has been의 보어 명사절 접속사 → that(선행사 없음, what은 불가).",
+        "선행사 diseases를 받는 주격 관계대명사 → that(물건, which도 가능; what은 선행사 필요 시 불가)."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "The definition of rare has too often been {{1:associated/associating}} with poor ― that is, even if a disease is quite prevalent in a population that cannot {{2:afford/affording}} to pay for it.",
+      "ko_full": "'희귀'의 정의는 너무 자주 '가난'과 연결되어 왔는데 ― 즉, 어떤 질환이 그 비용을 감당할 수 없는 인구에서 상당히 만연하더라도.",
+      "answers": ["associated", "afford"],
+      "explain": [
+        "has been + p.p.(현재완료 수동태) → associated.",
+        "cannot 뒤 동사원형 → afford; afford to V(~할 여유가 있다)."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "By {{1:lowering/lower}} the cost of data collection, mining, and analysis in drug development and clinical trials, AI can help {{2:offset/offsetting}} imbalances in the pharmaceutical industry.",
+      "ko_full": "신약 개발과 임상 시험에서 데이터 수집·분석·마이닝 비용을 낮춤으로써, AI는 제약 산업의 불균형을 상쇄하는 데 도움을 줄 수 있다.",
+      "answers": ["lowering", "offset"],
+      "explain": [
+        "전치사 By의 목적어 → 동명사 lowering.",
+        "help + 동사원형(또는 to V) → offset(원형)."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "We see the democratizing power of AI {{1:to broaden/broadening}} the attention of the medical and research communities {{2:to find/finding}} cures to traditionally neglected health issues.",
+      "ko_full": "우리는 의료 및 연구 공동체의 관심을 넓혀 전통적으로 외면받아 온 건강 문제에서 치료법을 찾는 AI의 민주화 역량을 본다.",
+      "answers": ["to broaden", "to find"],
+      "explain": [
+        "power(역량)의 내용을 설명하는 형용사적 부정사 → to broaden.",
+        "목적(치료법을 '찾기' 위해)의 부정사 → to find."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "In the {{1:pharmaceutical/agricultural}} industry, algorithms are being employed to find treatments and drugs for {{2:rare/common}} diseases that to date haven't received much attention.",
+      "ko_full": "제약 산업에서, 알고리즘은 지금까지 많은 주목을 받지 못한 희귀 질환의 치료법과 약물을 찾는 데 활용되고 있다.",
+      "answers": ["pharmaceutical", "rare"],
+      "explain": [
+        "의약품·약물을 다루는 산업 → pharmaceutical(제약의).",
+        "주목받지 못한 질환 = 흔하지 않은 → rare(희귀한)."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "The hard truth has always been that pharma {{1:devotes/withholds}} more research and development resources to diseases that {{2:affect/ignore}} the rich.",
+      "ko_full": "냉혹한 진실은 제약 업계가 부유층에게 영향을 미치는 질환에 더 많은 연구·개발 자원을 쏟아 왔다는 것이다.",
+      "answers": ["devotes", "affect"],
+      "explain": [
+        "자원을 '쏟아 붓다' → devote; withhold는 '보류하다'로 의미가 반대.",
+        "부유층에게 '영향을 미치는' → affect."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "Even if a disease is quite {{1:prevalent/absent}} in a population that cannot afford to pay for it, the disease has been {{2:neglected/prioritized}} compared to First World illnesses.",
+      "ko_full": "비용을 감당할 수 없는 인구에서 어떤 질환이 상당히 만연하더라도, 그 질환은 선진국 질환에 비해 외면당해 왔다.",
+      "answers": ["prevalent", "neglected"],
+      "explain": [
+        "빈곤층에 '만연한' 역설을 설명 → prevalent(만연한).",
+        "관심을 받지 못하고 '방치된' → neglected; prioritized(우선시된)는 정반대."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "By lowering the cost of data collection, mining, and analysis, AI can help {{1:offset/deepen}} imbalances in the pharmaceutical industry that direct attention to diseases that {{2:pay/fail}}.",
+      "ko_full": "데이터 수집·분석·마이닝 비용을 낮춤으로써, AI는 '수익이 되는' 질환에 관심을 집중시키는 제약 산업의 불균형을 상쇄하는 데 도움을 줄 수 있다.",
+      "answers": ["offset", "pay"],
+      "explain": [
+        "불균형을 '상쇄하다' → offset; deepen은 '심화시키다'로 반대.",
+        "수익이 '되는(돈이 되는)' → pay; fail은 문맥상 반대."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "We see the {{1:democratizing/restricting}} power of AI to {{2:broaden/narrow}} the attention of the medical and research communities.",
+      "ko_full": "우리는 의료 및 연구 공동체의 관심을 넓히는 AI의 민주화 역량을 본다.",
+      "answers": ["democratizing", "broaden"],
+      "explain": [
+        "모두에게 평등하게 여는 '민주화하는' → democratizing; restricting은 반대.",
+        "관심을 '넓히다' → broaden; narrow는 '좁히다'로 반대."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "p", "answer": "pharmaceutical", "after": "industry" },
+        { "pos": 2, "letter": "e", "answer": "employed",       "after": "to find treatments" },
+        { "pos": 3, "letter": "r", "answer": "rare",           "after": "diseases that" }
+      ],
+      "ko_full": "제약 산업에서, 알고리즘은 지금까지 많은 주목을 받지 못한 희귀 질환의 치료법과 약물을 찾는 데 활용되고 있다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "d", "answer": "devotes",    "after": "more research" },
+        { "pos": 2, "letter": "r", "answer": "resources",  "after": "to diseases" },
+        { "pos": 3, "letter": "r", "answer": "rich",       "after": "" }
+      ],
+      "ko_full": "냉혹한 진실은 제약 업계가 부유층에게 영향을 미치는 질환에 더 많은 연구·개발 자원을 쏟아 왔다는 것이다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "a", "answer": "associated",  "after": "with poor" },
+        { "pos": 2, "letter": "p", "answer": "prevalent",   "after": "in a population" },
+        { "pos": 3, "letter": "n", "answer": "neglected",   "after": "compared to" }
+      ],
+      "ko_full": "'희귀'의 정의는 너무 자주 '가난'과 연결되어 왔는데 ― 즉, 비용을 감당할 수 없는 인구에서 어떤 질환이 상당히 만연하더라도, 그 질환은 선진국 질환에 비해 외면당해 왔다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "l", "answer": "lowering",   "after": "the cost of data" },
+        { "pos": 2, "letter": "o", "answer": "offset",     "after": "imbalances" },
+        { "pos": 3, "letter": "d", "answer": "demographics", "after": "that can pay more" }
+      ],
+      "ko_full": "신약 개발과 임상 시험에서 데이터 수집·분석·마이닝 비용을 낮춤으로써, AI는 더 많이 지불할 수 있는 인구통계에서 만연한 '수익이 되는' 질환에 관심을 집중시키는 제약 산업의 불균형을 상쇄하는 데 도움을 줄 수 있다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "d", "answer": "democratizing", "after": "power of AI" },
+        { "pos": 2, "letter": "b", "answer": "broaden",        "after": "the attention" },
+        { "pos": 3, "letter": "n", "answer": "neglected",      "after": "populations" }
+      ],
+      "ko_full": "우리는 의료 및 연구 공동체의 관심을 넓혀 전통적으로 외면받아 온 건강 문제와 전통적으로 외면받아 온 인구 집단에서 치료법을 찾는 AI의 민주화 역량을 본다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["In", "the", "pharmaceutical", "industry", "algorithms", "are", "being", "employed", "to", "find", "treatments", "and", "drugs", "for", "rare", "diseases", "that", "to", "date", "haven't", "received", "much", "attention"],
+      "answer": "In the pharmaceutical industry, algorithms are being employed to find treatments and drugs for rare diseases that to date haven't received much attention."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["The", "hard", "truth", "has", "always", "been", "that", "pharma", "devotes", "more", "research", "and", "development", "resources", "to", "diseases", "that", "affect", "the", "rich"],
+      "answer": "The hard truth has always been that pharma devotes more research and development resources to diseases that affect the rich."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["The", "definition", "of", "rare", "has", "too", "often", "been", "associated", "with", "poor", "that", "is", "even", "if", "a", "disease", "is", "quite", "prevalent", "in", "a", "population", "that", "cannot", "afford", "to", "pay", "for", "it", "the", "disease", "has", "been", "neglected", "compared", "to", "First", "World", "illnesses"],
+      "answer": "The definition of rare has too often been associated with poor ― that is, even if a disease is quite prevalent in a population that cannot afford to pay for it (for example, people living in the developing world), the disease has been neglected compared to First World illnesses."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["By", "lowering", "the", "cost", "of", "data", "collection", "mining", "and", "analysis", "in", "drug", "development", "and", "clinical", "trials", "AI", "can", "help", "offset", "imbalances", "in", "the", "pharmaceutical", "industry", "that", "direct", "attention", "to", "diseases", "that", "pay"],
+      "answer": "By lowering the cost of data collection, mining, and analysis in drug development and clinical trials, AI can help offset imbalances in the pharmaceutical industry that direct attention to diseases that \"pay,\" whether because the disease is more common or because it is prevalent among demographics that can pay more."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["We", "see", "the", "democratizing", "power", "of", "AI", "to", "broaden", "the", "attention", "of", "the", "medical", "and", "research", "communities", "to", "find", "cures", "to", "traditionally", "neglected", "health", "issues", "and", "among", "traditionally", "neglected", "populations"],
+      "answer": "We see the democratizing power of AI to broaden the attention of the medical and research communities to find cures to traditionally neglected health issues and among traditionally neglected populations."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 1, "no": 1 },
+    { "kind": "vocab",   "ref": 3, "no": 2 },
+    { "kind": "fill",    "ref": 2, "no": 3 },
+    { "kind": "ko",      "ref": 4, "no": 4 },
+    { "kind": "jumble",  "ref": 5, "no": 5 },
+    { "kind": "sent",    "ref": 3, "no": 6 },
+    { "kind": "grammar", "ref": 4, "no": 7 },
+    { "kind": "vocab",   "ref": 5, "no": 8 }
+  ]
+}
