@@ -25,8 +25,9 @@ async function main(){
   if(!distArg){ console.error('Usage: node builder/combine-workbook.mjs <dist-dir> [out.pdf]'); process.exit(1); }
   const distDir = path.resolve(process.cwd(), distArg);
   const roundDir = path.dirname(distDir);
-  const cssAbs = path.resolve(roundDir, 'styles', 'workbook.css');
-  const cssHref = pathToFileURL(cssAbs).href;
+  // 상대경로 링크로 dist 폴더 이동 시 스타일 깨짐 방지(개별 빌드와 동일).
+  // puppeteer 는 workbook-combined.html 을 file:// 로 로드하므로 정상 해석됨.
+  const cssHref = '../styles/workbook.css';
   const outName = process.argv[3] || 'workbook-combined.pdf';
 
   // workbook-{N}.html 만, 번호순
@@ -75,6 +76,10 @@ async function main(){
 </section>`;
 
   const coverCss = `
+  /* 합본 N페이지 297mm 누적 시 Chromium PDF 페이지 경계 드리프트로 하단 절단되는 것 방지. */
+  @page { size: A4; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+  .page { box-sizing: border-box; }
   .cover-page{display:flex;align-items:center;justify-content:center;text-align:center;}
   .cover-page .page-body{display:flex;align-items:center;justify-content:center;}
   .cover-wrap{max-width:80%;}

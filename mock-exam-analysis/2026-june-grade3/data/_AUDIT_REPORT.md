@@ -44,3 +44,13 @@
 ## 미수정(허용/낮은우선순위)
 - MAJOR 중 변형 design 미세사항(연결어 보강 권고 등) 및 MINOR 227건: 판매 차단성 아님. 필요 시 후속 라운드.
 - 일부 번역 표현 개선 여지(예 #21 'After all', #22 'power' 뉘앙스) — 의미 왜곡 아닌 표현 다듬기 수준.
+
+---
+
+## Codex 외부 검수 반영 (2026-06-23, 추가 3건)
+
+| 등급 | 결함 | 진단 | 조치 |
+|---|------|------|------|
+| 높음 | 합본 분석지 PDF 하단 절단 (24·37·39번 2페이지 Logic Flow) | 합본 N페이지 `height:297mm` 누적 → Chromium PDF 페이지 경계 드리프트로 .page 하단 수~26px 절단(개별 PDF는 정상, DOM overflow는 0). | combine.mjs·combine-workbook.mjs 에 `@page{size:A4;margin:0}` + `html,body{margin:0}` + `.page{box-sizing:border-box}` 주입. 141/243p 전수 재검증 overflow 0, 절단 해소. |
+| 높음 | 변형책 입력 313 vs 출력 309 (18 purpose·content_check·grammar_error, 19 mood_change 누락) | 빌더 TYPE_ORDER(12키)에 없는 **비표준 키** — 빌더가 렌더 못 함. 고1·고2 판매본도 18·19는 grammar/vocab/order/insert/summary/writing 6키만 사용(목적·심경은 독립 변형유형 없음). | 18·19의 비표준 키 삭제 → 입력=출력 309 일치, baseline과 정합. (grammar_error 는 의미검수 때 이미 제거.) |
+| 중간 | combined.html 이 CSS를 절대경로(file:///C:/Users/...)로 참조 → dist 이동 시 스타일 깨짐 | combine.mjs 가 `pathToFileURL(cssAbs)` 절대 URL을 HTML에 기록. PDF엔 무해하나 HTML 이동 시 깨짐. | cssHref 를 상대경로 `../styles/{analysis,workbook}.css` 로 변경(개별 빌드와 동일). puppeteer 도 file:// 로 로드하므로 PDF 렌더 정상 유지. |

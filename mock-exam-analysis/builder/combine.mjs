@@ -21,8 +21,10 @@ async function main(){
   if(!distArg){ console.error('Usage: node builder/combine.mjs <dist-dir> [out.pdf]'); process.exit(1); }
   const distDir = path.resolve(process.cwd(), distArg);
   const roundDir = path.dirname(distDir);
-  const cssAbs = path.resolve(roundDir, 'styles', 'analysis.css');
-  const cssHref = pathToFileURL(cssAbs).href;
+  // combined.html 은 dist/ 안에 있고 styles/ 는 그 상위 → 상대경로로 링크해
+  // dist 폴더를 다른 PC·경로로 옮겨도 스타일이 깨지지 않게 한다(개별 빌드와 동일).
+  // puppeteer 도 combined.html 을 file:// 로 로드하므로 상대경로가 정상 해석됨.
+  const cssHref = '../styles/analysis.css';
   const outName = process.argv[3] || 'combined.pdf';
 
   // {N}.html 만, 번호순
@@ -72,6 +74,11 @@ async function main(){
 </section>`;
 
   const coverCss = `
+  /* 합본 N페이지 297mm 누적 시 Chromium PDF 페이지 경계가 .page 안으로 밀려
+     하단(특히 Logic Flow 카드)이 절단되는 드리프트 방지 — A4 페이지 박스 고정. */
+  @page { size: A4; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+  .page { box-sizing: border-box; }
   .cover-page{display:flex;align-items:center;justify-content:center;text-align:center;}
   .cover-wrap{max-width:80%;}
   .cover-brand{font-family:'Inter';font-size:18pt;font-weight:800;letter-spacing:.08em;color:var(--c-mint-deep);margin-bottom:18px;}
