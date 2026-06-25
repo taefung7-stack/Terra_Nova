@@ -27,9 +27,9 @@ const root = resolve(here, '..');
 const MONTH = '2026-07';
 // folder dir name → level slug + cover filename
 const BOOKS = [
-  { dir: '2026-07-Saturn (고1)',  level: 'saturn',  cover: '7월 saturn 표지.png',  full: '2026-07-Saturn-fullbook.pdf',  out: '2026-07-Saturn.pdf'  },
-  { dir: '2026-07-Jupiter (고2)', level: 'jupiter', cover: '7월 jupiter 표지.png', full: '2026-07-Jupiter-fullbook.pdf', out: '2026-07-Jupiter.pdf' },
-  { dir: '2026-07-Sun (고3)',     level: 'sun',     cover: '7월 sun 표지.png',     full: '2026-07-Sun-fullbook.pdf',     out: '2026-07-Sun.pdf'     },
+  { dir: '2026-07-Saturn (고1)',  level: 'saturn',  cover: '7월 saturn 앞표지 (고1).png',  full: '2026-07-Saturn-fullbook.pdf',  out: '2026-07-Saturn.pdf'  },
+  { dir: '2026-07-Jupiter (고2)', level: 'jupiter', cover: '7월 jupiter 앞표지 (고2).png', full: '2026-07-Jupiter-fullbook.pdf', out: '2026-07-Jupiter.pdf' },
+  { dir: '2026-07-Sun (고3)',     level: 'sun',     cover: '7월 sun 앞표지 (고3).png',     full: '2026-07-Sun-fullbook.pdf',     out: '2026-07-Sun.pdf'     },
 ];
 
 async function startStaticServer(port = 4531) {
