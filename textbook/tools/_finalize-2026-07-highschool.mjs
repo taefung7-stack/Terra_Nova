@@ -7,11 +7,12 @@
  *   - 2026-07-{Level}-fullbook.pdf   (134p, 표지/판권 없이 CONTENTS 부터 시작하는 본문)
  *
  * 출력:
- *   - 2026-07-{Level}.pdf  (136p = 표지(1p) + 판권/colophon(1p) + 본문(134p))
+ *   - 2026-07-{Level}.pdf  (137p = 앞표지(1p) + 판권/colophon(1p) + 본문(134p) + 뒷표지(1p))
  *
  * 절차:
  *   1. puppeteer 로 colophon.html?level={level}&month=2026-07 을 1p PDF 로 렌더
- *   2. pdf-lib 로 표지(PNG→A4 1p) + colophon(1p) + body(134p) 합본
+ *   2. pdf-lib 로 앞표지(PNG→A4 1p) + colophon(1p) + body(134p) + 뒷표지(PNG→A4 1p) 합본
+ *      ※ 뒷표지는 세 학년 공통: dist/2026-07/7월 뒷표지.png
  */
 import puppeteer from 'puppeteer';
 import { spawn, execFileSync } from 'node:child_process';
@@ -31,6 +32,9 @@ const BOOKS = [
   { dir: '2026-07-Jupiter (고2)', level: 'jupiter', cover: '7월 jupiter 앞표지 (고2).png', full: '2026-07-Jupiter-fullbook.pdf', out: '2026-07-Jupiter.pdf' },
   { dir: '2026-07-Sun (고3)',     level: 'sun',     cover: '7월 sun 앞표지 (고3).png',     full: '2026-07-Sun-fullbook.pdf',     out: '2026-07-Sun.pdf'     },
 ];
+
+// 뒷표지: 세 학년 공통 (2026-07 폴더 루트)
+const BACK_COVER = join(root, 'dist', MONTH, '7월 뒷표지.png');
 
 async function startStaticServer(port = 4531) {
   const proc = spawn(process.execPath, [
@@ -75,6 +79,8 @@ if (!existsSync(tmpDir)) mkdirSync(tmpDir, { recursive: true });
 
 console.log('=== 2026-07 고등부 완전한 책 만들기 (표지 + 판권 + 본문) ===\n');
 
+if (!existsSync(BACK_COVER)) { console.error(`뒷표지 없음: ${BACK_COVER}`); process.exit(1); }
+
 const { proc: srvProc, port: srvPort } = await startStaticServer();
 const browser = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox'] });
 
@@ -95,10 +101,10 @@ try {
     await renderColophon(browser, srvPort, b.level, colophonPath);
     console.log(`  1/3 판권(colophon) 1p 렌더 완료`);
 
-    // 2. 합본: 표지(PNG→A4) + colophon + body
+    // 2. 합본: 앞표지(PNG→A4) + colophon + body + 뒷표지(PNG→A4)
     const merged = await PDFDocument.create();
 
-    // 표지: PNG 를 A4 1페이지에 가득 채워 배치
+    // 앞표지: PNG 를 A4 1페이지에 가득 채워 배치
     const coverImg = await merged.embedPng(readFileSync(coverPath));
     const coverPage = merged.addPage([A4_W, A4_H]);
     coverPage.drawImage(coverImg, { x: 0, y: 0, width: A4_W, height: A4_H });
@@ -113,6 +119,11 @@ try {
     const bodyPgs = await merged.copyPages(bodyDoc, bodyDoc.getPageIndices());
     bodyPgs.forEach(p => merged.addPage(p));
 
+    // 뒷표지: 세 학년 공통 PNG 를 A4 1페이지에 가득 채워 맨 뒤에 배치
+    const backImg = await merged.embedPng(readFileSync(BACK_COVER));
+    const backPage = merged.addPage([A4_W, A4_H]);
+    backPage.drawImage(backImg, { x: 0, y: 0, width: A4_W, height: A4_H });
+
     const LEVEL_TITLE = { saturn: '고1 SATURN', jupiter: '고2 JUPITER', sun: '고3 SUN' }[b.level] || b.level;
     merged.setTitle(`Terra Nova · ${LEVEL_TITLE} 2026년 7월호`);
     merged.setAuthor('Terra Nova English');
@@ -122,7 +133,7 @@ try {
 
     writeFileSync(outPath, await merged.save({ useObjectStreams: true }));
     const sz = (readFileSync(outPath).length / 1024 / 1024).toFixed(1);
-    console.log(`  2/3 합본 완료: ${merged.getPageCount()}p (표지1 + 판권1 + 본문${bodyDoc.getPageCount()})`);
+    console.log(`  2/3 합본 완료: ${merged.getPageCount()}p (앞표지1 + 판권1 + 본문${bodyDoc.getPageCount()} + 뒷표지1)`);
     console.log(`  3/3 ✓ ${b.out}  (${sz}MB)\n`);
   }
 } finally {
