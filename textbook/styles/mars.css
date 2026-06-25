@@ -1,0 +1,1375 @@
+/* ===========================================================
+   Terra Nova — Mars (초5) elementary design overrides
+   Activated by [data-level="mars"] on body / .passage root.
+   Goals (per design brief):
+     1) 둥근 모서리 많이
+     2) 같은 계열 색으로 통일
+     3) 캐릭터/이모지 절제 (페이지당 1~2개)
+     4) 어휘 카드: 영어 단어 안정적 정렬 + 예문 하단 고정
+     5) 활동 번호는 컬러 배지로
+     6) "Excellent!" 등 강화 문구
+     7) 숨 쉬는 여백
+   =========================================================== */
+
+/* ---- Mars palette — purple (Majorelle Blue family) ----
+   Primary #7546E8, Persian Indigo deep, Light Lavender soft.
+   Single coral warm accent reserved for P3 (visual variety). */
+[data-level="mars"] {
+  --tn-theme:        #7546E8;   /* Majorelle Blue (Mars primary) */
+  --tn-theme-deep:   #2D1C7F;   /* Persian Indigo */
+  --tn-theme-soft:   #E8E2FA;   /* Light Lavender */
+  --tn-ink:          #0D0E20;   /* Chinese Black */
+  --tn-ink-soft:     #2D1C7F;
+  --tn-muted:        #B0A9E5;
+  --tn-divider:      #EFEAFC;
+  --tn-bg:           #F5F3FB;   /* very pale lavender paper */
+  --tn-surface:      #FFFFFF;   /* page surface white */
+
+  /* Purple family extras (lighter / paler / darker shades) */
+  --mars-teal-light:     #A082E8;   /* lighter purple */
+  --mars-teal-pale:      #F2EDFB;   /* very pale lavender */
+  --mars-teal-darker:    #1A0E5C;   /* darkest indigo */
+
+  /* Single warm accent — used only on P3 (warm gold pairs elegantly with purple) */
+  --mars-gold:           #F4B860;
+  --mars-gold-deep:      #B8841C;
+  --mars-gold-soft:      #FCEBC5;
+
+  /* ---- Unified Mars font system: ONE font per language ----
+     Sophisticated × cute = clean rounded geometric (Quicksand) +
+     gentle modern handwriting Korean (Gowun Dodum). Hierarchy
+     is created by weight (300/500/700) and size, not by mixing fonts. */
+  --font-body:           'Quicksand', 'Gowun Dodum', 'Pretendard', sans-serif;
+  --font-display:        'Quicksand', 'Gowun Dodum', sans-serif;
+  --font-ko:             'Gowun Dodum', 'Pretendard', 'Noto Sans KR', sans-serif;
+  --font-serif-display:  'Quicksand', 'Gowun Dodum', sans-serif;
+
+  /* Soften S/V/O/C/M role colors to a warm pastel family while
+     keeping role distinguishability. Same role coding logic,
+     gentler signal for elementary learners. */
+  --role-S:        #FFD9D2;
+  --role-S-ink:    #A93820;
+  --role-V:        #FFEAB7;
+  --role-V-ink:    #8B5A12;
+  --role-O:        #FFD9B0;
+  --role-O-ink:    #8B5018;
+  --role-C:        #E8DDC6;
+  --role-C-ink:    #6B5530;
+  --role-M:        #FCE0E5;
+  --role-M-ink:    #A93857;
+  --role-CONJ:     #FFF0CC;
+  --role-CONJ-ink: #8B6A12;
+  --role-REL:      #F2D2B8;
+  --role-REL-ink:  #8B4818;
+}
+
+body[data-level="mars"] { background: var(--tn-bg); }
+
+/* Page surface — warm cream paper (not pure white) */
+[data-level="mars"] .page {
+  background: var(--tn-surface);
+}
+
+/* Hide the dev overflow indicator for Mars previews (cleaner author preview).
+   Real print build (build-pdf.mjs) still skips overflowing pages and warns in
+   terminal, so this only suppresses the on-screen red box during browsing. */
+[data-level="mars"] .page.overflow { outline: none; }
+[data-level="mars"] .overflow-warning { display: none; }
+
+/* ============= Top-right: level mascot image only =============
+   Bigger mascot (34mm) at the top-right corner. Passage number badge
+   removed per user request — mascot alone identifies the level/page. */
+[data-level="mars"] .level-mascot {
+  position: absolute;
+  top: -3mm;
+  right: -3mm;
+  width: 38mm;
+  height: 38mm;
+  object-fit: contain;
+  object-position: top right;
+  z-index: 5;
+  filter: drop-shadow(0 1pt 3pt rgba(58, 40, 24, 0.10));
+}
+
+/* P3 (syntax) and P4 (vocab) — main mascot removed (corner accents below take over) */
+[data-level="mars"] .page-3 .level-mascot,
+[data-level="mars"] .page-4 .level-mascot {
+  display: none;
+}
+[data-level="mars"] .page-3 .page-head,
+[data-level="mars"] .page-4 .page-head { padding-right: 0; }
+/* Make sure P3 legend doesn't get covered by enlarged top-right rocket corner */
+[data-level="mars"] .page-3 .p3-legend { padding-right: 36mm; }
+
+/* ============= Decorative space art slots =============
+   All bg-image-driven so missing files = invisible (no broken icon).
+   File paths are relative to textbook.html (web root).
+   See assets/illustrations/mars/README.md for prompt + sizing guidance. */
+
+/* P1 — page frame REMOVED (was too busy). New cleaner deco slots below. */
+[data-level="mars"] .page-1 .page-frame { display: none; }
+
+/* P1 top decoration — REMOVED per user request (planet row above title was excess) */
+[data-level="mars"] .page-1 .page-body::before { content: none; display: none; }
+
+/* P1 horizontal divider between body and vocab — rocket trail (now uses _top-deco.png) */
+[data-level="mars"] .p1-vocab-preview::before {
+  content: "";
+  display: block;
+  height: 8mm;
+  background-image: url('../assets/illustrations/mars/_top-deco.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: -2mm 0 2mm;
+}
+
+/* P1 side decorative frame (image #4 style: vertical scattered planets/stars) */
+[data-level="mars"] .page-1 .page-side-frame {
+  position: absolute;
+  top: calc(var(--tn-theme-bar-h) + 8mm);
+  bottom: 14mm;
+  right: 2mm;
+  width: 14mm;
+  background-image: url('../assets/illustrations/mars/_side-frame.png');
+  background-size: contain;
+  background-position: center right;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.85;
+}
+
+/* P3 / P4 — corner watercolor accents (image #5 style) */
+[data-level="mars"] .page-corner {
+  position: absolute;
+  width: 58mm;
+  height: 58mm;
+  background-size: contain;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.92;
+}
+/* Bottom-left corner (astronaut+saturn) stays at smaller size */
+[data-level="mars"] .page-corner-bl {
+  width: 46mm;
+  height: 46mm;
+}
+[data-level="mars"] .page-3 .page-corner-tr,
+[data-level="mars"] .page-4 .page-corner-tr {
+  top: 0;
+  right: 0;
+  background-image: url('../assets/illustrations/mars/_corner-tr.png');
+  background-position: top right;
+}
+[data-level="mars"] .page-3 .page-corner-bl,
+[data-level="mars"] .page-4 .page-corner-bl {
+  bottom: 0;
+  left: 0;
+  background-image: url('../assets/illustrations/mars/_corner-bl.png');
+  background-position: bottom left;
+}
+/* Make sure body content sits above corner accents */
+[data-level="mars"] .page-3 .page-head,
+[data-level="mars"] .page-3 .page-body,
+[data-level="mars"] .page-3 .page-foot,
+[data-level="mars"] .page-4 .page-head,
+[data-level="mars"] .page-4 .page-body,
+[data-level="mars"] .page-4 .page-foot { position: relative; z-index: 2; }
+
+/* P2 + P4 — cheer bubble orbit decoration (image #2/#3 style) */
+[data-level="mars"] .page-2 .p2-questions::after {
+  background-image:
+    url('../assets/illustrations/mars/_cheer-orbit.png'),
+    linear-gradient(135deg, var(--mars-gold-soft) 0%, var(--mars-gold-soft) 100%);
+  background-size: 110% auto, auto;
+  background-position: center, top left;
+  background-repeat: no-repeat, no-repeat;
+  padding: 8pt 28pt;
+}
+[data-level="mars"] .page-4 .p4-vocab::after {
+  background-image:
+    url('../assets/illustrations/mars/_cheer-orbit.png'),
+    linear-gradient(135deg, var(--mars-teal-pale) 0%, var(--mars-teal-pale) 100%);
+  background-size: 110% auto, auto;
+  background-position: center, top left;
+  background-repeat: no-repeat, no-repeat;
+  padding: 8pt 28pt;
+}
+
+/* P1 illustration placeholder — embroidered circular frame (image #1 style) */
+[data-level="mars"] .p1-illustration.illustration-empty {
+  background-image:
+    url('../assets/illustrations/mars/_placeholder-frame.png'),
+    radial-gradient(circle at 75% 30%, var(--mars-gold-soft) 0%, transparent 55%),
+    radial-gradient(circle at 25% 75%, var(--mars-teal-pale) 0%, transparent 55%),
+    linear-gradient(135deg, var(--tn-theme-soft) 0%, #EFEAFC 100%);
+  background-size: 65% auto, auto, auto, auto;
+  background-position: center, top left, top left, top left;
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+}
+
+/* Hide the passage number badge — mascot is the visual identifier */
+[data-level="mars"] .passage-badge { display: none; }
+
+/* Hide the chapter-tag for Mars — info is in P1 meta chips already */
+[data-level="mars"] .page-head .chapter-tag { display: none; }
+/* Reserve right padding so header content doesn't underlap mascot */
+[data-level="mars"] .page-head { padding-right: 40mm; }
+
+/* ============= Subtle scattered watercolor-star background pattern =============
+   Inspired by reference image #6 (cream paper with scattered stars/dots).
+   Uses radial gradients only — no images required. Very faint to keep
+   text readability high. */
+[data-level="mars"] .page {
+  background-image:
+    /* tiny coral dots */
+    radial-gradient(circle 0.5pt at 18mm 38mm, rgba(244, 184, 96, 0.20), transparent 70%),
+    radial-gradient(circle 0.7pt at 145mm 52mm, rgba(91, 184, 169, 0.20), transparent 70%),
+    radial-gradient(circle 0.4pt at 28mm 95mm, rgba(117, 70, 232, 0.22), transparent 70%),
+    radial-gradient(circle 0.6pt at 185mm 110mm, rgba(244, 184, 96, 0.20), transparent 70%),
+    radial-gradient(circle 0.5pt at 165mm 175mm, rgba(91, 184, 169, 0.20), transparent 70%),
+    radial-gradient(circle 0.7pt at 22mm 215mm, rgba(244, 184, 96, 0.20), transparent 70%),
+    radial-gradient(circle 0.4pt at 95mm 248mm, rgba(117, 70, 232, 0.22), transparent 70%),
+    radial-gradient(circle 0.6pt at 175mm 260mm, rgba(91, 184, 169, 0.20), transparent 70%),
+    radial-gradient(circle 0.5pt at 55mm 282mm, rgba(244, 184, 96, 0.20), transparent 70%);
+  background-color: var(--tn-surface);
+  background-repeat: no-repeat;
+}
+
+/* ============= 1) 둥근 모서리 ============= */
+[data-level="mars"] .p1-illustration  { border-radius: 14pt; }
+[data-level="mars"] .question         { border-radius: 12pt; }
+[data-level="mars"] .tieback          { border-radius: 16pt; }
+[data-level="mars"] .tieback .unit-label { border-radius: 999px; padding: 1.5pt 11pt; }
+[data-level="mars"] .tieback .visual-aid .va-step { border-radius: 12pt; }
+[data-level="mars"] .p3-legend        { border-radius: 12pt; padding: 5pt 11pt; }
+[data-level="mars"] .p3-translation   { border-radius: 14pt; padding: 6pt 12pt; }
+[data-level="mars"] .vocab-card       { border-radius: 14pt; }
+[data-level="mars"] .descriptive .answer-slot      { border-radius: 10pt; }
+[data-level="mars"] .descriptive .summary-template { border-radius: 12pt; padding: 6pt 11pt; }
+[data-level="mars"] .descriptive .hint             { border-radius: 999px; padding: 1pt 9pt; }
+[data-level="mars"] .question .stem .q-style       { border-radius: 999px; padding: 1pt 8pt; }
+[data-level="mars"] .p3-sentence .seg              { border-radius: 4pt; padding: 0.5pt 1pt; }
+[data-level="mars"] .p1-meta .chip                 { padding: 2.5pt 11pt; }
+[data-level="mars"] .p3-legend .role-badge         { border-radius: 6pt; }
+
+/* Page corner: rounded soft card (only visible on screen, not in print) */
+[data-level="mars"] .page { border-radius: 8pt; }
+@media print { [data-level="mars"] .page { border-radius: 0; } }
+
+/* ============= 2) 같은 계열 색 통일 ============= */
+/* Drop the colored vertical strips that fragment the page visually */
+[data-level="mars"] .question {
+  border-left: none;
+  background: #fff;
+  padding: 7pt 12pt 7pt 14pt;
+  box-shadow: 0 1pt 3pt rgba(45, 28, 127, 0.08);
+}
+[data-level="mars"] .tieback {
+  border-left: none;
+  padding: 8pt 12pt 9pt;
+}
+[data-level="mars"] .vocab-card {
+  border: 0.8pt solid var(--tn-divider);
+  border-left: 0.8pt solid var(--tn-divider);   /* drop colored stripe */
+  background: #fff;
+  padding: 7pt 11pt 8pt;
+}
+[data-level="mars"] .p3-translation {
+  border-top: none;
+  border: 0.6pt solid var(--tn-muted);
+}
+
+/* ============= 3) 캐릭터/이모지 절제 =============
+   Vocab examples currently show 📘 on every line (10 cards × 2 examples = 20).
+   Hide via JS in render.js (handled separately). For tieback headings (🧭/⚖️/🧠),
+   render.js prepends them inline; we hide via attribute swap there too. */
+
+/* ============= 4) 어휘 카드 - 영어 단어 안정 + 예문 하단 정렬 ============= */
+[data-level="mars"] .vocab-card {
+  display: flex;
+  flex-direction: column;
+  gap: 3pt;
+}
+[data-level="mars"] .vocab-card .head {
+  align-items: flex-end;          /* word + pos baseline anchored to bottom */
+  border-bottom: 0.6pt solid var(--tn-divider);
+  padding-bottom: 3pt;
+}
+[data-level="mars"] .vocab-card .word {
+  font-size: 13.5pt;
+  line-height: 1.1;
+}
+[data-level="mars"] .vocab-card .pos {
+  font-size: 8pt;
+  color: var(--tn-theme-deep);
+  font-weight: 600;
+}
+[data-level="mars"] .vocab-card .meaning {
+  font-size: 9pt;
+  color: var(--tn-ink);
+  font-weight: 500;
+}
+[data-level="mars"] .vocab-card .examples {
+  margin-top: auto;               /* push examples block to card bottom */
+  border-top: 0.5pt dashed var(--tn-muted);
+  padding-top: 4pt;
+  gap: 4pt;
+}
+
+/* Tieback emoji_flow: emoji on top, label/note bottom-aligned */
+[data-level="mars"] .tieback .visual-aid.emoji_flow .va-step {
+  justify-content: flex-end;
+  padding: 4pt 4pt 5pt;
+  min-height: 40pt;
+}
+
+/* ============= 5) 활동 번호 = 컬러 배지 ============= */
+[data-level="mars"] .question .stem .q-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--tn-theme);
+  color: #fff;
+  width: 18pt;
+  height: 18pt;
+  min-width: 18pt;
+  border-radius: 50%;
+  font-size: 9.5pt;
+  font-weight: 800;
+  line-height: 1;
+  padding: 0;
+  flex-shrink: 0;
+  box-shadow: 0 1pt 2pt rgba(45, 28, 127, 0.22);
+}
+[data-level="mars"] .question .choices li::before {
+  width: 14pt;
+  height: 14pt;
+  background: var(--tn-theme-soft);
+  color: var(--tn-theme-deep);
+  font-size: 8pt;
+  font-weight: 800;
+  border: 0.6pt solid var(--tn-muted);
+}
+
+/* ============= 6) 강화 문구 (P2 GREAT JOB removed per user request) ============= */
+[data-level="mars"] .page-2 .p2-questions::after { content: none; display: none; }
+[data-level="mars"] .page-3 .p3-translation h4::after {
+  content: " · 💡 Excellent reading!";
+  font-size: 8.5pt;
+  color: var(--tn-theme);
+  font-weight: 600;
+  margin-left: 4pt;
+}
+[data-level="mars"] .page-4 .p4-vocab::after {
+  content: "🌟 You learned new words today. Try using them!";
+  grid-column: 1 / -1;
+  display: block;
+  margin-top: 4pt;
+  padding: 6pt 18pt;
+  background: var(--mars-teal-pale);
+  border-radius: 999px;
+  color: var(--tn-theme-deep);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 9pt;
+  text-align: center;
+  letter-spacing: 0.02em;
+  border: 0.6pt solid var(--tn-theme);
+}
+/* Subtle accent — drop the heavy glow, keep small star prefix only */
+[data-level="mars"] .p1-title::before {
+  content: "";
+  display: none;
+}
+[data-level="mars"] .page-1 .p1-title::after {
+  content: "";
+  display: none;
+}
+
+/* ============= 7) 숨 쉬는 여백 ============= */
+[data-level="mars"] .page { padding: 16mm 17mm 13mm 17mm; padding-top: calc(var(--tn-theme-bar-h) + 5mm); }
+[data-level="mars"] .page-body { gap: 6pt; }
+[data-level="mars"] .question .choices { gap: 3pt; padding-left: 24pt; }
+[data-level="mars"] .p3-sentences { gap: 3pt; }
+[data-level="mars"] .p3-sentence { padding-bottom: 3pt; }
+[data-level="mars"] .p1-body { font-size: 12.5pt; line-height: 1.85; text-align: left; hyphens: manual; }
+[data-level="mars"] .p1-body p { text-indent: 0; margin-bottom: 8pt; }
+[data-level="mars"] .p1-title { font-size: 24pt; line-height: 1.25; margin-top: 7pt; }
+[data-level="mars"] .p1-subtitle { font-size: 13pt; font-style: normal; font-weight: 500; margin-bottom: 12pt; }
+
+/* P2 — tighter gaps to fit 4 questions + tieback + cheer bubble within page */
+[data-level="mars"] .page-2 .p2-questions { gap: 5pt; }
+[data-level="mars"] .page-2 .question { padding: 5pt 11pt 5pt 13pt; }
+[data-level="mars"] .page-2 .tieback { padding: 6pt 11pt 7pt; }
+[data-level="mars"] .page-2 .tieback .body-ko { font-size: 8.5pt; line-height: 1.4; }
+
+/* P4 — tighter vocab grid spacing to fit 12 cards + cheer bubble */
+[data-level="mars"] .page-4 .p4-vocab { row-gap: 4pt; column-gap: 7pt; }
+[data-level="mars"] .page-4 .vocab-card { padding: 5pt 9pt 6pt; }
+[data-level="mars"] .page-4 .vocab-card .examples { padding-top: 3pt; gap: 2pt; }
+[data-level="mars"] .page-4 .vocab-card .example-item .en { font-size: 7.5pt; line-height: 1.3; }
+[data-level="mars"] .page-4 .vocab-card .example-item .ko { font-size: 7pt; line-height: 1.25; }
+
+/* Section labels — capsule badge with English label inside (reference 텃밭 style)
+   Color rotates per page: coral / mustard / sage / coral-deep. Korean tail
+   suffix kept as floating tag for context. */
+[data-level="mars"] .page-head {
+  position: relative;
+  align-items: center;
+}
+[data-level="mars"] .page-head .section-label {
+  display: inline-flex;
+  align-items: center;
+  padding: 3pt 13pt;
+  border-radius: 999px;
+  color: #fff;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 10pt;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  box-shadow: 0 1pt 3pt rgba(58, 40, 24, 0.10);
+}
+/* Per-page capsule color */
+[data-level="mars"] .page-1 .page-head .section-label { background: var(--tn-theme); }         /* primary teal */
+[data-level="mars"] .page-2 .page-head .section-label { background: var(--tn-theme-deep); }    /* deep teal */
+[data-level="mars"] .page-3 .page-head .section-label { background: var(--mars-gold); }       /* warm gold (one accent) */
+[data-level="mars"] .page-4 .page-head .section-label { background: var(--mars-teal-light); }  /* light teal */
+[data-level="mars"] .page-toc .page-head .section-label { background: var(--tn-theme); }        /* TOC: teal pill (was bg-less → white text on white = empty box) */
+/* Korean subtitle tag — Gowun handwriting beside the capsule */
+[data-level="mars"] .page-head .section-label::after {
+  content: "";
+  display: none;
+}
+[data-level="mars"] .page-1 .page-head::before { content: "오늘의 이야기"; }
+[data-level="mars"] .page-2 .page-head::before { content: "같이 풀어 보기"; }
+[data-level="mars"] .page-3 .page-head::before { content: "문장 살펴보기"; }
+[data-level="mars"] .page-4 .page-head::before { content: "단어 연습"; }
+[data-level="mars"] .page-head::before {
+  position: absolute;
+  left: 95pt;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Gowun Dodum', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: var(--tn-ink-soft);
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+/* ============= Mars unified type system =============
+   English: Quicksand (300/400/500/600/700) — sophisticated rounded geometric
+   Korean:  Gowun Dodum (single weight, gentle modern handwriting)
+   Hierarchy by WEIGHT + SIZE, not by font mixing. */
+
+/* P1 Title — clean coral, no gradient (matches organic reference tone) */
+[data-level="mars"] .p1-title {
+  font-family: 'Quicksand', 'Gowun Dodum', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.012em;
+  color: var(--tn-theme-deep);
+}
+/* P1 Subtitle — lighter weight for elegant contrast */
+[data-level="mars"] .p1-subtitle {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+/* P1 Body English — readable medium weight */
+[data-level="mars"] .p1-body {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 500;
+}
+/* Section labels (PASSAGE / PRACTICE / SYNTAX / VOCAB) — heavy English + light Korean tail */
+[data-level="mars"] .page-head .section-label {
+  font-family: 'Quicksand', 'Gowun Dodum', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  font-size: 13.5pt;
+}
+/* Chapter tag (Korean meta) */
+[data-level="mars"] .page-head .chapter-tag {
+  font-family: 'Gowun Dodum', sans-serif;
+  font-weight: 400;
+  font-size: 9.5pt;
+}
+/* Brand mark — Quicksand 700 keeps the modern-cute consistency */
+[data-level="mars"] .page-foot .brand {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+[data-level="mars"] .page-foot .page-num {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+}
+/* Question Q1/Q2/Q3/Q4 badges */
+[data-level="mars"] .question .stem .q-num {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+}
+/* Question stem (Korean) */
+[data-level="mars"] .question .stem {
+  font-family: 'Gowun Dodum', 'Quicksand', sans-serif;
+  font-weight: 400;
+  font-size: 11pt;
+}
+/* Choices (mostly English) */
+[data-level="mars"] .question .choices {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 500;
+}
+/* Tieback Korean explanation */
+[data-level="mars"] .tieback,
+[data-level="mars"] .tieback .body-ko { font-family: 'Gowun Dodum', sans-serif; }
+[data-level="mars"] .tieback .unit-label {
+  font-family: 'Gowun Dodum', sans-serif;
+  font-weight: 400;
+}
+/* Vocab cards */
+[data-level="mars"] .vocab-card .word {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+}
+[data-level="mars"] .vocab-card .meaning { font-family: 'Gowun Dodum', sans-serif; }
+[data-level="mars"] .vocab-card .example-item .en {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 500;
+}
+[data-level="mars"] .vocab-card .example-item .ko { font-family: 'Gowun Dodum', sans-serif; }
+/* P1 vocab preview grid */
+[data-level="mars"] .vp-word {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+}
+[data-level="mars"] .vp-meaning { font-family: 'Gowun Dodum', sans-serif; }
+[data-level="mars"] .vp-header .vp-title {
+  font-family: 'Gowun Dodum', sans-serif;
+  font-weight: 400;
+}
+/* P3 sentence English & Korean translation */
+[data-level="mars"] .p3-sentence .en-row {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 500;
+}
+/* Per-sentence 끊어읽기 해석 채우기 — Korean fill-in row under each breakdown */
+[data-level="mars"] .p3-sentence .ko-row {
+  margin-top: 1.5pt;
+  padding-left: 16pt;
+  font-family: 'Gowun Dodum', sans-serif;
+  font-size: 8.5pt;
+  color: #51707a;
+  line-height: 1.55;
+  letter-spacing: 0.01em;
+}
+[data-level="mars"] .p3-sentence .ko-row .ko-blank {
+  display: inline-block;
+  min-width: 62pt;
+  height: 1em;
+  border-bottom: 1.4px dotted var(--tn-theme);
+  margin: 0 1.5pt;
+  vertical-align: bottom;
+}
+/* Bottom full-translation box removed for Mars — per-sentence 끊어읽기 해석 채우기 replaces it
+   (the full box gave away the fill-in answers). translation_ko data is kept for the answer key. */
+[data-level="mars"] .p3-translation { display: none; }
+[data-level="mars"] .p3-translation .body { font-family: 'Gowun Dodum', sans-serif; }
+[data-level="mars"] .p3-translation h4 {
+  font-family: 'Gowun Dodum', sans-serif;
+  font-weight: 400;
+}
+/* Encouragement bubbles */
+[data-level="mars"] .page-2 .p2-questions::after,
+[data-level="mars"] .page-4 .p4-vocab::after {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+}
+/* Footer page number — friendlier with orbital ring */
+[data-level="mars"] .page-foot { border-top: 0.5pt dashed var(--tn-muted); }
+[data-level="mars"] .page-foot .page-num {
+  background: radial-gradient(circle at 35% 30%, #B0A0F2 0%, var(--tn-theme) 50%, var(--tn-theme-deep) 100%);
+  box-shadow: 0 0 0 1.5pt rgba(45, 28, 127, 0.18);
+}
+
+/* ============= Footer — page-num always center, right side rotates =============
+   - Page number always centered on every page
+   - Odd pages (1, 3): TERRA·NOVA on right (no date)
+   - Even pages (2, 4): JUNE · WEEK 1 · MONDAY on right (no brand) */
+[data-level="mars"] .page-foot .foot-spacer { flex: 1; }
+[data-level="mars"] .page-foot .page-num { margin: 0; }
+[data-level="mars"] .page-foot .foot-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8pt;
+}
+[data-level="mars"] .page-foot .foot-date {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 600;
+  font-size: 8.5pt;
+  color: var(--tn-theme-deep);
+  letter-spacing: 0.06em;
+}
+
+/* Odd pages (1, 3) → hide date; Even pages (2, 4) → hide brand */
+[data-level="mars"] .page-1 .page-foot .foot-date,
+[data-level="mars"] .page-3 .page-foot .foot-date { display: none; }
+[data-level="mars"] .page-2 .page-foot .brand,
+[data-level="mars"] .page-4 .page-foot .brand { display: none; }
+
+/* ============= Header level chip — top-right corner of colored bar ============= */
+[data-level="mars"] .header-level {
+  position: absolute;
+  top: 1.2mm;
+  right: 42mm;            /* leave room for top-right mascot (38mm wide) */
+  z-index: 10;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 8.5pt;
+  color: #fff;
+  letter-spacing: 0.08em;
+  padding: 0;
+}
+/* P3, P4 don't have the big mascot — pull level chip closer to right edge */
+[data-level="mars"] .page-3 .header-level,
+[data-level="mars"] .page-4 .header-level { right: 8mm; }
+/* TOC page — has Mars mascot like P1, leave room for it */
+[data-level="mars"] .page-toc .header-level { right: 42mm; }
+/* TOC page should NOT inherit page-1's Korean subtitle ("오늘의 이야기") */
+[data-level="mars"] .page-toc .page-head::before { content: ""; display: none; }
+
+/* ============= Table of Contents (목차) page ============= */
+[data-level="mars"] .page-toc {
+  background: var(--tn-surface);
+}
+[data-level="mars"] .toc-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6mm;
+  /* Distribute weeks evenly so no whitespace at bottom */
+  justify-content: space-between;
+}
+/* Each week section grows to share remaining space */
+[data-level="mars"] .toc-week {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+/* List items distribute evenly within each week to fill vertically */
+[data-level="mars"] .toc-list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+[data-level="mars"] .toc-title {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  margin: 4mm 0 0;
+  display: flex;
+  align-items: baseline;
+  gap: 8pt;
+}
+[data-level="mars"] .toc-title .toc-title-ko {
+  font-family: 'Gowun Dodum', sans-serif;
+  font-size: 24pt;
+  color: var(--tn-theme-deep);
+  font-weight: 400;
+}
+[data-level="mars"] .toc-title .toc-title-en {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 11pt;
+  color: var(--tn-muted);
+  letter-spacing: 0.18em;
+  font-weight: 600;
+}
+[data-level="mars"] .toc-month {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 600;
+  font-size: 9.5pt;
+  color: var(--tn-theme);
+  letter-spacing: 0.08em;
+  margin-top: -3mm;
+  margin-bottom: 2mm;
+}
+
+[data-level="mars"] .toc-week {
+  display: flex;
+  flex-direction: column;
+  gap: 1mm;
+}
+[data-level="mars"] .toc-week-head {
+  display: flex;
+  align-items: center;
+  gap: 6pt;
+  padding: 4pt 8pt;
+  background: var(--tn-theme-soft);
+  border-radius: 8pt;
+  font-family: 'Quicksand', sans-serif;
+  margin-bottom: 1mm;
+}
+[data-level="mars"] .toc-week-label {
+  font-weight: 600;
+  color: var(--tn-theme-deep);
+  font-size: 9pt;
+  letter-spacing: 0.18em;
+}
+[data-level="mars"] .toc-week-num {
+  font-weight: 700;
+  color: var(--tn-theme-deep);
+  font-size: 14pt;
+}
+[data-level="mars"] .toc-week-line {
+  flex: 1;
+  height: 1px;
+  background: var(--tn-muted);
+  opacity: 0.5;
+}
+[data-level="mars"] .toc-week-page {
+  font-weight: 600;
+  color: var(--tn-theme);
+  font-size: 9pt;
+  letter-spacing: 0.04em;
+}
+
+[data-level="mars"] .toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  /* flex/justify-content from earlier rule provides vertical distribution */
+}
+[data-level="mars"] .toc-item {
+  display: grid;
+  grid-template-columns: 22pt 1fr auto auto;
+  gap: 10pt;
+  align-items: center;
+  padding: 5pt 4pt;
+  border-bottom: 0.4pt dotted var(--tn-divider);
+}
+[data-level="mars"] .toc-item:last-child { border-bottom: none; }
+[data-level="mars"] .toc-num {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  color: var(--tn-theme);
+  font-size: 10pt;
+  text-align: center;
+}
+[data-level="mars"] .toc-titles {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-width: 0;
+}
+[data-level="mars"] .toc-en {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 10pt;
+  color: var(--tn-ink);
+  line-height: 1.25;
+}
+[data-level="mars"] .toc-ko {
+  font-family: 'Gowun Dodum', sans-serif;
+  font-size: 8.5pt;
+  color: var(--tn-ink-soft);
+  line-height: 1.2;
+}
+[data-level="mars"] .toc-subject {
+  font-family: 'Gowun Dodum', sans-serif;
+  font-size: 8pt;
+  font-weight: 400;
+  padding: 1pt 7pt;
+  background: var(--mars-teal-pale);
+  color: var(--tn-theme-deep);
+  border-radius: 999px;
+  white-space: nowrap;
+}
+[data-level="mars"] .toc-page {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 600;
+  font-size: 9pt;
+  color: var(--tn-theme);
+  letter-spacing: 0.04em;
+  min-width: 22pt;
+  text-align: right;
+}
+/* TOC footer page-num shows roman 'i' (book convention for front matter) */
+[data-level="mars"] .toc-page-num {
+  font-style: italic;
+  font-size: 9pt;
+  font-weight: 600;
+}
+
+/* ============= Week divider — PAGE A: solid Persian Indigo cover ============= */
+[data-level="mars"] .page-week-cover {
+  background: var(--tn-theme-deep);
+  background-image: linear-gradient(180deg, var(--tn-theme-deep) 0%, #1A0E5C 100%);
+  display: grid;
+  grid-template-rows: 1fr auto auto;
+  gap: 0;
+  padding: 0;
+  color: #fff;
+  overflow: hidden;
+}
+[data-level="mars"] .page-week-cover::before { display: none; }
+
+[data-level="mars"] .page-week-cover .wd-cover {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6mm;
+}
+[data-level="mars"] .wd-label {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 600;
+  font-size: 18pt;
+  letter-spacing: 0.4em;
+  color: rgba(255, 255, 255, 0.85);
+}
+[data-level="mars"] .wd-big-num {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 180pt;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: #fff;
+  text-shadow: 0 6pt 18pt rgba(0, 0, 0, 0.22);
+}
+[data-level="mars"] .wd-cover-meta {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 500;
+  font-size: 9pt;
+  letter-spacing: 0.18em;
+  color: rgba(255, 255, 255, 0.78);
+  text-align: center;
+  padding: 6mm 14mm 8mm;
+}
+
+[data-level="mars"] .wd-cover-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5mm 14mm 8mm;
+  border-top: 0.5pt dashed rgba(255, 255, 255, 0.25);
+  background: transparent;
+}
+[data-level="mars"] .wd-foot-left {
+  display: inline-flex;
+  align-items: center;
+  gap: 14pt;
+}
+[data-level="mars"] .wd-cover-foot .brand {
+  color: #fff;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 10pt;
+  letter-spacing: 0.06em;
+}
+[data-level="mars"] .wd-cover-foot .brand-dot { color: var(--mars-gold); }
+[data-level="mars"] .wd-foot-level {
+  color: #fff;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 10pt;
+  letter-spacing: 0.18em;
+}
+[data-level="mars"] .wd-foot-right {
+  color: #fff;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 600;
+  font-size: 10pt;
+  letter-spacing: 0.16em;
+}
+
+/* ============= Week divider — PAGE B: same purple bg + WHITE CARD with list =============
+   White card holds the readable content. Sprinkle stars + astronaut decoration
+   add a cute cosmic feel without sacrificing readability. */
+[data-level="mars"] .page-week-list {
+  background: var(--tn-theme-deep);
+  background-image: linear-gradient(180deg, var(--tn-theme-deep) 0%, #1A0E5C 100%);
+  display: grid;
+  grid-template-rows: 1fr auto;          /* top spacer + bottom card+footer */
+  padding: 0;
+  color: #fff;
+  overflow: hidden;
+  position: relative;
+}
+[data-level="mars"] .page-week-list::before { display: none; }
+
+/* White card containing title + list, anchored at the BOTTOM */
+[data-level="mars"] .wd-list-card {
+  align-self: end;
+  width: calc(100% - 28mm);
+  margin: 0 14mm 6mm;
+  background: #fff;
+  border-radius: 18pt;
+  padding: 8mm 10mm 9mm;
+  color: var(--tn-ink);
+  box-shadow: 0 6pt 24pt rgba(0, 0, 0, 0.18);
+  display: flex;
+  flex-direction: column;
+  gap: 5mm;
+  position: relative;
+  z-index: 2;
+}
+[data-level="mars"] .wd-list-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8pt;
+  padding-bottom: 4mm;
+  border-bottom: 1pt solid var(--tn-theme);
+}
+[data-level="mars"] .wd-list-title {
+  font-family: 'Gowun Dodum', sans-serif;
+  font-weight: 400;
+  font-size: 18pt;
+  color: var(--tn-theme-deep);
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+[data-level="mars"] .wd-list-meta {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 10pt;
+  color: var(--tn-theme);
+  letter-spacing: 0.18em;
+}
+[data-level="mars"] .wd-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5pt;
+}
+[data-level="mars"] .wd-item {
+  display: grid;
+  grid-template-columns: 24pt 1fr auto auto;
+  gap: 10pt;
+  align-items: center;
+  padding: 6pt 2pt;
+  border-bottom: 0.4pt dotted var(--tn-divider);
+}
+[data-level="mars"] .wd-item:last-child { border-bottom: none; }
+[data-level="mars"] .wd-num {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  color: var(--tn-theme);
+  font-size: 13pt;
+  text-align: center;
+}
+[data-level="mars"] .wd-titles {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+[data-level="mars"] .wd-en {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 11pt;
+  color: var(--tn-ink);
+  line-height: 1.25;
+}
+[data-level="mars"] .wd-ko {
+  font-family: 'Gowun Dodum', sans-serif;
+  font-size: 9pt;
+  color: var(--tn-ink-soft);
+  line-height: 1.2;
+}
+[data-level="mars"] .wd-subject {
+  font-family: 'Gowun Dodum', sans-serif;
+  font-size: 8.5pt;
+  padding: 1.5pt 9pt;
+  background: var(--mars-teal-pale);
+  color: var(--tn-theme-deep);
+  border-radius: 999px;
+  white-space: nowrap;
+}
+[data-level="mars"] .wd-page {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 600;
+  font-size: 10pt;
+  color: var(--tn-theme);
+  letter-spacing: 0.04em;
+  min-width: 24pt;
+  text-align: right;
+}
+
+/* ============= Optional decorations (auto-show when files exist) =============
+   Files needed at assets/illustrations/mars/:
+   - _week-stars-bg.png   (star pattern bg, ~1500×2100, white bg with stars)
+   - _week-astronaut.png  (astronaut, square ~800×800, transparent bg) */
+
+/* Holographic glitter overlay (bg3) — already bright, no invert needed.
+   Screen blend lifts the bright sparkles onto the purple bg. */
+[data-level="mars"] .wd-bg-stars {
+  position: absolute;
+  inset: 0;
+  background-image: url('../assets/illustrations/mars/_week-stars-bg3.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.28;                        /* slightly more visible shimmer */
+  mix-blend-mode: screen;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Cover content sits above stars layer */
+[data-level="mars"] .page-week-cover .wd-cover,
+[data-level="mars"] .page-week-cover .wd-cover-foot {
+  position: relative;
+  z-index: 2;
+}
+/* List page: card and footer above stars */
+[data-level="mars"] .page-week-list .wd-list-card,
+[data-level="mars"] .page-week-list .wd-cover-foot {
+  position: relative;
+  z-index: 2;
+}
+
+/* Astronaut floats above card — original size, pulled higher up the page. */
+[data-level="mars"] .page-week-list .wd-card-astronaut {
+  position: absolute;
+  bottom: 140mm;          /* pulled up; tweak 130-160mm to nudge */
+  right: 14mm;
+  width: 55mm;            /* original size */
+  height: 55mm;
+  object-fit: contain;
+  object-position: center bottom;
+  pointer-events: none;
+  z-index: 5;
+  filter: drop-shadow(0 4pt 10pt rgba(0, 0, 0, 0.32));
+}
+
+/* ============= Mars: cream paper + earth-tone accents =============
+   Inspired by Korean elementary garden-textbook reference: warm cream
+   paper, coral × mustard × sage trio, capsule labels, soft info boxes. */
+
+/* Top theme bar — slim teal→mustard horizontal sweep */
+[data-level="mars"] {
+  --tn-theme-bar-h: 7mm;   /* slimmer than default 10mm — paper-like top stripe */
+}
+[data-level="mars"] .page::before {
+  background: linear-gradient(90deg, var(--tn-theme-deep) 0%, var(--tn-theme) 55%, var(--mars-teal-light) 100%);
+  border-radius: 8pt 8pt 0 0;
+}
+@media print { [data-level="mars"] .page::before { border-radius: 0; } }
+
+/* (Removed: ambiguous Mars watermark on Page 1.
+   Mars identity is now communicated via the top bar gradient,
+   coral title color, and the top-right passage badge — no need
+   for a decorative blurry circle that confused readers.) */
+
+/* Mars illustration placeholder — light cream box with subtle warm tint */
+[data-level="mars"] .p1-illustration { height: 56mm; border-radius: 16pt; }
+[data-level="mars"] .p1-illustration.illustration-empty {
+  background:
+    radial-gradient(circle at 75% 30%, var(--mars-gold-soft) 0%, transparent 55%),
+    radial-gradient(circle at 25% 75%, var(--mars-teal-pale) 0%, transparent 55%),
+    linear-gradient(135deg, var(--tn-theme-soft) 0%, #EFEAFC 100%);
+  border: 0.8pt dashed var(--tn-theme);
+  box-shadow: none;
+}
+[data-level="mars"] .p1-illustration.illustration-empty::before {
+  content: "🪐";
+  font-size: 26pt;
+  opacity: 0.7;
+  filter: none;
+}
+[data-level="mars"] .p1-illustration.illustration-empty::after {
+  content: "삽화 자리 · " attr(data-placeholder-id);
+  color: var(--tn-theme-deep);
+  font-family: 'Gowun Dodum', sans-serif;
+  font-weight: 400;
+  text-shadow: none;
+  letter-spacing: 0.02em;
+}
+
+/* ============= P1: Vocab preview block (Mars-only) — organic light card ============= */
+[data-level="mars"] .p1-vocab-preview {
+  margin-top: 8pt;
+  padding: 9pt 13pt 11pt;
+  background: linear-gradient(180deg, #FAF6FF 0%, var(--mars-teal-pale) 100%);
+  border-radius: 18pt;
+  border: 1pt solid var(--tn-theme);
+  box-shadow: 0 1pt 3pt rgba(181, 120, 32, 0.08);
+  flex-shrink: 0;
+}
+[data-level="mars"] .vp-header {
+  display: flex;
+  align-items: center;
+  gap: 5pt;
+  margin-bottom: 5pt;
+  font-family: var(--font-ko);
+}
+[data-level="mars"] .vp-header .vp-icon { font-size: 13pt; line-height: 1; }
+[data-level="mars"] .vp-header .vp-title {
+  font-weight: 800;
+  font-size: 10.5pt;
+  color: var(--tn-theme-deep);
+  letter-spacing: 0.01em;
+}
+[data-level="mars"] .vp-header .vp-sub {
+  font-size: 7.5pt;
+  color: var(--tn-theme-deep);
+  background: #fff;
+  padding: 1pt 7pt;
+  border-radius: 999px;
+  font-weight: 600;
+  margin-left: 2pt;
+  border: 0.5pt solid var(--tn-theme);
+}
+[data-level="mars"] .vp-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4pt 5pt;
+}
+[data-level="mars"] .vp-item {
+  background: #fff;
+  border: 0.6pt solid var(--tn-divider);
+  border-radius: 9pt;
+  padding: 3pt 5pt 4pt;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5pt;
+  min-height: 28pt;
+  justify-content: center;
+}
+[data-level="mars"] .vp-word {
+  font-family: var(--font-serif-display);
+  font-weight: 700;
+  font-size: 9.5pt;
+  color: var(--tn-ink);
+  line-height: 1.15;
+  word-break: break-word;
+}
+[data-level="mars"] .vp-meaning {
+  font-family: var(--font-ko);
+  font-size: 7.5pt;
+  color: var(--tn-theme-deep);
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+/* Compact P1 to fit body + illustration + vocab grid */
+[data-level="mars"] .page-1 .p1-body {
+  font-size: 11.5pt;
+  line-height: 1.7;
+}
+[data-level="mars"] .page-1 .p1-title { font-size: 21pt; margin-top: 3pt; }
+[data-level="mars"] .page-1 .p1-subtitle { font-size: 11pt; margin-bottom: 8pt; }
+[data-level="mars"] .page-1 .p1-caption { display: none; }   /* save vertical space, vocab block is the new visual anchor */
+
+/* Add a little orbit ring to title decoration */
+[data-level="mars"] .page-1 .p1-title::after {
+  content: " ✨";
+  font-size: 13pt;
+  vertical-align: 4pt;
+  opacity: 0.7;
+}
+
+/* ============= Section Divider (textbook ↔ vocab tests ↔ answer key) =============
+   Reuses the week-divider visual (purple cover + white card on right page).
+   Cover page swaps the big WEEK number for a large icon + Korean label.
+   List page replaces the passage list with 2-3 lines of friendly guidance. */
+[data-level="mars"] .page-section-cover .wd-cover {
+  align-items: center;
+  text-align: center;
+  gap: 4mm;
+}
+[data-level="mars"] .page-section-cover .wd-label {
+  letter-spacing: 0.10em;
+  font-size: 32pt;
+  font-weight: 700;
+}
+[data-level="mars"] .page-section-cover .sd-big-icon {
+  font-size: 96pt;
+  line-height: 1;
+  margin: 6mm 0;
+  text-shadow: none;   /* the big-num drop shadow ghosts the emoji into a 2nd pencil — remove it */
+}
+[data-level="mars"] .page-section-cover .sd-label-ko {
+  font-family: 'Gowun Dodum', sans-serif;
+  color: #fff;
+  font-size: 22pt;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  margin-top: 2mm;
+}
+
+/* Section-divider list page reuses .wd-card-astronaut but at a lowered y-position
+   (week dividers stay at their original 140mm). */
+[data-level="mars"] .page-section-list .wd-card-astronaut {
+  bottom: 90mm;
+}
+
+/* Emoji illustration option (kept available for future use; currently unused). */
+[data-level="mars"] .page-section-list .sd-illustration-emoji {
+  position: absolute;
+  bottom: 83mm;
+  right: 14mm;
+  width: 55mm;
+  height: 55mm;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 110pt;
+  line-height: 1;
+  pointer-events: none;
+  filter: drop-shadow(0 4pt 8pt rgba(45, 28, 127, 0.25));
+}
+
+/* List page lines (replace .wd-list ol with friendly bullet points) */
+[data-level="mars"] .page-section-list .sd-lines {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 7pt;
+}
+[data-level="mars"] .page-section-list .sd-line {
+  font-family: 'Gowun Dodum', sans-serif;
+  font-size: 11pt;
+  line-height: 1.55;
+  color: var(--tn-ink);
+  padding-left: 14pt;
+  position: relative;
+}
+[data-level="mars"] .page-section-list .sd-line::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--tn-theme);
+  font-weight: 700;
+}
+
+/* ===========================================================
+   Mars — JULY (2026-07) issue theme: 한여름 바다 (midsummer sea)
+   Per 테라노바_월별색_팔레트_v2. Drops June purple entirely.
+   Scoped to [data-month="2026-07"] so other months are untouched.
+   Rule: 흰 글씨/아이콘은 항상 --tn-theme-deep 위에만. 메인색은 검정
+   글씨 면색/포인트/테두리. soft는 배경 틴트 전용.
+   =========================================================== */
+[data-level="mars"][data-month="2026-07"] {
+  --tn-theme:        #1CA9C9;   /* 시원한 청록빛 파랑 (main) */
+  --tn-theme-deep:   #0B6D83;   /* deep teal — white text safe (5:1+) */
+  --tn-theme-soft:   #D3E8ED;   /* pale sea mist — bg tint only */
+  --tn-ink:          #0B2630;   /* deep sea ink */
+  --tn-ink-soft:     #0B6D83;
+  --tn-muted:        #93C7D4;
+  --tn-divider:      #E3F1F5;
+  --tn-bg:           #F2F9FB;   /* very pale sea paper */
+
+  /* sea-family extras (replace the purple --mars-teal-* names) */
+  --mars-teal-light:  #5AC4DC;  /* lighter aqua */
+  --mars-teal-pale:   #ECF7FA;  /* very pale aqua */
+  --mars-teal-darker: #073F4E;  /* darkest teal (week-cover gradient end) */
+
+  /* keep a warm sandy-gold accent — beach pairing with sea blue */
+  --mars-gold:        #F4B860;
+  --mars-gold-deep:   #B8841C;
+  --mars-gold-soft:   #FCEBC5;
+}
+
+/* Footer page-num orbit — swap the hardcoded purple light stop for aqua */
+[data-level="mars"][data-month="2026-07"] .page-foot .page-num {
+  background: radial-gradient(circle at 35% 30%, #7FD6E8 0%, var(--tn-theme) 50%, var(--tn-theme-deep) 100%);
+  box-shadow: 0 0 0 1.5pt rgba(11, 109, 131, 0.18);
+}
+
+/* Week-divider covers — swap the hardcoded #1A0E5C indigo for deep teal */
+[data-level="mars"][data-month="2026-07"] .page-week-cover,
+[data-level="mars"][data-month="2026-07"] .page-week-list {
+  background-image: linear-gradient(180deg, var(--tn-theme-deep) 0%, var(--mars-teal-darker) 100%);
+}
+
+/* Scattered watercolor dots — retint the purple dots to sea blue.
+   Exclude week/section dividers — they keep their deep-teal gradient (the dots rule
+   would otherwise clobber it with background-color:surface → white divider). */
+[data-level="mars"][data-month="2026-07"] .page:not(.page-week-cover):not(.page-week-list) {
+  background-image:
+    radial-gradient(circle 0.5pt at 18mm 38mm, rgba(244, 184, 96, 0.20), transparent 70%),
+    radial-gradient(circle 0.7pt at 145mm 52mm, rgba(28, 169, 201, 0.22), transparent 70%),
+    radial-gradient(circle 0.4pt at 28mm 95mm, rgba(11, 109, 131, 0.22), transparent 70%),
+    radial-gradient(circle 0.6pt at 185mm 110mm, rgba(244, 184, 96, 0.20), transparent 70%),
+    radial-gradient(circle 0.5pt at 165mm 175mm, rgba(28, 169, 201, 0.22), transparent 70%),
+    radial-gradient(circle 0.7pt at 22mm 215mm, rgba(244, 184, 96, 0.20), transparent 70%),
+    radial-gradient(circle 0.4pt at 95mm 248mm, rgba(11, 109, 131, 0.22), transparent 70%),
+    radial-gradient(circle 0.6pt at 175mm 260mm, rgba(28, 169, 201, 0.22), transparent 70%),
+    radial-gradient(circle 0.5pt at 55mm 282mm, rgba(244, 184, 96, 0.20), transparent 70%);
+  background-color: var(--tn-surface);
+  background-repeat: no-repeat;
+}
+
+/* P1 placeholder motif — summer sea (only shows when the PNG is missing) */
+[data-level="mars"][data-month="2026-07"] .p1-illustration.illustration-empty::before {
+  content: "🌊";
+}
+
+/* =========================================================================
+   Page 4 — VOCAB workbook (3 practice activities: ko_en_write / crossword /
+   fill_blank_bank). Replaces the old vocab-card list for Mars. */
+[data-level="mars"] .page-4 .page-body { counter-reset: wbact; }
+[data-level="mars"] .workbook-activity { margin: 0 0 2.6mm; }
+[data-level="mars"] .workbook-activity .activity-head { margin-bottom: 1.3mm; }
+[data-level="mars"] .workbook-activity .activity-title {
+  counter-increment: wbact;
+  font-family: 'Quicksand', sans-serif; font-weight: 700; font-size: 11pt;
+  color: var(--tn-theme-deep); display: flex; align-items: center; gap: 6pt; margin: 0;
+}
+[data-level="mars"] .workbook-activity .activity-title::before {
+  content: counter(wbact); flex: 0 0 auto;
+  width: 15pt; height: 15pt; border-radius: 50%;
+  background: var(--tn-theme); color: #fff;
+  font-size: 9pt; font-weight: 700; display: inline-flex; align-items: center; justify-content: center;
+}
+[data-level="mars"] .workbook-activity .activity-inst { font-size: 8.5pt;
+  font-family: 'Gowun Dodum', sans-serif; font-size: 9pt; color: #5b7a83;
+  margin: 0 0 0 21pt; line-height: 1.45;
+}
+[data-level="mars"] .workbook-activity .row-num,
+[data-level="mars"] .workbook-activity .clue-num { color: var(--tn-theme); font-weight: 700; font-family: 'Quicksand', sans-serif; }
+
+/* ko_en_write */
+[data-level="mars"] .koenw-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5mm 8mm; }
+[data-level="mars"] .koenw-sub { font-family: 'Gowun Dodum', sans-serif; font-weight: 400; font-size: 9pt; color: var(--tn-theme); margin: 0 0 1.5mm; }
+[data-level="mars"] .koenw-list { list-style: none; margin: 0; padding: 0; }
+[data-level="mars"] .koenw-list li { display: flex; align-items: center; gap: 6pt; padding: 1.05mm 0; font-family: 'Nunito', sans-serif; font-size: 10pt; color: #0b2630; }
+[data-level="mars"] .koenw-prompt { font-family: 'Gowun Dodum', 'Nunito', sans-serif; display: inline-block; min-width: 70pt; flex: 0 0 auto; }
+[data-level="mars"] .koenw-blank { flex: 1; border-bottom: 1.5px dotted #9fc2cc; min-width: 40pt; height: 11pt; }
+
+/* match (definition_match / ko_en_match) — kept for completeness */
+[data-level="mars"] .match-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2mm 8mm; }
+[data-level="mars"] .match-row { display: flex; gap: 6pt; padding: 1.4mm 0; font-family: 'Nunito', sans-serif; font-size: 9.5pt; }
+[data-level="mars"] .row-letter { color: var(--mars-gold); }
+
+/* fill_blank_bank */
+[data-level="mars"] .word-bank { display: flex; flex-wrap: wrap; align-items: center; gap: 5pt; margin: 0.5mm 0 1.8mm; padding: 1.8mm 4mm; background: #f4fafb; border: 1.4px dashed #cfe6ec; border-radius: 10px; }
+[data-level="mars"] .bank-label { font-family: 'Gowun Dodum', sans-serif; font-size: 8pt; color: #7fa0a8; }
+[data-level="mars"] .bank-word { font-family: 'Nunito', sans-serif; font-size: 9pt; background: #fff; border: 1px solid #d3e8ed; border-radius: 6px; padding: 1pt 7pt; color: #0b2630; }
+[data-level="mars"] .bank-sep { color: #bcd9e0; }
+[data-level="mars"] .bank-items { list-style: none; margin: 0; padding: 0; }
+[data-level="mars"] .bank-items li { display: flex; align-items: baseline; gap: 7pt; padding: 1.2mm 0; font-family: 'Nunito', sans-serif; font-size: 10pt; color: #0b2630; border-bottom: 1px solid #eef4f6; }
+[data-level="mars"] .inline-blank { display: inline-block; min-width: 52pt; border-bottom: 1.6px dotted var(--tn-theme); height: 1em; margin: 0 2pt; vertical-align: bottom; }
+
+/* crossword */
+[data-level="mars"] .cw-wrap { display: grid; grid-template-columns: auto 1fr; gap: 8mm; align-items: start; }
+[data-level="mars"] .crossword-grid { display: grid; --cw-cell: 23pt; }   /* bigger cells for 초5 writing room (other levels stay 20pt) */
+[data-level="mars"] .cw-cell { width: var(--cw-cell); height: var(--cw-cell); border: 1.3px solid #bcd9e0; background: #fff; position: relative; }
+[data-level="mars"] .cw-num { position: absolute; top: 1pt; left: 1.5pt; font-size: 7pt; font-weight: 700; color: var(--tn-theme); font-family: 'Quicksand', sans-serif; }
+[data-level="mars"] .cw-clues { font-family: 'Nunito', sans-serif; font-size: 8.7pt; color: #28424c; line-height: 1.5; }
+[data-level="mars"] .cw-clue-section h5 { font-family: 'Quicksand', sans-serif; color: var(--tn-theme-deep); font-size: 9pt; margin: 0 0 1mm; }
+[data-level="mars"] .cw-clue-section ol { margin: 0 0 2.5mm; padding-left: 0; list-style: none; }
+[data-level="mars"] .cw-clue-section li { display: flex; gap: 5pt; padding: 0.7mm 0; }
+[data-level="mars"] .cw-clue-section .clue-len { color: #9ab4bb; font-size: 7.5pt; }
