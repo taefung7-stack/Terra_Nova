@@ -26,6 +26,16 @@
 
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
 
+/* Pretendard 구두점 글리프 깨짐 보정 — '[' ']' '~' '-' '·' 등이 Chromium PDF 에서
+   .notdef(☰)로 깨지는 것을 해당 코드포인트만 Arial 로 오버라이드. (analysis.css 와 동일) */
+@font-face {
+  font-family: 'PretendardTN';
+  src: local('Arial');
+  font-weight: 100 900;
+  font-style: normal;
+  unicode-range: U+0040, U+002D, U+005B, U+005D, U+007E, U+00A9, U+00B7, U+2010, U+2011, U+2012, U+2013, U+2014, U+2015;
+}
+
 :root {
   --c-mint:        #b8d8d0;  --c-mint-soft:   #e6f1ee;  --c-mint-deep:   #6b9c92;
   --c-sky:         #c4dde8;  --c-sky-soft:    #ecf4f8;  --c-sky-deep:    #6a9bb5;
@@ -47,7 +57,7 @@
 html, body {
   margin: 0;
   padding: 0;
-  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'PretendardTN', 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
   color: var(--c-text);
   background: #eef2f3;
   font-size: 10.5pt;

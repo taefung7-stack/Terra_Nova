@@ -27,6 +27,20 @@
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
+/* ===== Pretendard 구두점 글리프 깨짐 보정 (PretendardTN) =====
+   Pretendard 는 Chromium PDF 렌더 시 일부 ASCII 구두점('[' ']' '~' '-' '·' 등)을
+   .notdef 박스(☰)로 깨뜨린다(화면은 정상, PDF만 깨짐 — 표지 "[2026]" "18~45번" 등).
+   'PretendardTN' 은 그 깨지는 코드포인트만 'Arial'(시스템 TTF)로 렌더하는 오버라이드
+   패밀리. font-family 스택을 'PretendardTN','Pretendard',... 로 두면 구두점은 Arial,
+   나머지(영문/숫자/한글)는 CDN Pretendard 가 담당한다. 모든 weight 적용. */
+@font-face {
+  font-family: 'PretendardTN';
+  src: local('Arial');
+  font-weight: 100 900;
+  font-style: normal;
+  unicode-range: U+0040, U+002D, U+005B, U+005D, U+007E, U+00A9, U+00B7, U+2010, U+2011, U+2012, U+2013, U+2014, U+2015;
+}
+
 :root {
   /* === 메인 (파스텔) === */
   --c-mint:        #b8d8d0;
@@ -60,7 +74,7 @@
 html, body {
   margin: 0;
   padding: 0;
-  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'PretendardTN', 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
   color: var(--c-text);
   background: #eef2f3;
   font-size: 9.5pt;
