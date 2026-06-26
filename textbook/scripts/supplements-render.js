@@ -161,8 +161,8 @@ async function renderWordbook(opts = {}) {
       const syns = (v.synonyms || []).join(', ');
       const ants = (v.antonyms || []).join(', ');
       const synAntHtml = [
-        syns ? `<span class="syn">≈ ${esc(syns)}</span>` : '',
-        ants ? `<span class="ant">↔ ${esc(ants)}</span>` : ''
+        syns ? `<span class="syn"><span class="sa-label"><span class="sa-sym">=</span>동의어</span> ${esc(syns)}</span>` : '',
+        ants ? `<span class="ant"><span class="sa-label"><span class="sa-sym">&ne;</span>반의어</span> ${esc(ants)}</span>` : ''
       ].filter(Boolean).join(' ');
       return `<tr>
         <td class="col-n">${n}</td>
@@ -435,6 +435,7 @@ async function renderAnswersAll(opts = {}) {
     document.querySelectorAll('.wt-b-stem').forEach(el => {
       el.innerHTML = el.innerHTML.replace(/__WTBLANK__/g, WT_BLANK);
     });
+    document.body.dataset.renderReady = '1';
   } catch (e) {
     stage.innerHTML = `<pre>Error: ${e.message}</pre>`;
     console.error(e);

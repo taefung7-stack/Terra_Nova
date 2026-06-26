@@ -323,7 +323,7 @@ function renderSentences(list, translationMap) {
     const ko = translationMap.get(s.index);
     if (!ko) missing.push(s.index);
     const koRow = ko
-      ? `<div class="ko-row"><span class="ko-num">[${s.index}]</span><span class="ko-text">${escapeHTML(ko)}</span></div>`
+      ? `<div class="ko-row"><span class="ko-text">${escapeHTML(ko)}</span></div>`
       : '';
     return `<div class="p3-sentence">
       <div class="en-row"><span class="num">[${s.index}]</span>${segs}</div>
@@ -340,8 +340,8 @@ function renderSentences(list, translationMap) {
 /* ---------- Page 4: Vocab ---------- */
 function renderVocab(list) {
   return list.map(v => {
-    const syn = v.synonyms && v.synonyms.length ? `<span class="syn-ant-label">≈</span>${v.synonyms.map(escapeHTML).join(', ')}` : '';
-    const ant = v.antonyms && v.antonyms.length ? `<span class="syn-ant-label">↔</span>${v.antonyms.map(escapeHTML).join(', ')}` : '';
+    const syn = v.synonyms && v.synonyms.length ? `<span class="syn-ant-label sa-syn"><span class="sa-sym">=</span>동의어</span>${v.synonyms.map(escapeHTML).join(', ')}` : '';
+    const ant = v.antonyms && v.antonyms.length ? `<span class="syn-ant-label sa-ant"><span class="sa-sym">&ne;</span>반의어</span>${v.antonyms.map(escapeHTML).join(', ')}` : '';
     const synAnt = [syn, ant].filter(Boolean).join(' &nbsp;·&nbsp; ');
     const examples = (v.examples || []).map(ex =>
       `<div class="example-item">

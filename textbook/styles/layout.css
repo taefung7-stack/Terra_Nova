@@ -601,23 +601,11 @@ body { font-size: var(--fs-body); line-height: var(--lh-body); }
    its KO on the next line. Replaces the old bottom translation block. */
 .p3-sentence .ko-row {
   margin-top: 0.5pt;
-  padding-left: 16pt;          /* align under the segments, past the [n] gutter */
-  text-indent: -16pt;
+  padding-left: 16pt;          /* align KO under the English text (past the [n] gutter) */
   font-family: var(--font-ko);
   font-size: 7.7pt;
   line-height: 1.28;
   color: var(--tn-ink-soft);
-}
-.p3-sentence .ko-row .ko-num {
-  display: inline-block;
-  width: 16pt;
-  text-indent: 0;
-  font-family: var(--font-num); /* Pretendard 대괄호 .notdef 회피 */
-  font-weight: 700;
-  color: var(--tn-theme-deep);
-  font-size: 7.8pt;
-  margin-right: 2pt;
-  opacity: 0.85;
 }
 .p3-sentence .ko-row .ko-text { text-indent: 0; }
 .p3-sentence .num {
@@ -753,8 +741,20 @@ body { font-size: var(--fs-body); line-height: var(--lh-body); }
 }
 .vocab-card .syn-ant .syn-ant-label {
   font-weight: 700;
-  margin-right: 2pt;
+  margin-right: 2.5pt;
+  font-family: var(--font-ko);
+  font-size: 6.6pt;
+  padding: 0 2.5pt;
+  border-radius: 2pt;
+  letter-spacing: -0.2pt;
 }
+.vocab-card .syn-ant .syn-ant-label .sa-sym {
+  font-family: var(--font-num); /* '=' '≠' .notdef 회피 (Pretendard 깨짐 방지) */
+  margin-right: 1.5pt;
+  font-weight: 800;
+}
+.vocab-card .syn-ant .sa-syn { background: var(--tn-theme-soft); color: var(--tn-theme-deep); }
+.vocab-card .syn-ant .sa-ant { background: #f6e6e6; color: #9a3b3b; }
 /* Examples block: visually separated from syn/ant above, no trailing source line */
 .vocab-card .examples {
   margin-top: 3pt;
