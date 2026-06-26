@@ -68,6 +68,24 @@ function renderRichInline(text) {
   return allowMarkup(escapeHTML(text));
 }
 
+/* Summary-template blanks: turn "<blank> (A)" / "<blank> (B)" into a single
+   centered, underlined fill-in box that carries the (A)/(B) label INSIDE it.
+   Without this the label drifts to one side and there is no line to write on.
+   Runs AFTER allowMarkup has produced <span class="blank"></span>; we then
+   merge each blank-span with the trailing "(X)" label. Falls back to a plain
+   labelled blank for any leftover <blank> with no following label. */
+function renderSummaryTemplate(text) {
+  let html = renderRichInline(text);
+  // <span class="blank"></span> optionally followed by whitespace then (A)/(B)/(C)…
+  html = html.replace(
+    /<span class="blank"><\/span>\s*\(([A-Z])\)/g,
+    (_, lab) => `<span class="sum-blank"><span class="sum-lab">${lab}</span></span>`
+  );
+  // any remaining bare blank → labelless fill box
+  html = html.replace(/<span class="blank"><\/span>/g, '<span class="sum-blank"></span>');
+  return html;
+}
+
 const TERM_ALIASES = {
   'chemical changes': 'chemical change',
   'culture zones': 'culture zone',
@@ -196,7 +214,7 @@ function renderQuestions(list) {
       ? `<div class="hints">${q.hints.map(h => `<span class="hint">${escapeHTML(h)}</span>`).join('')}</div>`
       : '';
     const template = q.summary_template
-      ? `<div class="summary-template">${renderRichInline(q.summary_template)}</div>`
+      ? `<div class="summary-template">${renderSummaryTemplate(q.summary_template)}</div>`
       : '';
     return `<div class="question descriptive">
       <div class="stem">
@@ -281,21 +299,42 @@ function renderSegment(seg) {
   return `<span class="seg" data-role="${role}">${safeText}${tagHtml}</span>`;
 }
 
-function renderSentences(list) {
-  return list.map(s => {
-    const segs = s.segments.map(renderSegment).join(' ');
-    return `<div class="p3-sentence">
-      <div class="en-row"><span class="num">[${s.index}]</span>${segs}</div>
-    </div>`;
-  }).join('');
+/* Parse the combined translation_ko ("[1] ... [2] ... [n] ...") into a
+   { sentenceIndex -> 한국어 한 문장 } map. The combined string already carries
+   per-sentence [n] markers, so we split on them and reuse the text verbatim —
+   no data rewrite needed. Returns a Map keyed by integer sentence index. */
+function parseTranslationByIndex(text) {
+  const map = new Map();
+  const src = String(text ?? '');
+  const re = /\[(\d+)\]\s*([\s\S]*?)(?=\s*\[\d+\]|$)/g;
+  let m;
+  while ((m = re.exec(src)) !== null) {
+    const idx = parseInt(m[1], 10);
+    const ko = m[2].trim();
+    if (Number.isFinite(idx) && ko) map.set(idx, ko);
+  }
+  return map;
 }
 
-/* ---------- Page 3: Translation (continuous, with inline [n] markers) ---------- */
-function renderTranslation(text) {
-  // Keep text continuous. Convert [1] [2] markers to colored spans.
-  const safe = escapeHTML(text);
-  const marked = safe.replace(/\[(\d+)\]/g, (_, n) => `<span class="tr-num">[${n}]</span>`);
-  return marked;
+function renderSentences(list, translationMap) {
+  const missing = [];
+  const html = list.map(s => {
+    const segs = s.segments.map(renderSegment).join(' ');
+    const ko = translationMap.get(s.index);
+    if (!ko) missing.push(s.index);
+    const koRow = ko
+      ? `<div class="ko-row"><span class="ko-num">[${s.index}]</span><span class="ko-text">${escapeHTML(ko)}</span></div>`
+      : '';
+    return `<div class="p3-sentence">
+      <div class="en-row"><span class="num">[${s.index}]</span>${segs}</div>
+      ${koRow}
+    </div>`;
+  }).join('');
+  if (missing.length) {
+    console.warn('[render] page3 인라인 해석 누락 문장:', missing.join(', '),
+      `(문장 ${list.length}개 vs 해석 ${translationMap.size}개 — translation_ko의 [n] 마커 확인)`);
+  }
+  return html;
 }
 
 /* ---------- Page 4: Vocab ---------- */
@@ -396,9 +435,10 @@ async function main() {
   setHTML(root, 'tieback-tags', renderTags(data.page2.textbook_tieback.tags));
   setHTML(root, 'tieback-visual', renderVisualAid(data.page2.textbook_tieback.visual_aid));
 
-  // Page 3
-  setHTML(root, 'sentences', renderSentences(data.page3.sentences));
-  setHTML(root, 'translation', renderTranslation(data.page3.translation_ko));
+  // Page 3 — inline per-sentence translation (each English sentence gets its
+  // Korean line directly beneath it; no separate bottom block).
+  const translationMap = parseTranslationByIndex(data.page3.translation_ko);
+  setHTML(root, 'sentences', renderSentences(data.page3.sentences, translationMap));
 
   // Page 4
   setHTML(root, 'vocab', renderVocab(data.page4.vocab));
