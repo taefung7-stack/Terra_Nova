@@ -109,6 +109,130 @@ function addError(errors, instancePath, message) {
   errors.push({ instancePath, message });
 }
 
+function addWarn(warnings, instancePath, message) {
+  warnings.push({ instancePath, message });
+}
+
+/* Strip author markup so we can search the raw English body. */
+function plainBody(body = '') {
+  return String(body)
+    .replace(/<\/?u>/g, '')
+    .replace(/<\/?mark>/g, '')
+    .replace(/<blank>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+/* All English text marked with <u>…</u> in the body, lowercased. */
+function underlinedSpans(body = '') {
+  return [...String(body).matchAll(/<u>([\s\S]*?)<\/u>/g)].map(m => m[1].toLowerCase().trim());
+}
+
+/* ---- 이슈 1: 정답 보기 길이 균형 (WARN) ----
+   정답 보기가 오답 평균의 1.4배 이상이면서 동시에 가장 길면 경고.
+   "가장 긴 게 정답" 패턴을 학생이 눈치채는 것을 막기 위함. 차단은 안 함. */
+function validateAnswerLengthBalance(data, warnings) {
+  const qs = data.page2?.questions || [];
+  qs.forEach((q, i) => {
+    if (q.type !== 'mock_objective' || !Array.isArray(q.choices)) return;
+    const lens = q.choices.map(c => String(c).trim().length);
+    const ai = q.answer_index;
+    if (!Number.isInteger(ai) || ai < 0 || ai >= lens.length) return;
+    const ansLen = lens[ai];
+    const others = lens.filter((_, k) => k !== ai);
+    if (!others.length) return;
+    const mean = others.reduce((a, b) => a + b, 0) / others.length;
+    const isLongest = ansLen === Math.max(...lens);
+    if (isLongest && mean > 0 && ansLen >= mean * 1.4) {
+      addWarn(warnings, `/page2/questions/${i}`,
+        `정답 보기(idx ${ai})가 가장 길고 오답 평균의 ${(ansLen / mean).toFixed(2)}배 — 길이로 정답이 노출됨. 오답과 비슷한 길이로 재작성 권장`);
+    }
+  });
+}
+
+/* ---- 이슈 4: 본문↔문제 밑줄 정합 (ERROR) ----
+   stem이 "밑줄 친 …" 으로 본문 표현을 인용하면, 인용된 영어 구가
+   page1.body에 <u>…</u> 로 실제 존재해야 한다. 없으면 차단. */
+function validateUnderlineConsistency(data, errors) {
+  const body = data.page1?.body || '';
+  const spans = underlinedSpans(body);
+  const plain = plainBody(body).toLowerCase();
+  const qs = data.page2?.questions || [];
+  qs.forEach((q, i) => {
+    const stem = String(q.stem || q.prompt || '');
+    if (!/밑줄\s*친/.test(stem)) return;
+    // 빈칸(밑줄 친 빈칸) 류는 <blank>가 담당하므로 제외.
+    if (/빈칸/.test(stem)) return;
+    // stem에서 인용된 영어 구 추출: 연속된 영문 단어(2+) 토막.
+    const cited = [...stem.matchAll(/[A-Za-z][A-Za-z'’-]*(?:\s+[A-Za-z][A-Za-z'’-]*)+/g)]
+      .map(m => m[0].toLowerCase().trim())
+      .filter(s => s.split(/\s+/).length >= 2);
+    if (!cited.length) return;
+    for (const phrase of cited) {
+      const inUnderline = spans.some(u => u.includes(phrase) || phrase.includes(u));
+      if (inUnderline) continue;
+      const inBody = plain.includes(phrase);
+      if (inBody) {
+        addError(errors, `/page2/questions/${i}/stem`,
+          `밑줄 인용구 "${phrase}" 가 본문에 있으나 <u>…</u> 표시가 없음 — 본문에 밑줄 추가 필요`);
+      } else {
+        addError(errors, `/page2/questions/${i}/stem`,
+          `밑줄 인용구 "${phrase}" 가 본문 표현과 불일치 — 본문 실제 표현으로 stem 수정 + <u> 표시 필요`);
+      }
+    }
+  });
+}
+
+/* ---- 이슈 6: 단어장 단어가 본문에 등장 (WARN) ---- */
+function validateVocabInBody(data, warnings) {
+  const plain = plainBody(data.page1?.body || '').toLowerCase();
+  const vocab = data.page4?.vocab || [];
+  vocab.forEach((v, i) => {
+    const w = String(v.word || '').toLowerCase().trim();
+    if (!w) return;
+    const stem = w.replace(/(ing|ed|es|s|ly)$/,'');
+    const re = new RegExp(`\\b${stem.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\$&')}`, 'i');
+    if (!re.test(plain)) {
+      addWarn(warnings, `/page4/vocab/${i}`,
+        `단어장 단어 "${v.word}" 가 본문에 등장하지 않음 — 본문 고급어 위주로 교체 권장`);
+    }
+  });
+}
+
+/* ---- 이슈 3: 한글 띄어쓰기 깨짐 (WARN) ---- */
+const KO_FIELDS_DESC = [
+  ['/page3/translation_ko', d => d.page3?.translation_ko],
+  ['/page2/textbook_tieback/body_ko', d => d.page2?.textbook_tieback?.body_ko],
+];
+function koSpacingIssues(text = '') {
+  const t = String(text);
+  const hits = [];
+  if (/ {2,}/.test(t)) hits.push('이중 공백');
+  if (/[가-힣A-Za-z0-9] +[,.;)\]！？!?]/.test(t)) hits.push('구두점/닫는괄호 앞 공백');
+  if (/[(\[] +/.test(t)) hits.push('여는괄호 뒤 공백');
+  if (/[가-힣] +·|· +[가-힣]/.test(t)) hits.push('가운뎃점 주변 공백');
+  return hits;
+}
+function validateKoSpacing(data, warnings) {
+  for (const [path, get] of KO_FIELDS_DESC) {
+    const hits = koSpacingIssues(get(data) || '');
+    if (hits.length) addWarn(warnings, path, `한글 띄어쓰기 의심: ${[...new Set(hits)].join(', ')}`);
+  }
+  // examples[].ko + vocab meaning
+  (data.page4?.vocab || []).forEach((v, i) => {
+    (v.examples || []).forEach((ex, j) => {
+      const hits = koSpacingIssues(ex.ko || '');
+      if (hits.length) addWarn(warnings, `/page4/vocab/${i}/examples/${j}/ko`, `한글 띄어쓰기 의심: ${[...new Set(hits)].join(', ')}`);
+    });
+  });
+  // descriptive question prompt (Q4 한글 발문)
+  (data.page2?.questions || []).forEach((q, i) => {
+    if (q.type !== 'school_descriptive') return;
+    const hits = koSpacingIssues(q.prompt || '');
+    if (hits.length) addWarn(warnings, `/page2/questions/${i}/prompt`, `한글 띄어쓰기 의심: ${[...new Set(hits)].join(', ')}`);
+  });
+}
+
 function validateQuestionMix(data, profile, errors) {
   const expected = PROFILES[profile].questionMix;
   const qs = data.page2?.questions || [];
@@ -149,7 +273,7 @@ function validateAnswerConsistency(data, errors) {
   }
 }
 
-function validateCommonContentRules(data, profile, errors) {
+function validateCommonContentRules(data, profile, errors, warnings) {
   const [minWords, maxWords] = PROFILES[profile].bodyWords;
   const wc = countWords(data.page1?.body || '');
   if (wc < minWords || wc > maxWords) {
@@ -181,6 +305,14 @@ function validateCommonContentRules(data, profile, errors) {
       (suggested ? ` (suggest: "${suggested}")` : '')
     );
   }
+
+  // ---- 2026-07 검수 결함 방지 규칙 ----
+  if (profile === 'high') {
+    validateUnderlineConsistency(data, errors);          // 이슈 4: 차단
+    validateAnswerLengthBalance(data, warnings);         // 이슈 1: 경고
+    validateVocabInBody(data, warnings);                 // 이슈 6: 경고
+    validateKoSpacing(data, warnings);                   // 이슈 3: 경고
+  }
 }
 
 export function validatePassage(data, options = {}) {
@@ -190,9 +322,10 @@ export function validatePassage(data, options = {}) {
 
   const ok = ajvValidate(data);
   const errors = ok ? [] : (ajvValidate.errors ?? []).map(e => ({ ...e }));
-  if (ok) validateCommonContentRules(data, profile, errors);
+  const warnings = [];
+  if (ok) validateCommonContentRules(data, profile, errors, warnings);
 
-  return { ok: errors.length === 0, errors, profile };
+  return { ok: errors.length === 0, errors, warnings, profile };
 }
 
 // Multi-passage balance check. Run after per-passage validation across a month.
@@ -267,7 +400,7 @@ async function cli() {
   for (const f of targets) {
     const data = JSON.parse(readFileSync(f, 'utf8'));
     allPassages.push(data);
-    const { ok, errors, profile } = validatePassage(data, { profile: values.profile });
+    const { ok, errors, warnings, profile } = validatePassage(data, { profile: values.profile });
     if (ok) {
       console.log(`OK  [${profile}] ${f}`);
     } else {
@@ -276,6 +409,9 @@ async function cli() {
       for (const e of errors) {
         console.error(`     ${e.instancePath || '(root)'}: ${e.message}`);
       }
+    }
+    for (const w of (warnings || [])) {
+      console.warn(`WARN [${profile}] ${f}\n     ${w.instancePath || '(root)'}: ${w.message}`);
     }
   }
 

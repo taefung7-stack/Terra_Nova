@@ -7,7 +7,11 @@ import { dirname, join, resolve } from 'node:path';
 const here = dirname(fileURLToPath(import.meta.url));
 const root = resolve(here, '..');
 const passageFile = (...parts) => JSON.parse(readFileSync(join(root, 'content', 'passages', ...parts), 'utf8'));
-const currentPassage = () => passageFile('2026-06', '01.json');
+// Use a 2026-07 passage as the "clean" fixture: the 2026-06 sample predates the
+// 밑줄 정합(underline-consistency) rule and now legitimately fails it (a real,
+// already-shipped defect we don't retro-fix). 2026-07-Sun/01 has no underline-
+// citation question, so it stays errors-clean.
+const currentPassage = () => passageFile('2026-07-Sun', '01.json');
 const VALIDATE_SNIPPET = `
 import { validatePassage } from './tools/validate-content.mjs';
 let input = '';
