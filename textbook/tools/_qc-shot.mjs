@@ -30,17 +30,22 @@ await waitFor(`http://127.0.0.1:${port}/textbook.html`);
 
 const browser = await puppeteer.launch({ headless: 'new' });
 const page = await browser.newPage();
-await page.setViewport({ width: 900, height: 1280, deviceScaleFactor: 2 });
+await page.setViewport({ width: 900, height: 9000, deviceScaleFactor: 2 });
 const url = `http://127.0.0.1:${port}/textbook.html?month=${values.month}&passage=${values.passage}`;
 const msgs = [];
 page.on('console', m => msgs.push(`[${m.type()}] ${m.text()}`));
 await page.goto(url, { waitUntil: 'networkidle0' });
 await new Promise(r => setTimeout(r, 400));
 
-const pages = await page.$$('.page');
-for (let i = 0; i < pages.length; i++) {
+const boxes = await page.$$eval('.page', els => els.map(el => {
+  const r = el.getBoundingClientRect();
+  return { x: r.x, y: r.y, width: r.width, height: r.height };
+}));
+for (let i = 0; i < boxes.length; i++) {
+  const bx = boxes[i];
+  if (bx.width < 5 || bx.height < 5) { console.log('SKIP empty box p', i + 1); continue; }
   const f = join(outDir, `${values.month}-${values.passage}-p${i + 1}.png`);
-  await pages[i].screenshot({ path: f });
+  await page.screenshot({ path: f, clip: { x: Math.max(0, bx.x), y: Math.max(0, bx.y), width: bx.width, height: bx.height } });
   console.log('WROTE', f);
 }
 const overflow = await page.$$eval('.page.overflow', n => n.length);

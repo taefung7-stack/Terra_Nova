@@ -580,32 +580,32 @@ body { font-size: var(--fs-body); line-height: var(--lh-body); }
 
 .p3-sentences {
   display: flex; flex-direction: column;
-  gap: 1.5pt;
+  gap: 1pt;
   flex: 1;
   /* Distribute remaining vertical space evenly between sentences. */
   justify-content: space-between;
 }
 .p3-sentence {
-  padding-bottom: 1pt;
+  padding-bottom: 0.5pt;
   border-bottom: 0.3pt solid var(--tn-divider);
   padding-left: 16pt;
   text-indent: -16pt;
 }
 .p3-sentence:last-child { border-bottom: none; }
 .p3-sentence .en-row {
-  font-size: 8.4pt;
-  line-height: 1.45;
+  font-size: 8.3pt;
+  line-height: 1.38;
   font-family: var(--font-body);
 }
 /* Inline Korean gloss directly beneath each English sentence — read EN, see
    its KO on the next line. Replaces the old bottom translation block. */
 .p3-sentence .ko-row {
-  margin-top: 1pt;
+  margin-top: 0.5pt;
   padding-left: 16pt;          /* align under the segments, past the [n] gutter */
   text-indent: -16pt;
   font-family: var(--font-ko);
-  font-size: 7.8pt;
-  line-height: 1.35;
+  font-size: 7.7pt;
+  line-height: 1.28;
   color: var(--tn-ink-soft);
 }
 .p3-sentence .ko-row .ko-num {
