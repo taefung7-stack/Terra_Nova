@@ -7,11 +7,13 @@
  *   - 2026-07-{Level}-fullbook.pdf   (134p, 표지/판권 없이 CONTENTS 부터 시작하는 본문)
  *
  * 출력:
- *   - 2026-07-{Level}.pdf  (137p = 앞표지(1p) + 판권/colophon(1p) + 본문(134p) + 뒷표지(1p))
+ *   - 2026-07-{Level}.pdf  (140p = 앞표지(1p) + 백지(1p) + 판권/colophon(1p) + 백지(1p)
+ *                                  + 본문(134p) + 백지(1p) + 뒷표지(1p))
  *
  * 절차:
  *   1. puppeteer 로 colophon.html?level={level}&month=2026-07 을 1p PDF 로 렌더
- *   2. pdf-lib 로 앞표지(PNG→A4 1p) + colophon(1p) + body(134p) + 뒷표지(PNG→A4 1p) 합본
+ *   2. pdf-lib 로 앞표지(PNG→A4 1p) + 백지 + colophon(1p) + 백지 + body(134p) + 백지 + 뒷표지(PNG→A4 1p) 합본
+ *      ※ 백지: 표지 뒤 1장 / 판권 뒤 1장 / 뒷표지 앞(본문 뒤) 1장 — 전 교재 공통 규칙
  *      ※ 뒷표지는 세 학년 공통: dist/2026-07/7월 뒷표지.png
  */
 import puppeteer from 'puppeteer';
@@ -101,23 +103,35 @@ try {
     await renderColophon(browser, srvPort, b.level, colophonPath);
     console.log(`  1/3 판권(colophon) 1p 렌더 완료`);
 
-    // 2. 합본: 앞표지(PNG→A4) + colophon + body + 뒷표지(PNG→A4)
+    // 2. 합본: 앞표지(PNG→A4) + 백지 + colophon + 백지 + body + 백지 + 뒷표지(PNG→A4)
     const merged = await PDFDocument.create();
+
+    // 빈 A4 백지 한 장을 추가하는 헬퍼 (전 교재 공통 규칙)
+    const addBlank = () => merged.addPage([A4_W, A4_H]);
 
     // 앞표지: PNG 를 A4 1페이지에 가득 채워 배치
     const coverImg = await merged.embedPng(readFileSync(coverPath));
     const coverPage = merged.addPage([A4_W, A4_H]);
     coverPage.drawImage(coverImg, { x: 0, y: 0, width: A4_W, height: A4_H });
 
+    // 백지 (표지 뒤)
+    addBlank();
+
     // 판권
     const colophonDoc = await PDFDocument.load(readFileSync(colophonPath));
     const colophonPgs = await merged.copyPages(colophonDoc, colophonDoc.getPageIndices());
     colophonPgs.forEach(p => merged.addPage(p));
 
+    // 백지 (판권 뒤)
+    addBlank();
+
     // 본문 (134p 전부)
     const bodyDoc = await PDFDocument.load(readFileSync(fullPath), { ignoreEncryption: true });
     const bodyPgs = await merged.copyPages(bodyDoc, bodyDoc.getPageIndices());
     bodyPgs.forEach(p => merged.addPage(p));
+
+    // 백지 (뒷표지 앞 = 본문 뒤)
+    addBlank();
 
     // 뒷표지: 세 학년 공통 PNG 를 A4 1페이지에 가득 채워 맨 뒤에 배치
     const backImg = await merged.embedPng(readFileSync(BACK_COVER));
@@ -133,7 +147,7 @@ try {
 
     writeFileSync(outPath, await merged.save({ useObjectStreams: true }));
     const sz = (readFileSync(outPath).length / 1024 / 1024).toFixed(1);
-    console.log(`  2/3 합본 완료: ${merged.getPageCount()}p (앞표지1 + 판권1 + 본문${bodyDoc.getPageCount()} + 뒷표지1)`);
+    console.log(`  2/3 합본 완료: ${merged.getPageCount()}p (앞표지1 + 백지1 + 판권1 + 백지1 + 본문${bodyDoc.getPageCount()} + 백지1 + 뒷표지1)`);
     console.log(`  3/3 ✓ ${b.out}  (${sz}MB)\n`);
   }
 } finally {

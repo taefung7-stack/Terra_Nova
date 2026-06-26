@@ -14,6 +14,9 @@
  *   2. pdf-lib 로 표지 + colophon + 본문 합본 (표지 다음장 = 저작권 페이지)
  *   3. 메타데이터 설정, 표준 파일명(2026-06-{Level}.pdf)으로 저장
  *      → extract-mars-previews / build-protected / upload-protected-pdfs 와 호환되는 이름
+ *
+ * ⚠️ 이 스크립트는 2026-06 (이미 출고됨) 전용. 백지 3장 규칙은 적용 안 함.
+ *    2026-07 이후 신규 월호부터 백지 규칙 적용 (CLAUDE.md textbook 섹션 참조).
  */
 import puppeteer from 'puppeteer';
 import { spawn } from 'node:child_process';

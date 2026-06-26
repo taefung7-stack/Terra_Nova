@@ -58,6 +58,14 @@
     `page1.gloss_extra: [{ "term", "ko" }]`(그 지문에서 가장 어렵거나 전문/학술적인 단어,
     본문에 실제 등장, ko≤40자)로 채운다. 렌더러가 합쳐 최대 4개 노출
     (`render.js` MAX_PAGE1_GLOSSARY_TERMS=4). 스키마: `schemas/passage.schema.json` page1.gloss_extra.
+  - **완성본 백지(blank) 3장 규칙 (전 학년 공통, 2026-07~ 신규 월호부터)**: `_finalize-*` 합본
+    스크립트는 완성본을 반드시 다음 순서로 만든다 —
+    **앞표지 → [백지] → 판권(colophon) → [백지] → 본문 → [백지] → 뒷표지**.
+    즉 표지 뒤 1장 / 판권 뒤 1장 / 뒷표지 앞(본문 뒤) 1장, 총 백지 3장.
+    백지는 빈 A4(595.28×841.89pt) 한 장. **뒷표지는 초등/고등 전 학년 공통**:
+    `dist/2026-07/7월 뒷표지.png`(없으면 해당 월 공통 뒷표지). 새 달 `_finalize-*` 스크립트를
+    만들 때 이 구조(백지 3장 + 공통 뒷표지)를 반드시 포함. 참조 구현: `tools/_finalize-2026-07-highschool.mjs`.
+    (2026-06 이전 출고분은 소급 적용 안 함.)
 - **`mock-exam-analysis/`** — 모의고사 분석지·워크북 빌더 (v1.0 LOCKED).
   - `builder/build.mjs` (분석지), `build-workbook.mjs` (워크북), `pdf-image.mjs` (글리프 안전 PDF),
     `finalize-combined.mjs` (표지+본문 병합), `combine*.mjs` (합본).
