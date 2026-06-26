@@ -219,6 +219,12 @@ npm run build -- --month 2026-06 --only 02
 - 해당 영어 덩어리 바로 **밑**에 작은 루비 주석으로 렌더링 (`ruby-position: under`)
 - 예: `"be + p.p. 수동태"`, `"계속적 용법 which"`, `"allow O to-V 5형식"`
 - 모든 segment에 붙일 필요 없음 — 핵심 1~3개만 붙여도 됨
+- **note 위치 정합 (필수)**: note는 그 설명이 가리키는 **정확한 영어 표현 위 segment**에만
+  붙인다. 설명 대상이 큰 segment 안에 묻혀 있으면 **그 segment를 쪼개** 대상 조각에만 note를
+  단다. 예: 관계대명사가 생략된 "test you can use"는 `{"text":"test"}` + `{"text":"you can use",
+  "note":"관계대명사 목적격 생략"}`로 분리. "관계부사 where"는 "where ..." 조각에만. (한 문장의
+  넓은 S/O 덩어리에 관계절·분사구문 note를 통째로 달면 위치가 어긋나 보임 — 2026-06-27 교정.)
+  쪼갠 segment의 `text`를 순서대로 이으면 원문과 동일해야 하고, 관계절·부사절 조각은 보통 M(또는 REL).
 
 #### `translation_ko` — 연속된 단일 문자열 (줄바꿈 금지)
 
