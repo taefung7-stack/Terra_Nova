@@ -191,14 +191,15 @@ body { font-size: var(--fs-body); line-height: var(--lh-body); }
   text-underline-offset: 2pt;
   font-weight: 600;
 }
+/* 빈칸: '______' 글자는 빌드머신 Pretendard에서 밑줄문자 '_'(U+005F)가 .notdef로
+   깨져 사라진다 → CSS border-bottom 으로 실제 선을 그린다(글리프 비의존, 항상 보임). */
 .p1-body .blank {
-  display: inline;
+  display: inline-block;
+  width: 52pt;
   margin: 0 2pt;
-  font-weight: 700;
-  color: var(--tn-theme-deep);
-  letter-spacing: -1pt;
+  vertical-align: baseline;
+  border-bottom: 1pt solid var(--tn-theme-deep);
 }
-.p1-body .blank::before { content: "______"; }
 .p1-body mark {
   background: var(--tn-theme-soft);
   color: var(--tn-theme-deep);
