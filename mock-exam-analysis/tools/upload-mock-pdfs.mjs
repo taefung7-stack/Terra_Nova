@@ -56,6 +56,14 @@ const MAP = {
     { key: `mock/2026-06/grade1-workbook.pdf`, file: '2026-june-grade1/dist/2026-6월-고1-영어-워크북-합본-표지포함.pdf', desc: '고1 워크북' },
     { key: `mock/2026-06/grade2-analysis.pdf`, file: '2026-june-grade2/dist/2026-6월-고2-영어-분석지-합본-표지포함.pdf', desc: '고2 본문분석' },
     { key: `mock/2026-06/grade2-workbook.pdf`, file: '2026-june-grade2/dist/2026-6월-고2-영어-워크북-합본-표지포함.pdf', desc: '고2 워크북' },
+    // 고3 본문분석·워크북: 표지 아트 미보유 → 본문 합본만 정식본(표지없음, 50MB↓ PDF1.4)으로 발송.
+    //   tools/build-grade3-variant-pdfs.mjs 로 생성. 표지 아트 확보 시 표지포함본으로 교체.
+    { key: `mock/2026-06/grade3-analysis.pdf`, file: '2026-june-grade3/dist/2026-6월-고3-영어-분석지-합본-정식.pdf', desc: '고3 본문분석' },
+    { key: `mock/2026-06/grade3-workbook.pdf`, file: '2026-june-grade3/dist/2026-6월-고3-영어-워크북-합본-정식.pdf', desc: '고3 워크북' },
+    // 변형문제(전 학년): 표지 아트 미보유 → variant-book 본문만 정식본으로 발송.
+    { key: `mock/2026-06/grade1-variant.pdf`,  file: '2026-june-grade1/dist/2026-6월-고1-영어-변형문제-정식.pdf', desc: '고1 변형문제' },
+    { key: `mock/2026-06/grade2-variant.pdf`,  file: '2026-june-grade2/dist/2026-6월-고2-영어-변형문제-정식.pdf', desc: '고2 변형문제' },
+    { key: `mock/2026-06/grade3-variant.pdf`,  file: '2026-june-grade3/dist/2026-6월-고3-영어-변형문제-정식.pdf', desc: '고3 변형문제' },
   ],
 };
 

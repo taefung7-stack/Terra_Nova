@@ -821,24 +821,30 @@
   }
 
   // === 미리보기 모달 ===
-  // 21번 분석지는 sentence 1~4 분석 누락(소스 결함)이라 미리보기에서 제외.
-  // 분석지는 1번부터 완전한 20번, 워크북은 9문장 완전한 21번, 변형문제는 유형별 묶음 샘플(31·32번).
+  // 분석지·워크북 미리보기는 전 학년 31번 문제로 통일(2026-06-29). 변형문제는 유형별 묶음(variant-book).
   const A4_PX = 794; // 210mm @ 96dpi
   const PREVIEW = {
-    analysis: { src: 'mock-exam-analysis/2026-march-grade2/dist/20.html',           title: '모의고사 분석지 · 샘플' },
-    workbook: { src: 'mock-exam-analysis/2026-march-grade2/dist/workbook-21.html',   title: '모의고사 워크북 · 샘플' },
-    variant:  { src: 'mock-exam-analysis/2026-march-grade2/dist/variant-book.html',  title: '모의고사 변형문제 · 샘플' },
+    analysis: { src: 'mock-exam-analysis/2026-june-grade2/dist/31.html',           title: '모의고사 분석지 · 31번 샘플' },
+    workbook: { src: 'mock-exam-analysis/2026-june-grade2/dist/workbook-31.html',   title: '모의고사 워크북 · 31번 샘플' },
+    variant:  { src: 'mock-exam-analysis/2026-june-grade2/dist/variant-book.html',  title: '모의고사 변형문제 · 샘플' },
   };
   // 회차별 미리보기 오버라이드 — 선택된 학년/월에 맞는 샘플로 교체.
-  // (없는 조합은 기본 PREVIEW[kind] 사용)
+  // 분석지·워크북은 모두 31번 문제 샘플로 통일. (없는 조합은 기본 PREVIEW[kind] 사용)
   const PREVIEW_BY_ROUND = {
     '고1-6': {
-      analysis: { src: 'mock-exam-analysis/2026-june-grade1/dist/20.html',          title: '2026 6월 고1 모의고사 분석지 · 샘플' },
-      workbook: { src: 'mock-exam-analysis/2026-june-grade1/dist/workbook-20.html',  title: '2026 6월 고1 모의고사 워크북 · 샘플' },
+      analysis: { src: 'mock-exam-analysis/2026-june-grade1/dist/31.html',          title: '2026 6월 고1 모의고사 분석지 · 31번 샘플' },
+      workbook: { src: 'mock-exam-analysis/2026-june-grade1/dist/workbook-31.html',  title: '2026 6월 고1 모의고사 워크북 · 31번 샘플' },
+      variant:  { src: 'mock-exam-analysis/2026-june-grade1/dist/variant-book.html', title: '2026 6월 고1 모의고사 변형문제 · 샘플' },
     },
     '고2-6': {
-      analysis: { src: 'mock-exam-analysis/2026-june-grade2/dist/20.html',          title: '2026 6월 고2 모의고사 분석지 · 샘플' },
-      workbook: { src: 'mock-exam-analysis/2026-june-grade2/dist/workbook-20.html',  title: '2026 6월 고2 모의고사 워크북 · 샘플' },
+      analysis: { src: 'mock-exam-analysis/2026-june-grade2/dist/31.html',          title: '2026 6월 고2 모의고사 분석지 · 31번 샘플' },
+      workbook: { src: 'mock-exam-analysis/2026-june-grade2/dist/workbook-31.html',  title: '2026 6월 고2 모의고사 워크북 · 31번 샘플' },
+      variant:  { src: 'mock-exam-analysis/2026-june-grade2/dist/variant-book.html', title: '2026 6월 고2 모의고사 변형문제 · 샘플' },
+    },
+    '고3-6': {
+      analysis: { src: 'mock-exam-analysis/2026-june-grade3/dist/31.html',          title: '2026 6월 고3 모의고사 분석지 · 31번 샘플' },
+      workbook: { src: 'mock-exam-analysis/2026-june-grade3/dist/workbook-31.html',  title: '2026 6월 고3 모의고사 워크북 · 31번 샘플' },
+      variant:  { src: 'mock-exam-analysis/2026-june-grade3/dist/variant-book.html', title: '2026 6월 고3 모의고사 변형문제 · 샘플' },
     },
   };
   function applyPreviewScale(){

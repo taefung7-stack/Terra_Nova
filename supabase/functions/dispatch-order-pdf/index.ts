@@ -49,7 +49,8 @@ const corsHeaders = {
 //    (업로드 스크립트도 Terra Nova 파일만 textbook-pdfs/mock/ 에 올리도록 분리되어 있음)
 const GRADE_SLUG: Record<string, string> = { '고1': 'grade1', '고2': 'grade2', '고3': 'grade3' };
 
-// 회차별 자산이 존재하는 항목만 등록. 미등록(예: 고3, variant)은 발송 대상에서 제외.
+// 회차별 자산이 존재하는 항목만 등록. Storage 에 PDF 가 올라간 grade/kind 만 발송된다(화이트리스트).
+// 2026-06-29: 고3 + variant(전 학년) PDF 정식본 업로드 → analysis/workbook/variant 모두 발송 대상.
 // 키: `${grade}|${year}-${MM}|${kind}` → Storage 경로(또는 bundle 의 경우 구성 목록)
 function mockPdfPaths(meta: any): Array<{ name: string; path: string }> {
   if (!meta || typeof meta !== 'object') return [];
@@ -67,13 +68,13 @@ function mockPdfPaths(meta: any): Array<{ name: string; path: string }> {
   const SINGLE: Record<string, { suffix: string; ko: string }> = {
     analysis: { suffix: 'analysis', ko: '본문분석' },
     workbook: { suffix: 'workbook', ko: '워크북' },
-    // variant 는 회차 PDF 미비 → 등록 안 함(발송 제외)
+    variant:  { suffix: 'variant',  ko: '변형문제' },
   };
 
   if (kind === 'bundle') {
-    // 3종 풀패키지 → 등록된 단품(현재 analysis + workbook)을 모두 발송
+    // 3종 풀패키지 → 등록된 단품(analysis + workbook + variant)을 모두 발송
     const out: Array<{ name: string; path: string }> = [];
-    for (const k of ['analysis', 'workbook']) {
+    for (const k of ['analysis', 'workbook', 'variant']) {
       const s = SINGLE[k];
       if (s) out.push({ name: `${label}${gradeKo} 모의고사 ${s.ko}`, path: `${base}/${grade}-${s.suffix}.pdf` });
     }
@@ -155,7 +156,7 @@ Deno.serve(async (req) => {
         for (const m of mapped) toSign.push({ name: m.name, path: m.path, productId: item.product_id });
         continue;
       }
-      // 매핑 없음(고3·variant 등) → 스킵 (오류 아님)
+      // 매핑 없음(미등록 학년/월/종류) → 스킵 (오류 아님)
       errors.push({ productId: item.product_id, productName: snap.display_name || snap.name, round_meta: snap.round_meta, error: 'No PDF mapped for this round (grade/kind not available)' });
       continue;
     }
