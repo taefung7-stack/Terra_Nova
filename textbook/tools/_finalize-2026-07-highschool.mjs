@@ -29,11 +29,16 @@ const root = resolve(here, '..');
 
 const MONTH = '2026-07';
 // folder dir name → level slug + cover filename
-const BOOKS = [
+const ALL_BOOKS = [
   { dir: '2026-07-Saturn (고1)',  level: 'saturn',  cover: '7월 saturn 앞표지 (고1).png',  full: '2026-07-Saturn-fullbook.pdf',  out: '2026-07-Saturn.pdf'  },
   { dir: '2026-07-Jupiter (고2)', level: 'jupiter', cover: '7월 jupiter 앞표지 (고2).png', full: '2026-07-Jupiter-fullbook.pdf', out: '2026-07-Jupiter.pdf' },
   { dir: '2026-07-Sun (고3)',     level: 'sun',     cover: '7월 sun 앞표지 (고3).png',     full: '2026-07-Sun-fullbook.pdf',     out: '2026-07-Sun.pdf'     },
 ];
+// --levels saturn,jupiter 로 일부만 재합본 가능(생략 시 전부). 재빌드한 레벨만 다시 마감할 때 사용.
+const _levelArg = process.argv.find(a => a.startsWith('--levels='))?.split('=')[1]
+  || (process.argv.includes('--levels') ? process.argv[process.argv.indexOf('--levels') + 1] : '');
+const _wantLevels = _levelArg ? _levelArg.split(',').map(s => s.trim().toLowerCase()).filter(Boolean) : null;
+const BOOKS = _wantLevels ? ALL_BOOKS.filter(b => _wantLevels.includes(b.level)) : ALL_BOOKS;
 
 // 뒷표지: 세 학년 공통 (2026-07 폴더 루트)
 const BACK_COVER = join(root, 'dist', MONTH, '7월 뒷표지.png');

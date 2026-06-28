@@ -43,9 +43,12 @@ const corsHeaders = {
   'Access-Control-Allow-Methods': 'POST, OPTIONS',
 };
 
+// 월 경계는 한국 시간(KST, UTC+9) 기준.
+// "7월 1일 00:00(KST)부터 7월호 발송, 8월 1일 00:00(KST)부터 7월호 중단" 정책.
+// UTC 그대로 쓰면 KST 자정~오전 9시 사이에 직전 달 교재가 발송되는 오류가 난다.
 function nowMonthKey(): string {
-  const d = new Date();
-  return `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, '0')}`;
+  const kst = new Date(Date.now() + 9 * 60 * 60 * 1000);
+  return `${kst.getUTCFullYear()}-${String(kst.getUTCMonth() + 1).padStart(2, '0')}`;
 }
 
 Deno.serve(async (req) => {

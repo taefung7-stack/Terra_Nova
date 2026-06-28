@@ -31,6 +31,14 @@ const VALID_LEVELS = new Set([
 ]);
 const SIGNED_URL_TTL_SEC = 3600; // 1 hour
 
+// 샘플도 교재와 동일하게 "해당 월" 것만 발송한다.
+// 월 경계는 한국 시간(KST, UTC+9) 기준 — 7월엔 sample-pdfs/2026-07/{level}.pdf 만 발송.
+// 달이 바뀌면 자동으로 새 달 경로를 보므로, 직전 달 샘플은 (서버에서 지우지 않아도) 더는 발송되지 않는다.
+function nowMonthKey(): string {
+  const kst = new Date(Date.now() + 9 * 60 * 60 * 1000);
+  return `${kst.getUTCFullYear()}-${String(kst.getUTCMonth() + 1).padStart(2, '0')}`;
+}
+
 const cors = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Methods': 'POST, OPTIONS',
@@ -66,11 +74,13 @@ Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') return new Response(null, { status: 200, headers: cors });
   if (req.method !== 'POST') return new Response('Method Not Allowed', { status: 405, headers: cors });
 
-  let email = '', level = '';
+  let email = '', level = '', reqMonth = '';
   try {
     const body = await req.json();
     email = String(body.email || '').trim().toLowerCase();
     level = String(body.level || '').trim().toLowerCase();
+    // month 는 선택값(테스트/관리자용). 미지정 시 현재 월(KST)을 쓴다.
+    reqMonth = String(body.month || '').trim();
   } catch {
     return json({ error: '잘못된 요청 본문입니다.' }, 400);
   }
@@ -81,6 +91,7 @@ Deno.serve(async (req) => {
   if (!VALID_LEVELS.has(level)) {
     return json({ error: '레벨이 올바르지 않습니다.' }, 400);
   }
+  const month = /^\d{4}-\d{2}$/.test(reqMonth) ? reqMonth : nowMonthKey();
 
   // 1) Rate limit
   try {
@@ -117,8 +128,10 @@ Deno.serve(async (req) => {
     console.warn('[send-sample] insert failed (continuing):', err);
   }
 
-  // 3) Signed URL for sample-pdfs/{level}.pdf
-  const objectPath = `${level}.pdf`;
+  // 3) Signed URL for sample-pdfs/{month}/{level}.pdf
+  //    월별 경로라 달이 바뀌면 직전 달 샘플(예: sample-pdfs/2026-06/saturn.pdf)은
+  //    더는 조회되지 않는다. 해당 월 샘플이 없으면 503(준비 안 됨)으로 응답.
+  const objectPath = `${month}/${level}.pdf`;
   let downloadUrl = '';
   try {
     const signRes = await sbFetch(`/storage/v1/object/sign/sample-pdfs/${objectPath}`, {
@@ -134,7 +147,7 @@ Deno.serve(async (req) => {
       }, 503);
     }
     const signed = await signRes.json();
-    // signed.signedURL = "/object/sign/sample-pdfs/{level}.pdf?token=..."
+    // signed.signedURL = "/object/sign/sample-pdfs/{month}/{level}.pdf?token=..."
     downloadUrl = `${SUPABASE_URL}/storage/v1${signed.signedURL || signed.signedUrl}`;
   } catch (err) {
     console.error('[send-sample] sign URL error:', err);

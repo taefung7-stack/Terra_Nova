@@ -4,7 +4,7 @@
  *
  * build-protected.mjs 가 만든 두 파일을 각각 다른 버킷에 업로드:
  *   - {month}-{Level}-fullbook.pdf  → textbook-pdfs/{month}/{month}-{LEVEL}.pdf   (결제자, 대문자)
- *   - {month}-{Level}-sample.pdf    → sample-pdfs/{level}.pdf                      (무료 샘플, 소문자)
+ *   - {month}-{Level}-sample.pdf    → sample-pdfs/{month}/{level}.pdf             (무료 샘플, 월별 경로, 소문자)
  *
  * 사용:
  *   SUPABASE_SERVICE_ROLE_KEY=... node tools/upload-protected-pdfs.mjs --month 2026-06
@@ -15,7 +15,7 @@
  *
  * 키 형식은 기존 dispatch-monthly-pdf / send-sample Edge Function 과 호환:
  *   - dispatch-monthly-pdf : storage.from('textbook-pdfs').createSignedUrl('{YYYY-MM}/{YYYY-MM}-{LEVEL}.pdf')
- *   - send-sample           : storage.from('sample-pdfs').createSignedUrl('{level}.pdf')
+ *   - send-sample           : storage.from('sample-pdfs').createSignedUrl('{YYYY-MM}/{level}.pdf')  ← 월 게이팅
  */
 import { createClient } from '@supabase/supabase-js';
 import { readFileSync, existsSync, statSync, readdirSync } from 'node:fs';
@@ -116,9 +116,9 @@ for (const t of targets) {
     skipped++;
   }
 
-  // 2. sample → sample-pdfs/{level}.pdf
+  // 2. sample → sample-pdfs/{month}/{level}.pdf  (월 게이팅: send-sample 이 현재 월 경로만 조회)
   if ((only === '' || only === 'sample') && t.has.samp) {
-    const key = `${level_lo}.pdf`;
+    const key = `${month}/${level_lo}.pdf`;
     const mb  = (statSync(t.sampPath).size / 1024 / 1024).toFixed(1);
     console.log(`  ${dryRun ? '[DRY]' : '↑'} sample   ${t.lvl}: ${t.sampPath}\n         → ${BUCKET_SAMPLE}/${key}  (${mb}MB)`);
     if (!dryRun) {
