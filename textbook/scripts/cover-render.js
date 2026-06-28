@@ -32,7 +32,25 @@ function pageOfWeekDivider(w) {
 
 async function loadCurriculum(month) {
   const all = await fetch('content/curriculum.json').then(r => r.json());
-  return all.filter(e => e.month === month).sort((a, b) => a.sequence - b.sequence);
+  const entries = all.filter(e => e.month === month).sort((a, b) => a.sequence - b.sequence);
+  if (entries.length) return entries;
+
+  const fromPassages = [];
+  for (let n = 1; n <= 20; n++) {
+    const seq = String(n).padStart(2, '0');
+    const res = await fetch(`content/passages/${month}/${seq}.json`);
+    if (!res.ok) continue;
+    const data = await res.json();
+    fromPassages.push({
+      month,
+      sequence: data.meta?.sequence ?? n,
+      subject: data.meta?.subject ?? '',
+      linked_unit: data.meta?.linked_unit ?? '',
+      passage_topic_en: data.page1?.title ?? '',
+      passage_topic_ko: data.meta?.part_ko ?? data.page1?.subtitle ?? ''
+    });
+  }
+  return fromPassages.sort((a, b) => a.sequence - b.sequence);
 }
 
 /* ---- TOC mode (2 pages, big WEEK headers, no dates) ---- */
@@ -80,6 +98,7 @@ async function renderTOC(entries) {
   document.documentElement.setAttribute('data-mode', 'toc');
   stage.innerHTML = '';
   stage.appendChild(frag);
+  document.body.dataset.renderReady = '1';
 }
 
 /* ---- WEEK divider mode (no dates, solid color) ---- */
@@ -122,6 +141,7 @@ async function renderWeek(entries, w) {
   document.documentElement.setAttribute('data-mode', 'week');
   stage.innerHTML = '';
   stage.appendChild(frag);
+  document.body.dataset.renderReady = '1';
 }
 
 async function main() {
