@@ -1,6 +1,6 @@
 /* ===========================================================
-   Terra Nova — Mars (초5) elementary design overrides
-   Activated by [data-level="mars"] on body / .passage root.
+   Terra Nova — Venus (초6) elementary design overrides
+   Activated by [data-level="venus"] on body / .passage root.
    Goals (per design brief):
      1) 둥근 모서리 많이
      2) 같은 계열 색으로 통일
@@ -11,11 +11,11 @@
      7) 숨 쉬는 여백
    =========================================================== */
 
-/* ---- Mars palette — purple (Majorelle Blue family) ----
+/* ---- Venus palette — purple (Majorelle Blue family) ----
    Primary #7546E8, Persian Indigo deep, Light Lavender soft.
    Single coral warm accent reserved for P3 (visual variety). */
-[data-level="mars"] {
-  --tn-theme:        #7546E8;   /* Majorelle Blue (Mars primary) */
+[data-level="venus"] {
+  --tn-theme:        #7546E8;   /* Majorelle Blue (Venus primary) */
   --tn-theme-deep:   #2D1C7F;   /* Persian Indigo */
   --tn-theme-soft:   #E8E2FA;   /* Light Lavender */
   --tn-ink:          #0D0E20;   /* Chinese Black */
@@ -63,23 +63,23 @@
   --role-REL-ink:  #8B4818;
 }
 
-body[data-level="mars"] { background: var(--tn-bg); }
+body[data-level="venus"] { background: var(--tn-bg); }
 
 /* Page surface — warm cream paper (not pure white) */
-[data-level="mars"] .page {
+[data-level="venus"] .page {
   background: var(--tn-surface);
 }
 
 /* Hide the dev overflow indicator for Mars previews (cleaner author preview).
    Real print build (build-pdf.mjs) still skips overflowing pages and warns in
    terminal, so this only suppresses the on-screen red box during browsing. */
-[data-level="mars"] .page.overflow { outline: none; }
-[data-level="mars"] .overflow-warning { display: none; }
+[data-level="venus"] .page.overflow { outline: none; }
+[data-level="venus"] .overflow-warning { display: none; }
 
 /* ============= Top-right: level mascot image only =============
    Bigger mascot (34mm) at the top-right corner. Passage number badge
    removed per user request — mascot alone identifies the level/page. */
-[data-level="mars"] .level-mascot {
+[data-level="venus"] .level-mascot {
   position: absolute;
   top: -3mm;
   right: -3mm;
@@ -92,32 +92,42 @@ body[data-level="mars"] { background: var(--tn-bg); }
 }
 
 /* P3 (syntax) and P4 (vocab) — main mascot removed (corner accents below take over) */
-[data-level="mars"] .page-3 .level-mascot,
-[data-level="mars"] .page-4 .level-mascot {
+[data-level="venus"] .page-3 .level-mascot,
+[data-level="venus"] .page-4 .level-mascot {
   display: none;
 }
-[data-level="mars"] .page-3 .page-head,
-[data-level="mars"] .page-4 .page-head { padding-right: 0; }
+
+/* P1 corner mascot is the same Mars-looking planet as the central illustration —
+   shrink it so it acts as a small badge, not a duplicate of the central image. */
+[data-level="venus"] .page-1 .level-mascot {
+  width: 24mm;
+  height: 24mm;
+  top: -2mm;
+  right: -2mm;
+}
+
+[data-level="venus"] .page-3 .page-head,
+[data-level="venus"] .page-4 .page-head { padding-right: 0; }
 /* Make sure P3 legend doesn't get covered by enlarged top-right rocket corner */
-[data-level="mars"] .page-3 .p3-legend { padding-right: 36mm; }
+[data-level="venus"] .page-3 .p3-legend { padding-right: 36mm; }
 
 /* ============= Decorative space art slots =============
    All bg-image-driven so missing files = invisible (no broken icon).
    File paths are relative to textbook.html (web root).
-   See assets/illustrations/mars/README.md for prompt + sizing guidance. */
+   See assets/illustrations/venus/README.md for prompt + sizing guidance. */
 
 /* P1 — page frame REMOVED (was too busy). New cleaner deco slots below. */
-[data-level="mars"] .page-1 .page-frame { display: none; }
+[data-level="venus"] .page-1 .page-frame { display: none; }
 
 /* P1 top decoration — REMOVED per user request (planet row above title was excess) */
-[data-level="mars"] .page-1 .page-body::before { content: none; display: none; }
+[data-level="venus"] .page-1 .page-body::before { content: none; display: none; }
 
 /* P1 horizontal divider between body and vocab — rocket trail (now uses _top-deco.png) */
-[data-level="mars"] .p1-vocab-preview::before {
+[data-level="venus"] .p1-vocab-preview::before {
   content: "";
   display: block;
   height: 8mm;
-  background-image: url('../assets/illustrations/mars/_top-deco.png');
+  background-image: url('../assets/illustrations/venus/_top-deco.png');
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -125,13 +135,13 @@ body[data-level="mars"] { background: var(--tn-bg); }
 }
 
 /* P1 side decorative frame (image #4 style: vertical scattered planets/stars) */
-[data-level="mars"] .page-1 .page-side-frame {
+[data-level="venus"] .page-1 .page-side-frame {
   position: absolute;
   top: calc(var(--tn-theme-bar-h) + 8mm);
   bottom: 14mm;
   right: 2mm;
   width: 14mm;
-  background-image: url('../assets/illustrations/mars/_side-frame.png');
+  background-image: url('../assets/illustrations/venus/_side-frame.png');
   background-size: contain;
   background-position: center right;
   background-repeat: no-repeat;
@@ -141,7 +151,7 @@ body[data-level="mars"] { background: var(--tn-bg); }
 }
 
 /* P3 / P4 — corner watercolor accents (image #5 style) */
-[data-level="mars"] .page-corner {
+[data-level="venus"] .page-corner {
   position: absolute;
   width: 58mm;
   height: 58mm;
@@ -152,45 +162,45 @@ body[data-level="mars"] { background: var(--tn-bg); }
   opacity: 0.92;
 }
 /* Bottom-left corner (astronaut+saturn) stays at smaller size */
-[data-level="mars"] .page-corner-bl {
+[data-level="venus"] .page-corner-bl {
   width: 46mm;
   height: 46mm;
 }
-[data-level="mars"] .page-3 .page-corner-tr,
-[data-level="mars"] .page-4 .page-corner-tr {
+[data-level="venus"] .page-3 .page-corner-tr,
+[data-level="venus"] .page-4 .page-corner-tr {
   top: 0;
   right: 0;
-  background-image: url('../assets/illustrations/mars/_corner-tr.png');
+  background-image: url('../assets/illustrations/venus/_corner-tr.png');
   background-position: top right;
 }
-[data-level="mars"] .page-3 .page-corner-bl,
-[data-level="mars"] .page-4 .page-corner-bl {
+[data-level="venus"] .page-3 .page-corner-bl,
+[data-level="venus"] .page-4 .page-corner-bl {
   bottom: 0;
   left: 0;
-  background-image: url('../assets/illustrations/mars/_corner-bl.png');
+  background-image: url('../assets/illustrations/venus/_corner-bl.png');
   background-position: bottom left;
 }
 /* Make sure body content sits above corner accents */
-[data-level="mars"] .page-3 .page-head,
-[data-level="mars"] .page-3 .page-body,
-[data-level="mars"] .page-3 .page-foot,
-[data-level="mars"] .page-4 .page-head,
-[data-level="mars"] .page-4 .page-body,
-[data-level="mars"] .page-4 .page-foot { position: relative; z-index: 2; }
+[data-level="venus"] .page-3 .page-head,
+[data-level="venus"] .page-3 .page-body,
+[data-level="venus"] .page-3 .page-foot,
+[data-level="venus"] .page-4 .page-head,
+[data-level="venus"] .page-4 .page-body,
+[data-level="venus"] .page-4 .page-foot { position: relative; z-index: 2; }
 
 /* P2 + P4 — cheer bubble orbit decoration (image #2/#3 style) */
-[data-level="mars"] .page-2 .p2-questions::after {
+[data-level="venus"] .page-2 .p2-questions::after {
   background-image:
-    url('../assets/illustrations/mars/_cheer-orbit.png'),
+    url('../assets/illustrations/venus/_cheer-orbit.png'),
     linear-gradient(135deg, var(--mars-gold-soft) 0%, var(--mars-gold-soft) 100%);
   background-size: 110% auto, auto;
   background-position: center, top left;
   background-repeat: no-repeat, no-repeat;
   padding: 8pt 28pt;
 }
-[data-level="mars"] .page-4 .p4-vocab::after {
+[data-level="venus"] .page-4 .p4-vocab::after {
   background-image:
-    url('../assets/illustrations/mars/_cheer-orbit.png'),
+    url('../assets/illustrations/venus/_cheer-orbit.png'),
     linear-gradient(135deg, var(--mars-teal-pale) 0%, var(--mars-teal-pale) 100%);
   background-size: 110% auto, auto;
   background-position: center, top left;
@@ -199,9 +209,9 @@ body[data-level="mars"] { background: var(--tn-bg); }
 }
 
 /* P1 illustration placeholder — embroidered circular frame (image #1 style) */
-[data-level="mars"] .p1-illustration.illustration-empty {
+[data-level="venus"] .p1-illustration.illustration-empty {
   background-image:
-    url('../assets/illustrations/mars/_placeholder-frame.png'),
+    url('../assets/illustrations/venus/_placeholder-frame.png'),
     radial-gradient(circle at 75% 30%, var(--mars-gold-soft) 0%, transparent 55%),
     radial-gradient(circle at 25% 75%, var(--mars-teal-pale) 0%, transparent 55%),
     linear-gradient(135deg, var(--tn-theme-soft) 0%, #EFEAFC 100%);
@@ -211,18 +221,18 @@ body[data-level="mars"] { background: var(--tn-bg); }
 }
 
 /* Hide the passage number badge — mascot is the visual identifier */
-[data-level="mars"] .passage-badge { display: none; }
+[data-level="venus"] .passage-badge { display: none; }
 
 /* Hide the chapter-tag for Mars — info is in P1 meta chips already */
-[data-level="mars"] .page-head .chapter-tag { display: none; }
+[data-level="venus"] .page-head .chapter-tag { display: none; }
 /* Reserve right padding so header content doesn't underlap mascot */
-[data-level="mars"] .page-head { padding-right: 40mm; }
+[data-level="venus"] .page-head { padding-right: 40mm; }
 
 /* ============= Subtle scattered watercolor-star background pattern =============
    Inspired by reference image #6 (cream paper with scattered stars/dots).
    Uses radial gradients only — no images required. Very faint to keep
    text readability high. */
-[data-level="mars"] .page {
+[data-level="venus"] .page {
   background-image:
     /* tiny coral dots */
     radial-gradient(circle 0.5pt at 18mm 38mm, rgba(244, 184, 96, 0.20), transparent 70%),
@@ -239,45 +249,45 @@ body[data-level="mars"] { background: var(--tn-bg); }
 }
 
 /* ============= 1) 둥근 모서리 ============= */
-[data-level="mars"] .p1-illustration  { border-radius: 14pt; }
-[data-level="mars"] .question         { border-radius: 12pt; }
-[data-level="mars"] .tieback          { border-radius: 16pt; }
-[data-level="mars"] .tieback .unit-label { border-radius: 999px; padding: 1.5pt 11pt; }
-[data-level="mars"] .tieback .visual-aid .va-step { border-radius: 12pt; }
-[data-level="mars"] .p3-legend        { border-radius: 12pt; padding: 5pt 11pt; }
-[data-level="mars"] .p3-translation   { border-radius: 14pt; padding: 6pt 12pt; }
-[data-level="mars"] .vocab-card       { border-radius: 14pt; }
-[data-level="mars"] .descriptive .answer-slot      { border-radius: 10pt; }
-[data-level="mars"] .descriptive .summary-template { border-radius: 12pt; padding: 6pt 11pt; }
-[data-level="mars"] .descriptive .hint             { border-radius: 999px; padding: 1pt 9pt; }
-[data-level="mars"] .question .stem .q-style       { border-radius: 999px; padding: 1pt 8pt; }
-[data-level="mars"] .p3-sentence .seg              { border-radius: 4pt; padding: 0.5pt 1pt; }
-[data-level="mars"] .p1-meta .chip                 { padding: 2.5pt 11pt; }
-[data-level="mars"] .p3-legend .role-badge         { border-radius: 6pt; }
+[data-level="venus"] .p1-illustration  { border-radius: 14pt; }
+[data-level="venus"] .question         { border-radius: 12pt; }
+[data-level="venus"] .tieback          { border-radius: 16pt; }
+[data-level="venus"] .tieback .unit-label { border-radius: 999px; padding: 1.5pt 11pt; }
+[data-level="venus"] .tieback .visual-aid .va-step { border-radius: 12pt; }
+[data-level="venus"] .p3-legend        { border-radius: 12pt; padding: 5pt 11pt; }
+[data-level="venus"] .p3-translation   { border-radius: 14pt; padding: 6pt 12pt; }
+[data-level="venus"] .vocab-card       { border-radius: 14pt; }
+[data-level="venus"] .descriptive .answer-slot      { border-radius: 10pt; }
+[data-level="venus"] .descriptive .summary-template { border-radius: 12pt; padding: 6pt 11pt; }
+[data-level="venus"] .descriptive .hint             { border-radius: 999px; padding: 1pt 9pt; }
+[data-level="venus"] .question .stem .q-style       { border-radius: 999px; padding: 1pt 8pt; }
+[data-level="venus"] .p3-sentence .seg              { border-radius: 4pt; padding: 0.5pt 1pt; }
+[data-level="venus"] .p1-meta .chip                 { padding: 2.5pt 11pt; }
+[data-level="venus"] .p3-legend .role-badge         { border-radius: 6pt; }
 
 /* Page corner: rounded soft card (only visible on screen, not in print) */
-[data-level="mars"] .page { border-radius: 8pt; }
-@media print { [data-level="mars"] .page { border-radius: 0; } }
+[data-level="venus"] .page { border-radius: 8pt; }
+@media print { [data-level="venus"] .page { border-radius: 0; } }
 
 /* ============= 2) 같은 계열 색 통일 ============= */
 /* Drop the colored vertical strips that fragment the page visually */
-[data-level="mars"] .question {
+[data-level="venus"] .question {
   border-left: none;
   background: #fff;
   padding: 7pt 12pt 7pt 14pt;
   box-shadow: 0 1pt 3pt rgba(45, 28, 127, 0.08);
 }
-[data-level="mars"] .tieback {
+[data-level="venus"] .tieback {
   border-left: none;
   padding: 8pt 12pt 9pt;
 }
-[data-level="mars"] .vocab-card {
+[data-level="venus"] .vocab-card {
   border: 0.8pt solid var(--tn-divider);
   border-left: 0.8pt solid var(--tn-divider);   /* drop colored stripe */
   background: #fff;
   padding: 7pt 11pt 8pt;
 }
-[data-level="mars"] .p3-translation {
+[data-level="venus"] .p3-translation {
   border-top: none;
   border: 0.6pt solid var(--tn-muted);
 }
@@ -288,31 +298,31 @@ body[data-level="mars"] { background: var(--tn-bg); }
    render.js prepends them inline; we hide via attribute swap there too. */
 
 /* ============= 4) 어휘 카드 - 영어 단어 안정 + 예문 하단 정렬 ============= */
-[data-level="mars"] .vocab-card {
+[data-level="venus"] .vocab-card {
   display: flex;
   flex-direction: column;
   gap: 3pt;
 }
-[data-level="mars"] .vocab-card .head {
+[data-level="venus"] .vocab-card .head {
   align-items: flex-end;          /* word + pos baseline anchored to bottom */
   border-bottom: 0.6pt solid var(--tn-divider);
   padding-bottom: 3pt;
 }
-[data-level="mars"] .vocab-card .word {
+[data-level="venus"] .vocab-card .word {
   font-size: 13.5pt;
   line-height: 1.1;
 }
-[data-level="mars"] .vocab-card .pos {
+[data-level="venus"] .vocab-card .pos {
   font-size: 8pt;
   color: var(--tn-theme-deep);
   font-weight: 600;
 }
-[data-level="mars"] .vocab-card .meaning {
+[data-level="venus"] .vocab-card .meaning {
   font-size: 9pt;
   color: var(--tn-ink);
   font-weight: 500;
 }
-[data-level="mars"] .vocab-card .examples {
+[data-level="venus"] .vocab-card .examples {
   margin-top: auto;               /* push examples block to card bottom */
   border-top: 0.5pt dashed var(--tn-muted);
   padding-top: 4pt;
@@ -320,14 +330,14 @@ body[data-level="mars"] { background: var(--tn-bg); }
 }
 
 /* Tieback emoji_flow: emoji on top, label/note bottom-aligned */
-[data-level="mars"] .tieback .visual-aid.emoji_flow .va-step {
+[data-level="venus"] .tieback .visual-aid.emoji_flow .va-step {
   justify-content: flex-end;
   padding: 4pt 4pt 5pt;
   min-height: 40pt;
 }
 
 /* ============= 5) 활동 번호 = 컬러 배지 ============= */
-[data-level="mars"] .question .stem .q-num {
+[data-level="venus"] .question .stem .q-num {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -344,7 +354,7 @@ body[data-level="mars"] { background: var(--tn-bg); }
   flex-shrink: 0;
   box-shadow: 0 1pt 2pt rgba(45, 28, 127, 0.22);
 }
-[data-level="mars"] .question .choices li::before {
+[data-level="venus"] .question .choices li::before {
   width: 14pt;
   height: 14pt;
   background: var(--tn-theme-soft);
@@ -355,15 +365,15 @@ body[data-level="mars"] { background: var(--tn-bg); }
 }
 
 /* ============= 6) 강화 문구 (P2 GREAT JOB removed per user request) ============= */
-[data-level="mars"] .page-2 .p2-questions::after { content: none; display: none; }
-[data-level="mars"] .page-3 .p3-translation h4::after {
+[data-level="venus"] .page-2 .p2-questions::after { content: none; display: none; }
+[data-level="venus"] .page-3 .p3-translation h4::after {
   content: " · 💡 Excellent reading!";
   font-size: 8.5pt;
   color: var(--tn-theme);
   font-weight: 600;
   margin-left: 4pt;
 }
-[data-level="mars"] .page-4 .p4-vocab::after {
+[data-level="venus"] .page-4 .p4-vocab::after {
   content: "🌟 You learned new words today. Try using them!";
   grid-column: 1 / -1;
   display: block;
@@ -380,47 +390,47 @@ body[data-level="mars"] { background: var(--tn-bg); }
   border: 0.6pt solid var(--tn-theme);
 }
 /* Subtle accent — drop the heavy glow, keep small star prefix only */
-[data-level="mars"] .p1-title::before {
+[data-level="venus"] .p1-title::before {
   content: "";
   display: none;
 }
-[data-level="mars"] .page-1 .p1-title::after {
+[data-level="venus"] .page-1 .p1-title::after {
   content: "";
   display: none;
 }
 
 /* ============= 7) 숨 쉬는 여백 ============= */
-[data-level="mars"] .page { padding: 16mm 17mm 13mm 17mm; padding-top: calc(var(--tn-theme-bar-h) + 5mm); }
-[data-level="mars"] .page-body { gap: 6pt; }
-[data-level="mars"] .question .choices { gap: 3pt; padding-left: 24pt; }
-[data-level="mars"] .p3-sentences { gap: 3pt; }
-[data-level="mars"] .p3-sentence { padding-bottom: 3pt; }
-[data-level="mars"] .p1-body { font-size: 12.5pt; line-height: 1.85; text-align: left; hyphens: manual; }
-[data-level="mars"] .p1-body p { text-indent: 0; margin-bottom: 8pt; }
-[data-level="mars"] .p1-title { font-size: 24pt; line-height: 1.25; margin-top: 7pt; }
-[data-level="mars"] .p1-subtitle { font-size: 13pt; font-style: normal; font-weight: 500; margin-bottom: 12pt; }
+[data-level="venus"] .page { padding: 16mm 17mm 13mm 17mm; padding-top: calc(var(--tn-theme-bar-h) + 5mm); }
+[data-level="venus"] .page-body { gap: 6pt; }
+[data-level="venus"] .question .choices { gap: 3pt; padding-left: 24pt; }
+[data-level="venus"] .p3-sentences { gap: 3pt; }
+[data-level="venus"] .p3-sentence { padding-bottom: 3pt; }
+[data-level="venus"] .p1-body { font-size: 12.5pt; line-height: 2.1; text-align: left; hyphens: manual; }
+[data-level="venus"] .p1-body p { text-indent: 0; margin-bottom: 8pt; }
+[data-level="venus"] .p1-title { font-size: 24pt; line-height: 1.25; margin-top: 7pt; }
+[data-level="venus"] .p1-subtitle { font-size: 13pt; font-style: normal; font-weight: 500; margin-bottom: 12pt; }
 
 /* P2 — tighter gaps to fit 4 questions + tieback + cheer bubble within page */
-[data-level="mars"] .page-2 .p2-questions { gap: 5pt; }
-[data-level="mars"] .page-2 .question { padding: 5pt 11pt 5pt 13pt; }
-[data-level="mars"] .page-2 .tieback { padding: 6pt 11pt 7pt; }
-[data-level="mars"] .page-2 .tieback .body-ko { font-size: 8.5pt; line-height: 1.4; }
+[data-level="venus"] .page-2 .p2-questions { gap: 5pt; }
+[data-level="venus"] .page-2 .question { padding: 5pt 11pt 5pt 13pt; }
+[data-level="venus"] .page-2 .tieback { padding: 6pt 11pt 7pt; }
+[data-level="venus"] .page-2 .tieback .body-ko { font-size: 8.5pt; line-height: 1.4; }
 
 /* P4 — tighter vocab grid spacing to fit 12 cards + cheer bubble */
-[data-level="mars"] .page-4 .p4-vocab { row-gap: 4pt; column-gap: 7pt; }
-[data-level="mars"] .page-4 .vocab-card { padding: 5pt 9pt 6pt; }
-[data-level="mars"] .page-4 .vocab-card .examples { padding-top: 3pt; gap: 2pt; }
-[data-level="mars"] .page-4 .vocab-card .example-item .en { font-size: 7.5pt; line-height: 1.3; }
-[data-level="mars"] .page-4 .vocab-card .example-item .ko { font-size: 7pt; line-height: 1.25; }
+[data-level="venus"] .page-4 .p4-vocab { row-gap: 4pt; column-gap: 7pt; }
+[data-level="venus"] .page-4 .vocab-card { padding: 5pt 9pt 6pt; }
+[data-level="venus"] .page-4 .vocab-card .examples { padding-top: 3pt; gap: 2pt; }
+[data-level="venus"] .page-4 .vocab-card .example-item .en { font-size: 7.5pt; line-height: 1.3; }
+[data-level="venus"] .page-4 .vocab-card .example-item .ko { font-size: 7pt; line-height: 1.25; }
 
 /* Section labels — capsule badge with English label inside (reference 텃밭 style)
    Color rotates per page: coral / mustard / sage / coral-deep. Korean tail
    suffix kept as floating tag for context. */
-[data-level="mars"] .page-head {
+[data-level="venus"] .page-head {
   position: relative;
   align-items: center;
 }
-[data-level="mars"] .page-head .section-label {
+[data-level="venus"] .page-head .section-label {
   display: inline-flex;
   align-items: center;
   padding: 3pt 13pt;
@@ -434,21 +444,21 @@ body[data-level="mars"] { background: var(--tn-bg); }
   box-shadow: 0 1pt 3pt rgba(58, 40, 24, 0.10);
 }
 /* Per-page capsule color */
-[data-level="mars"] .page-1 .page-head .section-label { background: var(--tn-theme); }         /* primary teal */
-[data-level="mars"] .page-2 .page-head .section-label { background: var(--tn-theme-deep); }    /* deep teal */
-[data-level="mars"] .page-3 .page-head .section-label { background: var(--mars-gold); }       /* warm gold (one accent) */
-[data-level="mars"] .page-4 .page-head .section-label { background: var(--mars-teal-light); }  /* light teal */
-[data-level="mars"] .page-toc .page-head .section-label { background: var(--tn-theme); }        /* TOC: teal pill (was bg-less → white text on white = empty box) */
+[data-level="venus"] .page-1 .page-head .section-label { background: var(--tn-theme); }         /* primary teal */
+[data-level="venus"] .page-2 .page-head .section-label { background: var(--tn-theme-deep); }    /* deep teal */
+[data-level="venus"] .page-3 .page-head .section-label { background: var(--mars-gold); }       /* warm gold (one accent) */
+[data-level="venus"] .page-4 .page-head .section-label { background: var(--mars-teal-light); }  /* light teal */
+[data-level="venus"] .page-toc .page-head .section-label { background: var(--tn-theme); }        /* TOC: teal pill (was bg-less → white text on white = empty box) */
 /* Korean subtitle tag — Gowun handwriting beside the capsule */
-[data-level="mars"] .page-head .section-label::after {
+[data-level="venus"] .page-head .section-label::after {
   content: "";
   display: none;
 }
-[data-level="mars"] .page-1 .page-head::before { content: "오늘의 이야기"; }
-[data-level="mars"] .page-2 .page-head::before { content: "같이 풀어 보기"; }
-[data-level="mars"] .page-3 .page-head::before { content: "문장 살펴보기"; }
-[data-level="mars"] .page-4 .page-head::before { content: "단어 연습"; }
-[data-level="mars"] .page-head::before {
+[data-level="venus"] .page-1 .page-head::before { content: "오늘의 이야기"; }
+[data-level="venus"] .page-2 .page-head::before { content: "같이 풀어 보기"; }
+[data-level="venus"] .page-3 .page-head::before { content: "문장 살펴보기"; }
+[data-level="venus"] .page-4 .page-head::before { content: "오늘의 단어"; }
+[data-level="venus"] .page-head::before {
   position: absolute;
   left: 95pt;
   top: 50%;
@@ -467,130 +477,109 @@ body[data-level="mars"] { background: var(--tn-bg); }
    Hierarchy by WEIGHT + SIZE, not by font mixing. */
 
 /* P1 Title — clean coral, no gradient (matches organic reference tone) */
-[data-level="mars"] .p1-title {
+[data-level="venus"] .p1-title {
   font-family: 'Quicksand', 'Gowun Dodum', sans-serif;
   font-weight: 700;
   letter-spacing: -0.012em;
   color: var(--tn-theme-deep);
 }
 /* P1 Subtitle — lighter weight for elegant contrast */
-[data-level="mars"] .p1-subtitle {
+[data-level="venus"] .p1-subtitle {
   font-family: 'Quicksand', sans-serif;
   font-weight: 500;
   font-style: normal;
 }
 /* P1 Body English — readable medium weight */
-[data-level="mars"] .p1-body {
+[data-level="venus"] .p1-body {
   font-family: 'Quicksand', sans-serif;
   font-weight: 500;
 }
 /* Section labels (PASSAGE / PRACTICE / SYNTAX / VOCAB) — heavy English + light Korean tail */
-[data-level="mars"] .page-head .section-label {
+[data-level="venus"] .page-head .section-label {
   font-family: 'Quicksand', 'Gowun Dodum', sans-serif;
   font-weight: 700;
   letter-spacing: 0.01em;
   font-size: 13.5pt;
 }
 /* Chapter tag (Korean meta) */
-[data-level="mars"] .page-head .chapter-tag {
+[data-level="venus"] .page-head .chapter-tag {
   font-family: 'Gowun Dodum', sans-serif;
   font-weight: 400;
   font-size: 9.5pt;
 }
 /* Brand mark — Quicksand 700 keeps the modern-cute consistency */
-[data-level="mars"] .page-foot .brand {
+[data-level="venus"] .page-foot .brand {
   font-family: 'Quicksand', sans-serif;
   font-weight: 700;
   letter-spacing: 0.06em;
 }
-[data-level="mars"] .page-foot .page-num {
+[data-level="venus"] .page-foot .page-num {
   font-family: 'Quicksand', sans-serif;
   font-weight: 700;
 }
 /* Question Q1/Q2/Q3/Q4 badges */
-[data-level="mars"] .question .stem .q-num {
+[data-level="venus"] .question .stem .q-num {
   font-family: 'Quicksand', sans-serif;
   font-weight: 700;
 }
 /* Question stem (Korean) */
-[data-level="mars"] .question .stem {
+[data-level="venus"] .question .stem {
   font-family: 'Gowun Dodum', 'Quicksand', sans-serif;
   font-weight: 400;
   font-size: 11pt;
 }
 /* Choices (mostly English) */
-[data-level="mars"] .question .choices {
+[data-level="venus"] .question .choices {
   font-family: 'Quicksand', sans-serif;
   font-weight: 500;
 }
 /* Tieback Korean explanation */
-[data-level="mars"] .tieback,
-[data-level="mars"] .tieback .body-ko { font-family: 'Gowun Dodum', sans-serif; }
-[data-level="mars"] .tieback .unit-label {
+[data-level="venus"] .tieback,
+[data-level="venus"] .tieback .body-ko { font-family: 'Gowun Dodum', sans-serif; }
+[data-level="venus"] .tieback .unit-label {
   font-family: 'Gowun Dodum', sans-serif;
   font-weight: 400;
 }
 /* Vocab cards */
-[data-level="mars"] .vocab-card .word {
+[data-level="venus"] .vocab-card .word {
   font-family: 'Quicksand', sans-serif;
   font-weight: 700;
 }
-[data-level="mars"] .vocab-card .meaning { font-family: 'Gowun Dodum', sans-serif; }
-[data-level="mars"] .vocab-card .example-item .en {
+[data-level="venus"] .vocab-card .meaning { font-family: 'Gowun Dodum', sans-serif; }
+[data-level="venus"] .vocab-card .example-item .en {
   font-family: 'Quicksand', sans-serif;
   font-weight: 500;
 }
-[data-level="mars"] .vocab-card .example-item .ko { font-family: 'Gowun Dodum', sans-serif; }
+[data-level="venus"] .vocab-card .example-item .ko { font-family: 'Gowun Dodum', sans-serif; }
 /* P1 vocab preview grid */
-[data-level="mars"] .vp-word {
+[data-level="venus"] .vp-word {
   font-family: 'Quicksand', sans-serif;
   font-weight: 700;
 }
-[data-level="mars"] .vp-meaning { font-family: 'Gowun Dodum', sans-serif; }
-[data-level="mars"] .vp-header .vp-title {
+[data-level="venus"] .vp-meaning { font-family: 'Gowun Dodum', sans-serif; }
+[data-level="venus"] .vp-header .vp-title {
   font-family: 'Gowun Dodum', sans-serif;
   font-weight: 400;
 }
 /* P3 sentence English & Korean translation */
-[data-level="mars"] .p3-sentence .en-row {
+[data-level="venus"] .p3-sentence .en-row {
   font-family: 'Quicksand', sans-serif;
   font-weight: 500;
 }
-/* Per-sentence 끊어읽기 해석 채우기 — Korean fill-in row under each breakdown */
-[data-level="mars"] .p3-sentence .ko-row {
-  margin-top: 1.5pt;
-  padding-left: 16pt;
-  font-family: 'Gowun Dodum', sans-serif;
-  font-size: 8.5pt;
-  color: #51707a;
-  line-height: 1.55;
-  letter-spacing: 0.01em;
-}
-[data-level="mars"] .p3-sentence .ko-row .ko-blank {
-  display: inline-block;
-  min-width: 62pt;
-  height: 1em;
-  border-bottom: 1.4px dotted var(--tn-theme);
-  margin: 0 1.5pt;
-  vertical-align: bottom;
-}
-/* Bottom full-translation box removed for Mars — per-sentence 끊어읽기 해석 채우기 replaces it
-   (the full box gave away the fill-in answers). translation_ko data is kept for the answer key. */
-[data-level="mars"] .p3-translation { display: none; }
-[data-level="mars"] .p3-translation .body { font-family: 'Gowun Dodum', sans-serif; }
-[data-level="mars"] .p3-translation h4 {
+[data-level="venus"] .p3-translation .body { font-family: 'Gowun Dodum', sans-serif; }
+[data-level="venus"] .p3-translation h4 {
   font-family: 'Gowun Dodum', sans-serif;
   font-weight: 400;
 }
 /* Encouragement bubbles */
-[data-level="mars"] .page-2 .p2-questions::after,
-[data-level="mars"] .page-4 .p4-vocab::after {
+[data-level="venus"] .page-2 .p2-questions::after,
+[data-level="venus"] .page-4 .p4-vocab::after {
   font-family: 'Quicksand', sans-serif;
   font-weight: 700;
 }
 /* Footer page number — friendlier with orbital ring */
-[data-level="mars"] .page-foot { border-top: 0.5pt dashed var(--tn-muted); }
-[data-level="mars"] .page-foot .page-num {
+[data-level="venus"] .page-foot { border-top: 0.5pt dashed var(--tn-muted); }
+[data-level="venus"] .page-foot .page-num {
   background: radial-gradient(circle at 35% 30%, #B0A0F2 0%, var(--tn-theme) 50%, var(--tn-theme-deep) 100%);
   box-shadow: 0 0 0 1.5pt rgba(45, 28, 127, 0.18);
 }
@@ -599,16 +588,16 @@ body[data-level="mars"] { background: var(--tn-bg); }
    - Page number always centered on every page
    - Odd pages (1, 3): TERRA·NOVA on right (no date)
    - Even pages (2, 4): JUNE · WEEK 1 · MONDAY on right (no brand) */
-[data-level="mars"] .page-foot .foot-spacer { flex: 1; }
-[data-level="mars"] .page-foot .page-num { margin: 0; }
-[data-level="mars"] .page-foot .foot-right {
+[data-level="venus"] .page-foot .foot-spacer { flex: 1; }
+[data-level="venus"] .page-foot .page-num { margin: 0; }
+[data-level="venus"] .page-foot .foot-right {
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: flex-end;
   gap: 8pt;
 }
-[data-level="mars"] .page-foot .foot-date {
+[data-level="venus"] .page-foot .foot-date {
   font-family: 'Quicksand', sans-serif;
   font-weight: 600;
   font-size: 8.5pt;
@@ -617,13 +606,13 @@ body[data-level="mars"] { background: var(--tn-bg); }
 }
 
 /* Odd pages (1, 3) → hide date; Even pages (2, 4) → hide brand */
-[data-level="mars"] .page-1 .page-foot .foot-date,
-[data-level="mars"] .page-3 .page-foot .foot-date { display: none; }
-[data-level="mars"] .page-2 .page-foot .brand,
-[data-level="mars"] .page-4 .page-foot .brand { display: none; }
+[data-level="venus"] .page-1 .page-foot .foot-date,
+[data-level="venus"] .page-3 .page-foot .foot-date { display: none; }
+[data-level="venus"] .page-2 .page-foot .brand,
+[data-level="venus"] .page-4 .page-foot .brand { display: none; }
 
 /* ============= Header level chip — top-right corner of colored bar ============= */
-[data-level="mars"] .header-level {
+[data-level="venus"] .header-level {
   position: absolute;
   top: 1.2mm;
   right: 42mm;            /* leave room for top-right mascot (38mm wide) */
@@ -636,18 +625,18 @@ body[data-level="mars"] { background: var(--tn-bg); }
   padding: 0;
 }
 /* P3, P4 don't have the big mascot — pull level chip closer to right edge */
-[data-level="mars"] .page-3 .header-level,
-[data-level="mars"] .page-4 .header-level { right: 8mm; }
+[data-level="venus"] .page-3 .header-level,
+[data-level="venus"] .page-4 .header-level { right: 8mm; }
 /* TOC page — has Mars mascot like P1, leave room for it */
-[data-level="mars"] .page-toc .header-level { right: 42mm; }
+[data-level="venus"] .page-toc .header-level { right: 42mm; }
 /* TOC page should NOT inherit page-1's Korean subtitle ("오늘의 이야기") */
-[data-level="mars"] .page-toc .page-head::before { content: ""; display: none; }
+[data-level="venus"] .page-toc .page-head::before { content: ""; display: none; }
 
 /* ============= Table of Contents (목차) page ============= */
-[data-level="mars"] .page-toc {
+[data-level="venus"] .page-toc {
   background: var(--tn-surface);
 }
-[data-level="mars"] .toc-body {
+[data-level="venus"] .toc-body {
   display: flex;
   flex-direction: column;
   gap: 6mm;
@@ -655,19 +644,19 @@ body[data-level="mars"] { background: var(--tn-bg); }
   justify-content: space-between;
 }
 /* Each week section grows to share remaining space */
-[data-level="mars"] .toc-week {
+[data-level="venus"] .toc-week {
   flex: 1;
   display: flex;
   flex-direction: column;
 }
 /* List items distribute evenly within each week to fill vertically */
-[data-level="mars"] .toc-list {
+[data-level="venus"] .toc-list {
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 }
-[data-level="mars"] .toc-title {
+[data-level="venus"] .toc-title {
   font-family: 'Quicksand', sans-serif;
   font-weight: 700;
   margin: 4mm 0 0;
@@ -675,20 +664,20 @@ body[data-level="mars"] { background: var(--tn-bg); }
   align-items: baseline;
   gap: 8pt;
 }
-[data-level="mars"] .toc-title .toc-title-ko {
+[data-level="venus"] .toc-title .toc-title-ko {
   font-family: 'Gowun Dodum', sans-serif;
   font-size: 24pt;
   color: var(--tn-theme-deep);
   font-weight: 400;
 }
-[data-level="mars"] .toc-title .toc-title-en {
+[data-level="venus"] .toc-title .toc-title-en {
   font-family: 'Quicksand', sans-serif;
   font-size: 11pt;
   color: var(--tn-muted);
   letter-spacing: 0.18em;
   font-weight: 600;
 }
-[data-level="mars"] .toc-month {
+[data-level="venus"] .toc-month {
   font-family: 'Quicksand', sans-serif;
   font-weight: 600;
   font-size: 9.5pt;
@@ -698,12 +687,12 @@ body[data-level="mars"] { background: var(--tn-bg); }
   margin-bottom: 2mm;
 }
 
-[data-level="mars"] .toc-week {
+[data-level="venus"] .toc-week {
   display: flex;
   flex-direction: column;
   gap: 1mm;
 }
-[data-level="mars"] .toc-week-head {
+[data-level="venus"] .toc-week-head {
   display: flex;
   align-items: center;
   gap: 6pt;
@@ -713,37 +702,37 @@ body[data-level="mars"] { background: var(--tn-bg); }
   font-family: 'Quicksand', sans-serif;
   margin-bottom: 1mm;
 }
-[data-level="mars"] .toc-week-label {
+[data-level="venus"] .toc-week-label {
   font-weight: 600;
   color: var(--tn-theme-deep);
   font-size: 9pt;
   letter-spacing: 0.18em;
 }
-[data-level="mars"] .toc-week-num {
+[data-level="venus"] .toc-week-num {
   font-weight: 700;
   color: var(--tn-theme-deep);
   font-size: 14pt;
 }
-[data-level="mars"] .toc-week-line {
+[data-level="venus"] .toc-week-line {
   flex: 1;
   height: 1px;
   background: var(--tn-muted);
   opacity: 0.5;
 }
-[data-level="mars"] .toc-week-page {
+[data-level="venus"] .toc-week-page {
   font-weight: 600;
   color: var(--tn-theme);
   font-size: 9pt;
   letter-spacing: 0.04em;
 }
 
-[data-level="mars"] .toc-list {
+[data-level="venus"] .toc-list {
   list-style: none;
   padding: 0;
   margin: 0;
   /* flex/justify-content from earlier rule provides vertical distribution */
 }
-[data-level="mars"] .toc-item {
+[data-level="venus"] .toc-item {
   display: grid;
   grid-template-columns: 22pt 1fr auto auto;
   gap: 10pt;
@@ -751,34 +740,34 @@ body[data-level="mars"] { background: var(--tn-bg); }
   padding: 5pt 4pt;
   border-bottom: 0.4pt dotted var(--tn-divider);
 }
-[data-level="mars"] .toc-item:last-child { border-bottom: none; }
-[data-level="mars"] .toc-num {
+[data-level="venus"] .toc-item:last-child { border-bottom: none; }
+[data-level="venus"] .toc-num {
   font-family: 'Quicksand', sans-serif;
   font-weight: 700;
   color: var(--tn-theme);
   font-size: 10pt;
   text-align: center;
 }
-[data-level="mars"] .toc-titles {
+[data-level="venus"] .toc-titles {
   display: flex;
   flex-direction: column;
   gap: 0;
   min-width: 0;
 }
-[data-level="mars"] .toc-en {
+[data-level="venus"] .toc-en {
   font-family: 'Quicksand', sans-serif;
   font-weight: 700;
   font-size: 10pt;
   color: var(--tn-ink);
   line-height: 1.25;
 }
-[data-level="mars"] .toc-ko {
+[data-level="venus"] .toc-ko {
   font-family: 'Gowun Dodum', sans-serif;
   font-size: 8.5pt;
   color: var(--tn-ink-soft);
   line-height: 1.2;
 }
-[data-level="mars"] .toc-subject {
+[data-level="venus"] .toc-subject {
   font-family: 'Gowun Dodum', sans-serif;
   font-size: 8pt;
   font-weight: 400;
@@ -788,7 +777,7 @@ body[data-level="mars"] { background: var(--tn-bg); }
   border-radius: 999px;
   white-space: nowrap;
 }
-[data-level="mars"] .toc-page {
+[data-level="venus"] .toc-page {
   font-family: 'Quicksand', sans-serif;
   font-weight: 600;
   font-size: 9pt;
@@ -798,14 +787,14 @@ body[data-level="mars"] { background: var(--tn-bg); }
   text-align: right;
 }
 /* TOC footer page-num shows roman 'i' (book convention for front matter) */
-[data-level="mars"] .toc-page-num {
+[data-level="venus"] .toc-page-num {
   font-style: italic;
   font-size: 9pt;
   font-weight: 600;
 }
 
 /* ============= Week divider — PAGE A: solid Persian Indigo cover ============= */
-[data-level="mars"] .page-week-cover {
+[data-level="venus"] .page-week-cover {
   background: var(--tn-theme-deep);
   background-image: linear-gradient(180deg, var(--tn-theme-deep) 0%, #1A0E5C 100%);
   display: grid;
@@ -815,23 +804,23 @@ body[data-level="mars"] { background: var(--tn-bg); }
   color: #fff;
   overflow: hidden;
 }
-[data-level="mars"] .page-week-cover::before { display: none; }
+[data-level="venus"] .page-week-cover::before { display: none; }
 
-[data-level="mars"] .page-week-cover .wd-cover {
+[data-level="venus"] .page-week-cover .wd-cover {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 6mm;
 }
-[data-level="mars"] .wd-label {
+[data-level="venus"] .wd-label {
   font-family: 'Quicksand', sans-serif;
   font-weight: 600;
   font-size: 18pt;
   letter-spacing: 0.4em;
   color: rgba(255, 255, 255, 0.85);
 }
-[data-level="mars"] .wd-big-num {
+[data-level="venus"] .wd-big-num {
   font-family: 'Quicksand', sans-serif;
   font-weight: 700;
   font-size: 180pt;
@@ -840,7 +829,7 @@ body[data-level="mars"] { background: var(--tn-bg); }
   color: #fff;
   text-shadow: 0 6pt 18pt rgba(0, 0, 0, 0.22);
 }
-[data-level="mars"] .wd-cover-meta {
+[data-level="venus"] .wd-cover-meta {
   font-family: 'Quicksand', sans-serif;
   font-weight: 500;
   font-size: 9pt;
@@ -850,7 +839,7 @@ body[data-level="mars"] { background: var(--tn-bg); }
   padding: 6mm 14mm 8mm;
 }
 
-[data-level="mars"] .wd-cover-foot {
+[data-level="venus"] .wd-cover-foot {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -858,27 +847,27 @@ body[data-level="mars"] { background: var(--tn-bg); }
   border-top: 0.5pt dashed rgba(255, 255, 255, 0.25);
   background: transparent;
 }
-[data-level="mars"] .wd-foot-left {
+[data-level="venus"] .wd-foot-left {
   display: inline-flex;
   align-items: center;
   gap: 14pt;
 }
-[data-level="mars"] .wd-cover-foot .brand {
+[data-level="venus"] .wd-cover-foot .brand {
   color: #fff;
   font-family: 'Quicksand', sans-serif;
   font-weight: 700;
   font-size: 10pt;
   letter-spacing: 0.06em;
 }
-[data-level="mars"] .wd-cover-foot .brand-dot { color: var(--mars-gold); }
-[data-level="mars"] .wd-foot-level {
+[data-level="venus"] .wd-cover-foot .brand-dot { color: var(--mars-gold); }
+[data-level="venus"] .wd-foot-level {
   color: #fff;
   font-family: 'Quicksand', sans-serif;
   font-weight: 700;
   font-size: 10pt;
   letter-spacing: 0.18em;
 }
-[data-level="mars"] .wd-foot-right {
+[data-level="venus"] .wd-foot-right {
   color: #fff;
   font-family: 'Quicksand', sans-serif;
   font-weight: 600;
@@ -889,7 +878,7 @@ body[data-level="mars"] { background: var(--tn-bg); }
 /* ============= Week divider — PAGE B: same purple bg + WHITE CARD with list =============
    White card holds the readable content. Sprinkle stars + astronaut decoration
    add a cute cosmic feel without sacrificing readability. */
-[data-level="mars"] .page-week-list {
+[data-level="venus"] .page-week-list {
   background: var(--tn-theme-deep);
   background-image: linear-gradient(180deg, var(--tn-theme-deep) 0%, #1A0E5C 100%);
   display: grid;
@@ -899,10 +888,10 @@ body[data-level="mars"] { background: var(--tn-bg); }
   overflow: hidden;
   position: relative;
 }
-[data-level="mars"] .page-week-list::before { display: none; }
+[data-level="venus"] .page-week-list::before { display: none; }
 
 /* White card containing title + list, anchored at the BOTTOM */
-[data-level="mars"] .wd-list-card {
+[data-level="venus"] .wd-list-card {
   align-self: end;
   width: calc(100% - 28mm);
   margin: 0 14mm 6mm;
@@ -917,7 +906,7 @@ body[data-level="mars"] { background: var(--tn-bg); }
   position: relative;
   z-index: 2;
 }
-[data-level="mars"] .wd-list-head {
+[data-level="venus"] .wd-list-head {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
@@ -925,7 +914,7 @@ body[data-level="mars"] { background: var(--tn-bg); }
   padding-bottom: 4mm;
   border-bottom: 1pt solid var(--tn-theme);
 }
-[data-level="mars"] .wd-list-title {
+[data-level="venus"] .wd-list-title {
   font-family: 'Gowun Dodum', sans-serif;
   font-weight: 400;
   font-size: 18pt;
@@ -934,14 +923,14 @@ body[data-level="mars"] { background: var(--tn-bg); }
   padding: 0;
   border: none;
 }
-[data-level="mars"] .wd-list-meta {
+[data-level="venus"] .wd-list-meta {
   font-family: 'Quicksand', sans-serif;
   font-weight: 700;
   font-size: 10pt;
   color: var(--tn-theme);
   letter-spacing: 0.18em;
 }
-[data-level="mars"] .wd-list {
+[data-level="venus"] .wd-list {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -949,7 +938,7 @@ body[data-level="mars"] { background: var(--tn-bg); }
   flex-direction: column;
   gap: 5pt;
 }
-[data-level="mars"] .wd-item {
+[data-level="venus"] .wd-item {
   display: grid;
   grid-template-columns: 24pt 1fr auto auto;
   gap: 10pt;
@@ -957,33 +946,33 @@ body[data-level="mars"] { background: var(--tn-bg); }
   padding: 6pt 2pt;
   border-bottom: 0.4pt dotted var(--tn-divider);
 }
-[data-level="mars"] .wd-item:last-child { border-bottom: none; }
-[data-level="mars"] .wd-num {
+[data-level="venus"] .wd-item:last-child { border-bottom: none; }
+[data-level="venus"] .wd-num {
   font-family: 'Quicksand', sans-serif;
   font-weight: 700;
   color: var(--tn-theme);
   font-size: 13pt;
   text-align: center;
 }
-[data-level="mars"] .wd-titles {
+[data-level="venus"] .wd-titles {
   display: flex;
   flex-direction: column;
   min-width: 0;
 }
-[data-level="mars"] .wd-en {
+[data-level="venus"] .wd-en {
   font-family: 'Quicksand', sans-serif;
   font-weight: 700;
   font-size: 11pt;
   color: var(--tn-ink);
   line-height: 1.25;
 }
-[data-level="mars"] .wd-ko {
+[data-level="venus"] .wd-ko {
   font-family: 'Gowun Dodum', sans-serif;
   font-size: 9pt;
   color: var(--tn-ink-soft);
   line-height: 1.2;
 }
-[data-level="mars"] .wd-subject {
+[data-level="venus"] .wd-subject {
   font-family: 'Gowun Dodum', sans-serif;
   font-size: 8.5pt;
   padding: 1.5pt 9pt;
@@ -992,7 +981,7 @@ body[data-level="mars"] { background: var(--tn-bg); }
   border-radius: 999px;
   white-space: nowrap;
 }
-[data-level="mars"] .wd-page {
+[data-level="venus"] .wd-page {
   font-family: 'Quicksand', sans-serif;
   font-weight: 600;
   font-size: 10pt;
@@ -1003,16 +992,16 @@ body[data-level="mars"] { background: var(--tn-bg); }
 }
 
 /* ============= Optional decorations (auto-show when files exist) =============
-   Files needed at assets/illustrations/mars/:
+   Files needed at assets/illustrations/venus/:
    - _week-stars-bg.png   (star pattern bg, ~1500×2100, white bg with stars)
    - _week-astronaut.png  (astronaut, square ~800×800, transparent bg) */
 
 /* Holographic glitter overlay (bg3) — already bright, no invert needed.
    Screen blend lifts the bright sparkles onto the purple bg. */
-[data-level="mars"] .wd-bg-stars {
+[data-level="venus"] .wd-bg-stars {
   position: absolute;
   inset: 0;
-  background-image: url('../assets/illustrations/mars/_week-stars-bg3.jpg');
+  background-image: url('../assets/illustrations/venus/_week-stars-bg3.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -1022,21 +1011,38 @@ body[data-level="mars"] { background: var(--tn-bg); }
   z-index: 0;
 }
 
+/* Section dividers use a figure-free bg to avoid clashing with the foreground
+   astronaut (week dividers keep the figure-rich bg). Same blend/opacity. */
+[data-level="venus"] .page-section-cover .wd-bg-stars,
+[data-level="venus"] .page-section-list .wd-bg-stars {
+  background-image: url('../assets/illustrations/venus/_section-stars-bg.jpg');
+}
+
+/* Week-cover page only: bring the bg image visible enough for the coral kid
+   embedded in _week-stars-bg3.jpg to read, while letting the purple page base
+   show through so the cover still reads as Venus purple (not coral). Sweet
+   spot: opacity 0.65 + normal blend. List page keeps the subtle 0.28 default
+   so it doesn't fight with the foreground _mascot-p2 rocket astronaut. */
+[data-level="venus"] .page-week-cover:not([data-section]) .wd-bg-stars {
+  opacity: 0.65;
+  mix-blend-mode: normal;
+}
+
 /* Cover content sits above stars layer */
-[data-level="mars"] .page-week-cover .wd-cover,
-[data-level="mars"] .page-week-cover .wd-cover-foot {
+[data-level="venus"] .page-week-cover .wd-cover,
+[data-level="venus"] .page-week-cover .wd-cover-foot {
   position: relative;
   z-index: 2;
 }
 /* List page: card and footer above stars */
-[data-level="mars"] .page-week-list .wd-list-card,
-[data-level="mars"] .page-week-list .wd-cover-foot {
+[data-level="venus"] .page-week-list .wd-list-card,
+[data-level="venus"] .page-week-list .wd-cover-foot {
   position: relative;
   z-index: 2;
 }
 
 /* Astronaut floats above card — original size, pulled higher up the page. */
-[data-level="mars"] .page-week-list .wd-card-astronaut {
+[data-level="venus"] .page-week-list .wd-card-astronaut {
   position: absolute;
   bottom: 140mm;          /* pulled up; tweak 130-160mm to nudge */
   right: 14mm;
@@ -1054,14 +1060,14 @@ body[data-level="mars"] { background: var(--tn-bg); }
    paper, coral × mustard × sage trio, capsule labels, soft info boxes. */
 
 /* Top theme bar — slim teal→mustard horizontal sweep */
-[data-level="mars"] {
+[data-level="venus"] {
   --tn-theme-bar-h: 7mm;   /* slimmer than default 10mm — paper-like top stripe */
 }
-[data-level="mars"] .page::before {
+[data-level="venus"] .page::before {
   background: linear-gradient(90deg, var(--tn-theme-deep) 0%, var(--tn-theme) 55%, var(--mars-teal-light) 100%);
   border-radius: 8pt 8pt 0 0;
 }
-@media print { [data-level="mars"] .page::before { border-radius: 0; } }
+@media print { [data-level="venus"] .page::before { border-radius: 0; } }
 
 /* (Removed: ambiguous Mars watermark on Page 1.
    Mars identity is now communicated via the top bar gradient,
@@ -1069,8 +1075,8 @@ body[data-level="mars"] { background: var(--tn-bg); }
    for a decorative blurry circle that confused readers.) */
 
 /* Mars illustration placeholder — light cream box with subtle warm tint */
-[data-level="mars"] .p1-illustration { height: 56mm; border-radius: 16pt; }
-[data-level="mars"] .p1-illustration.illustration-empty {
+[data-level="venus"] .p1-illustration { height: 38mm; border-radius: 16pt; }
+[data-level="venus"] .p1-illustration.illustration-empty {
   background:
     radial-gradient(circle at 75% 30%, var(--mars-gold-soft) 0%, transparent 55%),
     radial-gradient(circle at 25% 75%, var(--mars-teal-pale) 0%, transparent 55%),
@@ -1078,13 +1084,13 @@ body[data-level="mars"] { background: var(--tn-bg); }
   border: 0.8pt dashed var(--tn-theme);
   box-shadow: none;
 }
-[data-level="mars"] .p1-illustration.illustration-empty::before {
+[data-level="venus"] .p1-illustration.illustration-empty::before {
   content: "🪐";
   font-size: 26pt;
   opacity: 0.7;
   filter: none;
 }
-[data-level="mars"] .p1-illustration.illustration-empty::after {
+[data-level="venus"] .p1-illustration.illustration-empty::after {
   content: "삽화 자리 · " attr(data-placeholder-id);
   color: var(--tn-theme-deep);
   font-family: 'Gowun Dodum', sans-serif;
@@ -1094,7 +1100,7 @@ body[data-level="mars"] { background: var(--tn-bg); }
 }
 
 /* ============= P1: Vocab preview block (Mars-only) — organic light card ============= */
-[data-level="mars"] .p1-vocab-preview {
+[data-level="venus"] .p1-vocab-preview {
   margin-top: 8pt;
   padding: 9pt 13pt 11pt;
   background: linear-gradient(180deg, #FAF6FF 0%, var(--mars-teal-pale) 100%);
@@ -1103,21 +1109,21 @@ body[data-level="mars"] { background: var(--tn-bg); }
   box-shadow: 0 1pt 3pt rgba(181, 120, 32, 0.08);
   flex-shrink: 0;
 }
-[data-level="mars"] .vp-header {
+[data-level="venus"] .vp-header {
   display: flex;
   align-items: center;
   gap: 5pt;
   margin-bottom: 5pt;
   font-family: var(--font-ko);
 }
-[data-level="mars"] .vp-header .vp-icon { font-size: 13pt; line-height: 1; }
-[data-level="mars"] .vp-header .vp-title {
+[data-level="venus"] .vp-header .vp-icon { font-size: 13pt; line-height: 1; }
+[data-level="venus"] .vp-header .vp-title {
   font-weight: 800;
   font-size: 10.5pt;
   color: var(--tn-theme-deep);
   letter-spacing: 0.01em;
 }
-[data-level="mars"] .vp-header .vp-sub {
+[data-level="venus"] .vp-header .vp-sub {
   font-size: 7.5pt;
   color: var(--tn-theme-deep);
   background: #fff;
@@ -1127,12 +1133,12 @@ body[data-level="mars"] { background: var(--tn-bg); }
   margin-left: 2pt;
   border: 0.5pt solid var(--tn-theme);
 }
-[data-level="mars"] .vp-grid {
+[data-level="venus"] .vp-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 4pt 5pt;
 }
-[data-level="mars"] .vp-item {
+[data-level="venus"] .vp-item {
   background: #fff;
   border: 0.6pt solid var(--tn-divider);
   border-radius: 9pt;
@@ -1144,7 +1150,7 @@ body[data-level="mars"] { background: var(--tn-bg); }
   min-height: 28pt;
   justify-content: center;
 }
-[data-level="mars"] .vp-word {
+[data-level="venus"] .vp-word {
   font-family: var(--font-serif-display);
   font-weight: 700;
   font-size: 9.5pt;
@@ -1152,7 +1158,7 @@ body[data-level="mars"] { background: var(--tn-bg); }
   line-height: 1.15;
   word-break: break-word;
 }
-[data-level="mars"] .vp-meaning {
+[data-level="venus"] .vp-meaning {
   font-family: var(--font-ko);
   font-size: 7.5pt;
   color: var(--tn-theme-deep);
@@ -1161,16 +1167,16 @@ body[data-level="mars"] { background: var(--tn-bg); }
 }
 
 /* Compact P1 to fit body + illustration + vocab grid */
-[data-level="mars"] .page-1 .p1-body {
+[data-level="venus"] .page-1 .p1-body {
   font-size: 11.5pt;
   line-height: 1.7;
 }
-[data-level="mars"] .page-1 .p1-title { font-size: 21pt; margin-top: 3pt; }
-[data-level="mars"] .page-1 .p1-subtitle { font-size: 11pt; margin-bottom: 8pt; }
-[data-level="mars"] .page-1 .p1-caption { display: none; }   /* save vertical space, vocab block is the new visual anchor */
+[data-level="venus"] .page-1 .p1-title { font-size: 21pt; margin-top: 3pt; }
+[data-level="venus"] .page-1 .p1-subtitle { font-size: 11pt; margin-bottom: 8pt; }
+[data-level="venus"] .page-1 .p1-caption { display: none; }   /* save vertical space, vocab block is the new visual anchor */
 
 /* Add a little orbit ring to title decoration */
-[data-level="mars"] .page-1 .p1-title::after {
+[data-level="venus"] .page-1 .p1-title::after {
   content: " ✨";
   font-size: 13pt;
   vertical-align: 4pt;
@@ -1181,23 +1187,22 @@ body[data-level="mars"] { background: var(--tn-bg); }
    Reuses the week-divider visual (purple cover + white card on right page).
    Cover page swaps the big WEEK number for a large icon + Korean label.
    List page replaces the passage list with 2-3 lines of friendly guidance. */
-[data-level="mars"] .page-section-cover .wd-cover {
+[data-level="venus"] .page-section-cover .wd-cover {
   align-items: center;
   text-align: center;
   gap: 4mm;
 }
-[data-level="mars"] .page-section-cover .wd-label {
+[data-level="venus"] .page-section-cover .wd-label {
   letter-spacing: 0.10em;
   font-size: 32pt;
   font-weight: 700;
 }
-[data-level="mars"] .page-section-cover .sd-big-icon {
+[data-level="venus"] .page-section-cover .sd-big-icon {
   font-size: 96pt;
   line-height: 1;
   margin: 6mm 0;
-  text-shadow: none;   /* the big-num drop shadow ghosts the emoji into a 2nd pencil — remove it */
 }
-[data-level="mars"] .page-section-cover .sd-label-ko {
+[data-level="venus"] .page-section-cover .sd-label-ko {
   font-family: 'Gowun Dodum', sans-serif;
   color: #fff;
   font-size: 22pt;
@@ -1208,12 +1213,12 @@ body[data-level="mars"] { background: var(--tn-bg); }
 
 /* Section-divider list page reuses .wd-card-astronaut but at a lowered y-position
    (week dividers stay at their original 140mm). */
-[data-level="mars"] .page-section-list .wd-card-astronaut {
+[data-level="venus"] .page-section-list .wd-card-astronaut {
   bottom: 90mm;
 }
 
 /* Emoji illustration option (kept available for future use; currently unused). */
-[data-level="mars"] .page-section-list .sd-illustration-emoji {
+[data-level="venus"] .page-section-list .sd-illustration-emoji {
   position: absolute;
   bottom: 83mm;
   right: 14mm;
@@ -1229,7 +1234,7 @@ body[data-level="mars"] { background: var(--tn-bg); }
 }
 
 /* List page lines (replace .wd-list ol with friendly bullet points) */
-[data-level="mars"] .page-section-list .sd-lines {
+[data-level="venus"] .page-section-list .sd-lines {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -1237,7 +1242,7 @@ body[data-level="mars"] { background: var(--tn-bg); }
   flex-direction: column;
   gap: 7pt;
 }
-[data-level="mars"] .page-section-list .sd-line {
+[data-level="venus"] .page-section-list .sd-line {
   font-family: 'Gowun Dodum', sans-serif;
   font-size: 11pt;
   line-height: 1.55;
@@ -1245,7 +1250,7 @@ body[data-level="mars"] { background: var(--tn-bg); }
   padding-left: 14pt;
   position: relative;
 }
-[data-level="mars"] .page-section-list .sd-line::before {
+[data-level="venus"] .page-section-list .sd-line::before {
   content: "•";
   position: absolute;
   left: 0;
@@ -1254,14 +1259,161 @@ body[data-level="mars"] { background: var(--tn-bg); }
   font-weight: 700;
 }
 
+/* Venus: P3 mascot in top-right corner. */
+[data-level="venus"] .page-3 .level-mascot {
+  display: block;
+  width: 24mm;
+  height: 24mm;
+  top: -11mm;
+  right: -13mm;
+}
+/* Venus: hide the top-right mascot on P4 (we use bottom-left slot instead). */
+[data-level="venus"] .page-4 .level-mascot { display: none; }
+
+/* Venus: P4 bottom-left mascot (in .level-mascot-bl element, sibling of page-head)
+   so absolute positioning is relative to .page → bottom: 0 = page bottom. */
+[data-level="venus"] .page-4 .level-mascot-bl {
+  display: block;
+  position: absolute;
+  bottom: 2mm;
+  left: -5mm;
+  width: 30mm;
+  height: 30mm;
+  object-fit: contain;
+  pointer-events: none;
+  z-index: 10;
+  filter: drop-shadow(0 1pt 3pt rgba(58, 40, 24, 0.10));
+}
+
+/* Tighten P1 vocab preview so it doesn't crowd / overlap with the page footer. */
+[data-level="venus"] .page-1 .p1-vocab-preview {
+  margin-top: 2pt;
+  margin-bottom: 4pt;
+  padding-top: 6pt;
+  padding-bottom: 7pt;
+}
+
+/* Hide the Mars-style _top-deco.png decoration (8mm empty space at top of vocab
+   preview since Venus doesn't ship that decoration image). */
+[data-level="venus"] .p1-vocab-preview::before { display: none; }
+
+/* Hide the "VENUS · 초6" white text in the page header (user prefers no level label). */
+[data-level="venus"] .header-level { display: none; }
+
+/* Venus P3: hide the bottom Korean translation block — kids translate themselves
+   in the writing line under each English sentence. */
+[data-level="venus"] .p3-translation { display: none; }
+
+/* Venus P3: partial Korean translation under each English sentence with
+   inline blanks (<blank>...</blank>) for kids to fill in. Tight spacing to fit 16 sentences. */
+[data-level="venus"] .p3-sentences { gap: 0; }
+[data-level="venus"] .p3-sentence { margin-bottom: 0; padding-bottom: 1pt; }
+/* Venus P3: hide grammar-point ruby annotations (e.g., 명령문, 지각동사+O+V-ing).
+   Kids should focus on translation rather than grammar labels at this level. */
+[data-level="venus"] .p3-sentence ruby rt,
+[data-level="venus"] .p3-sentence rt { display: none; }
+[data-level="venus"] .p3-sentence ruby { ruby-position: under; }
+[data-level="venus"] .p3-sentence .en-row { line-height: 1.45; }
+[data-level="venus"] .ko-row {
+  font-family: 'Gowun Dodum', 'Pretendard', sans-serif;
+  font-size: 9pt;
+  line-height: 1.7;
+  color: var(--tn-ink-soft);
+  margin: 0 0 0 24pt;
+}
+/* Writing box — auto-sizes width to answer phrase (via hidden ::before),
+   tall enough for kids to write Korean inside. */
+[data-level="venus"] .ko-blank {
+  display: inline-block;
+  border-bottom: 1pt dashed var(--tn-muted);
+  vertical-align: -3pt;
+  margin: 0 2pt;
+  padding: 2pt 4pt 1pt 4pt;
+  min-width: 24mm;
+  min-height: 11pt;
+  position: relative;
+}
+[data-level="venus"] .ko-blank::before {
+  content: attr(data-answer);
+  visibility: hidden;
+  white-space: pre;
+}
+/* Reserve right padding in P3/P4 page header so the smaller mascot still
+   stays clear of chapter-tag / header-level text. */
+[data-level="venus"] .page-3 .page-head,
+[data-level="venus"] .page-4 .page-head {
+  padding-right: 28mm;
+}
+
+/* Venus secondary mascot — currently unused (kept hidden). */
+[data-level="venus"] .level-mascot-bl { display: none; }
+
+/* =========================================================================
+   Page 4 — VOCAB workbook (3 practice activities: ko_en_write / crossword /
+   fill_blank_bank). Ported from mars.css — replaces the old vocab-card list
+   for Venus too. Uses --tn-* / --mars-* vars so it themes per month. */
+[data-level="venus"] .page-4 .page-body { counter-reset: wbact; }
+[data-level="venus"] .workbook-activity { margin: 0 0 2.6mm; }
+[data-level="venus"] .workbook-activity .activity-head { margin-bottom: 1.3mm; }
+[data-level="venus"] .workbook-activity .activity-title {
+  counter-increment: wbact;
+  font-family: 'Quicksand', sans-serif; font-weight: 700; font-size: 11pt;
+  color: var(--tn-theme-deep); display: flex; align-items: center; gap: 6pt; margin: 0;
+}
+[data-level="venus"] .workbook-activity .activity-title::before {
+  content: counter(wbact); flex: 0 0 auto;
+  width: 15pt; height: 15pt; border-radius: 50%;
+  background: var(--tn-theme); color: #fff;
+  font-size: 9pt; font-weight: 700; display: inline-flex; align-items: center; justify-content: center;
+}
+[data-level="venus"] .workbook-activity .activity-inst { font-size: 8.5pt;
+  font-family: 'Gowun Dodum', sans-serif; font-size: 9pt; color: #5b7a83;
+  margin: 0 0 0 21pt; line-height: 1.45;
+}
+[data-level="venus"] .workbook-activity .row-num,
+[data-level="venus"] .workbook-activity .clue-num { color: var(--tn-theme); font-weight: 700; font-family: 'Quicksand', sans-serif; }
+
+/* ko_en_write */
+[data-level="venus"] .koenw-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5mm 8mm; }
+[data-level="venus"] .koenw-sub { font-family: 'Gowun Dodum', sans-serif; font-weight: 400; font-size: 9pt; color: var(--tn-theme); margin: 0 0 1.5mm; }
+[data-level="venus"] .koenw-list { list-style: none; margin: 0; padding: 0; }
+[data-level="venus"] .koenw-list li { display: flex; align-items: center; gap: 6pt; padding: 1.05mm 0; font-family: 'Nunito', sans-serif; font-size: 10pt; color: #0b2630; }
+[data-level="venus"] .koenw-prompt { font-family: 'Gowun Dodum', 'Nunito', sans-serif; display: inline-block; min-width: 70pt; flex: 0 0 auto; }
+[data-level="venus"] .koenw-blank { flex: 1; border-bottom: 1.5px dotted #9fc2cc; min-width: 40pt; height: 11pt; }
+
+/* match (definition_match / ko_en_match) — kept for completeness */
+[data-level="venus"] .match-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2mm 8mm; }
+[data-level="venus"] .match-row { display: flex; gap: 6pt; padding: 1.4mm 0; font-family: 'Nunito', sans-serif; font-size: 9.5pt; }
+[data-level="venus"] .row-letter { color: var(--mars-gold); }
+
+/* fill_blank_bank */
+[data-level="venus"] .word-bank { display: flex; flex-wrap: wrap; align-items: center; gap: 5pt; margin: 0.5mm 0 1.8mm; padding: 1.8mm 4mm; background: #f4fafb; border: 1.4px dashed #cfe6ec; border-radius: 10px; }
+[data-level="venus"] .bank-label { font-family: 'Gowun Dodum', sans-serif; font-size: 8pt; color: #7fa0a8; }
+[data-level="venus"] .bank-word { font-family: 'Nunito', sans-serif; font-size: 9pt; background: #fff; border: 1px solid #d3e8ed; border-radius: 6px; padding: 1pt 7pt; color: #0b2630; }
+[data-level="venus"] .bank-sep { color: #bcd9e0; }
+[data-level="venus"] .bank-items { list-style: none; margin: 0; padding: 0; }
+[data-level="venus"] .bank-items li { display: flex; align-items: baseline; gap: 7pt; padding: 1.2mm 0; font-family: 'Nunito', sans-serif; font-size: 10pt; color: #0b2630; border-bottom: 1px solid #eef4f6; }
+[data-level="venus"] .inline-blank { display: inline-block; min-width: 52pt; border-bottom: 1.6px dotted var(--tn-theme); height: 1em; margin: 0 2pt; vertical-align: bottom; }
+
+/* crossword */
+[data-level="venus"] .cw-wrap { display: grid; grid-template-columns: auto 1fr; gap: 8mm; align-items: start; }
+[data-level="venus"] .crossword-grid { display: grid; --cw-cell: 23pt; }   /* bigger cells for 초6 writing room */
+[data-level="venus"] .cw-cell { width: var(--cw-cell); height: var(--cw-cell); border: 1.3px solid #bcd9e0; background: #fff; position: relative; }
+[data-level="venus"] .cw-num { position: absolute; top: 1pt; left: 1.5pt; font-size: 7pt; font-weight: 700; color: var(--tn-theme); font-family: 'Quicksand', sans-serif; }
+[data-level="venus"] .cw-clues { font-family: 'Nunito', sans-serif; font-size: 8.7pt; color: #28424c; line-height: 1.5; }
+[data-level="venus"] .cw-clue-section h5 { font-family: 'Quicksand', sans-serif; color: var(--tn-theme-deep); font-size: 9pt; margin: 0 0 1mm; }
+[data-level="venus"] .cw-clue-section ol { margin: 0 0 2.5mm; padding-left: 0; list-style: none; }
+[data-level="venus"] .cw-clue-section li { display: flex; gap: 5pt; padding: 0.7mm 0; }
+[data-level="venus"] .cw-clue-section .clue-len { color: #9ab4bb; font-size: 7.5pt; }
+
 /* ===========================================================
-   Mars — JULY (2026-07) issue theme: 한여름 바다 (midsummer sea)
-   Per 테라노바_월별색_팔레트_v2. Drops June purple entirely.
+   Venus — JULY (2026-07) issue theme: 한여름 바다 (midsummer sea)
+   Per 테라노바_월별색_팔레트_v2. Drops June Majorelle purple entirely.
    Scoped to [data-month="2026-07"] so other months are untouched.
    Rule: 흰 글씨/아이콘은 항상 --tn-theme-deep 위에만. 메인색은 검정
    글씨 면색/포인트/테두리. soft는 배경 틴트 전용.
    =========================================================== */
-[data-level="mars"][data-month="2026-07"] {
+[data-level="venus"][data-month="2026-07"] {
   --tn-theme:        #1CA9C9;   /* 시원한 청록빛 파랑 (main) */
   --tn-theme-deep:   #0B6D83;   /* deep teal — white text safe (5:1+) */
   --tn-theme-soft:   #D3E8ED;   /* pale sea mist — bg tint only */
@@ -1283,21 +1435,20 @@ body[data-level="mars"] { background: var(--tn-bg); }
 }
 
 /* Footer page-num orbit — swap the hardcoded purple light stop for aqua */
-[data-level="mars"][data-month="2026-07"] .page-foot .page-num {
+[data-level="venus"][data-month="2026-07"] .page-foot .page-num {
   background: radial-gradient(circle at 35% 30%, #7FD6E8 0%, var(--tn-theme) 50%, var(--tn-theme-deep) 100%);
   box-shadow: 0 0 0 1.5pt rgba(11, 109, 131, 0.18);
 }
 
 /* Week-divider covers — swap the hardcoded #1A0E5C indigo for deep teal */
-[data-level="mars"][data-month="2026-07"] .page-week-cover,
-[data-level="mars"][data-month="2026-07"] .page-week-list {
+[data-level="venus"][data-month="2026-07"] .page-week-cover,
+[data-level="venus"][data-month="2026-07"] .page-week-list {
   background-image: linear-gradient(180deg, var(--tn-theme-deep) 0%, var(--mars-teal-darker) 100%);
 }
 
 /* Scattered watercolor dots — retint the purple dots to sea blue.
-   Exclude week/section dividers — they keep their deep-teal gradient (the dots rule
-   would otherwise clobber it with background-color:surface → white divider). */
-[data-level="mars"][data-month="2026-07"] .page:not(.page-week-cover):not(.page-week-list) {
+   Exclude week/section dividers — they keep their deep-teal gradient. */
+[data-level="venus"][data-month="2026-07"] .page:not(.page-week-cover):not(.page-week-list) {
   background-image:
     radial-gradient(circle 0.5pt at 18mm 38mm, rgba(244, 184, 96, 0.20), transparent 70%),
     radial-gradient(circle 0.7pt at 145mm 52mm, rgba(28, 169, 201, 0.22), transparent 70%),
@@ -1313,80 +1464,23 @@ body[data-level="mars"] { background: var(--tn-bg); }
 }
 
 /* P1 placeholder motif — summer sea (only shows when the PNG is missing) */
-[data-level="mars"][data-month="2026-07"] .p1-illustration.illustration-empty::before {
+[data-level="venus"][data-month="2026-07"] .p1-illustration.illustration-empty::before {
   content: "🌊";
 }
 
-/* =========================================================================
-   Page 4 — VOCAB workbook (3 practice activities: ko_en_write / crossword /
-   fill_blank_bank). Replaces the old vocab-card list for Mars. */
-[data-level="mars"] .page-4 .page-body { counter-reset: wbact; }
-[data-level="mars"] .workbook-activity { margin: 0 0 2.6mm; }
-[data-level="mars"] .workbook-activity .activity-head { margin-bottom: 1.3mm; }
-[data-level="mars"] .workbook-activity .activity-title {
-  counter-increment: wbact;
-  font-family: 'Quicksand', sans-serif; font-weight: 700; font-size: 11pt;
-  color: var(--tn-theme-deep); display: flex; align-items: center; gap: 6pt; margin: 0;
-}
-[data-level="mars"] .workbook-activity .activity-title::before {
-  content: counter(wbact); flex: 0 0 auto;
-  width: 15pt; height: 15pt; border-radius: 50%;
-  background: var(--tn-theme); color: #fff;
-  font-size: 9pt; font-weight: 700; display: inline-flex; align-items: center; justify-content: center;
-}
-[data-level="mars"] .workbook-activity .activity-inst { font-size: 8.5pt;
-  font-family: 'Gowun Dodum', sans-serif; font-size: 9pt; color: #5b7a83;
-  margin: 0 0 0 21pt; line-height: 1.45;
-}
-[data-level="mars"] .workbook-activity .row-num,
-[data-level="mars"] .workbook-activity .clue-num { color: var(--tn-theme); font-weight: 700; font-family: 'Quicksand', sans-serif; }
-
-/* ko_en_write */
-[data-level="mars"] .koenw-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5mm 8mm; }
-[data-level="mars"] .koenw-sub { font-family: 'Gowun Dodum', sans-serif; font-weight: 400; font-size: 9pt; color: var(--tn-theme); margin: 0 0 1.5mm; }
-[data-level="mars"] .koenw-list { list-style: none; margin: 0; padding: 0; }
-[data-level="mars"] .koenw-list li { display: flex; align-items: center; gap: 6pt; padding: 1.05mm 0; font-family: 'Nunito', sans-serif; font-size: 10pt; color: #0b2630; }
-[data-level="mars"] .koenw-prompt { font-family: 'Gowun Dodum', 'Nunito', sans-serif; display: inline-block; min-width: 70pt; flex: 0 0 auto; }
-[data-level="mars"] .koenw-blank { flex: 1; border-bottom: 1.5px dotted #9fc2cc; min-width: 40pt; height: 11pt; }
-
-/* match (definition_match / ko_en_match) — kept for completeness */
-[data-level="mars"] .match-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2mm 8mm; }
-[data-level="mars"] .match-row { display: flex; gap: 6pt; padding: 1.4mm 0; font-family: 'Nunito', sans-serif; font-size: 9.5pt; }
-[data-level="mars"] .row-letter { color: var(--mars-gold); }
-
-/* fill_blank_bank */
-[data-level="mars"] .word-bank { display: flex; flex-wrap: wrap; align-items: center; gap: 5pt; margin: 0.5mm 0 1.8mm; padding: 1.8mm 4mm; background: #f4fafb; border: 1.4px dashed #cfe6ec; border-radius: 10px; }
-[data-level="mars"] .bank-label { font-family: 'Gowun Dodum', sans-serif; font-size: 8pt; color: #7fa0a8; }
-[data-level="mars"] .bank-word { font-family: 'Nunito', sans-serif; font-size: 9pt; background: #fff; border: 1px solid #d3e8ed; border-radius: 6px; padding: 1pt 7pt; color: #0b2630; }
-[data-level="mars"] .bank-sep { color: #bcd9e0; }
-[data-level="mars"] .bank-items { list-style: none; margin: 0; padding: 0; }
-[data-level="mars"] .bank-items li { display: flex; align-items: baseline; gap: 7pt; padding: 1.2mm 0; font-family: 'Nunito', sans-serif; font-size: 10pt; color: #0b2630; border-bottom: 1px solid #eef4f6; }
-[data-level="mars"] .inline-blank { display: inline-block; min-width: 52pt; border-bottom: 1.6px dotted var(--tn-theme); height: 1em; margin: 0 2pt; vertical-align: bottom; }
-
-/* crossword */
-[data-level="mars"] .cw-wrap { display: grid; grid-template-columns: auto 1fr; gap: 8mm; align-items: start; }
-[data-level="mars"] .crossword-grid { display: grid; --cw-cell: 23pt; }   /* bigger cells for 초5 writing room (other levels stay 20pt) */
-[data-level="mars"] .cw-cell { width: var(--cw-cell); height: var(--cw-cell); border: 1.3px solid #bcd9e0; background: #fff; position: relative; }
-[data-level="mars"] .cw-num { position: absolute; top: 1pt; left: 1.5pt; font-size: 7pt; font-weight: 700; color: var(--tn-theme); font-family: 'Quicksand', sans-serif; }
-[data-level="mars"] .cw-clues { font-family: 'Nunito', sans-serif; font-size: 8.7pt; color: #28424c; line-height: 1.5; }
-[data-level="mars"] .cw-clue-section h5 { font-family: 'Quicksand', sans-serif; color: var(--tn-theme-deep); font-size: 9pt; margin: 0 0 1mm; }
-[data-level="mars"] .cw-clue-section ol { margin: 0 0 2.5mm; padding-left: 0; list-style: none; }
-[data-level="mars"] .cw-clue-section li { display: flex; gap: 5pt; padding: 0.7mm 0; }
-[data-level="mars"] .cw-clue-section .clue-len { color: #9ab4bb; font-size: 7.5pt; }
-
 /* P1 glossary footnote — hard subject terms (not memorized), shown at body end. */
-[data-level="mars"] .p1-glossary {
+[data-level="venus"] .p1-glossary {
   margin: 3mm 0 0; padding: 2mm 0 0;
   border-top: 1px dashed var(--tn-muted);
   font-family: 'Gowun Dodum', 'Nunito', sans-serif;
   font-size: 8.5pt; line-height: 1.7; color: #5b7a83;
   display: flex; flex-wrap: wrap; align-items: baseline; gap: 3pt 12pt;
 }
-[data-level="mars"] .p1-glossary .gloss-label {
+[data-level="venus"] .p1-glossary .gloss-label {
   font-family: 'Quicksand', sans-serif; font-weight: 700;
   color: var(--tn-theme-deep); font-size: 8.5pt;
 }
-[data-level="mars"] .p1-glossary .gloss-item { white-space: nowrap; }
-[data-level="mars"] .p1-glossary .gloss-term {
+[data-level="venus"] .p1-glossary .gloss-item { white-space: nowrap; }
+[data-level="venus"] .p1-glossary .gloss-term {
   font-family: 'Nunito', sans-serif; font-weight: 700; color: var(--tn-ink);
 }
