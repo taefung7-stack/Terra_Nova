@@ -26,6 +26,7 @@ import { fileURLToPath } from 'node:url';
 import { parseArgs } from 'node:util';
 import { PDFDocument } from 'pdf-lib';
 import { distLevelDir, parseMonthArg } from './_dist-path.mjs';
+import { resolveContent } from '../scripts/level-content.js';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = resolve(here, '..');
@@ -183,7 +184,10 @@ async function main() {
       const weekStart = (w - 1) * 5 + 1;
       for (let n = weekStart; n < weekStart + 5; n++) {
         const seq = String(n).padStart(2, '0');
-        const sourcePath = join(root, 'content', 'passages', month, `${seq}.json`);
+        // Elementary (mars/venus) sources live under content/<level>/passages/<month>/;
+        // highschool/legacy stay at content/passages/<month>/. resolveContent picks the
+        // right base from the (possibly planet-suffixed) month arg.
+        const sourcePath = join(root, ...resolveContent(month).base.split('/'), `${seq}.json`);
         if (!existsSync(sourcePath)) { console.warn(`  · SKIP ${seq} (no JSON)`); continue; }
         const inWeekIdx = (n - 1) % 5;
         const startPage = 4 + (w - 1) * 22 + inWeekIdx * 4 + 1;

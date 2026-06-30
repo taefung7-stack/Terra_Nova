@@ -1,3 +1,5 @@
+import { resolveContent, passagePath, applyLevelTheme } from './level-content.js';
+
 const params = new URLSearchParams(location.search);
 const month = params.get('month') || '2026-06';
 const passage = params.get('passage') || '01';
@@ -382,7 +384,10 @@ function detectOverflow(root) {
 
 /* ---------- Main ---------- */
 async function main() {
-  const path = `content/passages/${month}/${passage}.json`;
+  // Elementary (mars/venus) books live under content/<level>/passages/<month>/
+  // and carry per-level design CSS gated on [data-level]. No-op for highschool.
+  await applyLevelTheme(month);
+  const path = passagePath(month, passage);
   const res = await fetch(path);
   if (!res.ok) {
     stage.innerHTML = `<pre>Missing data: ${path}</pre>`;
