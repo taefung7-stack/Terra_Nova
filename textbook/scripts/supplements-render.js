@@ -5,8 +5,6 @@
      ?type=wordtest  &month=YYYY-MM &scope=w1|w2|w3|w4   [&startPage=N] [&key=1]
      ?type=wordpack  &month=YYYY-MM   (combined: W1..W4 wordbook + tests + 4 keys)
 */
-import { resolveContent, passagePath, applyLevelTheme } from './level-content.js';
-
 const params = new URLSearchParams(location.search);
 const type = params.get('type') || 'answers';
 const month = params.get('month') || '2026-06';
@@ -26,7 +24,7 @@ async function fetchJSON(path) {
   if (!r.ok) throw new Error(`fetch failed: ${path}`);
   return r.json();
 }
-function passageDataPath(m, n) { return passagePath(m, n); }
+function passageDataPath(m, n) { return `content/passages/${m}/${n}.json`; }
 
 /* Week → passage seqs */
 function passagesForWeek(w) {
@@ -422,7 +420,6 @@ async function renderAnswersAll(opts = {}) {
 /* ---------- dispatch ---------- */
 (async () => {
   try {
-    await applyLevelTheme(month);   // elementary design CSS (no-op for highschool)
     if (type === 'answers') await renderAnswers();
     else if (type === 'answers-all') await renderAnswersAll();
     else if (type === 'wordbook') await renderWordbook();

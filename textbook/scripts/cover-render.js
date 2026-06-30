@@ -1,5 +1,3 @@
-import { resolveContent, passagePath, applyLevelTheme } from './level-content.js';
-
 const params = new URLSearchParams(location.search);
 const mode = params.get('mode') || 'toc';      // 'toc' | 'week'
 const month = params.get('month') || '2026-06';
@@ -40,7 +38,7 @@ async function loadCurriculum(month) {
   const fromPassages = [];
   for (let n = 1; n <= 20; n++) {
     const seq = String(n).padStart(2, '0');
-    const res = await fetch(passagePath(month, seq));
+    const res = await fetch(`content/passages/${month}/${seq}.json`);
     if (!res.ok) continue;
     const data = await res.json();
     fromPassages.push({
@@ -147,7 +145,6 @@ async function renderWeek(entries, w) {
 }
 
 async function main() {
-  await applyLevelTheme(month);   // elementary design CSS (no-op for highschool)
   const entries = await loadCurriculum(month);
   if (mode === 'toc') {
     await renderTOC(entries);
