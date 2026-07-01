@@ -35,8 +35,9 @@ const LEVEL = 'Mars';
 const DIR = '2026-07-Mars (초5)';
 const DPI = 170;
 
-// 고등 7월과 동일: 앞표지(0) + 판권(2) + 본문 첫 10p(4..13). 백지(1,3) 제외 → 12p.
-const SAMPLE_INDICES = [0, 2, ...Array.from({ length: 10 }, (_, i) => 4 + i)];
+// 고등 7월과 동일: 앞표지(0) + 판권(2) + 본문 첫 12p(4..15). 백지(1,3) 제외 → 14p.
+// 본문 12p = TOC 2 + WEEK01 divider 2 + DAY01 4p + DAY02 4p → 2번째 지문까지 온전히 포함.
+const SAMPLE_INDICES = [0, 2, ...Array.from({ length: 12 }, (_, i) => 4 + i)];
 
 const OWNER_PW = process.env.TN_PDF_OWNER_PW || 'tn-2026-owner-DO-NOT-SHARE-9f4a2c';
 if (!process.env.TN_PDF_OWNER_PW) {

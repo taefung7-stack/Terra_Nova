@@ -51,8 +51,9 @@ if (!process.env.TN_PDF_OWNER_PW) {
 const { values } = parseArgs({ options: { levels: { type: 'string' } } });
 const wanted = values.levels ? values.levels.split(',').map(s => s.trim().toLowerCase()) : null;
 
-// 샘플 페이지 인덱스(0-base): 표지(0) + 판권(2) + 본문 10p(4..13)
-const SAMPLE_INDICES = [0, 2, ...Array.from({ length: 10 }, (_, i) => 4 + i)];
+// 샘플 페이지 인덱스(0-base): 표지(0) + 판권(2) + 본문 12p(4..15) = 14p.
+// 본문 12p = TOC 2 + WEEK01 divider 2 + DAY01 4p + DAY02 4p → 2번째 지문(DAY02)까지 온전히 포함.
+const SAMPLE_INDICES = [0, 2, ...Array.from({ length: 12 }, (_, i) => 4 + i)];
 
 const tmpDir = resolve(root, 'dist', '_protect07-tmp');
 if (!existsSync(tmpDir)) mkdirSync(tmpDir, { recursive: true });
