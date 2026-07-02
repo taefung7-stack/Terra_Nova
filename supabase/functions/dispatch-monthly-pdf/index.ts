@@ -35,6 +35,9 @@ const INTERNAL_EMAIL_SECRET = Deno.env.get('INTERNAL_EMAIL_SECRET')!;
 const SIGNED_URL_TTL_DAYS = parseInt(Deno.env.get('SIGNED_URL_TTL_DAYS') || '30', 10);
 
 const VALID_LEVELS = ['MARS', 'VENUS', 'TERRA', 'NEPTUNE', 'URANUS', 'SATURN', 'JUPITER', 'SUN'];
+// 2026-07 오픈 기준: Storage에 올라간 판매 가능 월간 교재만 발송.
+// 2026-06-29 TERRA(중1) 완성본·샘플 Storage 업로드 → 판매 개통. NEPTUNE/URANUS(중2·중3)는 미완료라 skip.
+const ACTIVE_LEVELS = new Set(['MARS', 'VENUS', 'TERRA', 'SATURN', 'JUPITER', 'SUN']);
 const BUCKET = 'textbook-pdfs';
 
 const corsHeaders = {
@@ -123,7 +126,7 @@ Deno.serve(async (req) => {
   let sent = 0, skipped = 0, failed = 0;
   for (const sub of subs) {
     if (sentSet.has(sub.user_id)) { skipped++; continue; }
-    if (!VALID_LEVELS.includes(sub.level)) { skipped++; continue; }
+    if (!VALID_LEVELS.includes(sub.level) || !ACTIVE_LEVELS.has(sub.level)) { skipped++; continue; }
 
     // 사용자 이메일 (auth.users)
     const { data: { user: authUser } } = await sb.auth.admin.getUserById(sub.user_id);
