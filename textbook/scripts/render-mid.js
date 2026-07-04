@@ -53,6 +53,104 @@ function renderRichInline(text) {
   return allowMarkup(escapeHTML(text));
 }
 
+const TERM_ALIASES = {
+  'chemical changes': 'chemical change',
+  'culture zones': 'culture zone',
+  'media': 'medium',
+  'top predators': 'top predator',
+  'sounds': 'sound',
+  'goryeo': 'goryeo',
+  'korea': 'korea'
+};
+
+const TERM_MEANINGS = {
+  'carbon': '탄소',
+  'rna': 'RNA, 리보핵산',
+  'hydrogen bond': '수소 결합',
+  'normal distribution': '정규분포',
+  'digital divide': '디지털 격차',
+  'le chatelier s principle': '르샤틀리에 원리',
+  'le chatelier principle': '르샤틀리에 원리',
+  'oxidation reduction': '산화-환원',
+  'crispr cas9': '크리스퍼-Cas9',
+  'photoelectric effect': '광전 효과',
+  'nucleus': '핵',
+  'cell wall': '세포벽',
+  'chloroplast': '엽록체',
+  'earthquake': '지진',
+  'ulysses': '『율리시스』',
+  'stream of consciousness': '의식의 흐름',
+  'basic rights': '기본권',
+  'top predator': '최상위 포식자',
+  'rational choice': '합리적 선택',
+  'goryeo': '고려',
+  'korea': '한국'
+};
+const MAX_PAGE1_GLOSSARY_TERMS = 3;
+
+function normalizeTerm(text) {
+  return String(text ?? '')
+    .toLowerCase()
+    .replace(/<\/?[^>]+>/g, '')
+    .replace(/[^a-z0-9]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function singularTerm(text) {
+  const words = normalizeTerm(text).split(' ').filter(Boolean);
+  if (!words.length) return '';
+  const last = words[words.length - 1];
+  if (last.endsWith('ies') && last.length > 4) words[words.length - 1] = `${last.slice(0, -3)}y`;
+  else if (last.endsWith('es') && last.length > 3) words[words.length - 1] = last.slice(0, -2);
+  else if (last.endsWith('s') && last.length > 3) words[words.length - 1] = last.slice(0, -1);
+  return words.join(' ');
+}
+
+function vocabLabel(v) {
+  return v?.word || v?.phrase || '';
+}
+
+function findTermMeaning(term, vocab) {
+  const rawKey = normalizeTerm(term);
+  const alias = TERM_ALIASES[rawKey] || rawKey;
+  const keys = [rawKey, alias, singularTerm(rawKey), singularTerm(alias)].filter(Boolean);
+  for (const key of keys) {
+    if (TERM_MEANINGS[key]) return { key, meaning: TERM_MEANINGS[key] };
+  }
+
+  const entries = (vocab || []).map(v => ({
+    key: normalizeTerm(vocabLabel(v)),
+    singular: singularTerm(vocabLabel(v)),
+    meaning: v.meaning_ko
+  })).filter(v => v.key && v.meaning);
+  for (const key of keys) {
+    const exact = entries.find(v => v.key === key || v.singular === key);
+    if (exact) return { key: exact.key, meaning: exact.meaning };
+  }
+  for (const key of keys) {
+    const partial = entries.find(v => key.includes(v.key) || key.includes(v.singular));
+    if (partial && partial.key.length >= 5) return { key: partial.key, meaning: partial.meaning };
+  }
+  return null;
+}
+
+function renderPage1Glossary(data) {
+  const body = data.page1?.body || '';
+  const markedTerms = [...body.matchAll(/<(u|mark)>(.*?)<\/\1>/g)].map(m => m[2]);
+  const seen = new Set();
+  const notes = [];
+  for (const term of markedTerms) {
+    const found = findTermMeaning(term, data.page4?.vocab || []);
+    if (!found || seen.has(found.key)) continue;
+    seen.add(found.key);
+    notes.push({ term, meaning: found.meaning });
+    if (notes.length >= MAX_PAGE1_GLOSSARY_TERMS) break;
+  }
+  if (!notes.length) return '';
+  return notes.map(n => `<span class="term-note"><span class="term">${escapeHTML(n.term)}</span>: <span class="meaning">${escapeHTML(n.meaning)}</span></span>`).join('');
+}
+
 const Q_LABEL = ['Q1.', 'Q2.', 'Q3.', 'Q4.'];
 
 function renderQuestion(q, i) {
@@ -322,6 +420,7 @@ async function main() {
   setText(root, 'title', data.page1.title);
   setText(root, 'subtitle', data.page1.subtitle);
   setSafe(root, 'body', renderParagraphs(data.page1.body));
+  setSafe(root, 'page1-glossary', renderPage1Glossary(data));
   setAttr(root, 'illustration', 'src', data.page1.illustration);
   setAttr(root, 'illustration', 'alt', data.page1.illustration_caption);
   setText(root, 'illustration-caption', data.page1.illustration_caption);
@@ -361,6 +460,7 @@ async function main() {
 
   stage.innerHTML = '';
   stage.appendChild(frag);
+  document.body.dataset.renderReady = '1';
 
   requestAnimationFrame(() => detectOverflow(stage));
 }
