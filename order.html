@@ -156,6 +156,8 @@
   .level-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:24px 14px 20px;cursor:pointer;text-align:center;background:#000;transition:all .18s;font-family:'Pretendard',sans-serif;}
   .level-btn:hover{border-color:rgba(0,255,163,.5);transform:translateY(-3px);box-shadow:0 0 0 1px rgba(0,255,163,.28),0 14px 26px rgba(0,0,0,.55);}
   .level-btn.selected{border-color:rgba(0,255,163,.85);background:#000;box-shadow:0 0 0 2px rgba(0,255,163,.55),0 18px 34px rgba(0,0,0,.6);}
+  .level-btn.disabled{opacity:.42;cursor:not-allowed;}
+  .level-btn.disabled:hover{border-color:rgba(255,255,255,.16);transform:none;box-shadow:none;}
   .level-planet{width:78px;aspect-ratio:1;background-image:var(--planet-image);background-size:contain;background-position:center;background-repeat:no-repeat;}
   .level-name{font-size:1.1rem;font-weight:800;color:#fff;letter-spacing:.5px;}
   .level-target{font-size:.82rem;color:rgba(255,255,255,.62);margin-top:2px;}
@@ -368,9 +370,6 @@
             <span style="font-size:.78rem;">구글·카카오·네이버 또는 이메일 로그인을 지원합니다.</span>
           </p>
           <a href="login.html?redirect=order.html" class="btn-auth-submit" style="display:inline-block;text-decoration:none;">로그인 / 회원가입하기</a>
-          <div class="auth-skip" style="margin-top:14px;">
-            <a href="#" onclick="skipAuth(event)">계정 없이 계속 진행하기 →</a>
-          </div>
         </div>
       </div>
 
@@ -478,15 +477,15 @@
             <div class="level-name">TERRA</div>
             <div class="level-target">중1학년 · 지구</div>
           </div>
-          <div class="level-btn lv-4" onclick="selectLevel(this,'NEPTUNE')" style="--planet-image:url('assets/3d/planets-normalized/neptune.png');">
+          <div class="level-btn lv-4 disabled" onclick="middleBlocked()" style="--planet-image:url('assets/3d/planets-normalized/neptune.png');">
             <div class="level-planet"></div>
             <div class="level-name">NEPTUNE</div>
-            <div class="level-target">중2학년 · 해왕성</div>
+            <div class="level-target">중2학년 · 준비중</div>
           </div>
-          <div class="level-btn lv-5" onclick="selectLevel(this,'URANUS')" style="--planet-image:url('assets/3d/planets-normalized/uranus.png');">
+          <div class="level-btn lv-5 disabled" onclick="middleBlocked()" style="--planet-image:url('assets/3d/planets-normalized/uranus.png');">
             <div class="level-planet"></div>
             <div class="level-name">URANUS</div>
-            <div class="level-target">중3학년 · 천왕성</div>
+            <div class="level-target">중3학년 · 준비중</div>
           </div>
           <div class="level-btn lv-6" onclick="selectLevel(this,'SATURN')" style="--planet-image:url('assets/3d/planets-normalized/saturn.png');">
             <div class="level-planet"></div>
@@ -735,12 +734,6 @@
   // 인증 단일 소스: login.html (Supabase signInWithPassword/OAuth).
   // order.html 은 세션 표시·로그아웃만 담당.
 
-  function skipAuth(e) {
-    e.preventDefault();
-    document.getElementById('auth-form-wrap').style.opacity = '.5';
-    document.getElementById('auth-form-wrap').style.pointerEvents = 'none';
-  }
-
   function setLoggedIn(email, addr) {
     isLoggedIn = true;
     userEmail = email;
@@ -829,9 +822,16 @@
   function standardBlocked() {
     alert('STANDARD 플랜은 현재 준비 중입니다.\n지금은 LIGHT 플랜만 신청 가능합니다.');
   }
+  function middleBlocked() {
+    alert('중2(NEPTUNE)·중3(URANUS) 교재는 현재 준비 중입니다.\n지금은 초등부(MARS, VENUS), 중1(TERRA), 고등부(SATURN, JUPITER, SUN)를 신청하실 수 있습니다.');
+  }
 
   // ── Level select ──
   function selectLevel(el, level) {
+    if (['NEPTUNE', 'URANUS'].includes(level)) {
+      middleBlocked();
+      return;
+    }
     document.querySelectorAll('.level-btn').forEach(b => b.classList.remove('selected'));
     el.classList.add('selected');
     selectedLevel = level;
@@ -1202,7 +1202,7 @@
 
   if (lvlParam) {
     const btn = [...document.querySelectorAll('.level-btn')].find(b => b.querySelector('.level-name').textContent === lvlParam);
-    if (btn) selectLevel(btn, lvlParam);
+    if (btn && !btn.classList.contains('disabled')) selectLevel(btn, lvlParam);
   }
   if (planParam) {
     // 현재 LIGHT만 판매중. standard/premium 으로 들어오면 LIGHT로 강제 변경.

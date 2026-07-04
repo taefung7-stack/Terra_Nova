@@ -23,3 +23,11 @@ verify_jwt = true
 # dispatch-monthly-pdf: cron + admin 호출. 자체 Authorization 검증 (INTERNAL_EMAIL_SECRET or admin JWT).
 [functions.dispatch-monthly-pdf]
 verify_jwt = false
+
+# send-sample: 비로그인 방문자의 무료 샘플 신청 폼에서 호출 → JWT 없음. 자체 검증(레이트리밋·레벨 게이트).
+[functions.send-sample]
+verify_jwt = false
+
+# dispatch-order-pdf: portone-webhook(서버)에서 호출. 자체 INTERNAL_EMAIL_SECRET 검증.
+[functions.dispatch-order-pdf]
+verify_jwt = false

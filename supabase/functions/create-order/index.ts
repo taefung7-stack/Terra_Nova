@@ -37,6 +37,9 @@ const PLAN_NAMES = {
 } as const;
 
 const VALID_LEVELS = ['MARS', 'VENUS', 'TERRA', 'NEPTUNE', 'URANUS', 'SATURN', 'JUPITER', 'SUN'];
+// 판매 가능 레벨만 주문 허용. 교재 완성본이 Storage에 올라간 레벨만 추가한다.
+// 2026-07: TERRA(중1) 개통. NEPTUNE(중2)/URANUS(중3)는 교재 미완료라 차단 유지.
+const ACTIVE_LEVELS = new Set(['MARS', 'VENUS', 'TERRA', 'SATURN', 'JUPITER', 'SUN']);
 
 // 8자리 랜덤 결제 ID.
 // NICE 빌링키 발급 issueId는 영문/숫자 40자 이내만 허용하므로 구독 주문은 alnum 형식을 쓴다.
@@ -121,6 +124,9 @@ Deno.serve(async (req) => {
     }
     if (!VALID_LEVELS.includes(level)) {
       return jsonError(`Invalid level: ${level}`, 400);
+    }
+    if (!ACTIVE_LEVELS.has(level)) {
+      return jsonError(`Level currently unavailable: ${level}. Middle-school levels are not open yet.`, 403);
     }
 
     totalAmount = PLAN_PRICES[plan as keyof typeof PLAN_PRICES][cycle as 'monthly' | 'annual'];

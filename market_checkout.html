@@ -103,7 +103,6 @@
   .btn-gate-primary:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(0,255,163,.3);}
   .btn-gate-secondary{background:transparent;color:var(--accent);border:1.5px solid var(--accent);border-radius:9px;padding:13px 30px;font-family:inherit;font-size:.9rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;}
   .btn-gate-secondary:hover{background:rgba(0,255,163,.08);}
-  .btn-guest{background:transparent;color:var(--dim);border:none;font-family:inherit;font-size:.78rem;cursor:pointer;margin-top:18px;text-decoration:underline;}
 
   /* Order summary */
   .summary{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px;position:sticky;top:20px;}
@@ -180,15 +179,14 @@
     <div class="login-gate" id="login-gate" style="display:none;">
       <div class="icon">🔒</div>
       <h3>로그인하고 빠르게 주문하세요</h3>
-      <p>회원으로 결제하면 주문 내역과 다운로드 링크가 마이페이지에 자동 저장됩니다.<br>비회원으로도 이메일로 PDF를 받아보실 수 있습니다.</p>
+      <p>결제와 PDF 발송을 안전하게 처리하기 위해 로그인이 필요합니다.<br>주문 내역과 다운로드 링크는 마이페이지에 자동 저장됩니다.</p>
       <div class="btns">
         <a class="btn-gate-primary" id="gate-login">로그인</a>
         <a class="btn-gate-secondary" id="gate-signup">회원가입</a>
       </div>
-      <button class="btn-guest" type="button" id="gate-guest" onclick="useGuest()">비회원으로 주문하기</button>
     </div>
 
-    <!-- CHECKOUT FORM (shown when logged in OR guest mode) -->
+    <!-- CHECKOUT FORM (shown when logged in) -->
     <div id="checkout-form" style="display:none;">
       <!-- Prefill banner -->
       <div class="prefill-header" id="prefill-header" style="display:none;">
@@ -292,7 +290,7 @@
     const items = getItems();
 
     // Login gate — 실제 Supabase 세션 없을 때만 표시
-    if (!user && sessionStorage.getItem('tn_guest') !== '1') {
+    if (!user) {
       document.getElementById('login-gate').style.display = 'block';
       document.getElementById('checkout-form').style.display = 'none';
       const redirect = 'market_checkout.html' + (location.search || '');
@@ -339,10 +337,6 @@
   function enableEdit(){
     lockFields(false);
     document.getElementById('prefill-header').innerHTML = '<span style="color:var(--dim);">✏️ 수정 모드 — 변경 사항은 이번 주문에만 적용됩니다.</span>';
-  }
-  function useGuest(){
-    sessionStorage.setItem('tn_guest','1');
-    init();
   }
 
   // ---- summary ----
@@ -524,9 +518,14 @@
       shipping = { name, phone, address: addr, detail, zipcode: zip };
     }
 
-    // 2) 로그인 확인 — 비회원이면 guest 모드로 진행 (백엔드 create-order 가 anon 키도 허용해야 함)
+    // 2) 로그인 확인 — create-order는 사용자 JWT가 있어야 호출 가능
     const { supabase } = await import('./supabase-client.js');
     const { data: { session } } = await supabase.auth.getSession();
+    if (!session) {
+      const redirect = 'market_checkout.html' + (location.search || '');
+      location.href = 'login.html?redirect=' + encodeURIComponent(redirect);
+      return;
+    }
 
     const btn = document.getElementById('btn-pay');
     if (btn) { btn.disabled = true; btn.textContent = '결제 준비 중...'; }
@@ -570,7 +569,7 @@
     const safeName = (email && email.split('@')[0]) || 'customer';
     const customData = {
       kind: 'market',
-      userId: session?.user?.id || 'guest',
+      userId: session.user.id,
       itemCount: items.length
     };
 

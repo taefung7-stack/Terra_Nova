@@ -18,27 +18,35 @@ const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
 const NAVER_CLIENT_ID = Deno.env.get('NAVER_CLIENT_ID')!;
 const NAVER_CLIENT_SECRET = Deno.env.get('NAVER_CLIENT_SECRET')!;
 
+// CORS: 우리 도메인만 허용 (기타 origin 은 apex 로 고정 응답 → 타 사이트 JS 가 응답을 읽지 못함)
+const ALLOWED_ORIGINS = new Set([
+  'https://terra-nova.kr',
+  'https://www.terra-nova.kr',
+]);
+
 const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, {
   auth: { persistSession: false }
 });
 
 Deno.serve(async (req) => {
+  const cors = corsHeaders(req.headers.get('origin'));
+
   // CORS 프리플라이트
   if (req.method === 'OPTIONS') {
     return new Response(null, {
       status: 204,
-      headers: corsHeaders()
+      headers: cors
     });
   }
 
   if (req.method !== 'POST') {
-    return json({ error: 'Method not allowed' }, 405);
+    return json({ error: 'Method not allowed' }, 405, cors);
   }
 
   try {
     const { code, state, redirect_uri } = await req.json();
     if (!code || !redirect_uri) {
-      return json({ error: 'code and redirect_uri required' }, 400);
+      return json({ error: 'code and redirect_uri required' }, 400, cors);
     }
 
     // 1. Naver access_token 교환
@@ -53,7 +61,7 @@ Deno.serve(async (req) => {
     const tokenData = await tokenRes.json();
     if (!tokenData.access_token) {
       console.error('[naver] token exchange failed:', tokenData);
-      return json({ error: 'token exchange failed', detail: tokenData }, 400);
+      return json({ error: 'token exchange failed', detail: tokenData }, 400, cors);
     }
 
     // 2. Naver 프로필 조회
@@ -63,16 +71,17 @@ Deno.serve(async (req) => {
     const profileData = await profileRes.json();
     if (profileData.resultcode !== '00' || !profileData.response?.email) {
       console.error('[naver] profile fetch failed:', profileData);
-      return json({ error: 'profile fetch failed (email required scope)' }, 400);
+      return json({ error: 'profile fetch failed (email required scope)' }, 400, cors);
     }
 
     const { email, name, profile_image, mobile } = profileData.response;
 
     // 3. Supabase auth.users에 사용자 조회 / 생성
-    // auth.admin.listUsers는 email 필터를 지원하지 않으므로 getUserByEmail 대안 사용
+    // auth.admin.listUsers는 email 필터를 지원하지 않으므로 페이지네이션 순회로 찾는다.
+    // (기본 perPage=50 이라 한 페이지만 보면 51번째 회원부터 기존 유저를 못 찾고
+    //  중복 createUser → 500 으로 네이버 로그인이 전부 깨진다.)
+    const existing = await findUserByEmail(email);
     let userId: string | null = null;
-    const { data: existingList } = await supabase.auth.admin.listUsers();
-    const existing = existingList?.users?.find(u => u.email === email);
     if (existing) {
       userId = existing.id;
       // 메타데이터 업데이트 (네이버 정보 최신화)
@@ -98,7 +107,7 @@ Deno.serve(async (req) => {
       });
       if (createErr) {
         console.error('[naver] user create failed:', createErr);
-        return json({ error: 'user create failed', detail: createErr.message }, 500);
+        return json({ error: 'user create failed', detail: createErr.message }, 500, cors);
       }
       userId = created.user!.id;
     }
@@ -114,31 +123,47 @@ Deno.serve(async (req) => {
     });
     if (linkErr || !linkData?.properties?.action_link) {
       console.error('[naver] magiclink failed:', linkErr);
-      return json({ error: 'magiclink failed', detail: linkErr?.message }, 500);
+      return json({ error: 'magiclink failed', detail: linkErr?.message }, 500, cors);
     }
 
     return json({
       ok: true,
       action_link: linkData.properties.action_link,
       is_new_user: !existing
-    });
+    }, 200, cors);
   } catch (err) {
     console.error('[naver] fatal:', err);
-    return json({ error: (err as Error).message }, 500);
+    return json({ error: (err as Error).message }, 500, cors);
   }
 });
 
-function json(body: any, status = 200) {
+// 이메일로 auth.users 전체를 페이지네이션 순회 조회 (perPage 1000, 최대 50k 회원까지)
+async function findUserByEmail(email: string) {
+  const perPage = 1000;
+  for (let page = 1; page <= 50; page++) {
+    const { data, error } = await supabase.auth.admin.listUsers({ page, perPage });
+    if (error) throw error;
+    const users = data?.users || [];
+    const hit = users.find(u => u.email === email);
+    if (hit) return hit;
+    if (users.length < perPage) return null; // 마지막 페이지
+  }
+  return null;
+}
+
+function json(body: any, status = 200, cors: Record<string, string> = corsHeaders(null)) {
   return new Response(JSON.stringify(body), {
     status,
-    headers: { ...corsHeaders(), 'Content-Type': 'application/json' }
+    headers: { ...cors, 'Content-Type': 'application/json' }
   });
 }
 
-function corsHeaders() {
+function corsHeaders(origin: string | null) {
+  const allow = origin && ALLOWED_ORIGINS.has(origin) ? origin : 'https://terra-nova.kr';
   return {
-    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Origin': allow,
     'Access-Control-Allow-Methods': 'POST, OPTIONS',
-    'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type'
+    'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+    'Vary': 'Origin'
   };
 }

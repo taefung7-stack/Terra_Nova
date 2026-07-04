@@ -381,6 +381,35 @@ async function activateSubscription(userId: string, planCode: string, billingCyc
   if (updErr) throw updErr;
   const orderId = updated.id;
 
+  // 중복 active 구독 가드: 같은 유저·레벨의 active 구독이 이미 있으면 INSERT 하지 않고 연장.
+  // (재결제는 payment_id 가 달라 order 단 중복체크를 통과 → active 2건 → renew-subscriptions 가
+  //  양쪽을 각각 빌링하는 이중 청구가 되므로 반드시 기존 행을 재사용한다.)
+  const { data: actives, error: actErr } = await supabase
+    .from('subscriptions')
+    .select('id, level, expires_at, portone_billing_key')
+    .eq('user_id', userId)
+    .eq('status', 'active');
+  if (actErr) throw actErr;
+
+  const dupe = (actives || []).find((s: any) => (s.level || null) === (level || null));
+  if (dupe) {
+    // 남은 기간이 있으면 그 끝에서부터 연장 (두 번 결제한 만큼 손해 없게)
+    const extendFrom = new Date(Math.max(Date.now(), new Date(dupe.expires_at).getTime()));
+    if (billingCycle === 'annual') extendFrom.setFullYear(extendFrom.getFullYear() + 1);
+    else extendFrom.setMonth(extendFrom.getMonth() + 1);
+
+    const { error: extErr } = await supabase.from('subscriptions').update({
+      plan_code: planCode,
+      billing_cycle: billingCycle,
+      expires_at: extendFrom.toISOString(),
+      auto_renew: true,
+      portone_billing_key: payment.billingKey || dupe.portone_billing_key || null,
+      last_order_id: orderId,
+    }).eq('id', dupe.id);
+    if (extErr) throw extErr;
+    return;
+  }
+
   // subscriptions INSERT (server-side 검증된 plan/cycle/level 사용)
   const { error: subErr } = await supabase.from('subscriptions').insert({
     user_id: userId,

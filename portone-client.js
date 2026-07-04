@@ -8,7 +8,7 @@
 //   - 심사 진행중: 카카오페이, 토스페이먼츠, 다날 (휴대폰)
 //   - 따라서 기본 결제수단은 CARD(KG이니시스) 단독. 다른 PG는 통과 시 채널키 추가.
 
-import { supabase } from './supabase-client.js';
+import { supabase, getSession } from './supabase-client.js';
 
 const PORTONE_VERSION = 'v2';
 const STORE_ID = (typeof window !== 'undefined' && window.PORTONE_STORE_ID) || '';
@@ -70,7 +70,8 @@ async function loadPortoneSDK() {
  * @param {object} params.shipping  - {name, phone, zipcode, address, detail}
  */
 export async function requestPayment({ items, method = 'CARD', shipping }) {
-  const { data: { user } } = await supabase.auth.getUser();
+  const session = await getSession();
+  const user = session?.user;
   if (!user) {
     alert('로그인이 필요합니다.');
     location.href = 'login.html?redirect=' + encodeURIComponent(location.pathname);
@@ -148,7 +149,8 @@ export async function requestSubscription({ plan, cycle = 'monthly', level, ship
     return { success: false, error: 'plan_not_active' };
   }
 
-  const { data: { user } } = await supabase.auth.getUser();
+  const session = await getSession();
+  const user = session?.user;
   if (!user) {
     alert('로그인이 필요합니다.');
     location.href = 'login.html';
