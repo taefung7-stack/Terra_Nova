@@ -97,7 +97,11 @@ function cardHead(p) {
 function choicesHtml(choices, { en = true } = {}) {
   const cls = en ? 'ch-txt en' : 'ch-txt';
   return `    <div class="vq-choices">
-${choices.map((c, i) => `      <div class="vq-choice"><span class="ch-no">${CIRCLED[i]}</span><span class="${cls}">${esc(c)}</span></div>`).join('\n')}
+${choices.map((c, i) => {
+    const marker = CIRCLED[i];
+    const text = String(c ?? '').trim() === marker ? '' : `<span class="${cls}">${esc(c)}</span>`;
+    return `      <div class="vq-choice"><span class="ch-no">${marker}</span>${text}</div>`;
+  }).join('\n')}
     </div>`;
 }
 
