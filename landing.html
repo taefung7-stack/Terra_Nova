@@ -4134,27 +4134,6 @@ body.bigbang-done .terra-hint,
 
 <main id="main">
 
-  <!-- =============== PAIN OPENING =============== -->
-  <section id="language-question" class="statement statement-single story-section reveal">
-    <div class="declaration-wrap">
-      <h1 class="declaration-stack">
-        <span class="mega-line mint">영어는 언어입니다.</span>
-        <span class="mega-line">영어로 영어만 공부해야 할까요?</span>
-      </h1>
-    </div>
-  </section>
-
-  <!-- =============== CURRICULUM DECLARATION =============== -->
-  <section id="proof" class="curriculum-declaration story-section reveal">
-    <div class="declaration-wrap">
-      <h2 class="declaration-stack">
-        <span class="mega-line mega-line-solution" data-mint-range="4-12">우리는 전 학년, 전 과목을</span>
-        <span class="mega-line mega-line-solution">영어로 공부합니다.</span>
-      </h2>
-      <p class="declaration-sub">전 학년 교과과정 그대로 영어로 복습합니다.</p>
-    </div>
-  </section>
-
   <!-- =============== REAL BOOK SAMPLES =============== -->
   <section id="book-samples" class="section book">
     <div class="inner reveal">
@@ -5267,75 +5246,6 @@ body.bigbang-done .terra-hint,
         statementWorries.forEach(function (c) { c.classList.add('in'); });
       }
     }
-
-    // Mega-line per-character entrance (used by #language-question and #proof
-    // declaration headlines). Splits each .mega-line into per-char spans once,
-    // then drives a bidirectional IntersectionObserver that re-plays the
-    // stagger every time the section scrolls back into view. The same
-    // transition-property:none snap-reset pattern as the .statement handler
-    // is used so the staggered delays don't get stuck across rapid scroll.
-    (function initMegaLines() {
-      var megaLines = document.querySelectorAll('.mega-line, .declaration-sub');
-      if (!megaLines.length) return;
-
-      megaLines.forEach(function (el) {
-        if (el.dataset.megaSplit === '1') return;
-        var text = el.textContent;
-        var range = (el.dataset.mintRange || '').split('-').map(function (n) { return parseInt(n, 10); });
-        var mintStart = range.length === 2 ? range[0] : -1;
-        var mintEnd   = range.length === 2 ? range[1] : -1;
-        el.textContent = '';
-        var i = 0;
-        for (var ch of text) {
-          var span = document.createElement('span');
-          var cls = 'char' + (ch === ' ' ? ' space' : '');
-          if (i >= mintStart && i <= mintEnd) cls += ' mint-char';
-          span.className = cls;
-          span.textContent = ch === ' ' ? ' ' : ch;
-          span.style.transitionDelay = (i * 0.035) + 's';
-          el.appendChild(span);
-          i++;
-        }
-        el.dataset.megaSplit = '1';
-      });
-
-      function applyMegaIn(section) {
-        var lines = section.querySelectorAll('.mega-line, .declaration-sub');
-        lines.forEach(function (line, lineIdx) {
-          var chars = line.querySelectorAll('.char');
-          chars.forEach(function (c) { c.style.transitionProperty = 'none'; });
-          line.classList.remove('in');
-          void line.offsetWidth;
-          chars.forEach(function (c) { c.style.transitionProperty = ''; });
-          void line.offsetWidth;
-          // Per-line stagger so .mega-line-solution starts a moment after .mega-line
-          setTimeout(function () { line.classList.add('in'); }, lineIdx * 220);
-        });
-      }
-      function applyMegaOut(section) {
-        var lines = section.querySelectorAll('.mega-line, .declaration-sub');
-        lines.forEach(function (line) {
-          var chars = line.querySelectorAll('.char');
-          chars.forEach(function (c) { c.style.transitionProperty = 'none'; });
-          line.classList.remove('in');
-          void line.offsetWidth;
-          chars.forEach(function (c) { c.style.transitionProperty = ''; });
-        });
-      }
-
-      var megaSections = document.querySelectorAll('#language-question, #proof.curriculum-declaration');
-      if ('IntersectionObserver' in window) {
-        var mlIO = new IntersectionObserver(function (entries) {
-          entries.forEach(function (e) {
-            if (e.isIntersecting) applyMegaIn(e.target);
-            else                  applyMegaOut(e.target);
-          });
-        }, { threshold: 0.25, rootMargin: '0px 0px -10% 0px' });
-        megaSections.forEach(function (s) { mlIO.observe(s); });
-      } else {
-        megaSections.forEach(function (s) { applyMegaIn(s); });
-      }
-    })();
 
     // Planet-card flip — handled entirely by CSS via :hover / :focus-within
     // (per request: hover-only, no click-to-stick). Touch users tap-and-hold
