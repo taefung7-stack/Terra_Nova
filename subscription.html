@@ -3,6 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+/* Terra Nova 테마 FOUC 방지 */
+(function(){try{var m=localStorage.getItem('tn-theme');if(!m)m=window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';if(m==='light')document.documentElement.classList.add('light');}catch(e){}})();
+</script>
 <title>SUBSCRIPTION · 구독 플랜</title>
 <meta name="description" content="Terra Nova 구독 플랜 — LIGHT · STANDARD · PREMIUM. 매월 새 교재를 받아보세요.">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -21,9 +25,13 @@
 <link rel="stylesheet" href="mobile-app.css">
 <script src="site-config.js" defer></script>
 <script src="mobile-app.js" defer></script>
+<script src="theme-toggle.js" defer></script>
 <style>
   html, body { margin: 0; padding: 0; }
   body { font-family: 'Pretendard', sans-serif; background: #0A0A0F; color: #F2F2F4; min-height: 100vh; }
+  html.light body { background: #FFFFFF; color: #16181C; }
+  html.light .desktop-redirect p { color: rgba(20,22,28,0.66); }
+  html.light .desktop-redirect a { background: #00B37A; color: #fff; }
   .desktop-redirect {
     max-width: 720px;
     margin: 0 auto;

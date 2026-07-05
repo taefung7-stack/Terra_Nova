@@ -55,19 +55,24 @@
   // 런타임에 네비 우측へ 버튼을 하나 만들어 넣는다.
   function ensureButton() {
     if (document.querySelector('.theme-toggle')) return;
-    var nav = document.querySelector('.site-nav') || document.querySelector('nav');
-    if (!nav) return;
     var btn = document.createElement('button');
     btn.className = 'theme-toggle';
     btn.id = 'theme-toggle';
     btn.type = 'button';
     btn.setAttribute('aria-label', '라이트/다크 모드 전환');
-    var ham = nav.querySelector('.nav-hamburger');
-    if (ham) nav.insertBefore(btn, ham);
-    else nav.appendChild(btn);
-    // 최소 스타일 안전망(페이지 CSS에 .theme-toggle 규칙이 없을 때만 눈에 보이게)
-    if (!btn.style.width) {
-      btn.style.cssText = 'display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;margin-left:14px;border:1px solid currentColor;border-radius:11px;background:transparent;color:inherit;cursor:pointer;opacity:.85;';
+    var nav = document.querySelector('.site-nav') || document.querySelector('nav');
+    if (nav) {
+      var ham = nav.querySelector('.nav-hamburger');
+      if (ham) nav.insertBefore(btn, ham);
+      else nav.appendChild(btn);
+      if (!btn.style.width) {
+        btn.style.cssText = 'display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;margin-left:14px;border:1px solid currentColor;border-radius:11px;background:transparent;color:inherit;cursor:pointer;opacity:.85;';
+      }
+    } else {
+      // nav 가 없는 페이지 — 화면 우상단에 고정(fixed) 버튼으로.
+      btn.classList.add('theme-toggle--floating');
+      btn.style.cssText = 'position:fixed;top:16px;right:16px;z-index:9999;display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border:1px solid rgba(128,128,128,.4);border-radius:11px;background:rgba(128,128,128,.12);color:inherit;cursor:pointer;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);';
+      document.body.appendChild(btn);
     }
   }
 
