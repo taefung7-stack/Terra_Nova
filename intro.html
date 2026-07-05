@@ -3,6 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+/* Terra Nova 테마 FOUC 방지 — 저장된 선택(없으면 시스템 설정)을 렌더 전에 즉시 적용 */
+(function(){try{var m=localStorage.getItem('tn-theme');if(!m)m=window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';if(m==='light')document.documentElement.classList.add('light');}catch(e){}})();
+</script>
 <meta name="naver-site-verification" content="406494bbc7a05534675e3fdb6d67818d864c03c6" />
 <title>TERRA NOVA — 조각이 모여 하나가 됩니다</title>
 <meta name="description" content="여러 교과가 영어 하나로 모이는 학습. Terra Nova 시작 전 1분 경험.">
@@ -44,6 +48,32 @@
   --accent-soft:rgba(0,255,163,.12);
   --line:rgba(255,255,255,.08);
 }
+
+/* ── LIGHT MODE (html.light) — 색만 재정의 ───────────────────── */
+html.light{--bg:#FFFFFF;--bg2:#F4F6F7;--accent:#00B37A;--accent2:#0E9E86;--txt:#16181C;--dim:rgba(20,22,28,.64);--dim2:rgba(20,22,28,.40);--line:rgba(0,0,0,.10);--line2:rgba(0,179,122,.22);--line3:rgba(0,179,122,.45);--mint:#0E9E86;--card:#FFFFFF;--card2:#F4F6F7;}
+html.light body{background:var(--bg);color:var(--txt);}
+html.light .site-nav{background:rgba(255,255,255,.82);border-bottom:1px solid var(--line);}
+html.light .site-nav.scrolled{background:rgba(255,255,255,.94);}
+html.light .site-nav .logo-main,html.light .site-nav .nav-links a{color:var(--txt);}
+html.light .site-nav .nav-cta{background:var(--accent);color:#fff;border-color:var(--accent);}
+html.light .nav-hamburger span{background:var(--txt);}
+
+
+/* ── LIGHT MODE nav 보정 (bare nav 셀렉터 페이지) ─────────────── */
+html.light nav{background:rgba(255,255,255,.86)!important;border-bottom:1px solid var(--line)!important;}
+html.light nav.scrolled{background:rgba(255,255,255,.95)!important;}
+html.light .logo-main{color:var(--txt)!important;-webkit-text-stroke:0!important;text-shadow:none!important;}
+html.light .logo-eng{color:var(--accent)!important;}
+html.light .nav-links a{color:var(--txt)!important;}
+html.light .nav-links a:hover{color:var(--accent)!important;}
+html.light .nav-cta{color:#fff!important;background:var(--accent)!important;border-color:var(--accent)!important;}
+html.light .nav-hamburger span{background:var(--txt)!important;}
+html.light .mobile-tabbar,html.light .m-tabbar{background:rgba(255,255,255,.94)!important;border-top:1px solid var(--line)!important;}
+
+/* ── THEME TOGGLE 버튼 ─────────────────────────────────────── */
+.theme-toggle{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;margin-left:14px;flex:0 0 auto;border:1px solid var(--line);border-radius:11px;background:rgba(255,255,255,.06);color:var(--txt);cursor:pointer;transition:background .15s,border-color .15s,color .15s;-webkit-tap-highlight-color:transparent;vertical-align:middle;}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);}
+html.light .theme-toggle{background:rgba(0,0,0,.04);}
 * { margin:0; padding:0; box-sizing:border-box; }
 html, body { height:100%; }
 body {
@@ -711,5 +741,6 @@ main {
 })();
 </script>
 
+<script src="./theme-toggle.js" defer></script>
 </body>
 </html>

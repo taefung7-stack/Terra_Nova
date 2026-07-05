@@ -3,6 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+/* Terra Nova 테마 FOUC 방지 — 저장된 선택(없으면 시스템 설정)을 렌더 전에 즉시 적용 */
+(function(){try{var m=localStorage.getItem('tn-theme');if(!m)m=window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';if(m==='light')document.documentElement.classList.add('light');}catch(e){}})();
+</script>
 <meta name="naver-site-verification" content="406494bbc7a05534675e3fdb6d67818d864c03c6" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <title>TERRA NOVA - 영어로 전과목 학습</title>
@@ -135,6 +139,46 @@
   --line2: rgba(0,255,163,.18);
   --line3: rgba(0,255,163,.48);
 }
+
+/* ── LIGHT MODE (html.light) — 색만 재정의, 레이아웃 불변 ───────────────── */
+html.light {
+  --bg: #FFFFFF;
+  --bg2: #F4F6F7;
+  --accent: #00B37A;
+  --accent2: #0E9E86;
+  --txt: #16181C;
+  --dim: rgba(20,22,28,.64);
+  --dim2: rgba(20,22,28,.40);
+  --line: rgba(0,0,0,.10);
+  --line2: rgba(0,179,122,.22);
+  --line3: rgba(0,179,122,.45);
+}
+html.light body { background:var(--bg); color:var(--txt); }
+/* 라이트에서 네비 유리 배경을 밝게 */
+html.light .site-nav { background:rgba(255,255,255,.72); border-bottom:1px solid var(--line); }
+html.light .site-nav.scrolled { background:rgba(255,255,255,.9); }
+html.light .site-nav .logo-main,
+html.light .site-nav .nav-links a { color:var(--txt); }
+html.light .hero { background:linear-gradient(180deg,#F4F6F7,#FFFFFF); }
+/* 히어로 대형 브랜드/오버레이 텍스트 라이트 대비 */
+html.light .hero-english,
+html.light .scroll-cue { color:var(--txt); }
+html.light .hero-tagline { color:var(--accent); background:rgba(255,255,255,.72); border-color:var(--line3); }
+/* 구독 CTA — 라이트에서 진한 민트 배경 + 흰 글씨로 대비 확보 */
+html.light .site-nav .nav-cta { background:var(--accent); color:#fff; border-color:var(--accent); }
+html.light .nav-hamburger span { background:var(--txt); }
+
+/* ── THEME TOGGLE 버튼 (네비 우측) ─────────────────────────────────────── */
+.theme-toggle {
+  display:inline-flex; align-items:center; justify-content:center;
+  width:40px; height:40px; margin-left:14px; flex:0 0 auto;
+  border:1px solid var(--line); border-radius:11px;
+  background:rgba(255,255,255,.06); color:var(--txt);
+  cursor:pointer; transition:background .15s,border-color .15s,color .15s;
+  -webkit-tap-highlight-color:transparent;
+}
+.theme-toggle:hover { border-color:var(--accent); color:var(--accent); }
+html.light .theme-toggle { background:rgba(0,0,0,.04); }
 * { margin:0; padding:0; box-sizing:border-box; }
 html { scroll-behavior:smooth; }
 body {
@@ -164,7 +208,7 @@ a { color:inherit; text-decoration:none; }
 .site-nav {
   position:fixed; top:0; left:0; right:0; z-index:100;
   display:flex; align-items:center; justify-content:space-between;
-  padding:0 5vw; height:76px;
+  padding:0 6vw; height:82px;
   /* Frosted glass — kept throughout the page (slightly more opaque on scroll
      but never fully solid → maintains the see-through translucent feel).
      Blur radius dropped from 16px → 10px: the nav re-blurs the strip behind
@@ -4378,6 +4422,7 @@ body.bigbang-done .terra-hint,
     <li data-auth="user" style="display:none;"><a href="#" data-action="logout">로그아웃</a></li>
     <li><a href="order.html" class="nav-cta">구독 신청</a></li>
   </ul>
+  <button class="theme-toggle" id="theme-toggle" type="button" aria-label="라이트/다크 모드 전환"></button>
   <button class="nav-hamburger" id="nav-hamburger" onclick="toggleNav()" aria-label="메뉴"><span></span><span></span><span></span></button>
 </nav>
 
@@ -5619,7 +5664,9 @@ body.bigbang-done .terra-hint,
       c.width = 2048; c.height = 384;
       var ctx = c.getContext('2d');
       ctx.clearRect(0, 0, 2048, 384);
-      ctx.fillStyle = 'rgba(240, 247, 244, 0.92)';
+      // 라이트 모드면 짙은 잉크색, 다크면 기존 흰색
+      var lightMode = document.documentElement.classList.contains('light');
+      ctx.fillStyle = lightMode ? 'rgba(22, 24, 28, 0.92)' : 'rgba(240, 247, 244, 0.92)';
       ctx.font = '700 280px "Space Grotesk", system-ui, sans-serif';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
@@ -5654,6 +5701,16 @@ body.bigbang-done .terra-hint,
         terraNova.material.needsUpdate = true;
       }).catch(function () {});
     }
+
+    // 라이트/다크 토글 시 브랜드 텍스처를 색에 맞게 다시 그린다.
+    window.addEventListener('tn-theme-change', function () {
+      try {
+        var swapped = buildTerraTexture();
+        terraNova.material.map.dispose();
+        terraNova.material.map = swapped;
+        terraNova.material.needsUpdate = true;
+      } catch (e) {}
+    });
 
     // ---- Mouse tracking ----
     var mouseX = 0, mouseY = 0;
@@ -5873,7 +5930,9 @@ body.bigbang-done .terra-hint,
       // Trail alpha scales with effective speed → streaks lengthen on boost
       var trailAlpha = burstActive ? Math.max(0.06, 0.15 / effSpeed)
                                    : Math.max(0.07, 0.15 / boostMul);
-      ctx.fillStyle = 'rgba(4,4,12,' + trailAlpha + ')';
+      // 라이트 모드: 우주 배경/파티클 색을 밝은 배경용으로 반전
+      var lightMode = document.documentElement.classList.contains('light');
+      ctx.fillStyle = lightMode ? 'rgba(244,246,247,' + trailAlpha + ')' : 'rgba(4,4,12,' + trailAlpha + ')';
       ctx.fillRect(0, 0, w, h);
       stars.forEach(function (s) {
         s.z -= 1.3 * effSpeed;   // 1.0 → 1.3 (~30% faster ambient flow per user request)
@@ -5894,8 +5953,10 @@ body.bigbang-done .terra-hint,
         var size = s.r * k * 2;
         s.tw += s.sp;
         var alpha = s.a * (0.5 + 0.5 * Math.sin(s.tw)) * Math.min(1, k);
-        var rgb = s.mint ? '94,234,212' : '255,255,255';   // mint accent or white
-        var glow = s.mint ? '45,212,191' : '79,195,247';   // mint glow or cool blue
+        var rgb = lightMode ? (s.mint ? '14,158,134' : '40,44,54')      // 라이트: 진한 민트 / 짙은 잉크
+                            : (s.mint ? '94,234,212' : '255,255,255');  // 다크: 민트 / 흰색
+        var glow = lightMode ? (s.mint ? '14,158,134' : '120,150,180')
+                             : (s.mint ? '45,212,191' : '79,195,247');
         // Streak (warp tail)
         if (size > 0.5) {
           ctx.beginPath();
@@ -6255,7 +6316,7 @@ document.addEventListener('DOMContentLoaded', function () {
      <footer class="site-footer"> placeholder above and replaces it with the
      full version (same one used on every other page). -->
 <script src="./site-config.js"></script>
-<script src="./floating-actions.js" defer></script><script src="./footer.js" defer></script>
+<script src="./floating-actions.js" defer></script><script src="./footer.js" defer></script><script src="./theme-toggle.js" defer></script>
 
 <!-- Character-by-character bouncy popup for "쏟아지는 후기들" headline. -->
 <script>

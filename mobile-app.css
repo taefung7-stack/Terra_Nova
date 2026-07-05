@@ -39,6 +39,24 @@
     --m-safe-bottom: env(safe-area-inset-bottom, 0px);
   }
 
+  /* ───────── 1b. Light mode tokens (html.light) ───────── */
+  html.light {
+    --m-bg:        #FFFFFF;
+    --m-surface:   #FFFFFF;
+    --m-surface-2: #F1F3F5;
+    --m-line:      rgba(0,0,0,0.10);
+    --m-line-soft: rgba(0,0,0,0.06);
+    --m-txt:       #16181C;
+    --m-txt-dim:   rgba(20,22,28,0.66);
+    --m-txt-mute:  rgba(20,22,28,0.42);
+    --m-accent:    #00B37A;
+    --m-accent-dim:#0E9E86;
+  }
+  /* 라이트: 반투명 헤더/탭바 배경을 밝게 (하드코딩 rgba 오버라이드) */
+  html.light nav:not(#m-tabbar) { background: rgba(255,255,255,0.88) !important; border-bottom-color: var(--m-line) !important; }
+  html.light #m-tabbar { background: rgba(255,255,255,0.94) !important; border-top-color: var(--m-line) !important; }
+  html.light [class*="m-card"] { box-shadow: 0 1px 4px rgba(0,0,0,0.07) !important; }
+
   /* ───────── 2. Base reset ───────── */
   html { font-size: 15px !important; -webkit-text-size-adjust: 100% !important; }
   /* 6번 요청: 전체 폰트 Pretendard 강제 — Space Grotesk 등 다른 폰트 모두 대체 */
