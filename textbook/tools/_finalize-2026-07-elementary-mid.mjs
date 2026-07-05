@@ -89,9 +89,11 @@ try {
     (await merged.copyPages(colDoc, colDoc.getPageIndices())).forEach(p => merged.addPage(p));
     addBlank(); // 판권 뒤
 
-    // 본문
+    // 본문 — *_fullbook_final_complete.pdf 는 자체 표지(1p)·뒷표지(마지막 p)를 이미 포함하므로
+    // 첫/마지막 페이지를 제외하고 합친다 (표지·뒷표지 중복 방지, 2026-07-05).
     const bodyDoc = await PDFDocument.load(readFileSync(bodyPath), { ignoreEncryption: true });
-    (await merged.copyPages(bodyDoc, bodyDoc.getPageIndices())).forEach(p => merged.addPage(p));
+    const bodyIdx = bodyDoc.getPageIndices().slice(1, -1);
+    (await merged.copyPages(bodyDoc, bodyIdx)).forEach(p => merged.addPage(p));
     addBlank(); // 뒷표지 앞
 
     // 뒷표지
@@ -106,7 +108,7 @@ try {
 
     writeFileSync(outPath, await merged.save({ useObjectStreams: true }));
     const sz = (readFileSync(outPath).length / 1024 / 1024).toFixed(1);
-    console.log(`  2/2 ✓ ${b.out}  ${merged.getPageCount()}p (앞표지1+백지1+판권1+백지1+본문${bodyDoc.getPageCount()}+백지1+뒷표지1)  ${sz}MB\n`);
+    console.log(`  2/2 ✓ ${b.out}  ${merged.getPageCount()}p (앞표지1+백지1+판권1+백지1+본문${bodyIdx.length}[원본${bodyDoc.getPageCount()}-표지2]+백지1+뒷표지1)  ${sz}MB\n`);
   }
 } finally {
   await browser.close().catch(() => {});
