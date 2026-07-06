@@ -4502,6 +4502,10 @@ html.light .exam-match .story-title,
 html.light .exam-match .story-kicker{color:var(--txt)!important;}
 html.light .exam-match .story-title .accent{color:var(--accent)!important;}
 
+
+/* exam-mol SVG 다이어그램: 라이트에서 연회색 캡션·흰 점선을 어둡게 */
+html.light .exam-mol svg text[fill="#cfd0d2"]{fill:#4A515B!important;}
+html.light .exam-mol svg line{stroke:rgba(0,0,0,.35)!important;}
 /* ── 3. 후기(.review-rain): #0A0A0A → 연민트, 유리카드 → 흰 카드 ── */
 html.light .review-rain{background:linear-gradient(180deg,#EDF9F3 0%,#FFFFFF 100%)!important;}
 html.light .review-rain-title{color:var(--txt)!important;text-shadow:none!important;-webkit-text-stroke:0!important;}
@@ -4548,6 +4552,7 @@ html.light h1,html.light h2,html.light h3,html.light .story-title,html.light .st
 html.light h1,html.light h2,html.light .page-title,html.light .story-title{color:#000!important;text-shadow:none!important;}
 html.light h1 *,html.light h2 *,html.light .page-title *{text-shadow:none!important;}
 html.light h1,html.light .page-title,html.light .plans-h2,html.light .story-title{-webkit-text-stroke:.6px #000!important;}
+html.light h1 .accent,html.light h2 .accent,html.light .story-title .accent,html.light .plans-h2 .accent,html.light .page-title .accent,html.light .hero-title .accent,html.light h1 .mint,html.light h2 .mint{-webkit-text-stroke:0!important;}
 html.light .site-nav,html.light .site-nav *{text-shadow:none!important;}
 </style>
 <style id="hero-light-fix">
@@ -4558,6 +4563,12 @@ html.light .hero-fallback h1{color:var(--txt)!important;text-shadow:none!importa
 html.light .site-nav .nav-links.open,html.light nav .nav-links.open{background:rgba(255,255,255,.97)!important;border-bottom-color:var(--line,rgba(0,0,0,.1))!important;}
 html.light .nav-links.open a{color:var(--txt,#16181C)!important;border-bottom-color:rgba(0,0,0,.08)!important;}
 html.light .nav-links.open .nav-cta{color:#fff!important;background:var(--accent,#00B37A)!important;}
+</style>
+<style id="tn-h2-anim">
+/* 섹션 제목 스크롤 등장 애니메이션 (매 스크롤 재생) */
+.tn-h2-anim{opacity:0;transform:translateY(36px);transition:opacity .7s cubic-bezier(.22,.8,.36,1),transform .7s cubic-bezier(.22,.8,.36,1);will-change:opacity,transform;}
+.tn-h2-anim.tn-in{opacity:1;transform:none;}
+@media (prefers-reduced-motion: reduce){.tn-h2-anim{opacity:1!important;transform:none!important;transition:none!important;}}
 </style>
 </head>
 <body class="bigbang-done light-theme">
@@ -4698,7 +4709,7 @@ html.light .nav-links.open .nav-cta{color:#fff!important;background:var(--accent
   <section id="exam-match" class="exam-match reveal" aria-label="모의고사와 Terra Nova 교재 내용 비교">
     <div class="exam-match-head">
       <span class="story-kicker split" data-split>실제 시험 그대로</span>
-      <h2 class="story-title split" data-split><span class="accent">수학·과학·사회 시험</span>에 나온 그 개념을, <span class="accent">영어 지문</span>으로.</h2>
+      <h2 class="story-title split" data-split><span class="accent">수학·과학·사회 시험</span>에<br> 나온 그 개념을, <span class="accent">영어 지문</span>으로.</h2>
     </div>
 
     <div class="exam-match-stack">
@@ -6097,6 +6108,8 @@ html.light .nav-links.open .nav-cta{color:#fff!important;background:var(--accent
                                    : Math.max(0.07, 0.15 / boostMul);
       // 라이트 모드: 우주 배경/파티클 색을 밝은 배경용으로 반전
       var lightMode = document.documentElement.classList.contains('light');
+      // 라이트: 잔상을 빨리 지워 '긁힘 줄무늬' 대신 또렷한 별 점으로 보이게
+      if (lightMode) trailAlpha = Math.min(0.5, trailAlpha * 2.4);
       ctx.fillStyle = lightMode ? 'rgba(244,246,247,' + trailAlpha + ')' : 'rgba(4,4,12,' + trailAlpha + ')';
       ctx.fillRect(0, 0, w, h);
       stars.forEach(function (s) {
@@ -6118,23 +6131,27 @@ html.light .nav-links.open .nav-cta{color:#fff!important;background:var(--accent
         var size = s.r * k * 2;
         s.tw += s.sp;
         var alpha = s.a * (0.5 + 0.5 * Math.sin(s.tw)) * Math.min(1, k);
-        var rgb = lightMode ? (s.mint ? '14,158,134' : '40,44,54')      // 라이트: 진한 민트 / 짙은 잉크
+        var rgb = lightMode ? (s.mint ? '10,142,120' : '22,26,34')      // 라이트: 딥민트 / 딥잉크 (별처럼 또렷하게)
                             : (s.mint ? '94,234,212' : '255,255,255');  // 다크: 민트 / 흰색
         var glow = lightMode ? (s.mint ? '14,158,134' : '120,150,180')
                              : (s.mint ? '45,212,191' : '79,195,247');
         // Streak (warp tail)
         if (size > 0.5) {
+          // 라이트: 꼬리를 짧고 옅게 → 회색 긁힘이 아니라 별 점으로 읽히게
+          var tailLen = lightMode ? 0.05 : 0.1;
+          var tailAlpha = alpha * (lightMode ? 0.14 : 0.3);
           ctx.beginPath();
           ctx.moveTo(px, py);
-          ctx.lineTo(px + (cx - s.x) * k * 0.1, py + (cy - s.y) * k * 0.1);
-          ctx.strokeStyle = 'rgba(' + rgb + ',' + (alpha * 0.3) + ')';
+          ctx.lineTo(px + (cx - s.x) * k * tailLen, py + (cy - s.y) * k * tailLen);
+          ctx.strokeStyle = 'rgba(' + rgb + ',' + tailAlpha + ')';
           ctx.lineWidth = size * 0.5;
           ctx.stroke();
         }
-        // Star body
+        // Star body — 라이트에서는 대비를 올려 별이 또렷하게 반짝이도록
+        var bodyAlpha = lightMode ? Math.min(1, alpha * 1.4) : alpha;
         ctx.beginPath();
         ctx.arc(px, py, size, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(' + rgb + ',' + alpha + ')';
+        ctx.fillStyle = 'rgba(' + rgb + ',' + bodyAlpha + ')';
         ctx.fill();
         // Glow for big stars
         if (size > 1.5) {
@@ -6530,5 +6547,29 @@ document.addEventListener('DOMContentLoaded', function () {
      reviews from Supabase. Falls back silently to the hardcoded copy when
      no real reviews exist or the fetch fails. -->
 <script type="module" src="./review-feed.js"></script>
+<script>
+/* 섹션 제목 스크롤 애니메이션 — 뷰포트에 들어올 때마다 재생 (2026-07-06) */
+(function () {
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var targets = document.querySelectorAll('.book .head h2, .levels .head h2');
+  if (!('IntersectionObserver' in window)) return;
+  targets.forEach(function (t) { t.classList.add('tn-h2-anim'); });
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { e.target.classList.toggle('tn-in', e.isIntersecting); });
+  }, { threshold: 0.35 });
+  targets.forEach(function (t) { io.observe(t); });
+  // 플랜 제목: 기존 입장 애니메이션(title-in)을 스크롤마다 재생
+  var plans = document.querySelector('.plans');
+  if (plans) {
+    var pio = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (e.isIntersecting) plans.classList.add('title-in');
+        else plans.classList.remove('title-in');
+      });
+    }, { threshold: 0.25 });
+    pio.observe(plans);
+  }
+})();
+</script>
 </body>
 </html>
