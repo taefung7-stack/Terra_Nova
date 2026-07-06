@@ -368,6 +368,7 @@ html.light .theme-toggle{background:rgba(0,0,0,.04);}
         </div>
         <div class="sub-actions">
           <button class="btn-sm btn-sm-primary" onclick="switchTab('level',null)">레벨 변경</button>
+          <button class="btn-sm btn-sm-outline" id="btn-resend-monthly">이번 달 교재 다시 받기</button>
           <button class="btn-sm btn-sm-outline" onclick="switchTab('delivery',null)">배송 조회</button>
           <button class="btn-sm btn-sm-danger" id="btn-cancel-sub">구독 해지</button>
         </div>
@@ -390,7 +391,7 @@ html.light .theme-toggle{background:rgba(0,0,0,.04);}
       <div class="section-block">
         <div class="section-block-title" style="display:flex;justify-content:space-between;align-items:center;">
           <span>내 정보</span>
-          <button class="btn-sm btn-sm-outline" onclick="switchTab('account', document.querySelector('.nav-menu-item:nth-child(5)'))" style="font-size:.72rem;padding:5px 12px;">수정하기 →</button>
+          <button class="btn-sm btn-sm-outline" onclick="switchTab('account', document.querySelector('.nav-menu-item:nth-child(6)'))" style="font-size:.72rem;padding:5px 12px;">수정하기 →</button>
         </div>
         <div class="info-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:14px 28px;margin-top:8px;">
           <div class="info-row">
@@ -541,7 +542,8 @@ html.light .site-footer a,html.light footer a{color:var(--txt)!important;}
             <div style="font-family:'Space Grotesk',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:3px;color:var(--accent);text-transform:uppercase;margin-bottom:8px;">⭐ 3 Events Running</div>
             <div style="font-weight:900;font-size:1.0rem;color:#fff;line-height:1.5;margin-bottom:8px;">리뷰 · SNS 후기 · 성적인증 — 3가지 이벤트 진행 중</div>
             <p style="font-size:.78rem;color:var(--dim);line-height:1.7;margin:0;">
-              아래 폼에서 원하는 이벤트에 인증을 제출하세요. 관리자 검토 후 쿠폰이 발급됩니다.
+              아래 폼에서 원하는 이벤트에 인증을 제출하세요. 관리자 검토 후 쿠폰이 발급됩니다.<br>
+              <span style="font-size:.7rem;">제출하신 인증 콘텐츠는 <a href="terms.html" target="_blank" rel="noopener" style="color:var(--accent);">이용약관 제8조의2</a>에 따라 서비스 홍보에 활용될 수 있습니다.</span>
             </p>
           </div>
           <a href="event.html" style="flex-shrink:0;font-size:.78rem;color:var(--accent);text-decoration:none;border:1px solid rgba(0,255,163,.4);padding:10px 18px;border-radius:6px;font-weight:600;align-self:center;">자세히 →</a>
@@ -589,6 +591,10 @@ html.light .site-footer a,html.light footer a{color:var(--txt)!important;}
           <div style="display:flex;justify-content:flex-end;align-items:center;gap:12px;flex-wrap:wrap;margin-top:14px;">
             <button type="button" class="btn-save" id="btn-submit-review">후기 등록</button>
           </div>
+          <p style="margin-top:12px;font-size:.7rem;color:var(--dim);line-height:1.6;">
+            등록하신 후기는 관리자 검토 후 공개되며, <a href="terms.html" target="_blank" rel="noopener" style="color:var(--accent);">이용약관 제8조의2</a>에
+            따라 서비스 소개·홍보에 활용될 수 있습니다. 후기 등록 시 이에 동의한 것으로 간주됩니다.
+          </p>
           <div id="review-form-msg" style="margin-top:12px;font-size:.78rem;display:none;"></div>
         </form>
       </div>
@@ -633,7 +639,7 @@ html.light .site-footer a,html.light footer a{color:var(--txt)!important;}
           </div>
           <div class="form-group">
             <label for="ev1-proof" style="font-size:.78rem;color:var(--dim);">캡처 이미지 (선택, 10MB 이하)</label>
-            <input type="file" id="ev1-proof" name="proof" accept="image/png,image/jpeg,image/webp" style="font-size:.78rem;color:var(--dim);">
+            <input type="file" id="ev1-proof" name="proof" accept="image/png,image/jpeg,image/webp,image/heic,image/heif" style="font-size:.78rem;color:var(--dim);">
           </div>
           <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:8px;">
             <button type="button" class="btn-save" data-submit-event="review">리뷰 이벤트 제출</button>
@@ -677,7 +683,7 @@ html.light .site-footer a,html.light footer a{color:var(--txt)!important;}
           </div>
           <div class="form-group">
             <label for="ev2-proof" style="font-size:.78rem;color:var(--dim);">캡처 이미지 (선택, 10MB 이하)</label>
-            <input type="file" id="ev2-proof" name="proof" accept="image/png,image/jpeg,image/webp" style="font-size:.78rem;color:var(--dim);">
+            <input type="file" id="ev2-proof" name="proof" accept="image/png,image/jpeg,image/webp,image/heic,image/heif" style="font-size:.78rem;color:var(--dim);">
           </div>
           <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:8px;">
             <button type="button" class="btn-save" data-submit-event="sns">SNS 이벤트 제출</button>
@@ -696,16 +702,16 @@ html.light .site-footer a,html.light footer a{color:var(--txt)!important;}
           Terra Nova로 공부한 뒤 오른 성적표 원본 이미지를 업로드해주세요. 학습 전/후 두 장이 있으면 더 좋습니다.
         </p>
         <div style="margin-bottom:14px;padding:12px 14px;background:rgba(254,191,53,.05);border:1px dashed rgba(254,191,53,.35);border-radius:8px;font-size:.74rem;color:rgba(254,191,53,.95);line-height:1.7;">
-          <strong>개인정보 보호</strong> — 게시·공유 시에는 이름·학교명·학번·타과목 점수 등 식별 정보를 모두 마스킹해 처리합니다. 제출 원본은 검토 후 안전하게 폐기됩니다.
+          <strong>개인정보 보호</strong> — 게시·공유 시에는 이름·학교명·학번·타과목 점수 등 식별 정보를 모두 마스킹해 처리합니다. 제출 원본은 분쟁 대응을 위해 검증 완료 후 6개월간 보관 후 안전하게 파기됩니다.
         </div>
         <form data-event-form="grade" onsubmit="return false;">
           <div class="form-group">
             <label for="ev3-proof-before" style="font-size:.78rem;">학습 전 성적표 (선택, 10MB 이하)</label>
-            <input type="file" id="ev3-proof-before" name="proof_before" accept="image/png,image/jpeg,image/webp,application/pdf" style="font-size:.78rem;color:var(--dim);">
+            <input type="file" id="ev3-proof-before" name="proof_before" accept="image/png,image/jpeg,image/webp,image/heic,image/heif,application/pdf" style="font-size:.78rem;color:var(--dim);">
           </div>
           <div class="form-group">
             <label for="ev3-proof-after" style="font-size:.78rem;">학습 후 성적표 <span style="color:#F87171;">*</span> (필수, 10MB 이하)</label>
-            <input type="file" id="ev3-proof-after" name="proof_after" accept="image/png,image/jpeg,image/webp,application/pdf" style="font-size:.78rem;color:var(--dim);">
+            <input type="file" id="ev3-proof-after" name="proof_after" accept="image/png,image/jpeg,image/webp,image/heic,image/heif,application/pdf" style="font-size:.78rem;color:var(--dim);">
           </div>
           <div class="form-group">
             <label for="ev3-message">학습 후기 (선택)</label>
@@ -834,7 +840,11 @@ html.light .site-footer a,html.light footer a{color:var(--txt)!important;}
           <label for="pw-confirm">새 비밀번호 확인</label>
           <input type="password" id="pw-confirm" name="confirm_password" autocomplete="new-password" placeholder="새 비밀번호 재입력">
         </div>
-        <button class="btn-save" onclick="alert('비밀번호가 변경되었습니다.')">변경</button>
+        <button class="btn-save" id="btn-change-pw">변경</button>
+        <span id="pw-change-msg" style="margin-left:12px;font-size:.78rem;"></span>
+        <p style="margin-top:10px;font-size:.72rem;color:var(--dim);line-height:1.6;">
+          카카오/네이버 소셜 로그인 계정은 비밀번호가 없어 이 기능을 사용할 수 없습니다.
+        </p>
       </div>
 
     </div>
@@ -843,8 +853,6 @@ html.light .site-footer a,html.light footer a{color:var(--txt)!important;}
 </div>
 
 <script>
-  let currentLevel = 'URANUS';
-
   function switchTab(name, triggerEl) {
     document.querySelectorAll('.tab-view').forEach(t => t.classList.remove('active'));
     document.querySelector('#tab-'+name).classList.add('active');
@@ -852,6 +860,20 @@ html.light .site-footer a,html.light footer a{color:var(--txt)!important;}
     document.querySelectorAll('.mobile-tab').forEach(t => t.classList.remove('active'));
     if(triggerEl) triggerEl.classList.add('active');
   }
+
+  // event.html 등에서 mypage.html#tab-reviews 형태 해시로 진입 시 해당 탭을 연다
+  const TAB_ORDER = ['dashboard','level','delivery','history','reviews','account'];
+  function activateTabFromHash() {
+    const m = (location.hash || '').match(/^#tab-(\w+)/);
+    if (!m || !document.getElementById('tab-' + m[1])) return;
+    const idx = TAB_ORDER.indexOf(m[1]);
+    const sideItems = document.querySelectorAll('.nav-menu-item');
+    const mobileTabs = document.querySelectorAll('.mobile-tab');
+    switchTab(m[1], idx >= 0 ? sideItems[idx] : null);
+    if (idx >= 0 && mobileTabs[idx]) mobileTabs[idx].classList.add('active');
+  }
+  window.addEventListener('hashchange', activateTabFromHash);
+  document.addEventListener('DOMContentLoaded', activateTabFromHash);
 
   function selectLvl(el, name) {
     document.querySelectorAll('.level-btn-sm').forEach(b => {
@@ -869,10 +891,17 @@ html.light .site-footer a,html.light footer a{color:var(--txt)!important;}
   function changeLevel() {
     const sel = document.querySelector('.level-btn-sm.selected');
     if(!sel) { alert('변경할 레벨을 선택해주세요.'); return; }
-    const lvl = sel.querySelector('.lvl-name-sm').textContent;
-    if(confirm('레벨을 ' + lvl + '으로 변경하시겠습니까?\n다음 달 발송분부터 적용됩니다.')) {
-      alert('레벨 변경 신청이 완료되었습니다!\n\n새 레벨: ' + lvl + '\n적용: 2026년 5월 발송분부터');
+    const lvl = sel.dataset.lvl;
+    if (['NEPTUNE','URANUS'].includes(lvl)) {
+      alert('중2(NEPTUNE)·중3(URANUS) 교재는 준비 중입니다.\n다른 레벨을 선택해주세요.');
+      return;
     }
+    if (!window.__tnChangeLevel) {
+      alert('로그인 정보를 불러오는 중입니다. 잠시 후 다시 시도해주세요.');
+      return;
+    }
+    if(!confirm('레벨을 ' + lvl + ' 으로 변경하시겠습니까?\n다음 달 발송분부터 적용됩니다.')) return;
+    window.__tnChangeLevel(lvl);  // 실제 DB 반영은 module 스크립트 (supabase 세션 필요)
   }
   function toggleNav(){document.getElementById('nav-hamburger').classList.toggle('open');document.querySelector('.nav-links').classList.toggle('open');}
   document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>{document.getElementById('nav-hamburger')?.classList.remove('open');document.querySelector('.nav-links')?.classList.remove('open');}));
@@ -923,8 +952,27 @@ html.light .site-footer a,html.light footer a{color:var(--txt)!important;}
 
   const STATUS_LABEL = {
     pending: '결제 대기', paid: '결제 완료', shipped: '배송 중', delivered: '배송 완료',
-    cancelled: '취소됨', refunded: '환불됨'
+    cancelled: '취소됨', refunded: '환불됨', failed: '결제 실패'
   };
+
+  // PDF 재발송 (resend-pdf Edge Function) — 가입 이메일로만 발송됨
+  async function resendPdf(body, btn) {
+    const orig = btn.textContent;
+    btn.disabled = true; btn.textContent = '발송 중...';
+    try {
+      const { error } = await supabase.functions.invoke('resend-pdf', { body });
+      if (error) {
+        let serverMsg = '';
+        try { serverMsg = (await error.context?.json())?.error || ''; } catch {}
+        throw new Error(serverMsg || error.message);
+      }
+      alert('가입하신 이메일로 PDF 다운로드 링크를 다시 보냈습니다.\n메일함(스팸함 포함)을 확인해주세요.');
+    } catch (e) {
+      alert('재발송 실패: ' + (e?.message || e));
+    } finally {
+      btn.disabled = false; btn.textContent = orig;
+    }
+  }
 
   (async () => {
     console.log('[mypage] init start');
@@ -1002,15 +1050,59 @@ html.light .site-footer a,html.light footer a{color:var(--txt)!important;}
       $('sub-card-active').style.display = '';
       setText('sub-badge', sub.plan_code);
       setText('sub-plan-name', sub.plan_code + ' 플랜 (' + (sub.billing_cycle === 'annual' ? '연간' : '월간') + ')');
-      setText('sub-plan-level', sub.plan_code + ' LEVEL');
+      setText('sub-plan-level', sub.level ? sub.level + ' LEVEL' : '레벨 미지정');
       setText('sub-next-date', ymd(sub.expires_at));
       setText('sub-start-date', ymd(sub.started_at));
       setText('sub-autorenew', sub.auto_renew ? '활성' : '비활성');
-      setText('sub-status-label', sub.status === 'active' ? '구독 중' : sub.status);
+
+      // 결제금액 — 가격 권위 소스는 landing.html (변경 시 동기화)
+      const PLAN_PRICES = { LIGHT:{monthly:11900,annual:119000}, STANDARD:{monthly:24900,annual:249000}, PREMIUM:{monthly:58900,annual:589000} };
+      const pp = PLAN_PRICES[sub.plan_code];
+      setText('sub-price', pp
+        ? (sub.billing_cycle === 'annual' ? won(pp.annual) + ' /년' : won(pp.monthly) + ' /월')
+        : '-');
+
+      const SUB_STATUS = { active:'구독 중', cancelled:'해지 예정', pause_requested:'일시정지 요청', pending:'결제 대기', expired:'만료' };
+      setText('sub-status-label', SUB_STATUS[sub.status] || sub.status);
+      const statusDot = document.querySelector('#sub-card-active .status-dot');
+      if (statusDot && sub.status !== 'active') statusDot.style.background = '#FBBF24';
 
       const lvlBadge = $('side-user-level');
-      if (lvlBadge) { lvlBadge.textContent = sub.plan_code + ' LEVEL'; lvlBadge.style.display = ''; }
-      setText('info-level', sub.plan_code + ' LEVEL');
+      if (lvlBadge && sub.level) { lvlBadge.textContent = sub.level + ' LEVEL'; lvlBadge.style.display = ''; }
+      if (sub.level) setText('info-level', sub.level + ' LEVEL');
+
+      // 레벨 변경 탭: 현재 레벨 표시 + 실제 변경 훅
+      if (sub.level) {
+        const curBtn = document.querySelector(`.level-btn-sm[data-lvl="${sub.level}"]`);
+        if (curBtn) {
+          curBtn.classList.add('selected');
+          const tgt = curBtn.querySelector('.lvl-target-sm');
+          if (tgt && !tgt.textContent.includes('(현재)')) tgt.textContent += ' (현재)';
+        }
+      }
+      // 이번 달 교재 재발송 (이메일 링크 만료·유실 대응)
+      $('btn-resend-monthly')?.addEventListener('click', (e) => resendPdf({ type: 'monthly' }, e.currentTarget));
+
+      window.__tnChangeLevel = async (lvl) => {
+        if (lvl === sub.level) { alert('이미 ' + lvl + ' 레벨을 구독 중입니다.'); return; }
+        const { error } = await supabase.from('subscriptions').update({ level: lvl }).eq('id', sub.id);
+        if (error) { alert('레벨 변경 실패: ' + error.message); return; }
+        sub.level = lvl;
+        setText('sub-plan-level', lvl + ' LEVEL');
+        if (lvlBadge) lvlBadge.textContent = lvl + ' LEVEL';
+        setText('info-level', lvl + ' LEVEL');
+        document.querySelectorAll('.level-btn-sm .lvl-target-sm').forEach(t => {
+          t.textContent = t.textContent.replace(' (현재)', '');
+        });
+        const nb = document.querySelector(`.level-btn-sm[data-lvl="${lvl}"] .lvl-target-sm`);
+        if (nb) nb.textContent += ' (현재)';
+        alert('레벨 변경 완료!\n\n새 레벨: ' + lvl + '\n다음 달 발송분부터 새 레벨 교재가 발송됩니다.');
+      };
+    } else {
+      // 구독 없음 — 레벨 변경 시도 시 안내
+      window.__tnChangeLevel = () => {
+        alert('활성 구독이 없습니다.\n구독 신청 후 레벨을 변경할 수 있습니다.');
+      };
     }
 
     // ── 계정 설정 기본값 ─────────────────
@@ -1100,6 +1192,37 @@ html.light .site-footer a,html.light footer a{color:var(--txt)!important;}
       });
       if (error) { alert('저장 실패: ' + error.message); return; }
       flashMsg('addr-save-msg');
+    });
+
+    // ── 비밀번호 변경 ────────────────────
+    $('btn-change-pw')?.addEventListener('click', async () => {
+      const pwMsg = $('pw-change-msg');
+      const showPwMsg = (text, ok) => {
+        if (!pwMsg) return;
+        pwMsg.textContent = text;
+        pwMsg.style.color = ok ? 'var(--accent)' : '#F87171';
+      };
+      const cur = $('pw-current').value;
+      const nw  = $('pw-new').value;
+      const cf  = $('pw-confirm').value;
+      if (!cur) { showPwMsg('현재 비밀번호를 입력해주세요.', false); return; }
+      if (!nw || nw.length < 8) { showPwMsg('새 비밀번호는 8자 이상이어야 합니다.', false); return; }
+      if (nw !== cf) { showPwMsg('새 비밀번호가 서로 일치하지 않습니다.', false); return; }
+      if (nw === cur) { showPwMsg('현재 비밀번호와 다른 비밀번호를 사용해주세요.', false); return; }
+
+      const pwBtn = $('btn-change-pw');
+      pwBtn.disabled = true; pwBtn.textContent = '변경 중...';
+      try {
+        // 현재 비밀번호 재인증 (소셜 로그인 계정은 여기서 실패 → 안내)
+        const { error: reErr } = await supabase.auth.signInWithPassword({ email: user.email, password: cur });
+        if (reErr) { showPwMsg('현재 비밀번호가 올바르지 않습니다.', false); return; }
+        const { error } = await supabase.auth.updateUser({ password: nw });
+        if (error) { showPwMsg('변경 실패: ' + error.message, false); return; }
+        $('pw-current').value = ''; $('pw-new').value = ''; $('pw-confirm').value = '';
+        showPwMsg('✓ 비밀번호가 변경되었습니다.', true);
+      } finally {
+        pwBtn.disabled = false; pwBtn.textContent = '변경';
+      }
     });
 
     // ── 구독 해지 ────────────────────────
@@ -1498,27 +1621,47 @@ html.light .site-footer a,html.light footer a{color:var(--txt)!important;}
     }
 
     // ── 결제 내역 로드 ───────────────────
-    const { data: orders } = await supabase
+    const { data: orders, error: ordersErr } = await supabase
       .from('orders')
       .select('*, order_items(*)')
       .eq('user_id', user.id)
       .order('created_at', { ascending: false });
-    if (orders && orders.length > 0) {
+    if (ordersErr) {
+      // 에러를 "내역 없음"으로 위장하지 않는다 — 명시적 실패 표시
+      const he = $('history-empty');
+      if (he) he.textContent = '결제 내역을 불러오지 못했습니다. 새로고침 후 다시 시도해주세요.';
+      const de = $('delivery-empty');
+      if (de) de.textContent = '배송 정보를 불러오지 못했습니다. 새로고침 후 다시 시도해주세요.';
+      console.warn('[mypage] orders load failed:', ordersErr.message);
+    }
+    if (!ordersErr && orders && orders.length > 0) {
       const listEl = $('history-list');
       $('history-empty').remove();
       listEl.innerHTML = orders.map(o => {
         const itemNames = (o.order_items || []).map(it => escapeHtml(it.product_snapshot?.name || '상품') + (it.quantity > 1 ? ` x${Number(it.quantity) || 1}` : '')).join(', ');
-        const statusClass = o.status === 'paid' || o.status === 'delivered' || o.status === 'shipped' ? 'status-paid'
-                          : o.status === 'pending' ? 'status-scheduled' : 'status-paid';
+        const statusClass = ['paid','delivered','shipped'].includes(o.status) ? 'status-paid'
+                          : o.status === 'pending' ? 'status-scheduled' : 'status-failed';
+        // 결제완료 단품(디지털) 주문 — 이메일 링크 만료 시 self-service 재발송
+        const hasDigital = ['paid','shipped','delivered'].includes(o.status)
+          && (o.order_items || []).some(it => it.product_snapshot?.kind !== 'subscription');
+        const resendBtn = hasDigital
+          ? `<button type="button" class="btn-sm btn-sm-outline" data-resend-order="${escapeHtml(o.id)}" style="font-size:.68rem;padding:4px 10px;">PDF 다시 받기</button>`
+          : '';
         return `
           <div class="history-item">
             <div class="history-date">${ymd(o.paid_at || o.created_at)}</div>
             <div class="history-desc">${itemNames || '주문 #' + escapeHtml(o.order_number)}</div>
-            <div class="history-amount">${won(o.total_amount)}</div>
+            <div class="history-amount">${won(o.total_amount)}${o.discount_amount > 0 ? ` <span style="font-size:.68rem;color:var(--accent);">(쿠폰 -${won(o.discount_amount)})</span>` : ''}</div>
             <span class="history-status ${statusClass}">${escapeHtml(STATUS_LABEL[o.status] || o.status)}</span>
+            ${resendBtn}
           </div>
         `;
       }).join('');
+
+      // PDF 재발송 버튼 바인딩
+      listEl.querySelectorAll('[data-resend-order]').forEach(btn => {
+        btn.addEventListener('click', () => resendPdf({ type: 'order', orderId: btn.getAttribute('data-resend-order') }, btn));
+      });
 
       // 배송 관리 탭: 배송 중/완료된 주문만
       const shipping = orders.filter(o => ['paid','shipped','delivered'].includes(o.status));
@@ -1593,6 +1736,7 @@ html.light .site-footer a,html.light footer a{color:var(--txt)!important;}
         .order('created_at', { ascending: false });
       if (error) {
         console.warn('[reviews] load failed:', error.message);
+        myReviewsList.innerHTML = '<div style="text-align:center;padding:24px;color:#F87171;font-size:.82rem;">리뷰를 불러오지 못했습니다. 새로고침 후 다시 시도해주세요.</div>';
         return;
       }
       if (!rows || rows.length === 0) {
@@ -1604,7 +1748,7 @@ html.light .site-footer a,html.light footer a{color:var(--txt)!important;}
           <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px;flex-wrap:wrap;">
             <div>
               <span style="color:#FFC857;font-size:.95rem;letter-spacing:2px;">${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}</span>
-              <span style="margin-left:10px;font-size:.72rem;color:var(--dim);">${r.level || ''} · ${ymd(r.created_at)}</span>
+              <span style="margin-left:10px;font-size:.72rem;color:var(--dim);">${escapeHtml(r.level || '')} · ${ymd(r.created_at)}</span>
             </div>
             <div style="display:flex;gap:6px;align-items:center;">
               ${r.is_published
@@ -1736,6 +1880,11 @@ html.light .site-footer a,html.light footer a{color:var(--txt)!important;}
 
         const { error } = await supabase.from('event_submissions').insert(payload);
         if (error) {
+          // INSERT 실패 시 이미 올라간 증빙 파일 회수 (고아 파일 방지, best-effort)
+          const orphans = [payload.proof_path, payload.proof_path_2].filter(Boolean);
+          if (orphans.length) {
+            supabase.storage.from('event-proofs').remove(orphans).catch(() => {});
+          }
           if (error.code === '23505') {
             throw new Error('이미 제출하셨거나 검토 중인 인증이 있습니다.');
           }
@@ -1831,20 +1980,21 @@ html.light .site-footer a,html.light footer a{color:var(--txt)!important;}
     // ── 내 쿠폰함 (DOM 빌드, XSS-safe) ──────────────────
     async function loadMyCoupons() {
       if (!myCouponsList) return;
-      // 본인이 사용한/발급받은 쿠폰은 coupon_uses 를 통해 join
-      // coupons 테이블 자체는 글로벌 쿠폰 정의 (user_id 컬럼 없음)
-      const { data: uses, error } = await supabase
-        .from('coupon_uses')
-        .select('coupon_id, used_at, coupons(*)')
+      // 발급형 쿠폰은 coupons.user_id 로 직접 조회 (019 RLS: 본인 쿠폰 읽기)
+      const { data: coupons, error } = await supabase
+        .from('coupons')
+        .select('*')
         .eq('user_id', user.id)
-        .order('used_at', { ascending: false });
+        .order('created_at', { ascending: false });
+      myCouponsList.replaceChildren();
       if (error) {
         console.warn('[coupons] load failed:', error.message);
+        const errEl = document.createElement('div');
+        errEl.style.cssText = 'text-align:center;padding:24px;color:#F87171;font-size:.82rem;';
+        errEl.textContent = '쿠폰을 불러오지 못했습니다. 새로고침 후 다시 시도해주세요.';
+        myCouponsList.appendChild(errEl);
         return;
       }
-      // coupon_uses → coupons 형태로 평탄화
-      const coupons = (uses || []).map(u => u.coupons).filter(Boolean);
-      myCouponsList.replaceChildren();
       if (!coupons || coupons.length === 0) {
         const empty = document.createElement('div');
         empty.id = 'my-coupons-empty';
@@ -1853,11 +2003,16 @@ html.light .site-footer a,html.light footer a{color:var(--txt)!important;}
         myCouponsList.appendChild(empty);
         return;
       }
-      const rewardLabel = (kind, value) => {
-        if (kind === 'free_month_light') return 'LIGHT 1개월 무료';
-        if (kind === 'percent_off') return (value || 0) + '% 할인';
-        if (kind === 'fixed_off') return won(value || 0) + ' 할인';
-        return '쿠폰';
+      const rewardLabel = (c) => {
+        if (c.reward_kind === 'discount_30_next') return '다음 결제 30% 할인';
+        if (c.reward_kind === 'free_month_any') return '한 달 무료';
+        if (c.reward_kind === 'free_month_light') return 'LIGHT 1개월 무료';
+        if (c.reward_kind === 'free_6months') return '6개월 무료';
+        if (c.reward_kind === 'percent_off') return (c.reward_value || c.discount_value || 0) + '% 할인';
+        if (c.reward_kind === 'fixed_off') return won(c.reward_value || c.discount_value || 0) + ' 할인';
+        if (c.discount_type === 'percentage' && c.discount_value > 0) return c.discount_value + '% 할인';
+        if (c.discount_type === 'fixed' && c.discount_value > 0) return won(c.discount_value) + ' 할인';
+        return c.description || '쿠폰';
       };
       const now = Date.now();
       coupons.forEach(c => {
@@ -1877,7 +2032,7 @@ html.light .site-footer a,html.light footer a{color:var(--txt)!important;}
         kicker.textContent = '⭐ ' + (c.type || 'coupon');
         const reward = document.createElement('div');
         reward.style.cssText = 'font-weight:900;font-size:1rem;color:#fff;';
-        reward.textContent = rewardLabel(c.reward_kind, c.reward_value);
+        reward.textContent = rewardLabel(c);
         headLeft.append(kicker, reward);
         const badge = document.createElement('span');
         badge.style.cssText = `font-size:.65rem;font-weight:700;letter-spacing:.5px;padding:4px 10px;background:${status.bg};color:${status.color};border-radius:999px;`;
@@ -1890,7 +2045,8 @@ html.light .site-footer a,html.light footer a{color:var(--txt)!important;}
         code.style.cssText = "font-family:'Space Grotesk','Courier New',monospace;color:#fff;background:rgba(0,0,0,.3);padding:3px 8px;border-radius:4px;letter-spacing:1px;";
         code.textContent = c.code || '';
         const meta = document.createElement('span');
-        meta.textContent = '~ ' + ymd(c.valid_until) + (used ? ' · 사용일 ' + ymd(c.used_at) : '');
+        meta.textContent = '~ ' + ymd(c.valid_until)
+          + (used ? ' · 사용일 ' + ymd(c.used_at) : ' · 구독 신청 시 쿠폰란에 코드를 입력하세요');
         foot.append(code, meta);
 
         row.append(head, foot);

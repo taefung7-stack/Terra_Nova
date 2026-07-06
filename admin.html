@@ -1249,12 +1249,28 @@ html.light .site-footer a,html.light footer a{color:var(--txt)!important;}
     const code = makeCouponCode(meta.codePrefix);
     const validUntil = new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toISOString();
 
+    // 보상별 실제 할인 필드 — validate_coupon/create-order 가 이 값으로 결제 금액을 계산.
+    // 무료개월 쿠폰은 월간 정기결제 전용: 첫 결제 100% 할인 + reward_value 개월 무료 제공.
+    const REWARD_FIELDS = {
+      discount_30_next: { discount_type: 'percentage', discount_value: 30,  reward_value: 30, applicable_billing: [] },
+      free_month_any:   { discount_type: 'percentage', discount_value: 100, reward_value: 1,  applicable_billing: ['monthly'] },
+      free_6months:     { discount_type: 'percentage', discount_value: 100, reward_value: 6,  applicable_billing: ['monthly'] }
+    };
+    const rf = REWARD_FIELDS[meta.kind];
+    if (!rf) { alert('보상 매핑이 없는 이벤트 유형: ' + meta.kind); return; }
+
     const { data: coupon, error: couponErr } = await supabase.from('coupons').insert({
       user_id: sub.user_id,
       code,
+      description: `${meta.name} · ${meta.reward}`,
       type: meta.type,
       reward_kind: meta.kind,
-      reward_value: null,
+      reward_value: rf.reward_value,
+      discount_type: rf.discount_type,
+      discount_value: rf.discount_value,
+      applicable_billing: rf.applicable_billing,
+      max_uses: 1,
+      max_uses_per_user: 1,
       valid_from: new Date().toISOString(),
       valid_until: validUntil
     }).select('id').single();
@@ -1273,7 +1289,7 @@ html.light .site-footer a,html.light footer a{color:var(--txt)!important;}
       alert('제출 업데이트 실패: ' + updErr.message + '\n쿠폰은 발급되었으니 SQL Editor 에서 수동 보정 필요.');
       return;
     }
-    alert(`✓ 쿠폰 발급 완료\n\n코드: ${code}\n혜택: ${meta.reward}\n유효: 90일`);
+    alert(`✓ 쿠폰 발급 완료\n\n코드: ${code}\n혜택: ${meta.reward}\n유효: 90일\n\n사용자 마이페이지 → 리뷰작성 탭 "내 쿠폰함"에 자동 표시됩니다.`);
     await loadEvents();
   }
 

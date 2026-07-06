@@ -98,6 +98,7 @@ Deno.serve(async (req) => {
   }
   const kind = body.kind;
   const shipping = body.shipping || {};
+  const couponCode = typeof body.coupon_code === 'string' ? body.coupon_code.trim().toUpperCase() : '';
 
   // 공통 결과 변수
   let orderName = '';
@@ -105,6 +106,10 @@ Deno.serve(async (req) => {
   let lineItems: Array<{ product_id?: string; product_snapshot: any; quantity: number; unit_price: number; subtotal: number }> = [];
   let paymentMethod: string | null = null;
   let paymentIdPrefix = 'tn';
+  // 쿠폰 적용 결과 (구독 주문만 지원)
+  let couponId: string | null = null;
+  let discountAmount = 0;
+  let freeMonths = 0;
 
   // ─── 3a. 구독 주문 ────────────────────────────────────
   if (kind === 'subscription') {
@@ -140,6 +145,54 @@ Deno.serve(async (req) => {
       unit_price: totalAmount,
       subtotal: totalAmount,
     }];
+
+    // ── 쿠폰 서버사이드 검증·적용 (구독 주문만) ──────────────
+    // 검증 규칙은 migrations/019 validate_coupon v2 와 동일해야 한다 (동기화 주의).
+    if (couponCode) {
+      const { data: coupon, error: cErr } = await sb
+        .from('coupons')
+        .select('*')
+        .eq('code', couponCode)
+        .eq('is_active', true)
+        .maybeSingle();
+      if (cErr) return jsonError('Coupon lookup failed: ' + cErr.message, 500);
+      if (!coupon) return jsonError('존재하지 않는 쿠폰입니다', 400);
+      if (coupon.user_id && coupon.user_id !== user.id) return jsonError('본인에게 발급된 쿠폰이 아닙니다', 403);
+      if (coupon.user_id && coupon.used_at) return jsonError('이미 사용한 쿠폰입니다', 400);
+      const nowTs = Date.now();
+      if (coupon.valid_from && nowTs < new Date(coupon.valid_from).getTime()) return jsonError('아직 사용할 수 없는 쿠폰입니다', 400);
+      if (coupon.valid_until && nowTs > new Date(coupon.valid_until).getTime()) return jsonError('만료된 쿠폰입니다', 400);
+      if (Array.isArray(coupon.applicable_plans) && coupon.applicable_plans.length > 0
+          && !coupon.applicable_plans.includes(plan)) return jsonError('이 플랜에는 적용할 수 없는 쿠폰입니다', 400);
+      if (Array.isArray(coupon.applicable_billing) && coupon.applicable_billing.length > 0
+          && !coupon.applicable_billing.includes(cycle)) return jsonError('이 결제 주기에는 적용할 수 없는 쿠폰입니다', 400);
+
+      // 사용 횟수 (coupon_uses 는 webhook 이 결제 확정 시 기록)
+      const { count: totalUses } = await sb.from('coupon_uses')
+        .select('id', { count: 'exact', head: true }).eq('coupon_id', coupon.id);
+      if (coupon.max_uses != null && (totalUses ?? 0) >= coupon.max_uses) return jsonError('사용 한도가 초과된 쿠폰입니다', 400);
+      const { count: userUses } = await sb.from('coupon_uses')
+        .select('id', { count: 'exact', head: true }).eq('coupon_id', coupon.id).eq('user_id', user.id);
+      if ((userUses ?? 0) >= (coupon.max_uses_per_user ?? 1)) return jsonError('이미 사용한 쿠폰입니다', 400);
+
+      // 보상 해석 — 무료개월(월간 전용: 첫 결제 0원 + expires_at 연장) / 퍼센트 / 정액
+      freeMonths = coupon.reward_kind === 'free_6months' ? 6
+        : (coupon.reward_kind === 'free_month_any' || coupon.reward_kind === 'free_month_light') ? 1 : 0;
+      if (freeMonths > 0) {
+        if (cycle !== 'monthly') return jsonError('이 쿠폰은 월간 정기결제에서만 사용할 수 있습니다', 400);
+        discountAmount = totalAmount;
+      } else if (coupon.reward_kind === 'discount_30_next' && !(coupon.discount_value > 0)) {
+        discountAmount = Math.floor(totalAmount * 30 / 100); // 레거시 0원 발급분 폴백
+      } else if (coupon.discount_type === 'percentage') {
+        discountAmount = Math.floor(totalAmount * (coupon.discount_value || 0) / 100);
+        if (coupon.max_discount_amount != null) discountAmount = Math.min(discountAmount, coupon.max_discount_amount);
+      } else {
+        discountAmount = Math.min(coupon.discount_value || 0, totalAmount);
+      }
+      discountAmount = Math.max(0, Math.min(discountAmount, totalAmount));
+      couponId = coupon.id;
+      totalAmount -= discountAmount;
+    }
   }
   // ─── 3b. 마켓 주문 (단어장·모의고사 등) ─────────────────────────
   else if (kind === 'market') {
@@ -203,7 +256,10 @@ Deno.serve(async (req) => {
     return jsonError(`Invalid kind: ${kind} (expected 'subscription' or 'market')`, 400);
   }
 
-  if (totalAmount <= 0) return jsonError('totalAmount must be > 0', 400);
+  // 0원은 무료개월 쿠폰(월간 빌링키 발급 후 첫 결제 생략)일 때만 허용
+  if (totalAmount < 0 || (totalAmount === 0 && !(couponId && freeMonths > 0))) {
+    return jsonError('totalAmount must be > 0', 400);
+  }
 
   // ─── 4. orders INSERT ───────────────────────────────
   const paymentId = makePaymentId(paymentIdPrefix, kind === 'subscription');
@@ -220,7 +276,12 @@ Deno.serve(async (req) => {
       shipping_address: shipping.address || null,
       shipping_detail: shipping.detail || null,
       shipping_zipcode: shipping.zipcode || null,
-      memo: kind === 'subscription' ? `plan=${body.plan} cycle=${body.cycle} level=${body.level}` : null,
+      coupon_id: couponId,
+      discount_amount: discountAmount,
+      free_months: freeMonths,
+      memo: kind === 'subscription'
+        ? `plan=${body.plan} cycle=${body.cycle} level=${body.level}${couponCode ? ` coupon=${couponCode} -${discountAmount}` : ''}`
+        : null,
     })
     .select('id, order_number')
     .single();
@@ -248,6 +309,8 @@ Deno.serve(async (req) => {
       ok: true,
       payment_id: paymentId,
       verified_total: totalAmount,
+      discount_amount: discountAmount,
+      free_months: freeMonths,
       order_id: order.id,
       order_number: order.order_number,
       order_name: orderName,

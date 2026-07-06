@@ -16,7 +16,7 @@
 4. 성공 시 아래 검증 쿼리 실행:
 
 ```sql
--- 버킷 200MB 한도 확인
+-- 버킷 10MB 한도 확인
 SELECT id, file_size_limit/1024/1024 AS limit_mb FROM storage.buckets WHERE id = 'event-proofs';
 -- 테이블 생성 확인 (0 rows로 출력되면 OK)
 SELECT count(*) FROM public.event_submissions;
@@ -202,3 +202,19 @@ using (
 - `mypage.html → 리뷰 작성 탭` 에서 3개 이벤트 인증 폼이 분리되어 보이는지
 - `admin.html → 이벤트 제출` 탭에서 pending 항목 검토 + 승인 시 자동 쿠폰 발급
 - 본인 마이페이지 "내 쿠폰함" 에 발급된 쿠폰 표시
+
+## 7. 쿠폰 코드 체계 (2026-07-06 확정)
+
+| 이벤트 | 코드 prefix | reward_kind | 실제 할인 필드 | 사용 조건 |
+|---|---|---|---|---|
+| 리뷰 이벤트 | `TN-EV-RV-XXXX-XXXX` | `discount_30_next` | percentage 30% | 월간/연간 |
+| SNS 후기 | `TN-EV-SN-XXXX-XXXX` | `free_month_any` | percentage 100% (첫 결제 0원) + 1개월 무료 | 월간 정기결제만 |
+| 성적인증 | `TN-EV-GR-XXXX-XXXX` | `free_6months` | percentage 100% (첫 결제 0원) + 6개월 무료 | 월간 정기결제만 |
+
+- 발급: admin.html 이벤트 승인 시 자동 (user_id 기명, max_uses 1, 유효 90일).
+- 표시: 사용자 mypage "내 쿠폰함" (coupons 본인 RLS — migration 019).
+- 적용: order.html 쿠폰란 → create-order 서버 검증 → verified_total 에 반영.
+- 사용 처리: portone-webhook 결제 확정 시 coupon_uses 기록 + coupons.used_at 마킹.
+- 무료개월: 빌링키 발급 후 첫 결제 생략, subscriptions.expires_at 을 무료 개월수만큼 연장.
+  무료 기간 종료 후 renew-subscriptions 가 정상 과금 시작.
+- (구 문서 REVIEW_EVENT_SETUP.md 의 TN-RV 체계는 폐기 — 이 표가 권위 소스)

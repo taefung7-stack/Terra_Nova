@@ -31,3 +31,7 @@ verify_jwt = false
 # dispatch-order-pdf: portone-webhook(서버)에서 호출. 자체 INTERNAL_EMAIL_SECRET 검증.
 [functions.dispatch-order-pdf]
 verify_jwt = false
+
+# resend-pdf: 마이페이지 "PDF 다시 받기" — 로그인 사용자 JWT 필수.
+[functions.resend-pdf]
+verify_jwt = true

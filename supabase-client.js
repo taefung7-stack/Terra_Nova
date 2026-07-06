@@ -153,12 +153,13 @@ export async function getActiveSubscription(userId) {
   }
   if (data) return data;
 
-  // 폴백: 가장 최근 active(만료 무관) — 자동결제 대기/실패 상태도 노출
+  // 폴백: 가장 최근 active(만료 무관) — 결제 대기 상태도 노출
+  // (status CHECK: active|cancelled|expired|pending|pause_requested — 014 참조)
   const { data: fallback, error: fbErr } = await supabase
     .from('subscriptions')
     .select('*')
     .eq('user_id', userId)
-    .in('status', ['active', 'pending', 'payment_failed'])
+    .in('status', ['active', 'pending', 'pause_requested'])
     .order('expires_at', { ascending: false })
     .limit(1)
     .maybeSingle();

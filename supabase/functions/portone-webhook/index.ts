@@ -188,7 +188,7 @@ async function handlePayment(data: { paymentId: string; txId: string }) {
   // order_items.product_snapshot 도 함께 조회 (Codex 3차 검수 발견 — customData 대신 서버 스냅샷 신뢰)
   const { data: existing } = await supabase
     .from('orders')
-    .select('id, status, total_amount, user_id, order_items(product_snapshot, quantity, unit_price)')
+    .select('id, status, total_amount, user_id, coupon_id, free_months, order_items(product_snapshot, quantity, unit_price)')
     .eq('portone_payment_id', data.paymentId).maybeSingle();
 
   if (existing && existing.status === 'paid') {
@@ -284,10 +284,14 @@ async function handlePayment(data: { paymentId: string; txId: string }) {
 
   // 4. 구독 결제인지 일반 결제인지 분기 — 모든 값은 server-side 스냅샷 신뢰
   if (isSubscription) {
-    await activateSubscription(verifiedUserId, verifiedPlanCode!, verifiedBillingCycle, verifiedLevel, payment);
+    await activateSubscription(verifiedUserId, verifiedPlanCode!, verifiedBillingCycle, verifiedLevel, payment,
+      Number((existing as any).free_months) || 0);
   } else {
     await createOrder(verifiedUserId, payment, items, shipping);
   }
+
+  // 4-b. 쿠폰 사용 처리 — 결제가 확정된 시점에만 기록 (이탈한 pending 주문은 쿠폰 소모 안 함)
+  await markCouponUsed((existing as any).coupon_id, verifiedUserId, existing.id);
 
   // 5. 결제 확인 이메일 (best-effort) — verified 값 사용
   if (payment.customer?.email) {
@@ -360,10 +364,27 @@ async function createOrder(userId: string, payment: any, items: any[], shipping:
   // order_items 는 create-order 시점에 이미 INSERT 됐으므로 추가 작업 없음.
 }
 
-async function activateSubscription(userId: string, planCode: string, billingCycle: string, level: string | null, payment: any) {
+// 쿠폰 사용 확정: coupon_uses 기록 + 발급형 쿠폰 used_at 마킹 (idempotent — UNIQUE(coupon_id,user_id))
+async function markCouponUsed(couponId: string | null, userId: string, orderId: string) {
+  if (!couponId) return;
+  try {
+    const { error: useErr } = await supabase.from('coupon_uses')
+      .insert({ coupon_id: couponId, user_id: userId, order_id: orderId });
+    if (useErr && useErr.code !== '23505') throw useErr; // 중복 웹훅 재호출은 무시
+    await supabase.from('coupons').update({ used_at: new Date().toISOString() })
+      .eq('id', couponId).not('user_id', 'is', null).is('used_at', null);
+  } catch (err) {
+    // 쿠폰 마킹 실패는 결제 처리 자체를 막지 않음 (로그만 — 수동 보정 가능)
+    console.error('[webhook] markCouponUsed failed (non-fatal):', (err as Error).message, { couponId, orderId });
+  }
+}
+
+async function activateSubscription(userId: string, planCode: string, billingCycle: string, level: string | null, payment: any, freeMonths = 0) {
+  // 무료개월 쿠폰(free_months>0)은 월간 첫 결제 0원 + 무료 기간만큼 만료일 연장 → 그 후 정상 갱신 과금
+  const addMonths = billingCycle === 'annual' ? 0 : Math.max(1, freeMonths);
   const expiresAt = new Date();
   if (billingCycle === 'annual') expiresAt.setFullYear(expiresAt.getFullYear() + 1);
-  else expiresAt.setMonth(expiresAt.getMonth() + 1);
+  else expiresAt.setMonth(expiresAt.getMonth() + addMonths);
 
   // 상위 handlePayment 에서 existing 검증 완료 — 여기는 pending → paid UPDATE 만
   const { data: updated, error: updErr } = await supabase
@@ -396,7 +417,7 @@ async function activateSubscription(userId: string, planCode: string, billingCyc
     // 남은 기간이 있으면 그 끝에서부터 연장 (두 번 결제한 만큼 손해 없게)
     const extendFrom = new Date(Math.max(Date.now(), new Date(dupe.expires_at).getTime()));
     if (billingCycle === 'annual') extendFrom.setFullYear(extendFrom.getFullYear() + 1);
-    else extendFrom.setMonth(extendFrom.getMonth() + 1);
+    else extendFrom.setMonth(extendFrom.getMonth() + addMonths);
 
     const { error: extErr } = await supabase.from('subscriptions').update({
       plan_code: planCode,
@@ -448,7 +469,7 @@ async function handleBillingKeyIssued(data: any) {
   // 1. order 조회 (pending) + 스냅샷에서 plan/cycle/level 복원
   const { data: order, error: orderErr } = await supabase
     .from('orders')
-    .select('id, user_id, status, total_amount, order_items(product_snapshot)')
+    .select('id, user_id, status, total_amount, coupon_id, free_months, order_items(product_snapshot)')
     .eq('portone_payment_id', issueId)
     .maybeSingle();
   if (orderErr || !order) {
@@ -480,6 +501,35 @@ async function handleBillingKeyIssued(data: any) {
   }
 
   const amount = Number(order.total_amount) || 0;
+  const freeMonths = Number((order as any).free_months) || 0;
+
+  // 무료개월 쿠폰: 첫 결제 0원 → PortOne 청구 생략, 빌링키만 저장하고 구독 즉시 활성화.
+  // 무료 기간(expires_at + freeMonths) 이후 renew-subscriptions 가 정상 과금 시작.
+  if (amount === 0 && (order as any).coupon_id && freeMonths > 0) {
+    // activateSubscription 은 payment.id(=portone_payment_id) 로 주문을 paid 마킹하므로
+    // PortOne 결제 없이도 동일 형태의 합성 payment 객체를 만들어 재사용한다.
+    const syntheticPayment = {
+      id: issueId,
+      billingKey,
+      transactionId: null,
+      paidAt: new Date().toISOString(),
+      method: { type: 'COUPON' },
+    };
+    await activateSubscription(order.user_id, planCode, billingCycle, level, syntheticPayment, freeMonths);
+    await markCouponUsed((order as any).coupon_id, order.user_id, order.id);
+
+    try {
+      await fetch(`${SUPABASE_URL}/functions/v1/dispatch-monthly-pdf`, {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${INTERNAL_EMAIL_SECRET}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userId: order.user_id, level }),
+      });
+    } catch (err) {
+      console.warn('[webhook] free-month post-activation PDF dispatch failed (non-fatal):', (err as Error).message);
+    }
+    return new Response(JSON.stringify({ ok: true, charged: 0, free_months: freeMonths }), { status: 200 });
+  }
+
   if (amount <= 0) {
     return new Response(JSON.stringify({ error: 'invalid_amount' }), { status: 200 });
   }
@@ -521,7 +571,8 @@ async function handleBillingKeyIssued(data: any) {
   }
   // billingKey 를 subscriptions 에 저장하도록 payment 객체에 주입
   payment.billingKey = billingKey;
-  await activateSubscription(order.user_id, planCode, billingCycle, level, payment);
+  await activateSubscription(order.user_id, planCode, billingCycle, level, payment, freeMonths);
+  await markCouponUsed((order as any).coupon_id, order.user_id, order.id);
 
   // 첫 결제 확인 메일 + PDF 발송 (best-effort)
   if (payment.customer?.email) {

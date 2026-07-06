@@ -983,7 +983,10 @@ html.light .site-footer a,html.light footer a{color:var(--txt)!important;}
         return;
       }
       appliedCoupon = data;
-      msg.textContent = '✓ ' + (data.description || '쿠폰이 적용되었습니다') + ' (-' + data.discount_applied.toLocaleString() + '원)';
+      msg.textContent = '✓ ' + (data.description || '쿠폰이 적용되었습니다')
+        + (data.free_months > 0
+          ? ' — 첫 ' + data.free_months + '개월 무료 (오늘 결제 0원)'
+          : ' (-' + data.discount_applied.toLocaleString() + '원)');
       msg.style.color = '#4ADE80';
       updateSummary();
     } catch (err) {
@@ -1145,6 +1148,7 @@ html.light .site-footer a,html.light footer a{color:var(--txt)!important;}
           plan: selectedPlan,
           cycle,
           level: selectedLevel,
+          coupon_code: appliedCoupon?.code || null,  // 서버가 재검증 후 verified_total 에 할인 반영
           shipping: {
             name, phone,
             address: '',  // STANDARD/PREMIUM 일 때 추후 입력 단계 추가 예정
@@ -1153,7 +1157,12 @@ html.light .site-footer a,html.light footer a{color:var(--txt)!important;}
           }
         }
       });
-      if (error) throw error;
+      if (error) {
+        // Edge Function 4xx 응답 본문(쿠폰 반려 사유 등)을 사용자에게 그대로 전달
+        let serverMsg = '';
+        try { serverMsg = (await error.context?.json())?.error || ''; } catch {}
+        throw new Error(serverMsg || error.message);
+      }
       if (!data || !data.payment_id) throw new Error('서버 응답이 올바르지 않습니다');
       orderResp = data;
     } catch (err) {
@@ -1161,6 +1170,15 @@ html.light .site-footer a,html.light footer a{color:var(--txt)!important;}
       alert('주문 생성에 실패했습니다: ' + (err?.message || '알 수 없는 오류'));
       if (btn) { btn.disabled = false; btn.textContent = '구독 신청하기'; }
       return;
+    }
+
+    // 무료개월 쿠폰(첫 결제 0원)이면 정기결제 등록만 진행됨을 안내
+    if (Number(orderResp.verified_total) === 0 && Number(orderResp.free_months) > 0) {
+      if (!confirm(`쿠폰이 적용되어 첫 ${orderResp.free_months}개월은 무료입니다.\n` +
+        `지금은 결제 수단(정기결제)만 등록되며 오늘 청구 금액은 0원입니다.\n계속하시겠습니까?`)) {
+        if (btn) { btn.disabled = false; btn.textContent = '구독 신청하기'; }
+        return;
+      }
     }
 
     // 2. PortOne 결제창 호출
@@ -1220,8 +1238,11 @@ html.light .site-footer a,html.light footer a{color:var(--txt)!important;}
           channelKey,
           issueId: orderResp.payment_id,
           // issueName 에 결제금액을 노출 (입점조건: 정기결제창 결제금액 노출 필수 / 카카오페이 필수 파라미터)
-          issueName: orderResp.order_name + ' / 월 ' + Number(orderResp.verified_total).toLocaleString() + '원',
-          displayAmount: orderResp.verified_total,
+          // 무료개월 쿠폰(첫 결제 0원)은 무료 기간 후 청구될 정상 월 요금을 노출 (0원 표기는 오해·심사 리스크)
+          issueName: orderResp.order_name + ' / 월 '
+            + Number(orderResp.verified_total > 0 ? orderResp.verified_total : monthlyPrice).toLocaleString() + '원'
+            + (Number(orderResp.free_months) > 0 ? ' (첫 ' + orderResp.free_months + '개월 무료)' : ''),
+          displayAmount: orderResp.verified_total > 0 ? orderResp.verified_total : monthlyPrice,
           currency: 'KRW',
           customer: { customerId: session.user.id, ...commonCustomer },
           customData,
