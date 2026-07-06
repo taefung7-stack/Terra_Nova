@@ -3,8 +3,11 @@
 // 이미 <footer> 있는 페이지(index)는 자동 스킵
 // ⚠️ 사업자정보는 site-config.js의 window.BUSINESS_INFO를 참조
 
-(function() {
-  if (document.querySelector('footer.tn-footer') || document.querySelector('footer[data-shared]')) return;
+function buildTnFooter() {
+  // 이미 tn-footer가 있으면(테마 재렌더) 제거 후 다시 만든다.
+  var _existingTn = document.querySelector('footer.tn-footer');
+  if (_existingTn) _existingTn.remove();
+  else if (document.querySelector('footer[data-shared]')) return;
 
   // 사용자 피드백(2026-05-04): 홈(index.html / landing.html)에도 약관·사업자
   // 정보 풀 푸터가 보여야 함. 기존엔 home에 짧은 <footer class="site-footer">
@@ -74,4 +77,8 @@
     <p style="font-size:.7rem;color:${fg};margin-top:14px;">© 2026 Terra Nova. All rights reserved.</p>
   `;
   document.body.appendChild(footer);
-})();
+}
+
+buildTnFooter();
+// 라이트/다크 토글 시 푸터를 그 테마 색으로 다시 렌더.
+window.addEventListener('tn-theme-change', function () { try { buildTnFooter(); } catch (e) {} });

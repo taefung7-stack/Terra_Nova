@@ -130,25 +130,25 @@
       code: 'MARS', grade: '초5',
       cover: 'assets/textbook-previews/mars-p1.jpg',
       headline: '초5 교과서를 영어로',
-      syllabus: ['국어 5-2 · 우리말 어휘 확장', '사회 5-2 · 우리 역사의 시작', '과학 5-2 · 생물과 환경', '수학 5-2 · 약수와 배수']
+      syllabus: ['과학 · 온도와 열의 이동 (Heat on the Move)', '수학 · 분수의 곱셈', '사회 · 우리 국토의 자연환경', '국어 · 글의 짜임과 요약']
     },
     {
-      code: 'SATURN', grade: '고1',
-      cover: 'assets/textbook-previews/saturn-p1.jpg',
-      headline: '고1 통합과학 · 공통수학을 영어로',
-      syllabus: ['통합과학 I-2 · 자연의 구성 물질 (탄소·공유결합)', '공통수학 Ⅱ-2 · 이차함수와 포물선', '통합사회 Ⅱ-1 · 인권 보장과 정의', '영어Ⅰ · 학력평가 어휘 1,800']
+      code: 'TERRA', grade: '중1',
+      cover: 'assets/textbook-previews/terra-p1.jpg',
+      headline: '중1 교과서를 영어로',
+      syllabus: ['과학 · 생물 다양성과 생태계 (Why So Many Kinds of Life?)', '수학 · 정수와 유리수', '사회 · 자연으로 떠나는 여행', '국어 · 요약하며 읽기']
     },
     {
       code: 'JUPITER', grade: '고2',
       cover: 'assets/textbook-previews/jupiter-p1.jpg',
-      headline: '고2 선택과목 · 미적분의 길로',
-      syllabus: ['생명과학Ⅰ Ⅱ-1 · DNA 복제와 유전 정보', '미적분 · 함수의 극한과 연속', '영어 독해와 작문 · 모의고사 어법', '한국지리 · 자연환경과 인간생활']
+      headline: '고2 화학Ⅰ을 영어로',
+      syllabus: ['화학Ⅰ I-2 · 원소의 주기성 (The Table That Predicts the Unknown)', '기하 · 평면 벡터', '생명과학Ⅰ · 세포와 물질대사', '문학과 영상 · 매체 전환']
     },
     {
       code: 'SUN', grade: '고3',
       cover: 'assets/textbook-previews/sun-p1.jpg',
       headline: '고3 수능 직결 · 모의고사 깊이',
-      syllabus: ['한국사 Ⅲ-1 · 조선 통치 체제 (6조 직계제)', '생활과 윤리 Ⅱ-3 · 롤스의 정의론', '독서 · 수능 EBS 연계 지문 깊이', '영어 · 수능 빈출 어법·구문 패턴']
+      syllabus: ['화학반응의 세계 I-2 · 반응 속도와 평형 이동 (How a Balanced Reaction Fights Back)', '기하 · 평면 벡터', '세포와 물질대사 · 세포 호흡과 발효', '역학과 에너지 · 일·에너지와 보존']
     }
   ];
 
@@ -538,6 +538,17 @@
     document.body.classList.add('m-bio-mode');
 
     var bio = el('section', { id: 'm-bio', aria: 'Terra Nova 모바일 홈' });
+
+    // 라이트/다크 토글 버튼 (bio 히어로 우상단 고정) — theme-toggle.js가 아이콘·핸들러를 붙임.
+    var themeBtn = el('button', { cls: 'm-bio-theme theme-toggle', type: 'button', aria: '라이트/다크 모드 전환' });
+    themeBtn.addEventListener('click', function () {
+      var root = document.documentElement;
+      var next = root.classList.contains('light') ? 'dark' : 'light';
+      try { localStorage.setItem('tn-theme', next); } catch (e) {}
+      if (next === 'light') root.classList.add('light'); else root.classList.remove('light');
+      try { window.dispatchEvent(new CustomEvent('tn-theme-change', { detail: { mode: next } })); } catch (e) {}
+    });
+    bio.appendChild(themeBtn);
 
     // Profile header — 큰 워드마크 (Pretendard)
     var profile = el('header', { cls: 'm-bio-profile' });
