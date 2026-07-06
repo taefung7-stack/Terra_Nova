@@ -504,9 +504,28 @@
     color: var(--m-txt) !important;
     text-shadow: none !important;
   }
-  html.light .m-bio-eng { color: var(--m-accent) !important; }
+  html.light .m-bio-eng { color: var(--m-txt) !important; }  /* ENGLISH 검정 (#4) */
   html.light .m-bio-tagline { color: var(--m-txt-dim) !important; }
   html.light .m-bio-social a { background: rgba(0,0,0,0.04) !important; }
+  /* 홈 메뉴 아이콘 배경 — 라이트에서 흰 카드와 구분되도록 진한 민트 (#3) */
+  html.light .m-bio-icon,
+  html.light .m-bio-feat-icon { background: rgba(0,179,122,0.16) !important; }
+  /* 모바일 bio 홈의 모든 제목·라벨 라이트에서 검정 (#2) */
+  html.light .m-bio-rail-title,
+  html.light .m-bio-section,
+  html.light .m-bio-book-title,
+  html.light .m-bio-link-title,
+  html.light .m-bio-feat-title,
+  html.light .m-list-title,
+  html.light .m-bio-link .m-bio-link-label { color: var(--m-txt) !important; }
+  /* 모바일 전 페이지 제목류 라이트에서 검정 (#2 — 빠진 곳 안전망) */
+  html.light h1,
+  html.light h2,
+  html.light h3,
+  html.light .page-title,
+  html.light .section-title,
+  html.light .form-section-title,
+  html.light .m-section-title { color: #000 !important; text-shadow: none !important; }
 
   /* ── 모바일 bio 히어로용 테마 토글 버튼 (우상단 고정) ── */
   .m-bio-theme {
