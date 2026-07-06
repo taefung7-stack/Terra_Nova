@@ -4205,6 +4205,16 @@ html.light .btn-pri,html.light .btn-pri *{text-shadow:none!important;}
 html.light .pcard-front,html.light .pcard-back{border:1.5px solid rgba(0,0,0,.10)!important;box-shadow:0 10px 26px rgba(10,40,30,.08)!important;}
 html.light h1,html.light h2,html.light h3,html.light .story-title,html.light .story-kicker{text-shadow:none!important;}
 </style>
+<style id="light-title-fix">
+/* 라이트 모드: 페이지 대제목 검정 + 모든 텍스트 그림자 제거 (2026-07-06 피드백) */
+html.light h1,html.light h2,html.light .page-title,html.light .story-title{color:var(--txt)!important;text-shadow:none!important;}
+html.light h1 *,html.light h2 *,html.light .page-title *{text-shadow:none!important;}
+html.light .site-nav,html.light .site-nav *{text-shadow:none!important;}
+</style>
+<style id="hero-light-fix">
+html.light .hero-tagline,html.light .hero-english{text-shadow:none!important;color:var(--txt)!important;}
+html.light .hero-fallback h1{color:var(--txt)!important;text-shadow:none!important;}
+</style>
 </head>
 <body class="light-theme">
 <a href="#main" class="skip-link">본문으로 건너뛰기</a>
@@ -5665,7 +5675,7 @@ html.light h1,html.light h2,html.light h3,html.light .story-title,html.light .st
       ctx.clearRect(0, 0, 2048, 384);
       // 라이트 모드면 짙은 잉크색, 다크면 기존 흰색
       var lightMode = document.documentElement.classList.contains('light');
-      ctx.fillStyle = lightMode ? 'rgba(22, 24, 28, 0.92)' : 'rgba(240, 247, 244, 0.92)';
+      ctx.fillStyle = lightMode ? 'rgba(12, 14, 17, 1)' : 'rgba(240, 247, 244, 0.92)';
       ctx.font = '700 280px "Space Grotesk", system-ui, sans-serif';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';

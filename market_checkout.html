@@ -182,6 +182,20 @@ html.light .site-footer a,html.light footer a{color:var(--txt)!important;}
 <!-- PortOne SDK + 키 설정은 인라인 스크립트보다 먼저 로드되어야 isPgReady()가 정상 동작함 -->
 <script src="https://cdn.portone.io/v2/browser-sdk.js"></script>
 <script src="./site-config.js"></script>
+<style id="light-title-fix">
+/* 라이트 모드: 페이지 대제목 검정 + 모든 텍스트 그림자 제거 (2026-07-06 피드백) */
+html.light h1,html.light h2,html.light .page-title,html.light .story-title{color:var(--txt)!important;text-shadow:none!important;}
+html.light h1 *,html.light h2 *,html.light .page-title *{text-shadow:none!important;}
+html.light .site-nav,html.light .site-nav *{text-shadow:none!important;}
+</style>
+<style id="checkout-light-fix">
+/* 라이트 모드: 입력칸·수량 스테퍼 화이트 + 검정 글씨 (2026-07-06 피드백) */
+html.light .field input,html.light .field textarea,html.light .field select{background:#FFFFFF!important;color:var(--txt)!important;border:1px solid rgba(0,0,0,.18)!important;}
+html.light .field input:read-only{background:#F4F6F7!important;color:var(--txt)!important;}
+html.light .field input::placeholder{color:rgba(20,22,28,.35)!important;}
+html.light .qty-ctrl button{background:#FFFFFF!important;color:var(--txt)!important;border:1px solid rgba(0,0,0,.20)!important;}
+html.light .qty-val{color:var(--txt)!important;}
+</style>
 </head>
 <body>
 

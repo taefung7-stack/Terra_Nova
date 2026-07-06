@@ -250,6 +250,15 @@ html.light .theme-toggle{background:rgba(0,0,0,.04);}
 <link rel="stylesheet" href="mobile-app.css">
 <script src="mobile-app.js" defer></script>
 <script src="assets/js/clarity.js" async></script>
+<style id="light-title-fix">
+/* 라이트 모드: 페이지 대제목 검정 + 모든 텍스트 그림자 제거 (2026-07-06 피드백) */
+html.light h1,html.light h2,html.light .page-title,html.light .story-title{color:var(--txt)!important;text-shadow:none!important;}
+html.light h1 *,html.light h2 *,html.light .page-title *{text-shadow:none!important;}
+html.light .site-nav,html.light .site-nav *{text-shadow:none!important;}
+</style>
+<style id="mypage-light-panel">
+html.light{--tn-panel:#EAF4EF;--tn-bar:rgba(0,0,0,.10);}
+</style>
 </head>
 <body data-page="mypage" data-mobile-no-fab="all">
 
@@ -1545,7 +1554,7 @@ html.light .site-footer a,html.light footer a{color:var(--txt)!important;}
         const analysis = strengthAnalysisOf(scores);
 
         const areaBox = document.createElement('div');
-        areaBox.style.cssText = 'padding:14px 16px;background:rgba(0,0,0,.22);border-radius:8px;margin-bottom:10px;';
+        areaBox.style.cssText = 'padding:14px 16px;background:var(--tn-panel, rgba(0,0,0,.22));border-radius:8px;margin-bottom:10px;';
 
         const areaTitle = document.createElement('div');
         areaTitle.style.cssText = 'font-size:.72rem;color:var(--dim);font-weight:700;letter-spacing:.08em;margin-bottom:10px;text-transform:uppercase;';
@@ -1583,7 +1592,7 @@ html.light .site-footer a,html.light footer a{color:var(--txt)!important;}
 
           // 막대그래프 (시각만, 숫자 없음)
           const bar = document.createElement('div');
-          bar.style.cssText = 'height:6px;background:rgba(255,255,255,.07);border-radius:4px;overflow:hidden;';
+          bar.style.cssText = 'height:6px;background:var(--tn-bar, rgba(255,255,255,.07));border-radius:4px;overflow:hidden;';
           const fill = document.createElement('div');
           const pct = (typeof v === 'number') ? Math.max(8, Math.min(100, v)) : 0;  // 최소 8%로 표시 (너무 짧지 않게)
           fill.style.cssText = `height:100%;width:${pct}%;background:linear-gradient(90deg,#00FFA3 0%,#33D6FF 100%);transition:width .6s ease;`;
