@@ -17,6 +17,11 @@
 --      — 마이페이지 "레벨 변경" 기능 실동작화
 -- ============================================================
 
+-- ── 0. reviews 스키마 보강 ──────────────────────────────────
+-- 프로덕션 reviews 는 초기 버전 003 으로 생성되어 coupon_issued_at 이 없을 수 있음.
+ALTER TABLE public.reviews
+  ADD COLUMN IF NOT EXISTS coupon_issued_at timestamptz;
+
 -- ── 1. reviews INSERT 모더레이션 강제 ───────────────────────
 DROP POLICY IF EXISTS "reviews: 본인 INSERT" ON public.reviews;
 CREATE POLICY "reviews: 본인 INSERT"
