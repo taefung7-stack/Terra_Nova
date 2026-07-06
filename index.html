@@ -4460,6 +4460,68 @@ html.light .plans-foot-meta{color:var(--txt)!important;}
 html.light .site-footer,html.light footer{background:#F4F6F7!important;}
 html.light .site-footer,html.light .site-footer *,html.light footer,html.light footer *{color:var(--dim)!important;}
 html.light .site-footer a,html.light footer a{color:var(--txt)!important;}
+
+/* ═══ LIGHT MODE 섹션 배경 전면 화이트·민트化 (2026-07-06) ═══
+   요구: 카드·배경은 흰색/민트, 글씨는 검정. 다크 하드코딩 섹션 4곳 재도장. */
+
+/* ── 1. 교과서 샘플(.book): 검정 그라디언트 → 흰→연민트 ── */
+html.light .book{background:linear-gradient(180deg,#FFFFFF 0%,#E9F7F1 100%)!important;}
+html.light .book :where(h2,.book-row-name,.book-row-desc,.book-meta,.book-row-curriculum){color:var(--txt)!important;}
+html.light .book .book-meta .real{color:var(--accent)!important;}
+
+/* ── 2. 시험 매칭(.exam-match): 다크 글래스 카드 → 흰/민트 카드 + 검정 글씨 ── */
+html.light .exam-match{background:radial-gradient(circle at 50% 12%, rgba(0,179,122,.10), transparent 34%),#FFFFFF!important;}
+html.light .exam-card{
+  background:#FFFFFF!important;
+  border-color:rgba(0,143,100,.22)!important;
+  box-shadow:0 16px 40px rgba(10,40,30,.10)!important;
+}
+html.light .exam-card.book-card{
+  background:linear-gradient(135deg,#E7F8F0 0%,#FFFFFF 62%)!important;
+  border-color:rgba(0,143,100,.32)!important;
+  box-shadow:0 16px 40px rgba(10,40,30,.10)!important;
+}
+html.light .exam-mol{background:#F2F7F5!important;border-color:rgba(0,0,0,.14)!important;}
+/* 카드 내부 텍스트 일괄 검정 (마크·배지·강조는 아래에서 복원) */
+html.light .exam-card :where(p,li,span,em,strong,figcaption,div,h3,h4){color:#1E2228!important;}
+html.light .exam-pair-label,
+html.light .exam-pair-label .pair-grade{color:var(--txt)!important;}
+/* 민트 강조 복원 */
+html.light .exam-card .q-mark,
+html.light .exam-card .book-badge,
+html.light .exam-pair-label .pair-level,
+html.light .exam-card .exam-tag{color:var(--accent)!important;}
+html.light .exam-card .book-badge{background:rgba(0,179,122,.12)!important;}
+/* 형광펜 마크는 원래 배색 유지 (노랑 배경 + 진녹 글씨) */
+html.light .exam-card mark,
+html.light .exam-card .exam-passage mark{color:#0F464C!important;background:#F4EB9A!important;}
+html.light .mock-badge{color:var(--txt)!important;}
+html.light .exam-match-arrow,
+html.light .exam-match-arrow *{color:var(--accent)!important;}
+html.light .exam-match .story-title,
+html.light .exam-match .story-kicker{color:var(--txt)!important;}
+html.light .exam-match .story-title .accent{color:var(--accent)!important;}
+
+/* ── 3. 후기(.review-rain): #0A0A0A → 연민트, 유리카드 → 흰 카드 ── */
+html.light .review-rain{background:linear-gradient(180deg,#EDF9F3 0%,#FFFFFF 100%)!important;}
+html.light .review-rain-title{color:var(--txt)!important;text-shadow:none!important;-webkit-text-stroke:0!important;}
+html.light .review-rain-title .accent{color:var(--accent)!important;text-shadow:none!important;}
+html.light .review-card{
+  background:#FFFFFF!important;
+  border-color:rgba(0,0,0,.10)!important;
+  color:#1E2228!important;
+  box-shadow:0 12px 30px rgba(10,40,30,.10)!important;
+  -webkit-backdrop-filter:none!important;backdrop-filter:none!important;
+}
+html.light .review-card::before{display:none!important;}
+html.light .review-card-quote{color:#1E2228!important;}
+html.light .review-card-meta{color:rgba(20,24,30,.62)!important;}
+
+/* ── 4. 레벨 오빗(.level-orbit): #131918 → 연민트 ── */
+html.light .level-orbit{background:#F0FAF5!important;}
+html.light .orbit-preview,html.light .orbit-selector{border-color:rgba(0,0,0,.10)!important;}
+html.light .level-card{border-color:rgba(0,0,0,.12)!important;}
+html.light .level-card.is-active{background:#FFFFFF!important;border-color:var(--accent)!important;}
 </style>
 <link rel="stylesheet" href="mobile-app.css">
 <script src="mobile-app.js" defer></script>
@@ -4531,7 +4593,7 @@ html.light .site-footer a,html.light footer a{color:var(--txt)!important;}
         <div class="book-row-head">
           <span class="book-row-name">MARS</span>
           <span class="book-row-grade">초5</span>
-          <span class="book-row-curriculum"><span class="subj">사회</span>개화기 조선의 변화 · 근대화의 시작</span>
+          <span class="book-row-curriculum"><span class="subj">과학</span>온도와 열의 이동 · Heat on the Move</span>
           <span class="book-row-line"></span>
         </div>
         <div class="book-pages">
@@ -4544,16 +4606,16 @@ html.light .site-footer a,html.light footer a{color:var(--txt)!important;}
 
       <div class="book-row">
         <div class="book-row-head">
-          <span class="book-row-name">SATURN</span>
-          <span class="book-row-grade">고1</span>
-          <span class="book-row-curriculum"><span class="subj">공통수학1</span>경우의 수 — 곱의 법칙·순열·조합</span>
+          <span class="book-row-name">TERRA</span>
+          <span class="book-row-grade">중1</span>
+          <span class="book-row-curriculum"><span class="subj">과학</span>생물 다양성과 생태계 · Why So Many Kinds of Life?</span>
           <span class="book-row-line"></span>
         </div>
         <div class="book-pages">
-          <div class="book-page"><span class="badge">P1 · Passage</span><img src="assets/textbook-previews/saturn-p1.jpg" alt="SATURN 고1 — Passage 페이지" loading="lazy"></div>
-          <div class="book-page"><span class="badge">P2 · Practice</span><img src="assets/textbook-previews/saturn-p2.jpg" alt="SATURN 고1 — Practice 페이지" loading="lazy"></div>
-          <div class="book-page"><span class="badge">P3 · Syntax</span><img src="assets/textbook-previews/saturn-p3.jpg" alt="SATURN 고1 — Syntax 페이지" loading="lazy"></div>
-          <div class="book-page"><span class="badge">P4 · Vocab</span><img src="assets/textbook-previews/saturn-p4.jpg" alt="SATURN 고1 — Vocab 페이지" loading="lazy"></div>
+          <div class="book-page"><span class="badge">P1 · Passage</span><img src="assets/textbook-previews/terra-p1.jpg" alt="TERRA 중1 — Passage 페이지" loading="lazy"></div>
+          <div class="book-page"><span class="badge">P2 · Practice</span><img src="assets/textbook-previews/terra-p2.jpg" alt="TERRA 중1 — Practice 페이지" loading="lazy"></div>
+          <div class="book-page"><span class="badge">P3 · Syntax</span><img src="assets/textbook-previews/terra-p3.jpg" alt="TERRA 중1 — Syntax 페이지" loading="lazy"></div>
+          <div class="book-page"><span class="badge">P4 · Vocab</span><img src="assets/textbook-previews/terra-p4.jpg" alt="TERRA 중1 — Vocab 페이지" loading="lazy"></div>
         </div>
       </div>
 
@@ -4561,7 +4623,7 @@ html.light .site-footer a,html.light footer a{color:var(--txt)!important;}
         <div class="book-row-head">
           <span class="book-row-name">JUPITER</span>
           <span class="book-row-grade">고2</span>
-          <span class="book-row-curriculum"><span class="subj">화학Ⅰ</span>I-1 원자의 구조와 양자수 · 원자와 빛의 언어</span>
+          <span class="book-row-curriculum"><span class="subj">화학Ⅰ</span>I-2 원소의 주기성 · The Table That Predicts the Unknown</span>
           <span class="book-row-line"></span>
         </div>
         <div class="book-pages">
@@ -4576,7 +4638,7 @@ html.light .site-footer a,html.light footer a{color:var(--txt)!important;}
         <div class="book-row-head">
           <span class="book-row-name">SUN</span>
           <span class="book-row-grade">고3·N수생</span>
-          <span class="book-row-curriculum"><span class="subj">화학반응의 세계</span>I-1 산-염기 평형 · 평형이 결정하는 색</span>
+          <span class="book-row-curriculum"><span class="subj">화학반응의 세계</span>I-2 반응 속도와 평형 이동 · How a Balanced Reaction Fights Back</span>
           <span class="book-row-line"></span>
         </div>
         <div class="book-pages">
