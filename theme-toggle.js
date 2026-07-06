@@ -39,9 +39,48 @@
     if (mode === 'light') root.classList.add('light');
     else root.classList.remove('light');
     paintButtons();
+    fixInlineColors(mode);
     // 히어로 캔버스 등 JS 렌더러에 테마 변경을 알린다(있으면 반응, 없으면 무시).
     try {
       window.dispatchEvent(new CustomEvent('tn-theme-change', { detail: { mode: mode } }));
+    } catch (e) {}
+  }
+
+  // 인라인 style 로 하드코딩된 밝은 텍스트(흰색 계열)를 라이트에서 어둡게 치환.
+  // CSS html.light 로는 못 잡는 style="color:rgba(240,240,240,..)" 같은 것 처리.
+  // 원본은 data-tn-color 에 저장 → 다크 복귀 시 원복.
+  function isLightColor(c) {
+    var m = c && c.match(/rgba?\(([^)]+)\)/);
+    if (!m) return false;
+    var p = m[1].split(',').map(function (n) { return parseFloat(n); });
+    if (p.length < 3) return false;
+    var lum = (0.299 * p[0] + 0.587 * p[1] + 0.114 * p[2]) / 255;
+    return lum > 0.7; // 밝은 텍스트만
+  }
+  function fixInlineColors(mode) {
+    try {
+      var all = document.querySelectorAll('[style*="color"]');
+      for (var i = 0; i < all.length; i++) {
+        var el = all[i];
+        // 버튼/브랜드/액센트 배경 위 흰글씨는 건드리지 않음
+        var cls = (el.className && el.className.baseVal !== undefined) ? el.className.baseVal : (el.className || '');
+        if (/btn|cta|naver|kakao|google|badge|accent|mint/i.test(cls)) continue;
+        var inline = el.style && el.style.color;
+        if (mode === 'light') {
+          if (inline && isLightColor(inline) && !el.hasAttribute('data-tn-color')) {
+            el.setAttribute('data-tn-color', inline);
+            // 원래 불투명도를 유지하며 어두운 잉크로
+            var m = inline.match(/rgba?\(([^)]+)\)/);
+            var a = m ? (m[1].split(',')[3] || '1').trim() : '1';
+            el.style.color = 'rgba(20,22,28,' + a + ')';
+          }
+        } else {
+          if (el.hasAttribute('data-tn-color')) {
+            el.style.color = el.getAttribute('data-tn-color');
+            el.removeAttribute('data-tn-color');
+          }
+        }
+      }
     } catch (e) {}
   }
 
@@ -79,10 +118,22 @@
   function wire() {
     ensureButton();
     paintButtons();
+    fixInlineColors(current());
     var btns = document.querySelectorAll('.theme-toggle');
     for (var i = 0; i < btns.length; i++) {
       btns[i].addEventListener('click', toggle);
     }
+    // JS가 나중에 삽입하는 요소(빈 카트 안내 등)의 인라인 밝은 텍스트도 잡기 위해
+    // DOM 변화를 관찰해 라이트일 때 재보정(가벼운 디바운스).
+    try {
+      var pending = null;
+      var mo = new MutationObserver(function () {
+        if (current() !== 'light') return;
+        if (pending) return;
+        pending = setTimeout(function () { pending = null; fixInlineColors('light'); }, 120);
+      });
+      mo.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['style'] });
+    } catch (e) {}
     // 저장된 선택이 없을 때만 시스템 설정 변화를 실시간 반영.
     try {
       var mq = window.matchMedia('(prefers-color-scheme: light)');

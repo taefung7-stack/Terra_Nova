@@ -165,7 +165,8 @@ html.light .hero-english,
 html.light .scroll-cue { color:var(--txt); }
 html.light .hero-tagline { color:var(--accent); background:rgba(255,255,255,.72); border-color:var(--line3); }
 /* 구독 CTA — 라이트에서 진한 민트 배경 + 흰 글씨로 대비 확보 */
-html.light .site-nav .nav-cta { background:var(--accent); color:#fff; border-color:var(--accent); }
+html.light .site-nav .nav-cta { background:var(--accent)!important; color:#fff!important; border-color:var(--accent)!important; }
+html.light .site-nav .nav-cta * { color:#fff!important; -webkit-text-fill-color:#fff!important; }
 html.light .nav-hamburger span { background:var(--txt); }
 
 /* ── THEME TOGGLE 버튼 (네비 우측) ─────────────────────────────────────── */
@@ -4393,6 +4394,72 @@ body.bigbang-done .terra-hint,
   .final-btn:hover, .plan:hover, .concern-card:hover, .solution-panel:hover { transform:none; }
 }
 
+
+/* AUTO-LIGHT-OVERRIDES — 하드코딩 다크배경/흰텍스트 라이트 보정 */
+html.light .pcard-front{background:#FFFFFF!important;}
+html.light .exam-mol{background:#F4F6F7!important;}
+html.light .orbit-preview{background:#F4F6F7!important;}
+html.light .preview-chip{background:#FFFFFF!important;}
+html.light .selector-chip{background:#FFFFFF!important;}
+html.light .orbit-selector{background:#F4F6F7!important;}
+html.light .level-card{background:#FFFFFF!important;}
+html.light .level-card.is-active{background:#FFFFFF!important;}
+html.light .site-nav .logo-main{color:var(--txt)!important;}
+html.light .site-nav .nav-links a:hover{color:var(--txt)!important;}
+html.light .brand-mark{color:var(--txt)!important;}
+html.light .mega-line{color:var(--txt)!important;}
+html.light .book h2{color:var(--txt)!important;}
+html.light .levels h2{color:var(--txt)!important;}
+html.light .book-row-name{color:var(--txt)!important;}
+html.light .book-row-curriculum .subj{color:var(--txt)!important;}
+html.light .pcard-name{color:var(--txt)!important;}
+html.light .worry-line strong{color:var(--txt)!important;}
+html.light .concern-card h3{color:var(--txt)!important;}
+html.light .meshy-copy p{color:var(--txt)!important;}
+html.light .solution-panel.hero-card::before{color:var(--txt)!important;}
+html.light .solution-panel h3{color:var(--txt)!important;}
+html.light .proof-headline-card .story-title{color:var(--txt)!important;}
+html.light /* The "ENGLISH" watermark on the curriculum card (.solution-panel.hero-card::before)
+   was tuned for solid-dark cards. Boost its opacity slightly so it remains
+   visible behind the glass surface. */
+.proof.proof-cinematic .solution-panel.hero-card::before{color:var(--txt)!important;}
+html.light .example-to{color:var(--txt)!important;}
+html.light .exam-pair-label .pair-grade{color:var(--txt)!important;}
+html.light .exam-card-num{color:var(--txt)!important;}
+html.light .exam-stem strong{color:var(--txt)!important;}
+html.light .book-card .exam-passage em{color:var(--txt)!important;}
+html.light .book-card .exam-passage-ko-min strong{color:var(--txt)!important;}
+html.light .exam-comprehension em{color:var(--txt)!important;}
+html.light .orbit-head .story-kicker{color:var(--txt)!important;}
+html.light .orbit-title{color:var(--txt)!important;}
+html.light .orbit-copy{color:var(--txt)!important;}
+html.light .preview-topline{color:var(--txt)!important;}
+html.light .selector-topline{color:var(--txt)!important;}
+html.light .preview-chip{color:var(--txt)!important;}
+html.light .selector-chip{color:var(--txt)!important;}
+html.light .preview-name{color:var(--txt)!important;}
+html.light .preview-grade{color:var(--txt)!important;}
+html.light .level-card{color:var(--txt)!important;}
+html.light .level-card-name{color:var(--txt)!important;}
+html.light .review-rain-title{color:var(--txt)!important;}
+html.light .review-card-quote{color:var(--txt)!important;}
+html.light .review-card-meta{color:var(--txt)!important;}
+html.light .plan-checklist li{color:var(--txt)!important;}
+html.light /* Base inheritance row ("LIGHT 전체 포함") — softer color + hollow dot
+   so the eye reads it as "carry-over" rather than a fresh new feature. */
+.plan-checklist li.is-base{color:var(--txt)!important;}
+html.light .plans-h2{color:var(--txt)!important;}
+html.light .plan-status-soon{color:var(--txt)!important;}
+html.light .plan-name{color:var(--txt)!important;}
+html.light .plan-tag-soft{color:var(--txt)!important;}
+html.light .plan-price .krw{color:var(--txt)!important;}
+html.light .plan-price-sub{color:var(--txt)!important;}
+html.light .plan-features li.pf-muted{color:var(--txt)!important;}
+html.light .plan-features .pf-dot-mute{color:var(--txt)!important;}
+html.light .plans-foot-meta{color:var(--txt)!important;}
+html.light .site-footer,html.light footer{background:#F4F6F7!important;}
+html.light .site-footer,html.light .site-footer *,html.light footer,html.light footer *{color:var(--dim)!important;}
+html.light .site-footer a,html.light footer a{color:var(--txt)!important;}
 </style>
 <link rel="stylesheet" href="mobile-app.css">
 <script src="mobile-app.js" defer></script>
