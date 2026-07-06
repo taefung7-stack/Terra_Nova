@@ -21,12 +21,14 @@
     }
   }
 
-  const isLightTheme = document.body.classList.contains('light-theme');
+  // 라이트 모드 감지 — 신 방식 html.light (theme-toggle.js) + 구 light-theme 둘 다.
+  const isLightTheme = document.documentElement.classList.contains('light')
+    || document.body.classList.contains('light-theme');
 
-  const bg = isLightTheme ? '#fff' : '#03030A';
-  const fg = isLightTheme ? 'rgba(0,0,0,.55)' : 'rgba(240,240,240,.45)';
-  const fgStrong = isLightTheme ? 'rgba(0,0,0,.75)' : 'rgba(255,255,255,.4)';
-  const borderTop = isLightTheme ? '1px solid rgba(0,0,0,.08)' : '1px solid rgba(255,255,255,.07)';
+  const bg = isLightTheme ? '#F4F6F7' : '#03030A';
+  const fg = isLightTheme ? 'rgba(20,22,28,.62)' : 'rgba(240,240,240,.45)';
+  const fgStrong = isLightTheme ? 'rgba(20,22,28,.82)' : 'rgba(255,255,255,.4)';
+  const borderTop = isLightTheme ? '1px solid rgba(0,0,0,.10)' : '1px solid rgba(255,255,255,.07)';
 
   // 사업자정보 — window.BUSINESS_INFO 우선, 없으면 안전한 기본값
   const B = window.BUSINESS_INFO || {};

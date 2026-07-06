@@ -4545,8 +4545,9 @@ html.light h1,html.light h2,html.light h3,html.light .story-title,html.light .st
 </style>
 <style id="light-title-fix">
 /* 라이트 모드: 페이지 대제목 검정 + 모든 텍스트 그림자 제거 (2026-07-06 피드백) */
-html.light h1,html.light h2,html.light .page-title,html.light .story-title{color:var(--txt)!important;text-shadow:none!important;}
+html.light h1,html.light h2,html.light .page-title,html.light .story-title{color:#000!important;text-shadow:none!important;}
 html.light h1 *,html.light h2 *,html.light .page-title *{text-shadow:none!important;}
+html.light h1,html.light .page-title,html.light .plans-h2,html.light .story-title{-webkit-text-stroke:.6px #000!important;}
 html.light .site-nav,html.light .site-nav *{text-shadow:none!important;}
 </style>
 <style id="hero-light-fix">
@@ -5822,7 +5823,7 @@ html.light .hero-fallback h1{color:var(--txt)!important;text-shadow:none!importa
       ctx.clearRect(0, 0, 2048, 384);
       // 라이트 모드면 짙은 잉크색, 다크면 기존 흰색
       var lightMode = document.documentElement.classList.contains('light');
-      ctx.fillStyle = lightMode ? 'rgba(12, 14, 17, 1)' : 'rgba(240, 247, 244, 0.92)';
+      ctx.fillStyle = lightMode ? '#000000' : 'rgba(240, 247, 244, 0.92)';
       ctx.font = '700 280px "Space Grotesk", system-ui, sans-serif';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
@@ -5838,14 +5839,14 @@ html.light .hero-fallback h1{color:var(--txt)!important;text-shadow:none!importa
     var terraMat = new THREE.SpriteMaterial({
       map: terraTex,
       transparent: true,
-      opacity: 0.95,
+      opacity: document.documentElement.classList.contains('light') ? 1 : 0.95,
       depthTest: false,
       depthWrite: false
     });
     var terraNova = new THREE.Sprite(terraMat);
     terraNova.scale.set(9.0, 1.7, 1);
     terraNova.position.set(0, 0, 0);
-    terraNova.userData.targetOpacity = 0.95;
+    terraNova.userData.targetOpacity = document.documentElement.classList.contains('light') ? 1 : 0.95;
     scene.add(terraNova);
 
     // Rebuild texture once Space Grotesk is fully loaded (font swap).
@@ -5864,6 +5865,9 @@ html.light .hero-fallback h1{color:var(--txt)!important;text-shadow:none!importa
         var swapped = buildTerraTexture();
         terraNova.material.map.dispose();
         terraNova.material.map = swapped;
+        var lightNow = document.documentElement.classList.contains('light');
+        terraNova.material.opacity = lightNow ? 1 : 0.95;
+        terraNova.userData.targetOpacity = lightNow ? 1 : 0.95;
         terraNova.material.needsUpdate = true;
       } catch (e) {}
     });
@@ -5890,7 +5894,7 @@ html.light .hero-fallback h1{color:var(--txt)!important;text-shadow:none!importa
         terraNova.userData.targetOpacity = 1.0;
       } else {
         canvas.classList.remove('is-hover-target');
-        terraNova.userData.targetOpacity = 0.95;
+        terraNova.userData.targetOpacity = document.documentElement.classList.contains('light') ? 1 : 0.95;
       }
     }
     window.addEventListener('mousemove', onMove, { passive: true });
