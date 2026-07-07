@@ -125,32 +125,98 @@
   // 홈 화면에 바로 보여줄 교재 4권 — Mars(초5), Saturn(고1), Jupiter(고2), Sun(고3).
   // 표지 대신 P1 (Passage) 페이지 썸네일 사용. 클릭 시 sample.html.
   // syllabus = 그 권이 다루는 교과 단원 — 큰 글씨로 carousel 카드에 노출.
+  // 각 교재의 P1~P4(Passage/Practice/Syntax/Vocab) 미리보기 이미지 경로 생성
+  function bookPages(slug) {
+    return ['p1', 'p2', 'p3', 'p4'].map(function (p) {
+      return 'assets/textbook-previews/' + slug + '-' + p + '.jpg';
+    });
+  }
+  var PAGE_LABELS = ['P1 · Passage', 'P2 · Practice', 'P3 · Syntax', 'P4 · Vocab'];
+
   var HOME_BOOKS = [
     {
-      code: 'MARS', grade: '초5',
+      code: 'MARS', grade: '초5', slug: 'mars',
       cover: 'assets/textbook-previews/mars-p1.jpg',
+      pages: bookPages('mars'),
       headline: '초5 교과서를 영어로',
-      syllabus: ['과학 · 온도와 열의 이동 (Heat on the Move)', '수학 · 분수의 곱셈', '사회 · 우리 국토의 자연환경', '국어 · 글의 짜임과 요약']
+      syllabus: ['과학 · 온도와 열의 이동', '수학 · 분수의 곱셈', '사회 · 우리 국토의 자연환경', '국어 · 글의 짜임과 요약']
     },
     {
-      code: 'TERRA', grade: '중1',
+      code: 'TERRA', grade: '중1', slug: 'terra',
       cover: 'assets/textbook-previews/terra-p1.jpg',
+      pages: bookPages('terra'),
       headline: '중1 교과서를 영어로',
-      syllabus: ['과학 · 생물 다양성과 생태계 (Why So Many Kinds of Life?)', '수학 · 정수와 유리수', '사회 · 자연으로 떠나는 여행', '국어 · 요약하며 읽기']
+      syllabus: ['과학 · 생물 다양성과 생태계', '수학 · 정수와 유리수', '사회 · 자연으로 떠나는 여행', '국어 · 요약하며 읽기']
     },
     {
-      code: 'JUPITER', grade: '고2',
+      code: 'JUPITER', grade: '고2', slug: 'jupiter',
       cover: 'assets/textbook-previews/jupiter-p1.jpg',
+      pages: bookPages('jupiter'),
       headline: '고2 화학Ⅰ을 영어로',
-      syllabus: ['화학Ⅰ I-2 · 원소의 주기성 (The Table That Predicts the Unknown)', '기하 · 평면 벡터', '생명과학Ⅰ · 세포와 물질대사', '문학과 영상 · 매체 전환']
+      syllabus: ['화학Ⅰ I-2 · 원소의 주기성', '기하 · 평면 벡터', '생명과학Ⅰ · 세포와 물질대사', '문학과 영상 · 매체 전환']
     },
     {
-      code: 'SUN', grade: '고3',
+      code: 'SUN', grade: '고3', slug: 'sun',
       cover: 'assets/textbook-previews/sun-p1.jpg',
+      pages: bookPages('sun'),
       headline: '고3 수능 직결 · 모의고사 깊이',
-      syllabus: ['화학반응의 세계 I-2 · 반응 속도와 평형 이동 (How a Balanced Reaction Fights Back)', '기하 · 평면 벡터', '세포와 물질대사 · 세포 호흡과 발효', '역학과 에너지 · 일·에너지와 보존']
+      syllabus: ['화학반응의 세계 I-2 · 반응 속도와 평형 이동', '기하 · 평면 벡터', '세포와 물질대사 · 세포 호흡과 발효', '역학과 에너지 · 일·에너지와 보존']
     }
   ];
+
+  // ── 교재 4페이지 미리보기 모달 (홈 교재 카드 탭 시) ──
+  function openBookPreview(bk) {
+    var overlay = el('div', { cls: 'm-book-preview-overlay' });
+    var sheet = el('div', { cls: 'm-book-preview' });
+
+    // 헤더
+    var head = el('div', { cls: 'm-book-preview-head' });
+    head.appendChild(el('div', { cls: 'm-book-preview-title', text: bk.code + ' · ' + bk.grade }));
+    var closeBtn = el('button', { cls: 'm-book-preview-close', type: 'button', aria: '닫기', text: '✕' });
+    head.appendChild(closeBtn);
+    sheet.appendChild(head);
+
+    // 슬라이드 레일 (좌우 스와이프)
+    var rail = el('div', { cls: 'm-book-preview-rail' });
+    rail.setAttribute('data-no-page-swipe', '1');
+    (bk.pages || []).forEach(function (src, i) {
+      var slide = el('div', { cls: 'm-book-preview-slide' });
+      slide.appendChild(el('span', { cls: 'm-book-preview-badge', text: PAGE_LABELS[i] || ('P' + (i + 1)) }));
+      slide.appendChild(el('img', { src: src, alt: bk.code + ' ' + (PAGE_LABELS[i] || '') + ' 페이지', loading: 'lazy' }));
+      rail.appendChild(slide);
+    });
+    sheet.appendChild(rail);
+
+    // pager dots
+    var dots = el('div', { cls: 'm-book-preview-dots', ariaHidden: true });
+    (bk.pages || []).forEach(function (_, i) {
+      dots.appendChild(el('span', { cls: 'm-book-preview-dot' + (i === 0 ? ' is-active' : '') }));
+    });
+    sheet.appendChild(dots);
+    sheet.appendChild(el('div', { cls: 'm-book-preview-hint', text: '← 좌우로 넘겨 4페이지 구성을 확인하세요 →' }));
+
+    // dot 동기화
+    var dotEls = dots.querySelectorAll('.m-book-preview-dot');
+    rail.addEventListener('scroll', function () {
+      var w = rail.clientWidth || 1;
+      var idx = Math.round(rail.scrollLeft / w);
+      for (var i = 0; i < dotEls.length; i++) dotEls[i].classList.toggle('is-active', i === idx);
+    }, { passive: true });
+
+    function close() {
+      overlay.classList.remove('is-open');
+      setTimeout(function () { if (overlay.parentNode) overlay.parentNode.removeChild(overlay); }, 220);
+      document.removeEventListener('keydown', onKey);
+    }
+    function onKey(e) { if (e.key === 'Escape') close(); }
+    closeBtn.addEventListener('click', close);
+    overlay.addEventListener('click', function (e) { if (e.target === overlay) close(); });
+    document.addEventListener('keydown', onKey);
+
+    overlay.appendChild(sheet);
+    document.body.appendChild(overlay);
+    requestAnimationFrame(function () { overlay.classList.add('is-open'); });
+  }
 
   // 교재 보기 모달용 데이터 — 매핑 3개 (figure 그림 포함, bookTag 없음)
   // figure = 'molecule' (탄소·물·CO2) | 'parabola' (포물선) | 'veil' (무지의 베일)
@@ -597,11 +663,13 @@
         var rail = el('div', { cls: 'm-bio-rail' });
         rail.setAttribute('data-no-page-swipe', '1');
         HOME_BOOKS.forEach(function (bk) {
-          // 1번 요청: 클릭해도 아무 페이지로 안 넘어가게 div 컨테이너
+          // 카드 탭 → 4페이지(P1~P4) 미리보기 팝업
           var card = el('div', {
-            cls: 'm-bio-book',
-            aria: bk.code + ' ' + bk.grade + ' 교재 미리보기'
+            cls: 'm-bio-book m-bio-book--tappable',
+            role: 'button',
+            aria: bk.code + ' ' + bk.grade + ' 교재 미리보기 열기'
           });
+          card.addEventListener('click', function () { openBookPreview(bk); });
           var imgWrap = el('div', { cls: 'm-bio-book-cover' });
           imgWrap.appendChild(el('img', { src: bk.cover, alt: bk.code + ' 교재 표지', loading: 'lazy' }));
           card.appendChild(imgWrap);

@@ -56,7 +56,7 @@ html.light .nav-hamburger span{background:var(--txt)!important;}
 html.light .mobile-tabbar,html.light .m-tabbar{background:rgba(255,255,255,.94)!important;border-top:1px solid var(--line)!important;}
 
 
-html.light .hero-title{color:#000!important;text-shadow:none!important;-webkit-text-stroke:.8px #000!important;}
+html.light .hero-title{color:#16181C!important;-webkit-text-fill-color:#16181C!important;text-shadow:none!important;-webkit-text-stroke:0!important;opacity:1!important;}
 
 
 html.light .hero-badge{color:var(--accent)!important;background:rgba(0,179,122,.08)!important;border-color:rgba(0,179,122,.35)!important;}
@@ -280,7 +280,10 @@ html.light .theme-toggle{background:rgba(0,0,0,.04);}
   .float-btn:hover .float-label{opacity:1;}
 
 /* AUTO-LIGHT-OVERRIDES — 하드코딩 다크배경/흰텍스트 라이트 보정 */
-html.light .opt-dot::after{background:#F4F6F7!important;}
+/* 객관식 선택 동그라미: 라이트에서 흰 테두리라 안 보이던 것 → 어둡게 (#3) */
+html.light .opt-dot{border-color:rgba(20,22,28,.35)!important;}
+html.light .option-btn.selected .opt-dot{border-color:var(--accent)!important;}
+html.light .opt-dot::after{background:#FFFFFF!important;}
 html.light .grade-grid .grade-card{background:#FFFFFF!important;}
 html.light .float-label{background:#F4F6F7!important;}
 html.light .logo-main{color:var(--txt)!important;}
@@ -370,7 +373,7 @@ html.light .site-nav,html.light .site-nav *{text-shadow:none!important;}
 /* ── 라이트: 모바일 햄버거 드로어(nav-links.open) 밝게 (2026-07-06 #5) ── */
 html.light .site-nav .nav-links.open,html.light nav .nav-links.open{background:rgba(255,255,255,.97)!important;border-bottom-color:var(--line,rgba(0,0,0,.1))!important;}
 html.light .nav-links.open a{color:var(--txt,#16181C)!important;border-bottom-color:rgba(0,0,0,.08)!important;}
-html.light .nav-links.open .nav-cta{color:#fff!important;background:var(--accent,#00B37A)!important;display:inline-block!important;padding:8px 18px!important;border-radius:8px!important;margin:8px 0!important;align-self:flex-start!important;}
+html.light .nav-links.open .nav-cta{color:#fff!important;background:var(--accent,#00B37A)!important;display:inline-block!important;width:auto!important;padding:4px 18px!important;border-radius:7px!important;margin:2px 0!important;line-height:1.35!important;font-size:.8rem!important;align-self:flex-start!important;}
 </style>
 <style id="nav-size-fix">
 /* 네비 링크 글자 크기 전 페이지 통일 — 기존 .75/.78/.82rem 편차 제거 (2026-07-06) */

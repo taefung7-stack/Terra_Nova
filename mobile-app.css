@@ -546,6 +546,77 @@
   body.m-bio-mode:not(.m-subpage) .site-nav .theme-toggle,
   body.m-bio-mode:not(.m-subpage) nav .theme-toggle { display: none !important; }
 
+  /* ── 교재 4페이지 미리보기 모달 (홈 교재 카드 탭) ── */
+  .m-bio-book--tappable { cursor: pointer; }
+  .m-book-preview-overlay {
+    position: fixed; inset: 0; z-index: 2000;
+    background: rgba(0,0,0,0.62);
+    display: flex; align-items: flex-end; justify-content: center;
+    opacity: 0; transition: opacity 0.22s var(--m-ease);
+    -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px);
+  }
+  .m-book-preview-overlay.is-open { opacity: 1; }
+  .m-book-preview {
+    width: 100%; max-width: 480px;
+    background: var(--m-surface);
+    border-radius: 20px 20px 0 0;
+    padding: 14px 0 calc(18px + var(--m-safe-bottom));
+    box-shadow: 0 -8px 40px rgba(0,0,0,0.4);
+    transform: translateY(24px); transition: transform 0.24s var(--m-ease);
+    max-height: 92vh; display: flex; flex-direction: column;
+  }
+  .m-book-preview-overlay.is-open .m-book-preview { transform: translateY(0); }
+  html.light .m-book-preview { background: #FFFFFF; }
+  .m-book-preview-head {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 2px 18px 12px;
+  }
+  .m-book-preview-title {
+    font-weight: 800; font-size: 0.98rem; color: var(--m-txt);
+    letter-spacing: 0.02em;
+  }
+  html.light .m-book-preview-title { color: #16181C; }
+  .m-book-preview-close {
+    width: 34px; height: 34px; border-radius: 50%;
+    border: none; background: var(--m-surface-2); color: var(--m-txt);
+    font-size: 0.9rem; cursor: pointer; line-height: 1;
+  }
+  html.light .m-book-preview-close { background: #F1F3F5; color: #16181C; }
+  .m-book-preview-rail {
+    display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch; gap: 0;
+    scrollbar-width: none;
+  }
+  .m-book-preview-rail::-webkit-scrollbar { display: none; }
+  .m-book-preview-slide {
+    flex: 0 0 100%; scroll-snap-align: center;
+    padding: 0 18px; position: relative;
+  }
+  .m-book-preview-slide img {
+    width: 100%; height: auto; border-radius: 12px; display: block;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.16);
+    border: 1px solid var(--m-line);
+  }
+  .m-book-preview-badge {
+    position: absolute; top: 10px; left: 28px; z-index: 2;
+    background: var(--m-accent); color: #04120C;
+    font-size: 0.66rem; font-weight: 800; letter-spacing: 0.04em;
+    padding: 4px 10px; border-radius: 20px;
+  }
+  html.light .m-book-preview-badge { color: #fff; }
+  .m-book-preview-dots {
+    display: flex; justify-content: center; gap: 6px; padding: 12px 0 2px;
+  }
+  .m-book-preview-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--m-txt-mute); transition: all 0.2s;
+  }
+  .m-book-preview-dot.is-active { background: var(--m-accent); width: 18px; border-radius: 3px; }
+  .m-book-preview-hint {
+    text-align: center; font-size: 0.7rem; color: var(--m-txt-mute);
+    padding: 4px 0 0;
+  }
+
   /* Home book carousel — 한 권씩 풀폭 (사용자 요청) */
   .m-bio-rail-head {
     display: flex;
@@ -1527,6 +1598,16 @@
     -webkit-background-clip: text !important;
             background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
+  }
+  /* 라이트 모드: 대제목 그라데이션 텍스트 해제 → 검정 (#2, 2026-07-07) */
+  html.light body .hero .hero-title,
+  html.light body .auth-logo .auth-logo-main {
+    background: none !important;
+    -webkit-background-clip: initial !important;
+            background-clip: initial !important;
+    -webkit-text-fill-color: #16181C !important;
+    color: #16181C !important;
+    text-shadow: none !important;
   }
   /* LEVEL TEST는 9자 + 공백이라 nowrap 시 화면 폭 초과. 공백 기준으로 두 줄 허용 */
   body[data-page="level_test"] .hero .hero-title {
