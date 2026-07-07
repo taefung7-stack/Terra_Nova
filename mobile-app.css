@@ -542,6 +542,9 @@
     box-shadow: 0 2px 10px rgba(0,0,0,0.18);
   }
   html.light .m-bio-theme { background: #FFFFFF; box-shadow: 0 2px 10px rgba(0,0,0,0.10); }
+  /* bio 홈에서는 데스크톱 nav의 정적 토글 버튼을 숨긴다(m-bio-theme 만 사용) */
+  body.m-bio-mode:not(.m-subpage) .site-nav .theme-toggle,
+  body.m-bio-mode:not(.m-subpage) nav .theme-toggle { display: none !important; }
 
   /* Home book carousel — 한 권씩 풀폭 (사용자 요청) */
   .m-bio-rail-head {
@@ -2046,6 +2049,22 @@
     color: #F59E0B !important;
     grid-column: 1 / -1 !important;  /* 관리자 탭은 한 줄 전체 차지 */
     font-size: 0.7rem !important;
+  }
+
+  /* ── 라이트 모드: 마이페이지 구독현황 등 탭 메뉴 밝게 (#5) ── */
+  html.light body[data-page="mypage"] .mobile-menu {
+    background: rgba(255, 255, 255, 0.94) !important;
+    border-bottom: 1px solid var(--m-line) !important;
+  }
+  html.light body[data-page="mypage"] .mobile-tab {
+    background: rgba(0, 0, 0, 0.04) !important;
+    color: var(--m-txt-dim) !important;
+    border-color: var(--m-line) !important;
+  }
+  html.light body[data-page="mypage"] .mobile-tab.active {
+    background: rgba(0, 179, 122, 0.14) !important;
+    border-color: rgba(0, 179, 122, 0.4) !important;
+    color: var(--m-accent) !important;
   }
 
   /* ── Main content: compact padding, no top gap ── */

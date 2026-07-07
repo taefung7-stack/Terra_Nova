@@ -94,6 +94,8 @@
   // 런타임에 네비 우측へ 버튼을 하나 만들어 넣는다.
   function ensureButton() {
     if (document.querySelector('.theme-toggle')) return;
+    // 모바일 bio 홈(mobile-app.js가 자체 토글 .m-bio-theme 를 이미 배치)에서는 만들지 않는다.
+    if (document.body.classList.contains('m-bio-mode') || document.querySelector('.m-bio-theme')) return;
     var btn = document.createElement('button');
     btn.className = 'theme-toggle';
     btn.id = 'theme-toggle';

@@ -539,15 +539,24 @@
 
     var bio = el('section', { id: 'm-bio', aria: 'Terra Nova 모바일 홈' });
 
-    // 라이트/다크 토글 버튼 (bio 히어로 우상단 고정) — theme-toggle.js가 아이콘·핸들러를 붙임.
-    var themeBtn = el('button', { cls: 'm-bio-theme theme-toggle', type: 'button', aria: '라이트/다크 모드 전환' });
+    // 라이트/다크 토글 버튼 (bio 히어로 우상단 고정) — 자체 완결(핸들러·아이콘 직접).
+    // theme-toggle.js 와 핸들러가 겹치지 않도록 .theme-toggle 클래스는 쓰지 않는다.
+    var SUN_ICON = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2M12 20v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M2 12h2M20 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>';
+    var MOON_ICON = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>';
+    var themeBtn = el('button', { cls: 'm-bio-theme', type: 'button', aria: '라이트/다크 모드 전환' });
+    function paintThemeBtn() {
+      themeBtn.innerHTML = document.documentElement.classList.contains('light') ? MOON_ICON : SUN_ICON;
+    }
+    paintThemeBtn();
     themeBtn.addEventListener('click', function () {
       var root = document.documentElement;
       var next = root.classList.contains('light') ? 'dark' : 'light';
       try { localStorage.setItem('tn-theme', next); } catch (e) {}
       if (next === 'light') root.classList.add('light'); else root.classList.remove('light');
+      paintThemeBtn();
       try { window.dispatchEvent(new CustomEvent('tn-theme-change', { detail: { mode: next } })); } catch (e) {}
     });
+    window.addEventListener('tn-theme-change', paintThemeBtn);
     bio.appendChild(themeBtn);
 
     // Profile header — 큰 워드마크 (Pretendard)

@@ -37,7 +37,19 @@ function buildTnFooter() {
   const B = window.BUSINESS_INFO || {};
   const safe = (v, fallback = '—') => (v && String(v).trim() && !String(v).includes('___')) ? v : fallback;
 
-  const fullAddress = [B.address, B.addressDetail].filter(Boolean).join(' ');
+  // 개인정보 보호(2026-07-06): footer에는 시/구까지만 노출, 상세주소·전화는 숨긴다.
+  // 전체 사업자정보(주소·전화)는 공정위 통신판매사업자 조회로 확인 가능(전자상거래법 준수).
+  const bizNo = String(safe(B.businessNumber, '')).replace(/[^0-9]/g, '');
+  const ftcUrl = bizNo
+    ? 'https://www.ftc.go.kr/bizCommPop.do?wrkr_no=' + bizNo
+    : 'https://www.ftc.go.kr/www/bizCommList.do';
+  // 주소는 시·도 + 시·군·구 까지만 (상세 도로명·동호수 비노출)
+  const shortAddress = (function () {
+    var a = safe(B.address, '');
+    if (!a || a === '—') return '';
+    var m = a.match(/^(\S+(?:시|도))\s+(\S+(?:시|군|구))/);
+    return m ? (m[1] + ' ' + m[2]) : a.split(/\s+/).slice(0, 2).join(' ');
+  })();
 
   const businessInfoHtml = `
     <div class="tn-business-info" style="margin-top:18px;padding-top:18px;border-top:1px solid ${isLightTheme ? 'rgba(0,0,0,.06)' : 'rgba(255,255,255,.05)'};max-width:760px;font-size:.66rem;color:${fg};line-height:1.85;letter-spacing:.2px;">
@@ -48,12 +60,12 @@ function buildTnFooter() {
       </div>
       <div style="margin-bottom:4px;">
         통신판매업 신고번호 ${safe(B.ecommerceNumber)}
-        ${fullAddress ? '&nbsp;·&nbsp; ' + fullAddress : ''}
+        ${shortAddress ? '&nbsp;·&nbsp; ' + shortAddress : ''}
       </div>
       <div>
-        Tel ${safe(B.phone)}
-        &nbsp;·&nbsp; Email <a href="mailto:${safe(B.email, 'taefung7@gmail.com')}" style="color:${fg};text-decoration:underline;">${safe(B.email, 'taefung7@gmail.com')}</a>
+        Email <a href="mailto:${safe(B.email, 'taefung7@gmail.com')}" style="color:${fg};text-decoration:underline;">${safe(B.email, 'taefung7@gmail.com')}</a>
         ${B.customerServiceOfficer && B.customerServiceOfficer.name ? '&nbsp;·&nbsp; 개인정보보호책임자 ' + B.customerServiceOfficer.name : ''}
+        &nbsp;·&nbsp; <a href="${ftcUrl}" target="_blank" rel="noopener" style="color:${fg};text-decoration:underline;">사업자정보 확인</a>
       </div>
     </div>
   `;
