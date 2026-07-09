@@ -296,63 +296,63 @@
       svg = svgEl('svg', { viewBox: '0 0 280 96', width: '100%', height: '96', role: 'img', 'aria-label': '물·이산화탄소 분자 모형' });
       // H2O on left
       var g1 = svgEl('g', {});
-      g1.appendChild(svgEl('line',   { x1: '38', y1: '76', x2: '64', y2: '36', stroke: '#cfd0d2', 'stroke-width': '2' }));
-      g1.appendChild(svgEl('line',   { x1: '64', y1: '36', x2: '90', y2: '76', stroke: '#cfd0d2', 'stroke-width': '2' }));
+      g1.appendChild(svgEl('line',   { x1: '38', y1: '76', x2: '64', y2: '36', stroke: 'currentColor', 'stroke-width': '2' }));
+      g1.appendChild(svgEl('line',   { x1: '64', y1: '36', x2: '90', y2: '76', stroke: 'currentColor', 'stroke-width': '2' }));
       g1.appendChild(svgEl('circle', { cx: '64', cy: '36', r: '16', fill: '#33d6ff' }));
       var oT = svgEl('text', { x: '64', y: '41', 'text-anchor': 'middle', 'font-size': '14', 'font-weight': '700', fill: '#001417' }); oT.textContent = 'O'; g1.appendChild(oT);
-      g1.appendChild(svgEl('circle', { cx: '38', cy: '76', r: '10', fill: '#fff' }));
+      g1.appendChild(svgEl('circle', { cx: '38', cy: '76', r: '10', fill: '#fff', stroke: 'currentColor', 'stroke-width': '0.8' }));
       var hT1 = svgEl('text', { x: '38', y: '80', 'text-anchor': 'middle', 'font-size': '11', 'font-weight': '700', fill: '#000' }); hT1.textContent = 'H'; g1.appendChild(hT1);
-      g1.appendChild(svgEl('circle', { cx: '90', cy: '76', r: '10', fill: '#fff' }));
+      g1.appendChild(svgEl('circle', { cx: '90', cy: '76', r: '10', fill: '#fff', stroke: 'currentColor', 'stroke-width': '0.8' }));
       var hT2 = svgEl('text', { x: '90', y: '80', 'text-anchor': 'middle', 'font-size': '11', 'font-weight': '700', fill: '#000' }); hT2.textContent = 'H'; g1.appendChild(hT2);
-      var cap1 = svgEl('text', { x: '64', y: '94', 'text-anchor': 'middle', 'font-size': '9', fill: '#cfd0d2' }); cap1.textContent = '(가) H₂O'; g1.appendChild(cap1);
+      var cap1 = svgEl('text', { x: '64', y: '94', 'text-anchor': 'middle', 'font-size': '9', fill: 'currentColor' }); cap1.textContent = '(가) H₂O'; g1.appendChild(cap1);
       svg.appendChild(g1);
       // CO2 on right
       var g2 = svgEl('g', { transform: 'translate(150,0)' });
-      g2.appendChild(svgEl('line', { x1: '8',  y1: '38', x2: '36',  y2: '38', stroke: '#cfd0d2', 'stroke-width': '1.6' }));
-      g2.appendChild(svgEl('line', { x1: '8',  y1: '46', x2: '36',  y2: '46', stroke: '#cfd0d2', 'stroke-width': '1.6' }));
-      g2.appendChild(svgEl('line', { x1: '76', y1: '38', x2: '104', y2: '38', stroke: '#cfd0d2', 'stroke-width': '1.6' }));
-      g2.appendChild(svgEl('line', { x1: '76', y1: '46', x2: '104', y2: '46', stroke: '#cfd0d2', 'stroke-width': '1.6' }));
-      g2.appendChild(svgEl('circle', { cx: '56', cy: '42', r: '14', fill: '#1f1f1f', stroke: '#fff', 'stroke-width': '1.2' }));
+      g2.appendChild(svgEl('line', { x1: '8',  y1: '38', x2: '36',  y2: '38', stroke: 'currentColor', 'stroke-width': '1.6' }));
+      g2.appendChild(svgEl('line', { x1: '8',  y1: '46', x2: '36',  y2: '46', stroke: 'currentColor', 'stroke-width': '1.6' }));
+      g2.appendChild(svgEl('line', { x1: '76', y1: '38', x2: '104', y2: '38', stroke: 'currentColor', 'stroke-width': '1.6' }));
+      g2.appendChild(svgEl('line', { x1: '76', y1: '46', x2: '104', y2: '46', stroke: 'currentColor', 'stroke-width': '1.6' }));
+      g2.appendChild(svgEl('circle', { cx: '56', cy: '42', r: '14', fill: '#1f1f1f', stroke: 'currentColor', 'stroke-width': '1.2' }));
       var cT = svgEl('text', { x: '56', y: '47', 'text-anchor': 'middle', 'font-size': '13', 'font-weight': '700', fill: '#fff' }); cT.textContent = 'C'; g2.appendChild(cT);
       g2.appendChild(svgEl('circle', { cx: '8',   cy: '42', r: '11', fill: '#33d6ff' }));
       var o1 = svgEl('text', { x: '8',   y: '47', 'text-anchor': 'middle', 'font-size': '12', 'font-weight': '700', fill: '#001417' }); o1.textContent = 'O'; g2.appendChild(o1);
       g2.appendChild(svgEl('circle', { cx: '104', cy: '42', r: '11', fill: '#33d6ff' }));
       var o2 = svgEl('text', { x: '104', y: '47', 'text-anchor': 'middle', 'font-size': '12', 'font-weight': '700', fill: '#001417' }); o2.textContent = 'O'; g2.appendChild(o2);
-      var cap2 = svgEl('text', { x: '56', y: '94', 'text-anchor': 'middle', 'font-size': '9', fill: '#cfd0d2' }); cap2.textContent = '(나) CO₂'; g2.appendChild(cap2);
+      var cap2 = svgEl('text', { x: '56', y: '94', 'text-anchor': 'middle', 'font-size': '9', fill: 'currentColor' }); cap2.textContent = '(나) CO₂'; g2.appendChild(cap2);
       svg.appendChild(g2);
     } else if (kind === 'parabola') {
       svg = svgEl('svg', { viewBox: '0 0 280 110', width: '100%', height: '110', role: 'img', 'aria-label': '이차함수 포물선 그래프' });
       // axes
-      svg.appendChild(svgEl('line', { x1: '14', y1: '94', x2: '266', y2: '94', stroke: '#cfd0d2', 'stroke-width': '1.4' }));
-      svg.appendChild(svgEl('line', { x1: '24', y1: '14', x2: '24',  y2: '102', stroke: '#cfd0d2', 'stroke-width': '1.4' }));
-      var tt = svgEl('text', { x: '268', y: '98', 'font-size': '10', fill: '#cfd0d2' }); tt.textContent = 't'; svg.appendChild(tt);
-      var ty = svgEl('text', { x: '14',  y: '13', 'font-size': '10', fill: '#cfd0d2' }); ty.textContent = 'y'; svg.appendChild(ty);
+      svg.appendChild(svgEl('line', { x1: '14', y1: '94', x2: '266', y2: '94', stroke: 'currentColor', 'stroke-width': '1.4' }));
+      svg.appendChild(svgEl('line', { x1: '24', y1: '14', x2: '24',  y2: '102', stroke: 'currentColor', 'stroke-width': '1.4' }));
+      var tt = svgEl('text', { x: '268', y: '98', 'font-size': '10', fill: 'currentColor' }); tt.textContent = 't'; svg.appendChild(tt);
+      var ty = svgEl('text', { x: '14',  y: '13', 'font-size': '10', fill: 'currentColor' }); ty.textContent = 'y'; svg.appendChild(ty);
       // parabola
       svg.appendChild(svgEl('path', { d: 'M 26 94 Q 140 -16 254 94', stroke: '#33d6ff', 'stroke-width': '2.4', fill: 'none' }));
       // vertex
       svg.appendChild(svgEl('circle', { cx: '140', cy: '24', r: '3.5', fill: '#33d6ff' }));
       var vtxT = svgEl('text', { x: '146', y: '22', 'font-size': '10', fill: '#33d6ff' }); vtxT.textContent = '최고점 (−b/2a)'; svg.appendChild(vtxT);
       // launch point
-      svg.appendChild(svgEl('circle', { cx: '26', cy: '94', r: '3', fill: '#fff' }));
-      var lpT = svgEl('text', { x: '30', y: '88', 'font-size': '9', fill: '#fff' }); lpT.textContent = '던진 점'; svg.appendChild(lpT);
+      svg.appendChild(svgEl('circle', { cx: '26', cy: '94', r: '3', fill: 'currentColor' }));
+      var lpT = svgEl('text', { x: '30', y: '88', 'font-size': '9', fill: 'currentColor' }); lpT.textContent = '던진 점'; svg.appendChild(lpT);
       // equation
-      var eqT = svgEl('text', { x: '150', y: '78', 'font-size': '11', 'font-weight': '700', fill: '#fff', 'font-style': 'italic' }); eqT.textContent = 'y = ax² + bx + c'; svg.appendChild(eqT);
+      var eqT = svgEl('text', { x: '150', y: '78', 'font-size': '11', 'font-weight': '700', fill: 'currentColor', 'font-style': 'italic' }); eqT.textContent = 'y = ax² + bx + c'; svg.appendChild(eqT);
     } else if (kind === 'veil') {
       svg = svgEl('svg', { viewBox: '0 0 280 110', width: '100%', height: '110', role: 'img', 'aria-label': '롤스의 무지의 베일 모형' });
       // veil bar
       svg.appendChild(svgEl('rect', { x: '24', y: '12', width: '232', height: '22', fill: '#0f1a18', stroke: 'rgba(0,255,163,.45)', 'stroke-width': '1' }));
-      var vT = svgEl('text', { x: '140', y: '27', 'text-anchor': 'middle', 'font-size': '10', 'font-weight': '700', fill: '#33d6ff' }); vT.textContent = 'VEIL OF IGNORANCE'; svg.appendChild(vT);
+      var vT = svgEl('text', { x: '140', y: '27', 'text-anchor': 'middle', 'font-size': '10', 'font-weight': '700', fill: '#33d6ff', 'class': 'fig-on-dark' }); vT.textContent = 'VEIL OF IGNORANCE'; svg.appendChild(vT);
       // drop lines
       [70, 140, 210].forEach(function (x) {
-        svg.appendChild(svgEl('line', { x1: x, y1: '34', x2: x, y2: '58', stroke: 'rgba(255,255,255,.4)', 'stroke-width': '1', 'stroke-dasharray': '2,2' }));
+        svg.appendChild(svgEl('line', { x1: x, y1: '34', x2: x, y2: '58', stroke: 'currentColor', 'stroke-opacity': '.45', 'stroke-width': '1', 'stroke-dasharray': '2,2' }));
       });
       // figures
       var labels = ['A','B','C'];
       [70, 140, 210].forEach(function (x, i) {
-        svg.appendChild(svgEl('circle', { cx: x, cy: '72', r: '12', fill: '#161616', stroke: 'rgba(255,255,255,.35)', 'stroke-width': '1' }));
+        svg.appendChild(svgEl('circle', { cx: x, cy: '72', r: '12', fill: '#161616', stroke: 'currentColor', 'stroke-opacity': '.4', 'stroke-width': '1' }));
         var lt = svgEl('text', { x: x, y: '76', 'text-anchor': 'middle', 'font-size': '10', 'font-weight': '700', fill: '#fff' }); lt.textContent = labels[i]; svg.appendChild(lt);
       });
-      var capV = svgEl('text', { x: '140', y: '102', 'text-anchor': 'middle', 'font-size': '9', fill: '#cfd0d2' }); capV.textContent = '원초적 입장 · Original Position'; svg.appendChild(capV);
+      var capV = svgEl('text', { x: '140', y: '102', 'text-anchor': 'middle', 'font-size': '9', fill: 'currentColor' }); capV.textContent = '원초적 입장 · Original Position'; svg.appendChild(capV);
     }
     if (svg) wrap.appendChild(svg);
     return wrap;

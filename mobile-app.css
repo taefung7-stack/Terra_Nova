@@ -295,6 +295,9 @@
     border-color: var(--m-accent) !important;
     box-shadow: 0 0 0 3px rgba(0,255,163,0.12) !important;
   }
+  /* FAQ 검색창: 위 공통 padding(11px 14px)이 돋보기 아이콘 자리를 지워
+     placeholder가 아이콘을 가리던 것 — 왼쪽 48px 복원 (아이콘 left:16px) */
+  body[data-page="faq"] .search-box .search-input { padding-left: 48px !important; }
   label { font-size: 0.78rem !important; color: var(--m-txt-dim) !important; }
 
   /* ───────── 13. Hide bulky decorations ───────── */
@@ -685,15 +688,15 @@
     width: 100% !important;
     max-width: 100% !important;
     height: auto !important;
-    max-height: 60vh !important;
+    max-height: 46vh !important;
     object-fit: contain !important;
     display: block;
   }
   .m-bio-book-meta {
-    padding: 14px 16px 18px;
+    padding: 12px 14px 14px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
   }
   .m-bio-book-toprow {
     display: flex;
@@ -1303,6 +1306,15 @@
     -webkit-text-fill-color: transparent !important;
     text-shadow: 0 2px 28px rgba(0,255,163,0.12) !important;
   }
+  /* 라이트: SUBSCRIPTION 대제목 그라데이션 해제 → 완전 검정 */
+  html.light body[data-page="order"] .section-title {
+    background: none !important;
+    -webkit-background-clip: initial !important;
+            background-clip: initial !important;
+    -webkit-text-fill-color: #000 !important;
+    color: #000 !important;
+    text-shadow: none !important;
+  }
 
   /* 12번 요청: order.html 레벨 카드 컴팩트 (2-col 그대로, 카드 padding 축소) */
   body[data-page="order"] .level-grid {
@@ -1686,6 +1698,25 @@
     text-transform: uppercase !important;
     line-height: 1 !important;
   }
+  /* 라이트: stdnav 로고·햄버거 흰색 고정 → 검정 (흰 배경에서 안 보이던 것) */
+  html.light nav.m-subpage-stdnav .logo-main { color: #16181C !important; }
+  html.light nav.m-subpage-stdnav .logo-eng { color: rgba(0,140,95,0.75) !important; }
+  html.light nav.m-subpage-stdnav .nav-hamburger span { background: #16181C !important; }
+  /* stdnav 안 테마 토글(theme-toggle.js ensureButton 주입) — 햄버거 왼쪽에 배치 */
+  nav.m-subpage-stdnav .theme-toggle {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 38px !important; height: 38px !important;
+    margin-left: auto !important;
+    margin-right: 4px !important;
+    border: 0.5px solid var(--m-line) !important;
+    border-radius: 11px !important;
+    background: var(--m-surface) !important;
+    color: var(--m-txt) !important;
+    cursor: pointer !important;
+    -webkit-tap-highlight-color: transparent;
+  }
 
   /* 페이지 본문 안 큰 2줄 타이틀 */
   .m-subpage-hero {
@@ -1710,6 +1741,16 @@
   }
   .m-subpage-title-eng {
     letter-spacing: 0.06em !important;
+  }
+  /* 라이트: 서브페이지 대제목(TERRA NOVA / 3 PLANS) 그라데이션 해제 → 완전 검정 */
+  html.light .m-subpage-title,
+  html.light .m-page-title-eng {
+    background: none !important;
+    -webkit-background-clip: initial !important;
+            background-clip: initial !important;
+    -webkit-text-fill-color: #000 !important;
+    color: #000 !important;
+    text-shadow: none !important;
   }
   .m-subpage-subtitle {
     font-size: 0.96rem !important;
@@ -1849,7 +1890,20 @@
     border-radius: 8px;
     text-align: center;
   }
-  .m-match-figure svg { display: block; margin: 0 auto; max-width: 100%; }
+  .m-match-figure svg { display: block; margin: 0 auto; max-width: 100%; color: #cfd0d2; }
+  /* 라이트: 그림 안 선·글자(currentColor)를 어두운 잉크로, 시안 강조색은 진한 청록으로 */
+  html.light .m-match-figure { background: #F6F7F9 !important; border: 1px solid rgba(0,0,0,0.20) !important; }
+  html.light .m-match-figure svg { color: #2E3238; }
+  html.light .m-match-figure [stroke="#33d6ff"] { stroke: #0B87A6; }
+  html.light .m-match-figure text[fill="#33d6ff"]:not(.fig-on-dark) { fill: #0B87A6; }
+  /* 라이트: 페어 카드끼리 구분되도록 테두리 진하게 (모의고사·교재 매칭 카드) */
+  html.light .m-match-pair { border: 1px solid rgba(0,0,0,0.30) !important; }
+  html.light .m-match-role-exam {
+    color: #B96A10 !important;
+    background: rgba(255,150,40,0.12) !important;
+    border-color: rgba(185,106,16,0.45) !important;
+  }
+  html.light .m-match-role-book { border-color: rgba(0,140,95,0.45) !important; }
   .m-match-stem {
     font-size: 0.86rem !important;
     color: var(--m-txt) !important;

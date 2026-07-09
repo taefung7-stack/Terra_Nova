@@ -95,7 +95,10 @@
   function ensureButton() {
     if (document.querySelector('.theme-toggle')) return;
     // 모바일 bio 홈(mobile-app.js가 자체 토글 .m-bio-theme 를 이미 배치)에서는 만들지 않는다.
-    if (document.body.classList.contains('m-bio-mode') || document.querySelector('.m-bio-theme')) return;
+    // 단, 서브페이지(m-subpage: exam-match/subscription)는 m-bio-mode 클래스를 재활용할 뿐
+    // 자체 토글이 없으므로 stdnav 안에 만들어 준다. (2026-07-09 토글 부재 수정)
+    if (document.querySelector('.m-bio-theme')) return;
+    if (document.body.classList.contains('m-bio-mode') && !document.body.classList.contains('m-subpage')) return;
     var btn = document.createElement('button');
     btn.className = 'theme-toggle';
     btn.id = 'theme-toggle';
