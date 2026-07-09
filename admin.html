@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>
 /* Terra Nova 테마 FOUC 방지 — 저장된 선택(없으면 시스템 설정)을 렌더 전에 즉시 적용 */
-(function(){try{var m=localStorage.getItem('tn-theme');if(!m)m=window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';if(m==='light')document.documentElement.classList.add('light');}catch(e){}})();
+(function(){try{var m=localStorage.getItem('tn-theme');if(!m)m=(window.matchMedia&&window.matchMedia('(max-width: 680px)').matches)?'light':(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');if(m==='light')document.documentElement.classList.add('light');}catch(e){}})();
 </script>
 <meta name="robots" content="noindex, nofollow">
 <title>관리자 · Terra Nova</title>
@@ -1435,6 +1435,6 @@ html.light .site-footer a,html.light footer a{color:var(--txt)!important;}
 </script>
 <!-- v9 admin 강화 (사용자 검색·구독·배송·레벨 dashboard) -->
 <script src="./admin-extras.js" defer></script>
-<script src="./theme-toggle.js?v=20260710a" defer></script>
+<script src="./theme-toggle.js?v=20260710b" defer></script>
 </body>
 </html>

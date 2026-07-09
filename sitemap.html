@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>
 /* Terra Nova 테마 FOUC 방지 — 저장된 선택(없으면 시스템 설정)을 렌더 전에 즉시 적용 */
-(function(){try{var m=localStorage.getItem('tn-theme');if(!m)m=window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';if(m==='light')document.documentElement.classList.add('light');}catch(e){}})();
+(function(){try{var m=localStorage.getItem('tn-theme');if(!m)m=(window.matchMedia&&window.matchMedia('(max-width: 680px)').matches)?'light':(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');if(m==='light')document.documentElement.classList.add('light');}catch(e){}})();
 </script>
 <meta name="naver-site-verification" content="406494bbc7a05534675e3fdb6d67818d864c03c6" />
 <title>사이트맵 — TERRA NOVA ENGLISH</title>
@@ -162,8 +162,8 @@ html.light .site-footer,html.light footer{background:#F4F6F7!important;}
 html.light .site-footer,html.light .site-footer *,html.light footer,html.light footer *{color:var(--dim)!important;}
 html.light .site-footer a,html.light footer a{color:var(--txt)!important;}
 </style>
-<link rel="stylesheet" href="mobile-app.css?v=20260710a">
-<script src="mobile-app.js?v=20260710a" defer></script>
+<link rel="stylesheet" href="mobile-app.css?v=20260710b">
+<script src="mobile-app.js?v=20260710b" defer></script>
 <script src="assets/js/clarity.js" async></script>
 <style id="light-title-fix">
 /* 라이트 모드: 페이지 대제목 검정 + 모든 텍스트 그림자 제거 (2026-07-06 피드백) */
@@ -437,6 +437,6 @@ html.light .site-nav,html.light .site-nav *{text-shadow:none!important;}
   </div>
 </div>
 
-<script src="./theme-toggle.js?v=20260710a" defer></script>
+<script src="./theme-toggle.js?v=20260710b" defer></script>
 </body>
 </html>

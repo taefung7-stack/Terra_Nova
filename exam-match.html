@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>
 /* Terra Nova 테마 FOUC 방지 */
-(function(){try{var m=localStorage.getItem('tn-theme');if(!m)m=window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';if(m==='light')document.documentElement.classList.add('light');}catch(e){}})();
+(function(){try{var m=localStorage.getItem('tn-theme');if(!m)m=(window.matchMedia&&window.matchMedia('(max-width: 680px)').matches)?'light':(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');if(m==='light')document.documentElement.classList.add('light');}catch(e){}})();
 </script>
 <title>TERRA NOVA = 수능지문</title>
 <meta name="description" content="모의고사에 나온 그 개념. Terra Nova 영어 지문에서 같은 깊이로 만났습니다.">
@@ -22,10 +22,10 @@
 <meta property="og:image:height" content="630">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
-<link rel="stylesheet" href="mobile-app.css?v=20260710a">
+<link rel="stylesheet" href="mobile-app.css?v=20260710b">
 <script src="site-config.js" defer></script>
-<script src="mobile-app.js?v=20260710a" defer></script>
-<script src="theme-toggle.js?v=20260710a" defer></script>
+<script src="mobile-app.js?v=20260710b" defer></script>
+<script src="theme-toggle.js?v=20260710b" defer></script>
 <style>
   /* Desktop fallback — 폰에서는 mobile-app.css가 #m-bio를 덮음 */
   html, body { margin: 0; padding: 0; }

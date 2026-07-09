@@ -140,12 +140,14 @@
       mo.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['style'] });
     } catch (e) {}
     // 저장된 선택이 없을 때만 시스템 설정 변화를 실시간 반영.
+    // 단, 폰(≤680px)은 기본 라이트 고정(2026-07-10) — 시스템 다크를 따라가지 않는다.
     try {
       var mq = window.matchMedia('(prefers-color-scheme: light)');
       mq.addEventListener('change', function (e) {
         var saved = null;
         try { saved = localStorage.getItem(KEY); } catch (err) {}
-        if (!saved) apply(e.matches ? 'light' : 'dark');
+        var isPhone = window.matchMedia && window.matchMedia('(max-width: 680px)').matches;
+        if (!saved && !isPhone) apply(e.matches ? 'light' : 'dark');
       });
     } catch (e) {}
   }

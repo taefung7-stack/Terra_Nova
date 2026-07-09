@@ -7,7 +7,7 @@
 // CACHE_VERSION? deploy.bat??留?諛고룷留덈떎 timestamp濡??먮룞 媛깆떊 (yyyyMMdd-HHmm).
 // ??踰꾩쟾??install?섎㈃ activate ?④퀎?먯꽌 ??罹먯떆 ?쇨큵 ??젣.
 
-const CACHE_VERSION = 'tn-v2-20260512-0830';
+const CACHE_VERSION = 'tn-v3-20260710-0210';
 const CORE_ASSETS = [
   './',
   './index.html',
@@ -35,10 +35,14 @@ self.addEventListener('activate', (event) => {
 });
 
 // network-first w/ 2.5s timeout, cache fallback for offline.
+// v3: 문서(HTML)는 HTTP 캐시(GitHub Pages max-age=600)를 건너뛰고 항상 서버에
+// 재검증(cache:'no-cache' → ETag 304/200) — 배포 후 10분 기다릴 필요 없이 즉시 반영.
+// CSS/JS는 ?v= 버전 파라미터로 이미 캐시 무력화되므로 그대로 둔다.
 async function networkFirst(request) {
+  const isDoc = request.mode === 'navigate' || request.destination === 'document';
   try {
     const networkRes = await Promise.race([
-      fetch(request),
+      isDoc ? fetch(request, { cache: 'no-cache' }) : fetch(request),
       new Promise((_, reject) =>
         setTimeout(() => reject(new Error('sw-timeout')), 2500)
       )

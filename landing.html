@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>
 /* Terra Nova 테마 FOUC 방지 — 저장된 선택(없으면 시스템 설정)을 렌더 전에 즉시 적용 */
-(function(){try{var m=localStorage.getItem('tn-theme');if(!m)m=window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';if(m==='light')document.documentElement.classList.add('light');}catch(e){}})();
+(function(){try{var m=localStorage.getItem('tn-theme');if(!m)m=(window.matchMedia&&window.matchMedia('(max-width: 680px)').matches)?'light':(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');if(m==='light')document.documentElement.classList.add('light');}catch(e){}})();
 </script>
 <meta name="naver-site-verification" content="406494bbc7a05534675e3fdb6d67818d864c03c6" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -4185,8 +4185,8 @@ html.light .site-footer,html.light footer{background:#F4F6F7!important;}
 html.light .site-footer,html.light .site-footer *,html.light footer,html.light footer *{color:var(--dim)!important;}
 html.light .site-footer a,html.light footer a{color:var(--txt)!important;}
 </style>
-<link rel="stylesheet" href="mobile-app.css?v=20260710a">
-<script src="mobile-app.js?v=20260710a" defer></script>
+<link rel="stylesheet" href="mobile-app.css?v=20260710b">
+<script src="mobile-app.js?v=20260710b" defer></script>
 <script src="assets/js/clarity.js" async></script>
 <style id="light-polish">
 /* ═══ 라이트 모드 마감 보정 (2026-07-06 사용자 피드백) ═══
@@ -6989,7 +6989,7 @@ document.addEventListener('DOMContentLoaded', function () {
      <footer class="site-footer"> placeholder above and replaces it with the
      full version (same one used on every other page). -->
 <script src="./site-config.js"></script>
-<script src="./footer.js" defer></script><script src="./theme-toggle.js?v=20260710a" defer></script>
+<script src="./footer.js" defer></script><script src="./theme-toggle.js?v=20260710b" defer></script>
 
 <!-- Character-by-character bouncy popup for "쏟아지는 후기들" headline. -->
 <script>
