@@ -480,21 +480,21 @@
     gap: 10px;
     margin: 4px 0 6px;
   }
+  /* 소셜 아이콘 동그라미 — 민트 채움 (2026-07-10 사용자 요청), 아이콘은 어두운 잉크 */
   .m-bio-social a {
     width: 42px; height: 42px;
     border-radius: 50%;
-    background: rgba(255,255,255,0.06);
-    border: 0.5px solid var(--m-line);
+    background: var(--m-accent);
+    border: 0.5px solid var(--m-accent-dim);
     display: flex; align-items: center; justify-content: center;
     text-decoration: none;
-    color: var(--m-txt);
+    color: #0A0A0F;
     transition: transform 0.2s var(--m-ease), background 0.2s var(--m-ease), color 0.2s var(--m-ease);
   }
-  .m-bio-social a:hover { color: var(--m-accent); }
+  .m-bio-social a:hover { background: var(--m-accent-dim); }
   .m-bio-social a:active {
     transform: scale(0.92);
-    background: rgba(255,255,255,0.10);
-    color: var(--m-accent);
+    background: var(--m-accent-dim);
   }
   .m-bio-social svg { display: block; }
 
@@ -509,7 +509,8 @@
   }
   html.light .m-bio-eng { color: var(--m-txt) !important; }  /* ENGLISH 검정 (#4) */
   html.light .m-bio-tagline { color: var(--m-txt-dim) !important; }
-  html.light .m-bio-social a { background: rgba(0,0,0,0.04) !important; }
+  /* 라이트에서도 민트 채움 유지 (라이트 accent = #00B37A, 아이콘 어두운 잉크 그대로) */
+  html.light .m-bio-social a { background: var(--m-accent) !important; }
   /* 홈 메뉴 아이콘 배경 — 라이트에서 흰 카드와 구분되도록 진한 민트 (#3) */
   html.light .m-bio-icon,
   html.light .m-bio-feat-icon { background: rgba(0,179,122,0.16) !important; }
