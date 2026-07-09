@@ -4002,7 +4002,7 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
 }
 
 /* =============== Reveal (sections) =============== */
-.reveal { opacity:0; transform:translateY(40px); transition:opacity 1s ease, transform 1s cubic-bezier(.2,.8,.2,1); }
+.reveal { opacity:0; transform:translateY(28px); transition:opacity .65s ease, transform .65s cubic-bezier(.2,.8,.2,1); }
 .reveal.in { opacity:1; transform:translateY(0); }
 /* .exam-match is excluded from the global .reveal observer (it has its
    own per-pair observer for the card sweep effect). Without an opt-in,
@@ -5164,7 +5164,7 @@ html.light #hero-warp{display:none!important;}
           io.unobserve(e.target);
         }
       });
-    }, { threshold: 0.06, rootMargin: '0px 0px -4% 0px' }) : null;
+    }, { threshold: 0, rootMargin: '0px 0px -4% 0px' }) : null;
 
     document.querySelectorAll('.reveal:not(.exam-match):not(.statement)').forEach(function (el) {
       if (io) io.observe(el); else el.classList.add('in');
