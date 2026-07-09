@@ -161,7 +161,7 @@ html.light .site-nav .nav-links a { color:var(--txt); }
 html.light .hero { background:linear-gradient(180deg,#F4F6F7,#FFFFFF); }
 html.light .hero-english,
 html.light .scroll-cue { color:var(--txt); }
-html.light .hero-tagline { color:var(--accent); background:rgba(255,255,255,.72); border-color:var(--line3); }
+html.light .hero-tagline { color:var(--accent); background:rgba(255,255,255,.72); border-color:#000; }
 html.light .site-nav .nav-cta { background:var(--accent)!important; color:#fff!important; border-color:var(--accent)!important; }
 html.light .site-nav .nav-cta * { color:#fff!important; -webkit-text-fill-color:#fff!important; }
 html.light .nav-hamburger span { background:var(--txt); }
@@ -921,7 +921,7 @@ body:not(.bigbang-done):has(:target) { overflow:auto; height:auto; }
 .section .mint { color:var(--accent); }
 
 .book {
-  padding:160px 1.4vw 180px;
+  padding:110px 1.4vw 160px;
   background:linear-gradient(180deg, var(--bg) 0%, #050505 100%);
 }
 .book .inner { max-width:1880px; }
@@ -4230,7 +4230,7 @@ html.light .nav-links.open .nav-cta{color:#fff!important;background:var(--accent
 </style>
 <style id="nav-size-fix">
 /* 네비 링크 글자 크기 전 페이지 통일 — 기존 .75/.78/.82rem 편차 제거 (2026-07-06) */
-.site-nav .nav-links a,.nav-links a{font-size:.92rem!important;letter-spacing:.6px!important;}
+.site-nav .nav-links a,.nav-links a{font-size:18px!important;letter-spacing:.6px!important;}
 </style>
 <style id="light-hero-stars-off">
 /* [실험] 라이트모드: 히어로 별(워프 스타필드) 임시 비활성 — 되돌리려면 이 블록 삭제 */
@@ -5164,7 +5164,7 @@ html.light #hero-warp{display:none!important;}
           io.unobserve(e.target);
         }
       });
-    }, { threshold: 0.18, rootMargin: '0px 0px -8% 0px' }) : null;
+    }, { threshold: 0.06, rootMargin: '0px 0px -4% 0px' }) : null;
 
     document.querySelectorAll('.reveal:not(.exam-match):not(.statement)').forEach(function (el) {
       if (io) io.observe(el); else el.classList.add('in');
