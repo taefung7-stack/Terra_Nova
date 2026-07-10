@@ -11,8 +11,8 @@
     "achievement_verified": true,
     "difficulty": "중간",
     "cognitive_skill": "요지",
-    "lexile": "1090L",
-    "ar_level": 8.0,
+    "lexile": "990L",
+    "ar_level": 7.2,
     "key_concepts": [
       "휴지 전위",
       "역치",
@@ -23,7 +23,7 @@
   "page1": {
     "title": "The Spark That Runs Down a Nerve",
     "subtitle": "How your hand recoils before your mind ever decides.",
-    "body": "Touch a hot stove, and your hand pulls back before you even decide to move. That speed is the work of neurons, the long cells that carry signals through your body. A resting neuron is not truly idle. It holds a tiny voltage across its membrane, with more positive charge waiting outside than inside. This quiet, charged state is called the <u>resting potential</u>, and it is the loaded spring that every nerve signal depends on.\n\nA neuron does not fire for just any nudge. A weak touch changes the voltage only a little, and the cell soon settles back to rest. But once a stimulus grows strong enough to cross a certain line, the door swings open all the way. Scientists call that line the threshold, and reaching it triggers a sudden flip of charge called an action potential. The signal is <u>all or nothing</u>: a stronger poke does not make a bigger spike, only more spikes packed closer together.\n\nOnce it starts, the action potential races down the neuron like a spark along a fuse. Many nerve fibers wear a fatty wrapping called myelin, broken by small bare gaps. Instead of crawling smoothly along the whole fiber, the signal leaps from gap to gap, which lets it travel far faster. This jumping trick is why a message can dash from your foot to your brain in a fraction of a second.\n\nAt the end of the line, the neuron meets the next one across a narrow space. The electric signal cannot simply jump this gap on its own. Instead, the arriving spike makes the neuron release chemical messengers that drift across and stir the next cell. So a nerve signal is really a relay that switches between electric and <blank> forms as it hurries along.",
+    "body": "Touch a hot stove, and your hand pulls back before you even decide to move. That speed is the work of neurons, the long cells that carry signals through your body. A resting neuron is not truly idle. It holds a tiny voltage across its membrane, with more positive charge outside than inside. This quiet, charged state is called the <u>resting potential</u>, and it is the loaded spring that every nerve signal depends on.\n\nA neuron does not fire for every small touch. A weak touch changes the voltage only a little, and the cell soon settles back to rest. But once a stimulus grows strong enough to cross a certain line, the door swings wide open. Scientists call that line the threshold, and reaching it triggers a sudden flip of charge called an action potential. The signal is <u>all or nothing</u>: a stronger poke does not make a bigger spike, only more spikes packed closer together.\n\nOnce it starts, the action potential races down the neuron like a spark along a fuse. Many nerve fibers wear a fatty wrapping called myelin, broken by small bare gaps. The signal does not crawl smoothly along the whole fiber. Instead, it leaps from gap to gap, and this lets it move far faster. That jumping trick is why a message can dash from your foot to your brain in less than a second.\n\nAt the end of the line, the neuron meets the next one across a narrow space. The electric signal cannot jump this gap on its own. Instead, the arriving spike makes the neuron release chemical messengers that drift across and wake the next cell. So a nerve signal is really a relay that switches between electric and <blank> forms as it moves along.",
     "illustration": "../../assets/illustrations/2026-08-J/03.jpg",
     "illustration_caption": "휴지 상태의 뉴런은 역치를 넘는 자극을 받으면 활동 전위를 일으켜 신호를 축삭 끝까지 전도한다.",
     "gloss_extra": [
@@ -151,9 +151,9 @@
           { "role": "V", "text": "holds" },
           { "role": "O", "text": "a tiny voltage" },
           { "role": "M", "text": "across its membrane," },
-          { "role": "M", "text": "with more positive charge waiting outside than inside.", "note": "with 분사구문" }
+          { "role": "M", "text": "with more positive charge outside than inside.", "note": "with 부대상황" }
         ],
-        "grammar_note": "3형식 + with 분사구문 (부대상황)"
+        "grammar_note": "3형식 + with 부대상황 (전치사구)"
       },
       {
         "index": 5,
@@ -174,7 +174,7 @@
         "segments": [
           { "role": "S", "text": "A neuron" },
           { "role": "V", "text": "does not fire" },
-          { "role": "M", "text": "for just any nudge." }
+          { "role": "M", "text": "for every small touch." }
         ],
         "grammar_note": "1형식 부정 + 전치사구"
       },
@@ -198,8 +198,8 @@
         "segments": [
           { "role": "M", "text": "But once a stimulus grows strong enough to cross a certain line,", "note": "once 조건 부사절 (형용사+enough+to)" },
           { "role": "S", "text": "the door" },
-          { "role": "V", "text": "swings open" },
-          { "role": "M", "text": "all the way." }
+          { "role": "V", "text": "swings" },
+          { "role": "M", "text": "wide open." }
         ],
         "grammar_note": "once 부사절 (enough to) + 1형식"
       },
@@ -255,25 +255,39 @@
       {
         "index": 13,
         "segments": [
-          { "role": "M", "text": "Instead of crawling smoothly along the whole fiber,", "note": "instead of 동명사" },
-          { "role": "S", "text": "the signal" },
-          { "role": "V", "text": "leaps" },
-          { "role": "M", "text": "from gap to gap," },
-          { "role": "M", "text": "which lets it travel far faster.", "note": "계속적 관계절 (let 사역)" }
+          { "role": "S", "text": "The signal" },
+          { "role": "V", "text": "does not crawl" },
+          { "role": "M", "text": "smoothly" },
+          { "role": "M", "text": "along the whole fiber." }
         ],
-        "grammar_note": "instead of 동명사 + 1형식 + 계속적 관계절"
+        "grammar_note": "1형식 부정 + 부사·전치사구 수식"
       },
       {
         "index": 14,
         "segments": [
-          { "role": "S", "text": "This jumping trick" },
+          { "role": "M", "text": "Instead," },
+          { "role": "S", "text": "it" },
+          { "role": "V", "text": "leaps" },
+          { "role": "M", "text": "from gap to gap," },
+          { "role": "CONJ", "text": "and" },
+          { "role": "S", "text": "this" },
+          { "role": "V", "text": "lets" },
+          { "role": "O", "text": "it" },
+          { "role": "C", "text": "move far faster.", "note": "let O 원형부정사" }
+        ],
+        "grammar_note": "1형식 + and let O V원형 (5형식)"
+      },
+      {
+        "index": 15,
+        "segments": [
+          { "role": "S", "text": "That jumping trick" },
           { "role": "V", "text": "is" },
-          { "role": "C", "text": "why a message can dash from your foot to your brain in a fraction of a second.", "note": "관계부사 why 명사절" }
+          { "role": "C", "text": "why a message can dash from your foot to your brain in less than a second.", "note": "관계부사 why 명사절" }
         ],
         "grammar_note": "2형식 + 관계부사 why 보어절"
       },
       {
-        "index": 15,
+        "index": 16,
         "segments": [
           { "role": "M", "text": "At the end of the line,", "note": "장소 부사구" },
           { "role": "S", "text": "the neuron" },
@@ -284,41 +298,41 @@
         "grammar_note": "3형식 + 전치사구 수식"
       },
       {
-        "index": 16,
+        "index": 17,
         "segments": [
           { "role": "S", "text": "The electric signal" },
-          { "role": "V", "text": "cannot simply jump" },
+          { "role": "V", "text": "cannot jump" },
           { "role": "O", "text": "this gap" },
           { "role": "M", "text": "on its own." }
         ],
         "grammar_note": "3형식 조동사 부정 + 관용구 on its own"
       },
       {
-        "index": 17,
+        "index": 18,
         "segments": [
           { "role": "M", "text": "Instead," },
           { "role": "S", "text": "the arriving spike" },
           { "role": "V", "text": "makes" },
           { "role": "O", "text": "the neuron" },
           { "role": "C", "text": "release chemical messengers", "note": "make O 원형부정사" },
-          { "role": "M", "text": "that drift across and stir the next cell.", "note": "관계절 (messengers 수식)" }
+          { "role": "M", "text": "that drift across and wake the next cell.", "note": "관계절 (messengers 수식)" }
         ],
         "grammar_note": "make O V원형 (5형식) + 관계절"
       },
       {
-        "index": 18,
+        "index": 19,
         "segments": [
           { "role": "CONJ", "text": "So" },
           { "role": "S", "text": "a nerve signal" },
           { "role": "V", "text": "is" },
           { "role": "C", "text": "really a relay" },
           { "role": "M", "text": "that switches between electric and chemical forms", "note": "관계절 (relay 수식)" },
-          { "role": "M", "text": "as it hurries along.", "note": "as 부사절" }
+          { "role": "M", "text": "as it moves along.", "note": "as 부사절" }
         ],
         "grammar_note": "2형식 + 관계절 + as 부사절"
       }
     ],
-    "translation_ko": "[1] 뜨거운 난로를 만져 보라, 그러면 당신이 움직이기로 결정하기도 전에 손이 뒤로 빠진다. [2] 그 속도는 뉴런, 즉 몸을 통해 신호를 나르는 긴 세포들의 작품이다. [3] 쉬고 있는 뉴런은 사실 놀고 있는 것이 아니다. [4] 그것은 막을 가로질러 작은 전압을 지니는데, 안쪽보다 바깥쪽에 더 많은 양전하가 대기하고 있다. [5] 이 조용하고 전하를 띤 상태를 휴지 전위라 부르며, 그것은 모든 신경 신호가 의존하는 장전된 용수철이다. [6] 뉴런은 그저 아무 작은 자극에나 발화하지는 않는다. [7] 약한 접촉은 전압을 아주 조금만 바꾸고, 그 세포는 곧 다시 안정 상태로 가라앉는다. [8] 그러나 일단 자극이 어떤 선을 넘을 만큼 충분히 강해지면, 그 문이 활짝 열린다. [9] 과학자들은 그 선을 역치라 부르며, 그것에 도달하는 것이 활동 전위라 불리는 전하의 갑작스러운 뒤집힘을 촉발한다. [10] 그 신호는 실무율적이다: 더 강한 자극이 더 큰 스파이크를 만드는 게 아니라, 더 촘촘히 밀집된 더 많은 스파이크를 만들 뿐이다. [11] 일단 시작되면, 활동 전위는 도화선을 따라가는 불꽃처럼 뉴런을 타고 내달린다. [12] 많은 신경 섬유는 미엘린이라 불리는 지방질 껍질을 두르고 있으며, 그것은 작은 맨 틈으로 끊겨 있다. [13] 섬유 전체를 따라 매끄럽게 기어가는 대신, 신호는 틈에서 틈으로 도약하고, 이는 신호가 훨씬 빠르게 이동하게 한다. [14] 이 도약하는 재주가 바로 메시지가 발끝에서 뇌까지 순식간에 내달릴 수 있는 이유다. [15] 그 줄의 끝에서, 뉴런은 좁은 공간을 사이에 두고 다음 뉴런을 만난다. [16] 전기 신호는 그 틈을 스스로 그냥 뛰어넘을 수 없다. [17] 대신, 도착한 스파이크는 뉴런이 화학 전달 물질을 방출하게 하고, 그 물질은 건너가 퍼져 다음 세포를 자극한다. [18] 그래서 신경 신호는 사실 서둘러 나아가면서 전기와 화학 형태 사이를 전환하는 릴레이다."
+    "translation_ko": "[1] 뜨거운 난로를 만져 보라, 그러면 당신이 움직이기로 결정하기도 전에 손이 뒤로 빠진다. [2] 그 속도는 뉴런, 즉 몸을 통해 신호를 나르는 긴 세포들의 작품이다. [3] 쉬고 있는 뉴런은 사실 놀고 있는 것이 아니다. [4] 그것은 막을 가로질러 작은 전압을 지니는데, 안쪽보다 바깥쪽에 더 많은 양전하가 있다. [5] 이 조용하고 전하를 띤 상태를 휴지 전위라 부르며, 그것은 모든 신경 신호가 의존하는 장전된 용수철이다. [6] 뉴런은 모든 작은 접촉에 발화하지는 않는다. [7] 약한 접촉은 전압을 아주 조금만 바꾸고, 그 세포는 곧 다시 안정 상태로 가라앉는다. [8] 그러나 일단 자극이 어떤 선을 넘을 만큼 충분히 강해지면, 그 문이 활짝 열린다. [9] 과학자들은 그 선을 역치라 부르며, 그것에 도달하는 것이 활동 전위라 불리는 전하의 갑작스러운 뒤집힘을 촉발한다. [10] 그 신호는 실무율적이다: 더 강한 자극이 더 큰 스파이크를 만드는 게 아니라, 더 촘촘히 밀집된 더 많은 스파이크를 만들 뿐이다. [11] 일단 시작되면, 활동 전위는 도화선을 따라가는 불꽃처럼 뉴런을 타고 내달린다. [12] 많은 신경 섬유는 미엘린이라 불리는 지방질 껍질을 두르고 있으며, 그것은 작은 맨 틈으로 끊겨 있다. [13] 신호는 섬유 전체를 따라 매끄럽게 기어가지 않는다. [14] 대신, 그것은 틈에서 틈으로 도약하고, 이것이 신호가 훨씬 빠르게 이동하게 한다. [15] 그 도약하는 재주가 바로 메시지가 발끝에서 뇌까지 1초도 안 되어 내달릴 수 있는 이유다. [16] 그 줄의 끝에서, 뉴런은 좁은 공간을 사이에 두고 다음 뉴런을 만난다. [17] 전기 신호는 그 틈을 스스로 뛰어넘을 수 없다. [18] 대신, 도착한 스파이크는 뉴런이 화학 전달 물질을 방출하게 하고, 그 물질은 건너가 퍼져 다음 세포를 깨운다. [19] 그래서 신경 신호는 나아가면서 전기와 화학 형태 사이를 전환하는 릴레이다."
   },
   "answers": {
     "explanations": [
