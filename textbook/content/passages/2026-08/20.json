@@ -1,0 +1,347 @@
+{
+  "schema_version": "2.2",
+  "id": "2026-08-20",
+  "meta": {
+    "month": "2026-08",
+    "sequence": 20,
+    "subject": "정보",
+    "linked_unit": "정보 자료의 표현과 디지털화",
+    "part_ko": "0과 1로 담는 세상",
+    "achievement_standard": "12정02-01",
+    "achievement_verified": true,
+    "difficulty": "중간",
+    "cognitive_skill": "요지",
+    "lexile": "940L",
+    "ar_level": 6.5,
+    "key_concepts": ["디지털화", "비트", "이진법", "샘플링", "자료 표현"]
+  },
+  "page1": {
+    "title": "The World in Ones and Zeros",
+    "subtitle": "Every song, photo, and letter is really just a string of switches.",
+    "body": "A computer cannot understand a word, a color, or a sound the way you do. Inside the machine, there are only tiny switches, and each one is either on or off. We write on as 1 and off as 0, and a single switch is called a <u>bit</u>. From these two plain symbols, a computer patiently builds every text, image, and song you have ever opened on a screen.\n\nTo store a letter, we first agree on a shared code. In one common code, the letter A is the number 65, and the computer keeps that number as a neat row of eight bits. Eight bits form one byte, and a byte can hold 256 different values. That is enough for every letter, digit, and mark on a keyboard, so a whole page of text simply becomes a long chain of bytes, one after another.\n\nPictures and sounds are trickier, because the real world is smooth and continuous. To handle this, a computer chops the signal into tiny pieces and measures each one. This step is called <u>sampling</u>, and it turns a smooth wave into a list of numbers. A single photo is split into millions of dots, and a sound is measured thousands of times each second. The more samples we take, the closer the copy sits to the original.\n\nThis quiet way of storing information brings us two great gifts. First, a digital copy never fades, because a number stays exactly the same no matter how often it is moved from place to place. Second, any file can be squeezed, sent, and shared across the whole world in a matter of seconds. So the deeper lesson is really simple: once a thing becomes numbers, it can <blank>.",
+    "illustration": "../../assets/illustrations/2026-08/20.jpg",
+    "illustration_caption": "글자·사진·소리는 모두 0과 1의 비트열로 바뀌어 컴퓨터 안에 저장된다.",
+    "gloss_extra": [
+      { "term": "byte", "ko": "바이트(8비트 묶음)" },
+      { "term": "continuous", "ko": "연속적인, 끊김 없는" },
+      { "term": "signal", "ko": "신호" }
+    ]
+  },
+  "page2": {
+    "questions": [
+      {
+        "type": "mock_objective",
+        "style": "요지",
+        "stem": "다음 글의 요지로 가장 적절한 것은?",
+        "choices": [
+          "Computers can only store simple text, not pictures or recorded sounds.",
+          "A digital copy is always far worse than the smooth original signal.",
+          "Computers turn all data into numbers that never fade and travel easily.",
+          "Sampling makes every file much larger and far harder to share widely.",
+          "One single bit alone is enough to store a whole full page of writing."
+        ],
+        "answer_index": 2
+      },
+      {
+        "type": "mock_objective",
+        "style": "빈칸 추론",
+        "stem": "윗글의 밑줄 친 빈칸에 들어갈 말로 가장 적절한 것은?",
+        "choices": [
+          "be copied and shared perfectly",
+          "lose its meaning right away",
+          "never leave a single machine",
+          "turn back into a real object",
+          "refuse to travel over a network"
+        ],
+        "answer_index": 0
+      },
+      {
+        "type": "mock_objective",
+        "style": "세부 내용 파악",
+        "stem": "윗글의 내용과 일치하지 않는 것은?",
+        "choices": [
+          "A single switch that is on or off is called a bit.",
+          "Eight bits form one byte, which can hold 256 values.",
+          "Sampling turns a smooth wave into a list of numbers.",
+          "Taking more samples makes the copy closer to the original.",
+          "A digital number slowly fades each time a file is moved."
+        ],
+        "answer_index": 4
+      },
+      {
+        "type": "school_descriptive",
+        "style": "요약문 빈칸 완성",
+        "prompt": "다음은 본문의 요약문이다. 본문의 내용을 바탕으로 빈칸 (A), (B)에 들어갈 말을 <조건>에 맞게 영어 한 단어로 각각 쓰시오. <조건> 본문에서 제시된 단어를 그대로 활용할 것.",
+        "hints": ["bit", "byte", "sampling", "number", "signal"],
+        "summary_template": "A computer stores everything with switches, and each switch is a <blank> (A). Smooth pictures and sounds are chopped into tiny pieces by <blank> (B), which turns a wave into a list of numbers.",
+        "model_answer": "(A) bit  (B) sampling"
+      }
+    ],
+    "textbook_tieback": {
+      "unit_label": "정보 ② 자료와 정보 · 정보 자료의 표현과 디지털화",
+      "body_ko": "고등학교 정보의 '자료와 정보' 영역에서는 문자, 그림, 소리 같은 다양한 자료가 컴퓨터 안에서 어떻게 표현되는지를 배운다. 컴퓨터는 켜짐과 꺼짐 두 상태만 다루므로 모든 자료를 0과 1의 비트로 나타낸다. 비트 여덟 개가 모여 한 바이트를 이루고, 한 바이트는 256가지 값을 담을 수 있어 문자와 기호를 표현한다. 그림과 소리처럼 연속적인 자료는 잘게 쪼개어 측정하는 표본화 과정을 거쳐 숫자의 나열로 바뀐다. 이렇게 디지털화된 자료는 값이 변하지 않아 복제해도 손상되지 않고, 빠르게 전송하고 공유할 수 있다.",
+      "tags": ["디지털화", "비트와바이트", "이진표현", "표본화"],
+      "visual_aid": {
+        "type": "emoji_flow",
+        "title": "자료가 숫자가 되는 길",
+        "steps": [
+          { "emoji": "🔘", "label": "비트", "note": "켜짐 1 / 꺼짐 0" },
+          { "emoji": "🔤", "label": "문자", "note": "코드 → 8비트(1바이트)" },
+          { "emoji": "🌊", "label": "그림·소리", "note": "표본화 → 숫자 목록" },
+          { "emoji": "📤", "label": "공유", "note": "손상 없이 복제·전송" }
+        ]
+      }
+    }
+  },
+  "page3": {
+    "sentences": [
+      {
+        "index": 1,
+        "segments": [
+          { "role": "M", "text": "Inside the machine," },
+          { "role": "M", "text": "there" },
+          { "role": "V", "text": "are" },
+          { "role": "S", "text": "only tiny switches," },
+          { "role": "CONJ", "text": "and" },
+          { "role": "S", "text": "each one" },
+          { "role": "V", "text": "is" },
+          { "role": "C", "text": "either on or off." }
+        ]
+      },
+      {
+        "index": 2,
+        "segments": [
+          { "role": "S", "text": "Eight bits" },
+          { "role": "V", "text": "form" },
+          { "role": "O", "text": "one byte," },
+          { "role": "CONJ", "text": "and" },
+          { "role": "S", "text": "a byte" },
+          { "role": "V", "text": "can hold" },
+          { "role": "O", "text": "256 different values." }
+        ]
+      },
+      {
+        "index": 3,
+        "segments": [
+          { "role": "S", "text": "This step" },
+          { "role": "V", "text": "is called" },
+          { "role": "C", "text": "sampling," },
+          { "role": "CONJ", "text": "and" },
+          { "role": "S", "text": "it" },
+          { "role": "V", "text": "turns" },
+          { "role": "O", "text": "a smooth wave" },
+          { "role": "M", "text": "into a list of numbers." }
+        ]
+      },
+      {
+        "index": 4,
+        "segments": [
+          { "role": "S", "text": "The more samples" },
+          { "role": "S", "text": "we" },
+          { "role": "V", "text": "take," },
+          { "role": "M", "text": "the closer" },
+          { "role": "S", "text": "the copy" },
+          { "role": "V", "text": "sits" },
+          { "role": "M", "text": "to the original." }
+        ]
+      },
+      {
+        "index": 5,
+        "segments": [
+          { "role": "S", "text": "A digital copy" },
+          { "role": "M", "text": "never" },
+          { "role": "V", "text": "fades," },
+          { "role": "CONJ", "text": "because" },
+          { "role": "S", "text": "a number" },
+          { "role": "V", "text": "stays" },
+          { "role": "C", "text": "exactly the same" },
+          { "role": "M", "text": "no matter how often it is moved." }
+        ]
+      }
+    ],
+    "translation_ko": "[1] 기계 안에는 아주 작은 스위치들만 있고, 그 각각은 켜져 있거나 꺼져 있다. [2] 비트 여덟 개가 한 바이트를 이루고, 한 바이트는 256가지 서로 다른 값을 담을 수 있다. [3] 이 단계는 표본화라고 불리며, 매끄러운 파동을 숫자의 목록으로 바꾼다. [4] 우리가 표본을 더 많이 취할수록, 복사본은 원본에 더 가까워진다. [5] 디지털 복사본은 결코 바래지 않는데, 숫자는 아무리 자주 옮겨져도 정확히 똑같이 유지되기 때문이다."
+  },
+  "answers": {
+    "explanations": [
+      {
+        "q_index": 0,
+        "q_style": "요지",
+        "correct": 2,
+        "evidence": "글은 컴퓨터가 문자·그림·소리를 0과 1의 숫자로 바꾼다고 설명하고, 마지막 단락에서 \"a digital copy never fades\"와 \"any file can be squeezed, sent, and shared\"로 디지털 자료의 두 이점을 든다. 따라서 '자료를 숫자로 바꾸어 바래지 않고 쉽게 옮긴다'가 요지다.",
+        "rationales": [
+          "본문은 그림과 소리도 표본화로 저장한다고 했으므로 '문자만 저장한다'는 틀렸다.",
+          "표본을 많이 취하면 원본에 가까워진다고 했지 복사본이 항상 더 나쁘다고 하지 않았다.",
+          "(정답) 자료를 숫자로 바꾸어 값이 바래지 않고 쉽게 전송·공유된다는 글 전체 주장을 정확히 담는다.",
+          "본문은 파일을 압축해 더 쉽게 공유한다고 했으므로 '더 커지고 공유가 어렵다'는 반대다.",
+          "본문은 비트 하나가 아니라 바이트의 나열로 한 페이지 글이 저장된다고 했다."
+        ]
+      },
+      {
+        "q_index": 1,
+        "q_style": "빈칸 추론",
+        "correct": 0,
+        "evidence": "빈칸 앞에서 디지털 복사본은 바래지 않고(never fades) 어떤 파일이든 압축·전송·공유된다(squeezed, sent, and shared)고 했다. 따라서 숫자가 되면 '완벽하게 복제되고 공유될 수 있다'가 문맥에 맞는다.",
+        "rationales": [
+          "(정답) 앞 문장들이 손상 없는 복제와 빠른 공유를 말하므로 '완벽하게 복제·공유된다'가 결론으로 자연스럽다.",
+          "숫자가 되면 오히려 의미가 보존된다고 했으므로 '곧바로 의미를 잃는다'는 정반대다.",
+          "파일이 세계 어디로든 공유된다고 했으므로 '한 기계를 결코 벗어나지 않는다'는 어긋난다.",
+          "본문은 숫자가 실물로 되돌아간다고 말하지 않는다.",
+          "파일이 네트워크로 전송된다고 했으므로 '전송을 거부한다'는 모순이다."
+        ]
+      },
+      {
+        "q_index": 2,
+        "q_style": "세부 내용 파악",
+        "correct": 4,
+        "evidence": "본문은 \"a digital copy never fades, because a number stays exactly the same no matter how often it is moved\"라며 숫자는 옮겨도 변하지 않는다고 한다. 따라서 '파일을 옮길 때마다 숫자가 서서히 바랜다'는 일치하지 않는다.",
+        "rationales": [
+          "켜지거나 꺼지는 스위치 하나를 비트라 부른다는 내용은 본문과 일치한다.",
+          "비트 여덟 개가 한 바이트를 이루고 256가지 값을 담는다는 내용은 본문과 일치한다.",
+          "표본화가 매끄러운 파동을 숫자 목록으로 바꾼다는 내용은 본문과 일치한다.",
+          "표본을 많이 취할수록 복사본이 원본에 가까워진다는 내용은 본문과 일치한다.",
+          "(정답) 본문은 숫자가 옮겨져도 변하지 않는다고 했으므로 '옮길 때마다 서서히 바랜다'는 불일치다."
+        ]
+      },
+      {
+        "q_index": 3,
+        "q_style": "요약문 빈칸 완성",
+        "correct": null,
+        "model_answer_en": "(A) bit  (B) sampling",
+        "evidence": "(A)는 스위치 하나를 부르는 이름 → 본문 \"a single switch is called a bit\". (B)는 매끄러운 그림·소리를 잘게 쪼개 측정하는 과정 → 본문 \"This step is called sampling\".",
+        "rationales": [
+          "(A) bit — 켜짐·꺼짐 스위치 하나를 부르는 이름은 본문의 bit와 일치한다.",
+          "(B) sampling — 매끄러운 파동을 잘게 쪼개 숫자 목록으로 바꾸는 과정은 본문의 sampling이다."
+        ],
+        "key_terms": [
+          { "en": "bit", "ko": "비트" },
+          { "en": "sampling", "ko": "표본화" }
+        ]
+      }
+    ]
+  },
+  "page4": {
+    "vocab": [
+      {
+        "word": "bit",
+        "pos": "n.",
+        "meaning_ko": "비트(0 또는 1의 최소 단위)",
+        "synonyms": ["binary digit"],
+        "antonyms": [],
+        "examples": [
+          { "en": "A single switch is called a bit.", "ko": "스위치 하나를 비트라고 부른다." },
+          { "en": "Each bit is either a 1 or a 0.", "ko": "각 비트는 1이거나 0이다." }
+        ]
+      },
+      {
+        "word": "byte",
+        "pos": "n.",
+        "meaning_ko": "바이트(8비트 묶음)",
+        "synonyms": [],
+        "antonyms": [],
+        "examples": [
+          { "en": "Eight bits form one byte.", "ko": "비트 여덟 개가 한 바이트를 이룬다." },
+          { "en": "A byte can hold 256 values.", "ko": "한 바이트는 256가지 값을 담을 수 있다." }
+        ]
+      },
+      {
+        "word": "sampling",
+        "pos": "n.",
+        "meaning_ko": "표본화, 샘플링",
+        "synonyms": ["measuring"],
+        "antonyms": [],
+        "examples": [
+          { "en": "Sampling turns a smooth wave into numbers.", "ko": "표본화는 매끄러운 파동을 숫자로 바꾼다." },
+          { "en": "Faster sampling gives a clearer sound.", "ko": "더 빠른 표본화는 더 또렷한 소리를 준다." }
+        ]
+      },
+      {
+        "word": "continuous",
+        "pos": "adj.",
+        "meaning_ko": "연속적인, 끊김 없는",
+        "synonyms": ["smooth", "unbroken"],
+        "antonyms": ["discrete"],
+        "examples": [
+          { "en": "The real world is smooth and continuous.", "ko": "실제 세계는 매끄럽고 연속적이다." },
+          { "en": "A continuous line has no gaps in it.", "ko": "연속적인 선에는 끊긴 곳이 없다." }
+        ]
+      },
+      {
+        "word": "signal",
+        "pos": "n.",
+        "meaning_ko": "신호",
+        "synonyms": ["wave"],
+        "antonyms": [],
+        "examples": [
+          { "en": "A computer chops the signal into tiny pieces.", "ko": "컴퓨터는 신호를 아주 작은 조각으로 쪼갠다." },
+          { "en": "A weak signal makes the sound unclear.", "ko": "약한 신호는 소리를 흐릿하게 만든다." }
+        ]
+      },
+      {
+        "word": "code",
+        "pos": "n.",
+        "meaning_ko": "부호, 코드(약속된 표현 규칙)",
+        "synonyms": ["cipher"],
+        "antonyms": [],
+        "examples": [
+          { "en": "In one common code, A is the number 65.", "ko": "한 흔한 코드에서 A는 숫자 65다." },
+          { "en": "The code links each letter to a number.", "ko": "그 코드는 각 글자를 숫자에 연결한다." }
+        ]
+      },
+      {
+        "word": "store",
+        "pos": "v.",
+        "meaning_ko": "저장하다",
+        "synonyms": ["keep", "save"],
+        "antonyms": ["erase"],
+        "examples": [
+          { "en": "To store a letter, we first agree on a code.", "ko": "글자를 저장하려면 먼저 코드를 정한다." },
+          { "en": "We store each photo as millions of dots.", "ko": "우리는 각 사진을 수백만 개의 점으로 저장한다." }
+        ]
+      },
+      {
+        "word": "value",
+        "pos": "n.",
+        "meaning_ko": "값, 수치",
+        "synonyms": ["number"],
+        "antonyms": [],
+        "examples": [
+          { "en": "A byte can hold 256 different values.", "ko": "한 바이트는 256가지 서로 다른 값을 담는다." },
+          { "en": "Each dot is stored as a color value.", "ko": "각 점은 색깔 값으로 저장된다." }
+        ]
+      },
+      {
+        "word": "original",
+        "pos": "n.",
+        "meaning_ko": "원본",
+        "synonyms": ["source"],
+        "antonyms": ["copy"],
+        "examples": [
+          { "en": "The copy sits close to the original.", "ko": "복사본은 원본에 가깝게 자리한다." },
+          { "en": "A good scan looks like the original.", "ko": "좋은 스캔본은 원본처럼 보인다." }
+        ]
+      },
+      {
+        "word": "squeeze",
+        "pos": "v.",
+        "meaning_ko": "압축하다, 짜내다",
+        "synonyms": ["compress"],
+        "antonyms": ["expand"],
+        "examples": [
+          { "en": "Any file can be squeezed and sent quickly.", "ko": "어떤 파일이든 압축되어 빠르게 전송될 수 있다." },
+          { "en": "We squeeze the video to save space.", "ko": "우리는 공간을 아끼려고 영상을 압축한다." }
+        ]
+      },
+      {
+        "word": "fade",
+        "pos": "v.",
+        "meaning_ko": "바래다, 흐려지다",
+        "synonyms": ["decay"],
+        "antonyms": ["last"],
+        "examples": [
+          { "en": "A digital copy never fades.", "ko": "디지털 복사본은 결코 바래지 않는다." },
+          { "en": "Old photos slowly fade over the years.", "ko": "오래된 사진은 세월이 흐르며 서서히 바랜다." }
+        ]
+      }
+    ]
+  }
+}
