@@ -4122,6 +4122,13 @@ body.bigbang-done .terra-hint,
 /* AUTO-LIGHT-OVERRIDES — 하드코딩 다크배경/흰텍스트 라이트 보정 */
 html.light .pcard-front{background:#FFFFFF!important;}
 html.light .exam-mol{background:#F4F6F7!important;}
+/* exam-mol SVG 다이어그램: 라이트에서 흰 글씨·연회색 선이 안 보이는 문제 보정 */
+html.light .exam-mol svg text[fill="#cfd0d2"]{fill:#4A515B!important;}
+html.light .exam-mol svg line{stroke:rgba(0,0,0,.35)!important;}
+html.light .exam-parabola svg text[fill="#fff"]{fill:#1E2228!important;}
+html.light .exam-parabola svg circle[fill="#fff"]{fill:#1E2228!important;}
+html.light .exam-parabola svg text[fill="#33d6ff"]{fill:#0B87A6!important;}
+html.light .exam-mol svg circle[fill="#fff"]{stroke:rgba(0,0,0,.3)!important;stroke-width:1!important;}
 html.light .orbit-preview{background:#F4F6F7!important;}
 html.light .preview-chip{background:#FFFFFF!important;}
 html.light .selector-chip{background:#FFFFFF!important;}
