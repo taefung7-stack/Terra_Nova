@@ -11,8 +11,8 @@
     "achievement_verified": true,
     "difficulty": "중간",
     "cognitive_skill": "요지",
-    "lexile": "1120L",
-    "ar_level": 8.0,
+    "lexile": "1020L",
+    "ar_level": 7.5,
     "key_concepts": [
       "정적분",
       "곡선 아래 넓이",
@@ -23,7 +23,7 @@
   "page1": {
     "title": "The Area a Curve Hides",
     "subtitle": "How a sum of nothings measures a shape no ruler can.",
-    "body": "Draw a curve on a grid, and a strange question appears at once. What is the exact area of the odd shape trapped between that curve and the axis below it? A rectangle is easy, since length times width settles the matter, but a curve refuses to sit still, bending and sloping from one point to the next. To measure it, mathematicians slice the region into countless thin vertical strips, each almost a rectangle. As the strips grow narrower and their number grows without limit, the ragged staircase of their tops <u>melts smoothly onto the curve</u>, and their combined area approaches one precise value.\n\nThis limiting sum is exactly what a <u>definite integral</u> captures, and it turns an impossible measurement into a routine calculation. The integral of a function from one boundary to another equals the signed area between the graph and the horizontal axis. The word signed matters, because area above the axis counts as positive while area below counts as negative, so a curve that dips underneath can quietly cancel the region above it.\n\nThat subtlety changes how we handle the space caught between two different curves. Instead of measuring each area on its own and guessing, we subtract the lower function from the upper one and integrate that single difference across the interval. The gap between them, height by height, is added up automatically, and the awkward overlap simply disappears in the arithmetic.\n\nSo the definite integral is far more than a clever trick for tidy textbook figures. It is the tool engineers trust to find the volume of a dam, the drift of a satellite, or the load on a curved bridge. Whenever a boundary bends and simple geometry gives up, a well-chosen integral quietly measures what a ruler never <blank>.",
+    "body": "Draw a curve on a grid, and a strange question appears at once. What is the exact area of the odd shape between that curve and the axis below it? A rectangle is easy, because length times width gives the answer. But a curve does not sit still, bending and sloping from one point to the next. To measure it, mathematicians cut the region into many thin vertical strips. Each strip is almost a rectangle. As the strips grow thinner and their number grows without limit, the ragged staircase of their tops <u>melts smoothly onto the curve</u>. Their combined area then moves toward one exact value.\n\nThis limiting sum is exactly what a <u>definite integral</u> gives, and it turns an impossible measurement into an easy one. The integral of a function from one boundary to another equals the signed area between the graph and the horizontal axis. The word signed matters. Area above the axis counts as positive, while area below counts as negative. So a curve that dips below can quietly cancel the area above it.\n\nThat subtlety changes how we handle the space between two different curves. We do not measure each area on its own and guess. Instead, we subtract the lower function from the upper one and integrate that single difference across the interval. The gap between them is added up at every height, and the awkward overlap simply disappears in the arithmetic.\n\nSo the definite integral is far more than a neat trick for tidy textbook figures. It is the tool engineers trust to find the volume of a dam, the drift of a satellite, or the load on a curved bridge. Whenever a boundary bends and simple geometry gives up, a well-chosen integral quietly measures what a ruler never <blank>.",
     "illustration": "../../assets/illustrations/2026-08-J/17.jpg",
     "illustration_caption": "곡선 아래 영역을 얇은 직사각형으로 잘게 나눠 그 넓이의 합의 극한으로 정적분을 구한다.",
     "gloss_extra": [
@@ -128,9 +128,9 @@
         "segments": [
           { "role": "V", "text": "What is" },
           { "role": "S", "text": "the exact area of the odd shape" },
-          { "role": "M", "text": "trapped between that curve and the axis below it?", "note": "과거분사 수식" }
+          { "role": "M", "text": "between that curve and the axis below it?", "note": "전치사구 수식" }
         ],
-        "grammar_note": "의문사 what 의문문 + 과거분사구 수식"
+        "grammar_note": "의문사 what 의문문 + between A and B 전치사구"
       },
       {
         "index": 3,
@@ -138,60 +138,80 @@
           { "role": "S", "text": "A rectangle" },
           { "role": "V", "text": "is" },
           { "role": "C", "text": "easy," },
-          { "role": "CONJ", "text": "since" },
+          { "role": "CONJ", "text": "because" },
           { "role": "S", "text": "length times width" },
-          { "role": "V", "text": "settles" },
-          { "role": "O", "text": "the matter," },
-          { "role": "CONJ", "text": "but" },
-          { "role": "S", "text": "a curve" },
-          { "role": "V", "text": "refuses" },
-          { "role": "O", "text": "to sit still,", "note": "refuse to-V" },
-          { "role": "M", "text": "bending and sloping from one point to the next.", "note": "분사구문" }
+          { "role": "V", "text": "gives" },
+          { "role": "O", "text": "the answer." }
         ],
-        "grammar_note": "since 이유절 + but 대조 + refuse to-V + 분사구문"
+        "grammar_note": "because 이유절 (주어 length times width)"
       },
       {
         "index": 4,
         "segments": [
-          { "role": "M", "text": "To measure it,", "note": "목적 to부정사" },
-          { "role": "S", "text": "mathematicians" },
-          { "role": "V", "text": "slice" },
-          { "role": "O", "text": "the region" },
-          { "role": "M", "text": "into countless thin vertical strips," },
-          { "role": "M", "text": "each almost a rectangle.", "note": "독립 분사(동격)" }
+          { "role": "CONJ", "text": "But" },
+          { "role": "S", "text": "a curve" },
+          { "role": "V", "text": "does not sit" },
+          { "role": "M", "text": "still," },
+          { "role": "M", "text": "bending and sloping from one point to the next.", "note": "분사구문" }
         ],
-        "grammar_note": "목적 부정사 + slice A into B + 동격 삽입구"
+        "grammar_note": "but 대조 + 분사구문 (bending and sloping)"
       },
       {
         "index": 5,
         "segments": [
-          { "role": "M", "text": "As the strips grow narrower and their number grows without limit,", "note": "as 시간·비례절" },
-          { "role": "S", "text": "the ragged staircase of their tops" },
-          { "role": "V", "text": "melts" },
-          { "role": "M", "text": "smoothly onto the curve," },
-          { "role": "CONJ", "text": "and" },
-          { "role": "S", "text": "their combined area" },
-          { "role": "V", "text": "approaches" },
-          { "role": "O", "text": "one precise value." }
+          { "role": "M", "text": "To measure it,", "note": "목적 to부정사" },
+          { "role": "S", "text": "mathematicians" },
+          { "role": "V", "text": "cut" },
+          { "role": "O", "text": "the region" },
+          { "role": "M", "text": "into many thin vertical strips." }
         ],
-        "grammar_note": "as 비례절 + 자동사 melt + and 3형식"
+        "grammar_note": "목적 부정사 + cut A into B"
       },
       {
         "index": 6,
         "segments": [
+          { "role": "S", "text": "Each strip" },
+          { "role": "V", "text": "is" },
+          { "role": "C", "text": "almost a rectangle." }
+        ],
+        "grammar_note": "2형식 (be동사 보어)"
+      },
+      {
+        "index": 7,
+        "segments": [
+          { "role": "M", "text": "As the strips grow thinner and their number grows without limit,", "note": "as 비례절" },
+          { "role": "S", "text": "the ragged staircase of their tops" },
+          { "role": "V", "text": "melts" },
+          { "role": "M", "text": "smoothly onto the curve." }
+        ],
+        "grammar_note": "as 비례절 + 자동사 melt"
+      },
+      {
+        "index": 8,
+        "segments": [
+          { "role": "S", "text": "Their combined area" },
+          { "role": "M", "text": "then" },
+          { "role": "V", "text": "moves" },
+          { "role": "M", "text": "toward one exact value." }
+        ],
+        "grammar_note": "1형식 자동사 move + toward 전치사구"
+      },
+      {
+        "index": 9,
+        "segments": [
           { "role": "S", "text": "This limiting sum" },
           { "role": "V", "text": "is" },
-          { "role": "C", "text": "exactly what a definite integral captures,", "note": "what 관계절 보어" },
+          { "role": "C", "text": "exactly what a definite integral gives,", "note": "what 관계절 보어" },
           { "role": "CONJ", "text": "and" },
           { "role": "S", "text": "it" },
           { "role": "V", "text": "turns" },
           { "role": "O", "text": "an impossible measurement" },
-          { "role": "M", "text": "into a routine calculation.", "note": "turn A into B" }
+          { "role": "M", "text": "into an easy one.", "note": "turn A into B" }
         ],
         "grammar_note": "what 관계절 보어 + and + turn A into B"
       },
       {
-        "index": 7,
+        "index": 10,
         "segments": [
           { "role": "S", "text": "The integral of a function from one boundary to another" },
           { "role": "V", "text": "equals" },
@@ -201,41 +221,63 @@
         "grammar_note": "3형식 + between A and B 전치사구"
       },
       {
-        "index": 8,
+        "index": 11,
         "segments": [
           { "role": "S", "text": "The word signed" },
-          { "role": "V", "text": "matters," },
-          { "role": "CONJ", "text": "because" },
-          { "role": "S", "text": "area above the axis" },
+          { "role": "V", "text": "matters." }
+        ],
+        "grammar_note": "1형식 자동사 matter (동격 signed)"
+      },
+      {
+        "index": 12,
+        "segments": [
+          { "role": "S", "text": "Area above the axis" },
           { "role": "V", "text": "counts" },
-          { "role": "M", "text": "as positive" },
+          { "role": "M", "text": "as positive," },
           { "role": "CONJ", "text": "while" },
           { "role": "S", "text": "area below" },
           { "role": "V", "text": "counts" },
-          { "role": "M", "text": "as negative,", "note": "while 대조절" },
-          { "role": "CONJ", "text": "so" },
-          { "role": "S", "text": "a curve" },
-          { "role": "M", "text": "that dips underneath", "note": "관계절 (a curve 수식)" },
-          { "role": "M", "text": "can quietly", "note": "조동사+부사" },
-          { "role": "V", "text": "cancel" },
-          { "role": "O", "text": "the region above it." }
+          { "role": "M", "text": "as negative.", "note": "while 대조절" }
         ],
-        "grammar_note": "because 이유절 + while 대조 + so 결과 (관계절 포함)"
+        "grammar_note": "count as + while 대조절"
       },
       {
-        "index": 9,
+        "index": 13,
+        "segments": [
+          { "role": "CONJ", "text": "So" },
+          { "role": "S", "text": "a curve" },
+          { "role": "M", "text": "that dips below", "note": "관계절 (a curve 수식)" },
+          { "role": "M", "text": "can quietly", "note": "조동사+부사" },
+          { "role": "V", "text": "cancel" },
+          { "role": "O", "text": "the area above it." }
+        ],
+        "grammar_note": "so 결과 + 관계절 + 조동사 can"
+      },
+      {
+        "index": 14,
         "segments": [
           { "role": "S", "text": "That subtlety" },
           { "role": "V", "text": "changes" },
           { "role": "O", "text": "how we handle the space", "note": "how 명사절" },
-          { "role": "M", "text": "caught between two different curves.", "note": "과거분사 수식" }
+          { "role": "M", "text": "between two different curves." }
         ],
-        "grammar_note": "change + how 명사절 + 과거분사구 수식"
+        "grammar_note": "change + how 명사절 + between 전치사구"
       },
       {
-        "index": 10,
+        "index": 15,
         "segments": [
-          { "role": "M", "text": "Instead of measuring each area on its own and guessing,", "note": "instead of + 동명사" },
+          { "role": "S", "text": "We" },
+          { "role": "V", "text": "do not measure" },
+          { "role": "O", "text": "each area on its own" },
+          { "role": "CONJ", "text": "and" },
+          { "role": "V", "text": "guess." }
+        ],
+        "grammar_note": "do not + 동사 병렬 (measure and guess)"
+      },
+      {
+        "index": 16,
+        "segments": [
+          { "role": "M", "text": "Instead,", "note": "접속부사" },
           { "role": "S", "text": "we" },
           { "role": "V", "text": "subtract" },
           { "role": "O", "text": "the lower function" },
@@ -245,35 +287,34 @@
           { "role": "O", "text": "that single difference" },
           { "role": "M", "text": "across the interval." }
         ],
-        "grammar_note": "instead of 동명사구 + subtract A from B + and 동사 병렬"
+        "grammar_note": "subtract A from B + and 동사 병렬 (integrate)"
       },
       {
-        "index": 11,
+        "index": 17,
         "segments": [
-          { "role": "S", "text": "The gap between them," },
-          { "role": "M", "text": "height by height,", "note": "삽입 부사구" },
+          { "role": "S", "text": "The gap between them" },
           { "role": "V", "text": "is added up" },
-          { "role": "M", "text": "automatically,", "note": "수동태" },
+          { "role": "M", "text": "at every height,", "note": "수동태" },
           { "role": "CONJ", "text": "and" },
           { "role": "S", "text": "the awkward overlap" },
           { "role": "M", "text": "simply" },
           { "role": "V", "text": "disappears" },
           { "role": "M", "text": "in the arithmetic." }
         ],
-        "grammar_note": "수동태 + 삽입구 + and 자동사 절"
+        "grammar_note": "수동태 (is added up) + and 자동사 절"
       },
       {
-        "index": 12,
+        "index": 18,
         "segments": [
           { "role": "CONJ", "text": "So" },
           { "role": "S", "text": "the definite integral" },
           { "role": "V", "text": "is" },
-          { "role": "C", "text": "far more than a clever trick for tidy textbook figures.", "note": "비교급 강조 far" }
+          { "role": "C", "text": "far more than a neat trick for tidy textbook figures.", "note": "비교급 강조 far" }
         ],
         "grammar_note": "so + far more than (비교급 강조) 보어"
       },
       {
-        "index": 13,
+        "index": 19,
         "segments": [
           { "role": "S", "text": "It" },
           { "role": "V", "text": "is" },
@@ -284,7 +325,7 @@
         "grammar_note": "관계대명사 목적격 생략 + 목적 부정사 (A, B, or C 병렬)"
       },
       {
-        "index": 14,
+        "index": 20,
         "segments": [
           { "role": "M", "text": "Whenever a boundary bends and simple geometry gives up,", "note": "whenever 부사절" },
           { "role": "S", "text": "a well-chosen integral" },
@@ -295,7 +336,7 @@
         "grammar_note": "whenever 시간절 + measure + what 명사절 (빈칸 자리)"
       }
     ],
-    "translation_ko": "[1] 격자 위에 곡선을 하나 그리면, 곧바로 이상한 질문이 떠오른다. [2] 그 곡선과 그 아래 축 사이에 갇힌 그 낯선 도형의 정확한 넓이는 얼마일까? [3] 직사각형은 쉬운데, 가로 곱하기 세로가 문제를 해결해 주기 때문이지만, 곡선은 한 점에서 다음 점으로 휘고 기울며 가만히 있지 않는다. [4] 그것을 재기 위해, 수학자들은 그 영역을 셀 수 없이 많은 얇은 세로 띠로 자르는데, 각 띠는 거의 직사각형이다. [5] 띠가 더 좁아지고 그 수가 한없이 늘어남에 따라, 들쭉날쭉하던 띠 꼭대기들의 계단은 곡선 위로 매끄럽게 녹아들고, 그것들의 합쳐진 넓이는 하나의 정확한 값에 가까워진다. [6] 이 극한의 합이 바로 정적분이 담아내는 것이며, 그것은 불가능한 측정을 일상적인 계산으로 바꾼다. [7] 한 경계에서 다른 경계까지 함수의 적분은 그래프와 수평축 사이의 부호 있는 넓이와 같다. [8] '부호 있는'이라는 말이 중요한데, 축 위쪽 넓이는 양수로, 아래쪽 넓이는 음수로 세어지기 때문에, 아래로 내려가는 곡선은 위쪽 영역을 조용히 상쇄할 수 있다. [9] 그 미묘함은 두 개의 서로 다른 곡선 사이에 갇힌 공간을 다루는 방식을 바꾼다. [10] 각 넓이를 따로 재어 어림하는 대신, 우리는 위쪽 함수에서 아래쪽 함수를 빼고 그 하나의 차를 구간에 걸쳐 적분한다. [11] 그것들 사이의 간격은 높이마다 자동으로 더해지고, 성가신 겹침은 계산 속에서 그냥 사라진다. [12] 그래서 정적분은 깔끔한 교과서 도형을 위한 영리한 요령 그 이상이다. [13] 그것은 댐의 부피, 위성의 이동, 혹은 휘어진 다리에 걸리는 하중을 구하기 위해 공학자들이 신뢰하는 도구다. [14] 경계가 휘어 단순한 기하학이 손을 들 때마다, 잘 고른 적분이 자로는 결코 재지 못했던 것을 조용히 재어 낸다."
+    "translation_ko": "[1] 격자 위에 곡선을 하나 그리면, 곧바로 이상한 질문이 떠오른다. [2] 그 곡선과 그 아래 축 사이에 있는 그 낯선 도형의 정확한 넓이는 얼마일까? [3] 직사각형은 쉬운데, 가로 곱하기 세로가 답을 주기 때문이다. [4] 하지만 곡선은 가만히 있지 않고, 한 점에서 다음 점으로 휘고 기운다. [5] 그것을 재기 위해, 수학자들은 그 영역을 여러 개의 얇은 세로 띠로 자른다. [6] 각 띠는 거의 직사각형이다. [7] 띠가 더 얇아지고 그 수가 한없이 늘어남에 따라, 들쭉날쭉하던 띠 꼭대기들의 계단은 곡선 위로 매끄럽게 녹아든다. [8] 그러면 그것들의 합쳐진 넓이는 하나의 정확한 값을 향해 다가간다. [9] 이 극한의 합이 바로 정적분이 주는 것이며, 그것은 불가능한 측정을 쉬운 것으로 바꾼다. [10] 한 경계에서 다른 경계까지 함수의 적분은 그래프와 수평축 사이의 부호 있는 넓이와 같다. [11] '부호 있는'이라는 말이 중요하다. [12] 축 위쪽 넓이는 양수로 세어지고, 아래쪽 넓이는 음수로 세어진다. [13] 그래서 아래로 내려가는 곡선은 그 위쪽 넓이를 조용히 상쇄할 수 있다. [14] 그 미묘함은 두 개의 서로 다른 곡선 사이의 공간을 다루는 방식을 바꾼다. [15] 우리는 각 넓이를 따로 재어 어림하지 않는다. [16] 대신, 우리는 위쪽 함수에서 아래쪽 함수를 빼고 그 하나의 차를 구간에 걸쳐 적분한다. [17] 그것들 사이의 간격은 모든 높이에서 더해지고, 성가신 겹침은 계산 속에서 그냥 사라진다. [18] 그래서 정적분은 깔끔한 교과서 도형을 위한 산뜻한 요령 그 이상이다. [19] 그것은 댐의 부피, 위성의 이동, 혹은 휘어진 다리에 걸리는 하중을 구하기 위해 공학자들이 신뢰하는 도구다. [20] 경계가 휘어 단순한 기하학이 손을 들 때마다, 잘 고른 적분이 자로는 결코 재지 못했던 것을 조용히 재어 낸다."
   },
   "answers": {
     "explanations": [
@@ -303,13 +344,13 @@
         "q_index": 0,
         "q_style": "요지",
         "correct": 2,
-        "evidence": "글은 곡선 아래 영역을 얇은 띠로 잘라 그 넓이 합의 극한이 정적분이고(4~6번), 그 정적분이 부호 있는 넓이와 두 곡선 사이 넓이까지 정확히 준다고(7~10번) 설명한다. 따라서 '정적분이 무한히 얇은 띠를 더해 곡선 아래·사이의 정확한 넓이를 준다'가 요지다.",
+        "evidence": "글은 곡선 아래 영역을 얇은 띠로 잘라 그 넓이 합의 극한이 정적분이고(5~9번), 그 정적분이 부호 있는 넓이와 두 곡선 사이 넓이까지 정확히 준다고(10~16번) 설명한다. 따라서 '정적분이 무한히 얇은 띠를 더해 곡선 아래·사이의 정확한 넓이를 준다'가 요지다.",
         "rationales": [
           "본문은 정적분으로 곡선 넓이를 '정확한 값'으로 잰다고 하므로 '전혀 잴 수 없다'는 정반대다.",
-          "3번에서 직사각형은 공식이 쉽지만 곡선은 그렇지 않다고 대조했으므로 '같은 공식'은 틀렸다.",
+          "3~4번에서 직사각형은 공식이 쉽지만 곡선은 그렇지 않다고 대조했으므로 '같은 공식'은 틀렸다.",
           "(정답) 무한히 얇은 띠의 합의 극한으로 곡선 아래·두 곡선 사이 넓이를 정확히 구한다는 글 전체 주장을 요약한다.",
-          "8번은 축 아래 넓이를 음수로 센다고 했으므로 '항상 양수'는 본문과 모순된다.",
-          "12번은 정적분이 교과서 도형용 요령 그 이상이라고 명시하므로 '교과서 도형에만 유용'은 반대다."
+          "12번은 축 아래 넓이를 음수로 센다고 했으므로 '항상 양수'는 본문과 모순된다.",
+          "18번은 정적분이 교과서 도형용 요령 그 이상이라고 명시하므로 '교과서 도형에만 유용'은 반대다."
         ],
         "key_terms": [
           { "en": "definite integral", "ko": "정적분" },
@@ -337,7 +378,7 @@
         "q_index": 2,
         "q_style": "함의 추론",
         "correct": 2,
-        "evidence": "5번은 \"As the strips grow narrower and their number grows without limit, the ragged staircase of their tops melts smoothly onto the curve\"로, 띠가 무한히 얇아질수록 계단 모양 꼭대기가 곡선에 가까워짐을 뜻한다.",
+        "evidence": "7번은 \"As the strips grow thinner and their number grows without limit, the ragged staircase of their tops melts smoothly onto the curve\"로, 띠가 무한히 얇아질수록 계단 모양 꼭대기가 곡선에 가까워짐을 뜻한다.",
         "rationales": [
           "열로 띠가 녹는다는 것은 문자 그대로의 오독으로, 넓이 근사와 무관하다.",
           "곡선이 지워진다는 내용은 본문에 없으며, 곡선에 가까워질 뿐이다.",
@@ -355,7 +396,7 @@
         "q_style": "요약문 빈칸 완성",
         "correct": null,
         "model_answer_en": "(A) integral  (B) subtract",
-        "evidence": "(A)는 얇은 띠를 더해 곡선 아래 부호 있는 넓이를 주는 것 → 본문 \"a definite integral captures\". (B)는 두 곡선 사이 넓이를 구하려 위 함수에서 아래 함수에 하는 연산 → 본문 \"we subtract the lower function from the upper one\".",
+        "evidence": "(A)는 얇은 띠를 더해 곡선 아래 부호 있는 넓이를 주는 것 → 본문 \"a definite integral gives\". (B)는 두 곡선 사이 넓이를 구하려 위 함수에서 아래 함수에 하는 연산 → 본문 \"we subtract the lower function from the upper one\".",
         "rationales": [
           "(A) integral — 얇은 띠의 합으로 곡선 아래 부호 있는 넓이를 주는 것은 본문의 definite integral이다.",
           "(B) subtract — 두 곡선 사이 넓이를 구할 때 위 함수에서 아래 함수를 빼는 연산은 본문의 subtract이다."

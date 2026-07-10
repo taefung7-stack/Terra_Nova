@@ -11,14 +11,14 @@
     "achievement_verified": true,
     "difficulty": "중간",
     "cognitive_skill": "요지",
-    "lexile": "910L",
-    "ar_level": 6.5,
+    "lexile": "810L",
+    "ar_level": 5.8,
     "key_concepts": ["합의 법칙", "곱의 법칙", "순열", "조합"]
   },
   "page1": {
     "title": "The Art of Counting Without Counting",
     "subtitle": "Four simple rules tame every giant counting problem.",
-    "body": "Imagine you have three shirts and two pairs of pants, and ask how many different outfits you can make. You do not need to list them, because each shirt can go with either pair of pants. So the answer is simply three times two, which is six. Mathematicians call this idea the multiplication principle, and it is the first great shortcut of counting. When one choice is followed by another, you multiply the number of options at each step.\n\nSometimes the choices do not connect; they simply sit side by side. Suppose a snack bar offers four kinds of juice and three kinds of tea, and you may order one drink. You add the options, because picking a juice and picking a tea can never happen together. This is the addition principle: when two events cannot occur at the same time, add their cases. Deciding whether to add or multiply is the true heart of counting.\n\nOrder creates a new layer of difficulty, since placing five runners on a podium is different from just choosing them. An ordered arrangement of objects is called a <u>permutation</u>. If four students line up for a photo, the first spot has four choices, the next has three, then two, then one. Multiply these numbers and you get twenty-four different lines. Mathematicians write this product as a factorial, and factorials grow shockingly fast.\n\nNow suppose order does not matter. Choosing two club leaders is a <u>combination</u>, because picking Mina and then Juno gives the same pair as picking Juno first. To count combinations, you first count the ordered lists and then divide away the repeats. These simple rules reach far beyond the classroom, for they help engineers design passwords, biologists compare genes, and airlines plan routes. Every huge counting problem, in the end, breaks down into small steps where you simply <blank>.",
+    "body": "Imagine you have three shirts and two pairs of pants, and you ask how many outfits you can make. You do not need to list them all, because each shirt can go with either pair of pants. So the answer is simply three times two, which is six. Mathematicians call this idea the multiplication principle, and it is the first great shortcut of counting. When one choice is followed by another, you multiply the number of options at each step.\n\nSometimes the choices do not connect; they simply sit side by side. Suppose a snack bar offers four kinds of juice and three kinds of tea, and you may order one drink. You add the options, because picking a juice and picking a tea can never happen together. This is the addition principle: when two events cannot occur at the same time, you add their cases. Deciding whether to add or multiply is the true heart of counting.\n\nOrder makes counting harder, since placing five runners on a podium is different from just choosing them. An ordered arrangement of objects is called a <u>permutation</u>. If four students line up for a photo, the first spot has four choices, the next has three, then two, then one. Multiply these numbers and you get twenty-four different lines. Mathematicians write this product as a factorial, and factorials grow very fast.\n\nNow suppose order does not matter. Choosing two club leaders is a <u>combination</u>, because picking Mina and then Juno gives the same pair as picking Juno first. To count combinations, you first count the ordered lists and then divide away the repeats. These simple rules reach far beyond the classroom, for they help engineers design passwords, biologists compare genes, and airlines plan routes. Every huge counting problem, in the end, breaks down into small steps where you simply <blank>.",
     "illustration": "../../assets/illustrations/2026-08/07.jpg",
     "illustration_caption": "옷 고르기부터 줄 세우기까지, 곱의 법칙과 합의 법칙, 순열과 조합은 복잡한 세기를 단순한 단계로 바꾼다.",
     "gloss_extra": [
@@ -101,8 +101,9 @@
           { "role": "V", "text": "Imagine", "note": "명령문 동사" },
           { "role": "O", "text": "you have three shirts and two pairs of pants,", "note": "that 생략 목적어절" },
           { "role": "CONJ", "text": "and" },
-          { "role": "V", "text": "ask", "note": "명령문 등위 동사" },
-          { "role": "O", "text": "how many different outfits you can make.", "note": "간접의문문 목적어절" }
+          { "role": "S", "text": "you" },
+          { "role": "V", "text": "ask" },
+          { "role": "O", "text": "how many outfits you can make.", "note": "간접의문문 목적어절" }
         ]
       },
       {
@@ -110,7 +111,7 @@
         "segments": [
           { "role": "S", "text": "You" },
           { "role": "V", "text": "do not need to list" },
-          { "role": "O", "text": "them," },
+          { "role": "O", "text": "them all," },
           { "role": "CONJ", "text": "because" },
           { "role": "S", "text": "each shirt" },
           { "role": "V", "text": "can go" },
@@ -197,6 +198,7 @@
           { "role": "S", "text": "two events" },
           { "role": "V", "text": "cannot occur" },
           { "role": "M", "text": "at the same time," },
+          { "role": "S", "text": "you" },
           { "role": "V", "text": "add" },
           { "role": "O", "text": "their cases." }
         ]
@@ -213,8 +215,9 @@
         "index": 11,
         "segments": [
           { "role": "S", "text": "Order" },
-          { "role": "V", "text": "creates" },
-          { "role": "O", "text": "a new layer of difficulty," },
+          { "role": "V", "text": "makes" },
+          { "role": "O", "text": "counting" },
+          { "role": "C", "text": "harder," },
           { "role": "CONJ", "text": "since" },
           { "role": "S", "text": "placing five runners on a podium", "note": "동명사구 주어" },
           { "role": "V", "text": "is" },
@@ -263,7 +266,7 @@
           { "role": "CONJ", "text": "and" },
           { "role": "S", "text": "factorials" },
           { "role": "V", "text": "grow" },
-          { "role": "M", "text": "shockingly fast." }
+          { "role": "M", "text": "very fast." }
         ]
       },
       {
@@ -334,7 +337,7 @@
         ]
       }
     ],
-    "translation_ko": "[1] 여러분에게 셔츠 세 벌과 바지 두 벌이 있다고 상상하고, 서로 다른 옷차림을 몇 가지나 만들 수 있는지 물어보라. [2] 그것들을 일일이 나열할 필요는 없는데, 각 셔츠가 두 바지 중 어느 것과도 어울릴 수 있기 때문이다. [3] 그래서 답은 그저 3 곱하기 2, 즉 6이다. [4] 수학자들은 이 아이디어를 곱의 법칙이라 부르며, 그것은 세기의 첫 번째 위대한 지름길이다. [5] 하나의 선택 뒤에 또 다른 선택이 이어질 때는, 각 단계에서 선택지의 수를 곱한다. [6] 때로는 선택들이 서로 연결되지 않고, 그저 나란히 놓여 있다. [7] 어느 매점이 네 종류의 주스와 세 종류의 차를 팔고, 여러분이 음료 하나를 주문할 수 있다고 가정해 보라. [8] 여러분은 선택지들을 더하는데, 주스를 고르는 일과 차를 고르는 일은 결코 동시에 일어날 수 없기 때문이다. [9] 이것이 합의 법칙이다. 즉 두 사건이 동시에 일어날 수 없을 때는 각 경우를 더한다. [10] 더할지 곱할지를 정하는 것이 세기의 진정한 핵심이다. [11] 순서는 새로운 차원의 어려움을 만들어 내는데, 다섯 명의 주자를 시상대에 세우는 것은 단순히 그들을 뽑는 것과는 다르기 때문이다. [12] 대상을 순서 있게 배열한 것을 순열이라 부른다. [13] 네 학생이 사진을 위해 줄을 서면, 첫 자리는 네 가지 선택지가 있고, 다음은 세 가지, 그다음은 둘, 그다음은 하나다. [14] 이 수들을 곱하면 스물네 가지의 서로 다른 줄이 나온다. [15] 수학자들은 이 곱을 계승으로 표기하는데, 계승은 놀랄 만큼 빠르게 커진다. [16] 이제 순서가 중요하지 않다고 가정해 보라. [17] 동아리 대표 두 명을 뽑는 것은 조합인데, 미나를 뽑고 나서 주노를 뽑는 것이 주노를 먼저 뽑는 것과 같은 쌍을 주기 때문이다. [18] 조합을 세려면, 먼저 순서가 있는 목록을 센 다음 겹치는 것들을 나누어 없앤다. [19] 이 단순한 규칙들은 교실을 훨씬 넘어서까지 미치는데, 엔지니어가 비밀번호를 설계하고, 생물학자가 유전자를 비교하고, 항공사가 노선을 계획하도록 돕기 때문이다. [20] 모든 거대한 세기 문제는 결국 여러분이 그저 경우를 더하거나 곱하는 작은 단계들로 쪼개진다."
+    "translation_ko": "[1] 여러분에게 셔츠 세 벌과 바지 두 벌이 있다고 상상하고, 만들 수 있는 옷차림이 몇 가지인지 물어보라. [2] 그것들을 모두 나열할 필요는 없는데, 각 셔츠가 두 바지 중 어느 것과도 어울릴 수 있기 때문이다. [3] 그래서 답은 그저 3 곱하기 2, 즉 6이다. [4] 수학자들은 이 아이디어를 곱의 법칙이라 부르며, 그것은 세기의 첫 번째 위대한 지름길이다. [5] 하나의 선택 뒤에 또 다른 선택이 이어질 때는, 각 단계에서 선택지의 수를 곱한다. [6] 때로는 선택들이 서로 연결되지 않고, 그저 나란히 놓여 있다. [7] 어느 매점이 네 종류의 주스와 세 종류의 차를 팔고, 여러분이 음료 하나를 주문할 수 있다고 가정해 보라. [8] 여러분은 선택지들을 더하는데, 주스를 고르는 일과 차를 고르는 일은 결코 동시에 일어날 수 없기 때문이다. [9] 이것이 합의 법칙이다. 즉 두 사건이 동시에 일어날 수 없을 때는 각 경우를 더한다. [10] 더할지 곱할지를 정하는 것이 세기의 진정한 핵심이다. [11] 순서는 세기를 더 어렵게 만드는데, 다섯 명의 주자를 시상대에 세우는 것은 단순히 그들을 뽑는 것과는 다르기 때문이다. [12] 대상을 순서 있게 배열한 것을 순열이라 부른다. [13] 네 학생이 사진을 위해 줄을 서면, 첫 자리는 네 가지 선택지가 있고, 다음은 세 가지, 그다음은 둘, 그다음은 하나다. [14] 이 수들을 곱하면 스물네 가지의 서로 다른 줄이 나온다. [15] 수학자들은 이 곱을 계승으로 표기하는데, 계승은 매우 빠르게 커진다. [16] 이제 순서가 중요하지 않다고 가정해 보라. [17] 동아리 대표 두 명을 뽑는 것은 조합인데, 미나를 뽑고 나서 주노를 뽑는 것이 주노를 먼저 뽑는 것과 같은 쌍을 주기 때문이다. [18] 조합을 세려면, 먼저 순서가 있는 목록을 센 다음 겹치는 것들을 나누어 없앤다. [19] 이 단순한 규칙들은 교실을 훨씬 넘어서까지 미치는데, 엔지니어가 비밀번호를 설계하고, 생물학자가 유전자를 비교하고, 항공사가 노선을 계획하도록 돕기 때문이다. [20] 모든 거대한 세기 문제는 결국 여러분이 그저 경우를 더하거나 곱하는 작은 단계들로 쪼개진다."
   },
   "answers": {
     "explanations": [
@@ -485,14 +488,14 @@
         ]
       },
       {
-        "word": "shockingly",
-        "pos": "adv.",
-        "meaning_ko": "충격적으로, 놀랄 만큼",
-        "synonyms": ["surprisingly"],
-        "antonyms": [],
+        "word": "divide",
+        "pos": "v.",
+        "meaning_ko": "나누다, 나눗셈하다",
+        "synonyms": ["split"],
+        "antonyms": ["multiply"],
         "examples": [
-          { "en": "Factorials grow shockingly fast as the numbers rise.", "ko": "수가 커질수록 계승은 놀랄 만큼 빠르게 커진다." },
-          { "en": "The test was shockingly harder than anyone expected.", "ko": "시험은 모두의 예상보다 충격적으로 어려웠다." }
+          { "en": "To count combinations, you divide away the repeats.", "ko": "조합을 세려면 겹치는 것들을 나누어 없앤다." },
+          { "en": "We divide the whole into equal parts to share it.", "ko": "우리는 전체를 똑같은 부분으로 나누어 나눠 갖는다." }
         ]
       },
       {

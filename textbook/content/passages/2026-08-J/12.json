@@ -11,14 +11,14 @@
     "achievement_verified": true,
     "difficulty": "중간",
     "cognitive_skill": "요지",
-    "lexile": "1150L",
-    "ar_level": 8.0,
+    "lexile": "1050L",
+    "ar_level": 7.4,
     "key_concepts": ["이항분포", "정규분포", "표준정규분포", "확률밀도"]
   },
   "page1": {
     "title": "The Bell Behind the Randomness",
     "subtitle": "Why so many messy things settle into one graceful curve.",
-    "body": "Toss a fair coin ten times, and the number of heads is rarely zero and rarely ten; most of the time it lands somewhere near five. Repeat this thousands of times and plot how often each count appears, and a familiar shape rises from the noise: a smooth mound that is tall in the middle and thin at both edges. This coin-tossing model, where each trial is an independent success or failure, follows what statisticians call the <u>binomial distribution</u>, and its silhouette already hints at the curve to come.\n\nAs the number of trials grows large, that jagged bar chart smooths into an elegant, symmetric bell. Mathematicians describe this limiting shape with the <u>normal distribution</u>, defined entirely by two numbers: the mean, which fixes where the peak sits, and the standard deviation, which sets how wide the bell spreads. A larger standard deviation flattens and stretches the curve, while a smaller one squeezes it into a tall, narrow spike. Crucially, the total area beneath the curve always equals one, because that area represents the probability of every possible outcome combined.\n\nBecause every normal curve shares the same essential form, one clever move lets us compare them all. By subtracting the mean and dividing by the standard deviation, we rescale any bell into a single reference curve centered at zero, the <u>standard normal distribution</u>. This transformation is why a printed table of a few dozen values can answer questions about heights, test scores, or measurement errors alike. Different data, once standardized, all <u>speak the same language</u>.\n\nThe deeper marvel is how widely this curve appears. Heights, repeated measurements, and countless natural quantities pile up around an average and thin out toward the extremes, tracing the same bell again and again. When many small, independent effects add together, their combined result drifts irresistibly toward this one shape. That is why the normal distribution feels less like a formula and more like a hidden rule that quiet <blank> obey without being told.",
+    "body": "Toss a fair coin ten times. The number of heads is rarely zero and rarely ten; usually it lands near five. Repeat this thousands of times and plot how often each count appears, and a familiar shape rises from the noise: a smooth mound, high in the middle, thin at the edges. In this model, where each trial is an independent success or failure, the counts follow what statisticians call the <u>binomial distribution</u>, hinting at the curve to come.\n\nAs the number of trials grows large, that jagged bar chart smooths into an elegant, symmetric bell. Mathematicians describe this limiting shape with the <u>normal distribution</u>, which is defined by just two numbers. The mean fixes where the peak sits, and the standard deviation sets how wide the bell spreads. A larger standard deviation flattens and stretches the curve, while a smaller one squeezes it into a tall, narrow spike. Crucially, the total area beneath the curve always equals one, because that area is the probability of every possible outcome combined.\n\nEvery normal curve shares the same basic form, so one clever move lets us compare them. We subtract the mean and divide by the standard deviation. This rescales any bell into a single reference curve centered at zero, the <u>standard normal distribution</u>. That is why one printed table of values can answer questions about heights, test scores, or measurement errors alike. Different data, once standardized, all <u>speak the same language</u>.\n\nThe deeper marvel is how widely this curve appears. Heights, repeated measurements, and countless natural quantities pile up around an average and thin out toward the extremes, tracing the same bell over and over. When many small, independent effects add together, their combined result drifts toward this one shape. That is why the normal distribution feels less like a formula and more like a hidden rule that quiet <blank> obey without being told.",
     "illustration": "../../assets/illustrations/2026-08-J/12.jpg",
     "illustration_caption": "동전 던지기의 막대그래프는 시행이 늘수록 좌우 대칭의 매끈한 종 모양 곡선으로 다듬어진다.",
     "gloss_extra": [
@@ -100,19 +100,24 @@
         "segments": [
           { "role": "V", "text": "Toss", "note": "명령문 동사" },
           { "role": "O", "text": "a fair coin" },
-          { "role": "M", "text": "ten times," },
-          { "role": "CONJ", "text": "and" },
-          { "role": "S", "text": "the number of heads" },
-          { "role": "V", "text": "is" },
-          { "role": "C", "text": "rarely zero and rarely ten;" },
-          { "role": "S", "text": "most of the time it", "note": "부사구 + 주어" },
-          { "role": "V", "text": "lands" },
-          { "role": "M", "text": "somewhere near five." }
+          { "role": "M", "text": "ten times." }
         ],
-        "grammar_note": "명령문 + and 결과 등위절 + 세미콜론 병치"
+        "grammar_note": "명령문 (동사원형으로 시작)"
       },
       {
         "index": 2,
+        "segments": [
+          { "role": "S", "text": "The number of heads" },
+          { "role": "V", "text": "is" },
+          { "role": "C", "text": "rarely zero and rarely ten;" },
+          { "role": "S", "text": "usually it", "note": "부사 + 주어" },
+          { "role": "V", "text": "lands" },
+          { "role": "M", "text": "near five." }
+        ],
+        "grammar_note": "2형식 + 세미콜론 병치"
+      },
+      {
+        "index": 3,
         "segments": [
           { "role": "V", "text": "Repeat", "note": "명령문 동사" },
           { "role": "O", "text": "this thousands of times" },
@@ -123,26 +128,24 @@
           { "role": "S", "text": "a familiar shape" },
           { "role": "V", "text": "rises" },
           { "role": "M", "text": "from the noise:" },
-          { "role": "C", "text": "a smooth mound that is tall in the middle and thin at both edges.", "note": "동격 + 관계절 that" }
+          { "role": "C", "text": "a smooth mound, high in the middle, thin at the edges.", "note": "동격 명사구" }
         ],
-        "grammar_note": "명령문 병렬 + how 절 목적어 + and 결과절 + 동격 관계절"
-      },
-      {
-        "index": 3,
-        "segments": [
-          { "role": "S", "text": "This coin-tossing model," },
-          { "role": "M", "text": "where each trial is an independent success or failure,", "note": "관계부사 where (계속적)" },
-          { "role": "V", "text": "follows" },
-          { "role": "O", "text": "what statisticians call the binomial distribution,", "note": "what 명사절" },
-          { "role": "CONJ", "text": "and" },
-          { "role": "S", "text": "its silhouette" },
-          { "role": "V", "text": "already hints" },
-          { "role": "M", "text": "at the curve to come.", "note": "to부정사 형용사적 용법" }
-        ],
-        "grammar_note": "관계부사 where 삽입 + follow + what 명사절 + and 병렬"
+        "grammar_note": "명령문 병렬 + how 절 목적어 + and 결과절 + 동격"
       },
       {
         "index": 4,
+        "segments": [
+          { "role": "M", "text": "In this model,", "note": "전치사구" },
+          { "role": "M", "text": "where each trial is an independent success or failure,", "note": "관계부사 where (계속적)" },
+          { "role": "S", "text": "the counts" },
+          { "role": "V", "text": "follow" },
+          { "role": "O", "text": "what statisticians call the binomial distribution,", "note": "what 명사절" },
+          { "role": "M", "text": "hinting at the curve to come.", "note": "분사구문 (부대상황)" }
+        ],
+        "grammar_note": "관계부사 where 삽입 + follow + what 명사절 + 분사구문"
+      },
+      {
+        "index": 5,
         "segments": [
           { "role": "M", "text": "As the number of trials grows large,", "note": "as 부사절 (비례)" },
           { "role": "S", "text": "that jagged bar chart" },
@@ -152,19 +155,31 @@
         "grammar_note": "as 비례 부사절 + 자동사 smooth into"
       },
       {
-        "index": 5,
+        "index": 6,
         "segments": [
           { "role": "S", "text": "Mathematicians" },
           { "role": "V", "text": "describe" },
           { "role": "O", "text": "this limiting shape" },
-          { "role": "M", "text": "with the normal distribution," },
-          { "role": "M", "text": "defined entirely by two numbers:", "note": "과거분사 수식" },
-          { "role": "M", "text": "the mean, which fixes where the peak sits, and the standard deviation, which sets how wide the bell spreads.", "note": "동격 + 계속적 관계절" }
+          { "role": "M", "text": "with the normal distribution,", "note": "전치사구" },
+          { "role": "REL", "text": "which is defined by just two numbers.", "note": "계속적 관계절 which" }
         ],
-        "grammar_note": "3형식 + 과거분사구 + 동격 명사 + 계속적 관계절 which"
+        "grammar_note": "3형식 + 계속적 관계절 which + 수동태"
       },
       {
-        "index": 6,
+        "index": 7,
+        "segments": [
+          { "role": "S", "text": "The mean" },
+          { "role": "V", "text": "fixes" },
+          { "role": "O", "text": "where the peak sits,", "note": "where 의문사절 목적어" },
+          { "role": "CONJ", "text": "and" },
+          { "role": "S", "text": "the standard deviation" },
+          { "role": "V", "text": "sets" },
+          { "role": "O", "text": "how wide the bell spreads.", "note": "how 의문사절 목적어" }
+        ],
+        "grammar_note": "and 등위절 + 의문사절 목적어 병렬"
+      },
+      {
+        "index": 8,
         "segments": [
           { "role": "S", "text": "A larger standard deviation" },
           { "role": "V", "text": "flattens and stretches" },
@@ -178,7 +193,7 @@
         "grammar_note": "동사 병렬 + while 대조절"
       },
       {
-        "index": 7,
+        "index": 9,
         "segments": [
           { "role": "M", "text": "Crucially,", "note": "문장 부사" },
           { "role": "S", "text": "the total area beneath the curve" },
@@ -187,48 +202,59 @@
           { "role": "O", "text": "one," },
           { "role": "CONJ", "text": "because" },
           { "role": "S", "text": "that area" },
-          { "role": "V", "text": "represents" },
-          { "role": "O", "text": "the probability of every possible outcome combined.", "note": "과거분사 후치 수식" }
+          { "role": "V", "text": "is" },
+          { "role": "C", "text": "the probability of every possible outcome combined.", "note": "과거분사 후치 수식" }
         ],
         "grammar_note": "equals + because 이유절 + 과거분사 후치 수식"
       },
       {
-        "index": 8,
+        "index": 10,
         "segments": [
-          { "role": "CONJ", "text": "Because", "note": "이유 부사절 접속사" },
-          { "role": "S", "text": "every normal curve" },
+          { "role": "S", "text": "Every normal curve" },
           { "role": "V", "text": "shares" },
-          { "role": "O", "text": "the same essential form," },
+          { "role": "O", "text": "the same basic form," },
+          { "role": "CONJ", "text": "so", "note": "결과 접속사" },
           { "role": "S", "text": "one clever move" },
           { "role": "V", "text": "lets" },
           { "role": "O", "text": "us" },
-          { "role": "C", "text": "compare them all.", "note": "사역동사 let + 원형부정사" }
+          { "role": "C", "text": "compare them.", "note": "사역동사 let + 원형부정사" }
         ],
-        "grammar_note": "because 이유절 + 사역동사 let + 목적격보어 원형부정사"
+        "grammar_note": "so 결과절 + 사역동사 let + 목적격보어 원형부정사"
       },
       {
-        "index": 9,
+        "index": 11,
         "segments": [
-          { "role": "M", "text": "By subtracting the mean and dividing by the standard deviation,", "note": "by -ing 수단" },
-          { "role": "S", "text": "we" },
-          { "role": "V", "text": "rescale" },
+          { "role": "S", "text": "We" },
+          { "role": "V", "text": "subtract" },
+          { "role": "O", "text": "the mean" },
+          { "role": "CONJ", "text": "and" },
+          { "role": "V", "text": "divide" },
+          { "role": "M", "text": "by the standard deviation.", "note": "전치사구" }
+        ],
+        "grammar_note": "동사 병렬 (subtract / divide by)"
+      },
+      {
+        "index": 12,
+        "segments": [
+          { "role": "S", "text": "This" },
+          { "role": "V", "text": "rescales" },
           { "role": "O", "text": "any bell" },
           { "role": "M", "text": "into a single reference curve centered at zero,", "note": "과거분사 수식" },
           { "role": "M", "text": "the standard normal distribution.", "note": "동격" }
         ],
-        "grammar_note": "by -ing 수단 부사구 + rescale into + 동격"
+        "grammar_note": "rescale into + 과거분사 수식 + 동격"
       },
       {
-        "index": 10,
+        "index": 13,
         "segments": [
-          { "role": "S", "text": "This transformation" },
+          { "role": "S", "text": "That" },
           { "role": "V", "text": "is" },
-          { "role": "C", "text": "why a printed table of a few dozen values can answer questions about heights, test scores, or measurement errors alike.", "note": "관계부사 why 보어절" }
+          { "role": "C", "text": "why one printed table of values can answer questions about heights, test scores, or measurement errors alike.", "note": "관계부사 why 보어절" }
         ],
         "grammar_note": "be동사 + 관계부사 why 명사절 보어"
       },
       {
-        "index": 11,
+        "index": 14,
         "segments": [
           { "role": "S", "text": "Different data," },
           { "role": "M", "text": "once standardized,", "note": "분사구문 (접속사 once 남김)" },
@@ -239,7 +265,7 @@
         "grammar_note": "분사구문 (once + p.p.) + 3형식"
       },
       {
-        "index": 12,
+        "index": 15,
         "segments": [
           { "role": "S", "text": "The deeper marvel" },
           { "role": "V", "text": "is" },
@@ -248,7 +274,7 @@
         "grammar_note": "be동사 + how 의문사절 주격보어"
       },
       {
-        "index": 13,
+        "index": 16,
         "segments": [
           { "role": "S", "text": "Heights, repeated measurements, and countless natural quantities" },
           { "role": "V", "text": "pile up" },
@@ -256,22 +282,22 @@
           { "role": "CONJ", "text": "and" },
           { "role": "V", "text": "thin out" },
           { "role": "M", "text": "toward the extremes," },
-          { "role": "M", "text": "tracing the same bell again and again.", "note": "분사구문 (부대상황)" }
+          { "role": "M", "text": "tracing the same bell over and over.", "note": "분사구문 (부대상황)" }
         ],
         "grammar_note": "복수 주어 + 동사 병렬(pile up/thin out) + 분사구문"
       },
       {
-        "index": 14,
+        "index": 17,
         "segments": [
           { "role": "M", "text": "When many small, independent effects add together,", "note": "when 부사절" },
           { "role": "S", "text": "their combined result" },
           { "role": "V", "text": "drifts" },
-          { "role": "M", "text": "irresistibly toward this one shape.", "note": "부사 + 전치사구" }
+          { "role": "M", "text": "toward this one shape.", "note": "전치사구" }
         ],
         "grammar_note": "when 부사절 + 자동사 drift toward"
       },
       {
-        "index": 15,
+        "index": 18,
         "segments": [
           { "role": "S", "text": "That" },
           { "role": "V", "text": "is" },
@@ -282,7 +308,7 @@
         "grammar_note": "관계부사 why + less A more B + 관계대명사 that + without -ing"
       }
     ],
-    "translation_ko": "[1] 공정한 동전을 열 번 던지면, 앞면의 수는 좀처럼 0도 10도 아니며, 대부분은 5 근처 어딘가에 떨어진다. [2] 이것을 수천 번 반복해 각 횟수가 얼마나 자주 나오는지 그래프로 그리면, 잡음 속에서 익숙한 모양이 떠오른다 — 가운데가 높고 양 끝이 얇은 매끈한 언덕이다. [3] 각 시행이 독립적인 성공 또는 실패인 이 동전 던지기 모형은 통계학자들이 이항분포라 부르는 것을 따르며, 그 윤곽은 이미 다가올 곡선을 암시한다. [4] 시행 횟수가 커질수록, 그 들쭉날쭉한 막대그래프는 우아하고 좌우 대칭인 종 모양으로 매끄러워진다. [5] 수학자들은 이 극한의 모양을 정규분포로 기술하는데, 이는 두 수로 온전히 정의된다 — 봉우리의 위치를 정하는 평균과, 종이 얼마나 넓게 퍼지는지를 정하는 표준편차다. [6] 표준편차가 크면 곡선을 넓고 낮게 펴고, 작으면 곡선을 높고 좁은 뾰족한 모양으로 짓누른다. [7] 결정적으로, 곡선 아래 전체 넓이는 언제나 1과 같은데, 그 넓이가 가능한 모든 결과를 합한 확률을 나타내기 때문이다. [8] 모든 정규 곡선은 같은 본질적 형태를 공유하기 때문에, 하나의 영리한 조작으로 우리는 그것들을 모두 비교할 수 있다. [9] 평균을 빼고 표준편차로 나눔으로써, 우리는 어떤 종이든 0을 중심으로 하는 하나의 기준 곡선, 즉 표준정규분포로 다시 척도를 맞춘다. [10] 이 변환이 바로 몇십 개 값이 적힌 인쇄된 표 하나가 키, 시험 점수, 측정 오차에 관한 물음에 똑같이 답할 수 있는 이유다. [11] 서로 다른 자료는, 일단 표준화되면, 모두 같은 언어로 말한다. [12] 더 깊은 경이로움은 이 곡선이 얼마나 널리 나타나는가이다. [13] 키, 반복된 측정값, 그리고 셀 수 없이 많은 자연의 양은 평균 주위에 쌓이고 양극단으로 갈수록 얇아지며, 같은 종 모양을 몇 번이고 그려낸다. [14] 많은 작고 독립적인 효과들이 함께 더해지면, 그것들의 합쳐진 결과는 저항할 수 없이 이 하나의 모양을 향해 흘러간다. [15] 그것이 바로 정규분포가 공식이라기보다는, 조용한 무작위성이 시키지 않아도 따르는 숨은 규칙처럼 느껴지는 이유다."
+    "translation_ko": "[1] 공정한 동전을 열 번 던져라. [2] 앞면의 수는 좀처럼 0도 10도 아니며, 대개 5 근처에 떨어진다. [3] 이것을 수천 번 반복해 각 횟수가 얼마나 자주 나오는지 그래프로 그리면, 잡음 속에서 익숙한 모양이 떠오른다 — 가운데가 높고 양 끝이 얇은 매끈한 언덕이다. [4] 각 시행이 독립적인 성공 또는 실패인 이 모형에서, 그 횟수들은 통계학자들이 이항분포라 부르는 것을 따르며, 다가올 곡선을 암시한다. [5] 시행 횟수가 커질수록, 그 들쭉날쭉한 막대그래프는 우아하고 좌우 대칭인 종 모양으로 매끄러워진다. [6] 수학자들은 이 극한의 모양을 정규분포로 기술하는데, 그것은 단 두 수로 정의된다. [7] 평균은 봉우리의 위치를 정하고, 표준편차는 종이 얼마나 넓게 퍼지는지를 정한다. [8] 표준편차가 크면 곡선을 넓고 낮게 펴고, 작으면 곡선을 높고 좁은 뾰족한 모양으로 짓누른다. [9] 결정적으로, 곡선 아래 전체 넓이는 언제나 1과 같은데, 그 넓이가 가능한 모든 결과를 합한 확률이기 때문이다. [10] 모든 정규 곡선은 같은 기본 형태를 공유하므로, 하나의 영리한 조작으로 우리는 그것들을 비교할 수 있다. [11] 우리는 평균을 빼고 표준편차로 나눈다. [12] 이렇게 하면 어떤 종이든 0을 중심으로 하는 하나의 기준 곡선, 즉 표준정규분포로 다시 척도를 맞춘다. [13] 그것이 바로 값이 적힌 인쇄된 표 하나가 키, 시험 점수, 측정 오차에 관한 물음에 똑같이 답할 수 있는 이유다. [14] 서로 다른 자료는, 일단 표준화되면, 모두 같은 언어로 말한다. [15] 더 깊은 경이로움은 이 곡선이 얼마나 널리 나타나는가이다. [16] 키, 반복된 측정값, 그리고 셀 수 없이 많은 자연의 양은 평균 주위에 쌓이고 양극단으로 갈수록 얇아지며, 같은 종 모양을 몇 번이고 그려낸다. [17] 많은 작고 독립적인 효과들이 함께 더해지면, 그것들의 합쳐진 결과는 이 하나의 모양을 향해 흘러간다. [18] 그것이 바로 정규분포가 공식이라기보다는, 조용한 무작위성이 시키지 않아도 따르는 숨은 규칙처럼 느껴지는 이유다."
   },
   "answers": {
     "explanations": [
@@ -290,7 +316,7 @@
         "q_index": 0,
         "q_style": "요지",
         "correct": 3,
-        "evidence": "글은 시행이 많아질수록 이항분포의 막대그래프가 \"smooths into an elegant, symmetric bell\"이 되며, 그 정규분포가 \"defined entirely by two numbers: the mean ... and the standard deviation\"이라고 한다. 따라서 '무작위 결과가 평균과 퍼짐으로 정해지는 하나의 종 모양으로 수렴한다'가 요지다.",
+        "evidence": "글은 시행이 많아질수록 이항분포의 막대그래프가 \"smooths into an elegant, symmetric bell\"이 되며, 그 정규분포가 \"defined by just two numbers\"(the mean, the standard deviation)라고 한다. 따라서 '무작위 결과가 평균과 퍼짐으로 정해지는 하나의 종 모양으로 수렴한다'가 요지다.",
         "rationales": [
           "본문은 동전 던지기를 이항분포로 모형화한다고 명시하므로 '모형화할 수 없다'는 정반대다.",
           "정규분포는 '같은 본질적 형태를 공유한다'고 했으므로 '매번 기본 모양이 바뀐다'는 모순이다.",
@@ -324,7 +350,7 @@
         "q_index": 2,
         "q_style": "함의 추론",
         "correct": 4,
-        "evidence": "밑줄 문장 앞에서 평균을 빼고 표준편차로 나눠 자료를 하나의 표준정규분포로 표준화하면 \"a printed table of a few dozen values can answer questions about heights, test scores, or measurement errors alike\"라고 한다. 따라서 \"speak the same language\"는 '표준화된 자료를 하나의 공통 기준 곡선으로 읽을 수 있다'를 뜻한다.",
+        "evidence": "밑줄 문장 앞에서 평균을 빼고 표준편차로 나눠 자료를 하나의 표준정규분포로 표준화하면 \"one printed table of values can answer questions about heights, test scores, or measurement errors alike\"라고 한다. 따라서 \"speak the same language\"는 '표준화된 자료를 하나의 공통 기준 곡선으로 읽을 수 있다'를 뜻한다.",
         "rationales": [
           "'영어로 먼저 써야 한다'는 표현의 비유를 문자 그대로 오해한 것이다.",
           "평균과 표준편차가 항상 같다는 내용은 본문 어디에도 없다.",
@@ -401,14 +427,14 @@
         ]
       },
       {
-        "word": "silhouette",
-        "pos": "n.",
-        "meaning_ko": "윤곽, 실루엣",
-        "synonyms": ["outline"],
-        "antonyms": [],
+        "word": "elegant",
+        "pos": "adj.",
+        "meaning_ko": "우아한, 정갈한",
+        "synonyms": ["graceful"],
+        "antonyms": ["clumsy"],
         "examples": [
-          { "en": "Its silhouette already hints at the curve to come.", "ko": "그 윤곽은 이미 다가올 곡선을 암시한다." },
-          { "en": "We saw the silhouette of the mountain at dusk.", "ko": "우리는 해질녘 산의 윤곽을 보았다." }
+          { "en": "The bar chart smooths into an elegant, symmetric bell.", "ko": "막대그래프는 우아하고 좌우 대칭인 종 모양으로 매끄러워진다." },
+          { "en": "She found an elegant proof for the theorem.", "ko": "그녀는 그 정리에 대한 정갈한 증명을 찾아냈다." }
         ]
       },
       {
@@ -434,14 +460,14 @@
         ]
       },
       {
-        "word": "transformation",
-        "pos": "n.",
-        "meaning_ko": "변환",
-        "synonyms": ["conversion"],
+        "word": "standardize",
+        "pos": "v.",
+        "meaning_ko": "표준화하다",
+        "synonyms": ["normalize"],
         "antonyms": [],
         "examples": [
-          { "en": "This transformation lets one table serve many datasets.", "ko": "이 변환은 표 하나가 여러 자료에 쓰이게 한다." },
-          { "en": "The transformation shifts the curve to center at zero.", "ko": "그 변환은 곡선을 0을 중심으로 옮긴다." }
+          { "en": "Different data, once standardized, speak the same language.", "ko": "서로 다른 자료는 일단 표준화되면 같은 언어로 말한다." },
+          { "en": "We standardize scores to compare them fairly.", "ko": "우리는 점수를 공정하게 비교하려고 표준화한다." }
         ]
       },
       {
@@ -456,14 +482,14 @@
         ]
       },
       {
-        "word": "irresistibly",
-        "pos": "adv.",
-        "meaning_ko": "저항할 수 없이",
-        "synonyms": ["inevitably"],
-        "antonyms": ["resistibly"],
+        "word": "marvel",
+        "pos": "n.",
+        "meaning_ko": "경이, 경이로움",
+        "synonyms": ["wonder"],
+        "antonyms": [],
         "examples": [
-          { "en": "The combined result drifts irresistibly toward one shape.", "ko": "합쳐진 결과는 저항할 수 없이 하나의 모양을 향해 흘러간다." },
-          { "en": "The story pulled readers in irresistibly.", "ko": "그 이야기는 독자들을 거부할 수 없이 끌어당겼다." }
+          { "en": "The deeper marvel is how widely this curve appears.", "ko": "더 깊은 경이로움은 이 곡선이 얼마나 널리 나타나는가이다." },
+          { "en": "The bridge is a marvel of modern engineering.", "ko": "그 다리는 현대 공학의 경이다." }
         ]
       },
       {

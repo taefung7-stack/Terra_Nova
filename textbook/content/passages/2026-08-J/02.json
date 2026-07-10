@@ -11,20 +11,34 @@
     "achievement_verified": true,
     "difficulty": "중간",
     "cognitive_skill": "요지",
-    "lexile": "1100L",
-    "ar_level": 8.0,
-    "key_concepts": ["부정적분", "정적분", "미적분의 기본정리", "넓이와 누적"]
+    "lexile": "1000L",
+    "ar_level": 7.5,
+    "key_concepts": [
+      "부정적분",
+      "정적분",
+      "미적분의 기본정리",
+      "넓이와 누적"
+    ]
   },
   "page1": {
     "title": "Undoing the Slope, Adding the Slices",
     "subtitle": "How the same idea both reverses a derivative and measures an area.",
-    "body": "If a derivative tells you how fast a quantity is changing at each instant, then integration asks the reverse question: given the rate, what was the quantity? Finding a function whose derivative matches a given one is called <u>antidifferentiation</u>, and the family of answers is the indefinite integral. Because any constant vanishes when you differentiate, every such answer carries a mysterious \"+C\" at the end. That single symbol quietly admits that the starting value has been lost along the way.\n\nThe definite integral looks like a different animal at first. Instead of undoing a slope, it measures the area trapped between a curve and the horizontal axis over a fixed interval. You approximate that region by slicing it into thin rectangles, adding their areas, and then letting the slices grow ever narrower. As the widths shrink toward zero, the jagged staircase of rectangles smooths into the exact area beneath the curve. Here integration means patient accumulation, one thin slice stacked upon the next.\n\nThe astonishing part is that these two ideas, reversing and accumulating, turn out to be the same idea wearing two masks. The Fundamental Theorem of Calculus states that to find the area under a rate curve, you simply find an antiderivative and subtract its values at the two endpoints. The elusive \"+C\" cancels in the subtraction, so the answer comes out clean. Slope and area, long treated as strangers, are revealed as two faces of one relationship.\n\nThis unity is what makes calculus so powerful across science. A physicist who knows an object's velocity can recover its exact displacement, and an economist who knows a marginal cost can rebuild the total. In every single case, the derivative quietly takes something apart, while the integral patiently <blank>.",
+    "body": "A derivative tells you how fast a quantity is changing at each instant. Integration asks the reverse question: if you know the rate, what was the whole quantity to begin with? Finding a function whose derivative matches a given one is called <u>antidifferentiation</u>, and the family of all such answers is the indefinite integral. Any constant vanishes when you differentiate, so every answer carries a mysterious \"+C\" at the end. That single symbol quietly admits that the starting value has been lost.\n\nThe definite integral looks like a different animal at first. Instead of undoing a slope, it measures the area between a curve and the horizontal axis over a fixed interval. You approximate that region by slicing it into many thin rectangles, adding their areas, and then letting the slices grow ever narrower. As the widths shrink toward zero, the jagged staircase of rectangles smooths into the exact area under the curve. Here integration means patient accumulation, one thin slice stacked upon the next.\n\nThe astonishing part is that these two ideas, reversing and accumulating, turn out to be the same idea wearing two masks. The Fundamental Theorem of Calculus says that to find the area under a rate curve, you just find an antiderivative and subtract its values at the two endpoints. The elusive \"+C\" cancels itself in the subtraction, so the final answer comes out clean. Slope and area, long treated as strangers, are really two faces of one relationship.\n\nThis deep unity is what makes calculus so powerful across every field of science. A physicist who knows an object's velocity can recover its exact displacement over time. An economist who knows a marginal cost can rebuild the total cost. In every case, the derivative quietly takes something apart, while the integral patiently <blank>.",
     "illustration": "../../assets/illustrations/2026-08-J/02.jpg",
     "illustration_caption": "얇은 직사각형을 무수히 쌓아 곡선 아래 넓이를 구하고, 그 넓이가 곧 변화율을 되돌린 값이 된다.",
     "gloss_extra": [
-      { "term": "derivative", "ko": "도함수, 미분계수" },
-      { "term": "interval", "ko": "구간" },
-      { "term": "displacement", "ko": "변위, 위치 변화량" }
+      {
+        "term": "derivative",
+        "ko": "도함수, 미분계수"
+      },
+      {
+        "term": "interval",
+        "ko": "구간"
+      },
+      {
+        "term": "displacement",
+        "ko": "변위, 위치 변화량"
+      }
     ]
   },
   "page2": {
@@ -72,7 +86,13 @@
         "type": "school_descriptive",
         "style": "요약문 빈칸 완성",
         "prompt": "다음은 본문의 요약문이다. 본문의 내용을 바탕으로 빈칸 (A), (B)에 들어갈 말을 <조건>에 맞게 영어 한 단어로 각각 쓰시오. <조건> 본문에서 제시된 단어를 그대로 활용할 것.",
-        "hints": ["antidifferentiation", "area", "accumulation", "endpoints", "reverse"],
+        "hints": [
+          "antidifferentiation",
+          "area",
+          "accumulation",
+          "endpoints",
+          "reverse"
+        ],
         "summary_template": "The indefinite integral reverses a derivative, while the definite integral measures an <blank> (A) by summing thin slices. The Fundamental Theorem links them, letting us find that area from an antiderivative's values at the two <blank> (B).",
         "model_answer": "(A) area  (B) endpoints"
       }
@@ -80,15 +100,36 @@
     "textbook_tieback": {
       "unit_label": "미적분 III 적분 · 쌓아서 되돌리는 셈",
       "body_ko": "고2 미적분에서는 부정적분과 정적분을 배운다. 부정적분은 미분의 역연산으로, 도함수가 주어진 함수를 찾는 것이며 상수 C가 붙어 무수히 많은 원함수를 나타낸다. 정적분은 곡선과 x축 사이의 넓이를 구간을 잘게 나눈 직사각형의 넓이 합의 극한으로 정의한다. 두 개념은 미적분의 기본정리로 연결되어, 넓이를 구할 때 원함수(부정적분)를 찾아 구간 양 끝값의 차로 계산한다. 이때 상수 C는 뺄셈에서 소거된다. 미분이 나누고 적분이 되돌린다는 이 관계는 속도로 변위를, 한계비용으로 총비용을 복원하는 등 과학 전반에서 강력하게 쓰인다.",
-      "tags": ["부정적분", "정적분", "기본정리", "넓이누적"],
+      "tags": [
+        "부정적분",
+        "정적분",
+        "기본정리",
+        "넓이누적"
+      ],
       "visual_aid": {
         "type": "emoji_flow",
         "title": "쌓아서 되돌리는 적분",
         "steps": [
-          { "emoji": "📉", "label": "변화율", "note": "도함수가 주어짐" },
-          { "emoji": "🧱", "label": "얇은 조각", "note": "직사각형 넓이 합" },
-          { "emoji": "🔗", "label": "기본정리", "note": "원함수 양 끝값 차" },
-          { "emoji": "📐", "label": "넓이=총량", "note": "변위·총비용 복원" }
+          {
+            "emoji": "📉",
+            "label": "변화율",
+            "note": "도함수가 주어짐"
+          },
+          {
+            "emoji": "🧱",
+            "label": "얇은 조각",
+            "note": "직사각형 넓이 합"
+          },
+          {
+            "emoji": "🔗",
+            "label": "기본정리",
+            "note": "원함수 양 끝값 차"
+          },
+          {
+            "emoji": "📐",
+            "label": "넓이=총량",
+            "note": "변위·총비용 복원"
+          }
         ]
       }
     }
@@ -98,183 +139,489 @@
       {
         "index": 1,
         "segments": [
-          { "role": "M", "text": "If a derivative tells you how fast a quantity is changing at each instant,", "note": "if 조건절" },
-          { "role": "S", "text": "then integration" },
-          { "role": "V", "text": "asks" },
-          { "role": "O", "text": "the reverse question:" },
-          { "role": "M", "text": "given the rate, what was the quantity?", "note": "동격 의문" }
+          {
+            "role": "S",
+            "text": "A derivative"
+          },
+          {
+            "role": "V",
+            "text": "tells"
+          },
+          {
+            "role": "O",
+            "text": "you"
+          },
+          {
+            "role": "O",
+            "text": "how fast a quantity is changing at each instant.",
+            "note": "how 명사절(간접의문)"
+          }
         ],
-        "grammar_note": "if 조건절 + 3형식 + 콜론 동격 의문"
+        "grammar_note": "4형식 + how 간접의문 명사절"
       },
       {
         "index": 2,
         "segments": [
-          { "role": "S", "text": "Finding a function whose derivative matches a given one", "note": "동명사구 주어" },
-          { "role": "V", "text": "is called" },
-          { "role": "C", "text": "antidifferentiation,", "note": "수동 call O C" },
-          { "role": "CONJ", "text": "and" },
-          { "role": "S", "text": "the family of answers" },
-          { "role": "V", "text": "is" },
-          { "role": "C", "text": "the indefinite integral." }
+          {
+            "role": "S",
+            "text": "Integration"
+          },
+          {
+            "role": "V",
+            "text": "asks"
+          },
+          {
+            "role": "O",
+            "text": "the reverse question:"
+          },
+          {
+            "role": "M",
+            "text": "if you know the rate,",
+            "note": "if 조건절"
+          },
+          {
+            "role": "M",
+            "text": "what was the whole quantity to begin with?",
+            "note": "동격 의문"
+          }
         ],
-        "grammar_note": "동명사 주어 + be called + and 2형식"
+        "grammar_note": "3형식 + 콜론 동격 의문(내포 if절)"
       },
       {
         "index": 3,
         "segments": [
-          { "role": "M", "text": "Because any constant vanishes when you differentiate,", "note": "because 이유절" },
-          { "role": "S", "text": "every such answer" },
-          { "role": "V", "text": "carries" },
-          { "role": "O", "text": "a mysterious \"+C\"" },
-          { "role": "M", "text": "at the end." }
+          {
+            "role": "S",
+            "text": "Finding a function whose derivative matches a given one",
+            "note": "동명사구 주어(관계절 포함)"
+          },
+          {
+            "role": "V",
+            "text": "is called"
+          },
+          {
+            "role": "C",
+            "text": "antidifferentiation,",
+            "note": "수동 call O C"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "S",
+            "text": "the family of all such answers"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "the indefinite integral."
+          }
         ],
-        "grammar_note": "because 이유절 (내포 when절) + 3형식"
+        "grammar_note": "동명사 주어 + be called + and 2형식"
       },
       {
         "index": 4,
         "segments": [
-          { "role": "S", "text": "That single symbol" },
-          { "role": "M", "text": "quietly" },
-          { "role": "V", "text": "admits" },
-          { "role": "O", "text": "that the starting value has been lost along the way.", "note": "that 명사절 (현재완료 수동)" }
+          {
+            "role": "S",
+            "text": "Any constant"
+          },
+          {
+            "role": "V",
+            "text": "vanishes"
+          },
+          {
+            "role": "M",
+            "text": "when you differentiate,",
+            "note": "when 시간절"
+          },
+          {
+            "role": "CONJ",
+            "text": "so"
+          },
+          {
+            "role": "S",
+            "text": "every answer"
+          },
+          {
+            "role": "V",
+            "text": "carries"
+          },
+          {
+            "role": "O",
+            "text": "a mysterious \"+C\""
+          },
+          {
+            "role": "M",
+            "text": "at the end."
+          }
         ],
-        "grammar_note": "3형식 + that 명사절 (현재완료 수동태)"
+        "grammar_note": "when 시간절 + so 결과 3형식"
       },
       {
         "index": 5,
         "segments": [
-          { "role": "S", "text": "The definite integral" },
-          { "role": "V", "text": "looks like" },
-          { "role": "C", "text": "a different animal" },
-          { "role": "M", "text": "at first." }
+          {
+            "role": "S",
+            "text": "That single symbol"
+          },
+          {
+            "role": "M",
+            "text": "quietly"
+          },
+          {
+            "role": "V",
+            "text": "admits"
+          },
+          {
+            "role": "O",
+            "text": "that the starting value has been lost.",
+            "note": "that 명사절(현재완료 수동)"
+          }
         ],
-        "grammar_note": "look like + 명사 보어"
+        "grammar_note": "3형식 + that 명사절(현재완료 수동태)"
       },
       {
         "index": 6,
         "segments": [
-          { "role": "M", "text": "Instead of undoing a slope,", "note": "전치사 + 동명사" },
-          { "role": "S", "text": "it" },
-          { "role": "V", "text": "measures" },
-          { "role": "O", "text": "the area" },
-          { "role": "M", "text": "trapped between a curve and the horizontal axis over a fixed interval.", "note": "과거분사 수식" }
+          {
+            "role": "S",
+            "text": "The definite integral"
+          },
+          {
+            "role": "V",
+            "text": "looks like"
+          },
+          {
+            "role": "C",
+            "text": "a different animal"
+          },
+          {
+            "role": "M",
+            "text": "at first."
+          }
         ],
-        "grammar_note": "instead of 동명사 + 3형식 + 과거분사 후치수식"
+        "grammar_note": "look like + 명사 보어"
       },
       {
         "index": 7,
         "segments": [
-          { "role": "S", "text": "You" },
-          { "role": "V", "text": "approximate" },
-          { "role": "O", "text": "that region" },
-          { "role": "M", "text": "by slicing it into thin rectangles, adding their areas, and then letting the slices grow ever narrower.", "note": "by 동명사 병렬" }
+          {
+            "role": "M",
+            "text": "Instead of undoing a slope,",
+            "note": "전치사 + 동명사"
+          },
+          {
+            "role": "S",
+            "text": "it"
+          },
+          {
+            "role": "V",
+            "text": "measures"
+          },
+          {
+            "role": "O",
+            "text": "the area"
+          },
+          {
+            "role": "M",
+            "text": "between a curve and the horizontal axis over a fixed interval.",
+            "note": "전치사구 수식"
+          }
         ],
-        "grammar_note": "by 동명사 3개 병렬 (letting O 원형)"
+        "grammar_note": "instead of 동명사 + 3형식 + 전치사구 후치수식"
       },
       {
         "index": 8,
         "segments": [
-          { "role": "M", "text": "As the widths shrink toward zero,", "note": "as 시간·비례절" },
-          { "role": "S", "text": "the jagged staircase of rectangles" },
-          { "role": "V", "text": "smooths into" },
-          { "role": "O", "text": "the exact area beneath the curve." }
+          {
+            "role": "S",
+            "text": "You"
+          },
+          {
+            "role": "V",
+            "text": "approximate"
+          },
+          {
+            "role": "O",
+            "text": "that region"
+          },
+          {
+            "role": "M",
+            "text": "by slicing it into many thin rectangles, adding their areas, and then letting the slices grow ever narrower.",
+            "note": "by 동명사 병렬"
+          }
         ],
-        "grammar_note": "as 비례절 + smooth into"
+        "grammar_note": "by 동명사 3개 병렬 (letting O 원형)"
       },
       {
         "index": 9,
         "segments": [
-          { "role": "M", "text": "Here" },
-          { "role": "S", "text": "integration" },
-          { "role": "V", "text": "means" },
-          { "role": "O", "text": "patient accumulation," },
-          { "role": "M", "text": "one thin slice stacked upon the next.", "note": "동격/독립분사구" }
+          {
+            "role": "M",
+            "text": "As the widths shrink toward zero,",
+            "note": "as 시간·비례절"
+          },
+          {
+            "role": "S",
+            "text": "the jagged staircase of rectangles"
+          },
+          {
+            "role": "V",
+            "text": "smooths into"
+          },
+          {
+            "role": "O",
+            "text": "the exact area under the curve."
+          }
         ],
-        "grammar_note": "3형식 + 동격 명사구 (과거분사 수식)"
+        "grammar_note": "as 비례절 + smooth into"
       },
       {
         "index": 10,
         "segments": [
-          { "role": "S", "text": "The astonishing part" },
-          { "role": "V", "text": "is" },
-          { "role": "C", "text": "that these two ideas, reversing and accumulating, turn out to be the same idea wearing two masks.", "note": "that 보어절" }
+          {
+            "role": "M",
+            "text": "Here"
+          },
+          {
+            "role": "S",
+            "text": "integration"
+          },
+          {
+            "role": "V",
+            "text": "means"
+          },
+          {
+            "role": "O",
+            "text": "patient accumulation,"
+          },
+          {
+            "role": "M",
+            "text": "one thin slice stacked upon the next.",
+            "note": "동격/독립분사구"
+          }
         ],
-        "grammar_note": "2형식 + that 보어절 (turn out to be)"
+        "grammar_note": "3형식 + 동격 명사구(과거분사 수식)"
       },
       {
         "index": 11,
         "segments": [
-          { "role": "S", "text": "The Fundamental Theorem of Calculus" },
-          { "role": "V", "text": "states" },
-          { "role": "O", "text": "that to find the area under a rate curve, you simply find an antiderivative and subtract its values at the two endpoints.", "note": "that 명사절" }
+          {
+            "role": "S",
+            "text": "The astonishing part"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "that these two ideas, reversing and accumulating, turn out to be the same idea wearing two masks.",
+            "note": "that 보어절"
+          }
         ],
-        "grammar_note": "state that + 목적어절 (to부정사 부사구)"
+        "grammar_note": "2형식 + that 보어절 (turn out to be)"
       },
       {
         "index": 12,
         "segments": [
-          { "role": "S", "text": "The elusive \"+C\"" },
-          { "role": "V", "text": "cancels" },
-          { "role": "M", "text": "in the subtraction," },
-          { "role": "CONJ", "text": "so" },
-          { "role": "S", "text": "the answer" },
-          { "role": "V", "text": "comes out" },
-          { "role": "C", "text": "clean." }
+          {
+            "role": "S",
+            "text": "The Fundamental Theorem of Calculus"
+          },
+          {
+            "role": "V",
+            "text": "says"
+          },
+          {
+            "role": "O",
+            "text": "that to find the area under a rate curve, you just find an antiderivative and subtract its values at the two endpoints.",
+            "note": "that 명사절"
+          }
         ],
-        "grammar_note": "so 결과 + come out 형용사 보어"
+        "grammar_note": "say that + 목적어절 (to부정사 부사구)"
       },
       {
         "index": 13,
         "segments": [
-          { "role": "S", "text": "Slope and area," },
-          { "role": "M", "text": "long treated as strangers,", "note": "과거분사 삽입" },
-          { "role": "V", "text": "are revealed as" },
-          { "role": "C", "text": "two faces of one relationship." }
+          {
+            "role": "S",
+            "text": "The elusive \"+C\""
+          },
+          {
+            "role": "V",
+            "text": "cancels itself"
+          },
+          {
+            "role": "M",
+            "text": "in the subtraction,"
+          },
+          {
+            "role": "CONJ",
+            "text": "so"
+          },
+          {
+            "role": "S",
+            "text": "the final answer"
+          },
+          {
+            "role": "V",
+            "text": "comes out"
+          },
+          {
+            "role": "C",
+            "text": "clean."
+          }
         ],
-        "grammar_note": "분사구 삽입 + be revealed as"
+        "grammar_note": "재귀목적어 + so 결과 (come out 형용사 보어)"
       },
       {
         "index": 14,
         "segments": [
-          { "role": "S", "text": "This unity" },
-          { "role": "V", "text": "is" },
-          { "role": "C", "text": "what makes calculus so powerful across science.", "note": "관계대명사 what 보어절" }
+          {
+            "role": "S",
+            "text": "Slope and area,"
+          },
+          {
+            "role": "M",
+            "text": "long treated as strangers,",
+            "note": "과거분사 삽입"
+          },
+          {
+            "role": "V",
+            "text": "are"
+          },
+          {
+            "role": "C",
+            "text": "really two faces of one relationship."
+          }
         ],
-        "grammar_note": "2형식 + what 명사절 보어 (make O C)"
+        "grammar_note": "분사구 삽입 + 2형식"
       },
       {
         "index": 15,
         "segments": [
-          { "role": "S", "text": "A physicist" },
-          { "role": "M", "text": "who knows an object's velocity", "note": "관계절 (주격)" },
-          { "role": "V", "text": "can recover" },
-          { "role": "O", "text": "its exact displacement," },
-          { "role": "CONJ", "text": "and" },
-          { "role": "S", "text": "an economist" },
-          { "role": "M", "text": "who knows a marginal cost", "note": "관계절 (주격)" },
-          { "role": "V", "text": "can rebuild" },
-          { "role": "O", "text": "the total." }
+          {
+            "role": "S",
+            "text": "This deep unity"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "what makes calculus so powerful across every field of science.",
+            "note": "관계대명사 what 보어절"
+          }
         ],
-        "grammar_note": "주격 관계절 병렬 + can V"
+        "grammar_note": "2형식 + what 명사절 보어 (make O C)"
       },
       {
         "index": 16,
         "segments": [
-          { "role": "M", "text": "In every single case,", "note": "부사구" },
-          { "role": "S", "text": "the derivative" },
-          { "role": "M", "text": "quietly" },
-          { "role": "V", "text": "takes" },
-          { "role": "O", "text": "something" },
-          { "role": "M", "text": "apart,", "note": "구동사 take apart" },
-          { "role": "CONJ", "text": "while" },
-          { "role": "S", "text": "the integral" },
-          { "role": "M", "text": "patiently" },
-          { "role": "V", "text": "puts it back together." }
+          {
+            "role": "S",
+            "text": "A physicist"
+          },
+          {
+            "role": "M",
+            "text": "who knows an object's velocity",
+            "note": "관계절(주격)"
+          },
+          {
+            "role": "V",
+            "text": "can recover"
+          },
+          {
+            "role": "O",
+            "text": "its exact displacement"
+          },
+          {
+            "role": "M",
+            "text": "over time."
+          }
+        ],
+        "grammar_note": "주격 관계절 + can V"
+      },
+      {
+        "index": 17,
+        "segments": [
+          {
+            "role": "S",
+            "text": "An economist"
+          },
+          {
+            "role": "M",
+            "text": "who knows a marginal cost",
+            "note": "관계절(주격)"
+          },
+          {
+            "role": "V",
+            "text": "can rebuild"
+          },
+          {
+            "role": "O",
+            "text": "the total cost."
+          }
+        ],
+        "grammar_note": "주격 관계절 + can V"
+      },
+      {
+        "index": 18,
+        "segments": [
+          {
+            "role": "M",
+            "text": "In every case,",
+            "note": "부사구"
+          },
+          {
+            "role": "S",
+            "text": "the derivative"
+          },
+          {
+            "role": "M",
+            "text": "quietly"
+          },
+          {
+            "role": "V",
+            "text": "takes"
+          },
+          {
+            "role": "O",
+            "text": "something"
+          },
+          {
+            "role": "M",
+            "text": "apart,",
+            "note": "구동사 take apart"
+          },
+          {
+            "role": "CONJ",
+            "text": "while"
+          },
+          {
+            "role": "S",
+            "text": "the integral"
+          },
+          {
+            "role": "M",
+            "text": "patiently"
+          },
+          {
+            "role": "V",
+            "text": "puts it back together."
+          }
         ],
         "grammar_note": "take apart + while 대조절 (put back together)"
       }
     ],
-    "translation_ko": "[1] 도함수가 어떤 양이 매 순간 얼마나 빨리 변하는지를 알려준다면, 적분은 그 반대 질문을 던진다 — 변화율이 주어졌을 때, 그 양은 무엇이었는가? [2] 도함수가 주어진 함수와 일치하는 함수를 찾는 것을 부정적분(역미분)이라 하고, 그 답들의 집합이 부정적분이다. [3] 미분하면 어떤 상수든 사라지기 때문에, 그런 답마다 끝에 신비로운 \"+C\"가 붙는다. [4] 그 하나의 기호는 시작값이 그 과정에서 사라져 버렸음을 조용히 인정한다. [5] 정적분은 처음에는 전혀 다른 존재처럼 보인다. [6] 기울기를 되돌리는 대신, 그것은 정해진 구간에서 곡선과 가로축 사이에 갇힌 넓이를 잰다. [7] 우리는 그 영역을 얇은 직사각형들로 잘라 넓이를 더하고, 그다음 조각들을 점점 더 좁게 만들어 근사한다. [8] 폭이 0을 향해 줄어들면서, 들쭉날쭉한 직사각형 계단은 곡선 아래의 정확한 넓이로 매끄러워진다. [9] 여기서 적분은 참을성 있는 누적, 곧 얇은 한 조각을 그다음 조각 위에 쌓는 것을 뜻한다. [10] 놀라운 점은, 되돌리기와 쌓기라는 이 두 생각이 두 개의 가면을 쓴 같은 생각으로 밝혀진다는 것이다. [11] 미적분의 기본정리는, 변화율 곡선 아래 넓이를 구하려면 원함수를 하나 찾아 두 끝점에서의 값을 빼기만 하면 된다고 말한다. [12] 붙잡기 어렵던 \"+C\"는 뺄셈에서 소거되어, 답이 깔끔하게 나온다. [13] 오랫동안 남남으로 여겨지던 기울기와 넓이는 한 관계의 두 얼굴로 드러난다. [14] 이 통일성이야말로 미적분을 과학 전반에서 그토록 강력하게 만드는 것이다. [15] 물체의 속도를 아는 물리학자는 그것의 정확한 변위를 복원할 수 있고, 한계비용을 아는 경제학자는 총량을 다시 세울 수 있다. [16] 어느 경우든, 도함수는 무언가를 조용히 분해하고, 그동안 적분은 참을성 있게 그것을 다시 합친다."
+    "translation_ko": "[1] 도함수는 어떤 양이 매 순간 얼마나 빨리 변하고 있는지를 알려준다. [2] 적분은 그 반대 질문을 던진다 — 변화율을 알 때, 애초에 그 전체 양은 무엇이었는가? [3] 도함수가 주어진 함수와 일치하는 함수를 찾는 것을 부정적분(역미분)이라 하고, 그런 모든 답의 집합이 부정적분이다. [4] 미분하면 어떤 상수든 사라지므로, 답마다 끝에 신비로운 \"+C\"가 붙는다. [5] 그 하나의 기호는 시작값이 사라져 버렸음을 조용히 인정한다. [6] 정적분은 처음에는 전혀 다른 존재처럼 보인다. [7] 기울기를 되돌리는 대신, 그것은 정해진 구간에서 곡선과 가로축 사이의 넓이를 잰다. [8] 우리는 그 영역을 여러 얇은 직사각형으로 잘라 넓이를 더하고, 그다음 조각들을 점점 더 좁게 만들어 근사한다. [9] 폭이 0을 향해 줄어들면서, 들쭉날쭉한 직사각형 계단은 곡선 아래의 정확한 넓이로 매끄러워진다. [10] 여기서 적분은 참을성 있는 누적, 곧 얇은 한 조각을 그다음 조각 위에 쌓는 것을 뜻한다. [11] 놀라운 점은, 되돌리기와 쌓기라는 이 두 생각이 두 개의 가면을 쓴 같은 생각으로 밝혀진다는 것이다. [12] 미적분의 기본정리는, 변화율 곡선 아래 넓이를 구하려면 원함수를 하나 찾아 두 끝점에서의 값을 빼기만 하면 된다고 말한다. [13] 붙잡기 어렵던 \"+C\"는 뺄셈에서 스스로 소거되어, 최종 답이 깔끔하게 나온다. [14] 오랫동안 남남으로 여겨지던 기울기와 넓이는 사실 한 관계의 두 얼굴이다. [15] 이 깊은 통일성이야말로 미적분을 과학의 모든 분야에서 그토록 강력하게 만드는 것이다. [16] 물체의 속도를 아는 물리학자는 시간에 따른 그것의 정확한 변위를 복원할 수 있다. [17] 한계비용을 아는 경제학자는 총비용을 다시 세울 수 있다. [18] 어느 경우든, 도함수는 무언가를 조용히 분해하고, 그동안 적분은 참을성 있게 그것을 다시 합친다."
   },
   "answers": {
     "explanations": [
@@ -291,8 +638,14 @@
           "10번에서 \"+C\"는 뺄셈에서 소거되어 정적분을 오히려 깔끔하게 해준다."
         ],
         "key_terms": [
-          { "en": "Fundamental Theorem", "ko": "미적분의 기본정리" },
-          { "en": "accumulate", "ko": "누적하다" }
+          {
+            "en": "Fundamental Theorem",
+            "ko": "미적분의 기본정리"
+          },
+          {
+            "en": "accumulate",
+            "ko": "누적하다"
+          }
         ]
       },
       {
@@ -308,8 +661,14 @@
           "'같은 실수를 반복한다'는 본문에 근거가 없고 대조 구조에도 맞지 않는다."
         ],
         "key_terms": [
-          { "en": "put back together", "ko": "다시 합치다" },
-          { "en": "take apart", "ko": "분해하다" }
+          {
+            "en": "put back together",
+            "ko": "다시 합치다"
+          },
+          {
+            "en": "take apart",
+            "ko": "분해하다"
+          }
         ]
       },
       {
@@ -325,8 +684,14 @@
           "'규칙을 비밀로 하려 가면을 쓴다'는 비유를 문자 그대로 오독한 것이다."
         ],
         "key_terms": [
-          { "en": "two masks", "ko": "두 개의 가면" },
-          { "en": "same idea", "ko": "같은 아이디어" }
+          {
+            "en": "two masks",
+            "ko": "두 개의 가면"
+          },
+          {
+            "en": "same idea",
+            "ko": "같은 아이디어"
+          }
         ]
       },
       {
@@ -340,8 +705,14 @@
           "(B) endpoints — 원함수 값을 빼는 두 지점은 본문의 two endpoints와 일치한다."
         ],
         "key_terms": [
-          { "en": "area", "ko": "넓이" },
-          { "en": "endpoint", "ko": "끝점" }
+          {
+            "en": "area",
+            "ko": "넓이"
+          },
+          {
+            "en": "endpoint",
+            "ko": "끝점"
+          }
         ]
       }
     ]
@@ -352,132 +723,252 @@
         "word": "antidifferentiation",
         "pos": "n.",
         "meaning_ko": "역미분, 부정적분 구하기",
-        "synonyms": ["integration"],
-        "antonyms": ["differentiation"],
+        "synonyms": [
+          "integration"
+        ],
+        "antonyms": [
+          "differentiation"
+        ],
         "examples": [
-          { "en": "Finding such a function is called antidifferentiation.", "ko": "그런 함수를 찾는 것을 역미분이라 한다." },
-          { "en": "Antidifferentiation reverses what a derivative did.", "ko": "역미분은 도함수가 한 일을 되돌린다." }
+          {
+            "en": "Finding such a function is called antidifferentiation.",
+            "ko": "그런 함수를 찾는 것을 역미분이라 한다."
+          },
+          {
+            "en": "Antidifferentiation reverses what a derivative did.",
+            "ko": "역미분은 도함수가 한 일을 되돌린다."
+          }
         ]
       },
       {
         "word": "derivative",
         "pos": "n.",
         "meaning_ko": "도함수, 미분계수",
-        "synonyms": ["rate of change"],
-        "antonyms": ["antiderivative"],
+        "synonyms": [
+          "rate of change"
+        ],
+        "antonyms": [
+          "antiderivative"
+        ],
         "examples": [
-          { "en": "A derivative tells how fast a quantity is changing.", "ko": "도함수는 어떤 양이 얼마나 빨리 변하는지 알려준다." },
-          { "en": "The slope of the tangent line is the derivative.", "ko": "접선의 기울기가 도함수다." }
+          {
+            "en": "A derivative tells how fast a quantity is changing.",
+            "ko": "도함수는 어떤 양이 얼마나 빨리 변하는지 알려준다."
+          },
+          {
+            "en": "The slope of the tangent line is the derivative.",
+            "ko": "접선의 기울기가 도함수다."
+          }
         ]
       },
       {
         "word": "indefinite integral",
         "pos": "n.",
         "meaning_ko": "부정적분",
-        "synonyms": ["antiderivative family"],
-        "antonyms": ["definite integral"],
+        "synonyms": [
+          "antiderivative family"
+        ],
+        "antonyms": [
+          "definite integral"
+        ],
         "examples": [
-          { "en": "The family of answers is the indefinite integral.", "ko": "그 답들의 집합이 부정적분이다." },
-          { "en": "An indefinite integral always carries a constant C.", "ko": "부정적분은 항상 상수 C를 지닌다." }
+          {
+            "en": "The family of answers is the indefinite integral.",
+            "ko": "그 답들의 집합이 부정적분이다."
+          },
+          {
+            "en": "An indefinite integral always carries a constant C.",
+            "ko": "부정적분은 항상 상수 C를 지닌다."
+          }
         ]
       },
       {
         "word": "definite integral",
         "pos": "n.",
         "meaning_ko": "정적분",
-        "synonyms": ["signed area"],
-        "antonyms": ["indefinite integral"],
+        "synonyms": [
+          "signed area"
+        ],
+        "antonyms": [
+          "indefinite integral"
+        ],
         "examples": [
-          { "en": "The definite integral measures the area under a curve.", "ko": "정적분은 곡선 아래의 넓이를 잰다." },
-          { "en": "A definite integral has two fixed endpoints.", "ko": "정적분은 고정된 두 끝점을 가진다." }
+          {
+            "en": "The definite integral measures the area under a curve.",
+            "ko": "정적분은 곡선 아래의 넓이를 잰다."
+          },
+          {
+            "en": "A definite integral has two fixed endpoints.",
+            "ko": "정적분은 고정된 두 끝점을 가진다."
+          }
         ]
       },
       {
         "word": "approximate",
         "pos": "v.",
         "meaning_ko": "근사하다, 어림하다",
-        "synonyms": ["estimate"],
-        "antonyms": ["measure exactly"],
+        "synonyms": [
+          "estimate"
+        ],
+        "antonyms": [
+          "measure exactly"
+        ],
         "examples": [
-          { "en": "You approximate that region with thin rectangles.", "ko": "그 영역을 얇은 직사각형으로 근사한다." },
-          { "en": "We approximate the answer before checking it exactly.", "ko": "정확히 확인하기 전에 답을 어림한다." }
+          {
+            "en": "You approximate that region with thin rectangles.",
+            "ko": "그 영역을 얇은 직사각형으로 근사한다."
+          },
+          {
+            "en": "We approximate the answer before checking it exactly.",
+            "ko": "정확히 확인하기 전에 답을 어림한다."
+          }
         ]
       },
       {
         "word": "accumulation",
         "pos": "n.",
         "meaning_ko": "쌓임, 누적",
-        "synonyms": ["buildup", "gathering"],
-        "antonyms": ["dissipation"],
+        "synonyms": [
+          "buildup",
+          "gathering"
+        ],
+        "antonyms": [
+          "dissipation"
+        ],
         "examples": [
-          { "en": "Here integration means patient accumulation of slices.", "ko": "여기서 적분은 조각의 참을성 있는 누적을 뜻한다." },
-          { "en": "Small amounts lead to a large accumulation over time.", "ko": "작은 양들이 시간이 지나 큰 누적으로 이어진다." }
+          {
+            "en": "Here integration means patient accumulation of slices.",
+            "ko": "여기서 적분은 조각의 참을성 있는 누적을 뜻한다."
+          },
+          {
+            "en": "Small amounts lead to a large accumulation over time.",
+            "ko": "작은 양들이 시간이 지나 큰 누적으로 이어진다."
+          }
         ]
       },
       {
         "word": "elusive",
         "pos": "adj.",
         "meaning_ko": "붙잡기 어려운, 애매한",
-        "synonyms": ["slippery", "hard to grasp"],
-        "antonyms": ["obvious"],
+        "synonyms": [
+          "slippery",
+          "hard to grasp"
+        ],
+        "antonyms": [
+          "obvious"
+        ],
         "examples": [
-          { "en": "The elusive constant C cancels in the subtraction.", "ko": "붙잡기 어렵던 상수 C는 뺄셈에서 소거된다." },
-          { "en": "The proof relied on one elusive idea.", "ko": "그 증명은 하나의 붙잡기 어려운 착상에 기댔다." }
+          {
+            "en": "The elusive constant C cancels in the subtraction.",
+            "ko": "붙잡기 어렵던 상수 C는 뺄셈에서 소거된다."
+          },
+          {
+            "en": "The proof relied on one elusive idea.",
+            "ko": "그 증명은 하나의 붙잡기 어려운 착상에 기댔다."
+          }
         ]
       },
       {
         "word": "displacement",
         "pos": "n.",
         "meaning_ko": "변위, 위치 변화량",
-        "synonyms": ["net movement"],
+        "synonyms": [
+          "net movement"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "A physicist can recover an object's exact displacement.", "ko": "물리학자는 물체의 정확한 변위를 복원할 수 있다." },
-          { "en": "Displacement measures how far the position changed.", "ko": "변위는 위치가 얼마나 변했는지를 잰다." }
+          {
+            "en": "A physicist can recover an object's exact displacement.",
+            "ko": "물리학자는 물체의 정확한 변위를 복원할 수 있다."
+          },
+          {
+            "en": "Displacement measures how far the position changed.",
+            "ko": "변위는 위치가 얼마나 변했는지를 잰다."
+          }
         ]
       },
       {
         "word": "jagged",
         "pos": "adj.",
         "meaning_ko": "들쭉날쭉한, 톱니 같은",
-        "synonyms": ["ragged", "uneven"],
-        "antonyms": ["smooth"],
+        "synonyms": [
+          "ragged",
+          "uneven"
+        ],
+        "antonyms": [
+          "smooth"
+        ],
         "examples": [
-          { "en": "The jagged staircase of rectangles smooths into a curve.", "ko": "들쭉날쭉한 직사각형 계단이 곡선으로 매끄러워진다." },
-          { "en": "The mountain left a jagged line against the sky.", "ko": "그 산은 하늘을 배경으로 들쭉날쭉한 선을 남겼다." }
+          {
+            "en": "The jagged staircase of rectangles smooths into a curve.",
+            "ko": "들쭉날쭉한 직사각형 계단이 곡선으로 매끄러워진다."
+          },
+          {
+            "en": "The mountain left a jagged line against the sky.",
+            "ko": "그 산은 하늘을 배경으로 들쭉날쭉한 선을 남겼다."
+          }
         ]
       },
       {
         "word": "interval",
         "pos": "n.",
         "meaning_ko": "구간, 간격",
-        "synonyms": ["range", "span"],
+        "synonyms": [
+          "range",
+          "span"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "The area is measured over a fixed interval.", "ko": "그 넓이는 정해진 구간에서 측정된다." },
-          { "en": "We split the interval into many small pieces.", "ko": "우리는 그 구간을 작은 조각 여럿으로 나눈다." }
+          {
+            "en": "The area is measured over a fixed interval.",
+            "ko": "그 넓이는 정해진 구간에서 측정된다."
+          },
+          {
+            "en": "We split the interval into many small pieces.",
+            "ko": "우리는 그 구간을 작은 조각 여럿으로 나눈다."
+          }
         ]
       },
       {
         "word": "marginal",
         "pos": "adj.",
         "meaning_ko": "한계의, 추가 한 단위의",
-        "synonyms": ["incremental"],
-        "antonyms": ["total"],
+        "synonyms": [
+          "incremental"
+        ],
+        "antonyms": [
+          "total"
+        ],
         "examples": [
-          { "en": "An economist who knows a marginal cost can rebuild the total.", "ko": "한계비용을 아는 경제학자는 총량을 다시 세울 수 있다." },
-          { "en": "Marginal cost is the cost of one more unit.", "ko": "한계비용은 한 단위를 더 만드는 비용이다." }
+          {
+            "en": "An economist who knows a marginal cost can rebuild the total.",
+            "ko": "한계비용을 아는 경제학자는 총량을 다시 세울 수 있다."
+          },
+          {
+            "en": "Marginal cost is the cost of one more unit.",
+            "ko": "한계비용은 한 단위를 더 만드는 비용이다."
+          }
         ]
       },
       {
         "word": "antiderivative",
         "pos": "n.",
         "meaning_ko": "원함수, 역도함수",
-        "synonyms": ["primitive function"],
-        "antonyms": ["derivative"],
+        "synonyms": [
+          "primitive function"
+        ],
+        "antonyms": [
+          "derivative"
+        ],
         "examples": [
-          { "en": "You simply find an antiderivative and subtract its values at the two endpoints.", "ko": "원함수를 하나 찾아 두 끝점에서의 값을 빼기만 하면 된다." },
-          { "en": "Every antiderivative differs only by a constant.", "ko": "모든 원함수는 상수만큼만 서로 다르다." }
+          {
+            "en": "You simply find an antiderivative and subtract its values at the two endpoints.",
+            "ko": "원함수를 하나 찾아 두 끝점에서의 값을 빼기만 하면 된다."
+          },
+          {
+            "en": "Every antiderivative differs only by a constant.",
+            "ko": "모든 원함수는 상수만큼만 서로 다르다."
+          }
         ]
       }
     ]
