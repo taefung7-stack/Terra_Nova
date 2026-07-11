@@ -1,0 +1,49 @@
+{
+  "grade": "saturn-g1",
+  "seq": 11,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "answers.explanations[q_index=0].evidence (line 357)",
+      "issue": "해설 evidence가 본문을 직접 인용부호로 인용하면서 본문에 없는 'either'를 삽입했다. 인용부호는 원문 그대로 인용을 뜻하는데 실제 본문·구문분석과 불일치한다.",
+      "evidence": "해설: \"Every chemical reaction either gives out energy or takes it in\". 그러나 본문(page1.body) 및 page3 sentence 3은 \"Every chemical reaction gives out energy or takes it in\"으로 'either'가 없다 (segments: S \"Every chemical reaction\" / V \"gives out\" / O \"energy\" / CONJ \"or\" / V \"takes\" / O \"it\" / M \"in.\").",
+      "suggestion": "인용문에서 'either'를 삭제해 본문 원문(\"Every chemical reaction gives out energy or takes it in\")과 정확히 일치시킨다.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "확인됨. line 357의 evidence는 한글 인용부호(큰따옴표)로 본문을 직접 인용하는 형식(\"글은 \\\"...\\\"으로 ... 제시하고\")인데, 인용문이 \"Every chemical reaction either gives out energy or takes it in\"으로 'either'를 포함한다. 그러나 실제 본문(line 21 page1.body): \"Every chemical reaction gives out energy or takes it in.\"에는 'either'가 없고, page3 sentence 3 구문분석(line 133~139): S\"Every chemical reaction\"/V\"gives out\"/O\"energy\"/CONJ\"or\"/V\"takes\"/O\"it\"/M\"in.\"에도 'either'가 없으며, 번역문(line 349 [3]) \"모든 화학 반응은 에너지를 내놓거나 흡수한다\"에도 대응어가 없다. 'either'는 선택지(line 41 \"Chemical reactions either release or absorb heat\")에는 존재하나, evidence는 선택지가 아니라 본문(글)을 인용한다고 명시했으므로 직접 인용부호와 실제 원문이 불일치한다. 지적은 실제 결함이다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "answers.explanations[q_index=3].evidence (line 397)",
+      "issue": "(B) 근거로 본문 인용 '\"the reaction is endothermic\"'를 제시하지만, 이 문구는 본문에 존재하지 않는다. 실제 본문 표현은 다르며, 해당 문구는 page4 vocab 예문(line 429)에만 있어 근거 출처가 잘못됐다.",
+      "evidence": "해설: (B) ... → 본문 \"the reaction is endothermic\". 그러나 본문(page1.body) 및 page3 sentence 4는 \"a reaction that soaks up heat instead is endothermic\"이다. \"the reaction is endothermic\"는 page4 vocab 예문 \"When it absorbs heat instead, the reaction is endothermic.\"에만 등장한다.",
+      "suggestion": "(B) 근거 인용을 실제 본문 표현 \"a reaction that soaks up heat instead is endothermic\"로 교체한다.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "확인됨. line 397의 (B) 근거는 본문 인용으로 \"the reaction is endothermic\"를 제시하나, 이 정확한 문구는 page1.body(line 21)에도 page3 sentence 4(lines 143-158)에도 존재하지 않는다. 본문의 실제 표현은 \"a reaction that soaks up heat instead is endothermic\"이다. \"the reaction is endothermic\"라는 정확한 문구는 오직 page4 vocab 예문(line 429: \"When it absorbs heat instead, the reaction is endothermic.\")에만 등장한다. 따라서 해설이 본문에 없는 문구를 본문 인용으로 잘못 제시했고 출처가 vocab 예문으로 잘못됐다는 지적은 파일 근거로 명확히 확인되는 실제 결함이다."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "answers.explanations[0].evidence (q_index 0)",
+      "issue": "해설의 본문 인용이 실제 지문과 다르게 'either'를 삽입해 부정확하게 인용함. 정답 타당성에는 영향 없음.",
+      "evidence": "해설 인용: \"Every chemical reaction either gives out energy or takes it in\" / 실제 본문(page1, page3 sentence 3): \"Every chemical reaction gives out energy or takes it in\" (either 없음)",
+      "suggestion": "인용문에서 'either'를 삭제하여 본문과 일치시키거나, 근거를 요약 서술로 바꾼다.",
+      "lens": "answer"
+    }
+  ],
+  "blockers": [],
+  "counts": {
+    "raw": 3,
+    "verified": 2,
+    "confirmed": 2,
+    "minor": 1
+  }
+}

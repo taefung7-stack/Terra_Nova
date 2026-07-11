@@ -12,7 +12,7 @@ const results = JSON.parse(readFileSync(inPath, 'utf8'));
 let n = 0;
 for (const r of results) {
   if (!r || !r.grade || !r.seq) continue;
-  const dir = resolve(root, 'audit/2026-07', r.grade);
+  const dir = resolve(root, `audit/${process.env.AUDIT_MONTH || '2026-07'}`, r.grade);
   mkdirSync(dir, { recursive: true });
   const nn = String(r.seq).padStart(2, '0');
   writeFileSync(join(dir, `${nn}.json`), JSON.stringify(r, null, 2));

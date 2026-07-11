@@ -1,0 +1,53 @@
+{
+  "grade": "jupiter-g2",
+  "seq": 4,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "answers.explanations[q_index=3].rationales[1] (B unreliable)",
+      "issue": "rationale가 unreliable의 근거 문장을 '7번'이라고 지목하지만, unreliable은 page3 sentences의 14번 문장에 나온다. 7번 문장은 시점(point of view) 정의 문장이다.",
+      "evidence": "page3 sentence 7: \"The spot ... is called the point of view.\" / sentence 14: \"critics call that voice unreliable\". 그런데 rationale은 \"(B) unreliable — '온전히 믿을 수 없을 때 부르는 이름'은 7번의 unreliable과 일치한다.\"라고 적었다.",
+      "suggestion": "'7번'을 '14번'으로 수정한다.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 근거로 지적이 확인된다. answers.explanations[q_index=3].rationales[1] (라인 406)은 \"(B) unreliable — '온전히 믿을 수 없을 때 부르는 이름'은 7번의 unreliable과 일치한다\"라고 적었으나, page3 sentences의 7번(라인 197-206)은 \"The spot from which the narrator watches is called the point of view.\"로 시점(point of view) 정의 문장이며 'unreliable'이라는 단어가 전혀 없다. 실제 'unreliable'은 14번 문장(라인 280-293) \"When the narrator's account cannot be fully trusted, critics call that voice unreliable...\"에 나오며, 이는 rationale의 국어 설명('온전히 믿을 수 없을 때 부르는 이름')과 정확히 일치한다. 따라서 문장 번호 지목이 7번이 아니라 14번이어야 하므로 오기가 맞다. (참고로 나란한 (A) rationale의 '2번' 역시 narrator가 실제로는 4번 문장에 나와 부정확하나, 지적 대상은 (B)의 7↔14 불일치이며 이는 명백히 확인됨.)"
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "answers.explanations[q_index=3].rationales[0] (A narrator)",
+      "issue": "rationale가 narrator의 근거 문장을 '2번'이라고 지목하지만, 'This teller is the narrator'는 page3 sentences의 4번 문장이다. 2번 문장은 'a pair of eyes'를 다루는 문장이다.",
+      "evidence": "page3 sentence 4: \"This teller is the narrator, the voice that stands between the reader and the events.\" / sentence 2: \"Before a single event happens, the story has already chosen a pair of eyes for us to borrow.\" 그런데 rationale은 \"(A) narrator — '이야기를 전달하는 목소리'는 2번의 the narrator와 일치한다.\"라고 적었다.",
+      "suggestion": "'2번'을 '4번'으로 수정한다.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 근거로 확인됨. answers.explanations[q_index=3].rationales[0] (라인 405)은 \"(A) narrator — '이야기를 전달하는 목소리'는 2번의 the narrator와 일치한다.\"라고 적었다. 그러나 page3.sentences에서 \"This teller is the narrator, the voice that stands between the reader and the events.\"는 index 4번 문장(라인 163-171)이다. index 2번 문장(라인 141-149)은 \"Before a single event happens, the story has already chosen a pair of eyes for us to borrow.\"로 'a pair of eyes'를 다루며 'the narrator'라는 표현 자체가 없다. 실제로 같은 explanation의 evidence 필드(라인 403)도 근거를 \"This teller is the narrator\"로 정확히 인용하므로 rationale의 '2번' 지목은 명백한 문장 번호 오류다. 지적이 정확하다. (참고로 rationales[1]의 '7번' 지목도 동일 유형의 오류로, unreliable은 실제 14번 문장에 있으나 이는 본 지적 범위 밖이다.)"
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "content/passages/2026-08-J/04.json → answers.explanations[q_index=3].rationales",
+      "issue": "요약문 정답 해설의 본문 문장 번호 인용이 틀림. (A) narrator 근거를 '2번 문장'이라 했으나 실제 'This teller is the narrator'는 [4]번 문장이고 [2]번은 'a pair of eyes'에 관한 문장이다. (B) unreliable 근거를 '7번 문장'이라 했으나 'critics call that voice unreliable'은 [14]번 문장이며 [7]번은 point of view를 정의하는 문장이다. 정답 자체(A=narrator, B=unreliable)는 옳으나 해설의 문장 참조가 잘못되어 있어 교사·학생이 근거 문장을 찾을 때 불일치가 발생한다.",
+      "evidence": "rationales: \"(A) narrator — '이야기를 전달하는 목소리'는 2번의 the narrator와 일치한다.\" / \"(B) unreliable — '온전히 믿을 수 없을 때 부르는 이름'은 7번의 unreliable과 일치한다.\" 그러나 page3 sentences: [4] 'This teller is the narrator', [14] 'critics call that voice unreliable', [2] '...a pair of eyes for us to borrow', [7] '...is called the point of view.'",
+      "suggestion": "'2번' → '4번', '7번' → '14번'으로 문장 번호를 수정한다. (evidence 필드는 영어 원문 인용으로 이미 정확하므로 rationales의 숫자만 바로잡으면 된다.)",
+      "lens": "answer",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 근거로 지적이 정확히 확인됨. answers.explanations[q_index=3].rationales(라인 404-407)에서 (A)는 'the narrator'가 '2번' 문장에 있다고 하나, 실제 page3 sentences[2](라인 140-150)는 'a pair of eyes for us to borrow' 문장이고 'This teller is the narrator'는 sentences[4](라인 162-172)에 있다. (B)는 'unreliable'이 '7번'이라 하나, sentences[7](라인 197-206)은 'is called the point of view' 문장이며 'critics call that voice unreliable'은 sentences[14](라인 279-293)에 있다. 정답 자체(A=narrator, B=unreliable)는 model_answer_en(라인 402) 및 summary_template(라인 87)과 일치해 옳으나, rationales의 문장 번호 인용(2번/7번)이 실제 위치(4번/14번)와 불일치한다. evidence 필드(라인 403)는 문장 번호 없이 정확히 인용하므로 오류는 rationales 배열에 국한된 실제 결함이다."
+      }
+    }
+  ],
+  "minors": [],
+  "blockers": [],
+  "counts": {
+    "raw": 3,
+    "verified": 3,
+    "confirmed": 3,
+    "minor": 0
+  }
+}

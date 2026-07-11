@@ -8,12 +8,13 @@ import { execFileSync } from 'node:child_process';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = resolve(here, '..');               // textbook/
+const MONTH = process.env.AUDIT_MONTH || '2026-07';
 const GRADES = [
-  { key: 'saturn-g1',  dir: 'content/passages/2026-07',     lexGrade: '고1/Saturn' },
-  { key: 'jupiter-g2', dir: 'content/passages/2026-07-J',   lexGrade: '고2/Jupiter' },
-  { key: 'sun-g3',     dir: 'content/passages/2026-07-Sun', lexGrade: '고3/Sun' },
-];
-const outDir = resolve(root, 'audit/2026-07');
+  { key: 'saturn-g1',  dir: `content/passages/${MONTH}`,     lexGrade: '고1/Saturn' },
+  { key: 'jupiter-g2', dir: `content/passages/${MONTH}-J`,   lexGrade: '고2/Jupiter' },
+  { key: 'sun-g3',     dir: `content/passages/${MONTH}-Sun`, lexGrade: '고3/Sun' },
+].filter(g => existsSync(resolve(root, g.dir)));
+const outDir = resolve(root, `audit/${MONTH}`);
 mkdirSync(outDir, { recursive: true });
 
 // L1: validate-content 를 지문별 --file 로 실행. OK면 ok=true, 아니면 출력 캡처.
@@ -81,4 +82,4 @@ const out = {
   passages,
 };
 writeFileSync(join(outDir, '_prepass.json'), JSON.stringify(out, null, 2));
-console.log(`[audit-prepass] ${passages.length} passages → audit/2026-07/_prepass.json  (L1 실패 ${l1Fail} / Lexile 괴리 ${lexMis})`);
+console.log(`[audit-prepass] ${passages.length} passages → audit/${MONTH}/_prepass.json  (L1 실패 ${l1Fail} / Lexile 괴리 ${lexMis})`);

@@ -1,0 +1,40 @@
+{
+  "grade": "jupiter-g2",
+  "seq": 5,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "answers.explanations[q_index=1].rationales[3] (빈칸 추론, 'unstable' 오답 근거)",
+      "issue": "오답 근거가 존재하지 않는 문장 번호를 인용한다. 'unstable'이 틀린 이유로 '반응이 잔잔한 중간에서 안정된다는 6번과 어긋난다'라고 하는데, 6번 문장은 '안정/중간'과 무관하다.",
+      "evidence": "page3 sentence 6 = 'A base does the reverse: it supplies hydroxide ions, written as OH-, that are hungry for exactly those hydrogen ions.' (염기가 수산화 이온을 공급한다는 내용일 뿐, '잔잔한 중간에서 안정'된다는 서술이 없음). 실제로 '중간에서 만난다'는 내용은 sentence 15('both surrender their extreme character and meet somewhere calm in the middle')에 있다.",
+      "suggestion": "근거 문장 번호를 '6번' → '15번'으로 정정한다 (settle 관련이면 17번도 가능).",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 검증 결과 지적이 사실로 확인된다. answers.explanations[q_index=1].rationales[3](line 356)은 'unstable' 오답 근거로 \"반응이 잔잔한 중간에서 안정된다는 6번과 어긋난다\"라고 서술한다. 그러나 page3 sentence index 6(lines 155-165)은 \"A base does the reverse: it supplies hydroxide ions, written as OH-, that are hungry for exactly those hydrogen ions.\"로, 염기가 수산화 이온을 공급한다는 내용일 뿐 '잔잔한 중간에서 안정/만난다'는 서술이 전혀 없다. 실제로 '중간에서 만난다'(meet somewhere calm in the middle)는 내용은 sentence index 15(lines 248-262)에 있고, '균형 잡힌 7 근처에 자리 잡는다(settles)'는 안정 관련 서술은 sentence index 17에 있다. 따라서 rationale은 근거가 존재하지 않는 문장 번호(6번)를 인용하고 있어 결함이 맞다. 추가로 같은 explanations 블록의 q_index=2 rationales[2](line 372)도 pH 7 관련 내용을 잘못 '6번'으로 인용하여 동일한 오류 패턴을 보인다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "answers.explanations[q_index=2].rationales[2] (함의 추론, 'pH 척도를 지운다' 오답 근거)",
+      "issue": "오답 근거가 잘못된 문장 번호를 인용한다. 'pH가 7 근처로 측정된다는 6번과 모순된다'라고 하지만, pH가 7 근처에 자리 잡는다는 내용은 6번이 아니라 17번 문장에 있다.",
+      "evidence": "page3 sentence 6 은 염기의 수산화 이온 공급에 관한 문장이고, pH 관련 서술은 sentence 17 = 'Its number climbs out of the acidic range and settles near a balanced seven as the last free ions disappear.'에 있음.",
+      "suggestion": "근거 문장 번호를 '6번' → '17번'으로 정정한다.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 근거로 지적이 확인된다. answers.explanations[q_index=2].rationales[2] = \"'pH 척도를 지운다'는 오히려 pH가 7 근처로 측정된다는 6번과 모순된다.\" 그러나 page3.sentences의 6번 문장은 \"A base does the reverse: it supplies hydroxide ions ... hungry for exactly those hydrogen ions\"로, 염기의 수산화 이온 공급에 관한 내용이며 pH나 '7 근처'와 무관하다. pH가 산성 범위를 벗어나 균형 잡힌 7 근처에 자리 잡는다는 서술은 17번 문장(\"Its number climbs out of the acidic range and settles near a balanced seven as the last free ions disappear.\")에 있다. 따라서 오답 근거가 잘못된 문장 번호(6번)를 인용하고 있으며, 올바른 인용은 17번이다. 실제 결함이다."
+      }
+    }
+  ],
+  "minors": [],
+  "blockers": [],
+  "counts": {
+    "raw": 3,
+    "verified": 3,
+    "confirmed": 2,
+    "minor": 0
+  }
+}

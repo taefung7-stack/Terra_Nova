@@ -85,8 +85,10 @@ def declared(meta):
         return None
 
 def main():
-    folders = [("2026-07","고1/Saturn"),("2026-07-J","고2/Jupiter"),("2026-07-Sun","고3/Sun")]
+    month = sys.argv[1] if len(sys.argv) > 1 else "2026-07"
+    cand = [(month,"고1/Saturn"),(month+"-J","고2/Jupiter"),(month+"-Sun","고3/Sun")]
     base = os.path.join(os.path.dirname(__file__), "..", "content", "passages")
+    folders = [(f,l) for f,l in cand if os.path.isdir(os.path.join(base, f))]
     out = []
     for folder, label in folders:
         for f in sorted(glob.glob(os.path.join(base, folder, "*.json"))):

@@ -1,0 +1,40 @@
+{
+  "grade": "saturn-g1",
+  "seq": 7,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "answers.explanations[q_index=0].rationales[0] (line 350)",
+      "issue": "해설이 본문에 없는 표현을 인용하고 있다. 계승의 증가 속도를 \"grow shockingly fast\"라고 따옴표로 직접 인용했으나, 본문(과 page3 구문분석)에는 그런 문장이 없다.",
+      "evidence": "해설: \"본문은 계승이 \\\"grow shockingly fast\\\"라고 했을 뿐...\" (line 350). 그러나 본문 page1 body는 \"and factorials grow very fast.\" (line 21)이고, page3 sentences[15]도 V=\"grow\" / M=\"very fast.\" (lines 268-269)로 실제 표현은 \"grow very fast\"다.",
+      "suggestion": "인용을 실제 본문 표현인 \"grow very fast\"로 수정한다.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "지적이 파일 근거로 확인된다. rationales[0] (line 350)은 \"본문은 계승이 \\\"grow shockingly fast\\\"라고 했을 뿐...\"이라며 따옴표로 직접 인용한다. 그러나 본문 page1 body(line 21)는 \"and factorials grow very fast.\"이고, page3 sentences index 15(lines 267-269)도 V=\"grow\" / M=\"very fast.\"로 실제 표현은 \"grow very fast\"다. 본문 전체에 \"shockingly\"라는 단어는 존재하지 않으므로 해설이 본문에 없는 표현을 따옴표로 잘못 인용하고 있다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "answers.explanations[q_index=0].rationales[0] (line 350)",
+      "issue": "정답 해설의 오답 근거에서 본문을 잘못 인용함. 계승의 증가 속도를 \"grow shockingly fast\"라고 인용했으나 본문 실제 표현은 \"grow very fast\"임.",
+      "evidence": "해설: \"본문은 계승이 \\\"grow shockingly fast\\\"라고 했을 뿐, 계승이 쓸모없다고 말하지 않는다.\" / 본문(body): \"Mathematicians write this product as a factorial, and factorials grow very fast.\"",
+      "suggestion": "인용구를 본문 그대로 \"grow very fast\"로 수정. (오답 선지 1을 배제하는 논리 자체는 타당하므로 정답 선택에는 영향 없음.)",
+      "lens": "answer",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "확인됨. answers.explanations[0].rationales[0] (line 350)은 본문을 \"grow shockingly fast\"로 인용하나, 실제 본문(page1.body line 21 및 page3 sentence index 15, lines 267-269)은 \"factorials grow very fast\"이다. 인용 부호로 직접 인용한 표현이 원문과 불일치하므로 명백한 오답 근거 오류다."
+      }
+    }
+  ],
+  "minors": [],
+  "blockers": [],
+  "counts": {
+    "raw": 2,
+    "verified": 2,
+    "confirmed": 2,
+    "minor": 0
+  }
+}

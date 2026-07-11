@@ -1,0 +1,50 @@
+{
+  "grade": "jupiter-g2",
+  "seq": 12,
+  "confirmed": [
+    {
+      "severity": "blocker",
+      "location": "page1.body, 마지막 문장 (page3 sentences index 18의 관계절)",
+      "issue": "주어-동사 수 일치 오류(비문). 관계절의 주어가 단수·불가산 명사 'randomness'인데 동사가 원형 'obey'로 되어 있다. 'obeys'가 되어야 한다.",
+      "evidence": "\"...more like a hidden rule that quiet <blank> obey without being told.\" 정답(answer_index 3)이 'randomness'(불가산 단수)이므로 관계절은 실질적으로 \"that quiet randomness obey\"가 되어 단수 주어에 복수형 동사가 붙는다. page3의 문장 분석에서도 { \"role\": \"REL\", \"text\": \"that quiet randomness obey\" }로 'obey'를 그대로 두고 있다.",
+      "suggestion": "동사를 'obeys'로 수정: \"...a hidden rule that quiet randomness obeys without being told.\" (page3 index 18의 REL 세그먼트도 'that quiet randomness obeys'로 함께 수정)",
+      "lens": "language",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "확인됨. page1.body 마지막 문장 \"...a hidden rule that quiet <blank> obey without being told.\"에서 빈칸 정답(answer_index 3)은 'randomness'(불가산·단수 명사)다. 관계절 \"that quiet randomness obey\"에서 관계대명사 that은 선행사 'a hidden rule'을 가리키는 목적어이고, 관계절의 실제 주어는 단수 'randomness'이므로 동사는 3인칭 단수 현재형 'obeys'가 되어야 한다. 그러나 원형 'obey'로 되어 있어 주어-동사 수 일치 오류(비문)다. page3 sentences index 18에도 { \"role\": \"REL\", \"text\": \"that quiet randomness obey\" }로 동일하게 'obey'가 그대로 있어 오류가 두 곳에서 확인된다. 지적이 정확하다."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page3.sentences[index=3], 마지막 segment (role \"C\")",
+      "issue": "콜론 뒤 동격 명사구를 주격보어(C)로 태깅했으나, 해당 절의 동사 rises는 완전자동사(1형식)라 보어를 취할 수 없다. 이 구는 주어 'a familiar shape'를 재진술하는 동격어이지 rises의 보어가 아니다.",
+      "evidence": "본문: \"a familiar shape rises from the noise: a smooth mound, high in the middle, thin at the edges.\" 태깅: { \"role\": \"C\", \"text\": \"a smooth mound, high in the middle, thin at the edges.\", \"note\": \"동격 명사구\" }",
+      "suggestion": "note는 '동격'으로 정확하나 role 문자를 C 대신 M(또는 동격 표기)으로 조정. rises가 1형식임을 감안해 보어(C)로 오독되지 않도록 함.",
+      "lens": "explanation"
+    }
+  ],
+  "blockers": [
+    {
+      "severity": "blocker",
+      "location": "page1.body, 마지막 문장 (page3 sentences index 18의 관계절)",
+      "issue": "주어-동사 수 일치 오류(비문). 관계절의 주어가 단수·불가산 명사 'randomness'인데 동사가 원형 'obey'로 되어 있다. 'obeys'가 되어야 한다.",
+      "evidence": "\"...more like a hidden rule that quiet <blank> obey without being told.\" 정답(answer_index 3)이 'randomness'(불가산 단수)이므로 관계절은 실질적으로 \"that quiet randomness obey\"가 되어 단수 주어에 복수형 동사가 붙는다. page3의 문장 분석에서도 { \"role\": \"REL\", \"text\": \"that quiet randomness obey\" }로 'obey'를 그대로 두고 있다.",
+      "suggestion": "동사를 'obeys'로 수정: \"...a hidden rule that quiet randomness obeys without being told.\" (page3 index 18의 REL 세그먼트도 'that quiet randomness obeys'로 함께 수정)",
+      "lens": "language",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "확인됨. page1.body 마지막 문장 \"...a hidden rule that quiet <blank> obey without being told.\"에서 빈칸 정답(answer_index 3)은 'randomness'(불가산·단수 명사)다. 관계절 \"that quiet randomness obey\"에서 관계대명사 that은 선행사 'a hidden rule'을 가리키는 목적어이고, 관계절의 실제 주어는 단수 'randomness'이므로 동사는 3인칭 단수 현재형 'obeys'가 되어야 한다. 그러나 원형 'obey'로 되어 있어 주어-동사 수 일치 오류(비문)다. page3 sentences index 18에도 { \"role\": \"REL\", \"text\": \"that quiet randomness obey\" }로 동일하게 'obey'가 그대로 있어 오류가 두 곳에서 확인된다. 지적이 정확하다."
+      }
+    }
+  ],
+  "counts": {
+    "raw": 2,
+    "verified": 1,
+    "confirmed": 1,
+    "minor": 1
+  }
+}

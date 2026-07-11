@@ -1,0 +1,27 @@
+{
+  "grade": "saturn-g1",
+  "seq": 18,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page3.sentences[13] (index 14), segment role \"S\" = \"the faster it\"",
+      "issue": "구문 역할 오태깅: 'the ~, the ~' 비교급 상관구문에서 부사적 요소인 'the faster'까지 주어(S)에 묶어 태깅했다. 실제 주어는 'it'뿐이고 'the faster'는 보어/부사(M) 성분이다.",
+      "evidence": "본문: \"The more kinds of living things a place holds, the faster it heals\" / 해당 세그먼트: { \"role\": \"S\", \"text\": \"the faster it\" }, { \"role\": \"V\", \"text\": \"heals,\" }",
+      "suggestion": "'the faster'는 M(또는 비교급 보어)으로 분리하고 'it'만 S로 태깅한다. 예: M \"the faster\" / S \"it\" / V \"heals\". 앞 절의 'The more kinds of living things a place holds' 도 전체를 M으로 처리한 것은 일관되므로, 뒤 절도 'the faster'를 S에서 떼어내는 편이 일관적이다.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 page3.sentences[13] (index 14)에서 해당 세그먼트가 실제로 { \"role\": \"S\", \"text\": \"the faster it\" }, { \"role\": \"V\", \"text\": \"heals,\" }로 태깅되어 있음을 확인했다. 원문은 \"The more kinds of living things a place holds, the faster it heals\"이며, 이는 'the 비교급 ~, the 비교급 ~' 상관구문이다. 후행절 \"the faster it heals\"의 문법 구조에서 진짜 주어는 대명사 'it'뿐이고, 'the faster'는 앞으로 도치된 비교급 부사 요소로 동사 'heals'를 수식한다(it heals faster). 따라서 부사적 요소인 'the faster'를 주어(S)에 함께 묶어 \"the faster it\" 전체를 S로 태깅한 것은 명백한 구문 역할 오태깅이다. 지적은 파일 근거로 정확히 확인되며 타당하다."
+      }
+    }
+  ],
+  "minors": [],
+  "blockers": [],
+  "counts": {
+    "raw": 1,
+    "verified": 1,
+    "confirmed": 1,
+    "minor": 0
+  }
+}

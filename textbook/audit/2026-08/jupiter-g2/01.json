@@ -1,0 +1,52 @@
+{
+  "grade": "jupiter-g2",
+  "seq": 1,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page3.sentences[index 8], segment note \"장소 부사구 도치\" / grammar_note \"부사구 강조 + 3형식 + 과거분사 수식\"",
+      "issue": "부사구 앞자리 배치를 '도치(inversion)'로 잘못 태깅했다. 실제 문장은 주어-동사 어순이 그대로 유지되는 '전치(fronting/강조)'이지 도치가 아니다.",
+      "evidence": "본문: \"In front of the formulas they place small numbers called coefficients.\" — 부사구 뒤에 S(they)+V(place)의 정상 어순이 유지된다. 진짜 도치(V+S)라면 'In front of the formulas stand small numbers' 형태여야 한다. segment note가 \"장소 부사구 도치\"라고 명시.",
+      "suggestion": "\"장소 부사구 도치\"를 \"장소 부사구 전치(강조)\"로 수정. grammar_note의 '부사구 강조'는 이미 맞으므로 segment note만 '도치' 표현을 제거하면 된다.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 확인 결과 결함이 실재한다. page3.sentences[index 8] 문장은 \"In front of the formulas they place small numbers called coefficients.\"이며, 세그먼트 배열에서 S:\"they\" → V:\"place\" → O:\"small numbers\"로 주어-동사-목적어의 정상 어순이 그대로 유지된다. 즉 장소 부사구만 문두로 전치(fronting)된 강조 구문일 뿐, 동사-주어(V+S) 어순 뒤바뀜이 일어나는 진짜 도치(inversion)가 아니다. 진짜 도치라면 \"In front of the formulas stand small numbers\" 형태여야 한다. 그런데 해당 M 세그먼트의 note가 \"장소 부사구 도치\"로 명시되어 '도치'로 잘못 태깅되어 있어 지적이 정확하다. (다만 문장 레벨 grammar_note \"부사구 강조 + 3형식 + 과거분사 수식\"은 '강조'로 올바르게 기술되어 있어, 오류는 세그먼트 note에 국한된다.)"
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "answers.explanations[q_index 2].evidence 및 rationales의 문장 번호 표기",
+      "issue": "함의 추론 해설이 본문 문장을 인용하며 '1번', '2번'으로 번호를 붙였는데, 이 번호가 page3 sentences의 실제 index와 어긋난다. 인용문 자체와 의미 해석은 정확하나 번호 참조가 오도한다.",
+      "evidence": "해설: \"1번은 'Every atom present before a reaction is still present afterward'라며... 2번은 'the atoms must balance'라 한다.\" 그러나 'Every atom present before a reaction is still present afterward'는 page3 sentences index 3이고, 'the atoms must balance'는 index 7이다(index 1은 'When wood burns...', index 2는 'But a chemist who watches closely...').",
+      "suggestion": "'번'을 page3 문장 index에 맞추거나(3번·7번), 혼동을 피하려면 문장 번호 대신 '본문 인용'으로만 제시. q_index 0·1 해설의 '번' 표기도 동일 기준으로 점검 권장.",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.sentences[index 1], segment {role:\"M\", text:\"to vanish into smoke or crumble away into fine dust.\"}",
+      "issue": "'seem' 뒤 to부정사를 부사적 수식어(M)로 태깅했으나, 이는 seem의 필수 보충어(주격보어에 준하는 술부 요소)이지 부가적 수식어(M)가 아니다. 역할 태깅이 부정확하다.",
+      "evidence": "본문: \"matter can seem to vanish into smoke or crumble away into fine dust.\" grammar_note는 \"seem + to부정사\"로 올바르게 서술하나, segment role은 M으로 되어 있어 note와 role이 불일치한다. seem to V는 생략 불가한 보충 성분이다.",
+      "suggestion": "role을 C(보어) 또는 V(술부 일부)로 조정하여 '필수 보충 성분'임을 반영. index 15 'work as ~', index 19 등 유사 구조와 태깅 일관성도 함께 점검 권장.",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko 문장 [20]",
+      "issue": "'clear language of moles'의 'clear'를 '맑은'으로 옮겨 어색한 오역. 여기서 clear는 '명료한/명확한(이해하기 쉬운)'의 뜻이며, '맑은'은 물·공기·소리의 투명함을 가리키는 말이라 '언어'와 어울리지 않는다.",
+      "evidence": "영문: \"The equation, read through the clear language of moles, turns a messy reaction...\" / 번역: \"맑은 몰의 언어로 읽힌 그 반응식은 지저분한 반응을...\"",
+      "suggestion": "'명료한 몰의 언어로' 또는 '몰이라는 명확한 언어로'로 수정",
+      "lens": "translation"
+    }
+  ],
+  "blockers": [],
+  "counts": {
+    "raw": 4,
+    "verified": 1,
+    "confirmed": 1,
+    "minor": 3
+  }
+}

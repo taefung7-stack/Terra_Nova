@@ -1,0 +1,91 @@
+{
+  "grade": "jupiter-g2",
+  "seq": 15,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "answers.explanations[q_index=1] evidence 및 rationales[0],[1] (line 408, 411, 412)",
+      "issue": "빈칸 추론 해설이 '회복/재확장'의 근거로 12번 문장을 지목하지만, 12번은 정반대(하락) 문장이다. 실제 회복 근거는 17번 문장이다. 학생이 대조 확인 시 반대 의미 문장으로 오도된다.",
+      "evidence": "해설 evidence: \"저점 뒤 수요가 돌아와 다시 확장으로 오른다는 12번이 단서다.\" 그러나 page3/translation [12]=\"Sooner or later the wave turns downward. (조만간 그 물결은 아래로 돌아선다.)\" 이고, 회복은 [17]=\"demand slowly returns, and the economy begins to climb again toward a fresh expansion.\" 이다. rationale[1] \"recover more quickly는...12~14번 흐름과 정확히 맞는다\", rationale[2] \"새로운 확장으로 다시 오른다는 12번\"도 동일 오류.",
+      "suggestion": "근거 문장 번호를 12번 → 17번(및 20번)으로 정정.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 근거로 지적이 확인됨. answers.explanations[q_index=1](빈칸 추론)의 evidence(line 408)와 rationales[1](line 411), rationales[2](line 412)는 모두 '저점 뒤 수요가 돌아와 다시 확장으로 오른다'는 회복 내용의 근거로 '12번'(또는 12~14번)을 지목한다. 그러나 translation_ko(line 383)와 page3 segments(index 12, line 263-269)에 따르면 [12]='Sooner or later the wave turns downward.(조만간 그 물결은 아래로 돌아선다)'로 하락(하강) 문장이며, 실제 회복 문장은 [17]='물가가 진정되고 재고가 정리되면 수요가 서서히 돌아오고 경제는 새로운 확장을 향해 다시 오르기 시작한다'(index 17, line 325-334)이다. 즉 해설이 회복의 근거로 지목한 12번은 정반대(하락) 의미의 문장이며, 학생이 대조 확인 시 반대 의미 문장으로 오도된다. 참고로 이 해설 세트는 문장 번호 인용이 전반적으로 부정확하지만(예: q_index=2가 15번을 '10번'으로, q_index=0이 18~20번을 '13~14번'으로 지칭), 본 건은 단순 라벨 오차를 넘어 참조 문장이 정반대 의미를 담고 있어 실질적 결함이 맞다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "answers.explanations[q_index=2] evidence (line 425)",
+      "issue": "함의 추론 해설이 밑줄 문장 'Fear can feed on itself here...'를 '10번'으로 인용하나, page3에서 이 문장의 index는 15번이다. 10번은 인플레이션 문장이다.",
+      "evidence": "해설: \"10번은 \\\"Fear can feed on itself here, because worried consumers spend even less...\\\"라고 하여\". 그러나 page3 index 15 = \"Fear\"/\"can feed\"/\"on itself here\"... 이고, index 10 = \"This general climb in prices is called inflation\" ([10] 이 전반적인 물가 상승을 인플레이션이라 부르며).",
+      "suggestion": "인용 문장 번호를 10번 → 15번으로 정정.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 근거로 지적이 명확히 확인됨. answers.explanations[q_index=2] evidence(line 425)는 밑줄 문장 \"Fear can feed on itself here, because worried consumers spend even less...\"를 \"10번\"으로 인용한다. 그러나 page3.sentences에서 이 문장의 index는 15번이다(lines 300-313, \"Fear\"/\"can feed\"/\"on itself here\"...). 반면 index 10번(lines 237-250)은 \"This general climb in prices is called inflation...\"이며, translation_ko의 [10]도 \"이 전반적인 물가 상승을 인플레이션이라 부르며...\"로 인플레이션 문장임이 이중 확인된다. 따라서 인용된 문장 번호가 실제 index와 불일치하는 실제 결함이다. 참고로 다른 해설(q_index=0)도 요지 근거를 \"1~12번\", \"13~14번\"으로 표기해 이 파일의 해설이 실제 page3 index 체계와 어긋나게 인용하는 경향이 있으나, 지적된 핵심 사실(밑줄 문장=15번, 10번=인플레이션)은 정확하다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "answers.explanations[q_index=0] evidence (line 391)",
+      "issue": "요지 해설이 '정부·중앙은행이 지출·금리로 진폭을 완화한다'의 근거로 13~14번을 지목하나, 해당 내용은 18~20번이다. 13~14번은 수축/경기침체 정의 문장이다.",
+      "evidence": "해설: \"마지막에 정부와 중앙은행이 지출·금리로 이 진폭을 완화한다(13~14번)고 한다.\" 그러나 [13]=\"In a contraction, orders shrink... (수축기에는 주문이 줄고...)\", [14]=\"...economists call it a recession... (경기 침체라 부른다)\"; 정부/중앙은행은 [18]~[20](\"Governments and central banks try to soften these swings.\" 등).",
+      "suggestion": "근거 문장 번호를 13~14번 → 18~20번으로 정정.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 근거로 지적이 확인됨. answers.explanations[q_index=0]의 evidence(line 391)는 \"마지막에 정부와 중앙은행이 지출·금리로 이 진폭을 완화한다(13~14번)\"고 서술하나, page3.sentences 기준 [13]=\"In a contraction, orders shrink, firms cut hours, and unemployment climbs...\"(수축 정의), [14]=\"If the slump deepens... economists call it a recession...\"(경기 침체 정의)로, 정부/중앙은행 내용이 아니다. 실제 정부·중앙은행의 진폭 완화 내용은 [18]=\"Governments and central banks try to soften these swings.\", [19]=\"They spend more or cut interest rates...\", [20]=\"They cannot erase the wave, but... help the economy recover more quickly.\"에 있다. 따라서 근거 문장 번호가 명백히 틀렸으며(13~14→18~20), 이는 실제 결함이다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.sentences[index=16] grammar_note (line 322)",
+      "issue": "'no trough lasts forever'를 '부분 부정'으로 표기했으나 이는 전체 부정이다. (모든 저점이 결국 끝난다 = 어떤 저점도 영원하지 않다.) 자체 번역과도 모순.",
+      "evidence": "grammar_note: \"부분 부정 (no ~ forever)\". 하지만 translation_ko [16]=\"그러나 어떤 저점도 영원히 지속되지 않는다.\"는 전체 부정으로 옳게 번역되어 있어, note의 '부분 부정'과 상충한다.",
+      "suggestion": "grammar_note를 '전체 부정 (no ~ 영원히...않다)'로 수정.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 근거로 결함이 확인됨. line 322 grammar_note는 \"부분 부정 (no ~ forever)\"로 표기하나, \"no trough lasts forever\"는 전체 부정이다(어떤 저점도 영원하지 않다 = 모든 저점은 결국 끝난다). 부분 부정은 통상 not+all/every/always 구문에 적용되며 \"no ~ forever\"는 해당하지 않는다. 또한 같은 파일의 translation_ko [16](line 383) \"그러나 어떤 저점도 영원히 지속되지 않는다\"와 vocab 예문(line 552) \"어떤 저점도 영원히 지속되지 않는다\"는 모두 전체 부정으로 옳게 번역되어 있어, note의 '부분 부정' 표기와 상충한다. 지적은 사실이며 파일 자체 번역과의 모순도 확인됨."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page3.sentences[index=18] grammar_note (line 345)",
+      "issue": "'try to soften'의 soften을 '원형부정사'로 기술했으나, 여기서는 to부정사(to soften)이다. help O 원형(20번)과 달리 try 뒤에는 to부정사가 온다.",
+      "evidence": "segments V=\"try to soften\", grammar_note=\"try to + 원형부정사 (soften)\". 본문 [18]=\"Governments and central banks try to soften these swings.\" — 'to soften'은 to부정사.",
+      "suggestion": "grammar_note를 'try to + to부정사(soften)'로 수정.",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "answers.explanations[2].evidence (q_index 2, 함의 추론)",
+      "issue": "정답 해설의 근거 문장 번호가 틀렸다. 밑줄 표현 \"Fear can feed on itself here\"는 page3 기준 15번 문장이나, 해설은 이를 \"10번\"이라 지칭한다.",
+      "evidence": "해설: \"10번은 \\\"Fear can feed on itself here, because worried consumers spend even less...\\\"라고 하여\". 실제 page3 sentences[14].index=15 (\"Fear\" / \"can feed\" / \"on itself here,\"). 10번 문장은 \"This general climb in prices is called inflation...\"이다.",
+      "suggestion": "근거 문장 번호를 10번에서 15번으로 수정. 정답(index 0)과 인용문 자체는 정확하므로 답 자체는 유효.",
+      "lens": "answer"
+    },
+    {
+      "severity": "minor",
+      "location": "answers.explanations[1].evidence (q_index 1, 빈칸 추론)",
+      "issue": "정답 근거로 지목한 문장 번호가 실제 근거 위치와 어긋난다. 빈칸을 채우는 확정 단서는 page3 20번 문장(\"help the economy recover more quickly\")이고 저점 후 회복 흐름은 16~17번인데, 해설은 이를 \"12번\"·\"12~14번\"으로 지칭한다.",
+      "evidence": "해설: \"저점 뒤 수요가 돌아와 다시 확장으로 오른다는 12번이 단서\", \"12~14번 흐름과 정확히 맞는다\". 그러나 12번은 \"Sooner or later the wave turns downward.\"(하락 전환)이고, 수요 회복은 16번(\"no trough lasts forever\")·17번(\"demand slowly returns...toward a fresh expansion\"), 빈칸 확정 어구는 20번(\"help the economy recover more quickly\")이다.",
+      "suggestion": "근거 문장 번호를 12→16~17번 및 20번으로 정정. 정답(index 1 recover more quickly)은 본문 20번으로 정확히 뒷받침되어 답 자체는 유효.",
+      "lens": "answer"
+    }
+  ],
+  "blockers": [],
+  "counts": {
+    "raw": 7,
+    "verified": 4,
+    "confirmed": 4,
+    "minor": 3
+  }
+}

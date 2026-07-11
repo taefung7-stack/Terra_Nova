@@ -1,0 +1,36 @@
+{
+  "grade": "saturn-g1",
+  "seq": 4,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page3.sentences[0] (index 1), segment \"to start a recycling club.\"",
+      "issue": "구문 역할 오태깅: 5형식 'want + O + to부정사' 구문에서 목적격보어(C)여야 할 to부정사구가 부사어(M)로 태깅되어 있다.",
+      "evidence": "본문 \"a student who wants her school to start a recycling club\" — 'her school'을 O로, 'to start a recycling club'을 M(부사어)으로 태깅함(role: \"M\"). 그러나 want+O+to-V 구조에서 to부정사구는 목적격보어이다. 참고로 같은 파일 index 1은 wants의 목적어를 'her school'(O)로 잡아 SVOC 구조임을 스스로 전제하고 있어 M 태깅과 모순된다.",
+      "suggestion": "\"to start a recycling club\"의 role을 M에서 C(목적격보어)로 수정.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 확인 결과 지적이 정확하다. page3.sentences[0](index 1) \"Imagine a student who wants her school to start a recycling club.\"에서 segments는 다음과 같다: V \"wants\" / O \"her school\" / M \"to start a recycling club.\" (라인 104-106). 'want + O + to-V'는 전형적인 5형식(SVOC) 구문으로, 'her school'은 목적어(O), 'to start a recycling club'은 목적격보어(C)이다. 의미상 '그녀는 자신의 학교가 재활용 동아리를 만들기를 원한다'로, 'her school'이 to부정사 동작의 의미상 주어이므로 to부정사구는 목적격보어(C)이지 부사어(M)가 될 수 없다. 또한 파일이 'her school'을 O로 태깅해 SVOC 구조를 전제하면서도 뒤따르는 to부정사를 M으로 태깅한 것은 내부적으로 모순된다. 따라서 role \"M\"은 명백한 오태깅이며 \"C\"가 맞다."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "answers.explanations[2] (q_index 2), rationales[2]",
+      "issue": "해설이 본문에 없는 표현('통계 한 쪽')을 덧붙여 근거를 부정확하게 서술.",
+      "evidence": "본문은 \"a story about one crying child can move a crowd more than statistics\"로 '통계(statistics)'라고만 한다. 그러나 해설 rationale은 \"우는 아이 하나의 이야기가 통계 한 쪽보다 군중을 움직일 수 있다\"라고 하여 본문에 없는 '한 쪽(a page)'을 추가했다.",
+      "suggestion": "'통계 한 쪽'을 '통계'로 수정하여 본문(statistics)과 일치시킴.",
+      "lens": "explanation"
+    }
+  ],
+  "blockers": [],
+  "counts": {
+    "raw": 2,
+    "verified": 1,
+    "confirmed": 1,
+    "minor": 1
+  }
+}

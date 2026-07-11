@@ -1,0 +1,30 @@
+{
+  "grade": "jupiter-g2",
+  "seq": 17,
+  "confirmed": [],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page1.body, 3rd paragraph, sentence: \"We do not measure each area on its own and guess.\"",
+      "issue": "부정 범위(scope of negation)가 모호하다. 의도는 '각 넓이를 따로 재고 어림하는 방식을 쓰지 않는다'(즉 measure-then-guess 접근 전체를 부정)이지만, 문자 그대로는 'measure하지도 guess하지도 않는다'로도 읽혀 뒤 문장의 'Instead, we ... integrate'와 논리적으로 살짝 어긋나 보일 수 있다.",
+      "evidence": "\"We do not measure each area on its own and guess. Instead, we subtract the lower function from the upper one and integrate that single difference across the interval.\"",
+      "suggestion": "의도를 분명히 하려면 'We do not measure each area on its own and then guess (at the total).' 처럼 then을 넣거나, 'Rather than measuring each area on its own and guessing, we ...' 구조로 바꾸면 부정 범위가 명확해진다. 다만 뒤의 Instead로 맥락이 회복되어 실질 오독 위험은 낮다.",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.sentences[2] (index 2), segments/grammar_note",
+      "issue": "의문사 what을 동사에 붙여 \"What is\"를 통째로 V로 태깅해, 보어(C)여야 할 의문사 what의 구문 역할이 사라졌다.",
+      "evidence": "본문 [2] \"What is the exact area of the odd shape between that curve and the axis below it?\" — 여기서 the exact area가 S로 태깅됐으므로 what은 주격보어(C)이고 is만 V다. 태그는 {\"role\":\"V\",\"text\":\"What is\"}로 what을 V에 흡수시켰다.",
+      "suggestion": "what을 C(보어), is를 V로 분리하거나 grammar_note에 what=보어임을 명시. 판매를 막을 오류는 아니며 구문 정밀도 차원의 미세 수정.",
+      "lens": "explanation"
+    }
+  ],
+  "blockers": [],
+  "counts": {
+    "raw": 2,
+    "verified": 0,
+    "confirmed": 0,
+    "minor": 2
+  }
+}

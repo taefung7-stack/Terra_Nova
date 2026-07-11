@@ -1,0 +1,40 @@
+{
+  "grade": "jupiter-g2",
+  "seq": 16,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "answers.explanations[q_index=0].rationales[2] and rationales[3], and evidence",
+      "issue": "Q0(요지) 해설의 근거 문장 번호가 실제 본문 문장과 어긋난다. rationale[2]는 '5번에서 코일 감은 수를 늘리면 효과가 커진다'고 하지만 해당 내용은 본문 문장 10('Add more turns to the coil ... so the effect grows')이고, page3 문장 5는 'The lesson looks simple.'이다. rationale[3]은 '6번은 유도 전류가 변화를 방해하는 방향으로 흐른다'고 하지만 이는 본문 문장 13('The current that induction creates always flows in the direction that opposes the very change')이며, 문장 6은 'A still magnet is useless, but a moving one is a source of power.'다. evidence의 '이 원리로 거의 모든 발전기가 작동한다(8번)'도 실제로는 문장 18('Almost every generator on the planet uses this quiet law')이고, 문장 8은 자기 선속을 정의하는 문장이다.",
+      "evidence": "page3 sentences: index 5 = 'The lesson looks simple.', index 6 = 'A still magnet is useless, but ... a source of power.', index 8 = 'Physicists call the magnetic influence ... the magnetic flux, and induction reacts only when that flux is rising or falling.', index 10 = 'Add more turns to the coil, and each loop adds its own share, so the effect grows.', index 13 = 'The current that induction creates always flows in the direction that opposes the very change that made it.', index 18 = 'Almost every generator on the planet uses this quiet law.'",
+      "suggestion": "근거 문장 번호를 실제 본문 인덱스로 정정: '5번'→'10번', '6번'→'13번', evidence의 '8번'→'18번'. 해설 논지 자체는 정답과 일치하므로 번호만 수정하면 된다.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 근거로 지적이 명확히 확인된다. page3.sentences의 실제 인덱스는 index 5=\"The lesson looks simple.\", index 6=\"A still magnet is useless, but a moving one is a source of power.\", index 8=자기 선속 정의 문장, index 10=\"Add more turns to the coil ... so the effect grows.\", index 13=\"The current that induction creates ... opposes the very change ...\", index 18=\"Almost every generator on the planet uses this quiet law.\"로, 지적의 근거주장과 완전히 일치한다.\n\n그런데 answers.explanations[q_index=0]의 서술은 문장 번호를 잘못 인용한다: (1) rationales[2]는 \"5번에서 코일 감은 수를 늘리면 효과가 커진다\"고 하나 코일 감은 수 내용은 실제 문장 10이고 문장 5는 \"The lesson looks simple.\"이다. (2) rationales[3]은 \"6번은 유도 전류가 변화를 방해하는 방향으로 흐른다\"고 하나 이는 실제 문장 13이며 문장 6은 정지/이동 자석 대조 문장이다. (3) evidence의 \"이 원리로 거의 모든 발전기가 작동한다(8번)\"은 실제 문장 18이고 문장 8은 자기 선속을 정의하는 문장이다. 세 건 모두 파일 내부 page3 문장 인덱싱과 어긋나므로 실제 결함이다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "answers.explanations[0] (q_index 0) evidence 및 rationales",
+      "issue": "정답 자체는 옳으나, 해설의 문장 번호 인용이 실제 본문 문장 인덱스와 어긋난다. 정답 근거의 신뢰도를 떨어뜨린다.",
+      "evidence": "evidence는 '이 원리로 거의 모든 발전기가 작동한다(8번)'라고 하나 발전기 문장은 index 18 'Almost every generator on the planet uses this quiet law.'이다. rationale 3은 '5번에서 코일 감은 수를 늘리면 효과가 커진다'고 하나 'Add more turns to the coil'은 index 10이다. rationale 4는 '6번은 유도 전류가 변화를 방해하는 방향으로 흐른다'고 하나 opposition 서술은 index 13 'flows in the direction that opposes the very change that made it.'이다.",
+      "suggestion": "해설의 문장 번호를 실제 인덱스(발전기 18, 감은 수 10, 방해 방향 13)로 정정하거나 번호 인용을 제거한다. 정답 인덱스(0)는 그대로 유효.",
+      "lens": "answer",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 근거로 지적이 확인된다. answers.explanations[0](q_index 0)의 문장 번호 인용이 page3.sentences의 실제 index와 어긋난다. (1) evidence는 발전기 서술을 '8번'이라 하나 'Almost every generator on the planet uses this quiet law.'는 index 18(line 346-354)이고, index 8은 'Physicists call ... rising or falling.'이다. (2) rationale(choice 3)은 '5번에서 코일 감은 수를 늘리면 효과가 커진다'고 하나 'Add more turns to the coil ... the effect grows'는 index 10(line 247-262)이며, index 5는 'The lesson looks simple.'이다. (3) rationale(choice 4)은 '6번은 방해하는 방향'이라 하나 'flows in the direction that opposes the very change that made it.'는 index 13(line 287-298)이고, index 6은 'A still magnet is useless ...'이다. 세 인용 모두 실제 인덱스와 크게 불일치(8/18, 5/10, 6/13)해 off-by-one 오차나 다른 번호 규약으로 설명되지 않는다. 정답(index 0) 자체는 옳으나 근거의 문장 추적성이 훼손되므로 실제 결함이다. 지적문이 이를 'rationale 3/4'로 지칭한 것은 배열 인덱스 2/3(선택지 3/4번)를 가리키는 부정확한 표현이나 실질 주장은 모두 정확하다."
+      }
+    }
+  ],
+  "minors": [],
+  "blockers": [],
+  "counts": {
+    "raw": 2,
+    "verified": 2,
+    "confirmed": 2,
+    "minor": 0
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "grade": "jupiter-g2",
+  "seq": 8,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page3.sentences[15] (index 16), segment \"not a fact\"",
+      "issue": "주격 보어를 M(수식어)로 오태깅. role은 \"M\"인데 note는 \"부정 보어\"라고 명시하여 태그와 주석이 서로 모순된다. is의 보어이므로 role은 C여야 한다.",
+      "evidence": "본문: \"Beauty, after all, is not a fact you can measure with a ruler\" — 대비 구조 \"it is a judgment\"에서는 동일한 보어를 role \"C\"(a judgment)로 정확히 태깅했으나, 앞의 \"not a fact\"는 role \"M\" / note \"부정 보어\"로 불일치.",
+      "suggestion": "\"not a fact\"의 role을 M에서 C로 수정(2형식 부정 보어). 후행 관계절 \"you can measure with a ruler\"는 M 유지.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 확인 결과 지적은 실제 결함이다. page3.sentences[15](index 16), 세그먼트 \"not a fact\"는 role \"M\"이지만 note가 \"부정 보어\"로 명시되어 태그와 주석이 서로 모순된다. 문장 \"Beauty, after all, is not a fact ...\"에서 \"not a fact\"는 계사 is의 주격 보어이므로 role은 C여야 한다. 결정적으로 동일 문장 뒷부분의 대비 구조 \"it is a judgment\"에서 구조적으로 동일한 보어 \"a judgment\"는 정확히 role \"C\"(line 591-592)로 태깅되어 있어 불일치가 명확하다. 나아가 index 10의 \"not decoration\"(부정 주격 보어) 역시 role \"C\" + note \"부정 보어\"(line 382-385)로 올바르게 처리되어 있어, 부정 보어를 C로 태깅하는 것이 이 파일의 일관된 관례임을 확인했다. 따라서 index 16의 \"M\"은 명백한 오태깅이다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "answers.explanations[1] (q_index 1, 빈칸 추론) evidence / rationales",
+      "issue": "해설의 문장 번호가 page3 sentences의 index와 불일치. 해설은 대화 비유 근거를 \"9번\"·\"10번\"(및 \"9~10번\")으로 지목하나, 실제 해당 내용은 page3 index 18·19이다. 구문분석에서 \"9번\"은 전혀 다른 문장(비평가가 설명하는 내용)이라 근거 위치를 오도한다.",
+      "evidence": "해설: \"빈칸 앞 9번에서 'reading art is ... more like joining a long conversation'\" / \"10번에서 저자와 독자가 주장을 주고받으며 이해가 자란다\". 그러나 page3 index 18 = \"This is why reading art is less like copying an answer and more like joining a long conversation.\", index 19 = \"The essay offers a claim, the reader tests it, and understanding grows...\". index 9 = \"A critic may explain who paid for a work...\"(무관).",
+      "suggestion": "해설의 문장 번호를 page3 index에 맞춰 9→18, 10→19로 정정(또는 인용문만 남기고 번호 삭제).",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 근거로 지적이 확인된다. answers.explanations[1] (q_index 1, 빈칸 추론)의 evidence(라인 771)는 \"빈칸 앞 9번에서 'reading art is ... more like joining a long conversation'\", \"10번에서 저자와 독자가 주장을 주고받으며 이해가 자란다\"고 하고, rationales[0](라인 773)은 \"9~10번과 직접 일치\"라고 한다. 그러나 page3 sentences에서 해당 영어 문장은 실제로 index 18(\"This is why reading art is less like copying an answer and more like joining a long conversation.\", 라인 666)과 index 19(\"The essay offers a claim, the reader tests it, and understanding grows in the space between them.\", 라인 677-711)에 위치한다. index 9(라인 352-364)는 \"A critic may explain who paid for a work...\"로 비평가가 맥락을 설명하는 무관한 내용이고, index 10(라인 375-401)은 \"That background is not decoration; it is the ground...\"로 배경이 판단의 토대라는 무관한 내용이다. 따라서 해설이 지목한 \"9번/10번/9~10번\"은 실제 근거 문장 index(18/19)와 불일치하며, 특히 index 9는 전혀 다른 내용이라 학습자를 오도한다. 동일 유형의 체계적 오프셋이 explanations[2](라인 794, index 17 내용을 \"8번\"으로 지칭)에서도 재현되어 지적의 신뢰도가 높다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "answers.explanations[2] (q_index 2, 함의 추론) evidence",
+      "issue": "해설이 핵심 근거 문장을 \"8번\"으로 지목하나 실제로는 page3 index 17이다. index 8은 초상화 무게에 관한 문장으로 함의와 무관해, 구문분석을 대조하는 학습자를 오도한다.",
+      "evidence": "해설: \"8번은 'Two honest readers may weigh the same brushwork and still reach opposite verdicts, and neither has to be wrong'이다.\" 그러나 page3에서 이 문장은 index 17이며, index 8 = \"A portrait painted during a famine carries a weight...\".",
+      "suggestion": "해설의 문장 번호를 8→17로 정정(또는 번호 없이 인용문만 유지).",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 근거로 지적의 모든 사실 주장이 확인된다. answers.explanations[2](q_index 2, 함의 추론) evidence(라인 794)는 \"8번은 \\\"Two honest readers may weigh the same brushwork and still reach opposite verdicts, and neither has to be wrong\\\"이다.\"라고 명시한다. 그러나 page3에서 이 문장은 index 17(라인 603-651)이며, index 8(라인 324-349)은 \"A portrait painted during a famine carries a weight that the same brushstrokes would not carry in a season of plenty.\"로 초상화 무게에 관한 완전히 다른 문장이다. 즉 evidence가 지목한 \"8번\" 포인터는 page3 index 체계상 실제 근거 문장(17번)이 아니라 함의와 무관한 문장(8번)을 가리킨다. 구문분석 페이지(page3)의 index를 대조하며 학습하는 학생은 8번을 찾아 엉뚱한 문장을 보게 되어 오도된다. 참고로 explanations[1]도 \"9번/10번\"이라 하나 해당 대화 내용은 실제 index 18-20이어서 해설의 문장 번호 체계가 page3 index와 불일치하는 동일 결함 패턴이 존재하나, 이 지적의 대상인 [2]의 \"8번\" 불일치는 그 자체로 명확히 성립한다."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "answers.explanations[1].evidence (q_index 1, 빈칸 추론)",
+      "issue": "해설이 근거 문장을 잘못된 문장 번호로 지목함. 실제 관련 문장은 page3 index 18~20이지만 해설은 '9번' '10번'이라고 인용한다.",
+      "evidence": "해설: \"빈칸 앞 9번에서 \\\"reading art is ... more like joining a long conversation\\\"이라 했고, 10번에서 ...\" 그러나 해당 문장은 page3 sentences index 18(\"reading art is less like copying an answer and more like joining a long conversation\")과 index 19~20이다.",
+      "suggestion": "문장 번호를 18~20으로 정정. 정답(answer_index 0 = join a conversation)은 본문 \"more like joining a long conversation\" 및 빈칸 자리 원문 \"invitation to join a conversation\"으로 타당하므로 정답 자체는 문제없음.",
+      "lens": "answer"
+    },
+    {
+      "severity": "minor",
+      "location": "answers.explanations[2].evidence (q_index 2, 함의 추론)",
+      "issue": "해설이 근거 문장을 '8번'으로 인용하나 실제 page3에서 해당 문장은 index 17이다.",
+      "evidence": "해설: \"8번은 \\\"Two honest readers may weigh the same brushwork and still reach opposite verdicts, and neither has to be wrong\\\"이다.\" 그러나 이 문장은 page3 sentences index 17이다.",
+      "suggestion": "문장 번호를 17로 정정. 정답(answer_index 4)은 본문 근거로 정확하므로 정답 판정에는 영향 없음.",
+      "lens": "answer"
+    }
+  ],
+  "blockers": [],
+  "counts": {
+    "raw": 5,
+    "verified": 3,
+    "confirmed": 3,
+    "minor": 2
+  }
+}

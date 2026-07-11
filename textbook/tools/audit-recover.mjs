@@ -6,6 +6,7 @@ import { dirname, resolve, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 const here = dirname(fileURLToPath(import.meta.url));
 const root = resolve(here, '..');
+const MONTH = process.env.AUDIT_MONTH || '2026-07';
 const inPath = process.argv[2];
 const raw = readFileSync(inPath, 'utf8');
 
@@ -17,8 +18,8 @@ if (whole && Array.isArray(whole.result)) {
   for (const r of whole.result) {
     if (r && r.grade && r.seq) {
       const nn = String(r.seq).padStart(2, '0');
-      mkdirSync(resolve(root, 'audit/2026-07', r.grade), { recursive: true });
-      writeFileSync(join(resolve(root, 'audit/2026-07', r.grade), `${nn}.json`), JSON.stringify(r, null, 2));
+      mkdirSync(resolve(root, `audit/${MONTH}`, r.grade), { recursive: true });
+      writeFileSync(join(resolve(root, `audit/${MONTH}`, r.grade), `${nn}.json`), JSON.stringify(r, null, 2));
       n0++;
     }
   }
@@ -56,8 +57,8 @@ let n = 0;
 for (const r of objs) {
   if (r && r.grade && r.seq) {
     const nn = String(r.seq).padStart(2, '0');
-    mkdirSync(resolve(root, 'audit/2026-07', r.grade), { recursive: true });
-    writeFileSync(join(resolve(root, 'audit/2026-07', r.grade), `${nn}.json`), JSON.stringify(r, null, 2));
+    mkdirSync(resolve(root, `audit/${MONTH}`, r.grade), { recursive: true });
+    writeFileSync(join(resolve(root, `audit/${MONTH}`, r.grade), `${nn}.json`), JSON.stringify(r, null, 2));
     n++;
   }
 }

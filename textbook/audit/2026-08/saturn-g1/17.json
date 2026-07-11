@@ -1,0 +1,40 @@
+{
+  "grade": "saturn-g1",
+  "seq": 17,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page3 answers.explanations[q_index=3].evidence (line 357)",
+      "issue": "요약문 빈칸(A) 해설의 evidence가 본문을 직접 인용한다고 하면서(본문 \"...\") 실제 본문과 다른 문구를 인용하고 있다. 인용된 \"a system of thought that valued study, order, and moral rulers\"는 본문에 존재하지 않는다.",
+      "evidence": "해설 evidence(line 357): 본문 \"That idea was Confucianism, a system of thought that valued study, order, and moral rulers\". 그러나 실제 본문(page1 line 21 및 page3 sentence 4 line 134-135)은 \"That idea was <u>Confucianism</u>, a way of thinking that valued study, order, and good rulers.\"로, 'a system of thought'가 아니라 'a way of thinking', 'moral rulers'가 아니라 'good rulers'다.",
+      "suggestion": "evidence 인용을 실제 본문 문구인 \"That idea was Confucianism, a way of thinking that valued study, order, and good rulers\"로 수정하여 직접 인용의 정확성을 확보할 것. (정답 (A) Confucianism 자체는 옳으므로 정답 오류는 아님.)",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "확인됨. line 357의 evidence는 따옴표와 '본문'이라는 표현을 사용해 직접 인용임을 명시하며 \"That idea was Confucianism, a system of thought that valued study, order, and moral rulers\"라고 인용한다. 그러나 실제 본문(line 132-135, page3 index 4)은 \"That idea was Confucianism, a way of thinking that valued study, order, and good rulers.\"이다. 'a system of thought'가 아니라 'a way of thinking', 'moral rulers'가 아니라 'good rulers'로, 인용문이 본문에 축자적으로 존재하지 않는다. 인용부호와 '본문'이라는 명시적 직접 인용 표기에도 불구하고 문구가 원문과 다르므로 실제 결함이다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "answers.explanations[3].evidence (q_index 3, 요약문 빈칸 완성)",
+      "issue": "Q3 정답 근거(evidence)가 본문에 없는 문장을 인용하여 오기했다. 정답 자체(Confucianism/exam)는 타당하나, 해설의 인용 근거가 본문 문구와 불일치한다.",
+      "evidence": "해설 evidence: \"That idea was Confucianism, a system of thought that valued study, order, and moral rulers\". 그러나 본문(page1.body)은 \"That idea was Confucianism, a way of thinking that valued study, order, and good rulers.\" 이다. 'a system of thought'/'moral rulers'는 본문에 없고 'a way of thinking'/'good rulers'가 실제 표현이다.",
+      "suggestion": "evidence 인용문을 본문 그대로 \"a way of thinking that valued study, order, and good rulers\"로 수정. (rationale의 '도덕적 통치자' 표현도 본문 근거상 '좋은 통치자'로 통일 검토)",
+      "lens": "answer",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "확인됨. answers.explanations[3].evidence(q_index 3, line 357)는 본문을 직접 인용하는 형식(본문 \"...\")으로 \"That idea was Confucianism, a system of thought that valued study, order, and moral rulers\"를 제시한다. 그러나 실제 본문(page1.body, line 21)은 \"That idea was <u>Confucianism</u>, a way of thinking that valued study, order, and good rulers.\" 이다. 'a system of thought'와 'moral rulers'는 본문에 존재하지 않으며 실제 표현은 'a way of thinking'과 'good rulers'이다. page3 sentence 4(line 135)의 문장 분해도 \"a way of thinking that valued study, order, and good rulers\"로 본문과 일치해 이를 뒷받침한다. 정답 자체(Confucianism/exam)는 타당하나, 직접 인용 근거가 본문 문구와 불일치하는 오기가 명확히 확인된다. (참고: summary_template과 vocab 예문의 'moral rulers'는 인용이 아닌 자체 요약/예문이므로 결함이 아니며, 지적은 오직 evidence의 직접 인용에 한정되고 그 위치가 정확하다.)"
+      }
+    }
+  ],
+  "minors": [],
+  "blockers": [],
+  "counts": {
+    "raw": 2,
+    "verified": 2,
+    "confirmed": 2,
+    "minor": 0
+  }
+}

@@ -4,7 +4,8 @@ import { readFileSync, writeFileSync, readdirSync, existsSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 const here = dirname(fileURLToPath(import.meta.url));
-const base = resolve(here, '..', 'audit/2026-07');
+const MONTH = process.env.AUDIT_MONTH || '2026-07';
+const base = resolve(here, '..', `audit/${MONTH}`);
 const GRADES = [['saturn-g1', '고1 Saturn'], ['jupiter-g2', '고2 Jupiter'], ['sun-g3', '고3 Sun']];
 
 const lines = [];
@@ -40,7 +41,7 @@ for (const [key, label] of GRADES) {
 }
 
 const header = [
-  '# 2026-07 고등 교재 검수 리포트',
+  `# ${MONTH} 고등 교재 검수 리포트`,
   '',
   `> 생성: ${process.env.AUDIT_TS || 'unstamped'} · 멀티에이전트 4관점 병렬 검수 + 적대검증`,
   '',

@@ -1,0 +1,60 @@
+{
+  "grade": "saturn-g1",
+  "seq": 9,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page3.sentences[index=13], segment \"finished\"",
+      "issue": "구문 역할 오태깅: 'before it is finished'에서 'finished'를 M(수식어)으로 태깅했으나, 'is finished'는 be동사+과거분사 구조로 'finished'는 보어(C) 또는 'is finished' 전체가 동사(V, 수동태)여야 한다. M(부사적 수식어)이 아니다.",
+      "evidence": "본문 \"A single product may cross several borders before it is finished.\" / page3 태깅: { \"role\": \"S\", \"text\": \"it\" }, { \"role\": \"V\", \"text\": \"is\" }, { \"role\": \"M\", \"text\": \"finished.\" }. 대조: index=14에서는 'are shared'를 { \"role\": \"V\", \"text\": \"are shared,\" }로, index=2에서는 'easy to miss'를 { \"role\": \"C\" }로 태깅해 같은 파일 내 관례와도 불일치한다.",
+      "suggestion": "'finished'를 C로 태깅하거나, index=14의 'are shared' 처리 방식과 맞춰 'is finished'를 하나의 V(수동태)로 묶어라.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "Confirmed at page3.sentences[index=13]: \"before it is finished\" is tagged S=\"it\", V=\"is\", M=\"finished.\" This is a mis-tag. \"is finished\" is a passive construction (be + past participle), so \"finished\" is either part of the verb (V, passive) or a predicate complement (C) — it is not an adverbial modifier (M). The internal-consistency evidence is accurate and decisive: index=14 tags the parallel passive \"are shared\" as a single V (\"are shared,\"), and index=2/7/20 tag predicate complements after \"is\" as C (e.g., \"easy to miss\" = C at index=2). Under either the file's own passive convention (V) or copula-complement convention (C), M is inadmissible. Genuine defect."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page1.body, 4번째 문단 마지막 문장",
+      "issue": "동격 that절 앞의 콤마 사용이 다소 비표준적이며, 콜론 또는 무콤마가 더 자연스럽다.",
+      "evidence": "\"the whole modern economy quietly runs on one simple promise, that no country in the world stands entirely <blank>.\"",
+      "suggestion": "\"...on one simple promise: that no country in the world stands entirely <blank>.\" 처럼 콜론을 쓰거나 콤마를 생략하는 편이 표준적이다. 다만 의미 전달에는 지장이 없어 문체 수준의 미세 사항이다.",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "answers.explanations[q_index=3].evidence",
+      "issue": "해설의 근거 인용문이 본문과 다르게 표기되었다. 큰따옴표로 본문 직접 인용인 것처럼 제시했으나 실제 본문 문장과 어순·표현이 다르다(의미는 동일).",
+      "evidence": "해설 evidence: 본문 \"nations swap goods across borders, and this exchange is what we call trade\". 그러나 실제 page1/translation 대응 본문은 \"So nations swap goods across their borders, and we call this exchange trade.\"이다(their 누락, 'we call this exchange trade' → 'this exchange is what we call trade'로 변형).",
+      "suggestion": "인용을 본문 원문 그대로(\"...nations swap goods across their borders, and we call this exchange trade.\")로 수정하거나 따옴표 대신 요지 서술로 바꿔라.",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "09.json → answers.explanations[q_index 3].evidence (line 392)",
+      "issue": "Q4(요약문) 정답 근거로 인용한 본문 문장이 실제 본문과 정확히 일치하지 않는 부정확 인용(paraphrase)이다. 정답 자체는 타당하나 근거 인용의 정확성 문제.",
+      "evidence": "근거 인용문: \"nations swap goods across borders, and this exchange is what we call trade\" / 실제 본문(page1.body): \"So nations swap goods across their borders, and we call this exchange trade.\"",
+      "suggestion": "근거 인용을 본문 원문 그대로(\"nations swap goods across their borders, and we call this exchange trade\")로 수정한다.",
+      "lens": "answer"
+    },
+    {
+      "severity": "minor",
+      "location": "09.json → page2.questions[3] model_answer / hints (line 74-77)",
+      "issue": "Q4 (A) 정답이 'trade'인데, 해당 빈칸에 대응하는 본문 동사는 'swap'('nations swap goods across their borders')이다. 조건이 '본문에서 제시된 단어를 그대로 활용'이므로 'trade'(본문에서는 명사로 등장)도 허용 가능하나, 학생이 본문 동사 'swap'을 쓸 여지가 있어 채점 혼선 소지가 있다.",
+      "evidence": "summary_template: \"nations <blank> (A) goods across borders\" / 본문 해당 문장: \"So nations swap goods across their borders...\" (동사는 swap). 본문에서 'trade'는 명사(\"we call this exchange trade\")로만 사용됨.",
+      "suggestion": "채점 기준에 'trade' 정답임을 명확히 하되, 본문 동사 'swap' 대비 왜 'trade'가 정답인지(요약문 어휘 조건) 해설에 보강하거나, 'swap'도 허용 여부를 명시한다.",
+      "lens": "answer"
+    }
+  ],
+  "blockers": [],
+  "counts": {
+    "raw": 5,
+    "verified": 1,
+    "confirmed": 1,
+    "minor": 4
+  }
+}

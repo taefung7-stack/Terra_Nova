@@ -1,0 +1,57 @@
+{
+  "grade": "jupiter-g2",
+  "seq": 7,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "answers.explanations[q_index=0].evidence",
+      "issue": "해설 evidence가 인용하는 문장 번호가 본문의 실제 문장 번호(page3.sentences / translation_ko의 [1]~[19])와 전혀 일치하지 않는다. 세 방법의 위치를 '지층 누중(1~3번), 표준 화석(4~6번), 방사성 붕괴(7번), geologic time(8번)'으로 적었으나 실제 문장 배치는 지층 누중=1~6, 표준 화석=7~12, 방사성=13~17, 결론=18~19이다. 인용 번호가 모두 어긋나 학생이 번호를 따라가면 엉뚱한 문장에 도달한다.",
+      "evidence": "evidence: \"본문은 지층 누중(1~3번)으로 상대 순서를, 표준 화석(4~6번)으로 먼 지층의 대비를, 방사성 붕괴(7번)로 절대 연령을 얻어 ...(8번)라고 종합한다.\" 그러나 실제 sentences: index 7 = 'Relative order, however, is not the whole story', index 12 = 'These reliable markers are called index fossils', index 13 = 'Still, fossils alone cannot tell us...', index 18 = 'science has slowly assembled the vast calendar we call geologic time.'",
+      "suggestion": "정답 자체는 옳으나, 인용 번호를 실제 문장 인덱스(지층누중 1~6, 표준화석 7~12, 방사성 13~17, 결론 18~19)에 맞게 수정.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 확인 결과 지적이 정확하다. answers.explanations[q_index=0].evidence는 세 방법의 위치를 '지층 누중(1~3번), 표준 화석(4~6번), 방사성 붕괴(7번)'로, 그리고 인용 \"science has assembled the vast calendar we call geologic time\"을 (8번)으로 표기했다. 그러나 page3.sentences/translation_ko의 실제 배치는 지층 누중=[1]~[6], 표준 화석=[7]~[12], 방사성=[13]~[17], 결론(geologic time 문장)=[18]이다. 결정적으로 evidence가 인용한 geologic time 문장은 실제 index 18인데 (8번)으로 적혀 있으며, 실제 index 8은 'Two distant cliffs may hold layers of the very same age...'로 전혀 다른 문장이다. 인용 번호가 전부 어긋나 학생이 번호를 따라가면 엉뚱한 문장에 도달한다. q_index=3의 evidence도 the oldest=2번(실제 [4]), index fossils=6번(실제 [12])으로 동일한 번호 오류를 보여 체계적 결함임이 확인된다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "answers.explanations[q_index=3].evidence / rationales",
+      "issue": "요약문 완성 해설이 (A) 근거를 '2번', (B) 근거를 '6번'으로 인용하나, 실제 문장 번호는 (A) the oldest 근거가 [4], (B) index fossils 근거가 [12]이다. 정답(oldest/fossils)은 옳지만 근거 문장 번호가 틀렸다.",
+      "evidence": "evidence: \"(A)는 ... 2번 \\\"the deepest layers were laid down first, so they must be the oldest\\\". (B)는 ... 6번 \\\"These reliable markers are called index fossils\\\".\" 실제 sentences: index 4 = 'the deepest layers / were laid down / first ... / the oldest'; index 12 = 'These reliable markers / are called / index fossils'.",
+      "suggestion": "(A) 인용 2번→4번, (B) 인용 6번→12번으로 정정.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 확인 결과 지적이 정확하다. answers.explanations[q_index=3].evidence(라인 378)는 (A) 'the oldest' 근거를 \"2번\", (B) 'index fossils' 근거를 \"6번\"으로 인용한다. 그러나 page3.sentences 실제 index를 보면: (A) \"the deepest layers were laid down first, so they must be the oldest\"는 index 4(라인 132-143)이고 index 2(라인 112-118)는 \"Layer after layer of sediment settled...\"로 무관하다. (B) \"These reliable markers are called index fossils\"는 index 12(라인 221-232)이고 index 6(라인 156-164)은 \"It lets scientists order events...\"로 무관하다. translation_ko(라인 318)도 [4]=\"가장 오래되었음\", [12]=\"표준 화석이라 불리며\"로 일치한다. 정답(oldest/fossils)은 옳으나 근거 문장 번호가 4→2, 12→6으로 잘못 인용된 실제 결함이다."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page3.sentences[index=4].segments (\"first,\")",
+      "issue": "부사 'first,'(M)에 붙은 note가 '수동태'로 되어 있다. 'first'는 부사(시간 순서)일 뿐 수동태 요소가 아니다. 수동태는 앞 segment 'were laid down'에 해당한다. 역할 태깅(M)은 옳으나 note가 오기재.",
+      "evidence": "{ \"role\": \"M\", \"text\": \"first,\", \"note\": \"수동태\" } — 실제 수동태는 바로 앞 { \"role\": \"V\", \"text\": \"were laid down\" }이다.",
+      "suggestion": "'first,'의 note를 '순서 부사' 등으로 수정하고 '수동태' 표기 제거.",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "answers.explanations[q_index=0].evidence 및 rationales; q_index=1, q_index=3 evidence",
+      "issue": "해설의 evidence/rationale가 인용하는 문장 번호가 실제 본문(page3.sentences 및 지문 순서)과 일치하지 않는다. 정답 자체는 옳지만 학생이 근거 문장을 대조할 때 혼동을 줄 수 있다.",
+      "evidence": "q0 evidence: '\"science has assembled the vast calendar we call geologic time\"(8번)'이라 하나 본문 원문은 'has slowly assembled'이며 해당 문장은 page3 기준 18번이다. q1 evidence: \"2번 'Geologists read this record', 1번 'a diary written in rock'\"이라 하나 'Geologists read this record'는 실제 3번 문장이다. q3 evidence: '2번 \"the deepest layers were laid down first, so they must be the oldest\"'는 실제 4번, '6번 \"These reliable markers are called index fossils\"'는 실제 12번이다.",
+      "suggestion": "해설의 문장 번호를 page3.sentences 인덱스(또는 지문 실제 순서)에 맞춰 정정하고, q0 인용은 'has slowly assembled'로 원문과 일치시킨다. 정답(answer_index/model_answer)은 모두 타당하므로 변경 불필요.",
+      "lens": "answer"
+    }
+  ],
+  "blockers": [],
+  "counts": {
+    "raw": 5,
+    "verified": 3,
+    "confirmed": 2,
+    "minor": 2
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "grade": "jupiter-g2",
+  "seq": 18,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "18.json page3/answers → answers.explanations[0] (q_index 0, 요지) evidence 필드",
+      "issue": "요지 정답 근거로 인용한 문장 번호가 틀렸다. '그 집단들이 자아를 형성한다'는 주장의 근거로 '(1번, 8번)'을 제시했으나, 8번 문장은 자아 형성과 무관하다.",
+      "evidence": "evidence 원문: \"글은 사람이 태어나면서부터 ... 그 집단들이 자아를 형성한다고 말한다(1번, 8번).\" 그러나 본문 [8]은 \"They are held together by face-to-face affection rather than by any rulebook.\"(1차 집단이 규칙이 아닌 애정으로 결속됨)로 자아 형성과 무관하다. 자아 형성 근거는 [2] \"Those groups quietly shape who we become.\"와 [5] \"the self we call our own is largely built from the company we keep.\"이다.",
+      "suggestion": "근거 문장 번호를 '(2번, 5번)'으로 수정. 정답(index 1)과 논리는 타당하므로 blocker 아님.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 answers.explanations[0] (q_index 0, 요지)의 evidence 원문 확인: \"...여러 집단에 겹쳐 속하며 그 집단들이 자아를 형성한다고 말한다(1번, 8번).\" 인용된 8번 문장은 page3 sentences[7] (index 8) = \"They are held together by face-to-face affection rather than by any rulebook.\" (번역 [8]: 규칙집이 아니라 얼굴을 맞댄 애정으로 결속된다)로, 1차 집단의 결속 방식에 관한 내용일 뿐 자아 형성(self-formation)이나 '겹쳐 속함' 주장과 무관하다. 반면 자아 형성을 직접 진술하는 문장은 [2] \"Those groups quietly shape who we become.\"와 [5] \"the self we call our own is largely built from the company we keep.\"로, 파일 본문에 명확히 존재한다. 따라서 요지 정답 근거로 인용한 문장 번호 8번이 부적절하다는 지적은 파일 근거로 명백히 확인되는 실제 결함이다."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "18.json → answers.explanations[0] (q_index 0, 요지) evidence",
+      "issue": "정답 근거로 인용한 문장 번호(1번, 8번)가 실제 근거 문장과 일치하지 않는다. 자아 형성 주장은 문장 [2](\"Those groups quietly shape who we become\")와 [5](\"the self we call our own is largely built from the company we keep\")에 있고, 문장 [8]은 애정 대 규칙집(affection rather than rulebook) 내용으로 요지 근거와 무관하다.",
+      "evidence": "evidence 원문: \"글은 사람이 태어나면서부터 ... 자아를 형성한다고 말한다(1번, 8번).\" / 실제 문장 [8]: \"They are held together by face-to-face affection rather than by any rulebook.\"",
+      "suggestion": "인용 문장 번호를 (2번, 5번)으로 수정. 정답(index 1) 자체는 타당하므로 근거 표기만 교정하면 된다.",
+      "lens": "answer"
+    }
+  ],
+  "blockers": [],
+  "counts": {
+    "raw": 2,
+    "verified": 1,
+    "confirmed": 1,
+    "minor": 1
+  }
+}

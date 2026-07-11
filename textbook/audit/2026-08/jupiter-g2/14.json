@@ -1,0 +1,117 @@
+{
+  "grade": "jupiter-g2",
+  "seq": 14,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "answers.explanations[0] (q_index 0, 요지) evidence",
+      "issue": "해설의 '본문 인용'이 실제 본문과 불일치. 해설은 One conceals its maker ... the other reveals its maker 라고 인용하지만, 본문 문장[18]은 hides 를 쓴다. conceals 는 본문에 없는 단어로, 인용을 변조한 것.",
+      "evidence": "해설: \"One conceals its maker ... the other reveals its maker\". 본문 page1/sentence 18: \"One hides its maker and lets conflict speak through invented people, while the other reveals its maker\"",
+      "suggestion": "인용을 본문 그대로 \"One hides its maker ... the other reveals its maker\"로 수정.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 확인 결과 지적이 정확하다. answers.explanations[0](q_index 0, 요지)의 evidence(라인 801)는 마지막 단락을 인용하며 따옴표로 \"One conceals its maker ... the other reveals its maker\"라고 직접 인용 형식으로 제시한다. 그러나 실제 본문(page1.body 라인 26 및 page3 sentences index 18, 라인 646)은 \"One hides its maker and lets conflict speak through invented people, while the other reveals its maker...\"로 'hides'를 쓴다. 'conceals'라는 단어는 본문 어디에도 등장하지 않으며(파일 전체에서 이 해설 인용문에만 존재), 따옴표로 마지막 단락의 직접 인용임을 표방했으나 실제 어휘(hides)와 불일치한다. 따라서 인용 변조가 파일 근거로 명확히 확인된다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "answers.explanations[1] (q_index 1, 빈칸 추론) evidence",
+      "issue": "해설이 인용한 빈칸 문장에 본문에 없는 부사 quietly 가 삽입됨. 인용 변조.",
+      "evidence": "해설: \"The stage shows us who we might become, while the pen quietly reminds us who we already ___\". 본문 page1 및 sentence 20: \"The stage shows us who we might become, while the pen reminds us who we already <blank>.\" (quietly 없음)",
+      "suggestion": "quietly 를 삭제하고 본문 그대로 인용.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "확인됨. answers.explanations[1] (q_index 1) evidence 필드(line 824)는 빈칸 문장을 \"...while the pen quietly reminds us who we already ___\"로 인용한다. 그러나 본문 page1 body(line 26)는 \"...while the pen reminds us who we already <blank>.\"이며, page3 sentence index 20의 세그먼트(the pen / reminds / us / who we already are)에도 quietly가 전혀 없다. 즉 해설이 인용한 문장에 본문에 없는 부사 quietly가 삽입되어 있다. (quietly는 본문 sentence 8 \"quietly show who they are\"에만 존재하며 해당 빈칸 문장에는 없음.) 인용 변조가 파일 근거로 명확히 확인되므로 실제 결함이다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "answers.explanations[2] (q_index 2, 함의 추론) evidence",
+      "issue": "해설의 본문 인용에서 두 단어가 본문과 다름: particular(본문은 special), reproduce(본문은 copy). 밑줄 표현 함의 문항의 근거 인용이 변조됨.",
+      "evidence": "해설: \"...the writer's distinctive style, the particular rhythm, humor, and tone that no one else could reproduce\". 본문 sentence 15: \"the writer's distinctive style, the special rhythm, humor, and tone no one else could copy.\"",
+      "suggestion": "special / copy 로 바로잡아 본문과 일치시킬 것.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 확인 결과 지적이 사실이다. answers.explanations[2] (q_index 2, 함의 추론) evidence는 본문을 직접 인용(\"본문은 ...라고 하여\")하며 \"the writer's distinctive style, the particular rhythm, humor, and tone that no one else could reproduce\"라고 적었다. 그러나 실제 본문(page1.body 3단락 및 page3 sentence 15)은 \"the writer's distinctive style, the special rhythm, humor, and tone no one else could copy\"이다. 두 단어가 변조됨: special→particular, copy→reproduce. 근거 인용의 원문 충실성이 문제되는 함의 추론 문항의 근거이므로 실제 결함이다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "answers.explanations[3] (q_index 3, 요약문 빈칸) evidence",
+      "issue": "(B) 근거로 인용한 마지막 단락 표현이 본문과 불일치: a single honest voice 로 적었으나 본문은 one honest voice. 정답 voice 자체는 옳으나 인용이 변조됨.",
+      "evidence": "해설: 마지막 단락 \"a single honest voice\". 본문 sentence 18: \"lets one honest voice guide us\"",
+      "suggestion": "\"one honest voice\"로 인용 수정. (동일 해설의 \"a personal voice\", \"The hidden engine of a play is its dialogue\" 인용은 정확함.)",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "지적이 파일 근거로 확인됨. answers.explanations[3] (q_index 3)의 evidence 필드(871행)는 \"마지막 단락 \\\"a single honest voice\\\"\"라고 인용부호로 직접 인용하나, 실제 본문(page1.body 26행, page3 sentence 18의 695행, 번역 793행, page4 vocab example 1061행)은 모두 \"one honest voice\"로 일관됨. \"a single honest voice\"라는 표현은 본문 어디에도 존재하지 않음. 즉 evidence의 직접 인용이 변조되었음. 다만 정답 (B) voice 자체는 옳으므로 정답 키의 오류가 아니라 인용 충실성에 관한 warn 수준 지적이 맞음. isReal=true."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "answers.explanations[0].evidence (q_index 0, 요지)",
+      "issue": "정답 해설의 근거 인용이 본문과 불일치. 해설은 마지막 단락을 \"One conceals its maker ... the other reveals its maker\"로 인용하나, 본문(page1.body / page3 sentence 18)은 conceals가 아니라 hides를 쓴다.",
+      "evidence": "본문: \"One hides its maker and lets conflict speak through invented people, while the other reveals its maker...\" / 해설 evidence: \"One conceals its maker ... the other reveals its maker\".",
+      "suggestion": "해설의 인용을 본문 그대로 \"One hides its maker ... the other reveals its maker\"로 수정. 정답(3)은 그대로 타당함.",
+      "lens": "answer",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "지적이 파일 근거로 확인된다. answers.explanations[0].evidence(line 801)는 마지막 단락을 직접 인용부호로 \"One conceals its maker ... the other reveals its maker\"로 인용한다. 그러나 실제 본문 page1.body(line 26) 마지막 단락은 \"One hides its maker and lets conflict speak through invented people, while the other reveals its maker...\"로 'conceals'가 아니라 'hides'를 쓴다. page3 sentence 18(index 18, lines 638-704) 세그먼트도 \"One\"/\"hides\"/\"its maker\"로 'hides'를 확정한다. 'conceals'라는 단어는 본문 어디에도 나타나지 않으므로, 인용부호로 표시된 근거 인용이 본문과 불일치한다. (정답 index 3 자체는 옳으므로 답 정확성 결함이 아닌 인용 충실도 경고에 해당하나, 지적된 사실관계는 실재한다.)"
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "answers.explanations[2].evidence (q_index 2, 함의 추론)",
+      "issue": "정답 해설의 근거 인용이 본문과 3중으로 불일치(particular/that/reproduce). 밑줄 문항의 핵심 근거 문장을 본문과 다른 어휘로 재구성해 인용했다.",
+      "evidence": "본문: \"the writer's distinctive style, the special rhythm, humor, and tone no one else could copy\" / 해설 evidence: \"...the writer's distinctive style, the particular rhythm, humor, and tone that no one else could reproduce\" (special→particular, 삽입된 that, copy→reproduce).",
+      "suggestion": "해설 인용을 본문 원문(special / no one else could copy)으로 교체. 정답(3)은 타당함.",
+      "lens": "answer",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "확인됨. 본문(page1 line 26, page3 sentence 15)은 \"the writer's distinctive style, the special rhythm, humor, and tone no one else could copy\"이다. 그러나 q_index 2 해설의 evidence(line 847)는 이를 인용부호로 직접 인용한다며 \"the writer's distinctive style, the particular rhythm, humor, and tone that no one else could reproduce\"라고 적었다. 세 지점 모두 실제로 불일치한다: (1) special→particular, (2) 관계사 that 삽입(본문은 목적격 관계사 생략), (3) copy→reproduce. 밑줄 문항(함의 추론)의 핵심 근거 문장을 본문과 다른 어휘로 재구성해 직접 인용처럼 제시한 것은 실제 결함이다. (참고로 q_index 0 evidence도 \"conceals\"로 본문 \"hides\"와 불일치하나, 본 지적 대상은 q_index 2이며 그 세 지적은 모두 정확하다.)"
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko 문장 [16]",
+      "issue": "영문 'a friend'를 '사려 깊은 벗'으로 옮기며 원문에 없는 수식어 '사려 깊은'을 덧붙인 미세한 과장(첨가). 의미 왜곡은 아니나 원문에 대응어가 없음.",
+      "evidence": "영문: 'Reading a fine essay feels less like watching a story and more like hearing a friend think aloud.' / 번역: '...사려 깊은 벗이 소리 내어 생각하는 것을 곁에서 듣는 것에 더 가깝게 느껴진다.' ('사려 깊은'에 해당하는 원문 어구 없음)",
+      "suggestion": "'벗' 또는 '친구'로만 옮겨 원문과 일치시킨다. (예: '벗이 소리 내어 생각하는 것을 듣는 것')",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "answers.explanations[1].evidence (q_index 1, 빈칸 추론)",
+      "issue": "빈칸 문장 인용에 본문에 없는 부사 quietly가 삽입됨.",
+      "evidence": "본문: \"...while the pen reminds us who we already <blank>.\" / 해설 evidence: \"...while the pen quietly reminds us who we already ___\".",
+      "suggestion": "quietly 삭제하여 본문과 일치시킴. 정답(0, are)은 타당함.",
+      "lens": "answer"
+    },
+    {
+      "severity": "minor",
+      "location": "answers.explanations[3].evidence (q_index 3, 요약문 빈칸 완성)",
+      "issue": "(B) 근거 인용에서 본문의 one honest voice를 a single honest voice로 바꿔 인용.",
+      "evidence": "본문: \"...lets one honest voice guide us.\" / 해설 evidence: \"...마지막 단락 'a single honest voice'\".",
+      "suggestion": "해설 인용을 \"one honest voice\"로 수정. model_answer (A) dialogue / (B) voice는 본문 어휘와 일치하며 타당함.",
+      "lens": "answer"
+    }
+  ],
+  "blockers": [],
+  "counts": {
+    "raw": 9,
+    "verified": 6,
+    "confirmed": 6,
+    "minor": 3
+  }
+}

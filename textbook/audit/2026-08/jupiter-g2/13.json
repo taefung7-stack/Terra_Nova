@@ -1,0 +1,46 @@
+{
+  "grade": "jupiter-g2",
+  "seq": 13,
+  "confirmed": [],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page1.body, paragraph 2 (sentence: \"An election therefore works like a regular report card. Officials who governed well may win another term, while those who ignored the public can be removed in peace.\")",
+      "issue": "\"removed in peace\" is an unusual collocation for the intended meaning (peacefully / without upheaval); \"in peace\" idiomatically leans toward \"left undisturbed,\" which can momentarily read against the sense of officials being voted out.",
+      "evidence": "\"those who ignored the public can be removed in peace.\"",
+      "suggestion": "Consider \"can be removed peacefully\" or \"can be voted out peacefully\" for a cleaner, unambiguous collocation. Not an error; purely stylistic.",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.sentences[8] (index 8), segment \"to be trusted again.\"",
+      "issue": "\"ask to be trusted again\"의 to부정사가 M(수식어)로 태깅되었으나, 이 to부정사는 자동사적 ask의 목적(보어) 성분에 해당하며 단순 부사 수식이 아니다. grammar_note는 'to부정사 수동'으로만 처리해 역할을 흐린다.",
+      "evidence": "본문: \"they must return to the voters and ask to be trusted again.\" 여기서 to be trusted again은 ask의 내용(=신임받기를 청하다)을 이루는 성분이다.",
+      "suggestion": "to부정사를 ask의 목적/보어 성분으로 명시하거나 최소한 M 대신 그 기능을 note에 보강. (판매에 지장 없는 미세 태깅 개선)",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.sentences[14] (index 14), segment \"not wasted,\" (role C, note \"수동태 보어\")",
+      "issue": "\"is not wasted\"는 be+과거분사 수동태 술부인데 \"not wasted\"만 떼어 C(보어)로 태깅하고 note를 '수동태 보어'라 한 것은 술어 구조를 형용사 보어처럼 오인하게 할 수 있다. grammar_note는 'become 보어'만 언급.",
+      "evidence": "본문: \"even a losing vote is not wasted, for it becomes part of a larger message ...\" — is wasted는 수동태 동사구다.",
+      "suggestion": "\"is not wasted\"를 수동태 술어로 일관 표기하거나 note에서 '보어'라는 표현을 지양. 지도학습상 오해 소지만 있는 미세 사항.",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko 문장 [10]",
+      "issue": "영문은 수동태 'those who ignored the public can be removed in peace'(무시한 자들은 평화롭게 물러나게 될/제거될 수 있다)인데, 번역은 '평화롭게 물러나게 할 수 있다'로 태(voice)를 능동·사역으로 뒤집어 주어가 모호해진다. 또한 'in peace'는 '평화롭게(교체가 소란·폭력 없이 이뤄짐)'의 뜻으로 물러나는 방식이 아니라 제거 방식을 수식한다. 의미(무능한 공직자는 교체될 수 있다)는 전달되나 태 처리가 어색하다.",
+      "evidence": "본문: \"Officials who governed well may win another term, while those who ignored the public can be removed in peace.\" / 번역: \"...국민을 무시한 자들은 평화롭게 물러나게 할 수 있다.\"",
+      "suggestion": "수동태를 살려 '국민을 무시한 자들은 평화롭게 물러나게 된다/교체될 수 있다'로 다듬으면 원문 태와 일치한다.",
+      "lens": "translation"
+    }
+  ],
+  "blockers": [],
+  "counts": {
+    "raw": 4,
+    "verified": 0,
+    "confirmed": 0,
+    "minor": 4
+  }
+}

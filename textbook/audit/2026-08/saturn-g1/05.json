@@ -1,0 +1,30 @@
+{
+  "grade": "saturn-g1",
+  "seq": 5,
+  "confirmed": [],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page3.sentences[index=5].segments — { \"role\": \"REL\", \"text\": \"than we notice at first.\" }",
+      "issue": "구문 역할 오태깅: 'than we notice at first'를 REL(관계절)로 표기했으나, 이는 비교급 far more를 받는 비교절(comparative clause)이지 관계절이 아니다.",
+      "evidence": "본문: \"it hides inside far more changes than we notice at first.\" 앞에 비교급 'far more changes'가 있고 그에 대응하는 'than' 절이다. 관계대명사절이 아니라 비교 구문의 종속절이다.",
+      "suggestion": "REL 대신 M(부사적 수식/비교절) 또는 별도의 비교절 표기로 수정. 다른 문장에서 부사절 종속접속사는 CONJ로 처리한 것과의 일관성도 검토.",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko 문장 [13]",
+      "issue": "원문에 없는 부사 '조용히'가 추가됨(과장/첨가)",
+      "evidence": "영문: \"the metal hands its electrons to the oxygen, and rust is slowly born.\" 번역: \"그 금속은 자신의 전자를 산소에 조용히 넘겨주고, 녹이 천천히 생겨난다.\" 원문의 'slowly'는 이미 '천천히 생겨난다'로 옮겨졌고, 'hands ... to the oxygen'에는 '조용히'에 해당하는 어구가 없다.",
+      "suggestion": "'조용히'를 삭제하여 '그 금속은 자신의 전자를 산소에 넘겨주고, 녹이 천천히 생겨난다'로 수정.",
+      "lens": "translation"
+    }
+  ],
+  "blockers": [],
+  "counts": {
+    "raw": 2,
+    "verified": 0,
+    "confirmed": 0,
+    "minor": 2
+  }
+}

@@ -5,11 +5,12 @@ import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 const here = dirname(fileURLToPath(import.meta.url));
 const root = resolve(here, '..').replace(/\\/g, '/');
-const pp = JSON.parse(readFileSync(resolve(root, 'audit/2026-07/_prepass.json'), 'utf8'));
+const MONTH = process.env.AUDIT_MONTH || '2026-07';
+const pp = JSON.parse(readFileSync(resolve(root, `audit/${MONTH}/_prepass.json`), 'utf8'));
 const DIRS = {
-  'saturn-g1': 'content/passages/2026-07',
-  'jupiter-g2': 'content/passages/2026-07-J',
-  'sun-g3': 'content/passages/2026-07-Sun',
+  'saturn-g1': `content/passages/${MONTH}`,
+  'jupiter-g2': `content/passages/${MONTH}-J`,
+  'sun-g3': `content/passages/${MONTH}-Sun`,
 };
 const tasks = pp.passages.map(p => {
   const nn = String(p.seq).padStart(2, '0');
@@ -20,6 +21,6 @@ const tasks = pp.passages.map(p => {
   }
   return { grade: p.grade, seq: p.seq, file, lexNote };
 });
-writeFileSync(resolve(root, 'audit/2026-07/_tasks.json'), JSON.stringify(tasks));
-console.log(`tasks ${tasks.length} | size ${(statSync(resolve(root, 'audit/2026-07/_tasks.json')).size / 1024).toFixed(1)}KB`);
+writeFileSync(resolve(root, `audit/${MONTH}/_tasks.json`), JSON.stringify(tasks));
+console.log(`tasks ${tasks.length} | size ${(statSync(resolve(root, `audit/${MONTH}/_tasks.json`)).size / 1024).toFixed(1)}KB`);
 console.log('sample', JSON.stringify(tasks[0]));

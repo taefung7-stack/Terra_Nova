@@ -1,0 +1,49 @@
+{
+  "grade": "jupiter-g2",
+  "seq": 11,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "answers.explanations[q_index=0].evidence / rationales, and [q_index=1].evidence, [q_index=2].evidence",
+      "issue": "해설의 근거 인용 번호('2번','3번','4번','6번','8번','9번')가 학생이 볼 수 있는 유일한 번호 체계(page3 sentences 1~20)와 어긋난다. 실제로는 훨씬 뒤 문장을 가리키므로 근거 추적이 오도된다.",
+      "evidence": "q_index=2 evidence: \"9번은 학자들이 refusing to surrender every judgment ... 지킨다고 하고, 그 앞 8번은 어떤 관습도 비판을 넘어서면 잔인함이 전통 뒤에 숨는다고 경고한다\"고 하지만, 해당 내용은 page3 sentences index 18(\"If any practice were beyond criticism ... cruelty could hide behind the word tradition\")·index 19(\"most scholars keep understanding while refusing to surrender every judgment\")에 있다. page3의 실제 8번(index 8)은 \"A tropical valley shapes life around entirely different materials.\", 9번(index 9)은 \"Neither group is closer to one correct way of living.\"로 전혀 다른 내용이다. 또 q_index=1 evidence의 \"2번 has slowly shaped its way ... to fit the land\"은 실제로는 index 4, \"3번 a learned answer to the particular problems a group has faced\"은 실제로는 index 5 문장이다.",
+      "suggestion": "인용 번호를 page3 sentences의 실제 index(예: 잔인함=18번, 판단 유보 거부=19번, has slowly shaped=4번, a learned answer=5번)로 통일하거나, 문장 번호 대신 영어 원문 인용만 남긴다. 정답 자체는 옳음.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 검증 결과 지적이 정확하다. 학생이 볼 수 있는 유일한 번호 체계는 page3.sentences의 index 1~20이며, 이는 translation_ko의 [1]~[20]과 1:1로 정확히 일치한다. 그런데 answers.explanations의 근거 인용 번호가 이 체계와 체계적으로 어긋난다.\n\nq_index=1 evidence: \"2번 has slowly shaped its way ... to fit the land, the climate, and the history\"라고 하지만 이 문장은 실제 index 4다. index 2는 \"He often decides that one habit is refined and the other is crude.\"이다. \"3번 a learned answer to the particular problems a group has faced\"는 실제 index 5이며, index 3은 \"Yet a custom that looks odd from the outside is rarely an accident.\"이다.\n\nq_index=2 evidence: \"9번은 학자들이 refusing to surrender every judgment\"는 실제 index 19(\"So most scholars keep understanding while refusing to surrender every judgment\")이고, index 9는 \"Neither group is closer to one correct way of living.\"이다. \"8번은 ... 잔인함이 전통 뒤에 숨는다\"는 실제 index 18이며, index 8은 \"A tropical valley shapes life around entirely different materials.\"이다.\n\nq_index=0 evidence도 마찬가지로 \"장소마다 다르며(4번)\"는 실제 index 6, \"문화 상대주의를 권하되(6번)\"는 실제 index 12~13, \"모든 판단을 포기하지 않는다(8~9번)\"는 실제 index 18~19를 가리킨다.\n\n모든 인용 번호가 실제 훨씬 뒤 문장을 가리켜 근거 추적이 오도되며, 파일 근거로 명확히 확인되는 실제 결함이다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "answers.explanations[*].evidence / rationales (q_index 0,1,2,3)",
+      "issue": "해설의 근거 인용에 쓰인 '~번' 문장 번호가 page3의 실제 문장 번호(1~20)와 전혀 맞지 않는다. 정답 자체는 모두 옳으나, 교사가 근거를 추적할 때 잘못된 문장을 가리켜 혼란을 준다.",
+      "evidence": "Q1 evidence: '장소마다 다르며(4번)'라 했으나 '장소마다 달라진다(changes from place to place)'는 실제로 문장[6]이고, 문장[4]는 'Each community has slowly shaped its way...'다. 또 '문화 상대주의를 권하되(6번)'라 했으나 relativism 설명은 문장[12]~[13]('The better choice is to read each custom inside its own context. This attitude, known as cultural relativism...')이며 문장[6]은 relativism이 아니다. '모든 판단을 포기하지는 않는다(8~9번)'라 했으나 'refusing to surrender every judgment'는 문장[19]다. Q2 evidence도 '2번 \"has slowly shaped...\"', '3번 \"a learned answer to the particular problems\"'라 인용하나 이는 각각 문장[4], 문장[5]다. Q4 evidence '7번 앞 \"read each custom inside its own context\"'도 실제로는 문장[12]다.",
+      "suggestion": "해설의 '~번' 인용을 page3의 실제 문장 번호(1~20) 체계에 맞게 전면 재정렬하거나, 문장 번호 대신 단락 기준으로 통일해 근거 추적이 가능하도록 수정.",
+      "lens": "answer",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 근거로 지적이 모두 확인됨. page3.sentences의 실제 index(1~20)와 answers.explanations의 '~번' 인용이 체계적으로 불일치한다. 구체 대조: (Q1 evidence, line 333) '장소마다 다르며(4번)' → 'changes from place to place / 장소마다 달라진다'는 실제 index [6](line 159-160)이고 index[4]는 'Each community has slowly shaped its way...'(line 132-135); '문화 상대주의를 권하되(6번)' → relativism 설명은 index[12]~[13](line 221-236)이며 index[6]은 'Because culture is learned...'; '모든 판단을 포기하지는 않는다(8~9번)' → 'refusing to surrender every judgment'는 index[19](line 307). (Q2 evidence, line 350) '2번 has slowly shaped...'는 실제 index[4], '3번 a learned answer to the particular problems...'는 index[5](line 148). (Q3 evidence, line 367) '9번 refusing to surrender...'는 index[19], '8번 어떤 관습도 비판을 넘어서면...'는 index[18](line 288-296). (Q4 evidence, line 385) '(A) 4번 culture is learned rather than inherited'는 index[6], '(B) 7번 앞 read each custom inside its own context'는 index[12]. rationales의 참조(8번→[18], 4번→[6], 5번→[10-11] 등)도 동일하게 어긋남. 정답 자체는 옳으나 근거 문장 번호가 실제 index와 전혀 맞지 않아 교사가 근거 추적 시 잘못된 문장을 가리키게 된다. 지적 내용이 파일과 정확히 일치하므로 실제 결함."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page3.sentences[index=2].grammar_note",
+      "issue": "'(병렬 보어)' 표기가 부정확하다. that절 내부 \"one habit is refined and the other is crude\"는 각각 주어·동사·보어를 갖춘 두 개의 절이 등위접속된 병렬 절이며, 하나의 술어에 대한 병렬 보어가 아니다.",
+      "evidence": "grammar_note: \"decide that 명사절 + 빈도부사 often (병렬 보어)\" — 본문 \"that one habit is refined and the other is crude\"는 [one habit is refined] and [the other is crude] 두 절의 병렬이다.",
+      "suggestion": "'(병렬 절)' 또는 '(that절 내 등위절 병렬)'로 수정. O 태깅 자체는 정확하므로 문구만 조정.",
+      "lens": "explanation"
+    }
+  ],
+  "blockers": [],
+  "counts": {
+    "raw": 3,
+    "verified": 2,
+    "confirmed": 2,
+    "minor": 1
+  }
+}

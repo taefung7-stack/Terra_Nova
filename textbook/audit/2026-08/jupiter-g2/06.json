@@ -1,0 +1,62 @@
+{
+  "grade": "jupiter-g2",
+  "seq": 6,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "answers.explanations[3] (q_index 3, 요약문 빈칸 완성) evidence",
+      "issue": "해설의 evidence가 본문에 없는 문장을 인용한다. \"This stubborn steadiness is called homeostasis\"라고 적었으나 본문(page1.body / page3.translation)에는 'stubborn'이라는 단어가 없고 \"This steadiness is called homeostasis\"이다. 또한 \"scientists label the mechanism negative feedback\"이라고 인용했으나 본문은 \"scientists call the mechanism negative feedback\"으로 동사가 label이 아니라 call이다. 근거가 본문과 불일치하여 검수 신뢰성을 떨어뜨린다.",
+      "evidence": "본문 page1.body: \"This steadiness is called <u>homeostasis</u>\" 및 \"scientists call the mechanism negative feedback\". 해설 evidence: \"본문 \\\"This stubborn steadiness is called homeostasis\\\"\" 및 \"본문 \\\"scientists label the mechanism negative feedback\\\"\".",
+      "suggestion": "evidence를 실제 본문 문구로 교정: \"This steadiness is called homeostasis\", \"scientists call the mechanism negative feedback\".",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "확인됨. answers.explanations[3] (q_index 3, 요약문 빈칸 완성)의 evidence(라인 362)는 본문을 두 군데 오인용한다. (1) evidence는 \"This stubborn steadiness is called homeostasis\"라 하지만, page1.body(라인 21)와 page3.translation(라인 302, \"[4] 이 안정성은\")에는 'stubborn'이라는 단어가 없고 \"This steadiness is called homeostasis\"이다. (2) evidence는 \"scientists label the mechanism negative feedback\"이라 하지만, 본문(라인 21)은 \"scientists call the mechanism negative feedback\"으로 동사가 label이 아니라 call이며 번역([10] \"부르는데\")도 call에 해당한다. 참고로 'stubborn steadiness'라는 표현은 page4.vocab 예문(라인 383)에는 존재하나, evidence가 인용 대상으로 지목한 '본문'(body/translation)에는 없다. 따라서 evidence가 본문과 불일치한다는 지적은 파일 근거로 명확히 성립한다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "answers.explanations[3].evidence (q_index 3, 요약문 빈칸 완성)",
+      "issue": "정답 근거로 인용한 본문 문장이 실제 본문(page1.body)과 다르게 왜곡 인용되어 있다. 정답 (A)homeostasis / (B)feedback 자체는 타당하나, 해설의 근거 인용문이 존재하지 않는 문구를 본문인 것처럼 제시한다.",
+      "evidence": "해설 evidence: \"This stubborn steadiness is called homeostasis\" 및 \"scientists label the mechanism negative feedback\". 그러나 실제 본문은 \"This steadiness is called <u>homeostasis</u>\" (stubborn 없음), 그리고 \"scientists call the mechanism negative feedback\" (label이 아니라 call).",
+      "suggestion": "evidence 인용을 본문 원문 그대로 수정: \"This steadiness is called homeostasis\", \"scientists call the mechanism negative feedback\".",
+      "lens": "answer",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "지적이 확인된다. answers.explanations[3].evidence(q_index 3, line 362)는 근거로 \"This stubborn steadiness is called homeostasis\" 및 \"scientists label the mechanism negative feedback\"를 본문(본문에서 인용)이라 제시한다. 그러나 실제 page1.body(line 21)는 (1) \"This steadiness is called <u>homeostasis</u>\" — 'stubborn'이 없고, (2) \"scientists call the mechanism negative feedback\" — 'label'이 아니라 'call'이다. 두 인용문 모두 본문과 다르게 왜곡되어 있다. 'stubborn steadiness'는 page4.vocab의 예문(line 383)에만 존재하지만, evidence는 명시적으로 '본문'을 근거로 인용하므로 본문(page1.body)과의 불일치가 성립한다. 정답 (A)homeostasis/(B)feedback 자체는 타당하나 근거 인용문 왜곡은 실제 결함이다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page4.vocab[0] homeostasis, examples[0] / page4.vocab[1] steadiness는 정상",
+      "issue": "어휘 예문이 본문 문장을 인용한다고 제시되나 본문에 없는 'stubborn'이 삽입되어 본문과 불일치한다. 어휘 정오답 판별에 직접 관여하진 않으나 본문 근거 일관성을 해친다.",
+      "evidence": "vocab homeostasis 예문: \"This stubborn steadiness is called homeostasis.\" 본문 page1.body: \"This steadiness is called homeostasis\" (stubborn 없음). 참고로 vocab steadiness 예문은 \"This steadiness is called homeostasis.\"로 올바르게 되어 있어 두 예문이 서로 모순된다.",
+      "suggestion": "homeostasis 예문에서 'stubborn'을 삭제하여 본문과 일치시킨다.",
+      "lens": "answer",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 근거로 지적이 확인됨. page1.body(line 21)는 \"This steadiness is called homeostasis\"로 'stubborn'이 없다. 그러나 page4.vocab[0] homeostasis의 examples[0](line 383)는 \"This stubborn steadiness is called homeostasis.\"로 본문에 없는 'stubborn'을 삽입해 본문과 불일치한다. 반면 page4.vocab[1] steadiness의 examples[0](line 394)는 \"This steadiness is called homeostasis.\"로 올바르며, 두 예문이 서로 모순된다. 지적은 정확한 사실적 근거를 가진 실제 결함이다(본문 근거 일관성 훼손). 정오답 판별에는 직접 관여하지 않아 심각도는 낮은 warn 수준이나, false positive가 아니다. 참고로 answers.explanations[3].evidence(line 362)에도 동일한 'stubborn' 오인용이 존재해 정황이 보강된다."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page4.vocab[0] homeostasis examples[0]",
+      "issue": "어휘 예문이 본문 문장을 인용한다고 볼 수 있는 형태인데(\"This stubborn steadiness is called homeostasis.\") 본문에는 'stubborn'이 없다. 본문 기반 예문이라면 본문과 일치해야 하며, 위 해설 evidence의 'stubborn' 오류와 동일한 원인으로 보인다.",
+      "evidence": "본문: \"This steadiness is called homeostasis.\" / vocab 예문: \"This stubborn steadiness is called homeostasis.\"",
+      "suggestion": "본문과 동일하게 'stubborn'을 삭제하여 \"This steadiness is called homeostasis.\"로 통일.",
+      "lens": "explanation"
+    }
+  ],
+  "blockers": [],
+  "counts": {
+    "raw": 4,
+    "verified": 3,
+    "confirmed": 3,
+    "minor": 1
+  }
+}
