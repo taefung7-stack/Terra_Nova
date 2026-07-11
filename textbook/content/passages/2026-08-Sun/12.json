@@ -1,0 +1,553 @@
+{
+  "schema_version": "2.2",
+  "id": "2026-08-Sun-12",
+  "meta": {
+    "month": "2026-08-Sun",
+    "sequence": 12,
+    "subject": "수학",
+    "linked_unit": "미적분II IV-1 급수와 테일러 근사",
+    "part_ko": "무한을 더해 값을 얻다",
+    "achievement_standard": "12미적II04-01",
+    "achievement_verified": true,
+    "difficulty": "중간",
+    "cognitive_skill": "요지",
+    "lexile": "1120L",
+    "ar_level": 8.4,
+    "key_concepts": [
+      "무한급수",
+      "수렴",
+      "테일러 근사",
+      "오차 한계"
+    ]
+  },
+  "page1": {
+    "title": "How a Machine Adds Up Forever",
+    "subtitle": "The quiet trick that turns an endless sum into a single number.",
+    "body": "A calculator has no secret table of answers hidden somewhere inside it. When you ask for the sine of an angle or the value of the number e, it does not simply look the answer up. Instead, it patiently adds together a long string of simple terms, one after another. This endless sum of terms is what mathematicians call an infinite <u>series</u>. The surprising part is that such an unending sum can settle on a single, exact value.\n\nAt first this sounds impossible, since adding numbers forever should grow without any limit. Yet many series quietly do the opposite and converge. Their terms shrink so quickly that the running total creeps toward a fixed number and stops moving in any meaningful way. Each new term you add is smaller than the last, so it nudges the total by an ever tinier amount.\n\nThe real power appears when we use a series to copy a curve. A Taylor series rebuilds a complicated function as a plain sum of simple powers of x. Near a chosen point, the first few terms already trace the curve with startling accuracy. Adding more terms sharpens the match, the way extra brushstrokes bring a rough sketch into focus. This is why <u>a machine can weigh infinity and hand back a finite answer</u>.\n\nBecause of this, hard functions become easy for a computer to handle. To find a stubborn value, the machine keeps only the leading terms and quietly discards the tiny remainder. The error is not ignored but bounded, small enough to trust yet never quite zero. So the smooth curve on your screen and the steady digits in a calculator both rest on the same quiet trick. An impossible infinity has been tamed into a practical <blank>.",
+    "illustration": "../../assets/illustrations/2026-08-Sun/12.jpg",
+    "illustration_caption": "무한히 많은 항을 더해도 그 합이 하나의 값에 수렴하면, 기계는 유한한 답을 돌려줄 수 있다.",
+    "gloss_extra": [
+      { "term": "converge", "ko": "수렴하다" },
+      { "term": "remainder", "ko": "나머지, 잔여항" },
+      { "term": "startling", "ko": "놀라운, 깜짝 놀랄 만한" }
+    ]
+  },
+  "page2": {
+    "questions": [
+      {
+        "type": "mock_objective",
+        "style": "요지",
+        "stem": "다음 글의 요지로 가장 적절한 것은?",
+        "choices": [
+          "A calculator stores every answer in a hidden table and just reads it back.",
+          "Adding numbers forever must always grow without any fixed limit.",
+          "A Taylor series copies a curve but is far too rough to be useful.",
+          "A converging series lets a machine turn an endless sum into a finite value.",
+          "The error left by a truncated series can never be measured or trusted."
+        ],
+        "answer_index": 3
+      },
+      {
+        "type": "mock_objective",
+        "style": "빈칸 추론",
+        "stem": "윗글의 밑줄 친 빈칸에 들어갈 말로 가장 적절한 것은?",
+        "choices": [
+          "mystery",
+          "accident",
+          "answer",
+          "obstacle",
+          "silence"
+        ],
+        "answer_index": 2
+      },
+      {
+        "type": "mock_objective",
+        "style": "함의 추론",
+        "stem": "윗글의 밑줄 친 a machine can weigh infinity and hand back a finite answer 가 다음 글에서 의미하는 바로 가장 적절한 것은?",
+        "choices": [
+          "a machine must physically store an infinite list of numbers to compute",
+          "a converging series lets a few terms yield one exact, usable value",
+          "any endless sum is impossible for a computer to work with at all",
+          "the more terms are dropped, the more accurate the result becomes",
+          "the final answer is always slightly wrong and cannot be trusted"
+        ],
+        "answer_index": 1
+      },
+      {
+        "type": "school_descriptive",
+        "style": "요약문 빈칸 완성",
+        "prompt": "다음은 본문의 요약문이다. 본문의 내용을 바탕으로 빈칸 (A), (B)에 들어갈 말을 <조건>에 맞게 영어 한 단어로 각각 쓰시오. <조건> 본문에서 제시된 단어를 그대로 활용할 것.",
+        "hints": [
+          "series",
+          "converge",
+          "terms",
+          "finite",
+          "remainder"
+        ],
+        "summary_template": "Because an infinite <blank> (A) can converge, its running total settles on one exact value. A machine keeps only the leading terms and discards the tiny remainder, so it can hand back a <blank> (B) answer.",
+        "model_answer": "(A) series  (B) finite"
+      }
+    ],
+    "textbook_tieback": {
+      "unit_label": "미적분II IV · 급수와 테일러 근사",
+      "body_ko": "고3 미적분II IV단원에서는 무한급수와 그 수렴을 다룬다. 무한히 많은 항을 더하면 무한히 커질 것 같지만, 각 항이 충분히 빠르게 작아지면 부분합이 하나의 값에 수렴한다. 이렇게 수렴하는 급수를 이용하면 sin, cos, e 같은 복잡한 함수도 x의 거듭제곱들의 합인 테일러 급수로 다시 쓸 수 있다. 어떤 점 근처에서는 앞쪽 몇 개의 항만으로도 함수의 값을 놀랄 만큼 정확하게 근사한다. 계산기와 컴퓨터는 이 성질을 이용해, 앞쪽 항만 남기고 나머지를 버리되 그 오차를 일정한 범위 안으로 한정한다. 그래서 무한을 유한한 계산으로 바꾸어 실제 값을 얻는다.",
+      "tags": [
+        "무한급수",
+        "수렴",
+        "테일러급수",
+        "오차한계"
+      ],
+      "visual_aid": {
+        "type": "emoji_flow",
+        "title": "무한을 유한으로 바꾸는 흐름",
+        "steps": [
+          {
+            "emoji": "➕",
+            "label": "무한급수",
+            "note": "항을 끝없이 더함"
+          },
+          {
+            "emoji": "🎯",
+            "label": "수렴",
+            "note": "한 값에 정착"
+          },
+          {
+            "emoji": "📈",
+            "label": "테일러 근사",
+            "note": "곡선을 다항식으로"
+          },
+          {
+            "emoji": "✅",
+            "label": "유한한 답",
+            "note": "오차를 한정해 계산"
+          }
+        ]
+      }
+    }
+  },
+  "page3": {
+    "sentences": [
+      {
+        "index": 1,
+        "segments": [
+          { "role": "S", "text": "A calculator" },
+          { "role": "V", "text": "has" },
+          { "role": "O", "text": "no secret table of answers" },
+          { "role": "M", "text": "hidden somewhere inside it.", "note": "과거분사 후치 수식" }
+        ],
+        "grammar_note": "3형식 + 과거분사 수식"
+      },
+      {
+        "index": 2,
+        "segments": [
+          { "role": "CONJ", "text": "When" },
+          { "role": "M", "text": "you ask for the sine of an angle or the value of the number e,", "note": "때 부사절" },
+          { "role": "S", "text": "it" },
+          { "role": "V", "text": "does not simply look" },
+          { "role": "O", "text": "the answer" },
+          { "role": "M", "text": "up.", "note": "구동사 look up" }
+        ],
+        "grammar_note": "when 부사절 + 구동사(look up)"
+      },
+      {
+        "index": 3,
+        "segments": [
+          { "role": "M", "text": "Instead," },
+          { "role": "S", "text": "it" },
+          { "role": "M", "text": "patiently" },
+          { "role": "V", "text": "adds together" },
+          { "role": "O", "text": "a long string of simple terms," },
+          { "role": "M", "text": "one after another.", "note": "동격 부사구" }
+        ],
+        "grammar_note": "3형식 + 부사구"
+      },
+      {
+        "index": 4,
+        "segments": [
+          { "role": "S", "text": "This endless sum of terms" },
+          { "role": "V", "text": "is" },
+          { "role": "C", "text": "what mathematicians call an infinite series.", "note": "what 관계절 보어(call O C)" }
+        ],
+        "grammar_note": "2형식 + what 관계절(call O C)"
+      },
+      {
+        "index": 5,
+        "segments": [
+          { "role": "S", "text": "The surprising part" },
+          { "role": "V", "text": "is" },
+          { "role": "C", "text": "that such an unending sum can settle on a single, exact value.", "note": "that 명사절 보어" }
+        ],
+        "grammar_note": "2형식 + that 명사절 보어"
+      },
+      {
+        "index": 6,
+        "segments": [
+          { "role": "M", "text": "At first" },
+          { "role": "S", "text": "this" },
+          { "role": "V", "text": "sounds" },
+          { "role": "C", "text": "impossible," },
+          { "role": "CONJ", "text": "since" },
+          { "role": "M", "text": "adding numbers forever should grow without any limit.", "note": "이유 부사절(동명사 주어)" }
+        ],
+        "grammar_note": "2형식 + since 부사절(동명사 주어)"
+      },
+      {
+        "index": 7,
+        "segments": [
+          { "role": "CONJ", "text": "Yet" },
+          { "role": "S", "text": "many series" },
+          { "role": "M", "text": "quietly" },
+          { "role": "V", "text": "do" },
+          { "role": "O", "text": "the opposite" },
+          { "role": "CONJ", "text": "and" },
+          { "role": "V", "text": "converge." }
+        ],
+        "grammar_note": "3형식 + and 등위 자동사"
+      },
+      {
+        "index": 8,
+        "segments": [
+          { "role": "S", "text": "Their terms" },
+          { "role": "V", "text": "shrink" },
+          { "role": "M", "text": "so quickly", "note": "so ~ that 구문" },
+          { "role": "CONJ", "text": "that" },
+          { "role": "S", "text": "the running total" },
+          { "role": "V", "text": "creeps" },
+          { "role": "M", "text": "toward a fixed number" },
+          { "role": "CONJ", "text": "and" },
+          { "role": "V", "text": "stops moving" },
+          { "role": "M", "text": "in any meaningful way.", "note": "결과 부사절" }
+        ],
+        "grammar_note": "so ~ that 결과절 + 등위동사"
+      },
+      {
+        "index": 9,
+        "segments": [
+          { "role": "S", "text": "Each new term" },
+          { "role": "REL", "text": "you add", "note": "관계대명사 목적격 생략" },
+          { "role": "V", "text": "is" },
+          { "role": "C", "text": "smaller than the last,", "note": "비교급" },
+          { "role": "CONJ", "text": "so" },
+          { "role": "S", "text": "it" },
+          { "role": "V", "text": "nudges" },
+          { "role": "O", "text": "the total" },
+          { "role": "M", "text": "by an ever tinier amount.", "note": "결과 등위절" }
+        ],
+        "grammar_note": "관계대명사 생략 + 비교급 + so 결과절"
+      },
+      {
+        "index": 10,
+        "segments": [
+          { "role": "S", "text": "The real power" },
+          { "role": "V", "text": "appears" },
+          { "role": "M", "text": "when we use a series to copy a curve.", "note": "때 부사절(to부정사)" }
+        ],
+        "grammar_note": "1형식 + when 부사절"
+      },
+      {
+        "index": 11,
+        "segments": [
+          { "role": "S", "text": "A Taylor series" },
+          { "role": "V", "text": "rebuilds" },
+          { "role": "O", "text": "a complicated function" },
+          { "role": "M", "text": "as a plain sum of simple powers of x.", "note": "as 전치사구" }
+        ],
+        "grammar_note": "3형식 + as 전치사구"
+      },
+      {
+        "index": 12,
+        "segments": [
+          { "role": "M", "text": "Near a chosen point,", "note": "장소 부사구" },
+          { "role": "S", "text": "the first few terms" },
+          { "role": "M", "text": "already" },
+          { "role": "V", "text": "trace" },
+          { "role": "O", "text": "the curve" },
+          { "role": "M", "text": "with startling accuracy.", "note": "방법 부사구" }
+        ],
+        "grammar_note": "부사구 + 3형식"
+      },
+      {
+        "index": 13,
+        "segments": [
+          { "role": "S", "text": "Adding more terms", "note": "동명사 주어" },
+          { "role": "V", "text": "sharpens" },
+          { "role": "O", "text": "the match," },
+          { "role": "M", "text": "the way extra brushstrokes bring a rough sketch into focus.", "note": "the way 유사관계절" }
+        ],
+        "grammar_note": "동명사 주어 + the way(~하는 방식으로)"
+      },
+      {
+        "index": 14,
+        "segments": [
+          { "role": "S", "text": "This" },
+          { "role": "V", "text": "is" },
+          { "role": "C", "text": "why a machine can weigh infinity and hand back a finite answer.", "note": "관계부사 why" }
+        ],
+        "grammar_note": "2형식 + why 관계부사절(and 등위동사)"
+      },
+      {
+        "index": 15,
+        "segments": [
+          { "role": "M", "text": "Because of this,", "note": "이유 전치사구" },
+          { "role": "S", "text": "hard functions" },
+          { "role": "V", "text": "become" },
+          { "role": "C", "text": "easy" },
+          { "role": "M", "text": "for a computer to handle.", "note": "to부정사 의미상 주어" }
+        ],
+        "grammar_note": "2형식 + for + to부정사"
+      },
+      {
+        "index": 16,
+        "segments": [
+          { "role": "M", "text": "To find a stubborn value,", "note": "목적 부정사" },
+          { "role": "S", "text": "the machine" },
+          { "role": "V", "text": "keeps" },
+          { "role": "O", "text": "only the leading terms" },
+          { "role": "CONJ", "text": "and" },
+          { "role": "M", "text": "quietly" },
+          { "role": "V", "text": "discards" },
+          { "role": "O", "text": "the tiny remainder.", "note": "등위 3형식" }
+        ],
+        "grammar_note": "목적 부정사 + and 등위 3형식"
+      },
+      {
+        "index": 17,
+        "segments": [
+          { "role": "S", "text": "The error" },
+          { "role": "V", "text": "is not ignored" },
+          { "role": "CONJ", "text": "but" },
+          { "role": "V", "text": "bounded,", "note": "not A but B 수동태" },
+          { "role": "C", "text": "small enough to trust yet never quite zero.", "note": "enough to 용법" }
+        ],
+        "grammar_note": "not A but B(수동태) + enough to"
+      },
+      {
+        "index": 18,
+        "segments": [
+          { "role": "CONJ", "text": "So" },
+          { "role": "S", "text": "the smooth curve on your screen and the steady digits in a calculator" },
+          { "role": "M", "text": "both" },
+          { "role": "V", "text": "rest" },
+          { "role": "M", "text": "on the same quiet trick.", "note": "rest on ~에 기대다" }
+        ],
+        "grammar_note": "주어 병렬 + rest on"
+      },
+      {
+        "index": 19,
+        "segments": [
+          { "role": "S", "text": "An impossible infinity" },
+          { "role": "V", "text": "has been tamed", "note": "현재완료 수동태" },
+          { "role": "M", "text": "into a practical answer.", "note": "tame A into B" }
+        ],
+        "grammar_note": "현재완료 수동태 + into"
+      }
+    ],
+    "translation_ko": "[1] 계산기 안에는 답을 적어 둔 비밀 표 같은 것이 어딘가에 숨겨져 있지 않다. [2] 어떤 각의 사인 값이나 수 e의 값을 물으면, 그것은 그저 답을 찾아보는 것이 아니다. [3] 대신 그것은 단순한 항들을 하나하나 길게 이어 인내심 있게 더해 나간다. [4] 이 끝없는 항들의 합을 수학자들은 무한급수라고 부른다. [5] 놀라운 점은 그런 끝나지 않는 합이 하나의 정확한 값에 정착할 수 있다는 것이다. [6] 처음에는 이것이 불가능하게 들리는데, 숫자를 영원히 더하면 아무 한계 없이 커져야 하기 때문이다. [7] 그러나 많은 급수는 조용히 그 반대로 행동하며 수렴한다. [8] 그 항들이 너무나 빠르게 작아져서, 누적 합이 어떤 고정된 수를 향해 서서히 다가가다가 의미 있는 정도로는 더 이상 움직이지 않게 된다. [9] 당신이 더하는 각각의 새 항은 앞의 것보다 작아서, 총합을 점점 더 미미한 양만큼만 밀어 준다. [10] 진짜 위력은 우리가 급수를 이용해 곡선을 본뜰 때 나타난다. [11] 테일러 급수는 복잡한 함수를 x의 단순한 거듭제곱들의 순수한 합으로 다시 짜낸다. [12] 선택된 한 점 근처에서는, 앞쪽 몇 개의 항만으로도 이미 그 곡선을 놀랄 만큼 정확하게 그려 낸다. [13] 항을 더 더하면, 마치 덧칠한 붓질이 거친 밑그림을 또렷하게 만들 듯 그 일치도가 더 날카로워진다. [14] 이것이 기계가 무한을 저울에 달아 유한한 답을 돌려줄 수 있는 이유다. [15] 이 덕분에 어려운 함수도 컴퓨터가 다루기 쉬워진다. [16] 다루기 힘든 값을 구하려고, 기계는 앞쪽 항만 남기고 아주 작은 나머지는 조용히 버린다. [17] 그 오차는 무시되는 것이 아니라 한정되어, 믿을 만큼 충분히 작지만 결코 완전한 영은 아니다. [18] 그래서 화면 속 매끄러운 곡선과 계산기 속 안정된 숫자는 둘 다 같은 조용한 요령에 기대고 있다. [19] 불가능해 보이던 무한이 실용적인 답으로 길들여진 것이다."
+  },
+  "answers": {
+    "explanations": [
+      {
+        "q_index": 0,
+        "q_style": "요지",
+        "correct": 3,
+        "evidence": "글은 끝없는 항의 합인 무한급수가 수렴해 하나의 정확한 값에 정착하며(4~5번), 테일러 급수로 곡선을 근사해(10~12번) 기계가 앞쪽 항만 남기고 나머지를 버려 유한한 답을 돌려준다(14, 16번)고 한다. 따라서 '수렴하는 급수가 기계로 하여금 끝없는 합을 유한한 값으로 바꾸게 한다'가 요지다.",
+        "rationales": [
+          "1번에서 계산기는 답을 적은 비밀 표가 없다고 했으므로 '숨겨진 표를 읽는다'는 정반대다.",
+          "많은 급수가 오히려 수렴한다고 했으므로 '항상 한계 없이 커진다'는 본문과 모순된다.",
+          "테일러 급수는 곡선을 놀랄 만큼 정확히 근사한다고 했으므로 '너무 거칠어 쓸모없다'는 틀렸다.",
+          "(정답) 수렴하는 급수 → 테일러 근사 → 유한한 답이라는 글 전체 논지를 정확히 요약한다.",
+          "오차는 무시되는 것이 아니라 한정되어 믿을 만하다고 했으므로 '측정도 신뢰도 불가'는 정반대다."
+        ],
+        "key_terms": [
+          { "en": "converge", "ko": "수렴하다" },
+          { "en": "finite", "ko": "유한한" }
+        ]
+      },
+      {
+        "q_index": 1,
+        "q_style": "빈칸 추론",
+        "correct": 2,
+        "evidence": "빈칸은 \"An impossible infinity has been tamed into a practical ___\"의 자리다. 2번은 계산기가 answer를 찾는다고 하고, 14번은 기계가 \"a finite answer\"를 돌려준다고 한다. 즉 무한이 실용적인 '답(answer)'으로 바뀐다는 뜻이므로 answer가 적절하다.",
+        "rationales": [
+          "'수수께끼(mystery)'는 값을 정확히 계산해 낸다는 흐름과 반대다.",
+          "'우연(accident)'은 정확히 수렴한다는 본문 주장과 모순된다.",
+          "(정답) answer는 2번·14번의 answer와 호응하며, 무한이 실용적 결과로 바뀐다는 문맥과 일치한다.",
+          "'장애물(obstacle)'은 무한을 다루기 쉬워졌다는 15번과 어긋난다.",
+          "'침묵(silence)'은 본문 맥락과 무관하다."
+        ],
+        "key_terms": [
+          { "en": "answer", "ko": "답" },
+          { "en": "finite", "ko": "유한한" }
+        ]
+      },
+      {
+        "q_index": 2,
+        "q_style": "함의 추론",
+        "correct": 1,
+        "evidence": "14번 앞의 12번은 \"the first few terms already trace the curve with startling accuracy\"라 하고, 16번은 기계가 앞쪽 항만 남기고 나머지를 버린다고 한다. 따라서 weigh infinity and hand back a finite answer는 '수렴하는 급수 덕에 몇 개의 항만으로 하나의 정확하고 쓸 수 있는 값을 얻는다'를 뜻한다.",
+        "rationales": [
+          "'무한한 수의 목록을 실제로 저장해야 한다'는 앞쪽 항만 남긴다는 16번과 모순된다.",
+          "(정답) 수렴하는 급수 덕분에 몇 개의 항만으로 하나의 정확하고 쓸 수 있는 값을 얻는다는 본문 의미 그대로다.",
+          "'끝없는 합은 컴퓨터가 전혀 다룰 수 없다'는 무한을 유한하게 다룬다는 논지와 정반대다.",
+          "'항을 더 버릴수록 정확해진다'는 항을 더하면 일치도가 높아진다는 13번과 모순된다.",
+          "'최종 답이 늘 틀려 신뢰할 수 없다'는 오차가 한정되어 믿을 만하다는 17번과 어긋난다."
+        ],
+        "key_terms": [
+          { "en": "converge", "ko": "수렴하다" },
+          { "en": "finite", "ko": "유한한" }
+        ]
+      },
+      {
+        "q_index": 3,
+        "q_style": "요약문 빈칸 완성",
+        "correct": null,
+        "model_answer_en": "(A) series  (B) finite",
+        "evidence": "(A)는 수렴할 수 있는 무한한 것 → 4번 \"an infinite series\". (B)는 기계가 돌려주는 답의 성질 → 14번 \"a finite answer\".",
+        "rationales": [
+          "(A) series — '수렴할 수 있는 무한한 것'은 4번의 an infinite series와 일치한다.",
+          "(B) finite — '기계가 돌려주는 답의 성질'은 14번의 a finite answer와 일치한다."
+        ],
+        "key_terms": [
+          { "en": "series", "ko": "급수" },
+          { "en": "finite", "ko": "유한한" }
+        ]
+      }
+    ]
+  },
+  "page4": {
+    "vocab": [
+      {
+        "word": "series",
+        "pos": "n.",
+        "meaning_ko": "(수학) 급수, 연속",
+        "synonyms": ["sequence"],
+        "antonyms": [],
+        "examples": [
+          { "en": "An infinite series adds endless terms together.", "ko": "무한급수는 끝없는 항들을 함께 더한다." },
+          { "en": "This series converges to a single value.", "ko": "이 급수는 하나의 값으로 수렴한다." }
+        ]
+      },
+      {
+        "word": "converge",
+        "pos": "v.",
+        "meaning_ko": "수렴하다, 한 점으로 모이다",
+        "synonyms": ["approach"],
+        "antonyms": ["diverge"],
+        "examples": [
+          { "en": "Many series quietly converge to a fixed number.", "ko": "많은 급수는 조용히 어떤 고정된 수로 수렴한다." },
+          { "en": "The two paths converge at the hilltop.", "ko": "그 두 길은 언덕 꼭대기에서 하나로 모인다." }
+        ]
+      },
+      {
+        "word": "infinite",
+        "pos": "adj.",
+        "meaning_ko": "무한한, 끝없는",
+        "synonyms": ["endless", "boundless"],
+        "antonyms": ["finite"],
+        "examples": [
+          { "en": "Mathematicians call this sum an infinite series.", "ko": "수학자들은 이 합을 무한급수라 부른다." },
+          { "en": "Space seems almost infinite to us.", "ko": "우주는 우리에게 거의 무한해 보인다." }
+        ]
+      },
+      {
+        "word": "finite",
+        "pos": "adj.",
+        "meaning_ko": "유한한, 한계가 있는",
+        "synonyms": ["limited"],
+        "antonyms": ["infinite"],
+        "examples": [
+          { "en": "The machine hands back a finite answer.", "ko": "그 기계는 유한한 답을 돌려준다." },
+          { "en": "We have only a finite amount of time.", "ko": "우리에게는 유한한 시간만이 있다." }
+        ]
+      },
+      {
+        "word": "remainder",
+        "pos": "n.",
+        "meaning_ko": "나머지, 잔여항",
+        "synonyms": ["residue"],
+        "antonyms": [],
+        "examples": [
+          { "en": "The machine discards the tiny remainder.", "ko": "그 기계는 아주 작은 나머지를 버린다." },
+          { "en": "She spent the remainder of the day resting.", "ko": "그녀는 그날의 나머지를 쉬며 보냈다." }
+        ]
+      },
+      {
+        "word": "startling",
+        "pos": "adj.",
+        "meaning_ko": "놀라운, 깜짝 놀랄 만한",
+        "synonyms": ["astonishing", "surprising"],
+        "antonyms": ["unremarkable"],
+        "examples": [
+          { "en": "A few terms trace the curve with startling accuracy.", "ko": "몇 개의 항이 곡선을 놀랄 만큼 정확하게 그려 낸다." },
+          { "en": "The result was a startling coincidence.", "ko": "그 결과는 놀라운 우연의 일치였다." }
+        ]
+      },
+      {
+        "word": "discard",
+        "pos": "v.",
+        "meaning_ko": "버리다, 폐기하다",
+        "synonyms": ["drop", "reject"],
+        "antonyms": ["keep", "retain"],
+        "examples": [
+          { "en": "It keeps the leading terms and discards the rest.", "ko": "그것은 앞쪽 항을 남기고 나머지는 버린다." },
+          { "en": "Please discard any broken parts.", "ko": "망가진 부품은 모두 버려라." }
+        ]
+      },
+      {
+        "word": "tame",
+        "pos": "v.",
+        "meaning_ko": "길들이다, 다루기 쉽게 만들다",
+        "synonyms": ["subdue"],
+        "antonyms": [],
+        "examples": [
+          { "en": "An impossible infinity has been tamed into an answer.", "ko": "불가능해 보이던 무한이 하나의 답으로 길들여졌다." },
+          { "en": "New tools tamed the wild river.", "ko": "새 기술들이 사나운 강을 길들였다." }
+        ]
+      },
+      {
+        "word": "bounded",
+        "pos": "adj.",
+        "meaning_ko": "한정된, 경계 지어진",
+        "synonyms": ["limited", "constrained"],
+        "antonyms": ["unbounded"],
+        "examples": [
+          { "en": "The error is not ignored but bounded.", "ko": "그 오차는 무시되는 것이 아니라 한정된다." },
+          { "en": "A bounded region has a clear edge.", "ko": "한정된 영역은 뚜렷한 경계를 가진다." }
+        ]
+      },
+      {
+        "word": "stubborn",
+        "pos": "adj.",
+        "meaning_ko": "다루기 힘든, 완고한",
+        "synonyms": ["obstinate"],
+        "antonyms": ["yielding"],
+        "examples": [
+          { "en": "To find a stubborn value, it keeps a few terms.", "ko": "다루기 힘든 값을 구하려 그것은 몇 개의 항을 남긴다." },
+          { "en": "The stain proved stubborn and hard to remove.", "ko": "그 얼룩은 완강해서 지우기 어려웠다." }
+        ]
+      },
+      {
+        "word": "endless",
+        "pos": "adj.",
+        "meaning_ko": "끝없는, 무한한",
+        "synonyms": ["ceaseless"],
+        "antonyms": ["brief"],
+        "examples": [
+          { "en": "This endless sum of terms can still settle.", "ko": "이 끝없는 항의 합도 하나의 값에 정착할 수 있다." },
+          { "en": "The desert stretched in an endless line.", "ko": "그 사막은 끝없는 선을 이루며 뻗어 있었다." }
+        ]
+      },
+      {
+        "word": "sharpen",
+        "pos": "v.",
+        "meaning_ko": "더 또렷하게 하다, 예리하게 하다",
+        "synonyms": ["refine"],
+        "antonyms": ["blur"],
+        "examples": [
+          { "en": "Adding more terms sharpens the match.", "ko": "항을 더 더하면 그 일치도가 더 또렷해진다." },
+          { "en": "Practice sharpened her sense of timing.", "ko": "연습은 그녀의 박자 감각을 예리하게 했다." }
+        ]
+      }
+    ]
+  }
+}
