@@ -1,6 +1,7 @@
 # 2026-08 고등 교재 검수 리포트
 
 > 생성: 2026-07-11 · 멀티에이전트 4관점 병렬 검수(언어·해설·번역·정답) + 적대검증
+> 갱신: 2026-07-12 · 외부 AI(Codex) 제보 소스 교차검증 + 추가 결함 3건 수정
 > 대상: `2026-08-Saturn(고1)`·`2026-08-Jupiter(고2)` 풀북 각 20지문(총 40지문)
 
 | 학년 | 차단 | 권고 | 경미 |
@@ -11,10 +12,30 @@
 
 ## 판정 요약
 
-- 🚫 **차단(내용) 1건 → 수정 완료**: 고2 Jupiter #12 빈칸 정답(`randomness`, 불가산 단수) 대입 시 관계절 `that quiet randomness obey`가 주술 수일치 위반 비문 → `obeys`로 정정(body + page3 REL). validator 통과.
-- 🖍️ **차단(시각/글리프) 1건 → 수정 완료**: 두 교재 전 지문의 아포스트로피 `'`(U+0027)가 Pretendard `.notdef`로 공백화되어 `energy's`가 `energy s`로 깨짐. `styles/tokens.css` PretendardTN unicode-range에 U+0027 추가 → 단일지문 재렌더로 정상 확인. **⚠️ 두 풀북 PDF 재빌드 필요**(현 dist PDF는 수정 전 폰트).
-- 권고 58건은 대부분 **page3 해설의 문장 번호 인용 오차**(index 어긋남)와 **구문 역할 오태깅**. 정답 자체는 타당, 근거 표기 정정 권장.
-- ✅ **정답 오류·빈칸 정답 노출·삽화 placeholder 굳음: 0건.** (삽화는 원래 미제작 상태 — 40지문 전부 정상적인 placeholder 박스, 레이스로 인한 굳음 아님.)
+- 🚫 **차단(내용) 2건 → 모두 수정 완료**:
+  - 고2 Jupiter #12 빈칸 정답(`randomness`, 불가산 단수) 대입 시 관계절 `that quiet randomness obey`가 주술 수일치 위반 비문 → `obeys`로 정정(body + page3 REL).
+  - **고1 Saturn #3 Q1 정답 오류(Codex 제보, REAL)**: `answer_index`가 오답 선지(`Prejudice disappears on its own once enough laws are written down`)를 가리켰으나 evidence·rationale은 정답 선지(`A fair multicultural society respects each culture…`)를 설명 → 정답을 index 2로 정정, rationale 재배치. 렌더 정답 ③ 확인.
+- 🖍️ **차단(시각/글리프) 1건 → 수정 완료**: 두 교재 전 지문의 아포스트로피 `'`(U+0027)가 Pretendard `.notdef`로 공백화되어 `energy's`가 `energy s`로 깨짐. `styles/tokens.css` PretendardTN unicode-range에 U+0027 추가. **두 풀북 재빌드 완료** — 재빌드본 육안 정상.
+- ⚠️ **과학 개념 오류 2건 → 수정 완료(Codex 제보 교차검증)**:
+  - 고1 Saturn #14: 인간이 온실가스를 늘려 생기는 것을 `greenhouse effect`라 단정(자연 온실효과 설명과 자기모순) → 밑줄 `greenhouse effect`는 자연 온난화 정의에 붙이고 인간 영향은 "the natural warming grows too strong"으로 구분. body+page3+번역+vocab 동기화.
+  - 고1 Saturn #5: 전자 거래 '전체'를 `oxidation`이라 호칭(둘째 문단 정의와 상충) → "When a substance loses those electrons, we call that half oxidation"으로 한정(밑줄·vocab·Q2 정답 유지). body+page3+번역+vocab 동기화.
+- 권고 58건은 대부분 **page3 해설의 문장 번호 인용 오차**(index 어긋남)와 **구문 역할 오태깅**. 정답 자체는 타당, 근거 표기 정정 권장(별도 사이클).
+- ✅ **삽화 placeholder 굳음: 0건**(placeholder count 0/0). 삽화는 원래 미제작 상태 — 완성 최종본은 삽화 제작 후 finalize 단계 남음.
+
+### Codex 제보 교차검증 결과 (2026-07-12)
+외부 AI 검수는 "판정"이 아니라 "제보" — 소스 대조로 REAL/FALSE 분류(원칙: audit/EXTERNAL-REVIEW-INTAKE.md).
+
+| 제보 | 판정 | 조치 |
+|------|------|------|
+| 삽화 40지문 placeholder | REAL(기지) | 삽화 미제작 — 완성본 finalize 시 삽입 |
+| Saturn D03 Q1 정답 오류 | **REAL(차단)** | 정답 index 2로 정정 ✅ |
+| Saturn D14 greenhouse effect 개념 | **REAL(강권)** | 자연/강화 구분으로 수정 ✅ |
+| Saturn D05 oxidation=전자거래 전체 | **REAL(개념)** | "losing side"로 한정 수정 ✅ |
+| Jupiter D05 중화 pH7 일반화 | FALSE | 본문이 이미 "strong acid/strong base" 명시 → pH7 정당, 수정 불필 |
+| Jupiter D14 "no narrator"/"personal voice" 단정 | 경미 | 이미 장르 전형 서술 톤 — `usually` 삽입은 개선이나 결함 아님 |
+| Saturn D01 Syntax [1] 두 문장 묶음 | 경미 | 문장분석 분리 권장(기존 권고선) |
+| Lexile 라벨 괴리(J D03,05,07~09,13~20) | 경미 | 라벨↔실측 괴리 16건 — 기존 prepass 기록, 라벨 재점검 권고 |
+| 주간 단어 중복 | 경미 | 같은 주 내 중복 어휘 정리 권고 |
 
 ## 시각/글리프 QC (풀북 산출물)
 
