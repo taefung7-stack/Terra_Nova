@@ -118,18 +118,12 @@
   }
   .notice ul li { margin-bottom: 2pt; }
 
-  /* Theme palette is driven by month, matching textbook/styles/tokens.css.
-     2026-06 = purple (Majorelle Blue / Persian Indigo) — unified across all levels. */
-  body[data-month="2026-06"] {
-    --tn-theme:      #7546E8;   /* Majorelle Blue */
-    --tn-theme-deep: #2D1C7F;   /* Persian Indigo */
-    --tn-theme-soft: #E8E2FA;
-  }
-  body[data-month="2026-05"] { --tn-theme: #6EA8FF; --tn-theme-deep: #2B5FC4; --tn-theme-soft: #E3ECFD; }
-  body[data-month="2026-07"] { --tn-theme: #1CA9C9; --tn-theme-deep: #0B6D83; --tn-theme-soft: #D3E8ED; } /* 07월 한여름 바다 — tokens.css 와 동기화 */
-  body[data-month="2026-08"] { --tn-theme: #A06EE0; --tn-theme-deep: #5A2E9C; --tn-theme-soft: #ECDEFA; }
-  body[data-month="2026-09"] { --tn-theme: #F06A8F; --tn-theme-deep: #B02555; --tn-theme-soft: #FCDBE4; }
-  body[data-month="2026-10"] { --tn-theme: #4FD1C5; --tn-theme-deep: #0F7B72; --tn-theme-soft: #D6F3EF; }
+  /* 월별 팔레트(--tn-theme / -deep / -soft)는 styles/tokens.css 의
+     [data-month="YYYY-MM"] 규칙이 단일 소스다(위 <link> 로 로드).
+     colophon 은 아래 JS 로 body 에 data-month 를 설정하기만 하면
+     tokens.css 가 상단 띠 색을 자동 적용한다. 여기에 색을 다시
+     하드코딩하지 말 것 — 그러면 매달 tokens.css 와 어긋나 보라색 등
+     이전 달 색으로 굳는 회귀가 재발한다(2026-08 사고). */
 </style>
 </head>
 <body data-level="">
