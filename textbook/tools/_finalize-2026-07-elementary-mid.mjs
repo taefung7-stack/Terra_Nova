@@ -22,7 +22,9 @@ const MONTH = '2026-07';
 const ALL_BOOKS = [
   { dir: '2026-07-Mars (초5)',  level: 'mars',  cover: '7월 mars 앞표지 (초5).png',  body: 'mars_fullbook_final_complete.pdf',  out: '2026-07-Mars.pdf',  title: '초5 MARS' },
   { dir: '2026-07-Venus (초6)', level: 'venus', cover: '7월 venus 앞표지 (초6).png', body: 'venus_fullbook_final_complete.pdf', out: '2026-07-Venus.pdf', title: '초6 VENUS' },
-  { dir: '2026-07-Terra (중1)', level: 'terra', cover: '7월 terra 앞표지 (중1).png', body: 'terra_fullbook_final_complete.pdf', out: '2026-07-Terra.pdf', title: '중1 TERRA' },
+  { dir: '2026-07-Terra (중1)',   level: 'terra',   cover: '7월 terra 앞표지 (중1).png',   body: 'terra_fullbook_final_complete.pdf',   out: '2026-07-Terra.pdf',   title: '중1 TERRA' },
+  { dir: '2026-07-Neptune (중2)', level: 'neptune', cover: '7월 neptune 앞표지 (중2).png', body: 'neptune_fullbook_final_complete.pdf', out: '2026-07-Neptune.pdf', title: '중2 NEPTUNE' },
+  { dir: '2026-07-Uranus (중3)',  level: 'uranus',  cover: '7월 uranus 앞표지 (중3).png',  body: 'uranus_fullbook_final_complete.pdf',  out: '2026-07-Uranus.pdf',  title: '중3 URANUS' },
 ];
 const _levelArg = process.argv.find(a => a.startsWith('--levels='))?.split('=')[1]
   || (process.argv.includes('--levels') ? process.argv[process.argv.indexOf('--levels') + 1] : '');
