@@ -13,7 +13,7 @@ import { fileURLToPath } from 'node:url';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const siteRoot = resolve(here, '..', '..'); // Terra Nova/
-const OUT = resolve(siteRoot, 'og-cover.png');
+const OUT = resolve(siteRoot, 'og-cover-v3.png');
 
 const html = `<!doctype html><html><head><meta charset="utf-8">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
@@ -21,7 +21,7 @@ const html = `<!doctype html><html><head><meta charset="utf-8">
   * { margin:0; padding:0; box-sizing:border-box; }
   html,body { width:1200px; height:630px; }
   .card {
-    width:1200px; height:630px; background:#FFFFFF;
+    width:1200px; height:630px; background:#E9FBF4;
     display:flex; flex-direction:column; align-items:center; justify-content:center;
     font-family:'Pretendard','Noto Sans KR',Arial,sans-serif; color:#111111;
   }
