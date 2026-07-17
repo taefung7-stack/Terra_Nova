@@ -391,6 +391,9 @@ html.light .level-btn.disabled:hover{border-color:rgba(0,0,0,.12)!important;}
 html.light .level-name{color:var(--txt)!important;}
 html.light .level-target{color:var(--dim)!important;}
 html.light h1,html.light h2,html.light h3{text-shadow:none!important;}
+/* 선택된 플랜 카드(LIGHT) feature 글씨가 라이트모드에서 흰색이라 안 보이던 문제 수정(2026-07-17) */
+html.light .plan-card.selected{background:rgba(0,179,122,.08)!important;}
+html.light .plan-card.selected .plan-features li{color:var(--txt)!important;}
 </style>
 <style id="light-title-fix">
 /* 라이트 모드: 페이지 대제목 검정 + 모든 텍스트 그림자 제거 (2026-07-06 피드백) */
@@ -567,15 +570,15 @@ html.light .nav-links.open .nav-cta{color:#fff!important;background:var(--accent
             <div class="level-name">TERRA</div>
             <div class="level-target">중1학년 · 지구</div>
           </div>
-          <div class="level-btn lv-4 disabled" onclick="middleBlocked()" style="--planet-image:url('assets/3d/planets-normalized/neptune.png');">
+          <div class="level-btn lv-4" onclick="selectLevel(this,'NEPTUNE')" style="--planet-image:url('assets/3d/planets-normalized/neptune.png');">
             <div class="level-planet"></div>
             <div class="level-name">NEPTUNE</div>
-            <div class="level-target">중2학년 · 준비중</div>
+            <div class="level-target">중2학년 · 해왕성</div>
           </div>
-          <div class="level-btn lv-5 disabled" onclick="middleBlocked()" style="--planet-image:url('assets/3d/planets-normalized/uranus.png');">
+          <div class="level-btn lv-5" onclick="selectLevel(this,'URANUS')" style="--planet-image:url('assets/3d/planets-normalized/uranus.png');">
             <div class="level-planet"></div>
             <div class="level-name">URANUS</div>
-            <div class="level-target">중3학년 · 준비중</div>
+            <div class="level-target">중3학년 · 천왕성</div>
           </div>
           <div class="level-btn lv-6" onclick="selectLevel(this,'SATURN')" style="--planet-image:url('assets/3d/planets-normalized/saturn.png');">
             <div class="level-planet"></div>
@@ -918,10 +921,6 @@ html.light .nav-links.open .nav-cta{color:#fff!important;background:var(--accent
 
   // ── Level select ──
   function selectLevel(el, level) {
-    if (['NEPTUNE', 'URANUS'].includes(level)) {
-      middleBlocked();
-      return;
-    }
     document.querySelectorAll('.level-btn').forEach(b => b.classList.remove('selected'));
     el.classList.add('selected');
     selectedLevel = level;

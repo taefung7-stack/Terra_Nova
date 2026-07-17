@@ -30,9 +30,8 @@ const VALID_LEVELS = new Set([
   'neptune', 'uranus', 'saturn', 'jupiter', 'sun',
 ]);
 // 판매 개통된 레벨만 샘플 발송 (dispatch-monthly-pdf/create-order 의 ACTIVE_LEVELS 와 동기 유지).
-// 2026-07: TERRA(중1) 개통, NEPTUNE(중2)/URANUS(중3) 미개통 — 샘플 파일이 미리 업로드되어도
-// 판매 불가 상품을 광고하지 않도록 여기서도 차단한다.
-const ACTIVE_LEVELS = new Set(['mars', 'venus', 'terra', 'saturn', 'jupiter', 'sun']);
+// 2026-07-17: NEPTUNE(중2)·URANUS(중3) 샘플(이틀치 14p) 업로드 완료 → 전 학년 개통.
+const ACTIVE_LEVELS = new Set(['mars', 'venus', 'terra', 'neptune', 'uranus', 'saturn', 'jupiter', 'sun']);
 const SIGNED_URL_TTL_SEC = 3600; // 1 hour
 
 // 샘플도 교재와 동일하게 "해당 월" 것만 발송한다.

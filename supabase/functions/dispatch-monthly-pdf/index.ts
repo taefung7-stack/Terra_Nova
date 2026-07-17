@@ -36,8 +36,8 @@ const SIGNED_URL_TTL_DAYS = parseInt(Deno.env.get('SIGNED_URL_TTL_DAYS') || '30'
 
 const VALID_LEVELS = ['MARS', 'VENUS', 'TERRA', 'NEPTUNE', 'URANUS', 'SATURN', 'JUPITER', 'SUN'];
 // 2026-07 오픈 기준: Storage에 올라간 판매 가능 월간 교재만 발송.
-// 2026-06-29 TERRA(중1) 완성본·샘플 Storage 업로드 → 판매 개통. NEPTUNE/URANUS(중2·중3)는 미완료라 skip.
-const ACTIVE_LEVELS = new Set(['MARS', 'VENUS', 'TERRA', 'SATURN', 'JUPITER', 'SUN']);
+// 2026-07-17 NEPTUNE(중2)·URANUS(중3) 완성본·샘플 Storage 업로드 → 전 학년 판매 개통.
+const ACTIVE_LEVELS = new Set(['MARS', 'VENUS', 'TERRA', 'NEPTUNE', 'URANUS', 'SATURN', 'JUPITER', 'SUN']);
 const BUCKET = 'textbook-pdfs';
 
 const corsHeaders = {
