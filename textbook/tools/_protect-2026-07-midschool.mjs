@@ -10,12 +10,13 @@
  *
  * 압축: gs 이미지만 170dpi DCT, -dColorConversionStrategy=/LeaveColorUnchanged (텍스트 보존).
  *
- * 샘플 구성(사용자 지시 2026-07-16: "Day1의 4번째 페이지(=folio 8)까지"):
+ * 샘플 구성(사용자 지시 2026-07-17: "Day1~Day2 이틀치까지"):
  *   중등 완성본 페이지 순서 = 앞표지(0) · 백지(1) · 판권(2) · 백지(3) ·
  *     본문[ 목차1(4) 목차2(5) WEEK01(6) 주간지문목록(7) ·
- *           Day1 PASSAGE(8) PRACTICE(9) GRAMMAR(10) VOCAB(11) · Day2… ]
- *   → 샘플 = 앞표지(0) + 판권(2) + 본문 8p(4..11) = 10p.  (백지 1,3 제외, Day1 4p 온전 포함)
- *   VOCAB(idx 11)의 인쇄 folio 는 "8" — 사용자 스펙 "8페이지까지"와 일치.
+ *           Day1 PASSAGE(8) PRACTICE(9) GRAMMAR(10) VOCAB(11) ·
+ *           Day2 PASSAGE(12) PRACTICE(13) GRAMMAR(14) VOCAB(15) · Day3… ]
+ *   → 샘플 = 앞표지(0) + 판권(2) + 본문 12p(4..15) = 14p.  (백지 1,3 제외, Day1+Day2 각 4p 온전 포함)
+ *   Day2 VOCAB(idx 15)의 인쇄 folio 는 "12"(WEEK1·TUESDAY) — 이틀치 마지막.
  *
  * 보안: fullbook print-only(flag 4) / sample 전부차단(flag 0), owner PW = TN_PDF_OWNER_PW.
  *
@@ -44,8 +45,8 @@ const _arg = process.argv.find(a => a.startsWith('--levels='))?.split('=')[1]
 const _want = _arg ? _arg.split(',').map(s => s.trim().toLowerCase()) : null;
 const BOOKS = _want ? ALL.filter(b => _want.includes(b.level.toLowerCase())) : ALL;
 
-// 앞표지(0)+판권(2)+본문 8p(4..11) = 10p. Day1 4p(PASSAGE·PRACTICE·GRAMMAR·VOCAB) 온전 포함.
-const SAMPLE_INDICES = [0, 2, ...Array.from({ length: 8 }, (_, i) => 4 + i)];
+// 앞표지(0)+판권(2)+본문 12p(4..15) = 14p. Day1+Day2 각 4p(PASSAGE·PRACTICE·GRAMMAR·VOCAB) 온전 포함.
+const SAMPLE_INDICES = [0, 2, ...Array.from({ length: 12 }, (_, i) => 4 + i)];
 const OWNER_PW = process.env.TN_PDF_OWNER_PW || 'tn-2026-owner-DO-NOT-SHARE-9f4a2c';
 if (!process.env.TN_PDF_OWNER_PW) console.warn('⚠  TN_PDF_OWNER_PW 미설정 — 기본값 사용(운영 일관성).');
 

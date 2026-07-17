@@ -74,7 +74,12 @@
     font-family: 'Pretendard',-apple-system,BlinkMacSystemFont,sans-serif !important;
     line-height: 1.5 !important;
     -webkit-font-smoothing: antialiased !important;
-    overscroll-behavior: contain !important;
+    /* 세로 스크롤 버그(갤럭시/카카오 인앱웹뷰) 수정 2026-07-17:
+       overscroll-behavior:contain(양축)이 상·하단 fixed + 100vh 동적 툴바와 만나
+       Android WebView(삼성인터넷/카카오)에서 문서 루트 세로 스크롤을 잠그던 회귀.
+       가로 스크롤 체이닝만 막고 세로(y)는 기본 동작(auto)으로 되돌린다. */
+    overscroll-behavior-x: contain !important;
+    overscroll-behavior-y: auto !important;
     /* 1번 요청: 가로 드래그 차단 — body 전체 가로 overflow 제거 */
     overflow-x: hidden !important;
     /* 하단 탭바 공간 확보 */

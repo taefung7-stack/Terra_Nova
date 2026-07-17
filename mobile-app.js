@@ -1010,4 +1010,13 @@
   } else {
     boot();
   }
+
+  // 스크롤 잠김 안전망(2026-07-17): 모달을 연 채 페이지 이동 후 뒤로가기(bfcache 복원)로
+  // 돌아오면 backdrop 은 사라졌는데 body.m-modal-open(overflow:hidden)만 남아 스크롤이
+  // 잠긴 것처럼 보이는 케이스가 있음(특히 카카오 인앱). backdrop 이 없으면 클래스를 정리한다.
+  window.addEventListener('pageshow', function () {
+    if (!document.getElementById('m-modal-backdrop')) {
+      document.body.classList.remove('m-modal-open');
+    }
+  });
 })();

@@ -168,7 +168,7 @@ function renderTemplate(type: string, d: Record<string, any>): { subject: string
       subject: `[Terra Nova] ${lvlText} 레벨 무료 샘플 PDF`,
       html: baseWrap(`
         <h2 style="font-size:18px;margin:0 0 16px;color:#0A0A0A;">${lvlText} 레벨 샘플이 준비되었습니다 ✦</h2>
-        <p style="margin:0 0 12px;">요청하신 <strong>${lvlText}</strong> 레벨 영어 독해 샘플 PDF입니다. 일주일치 지문 + 풀이가 들어 있습니다.</p>
+        <p style="margin:0 0 12px;">요청하신 <strong>${lvlText}</strong> 레벨 영어 독해 샘플 PDF입니다. 이틀치(Day 1·2) 지문 + 풀이가 들어 있습니다.</p>
         <p style="margin:0 0 16px;">아래 버튼을 눌러 <strong>1시간 안에</strong> 다운로드해 주세요.</p>
         <div style="margin:24px 0;text-align:center;">
           <a href="${String(downloadUrl)}" style="display:inline-block;padding:13px 32px;background:#2DD4BF;color:#0A0A0A;text-decoration:none;font-weight:800;border-radius:6px;font-size:14px;letter-spacing:.5px;">PDF 다운로드 →</a>
