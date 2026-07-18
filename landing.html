@@ -4367,11 +4367,240 @@ html.light #hero-warp{display:none!important;}
       </div>
 
       <div class="book-meta">
-        <span></span>
+        <span class="bkd-hint">페이지를 클릭하면 초등·중등·고등 교재 소개가 열립니다</span>
         <span class="real">● 실제 PDF에서 그대로 발췌</span>
       </div>
     </div>
   </section>
+
+  <!-- =============== BOOK DETAIL POPUP (교재 미리보기 → 초·중·고 상세) ===============
+       book-samples 의 페이지 이미지를 클릭하면 해당 분류(초등/중등/고등) 교재의
+       특징을 소개하는 팝업이 열린다. MARS·VENUS→초등, TERRA·NEPTUNE·URANUS→중등,
+       SATURN·JUPITER·SUN→고등 (행성명→분류 매핑은 아래 스크립트 MAP 참조). -->
+  <style>
+  .bkd-hint{font-size:.78rem;color:var(--dim2);}
+  #book-samples .bkd-click{cursor:pointer;}
+  #book-samples .bkd-click::after{
+    content:'자세히 보기 +';position:absolute;left:50%;bottom:12px;transform:translateX(-50%);
+    padding:6px 14px;border-radius:999px;background:rgba(10,10,10,.85);color:var(--accent);
+    font-size:.7rem;font-weight:700;white-space:nowrap;opacity:0;pointer-events:none;
+    backdrop-filter:blur(6px);transition:opacity .22s;
+  }
+  #book-samples .bkd-click:hover::after,
+  #book-samples .bkd-click:focus-visible::after{opacity:1;}
+  html.bkd-lock,html.bkd-lock body{overflow:hidden!important;}
+
+  .bkd-overlay{
+    position:fixed;inset:0;z-index:2000;display:flex;align-items:center;justify-content:center;
+    padding:24px;background:rgba(4,5,6,.72);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    opacity:0;pointer-events:none;transition:opacity .26s ease;
+  }
+  .bkd-overlay.open{opacity:1;pointer-events:auto;}
+  .bkd-sheet{
+    position:relative;width:min(760px,100%);max-height:min(86vh,860px);overflow:hidden;
+    display:flex;flex-direction:column;background:#0E1012;border:1px solid var(--line);
+    border-radius:22px;box-shadow:0 60px 120px -30px rgba(0,0,0,.8);
+    transform:translateY(26px) scale(.97);transition:transform .3s cubic-bezier(.22,.8,.36,1);
+  }
+  .bkd-overlay.open .bkd-sheet{transform:none;}
+  html.light .bkd-sheet{background:#FFFFFF;box-shadow:0 60px 120px -30px rgba(0,0,0,.25);}
+  .bkd-body{overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding:44px 46px 38px;}
+  .bkd-close{
+    position:absolute;top:14px;right:14px;z-index:6;width:38px;height:38px;border-radius:50%;
+    border:1px solid var(--line);background:rgba(255,255,255,.06);color:var(--txt);
+    font-size:1.05rem;line-height:1;cursor:pointer;transition:border-color .15s,color .15s;
+  }
+  .bkd-close:hover{border-color:var(--accent);color:var(--accent);}
+  html.light .bkd-close{background:rgba(0,0,0,.05);}
+
+  /* 레벨별 액센트 — 초등 앰버 / 중등 블루 / 고등 민트 (라이트 모드는 진한 톤으로 대비 확보) */
+  .bkd-panel.ele{--lv:#FFC24D;--lv-soft:rgba(255,194,77,.12);}
+  .bkd-panel.mid{--lv:#5AB0FF;--lv-soft:rgba(90,176,255,.12);}
+  .bkd-panel.high{--lv:#00FFA3;--lv-soft:rgba(0,255,163,.10);}
+  html.light .bkd-panel.ele{--lv:#D98A00;--lv-soft:rgba(217,138,0,.10);}
+  html.light .bkd-panel.mid{--lv:#1D7FE0;--lv-soft:rgba(29,127,224,.10);}
+  html.light .bkd-panel.high{--lv:#00B37A;--lv-soft:rgba(0,179,122,.10);}
+
+  .bkd-kicker{
+    display:inline-block;padding:6px 14px;border-radius:999px;background:var(--lv-soft);
+    font-family:'Space Grotesk',sans-serif;font-size:.7rem;font-weight:700;
+    letter-spacing:.16em;text-transform:uppercase;color:var(--lv);
+  }
+  .bkd-title{font-size:clamp(1.55rem,3.4vw,2.1rem);font-weight:800;line-height:1.3;margin:16px 0 12px;color:var(--txt);}
+  .bkd-title em{font-style:normal;color:var(--lv);}
+  .bkd-sub{font-size:.94rem;line-height:1.75;color:var(--dim);max-width:56ch;}
+  .bkd-planets{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px;}
+  .bkd-planet{
+    display:inline-flex;align-items:center;gap:9px;padding:7px 15px 7px 8px;border-radius:999px;
+    border:1px solid var(--line);background:rgba(255,255,255,.04);
+    font-family:'Space Grotesk',sans-serif;font-size:.8rem;font-weight:700;color:var(--txt);
+  }
+  html.light .bkd-planet{background:#F4F6F7;}
+  .bkd-planet i{width:26px;height:26px;border-radius:50%;background-size:cover;background-position:center;display:block;}
+  .bkd-planet b{font-weight:600;font-size:.78rem;color:var(--dim);}
+  .bkd-feats{list-style:none;margin:26px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .bkd-feats li{display:flex;gap:13px;padding:16px 16px 15px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.03);}
+  html.light .bkd-feats li{background:#F7F9FA;}
+  .bkd-num{font-family:'Space Grotesk',sans-serif;font-size:.76rem;font-weight:700;color:var(--lv);padding-top:2px;}
+  .bkd-feats strong{display:block;font-size:.9rem;font-weight:700;color:var(--txt);margin-bottom:5px;}
+  .bkd-feats p{font-size:.82rem;line-height:1.62;color:var(--dim);}
+  .bkd-sec{margin:26px 0 12px;font-size:.74rem;font-weight:700;letter-spacing:.14em;color:var(--dim2);}
+  .bkd-pages{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+  .bkd-pg{border:1px solid var(--line);border-radius:12px;padding:12px 12px 11px;background:var(--lv-soft);}
+  .bkd-pg b{display:block;font-family:'Space Grotesk',sans-serif;font-size:.7rem;font-weight:700;color:var(--lv);}
+  .bkd-pg span{display:block;font-size:.84rem;font-weight:700;color:var(--txt);margin:3px 0 4px;}
+  .bkd-pg p{font-size:.73rem;line-height:1.5;color:var(--dim);}
+  .bkd-cta{display:flex;gap:12px;margin-top:28px;}
+  .bkd-btn{flex:1;text-align:center;padding:15px 18px;border-radius:13px;font-size:.94rem;font-weight:800;text-decoration:none;transition:all .18s;}
+  .bkd-btn.solid{background:var(--lv);color:#0A0A0A;}
+  html.light .bkd-btn.solid{color:#fff;}
+  .bkd-btn.solid:hover{filter:brightness(1.08);transform:translateY(-1px);}
+  .bkd-btn.ghost{border:1px solid var(--line);color:var(--txt);}
+  .bkd-btn.ghost:hover{border-color:var(--lv);color:var(--lv);}
+  @media(max-width:680px){
+    .bkd-overlay{padding:0;align-items:flex-end;}
+    .bkd-sheet{width:100%;max-height:92dvh;border-radius:22px 22px 0 0;border-left:0;border-right:0;border-bottom:0;transform:translateY(60px);}
+    .bkd-body{padding:34px 20px 40px;}
+    .bkd-feats{grid-template-columns:1fr;}
+    .bkd-pages{grid-template-columns:1fr 1fr;}
+    .bkd-cta{flex-direction:column;}
+  }
+  </style>
+
+  <div class="bkd-overlay" id="bkd-overlay" role="dialog" aria-modal="true" aria-hidden="true" aria-label="교재 상세 소개">
+    <div class="bkd-sheet">
+      <button class="bkd-close" type="button" aria-label="닫기" onclick="bkdClose()">✕</button>
+      <div class="bkd-body">
+
+        <!-- ── 초등 (MARS·VENUS) ── -->
+        <article class="bkd-panel ele" id="bkd-ele" hidden>
+          <span class="bkd-kicker">Elementary · 초등</span>
+          <h3 class="bkd-title">그림으로 먼저 읽고,<br><em>교과서로 남는</em> 영어.</h3>
+          <p class="bkd-sub">초5·초6이 학교에서 지금 배우는 사회·과학·수학·국어 단원을 초등 눈높이 영어 지문으로 다시 읽습니다. 재미있게 읽다 보면 교과 지식과 영어 실력이 함께 쌓입니다.</p>
+          <div class="bkd-planets">
+            <span class="bkd-planet"><i style="background-image:url('assets/3d/planets-normalized/mars.png')"></i>MARS&nbsp;<b>초5</b></span>
+            <span class="bkd-planet"><i style="background-image:url('assets/3d/planets-normalized/venus.png')"></i>VENUS&nbsp;<b>초6</b></span>
+          </div>
+          <ul class="bkd-feats">
+            <li><span class="bkd-num">01</span><div><strong>전면 와이드 삽화</strong><p>모든 지문이 큰 그림 한 장으로 시작합니다. 글보다 이미지가 먼저 이해를 열어 줘 영어가 어렵지 않습니다.</p></div></li>
+            <li><span class="bkd-num">02</span><div><strong>교과서 단원 그대로</strong><p>식물의 한살이, 민주주의, 분수의 덧셈 — 학교에서 배우는 바로 그 단원이 영어 지문이 됩니다.</p></div></li>
+            <li><span class="bkd-num">03</span><div><strong>초등 눈높이 문장</strong><p>짧은 문장과 쉬운 어휘로 난이도를 정밀하게 맞춰, 사전 없이 스스로 읽어 내는 성공 경험을 만듭니다.</p></div></li>
+            <li><span class="bkd-num">04</span><div><strong>전 지문 한글 해석·해설</strong><p>혼자 공부해도 막히지 않도록 전체 해석과 친절한 해설이 끝까지 함께 갑니다.</p></div></li>
+          </ul>
+          <div class="bkd-sec">한 지문 = 4페이지 학습 루틴</div>
+          <div class="bkd-pages">
+            <div class="bkd-pg"><b>P1</b><span>Passage</span><p>삽화 + 영어 지문</p></div>
+            <div class="bkd-pg"><b>P2</b><span>Practice</span><p>내용 확인 문제</p></div>
+            <div class="bkd-pg"><b>P3</b><span>Syntax</span><p>문장 읽기·해석</p></div>
+            <div class="bkd-pg"><b>P4</b><span>Vocab</span><p>오늘의 단어장</p></div>
+          </div>
+          <div class="bkd-cta">
+            <a class="bkd-btn solid" href="sample.html">무료 샘플 받아보기</a>
+            <a class="bkd-btn ghost" href="order.html">구독 신청</a>
+          </div>
+        </article>
+
+        <!-- ── 중등 (TERRA·NEPTUNE·URANUS) ── -->
+        <article class="bkd-panel mid" id="bkd-mid" hidden>
+          <span class="bkd-kicker">Middle · 중등</span>
+          <h3 class="bkd-title">학교 시험 유형<br><em>그대로 훈련</em>합니다.</h3>
+          <p class="bkd-sub">중1~중3 교과 단원을 영어로 읽고, 내신 시험에 나오는 4가지 유형으로 바로 풀어 봅니다. 독해력과 학교 시험 대비가 한 권에서 끝납니다.</p>
+          <div class="bkd-planets">
+            <span class="bkd-planet"><i style="background-image:url('assets/3d/planets-normalized/terra.png')"></i>TERRA&nbsp;<b>중1</b></span>
+            <span class="bkd-planet"><i style="background-image:url('assets/3d/planets-normalized/neptune.png')"></i>NEPTUNE&nbsp;<b>중2</b></span>
+            <span class="bkd-planet"><i style="background-image:url('assets/3d/planets-normalized/uranus.png')"></i>URANUS&nbsp;<b>중3</b></span>
+          </div>
+          <ul class="bkd-feats">
+            <li><span class="bkd-num">01</span><div><strong>내신형 복합 문제 세트</strong><p>한 지문마다 객관식·O/X·영↔한 전환·빈칸 서술형 4유형을 묶어 실제 시험지처럼 훈련합니다.</p></div></li>
+            <li><span class="bkd-num">02</span><div><strong>중등 교과 연계 지문</strong><p>일차함수, 지권의 변화, 글로벌 경제 — 학교 진도와 나란히 가는 소재로 배경지식까지 쌓입니다.</p></div></li>
+            <li><span class="bkd-num">03</span><div><strong>구문 분석 + 문장 단위 해석</strong><p>문장을 구조로 뜯어 읽는 습관을 만듭니다. 서술형 답안 작성의 기본기가 됩니다.</p></div></li>
+            <li><span class="bkd-num">04</span><div><strong>본문에서 뽑은 단어장</strong><p>지문에 실제 등장한 어휘만 골라 정리해 시험 직전 복습이 빠릅니다.</p></div></li>
+          </ul>
+          <div class="bkd-sec">한 지문 = 4페이지 학습 루틴</div>
+          <div class="bkd-pages">
+            <div class="bkd-pg"><b>P1</b><span>Passage</span><p>교과 연계 지문</p></div>
+            <div class="bkd-pg"><b>P2</b><span>Practice</span><p>내신 4유형 세트</p></div>
+            <div class="bkd-pg"><b>P3</b><span>Syntax</span><p>구문 분석·해석</p></div>
+            <div class="bkd-pg"><b>P4</b><span>Vocab</span><p>본문 어휘 정리</p></div>
+          </div>
+          <div class="bkd-cta">
+            <a class="bkd-btn solid" href="sample.html">무료 샘플 받아보기</a>
+            <a class="bkd-btn ghost" href="order.html">구독 신청</a>
+          </div>
+        </article>
+
+        <!-- ── 고등 (SATURN·JUPITER·SUN) ── -->
+        <article class="bkd-panel high" id="bkd-high" hidden>
+          <span class="bkd-kicker">High School · 고등</span>
+          <h3 class="bkd-title">수능 그날까지<br><em>설계된 난이도 곡선</em>.</h3>
+          <p class="bkd-sub">고1 SATURN부터 고3·N수생 SUN까지 지문 난이도가 수능 수준을 향해 계단식으로 상승합니다. 탐구 개념을 영어로 먼저 만나면, 그 지문이 수능장의 배경지식이 됩니다.</p>
+          <div class="bkd-planets">
+            <span class="bkd-planet"><i style="background-image:url('assets/3d/planets-normalized/saturn.png')"></i>SATURN&nbsp;<b>고1</b></span>
+            <span class="bkd-planet"><i style="background-image:url('assets/3d/planets-normalized/jupiter.png')"></i>JUPITER&nbsp;<b>고2</b></span>
+            <span class="bkd-planet"><i style="background-image:url('assets/3d/planets-normalized/sun.png')"></i>SUN&nbsp;<b>고3·N수생</b></span>
+          </div>
+          <ul class="bkd-feats">
+            <li><span class="bkd-num">01</span><div><strong>수능·모의평가 유형 문항</strong><p>빈칸 추론, 밑줄 함의, 어법·어휘 등 실전 유형 그대로 출제해 시험 감각을 유지합니다.</p></div></li>
+            <li><span class="bkd-num">02</span><div><strong>수능 정렬 난이도 곡선</strong><p>학년이 오를수록 지문 난이도(Lexile)가 수능 실전 수준까지 단계적으로 상승하도록 설계했습니다.</p></div></li>
+            <li><span class="bkd-num">03</span><div><strong>구문 끊어읽기 + 문장별 해석</strong><p>긴 문장을 구조 단위로 자르고 각 문장 바로 아래에 해석을 붙여 정독 훈련이 됩니다.</p></div></li>
+            <li><span class="bkd-num">04</span><div><strong>각주 어휘 + 고급 단어장</strong><p>지문 속 최고 난도 어휘를 페이지 각주와 단어장으로 이중 정리합니다.</p></div></li>
+          </ul>
+          <div class="bkd-sec">한 지문 = 4페이지 학습 루틴</div>
+          <div class="bkd-pages">
+            <div class="bkd-pg"><b>P1</b><span>Passage</span><p>수능 소재 지문·각주 어휘</p></div>
+            <div class="bkd-pg"><b>P2</b><span>Practice</span><p>수능 유형 문항</p></div>
+            <div class="bkd-pg"><b>P3</b><span>Syntax</span><p>끊어읽기·문장별 해석</p></div>
+            <div class="bkd-pg"><b>P4</b><span>Vocab</span><p>고급 어휘 단어장</p></div>
+          </div>
+          <div class="bkd-cta">
+            <a class="bkd-btn solid" href="sample.html">무료 샘플 받아보기</a>
+            <a class="bkd-btn ghost" href="order.html">구독 신청</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function(){
+    var overlay=document.getElementById('bkd-overlay');
+    if(!overlay) return;
+    var panels={ele:document.getElementById('bkd-ele'),mid:document.getElementById('bkd-mid'),high:document.getElementById('bkd-high')};
+    var MAP={MARS:'ele',VENUS:'ele',TERRA:'mid',NEPTUNE:'mid',URANUS:'mid',SATURN:'high',JUPITER:'high',SUN:'high'};
+    var lastFocus=null;
+    function bkdOpen(key){
+      Object.keys(panels).forEach(function(k){ if(panels[k]) panels[k].hidden=(k!==key); });
+      overlay.classList.add('open');
+      overlay.setAttribute('aria-hidden','false');
+      document.documentElement.classList.add('bkd-lock');
+      lastFocus=document.activeElement;
+      var body=overlay.querySelector('.bkd-body'); if(body) body.scrollTop=0;
+      var c=overlay.querySelector('.bkd-close'); if(c) c.focus();
+    }
+    window.bkdClose=function(){
+      overlay.classList.remove('open');
+      overlay.setAttribute('aria-hidden','true');
+      document.documentElement.classList.remove('bkd-lock');
+      if(lastFocus&&lastFocus.focus) lastFocus.focus();
+    };
+    overlay.addEventListener('click',function(e){ if(e.target===overlay) window.bkdClose(); });
+    document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&overlay.classList.contains('open')) window.bkdClose(); });
+    document.querySelectorAll('#book-samples .book-row').forEach(function(row){
+      var nameEl=row.querySelector('.book-row-name');
+      var key=nameEl?MAP[(nameEl.textContent||'').trim().toUpperCase()]:null;
+      if(!key) return;
+      row.querySelectorAll('.book-page').forEach(function(pg){
+        pg.classList.add('bkd-click');
+        pg.setAttribute('role','button');
+        pg.setAttribute('tabindex','0');
+        pg.setAttribute('aria-label',(nameEl.textContent||'').trim()+' 교재 상세 소개 열기');
+        pg.addEventListener('click',function(){ bkdOpen(key); });
+        pg.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); bkdOpen(key); } });
+      });
+    });
+  })();
+  </script>
 
   <!-- =============== EXAM MATCH (mock-exam ↔ Terra Nova passage) =================
        Concrete proof point: the chemistry concept asked on the 2026.06 고1 통합과학
