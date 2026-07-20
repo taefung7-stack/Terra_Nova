@@ -4738,14 +4738,14 @@ html.light #hero-warp{display:none!important;}
   }
   .bkd-overlay.open{opacity:1;pointer-events:auto;}
   .bkd-sheet{
-    position:relative;width:min(760px,100%);max-height:min(86vh,860px);overflow:hidden;
+    position:relative;width:min(1120px,96vw);max-height:min(92vh,1000px);overflow:hidden;
     display:flex;flex-direction:column;background:#0E1012;border:1px solid var(--line);
     border-radius:22px;box-shadow:0 60px 120px -30px rgba(0,0,0,.8);
     transform:translateY(26px) scale(.97);transition:transform .3s cubic-bezier(.22,.8,.36,1);
   }
   .bkd-overlay.open .bkd-sheet{transform:none;}
   html.light .bkd-sheet{background:#FFFFFF;box-shadow:0 60px 120px -30px rgba(0,0,0,.25);}
-  .bkd-body{overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding:44px 46px 38px;}
+  .bkd-body{overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding:40px 44px 34px;}
   .bkd-close{
     position:absolute;top:14px;right:14px;z-index:6;width:38px;height:38px;border-radius:50%;
     border:1px solid var(--line);background:rgba(255,255,255,.06);color:var(--txt);
@@ -4767,30 +4767,32 @@ html.light #hero-warp{display:none!important;}
     font-family:'Space Grotesk',sans-serif;font-size:.7rem;font-weight:700;
     letter-spacing:.16em;text-transform:uppercase;color:var(--lv);
   }
-  .bkd-title{font-size:clamp(1.55rem,3.4vw,2.1rem);font-weight:800;line-height:1.3;margin:16px 0 12px;color:var(--txt);}
+  .bkd-top{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap;}
+  .bkd-title{font-size:clamp(1.7rem,2.8vw,2.35rem);font-weight:800;line-height:1.28;margin:14px 0 10px;color:var(--txt);}
   .bkd-title em{font-style:normal;color:var(--lv);}
-  .bkd-sub{font-size:.94rem;line-height:1.75;color:var(--dim);max-width:56ch;}
-  .bkd-planets{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px;}
+  .bkd-sub{font-size:.95rem;line-height:1.6;color:var(--dim);}
+  .bkd-planets{display:flex;flex-direction:column;gap:8px;align-items:flex-end;padding-top:6px;}
   .bkd-planet{
     display:inline-flex;align-items:center;gap:9px;padding:7px 15px 7px 8px;border-radius:999px;
     border:1px solid var(--line);background:rgba(255,255,255,.04);
     font-family:'Space Grotesk',sans-serif;font-size:.8rem;font-weight:700;color:var(--txt);
   }
   html.light .bkd-planet{background:#F4F6F7;}
-  .bkd-planet i{width:26px;height:26px;border-radius:50%;background-size:cover;background-position:center;display:block;}
+  .bkd-planet i{width:28px;height:28px;border-radius:50%;background-size:cover;background-position:center;display:block;}
   .bkd-planet b{font-weight:600;font-size:.78rem;color:var(--dim);}
-  .bkd-feats{list-style:none;margin:26px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-  .bkd-feats li{display:flex;gap:13px;padding:16px 16px 15px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.03);}
-  html.light .bkd-feats li{background:#F7F9FA;}
-  .bkd-num{font-family:'Space Grotesk',sans-serif;font-size:.76rem;font-weight:700;color:var(--lv);padding-top:2px;}
-  .bkd-feats strong{display:block;font-size:.9rem;font-weight:700;color:var(--txt);margin-bottom:5px;}
-  .bkd-feats p{font-size:.82rem;line-height:1.62;color:var(--dim);}
-  .bkd-sec{margin:26px 0 12px;font-size:.74rem;font-weight:700;letter-spacing:.14em;color:var(--dim2);}
-  .bkd-pages{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
-  .bkd-pg{border:1px solid var(--line);border-radius:12px;padding:12px 12px 11px;background:var(--lv-soft);}
-  .bkd-pg b{display:block;font-family:'Space Grotesk',sans-serif;font-size:.7rem;font-weight:700;color:var(--lv);}
-  .bkd-pg span{display:block;font-size:.84rem;font-weight:700;color:var(--txt);margin:3px 0 4px;}
-  .bkd-pg p{font-size:.73rem;line-height:1.5;color:var(--dim);}
+  .bkd-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
+  .bkd-tags span{display:inline-flex;align-items:center;gap:7px;padding:8px 16px;border-radius:999px;background:var(--lv-soft);color:var(--txt);font-size:.82rem;font-weight:700;}
+  .bkd-tags span::before{content:'✓';color:var(--lv);font-weight:800;}
+  .bkd-shots{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:20px;}
+  .bkd-shot{position:relative;margin:0;border-radius:14px;overflow:hidden;background:#fff;border:1px solid var(--line);box-shadow:0 24px 48px -20px rgba(0,0,0,.55);}
+  html.light .bkd-shot{box-shadow:0 24px 48px -22px rgba(0,0,0,.22);}
+  .bkd-shot img{display:block;width:100%;height:auto;transition:transform .35s cubic-bezier(.22,.8,.36,1);}
+  .bkd-shot:hover img{transform:scale(1.05);}
+  .bkd-shot b{
+    position:absolute;left:10px;bottom:10px;padding:6px 13px;border-radius:999px;
+    background:rgba(10,10,10,.85);color:var(--lv);font-size:.72rem;font-weight:700;
+    white-space:nowrap;backdrop-filter:blur(6px);
+  }
   .bkd-cta{display:flex;gap:12px;margin-top:28px;}
   .bkd-btn{flex:1;text-align:center;padding:15px 18px;border-radius:13px;font-size:.94rem;font-weight:800;text-decoration:none;transition:all .18s;}
   .bkd-btn.solid{background:var(--lv);color:#0A0A0A;}
@@ -4801,9 +4803,11 @@ html.light #hero-warp{display:none!important;}
   @media(max-width:680px){
     .bkd-overlay{padding:0;align-items:flex-end;}
     .bkd-sheet{width:100%;max-height:92dvh;border-radius:22px 22px 0 0;border-left:0;border-right:0;border-bottom:0;transform:translateY(60px);}
-    .bkd-body{padding:34px 20px 40px;}
-    .bkd-feats{grid-template-columns:1fr;}
-    .bkd-pages{grid-template-columns:1fr 1fr;}
+    .bkd-body{padding:30px 18px 40px;}
+    .bkd-top{flex-direction:column;gap:14px;}
+    .bkd-planets{flex-direction:row;flex-wrap:wrap;align-items:center;padding-top:0;}
+    .bkd-shots{grid-template-columns:1fr 1fr;gap:10px;}
+    .bkd-shot b{left:8px;bottom:8px;padding:5px 10px;font-size:.66rem;}
     .bkd-cta{flex-direction:column;}
   }
   </style>
@@ -4815,25 +4819,25 @@ html.light #hero-warp{display:none!important;}
 
         <!-- ── 초등 (MARS·VENUS) ── -->
         <article class="bkd-panel ele" id="bkd-ele" hidden>
-          <span class="bkd-kicker">Elementary · 초등</span>
-          <h3 class="bkd-title">그림으로 먼저 읽고,<br><em>교과서로 남는</em> 영어.</h3>
-          <p class="bkd-sub">초5·초6이 학교에서 지금 배우는 사회·과학·수학·국어 단원을 초등 눈높이 영어 지문으로 다시 읽습니다. 재미있게 읽다 보면 교과 지식과 영어 실력이 함께 쌓입니다.</p>
-          <div class="bkd-planets">
-            <span class="bkd-planet"><i style="background-image:url('assets/3d/planets-normalized/mars.png')"></i>MARS&nbsp;<b>초5</b></span>
-            <span class="bkd-planet"><i style="background-image:url('assets/3d/planets-normalized/venus.png')"></i>VENUS&nbsp;<b>초6</b></span>
+          <div class="bkd-top">
+            <div>
+              <span class="bkd-kicker">Elementary · 초등</span>
+              <h3 class="bkd-title">그림으로 먼저 읽는<br><em>교과서 영어</em></h3>
+              <p class="bkd-sub">학교에서 배우는 바로 그 단원을, 그림과 함께 영어로 읽습니다.</p>
+            </div>
+            <div class="bkd-planets">
+              <span class="bkd-planet"><i style="background-image:url('assets/3d/planets-normalized/mars.png')"></i>MARS&nbsp;<b>초5</b></span>
+              <span class="bkd-planet"><i style="background-image:url('assets/3d/planets-normalized/venus.png')"></i>VENUS&nbsp;<b>초6</b></span>
+            </div>
           </div>
-          <ul class="bkd-feats">
-            <li><span class="bkd-num">01</span><div><strong>전면 와이드 삽화</strong><p>모든 지문이 큰 그림 한 장으로 시작합니다. 글보다 이미지가 먼저 이해를 열어 줘 영어가 어렵지 않습니다.</p></div></li>
-            <li><span class="bkd-num">02</span><div><strong>교과서 단원 그대로</strong><p>식물의 한살이, 민주주의, 분수의 덧셈 — 학교에서 배우는 바로 그 단원이 영어 지문이 됩니다.</p></div></li>
-            <li><span class="bkd-num">03</span><div><strong>초등 눈높이 문장</strong><p>짧은 문장과 쉬운 어휘로 난이도를 정밀하게 맞춰, 사전 없이 스스로 읽어 내는 성공 경험을 만듭니다.</p></div></li>
-            <li><span class="bkd-num">04</span><div><strong>전 지문 한글 해석·해설</strong><p>혼자 공부해도 막히지 않도록 전체 해석과 친절한 해설이 끝까지 함께 갑니다.</p></div></li>
-          </ul>
-          <div class="bkd-sec">한 지문 = 4페이지 학습 루틴</div>
-          <div class="bkd-pages">
-            <div class="bkd-pg"><b>P1</b><span>Passage</span><p>삽화 + 영어 지문</p></div>
-            <div class="bkd-pg"><b>P2</b><span>Practice</span><p>내용 확인 문제</p></div>
-            <div class="bkd-pg"><b>P3</b><span>Syntax</span><p>문장 읽기·해석</p></div>
-            <div class="bkd-pg"><b>P4</b><span>Vocab</span><p>오늘의 단어장</p></div>
+          <div class="bkd-tags">
+            <span>전면 와이드 삽화</span><span>교과서 단원 그대로</span><span>초등 눈높이 문장</span><span>전 지문 한글 해설</span>
+          </div>
+          <div class="bkd-shots">
+            <figure class="bkd-shot"><img src="assets/textbook-previews/mars-p1.jpg" alt="초등 교재 P1 — 삽화와 영어 지문" loading="lazy"><b>P1 · 삽화 + 지문</b></figure>
+            <figure class="bkd-shot"><img src="assets/textbook-previews/mars-p2.jpg" alt="초등 교재 P2 — 내용 확인 문제" loading="lazy"><b>P2 · 확인 문제</b></figure>
+            <figure class="bkd-shot"><img src="assets/textbook-previews/mars-p3.jpg" alt="초등 교재 P3 — 문장 읽기와 해석" loading="lazy"><b>P3 · 문장 읽기</b></figure>
+            <figure class="bkd-shot"><img src="assets/textbook-previews/mars-p4.jpg" alt="초등 교재 P4 — 오늘의 단어장" loading="lazy"><b>P4 · 단어장</b></figure>
           </div>
           <div class="bkd-cta">
             <a class="bkd-btn solid" href="sample.html">무료 샘플 받아보기</a>
@@ -4843,26 +4847,26 @@ html.light #hero-warp{display:none!important;}
 
         <!-- ── 중등 (TERRA·NEPTUNE·URANUS) ── -->
         <article class="bkd-panel mid" id="bkd-mid" hidden>
-          <span class="bkd-kicker">Middle · 중등</span>
-          <h3 class="bkd-title">학교 시험 유형<br><em>그대로 훈련</em>합니다.</h3>
-          <p class="bkd-sub">중1~중3 교과 단원을 영어로 읽고, 내신 시험에 나오는 4가지 유형으로 바로 풀어 봅니다. 독해력과 학교 시험 대비가 한 권에서 끝납니다.</p>
-          <div class="bkd-planets">
-            <span class="bkd-planet"><i style="background-image:url('assets/3d/planets-normalized/terra.png')"></i>TERRA&nbsp;<b>중1</b></span>
-            <span class="bkd-planet"><i style="background-image:url('assets/3d/planets-normalized/neptune.png')"></i>NEPTUNE&nbsp;<b>중2</b></span>
-            <span class="bkd-planet"><i style="background-image:url('assets/3d/planets-normalized/uranus.png')"></i>URANUS&nbsp;<b>중3</b></span>
+          <div class="bkd-top">
+            <div>
+              <span class="bkd-kicker">Middle · 중등</span>
+              <h3 class="bkd-title">학교 시험 유형<br><em>그대로 훈련</em></h3>
+              <p class="bkd-sub">중등 교과를 영어로 읽고, 내신 4유형 문제로 바로 풀어 봅니다.</p>
+            </div>
+            <div class="bkd-planets">
+              <span class="bkd-planet"><i style="background-image:url('assets/3d/planets-normalized/terra.png')"></i>TERRA&nbsp;<b>중1</b></span>
+              <span class="bkd-planet"><i style="background-image:url('assets/3d/planets-normalized/neptune.png')"></i>NEPTUNE&nbsp;<b>중2</b></span>
+              <span class="bkd-planet"><i style="background-image:url('assets/3d/planets-normalized/uranus.png')"></i>URANUS&nbsp;<b>중3</b></span>
+            </div>
           </div>
-          <ul class="bkd-feats">
-            <li><span class="bkd-num">01</span><div><strong>내신형 복합 문제 세트</strong><p>한 지문마다 객관식·O/X·영↔한 전환·빈칸 서술형 4유형을 묶어 실제 시험지처럼 훈련합니다.</p></div></li>
-            <li><span class="bkd-num">02</span><div><strong>중등 교과 연계 지문</strong><p>일차함수, 지권의 변화, 글로벌 경제 — 학교 진도와 나란히 가는 소재로 배경지식까지 쌓입니다.</p></div></li>
-            <li><span class="bkd-num">03</span><div><strong>구문 분석 + 문장 단위 해석</strong><p>문장을 구조로 뜯어 읽는 습관을 만듭니다. 서술형 답안 작성의 기본기가 됩니다.</p></div></li>
-            <li><span class="bkd-num">04</span><div><strong>본문에서 뽑은 단어장</strong><p>지문에 실제 등장한 어휘만 골라 정리해 시험 직전 복습이 빠릅니다.</p></div></li>
-          </ul>
-          <div class="bkd-sec">한 지문 = 4페이지 학습 루틴</div>
-          <div class="bkd-pages">
-            <div class="bkd-pg"><b>P1</b><span>Passage</span><p>교과 연계 지문</p></div>
-            <div class="bkd-pg"><b>P2</b><span>Practice</span><p>내신 4유형 세트</p></div>
-            <div class="bkd-pg"><b>P3</b><span>Syntax</span><p>구문 분석·해석</p></div>
-            <div class="bkd-pg"><b>P4</b><span>Vocab</span><p>본문 어휘 정리</p></div>
+          <div class="bkd-tags">
+            <span>내신 4유형 문제 세트</span><span>교과 연계 지문</span><span>구문 분석·해석</span><span>본문 단어장</span>
+          </div>
+          <div class="bkd-shots">
+            <figure class="bkd-shot"><img src="assets/textbook-previews/terra-p1.jpg" alt="중등 교재 P1 — 교과 연계 영어 지문" loading="lazy"><b>P1 · 교과 지문</b></figure>
+            <figure class="bkd-shot"><img src="assets/textbook-previews/terra-p2.jpg" alt="중등 교재 P2 — 내신 4유형 문제" loading="lazy"><b>P2 · 내신 4유형</b></figure>
+            <figure class="bkd-shot"><img src="assets/textbook-previews/terra-p3.jpg" alt="중등 교재 P3 — 구문 분석과 해석" loading="lazy"><b>P3 · 구문 분석</b></figure>
+            <figure class="bkd-shot"><img src="assets/textbook-previews/terra-p4.jpg" alt="중등 교재 P4 — 본문 어휘 단어장" loading="lazy"><b>P4 · 어휘 정리</b></figure>
           </div>
           <div class="bkd-cta">
             <a class="bkd-btn solid" href="sample.html">무료 샘플 받아보기</a>
@@ -4872,26 +4876,26 @@ html.light #hero-warp{display:none!important;}
 
         <!-- ── 고등 (SATURN·JUPITER·SUN) ── -->
         <article class="bkd-panel high" id="bkd-high" hidden>
-          <span class="bkd-kicker">High School · 고등</span>
-          <h3 class="bkd-title">수능 그날까지<br><em>설계된 난이도 곡선</em>.</h3>
-          <p class="bkd-sub">고1 SATURN부터 고3·N수생 SUN까지 지문 난이도가 수능 수준을 향해 계단식으로 상승합니다. 탐구 개념을 영어로 먼저 만나면, 그 지문이 수능장의 배경지식이 됩니다.</p>
-          <div class="bkd-planets">
-            <span class="bkd-planet"><i style="background-image:url('assets/3d/planets-normalized/saturn.png')"></i>SATURN&nbsp;<b>고1</b></span>
-            <span class="bkd-planet"><i style="background-image:url('assets/3d/planets-normalized/jupiter.png')"></i>JUPITER&nbsp;<b>고2</b></span>
-            <span class="bkd-planet"><i style="background-image:url('assets/3d/planets-normalized/sun.png')"></i>SUN&nbsp;<b>고3·N수생</b></span>
+          <div class="bkd-top">
+            <div>
+              <span class="bkd-kicker">High School · 고등</span>
+              <h3 class="bkd-title">수능까지 오르는<br><em>난이도 곡선</em></h3>
+              <p class="bkd-sub">고1부터 고3까지, 지문 난이도가 수능을 향해 계단식으로 상승합니다.</p>
+            </div>
+            <div class="bkd-planets">
+              <span class="bkd-planet"><i style="background-image:url('assets/3d/planets-normalized/saturn.png')"></i>SATURN&nbsp;<b>고1</b></span>
+              <span class="bkd-planet"><i style="background-image:url('assets/3d/planets-normalized/jupiter.png')"></i>JUPITER&nbsp;<b>고2</b></span>
+              <span class="bkd-planet"><i style="background-image:url('assets/3d/planets-normalized/sun.png')"></i>SUN&nbsp;<b>고3·N수생</b></span>
+            </div>
           </div>
-          <ul class="bkd-feats">
-            <li><span class="bkd-num">01</span><div><strong>수능·모의평가 유형 문항</strong><p>빈칸 추론, 밑줄 함의, 어법·어휘 등 실전 유형 그대로 출제해 시험 감각을 유지합니다.</p></div></li>
-            <li><span class="bkd-num">02</span><div><strong>수능 정렬 난이도 곡선</strong><p>학년이 오를수록 지문 난이도(Lexile)가 수능 실전 수준까지 단계적으로 상승하도록 설계했습니다.</p></div></li>
-            <li><span class="bkd-num">03</span><div><strong>구문 끊어읽기 + 문장별 해석</strong><p>긴 문장을 구조 단위로 자르고 각 문장 바로 아래에 해석을 붙여 정독 훈련이 됩니다.</p></div></li>
-            <li><span class="bkd-num">04</span><div><strong>각주 어휘 + 고급 단어장</strong><p>지문 속 최고 난도 어휘를 페이지 각주와 단어장으로 이중 정리합니다.</p></div></li>
-          </ul>
-          <div class="bkd-sec">한 지문 = 4페이지 학습 루틴</div>
-          <div class="bkd-pages">
-            <div class="bkd-pg"><b>P1</b><span>Passage</span><p>수능 소재 지문·각주 어휘</p></div>
-            <div class="bkd-pg"><b>P2</b><span>Practice</span><p>수능 유형 문항</p></div>
-            <div class="bkd-pg"><b>P3</b><span>Syntax</span><p>끊어읽기·문장별 해석</p></div>
-            <div class="bkd-pg"><b>P4</b><span>Vocab</span><p>고급 어휘 단어장</p></div>
+          <div class="bkd-tags">
+            <span>수능·모평 유형 문항</span><span>수능 정렬 Lexile 곡선</span><span>끊어읽기 + 문장별 해석</span><span>각주·고급 어휘</span>
+          </div>
+          <div class="bkd-shots">
+            <figure class="bkd-shot"><img src="assets/textbook-previews/jupiter-p1.jpg" alt="고등 교재 P1 — 수능 소재 영어 지문" loading="lazy"><b>P1 · 수능 소재 지문</b></figure>
+            <figure class="bkd-shot"><img src="assets/textbook-previews/jupiter-p2.jpg" alt="고등 교재 P2 — 수능 유형 문항" loading="lazy"><b>P2 · 수능 유형 문항</b></figure>
+            <figure class="bkd-shot"><img src="assets/textbook-previews/jupiter-p3.jpg" alt="고등 교재 P3 — 끊어읽기와 문장별 해석" loading="lazy"><b>P3 · 끊어읽기 해석</b></figure>
+            <figure class="bkd-shot"><img src="assets/textbook-previews/jupiter-p4.jpg" alt="고등 교재 P4 — 고급 어휘 단어장" loading="lazy"><b>P4 · 고급 단어장</b></figure>
           </div>
           <div class="bkd-cta">
             <a class="bkd-btn solid" href="sample.html">무료 샘플 받아보기</a>
