@@ -4453,6 +4453,7 @@ html.light #hero-warp{display:none!important;}
   .bkd-chart h4{font-size:.9rem;font-weight:800;color:var(--txt);margin:0;}
   .bkd-chart .cap{font-size:.73rem;color:var(--dim);margin:2px 0 10px;}
   .bkd-chart svg{display:block;width:100%;height:auto;margin:auto 0;}
+  .bkd-chart.wide{grid-column:1/-1;}
   .bkd-cta{display:flex;gap:12px;margin-top:28px;}
   .bkd-btn{flex:1;text-align:center;padding:15px 18px;border-radius:13px;font-size:.94rem;font-weight:800;text-decoration:none;transition:all .18s;}
   .bkd-btn.solid{background:var(--lv);color:#0A0A0A;}
@@ -4502,6 +4503,31 @@ html.light #hero-warp{display:none!important;}
           </div>
           <div class="bkd-sec">데이터로 보는 차별점</div>
           <div class="bkd-charts">
+            <div class="bkd-chart wide">
+              <h4>Lexile 성장 곡선</h4><p class="cap">초등 2단계 — 수능까지 한 줄로 이어지는 난이도 설계</p>
+              <svg viewBox="0 0 720 210" role="img" aria-label="초등부터 수능까지 Lexile 성장 곡선">
+                <rect x="40" y="40" width="660" height="28" fill="var(--lv)" fill-opacity=".07"/>
+                <line x1="40" y1="40" x2="700" y2="40" stroke="var(--lv)" stroke-opacity=".3" stroke-dasharray="4 3"/>
+                <line x1="40" y1="68" x2="700" y2="68" stroke="var(--lv)" stroke-opacity=".3" stroke-dasharray="4 3"/>
+                <text x="44" y="58" font-size="10" fill="var(--dim)">수능 실전 밴드 1050~1200L</text>
+                <line x1="40" y1="170" x2="700" y2="170" stroke="var(--line)"/>
+                <polyline points="60,161 146,142 231,124 317,105 403,86 489,82 574,63 660,54" fill="none" stroke="var(--dim2)" stroke-width="1.8"/>
+                <polyline points="60,161 146,142" fill="none" stroke="var(--lv)" stroke-width="3"/>
+                <circle cx="231" cy="124" r="3" fill="var(--dim2)"/><circle cx="317" cy="105" r="3" fill="var(--dim2)"/><circle cx="403" cy="86" r="3" fill="var(--dim2)"/><circle cx="489" cy="82" r="3" fill="var(--dim2)"/><circle cx="574" cy="63" r="3" fill="var(--dim2)"/><circle cx="660" cy="54" r="3" fill="var(--dim2)"/>
+                <circle cx="60" cy="161" r="5.5" fill="var(--lv)" stroke="var(--bg)" stroke-width="2"/>
+                <circle cx="146" cy="142" r="5.5" fill="var(--lv)" stroke="var(--bg)" stroke-width="2"/>
+                <text x="60" y="147" text-anchor="middle" font-size="11" font-weight="700" fill="var(--txt)">550L</text>
+                <text x="146" y="128" text-anchor="middle" font-size="11" font-weight="700" fill="var(--txt)">650L</text>
+                <text x="60" y="192" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--dim)">MARS 초5</text>
+                <text x="146" y="192" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--dim)">VENUS 초6</text>
+                <text x="231" y="192" text-anchor="middle" font-size="8.5" fill="var(--dim2)">TERRA 중1</text>
+                <text x="317" y="192" text-anchor="middle" font-size="8.5" fill="var(--dim2)">NEPTUNE 중2</text>
+                <text x="403" y="192" text-anchor="middle" font-size="8.5" fill="var(--dim2)">URANUS 중3</text>
+                <text x="489" y="192" text-anchor="middle" font-size="8.5" fill="var(--dim2)">SATURN 고1</text>
+                <text x="574" y="192" text-anchor="middle" font-size="8.5" fill="var(--dim2)">JUPITER 고2</text>
+                <text x="660" y="192" text-anchor="middle" font-size="8.5" fill="var(--dim2)">SUN 고3</text>
+              </svg>
+            </div>
             <div class="bkd-chart">
               <h4>교과 과목 배분</h4><p class="cap">월 20편 · 과목 균등 설계</p>
               <svg viewBox="0 0 360 110" role="img" aria-label="월 20편 과목 균등 배분">
@@ -4583,7 +4609,7 @@ html.light #hero-warp{display:none!important;}
             <div>
               <span class="bkd-kicker">Middle · 중등</span>
               <h3 class="bkd-title">학교 시험 유형<br><em>그대로 훈련</em></h3>
-              <p class="bkd-sub">중등 교과를 영어로 읽고, 내신 4유형 문제로 바로 풀어 봅니다.</p>
+              <p class="bkd-sub">교과를 영어로 읽고, 내신 문법과 4유형 문제를 반복 훈련합니다.</p>
             </div>
             <div class="bkd-planets">
               <span class="bkd-planet"><i style="background-image:url('assets/3d/planets-normalized/terra.png')"></i>TERRA&nbsp;<b>중1</b></span>
@@ -4592,17 +4618,84 @@ html.light #hero-warp{display:none!important;}
             </div>
           </div>
           <div class="bkd-tags">
-            <span>내신 4유형 문제 세트</span><span>교과 연계 지문</span><span>구문 분석·해석</span><span>본문 단어장</span>
+            <span>내신 4유형 문제 세트</span><span>문법 나선 반복</span><span>교과 연계 지문</span><span>구문 분석·해석</span>
           </div>
           <div class="bkd-sec">숫자로 보는 설계</div>
           <div class="bkd-stats">
             <div class="bkd-stat"><b>4유형</b><span>지문당 내신 문항</span></div>
             <div class="bkd-stat"><b>100%</b><span>교과 단원 연계</span></div>
-            <div class="bkd-stat"><b>20편</b><span>월 학습 지문</span></div>
-            <div class="bkd-stat"><b>3회+</b><span>어휘 재노출 설계</span></div>
+            <div class="bkd-stat"><b>6개월</b><span>문법 나선 반복 주기</span></div>
+            <div class="bkd-stat"><b>8회+</b><span>핵심 문법 누적 노출</span></div>
           </div>
           <div class="bkd-sec">데이터로 보는 차별점</div>
           <div class="bkd-charts">
+            <div class="bkd-chart wide">
+              <h4>Lexile 성장 곡선</h4><p class="cap">중등 3단계 — 수능 밴드를 향한 계단식 상승</p>
+              <svg viewBox="0 0 720 210" role="img" aria-label="중등부터 수능까지 Lexile 성장 곡선">
+                <rect x="40" y="40" width="660" height="28" fill="var(--lv)" fill-opacity=".07"/>
+                <line x1="40" y1="40" x2="700" y2="40" stroke="var(--lv)" stroke-opacity=".3" stroke-dasharray="4 3"/>
+                <line x1="40" y1="68" x2="700" y2="68" stroke="var(--lv)" stroke-opacity=".3" stroke-dasharray="4 3"/>
+                <text x="44" y="58" font-size="10" fill="var(--dim)">수능 실전 밴드 1050~1200L</text>
+                <line x1="40" y1="170" x2="700" y2="170" stroke="var(--line)"/>
+                <polyline points="60,161 146,142 231,124 317,105 403,86 489,82 574,63 660,54" fill="none" stroke="var(--dim2)" stroke-width="1.8"/>
+                <polyline points="231,124 317,105 403,86" fill="none" stroke="var(--lv)" stroke-width="3"/>
+                <circle cx="60" cy="161" r="3" fill="var(--dim2)"/><circle cx="146" cy="142" r="3" fill="var(--dim2)"/><circle cx="489" cy="82" r="3" fill="var(--dim2)"/><circle cx="574" cy="63" r="3" fill="var(--dim2)"/><circle cx="660" cy="54" r="3" fill="var(--dim2)"/>
+                <circle cx="231" cy="124" r="5.5" fill="var(--lv)" stroke="var(--bg)" stroke-width="2"/>
+                <circle cx="317" cy="105" r="5.5" fill="var(--lv)" stroke="var(--bg)" stroke-width="2"/>
+                <circle cx="403" cy="86" r="5.5" fill="var(--lv)" stroke="var(--bg)" stroke-width="2"/>
+                <text x="231" y="110" text-anchor="middle" font-size="11" font-weight="700" fill="var(--txt)">750L</text>
+                <text x="317" y="91" text-anchor="middle" font-size="11" font-weight="700" fill="var(--txt)">850L</text>
+                <text x="403" y="72" text-anchor="middle" font-size="11" font-weight="700" fill="var(--txt)">950L</text>
+                <text x="60" y="192" text-anchor="middle" font-size="8.5" fill="var(--dim2)">MARS 초5</text>
+                <text x="146" y="192" text-anchor="middle" font-size="8.5" fill="var(--dim2)">VENUS 초6</text>
+                <text x="231" y="192" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--dim)">TERRA 중1</text>
+                <text x="317" y="192" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--dim)">NEPTUNE 중2</text>
+                <text x="403" y="192" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--dim)">URANUS 중3</text>
+                <text x="489" y="192" text-anchor="middle" font-size="8.5" fill="var(--dim2)">SATURN 고1</text>
+                <text x="574" y="192" text-anchor="middle" font-size="8.5" fill="var(--dim2)">JUPITER 고2</text>
+                <text x="660" y="192" text-anchor="middle" font-size="8.5" fill="var(--dim2)">SUN 고3</text>
+              </svg>
+            </div>
+            <div class="bkd-chart">
+              <h4>내신 문법 나선 반복</h4><p class="cap">핵심 문법이 6개월 동안 다시 돌아오는 설계</p>
+              <svg viewBox="0 0 360 190" role="img" aria-label="내신 핵심 문법 나선 반복표">
+                <text x="155" y="28" text-anchor="middle" font-size="9" fill="var(--dim2)">1</text>
+                <text x="185" y="28" text-anchor="middle" font-size="9" fill="var(--dim2)">2</text>
+                <text x="215" y="28" text-anchor="middle" font-size="9" fill="var(--dim2)">3</text>
+                <text x="245" y="28" text-anchor="middle" font-size="9" fill="var(--dim2)">4</text>
+                <text x="275" y="28" text-anchor="middle" font-size="9" fill="var(--dim2)">5</text>
+                <text x="305" y="28" text-anchor="middle" font-size="9" fill="var(--dim2)">6개월</text>
+                <text x="16" y="52" font-size="10" fill="var(--dim)">시제·조동사</text>
+                <circle cx="155" cy="48" r="7" fill="var(--lv)"/><circle cx="185" cy="48" r="7" fill="var(--lv)"/><circle cx="215" cy="48" r="2.5" fill="var(--line)"/><circle cx="245" cy="48" r="7" fill="var(--lv)"/><circle cx="275" cy="48" r="2.5" fill="var(--line)"/><circle cx="305" cy="48" r="7" fill="var(--lv)"/>
+                <text x="338" y="52" text-anchor="middle" font-size="11" font-weight="700" fill="var(--txt)">4회</text>
+                <text x="16" y="86" font-size="10" fill="var(--dim)">to부정사·동명사</text>
+                <circle cx="155" cy="82" r="2.5" fill="var(--line)"/><circle cx="185" cy="82" r="7" fill="var(--lv)"/><circle cx="215" cy="82" r="7" fill="var(--lv)"/><circle cx="245" cy="82" r="2.5" fill="var(--line)"/><circle cx="275" cy="82" r="7" fill="var(--lv)"/><circle cx="305" cy="82" r="2.5" fill="var(--line)"/>
+                <text x="338" y="86" text-anchor="middle" font-size="11" font-weight="700" fill="var(--txt)">3회</text>
+                <text x="16" y="120" font-size="10" fill="var(--dim)">관계사</text>
+                <circle cx="155" cy="116" r="7" fill="var(--lv)"/><circle cx="185" cy="116" r="2.5" fill="var(--line)"/><circle cx="215" cy="116" r="7" fill="var(--lv)"/><circle cx="245" cy="116" r="7" fill="var(--lv)"/><circle cx="275" cy="116" r="2.5" fill="var(--line)"/><circle cx="305" cy="116" r="7" fill="var(--lv)"/>
+                <text x="338" y="120" text-anchor="middle" font-size="11" font-weight="700" fill="var(--txt)">4회</text>
+                <text x="16" y="154" font-size="10" fill="var(--dim)">수동태·비교</text>
+                <circle cx="155" cy="150" r="2.5" fill="var(--line)"/><circle cx="185" cy="150" r="7" fill="var(--lv)"/><circle cx="215" cy="150" r="2.5" fill="var(--line)"/><circle cx="245" cy="150" r="7" fill="var(--lv)"/><circle cx="275" cy="150" r="7" fill="var(--lv)"/><circle cx="305" cy="150" r="7" fill="var(--lv)"/>
+                <text x="338" y="154" text-anchor="middle" font-size="11" font-weight="700" fill="var(--txt)">4회</text>
+              </svg>
+            </div>
+            <div class="bkd-chart">
+              <h4>문법 누적 노출</h4><p class="cap">학기(6개월) 지문·문항 합산</p>
+              <svg viewBox="0 0 360 160" role="img" aria-label="핵심 문법 누적 노출 횟수">
+                <text x="20" y="22" font-size="10" fill="var(--dim)">관계사</text>
+                <rect x="20" y="27" width="240" height="18" rx="4" fill="var(--lv)"/>
+                <text x="268" y="41" font-size="11" font-weight="700" fill="var(--txt)">8회</text>
+                <text x="20" y="57" font-size="10" fill="var(--dim)">시제·조동사</text>
+                <rect x="20" y="62" width="210" height="18" rx="4" fill="var(--lv)" fill-opacity=".8"/>
+                <text x="238" y="76" font-size="11" font-weight="700" fill="var(--txt)">7회</text>
+                <text x="20" y="92" font-size="10" fill="var(--dim)">to부정사·동명사</text>
+                <rect x="20" y="97" width="180" height="18" rx="4" fill="var(--lv)" fill-opacity=".6"/>
+                <text x="208" y="111" font-size="11" font-weight="700" fill="var(--txt)">6회</text>
+                <text x="20" y="127" font-size="10" fill="var(--dim)">수동태·비교</text>
+                <rect x="20" y="132" width="150" height="18" rx="4" fill="var(--lv)" fill-opacity=".4"/>
+                <text x="178" y="146" font-size="11" font-weight="700" fill="var(--txt)">5회</text>
+              </svg>
+            </div>
             <div class="bkd-chart">
               <h4>내신 문항 구성</h4><p class="cap">지문당 4문항 · 학교 시험 유형 균등</p>
               <svg viewBox="0 0 360 110" role="img" aria-label="지문당 내신 4유형 문항 구성">
@@ -4618,41 +4711,6 @@ html.light #hero-warp{display:none!important;}
                 <text x="135" y="100" text-anchor="middle" font-size="11" font-weight="700" fill="var(--txt)">1문항</text>
                 <text x="219" y="100" text-anchor="middle" font-size="11" font-weight="700" fill="var(--txt)">1문항</text>
                 <text x="303" y="100" text-anchor="middle" font-size="11" font-weight="700" fill="var(--txt)">1문항</text>
-              </svg>
-            </div>
-            <div class="bkd-chart">
-              <h4>문장 복잡도 설계</h4><p class="cap">문장당 단어 수 — 학년 계단식 상승</p>
-              <svg viewBox="0 0 360 200" role="img" aria-label="학년별 문장 복잡도 계단식 설계">
-                <line x1="10" y1="160" x2="350" y2="160" stroke="var(--line)"/>
-                <rect x="28" y="83" width="56" height="77" rx="4" fill="var(--lv)" fill-opacity=".55"/>
-                <rect x="112" y="70" width="56" height="90" rx="4" fill="var(--lv)" fill-opacity=".78"/>
-                <rect x="196" y="58" width="56" height="102" rx="4" fill="var(--lv)"/>
-                <rect x="280" y="45" width="56" height="115" rx="4" fill="var(--dim2)"/>
-                <text x="56" y="74" text-anchor="middle" font-size="12" font-weight="700" fill="var(--txt)">12단어</text>
-                <text x="140" y="61" text-anchor="middle" font-size="12" font-weight="700" fill="var(--txt)">14단어</text>
-                <text x="224" y="49" text-anchor="middle" font-size="12" font-weight="700" fill="var(--txt)">16단어</text>
-                <text x="308" y="36" text-anchor="middle" font-size="12" font-weight="700" fill="var(--txt)">18단어</text>
-                <text x="56" y="180" text-anchor="middle" font-size="10" fill="var(--dim)">TERRA 중1</text>
-                <text x="140" y="180" text-anchor="middle" font-size="10" fill="var(--dim)">NEPTUNE 중2</text>
-                <text x="224" y="180" text-anchor="middle" font-size="10" fill="var(--dim)">URANUS 중3</text>
-                <text x="308" y="180" text-anchor="middle" font-size="10" fill="var(--dim)">참고: 고1</text>
-              </svg>
-            </div>
-            <div class="bkd-chart">
-              <h4>과목별 지문 배분</h4><p class="cap">월 20편 기준 · 교과 진도 연계</p>
-              <svg viewBox="0 0 360 160" role="img" aria-label="과목별 월 지문 수">
-                <text x="20" y="22" font-size="10" fill="var(--dim)">과학</text>
-                <rect x="20" y="27" width="240" height="18" rx="4" fill="var(--lv)"/>
-                <text x="268" y="41" font-size="11" font-weight="700" fill="var(--txt)">6편</text>
-                <text x="20" y="57" font-size="10" fill="var(--dim)">사회</text>
-                <rect x="20" y="62" width="240" height="18" rx="4" fill="var(--lv)" fill-opacity=".8"/>
-                <text x="268" y="76" font-size="11" font-weight="700" fill="var(--txt)">6편</text>
-                <text x="20" y="92" font-size="10" fill="var(--dim)">수학</text>
-                <rect x="20" y="97" width="160" height="18" rx="4" fill="var(--lv)" fill-opacity=".6"/>
-                <text x="188" y="111" font-size="11" font-weight="700" fill="var(--txt)">4편</text>
-                <text x="20" y="127" font-size="10" fill="var(--dim)">국어</text>
-                <rect x="20" y="132" width="160" height="18" rx="4" fill="var(--lv)" fill-opacity=".4"/>
-                <text x="188" y="146" font-size="11" font-weight="700" fill="var(--txt)">4편</text>
               </svg>
             </div>
             <div class="bkd-chart">
@@ -4707,26 +4765,31 @@ html.light #hero-warp{display:none!important;}
           </div>
           <div class="bkd-sec">데이터로 보는 차별점</div>
           <div class="bkd-charts">
-            <div class="bkd-chart">
-              <h4>Lexile 수능 정렬 곡선</h4><p class="cap">학년별 지문 난이도 — 수능 밴드까지 계단식</p>
-              <svg viewBox="0 0 360 200" role="img" aria-label="레벨별 Lexile 설계와 수능 밴드">
-                <rect x="20" y="46" width="324" height="60" fill="var(--lv)" fill-opacity=".07"/>
-                <line x1="20" y1="46" x2="344" y2="46" stroke="var(--lv)" stroke-opacity=".3" stroke-dasharray="4 3"/>
-                <line x1="20" y1="106" x2="344" y2="106" stroke="var(--lv)" stroke-opacity=".3" stroke-dasharray="4 3"/>
-                <text x="26" y="60" font-size="10" fill="var(--dim)">수능 실전 밴드 1050~1200L</text>
-                <line x1="20" y1="126" x2="344" y2="126" stroke="var(--line)"/>
-                <text x="22" y="122" font-size="9" fill="var(--dim2)">1000L</text>
-                <line x1="20" y1="166" x2="344" y2="166" stroke="var(--line)"/>
-                <polyline points="70,136 180,96 290,76" fill="none" stroke="var(--lv)" stroke-width="2.5"/>
-                <circle cx="70" cy="136" r="5" fill="var(--lv)" stroke="var(--bg)" stroke-width="2"/>
-                <circle cx="180" cy="96" r="5" fill="var(--lv)" stroke="var(--bg)" stroke-width="2"/>
-                <circle cx="290" cy="76" r="5" fill="var(--lv)" stroke="var(--bg)" stroke-width="2"/>
-                <text x="70" y="156" text-anchor="middle" font-size="11" font-weight="700" fill="var(--txt)">975L</text>
-                <text x="180" y="84" text-anchor="middle" font-size="11" font-weight="700" fill="var(--txt)">1075L</text>
-                <text x="290" y="64" text-anchor="middle" font-size="11" font-weight="700" fill="var(--txt)">1125L</text>
-                <text x="70" y="188" text-anchor="middle" font-size="10" fill="var(--dim)">SATURN 고1</text>
-                <text x="180" y="188" text-anchor="middle" font-size="10" fill="var(--dim)">JUPITER 고2</text>
-                <text x="290" y="188" text-anchor="middle" font-size="10" fill="var(--dim)">SUN 고3</text>
+            <div class="bkd-chart wide">
+              <h4>Lexile 성장 곡선</h4><p class="cap">고등 3단계 — 수능 실전 밴드 진입</p>
+              <svg viewBox="0 0 720 210" role="img" aria-label="초등부터 고등까지 Lexile 성장 곡선과 수능 밴드">
+                <rect x="40" y="40" width="660" height="28" fill="var(--lv)" fill-opacity=".07"/>
+                <line x1="40" y1="40" x2="700" y2="40" stroke="var(--lv)" stroke-opacity=".3" stroke-dasharray="4 3"/>
+                <line x1="40" y1="68" x2="700" y2="68" stroke="var(--lv)" stroke-opacity=".3" stroke-dasharray="4 3"/>
+                <text x="44" y="58" font-size="10" fill="var(--dim)">수능 실전 밴드 1050~1200L</text>
+                <line x1="40" y1="170" x2="700" y2="170" stroke="var(--line)"/>
+                <polyline points="60,161 146,142 231,124 317,105 403,86 489,82 574,63 660,54" fill="none" stroke="var(--dim2)" stroke-width="1.8"/>
+                <polyline points="489,82 574,63 660,54" fill="none" stroke="var(--lv)" stroke-width="3"/>
+                <circle cx="60" cy="161" r="3" fill="var(--dim2)"/><circle cx="146" cy="142" r="3" fill="var(--dim2)"/><circle cx="231" cy="124" r="3" fill="var(--dim2)"/><circle cx="317" cy="105" r="3" fill="var(--dim2)"/><circle cx="403" cy="86" r="3" fill="var(--dim2)"/>
+                <circle cx="489" cy="82" r="5.5" fill="var(--lv)" stroke="var(--bg)" stroke-width="2"/>
+                <circle cx="574" cy="63" r="5.5" fill="var(--lv)" stroke="var(--bg)" stroke-width="2"/>
+                <circle cx="660" cy="54" r="5.5" fill="var(--lv)" stroke="var(--bg)" stroke-width="2"/>
+                <text x="489" y="104" text-anchor="middle" font-size="11" font-weight="700" fill="var(--txt)">975L</text>
+                <text x="574" y="50" text-anchor="middle" font-size="11" font-weight="700" fill="var(--txt)">1075L</text>
+                <text x="660" y="38" text-anchor="middle" font-size="11" font-weight="700" fill="var(--txt)">1125L</text>
+                <text x="60" y="192" text-anchor="middle" font-size="8.5" fill="var(--dim2)">MARS 초5</text>
+                <text x="146" y="192" text-anchor="middle" font-size="8.5" fill="var(--dim2)">VENUS 초6</text>
+                <text x="231" y="192" text-anchor="middle" font-size="8.5" fill="var(--dim2)">TERRA 중1</text>
+                <text x="317" y="192" text-anchor="middle" font-size="8.5" fill="var(--dim2)">NEPTUNE 중2</text>
+                <text x="403" y="192" text-anchor="middle" font-size="8.5" fill="var(--dim2)">URANUS 중3</text>
+                <text x="489" y="192" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--dim)">SATURN 고1</text>
+                <text x="574" y="192" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--dim)">JUPITER 고2</text>
+                <text x="660" y="192" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--dim)">SUN 고3</text>
               </svg>
             </div>
             <div class="bkd-chart">
@@ -4744,6 +4807,20 @@ html.light #hero-warp{display:none!important;}
                 <text x="20" y="127" font-size="10" fill="var(--dim)">주제·제목·요약</text>
                 <rect x="20" y="132" width="160" height="18" rx="4" fill="var(--lv)" fill-opacity=".4"/>
                 <text x="188" y="146" font-size="11" font-weight="700" fill="var(--txt)">20%</text>
+              </svg>
+            </div>
+            <div class="bkd-chart">
+              <h4>탐구 소재 배분</h4><p class="cap">월 20편 · 수능 탐구 개념 연계</p>
+              <svg viewBox="0 0 360 125" role="img" aria-label="탐구 영역별 지문 배분">
+                <text x="20" y="22" font-size="10" fill="var(--dim)">과학탐구</text>
+                <rect x="20" y="27" width="240" height="18" rx="4" fill="var(--lv)"/>
+                <text x="268" y="41" font-size="11" font-weight="700" fill="var(--txt)">8편</text>
+                <text x="20" y="57" font-size="10" fill="var(--dim)">사회탐구</text>
+                <rect x="20" y="62" width="240" height="18" rx="4" fill="var(--lv)" fill-opacity=".7"/>
+                <text x="268" y="76" font-size="11" font-weight="700" fill="var(--txt)">8편</text>
+                <text x="20" y="92" font-size="10" fill="var(--dim)">국어·수학 소재</text>
+                <rect x="20" y="97" width="120" height="18" rx="4" fill="var(--lv)" fill-opacity=".4"/>
+                <text x="148" y="111" font-size="11" font-weight="700" fill="var(--txt)">4편</text>
               </svg>
             </div>
             <div class="bkd-chart">
