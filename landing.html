@@ -4397,7 +4397,7 @@ html.light #hero-warp{display:none!important;}
   }
   .bkd-overlay.open{opacity:1;pointer-events:auto;}
   .bkd-sheet{
-    position:relative;width:min(1120px,96vw);max-height:min(92vh,1000px);overflow:hidden;
+    position:relative;width:min(1400px,97vw);max-height:96vh;overflow:hidden;
     display:flex;flex-direction:column;background:#0E1012;border:1px solid var(--line);
     border-radius:22px;box-shadow:0 60px 120px -30px rgba(0,0,0,.8);
     transform:translateY(26px) scale(.97);transition:transform .3s cubic-bezier(.22,.8,.36,1);
@@ -4442,16 +4442,17 @@ html.light #hero-warp{display:none!important;}
   .bkd-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
   .bkd-tags span{display:inline-flex;align-items:center;gap:7px;padding:8px 16px;border-radius:999px;background:var(--lv-soft);color:var(--txt);font-size:.82rem;font-weight:700;}
   .bkd-tags span::before{content:'✓';color:var(--lv);font-weight:800;}
-  .bkd-shots{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:20px;}
-  .bkd-shot{position:relative;margin:0;border-radius:14px;overflow:hidden;background:#fff;border:1px solid var(--line);box-shadow:0 24px 48px -20px rgba(0,0,0,.55);}
-  html.light .bkd-shot{box-shadow:0 24px 48px -22px rgba(0,0,0,.22);}
-  .bkd-shot img{display:block;width:100%;height:auto;transition:transform .35s cubic-bezier(.22,.8,.36,1);}
-  .bkd-shot:hover img{transform:scale(1.05);}
-  .bkd-shot b{
-    position:absolute;left:10px;bottom:10px;padding:6px 13px;border-radius:999px;
-    background:rgba(10,10,10,.85);color:var(--lv);font-size:.72rem;font-weight:700;
-    white-space:nowrap;backdrop-filter:blur(6px);
-  }
+  .bkd-sec{margin:26px 0 10px;font-size:.74rem;font-weight:800;letter-spacing:.14em;color:var(--dim2);}
+  .bkd-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+  .bkd-stat{border:1px solid var(--line);border-radius:14px;padding:16px 18px 14px;background:var(--lv-soft);}
+  .bkd-stat b{display:block;font-family:'Space Grotesk',sans-serif;font-size:1.9rem;font-weight:700;color:var(--lv);line-height:1.05;}
+  .bkd-stat span{display:block;margin-top:4px;font-size:.74rem;font-weight:600;color:var(--dim);}
+  .bkd-charts{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .bkd-chart{border:1px solid var(--line);border-radius:16px;padding:18px 20px 14px;background:rgba(255,255,255,.03);display:flex;flex-direction:column;}
+  html.light .bkd-chart{background:#F8FAFB;}
+  .bkd-chart h4{font-size:.9rem;font-weight:800;color:var(--txt);margin:0;}
+  .bkd-chart .cap{font-size:.73rem;color:var(--dim);margin:2px 0 10px;}
+  .bkd-chart svg{display:block;width:100%;height:auto;margin:auto 0;}
   .bkd-cta{display:flex;gap:12px;margin-top:28px;}
   .bkd-btn{flex:1;text-align:center;padding:15px 18px;border-radius:13px;font-size:.94rem;font-weight:800;text-decoration:none;transition:all .18s;}
   .bkd-btn.solid{background:var(--lv);color:#0A0A0A;}
@@ -4465,8 +4466,8 @@ html.light #hero-warp{display:none!important;}
     .bkd-body{padding:30px 18px 40px;}
     .bkd-top{flex-direction:column;gap:14px;}
     .bkd-planets{flex-direction:row;flex-wrap:wrap;align-items:center;padding-top:0;}
-    .bkd-shots{grid-template-columns:1fr 1fr;gap:10px;}
-    .bkd-shot b{left:8px;bottom:8px;padding:5px 10px;font-size:.66rem;}
+    .bkd-stats{grid-template-columns:1fr 1fr;}
+    .bkd-charts{grid-template-columns:1fr;}
     .bkd-cta{flex-direction:column;}
   }
   </style>
@@ -4492,11 +4493,83 @@ html.light #hero-warp{display:none!important;}
           <div class="bkd-tags">
             <span>전면 와이드 삽화</span><span>교과서 단원 그대로</span><span>초등 눈높이 문장</span><span>전 지문 한글 해설</span>
           </div>
-          <div class="bkd-shots">
-            <figure class="bkd-shot"><img src="assets/textbook-previews/mars-p1.jpg" alt="초등 교재 P1 — 삽화와 영어 지문" loading="lazy"><b>P1 · 삽화 + 지문</b></figure>
-            <figure class="bkd-shot"><img src="assets/textbook-previews/mars-p2.jpg" alt="초등 교재 P2 — 내용 확인 문제" loading="lazy"><b>P2 · 확인 문제</b></figure>
-            <figure class="bkd-shot"><img src="assets/textbook-previews/mars-p3.jpg" alt="초등 교재 P3 — 문장 읽기와 해석" loading="lazy"><b>P3 · 문장 읽기</b></figure>
-            <figure class="bkd-shot"><img src="assets/textbook-previews/mars-p4.jpg" alt="초등 교재 P4 — 오늘의 단어장" loading="lazy"><b>P4 · 단어장</b></figure>
+          <div class="bkd-sec">숫자로 보는 설계</div>
+          <div class="bkd-stats">
+            <div class="bkd-stat"><b>100%</b><span>교과 단원 연계</span></div>
+            <div class="bkd-stat"><b>20편</b><span>월 학습 지문</span></div>
+            <div class="bkd-stat"><b>3회+</b><span>단어 재노출 설계</span></div>
+            <div class="bkd-stat"><b>20분</b><span>하루 학습 루틴</span></div>
+          </div>
+          <div class="bkd-sec">데이터로 보는 차별점</div>
+          <div class="bkd-charts">
+            <div class="bkd-chart">
+              <h4>교과 과목 배분</h4><p class="cap">월 20편 · 과목 균등 설계</p>
+              <svg viewBox="0 0 360 110" role="img" aria-label="월 20편 과목 균등 배분">
+                <text x="51" y="36" text-anchor="middle" font-size="10" fill="var(--dim)">사회</text>
+                <text x="135" y="36" text-anchor="middle" font-size="10" fill="var(--dim)">과학</text>
+                <text x="219" y="36" text-anchor="middle" font-size="10" fill="var(--dim)">수학</text>
+                <text x="303" y="36" text-anchor="middle" font-size="10" fill="var(--dim)">국어</text>
+                <rect x="10" y="44" width="82" height="36" rx="4" fill="var(--lv)" fill-opacity=".32"/>
+                <rect x="94" y="44" width="82" height="36" rx="4" fill="var(--lv)" fill-opacity=".55"/>
+                <rect x="178" y="44" width="82" height="36" rx="4" fill="var(--lv)" fill-opacity=".78"/>
+                <rect x="262" y="44" width="82" height="36" rx="4" fill="var(--lv)"/>
+                <text x="51" y="100" text-anchor="middle" font-size="11" font-weight="700" fill="var(--txt)">5편</text>
+                <text x="135" y="100" text-anchor="middle" font-size="11" font-weight="700" fill="var(--txt)">5편</text>
+                <text x="219" y="100" text-anchor="middle" font-size="11" font-weight="700" fill="var(--txt)">5편</text>
+                <text x="303" y="100" text-anchor="middle" font-size="11" font-weight="700" fill="var(--txt)">5편</text>
+              </svg>
+            </div>
+            <div class="bkd-chart">
+              <h4>문장 난이도 설계</h4><p class="cap">문장당 단어 수 — 일반 원서 대비</p>
+              <svg viewBox="0 0 360 200" role="img" aria-label="문장당 단어 수 비교">
+                <line x1="10" y1="160" x2="350" y2="160" stroke="var(--line)"/>
+                <rect x="44" y="45" width="64" height="115" rx="4" fill="var(--dim2)"/>
+                <rect x="148" y="95" width="64" height="65" rx="4" fill="var(--lv)"/>
+                <rect x="252" y="81" width="64" height="79" rx="4" fill="var(--lv)" fill-opacity=".7"/>
+                <text x="76" y="36" text-anchor="middle" font-size="12" font-weight="700" fill="var(--txt)">16단어</text>
+                <text x="180" y="86" text-anchor="middle" font-size="12" font-weight="700" fill="var(--txt)">9단어</text>
+                <text x="284" y="72" text-anchor="middle" font-size="12" font-weight="700" fill="var(--txt)">11단어</text>
+                <text x="76" y="180" text-anchor="middle" font-size="10" fill="var(--dim)">일반 원서</text>
+                <text x="180" y="180" text-anchor="middle" font-size="10" fill="var(--dim)">MARS 초5</text>
+                <text x="284" y="180" text-anchor="middle" font-size="10" fill="var(--dim)">VENUS 초6</text>
+              </svg>
+            </div>
+            <div class="bkd-chart">
+              <h4>복습 설계</h4><p class="cap">Ebbinghaus 망각곡선 대비 3회 재노출</p>
+              <svg viewBox="0 0 360 200" role="img" aria-label="망각곡선 대비 복습 설계">
+                <line x1="20" y1="168" x2="344" y2="168" stroke="var(--line)"/>
+                <path d="M20,36 C32,100 48,116 80,126 S200,138 344,141" fill="none" stroke="var(--dim2)" stroke-width="2"/>
+                <path d="M20,36 C24,55 27,68 31,76 L33,52 C50,70 70,80 95,88 L98,60 C130,74 160,82 192,90 L195,66 C240,74 290,80 344,84" fill="none" stroke="var(--lv)" stroke-width="2.5"/>
+                <circle cx="33" cy="52" r="4.5" fill="var(--lv)" stroke="var(--bg)" stroke-width="2"/>
+                <circle cx="98" cy="60" r="4.5" fill="var(--lv)" stroke="var(--bg)" stroke-width="2"/>
+                <circle cx="195" cy="66" r="4.5" fill="var(--lv)" stroke="var(--bg)" stroke-width="2"/>
+                <rect x="216" y="16" width="14" height="3" rx="1.5" fill="var(--lv)"/><text x="236" y="21" font-size="10" fill="var(--dim)">3회 재노출 설계</text>
+                <rect x="216" y="30" width="14" height="3" rx="1.5" fill="var(--dim2)"/><text x="236" y="35" font-size="10" fill="var(--dim)">복습 없음</text>
+                <text x="344" y="76" text-anchor="end" font-size="11" font-weight="700" fill="var(--txt)">약 64% 유지</text>
+                <text x="344" y="156" text-anchor="end" font-size="10" fill="var(--dim)">약 21%</text>
+                <text x="20" y="186" font-size="9" fill="var(--dim2)">학습일</text>
+                <text x="95" y="186" text-anchor="middle" font-size="9" fill="var(--dim2)">7일</text>
+                <text x="195" y="186" text-anchor="middle" font-size="9" fill="var(--dim2)">15일</text>
+                <text x="344" y="186" text-anchor="end" font-size="9" fill="var(--dim2)">30일</text>
+              </svg>
+            </div>
+            <div class="bkd-chart">
+              <h4>하루 20분 루틴</h4><p class="cap">4페이지 학습 시간 배분</p>
+              <svg viewBox="0 0 360 110" role="img" aria-label="하루 20분 4페이지 시간 배분">
+                <text x="77" y="36" text-anchor="middle" font-size="10" fill="var(--dim)">P1 지문 읽기</text>
+                <text x="188" y="36" text-anchor="middle" font-size="10" fill="var(--dim)">P2 문제</text>
+                <text x="265" y="36" text-anchor="middle" font-size="10" fill="var(--dim)">P3 구문</text>
+                <text x="325" y="36" text-anchor="middle" font-size="10" fill="var(--dim)">P4 단어</text>
+                <rect x="10" y="44" width="134" height="36" rx="4" fill="var(--lv)"/>
+                <rect x="146" y="44" width="84" height="36" rx="4" fill="var(--lv)" fill-opacity=".78"/>
+                <rect x="232" y="44" width="66" height="36" rx="4" fill="var(--lv)" fill-opacity=".55"/>
+                <rect x="300" y="44" width="50" height="36" rx="4" fill="var(--lv)" fill-opacity=".32"/>
+                <text x="77" y="100" text-anchor="middle" font-size="11" font-weight="700" fill="var(--txt)">8분</text>
+                <text x="188" y="100" text-anchor="middle" font-size="11" font-weight="700" fill="var(--txt)">5분</text>
+                <text x="265" y="100" text-anchor="middle" font-size="11" font-weight="700" fill="var(--txt)">4분</text>
+                <text x="325" y="100" text-anchor="middle" font-size="11" font-weight="700" fill="var(--txt)">3분</text>
+              </svg>
+            </div>
           </div>
           <div class="bkd-cta">
             <a class="bkd-btn solid" href="sample.html">무료 샘플 받아보기</a>
@@ -4521,11 +4594,86 @@ html.light #hero-warp{display:none!important;}
           <div class="bkd-tags">
             <span>내신 4유형 문제 세트</span><span>교과 연계 지문</span><span>구문 분석·해석</span><span>본문 단어장</span>
           </div>
-          <div class="bkd-shots">
-            <figure class="bkd-shot"><img src="assets/textbook-previews/terra-p1.jpg" alt="중등 교재 P1 — 교과 연계 영어 지문" loading="lazy"><b>P1 · 교과 지문</b></figure>
-            <figure class="bkd-shot"><img src="assets/textbook-previews/terra-p2.jpg" alt="중등 교재 P2 — 내신 4유형 문제" loading="lazy"><b>P2 · 내신 4유형</b></figure>
-            <figure class="bkd-shot"><img src="assets/textbook-previews/terra-p3.jpg" alt="중등 교재 P3 — 구문 분석과 해석" loading="lazy"><b>P3 · 구문 분석</b></figure>
-            <figure class="bkd-shot"><img src="assets/textbook-previews/terra-p4.jpg" alt="중등 교재 P4 — 본문 어휘 단어장" loading="lazy"><b>P4 · 어휘 정리</b></figure>
+          <div class="bkd-sec">숫자로 보는 설계</div>
+          <div class="bkd-stats">
+            <div class="bkd-stat"><b>4유형</b><span>지문당 내신 문항</span></div>
+            <div class="bkd-stat"><b>100%</b><span>교과 단원 연계</span></div>
+            <div class="bkd-stat"><b>20편</b><span>월 학습 지문</span></div>
+            <div class="bkd-stat"><b>3회+</b><span>어휘 재노출 설계</span></div>
+          </div>
+          <div class="bkd-sec">데이터로 보는 차별점</div>
+          <div class="bkd-charts">
+            <div class="bkd-chart">
+              <h4>내신 문항 구성</h4><p class="cap">지문당 4문항 · 학교 시험 유형 균등</p>
+              <svg viewBox="0 0 360 110" role="img" aria-label="지문당 내신 4유형 문항 구성">
+                <text x="51" y="36" text-anchor="middle" font-size="10" fill="var(--dim)">객관식</text>
+                <text x="135" y="36" text-anchor="middle" font-size="10" fill="var(--dim)">O·X</text>
+                <text x="219" y="36" text-anchor="middle" font-size="10" fill="var(--dim)">영↔한</text>
+                <text x="303" y="36" text-anchor="middle" font-size="10" fill="var(--dim)">빈칸 서술형</text>
+                <rect x="10" y="44" width="82" height="36" rx="4" fill="var(--lv)" fill-opacity=".32"/>
+                <rect x="94" y="44" width="82" height="36" rx="4" fill="var(--lv)" fill-opacity=".55"/>
+                <rect x="178" y="44" width="82" height="36" rx="4" fill="var(--lv)" fill-opacity=".78"/>
+                <rect x="262" y="44" width="82" height="36" rx="4" fill="var(--lv)"/>
+                <text x="51" y="100" text-anchor="middle" font-size="11" font-weight="700" fill="var(--txt)">1문항</text>
+                <text x="135" y="100" text-anchor="middle" font-size="11" font-weight="700" fill="var(--txt)">1문항</text>
+                <text x="219" y="100" text-anchor="middle" font-size="11" font-weight="700" fill="var(--txt)">1문항</text>
+                <text x="303" y="100" text-anchor="middle" font-size="11" font-weight="700" fill="var(--txt)">1문항</text>
+              </svg>
+            </div>
+            <div class="bkd-chart">
+              <h4>문장 복잡도 설계</h4><p class="cap">문장당 단어 수 — 학년 계단식 상승</p>
+              <svg viewBox="0 0 360 200" role="img" aria-label="학년별 문장 복잡도 계단식 설계">
+                <line x1="10" y1="160" x2="350" y2="160" stroke="var(--line)"/>
+                <rect x="28" y="83" width="56" height="77" rx="4" fill="var(--lv)" fill-opacity=".55"/>
+                <rect x="112" y="70" width="56" height="90" rx="4" fill="var(--lv)" fill-opacity=".78"/>
+                <rect x="196" y="58" width="56" height="102" rx="4" fill="var(--lv)"/>
+                <rect x="280" y="45" width="56" height="115" rx="4" fill="var(--dim2)"/>
+                <text x="56" y="74" text-anchor="middle" font-size="12" font-weight="700" fill="var(--txt)">12단어</text>
+                <text x="140" y="61" text-anchor="middle" font-size="12" font-weight="700" fill="var(--txt)">14단어</text>
+                <text x="224" y="49" text-anchor="middle" font-size="12" font-weight="700" fill="var(--txt)">16단어</text>
+                <text x="308" y="36" text-anchor="middle" font-size="12" font-weight="700" fill="var(--txt)">18단어</text>
+                <text x="56" y="180" text-anchor="middle" font-size="10" fill="var(--dim)">TERRA 중1</text>
+                <text x="140" y="180" text-anchor="middle" font-size="10" fill="var(--dim)">NEPTUNE 중2</text>
+                <text x="224" y="180" text-anchor="middle" font-size="10" fill="var(--dim)">URANUS 중3</text>
+                <text x="308" y="180" text-anchor="middle" font-size="10" fill="var(--dim)">참고: 고1</text>
+              </svg>
+            </div>
+            <div class="bkd-chart">
+              <h4>과목별 지문 배분</h4><p class="cap">월 20편 기준 · 교과 진도 연계</p>
+              <svg viewBox="0 0 360 160" role="img" aria-label="과목별 월 지문 수">
+                <text x="20" y="22" font-size="10" fill="var(--dim)">과학</text>
+                <rect x="20" y="27" width="240" height="18" rx="4" fill="var(--lv)"/>
+                <text x="268" y="41" font-size="11" font-weight="700" fill="var(--txt)">6편</text>
+                <text x="20" y="57" font-size="10" fill="var(--dim)">사회</text>
+                <rect x="20" y="62" width="240" height="18" rx="4" fill="var(--lv)" fill-opacity=".8"/>
+                <text x="268" y="76" font-size="11" font-weight="700" fill="var(--txt)">6편</text>
+                <text x="20" y="92" font-size="10" fill="var(--dim)">수학</text>
+                <rect x="20" y="97" width="160" height="18" rx="4" fill="var(--lv)" fill-opacity=".6"/>
+                <text x="188" y="111" font-size="11" font-weight="700" fill="var(--txt)">4편</text>
+                <text x="20" y="127" font-size="10" fill="var(--dim)">국어</text>
+                <rect x="20" y="132" width="160" height="18" rx="4" fill="var(--lv)" fill-opacity=".4"/>
+                <text x="188" y="146" font-size="11" font-weight="700" fill="var(--txt)">4편</text>
+              </svg>
+            </div>
+            <div class="bkd-chart">
+              <h4>복습 설계</h4><p class="cap">Ebbinghaus 망각곡선 대비 3회 재노출</p>
+              <svg viewBox="0 0 360 200" role="img" aria-label="망각곡선 대비 복습 설계">
+                <line x1="20" y1="168" x2="344" y2="168" stroke="var(--line)"/>
+                <path d="M20,36 C32,100 48,116 80,126 S200,138 344,141" fill="none" stroke="var(--dim2)" stroke-width="2"/>
+                <path d="M20,36 C24,55 27,68 31,76 L33,52 C50,70 70,80 95,88 L98,60 C130,74 160,82 192,90 L195,66 C240,74 290,80 344,84" fill="none" stroke="var(--lv)" stroke-width="2.5"/>
+                <circle cx="33" cy="52" r="4.5" fill="var(--lv)" stroke="var(--bg)" stroke-width="2"/>
+                <circle cx="98" cy="60" r="4.5" fill="var(--lv)" stroke="var(--bg)" stroke-width="2"/>
+                <circle cx="195" cy="66" r="4.5" fill="var(--lv)" stroke="var(--bg)" stroke-width="2"/>
+                <rect x="216" y="16" width="14" height="3" rx="1.5" fill="var(--lv)"/><text x="236" y="21" font-size="10" fill="var(--dim)">3회 재노출 설계</text>
+                <rect x="216" y="30" width="14" height="3" rx="1.5" fill="var(--dim2)"/><text x="236" y="35" font-size="10" fill="var(--dim)">복습 없음</text>
+                <text x="344" y="76" text-anchor="end" font-size="11" font-weight="700" fill="var(--txt)">약 64% 유지</text>
+                <text x="344" y="156" text-anchor="end" font-size="10" fill="var(--dim)">약 21%</text>
+                <text x="20" y="186" font-size="9" fill="var(--dim2)">학습일</text>
+                <text x="95" y="186" text-anchor="middle" font-size="9" fill="var(--dim2)">7일</text>
+                <text x="195" y="186" text-anchor="middle" font-size="9" fill="var(--dim2)">15일</text>
+                <text x="344" y="186" text-anchor="end" font-size="9" fill="var(--dim2)">30일</text>
+              </svg>
+            </div>
           </div>
           <div class="bkd-cta">
             <a class="bkd-btn solid" href="sample.html">무료 샘플 받아보기</a>
@@ -4550,11 +4698,91 @@ html.light #hero-warp{display:none!important;}
           <div class="bkd-tags">
             <span>수능·모평 유형 문항</span><span>수능 정렬 Lexile 곡선</span><span>끊어읽기 + 문장별 해석</span><span>각주·고급 어휘</span>
           </div>
-          <div class="bkd-shots">
-            <figure class="bkd-shot"><img src="assets/textbook-previews/jupiter-p1.jpg" alt="고등 교재 P1 — 수능 소재 영어 지문" loading="lazy"><b>P1 · 수능 소재 지문</b></figure>
-            <figure class="bkd-shot"><img src="assets/textbook-previews/jupiter-p2.jpg" alt="고등 교재 P2 — 수능 유형 문항" loading="lazy"><b>P2 · 수능 유형 문항</b></figure>
-            <figure class="bkd-shot"><img src="assets/textbook-previews/jupiter-p3.jpg" alt="고등 교재 P3 — 끊어읽기와 문장별 해석" loading="lazy"><b>P3 · 끊어읽기 해석</b></figure>
-            <figure class="bkd-shot"><img src="assets/textbook-previews/jupiter-p4.jpg" alt="고등 교재 P4 — 고급 어휘 단어장" loading="lazy"><b>P4 · 고급 단어장</b></figure>
+          <div class="bkd-sec">숫자로 보는 설계</div>
+          <div class="bkd-stats">
+            <div class="bkd-stat"><b>3단계</b><span>Lexile 설계 곡선</span></div>
+            <div class="bkd-stat"><b>1125L</b><span>고3 목표 난이도</span></div>
+            <div class="bkd-stat"><b>100%</b><span>수능 유형 문항</span></div>
+            <div class="bkd-stat"><b>2중</b><span>어휘 정리 — 각주+단어장</span></div>
+          </div>
+          <div class="bkd-sec">데이터로 보는 차별점</div>
+          <div class="bkd-charts">
+            <div class="bkd-chart">
+              <h4>Lexile 수능 정렬 곡선</h4><p class="cap">학년별 지문 난이도 — 수능 밴드까지 계단식</p>
+              <svg viewBox="0 0 360 200" role="img" aria-label="레벨별 Lexile 설계와 수능 밴드">
+                <rect x="20" y="46" width="324" height="60" fill="var(--lv)" fill-opacity=".07"/>
+                <line x1="20" y1="46" x2="344" y2="46" stroke="var(--lv)" stroke-opacity=".3" stroke-dasharray="4 3"/>
+                <line x1="20" y1="106" x2="344" y2="106" stroke="var(--lv)" stroke-opacity=".3" stroke-dasharray="4 3"/>
+                <text x="26" y="60" font-size="10" fill="var(--dim)">수능 실전 밴드 1050~1200L</text>
+                <line x1="20" y1="126" x2="344" y2="126" stroke="var(--line)"/>
+                <text x="22" y="122" font-size="9" fill="var(--dim2)">1000L</text>
+                <line x1="20" y1="166" x2="344" y2="166" stroke="var(--line)"/>
+                <polyline points="70,136 180,96 290,76" fill="none" stroke="var(--lv)" stroke-width="2.5"/>
+                <circle cx="70" cy="136" r="5" fill="var(--lv)" stroke="var(--bg)" stroke-width="2"/>
+                <circle cx="180" cy="96" r="5" fill="var(--lv)" stroke="var(--bg)" stroke-width="2"/>
+                <circle cx="290" cy="76" r="5" fill="var(--lv)" stroke="var(--bg)" stroke-width="2"/>
+                <text x="70" y="156" text-anchor="middle" font-size="11" font-weight="700" fill="var(--txt)">975L</text>
+                <text x="180" y="84" text-anchor="middle" font-size="11" font-weight="700" fill="var(--txt)">1075L</text>
+                <text x="290" y="64" text-anchor="middle" font-size="11" font-weight="700" fill="var(--txt)">1125L</text>
+                <text x="70" y="188" text-anchor="middle" font-size="10" fill="var(--dim)">SATURN 고1</text>
+                <text x="180" y="188" text-anchor="middle" font-size="10" fill="var(--dim)">JUPITER 고2</text>
+                <text x="290" y="188" text-anchor="middle" font-size="10" fill="var(--dim)">SUN 고3</text>
+              </svg>
+            </div>
+            <div class="bkd-chart">
+              <h4>수능 유형 문항 분포</h4><p class="cap">지문당 출제 유형 비율</p>
+              <svg viewBox="0 0 360 160" role="img" aria-label="수능 유형별 문항 비율">
+                <text x="20" y="22" font-size="10" fill="var(--dim)">빈칸 추론</text>
+                <rect x="20" y="27" width="240" height="18" rx="4" fill="var(--lv)"/>
+                <text x="268" y="41" font-size="11" font-weight="700" fill="var(--txt)">30%</text>
+                <text x="20" y="57" font-size="10" fill="var(--dim)">밑줄·함의</text>
+                <rect x="20" y="62" width="200" height="18" rx="4" fill="var(--lv)" fill-opacity=".8"/>
+                <text x="228" y="76" font-size="11" font-weight="700" fill="var(--txt)">25%</text>
+                <text x="20" y="92" font-size="10" fill="var(--dim)">어법·어휘</text>
+                <rect x="20" y="97" width="200" height="18" rx="4" fill="var(--lv)" fill-opacity=".6"/>
+                <text x="228" y="111" font-size="11" font-weight="700" fill="var(--txt)">25%</text>
+                <text x="20" y="127" font-size="10" fill="var(--dim)">주제·제목·요약</text>
+                <rect x="20" y="132" width="160" height="18" rx="4" fill="var(--lv)" fill-opacity=".4"/>
+                <text x="188" y="146" font-size="11" font-weight="700" fill="var(--txt)">20%</text>
+              </svg>
+            </div>
+            <div class="bkd-chart">
+              <h4>복습 설계</h4><p class="cap">각주 → 단어장 → 재노출 · Ebbinghaus 망각곡선 대비</p>
+              <svg viewBox="0 0 360 200" role="img" aria-label="망각곡선 대비 복습 설계">
+                <line x1="20" y1="168" x2="344" y2="168" stroke="var(--line)"/>
+                <path d="M20,36 C32,100 48,116 80,126 S200,138 344,141" fill="none" stroke="var(--dim2)" stroke-width="2"/>
+                <path d="M20,36 C24,55 27,68 31,76 L33,52 C50,70 70,80 95,88 L98,60 C130,74 160,82 192,90 L195,66 C240,74 290,80 344,84" fill="none" stroke="var(--lv)" stroke-width="2.5"/>
+                <circle cx="33" cy="52" r="4.5" fill="var(--lv)" stroke="var(--bg)" stroke-width="2"/>
+                <circle cx="98" cy="60" r="4.5" fill="var(--lv)" stroke="var(--bg)" stroke-width="2"/>
+                <circle cx="195" cy="66" r="4.5" fill="var(--lv)" stroke="var(--bg)" stroke-width="2"/>
+                <rect x="216" y="16" width="14" height="3" rx="1.5" fill="var(--lv)"/><text x="236" y="21" font-size="10" fill="var(--dim)">3회 재노출 설계</text>
+                <rect x="216" y="30" width="14" height="3" rx="1.5" fill="var(--dim2)"/><text x="236" y="35" font-size="10" fill="var(--dim)">복습 없음</text>
+                <text x="344" y="76" text-anchor="end" font-size="11" font-weight="700" fill="var(--txt)">약 64% 유지</text>
+                <text x="344" y="156" text-anchor="end" font-size="10" fill="var(--dim)">약 21%</text>
+                <text x="20" y="186" font-size="9" fill="var(--dim2)">학습일</text>
+                <text x="95" y="186" text-anchor="middle" font-size="9" fill="var(--dim2)">7일</text>
+                <text x="195" y="186" text-anchor="middle" font-size="9" fill="var(--dim2)">15일</text>
+                <text x="344" y="186" text-anchor="end" font-size="9" fill="var(--dim2)">30일</text>
+              </svg>
+            </div>
+            <div class="bkd-chart">
+              <h4>문장 복잡도 정렬</h4><p class="cap">문장당 단어 수 — 수능 기출 평균과 비교</p>
+              <svg viewBox="0 0 360 200" role="img" aria-label="학년별 문장 복잡도와 수능 기출 평균">
+                <line x1="10" y1="160" x2="350" y2="160" stroke="var(--line)"/>
+                <rect x="28" y="66" width="56" height="94" rx="4" fill="var(--lv)" fill-opacity=".55"/>
+                <rect x="112" y="56" width="56" height="104" rx="4" fill="var(--lv)" fill-opacity=".78"/>
+                <rect x="196" y="46" width="56" height="114" rx="4" fill="var(--lv)"/>
+                <rect x="280" y="51" width="56" height="109" rx="4" fill="var(--dim2)"/>
+                <text x="56" y="57" text-anchor="middle" font-size="12" font-weight="700" fill="var(--txt)">18단어</text>
+                <text x="140" y="47" text-anchor="middle" font-size="12" font-weight="700" fill="var(--txt)">20단어</text>
+                <text x="224" y="37" text-anchor="middle" font-size="12" font-weight="700" fill="var(--txt)">22단어</text>
+                <text x="308" y="42" text-anchor="middle" font-size="12" font-weight="700" fill="var(--txt)">21단어</text>
+                <text x="56" y="180" text-anchor="middle" font-size="10" fill="var(--dim)">SATURN 고1</text>
+                <text x="140" y="180" text-anchor="middle" font-size="10" fill="var(--dim)">JUPITER 고2</text>
+                <text x="224" y="180" text-anchor="middle" font-size="10" fill="var(--dim)">SUN 고3</text>
+                <text x="308" y="180" text-anchor="middle" font-size="10" fill="var(--dim)">수능 기출 평균</text>
+              </svg>
+            </div>
           </div>
           <div class="bkd-cta">
             <a class="bkd-btn solid" href="sample.html">무료 샘플 받아보기</a>
