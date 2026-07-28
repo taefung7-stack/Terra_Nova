@@ -1,0 +1,133 @@
+{
+  "grade": "sun-g3",
+  "seq": 2,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page3.sentences[13].segments (index 13, role O)",
+      "issue": "구문 역할 오태깅: 'Stretch a vector by a number,' 에서 부사구 'by a number'(수단·실수배)를 목적어(O) 안에 포함시켰다. Stretch의 목적어는 'a vector'뿐이고 'by a number'는 M(부사구)으로 분리해야 한다.",
+      "evidence": "본문: \"Stretch a vector by a number, and you keep its direction while changing only its length.\" / page3: { \"role\": \"O\", \"text\": \"a vector by a number,\" }",
+      "suggestion": "{ \"role\": \"O\", \"text\": \"a vector\" }, { \"role\": \"M\", \"text\": \"by a number,\", \"note\": \"실수배(수단) 부사구\" } 로 분리. 같은 파일 S14의 'with clean arithmetic' → M, S15의 'into rows of numbers' → M 처리와 일관되게 맞출 것.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 근거로 지적이 확인된다. C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-08-Sun/02.json 의 page3.sentences[index 13] (파일 262-263행)에 실제로 { \"role\": \"V\", \"text\": \"Stretch\" }, { \"role\": \"O\", \"text\": \"a vector by a number,\" } 로 태깅되어 있고, page1.body(26행) 원문도 인용과 일치한다.\n\n문법적으로 stretch의 직접목적어는 \"a vector\"뿐이며 \"by a number\"는 수단·정도(실수배 계수)를 나타내는 부사적 전치사구다. \"increase the price by 10%\"에서 \"by 10%\"가 목적어 NP의 일부가 아닌 것과 동일한 구조다. \"a vector by a number\"는 성립하는 명사구가 아니므로 by-구가 vector를 후치수식한다고 볼 수 없다.\n\n파일 자체 근거도 이를 뒷받침한다:\n1) 같은 파일의 국역(324행) [13]은 \"벡터에 어떤 수를 곱해 늘이면\"으로, a number를 목적어 일부가 아니라 벡터에 작용하는 곱수로 옮겼다. textbook_tieback(93행)도 \"실수배\"로 규정한다.\n2) 이 파일의 자체 태깅 관례상 수단·방식 전치사구는 M으로 처리한다: 14번 \"with clean arithmetic.\"(278행) = M, 8번 \"as the flight path from one point to another.\"(211행) = M.\n3) 이 파일이 PP를 O에 포함시킨 사례(138행 \"any point on it.\", 180행 \"an address of three numbers,\")는 모두 명사 후치수식이라 본 건과 성격이 다르다.\n4) 구조적으로 병렬인 바로 앞 12번 문장은 O를 \"two vectors,\"로 순수 NP만 잡았다.\n\n따라서 \"by a number\"를 O에 포함시킨 것은 이 파일 내부 기준과 표준 구문 분석 양쪽에 어긋나는 실제 오태깅이다. 다만 렌더링이나 정답 판정을 깨뜨리지 않는 설명 수준(warn/explanation)의 경미한 결함으로, 수정안은 O: \"a vector\" / M: \"by a number,\"(수단·실수배)로 분리하는 것이다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.sentences[12].segments (index 12, role O)",
+      "issue": "구문 역할 오태깅: 'their arrows head to tail,' 에서 양태 부사구 'head to tail'을 목적어(O)에 포함시켰다. chain의 목적어는 'their arrows'이고 'head to tail'은 '어떻게 이어 붙이는지'를 나타내는 M이다.",
+      "evidence": "본문: \"Add two vectors, and you chain their arrows head to tail, as if walking one path and then the next.\" / page3: { \"role\": \"O\", \"text\": \"their arrows head to tail,\" }",
+      "suggestion": "{ \"role\": \"O\", \"text\": \"their arrows\" }, { \"role\": \"M\", \"text\": \"head to tail,\", \"note\": \"양태 부사구(머리-꼬리 연결)\" } 로 분리.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일에서 지적 내용이 그대로 확인됨. page3.sentences[12].segments 6번째 요소가 { \"role\": \"O\", \"text\": \"their arrows head to tail,\" } (파일 254행)이고, 본문(26행)도 \"you chain their arrows head to tail\"로 일치한다.\n\n문법적으로 chain의 직접목적어는 'their arrows'뿐이며, 'head to tail'은 이어 붙이는 '방식'을 나타내는 양태 부사구(절대구)다. 'their arrows head to tail'은 하나의 명사구 구성소가 아니다(*Their arrows head to tail are long. 불가). 따라서 O에 포함시킨 것은 오태깅이다.\n\n같은 파일 내부 근거가 이를 뒷받침한다: (1) 구조가 완전히 평행한 바로 다음 문장 index 13은 O=\"its direction\" / M=\"while changing only its length.\"로 분리했다. (2) index 5도 O=\"an address of three numbers,\" / M=\"written as an ordered triple.\"로 분리했다. (3) 국문 해석(324행)은 \"그 화살들을 머리와 꼬리로 이어 붙인다\"로 목적어와 방식 부사어를 분리해 옮겼다. (4) page4 vocab 예문(417행) \"Add two vectors head to tail.\"도 목적어+방식 부사구 구조다.\n\n반대 해석(chain O + C 목적격보어)을 검토했으나, 그 경우에도 'head to tail'은 별도 세그먼트(role C)여야 하므로 O에 병합한 현재 태깅은 어느 해석으로도 정당화되지 않는다.\n\n심각도는 warn 수준(구문 분석 학습 패널의 교육적 정확성)이며, 파일 자체 관례와도 불일치한다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.translation_ko 문장 [18]",
+      "issue": "밑줄 빈칸 정답어 map을 capture와 동일한 동사 '담아내다'로 옮겨, 두 동사의 구분이 사라지고 빈칸 추론 문항(q_index 1)의 근거가 번역에서 소실됨",
+      "evidence": "영문: \"Each of them trusts three numbers to capture a place that the eye alone could never fully map.\" / 번역: \"[18] 그들 각자는 눈만으로는 결코 온전히 담아낼 수 없는 자리를 세 개의 숫자로 담아내리라 믿는다.\" / 해설 key_terms: { \"en\": \"map\", \"ko\": \"나타내다, 대응시키다\" }",
+      "suggestion": "map을 해설과 일치하도록 '나타내다'로 구분해 옮길 것. 예: \"그들 각자는 눈만으로는 결코 온전히 나타낼 수 없는 자리를 세 개의 숫자가 담아내리라 믿는다.\"",
+      "lens": "translation",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "파일 근거로 지적이 모두 확인됨. (1) page3.translation_ko 문장 [18](line 324)은 \"그들 각자는 눈만으로는 결코 온전히 담아낼 수 없는 자리를 세 개의 숫자로 담아내리라 믿는다.\"로, 영문의 서로 다른 두 동사 capture와 map(빈칸 정답)을 모두 동일한 '담아내다'로 옮겼다. (2) 이는 같은 파일 내부의 정답 해설과 충돌한다 — answers.explanations q_index 1의 key_terms(line 358)는 map을 \"나타내다, 대응시키다\"로 명시하고, evidence(line 349)는 \"위치를 좌표로 '나타내다(map)'가 적절하다\", rationale(line 352)은 \"map은 세 수로 한 자리를 좌표에 나타낸다는 pin down·address와 호응한다\"고 근거를 세운다. 즉 파일 스스로 '담아내다' 해석을 채택하지 않는다. (3) 게다가 오답 rationale들(line 351,353,355)이 '담아낸다'를 일반적 대비어로 쓰고 있어, 번역의 어휘 선택이 정답어와 오답 설명어를 뒤섞는다. 결과적으로 번역 [18]은 \"담아낼 수 없는 것을 담아낸다\"는 동어반복이 되어, 빈칸 추론 문항(q_index 1, answer_index 1 = map)이 의존하는 '좌표로 대응시킨다'는 변별 근거가 한국어에서 소실된다. 반박 시도: 빈칸이므로 정답을 감춰야 한다는 논리는 성립하지 않는다 — 번역은 이미 답을 드러내되(담아낼 수 없는) 잘못된 뉘앙스로 드러내기 때문이다. '담아내다'가 map의 느슨한 의역이라는 변호도 파일 자신의 key_terms가 이를 배제하므로 취향 문제가 아닌 객관적 내부 불일치다. 다만 스키마·answer_index는 정상이므로 severity warn이 타당하다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.translation_ko 문장 [3]",
+      "issue": "hovering을 '떠도는'으로 옮겨 정지 비행(제자리에 떠 있음)이라는 뜻이 이동·배회의 뜻으로 바뀜. 같은 파일의 gloss_extra 및 page4 vocab 뜻풀이와도 충돌",
+      "evidence": "영문: \"To locate the tip of a drone hovering above a field\" / 번역: \"[3] 들판 위를 떠도는 드론의 끝이나\" / gloss_extra: { \"term\": \"hovering\", \"ko\": \"공중에 떠 있는\" } / page4 vocab: \"hover ... (공중에) 떠 있다, 맴돌다\"",
+      "suggestion": "\"들판 위에 떠 있는 드론의 끝\"으로 수정",
+      "lens": "translation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "medium",
+        "reason": "파일로 확인됨. page1 body(line 26) 원문 \"a drone hovering above a field\"에 대해 page3.translation_ko 문장 [3](line 324)은 \"들판 위를 떠도는 드론\"으로 옮겼다. 그러나 같은 파일의 gloss_extra(line 30)는 hovering을 \"공중에 떠 있는\", page4 vocab hover(line 445)는 \"(공중에) 떠 있다, 맴돌다\"로 정의하며, page4 예문(line 449)은 사실상 동일한 영문 \"A drone was hovering above the field.\"를 \"드론 한 대가 들판 위를 떠 있었다.\"로 번역한다. 즉 동일 어휘·동일 구문이 한 파일 안에서 서로 다른 의미로 렌더링된다. 한국어 \"떠돌다\"의 표준 의미는 정처 없이 이동·배회(유랑)로, hover의 핵심인 정지 비행(제자리 부양)과 어긋난다. vocab의 부차 뜻 \"맴돌다\"(제자리에서 원을 그림)와도 다른 어휘다. 문맥상으로도 이 문장은 드론 끝의 '위치를 특정(locate)'하기 위해 좌표 하나가 더 필요하다는 논지여서, 배회 뉘앙스는 지문 취지를 약화시킨다. 다만 오독 위험이 치명적이라기보다 뉘앙스·내부 일관성 문제이므로 warn 등급이 적절하며, \"떠 있는\" 정도로 수정하면 해소된다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.translation_ko 문장 [18] (02.json:324) / 대응 문항: page2.questions[1] 빈칸 추론, answers.explanations[1]",
+      "issue": "빈칸 추론(Q1)의 정답어 map이 번역문에서 바로 앞 동사 capture와 동일한 '담아내다'로 뭉뚱그려져, 문항이 변별하려는 어휘 대조가 번역에서 소실된다. 정답 자체는 옳으나 학생이 번역으로 답을 대조할 때 map을 특정할 근거가 사라진다.",
+      "evidence": "본문: \"Each of them trusts three numbers to capture a place that the eye alone could never fully <blank>.\" / page3 문장18 원문 복원: \"that the eye alone could never fully map.\" / 번역[18]: \"그들 각자는 눈만으로는 결코 온전히 담아낼 수 없는 자리를 세 개의 숫자로 담아내리라 믿는다.\" — capture와 map이 모두 '담아내다'로 번역됨. 반면 answers.explanations[1].key_terms는 map을 \"나타내다, 대응시키다\"로, page4.vocab의 plot은 \"좌표로 나타내다\"로 구분해 제시한다.",
+      "suggestion": "번역[18]의 관계절 동사를 map의 고유 의미로 살려 capture와 구분할 것. 예: \"그들 각자는 눈만으로는 결코 온전히 짚어낼(나타낼) 수 없는 자리를 세 개의 숫자로 담아내리라 믿는다.\"",
+      "lens": "answer",
+      "verdict": {
+        "reason": "파일 근거로 지적의 모든 사실 주장이 정확히 확인된다. (1) page1.body(26행)에 \"Each of them trusts three numbers to capture a place that the eye alone could never fully <blank>.\"가 그대로 있고, (2) page3.sentences[18] 세그먼트(315-319행)가 빈칸을 \"that the eye alone could never fully map.\"으로 복원하며, (3) translation_ko(324행) [18]은 \"그들 각자는 눈만으로는 결코 온전히 담아낼 수 없는 자리를 세 개의 숫자로 담아내리라 믿는다.\"로, capture(→담아내리라)와 map(→담아낼)을 같은 동사 '담아내다'로 뭉갠다.\n\n핵심은 단순한 번역 취향 문제가 아니라 파일 내부의 자기모순이라는 점이다. 정답 해설 answers.explanations[1].key_terms(358행)는 map을 \"나타내다, 대응시키다\"로 명시하고, 같은 해설의 evidence(349행)도 \"위치를 좌표로 '나타내다(map)'가 적절하다\"며 pin down·address와의 호응으로 정답을 논증한다. 또 page4.vocab의 plot(522행)은 \"좌표로 나타내다\"로 좌표-사상 의미를 별도 한국어로 유지한다. 즉 프로젝트가 map/plot 계열에 대해 유지하는 지정 역어가 존재하는데, 정작 그 어휘를 변별시키는 유일한 문장의 번역만 해설과 어긋난 역어를 쓴다.\n\n결과적으로 학생이 번역으로 답을 대조할 때 [18]은 \"숫자로 담아내리라 믿는다 / 담아낼 수 없는\"이라는 동어반복으로 읽혀, 빈칸 정답 map을 hide·erase·ignore·forget과 구별해 특정할 어휘적 단서가 소실된다. 빈칸 문항(page2.questions[1], answer_index 1)의 변별 기능이 번역 산출물에서 무력화되는 실질적 결함이다.\n\n다만 정답 자체는 옳고 담아내다가 두 동사의 오역이라고 보기는 어려우므로, 오류가 아닌 warn 등급이 타당하며 지적도 이를 정확히 그 수준으로 한정했다. 심각도까지 포함해 지적이 정확하다.",
+        "isReal": true,
+        "confidence": "high"
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page4.vocab[4] (hover) → examples[0].ko (02.json L449)",
+      "issue": "예문 한국어 대역의 조사 오류. 'A drone was hovering above the field.'를 \"드론 한 대가 들판 위를 떠 있었다\"로 옮겼는데, '떠 있다'는 상태 동사이므로 처소격 조사 '에'를 취해야 한다(들판 위**에** 떠 있었다). '위를'은 이동/경유를 나타내는 조사라 상태 서술어와 호응하지 않는다.",
+      "evidence": "page4.vocab hover 예문: { \"en\": \"A drone was hovering above the field.\", \"ko\": \"드론 한 대가 들판 위를 떠 있었다.\" } / 대조: 같은 파일 page3.translation_ko [3]은 이동성 동사 '떠돌다'와 함께 \"들판 위를 떠도는 드론\"으로 조사를 올바르게 썼다.",
+      "suggestion": "\"드론 한 대가 들판 위에 떠 있었다.\"로 수정. (또는 '맴돌다' 뜻을 살리려면 \"드론 한 대가 들판 위를 맴돌고 있었다.\")",
+      "lens": "vocab",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "지적이 실제 결함으로 확인된다.\n\n1) 사실관계 확인 (파일 근거)\n- 02.json L449 (page4.vocab hover, examples[0]): { \"en\": \"A drone was hovering above the field.\", \"ko\": \"드론 한 대가 들판 위를 떠 있었다.\" } — 인용 텍스트 정확히 일치.\n- L324 (page3.translation_ko [3]): \"들판 위를 떠도는 드론의 끝이나...\" — 대조 근거도 정확히 일치.\n\n2) 문법적 판단\n'-을/를'이 뜨다 계열 동사와 결합하는 것은 이동/경유(경로 목적어) 해석이 있을 때만 허용된다: '하늘을 떠다니다', '들판 위를 떠돌다', '하늘을 떠가다'. 반면 '-어 있다' 결과상태 구문인 '떠 있다'는 이동 없는 정적 상태를 나타내므로 경로 목적어를 논항으로 취할 수 없고 처소격 '-에'를 요구한다. '하늘에 떠 있다'는 자연스럽지만 '하늘을 떠 있다'는 비문에 가깝다. 따라서 \"들판 위를 떠 있었다\" → \"들판 위에 떠 있었다\"가 맞다.\n\n3) 파일 내부 자기모순 (결정적)\n같은 vocab 엔트리 L445의 meaning_ko가 \"(공중에) 떠 있다\"로, 표제 뜻풀이 자체가 '떠 있다'를 처소격 '-에'와 짝지어 놓았다. 그런데 바로 아래 예문에서만 '-를'을 쓴 것은 명백한 불일치다. 또 L324는 이동성 동사 '떠돌다'와 '위를'을 올바르게 호응시켜, 동일 파일 안에서 조사 선택 기준이 일관되지 않음을 보여준다.\n\n4) 반박 시도 및 기각\n'들판 위를'을 [들판 위]를 통째로 경로로 보는 관용 표현으로 옹호할 여지를 검토했으나, 그 해석은 '떠돌다/떠다니다' 같은 이동 술어를 전제한다. 원문 영어도 진행형이지만 hover above는 정지 부유 상태이며 통과 이동이 아니므로 이동 해석이 성립하지 않는다.\n\n수정안: \"드론 한 대가 들판 위에 떠 있었다.\""
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page1.body, 1st paragraph (sentence 3)",
+      "issue": "어색한 연어(collocation). 드론은 뾰족한 '끝(tip)'을 특징으로 하는 물체가 아니어서 'the tip of a drone'은 원어민에게 부자연스럽게 읽힌다. 문맥상 필요한 것은 '드론이 떠 있는 위치'다.",
+      "evidence": "\"To locate the tip of a drone hovering above a field, or a star fixed in the night sky, you need one more number.\"",
+      "suggestion": "'To locate a drone hovering above a field, or a star fixed in the night sky, ...' 로 'the tip of'를 삭제하거나 'the position of a drone'으로 대체.",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "page1.body, 2nd paragraph (sentence 10)",
+      "issue": "의미 범위가 불필요하게 좁다. 공간 벡터는 '공기 속' 운동만이 아니라 3차원 공간 전반의 운동을 기술하는 도구인데 'motion through the air'로 한정해, 4단락의 '위성(진공)·가상 세계' 사례와 미묘하게 어긋난다.",
+      "evidence": "\"Because the vector stores direction and size together, it becomes a compact tool for describing motion through the air.\"",
+      "suggestion": "'a compact tool for describing motion through space' 로 수정 (번역문 [10] '공기 속 움직임' → '공간 속 움직임' 동반 수정).",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko 문장 [16]",
+      "issue": "'이야말로' 강조 표현이 원문에 없는 강조를 덧붙임(과장)",
+      "evidence": "영문: \"This quiet shift is why a space vector is best understood as an arrow that points into the third dimension.\" / 번역: \"[16] 이 조용한 전환이야말로 공간 벡터가 세 번째 차원을 가리키는 화살로 가장 잘 이해되는 이유다.\"",
+      "suggestion": "\"이 조용한 전환이 바로 ... 이유다\" 또는 \"이 조용한 전환 때문에 ...로 가장 잘 이해된다\" 정도로 완화",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko 문장 [15]",
+      "issue": "rows of numbers의 '행(row)'이라는 배열 개념이 '나열'로 옮겨져 수학적 함의가 흐려짐",
+      "evidence": "영문: \"turns into rows of numbers that a computer can handle without ever drawing a thing\" / 번역: \"[15] ... 컴퓨터가 무엇 하나 그리지 않고도 다룰 수 있는 숫자들의 나열로 바뀐다.\"",
+      "suggestion": "\"숫자들의 행\" 또는 \"줄줄이 늘어선 숫자들\"로 조정",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[9] (plane) → synonyms (02.json L501)",
+      "issue": "동의어 'surface'가 의미상 부정확하다. 본문의 plane은 수학적 '평면'(곡률 0, 무한히 뻗는 면)인데 surface는 곡면까지 포함하는 상위어라 등가가 아니다. 학생이 plane=surface로 외우면 '곡면(curved surface)'과의 구분이 무너진다.",
+      "evidence": "page1.body: \"a third axis, the z-axis, that rises straight out of the familiar flat plane\" 및 \"A tangled picture of lines and planes\" — 둘 다 기하학적 평면. page4.vocab: { \"word\": \"plane\", \"meaning_ko\": \"평면\", \"synonyms\": [\"surface\"] }",
+      "suggestion": "synonyms를 [\"flat surface\"]로 좁히거나 비워 두기. 더불어 'plane=비행기'라는 흔한 동음이의 오독을 막기 위해 meaning_ko를 \"평면 (cf. 비행기)\" 정도로 보강하면 학습 효과가 크다.",
+      "lens": "vocab"
+    }
+  ],
+  "blockers": [],
+  "counts": {
+    "raw": 13,
+    "verified": 8,
+    "confirmed": 6,
+    "minor": 5
+  }
+}

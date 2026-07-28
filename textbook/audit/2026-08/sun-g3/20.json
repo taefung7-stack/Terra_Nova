@@ -1,0 +1,163 @@
+{
+  "grade": "sun-g3",
+  "seq": 20,
+  "confirmed": [
+    {
+      "severity": "blocker",
+      "location": "page1.body 마지막 문장 / page2.questions[1].choices",
+      "issue": "빈칸 앞에 이미 형용사 active가 있어 정답 선택지 'active interpretation'을 넣으면 'steady, active active interpretation'이 되어 중복 비문이 된다. 다른 선택지들도 모두 [형용사+명사] 2어 구라서 본문 자리와 맞지 않는다(예: 'steady, active blind obedience').",
+      "evidence": "본문: \"To read a screen well is not to reject it, but to meet it with steady, active <blank>.\" / 선택지: \"blind obedience\", \"quiet nostalgia\", \"active interpretation\", \"simple forgetfulness\", \"careful imitation\"",
+      "suggestion": "본문을 \"...but to meet it with steady <blank>.\"로 고치거나(형용사 active 삭제), 선택지를 명사 한 단어(obedience / nostalgia / interpretation / forgetfulness / imitation)로 통일한다. page3 문장20 분절이 보어를 \"to meet it with steady, active\" + \"interpretation\"으로 쪼갠 것도 후자 처리를 전제하고 있으므로 선택지를 단어형으로 맞추는 편이 정합적이다.",
+      "lens": "language",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 근거로 확인됨. page1.body 마지막 문장(line 26)은 \"To read a screen well is not to reject it, but to meet it with steady, active <blank>.\"로, 빈칸 바로 앞에 형용사 active가 이미 존재한다. page2.questions[1].choices(lines 54-60)는 answer_index 2 = \"active interpretation\"이므로 정답 대입 시 \"steady, active active interpretation\"이 되어 형용사 중복 비문이 된다. 나머지 네 선택지도 모두 [형용사+명사] 2어 구(\"blind obedience\", \"quiet nostalgia\", \"simple forgetfulness\", \"careful imitation\")여서 \"steady, active blind obedience\"처럼 어색한 3형용사 나열이 되어 빈칸 자리와 맞지 않는다. 결정적 교차 근거: page3 sentences[19](index 20, lines 342-351)는 원문 문장을 \"to meet it with steady, active\" + \"interpretation.\"으로 분해하여, 원저 문장이 명사 단독형 interpretation임을 확인해 준다. translation_ko(line 354)도 \"꾸준하고 능동적인 해석\"으로 형용사2+명사1 구조다. answers.explanations[1](line 379)의 evidence 역시 빈칸을 \"to meet it with steady, active ___\"로 인용한다. 즉 빈칸은 명사 단독 슬롯인데 선택지가 전부 [형용사+명사] 구로 작성된 불일치이며, 정답 선택지에서 active 중복 비문이 발생한다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.sentences[index=20].segments (20.json:344-351)",
+      "issue": "20번 문장 마지막 segment \"interpretation.\"의 역할을 O(목적어)로 태깅했으나, 이 단어는 전치사 with의 목적어로서 바로 앞 C segment \"to meet it with steady, active\"의 일부다. 문장에는 O 자리가 존재하지 않으며(To read ~ is not to reject it, but to meet ~ 의 2형식 구조), C 구가 전치사와 형용사 뒤에서 잘려 별개의 O로 분리되어 구문 골격이 왜곡됐다.",
+      "evidence": "본문: \"To read a screen well is not to reject it, but to meet it with steady, active <blank>.\" / page3: { \"role\": \"C\", \"text\": \"to meet it with steady, active\", \"note\": \"not A but B\" }, { \"role\": \"O\", \"text\": \"interpretation.\" } / grammar_note: \"to부정사 주어·보어 + not A but B\" (O에 대한 언급이 전혀 없음)",
+      "suggestion": "\"interpretation.\"을 C segment에 흡수해 { \"role\": \"C\", \"text\": \"to meet it with steady, active interpretation.\", \"note\": \"not A but B (빈칸 정답 자리)\" }로 통합하거나, 분리 유지 시 role을 O가 아닌 C(또는 M)로 바로잡을 것. 같은 폴더 01.json:326은 동일한 빈칸 정답 자리를 C로 올바르게 태깅하고 있어 파일 간 정합성도 맞는다.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 근거로 지적이 정확히 확인됨. 20.json:341-352의 index=20 segments는 지적 내용 그대로다: { \"role\": \"C\", \"text\": \"to meet it with steady, active\", \"note\": \"not A but B\" }, { \"role\": \"O\", \"text\": \"interpretation.\" }. 본문(line 26)은 \"To read a screen well is not to reject it, but to meet it with steady, active <blank>.\"로, 구조는 S(To read a screen well) + V(is) + C(not to reject it) + but + C(to meet it with steady, active interpretation)인 2형식이다. (1) interpretation은 전치사 with의 목적어이자 명사구 \"steady, active interpretation\"의 핵어로, 문장 차원의 O가 될 수 없다. to meet은 이미 자체 목적어 it을 갖고 있어 O 자리가 중복·불가능하다. (2) 현재 분절은 명사구를 \"steady, active\"(형용사에서 끊김)와 \"interpretation.\"으로 쪼개어, C segment 텍스트가 그 자체로 온전한 구성소가 아니게 만든다. (3) 같은 파일 line 351의 grammar_note가 \"to부정사 주어·보어 + not A but B\"로 O를 전혀 언급하지 않아, O 태그가 분석 의도와 불일치함을 파일 스스로 방증한다. (4) 동일 파일 내 일관성 위반도 확인: line 314(index 17)는 완전히 같은 패턴(\"to V + with + 명사구\")을 { \"role\": \"C\", \"text\": \"to watch with gentle suspicion.\" } 하나의 C로 유지하고 있고, line 346의 \"not to reject it,\"도 부정사의 목적어를 C 안에 포함시킨다. 따라서 index=20의 분리는 하우스 컨벤션이 아니라 오류다. 빈칸(<blank>=interpretation) 위치 때문이라는 변호도 성립하지 않는다 — segments는 S/V/C/O/M/CONJ 구문 골격 배열이며, 파일 내 어떤 문장도 빈칸 표시를 role 태그로 처리하지 않고 빈칸은 questions/answers 섹션에서 별도 처리된다."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "page2.questions[1] (빈칸 추론) choices / answer_index=2, page1.body 마지막 문장",
+      "issue": "빈칸 선지가 '형용사+명사' 구인데 본문 빈칸 앞에 이미 'active'가 있어, 정답 선지를 대입하면 'steady, active active interpretation'이라는 중복 비문이 된다. 정답 선지의 형태가 본문 빈칸 자리와 맞지 않아 정답이 성립하지 않는다.",
+      "evidence": "본문: \"To read a screen well is not to reject it, but to meet it with steady, active <blank>.\" / 선지: [\"blind obedience\", \"quiet nostalgia\", \"active interpretation\", \"simple forgetfulness\", \"careful imitation\"] (answer_index 2 = \"active interpretation\"). page3 문장20 분해: {\"role\":\"C\",\"text\":\"to meet it with steady, active\"}, {\"role\":\"O\",\"text\":\"interpretation.\"} — 빈칸 자리는 단일 명사 'interpretation'임이 확인됨. 해설도 \"(정답) interpretation은 의미를 능동적으로 읽어 낸다는 17~20번과 정확히 일치한다.\"라고 명사 단독을 정답으로 서술한다.",
+      "suggestion": "선지를 명사 단독으로 통일한다: obedience / nostalgia / interpretation / forgetfulness / imitation. (또는 본문에서 'active'를 삭제해 \"with steady <blank>\" 형태로 바꾸고 현행 형용사+명사 선지를 유지) 어느 쪽이든 나머지 4개 오답 선지의 형태도 동일하게 맞춰야 변별력이 유지된다.",
+      "lens": "answer",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "지적이 파일 근거로 모두 확인되어 반박할 수 없다. (1) page1.body 마지막 문장(26행)이 \"to meet it with steady, active <blank>.\"로, 'active'가 빈칸 토큰 바깥의 리터럴 텍스트로 저장되어 있다. (2) page2.questions[1].choices(54~60행)는 다섯 개 모두 '형용사+명사' 구이며 answer_index=2는 \"active interpretation\"이다. 대입 시 \"steady, active active interpretation\"이라는 형용사 중복 비문이 발생한다. (3) page3 문장20 분해(344~349행)가 {\"role\":\"C\",\"text\":\"to meet it with steady, active\"} + {\"role\":\"O\",\"text\":\"interpretation.\"}로 되어 있어 원문상 빈칸 자리가 단일 명사 'interpretation'임을 확정한다. (4) translation_ko도 \"꾸준하고 능동적인 해석\"으로, 'steady, active'는 본문에 남고 '해석'만 빈칸임을 뒷받침한다. (5) 해설(383행) \"(정답) interpretation은 …\"과 key_terms에 'interpretation'과 'active'가 별개로 실린 점이 정답을 명사 단독으로 서술한다. 즉 선지는 명사구가 들어갈 빈칸을 전제로 작성되었으나 본문은 'active'를 빈칸 앞에 남겨 두어, 정답 선지를 대입해도 문장이 성립하지 않는다. 렌더링 시 중복이 그대로 출력되므로 학습자 대면 문항으로서 실제 blocker 결함이다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page4.vocab[1] (word: \"frame\") — synonyms",
+      "issue": "synonyms에 \"shot\"을 넣었으나, 본문은 frame과 shot을 명확히 구별되는 개념으로 사용한다. frame은 화면의 '틀/경계'이고 shot은 하나의 촬영 단위(컷)로, 동의어가 아니다. meaning_ko(\"(화면) 틀, 프레임\")와도 어긋난다.",
+      "evidence": "본문: \"Yet every single shot is a choice.\" / \"Someone decided ... what to leave inside the frame, and what to push out of sight.\" — shot은 '한 컷'을, frame은 '안/밖'을 가르는 틀을 가리켜 서로 다른 층위로 쓰인다.",
+      "suggestion": "synonyms를 \"framing\" 또는 \"composition\"으로 교체하거나, 영상 용어로 한정해 \"the borders of the picture\" 계열 어휘를 쓴다. \"shot\"은 별도 표제어로 분리하는 편이 안전하다.",
+      "lens": "vocab",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "파일 확인 결과 지적이 타당하다. page4.vocab[1](440-448행)은 word:\"frame\", meaning_ko:\"(화면) 틀, 프레임\"인데 synonyms가 [\"shot\"] 단독이다. 그러나 본문(26행)은 두 단어를 다른 층위로 쓴다: \"Yet every single shot is a choice.\"와 \"Even the order of shots carries meaning\"에서 shot은 순서를 가지는 촬영 단위(컷)이고, \"what to leave inside the frame, and what to push out of sight\" / \"The frame is the first quiet act of persuasion\" / \"the frame speaks louder than the fact\"에서 frame은 안/밖을 가르는 경계·틀이다. \"the order of shots\"에 frame을 대입하면 의미가 성립하지 않아 상호 치환 불가가 확인된다. 파일 내부 자료도 이 구별을 지지한다: translation_ko(354행)는 shot을 일관되게 '컷'([3] 모든 컷은 하나의 선택이다, [10] 컷의 순서조차)으로, frame은 '프레임'([7] 프레임은 첫 번째 조용한 설득 행위다)으로 옮겼고, answers key_terms(405행)도 frame을 \"프레임, 화면 틀\"로 주석한다. 또 page2 요약문(87행) 빈칸 (A)의 정답이 frame이어서 학습자가 shot으로 대체 가능하다고 오해할 위험도 있다. 따라서 synonyms:[\"shot\"]은 자체 meaning_ko 및 본문 용법과 어긋나는 실제 결함(경고 수준)이다. framing과 shot composition이 실무상 겹친다거나 film frame(정지 화면 1컷)이라는 별개 의미가 있다는 반론은, 그 의미가 본문 용법도 meaning_ko도 아니므로 성립하지 않는다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page4.vocab[4] (word: \"reality\") — synonyms: [\"fact\"]",
+      "issue": "reality의 동의어로 \"fact\"를 제시했으나 본문 문맥에서 두 단어는 대비적으로 기능한다. reality는 '실재/현실 전체', fact는 '개별 사실'로 의미 범위가 다르며, 특히 이 지문은 밑줄 문장에서 frame과 fact를 대립시키고 있어 학습자가 혼동할 수 있다.",
+      "evidence": "본문: \"A screen never hands us raw reality. It hands us a version of reality...\" 및 밑줄 \"the frame speaks louder than the fact\" — reality는 가공 이전의 실재, fact는 실제로 일어난 개별 사실로 서로 다른 층위에서 쓰인다.",
+      "suggestion": "synonyms를 \"actuality\"로 바꾸거나, 대비 관계를 살려 antonyms(\"fiction\")만 유지하고 synonyms는 비운다.",
+      "lens": "vocab",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "파일 근거로 확인됨. page4.vocab[4] \"reality\"의 synonyms가 [\"fact\"]인데, 본문(page1.body)에서 두 단어는 대비적으로 기능한다: reality는 가공 대상(\"raw reality\", \"a version of reality that has already been shaped\")으로만 등장하고, fact는 밑줄 \"the frame speaks louder than the fact\"에서 프레임이 압도하는 '실제 일어난 일'로 단 한 번 등장한다.\n\n결정적 근거는 파일 내부 모순이다. 이 밑줄 문장은 page2.questions[2](함의 추론, 정답 0번 \"how a scene is framed and cut can matter more than what really occurred\")의 출제 대상이며, answers.explanations[2] 역시 \"장면이 어떻게 프레이밍·편집되었는가가 실제로 일어난 일보다 더 큰 영향\"이라고 명시한다. 즉 어휘 페이지는 reality=fact 등가를 가르치는데, 같은 문서의 문항은 학습자가 그 둘을 구별해야만 풀리도록 설계되어 있다.\n\n또한 antonyms [\"fiction\"]은 '실제 대 허구' 축을 전제하지만, 본문의 축은 '가공 이전 대 가공된 판본'이다. actuality 등이 본문 문맥에 더 부합한다.\n\n반박 여지도 존재한다: 일반 사전상 reality와 fact는 근접어(in reality/in fact)로 처리되므로 어휘적으로 틀린 기술은 아니며, 학습자가 Q3을 틀리게 되는 필연적 오류도 아니다. 따라서 error가 아닌 warn 등급이 적절하다. 다만 어휘면과 문항면이 한 파일에 공존하는 학습 교재에서 문항이 요구하는 구별을 어휘면이 무너뜨리는 것은 실재하는 교육적 결함이므로 isReal=true로 판정한다."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page1.body 2단락",
+      "issue": "단락 주제문은 '프레임(the frame)'이라고 못 박아 놓고 이어지는 근거는 앵글, 조명(lighting), 쇼트 순서, 컷 등 프레이밍이 아닌 요소까지 포함해 주제문과 뒷받침의 범위가 어긋난다. 3단락에서 음향을 따로 다루는 구성과 비교하면 조명·편집은 프레임 항목에 묶이기 어렵다.",
+      "evidence": "\"The frame is the first quiet act of persuasion. By choosing a narrow angle, ... Lighting can turn a plain face warm and kind, or cold and cruel. Even the order of shots carries meaning, because editing decides...\"",
+      "suggestion": "주제문을 \"Framing, lighting, and editing are the first quiet acts of persuasion.\" 정도로 넓히거나, 조명·편집 문장을 별도 단락으로 분리해 단락별 논지를 일치시킨다.",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.sentences[index=1] (20.json:135-137)",
+      "issue": "같은 문장 안에서 segment note와 grammar_note가 서로 다른 문법 설명을 한다. note는 \"feel like + 명사구\", grammar_note는 \"feel like + 전치사구\"로 like의 품사 처리(전치사냐 아니냐)가 엇갈려 학습자에게 혼선을 준다. 또한 like 이하를 M(수식어)으로 태깅했는데, feel 뒤의 like 구는 2형식 보어 기능이므로 grammar_note의 \"2형식\" 진술과도 어긋난다.",
+      "evidence": "{ \"role\": \"M\", \"text\": \"like a clear window onto the world.\", \"note\": \"feel like + 명사구\" } / \"grammar_note\": \"2형식 feel like + 전치사구\"",
+      "suggestion": "note와 grammar_note의 표현을 하나로 통일하고(예: 둘 다 \"feel like + 명사구(전치사 like)\"), 2형식이라 명시했으므로 role도 M 대신 C로 조정할 것.",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.sentences[index=17] (20.json:314-316)",
+      "issue": "\"to watch with gentle suspicion.\"을 C(보어)로 태깅했으나 learn to V의 to부정사는 learn의 목적어(3형식)로 보는 것이 일반적이다. 동일 폴더 내 같은 유형의 catenative to부정사가 07.json(begin to V), 09.json(promise to V)에서는 O로 태깅돼 있어 세트 내 기준이 불일치한다.",
+      "evidence": "20.json: { \"role\": \"C\", \"text\": \"to watch with gentle suspicion.\", \"note\": \"learn to V\" } / 07.json:275: { \"role\": \"O\", \"text\": \"to fuse heavier elements,\", \"note\": \"begin to V\" } / 09.json:213: { \"role\": \"O\", \"text\": \"to honor certain terms,\", \"note\": \"promise to V\" }",
+      "suggestion": "learn/begin/promise 계열 to부정사의 role을 세트 전체에서 O로 통일할 것(19.json:277은 M으로 되어 있어 함께 정리 필요).",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko 문장 [3]·[10] (\"모든 컷은 하나의 선택이다\", \"컷의 순서조차 의미를 지닌다\")",
+      "issue": "영문이 구분해서 쓰는 shot과 cut을 번역이 모두 '컷'으로 옮겨 영상 용어 구분이 무너짐. 특히 [10]의 'the order of shots'는 '숏(장면)의 순서'이고, 바로 다음 [11]의 'A cut'(편집점)과는 다른 개념인데 둘 다 '컷'이 되어 학습자가 같은 대상으로 오독할 수 있다. 지문 주제가 영상 언어(프레이밍·숏·편집)라 용어 정밀도가 요구되는 자리다.",
+      "evidence": "본문 [3] \"Yet every single shot is a choice.\" / [10] \"Even the order of shots carries meaning, because editing decides...\" / [11] \"A cut can join two unrelated events...\" ↔ 번역 \"[3] 그러나 모든 컷은 하나의 선택이다. ... [10] ... 컷의 순서조차 의미를 지닌다. [11] 하나의 컷은 무관한 두 사건을...\"",
+      "suggestion": "[3] '모든 숏(장면) 하나하나가 선택이다', [10] '숏의 순서조차 의미를 지닌다'로 바꾸어 [11]의 '컷(cut)'과 구분한다.",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko 문장 [11] (\"...단정하게 만들 수 있다\")",
+      "issue": "원문의 so ~ that 결과절 주어는 'we'이고 부사 simply(그저, 쉽사리)가 관객의 무비판적 태도를 강조하는데, 번역이 사역 구문('단정하게 만들 수 있다')으로 바꾸면서 simply의 뉘앙스가 사라졌다. page3 sentences 11의 문법 주석(\"so ~ that 결과절\", role M \"simply\")과도 어긋난다.",
+      "evidence": "본문 \"A cut can join two unrelated events so tightly that we simply assume one caused the other.\" ↔ 번역 \"[11] 하나의 컷은 무관한 두 사건을 너무 밀착시켜 하나가 다른 하나를 일으켰다고 단정하게 만들 수 있다.\"",
+      "suggestion": "'하나의 컷이 무관한 두 사건을 아주 밀착시켜 붙이면, 우리는 그저 하나가 다른 하나를 일으켰다고 단정해 버린다' 식으로 결과절 주어와 simply를 살린다.",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page2.questions[2].stem",
+      "issue": "밑줄 구 인용 자체는 본문 <u> 태그와 정확히 일치하나, 지시문 어법이 '윗글의 밑줄 친 X가 다음 글에서 의미하는 바'로 앞뒤가 충돌한다. 인용 대상은 이미 '윗글'에 있으므로 '다음 글에서'는 불필요하고 혼동을 준다.",
+      "evidence": "stem: \"윗글의 밑줄 친 the frame speaks louder than the fact 가 다음 글에서 의미하는 바로 가장 적절한 것은?\" / 본문 <u> 원문: \"the frame speaks louder than the fact\" (일치 확인됨).",
+      "suggestion": "\"윗글의 밑줄 친 the frame speaks louder than the fact가 의미하는 바로 가장 적절한 것은?\"으로 수정하고, 인용구는 따옴표 또는 밑줄 서식으로 감싸 띄어쓰기('fact 가' → 'fact가')를 정리한다.",
+      "lens": "answer"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[2] \"angle\", vocab[4] \"reality\", vocab[9] \"vast\"",
+      "issue": "학년(sun-g3, 고3·Lexile 1050L) 대비 기초 수준 어휘가 12개 표제어 중 다수를 차지한다. reality, angle, vast는 중학 수준 기본어로, 고3 어휘 학습 가치가 낮다.",
+      "evidence": "meta: \"lexile\": \"1050L\", \"ar_level\": 8.5 / 본문에는 persuasion, neutral, suspicion, swelling, voice-over, unrelated 외에도 raw reality, common sense, weigh(가늠하다), the maker's likely aim 등 상위 표현이 있으나 표제어에 빠져 있다.",
+      "suggestion": "reality·angle·vast 중 1~2개를 본문의 \"weigh(가늠하다, v.)\" 또는 \"raw(가공되지 않은, adj.)\", \"bold claim\"의 bold 등 고3 수준 항목으로 교체한다.",
+      "lens": "vocab"
+    }
+  ],
+  "blockers": [
+    {
+      "severity": "blocker",
+      "location": "page1.body 마지막 문장 / page2.questions[1].choices",
+      "issue": "빈칸 앞에 이미 형용사 active가 있어 정답 선택지 'active interpretation'을 넣으면 'steady, active active interpretation'이 되어 중복 비문이 된다. 다른 선택지들도 모두 [형용사+명사] 2어 구라서 본문 자리와 맞지 않는다(예: 'steady, active blind obedience').",
+      "evidence": "본문: \"To read a screen well is not to reject it, but to meet it with steady, active <blank>.\" / 선택지: \"blind obedience\", \"quiet nostalgia\", \"active interpretation\", \"simple forgetfulness\", \"careful imitation\"",
+      "suggestion": "본문을 \"...but to meet it with steady <blank>.\"로 고치거나(형용사 active 삭제), 선택지를 명사 한 단어(obedience / nostalgia / interpretation / forgetfulness / imitation)로 통일한다. page3 문장20 분절이 보어를 \"to meet it with steady, active\" + \"interpretation\"으로 쪼갠 것도 후자 처리를 전제하고 있으므로 선택지를 단어형으로 맞추는 편이 정합적이다.",
+      "lens": "language",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 근거로 확인됨. page1.body 마지막 문장(line 26)은 \"To read a screen well is not to reject it, but to meet it with steady, active <blank>.\"로, 빈칸 바로 앞에 형용사 active가 이미 존재한다. page2.questions[1].choices(lines 54-60)는 answer_index 2 = \"active interpretation\"이므로 정답 대입 시 \"steady, active active interpretation\"이 되어 형용사 중복 비문이 된다. 나머지 네 선택지도 모두 [형용사+명사] 2어 구(\"blind obedience\", \"quiet nostalgia\", \"simple forgetfulness\", \"careful imitation\")여서 \"steady, active blind obedience\"처럼 어색한 3형용사 나열이 되어 빈칸 자리와 맞지 않는다. 결정적 교차 근거: page3 sentences[19](index 20, lines 342-351)는 원문 문장을 \"to meet it with steady, active\" + \"interpretation.\"으로 분해하여, 원저 문장이 명사 단독형 interpretation임을 확인해 준다. translation_ko(line 354)도 \"꾸준하고 능동적인 해석\"으로 형용사2+명사1 구조다. answers.explanations[1](line 379)의 evidence 역시 빈칸을 \"to meet it with steady, active ___\"로 인용한다. 즉 빈칸은 명사 단독 슬롯인데 선택지가 전부 [형용사+명사] 구로 작성된 불일치이며, 정답 선택지에서 active 중복 비문이 발생한다."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "page2.questions[1] (빈칸 추론) choices / answer_index=2, page1.body 마지막 문장",
+      "issue": "빈칸 선지가 '형용사+명사' 구인데 본문 빈칸 앞에 이미 'active'가 있어, 정답 선지를 대입하면 'steady, active active interpretation'이라는 중복 비문이 된다. 정답 선지의 형태가 본문 빈칸 자리와 맞지 않아 정답이 성립하지 않는다.",
+      "evidence": "본문: \"To read a screen well is not to reject it, but to meet it with steady, active <blank>.\" / 선지: [\"blind obedience\", \"quiet nostalgia\", \"active interpretation\", \"simple forgetfulness\", \"careful imitation\"] (answer_index 2 = \"active interpretation\"). page3 문장20 분해: {\"role\":\"C\",\"text\":\"to meet it with steady, active\"}, {\"role\":\"O\",\"text\":\"interpretation.\"} — 빈칸 자리는 단일 명사 'interpretation'임이 확인됨. 해설도 \"(정답) interpretation은 의미를 능동적으로 읽어 낸다는 17~20번과 정확히 일치한다.\"라고 명사 단독을 정답으로 서술한다.",
+      "suggestion": "선지를 명사 단독으로 통일한다: obedience / nostalgia / interpretation / forgetfulness / imitation. (또는 본문에서 'active'를 삭제해 \"with steady <blank>\" 형태로 바꾸고 현행 형용사+명사 선지를 유지) 어느 쪽이든 나머지 4개 오답 선지의 형태도 동일하게 맞춰야 변별력이 유지된다.",
+      "lens": "answer",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "지적이 파일 근거로 모두 확인되어 반박할 수 없다. (1) page1.body 마지막 문장(26행)이 \"to meet it with steady, active <blank>.\"로, 'active'가 빈칸 토큰 바깥의 리터럴 텍스트로 저장되어 있다. (2) page2.questions[1].choices(54~60행)는 다섯 개 모두 '형용사+명사' 구이며 answer_index=2는 \"active interpretation\"이다. 대입 시 \"steady, active active interpretation\"이라는 형용사 중복 비문이 발생한다. (3) page3 문장20 분해(344~349행)가 {\"role\":\"C\",\"text\":\"to meet it with steady, active\"} + {\"role\":\"O\",\"text\":\"interpretation.\"}로 되어 있어 원문상 빈칸 자리가 단일 명사 'interpretation'임을 확정한다. (4) translation_ko도 \"꾸준하고 능동적인 해석\"으로, 'steady, active'는 본문에 남고 '해석'만 빈칸임을 뒷받침한다. (5) 해설(383행) \"(정답) interpretation은 …\"과 key_terms에 'interpretation'과 'active'가 별개로 실린 점이 정답을 명사 단독으로 서술한다. 즉 선지는 명사구가 들어갈 빈칸을 전제로 작성되었으나 본문은 'active'를 빈칸 앞에 남겨 두어, 정답 선지를 대입해도 문장이 성립하지 않는다. 렌더링 시 중복이 그대로 출력되므로 학습자 대면 문항으로서 실제 blocker 결함이다."
+      }
+    }
+  ],
+  "counts": {
+    "raw": 16,
+    "verified": 9,
+    "confirmed": 5,
+    "minor": 7
+  }
+}

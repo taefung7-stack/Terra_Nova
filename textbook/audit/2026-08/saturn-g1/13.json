@@ -1,13 +1,115 @@
 {
   "grade": "saturn-g1",
   "seq": 13,
-  "confirmed": [],
-  "minors": [],
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page1.body, 3단락 1문장",
+      "issue": "원의 정의가 비문. 단수 주어 'a circle'을 배분적 표현 'every point'와 등치시켜 술어 주격보어가 성립하지 않는다. 원은 점들의 '집합'이지 '모든 점' 하나하나가 아니다.",
+      "evidence": "\"A circle follows the same plan, since a circle is every point that lies at one fixed distance, the radius, from its center.\"",
+      "suggestion": "'a circle is the set of all points that lie...' 또는 'a circle is all the points that lie...'로 수정. 참고로 국문 번역은 '모든 점이기 때문이다'로 영문 결함을 그대로 옮겨 놓았으므로 함께 다듬는 것이 좋다.",
+      "lens": "language",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "지적이 파일 근거로 정확히 확인됨. page1.body 3단락 1문장은 인용문과 완전히 일치한다: \"A circle follows the same plan, since a circle is every point that lies at one fixed distance, the radius, from its center.\"\n\n(1) 문법적 결함 성립: 계사 구문 'a circle is every point'에서 주격보어 자리에 배분적 전칭 양화사구 'every point'가 놓였다. 'every'는 배분적·단수 양화 표현이라 집합 지시 명사구로 기능할 수 없어 주어와의 등치가 타입 불일치를 일으킨다. 관계절 동사가 단수 'lies'인 점이 보어가 복수 집합 해석이 아니라 단수-배분 해석임을 확정하므로, \"all the points\" 같은 복수 집합 독해로 구제할 여지도 없다. 올바른 형태는 \"the set of all points that lie...\" 또는 \"every point of a circle lies...\".\n\n(2) 수학적 정의 오류가 겹침: 원은 중심에서 등거리인 점들의 집합(자취)이며, 집합을 그 임의의 원소와 동일시하는 진술이다. 성취기준 10공수2-04-01(원의 방정식)에 연결된 지문의 정의 문장이라는 점에서 경미하지 않다.\n\n(3) 동일 파일 내 대조 근거가 결정적: page2 선택지 \"Every point of a circle lies at one fixed distance from its center\", page4 예문 \"Every point of a circle sits one radius from the center\"는 양화사를 주어로 둔 올바른 형태다. 특히 textbook_tieback.body_ko는 \"원은 중심에서 거리가 반지름으로 일정한 점들의 모임\"이라며 '집합/모임'으로 정확히 정의한다. 즉 같은 문서가 한국어로는 집합으로, 영어 본문에서는 'every point'로 잘못 서술한다.\n\n(4) translation_ko [11]도 \"원은 ... 모든 점이기 때문이다\"로 동일 결함을 반복하므로 번역 아티팩트가 아니다. page3 sentence index 11의 세그먼트도 C=\"every point\"로 파싱해 결함을 그대로 고착시킨다.\n\n반박 시도 결과: 비격식 총칭 복수 독해 가능성은 단수 'lies'와 계사 등치 구조가 차단하며, 교과서 정의 문장이라는 맥락상 문체적 관용의 여지도 없다. 위치·인용·성격 규정 모두 정확하다. 수정 시 page3 sentence 11 세그먼트와 translation_ko [11]까지 동기화 필요."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page1.body, 2단락 1문장 (page3 sentences[6], translation_ko [6])",
+      "issue": "to부정사가 능동형이라 '직선이 스스로 변한다'는 뜻이 되는데, 의도된 의미는 '가장 먼저 방정식으로 바뀌는 도형'이다. 국문 번역이 수동('옮겨지는')으로 되어 있어 영문-번역 불일치가 드러난다.",
+      "evidence": "영문: \"A straight line is the first shape to change.\" / 국문: \"[6] 직선은 가장 먼저 옮겨지는 도형이다.\"",
+      "suggestion": "'A straight line is the first shape to be turned into an equation.' 정도로 목적어를 명시하거나, 국문을 능동으로 맞춘다. 현재 상태로는 학생이 '직선이 변한다'로 오독하기 쉽다.",
+      "lens": "language",
+      "verdict": {
+        "isReal": true,
+        "confidence": "medium",
+        "reason": "파일에서 확인됨. page1.body 2단락 1문장 영문은 \"A straight line is the first shape to change.\"이고, page3.sentences[6]은 이를 S=\"A straight line\" / V=\"is\" / C=\"the first shape to change.\"로 분석하며 note에 \"to부정사가 shape 수식\"이라고 명시한다. \"the first N to V\" 구조에서 to부정사의 의미상 주어는 수식받는 명사(shape)이므로 능동 해석, 즉 '직선이 스스로 변한다'가 된다. 반면 page3.translation_ko [6]은 \"직선은 가장 먼저 옮겨지는 도형이다.\"로 수동('옮겨지는')이다. 따라서 영문-국문 태(voice) 불일치가 실재한다. 게다가 '옮겨지다'는 change(변하다)가 아니라 move/transfer의 의미여서 어휘 차원에서도 어긋난다. 의도된 의미가 수동('방정식으로 바뀌는')이라는 점은 같은 파일의 다른 근거로 뒷받침된다: sentences[20] \"anyone can turn shapes into equations\", page2 빈칸 정답 \"turn shapes into equations\", sentences[15] \"Turn that rule into symbols, and the circle becomes an equation too\" 등 본문 전체가 도형이 방정식으로 '바뀌어지는' 대상임을 전제한다. 다만 change를 자동사적 '변화를 겪다'로 읽으면 영문 자체가 비문은 아니어서 심각도는 낮고(경고 수준 타당), 그래서 confidence는 medium이다. 수정 방향은 영문을 \"the first shape to be turned into an equation\"류로 바꾸거나, 국문을 \"가장 먼저 변하는 도형\"으로 맞추는 것이다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-08/13.json → page3.sentences[19] (index 20), segment \"that with two crossed number lines,\"",
+      "issue": "명사절 접속사 that을 부사구 안에 흡수시켜 M으로 오태깅했고, 그 결과 동사 showed의 목적어(O)가 사라졌다. 노트도 that을 '삽입 부사구'의 일부인 것처럼 설명한다.",
+      "evidence": "본문: \"for Descartes showed that with two crossed number lines, anyone can turn shapes into equations.\" / 태깅: { \"role\": \"V\", \"text\": \"showed\" }, { \"role\": \"M\", \"text\": \"that with two crossed number lines,\", \"note\": \"that절 안 삽입 부사구\" }. 여기서 that은 showed의 목적어절을 이끄는 접속사이지 부사구의 일부가 아니다. 실제 삽입 부사구는 \"with two crossed number lines\" 뿐이다. 같은 달 다른 지문들은 모두 명사절 that을 독립 CONJ로 분리한다(예: 03.json:256, 04.json:159, 09.json:175, 12.json:244, 17.json:143, 19.json:197 모두 { \"role\": \"CONJ\", \"text\": \"that\" }). 13.json의 이 세그먼트만 유일하게 that을 M 안에 넣었다.",
+      "suggestion": "{ \"role\": \"CONJ\", \"text\": \"that\", \"note\": \"showed의 목적어절을 이끄는 접속사\" } 와 { \"role\": \"M\", \"text\": \"with two crossed number lines,\", \"note\": \"that절 안 삽입 부사구\" } 로 분리한다.",
+      "lens": "explanation",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "파일 근거로 지적이 정확히 확인됨. 13.json의 page3.sentences 마지막 문장(index 20, 배열 위치 19)에 { \"role\": \"V\", \"text\": \"showed\" } 바로 뒤 { \"role\": \"M\", \"text\": \"that with two crossed number lines,\", \"note\": \"that절 안 삽입 부사구\" } 가 실재한다. 문법적으로 이 that은 showed의 목적어절(anyone can turn shapes into equations)을 이끄는 명사절 접속사이며, 실제 삽입 부사구는 \"with two crossed number lines\" 뿐이다. 현 태깅에서는 showed의 목적어(O 또는 목적어절 표지)가 완전히 사라지고 후행 S/V/O 요소들이 상위 동사에 연결되지 못한 채 떠 있다. 일관성 주장도 검증됨: 2026-08 디렉터리 전수 스캔 결과 인지/전달 동사 뒤 명사절 that은 예외 없이 독립 CONJ로 분리된다(03.json idx15 shows+CONJ that, 04.json idx6, 09.json idx7·20, 12.json idx14·19 hints+CONJ that, 17.json idx5 firmly believed+CONJ that, 19.json idx9·13). 관계사 that은 별도로 REL로 태깅되며 13.json 자신도 idx7·11에서 REL을 쓰고 있어 파일 내부 규약과도 어긋난다. 13.json idx20만이 해당 월 전체에서 명사절 that을 M 세그먼트 안에 흡수시킨 유일한 사례다. 노트 문구 역시 that을 삽입구의 일부로 설명해 오류를 강화한다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page2.questions[1].stem (line 48)",
+      "issue": "빈칸 추론 문항의 stem이 \"윗글의 밑줄 친 빈칸\"이라고 표현하지만, 본문의 빈칸은 <blank> 토큰일 뿐 밑줄(<u>) 표시가 아니다. 본문에서 <u> 태그가 붙은 유일한 구는 1단락의 \"coordinate plane\"이므로, 학생이 stem의 '밑줄 친'을 근거로 1단락 밑줄부를 찾아 혼동할 수 있다.",
+      "evidence": "본문(page1.body) 1단락: \"His answer became the <u>coordinate plane</u>, a flat grid made from two number lines.\" / 4단락 끝: \"...anyone can <blank>.\" — <blank> 위치에는 <u> 표시가 없다. 반면 stem은 \"윗글의 밑줄 친 빈칸에 들어갈 말로 가장 적절한 것은?\"이다.",
+      "suggestion": "stem을 \"윗글의 빈칸에 들어갈 말로 가장 적절한 것은?\"으로 수정하거나, 본문 빈칸을 <u><blank></u> 형태로 밑줄 처리하여 stem 표현과 일치시킨다. (정답 turn shapes into equations 자체는 20번 문장 \"anyone can turn shapes into equations\"로 타당함)",
+      "lens": "answer",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "파일 근거로 지적이 정확히 확인된다. page1.body(line 21)에서 <u> 태그가 붙은 유일한 구는 1단락의 \"coordinate plane\"(\"His answer became the <u>coordinate plane</u>, a flat grid made from two number lines.\")이며, 정작 빈칸은 4단락 끝의 \"anyone can <blank>.\"로 아무런 밑줄 표시가 없다. 그런데 page2.questions[1].stem(line 48)은 \"윗글의 밑줄 친 빈칸에 들어갈 말로 가장 적절한 것은?\"이라고 되어 있어, 발문이 가리키는 '밑줄 친' 대상이 본문에 존재하지 않는다. 더 나아가 학생이 발문 지시대로 밑줄을 찾으면 빈칸이 아닌 1단락의 \"coordinate plane\"을 발견하게 되어 실제 오독 유발 가능성이 있다. 보강 근거: (1) 수능·모의고사 빈칸 추론 표준 발문은 \"다음 빈칸에 들어갈 말로 가장 적절한 것은?\"이며 \"밑줄 친\"은 어법·어휘 문항에서 <u> 구간을 지시할 때 쓰는 표현이라 두 관습이 혼용되었다. (2) 같은 파일 line 74의 요약문 빈칸 문항은 \"빈칸 (A), (B)\"라는 중립 표현을 써서 내부 일관성도 깨진다. (3) 이 <u> 마크업을 참조하는 어법·어휘 문항이 파일 내에 없어 밑줄이 문항과 무관하게 남아 있다. 반론 검토: 일부 렌더러가 <blank>를 밑줄형 빈칸(____)으로 출력할 수 있다는 여지가 있으나, 그 경우에도 본문에 경쟁하는 진짜 밑줄부가 따로 존재하므로 혼동은 해소되지 않는다. 정답(answer_index 0)과 선택지·해설은 모두 정합하므로 채점 오류는 아니며, warn 등급 지적으로 타당하다."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page1.body, 1단락 5문장 (page3 sentences[5])",
+      "issue": "'join into'를 자동사로 쓴 것은 비관용적 표현. 'join'은 보통 타동사이거나 'join together'로 쓰인다.",
+      "evidence": "\"With this one tool, geometry and algebra joined into a single subject.\"",
+      "suggestion": "'merged into a single subject' 또는 'were joined into a single subject'로 바꾸면 자연스럽다.",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-08/13.json → page3.sentences[0] (index 1), segment \"the French thinker René Descartes\"",
+      "issue": "생략된 that 목적어절을 S/V로 펼쳐 태깅하면서, says의 목적어(O)가 어느 범위인지 표시되지 않는다. 같은 교재의 동일 구문 처리 방식과 어긋난다.",
+      "evidence": "태깅: { \"role\": \"V\", \"text\": \"says\" }, { \"role\": \"S\", \"text\": \"the French thinker René Descartes\", \"note\": \"접속사 that 생략된 목적어절의 주어\" }. 반면 07.json은 동일한 that 생략 목적어절을 통째로 O로 묶는다: { \"role\": \"O\", \"text\": \"you have three shirts and two pairs of pants,\", \"note\": \"that 생략 목적어절\" } (07.json:102, 172, 277). 13.json은 절을 펼쳐 놓아 says에 대응하는 O 세그먼트가 존재하지 않는다.",
+      "suggestion": "07.json 방식대로 that 생략 목적어절 전체를 O 한 덩어리로 묶거나, 최소한 { \"role\": \"CONJ\", \"text\": \"(that)\", \"note\": \"생략된 목적어절 접속사\" } 를 넣어 절의 시작을 표시한다.",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko 문장 [6]",
+      "issue": "\"the first shape to change\"를 \"가장 먼저 옮겨지는 도형\"으로 옮겨, 원문의 '바뀌다(방정식으로 변환되다)'라는 자동사적 의미가 '(누군가에 의해) 옮겨진다'는 수동 표현으로 미묘하게 바뀌었다.",
+      "evidence": "영문: \"A straight line is the first shape to change.\" / 번역: \"[6] 직선은 가장 먼저 옮겨지는 도형이다.\"",
+      "suggestion": "\"직선은 가장 먼저 (방정식으로) 바뀌는 도형이다.\" 정도로 능동·자동사 의미를 살릴 것.",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko 문장 [1]",
+      "issue": "영문의 부정대명사 one(= a fly, 어떤 파리 한 마리)을 정관사적 지시어 \"그 파리\"로 옮겨, 앞서 상상하라고 한 파리와 데카르트가 실제로 본 파리를 동일한 개체로 특정해 버렸다.",
+      "evidence": "영문: \"Picture a fly walking across a ceiling, and legend says the French thinker René Descartes watched one and asked a simple question.\" / 번역: \"...르네 데카르트는 그 파리를 지켜보다가 간단한 질문을 던졌다.\"",
+      "suggestion": "\"데카르트가 파리 한 마리를 지켜보다가\"처럼 비한정 표현으로 옮기는 것이 원문에 더 충실하다.",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko 문장 [20]",
+      "issue": "원문에 없는 한정 부사 '만'을 추가해 \"두 개의 수직선만 있으면\"으로 옮겼다. 의미상 큰 왜곡은 아니나 원문 with에 없는 배타적 뉘앙스가 더해졌다.",
+      "evidence": "영문: \"Descartes showed that with two crossed number lines, anyone can turn shapes into equations.\" / 번역: \"...서로 교차하는 두 개의 수직선만 있으면 누구나 도형을 방정식으로 바꿀 수 있음을 보여 주었기 때문이다.\"",
+      "suggestion": "\"서로 교차하는 두 개의 수직선이 있으면\"으로 중립화 가능(문체상 허용 범위 내이므로 유지해도 무방).",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[2] (\"equation\") synonyms",
+      "issue": "\"equation\"의 synonym으로 \"formula\"를 제시했으나, formula는 같은 vocab 세트 안에 별도 표제어(meaning_ko \"공식\")로 등재되어 있고 본문도 두 개념을 명확히 구분한다. 같은 페이지 안에서 A의 동의어가 B인데 B는 다른 뜻으로 따로 학습되는 내부 불일치다.",
+      "evidence": "page1.body: \"once you know the slope and one point, you can write the line's equation\" vs \"The distance formula lets us test any point.\" / page4.vocab[2].synonyms: [\"formula\"], page4.vocab[6]: {\"word\": \"formula\", \"meaning_ko\": \"공식\"}",
+      "suggestion": "equation의 synonyms를 비우거나 \"identity\"·\"expression\" 대신 실제 등가어가 없음을 인정해 [] 로 두고, 필요하면 formula와의 차이(방정식 vs 공식)를 note로 구분해 준다.",
+      "lens": "vocab"
+    }
+  ],
   "blockers": [],
   "counts": {
-    "raw": 0,
-    "verified": 0,
-    "confirmed": 0,
-    "minor": 0
+    "raw": 14,
+    "verified": 8,
+    "confirmed": 4,
+    "minor": 6
   }
 }

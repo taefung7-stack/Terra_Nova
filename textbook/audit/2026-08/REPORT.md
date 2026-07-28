@@ -1,126 +1,583 @@
 # 2026-08 고등 교재 검수 리포트
 
-> 생성: 2026-07-11 · 멀티에이전트 4관점 병렬 검수(언어·해설·번역·정답) + 적대검증
-> 갱신: 2026-07-12 · 외부 AI(Codex) 제보 소스 교차검증 + 추가 결함 3건 수정
-> 대상: `2026-08-Saturn(고1)`·`2026-08-Jupiter(고2)` 풀북 각 20지문(총 40지문)
+> 생성: unstamped · 멀티에이전트 4관점 병렬 검수 + 적대검증
 
 | 학년 | 차단 | 권고 | 경미 |
 |------|------|------|------|
-| 고1 Saturn | 0 | 16 | 17 |
-| 고2 Jupiter | 1 | 42 | 28 |
-| **합계** | **1** | **58** | **45** |
+| 고1 Saturn | 11 | 94 | 127 |
+| 고2 Jupiter | 40 | 124 | 154 |
+| 고3 Sun | 9 | 84 | 140 |
+| **합계** | **60** | **302** | **421** |
 
-## 판정 요약
-
-- 🚫 **차단(내용) 2건 → 모두 수정 완료**:
-  - 고2 Jupiter #12 빈칸 정답(`randomness`, 불가산 단수) 대입 시 관계절 `that quiet randomness obey`가 주술 수일치 위반 비문 → `obeys`로 정정(body + page3 REL).
-  - **고1 Saturn #3 Q1 정답 오류(Codex 제보, REAL)**: `answer_index`가 오답 선지(`Prejudice disappears on its own once enough laws are written down`)를 가리켰으나 evidence·rationale은 정답 선지(`A fair multicultural society respects each culture…`)를 설명 → 정답을 index 2로 정정, rationale 재배치. 렌더 정답 ③ 확인.
-- 🖍️ **차단(시각/글리프) 1건 → 수정 완료**: 두 교재 전 지문의 아포스트로피 `'`(U+0027)가 Pretendard `.notdef`로 공백화되어 `energy's`가 `energy s`로 깨짐. `styles/tokens.css` PretendardTN unicode-range에 U+0027 추가. **두 풀북 재빌드 완료** — 재빌드본 육안 정상.
-- ⚠️ **과학 개념 오류 2건 → 수정 완료(Codex 제보 교차검증)**:
-  - 고1 Saturn #14: 인간이 온실가스를 늘려 생기는 것을 `greenhouse effect`라 단정(자연 온실효과 설명과 자기모순) → 밑줄 `greenhouse effect`는 자연 온난화 정의에 붙이고 인간 영향은 "the natural warming grows too strong"으로 구분. body+page3+번역+vocab 동기화.
-  - 고1 Saturn #5: 전자 거래 '전체'를 `oxidation`이라 호칭(둘째 문단 정의와 상충) → "When a substance loses those electrons, we call that half oxidation"으로 한정(밑줄·vocab·Q2 정답 유지). body+page3+번역+vocab 동기화.
-- 권고 58건은 대부분 **page3 해설의 문장 번호 인용 오차**(index 어긋남)와 **구문 역할 오태깅**. 정답 자체는 타당, 근거 표기 정정 권장(별도 사이클).
-- ✅ **삽화 placeholder 굳음: 0건**(placeholder count 0/0). 삽화는 원래 미제작 상태 — 완성 최종본은 삽화 제작 후 finalize 단계 남음.
-
-### Codex 제보 교차검증 결과 (2026-07-12)
-외부 AI 검수는 "판정"이 아니라 "제보" — 소스 대조로 REAL/FALSE 분류(원칙: audit/EXTERNAL-REVIEW-INTAKE.md).
-
-| 제보 | 판정 | 조치 |
-|------|------|------|
-| 삽화 40지문 placeholder | REAL(기지) | 삽화 미제작 — 완성본 finalize 시 삽입 |
-| Saturn D03 Q1 정답 오류 | **REAL(차단)** | 정답 index 2로 정정 ✅ |
-| Saturn D14 greenhouse effect 개념 | **REAL(강권)** | 자연/강화 구분으로 수정 ✅ |
-| Saturn D05 oxidation=전자거래 전체 | **REAL(개념)** | "losing side"로 한정 수정 ✅ |
-| Jupiter D05 중화 pH7 일반화 | FALSE | 본문이 이미 "strong acid/strong base" 명시 → pH7 정당, 수정 불필 |
-| Jupiter D14 "no narrator"/"personal voice" 단정 | 경미 | 이미 장르 전형 서술 톤 — `usually` 삽입은 개선이나 결함 아님 |
-| Saturn D01 Syntax [1] 두 문장 묶음 | 경미 | 문장분석 분리 권장(기존 권고선) |
-| Lexile 라벨 괴리(J D03,05,07~09,13~20) | 경미 | 라벨↔실측 괴리 16건 — 기존 prepass 기록, 라벨 재점검 권고 |
-| 주간 단어 중복 | 경미 | 같은 주 내 중복 어휘 정리 권고 |
-
-## 시각/글리프 QC (풀북 산출물)
-
-- `gs txtwrite | grep -c Illustration` = **0 / 0** (두 교재, placeholder 텍스트 없음 → 삽화 자리 정상).
-- 페이지수: Saturn 134p · Jupiter 134p (백지 3장 규칙 반영).
-- 렌더 판독: p.5/6/7(삽화·PRACTICE·SYNTAX), 후반 p.83 등 표본 + 아포스트로피 든 지문 전수 대조 → 글리프 결함은 위 U+0027 1종.
+🚫 **차단 결함 60건 — 수정 후 업로드해야 함.** 가장 빈번한 유형: page3 번역에 빈칸 정답 노출.
 
 ---
 
-## 고1 Saturn — 차단 0 · 권고 16 · 경미 17
+## 고1 Saturn — 차단 11 · 권고 94 · 경미 127
 
-차단 결함 없음 ✅
+### 🚫 차단 결함 (판매 전 필수 수정)
+- **고1 Saturn #2** [explanation] "This is why ~" 문장의 주어 This를 보어(C)로 오태깅하고 "보어 도치 강조"라는 존재하지 않는 문법 설명을 달았다. 본문 문장은 도치가 아니라 평범한 S+V+C 어순이다.  
+  - 위치: `page3.sentences[16] (index 17), segments[0] — line 298`  
+  - 근거: 본문: "This is why the discriminant matters so much." / 파일: { "role": "C", "text": "This", "note": "보어 도치 강조" }  
+  - 권고: role을 "S"로 바꾸고 note("보어 도치 강조")를 삭제한다. 도치 문장은 "Why the discriminant matters is this" 형태여야 하므로 현 문장에는 해당하지 않는다.
+- **고1 Saturn #2** [explanation] 주격보어인 관계부사절 "why the discriminant matters so much"를 수식어(M)로 오태깅했다. be동사 is 뒤의 필수 성분이므로 M이 될 수 없으며, 이를 M으로 두면 문장에 보어가 없어 sentence 17 전체 구문분석이 성립하지 않는다.  
+  - 위치: `page3.sentences[16] (index 17), segments[2] — line 300`  
+  - 근거: 본문: "This is why the discriminant matters so much." / 파일: { "role": "M", "text": "why the discriminant matters so much.", "note": "관계부사절" }  
+  - 권고: role을 "C"로 수정한다. note는 "관계부사절(선행사 the reason 생략)" 또는 "why 명사절 보어"로 다듬으면 더 정확하다.
+- **고1 Saturn #3** [explanation] 본문에 없는 빈도부사 '흔히'를 삽입하고, 본문의 조동사 can(가능성)을 단정 서술로 바꿔 번역했다. 본문은 '두려움이 편견으로 굳을 수 있다'는 가능성 진술인데, 번역은 '흔히 굳는다'는 일반적 사실 진술이 되어 명제의 강도가 달라졌다.  
+  - 위치: `page3.translation_ko 문장 [12] (03.json:327)`  
+  - 근거: 본문: "A person may fear what feels strange, and this fear **can** harden into a fixed idea about a whole group." / 번역 [12]: "사람은 낯설게 느껴지는 것을 두려워할 수 있고, 그 두려움은 **흔히** 한 집단 전체에 대한 고정된 생각으로 굳는다." — 본문에 often/usually에 해당하는 어휘가 없다. page4 vocab의 harden 예문 "Fear **often** hardens into a fixed idea about a whole group."의 often이 번역에 혼입된 것으로 보인다.  
+  - 권고: "그 두려움은 한 집단 전체에 대한 고정된 생각으로 굳어질 수 있다."로 수정해 can의 가능성 의미를 살리고 '흔히'를 삭제한다.
+- **고1 Saturn #3** [explanation] 'a far-away friend'를 '멀리서 태어난 친구'로 오역했다. 본문은 친구의 출생지를 전혀 언급하지 않으며, far-away는 '멀리 있는/먼 곳의'라는 뜻이다.  
+  - 위치: `page3.translation_ko 문장 [8] (03.json:327)`  
+  - 근거: 본문: "A student may taste a new dish, hear a new song, or learn a warm greeting **from a far-away friend**." / 번역 [8]: "...혹은 **멀리서 태어난** 친구에게서 따뜻한 인사를 배울 수도 있다." — 본문에 born/birth에 해당하는 근거가 없다.  
+  - 권고: "먼 곳에서 온 친구에게서" 또는 "멀리 있는 친구에게서"로 수정한다.
+- **고1 Saturn #6** [explanation] 주절의 주어인 명사절 "Where you live"를 M(수식어)으로 오태깅했다. 그 결과 이 문장에는 S 태그가 하나도 없어, 학생이 구문분석을 보면 주어 없는 문장으로 오해하게 된다.  
+  - 위치: `page3.sentences[5].segments (index 5, line 150)`  
+  - 근거: 본문: "Where you live quietly shapes much of the way you live each day." / page3 태깅: { "role": "M", "text": "Where you live" }, { "role": "M", "text": "quietly" }, { "role": "V", "text": "shapes" }, { "role": "O", "text": "much of the way you live each day." } / 반면 translation_ko는 주어로 정확히 옮김: "[5] 당신이 어디에 사는가가 당신이 매일 어떻게 사는지의 많은 부분을 조용히 결정한다."  
+  - 권고: "Where you live"의 role을 S로 수정 (의문사절 주어). 필요하면 S 안에서 명사절임을 별도 표기.
+- **고1 Saturn #6** [vocab] vocab 예문 en이 본문에 없는 문구("This shift toward city life")를 본문 인용처럼 제시한다. ko 대역은 본문 문장을 그대로 번역해 놓아 en-ko가 서로 다른 원문을 가리킨다. 동일한 오인용이 답지 evidence에도 본문 인용(" ")으로 반복된다.  
+  - 위치: `page4.vocab[0] (urbanization) examples[0] / answers.explanations[3].evidence`  
+  - 근거: 본문(page1.body): "This move to city life is called <u>urbanization</u>, and it changes far more than a map." / page4.vocab[0].examples[0].en: "This shift toward city life is called urbanization." ko: "도시 생활로의 이 이동을 도시화라고 부른다." / answers.explanations[3].evidence: "(A)는 ... 본문 \"This shift toward city life is called urbanization\"." (page3.translation_ko [3]도 "도시 생활로의 이 이동은 도시화라고 불리며"로 move 기준)  
+  - 권고: 예문 en을 본문 그대로 "This move to city life is called urbanization."로 고치고, answers.explanations[3].evidence의 인용도 "This move to city life is called urbanization"으로 수정한다.
+- **고1 Saturn #7** [explanation] 해설이 본문에 존재하지 않는 문구를 큰따옴표로 직접 인용했다. 본문 근거로 제시한 "grow shockingly fast"는 지문 어디에도 없는 날조된 인용이다.  
+  - 위치: `answers.explanations[0].rationales[0] (q_index 0, 요지)`  
+  - 근거: 해설: "본문은 계승이 \"grow shockingly fast\"라고 했을 뿐, 계승이 쓸모없다고 말하지 않는다." / 실제 본문(page1.body): "Mathematicians write this product as a factorial, and factorials grow very fast." — 'shockingly'는 본문·page3 구문분석(sentence 15 "M: very fast.")·번역([15] "계승은 매우 빠르게 커진다") 어디에도 나타나지 않는다.  
+  - 권고: 인용을 실제 본문 표현으로 교정: "본문은 계승이 \"grow very fast\"라고 했을 뿐, 계승이 쓸모없다고 말하지 않는다."
+- **고1 Saturn #9** [answer] (A)의 정답 'trade'가 유일 정답이 아니다. 요약문 (A) 자리는 본문 문장을 거의 그대로 옮긴 것이고, 그 자리에 실제로 쓰인 본문 단어는 'swap'이다. 조건이 '본문에서 제시된 단어를 그대로 활용할 것'이므로 'swap'이 오히려 조건에 더 충실한 답인데, hints와 model_answer에는 'swap'이 빠져 있어 정답 처리에서 배제된다.  
+  - 위치: `page2.questions[3] (요약문 빈칸 완성) summary_template / hints / model_answer + answers.explanations[3]`  
+  - 근거: 본문(page1.body): "So nations swap goods across their borders, and we call this exchange trade." / 요약문(summary_template): "nations <blank> (A) goods across borders" / hints: ["trade","cheaply","advantage","borders","depends"] (swap 없음) / model_answer: "(A) trade  (B) cheaply". 본문에서 trade는 명사(this exchange trade)로만 쓰이고 동사 용례가 없다. page4.vocab의 swap 항목도 "So nations swap goods across their borders."를 예문으로 싣고 있어 (A) 자리 동사가 swap임을 뒷받침한다.  
+  - 권고: (A)를 'trade / swap 모두 정답 인정'으로 model_answer를 확장하거나, 유일 정답을 원하면 요약문 (A) 문장을 본문 4번 문장과 다른 구조로 바꿔 'swap'이 들어갈 여지를 없앤다(예: "nations rely on the <blank>(A) of goods across borders" 형태로 명사 자리를 만들어 trade만 성립하게 함).
+- **고1 Saturn #12** [explanation] 구문 역할 오태깅: 명령문 "Open"의 직접목적어 "a phone"이 부사구와 한 덩어리로 묶여 M(수식어)으로 태깅되었다. 그 결과 해당 명령절이 V만 있고 O가 전혀 없는 구조로 학생에게 제시된다.  
+  - 위치: `page3.sentences[0].segments[1] (12.json line 102)`  
+  - 근거: 본문: "Open a phone in Seoul, London, or Lima, and you may see the same app..." / page3 태깅: { "role": "V", "text": "Open" }, { "role": "M", "text": "a phone in Seoul, London, or Lima," } — "a phone"은 타동사 Open의 목적어이고, 부사적 요소는 "in Seoul, London, or Lima"뿐이다. 같은 폴더 01.json의 동일 유형(명령문+and) 태깅은 { "role": "V", "text": "Flip" }, { "role": "O", "text": "a switch," } 및 { "role": "V", "text": "Trace" }, { "role": "O", "text": "any wall socket" }, { "role": "M", "text": "backward," }로 목적어와 수식어를 분리한다.  
+  - 권고: 세그먼트를 분리하여 { "role": "V", "text": "Open" }, { "role": "O", "text": "a phone" }, { "role": "M", "text": "in Seoul, London, or Lima," }로 수정한다.
+- **고1 Saturn #17** [explanation] 해설의 evidence가 본문에 존재하지 않는 문장을 큰따옴표로 직접 인용한다. 본문 표현을 두 군데 바꿔 쓴 날조 인용이다. 이 문항의 <조건>이 '본문에서 제시된 단어를 그대로 활용할 것'이므로, 근거 인용이 본문과 다르면 채점 기준 자체가 흔들린다.  
+  - 위치: `answers.explanations[3].evidence (q_index 3, 요약문 빈칸 완성)`  
+  - 근거: 해설: "(A)는 ... 근본 이념 → 본문 \"That idea was Confucianism, a system of thought that valued study, order, and moral rulers\"" / 실제 본문(page1.body 및 page3.sentences[3]): "That idea was Confucianism, a way of thinking that valued study, order, and good rulers." — 'a system of thought'→실제 'a way of thinking', 'moral rulers'→실제 'good rulers'  
+  - 권고: evidence의 인용을 본문 그대로 "That idea was Confucianism, a way of thinking that valued study, order, and good rulers."로 수정한다. (참고로 page2.summary_template의 'moral rulers'와 page4 vocab 예문의 'moral rulers'도 본문 'good rulers'와 어긋나므로 함께 점검 권장.)
+- **고1 Saturn #17** [answer] 빈칸 선지가 본문 빈칸 자리에 문법적으로 삽입되지 않는다. 정답 선지 'foundation of the Joseon dynasty'를 넣으면 'of the Joseon dynasty'가 중복되어 비문이 된다. 정답 선지가 본문에 그대로 들어맞지 않으므로 정답 성립이 깨진다.  
+  - 위치: `page2.questions[1] (빈칸 추론) choices / page1.body <blank>`  
+  - 근거: 본문: "That vision of a well-ordered kingdom, planned like a house, became the lasting <blank> of the Joseon dynasty." / 정답 선지(answer_index 3): "foundation of the Joseon dynasty" → 삽입 시 "became the lasting foundation of the Joseon dynasty of the Joseon dynasty". 또한 page3 sentence 20이 원문을 { "C": "the lasting foundation" }, { "M": "of the Joseon dynasty" }로 복원하고 있어 원래 빈칸에 들어갈 말은 단어 'foundation' 하나임이 확인된다.  
+  - 권고: 둘 중 하나로 정정: (1) 선지에서 'of the Joseon dynasty' 꼬리를 제거하고 5개 선지를 명사구 단위로 통일(예: 'foundation of the state' 대신 'foundation', 'reason for Goryeo's fall' 등 빈칸 자리에 그대로 들어가는 형태), 또는 (2) 본문 빈칸을 'became the lasting <blank>.'로 바꿔 뒤의 'of the Joseon dynasty'를 선지에 포함시키는 방식으로 통일.
 
-<details><summary>권고 사항 16건</summary>
+<details><summary>권고 사항 94건</summary>
 
-- 고1 Saturn #2 [explanation] "This is why the discriminant matters so much."의 첫 요소 "This"를 role "C"(보어)로 태깅하고 note에 "보어 도치 강조"라고 달았으나, 이 문장은 도치가 없는 정상 S-V-C 어순이다. "This"는 주어(S), "is"가 동사(V), "why the discriminant matters so much"가 보어다. 주어를 보어로 오태깅하고 존재하지 않는 도치를 설명해 학습자에게 잘못된 구문 정보를 준다. — `page3.sentences[index 17], segments[0]`
-- 고1 Saturn #3 [explanation] 본문 "a warm greeting from a far-away friend"의 번역이 '멀리서 태어난 친구'로 되어 있어 오역. far-away friend는 '멀리 있는(사는) 친구'를 뜻하며 '태어난'이라는 근거가 본문에 없다. — `page3.translation_ko [8]`
-- 고1 Saturn #3 [translation] 'far-away friend'(멀리 있는/먼 곳의 친구)를 '멀리서 태어난 친구'로 옮겨 원문에 없는 '태어난(born)' 의미를 덧붙인 오역. — `page3.translation_ko 문장 [8]`
-- 고1 Saturn #4 [explanation] 구문 역할 오태깅: 5형식 'want + O + to부정사' 구문에서 목적격보어(C)여야 할 to부정사구가 부사어(M)로 태깅되어 있다. — `page3.sentences[0] (index 1), segment "to start a recycling club."`
-- 고1 Saturn #6 [explanation] 구문 역할 오태깅: 'Where you live'가 M(수식어)로 태깅되어 있으나, 실제로는 동사 'shapes'의 주어(명사절)이다. 문장에 다른 주어가 없어 S 역할이 누락된 상태다. — `page3.sentences[index=5].segments (lines 148-154)`
-- 고1 Saturn #6 [explanation] 해설의 evidence가 본문에 없는 문장을 인용한다. 본문(page1 body / page3 문장 3)은 'This move to city life is called urbanization'인데, 해설은 'This shift toward city life is called urbanization'으로 잘못 인용했다(move → shift, to → toward). 정답 자체는 옳으나 근거 인용이 본문과 불일치한다. — `answers.explanations[q_index=3].evidence (line 392) 및 rationales(A)`
-- 고1 Saturn #6 [answer] Q3(요약문 빈칸) 정답 근거로 인용한 본문 문장이 실제 본문과 다르게 조작 인용되어 있다. 정답 자체((A) urbanization / (B) planners)는 본문에서 도출 가능해 옳지만, 근거 인용문이 부정확하다. — `answers.explanations[q_index=3].evidence (line 392)`
-- 고1 Saturn #7 [explanation] 해설이 본문에 없는 표현을 인용하고 있다. 계승의 증가 속도를 "grow shockingly fast"라고 따옴표로 직접 인용했으나, 본문(과 page3 구문분석)에는 그런 문장이 없다. — `answers.explanations[q_index=0].rationales[0] (line 350)`
-- 고1 Saturn #7 [answer] 정답 해설의 오답 근거에서 본문을 잘못 인용함. 계승의 증가 속도를 "grow shockingly fast"라고 인용했으나 본문 실제 표현은 "grow very fast"임. — `answers.explanations[q_index=0].rationales[0] (line 350)`
-- 고1 Saturn #9 [explanation] 구문 역할 오태깅: 'before it is finished'에서 'finished'를 M(수식어)으로 태깅했으나, 'is finished'는 be동사+과거분사 구조로 'finished'는 보어(C) 또는 'is finished' 전체가 동사(V, 수동태)여야 한다. M(부사적 수식어)이 아니다. — `page3.sentences[index=13], segment "finished"`
-- 고1 Saturn #11 [explanation] 해설 evidence가 본문을 직접 인용부호로 인용하면서 본문에 없는 'either'를 삽입했다. 인용부호는 원문 그대로 인용을 뜻하는데 실제 본문·구문분석과 불일치한다. — `answers.explanations[q_index=0].evidence (line 357)`
-- 고1 Saturn #11 [explanation] (B) 근거로 본문 인용 '"the reaction is endothermic"'를 제시하지만, 이 문구는 본문에 존재하지 않는다. 실제 본문 표현은 다르며, 해당 문구는 page4 vocab 예문(line 429)에만 있어 근거 출처가 잘못됐다. — `answers.explanations[q_index=3].evidence (line 397)`
-- 고1 Saturn #15 [explanation] sentence 14 구문 역할 오태깅: 'governments'가 최상위 O로 태깅되어 본동사 play의 목적어처럼 표시되지만, 실제로는 분사구 안 'pushing'의 목적어다. 같은 세그먼트 나열에서 'a different part'(play의 진짜 O)와 'governments'가 동일 층위 O로 병렬 배치되어, 'governments'를 주절 목적어로 오해하게 만든다. — `page3.sentences[index=14] segments ("governments" role=O / "delivering ... and pushing" role=M note "분사구문" / "to honor their promises" note "to부정사 목적격 보어")`
-- 고1 Saturn #17 [explanation] 요약문 빈칸(A) 해설의 evidence가 본문을 직접 인용한다고 하면서(본문 "...") 실제 본문과 다른 문구를 인용하고 있다. 인용된 "a system of thought that valued study, order, and moral rulers"는 본문에 존재하지 않는다. — `page3 answers.explanations[q_index=3].evidence (line 357)`
-- 고1 Saturn #17 [answer] Q3 정답 근거(evidence)가 본문에 없는 문장을 인용하여 오기했다. 정답 자체(Confucianism/exam)는 타당하나, 해설의 인용 근거가 본문 문구와 불일치한다. — `answers.explanations[3].evidence (q_index 3, 요약문 빈칸 완성)`
-- 고1 Saturn #18 [explanation] 구문 역할 오태깅: 'the ~, the ~' 비교급 상관구문에서 부사적 요소인 'the faster'까지 주어(S)에 묶어 태깅했다. 실제 주어는 'it'뿐이고 'the faster'는 보어/부사(M) 성분이다. — `page3.sentences[13] (index 14), segment role "S" = "the faster it"`
+- 고1 Saturn #1 [language] 논리 비약 + 개념 오류: 원자력 발전소를 예로 든 직후 "So"로 "fossil-fuel plant"라는 결론을 도출한다. 원자력은 화석 연료가 아니므로, 전제(석탄+원자력)와 결론(화석 연료 발전소)의 범주가 일치하지 않는다. — `page1.body, 2문단 3번째 문장`
+- 고1 Saturn #1 [explanation] 5형식 call O C 구문의 O와 C를 하나의 O 세그먼트로 병합해 오태깅했다. 'Scientists call this electromagnetic induction'에서 this가 목적어, electromagnetic induction이 목적격 보어인데, 둘을 합쳐 O 하나로 처리했다. 학생이 'this electromagnetic induction'을 하나의 명사구 목적어(=이 전자기 유도)로 오해하게 되어 구문분석 지도 목적을 훼손한다. — `page3.sentences[index=4].segments (01.json line 142)`
+- 고1 Saturn #1 [translation] "add no carbon"(탄소를 전혀 배출하지 않는다)를 "탄소가 적지만"(비교급, 적게 배출)으로 옮겨 절대 부정을 상대 비교로 약화시킨 오역. 같은 파일 page4 vocab에서는 동일 표현을 "탄소를 더하지 않는다"로 정확히 번역하고 있어 내부 불일치이기도 하다. — `page3.translation_ko [18]`
+- 고1 Saturn #1 [translation] "the same hard limit"에서 same이 limit을 수식(똑같은 한계)하는데, 번역은 "똑같이"를 부사로 처리해 '완고한'을 수식하게 만들어 구조가 어긋났다. 또한 hard limit을 '완고한 한계'로 옮긴 것은 어색한 오역(완고하다는 사람의 성격에 쓰는 말)이다. 뒤 문장 [17]에서 이 한계가 '모든 발전소에 공통된 열손실'임을 밝히므로 '똑같은' 이 limit에 걸려야 한다. — `page3.translation_ko [16]`
+- 고1 Saturn #1 [vocab] induction의 유의어로 "generation"을 제시했으나 의미가 일치하지 않는다. induction은 자석-코일의 상대 운동으로 기전력이 유도되는 '현상'이고, generation은 전기를 만들어내는 '발전/생성' 행위다. 게다가 같은 vocab 목록에 generator(발전기)가 별도 표제어로 있어 학생이 '유도=발전'으로 오인할 위험이 크다. — `page4.vocab[0] ("induction") synonyms`
+- 고1 Saturn #1 [vocab] "rotor"는 turbine의 유의어가 아니라 turbine을 구성하는 '부품'(회전자)이다. 부분-전체 관계를 동의어로 제시해 의미 불일치가 발생한다. rotor는 발전기·모터에도 쓰이는 일반 부품명이라 turbine으로 치환 불가능하다. — `page4.vocab[2] ("turbine") synonyms`
+- 고1 Saturn #1 [vocab] "coal-based"는 fossil-fuel의 동의어가 아니라 하위 개념이다. 화석 연료에는 석탄 외에 석유·천연가스가 포함되므로 의미를 부당하게 축소한다. 본문이 coal plant와 fossil-fuel plant를 층위가 다른 표현으로 구분해 쓰고 있어 오해가 더 커진다. — `page4.vocab[11] ("fossil-fuel") synonyms`
+- 고1 Saturn #2 [language] 수학 용어 오용: 실수(real number)를 뜻하려고 "a normal number"라고 썼다. "normal number(정규수)"는 수론에서 자릿수가 균등분포하는 수를 가리키는 별개의 전문 용어여서, 수학 연계 지문(공통수학1 판별식 단원)에서는 개념 오류로 읽힌다. 또한 이 문장이 노리는 대비는 '실수 vs 실수가 아닌 수'이므로 real이 정확한 대응어다. — `page1.body 3단락 ("When the discriminant is positive, the square root is a normal number...")`
+- 고1 Saturn #2 [explanation] 동격 명사 one과 관계사 in which를 한 덩어리로 묶어 REL로 태깅해, 학생이 "one in which" 전체를 관계사로 오인하게 된다. one은 a quadratic equation의 동격 명사이고, 관계사는 in which뿐이다. — `page3.sentences[1] (index 2), segments[4] — line 117`
+- 고1 Saturn #2 [vocab] synonym "duplicated"가 제시된 두 예문 어디에도 대입되지 않아 의미 불일치다. — `page4.vocab[9] (word: "repeated") — synonyms`
+- 고1 Saturn #2 [vocab] synonym "form"이 부정확하다. 해당 항목의 예문이 expression과 form을 서로 다른 개념으로 대비시켜 쓰고 있어, 동의어 제시와 예문이 자기모순이다. — `page4.vocab[5] (word: "expression") — synonyms`
+- 고1 Saturn #2 [vocab] coefficient 항목과 동일한 결함으로, 예문 대역이 주어와 목적어 관계를 뒤집어 '그것이 계산한다'는 뜻이 되었다. — `page4.vocab[6] (word: "compute") — examples[0].ko`
+- 고1 Saturn #3 [language] "from a far-away friend"가 해당 단락의 전제와 논리적으로 충돌한다. 2문단은 여러 문화의 습관이 "한곳에서 만날 때(When these habits meet in one place)" 생기는 일상의 교류를 말하므로, 인사말을 배우는 상대는 같은 도시에 함께 사는 친구여야 한다. 그런데 "far-away friend"는 '멀리 있는(떨어져 사는) 친구'로 읽혀, 바로 앞 문장이 세운 '한곳에서 만난다'는 설정을 스스로 부정한다. 국문 번역이 이를 "멀리서 태어난 친구"로 바꿔 옮긴 점이 원문 표현이 의도한 뜻을 담지 못하고 있음을 보여준다. — `C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-08/03.json — page1.body, 2문단 마지막 예시 문장 (line 21); page3 sentences[8] (line 184)`
+- 고1 Saturn #3 [explanation] 본문 근거를 잘못 인용했다. 본문은 '숨겨진(hidden) 분노'라고 했는데 해설은 '무시된 분노'로 바꿔 서술하여, 학생이 본문에서 대응 근거를 찾을 수 없다. — `answers.explanations[0].rationales[3] (03.json:340)`
+- 고1 Saturn #3 [translation] 'from a far-away friend'를 '멀리서 태어난 친구에게서'로 오역. far-away는 '멀리 있는/먼 곳의'라는 뜻이며 '태어난(born)'에 해당하는 어휘는 원문에 없다. 출생지 정보를 임의로 추가한 오역이다. — `C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-08/03.json — page3.translation_ko 문장 [8]`
+- 고1 Saturn #3 [translation] 조동사 can(가능성)을 '흔히'(빈도 부사 often)로 오역. 본문 sentences[12]의 V 세그먼트는 'can harden'인데, page4 vocab 예문의 'Fear often hardens...' 번역문("두려움은 흔히 ... 굳는다")이 그대로 옮겨 붙은 것으로 보인다. '~할 수 있다'는 가능성 진술이 '자주 그렇다'는 일반화로 바뀌어 의미가 강해졌다. — `C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-08/03.json — page3.translation_ko 문장 [12]`
+- 고1 Saturn #4 [language] 등위접속사 and가 쉼표 없이 연속 사용되어 병렬 구조가 어색하다. "clear reasons and solid facts"와 "numbers"가 짝지어진 것처럼 오독될 수 있고, 3항 병렬이면 콤마 나열이 표준이다. 같은 지문 안의 다른 3항 병렬("honest, fair, and well prepared", "choose sound reasons, show real character, touch true feelings")은 모두 콤마+and 형식을 지키고 있어 내부 일관성도 깨진다. — `C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-08/04.json → page1.body, 2단락 2번째 문장 (page3 sentences[8])`
+- 고1 Saturn #4 [language] 청중을 수식하는 형용사로 caring은 부적절한 연어(collocation)다. caring은 '남을 배려하는/보살피는 성향'을 뜻하므로 앞의 doubtful(의심하는 청중)과 대구를 이루지 못한다. 문맥상 필요한 의미는 '감정에 잘 반응하는/우호적인 청중'이므로 sympathetic, warm, caring이 아닌 어휘여야 한다. 번역문의 '배려심 많은 청중'도 같은 오류를 그대로 옮겨, 학생이 '왜 배려심 많은 청중에게 감성 호소를 먼저 하는가'를 논리적으로 연결하지 못한다. — `C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-08/04.json → page1.body, 3단락 마지막 문장 (page3 sentences[17], translation_ko [17])`
+- 고1 Saturn #4 [explanation] 구문 역할 오태깅: 의문사 what을 O(목적어)로 태깅했으나 happen은 자동사이므로 what은 주어(S)다. — `page3.sentences[3] (index 4), segments[1]`
+- 고1 Saturn #4 [explanation] 구문 역할 오태깅: want + O + to부정사 구조의 to부정사는 목적격보어(C)인데 M(수식어)으로 태깅했다. — `page3.sentences[0] (index 1), segments[5]`
+- 고1 Saturn #4 [vocab] 예문의 두 번째 절 "but trust soon breaks"가 비문법적·비관용적이다. 영어에서 trust는 be broken/be lost로 쓰이며 자동사 break의 주어로 "trust breaks"는 쓰지 않는다. 또한 본문 원문의 주어(the trick)와 목적어(the speaker's credibility)를 임의로 바꿔 버려 원문 의미도 변형되었다. ko 대역 "신뢰가 곧 깨진다"도 이 잘못된 영문을 그대로 따라간다. — `page4.vocab[9] (word: "stir") → examples[0].en / .ko`
+- 고1 Saturn #5 [language] 과학적/어원적 사실 오류. 인과 방향이 거꾸로 서술되어 있다. 'oxygen'이라는 이름은 산화 반응에서 유래한 것이 아니라, 라부아지에가 산소를 모든 산(acid)의 구성 성분으로 잘못 추정하여 그리스어 oxys(신맛, 산) + genes(생성하는 것) = '산을 만드는 것'으로 명명한 데서 왔다. 오히려 'oxidation(산화)'이라는 용어가 'oxygen'에서 파생된 것이다. 본문은 이를 뒤집어 산소가 '바로 이 과정(전자를 주고받는 산화·환원)'에서 이름을 얻었다고 단정한다. 게다가 이 문장 뒤에 이어지는 두 문장(철의 녹, 통나무 연소)은 '이름의 유래'와 전혀 무관한 반응 사례여서, 주장 문장이 뒷받침되지도 않고 문단 내에서 붕 뜬다. — `page1.body, 3rd paragraph, sentence 12 ("Oxygen earns its name from this very process.")`
+- 고1 Saturn #5 [explanation] 구문 역할 오태깅: 비교 종속절 "than we notice at first"를 REL(관계사절)로 태깅했다. 이는 comparative "far more changes"를 받는 접속사 than이 이끄는 비교절이며 관계사절이 아니다. 같은 달 파일들의 REL 사용 관례와도 어긋난다. — `page3.sentences[5].segments[12] (index 5, role "REL", text "than we notice at first.")`
+- 고1 Saturn #5 [vocab] synonyms의 "response"가 본문 문맥의 뜻(화학 반응)과 불일치한다. 본문에서 reaction은 산화·환원이 동시에 일어나는 '화학 반응'을 가리키는데, 영어 response는 자극에 대한 반응·응답만을 뜻하고 chemical reaction의 의미로는 쓰이지 않는다. 학생이 동의어로 치환하면 오용이 발생한다. — `page4.vocab[11] "reaction" > synonyms`
+- 고1 Saturn #6 [language] 비교 대상이 논리적으로 어긋난다. 단수 개별 주어 "Each new arrival"의 행위 결과를 '전년 대비(than the year before)'라는 연간 총량 기준과 비교하고 있다. 개별 유입자 한 명이 만드는 변화는 '직전 상태'와의 비교이지 '지난해'와의 비교가 아니다. — `page1.body, 2nd paragraph, 마지막 문장`
+- 고1 Saturn #6 [explanation] 해설의 본문 인용문이 실제 본문 문장과 다르다. 본문에 존재하지 않는 "This shift toward city life"를 큰따옴표로 직접 인용해 근거로 제시했다. — `answers.explanations[3].evidence (q_index 3, line 392)`
+- 고1 Saturn #6 [answer] 4번(요약문 빈칸 완성) 해설의 evidence가 본문을 직접 인용한다고 표시하면서 실제 본문과 다른 문장을 인용한다. 본문은 "This move to city life is called urbanization"인데 해설은 "This shift toward city life is called urbanization"으로 적었다(move → shift, to → toward). 정답 (A) urbanization / (B) planners 자체는 타당하나, 학생이 해설의 인용구를 본문에서 찾으려 하면 해당 문장이 존재하지 않아 근거 확인이 막힌다. 같은 오인용이 page4 vocab examples[0](413행)에도 반복된다. — `C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-08/06.json — answers.explanations[3].evidence (line 392)`
+- 고1 Saturn #6 [vocab] synonyms에 실제 영어에서 쓰이지 않는 조어 "lease cost"를 제시했다. rent(임대료)의 표준 동의어는 rental / rental fee / rental payment이다. — `page4.vocab[4] (rent) synonyms`
+- 고1 Saturn #6 [vocab] 본문 인용처럼 보이는 예문이 본문 표현과 다르다. 본문은 "without falling apart"인데 예문은 "without breaking"으로 바뀌어 있어, 학생이 본문에서 해당 문장을 찾지 못한다. — `page4.vocab[7] (planner) examples[0]`
+- 고1 Saturn #7 [language] 해설이 본문에 없는 문구를 직접 인용부호로 인용한다. 본문은 "factorials grow very fast"인데 해설은 "grow shockingly fast"라고 따옴표로 인용해 본문과 불일치한다(구버전 원고 잔재로 보임). — `answers.explanations[0].rationales[0] vs page1.body (문단 3 마지막 문장)`
+- 고1 Saturn #7 [explanation] 구문 역할 오태깅. 등위절 전체를 앞 동사 has의 목적어 하나로 묶어, 독립된 S·V를 가진 절이 O 안에 흡수되었다. — `page3.sentences[12] (index 13) segments 마지막 O`
+- 고1 Saturn #7 [answer] 해설이 본문에 존재하지 않는 문구를 직접 인용부호로 인용했다. 본문 표현은 "grow very fast"인데 해설은 "grow shockingly fast"로 잘못 인용했다. — `answers.explanations[0].rationales[0] (q_index 0, 1번 선지 해설)`
+- 고1 Saturn #8 [language] 빙하(언 물)를 수권(hydrosphere)에서 배제하고 '땅(지권)'에 속하는 것처럼 서술한 개념 오류. 통합과학 지구 시스템 구분에서 빙하·빙상은 수권(넓게는 빙권)에 포함되며, 본문 자신의 textbook_tieback도 '기권·수권·지권·생물권' 4권 체계를 전제한다. — `C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-08/08.json — page1.body, 2문단 2번째 문장 (page3 sentences[7]에도 동일 분해)`
+- 고1 Saturn #8 [language] 빈칸 바로 앞 절이 정답을 그대로 되풀이해 빈칸이 순환논법이 된다. 정답 'fall out of balance'를 넣으면 "균형이 기운다 → 기후가 균형을 잃기 시작한다"로 같은 말을 두 번 하는 동어반복이 되어, 추론 문항으로서 변별력이 없고 본문 문장도 군더더기가 된다. — `C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-08/08.json — page1.body 마지막 문장 및 page2.questions[1] (빈칸 추론, answer_index 3)`
+- 고1 Saturn #8 [explanation] "depends on these quiet loops staying in tune"를 M:"on these quiet loops" + M:"staying in tune."으로 분리해 구문 역할을 오태깅했다. "staying in tune"은 동사 depends를 수식하는 독립 부사구가 아니라, 의미상 주어 "these quiet loops"를 받는 동명사 술부다. 둘을 대등한 M 두 개로 끊으면 학생은 "안정된 지구는 이 조용한 순환들에 달려 있다"로 읽게 되어, 정작 핵심 조건인 '조화롭게 유지되는 것'이 곁가지로 떨어져 나간다. — `page3.sentences[20].segments (index 20, 마지막 두 segment)`
+- 고1 Saturn #8 [answer] 빈칸의 정답 "fall out of balance"가 바로 앞 절의 내용을 그대로 되풀이하는 동어반복이라, 추론 문항이 아니라 앞 절 단어(balance)를 그대로 옮겨 적는 문제가 된다. 변별력이 크게 떨어지고, 완성된 문장도 영어 표현으로 어색하다. — `page2.questions[1] (빈칸 추론, answer_index 3) / page1.body 마지막 문장`
+- 고1 Saturn #8 [vocab] synonym "mist"가 vapor와 물리적 상태가 달라 과학 지문 문맥에서 부정확하다. vapor는 기체 상태(수증기), mist는 응결된 액체 물방울(옅은 안개)이다. 본문이 바로 이 상태 변화를 구분해 설명하는 지문이므로 동의어 제시가 학습자 오개념을 유발한다. — `page4.vocab[0] (vapor) → synonyms`
+- 고1 Saturn #8 [vocab] synonym "ice sheet"는 glacier와 동의어가 아니라 하위/별개 지형 용어다. ice sheet(빙상)는 대륙 규모(그린란드·남극)로 정의되며, 본문의 "freeze into a glacier"(계곡을 흐르는 빙하) 문맥과 규모·성격이 다르다. — `page4.vocab[3] (glacier) → synonyms`
+- 고1 Saturn #8 [vocab] 동일한 영어 예문의 한국어 대역이 vocab[4](carbon)와 vocab[11](cycle)에서 서로 다르고, cycle 쪽 번역 "지구를 움직인다"는 오역이다. move through the Earth는 '지구를 통과해 움직이다'이지 '지구를 움직이다'(타동사, 지구를 이동시킨다)가 아니다. page3 공식 번역과도 어긋난다. — `page4.vocab[11] (cycle) → examples[0].ko`
+- 고1 Saturn #9 [language] 비교우위(comparative advantage)의 개념 정의가 절대우위(absolute advantage)로 서술되어 개념 오류 소지가 있다. 비교우위는 '기회비용이 상대적으로 낮은 것'에 특화하는 것이지, '가장 싸게 생산하는 것(most cheaply)'에 특화하는 것이 아니다. 모든 재화를 더 싸게 만드는 나라도 비교우위 원리에 따라 특화·교역한다는 점이 이 이론의 핵심인데, 본문 정의로는 이 핵심이 소거된다. — `page1.body 2단락 ("When each country focuses on what it produces most cheaply, the whole world gains more goods for far less effort. Economists call this simple idea comparative advantage")`
+- 고1 Saturn #9 [explanation] 본문 인용이 실제 본문과 다른 문장으로 조작(변형)되어 있다. 큰따옴표로 본문 인용임을 표시했으나 원문에 존재하지 않는 어형·구조다. — `answers.explanations[3].evidence (q_index 3, 요약문 빈칸 완성)`
+- 고1 Saturn #9 [explanation] 수동태 보어 'finished'를 M(수식어)으로 오태깅. 동일 파일 내 index 14의 'are shared'는 V로 묶어 처리하고 있어 구문분석 기준이 서로 충돌한다. — `page3.sentences[12] (index 13) segments`
+- 고1 Saturn #9 [translation] "at home"을 '집에서'로 오역. 이 글에서 at home은 '국내에서/자국에서'라는 경제 용어적 의미이며, 문장 [17]의 동일 표현은 '국내 가격'으로 옳게 옮겨져 있어 번역 내부에서도 일관성이 깨진다. 학생이 '가정에서 물건을 만든다'는 엉뚱한 의미로 읽게 된다. — `page3.translation_ko 문장 [6]`
+- 고1 Saturn #9 [answer] 해설의 근거 인용문이 본문과 일치하지 않는 창작 인용이다. 정답 근거로 제시된 영어 문장이 본문에 존재하지 않는다. — `answers.explanations[3].evidence`
+- 고1 Saturn #9 [vocab] 예문이 비문이다. 이 뜻의 industry는 가산명사이므로 "in growing industry"는 관사가 빠진 틀린 표현이며, 본문에서도 관사를 붙여 쓰고 있다. 어휘 예문은 학생이 그대로 암기·모방하는 자료이므로 관사 누락은 그대로 오류 학습으로 이어진다. — `page4.vocab[9] (word: "industry") → examples[0].en`
+- 고1 Saturn #10 [language] "hides a hand behind it"는 비문에 가까운 비관용 표현이다. 의도한 뜻은 '텍스트를 만든 손(주체)'이므로 정관사 the가 필요하며, 부정관사 a를 쓰면 '손 하나를 뒤에 숨긴다'는 문자적·기괴한 의미로 읽힌다. — `page1.body, 1문단 첫 문장 (line 21)`
+- 고1 Saturn #10 [explanation] 1번 문장의 구문분석(S-V-O 타동사 구조)과 번역이 서로 다른 구조를 가르친다. 분석은 it=S / hides=V / a hand=O로 태깅해 '텍스트가 손을 숨긴다'는 타동사 구문인데, 번역은 '그 뒤에는 어떤 손길도 숨어 있다'로 a hand를 주어로 삼은 자동사(숨어 있다) 구문으로 옮겼다. 학생이 page3 구문 패널과 번역 패널을 나란히 보면 목적어 a hand가 번역에서는 주어로 나타나 O 태깅의 근거를 확인할 수 없다. 또한 '어떤 손길도'는 부정문에서 쓰이는 부정극성 표현이라 긍정 평서문 번역으로 부적절하다. — `page3.sentences[0] (index 1) / page3.translation_ko [1]`
+- 고1 Saturn #10 [explanation] 목적어 명사구 내부의 형용사구를 문장 수준 수식어(M)로 오태깅했다. "for it"은 앞의 명사 the reasons를 뒤에서 꾸미는 형용사구로, 목적어 NP('the writer's main claim and the reasons for it') 안에 속한다. 이를 M으로 분리하면 동사 finds를 꾸미는 부사구처럼 읽혀, '무엇을 찾는가'라는 목적어의 범위를 학생이 잘못 파악하게 된다. 같은 파일 12번 문장에서 'about its cost'를 M으로 태깅한 것은 실제로 동사 say를 꾸미는 부사구이므로 타당하지만, 7번의 'for it'은 성격이 다르다. — `page3.sentences[6] (index 7)`
+- 고1 Saturn #10 [translation] 주어-술어 관계 왜곡 및 'also' 오역 — 원문은 '텍스트가 그 뒤에 손(필자의 의도)을 숨긴다'는 능동 구조이나, 번역은 '어떤 손길도 숨어 있다'는 존재문으로 바꾸어 '텍스트의 감춤'이라는 행위 주체를 지웠다. 또한 부사 also(또한/역시)를 '어떤 …도'로 옮겨 '또한'의 의미가 사라지고 오히려 부정극성('아무 손길도')처럼 읽힐 소지가 있다. — `page3.translation_ko 문장 [1]`
+- 고1 Saturn #11 [language] 철의 산화(녹슴)를 "burning"(연소)이라고 지칭하여 과학 개념 오류를 유발한다. 녹슴은 느린 산화 반응이지 연소가 아니다. 한국어 번역이 이를 "이 숨은 연소"로 직역해 오개념이 더 강화된다. 본 지문은 통합과학 성취기준(10통과2-01-06) 연계 지문이므로 용어 정확성이 요구된다. — `page1.body, 2문단 2번째 문장 (page3.sentences[7] / translation_ko [7])`
+- 고1 Saturn #11 [language] 해설이 본문을 인용부호로 직접 인용하면서 본문에 없는 단어 "either"를 추가했다. 학생이 본문에서 해당 문장을 찾을 때 문구가 일치하지 않아 혼동을 준다. — `answers.explanations[0].evidence (q_index 0)`
+- 고1 Saturn #11 [explanation] 해설의 '본문 직접 인용'이 실제 본문 문장과 다르다. 존재하지 않는 either가 삽입된 형태로 큰따옴표 인용되어 있어, 학생이 본문에서 해당 문장을 찾을 수 없다. — `answers.explanations[0].evidence (q_index 0, 요지)`
+- 고1 Saturn #11 [explanation] (B)의 근거로 제시한 '본문' 인용문이 본문에 존재하지 않는 문장이다. 해당 문자열은 page4 vocab의 예문에만 있고 page1.body에는 없어, '본문에서 제시된 단어를 그대로 활용할 것'이라는 조건의 근거 제시가 부정확하다. — `answers.explanations[3].evidence (q_index 3, 요약문 빈칸 완성)`
+- 고1 Saturn #11 [answer] 해설의 근거를 본문 직접 인용(큰따옴표)으로 제시했으나 실제 본문 문장과 다르다. 없는 단어 either가 삽입되어 있어, 해설을 본문과 대조하는 학생·교사에게 혼란을 준다. — `answers.explanations[0].evidence (q_index 0, 요지)`
+- 고1 Saturn #11 [answer] (B) endothermic의 근거를 본문 인용처럼 제시했으나 본문에 존재하지 않는 문장이다. 조건이 "본문에서 제시된 단어를 그대로 활용할 것"인 서술형 문항이므로 근거 인용의 정확성이 특히 중요하다. — `answers.explanations[3].evidence (q_index 3, 요약문 빈칸 완성)`
+- 고1 Saturn #11 [vocab] synonyms의 "melt away"가 의미 불일치. melt away는 '서서히 사라지다/녹아 없어지다'라는 뜻의 구동사로, 용매에 용해된다는 본문 의미를 나타내지 못한다. 또한 이 지문은 용해(dissolve)와 융해(melt)를 구분해 다루므로 두 개념을 동일시하면 연계 단원 개념을 흐린다. — `page4.vocab[3] (word: "dissolve") — synonyms`
+- 고1 Saturn #12 [translation] sameness와 flattening을 모두 '획일화'로 옮겨 동어반복이 되었고, 같은 파일 내 어휘 정의(page4)와 용어가 충돌한다. — `page3.translation_ko 문장 [14]`
+- 고1 Saturn #13 [language] 원의 정의가 비문. 단수 주어 'a circle'을 배분적 표현 'every point'와 등치시켜 술어 주격보어가 성립하지 않는다. 원은 점들의 '집합'이지 '모든 점' 하나하나가 아니다. — `page1.body, 3단락 1문장`
+- 고1 Saturn #13 [language] to부정사가 능동형이라 '직선이 스스로 변한다'는 뜻이 되는데, 의도된 의미는 '가장 먼저 방정식으로 바뀌는 도형'이다. 국문 번역이 수동('옮겨지는')으로 되어 있어 영문-번역 불일치가 드러난다. — `page1.body, 2단락 1문장 (page3 sentences[6], translation_ko [6])`
+- 고1 Saturn #13 [explanation] 명사절 접속사 that을 부사구 안에 흡수시켜 M으로 오태깅했고, 그 결과 동사 showed의 목적어(O)가 사라졌다. 노트도 that을 '삽입 부사구'의 일부인 것처럼 설명한다. — `C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-08/13.json → page3.sentences[19] (index 20), segment "that with two crossed number lines,"`
+- 고1 Saturn #13 [answer] 빈칸 추론 문항의 stem이 "윗글의 밑줄 친 빈칸"이라고 표현하지만, 본문의 빈칸은 <blank> 토큰일 뿐 밑줄(<u>) 표시가 아니다. 본문에서 <u> 태그가 붙은 유일한 구는 1단락의 "coordinate plane"이므로, 학생이 stem의 '밑줄 친'을 근거로 1단락 밑줄부를 찾아 혼동할 수 있다. — `page2.questions[1].stem (line 48)`
+- 고1 Saturn #14 [language] 탄소 중립의 순 효과가 미치는 대상은 '대기(the atmosphere/the air)'이지 '하늘(the sky)'이 아니다. 같은 지문 바로 앞 문장에서는 "removes an equal amount from the air"로 올바르게 'the air'를 쓰고 있어 지문 내부에서도 용어가 어긋난다. 삽화 캡션·해설의 '대기에 미치는 순 영향'과도 대응이 맞지 않는다. — `page1.body, 마지막 문장 ("the total effect on the sky becomes <blank>") 및 2문단 "pour it into the sky each day"`
+- 고1 Saturn #14 [answer] 해설의 근거가 본문을 직접 인용부호로 인용하고 있으나, 본문에 존재하지 않는 문장을 인용했다. 정답(answer_index 0)은 타당하지만, 근거로 제시된 영어 원문이 본문과 불일치하여 학생이 지문에서 해당 문장을 찾을 수 없다. — `answers.explanations[2].evidence (line 344, q_index 2, 세부 내용 파악)`
+- 고1 Saturn #14 [vocab] gloss_extra의 term "emission"이 본문(page1.body)에 전혀 등장하지 않는다. 어형 변화(emit/emits/emitted/emissions) 어느 것도 본문에 없다. gloss_extra는 본문 난해어를 풀어 주는 자리인데, 본문에 없는 단어를 실으면 학습자가 지문에서 찾다가 혼란을 겪는다. — `page1.gloss_extra[0] (line 25)`
+- 고1 Saturn #14 [vocab] 명사 "fuel(연료)"의 유의어로 제시한 "combustible"은 현대 영어에서 주로 형용사(가연성의)로 쓰이며, 명사 용법은 드물고 기술 문서에 한정된다. pos가 n.으로 표시된 표제어의 유의어로는 품사·사용역이 모두 어긋난다. — `page4.vocab[3].synonyms — "fuel" (line 409)`
+- 고1 Saturn #14 [vocab] "warmth level"은 영어에 존재하지 않는 조어다. 실제 코퍼스에서 쓰이지 않는 표현을 유의어로 제시하면 학생이 영작에 그대로 옮겨 쓸 위험이 있다. — `page4.vocab[10].synonyms — "temperature" (line 486)`
+- 고1 Saturn #15 [explanation] 분사구 "delivering ..., reporting ..., and pushing governments to honor their promises"를 세 조각으로 쪼개면서 종속 분사구 내부의 목적어 'governments'를 주절 레벨의 O로 오태깅했다. 주절의 목적어는 이미 'a different part,'(O)로 태깅되어 있어, 학생이 S/V/O 골격만 읽으면 하나의 동사 play에 목적어가 둘인 것처럼 보인다. — `page3.sentences[index=14].segments (15.json lines 555-568)`
+- 고1 Saturn #15 [translation] 'fresh water'를 '깨끗한 물'로 오역. fresh water는 '담수/민물'(바닷물이 아닌 물)로, 자원 희소성 맥락에서 쓰인 표현이다. '깨끗한 물(clean water)'로 옮기면 수질 문제로 의미가 이동하고, 이 지문의 핵심 개념인 '자원 갈등(석유·가스·담수)'의 층위가 흐려진다. — `page3.translation_ko 문장 [3]`
+- 고1 Saturn #15 [vocab] 'ethnic'(민족의)의 동의어로 'racial'(인종의)을 제시했는데, 두 단어는 의미가 다르다. 특히 본문과 연계 단원이 '민족'과 '인종'을 구분해 다루므로 학생에게 개념 혼동을 유발한다. — `page4.vocab[3] ("ethnic") → synonyms[0] "racial"`
+- 고1 Saturn #16 [explanation] 구문분석 segment가 page1 본문의 <blank>를 정답으로 채워 넣어, page2 2번 문항(빈칸 추론)의 정답을 미리 노출한다. 학생이 page3를 보면 문제를 풀 필요가 없어진다. — `page3.sentences[19] (index 20), segments[5] — C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-08/16.json:311`
+- 고1 Saturn #16 [explanation] 구문 역할 오태깅. ask의 세 번째 목적어절인 why절을 M(수식어)으로 태깅했다. "who tells it", "in what order", "why ..."는 모두 등위접속사 and로 묶인 ask의 목적어이므로 O여야 한다. — `page3.sentences[19] (index 20), segments[5] — C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-08/16.json:311`
+- 고1 Saturn #17 [explanation] 구문 역할 오태깅. "not just command them from above"를 M(수식어)으로 태깅했으나, 이는 앞의 should serve와 병렬을 이루는 술부(V+O)다. 내부에 동사 command와 목적어 them을 포함하므로 수식어로 묶으면 that절의 병렬 술어 구조가 학습자에게 드러나지 않는다. — `page3.sentences[4] (index 5), 마지막 segment`
+- 고1 Saturn #17 [answer] 해설이 인용한 본문 문장이 실제 본문과 다르다. 존재하지 않는 문구를 본문 인용부호로 제시해 학생이 본문에서 찾을 수 없다. — `answers.explanations[3].evidence (q_index 3)`
+- 고1 Saturn #17 [vocab] 예문 영어가 비문법적/비관용적이다. "became lasting"은 become의 보어로 형용사 lasting을 쓴 형태인데 영어에서 관용적으로 쓰이지 않으며(본문은 lasting이 foundation을 수식하는 한정 용법), 학습자에게 잘못된 어법을 노출한다. — `page4.vocab[10] ("vision") examples[0].en`
+- 고1 Saturn #17 [vocab] 본문 인용형 예문인데 본문 문구와 불일치한다. 본문은 "good rulers"인데 예문은 "moral rulers"로 바뀌었고, ko도 본문 번역("좋은 통치자")과 달리 "도덕적 통치자"로 되어 있다. 본문 대조 학습 시 혼선을 준다. — `page4.vocab[2] ("Confucianism") examples[0]`
+- 고1 Saturn #18 [language] 먹이 사슬(food chain)과 먹이 그물(food web)을 동일한 개념으로 정의하는 과학적 개념 오류. "chain"이라는 단수 연쇄를 곧바로 "a food web"으로 등치시켰는데, 먹이 그물은 여러 먹이 사슬이 얽힌 상위 구조이므로 정의가 성립하지 않는다. — `page1.body, 1문단 4번째 문장 (원문 line 21)`
+- 고1 Saturn #18 [explanation] 비교급 상관구문 'the 비교급 ~, the 비교급 ~'에서 'the faster'까지 주어(S)에 묶어 오태깅했다. 'the faster'는 비교급 부사(M)이고 실제 주어는 'it'뿐이다. — `page3.sentences[index 14].segments[1] (18.json line 256)`
+- 고1 Saturn #18 [explanation] 'let + 목적어 + 동사원형' 구문에서 목적격보어로 등위접속된 원형부정사 'strip'을 정동사 V로 태깅했다. 학생이 'strip'을 'may let'과 병렬인 또 하나의 본동사로 오해하게 된다. — `page3.sentences[index 18].segments[6] (18.json line 311)`
+- 고1 Saturn #18 [explanation] 조건절 If의 주절인 독립절 'more plants grow'를 S/V로 분해하지 않고 통째로 수식어(M)로 태깅했다. 절을 M으로 뭉뚱그려 조건절-주절 구조가 드러나지 않는다. — `page3.sentences[index 7].segments[4] (18.json line 177)`
+- 고1 Saturn #18 [translation] "This chain of who eats whom is a food web"의 핵심어 chain(사슬/연쇄)을 '그물'로 오역해, 원문의 정의문(A는 B이다)이 '이 그물이 바로 먹이 그물이다'라는 동어반복이 되었다. 학생이 먹이 '사슬'→먹이 '그물'로 확장되는 개념 흐름을 파악할 수 없다. — `page3.translation_ko 문장 [4] (line 338) / 대응 영문 page1.body·page3.sentences[3]`
+- 고1 Saturn #18 [translation] 원문에 없는 완화 부사 '대체로'를 임의로 추가했다(과장/첨가). 원문 "When each part stays steady"는 조건 없는 단정이며, 특히 이 문장은 balance의 정의문이자 page2 3번 문항 선택지 판정 근거이므로 뉘앙스 훼손이 발생한다. — `page3.translation_ko 문장 [5] (line 338) / 대응 영문 page3.sentences[4]`
+- 고1 Saturn #18 [answer] stem이 "밑줄 친 빈칸"이라 하지만 본문의 빈칸은 <blank>로만 표시되어 있고 밑줄 표시가 없다. 반대로 본문에 실제로 존재하는 두 개의 <u> 밑줄은 빈칸이 아닌 전혀 다른 단어(balance, resilience)에 걸려 있어, "밑줄 친"을 단서로 찾는 학생이 오답 지점을 보게 된다. — `page2.questions[1].stem (빈칸 추론) + page1.body`
+- 고1 Saturn #18 [answer] 본문의 두 밑줄이 어떤 문제에도 연결되지 않은 채(밑줄 어법·지칭 문항 없음) 남아 있는데, 하필 그 두 단어가 서술형 요약문 빈칸(A)(B)의 정답과 정확히 일치한다. 밑줄이 사실상 정답을 미리 강조해 주어 4번 문항의 변별력이 크게 떨어진다. — `page1.body <u>balance</u>, <u>resilience</u> ↔ page2.questions[3].model_answer`
+- 고1 Saturn #18 [vocab] synonyms에 "biome"을 제시했으나 biome(생물군계)은 기후대 단위의 대분류(툰드라·사바나 등)로, ecosystem(생물+무생물 요소가 상호작용하는 계)과 층위가 다른 상위 개념이다. 통합과학 교과에서도 두 용어를 구분해 가르치므로 동의어 제시는 개념 혼동을 유발한다. — `page4.vocab[1] ecosystem.synonyms`
+- 고1 Saturn #19 [language] 동사-목적어 연어(collocation) 오류. 'hold a job'은 자연스럽지만 'hold childcare'는 비문에 가까운 어색한 표현이다. 하나의 동사 'hold'를 성격이 다른 두 명사(jobs, childcare)에 억지로 걸치면서 뒤쪽 명사가 동사와 결합하지 못한다. — `page1.body, 3rd paragraph (also duplicated in page3.sentences[13] and page4.vocab 'childcare' example)`
+- 고1 Saturn #19 [explanation] 5형식 call + O + O.C 구조의 목적격보어(population aging)를 목적어에 통째로 붙여 O 하나로 태깅했다. C 태그가 없어 구문 역할 오태깅이며, 같은 달 다른 지문들이 지키는 표기 관례와도 어긋난다. — `page3.sentences[1] (index 2), 19.json line 116`
+- 고1 Saturn #19 [explanation] help + O + 원형부정사 구조에서 목적어(parents)와 목적격보어(balance work and family)를 하나의 O로 묶어 태깅했다. 학생이 balance를 명사로 오해할 소지가 있고, 동일 코퍼스의 help 처리 관례와 정면으로 충돌한다. — `page3.sentences[16] (index 17), 19.json line 289`
+- 고1 Saturn #19 [vocab] synonyms에 제시된 "former"가 본문 문맥의 retired와 의미가 일치하지 않는다. 본문의 retired는 '(직장에서) 은퇴한' 상태를 뜻하는데, former는 '이전의, 전(前)-'이라는 전혀 다른 의미다. 학생이 제시된 유의어를 그대로 대입하면 비문/오문이 된다. — `page4.vocab[3] ("retired") → synonyms`
+- 고1 Saturn #19 [vocab] pos를 "adj."로만, meaning_ko를 "고령의, 노인의"라는 형용사 뜻으로만 제시했으나, 본문에서 elderly는 'the + 형용사 = 복수 보통명사(노인들)' 용법으로 쓰였다. 제시된 품사·뜻이 본문 문맥의 실제 용법을 설명하지 못해, 학생이 "the share of the elderly"를 해석할 근거를 얻지 못한다. — `page4.vocab[1] ("elderly") → pos / meaning_ko (page1.gloss_extra[2] 동일)`
+- 고1 Saturn #20 [language] "a shared code together"에서 'shared'와 'together'가 의미상 중복이며, 동사 'agree on'에도 이미 '합의/공동'의 뜻이 내포되어 있어 3중 중복이다. 원어민 기준 어색한 표현(비문은 아니나 redundant). — `C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-08/20.json — page1.body, 2문단 첫 문장 (page3 sentences[5], translation_ko [5])`
+- 고1 Saturn #20 [explanation] "write A as B" 구문에서 as 전치사구가 목적어 안에 흡수되어 O로 태깅되었다. write의 목적어는 "on"/"off"이고 "as 1"/"as 0"은 M(전치사구)이다. — `page3.sentences[2] (index 3), lines 125, 127`
+- 고1 Saturn #20 [vocab] synonyms의 "cipher"가 본문 문맥의 code 의미와 불일치한다. 본문의 code는 '문자↔숫자 대응을 약속한 부호 체계(ASCII 등)'인데, cipher는 '비밀을 감추기 위한 암호(암호화 방식)'를 뜻해 은닉·보안 함의가 핵심이다. meaning_ko가 스스로 '부호, 코드(약속된 표현 규칙)'라고 정의해 놓고 동의어로 cipher를 제시하면 학생이 '코드=암호'로 오해한다. — `page4.vocab[5] (code) — line 430`
+- 고1 Saturn #20 [vocab] gloss_extra의 3개 항목(byte, continuous, signal)이 page4.vocab에 동일 표제어·동일 뜻으로 그대로 중복된다. gloss_extra는 본문 옆 즉석 주석, page4.vocab은 별도 어휘 학습란인데 3개 전부가 겹쳐 gloss_extra가 사실상 무의미해지고 지면이 낭비된다. 특히 byte/continuous의 ko는 문자열까지 완전히 동일하다. — `page1.gloss_extra[0..2] vs page4.vocab[1],[3],[4] — lines 25-27, 383-425`
+- 고1 Saturn #20 [vocab] synonyms의 "measuring"이 sampling의 동의어로 부정확하다. 본문에서 measure는 sampling의 하위 동작(쪼갠 뒤 각 조각을 '측정')일 뿐이며, sampling의 핵심인 '일정 간격으로 표본을 뽑는' 의미를 담지 못한다. 두 단어를 동의어로 제시하면 표본화 개념(핵심 개념어 '샘플링')을 흐린다. — `page4.vocab[2] (sampling) — line 397`
 
 </details>
 
-## 고2 Jupiter — 차단 1 · 권고 42 · 경미 28
+## 고2 Jupiter — 차단 40 · 권고 124 · 경미 154
 
 ### 🚫 차단 결함 (판매 전 필수 수정)
-- **고2 Jupiter #12** [language] 주어-동사 수 일치 오류(비문). 관계절의 주어가 단수·불가산 명사 'randomness'인데 동사가 원형 'obey'로 되어 있다. 'obeys'가 되어야 한다.  
-  - 위치: `page1.body, 마지막 문장 (page3 sentences index 18의 관계절)`  
-  - 근거: "...more like a hidden rule that quiet <blank> obey without being told." 정답(answer_index 3)이 'randomness'(불가산 단수)이므로 관계절은 실질적으로 "that quiet randomness obey"가 되어 단수 주어에 복수형 동사가 붙는다. page3의 문장 분석에서도 { "role": "REL", "text": "that quiet randomness obey" }로 'obey'를 그대로 두고 있다.  
-  - 권고: 동사를 'obeys'로 수정: "...a hidden rule that quiet randomness obeys without being told." (page3 index 18의 REL 세그먼트도 'that quiet randomness obeys'로 함께 수정)
+- **고2 Jupiter #2** [explanation] 해설이 인용하는 문장 번호가 page3.sentences의 실제 번호와 전부 불일치한다. 학생이 근거 문장을 찾아갈 수 없다.  
+  - 위치: `answers.explanations[0].evidence / rationales (q_index 0, 요지)`  
+  - 근거: evidence: "8~9번에서 \"turn out to be the same idea\"이며 미적분의 기본정리가 둘을 잇는다" — 그러나 page3 sentences[11]이 "that these two ideas, reversing and accumulating, turn out to be the same idea wearing two masks"(11번), 기본정리는 sentences[12] "The Fundamental Theorem of Calculus says..."(12번)이다. rationales도 "8번 '두 생각이 같은 아이디어'"(→11번), "11번 '한 관계의 두 얼굴'"(→14번 "Slope and area, ... are really two faces of one relationship."), "10번에서 \"+C\"는 뺄셈에서 소거되어"(→13번 "The elusive \"+C\" cancels itself in the subtraction")로 모두 틀렸다.  
+  - 권고: evidence를 "11~12번"으로, rationales를 각각 11번 / 14번 / 13번으로 수정한다.
+- **고2 Jupiter #2** [explanation] 빈칸이 포함된 문장 번호와 근거 문장 번호가 모두 실제 번호와 다르다. 특히 '12번(recover, rebuild)'은 한 문장에 두 단어가 함께 있지도 않다.  
+  - 위치: `answers.explanations[1].evidence / rationales[0] (q_index 1, 빈칸 추론)`  
+  - 근거: evidence: "빈칸 앞 13번은 \"the derivative takes something apart, while the integral patiently ___\"" — 실제로는 sentences[18] "In every case, the derivative quietly takes something apart, while the integral patiently puts it back together."(18번)이다. rationales[0] "복원한다는 12번(recover, rebuild)" — recover는 16번 "A physicist who knows an object's velocity can recover its exact displacement", rebuild는 17번 "An economist who knows a marginal cost can rebuild the total cost."로 12번이 아니며 한 문장에 함께 있지 않다.  
+  - 권고: "빈칸 앞 18번", "16~17번(recover, rebuild)"으로 수정한다.
+- **고2 Jupiter #2** [explanation] 함의 추론의 핵심 근거 문장 번호와 보조 근거 범위가 모두 실제 번호와 어긋난다.  
+  - 위치: `answers.explanations[2].evidence (q_index 2, 함의 추론)`  
+  - 근거: evidence: "8번은 \"these two ideas, reversing and accumulating, turn out to be the same idea wearing two masks\"이고, 9~11번이 기본정리로 둘이 연결됨을 설명한다" — 해당 표현은 sentences[11](11번)이고, 기본정리 설명은 sentences[12]~[14](12~14번)이다. 9번은 "As the widths shrink toward zero, the jagged staircase of rectangles smooths into the exact area under the curve."로 기본정리와 무관하다.  
+  - 권고: "11번은 ... 이고, 12~14번이 기본정리로 둘이 연결됨을 설명한다"로 수정한다.
+- **고2 Jupiter #2** [explanation] (A)·(B) 정답 근거로 제시한 문장 번호가 둘 다 실제 번호와 다르다.  
+  - 위치: `answers.explanations[3].evidence (q_index 3, 요약문 빈칸 완성)`  
+  - 근거: evidence: "(A) ... → 5번 \"it measures the area\". (B) ... → 9번 \"subtract its values at the two endpoints\"" — "it measures the area"는 sentences[7](7번 "Instead of undoing a slope, it measures the area between a curve and the horizontal axis over a fixed interval."), "subtract its values at the two endpoints"는 sentences[12](12번)이다. 5번은 "That single symbol quietly admits that the starting value has been lost."이고 9번은 넓이 극한 문장으로 인용문이 존재하지 않는다.  
+  - 권고: "(A) → 7번", "(B) → 12번"으로 수정한다.
+- **고2 Jupiter #2** [answer] "밑줄 친 부분"을 묻는 함의 추론 문제인데, 본문 page1.body에 존재하는 <u>밑줄</u>은 <u>antidifferentiation</u> 단 하나뿐이다. 정답 해설이 근거로 삼는 구절 "the same idea wearing two masks"에는 밑줄이 전혀 없어, 학생이 문제에서 지시한 밑줄을 찾으면 'antidifferentiation'을 보게 되고 그에 대한 정답 선지가 5개 중 하나도 없다. 출제 불능 상태다.  
+  - 위치: `page2.questions[2].stem (함의 추론) ↔ page1.body`  
+  - 근거: 본문 밑줄은 1문단의 "...is called <u>antidifferentiation</u>, and the family of all such answers is the indefinite integral." 하나뿐. 반면 3문단은 밑줄 없이 "these two ideas, reversing and accumulating, turn out to be the same idea wearing two masks." 이고, answers.explanations[2].evidence는 "8번은 \"these two ideas, reversing and accumulating, turn out to be the same idea wearing two masks\"이고 ... 이 표현은 '되돌리기와 조각 더하기가 사실 다르게 보이는 같은 연산'임을 뜻한다"라고 밝혀, 의도한 밑줄 대상과 실제 밑줄 위치가 불일치함이 확인된다.  
+  - 권고: 본문에서 <u>antidifferentiation</u> 밑줄을 제거하고 3문단의 "the same idea wearing two masks"(또는 "these two ideas ... wearing two masks" 전체)에 <u></u>를 씌워, 문제·해설이 가리키는 구와 본문 밑줄을 일치시킬 것.
+- **고2 Jupiter #3** [explanation] evidence가 인용문의 문장 번호를 틀리게 지정했다. "9번"이라며 큰따옴표로 원문을 직접 인용했으나, 해당 문장은 page3.sentences의 index 10이다. index 9는 전혀 다른 문장(Scientists call that line the threshold...)이다. 직접 인용 + 번호가 함께 틀려 학생이 근거 문장을 찾을 수 없다.  
+  - 위치: `answers.explanations[2] (q_index 2, 함의 추론) evidence`  
+  - 근거: 해설: "9번은 \"The signal is all or nothing: a stronger poke does not make a bigger spike\"이고" / 실제 page3: { "index": 10, ... { "role": "C", "text": "all or nothing:" } ... }, { "index": 9, ... { "role": "V", "text": "call" }, { "role": "O", "text": "that line" } }  
+  - 권고: "9번"을 "10번"으로 수정. 이어지는 "7~8번은 자극이 역치를 넘어야 활동 전위가 촉발된다"도 실제로는 8~9번이므로 "8~9번"으로 수정.
+- **고2 Jupiter #3** [explanation] 두 개의 직접 인용 모두 문장 번호가 틀렸다. "본문 8번"으로 인용한 threshold 문장은 실제 index 9이고, "본문 11번"으로 인용한 myelin 문장은 실제 index 12다. 서술형 정답 근거를 학생이 대조할 수 없다.  
+  - 위치: `answers.explanations[3] (q_index 3, 요약문 빈칸 완성) evidence`  
+  - 근거: 해설: "(A)는 ... → 본문 8번 \"Scientists call that line the threshold\". (B)는 ... → 본문 11번 \"a fatty wrapping called myelin, broken by small bare gaps\"." / 실제 page3: index 9 = Scientists / call / that line / the threshold, index 11 = "Once it starts," + "the action potential" + "races", index 12 = "a fatty wrapping" + "called myelin," + "broken by small bare gaps."  
+  - 권고: "본문 8번" → "본문 9번", "본문 11번" → "본문 12번"으로 수정.
+- **고2 Jupiter #3** [explanation] 빈칸 정답의 핵심 근거 문장 번호가 두 곳 모두 틀렸다. chemical messengers 방출 문장은 index 18, 릴레이 문장은 index 19인데 해설은 "16~17번", "16번"이라 한다. index 16은 'the neuron meets the next one', 17은 'cannot jump this gap'으로 chemical messengers가 등장하지 않는다.  
+  - 위치: `answers.explanations[1] (q_index 1, 빈칸 추론) evidence 및 rationales[0]`  
+  - 근거: 해설 evidence: "빈칸 앞뒤(16~17번)에서 스파이크가 화학 전달 물질을 방출하게 하고" / rationales[0]: "chemical — 16번 'chemical messengers' 방출과 직접 이어져" / 실제 page3: index 18 = "the arriving spike" + "makes" + "the neuron" + "release chemical messengers", index 19 = "that switches between electric and chemical forms", index 16 = "the neuron" + "meets" + "the next one"  
+  - 권고: evidence의 "(16~17번)"을 "(18~19번)"으로, rationales[0]의 "16번"을 "18번"으로 수정.
+- **고2 Jupiter #5** [explanation] 해설의 본문 인용이 실제 본문과 다르게 개작되어 있다. 이 문항은 <조건>이 "본문에서 제시된 단어를 그대로 활용할 것"이므로 인용 정확성이 채점 근거와 직결된다.  
+  - 위치: `answers.explanations[3].evidence (q_index 3, 요약문 빈칸 완성)`  
+  - 근거: 해설 인용: "the ions that did not become water, join to form a salt" / 실제 page1 본문: "the leftover ions that did not become water join to form a salt" — 'leftover'가 누락되고, 주어와 동사 사이에 없는 쉼표가 삽입되었다.  
+  - 권고: 인용을 본문 그대로 "the leftover ions that did not become water join to form a salt"로 수정한다.
+- **고2 Jupiter #6** [explanation] 해설의 evidence가 본문에 존재하지 않는 문장을 큰따옴표로 직접 인용한다. 두 인용 모두 본문 문구와 다르다. 조건이 '본문에서 제시된 단어를 그대로 활용할 것'인 문제라서, 학생이 근거 문장을 본문에서 찾을 수 없다.  
+  - 위치: `answers.explanations[3] (q_index 3, 요약문 빈칸 완성) evidence`  
+  - 근거: 해설: "(A)는 ... → 본문 \"This stubborn steadiness is called homeostasis\". (B)는 ... → 본문 \"scientists label the mechanism negative feedback\"." / 실제 page1.body: "This steadiness is called <u>homeostasis</u>, the tendency of a living body..." 및 "scientists call the mechanism negative feedback" (stubborn 없음, label이 아니라 call). page3.sentences[3]도 "This steadiness / is called / homeostasis,"로, sentences[9]도 "scientists / call / the mechanism / negative feedback,"으로 본문대로 표기되어 해설만 어긋난다.  
+  - 권고: evidence를 본문 원문대로 수정: "This steadiness is called homeostasis" 및 "scientists call the mechanism negative feedback".
+- **고2 Jupiter #6** [answer] 정답 근거로 인용한 본문 문장 두 개가 모두 본문에 존재하지 않는 문구다. 학생이 근거를 찾아 대조하면 본문에서 해당 문장을 찾을 수 없어 해설이 무효가 된다. (A)의 조건이 "본문에서 제시된 단어를 그대로 활용할 것"이므로 근거 인용의 정확성이 정답 타당성에 직결된다.  
+  - 위치: `answers.explanations[3].evidence (q_index 3, 요약문 빈칸 완성)`  
+  - 근거: 해설: "(A)…→ 본문 \"This stubborn steadiness is called homeostasis\". (B)…→ 본문 \"scientists label the mechanism negative feedback\"." / 실제 본문(page1.body): "This steadiness is called <u>homeostasis</u>, …" 및 "scientists call the mechanism negative feedback, …" — 본문에 'stubborn'도 'label'도 없다.  
+  - 권고: evidence를 본문 원문 그대로 "This steadiness is called homeostasis", "scientists call the mechanism negative feedback"로 수정.
+- **고2 Jupiter #6** [answer] 본문 예문으로 제시된 문장이 본문과 불일치한다. 같은 파일 page4.vocab[1](steadiness)에는 동일 문장이 본문대로 "This steadiness is called homeostasis."로 실려 있어 한 교재 안에서 같은 본문 문장이 두 가지로 인쇄된다.  
+  - 위치: `page4.vocab[0].examples[0] (homeostasis)`  
+  - 근거: vocab[0]: { "en": "This stubborn steadiness is called homeostasis.", "ko": "이 완강한 안정성은 항상성이라 불린다." } / 본문: "This steadiness is called <u>homeostasis</u>" / vocab[1]: "This steadiness is called homeostasis."  
+  - 권고: vocab[0] 예문을 "This steadiness is called homeostasis." / "이 안정성은 항상성이라 불린다."로 통일.
+- **고2 Jupiter #6** [vocab] 본문 인용을 표방한 예문이 본문과 불일치한다. 예문은 "This stubborn steadiness is called homeostasis."이지만 실제 본문은 "This steadiness is called homeostasis"로 stubborn이 없다. 한국어 대역도 "이 완강한 안정성은"으로 존재하지 않는 수식어를 번역해 넣었다. 게다가 바로 다음 표제어 steadiness의 예문은 동일 문장을 "This steadiness is called homeostasis."로 올바르게 인용하고 있어, 같은 page4 안에서 두 항목이 서로 모순된다. 학생이 본문에서 stubborn을 찾으려 하면 찾을 수 없다.  
+  - 위치: `page4.vocab[0] (homeostasis) examples[0].en`  
+  - 근거: 본문(page1.body): "This steadiness is called <u>homeostasis</u>, the tendency of a living body to keep its inner conditions nearly constant" / page4.vocab[0].examples[0]: {"en": "This stubborn steadiness is called homeostasis.", "ko": "이 완강한 안정성은 항상성이라 불린다."} / page4.vocab[1].examples[0]: {"en": "This steadiness is called homeostasis.", "ko": "이 안정성은 항상성이라 불린다."}  
+  - 권고: 예문 en을 "This steadiness is called homeostasis."로, ko를 "이 안정성은 항상성이라 불린다."로 수정한다. (동일한 stubborn 오염이 answers.explanations[3].evidence에도 있으므로 함께 점검 권장)
+- **고2 Jupiter #8** [explanation] 구문 역할 오태깅: 문장의 주어인 to부정사구가 M(수식어)으로 태깅되어 문장에 주어(S)가 없다. 같은 세그먼트의 note와 grammar_note는 스스로 '주어'라고 명시하고 있어 자기모순이다.  
+  - 위치: `page3.sentences[19] (index 20), segments[0]`  
+  - 근거: segments: {"role":"M","text":"To read the humanities well, then,","note":"to부정사 주어 + 삽입"}, {"role":"V","text":"is"}, {"role":"C",...}; grammar_note: "to부정사 주어·보어 + treat A as B". 본문: "To read the humanities well, then, is to treat every strong page as an invitation to <blank>."  
+  - 권고: "To read the humanities well"를 role "S"로 바꾸고 "then,"만 삽입 M으로 분리한다.
+- **고2 Jupiter #8** [explanation] 구문 역할 오태깅: 2형식 be동사의 주격보어 "not a fact"가 M으로 태깅되어 첫 절(Beauty ... is not a fact ...)에 보어(C)가 존재하지 않는다. note는 '부정 보어'라고 적혀 있어 role 값과 모순된다.  
+  - 위치: `page3.sentences[15] (index 16), segments[3]`  
+  - 근거: segments: {"role":"S","text":"Beauty,"}, {"role":"M","text":"after all,"}, {"role":"V","text":"is"}, {"role":"M","text":"not a fact","note":"부정 보어"} — 뒤 절은 동일 구조에서 {"role":"C","text":"a judgment"}로 올바르게 태깅되어 있어 일관성도 깨진다.  
+  - 권고: "not a fact"의 role을 "C"로 수정한다(부정어 not은 M으로 분리하거나 보어에 포함).
+- **고2 Jupiter #9** [explanation] (A) 모범답안 'reach'가 문제의 <조건>과 충돌한다. 요약문 빈칸 (A)는 조동사 can 뒤 자리이므로 반드시 '동사'가 들어가야 하는데, 본문(page1.body)에서 reach는 명사로만 1회 등장하고 동사 reach는 본문에 없다. 해당 의미의 본문 동사는 touch이다. '본문에서 제시된 단어를 그대로 활용할 것'이라는 조건을 따르면 정답은 touch가 되어야 하며, touch를 쓴 학생이 오답 처리된다.  
+  - 위치: `page2.questions[3].model_answer / answers.explanations[3] (q_index 3, 요약문 빈칸 완성)`  
+  - 근거: 요약문: "Because modern technology can <blank> (A) millions of people and even the unborn" / 본문 명사 용례: "For most of human history, the reach of our machines stayed small" / 본문 동사 용례: "Now one power plant, one algorithm, or one gene edit can touch millions of strangers and even generations not yet born." (동사 reach는 본문이 아닌 page1.subtitle "When a tool can reach the unborn"에만 존재)  
+  - 권고: 모범답안을 (A) touch로 교체하거나, 요약문을 "can extend its <blank> (A) to millions..."처럼 명사 자리로 바꿔 reach(명사)를 살린다. hints 배열의 'reach'도 함께 정합성 검토 필요.
+- **고2 Jupiter #9** [explanation] 해설이 본문을 오인용한다. 존재하지 않는 문자열을 큰따옴표로 직접 인용하여 근거로 제시했다. 본문에 'can now touch'라는 연쇄는 없으며, now는 문두 부사(Now one power plant...)로 쓰였다.  
+  - 위치: `answers.explanations[3].evidence (q_index 3)`  
+  - 근거: 해설: "(A)는 ... → 본문 \"can now touch millions of strangers\"와 명사 \"the reach of our machines\"" / 실제 본문: "Now one power plant, one algorithm, or one gene edit can touch millions of strangers and even generations not yet born."  
+  - 권고: 인용을 "can touch millions of strangers and even generations not yet born"으로 정정한다.
+- **고2 Jupiter #9** [vocab] vocab 예문이 page2 빈칸 추론 문제의 정답을 그대로 노출한다. 본문 page1.body는 "a wise society decides in advance who will bear <blank>"로 빈칸 처리되어 있고 page2 questions[1]의 정답(answer_index 1)이 "the consequences"인데, 어휘 예문이 빈칸을 채운 완성 문장을 제시한다.  
+  - 위치: `page4.vocab[10] (word: "bear") examples[0].en`  
+  - 근거: page1.body: "because a wise society decides in advance who will bear <blank>." / page2.questions[1].choices[1]: "the consequences" (answer_index: 1) / page4.vocab[10].examples[0].en: "A wise society decides who will bear the consequences."  
+  - 권고: bear 예문을 본문 문장 대신 중립적인 문장으로 교체한다. 예: "Each generation must bear the results of today's choices." (ko: "각 세대는 오늘의 선택이 낳은 결과를 짊어져야 한다.") 두 번째 예문 "Each partner must bear part of the loss."는 그대로 두어도 무방하다.
+- **고2 Jupiter #11** [explanation] 해설이 인용하는 문장 번호가 학생이 볼 수 있는 어떤 번호 체계와도 일치하지 않는다. page3.sentences와 translation_ko는 1~20번으로 매겨져 있고 본문 단락은 4개뿐인데, 해설은 4번·6번·8~9번을 근거로 든다. 학생이 해당 번호를 찾아가면 전혀 다른 내용이 나온다.  
+  - 위치: `answers.explanations[0].evidence / rationales (q_index 0, 요지)`  
+  - 근거: evidence: "문화가 유전이 아니라 학습된 답이라 장소마다 다르며(4번), 각 관습을 그 맥락에서 이해하는 문화 상대주의를 권하되(6번), 잔인함이 전통 뒤에 숨지 않도록 모든 판단을 포기하지는 않는다(8~9번)". 그러나 실제 4번은 "Each community has slowly shaped its way of eating, dressing, and greeting..."이고, 6번은 "Because culture is learned rather than inherited, it changes from place to place."이며, 8~9번은 "A tropical valley shapes life around entirely different materials." / "Neither group is closer to one correct way of living."이다. 상대주의 권고는 12~13번, 판단 포기 거부는 18~19번이다.  
+  - 권고: page3.sentences 인덱스 기준으로 재매핑할 것: 학습성·장소차 → 5~6번, 상대주의 권고 → 12~13번, 판단 유보의 한계 → 18~19번. 또는 01.json/13.json처럼 영어 원문을 직접 인용하는 방식으로 통일.
+- **고2 Jupiter #11** [explanation] 빈칸 추론의 근거 문장 번호가 모두 어긋난다. 정답 근거로 제시한 '2번·3번'이 실제로는 4번·5번이며, rationales의 '4번', '상대주의(6번)'도 실제 내용과 맞지 않는다. 정답 자체(index 3)는 옳으나 근거 추적이 불가능하다.  
+  - 위치: `answers.explanations[1].evidence / rationales (q_index 1, 빈칸 추론)`  
+  - 근거: evidence: "2번 \"has slowly shaped its way ... to fit the land, the climate, and the history\"와 3번 \"a learned answer to the particular problems a group has faced\"가 단서다." 실제 page3.sentences에서 "has slowly shaped"는 index 4, "a learned answer to the particular problems"는 index 5다. index 2는 "He often decides that one habit is refined and the other is crude.", index 3은 "Yet a custom that looks odd from the outside is rarely an accident."이다.  
+  - 권고: '2~3번'을 '4~5번'으로, rationales의 '상대주의(6번)'를 '12~13번'으로, '4번'을 '6번'으로 수정.
+- **고2 Jupiter #11** [explanation] 밑줄 표현이 실제로 등장하는 문장 번호를 잘못 지시한다. 'surrender every judgment'가 있는 문장을 9번이라 했으나 실제로는 19번이고, '그 앞 8번'이라 한 가정법 경고 문장은 18번이다.  
+  - 위치: `answers.explanations[2].evidence (q_index 2, 함의 추론)`  
+  - 근거: evidence: "9번은 학자들이 \"refusing to surrender every judgment\"하며 이해의 습관을 지킨다고 하고, 그 앞 8번은 어떤 관습도 비판을 넘어서면 잔인함이 전통 뒤에 숨는다고 경고한다." 실제 index 19 = "So most scholars keep understanding while refusing to surrender every judgment.", index 18 = "If any practice were beyond criticism, then cruelty could hide behind the word tradition...". index 8~9는 "A tropical valley shapes life..." / "Neither group is closer..."로 논지와 무관하다.  
+  - 권고: '9번'→'19번', '8번'→'18번'으로 수정.
+- **고2 Jupiter #11** [explanation] 서술형 정답의 근거 위치 지시가 모두 틀렸다. (A) 근거를 '4번', (B) 근거를 '7번 앞'이라 했으나 실제는 각각 6번과 12번이다. 게다가 '7번 앞'이라는 표현은 20문장 체계에서 지시 대상이 특정되지 않는다.  
+  - 위치: `answers.explanations[3].evidence (q_index 3, 요약문 빈칸 완성)`  
+  - 근거: evidence: "(A)는 문화가 유전이 아니라 무엇인지 → 4번 \"culture is learned rather than inherited\". (B)는 관습을 그 안에서 읽어야 하는 것 → 7번 앞 \"read each custom inside its own context\"." 실제 "culture is learned rather than inherited"는 index 6, "to read each custom inside its own context"는 index 12("The better choice is to read each custom inside its own context.")다.  
+  - 권고: '4번'→'6번', '7번 앞'→'12번'으로 수정.
+- **고2 Jupiter #11** [answer] 해설이 인용하는 본문 문장 번호가 page3.sentences의 실제 index와 전부 어긋난다. 학생이 지시된 문장을 찾아가면 전혀 다른 내용이 나온다.  
+  - 위치: `answers.explanations[0].evidence / rationales (q_index 0, 요지)`  
+  - 근거: 해설: "문화가 유전이 아니라 학습된 답이라 장소마다 다르며(4번)" / "문화 상대주의를 권하되(6번)" / "모든 판단을 포기하지는 않는다(8~9번)". 그러나 page3 [4]는 "Each community has slowly shaped its way of eating, dressing, and greeting", [6]은 "Because culture is learned rather than inherited, it changes from place to place", [8]은 "A tropical valley shapes life around entirely different materials", [9]는 "Neither group is closer to one correct way of living." 상대주의는 [12]~[13], 판단의 한계는 [17]~[19]다. rationales도 동일하게 "8번은 ... 잔인함이 전통 뒤에 숨는다"(실제 [18]), "4번 '문화는 장소마다 달라진다'"(실제 [6]), "5번은 자기 관습의 잣대로 ... 자문화 중심주의"(실제 [10]~[11])로 어긋난다.  
+  - 권고: 정답 자체(answer_index 0)는 타당하므로 근거 문장 번호만 page3 index 기준으로 수정: 학습성 → [5]·[6], 상대주의 → [12]·[13], 판단의 한계 → [17]~[19], 자문화중심주의 → [10]·[11].
+- **고2 Jupiter #11** [answer] 빈칸 정답의 핵심 근거로 제시한 문장 번호가 실제 본문 문장 번호와 불일치한다.  
+  - 위치: `answers.explanations[1].evidence / rationales (q_index 1, 빈칸 추론)`  
+  - 근거: 해설: "2번 \"has slowly shaped its way ... to fit the land, the climate, and the history\"와 3번 \"a learned answer to the particular problems a group has faced\"가 단서다." 실제로 전자는 page3 [4], 후자는 [5]다. rationales의 "...2번과 반대다", "...6번(상대주의)과 정면 모순", "...4번과 맞지 않는다"도 각각 [4], [12]~[13], [6]을 가리켜야 한다.  
+  - 권고: 정답(answer_index 3, "solve the problems of its own place")은 page3 [20] "trying to solve the problems of its own place"로 확정되므로 유지하고, 근거 번호를 [4]·[5]·[6]·[12]로 교정.
+- **고2 Jupiter #11** [answer] 밑줄 어구 해설의 근거 문장 번호가 실제 index와 어긋난다.  
+  - 위치: `answers.explanations[2].evidence (q_index 2, 함의 추론)`  
+  - 근거: 해설: "9번은 학자들이 \"refusing to surrender every judgment\"하며 ... 그 앞 8번은 어떤 관습도 비판을 넘어서면 잔인함이 전통 뒤에 숨는다고 경고한다." 실제로 surrender 문장은 page3 [19] "So most scholars keep understanding while refusing to surrender every judgment", 경고 문장은 [18] "If any practice were beyond criticism, then cruelty could hide behind the word tradition"이다. rationales[2]의 "8번의 경고대로"도 [18]이다.  
+  - 권고: 밑줄 인용구("surrender every judgment")와 body의 <u>surrender every judgment</u>는 정확히 일치하고 정답(answer_index 2)도 타당하므로, 문장 번호만 [18]·[19]로 교정.
+- **고2 Jupiter #11** [answer] 서술형 모범답안의 근거 문장 번호가 어긋나고, "7번 앞"이라는 표기 자체가 실제 위치를 가리키지 못한다.  
+  - 위치: `answers.explanations[3].evidence (q_index 3, 요약문 빈칸 완성)`  
+  - 근거: 해설: "(A)는 ... → 4번 \"culture is learned rather than inherited\". (B)는 ... → 7번 앞 \"read each custom inside its own context\"." 실제로 (A) 근거는 page3 [6] "Because culture is learned rather than inherited", (B) 근거는 [12] "The better choice is to read each custom inside its own context."다.  
+  - 권고: 모범답안 "(A) learned (B) context"는 본문 원문 그대로이므로 유지하고, 근거를 [6]과 [12]로 교정.
+- **고2 Jupiter #12** [explanation] 관계대명사 that의 선행사를 오지정했다. 본문 "a hidden rule that quiet randomness obeys without being told"에서 that의 선행사는 'a hidden rule'(obeys의 목적어)이고, 'quiet randomness'는 관계절의 주어다. 그런데 note는 선행사를 randomness라고 단정하고, obeys의 -s를 '선행사 randomness가 단수이기 때문'이라고 설명한다. 주어-선행사를 뒤바꾼 구조 오분석이며, 학생이 목적격 관계대명사절을 주격으로 오해하게 만든다.  
+  - 위치: `page3.sentences[index=18].segments[3].note`  
+  - 근거: 본문(page1.body): "...more like a hidden rule that quiet <blank> obeys without being told." / 오류 note: "관계대명사 that (선행사 randomness 단수 → obeys)" / 같은 문장 segments: { "role": "REL", "text": "that quiet randomness obeys" }  
+  - 권고: note를 "목적격 관계대명사 that (선행사 a hidden rule; 관계절 주어는 quiet randomness → obeys)"로 수정한다.
+- **고2 Jupiter #12** [explanation] 빈칸 추론 해설의 evidence가 본문을 잘못 인용했다. 본문 동사는 obeys(3인칭 단수)인데 해설은 obey로 인용한다. 이 문항은 빈칸에 들어갈 주어를 고르는 문항이므로, 동사의 수일치(obeys)가 곧 '단수 명사(randomness)'를 고르는 핵심 근거인데, 인용을 obey로 바꿔버리면 정답 근거 자체가 사라진다. 오히려 복수형 engines/melodies/puzzles/machines를 배제할 수 없게 되어 오답 유도가 된다.  
+  - 위치: `answers.explanations[q_index=1].evidence`  
+  - 근거: 본문(page1.body): "a hidden rule that quiet <blank> obeys without being told." / 해설 evidence: "빈칸 앞 \"a hidden rule that quiet ___ obey\"와 글 전체 주제..."  
+  - 권고: 인용을 "a hidden rule that quiet ___ obeys"로 바로잡고, rationales에도 'obeys의 단수 수일치 → 복수형 engines/melodies/puzzles/machines 배제'라는 문법 근거를 추가한다.
+- **고2 Jupiter #13** [explanation] 본문의 수동태 "can be removed"를 한국어에서 능동·사역으로 옮겨, 행위자와 대상이 뒤바뀌어 읽힌다. 같은 오역이 해설(evidence)에도 그대로 전파되어 있다.  
+  - 위치: `page3.translation_ko 문장 [10] / answers.explanations[2].evidence (q_index 2, 함의 추론)`  
+  - 근거: 본문 page1: "while those who ignored the public can be removed in peace." / page3.sentences[10]은 이를 { "role": "V", "text": "can be removed" }, grammar_note "관계절 + while 대조 + 수동태 (can be removed)"로 올바르게 수동으로 분석함. 그러나 translation_ko [10]은 "국민을 무시한 자들은 평화롭게 물러나게 할 수 있다", answers.explanations[2].evidence도 "국민을 무시한 자는 물러나게 할 수 있다"로 적어, '무시한 자들'이 (누군가를) 물러나게 하는 주체처럼 읽힌다.  
+  - 권고: "국민을 무시한 자들은 평화롭게 물러나게 된다(자리에서 물러나게 할 수 있다 → 유권자에 의해 교체될 수 있다)"처럼 수동으로 통일. 해설 evidence도 "국민을 무시한 자는 (유권자에 의해) 평화롭게 교체될 수 있다"로 수정. 같은 파일의 grammar_note가 이미 수동태로 분석하고 있어 현재 상태는 자기모순.
+- **고2 Jupiter #14** [explanation] 해설이 본문에 없는 문장을 큰따옴표로 직접 인용한다. 'One conceals its maker'는 본문에 존재하지 않으며, conceal이라는 단어는 page1 전체에 한 번도 등장하지 않는다. 학생이 본문에서 근거 문장을 찾을 수 없어 해설 신뢰도가 무너진다.  
+  - 위치: `answers.explanations[0].evidence (q_index 0, 요지)`  
+  - 근거: 해설: "마지막 단락 \"One conceals its maker ... the other reveals its maker\"가 대비를 못박는다." / 실제 본문(page1 4단락): "One hides its maker and lets conflict speak through invented people, while the other reveals its maker and lets one honest voice guide us."  
+  - 권고: 인용을 본문 그대로 "One hides its maker ... while the other reveals its maker"로 수정한다.
+- **고2 Jupiter #14** [explanation] 밑줄 표현의 근거 문장을 통째로 오인용했다. 세 군데(particular/special, that 관계사 유무, reproduce/copy)가 본문과 다르다. 특히 본문은 목적격 관계사를 생략했는데 해설은 that을 넣어 인용해, page3 sentence 15의 '목적격 관계사 생략' 구문분석과도 정면으로 어긋난다.  
+  - 위치: `answers.explanations[2].evidence (q_index 2, 함의 추론)`  
+  - 근거: 해설: "...the writer's distinctive style, the particular rhythm, humor, and tone that no one else could reproduce" / 실제 본문: "...the writer's distinctive style, the special rhythm, humor, and tone no one else could copy." / page3 sentence 15 REL note: "관계절 (tone 수식, 목적격 관계사 생략)"  
+  - 권고: 인용을 "the special rhythm, humor, and tone no one else could copy"로 정정한다.
+- **고2 Jupiter #15** [explanation] 근거 문장 번호가 틀렸다. 인용한 영문은 page3.sentences의 15번인데 '10번'이라고 표기했다. 10번은 인플레이션 정의 문장이라 학생이 해당 번호를 찾아가면 전혀 다른 문장을 보게 된다.  
+  - 위치: `answers.explanations[2].evidence (q_index 2, 함의 추론)`  
+  - 근거: 해설: "10번은 \"Fear can feed on itself here, because worried consumers spend even less, ...\"라고 하여" / 실제 page3: index 15 = { "S": "Fear", "V": "can feed", ... } 이고, index 10 = "This general climb in prices is called inflation, and it slowly shrinks what each unit of money can buy."  
+  - 권고: '10번'을 '15번'으로 수정.
+- **고2 Jupiter #15** [explanation] 정책 관련 근거를 '13~14번'으로 지목했으나, 13~14번은 수축·경기 침체 설명 문장이다. 정부·중앙은행의 정책 완화는 18~20번이다. 본문 전개 범위 '1~12번'도 실제 순환 4국면 설명 범위(1~17번)와 어긋난다.  
+  - 위치: `answers.explanations[0].evidence (q_index 0, 요지)`  
+  - 근거: 해설: "마지막에 정부와 중앙은행이 지출·금리로 이 진폭을 완화한다(13~14번)고 한다." / 실제 page3 index 13 = "In a contraction, orders shrink, firms cut hours, and unemployment climbs as families spend less.", index 14 = "If the slump deepens and lasts long enough, economists call it a recession...", index 18 = "Governments and central banks try to soften these swings.", index 19~20 = "They spend more or cut interest rates... they can keep the fall shallow and help the economy recover more quickly."  
+  - 권고: '(13~14번)'을 '(18~20번)'으로, '(1~12번)'을 '(1~17번)' 정도로 수정.
+- **고2 Jupiter #15** [explanation] 빈칸 단서로 제시한 '12번'이 오지목. 12번은 '물결이 아래로 돌아선다'(하강)는 문장이고, '수요가 돌아와 새 확장으로 오른다'는 내용은 17번이다. rationales의 '12~14번 흐름', '12번과 정반대다'도 같은 오류를 반복해 근거가 정반대 내용을 가리킨다.  
+  - 위치: `answers.explanations[1].evidence, rationales[1], rationales[2] (q_index 1, 빈칸 추론)`  
+  - 근거: 해설 evidence: "저점 뒤 수요가 돌아와 다시 확장으로 오른다는 12번이 단서다." / 실제 page3 index 12 = "Sooner or later the wave turns downward.", index 17 = "Once prices settle and inventories clear, demand slowly returns, and the economy begins to climb again toward a fresh expansion."  
+  - 권고: 12번 → 16~17번(또는 16~20번)으로 일괄 수정.
+- **고2 Jupiter #15** [answer] 해설이 인용한 문장 번호가 틀렸다. "10번은 'Fear can feed on itself here...'"라고 했으나, page3 문장 10번은 인플레이션 정의 문장이고 해당 밑줄 문장은 15번이다. 학생이 10번을 찾아가면 근거가 전혀 없는 문장이 나온다.  
+  - 위치: `answers.explanations[2].evidence (q_index 2, 함의 추론)`  
+  - 근거: page3 index 10 = "This general climb in prices" / "is called" / "inflation," ... 반면 index 15 = "Fear" / "can feed" / "on itself here," / "because" / "worried consumers" / "spend" / "even less,"  
+  - 권고: "10번은"을 "15번은"으로 수정.
+- **고2 Jupiter #15** [answer] 정답 근거로 인용한 문장 번호가 정반대 내용의 문장을 가리킨다. "저점 뒤 수요가 돌아와 다시 확장으로 오른다는 12번이 단서다"라고 했으나 12번은 경기가 하강으로 돌아서는 문장이다. 회복 근거 문장은 17번이다. rationales[2] "새로운 확장으로 다시 오른다는 12번과 정반대다"도 같은 오류.  
+  - 위치: `answers.explanations[1].evidence 및 rationales[2] (q_index 1, 빈칸 추론)`  
+  - 근거: page3 index 12 = "Sooner or later" / "the wave" / "turns" / "downward." (번역 [12] "조만간 그 물결은 아래로 돌아선다.") / 실제 회복 근거는 index 17 = "Once prices settle and inventories clear," ... "begins to climb" / "again toward a fresh expansion."  
+  - 권고: evidence와 rationales[2]의 "12번"을 "17번"으로 수정.
+- **고2 Jupiter #16** [explanation] 오답 근거의 문장 번호가 틀렸다. "5번에서 코일 감은 수를 늘리면 효과가 커진다"고 했으나, page3.sentences의 5번 문장은 코일 감은 수와 무관하다. 해당 근거는 10번 문장이다.  
+  - 위치: `answers.explanations[0] (q_index 0, 요지) — rationales[2]`  
+  - 근거: 해설: "5번에서 코일 감은 수를 늘리면 효과가 커진다고 했으므로 '효과 없음'은 모순이다." / 본문 5번 문장(page3.sentences index 5, translation_ko [5]): "The lesson looks simple. (그 교훈은 단순해 보인다.)" / 실제 근거는 10번 문장: "Add more turns to the coil, and each loop adds its own share, so the effect grows."  
+  - 권고: "5번"을 "10번"으로 수정.
+- **고2 Jupiter #16** [explanation] 렌츠의 법칙 근거 문장 번호가 틀렸다. "6번"이라고 했으나 6번 문장은 렌츠의 법칙과 무관하며, 실제 근거는 13번 문장이다.  
+  - 위치: `answers.explanations[0] (q_index 0, 요지) — rationales[3]`  
+  - 근거: 해설: "6번은 유도 전류가 변화를 '방해하는' 방향으로 흐른다고 했으므로 '같은 방향'은 틀렸다." / 본문 6번 문장: "A still magnet is useless, but a moving one is a source of power. (정지한 자석은 쓸모없지만, 움직이는 자석은 힘의 원천이다.)" / 실제 근거는 13번 문장: "The current that induction creates always flows in the direction that opposes the very change that made it."  
+  - 권고: "6번"을 "13번"으로 수정.
+- **고2 Jupiter #16** [explanation] 발전기 관련 근거를 "8번"으로 지시했으나 8번 문장은 flux 정의와 유도 반응 조건 문장이고, 발전기 진술은 18번 문장이다. 아울러 "1~5번" 범위도 5번("The lesson looks simple.")까지로는 선속 변화 조건을 담지 못한다(해당 내용은 7~8번).  
+  - 위치: `answers.explanations[0] (q_index 0, 요지) — evidence`  
+  - 근거: 해설: "글은 정지한 자석은 전류를 못 만들고 자기 선속이 변할 때에만 유도가 일어나며(1~5번), 이 원리로 거의 모든 발전기가 작동한다(8번)고 한다." / 본문 8번 문장: "Physicists call the magnetic influence passing through the loop the magnetic flux, and induction reacts only when that flux is rising or falling." / 발전기 진술은 18번 문장: "Almost every generator on the planet uses this quiet law."  
+  - 권고: "(1~5번)"을 "(1~8번)", "(8번)"을 "(18번)"으로 수정.
+- **고2 Jupiter #16** [explanation] 코일 감은 수 요인을 "5번"으로 지시했으나 5번 문장은 "The lesson looks simple."이다. 실제 근거는 10번 문장이다. explanations[0]의 동일 오류가 반복되었다.  
+  - 위치: `answers.explanations[2] (q_index 2, 함의 추론) — rationales[2]`  
+  - 근거: 해설: "'코일 감은 수'의 증감은 5번의 별개 요인이며 rising or falling이 가리키는 대상이 아니다." / 본문 10번 문장: "Add more turns to the coil, and each loop adds its own share, so the effect grows."  
+  - 권고: "5번"을 "10번"으로 수정.
 
-<details><summary>권고 사항 42건</summary>
+<details><summary>권고 사항 124건</summary>
 
-- 고2 Jupiter #1 [explanation] 부사구 앞자리 배치를 '도치(inversion)'로 잘못 태깅했다. 실제 문장은 주어-동사 어순이 그대로 유지되는 '전치(fronting/강조)'이지 도치가 아니다. — `page3.sentences[index 8], segment note "장소 부사구 도치" / grammar_note "부사구 강조 + 3형식 + 과거분사 수식"`
-- 고2 Jupiter #2 [explanation] 해설이 인용하는 문장 번호가 page3.sentences의 실제 index와 전부 어긋난다. 근거로 든 'turn out to be the same idea' 문장은 index 11인데 해설은 '8번' 또는 '8~9번'이라 하고, 'two faces of one relationship'는 index 14인데 '11번', '+C가 뺄셈에서 소거'는 index 13인데 '10번'이라고 지목한다. — `answers.explanations[0] (q_index 0, 요지) evidence + rationales`
-- 고2 Jupiter #2 [explanation] 빈칸이 들어있는 문장을 '13번'이라 지목하지만 실제로 'the derivative takes something apart, while the integral patiently ___'는 page3 index 18이다. 또 recover/rebuild 근거를 '12번'이라 하나 recover는 index 16, rebuild는 index 17이며 index 12는 FTC 문장이다. — `answers.explanations[1] (q_index 1, 빈칸 추론) evidence + rationales`
-- 고2 Jupiter #2 [explanation] 함의 대상 표현 'these two ideas ... turn out to be the same idea wearing two masks'를 '8번'이라 하고 기본정리 연결을 '9~11번'이라 하지만, 실제 page3에서 해당 문장은 index 11, 기본정리(FTC) 문장은 index 12다. — `answers.explanations[2] (q_index 2, 함의 추론) evidence`
-- 고2 Jupiter #2 [explanation] (A) area 근거를 '5번 it measures the area', (B) endpoints 근거를 '9번 subtract its values at the two endpoints'라 하지만, 실제 page3에서 'it measures the area...'는 index 7, 'subtract its values at the two endpoints'는 index 12다. — `answers.explanations[3] (q_index 3, 요약문 빈칸) evidence`
-- 고2 Jupiter #2 [translation] 영문은 '과정'인 antidifferentiation과 '답들의 집합'인 the indefinite integral을 서로 다른 두 용어로 구분하는데, 번역이 둘 다 '부정적분'으로 옮겨 구분이 뭉개졌고 near-tautology(순환 정의)가 됨. 앞의 antidifferentiation은 '역미분'으로 옮겨야 함. — `page3.translation_ko 문장 [3]`
-- 고2 Jupiter #2 [answer] 해설의 근거 문장 번호가 본문(page3) 실제 인덱스와 전부 어긋난다. 정답 자체는 옳으나(선지 2), 해설이 인용하는 문장 번호가 틀려 학생이 근거를 대조할 수 없다. — `answers.explanations[0] (q_index 0, 요지), evidence 및 rationales`
-- 고2 Jupiter #2 [answer] 해설이 빈칸 문장을 '13번'으로, 복원 근거를 '12번(recover, rebuild)'으로 지목하나 본문 인덱스와 불일치한다. 정답(선지 1 puts it back together)은 옳다. — `answers.explanations[1] (q_index 1, 빈칸 추론), evidence 및 rationale`
-- 고2 Jupiter #2 [answer] 해설이 밑줄 표현을 '8번', 연결 설명을 '9~11번'으로 인용하나 본문 인덱스와 불일치한다. 정답(선지 1)은 옳다. — `answers.explanations[2] (q_index 2, 함의 추론), evidence`
-- 고2 Jupiter #2 [answer] (A)area와 (B)endpoints의 근거 문장 번호가 본문 인덱스와 어긋난다. 정답(A area / B endpoints)은 옳다. — `answers.explanations[3] (q_index 3, 요약문 빈칸 완성), evidence`
-- 고2 Jupiter #3 [explanation] 해설이 인용한 문장 번호가 실제 page3.sentences 인덱스와 어긋난다. 'all or nothing' 문장을 9번으로 인용했으나 실제로는 sentence 10이며, '전위가 갑작스럽게 뒤집힌다(8번)'로 지목한 sudden flip of charge는 sentence 9다. — `answers.explanations[q_index=2] evidence / rationales (함의 추론)`
-- 고2 Jupiter #3 [explanation] 근거 문장 번호가 실제 인덱스보다 앞당겨져 인용됨. threshold 문장을 '8번', myelin 문장을 '11번'으로 적었으나 각각 sentence 9, sentence 12다. — `answers.explanations[q_index=3] evidence (요약문 빈칸 완성)`
-- 고2 Jupiter #3 [explanation] 오답 근거의 문장 번호 인용 오류. '전기 신호가 틈을 스스로 못 넘고 화학 물질이 필요'를 15~16번으로 지목했으나 해당 내용은 sentence 17(cannot jump this gap)과 sentence 18(chemical messengers)이다. 15~16번은 도약 속도와 '뉴런이 다음 뉴런을 만난다'는 내용으로 근거와 무관하다. — `answers.explanations[q_index=0] rationales (요지)`
-- 고2 Jupiter #3 [explanation] 'chemical messengers' 방출 문장을 16번으로 인용했으나 실제로는 sentence 18이며, 빈칸이 포함된 릴레이 문장은 sentence 19다. 16번은 화학 물질과 무관한 'the neuron meets the next one' 문장이다. — `answers.explanations[q_index=1] evidence / rationales (빈칸 추론)`
-- 고2 Jupiter #4 [explanation] rationale가 unreliable의 근거 문장을 '7번'이라고 지목하지만, unreliable은 page3 sentences의 14번 문장에 나온다. 7번 문장은 시점(point of view) 정의 문장이다. — `answers.explanations[q_index=3].rationales[1] (B unreliable)`
-- 고2 Jupiter #4 [explanation] rationale가 narrator의 근거 문장을 '2번'이라고 지목하지만, 'This teller is the narrator'는 page3 sentences의 4번 문장이다. 2번 문장은 'a pair of eyes'를 다루는 문장이다. — `answers.explanations[q_index=3].rationales[0] (A narrator)`
-- 고2 Jupiter #4 [answer] 요약문 정답 해설의 본문 문장 번호 인용이 틀림. (A) narrator 근거를 '2번 문장'이라 했으나 실제 'This teller is the narrator'는 [4]번 문장이고 [2]번은 'a pair of eyes'에 관한 문장이다. (B) unreliable 근거를 '7번 문장'이라 했으나 'critics call that voice unreliable'은 [14]번 문장이며 [7]번은 point of view를 정의하는 문장이다. 정답 자체(A=narrator, B=unreliable)는 옳으나 해설의 문장 참조가 잘못되어 있어 교사·학생이 근거 문장을 찾을 때 불일치가 발생한다. — `content/passages/2026-08-J/04.json → answers.explanations[q_index=3].rationales`
-- 고2 Jupiter #5 [explanation] 오답 근거가 존재하지 않는 문장 번호를 인용한다. 'unstable'이 틀린 이유로 '반응이 잔잔한 중간에서 안정된다는 6번과 어긋난다'라고 하는데, 6번 문장은 '안정/중간'과 무관하다. — `answers.explanations[q_index=1].rationales[3] (빈칸 추론, 'unstable' 오답 근거)`
-- 고2 Jupiter #5 [explanation] 오답 근거가 잘못된 문장 번호를 인용한다. 'pH가 7 근처로 측정된다는 6번과 모순된다'라고 하지만, pH가 7 근처에 자리 잡는다는 내용은 6번이 아니라 17번 문장에 있다. — `answers.explanations[q_index=2].rationales[2] (함의 추론, 'pH 척도를 지운다' 오답 근거)`
-- 고2 Jupiter #6 [explanation] 해설의 evidence가 본문에 없는 문장을 인용한다. "This stubborn steadiness is called homeostasis"라고 적었으나 본문(page1.body / page3.translation)에는 'stubborn'이라는 단어가 없고 "This steadiness is called homeostasis"이다. 또한 "scientists label the mechanism negative feedback"이라고 인용했으나 본문은 "scientists call the mechanism negative feedback"으로 동사가 label이 아니라 call이다. 근거가 본문과 불일치하여 검수 신뢰성을 떨어뜨린다. — `answers.explanations[3] (q_index 3, 요약문 빈칸 완성) evidence`
-- 고2 Jupiter #6 [answer] 정답 근거로 인용한 본문 문장이 실제 본문(page1.body)과 다르게 왜곡 인용되어 있다. 정답 (A)homeostasis / (B)feedback 자체는 타당하나, 해설의 근거 인용문이 존재하지 않는 문구를 본문인 것처럼 제시한다. — `answers.explanations[3].evidence (q_index 3, 요약문 빈칸 완성)`
-- 고2 Jupiter #6 [answer] 어휘 예문이 본문 문장을 인용한다고 제시되나 본문에 없는 'stubborn'이 삽입되어 본문과 불일치한다. 어휘 정오답 판별에 직접 관여하진 않으나 본문 근거 일관성을 해친다. — `page4.vocab[0] homeostasis, examples[0] / page4.vocab[1] steadiness는 정상`
-- 고2 Jupiter #7 [explanation] 해설 evidence가 인용하는 문장 번호가 본문의 실제 문장 번호(page3.sentences / translation_ko의 [1]~[19])와 전혀 일치하지 않는다. 세 방법의 위치를 '지층 누중(1~3번), 표준 화석(4~6번), 방사성 붕괴(7번), geologic time(8번)'으로 적었으나 실제 문장 배치는 지층 누중=1~6, 표준 화석=7~12, 방사성=13~17, 결론=18~19이다. 인용 번호가 모두 어긋나 학생이 번호를 따라가면 엉뚱한 문장에 도달한다. — `answers.explanations[q_index=0].evidence`
-- 고2 Jupiter #7 [explanation] 요약문 완성 해설이 (A) 근거를 '2번', (B) 근거를 '6번'으로 인용하나, 실제 문장 번호는 (A) the oldest 근거가 [4], (B) index fossils 근거가 [12]이다. 정답(oldest/fossils)은 옳지만 근거 문장 번호가 틀렸다. — `answers.explanations[q_index=3].evidence / rationales`
-- 고2 Jupiter #8 [explanation] 주격 보어를 M(수식어)로 오태깅. role은 "M"인데 note는 "부정 보어"라고 명시하여 태그와 주석이 서로 모순된다. is의 보어이므로 role은 C여야 한다. — `page3.sentences[15] (index 16), segment "not a fact"`
-- 고2 Jupiter #8 [explanation] 해설의 문장 번호가 page3 sentences의 index와 불일치. 해설은 대화 비유 근거를 "9번"·"10번"(및 "9~10번")으로 지목하나, 실제 해당 내용은 page3 index 18·19이다. 구문분석에서 "9번"은 전혀 다른 문장(비평가가 설명하는 내용)이라 근거 위치를 오도한다. — `answers.explanations[1] (q_index 1, 빈칸 추론) evidence / rationales`
-- 고2 Jupiter #8 [explanation] 해설이 핵심 근거 문장을 "8번"으로 지목하나 실제로는 page3 index 17이다. index 8은 초상화 무게에 관한 문장으로 함의와 무관해, 구문분석을 대조하는 학습자를 오도한다. — `answers.explanations[2] (q_index 2, 함의 추론) evidence`
-- 고2 Jupiter #11 [explanation] 해설의 근거 인용 번호('2번','3번','4번','6번','8번','9번')가 학생이 볼 수 있는 유일한 번호 체계(page3 sentences 1~20)와 어긋난다. 실제로는 훨씬 뒤 문장을 가리키므로 근거 추적이 오도된다. — `answers.explanations[q_index=0].evidence / rationales, and [q_index=1].evidence, [q_index=2].evidence`
-- 고2 Jupiter #11 [answer] 해설의 근거 인용에 쓰인 '~번' 문장 번호가 page3의 실제 문장 번호(1~20)와 전혀 맞지 않는다. 정답 자체는 모두 옳으나, 교사가 근거를 추적할 때 잘못된 문장을 가리켜 혼란을 준다. — `answers.explanations[*].evidence / rationales (q_index 0,1,2,3)`
-- 고2 Jupiter #14 [explanation] 해설의 '본문 인용'이 실제 본문과 불일치. 해설은 One conceals its maker ... the other reveals its maker 라고 인용하지만, 본문 문장[18]은 hides 를 쓴다. conceals 는 본문에 없는 단어로, 인용을 변조한 것. — `answers.explanations[0] (q_index 0, 요지) evidence`
-- 고2 Jupiter #14 [explanation] 해설이 인용한 빈칸 문장에 본문에 없는 부사 quietly 가 삽입됨. 인용 변조. — `answers.explanations[1] (q_index 1, 빈칸 추론) evidence`
-- 고2 Jupiter #14 [explanation] 해설의 본문 인용에서 두 단어가 본문과 다름: particular(본문은 special), reproduce(본문은 copy). 밑줄 표현 함의 문항의 근거 인용이 변조됨. — `answers.explanations[2] (q_index 2, 함의 추론) evidence`
-- 고2 Jupiter #14 [explanation] (B) 근거로 인용한 마지막 단락 표현이 본문과 불일치: a single honest voice 로 적었으나 본문은 one honest voice. 정답 voice 자체는 옳으나 인용이 변조됨. — `answers.explanations[3] (q_index 3, 요약문 빈칸) evidence`
-- 고2 Jupiter #14 [answer] 정답 해설의 근거 인용이 본문과 불일치. 해설은 마지막 단락을 "One conceals its maker ... the other reveals its maker"로 인용하나, 본문(page1.body / page3 sentence 18)은 conceals가 아니라 hides를 쓴다. — `answers.explanations[0].evidence (q_index 0, 요지)`
-- 고2 Jupiter #14 [answer] 정답 해설의 근거 인용이 본문과 3중으로 불일치(particular/that/reproduce). 밑줄 문항의 핵심 근거 문장을 본문과 다른 어휘로 재구성해 인용했다. — `answers.explanations[2].evidence (q_index 2, 함의 추론)`
-- 고2 Jupiter #15 [explanation] 빈칸 추론 해설이 '회복/재확장'의 근거로 12번 문장을 지목하지만, 12번은 정반대(하락) 문장이다. 실제 회복 근거는 17번 문장이다. 학생이 대조 확인 시 반대 의미 문장으로 오도된다. — `answers.explanations[q_index=1] evidence 및 rationales[0],[1] (line 408, 411, 412)`
-- 고2 Jupiter #15 [explanation] 함의 추론 해설이 밑줄 문장 'Fear can feed on itself here...'를 '10번'으로 인용하나, page3에서 이 문장의 index는 15번이다. 10번은 인플레이션 문장이다. — `answers.explanations[q_index=2] evidence (line 425)`
-- 고2 Jupiter #15 [explanation] 요지 해설이 '정부·중앙은행이 지출·금리로 진폭을 완화한다'의 근거로 13~14번을 지목하나, 해당 내용은 18~20번이다. 13~14번은 수축/경기침체 정의 문장이다. — `answers.explanations[q_index=0] evidence (line 391)`
-- 고2 Jupiter #15 [explanation] 'no trough lasts forever'를 '부분 부정'으로 표기했으나 이는 전체 부정이다. (모든 저점이 결국 끝난다 = 어떤 저점도 영원하지 않다.) 자체 번역과도 모순. — `page3.sentences[index=16] grammar_note (line 322)`
-- 고2 Jupiter #16 [explanation] Q0(요지) 해설의 근거 문장 번호가 실제 본문 문장과 어긋난다. rationale[2]는 '5번에서 코일 감은 수를 늘리면 효과가 커진다'고 하지만 해당 내용은 본문 문장 10('Add more turns to the coil ... so the effect grows')이고, page3 문장 5는 'The lesson looks simple.'이다. rationale[3]은 '6번은 유도 전류가 변화를 방해하는 방향으로 흐른다'고 하지만 이는 본문 문장 13('The current that induction creates always flows in the direction that opposes the very change')이며, 문장 6은 'A still magnet is useless, but a moving one is a source of power.'다. evidence의 '이 원리로 거의 모든 발전기가 작동한다(8번)'도 실제로는 문장 18('Almost every generator on the planet uses this quiet law')이고, 문장 8은 자기 선속을 정의하는 문장이다. — `answers.explanations[q_index=0].rationales[2] and rationales[3], and evidence`
-- 고2 Jupiter #16 [answer] 정답 자체는 옳으나, 해설의 문장 번호 인용이 실제 본문 문장 인덱스와 어긋난다. 정답 근거의 신뢰도를 떨어뜨린다. — `answers.explanations[0] (q_index 0) evidence 및 rationales`
-- 고2 Jupiter #18 [explanation] 요지 정답 근거로 인용한 문장 번호가 틀렸다. '그 집단들이 자아를 형성한다'는 주장의 근거로 '(1번, 8번)'을 제시했으나, 8번 문장은 자아 형성과 무관하다. — `18.json page3/answers → answers.explanations[0] (q_index 0, 요지) evidence 필드`
+- 고2 Jupiter #1 [explanation] 도치가 일어나지 않은 문장을 '장소 부사구 도치'로 설명함 (문법 사실 오류) — `page3.sentences[8].segments[0].note / grammar_note (index 8)`
+- 고2 Jupiter #1 [explanation] 본문에 존재하지 않는 단락 번호(5번)를 근거로 인용함 — `answers.explanations[0].evidence, [1].evidence ("5번")`
+- 고2 Jupiter #1 [explanation] 근거 단락 번호 오지정 — 해당 문장은 2단락에 있음 — `answers.explanations[0].rationales[2] ("3번에서 계수는 장식이 아니라")`
+- 고2 Jupiter #1 [explanation] seem의 주격보어를 M(수식어)으로 오태깅 — `page3.sentences[1].segments[4] (index 1, "to vanish into smoke or crumble away into fine dust.")`
+- 고2 Jupiter #1 [explanation] be trusted to V의 to부정사를 보어 절 밖으로 떼어 M으로 오태깅 — 보어 범위가 절 중간에서 잘림 — `page3.sentences[17].segments (index 17, C="why chemistry can be trusted" / M="to keep its books balanced.")`
+- 고2 Jupiter #1 [translation] "the clear language of moles"의 수식 관계를 잘못 옮겨, 형용사 clear가 language가 아닌 moles를 꾸미는 것처럼 번역됨(오역). — `page3.translation_ko 문장 [20] (2026-08-J-01, jupiter-g2)`
+- 고2 Jupiter #1 [answer] 해설의 근거 지시 번호가 본문 단락 번호와도, page3 문장 번호와도 일치하지 않는다. 인용된 영어 원문은 맞지만 "몇 번"이라는 포인터가 전부 어긋나 학생이 근거를 찾아갈 수 없다. — `answers.explanations[*].evidence / rationales (q_index 0,1,2,3)`
+- 고2 Jupiter #1 [vocab] equation의 동의어로 제시한 formula가 본문에서 명확히 구별되는 별개 개념이어서, 학생이 본문을 오독하게 만든다. — `page4.vocab[5] ("equation") .synonyms`
+- 고2 Jupiter #2 [language] 해설이 인용하는 문장 번호가 page3.sentences의 실제 인덱스와 전부 어긋난다. page3는 본문을 18문장으로 번호를 매겼는데, 해설은 12문장 기준(구 버전)으로 보이는 번호를 사용한다. 학생이 해설의 '8번', '9번'을 찾아가면 완전히 다른 문장이 나오므로 판매본에서 오답 안내가 된다. — `answers.explanations[*].evidence 및 rationales (q_index 0·1·2·3)`
+- 고2 Jupiter #2 [translation] 원문이 구분하는 두 용어 antidifferentiation(역미분·연산)과 the indefinite integral(부정적분·답의 집합)을 한 문장 안에서 모두 "부정적분"으로 옮겨, '~를 부정적분이라 하고 … 그것이 부정적분이다'라는 동어반복이 되었다. page4 vocab에서는 antidifferentiation을 "역미분", indefinite integral을 "부정적분"으로 분리해 두었으므로 번역만 불일치한다. — `page3.translation_ko 문장 [3]`
+- 고2 Jupiter #2 [answer] 모든 해설이 인용하는 본문 문장 번호가 page3.sentences의 실제 index 및 translation_ko의 [n] 번호와 어긋난다. 학생이 해설의 번호를 따라 본문을 찾아가면 전혀 다른 문장을 보게 되어 근거 확인이 불가능하다. — `answers.explanations[*].evidence / rationales (문장 번호 인용 전반)`
+- 고2 Jupiter #2 [vocab] synonyms에 "signed area"를 제시했으나, 본문은 정적분을 '곡선과 가로축 사이의 넓이'로만 규정하며 부호 있는 넓이(음수 넓이) 개념은 본문·해당 단원(미적분 III-1) 어디에도 없다. 또한 '정적분'은 연산/값이고 'signed area'는 그 기하학적 해석이라 동의어 관계가 성립하지 않는다. — `page4.vocab[3] "definite integral" → synonyms[0]`
+- 고2 Jupiter #3 [language] 앞에 door(문)에 대한 언급이 전혀 없는 상태에서 정관사 the door가 갑자기 등장해 지시 대상이 없는 비문에 가깝다. 은유로 의도한 것이라도 선행 도입이 없어 학생이 '어떤 문?'에서 막힌다. — `page1.body 2단락 / page3 sentence 8`
+- 고2 Jupiter #3 [explanation] 오답 근거 문장 번호가 틀렸다. rationales[0]의 실무율(더 큰 스파이크 부정) 내용은 index 10인데 "9번"이라 하고, rationales[3]의 '전기 신호가 스스로 못 넘고 화학 물질이 필요' 내용은 index 17~18인데 "15~16번"이라 한다. index 15는 도약 전도의 이유, 16은 다음 뉴런과 만남이라 화학 물질 언급이 없다. — `answers.explanations[0] (q_index 0, 요지) rationales[0], rationales[3]`
+- 고2 Jupiter #3 [explanation] rationales[0]은 실무율 문장을 다시 "9번"이라 하나 실제는 10번. rationales[2]는 '전위가 갑작스럽게 뒤집힌다'를 "(8번)"이라 하나, index 8은 'the door swings wide open'이라는 비유 문장일 뿐이고 'a sudden flip of charge'는 index 9에 있다. 근거 문장과 서술 내용이 어긋난다. — `answers.explanations[2] (q_index 2) rationales[0], rationales[2]`
+- 고2 Jupiter #3 [explanation] "the door swings wide open"에서 open을 M(수식어)으로 묶고 문형을 '1형식'이라 했으나, open은 주격 보어(SVC, 2형식)다. wide는 그 보어를 수식하는 부사. 국내 교재 기준으로도 swing open은 '보어를 취하는 자동사'로 다룬다. 문형 태깅 오류이며, 학생이 유사 구문(the door swung shut 등)을 잘못 익히게 된다. — `page3.sentences[7] (index 8) segments 및 grammar_note`
+- 고2 Jupiter #3 [answer] 해설 근거의 문장 번호가 실제 page3 문장 인덱스와 어긋난다. 인용문 "The signal is all or nothing..."은 9번이 아니라 10번 문장이고, '역치를 넘어야 활동 전위가 촉발된다'는 7~8번이 아니라 8~9번이다. 학생이 지시된 번호로 본문을 확인하면 다른 문장이 나온다. — `C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-08-J/03.json > answers.explanations[2].evidence (q_index 2, 함의 추론)`
+- 고2 Jupiter #3 [answer] 모범답안 근거로 인용한 두 문장의 번호가 모두 실제 page3 인덱스와 1씩 어긋난다. threshold 문장은 8번이 아니라 9번, myelin 문장은 11번이 아니라 12번이다. — `C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-08-J/03.json > answers.explanations[3].evidence (q_index 3, 요약문 빈칸 완성)`
+- 고2 Jupiter #3 [answer] 빈칸 근거 문장 번호가 실제와 2씩 어긋난다. 'chemical messengers를 방출하게 한다'는 18번, '전기와 ___ 형태를 오가는 릴레이'는 19번인데 해설은 16~17번으로 지시한다. 16번은 'the neuron meets the next one', 17번은 'The electric signal cannot jump this gap'이라 근거로 성립하지 않는다. — `C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-08-J/03.json > answers.explanations[1].evidence 및 rationales[0] (q_index 1, 빈칸 추론)`
+- 고2 Jupiter #3 [answer] 오답 선지 해설의 근거 문장 번호가 실제와 어긋난다. 실무율(더 큰 스파이크 아님)은 9번이 아니라 10번, '전기 신호가 스스로 틈을 못 넘고 화학 물질이 필요'는 15~16번이 아니라 17~18번이다. '미엘린 덕분에 더 빨라진다'는 12~13번이 아니라 12·14번에 걸쳐 있다. — `C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-08-J/03.json > answers.explanations[0].rationales[0], [2], [3] (q_index 0, 요지)`
+- 고2 Jupiter #3 [vocab] 예문 한국어 대역의 조사가 비문이다. 영어 원문은 수동태("the threshold is crossed")인데, 한국어는 '역치가 넘어선'으로 되어 있어 역치가 무언가를 '넘어서는' 능동 주체가 된다. 의미가 뒤집혀 학생이 역치 개념(자극이 역치를 넘는다)을 거꾸로 이해할 수 있다. — `C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-08-J/03.json — page4.vocab[5] ("threshold"), examples[1].ko`
+- 고2 Jupiter #4 [explanation] 모범답안 근거로 제시한 문장 번호가 page3.sentences의 실제 index와 어긋난다. (A)는 '2번', (B)는 '7번'이라 했으나 실제로는 각각 4번, 14번 문장이다. 문단 번호로 봐도 각각 1문단, 3문단이라 맞지 않는다. — `answers.explanations[3].rationales (q_index 3, 요약문 빈칸 완성)`
+- 고2 Jupiter #4 [explanation] 콜론 뒤 의문절을 '간접의문'이라고 설명했으나, 본문은 조동사 도치를 그대로 쓴 직접의문문 형태다. 간접의문(명사절)이면 어순이 'how much this voice can actually see'여야 하므로 문법 설명이 사실과 반대다. 학생이 이 노트를 근거로 간접의문 어순 문제를 풀면 오답을 유도한다. — `page3.sentences[15] (index 16) grammar_note / segments note`
+- 고2 Jupiter #4 [answer] 모범답안 해설의 문장 번호 근거가 틀림 — (A) narrator의 출처를 '2번'이라 했으나 실제로는 page3 sentence index 4번이다. — `answers.explanations[3].rationales[0] (q_index 3, 요약문 빈칸 완성)`
+- 고2 Jupiter #4 [answer] 모범답안 해설의 문장 번호 근거가 틀림 — (B) unreliable의 출처를 '7번'이라 했으나 실제로는 page3 sentence index 14번이다. — `answers.explanations[3].rationales[1] (q_index 3, 요약문 빈칸 완성)`
+- 고2 Jupiter #4 [vocab] 예문이 비문법적이다. 가산 단수명사 reader/events 앞의 한정사가 빠져 "between reader and events"가 되었다. 본문 원문은 관사를 갖추고 있는데, 예문으로 축약하는 과정에서 관사가 탈락했다. — `page4.vocab[0] (narrator) → examples[0].en`
+- 고2 Jupiter #4 [vocab] antonyms에 "misread"를 넣었으나 이는 반의어가 아니다. misread는 '해석하다'의 반대가 아니라 '잘못 해석하다'로 interpret의 하위·양태 변형(부정확한 해석)이며, 실제로 본문에서도 서술자의 행위 중 하나로 interpret와 대립 없이 쓰인다. 학생이 interpret ↔ misread를 반의 관계로 암기하면 오개념이 생긴다. — `page4.vocab[10] (interpret) → antonyms`
+- 고2 Jupiter #5 [language] pH 변화 방향이 바로 앞 문장의 설정과 모순된다. 15번에서 '강한 염기에 강한 산을 떨어뜨린' 상황(출발 용액이 염기성, pH>7)을 제시해 놓고, 16번 'You can watch it happen'으로 그 장면을 그대로 이어받은 뒤, 17번에서는 pH가 '산성 범위를 벗어나 올라간다'고 서술한다. 산을 염기에 넣는 경우 pH는 염기성 범위에서 7로 '내려와야' 하므로 과학적으로 방향이 반대다. — `page1.body 3단락 (문장 15~17)`
+- 고2 Jupiter #5 [explanation] 오답 근거가 가리키는 문장 번호 '6번'이 실제 page3 문장 [6]의 내용과 전혀 무관하다. 학생이 지시된 문장을 찾아가면 근거를 확인할 수 없다. — `answers.explanations[1].rationales[3] 및 answers.explanations[2].rationales[2]`
+- 고2 Jupiter #5 [explanation] 구문 역할 오태깅. 구동사 leave behind의 불변화사(behind)와 그 목적어를 통째로 M(수식어)으로 묶어, 3형식 목적어가 M으로 잘못 분류되었다. — `page3.sentences[19] (index 20) segments 마지막 M 세그먼트`
+- 고2 Jupiter #5 [explanation] page1 본문에서 <blank>로 비워 둔 자리(page2 빈칸 추론 문항의 정답)가 page3 구문분석 세그먼트와 국역에 정답 단어로 그대로 채워져 노출된다. 학생용 구문분석 페이지에서 정답이 사전 유출된다. — `page3.sentences[19] (index 20) M 세그먼트 및 translation_ko [20]`
+- 고2 Jupiter #5 [answer] 해설이 존재하지 않는 '6번' 문항을 근거로 인용한다. 이 지문의 page2.questions는 총 4문항(1~4번)뿐이므로 학생·교사가 확인할 수 없는 유령 참조다. — `answers.explanations[1].rationales[3] (line 356) 및 answers.explanations[2].rationales[2] (line 372)`
+- 고2 Jupiter #5 [vocab] 예문이 본문 인용처럼 제시되었으나 본문의 핵심 명사 ions를 partners로 바꿔 써서 본문과 불일치하고, 화학적으로도 부정확하다(염을 이루는 것은 남은 '이온'이다). 'leftover partners'는 영어 연어로도 부자연스럽다. — `page4.vocab[5] (leftover), examples[0].en, line 462`
+- 고2 Jupiter #5 [vocab] dissolve(용해: 용매에 녹아 섞임)와 melt(용융: 열에 의해 고체가 액체로 상변화)는 서로 다른 현상이다. 본문 문맥은 엄밀히 용해이므로 학습자에게 개념 혼동을 유발한다. — `page4.vocab[2] (dissolve), synonyms[0] "melt", line 426`
+- 고2 Jupiter #6 [language] 요약문 문제 해설의 '본문 인용'이 두 군데 모두 현재 page1.body와 불일치한다. 이전 원고의 문장을 그대로 남겨둔 흔적으로, 학생이 본문에서 해당 문장을 찾을 수 없다. — `answers.explanations[3].evidence (line 362)`
+- 고2 Jupiter #6 [language] homeostasis 표제어의 첫 예문이 본문 인용 형태를 취하면서도 본문에 없는 단어 'stubborn'을 포함한다. 같은 파일의 steadiness 표제어(line 394)에는 본문과 일치하는 "This steadiness is called homeostasis."가 실려 있어 동일 문장이 두 버전으로 병존한다. — `page4.vocab[0].examples[0] (line 383)`
+- 고2 Jupiter #6 [explanation] 근거 단락 번호가 틀렸다. 센서가 값을 측정한다는 서술은 2단락(The secret behind this balance ~)에 있는데 3단락으로 지목했다. 3단락은 자율 신경계 단락이다. — `answers.explanations[1] (q_index 1, 빈칸 추론) rationales[0]`
+- 고2 Jupiter #6 [explanation] 근거 단락 번호가 틀렸다. 센서가 뇌에 보고한다는 서술은 2단락에 있는데 3단락으로 지목했다. 같은 파일 내 explanations[0] evidence에서는 2단락=음성 피드백, 3단락=자율 신경계로 올바르게 세고 있어 내부 불일치이기도 하다. — `answers.explanations[2] (q_index 2, 함의 추론) rationales[4]`
+- 고2 Jupiter #6 [answer] 오답 해설이 인용한 단락 번호가 실제 본문 단락과 어긋난다. 센서가 값을 측정해 뇌에 보고하는 내용은 2단락인데 두 해설 모두 3단락이라고 적었다. 3단락은 자율 신경계 단락이다. — `answers.explanations[1].rationales[0] 및 explanations[2].rationales[4]`
+- 고2 Jupiter #6 [vocab] synonym "duct"가 본문 문맥의 의미와 불일치한다. 본문의 vessel은 피부의 혈관(blood vessel)이고 meaning_ko도 "혈관"을 첫 뜻으로 제시하는데, duct는 분비물·공기를 나르는 관(눈물관 tear duct, 환기관 air duct)으로 혈관을 가리키는 데 쓰이지 않는다. 학생이 duct를 혈관의 동의어로 외우면 오답 어휘 지식이 된다. — `page4.vocab[7] (vessel) synonyms`
+- 고2 Jupiter #7 [explanation] 근거의 문장 번호가 전부 page3.sentences 인덱스와 어긋난다. 인용문 "science has assembled the vast calendar we call geologic time"을 '8번'이라 했으나 실제로는 18번 문장이고, 지층 누중(1~3번)·표준 화석(4~6번)·방사성 붕괴(7번)라는 구간 표기도 실제 구성(누중 4~6, 표준 화석 9~12, 방사성 붕괴 14~16)과 모두 불일치한다. 학생이 해당 번호를 찾아가면 전혀 다른 문장이 나온다. — `answers.explanations[0].evidence (q_index 0, 요지)`
+- 고2 Jupiter #7 [explanation] 모범답안 (A)/(B)의 근거 문장 번호가 둘 다 틀렸다. (A) 근거로 인용한 문장은 4번, (B) 근거로 인용한 문장은 12번인데 각각 '2번', '6번'으로 표기했다. — `answers.explanations[3].evidence (q_index 3, 요약문 빈칸 완성)`
+- 고2 Jupiter #7 [answer] 해설의 근거 문장 번호가 page3.sentences의 index와 어긋난다. 인용된 문장 "science has assembled the vast calendar we call geologic time"은 8번이 아니라 18번 문장이며, 지층 누중은 1~3번이 아니라 3~6번, 표준 화석은 4~6번이 아니라 9~12번, 방사성 붕괴는 7번이 아니라 14~17번이다. 학생이 8번을 찾아가면 전혀 다른 문장이 나온다. — `answers.explanations[0].evidence (q_index 0, 요지)`
+- 고2 Jupiter #7 [answer] 모범답안 근거로 제시한 문장 번호가 실제 page3 index와 불일치한다. (A) oldest의 근거는 2번이 아니라 4번 문장, (B) fossils의 근거는 6번이 아니라 12번 문장이다. rationales에서도 동일한 오기가 반복된다. — `answers.explanations[3].evidence / rationales (q_index 3, 요약문 빈칸 완성)`
+- 고2 Jupiter #7 [vocab] `decay`의 반의어로 제시된 "accumulate"가 의미 축이 어긋난다. accumulate는 '축적되다/쌓이다'로, scatter/disperse(흩어지다)의 반대말이지 decay(붕괴하다)의 반대말이 아니다. 특히 본문에서 decay는 방사성 붕괴라는 물리적 의미로만 쓰이므로, 그 반대는 '안정 상태를 유지하다(remain stable / endure / persist)' 계열이어야 한다. 학생이 '붕괴하다 ↔ 축적되다'로 암기하면 오개념이 생긴다. — `page4.vocab[6] (word: "decay") — antonyms`
+- 고2 Jupiter #8 [explanation] 해설이 인용하는 문장 번호가 page3.sentences의 실제 index와 불일치한다. '9번/10번'으로 지칭한 내용은 실제로는 18번·19번 문장이다. 학생이 9번(초상화·기근 문장)을 찾아가면 근거를 확인할 수 없다. — `answers.explanations[1].evidence (q_index 1, 빈칸 추론)`
+- 고2 Jupiter #8 [explanation] 해설이 지칭한 '8번' 문장이 실제 page3.sentences index 8과 다르다. 인용문은 index 17 문장이다. 또한 '앞 문장'으로 제시한 미적 판단 근거는 index 16이므로 번호 체계가 전반적으로 어긋나 있다. — `answers.explanations[2].evidence (q_index 2, 함의 추론)`
+- 고2 Jupiter #8 [translation] 영문 'a sculpture'를 '한 조각'으로 옮겨 어휘 오역 소지가 있다. 한국어에서 '조각'은 단독으로 쓰이면 'a piece/fragment(파편)'로 먼저 읽히며, 회화·붓질을 다루는 이 지문 맥락에서는 '한 조각이 당대의 모든 규칙을 깼다'가 '작품의 한 파편'처럼 오독된다. 파일 내부의 page4 vocab도 sculpture를 '조각, 조각 작품'으로 풀어 두어 온전한 형태가 의도였음을 보여준다. — `page3.translation_ko 문장 [14] (08.json, line 740)`
+- 고2 Jupiter #8 [answer] 해설이 인용한 문장 번호가 page3.sentences 인덱스와 불일치한다. "9번", "10번"으로 지목했으나 실제 근거 문장은 각각 18번, 19번이다. 학생이 해설을 따라 9·10번을 찾으면 전혀 무관한 문장(비평가의 설명 / 배경은 장식이 아니다)을 보게 된다. — `answers.explanations[1].evidence (q_index 1, 빈칸 추론)`
+- 고2 Jupiter #8 [answer] 해설이 인용한 문장 번호가 실제 인덱스와 불일치한다. "8번"이라 했으나 해당 문장은 17번이며, 8번은 초상화·기근 문장이다. 함께 언급한 "앞 문장"(아름다움=판단)도 실제로는 16번이라 번호 기준이 무너진다. — `answers.explanations[2].evidence (q_index 2, 함의 추론)`
+- 고2 Jupiter #8 [vocab] synonyms에 "receptive"를 넣은 것은 의미 불일치다. receptive는 '(새 생각을) 잘 받아들이는, 수용적인'이라는 긍정적 태도를 뜻하며, 본문이 부정적으로 대비시키는 passive(수동적·소극적)와 동의어가 아니다. 본문은 passive spectator ↔ active reader 구도이므로, receptive를 동의어로 제시하면 '수용적으로 읽는 태도'까지 부정적인 것으로 오해하게 만든다. — `page4.vocab[9] (word: "passive") → synonyms[1] "receptive"`
+- 고2 Jupiter #8 [vocab] 예문 대역에서 sculpture를 "한 조각"으로 옮겼다. 한국어 "조각"은 단독으로 쓰이면 '한 조각(a piece/fragment)'으로 먼저 읽혀, 조각 작품(statue)이라는 뜻이 전달되지 않는다. 같은 vocab 항목의 meaning_ko가 "조각, 조각 작품"이라고 밝히고 있는데 예문 대역은 그 뜻을 보여주지 못한다(④ 단어 뜻을 잘 보여주는가 위배). — `page4.vocab[8] (word: "sculpture") → examples[0].ko`
+- 고2 Jupiter #9 [language] 요약문 빈칸 (A)의 정답 reach가 본문(body) 안에서는 동사로 단 한 번도 쓰이지 않는다. 본문의 해당 동사는 touch이고 reach는 명사(the reach of our machines)로만 등장하므로, '본문에서 제시된 단어를 그대로 활용할 것'이라는 조건과 어긋난다. — `page1.body 1단락 vs page2.questions[3].summary_template / hints`
+- 고2 Jupiter #9 [explanation] 구문 역할 오태깅. "truly at fault, the coder, the company, or the owner?" 전체를 하나의 C로 묶고 note를 '동격 병렬 명사구'라 달았다. truly는 부사(M)이고, the coder/the company/the owner는 보어 at fault의 동격이 아니라 주어 who에 대한 동격 나열이다. 동격의 피수식어를 보어로 오귀속했다. — `page3.sentences[13] (index 14) segments[6] / grammar_note`
+- 고2 Jupiter #9 [explanation] that 명사절의 주어가 태깅되지 않아 구조가 붕괴된다. "a society"가 O 세그먼트("that a society") 안에 흡수된 채, 종속절 동사 "will always struggle"이 주절 동사 warn과 같은 층위의 V로 태깅되어 한 문장에 S 1개·V 2개가 되는 모순이 발생한다. 학습자가 will always struggle의 주어를 Ethicists로 오독할 수 있다. — `page3.sentences[15] (index 16) segments`
+- 고2 Jupiter #9 [answer] 해설이 본문 문구를 큰따옴표로 직접 인용하면서 실제 본문과 다른 문장을 제시한다. 인용된 "can now touch millions of strangers"라는 어구는 본문에 존재하지 않는다(부사 now의 위치가 다름). 정답 근거 제시용 인용은 축자적이어야 하며, 교사가 본문에서 해당 구를 찾지 못한다. — `answers.explanations[3].evidence (요약문 빈칸 완성)`
+- 고2 Jupiter #9 [vocab] synonyms에 "caution"을 넣었으나, 본문은 caution과 timidity를 정면으로 대조시킨다. 두 단어를 동의어로 제시하면 본문의 핵심 논지(신중함은 소심함이 아니다)를 학생이 정반대로 이해하게 된다. 같은 vocab 항목의 예문 자체가 이 대조를 담고 있어 항목 내부에서도 모순된다. — `page4.vocab[5] (word: "timidity") synonyms[0]`
+- 고2 Jupiter #10 [language] 복합 수식어 하이픈 누락: 명사 앞 한정 수식어이므로 "slow-moving"이어야 한다. 같은 지문이 "density-driven"은 정확히 하이픈 처리하고 있어 파일 내부 표기 불일치이기도 하다. — `textbook/content/passages/2026-08-J/10.json — page1.body, 3단락 (동일 오류가 page3.sentences[8] segments 및 answers.explanations[2].evidence 인용문에도 전파됨)`
+- 고2 Jupiter #10 [explanation] so~that 결과절 안에서 plunges와 등위 연결된 slides를 최상위 V 세그먼트로 태깅해, 주절 동사 becomes와 병렬인 것처럼 오독을 유도한다. 같은 파일의 sentence 14는 진짜 주절 동사 병렬(softens/keeps)에 동일한 태그 패턴을 쓰고 있어, 학생이 두 구조를 구분할 수 없다. — `page3.sentences[7] (index 7), segments "slides" / grammar_note`
+- 고2 Jupiter #10 [explanation] 비유 용어를 반대로 사용했다. '컨베이어 벨트(공장 기계)'는 보조관념(vehicle)이고, 심층 순환이 원관념(tenor)이다. 해설은 기계 쪽을 '원관념'이라 서술해 함의 추론 문항의 핵심 개념 설명이 거꾸로 되어 있다. — `answers.explanations[2].rationales[1] (q_index 2, 함의 추론)`
+- 고2 Jupiter #10 [translation] 조동사 might의 추측 의미가 번역에서 소실되어 단정으로 과장됨. 영문 "the surface might grow too light to sink"는 "표면이 너무 가벼워져 가라앉지 못할 수도 있다"는 가능성 진술인데, 번역은 "표면은 너무 가벼워져 가라앉지 못하게 되고"로 확정 사실처럼 옮겼다. 뒤이은 could는 "멈출 수도 있다"로 살렸으므로 앞절만 강도가 어긋나 있으며, 이 문장은 'were to' 가정법(page3.sentences[14] note: "가정법 were to")이라 반사실적·저확률 가정임을 번역이 반영해야 한다. — `page3.translation_ko 문장 [15] (파일 297행) / 대응 영문: page1.body 4단락, page3.sentences[14]`
+- 고2 Jupiter #11 [language] 'keep understanding'이 중의적이다. keep + V-ing는 영어에서 기본적으로 '계속 ~하다'로 읽히므로 '계속 이해한다'라는 미완결 문장처럼 들린다. 의도는 '이해(라는 태도)를 유지한다'인데, 목적어 명사가 없어 어색한 비문에 가깝다. page3의 문법 해설이 이를 '동명사 목적어'로 단정한 것도 자연스러운 독해와 충돌해 학습자에게 혼동을 준다. — `page1.body 4단락 — "So most scholars keep understanding while refusing to surrender every judgment."`
+- 고2 Jupiter #11 [explanation] grammar_note의 '(병렬 보어)' 라벨이 부정확하다. refined와 crude는 하나의 절 안에서 병렬된 보어가 아니라, that절 내부에서 등위접속된 두 개의 독립된 절(one habit is refined / the other is crude)의 각각의 보어다. 병렬 단위는 보어가 아니라 절이다. — `page3.sentences[1].grammar_note (index 2)`
+- 고2 Jupiter #11 [translation] 영어 관용구 "beyond criticism"(비판의 여지가 없는 / 비판할 수 없는)을 "비판을 넘어선다"로 축자 직역해 의미가 왜곡됨. 한국어에서 '비판을 넘어서다'는 '비판을 초월할 만큼 훌륭하다'로 읽히기 쉬워, 본문이 경계하는 '어떤 관습도 비판 대상이 될 수 없다면'이라는 극단적 상대주의의 가정이 학생에게 전달되지 않음. 이 문장은 3번 문항(함의 추론, surrender every judgment)의 핵심 근거 문장이라 오독 시 정답 도출 경로가 끊김. — `page3.translation_ko 문장 [18] (원문 page1.body 4단락)`
+- 고2 Jupiter #11 [answer] stem이 "밑줄 친 빈칸"이라고 하지만 본문의 해당 자리는 밑줄이 아니라 <blank> 표기이며, 본문에서 실제로 <u>밑줄</u>이 쳐진 곳은 ethnocentrism, cultural relativism, surrender every judgment 세 군데뿐이다. 학생이 밑줄 어구 문제(3번 문항)와 혼동할 수 있다. — `page2.questions[1].stem (빈칸 추론)`
+- 고2 Jupiter #11 [vocab] synonyms의 의미 불일치. scattered는 '공간적으로 흩어진'(분포)을 뜻하는 반면 "random"은 '무작위의'(규칙성 없음)로 의미 축이 다르다. 특히 본문의 "a scattered pile of oddities"는 '아무렇게나 쌓인/흩어진 더미'라는 공간적 이미지이며, 이를 random으로 치환하면 뜻이 성립하지 않는다(*a random pile은 다른 뜻). meaning_ko "흩어진, 산발적인"에도 random은 대응하지 않는다. — `page4.vocab[10] (scattered).synonyms[1] = "random"`
+- 고2 Jupiter #12 [language] 빈칸 슬롯의 문법이 5개 선택지 중 4개를 자동으로 배제한다. 본문 슬롯이 "that quiet <blank> obeys"로, (a) 관형어 quiet 뒤에 관사 없이 오므로 가산 단수는 불가하고 (b) 관계절 동사가 3인칭 단수 obeys이므로 복수 주어도 불가하다. 그런데 오답 4개(engines, melodies, puzzles, machines)는 모두 복수 가산명사라 'quiet engines obeys'처럼 비문이 된다. 결국 불가산명사인 정답 randomness만 문법적으로 성립해, 지문 내용을 전혀 이해하지 못해도 수·관사만 보고 정답을 고를 수 있다. 같은 2026-08-J 세트의 나머지 19개 지문은 모두 선택지가 슬롯에 문법적으로 호환되도록(전부 단수명사 또는 전부 동사원형 또는 전부 병렬 구) 설계되어 있어, 12번만 이 관례를 어긴다. — `page1.body — 마지막 문장 (4단락 끝) / page2.questions[1] 빈칸 추론`
+- 고2 Jupiter #12 [explanation] 구문 역할 오태깅(C). 해당 절의 동사 rises는 완전자동사로 보어를 취하지 않는다. 콜론 뒤 "a smooth mound, high in the middle, thin at the edges."는 주어 'a familiar shape'에 대한 동격 명사구이지 주격보어가 아니다. 같은 segment의 note가 이미 "동격 명사구"라고 적혀 있어 role 태그(C)와 note가 서로 모순된다. — `page3.sentences[index=3].segments[9]`
+- 고2 Jupiter #12 [explanation] 목적어 범위 오태깅. "this thousands of times"를 하나의 O로 묶었으나, Repeat의 목적어는 대명사 'this'뿐이고 'thousands of times'는 횟수를 나타내는 부사구(M)다. index 1 문장에서 동일 구조인 "Toss / a fair coin(O) / ten times(M)"를 O와 M으로 올바르게 분리한 것과도 태깅 기준이 어긋난다. — `page3.sentences[index=3].segments[1]`
+- 고2 Jupiter #12 [vocab] 예문의 영어와 한국어 대역이 불일치한다. en "Mathematicians describe this limiting shape as normal."에서 describe X as normal은 '이 모양을 정상적/평범하다고 기술한다'는 뜻이 되어, ko "수학자들은 이 극한의 모양을 정규분포로 기술한다"와 맞지 않는다. 본문 표현은 전치사 with + 명사구다. — `page4.vocab[5] ("limiting") examples[0]`
+- 고2 Jupiter #12 [vocab] synonym 부적절. standard deviation(표준편차)은 정의된 통계량이고, spread는 '퍼진 정도'라는 일반 개념어로 동의어가 아니다. 게다가 본문에서 spread는 동사(spreads)로만 쓰여 품사도 일치하지 않는다. 학생이 두 말을 교체 가능한 동의어로 오인할 수 있다. — `page4.vocab[2] ("standard deviation").synonyms[0] = "spread"`
+- 고2 Jupiter #12 [vocab] 동일 vocab 목록 안에서 rescale과 standardize를 각각 다른 표제어·다른 meaning_ko로 실어 놓고, rescale의 동의어로 standardize를 지정해 자기모순이 된다. rescale은 '척도를 다시 맞추다'(임의 배율 변환) 일반 동작이고, standardize는 '평균을 빼고 표준편차로 나누는' 특정 변환이어서 포함관계이지 동의어가 아니다. — `page4.vocab[6] ("rescale").synonyms[0] = "standardize"`
+- 고2 Jupiter #13 [language] "can be removed in peace"의 관용 표현 오용. 영어에서 in peace는 '방해받지 않고/편안히'(leave me in peace, rest in peace)라는 뜻이며, 여기서 의도한 '유혈·소요 없이, 평화적으로'라는 의미로는 쓰이지 않는다. 게다가 removed(제거되다)와 결합하면 '조용히 사라지다/죽다'는 어색한 함의까지 생겨 비문에 가깝다. — `page1.body, 2단락 마지막 문장 (page3 sentences[10] 'in peace' 세그먼트 및 translation_ko [10]과 동일 문장)`
+- 고2 Jupiter #13 [explanation] 본문에 존재하지 않는 구문(never A but B)을 문법 포인트로 제시했고, A/B 순서도 본문과 반대다. — `page3.sentences[7].grammar_note`
+- 고2 Jupiter #13 [explanation] 동일한 수동태 구문을 한 페이지 안에서 두 가지 방식으로 태깅해 구문분석 기준이 일관되지 않다. — `page3.sentences[14].segments vs page3.sentences[10].segments`
+- 고2 Jupiter #13 [translation] 수동태 "can be removed"를 사동/능동 "물러나게 할 수 있다"로 옮겨 주어가 뒤바뀜. 영문에서 '무시한 자들'은 제거되는 대상(피동)인데, 번역문에서는 '무시한 자들'이 (누군가를) 물러나게 하는 행위자로 읽힐 수 있다. 또한 page3 문법 주석 자체가 '수동태 (can be removed)'로 명시되어 있어 문장분석과 번역이 서로 어긋난다. — `page3.translation_ko 문장 [10]`
+- 고2 Jupiter #14 [language] 해설이 인용한 영문 원문이 실제 본문과 다르다. 해설은 "One conceals its maker"로 인용했으나 본문은 conceals가 아니라 hides다. 본문 개정 후 해설이 구판 원고를 그대로 인용한 것으로 보인다. — `answers.explanations[0].evidence (line 801) vs page1.body 4단락`
+- 고2 Jupiter #14 [language] 함의 추론 해설이 인용한 밑줄 문장이 본문과 두 군데 불일치한다(particular↔special, that no one else could reproduce↔no one else could copy). 학생이 본문에서 해당 문장을 찾아 대조할 때 혼란을 준다. — `answers.explanations[2].evidence (line 847) vs page1.body 3단락`
+- 고2 Jupiter #14 [language] 빈칸 문항 해설이 인용한 빈칸 문장에 본문에 없는 부사 quietly가 들어가 있다. 빈칸 문제는 학생이 해당 문장을 그대로 대조하는 유형이라 인용 불일치가 특히 문제된다. — `answers.explanations[1].evidence (line 824) vs page1.body 마지막 문장`
+- 고2 Jupiter #14 [explanation] 빈칸 문장을 인용하면서 본문에 없는 부사 quietly를 삽입했다. quietly는 2단락의 'quietly show who they are'에 쓰인 단어로, 빈칸 문장과 무관하다. 빈칸 문제 해설에서 문제 문장 자체를 틀리게 제시한 것이라 학생이 본문 대조 시 혼란을 겪는다. — `answers.explanations[1].evidence (q_index 1, 빈칸 추론)`
+- 고2 Jupiter #14 [explanation] (B) voice의 근거로 제시한 마지막 단락 인용 'a single honest voice'가 본문과 다르다. 본문은 'one honest voice'다. 조건이 '본문에서 제시된 단어를 그대로 활용할 것'인 서답형 문항이므로, 근거 인용의 정확성이 채점 신뢰도에 직결된다. — `answers.explanations[3].evidence (q_index 3, 요약문 빈칸 완성)`
+- 고2 Jupiter #14 [explanation] There is 구문에서 동사 is가 M 덩어리 "There is" 안에 묻혀 있어 V 태그가 하나도 없다. 같은 파일의 다른 문장(index 12, 17 등)은 모두 V를 별도 태그로 분리하고 있어 구문분석 일관성이 깨지며, S/V 식별을 훈련하는 페이지의 목적에도 어긋난다. — `page3.sentences[2] (index 3), segments`
+- 고2 Jupiter #14 [translation] 'live'의 수식 관계 오역. 영문 'Because a play happens live before a crowd'에서 live는 동사 happens를 수식하는 부사(실황으로/실시간으로 상연되다)이고 crowd는 그냥 '관중'이다. 번역문은 live를 관중에까지 이중으로 붙여 '살아 있는 관중'이라는 원문에 없는 수식어를 만들었다. — `page3.translation_ko 문장 [5] (page1.body / page3.sentences[5] 대조)`
+- 고2 Jupiter #14 [translation] 원문에 없는 수식어 추가(과장). 영문은 'a friend'일 뿐인데 번역에 '사려 깊은'이라는 평가 형용사가, 'hearing'에 '곁에서'라는 부사가 덧붙었다. 어느 쪽도 영문에 대응 어구가 없다. — `page3.translation_ko 문장 [16] (page1.body / page3.sentences[16] 대조)`
+- 고2 Jupiter #14 [answer] 해설의 evidence가 본문을 인용한다면서 본문에 없는 문장을 큰따옴표로 직접 인용한다. 정답(3번) 자체는 타당하나, 학생에게 제시되는 근거 인용문이 본문과 불일치한다. — `C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-08-J/14.json — answers.explanations[0].evidence (line 801)`
+- 고2 Jupiter #14 [answer] 함의 추론 문제의 근거 인용이 본문과 두 군데 어긋난다(particular→special, that no one else could reproduce→no one else could copy). 밑줄 표현 자체(the writer's distinctive style)는 stem과 본문 <u>가 정확히 일치하나, 동격구 인용이 구버전 원고 문장이다. — `C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-08-J/14.json — answers.explanations[2].evidence (line 847)`
+- 고2 Jupiter #14 [answer] 빈칸 추론 해설이 빈칸 문장을 인용하면서 본문에 없는 부사 quietly를 끼워 넣었다. 정답 are는 타당하다. — `C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-08-J/14.json — answers.explanations[1].evidence (line 824)`
+- 고2 Jupiter #14 [answer] 요약문 빈칸 (B) voice의 근거로 인용한 마지막 단락 구절이 본문 표현과 다르다. model_answer 자체는 타당하다. — `C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-08-J/14.json — answers.explanations[3].evidence (line 871)`
+- 고2 Jupiter #15 [language] 문법 주석의 개념 오류 — "no trough lasts forever"를 부분 부정으로 표기했으나 실제로는 전체 부정이다. — `page3.sentences[16].grammar_note (line 322)`
+- 고2 Jupiter #15 [language] 문법 주석의 용어 오류 — to부정사를 원형부정사로 잘못 표기했다. — `page3.sentences[18].grammar_note (line 345)`
+- 고2 Jupiter #15 [explanation] '부분 부정'으로 표기했으나 No trough lasts forever는 전체(전면) 부정이다. 부분 부정은 not + all/every/always/both 형태여야 하며, no + 명사 주어는 완전 부정이다. 문법 개념 오설명. — `page3.sentences[15].grammar_note (index 16)`
+- 고2 Jupiter #15 [explanation] try to soften을 '원형부정사'라고 설명했으나 to soften은 to부정사(명사적 용법, try의 목적어)다. 원형부정사는 to 없는 형태를 가리키므로 용어 오류이며, 같은 파일 20번의 'help O 원형'(help the economy recover)과 개념이 뒤섞여 학생 혼동을 유발한다. — `page3.sentences[17].grammar_note (index 18)`
+- 고2 Jupiter #15 [answer] 요지 근거 문장 범위가 실제 지문 문장 번호와 어긋난다. "네 국면 설명(1~12번)", "정부와 중앙은행이 진폭을 완화한다(13~14번)"라고 했으나 정책 관련 문장은 18~20번이고 13~14번은 수축·경기침체 설명이다. — `answers.explanations[0].evidence (q_index 0, 요지)`
+- 고2 Jupiter #15 [vocab] meaning_ko가 "실업, 실업률"로 되어 있으나 "실업률"은 unemployment rate의 뜻이며 본문 문맥의 뜻이 아니다. 학생이 unemployment = 실업률로 오해할 수 있다. — `page4.vocab[7] (word: "unemployment") meaning_ko`
+- 고2 Jupiter #15 [vocab] 반의어 sharpen이 본문 문맥의 soften(경기 진폭을 완화하다) 의미와 대응하지 않는다. sharpen은 '날카롭게 하다/(윤곽·어조를) 뚜렷하게 하다'로, '완화하다'의 반의 관계가 성립하는 것은 칼날·이미지·어조 등의 용법에 한정된다. — `page4.vocab[10] (word: "soften") antonyms: ["sharpen"]`
+- 고2 Jupiter #16 [language] 부사 "slowly"가 과학적으로 부정확하며, 같은 지문 2단락의 핵심 논지와 정면으로 모순된다. 발전기의 전자기 유도는 순간적으로 일어나고 터빈은 빠르게 회전해야 하므로(빠를수록 기전력이 큼), 에너지 변환을 "천천히"라고 서술하면 학생이 원리를 거꾸로 이해할 수 있다. — `page1.body, 4th paragraph (final paragraph), sentence 2 / mirrored at page3.sentences[19] and translation_ko [19]`
+- 고2 Jupiter #16 [explanation] "바로 앞 문장에서 정의한 magnetic flux"라고 했으나, flux 정의와 rising or falling은 and로 연결된 동일 문장(8번) 안에 있다. 앞 문장(7번)은 "What matters is not the magnet itself but the change it causes."로 flux 정의가 없다. — `answers.explanations[2] (q_index 2, 함의 추론) — rationales[4] 및 evidence`
+- 고2 Jupiter #16 [explanation] not A but B 구문의 A를 M(수식어), B를 C(보어)로 서로 다르게 태깅했다. "What matters is not the magnet itself but the change"에서 not A but B 전체가 주격보어이므로 "not the magnet itself"도 C여야 한다. grammar_note는 "not A but B"라고 정확히 기술하고 있어 태깅과 서로 모순된다. — `page3.sentences[7] (index 7) — segments`
+- 고2 Jupiter #16 [answer] 해설이 인용하는 문장 번호가 본문(page3 sentences 1~20 / 본문 4단락) 어느 체계와도 맞지 않는다. 학생이 근거 문장을 찾아갈 수 없고, 4단락뿐인 본문에 '8번 단락'은 존재하지 않는다. — `answers.explanations[0] (q_index 0, 요지) — evidence 및 rationales[2], rationales[3]`
+- 고2 Jupiter #16 [answer] 오답 선지 해설이 잘못된 문장 번호를 인용한다. '코일 감은 수' 언급은 5번이 아니라 10번 문장이다. — `answers.explanations[2].rationales[2] (q_index 2, 함의 추론)`
+- 고2 Jupiter #16 [vocab] synonyms의 "kinetic"이 mechanical의 동의어가 아니다. 물리 교재 맥락에서 mechanical energy는 kinetic + potential의 상위 개념이므로, 물리학I 단원과 연계된 지문에서 이 두 단어를 동의어로 제시하면 학생에게 개념 오류를 심는다. — `page4.vocab[8] "mechanical" → synonyms`
+- 고2 Jupiter #16 [vocab] synonyms의 "generation"이 induction의 뜻과 일치하지 않는다. induction은 '자기 선속 변화로 기전력이 유발되는 특정 기제'이고 generation은 '생성·발전(發電)'이라는 포괄적 결과어라, 의미 층위가 다르다. — `page4.vocab[0] "induction" → synonyms`
+- 고2 Jupiter #17 [language] 본문이 세운 '세로 띠(vertical strips)' 모델과 모순되는 표현. 세로 띠로 자르면 두 곡선의 차는 x축 방향(구간)을 따라 더해지지, '모든 높이(at every height)'에서 더해지지 않는다. '모든 높이에서 더한다'는 것은 y에 대해 적분하는 가로 슬라이스 모델을 가리키므로 개념이 뒤바뀐다. 게다가 바로 앞 문장이 "integrate that single difference across the interval"이라고 해 놓고 다음 문장에서 'at every height'라고 하여 같은 연산을 서로 다른 방향으로 서술한다. — `page1.body, 3rd paragraph, sentence 17: "The gap between them is added up at every height..."`
+- 고2 Jupiter #17 [language] 'overlap(겹침)'이라는 개념이 본문에 한 번도 정의·설명되지 않은 채 정관사 the와 함께 갑자기 등장한다. 또한 두 곡선 사이 넓이를 구할 때 상쇄되는 것은 '겹치는 부분'이 아니라 '아래쪽 함수 아래의 공통 영역(축까지의 부분)'이다. 두 곡선 사이 영역에는 원래 겹침이 존재하지 않으므로 수학적으로도 부정확한 명명이며, 학생이 '두 영역이 서로 포개진다'고 오해할 소지가 있다. — `page1.body, 3rd paragraph: "...and the awkward overlap simply disappears in the arithmetic."`
+- 고2 Jupiter #17 [explanation] 조동사 can이 부사와 함께 M(수식어)으로 태깅되어 동사구에서 분리됨. can은 술어동사의 일부이므로 V에 포함되어야 함 (V="can cancel" 또는 "can quietly cancel"). — `page3.sentences[13] (index 13), segments — "can quietly" / "cancel"`
+- 고2 Jupiter #17 [answer] 정답 'could'만 조동사이고 나머지 4개(invents/forbids/hides/wastes)는 모두 3인칭 단수 일반동사여서, 문맥을 이해하지 못해도 형태적 이질성만으로 정답을 고를 수 있다. 변별력이 크게 떨어진다. — `textbook/content/passages/2026-08-J/17.json — page2.questions[1] (빈칸 추론), choices / answer_index 4`
+- 고2 Jupiter #17 [vocab] "axis"의 동의어로 제시된 "baseline"이 본문 문맥의 뜻(좌표축)과 일치하지 않는다. baseline은 '기준선/기준값(출발 기준)'이라는 뜻으로, 좌표평면의 축(x축/수평축)을 가리키는 말이 아니다. 학생이 그대로 외우면 오개념이 생긴다. — `page4.vocab[5] ("axis").synonyms["baseline"]`
+- 고2 Jupiter #17 [vocab] 명사 overlap(pos: n.)의 동의어로 같은 어근의 동명사/형용사형 "overlapping"을 제시했다. 품사 불일치이자 동어반복이라 동의어로서 학습 가치가 없다. — `page4.vocab[9] ("overlap").synonyms["overlapping"]`
+- 고2 Jupiter #18 [language] "a class of friends"는 영어에서 성립하지 않는 콜로케이션이다. class는 '학급' 또는 '사회 계층'을 뜻하며 '친구 무리'의 의미로 쓰이지 않는다. 게다가 같은 지문 뒷부분에서 class를 '사회 계층'의 정확한 의미로 다시 쓰고 있어("the manners of a class she hopes to enter") 동일 단어가 한 지문 안에서 비표준 의미와 표준 의미로 충돌한다. 실제로 본문 2문단은 같은 개념을 "a circle of close friends"라는 올바른 표현으로 쓰고 있어 내부 불일치이기도 하다. — `page1.body 1문단 3번째 문장 (page3 sentences[3-1] 동일)`
+- 고2 Jupiter #18 [explanation] 관계부사 where절의 병렬 후반부를 M(수식어)으로 오태깅. 'the bonds feel like ends in themselves'는 S+V+C를 갖춘 절로, 앞의 'where the whole person matters'와 and로 병렬된 where절의 두 번째 항이다. REL로 태깅되어야 하는데 M으로 되어 있어 구문분석이 문장 구조를 잘못 보여준다. — `page3.sentences[8] (index 9) segments[4] / grammar_note`
+- 고2 Jupiter #18 [explanation] 등위 접속된 독립 주절을 M(수식어)으로 오태깅. 'the tie lasts only as long as the shared goal does'는 and로 연결된 대등한 주절(S=the tie, V=lasts)이지 수식어가 아니다. — `page3.sentences[11] (index 12) segments[4]`
+- 고2 Jupiter #18 [explanation] 부분부정의 Not을 주어에서 떼어내 M으로 오태깅했고, grammar_note의 '부사적 목적어'가 실제 태그 M과 모순된다. 'Not every group'이 하나의 주어 구성소인데 Not만 M으로 분리되어 있다. — `page3.sentences[5] (index 6) segments[0] / grammar_note`
+- 고2 Jupiter #18 [explanation] 근거로 든 문장 번호가 주장을 뒷받침하지 않는다. '여러 집단에 겹쳐 속하며 그 집단들이 자아를 형성한다'는 요지의 근거는 5번·20번 문장인데 8번을 들었다. 8번은 1차 집단의 결속 방식(애정 vs 규칙집)에 관한 문장으로 요지 근거가 아니다. — `answers.explanations[0].evidence`
+- 고2 Jupiter #18 [vocab] loyalty의 뜻풀이에 "소속감"이 잘못 포함되어 있다. loyalty는 '충성심/충실함'이며 '소속감'은 belonging(a sense of belonging)의 뜻이다. 본문 문맥에서도 loyalty와 소속감은 별개 항목으로 병렬 제시되므로 뜻 병합이 부적절하고, 같은 page4.vocab의 별도 표제어 belonging(소속(감))과 뜻이 중복·충돌한다. — `page4.vocab[5].meaning_ko (line 847) 및 page1.gloss_extra[1].ko (line 36) — "loyalty"`
+- 고2 Jupiter #19 [language] "low, useless warmth" is an unnatural collocation. In English, "low" cannot premodify "warmth" to mean "low-grade/low-quality." The established technical term is "low-grade heat" (저급 에너지/폐열). As written, "low warmth" reads either as a temperature reading (which contradicts the point — the issue is energy quality, not temperature magnitude) or simply as an error. — `page1.body, 4th paragraph, sentence 1 ("Every real transfer scatters some energy into low, useless warmth.")`
+- 고2 Jupiter #19 [explanation] 수동태 be + p.p.를 2형식 보어(C)로 오태깅했고, 같은 파일 내 동일 구조와 분석이 충돌한다. — `page3.sentences[index=19].segments[3] / grammar_note`
+- 고2 Jupiter #19 [explanation] keep 뒤의 -ing를 '동명사'로 잘못 규정했다(현재분사 보어). — `page3.sentences[index=19].segments[7].note`
+- 고2 Jupiter #19 [vocab] 표제어를 3인칭 단수 굴절형 'scatters'로 싣고 뜻풀이는 원형("흩어 놓다, 흩뜨리다")으로 달아 표제어 형태와 뜻이 불일치한다. 같은 폴더 20개 지문 중 유일한 사례로, 나머지 -s 표제어는 모두 복수명사(nutrients, representatives, hydroxide ions) 또는 라틴어계 단수(stimulus)이며 굴절 동사형은 없다. 게다가 page4.vocab[6]에 원형 'scatter'가 별도 등재되어 있어 같은 지문 안에서 표제어 형태가 엇갈린다. — `page1.gloss_extra[2] (scatters)`
+- 고2 Jupiter #20 [explanation] 삽입절 "they taught"를 S+V로 오태깅. grammar_note 및 같은 파일 내 동일 구조(문장 8)의 처리와 정면으로 모순된다. — `page3.sentences[16] (index 17), segments lines 287-290`
+- 고2 Jupiter #20 [explanation] 부분부정 주어 "Not everyone"을 "Not"(M)과 "everyone,"(S)으로 분리해 오태깅. grammar_note 자체가 두 단어를 한 덩어리로 설명하고 있어 자기모순. — `page3.sentences[9] (index 10), segments lines 206-207`
+- 고2 Jupiter #20 [explanation] "so ..." 결과절을 that절 밖의 최상위 주절로 분절해, 순자가 '주장한 내용'의 범위를 잘못 표시. 같은 파일의 translation_ko와 어긋난다. — `page3.sentences[10] (index 11), segments lines 219-223`
+- 고2 Jupiter #20 [translation] 'pull against one another'(서로 맞당기다·길항하다)의 대립 뉘앙스가 소실되어 '서로 끌어당긴다'로 오독될 수 있는 오역 — `C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-08-J/20.json → page3.translation_ko 문장 [16]`
+- 고2 Jupiter #20 [vocab] 예문 en의 discipline은 '단련/훈련' 뜻인데 ko 대역이 '수양'으로 되어 있어 단어 뜻과 문맥이 어긋난다. meaning_ko에 이미 '절제된 훈련'이라는 적절한 대역이 있는데도 사용되지 않았다. — `page4.vocab[7].examples[1].ko (discipline)`
+- 고2 Jupiter #20 [vocab] 예문 영어의 연어(collocation)가 비관용적이다. 'pull a gasp from'은 영어에서 쓰지 않는 표현이며 'draw a gasp from'이 옳다. — `page4.vocab[11].examples[0].en (bystander)`
+
+</details>
+
+## 고3 Sun — 차단 9 · 권고 84 · 경미 140
+
+### 🚫 차단 결함 (판매 전 필수 수정)
+- **고3 Sun #1** [vocab] synonym이 'melted'로 되어 있어 용해(dissolve)와 용융(melt)을 혼동시킨다. 화학 평형·완충 용액 단원(linked_unit "화학반응의 세계 III-1 산·염기 평형과 완충")에서 이 둘을 동의어로 제시하는 것은 명백한 개념 오류로, 교재 판매 불가 수준의 결함이다.  
+  - 위치: `page4.vocab[3] (word: "dissolved") → synonyms`  
+  - 근거: 본문: "A buffer keeps a weak acid and its matching base dissolved together in the very same solution." / "Even the vast ocean leans on the same chemistry to absorb sudden floods of dissolved acid." — 두 곳 모두 '용매(solution/바닷물)에 녹아 있는' 뜻이지, 열로 액화된(melted) 상태가 아니다. meaning_ko도 "용해된, 녹아 있는"으로 용해를 가리킨다.  
+  - 권고: 'melted'를 삭제하고 'soluble' 또는 'in solution'으로 교체한다. 단일어 동의어를 꼭 넣어야 한다면 synonyms를 비우고 meaning_ko("용해된")만 유지하는 편이 안전하다.
+- **고3 Sun #7** [explanation] 문형 표기가 자체 모순이다. "3형식(자동사+부사구)"에서 3형식은 S+V+O 구조를 뜻하므로 자동사와 양립할 수 없고, 해당 문장에는 목적어가 아예 없다(1형식).  
+  - 위치: `page3.sentences[6] (index 7) grammar_note`  
+  - 근거: 본문: "Billions of these bursts push outward as heat and light." / segments는 S("Billions of these bursts") + V("push") + M("outward as heat and light.")만 있고 O 역할 태그가 없음. grammar_note: "3형식(자동사+부사구)"  
+  - 권고: "1형식(자동사+부사구)" 또는 "완전자동사 push + 방향 부사구"로 수정.
+- **고3 Sun #8** [explanation] 빈칸 정답 'perspective.'를 목적어(O)로 오태깅했고, 보어(C) 분절이 명사구 중간에서 끊겼다. 본문은 'is therefore never trapped inside one narrow perspective.'로, be trapped는 수동태여서 목적어가 존재할 수 없으며 perspective는 전치사 inside의 목적어이자 'one narrow perspective' 명사구의 핵이다.  
+  - 위치: `page3.sentences[17].segments (index 17, C/O 분절)`  
+  - 근거: 본문: "The reader who can gather, judge, and combine many texts is therefore never trapped inside one narrow <blank>." / page3: { "role": "C", "text": "trapped inside one narrow", "note": "수동 보어" }, { "role": "O", "text": "perspective.", "note": "빈칸 정답 자리" }  
+  - 권고: C를 "trapped"(수동 보어)로 두고 "inside one narrow perspective."를 M(전치사구)으로 태깅하거나, C="trapped inside one narrow perspective." 한 덩어리로 묶고 빈칸 표시는 note로만 처리한다. O 역할은 삭제.
+- **고3 Sun #9** [translation] 'governed less by fear than by trust'의 비교 구문을 오역했다. 'less A than B'는 'A라기보다는 B'라는 뜻으로, '두려움이 아니라 신뢰에 의해 지배된다'는 의미다. 그런데 번역은 '덜'을 '지배되다'에 붙여 '신뢰에 의해 덜 지배될 수 있음'으로 옮겨, 신뢰의 지배력이 약하다는 정반대 뉘앙스를 만든다. 이 문장은 지문의 결론이자 2번 문항(빈칸 trust)의 근거 문장이므로 오역 영향이 크다.  
+  - 위치: `page3.translation_ko 문장 [18]`  
+  - 근거: 영문 page1.body: "even sovereign nations can be governed less by fear than by <blank>" / page3 문장18 segments: {"role":"O","text":"that even sovereign nations can be governed less by fear than by trust.","note":"that 명사절 + less A than B"} / 번역: "주권 국가조차 두려움보다는 신뢰에 의해 덜 지배될 수 있음을 조용히 보여 준다."  
+  - 권고: "주권 국가조차 두려움이 아니라 신뢰에 의해 다스려질 수 있음을 조용히 보여 준다" 또는 "두려움보다는 신뢰에 의해 지배될 수 있음을"로 수정한다(‘덜’ 삭제). answers.explanations[0].rationales의 '두려움보다 신뢰라는 18번' 서술과도 이렇게 해야 일치한다.
+- **고3 Sun #17** [explanation] "win big"의 big을 목적어(O)로 오태깅. big은 여기서 부사(크게, 대박으로)이며 win은 자동사 용법이라 목적어가 없다. 파일 자체의 번역도 부사로 옮기고 있어 구문분석과 번역이 서로 모순된다.  
+  - 위치: `page3.sentences[11] (index 12), segment role "O" / text "big"`  
+  - 근거: 본문: "You may still win big or lose everything on a single given try." / 같은 파일 translation_ko [12]: "당신은 주어진 한 번의 시도에서 여전히 크게 이길 수도, 모든 것을 잃을 수도 있다." / page3 태깅: { "role": "V", "text": "may still win" }, { "role": "O", "text": "big" }  
+  - 권고: "big"의 role을 O에서 M(부사)으로 수정하고 note에 "win big = 크게 이기다(big은 부사)"를 달아 뒤의 "lose everything"(진짜 O)과 대비시킬 것. grammar_note도 "조동사 + or 등위 동사(win big: 부사 / lose everything: 3형식)" 정도로 보완.
+- **고3 Sun #17** [explanation] 주절의 주어 What을 M(가정 의문)으로 오태깅. What은 would happen의 주어이며, 이 문장 태깅에는 S와 V가 아예 존재하지 않아 학생이 주절 구조(What=S, would happen=V, 1형식)를 파악할 수 없다.  
+  - 위치: `page3.sentences[4] (index 5), segment role "M" / text "What would happen"`  
+  - 근거: 본문: "What would happen if you played this very same game thousands of times over?" / page3 태깅: segments가 [{"role":"M","text":"What would happen"}, {"role":"CONJ","text":"if"}, {"role":"M","text":"you played this very same game thousands of times over?"}] 로만 구성되어 S·V 태그가 전무함  
+  - 권고: "What"을 S, "would happen"을 V로 분리 태깅하고, if절 안도 최소한 주어 you / 동사 played가 보이도록 note를 보강. grammar_note는 "가정법 과거(if+과거, would+동사원형) 의문문"으로 명시하는 편이 정확하다.
+- **고3 Sun #17** [translation] 본문의 빈칸(<blank>)을 번역문이 정답 'expected value(기댓값)'로 채워 노출했다. page2 두 번째 문항(빈칸 추론, answer_index 1 = "expected value")의 정답이 해석문만 보면 그대로 드러나 문항이 무력화된다.  
+  - 위치: `page3.translation_ko 문장 [18] (원문 page1.body 마지막 단락 / page3.sentences index 18)`  
+  - 근거: 영문: "the rational move is usually to choose the one with the higher <blank>." / page3.sentences[18] 세그먼트도 "to choose the one with the higher blank."로 빈칸 처리 / 번역: "[18] 두 개의 불확실한 선택지가 당신의 돈을 두고 겨룰 때, 합리적인 선택은 대개 더 높은 기댓값을 가진 쪽을 고르는 것이다."  
+  - 권고: 번역도 빈칸 상태를 유지: "합리적인 선택은 대개 더 높은 ______을(를) 가진 쪽을 고르는 것이다." 로 수정.
+- **고3 Sun #20** [language] 빈칸 앞에 이미 형용사 active가 있어 정답 선택지 'active interpretation'을 넣으면 'steady, active active interpretation'이 되어 중복 비문이 된다. 다른 선택지들도 모두 [형용사+명사] 2어 구라서 본문 자리와 맞지 않는다(예: 'steady, active blind obedience').  
+  - 위치: `page1.body 마지막 문장 / page2.questions[1].choices`  
+  - 근거: 본문: "To read a screen well is not to reject it, but to meet it with steady, active <blank>." / 선택지: "blind obedience", "quiet nostalgia", "active interpretation", "simple forgetfulness", "careful imitation"  
+  - 권고: 본문을 "...but to meet it with steady <blank>."로 고치거나(형용사 active 삭제), 선택지를 명사 한 단어(obedience / nostalgia / interpretation / forgetfulness / imitation)로 통일한다. page3 문장20 분절이 보어를 "to meet it with steady, active" + "interpretation"으로 쪼갠 것도 후자 처리를 전제하고 있으므로 선택지를 단어형으로 맞추는 편이 정합적이다.
+- **고3 Sun #20** [answer] 빈칸 선지가 '형용사+명사' 구인데 본문 빈칸 앞에 이미 'active'가 있어, 정답 선지를 대입하면 'steady, active active interpretation'이라는 중복 비문이 된다. 정답 선지의 형태가 본문 빈칸 자리와 맞지 않아 정답이 성립하지 않는다.  
+  - 위치: `page2.questions[1] (빈칸 추론) choices / answer_index=2, page1.body 마지막 문장`  
+  - 근거: 본문: "To read a screen well is not to reject it, but to meet it with steady, active <blank>." / 선지: ["blind obedience", "quiet nostalgia", "active interpretation", "simple forgetfulness", "careful imitation"] (answer_index 2 = "active interpretation"). page3 문장20 분해: {"role":"C","text":"to meet it with steady, active"}, {"role":"O","text":"interpretation."} — 빈칸 자리는 단일 명사 'interpretation'임이 확인됨. 해설도 "(정답) interpretation은 의미를 능동적으로 읽어 낸다는 17~20번과 정확히 일치한다."라고 명사 단독을 정답으로 서술한다.  
+  - 권고: 선지를 명사 단독으로 통일한다: obedience / nostalgia / interpretation / forgetfulness / imitation. (또는 본문에서 'active'를 삭제해 "with steady <blank>" 형태로 바꾸고 현행 형용사+명사 선지를 유지) 어느 쪽이든 나머지 4개 오답 선지의 형태도 동일하게 맞춰야 변별력이 유지된다.
+
+<details><summary>권고 사항 84건</summary>
+
+- 고3 Sun #1 [language] 복합 수식어 하이픈 누락: 명사 앞에서 수식하는 well made는 well-made로 하이픈 처리해야 한다. 수능·모의고사 지문 표기 관례에서도 attributive 위치의 well+과거분사는 하이픈을 넣는다. — `page1.body 4단락 1문장 (page3 sentences[13] 동일 문구)`
+- 고3 Sun #1 [explanation] 병렬된 두 동사의 문형이 서로 다른데 통째로 '3형식'으로 단정했다. reacts는 목적어를 취하지 않는 완전자동사(1형식)이고, 목적어 most of the new particles를 취하는 것은 soaks up뿐이다. — `page3.sentences[9].grammar_note ("when 부사절 + 동사 병렬(3형식)")`
+- 고3 Sun #1 [explanation] '부사구 강조'라 했으나 본문에는 도치나 It~that 강조 등 강조 구문이 전혀 없다. At equilibrium은 단순히 문두로 나온 장소/조건 부사구일 뿐이고, 문장은 정상 어순(S+V)이다. 학생이 '강조 구문'을 배우는 항목으로 오인할 수 있다. — `page3.sentences[7].grammar_note ("부사구 강조 + 병렬 주어")`
+- 고3 Sun #1 [vocab] 표제어 pos가 "adj."인데 두 번째 예문의 dissolved는 과거시제 '동사'로 쓰였다. 표제 품사와 다른 용법을 가르쳐 학습자가 본문의 분사 보어 용법을 파악하는 데 방해가 된다. — `page4.vocab[3] (word: "dissolved") → examples[1].en`
+- 고3 Sun #1 [vocab] antonym 'solid'는 '용해된'의 반의어가 아니라 물질의 상태(고체/액체/기체) 축의 단어로, 의미 축이 어긋난다. 게다가 잘못된 synonym 'melted'와 결합해 '녹으면 고체가 아니게 된다'는 용융 오개념을 강화한다. — `page4.vocab[3] (word: "dissolved") → antonyms`
+- 고3 Sun #2 [explanation] 구문 역할 오태깅: 'Stretch a vector by a number,' 에서 부사구 'by a number'(수단·실수배)를 목적어(O) 안에 포함시켰다. Stretch의 목적어는 'a vector'뿐이고 'by a number'는 M(부사구)으로 분리해야 한다. — `page3.sentences[13].segments (index 13, role O)`
+- 고3 Sun #2 [explanation] 구문 역할 오태깅: 'their arrows head to tail,' 에서 양태 부사구 'head to tail'을 목적어(O)에 포함시켰다. chain의 목적어는 'their arrows'이고 'head to tail'은 '어떻게 이어 붙이는지'를 나타내는 M이다. — `page3.sentences[12].segments (index 12, role O)`
+- 고3 Sun #2 [translation] 밑줄 빈칸 정답어 map을 capture와 동일한 동사 '담아내다'로 옮겨, 두 동사의 구분이 사라지고 빈칸 추론 문항(q_index 1)의 근거가 번역에서 소실됨 — `page3.translation_ko 문장 [18]`
+- 고3 Sun #2 [translation] hovering을 '떠도는'으로 옮겨 정지 비행(제자리에 떠 있음)이라는 뜻이 이동·배회의 뜻으로 바뀜. 같은 파일의 gloss_extra 및 page4 vocab 뜻풀이와도 충돌 — `page3.translation_ko 문장 [3]`
+- 고3 Sun #2 [answer] 빈칸 추론(Q1)의 정답어 map이 번역문에서 바로 앞 동사 capture와 동일한 '담아내다'로 뭉뚱그려져, 문항이 변별하려는 어휘 대조가 번역에서 소실된다. 정답 자체는 옳으나 학생이 번역으로 답을 대조할 때 map을 특정할 근거가 사라진다. — `page3.translation_ko 문장 [18] (02.json:324) / 대응 문항: page2.questions[1] 빈칸 추론, answers.explanations[1]`
+- 고3 Sun #2 [vocab] 예문 한국어 대역의 조사 오류. 'A drone was hovering above the field.'를 "드론 한 대가 들판 위를 떠 있었다"로 옮겼는데, '떠 있다'는 상태 동사이므로 처소격 조사 '에'를 취해야 한다(들판 위**에** 떠 있었다). '위를'은 이동/경유를 나타내는 조사라 상태 서술어와 호응하지 않는다. — `page4.vocab[4] (hover) → examples[0].ko (02.json L449)`
+- 고3 Sun #3 [language] 동어반복으로 인한 논리 전개 결함. 4번 문장이 이미 '빛·물·이산화탄소로 당을 만든다'를 완결적으로 서술했는데, 5번 문장이 같은 내용을 거의 그대로 되풀이한다. 또한 'In doing so'가 가리킬 선행 '별개의 행위'가 없어 연결어가 공회전한다. — `page1.body, 1문단 4~5번째 문장 (page3 sentences[4] 대응)`
+- 고3 Sun #3 [language] 과학적 과장/오개념 유발. 암반응(캘빈 회로)은 '빛 비의존적(light-independent)'이지 '빛과 전혀 무관'하지 않다. 실제로는 루비스코 등 효소가 빛에 의해 활성화되며 통상 낮에 진행된다. 'never touches light at all'은 '암반응은 밤에 일어난다'는 대표적 오개념을 학생에게 심을 수 있다. tieback 해설(body_ko)도 '운반 분자의 에너지를 이용'이라고만 하여 본문의 강한 단정을 뒷받침하지 않는다. — `page1.body, 3문단 첫 문장 (page3 sentences[11] 대응)`
+- 고3 Sun #3 [explanation] "In doing so"를 분사구(분사구문)로 잘못 명명했다. 실제로는 전치사 In + 동명사 doing의 전치사구(동명사구)이며, 분사구문이 아니다. — `page3.sentences[index=5].segments[0].note ("In doing so," → "분사구 부사")`
+- 고3 Sun #3 [answer] 정답 자체는 타당하나, 정답어 sunlight가 빈칸 바로 앞 문장과 제목에 그대로 노출되어 추론 문항으로서 변별력이 사실상 없다. 오답 선지(soil/oxygen/water/minerals)는 함정으로 기능하지 못한다. — `page2.questions[1] (빈칸 추론, answer_index 3) / page1.body 마지막 문장`
+- 고3 Sun #3 [vocab] "particle"를 molecule의 동의어로 제시했으나, particle(입자)은 molecule(분자)의 상위 개념일 뿐 동의어가 아니다. 특히 본문이 원자·분자를 명확히 구분하는 과학 지문이라 학생에게 개념 혼동을 준다. — `page4.vocab[3] (word: "molecule", synonyms)`
+- 고3 Sun #4 [explanation] `learn to V`의 to부정사를 보어(C)로 오태깅. learn은 완전타동사로 to부정사를 목적어(O)로 취하므로 3형식 목적어여야 한다. 같은 항목의 grammar_note가 "learn + to부정사"라고만 적어 역할 모순을 감추고 있다. — `page3.sentences[13] (index 14), segments[4] — C: "to read across the gaps."`
+- 고3 Sun #4 [explanation] 수동태 `are asked`를 V("are")와 C("asked to sit still...")로 분리해, 자체 grammar_note("수동태 be asked to V") 및 같은 폴더의 태깅 규약과 충돌한다. be동사를 2형식 연결동사로, 과거분사를 보어로 처리하면 수동태 분석이 아니게 된다. — `page3.sentences[11] (index 12), segments[1]·segments[3]`
+- 고3 Sun #4 [vocab] pos가 "n."으로 표기되어 있으나, 본문에서의 weaving은 목적어를 직접 취하는 동명사(gerund)여서 품사 표기가 본문 용법과 불일치한다. 게다가 두 예문이 서로 다른 품사 용법을 보여 주어 엔트리 내부에서도 일관되지 않는다. — `page4.vocab[4] ("weaving"), 04.json line 471-473`
+- 고3 Sun #5 [explanation] 구문 역할 오태깅: whatever가 이끄는 명사절을 부사적 수식어(M)로 태깅했으나, 실제로는 뒤에 오는 must gain의 목적어(O)가 앞으로 도치된 것이다. 같은 segment의 note가 이미 '복합관계대명사 whatever'라고 명시하는데, 복합관계대명사절은 명사절이므로 M 태그는 자기 note와 모순된다. 이 태깅대로 읽으면 'another must gain'이 목적어 없는 불완전한 3형식 절로 보인다. — `page3.sentences[7] (index 8), segments[4] — "whatever one body loses in a collision,"`
+- 고3 Sun #5 [explanation] 본문에 존재하지 않는 구조를 grammar_note가 단정한다. 해당 문장은 세미콜론으로 두 절을 잇고 두 번째 절에서 also를 쓴 형태(not only ... ; ... also)이며 상관접속사 but(also)이 문장에 없다. 'not only A but also B'라고 표기하면 학생이 본문에서 but also를 찾으려다 혼란을 겪고, 상관접속사 병렬 구조를 오해하게 된다. — `page3.sentences[9] (index 10).grammar_note — "not only A but also B (how 명사절)"`
+- 고3 Sun #5 [translation] page1 본문의 빈칸(<blank>)이 번역문에서는 정답인 balance로 채워져 '완고한 균형'으로 옮겨져 있다. page2 두 번째 문항(빈칸 추론, answer_index 4 = "balance")의 정답이 번역문에서 그대로 노출된다. 또한 엄밀한 대조 기준으로는 원문에 없는 단어를 추가한 것이므로 원문-번역 불일치이기도 하다. — `page3.translation_ko 문장 [18] (05.json:350) / page3.sentences index 18 (05.json:345)`
+- 고3 Sun #5 [vocab] velocity의 동의어로 "speed"를 제시했는데, 이는 본문이 명시적으로 가르치는 벡터/스칼라 구분과 정면으로 충돌한다. 이 지문은 운동량이 방향을 갖는 이유를 velocity가 방향을 갖기 때문이라고 설명하는 것이 핵심 논리이므로, speed(방향 없는 크기)를 동의어로 등재하면 학생이 이 논리를 무너뜨려 이해한다. — `page4.vocab[1] (velocity) — synonyms`
+- 고3 Sun #6 [language] 동일한 총칭 환자 지시에서 성중립 표현과 남성 대명사가 불일치하며, 'his'의 선행사가 모호하다. 바로 앞 문장의 주어군이 "doctors, ethicists, and family members"이므로 근접 선행사가 환자가 아니어서 오독 소지가 있다. page2의 요약문 (B) 정답 dignity가 '환자의 존엄'으로 귀속되어야 풀리는 문항이라 지시 명확성이 중요하다. — `page1.body, 4th paragraph ("Instead they seek the choice that best honors both the patient's wishes and his dignity.")`
+- 고3 Sun #6 [explanation] 4번 문장 구문분석에 주어(S) 태그가 아예 없고, 주어 it이 V 세그먼트 안에 삽입되어 있다. 또한 '의문 도치' 주석이 도치가 실제로 일어난 세그먼트가 아닌 목적 부정사 세그먼트에 붙어 있다. — `page3.sentences[3] (index 4), 06.json lines 159-168`
+- 고3 Sun #6 [explanation] 12번 문장에서 'not merely what keeps the heart beating'은 judge의 목적어인 what절과 등위로 연결된 목적어(O)인데 부사구(M)로 오태깅되어 있다. 해설(answers)도 이 부분을 목적어 대조로 설명하고 있어 구문분석과 해설이 서로 어긋난다. — `page3.sentences[11] (index 12), 06.json lines 246-256`
+- 고3 Sun #6 [translation] 수동태 'cannot be asked'의 주체가 뒤바뀐 오역. 원문은 '(깊은 혼수 상태의) 환자에게 물어볼 수 없다'(환자가 의견을 질문받을 대상)인데, 번역 '환자는 물어볼 수도 없다'는 환자가 질문하는 주체인 것처럼 읽힌다. 앞 절 '신생아는 스스로를 대변할 수 없고'와 병렬을 이루어 '자기 뜻을 밝힐 수 없는 경우'를 예시하는 문장이므로 태(voice)가 핵심 정보다. — `page3.translation_ko 문장 [11] (파일 332행) / 대응 원문 page3.sentences[10], page1.body 3단락`
+- 고3 Sun #6 [answer] 요약문 빈칸 (A)의 정답 autonomy가 본문에서 <u>밑줄</u>로 시각적으로 강조되어 있고, 게다가 요약문 문장이 본문 동격구를 거의 그대로 옮겨 놓아 변별력이 사실상 0에 가깝다. hints 목록에도 정답 두 개가 모두 들어 있어 실질적으로 무근거 추론 없이 답이 나온다. — `page2.questions[3] (요약문 빈칸 완성, model_answer "(A) autonomy (B) dignity") vs page1.body`
+- 고3 Sun #6 [vocab] `dignity`의 동의어로 제시된 `honor`가 본문 문맥의 뜻(존엄=사람이 지닌 고유한 가치)과 불일치한다. `honor`(명예, 영예)는 사회적 평판·영예를 뜻하는 별개 개념이며, 더욱이 본문에서 honor는 '존중하다'라는 **동사**로만 쓰이고 있어 학생이 품사·의미를 혼동할 소지가 크다. — `page4.vocab[11] (dignity) — synonyms`
+- 고3 Sun #7 [explanation] 선택지 해설 안에서 '2번'이 본문 문장 번호를 가리키는데 선택지 번호로 읽혀 혼동을 준다. 선택지 2번은 "A star's brightness has nothing to do with the fuel"이어서 해설 문장이 성립하지 않는다. — `answers.explanations[0].rationales[0]`
+- 고3 Sun #7 [translation] 'settles into a small, fading ember'의 settle into를 '가라앉는다'로 오역했다. settle into는 '~한 상태로 자리 잡다/안정되다'라는 뜻이며, 여기서는 태양 같은 별이 외피를 벗고 작은 백색 왜성(잉걸불) 상태로 '정착한다'는 의미다. '가라앉는다'는 물리적 하강/침강을 연상시켜 별의 최후 단계를 오해하게 만든다. — `page3.translation_ko 문장 [15]`
+- 고3 Sun #7 [translation] 'balances'를 '상쇄해서'로 옮겼다. 본문 취지는 두 힘이 '균형을 이룬다'(정유체 평형)는 것이고, 같은 파일 page4 vocab에서도 balance의 뜻을 '균형을 이루다'로 제시하고 있어 번역과 어휘 해설이 불일치한다. '상쇄'는 두 힘이 서로 없애 버린다는 뉘앙스로, 별 내부에서 두 힘이 팽팽히 맞선 상태를 가리키는 원문·연계 개념(정유체 평형)과 어긋난다. — `page3.translation_ko 문장 [8]`
+- 고3 Sun #7 [vocab] collapse의 반의어로 제시된 'expand'가 의미상 부정확하다. collapse(무너지다·붕괴하다)의 반의 개념은 '팽창'이 아니라 '버티다·지탱하다'(hold up, stand, endure)이며, 'expand'는 바로 다음 항목 contract의 반의어이자 swell의 유의어로 이미 쓰여 학습자에게 혼선을 준다. — `page4.vocab[4] ("collapse") antonyms`
+- 고3 Sun #8 [explanation] 구문분석 분절 텍스트가 본문 어순과 다르다. 본문은 'would badly mislead'인데 분절을 이어붙이면 'would mislead badly.'가 되어 원문 복원이 불가능하다(17문장 중 유일한 불일치). — `page3.sentences[16].segments (index 16, V·M 분절)`
+- 고3 Sun #8 [explanation] 전치사구에 '이유 부사절' 주석을 잘못 달았다. 'from only one narrow angle.'은 부사절이 아니라 sees를 수식하는 전치사구이며, 이유절은 because가 이끄는 절 전체다. — `page3.sentences[1].segments 마지막 M의 note`
+- 고3 Sun #8 [answer] hints 배열에 정답 두 개(judge, combine)가 그대로 들어 있고, 나머지 세 개(synthesis, critical, evidence)는 must 뒤 원형동사 자리라는 문법 제약상 애초에 들어갈 수 없다. 결과적으로 힌트만 보고 문법 자리로 소거하면 본문을 읽지 않아도 정답이 확정되어 서술형 문항의 변별력이 사실상 사라진다. — `page2.questions[3].hints (요약문 빈칸 완성)`
+- 고3 Sun #8 [vocab] 예문이 표제어 뜻(저술, 저작 행위)이 아닌 다른 의미(저작자 신원)를 보여준다. ko 대역이 그 불일치를 그대로 노출한다. — `page4.vocab[8] authorship / examples[1]`
+- 고3 Sun #8 [vocab] 타동사 mislead가 목적어 없이 쓰여 단독 예문으로는 비문에 가깝다. ko 대역도 동명사 주어를 조건절로 느슨하게 옮겼다. — `page4.vocab[10] mislead / examples[0]`
+- 고3 Sun #9 [language] 등위 병렬 구조의 주어가 의도와 어긋난다. set / act 가 관계절 안 "rivals can"에 병렬로 걸려, 공동 기준을 세우고 함께 대응하는 주체가 '국제기구'가 아니라 '경쟁국들(rivals)'로 읽힌다. 그러나 문단 주제문과 한국어 해설은 이를 국제기구의 기능으로 서술한다. — `page1.body, 3단락 2번째 문장 (page3 sentences[12] 및 grammar_note)`
+- 고3 Sun #9 [explanation] 5형식 command O to V의 목적격보어 "to obey"를 M(수식어)으로 오태깅. 같은 파일 sentence 13의 동일 구조(force O to V)는 C로 태깅돼 있어 파일 내부에서조차 모순된다. — `page3.sentences[3] (index 4), segments[6] — 09.json line 169`
+- 고3 Sun #9 [explanation] 조동사 can 아래 raise와 병렬을 이루는 등위 동사구 "and reward those who cooperate"를 M(수식어)으로 오태깅. 병렬 동사는 V로 태깅하는 것이 이 교재의 관행이다. — `page3.sentences[12] (index 13), segments[8] — 09.json line 279`
+- 고3 Sun #9 [translation] 'a growing body of treaties, customs, and shared principles'의 body를 물리적 '몸체'로 직역했다. 여기서 body는 법률 문헌·규범의 '집합체/체계'를 뜻하는 관용 용법으로, '점점 커지는 몸체'는 한국어로 의미가 통하지 않는 오역이다. — `page3.translation_ko 문장 [6]`
+- 고3 Sun #9 [answer] 어휘 예문이 빈칸 추론(Q2)의 정답을 그대로 노출한다. page1 본문의 빈칸 문장은 "...even sovereign nations can be governed less by fear than by <blank>." 인데, page4 'sovereign' 표제어의 첫 예문이 바로 그 문장을 재활용하면서 정답어 trust를 명시한다. 한국어 번역까지 "주권 국가조차 신뢰에 의해 지배될 수 있다."로 정답을 확정해 준다. 학생이 page4를 먼저 보거나 대조하면 Q2가 무력화되어 변별력이 사라진다. — `page4.vocab[1] ("sovereign") examples[0] — line 434`
+- 고3 Sun #10 [vocab] synonyms에 "flask"를 넣었으나 beaker(비커)와 flask(플라스크)는 형태·용도가 다른 별개의 실험 기구로 동의어가 아니다. 과학 지문에서 기구 명칭을 동의어로 묶으면 개념 오류가 된다. — `page4.vocab[10] "beaker" → synonyms`
+- 고3 Sun #10 [vocab] meaning_ko가 "환원시키다(전자를 얻게 하다)"로 타동사 의미만 제시되어 있으나, 본문과 두 예문 모두 수동형(is reduced=환원되다)으로만 쓰인다. 대응 항목 oxidize는 "산화시키다, 산화되다"로 양방향을 모두 제시해 일관성도 어긋난다. — `page4.vocab[2] "reduce" → meaning_ko`
+- 고3 Sun #11 [explanation] be expected to V 구문의 to부정사 보어를 M(수식어)으로 오태깅. 수동 보고동사 뒤 남은 to부정사는 보어(C)이며, 같은 문장의 grammar_note가 "be expected to V (수동)"라고 패턴을 명시하고 있음에도 태그가 이와 모순된다. — `page3.sentences[index=13].segments[3] (11.json line 277)`
+- 고3 Sun #11 [explanation] O 세그먼트에 목적어가 아닌 전치사구 수식어가 함께 묶여 있음. explain의 목적어는 "it" 뿐이고 "to a frightened patient"는 M이다. 3형식 목적어 경계를 잘못 가르치게 된다. — `page3.sentences[index=7].segments[9] (11.json line 211)`
+- 고3 Sun #11 [vocab] pos·의미 불일치 반의어. 표제어는 pos "v.", meaning_ko "요구하다"인데 반의어로 "supply"를 제시했다. supply가 demand의 반의어가 되는 것은 경제학 명사쌍(수요↔공급)일 때뿐이며, 동사 demand(요구하다)의 반의어는 supply(공급하다)가 아니다. 본문 용법도 동사다. — `page4.vocab[11] (demand) — antonyms`
+- 고3 Sun #11 [vocab] 예문 영어가 비문법적/비관용적. "a gap with the skills"는 성립하지 않는 연어다. gap은 between A and B 또는 in/of 구조를 취한다. 본문에서 문장을 잘라 오면서 격차의 한쪽 항(the skills people hold)을 빼버려 'between ... and ...' 구조가 깨졌고, ko 대역 "새 경제가 요구하는 기술과의 격차"도 무엇과의 격차인지 드러나지 않는다. — `page4.vocab[11] (demand) — examples[0].en`
+- 고3 Sun #11 [vocab] 품사 불일치 동의어. 표제어 pos는 "n."인데 동의어 목록의 "refresh"는 동사다. 명사 renewal의 동의어로 쓰려면 refreshment/refreshing 형태여야 하는데 그마저 '기술의 갱신'이라는 본문 의미와는 거리가 있다. 같은 목록의 "revival"만 명사로 적절하다. — `page4.vocab[8] (renewal) — synonyms`
+- 고3 Sun #12 [language] 동명사 주어와 술어 동사의 논리적 불일치(비문성). 'adding numbers forever'(더하는 행위)가 'grow'(커지다)의 주어가 되어, 커지는 주체가 '행위'로 잘못 지정되었다. 커지는 것은 '합계(the total/the sum)'이다. — `page1.body 2단락 1문장 (동일 오류가 page3.sentences[6].segments 및 grammar_note에도 반복)`
+- 고3 Sun #12 [explanation] 빈칸 추론 근거로 든 2번 문장의 의미를 정반대로 인용했다. 본문 2번은 계산기가 답을 '찾아보지 않는다'는 부정문인데, 해설은 "2번은 계산기가 answer를 찾는다고 하고"라며 긍정 진술로 뒤집어 근거를 삼았다. 정답(answer) 자체는 옳으나 근거 문장이 본문과 불일치한다. — `answers.explanations[1] (q_index 1, 빈칸 추론) evidence`
+- 고3 Sun #12 [explanation] 구문 역할 오태깅. "small enough to trust yet never quite zero"를 보어(C)로 태깅했으나, 주절은 수동태 "is not ignored but bounded"로 이미 완결된 문장이고 콤마 뒤 형용사구는 앞의 내용을 부연하는 후치 수식(형용사구 부대 상황)이다. 수동태 동사의 주격보어가 아니다. — `page3.sentences[16] (index 17) segments 마지막 role "C"`
+- 고3 Sun #12 [answer] hints 5개(series, converge, terms, finite, remainder) 중 converge·terms·remainder 3개가 이미 summary_template 본문 안에 그대로 노출되어 있다. 그 결과 남는 후보가 series와 finite 둘뿐이고, (A)는 앞에 infinite가 있어 자동으로 series, (B)는 남은 finite로 결정되어 본문을 읽지 않고 소거법만으로 정답이 확정된다. 변별력이 사실상 0이다. — `page2.questions[3] (요약문 빈칸 완성) hints + summary_template`
+- 고3 Sun #12 [vocab] 수학 문맥에서 'series(급수)'의 동의어로 'sequence(수열)'를 제시한 것은 오개념을 유발한다. 본 지문은 미적분II '급수' 단원과 연계된 글로, series와 sequence는 교과에서 명시적으로 구분해 가르치는 별개 개념이다(수열의 합이 급수). — `page4.vocab[0] (series) synonyms`
+- 고3 Sun #12 [vocab] antonyms의 'brief'가 본문 문맥의 뜻과 품사적 의미역이 맞지 않는다. 본문의 endless는 '항의 개수가 끝없는(무한한)' 수량 개념인데, 'brief'는 '시간이 짧은/간결한'이라는 지속시간 개념의 반의어다. — `page4.vocab[10] (endless) antonyms`
+- 고3 Sun #13 [language] '이자(interest)'와 '이자율(interest rate)'을 동일시하는 개념 오류. 앞 문장에서 정의한 'a fee'(절대 금액)를 곧바로 'the interest rate'(원금 대비 기간당 비율)와 등치시켰다. 이 문장은 밑줄(<u>)이 쳐진 지문의 핵심 개념 정의문이고, 연계 단원(경제 V-1)이 이자와 이자율을 구분해 다루므로 학습상 혼동을 유발한다. — `page1.body, 1문단 3번째 문장 (page3 sentences[2], translation_ko [3])`
+- 고3 Sun #13 [explanation] 구문 역할 오태깅: "setting the right price for money."가 M(수식어)으로 태깅되었으나, 이는 구동사 come down to의 전치사 to가 취하는 목적어(동명사구)이므로 O가 되어야 한다. 이 조각을 M으로 두면 문장에 목적어가 없는 것으로 보여, 같은 sentence의 grammar_note "come down to V-ing"(= to 뒤에 동명사가 온다)와도 어긋난다. — `page3.sentences[index=20].segments[3] (line 365)`
+- 고3 Sun #13 [vocab] 고3(sun-g3) 수준 대비 지나치게 기초적인 어휘가 표제어로 등재되어 있다. 본문의 실제 난도(Lexile 1070L / AR 8.2)와 어휘 목록의 다른 항목들(nudge, coax, lever, ripple)에 비해 borrow는 중학 수준 기본어이므로 학습 가치가 낮다. — `page4.vocab[1] (word: "borrow")`
+- 고3 Sun #14 [explanation] 7번 문장 구문 태깅 오류: to부정사 병렬의 두 번째 항인 'paste'를 주절 본동사(V)로 태깅했고, 그 목적어 'it'을 M(수식어)에 묶어 목적어 표시가 누락되었다. — `page3.sentences[index=7].segments (C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-08-Sun/14.json:307-336)`
+- 고3 Sun #14 [vocab] synonym "creature"가 본문 문맥의 organism과 의미 범위가 불일치한다. creature는 통상 동물·생명체(주로 동물)를 가리켜 세균·식물을 포괄하지 못하는데, 본문의 organism은 정확히 세균을 지시 대상으로 삼는다. — `page4.vocab[4] (word: "organism") — synonyms`
+- 고3 Sun #15 [explanation] 목적어 명사절 세 개를 모두 '간접의문 명사절'로 묶어 설명했으나, 세 절 중 둘은 간접의문문이 아니라 관계대명사 what이 이끄는 명사절이다. 같은 파일 내 다른 문장의 설명과도 어긋나는 문법 용어 오류다. — `page3.sentences[2] (index 3) — segments[2].note 및 grammar_note (파일 라인 163, 165)`
+- 고3 Sun #16 [language] "like light on water"라는 직유가 과학적으로 부정확하고 의미가 어긋난다. 물 위의 '빛'은 물결치거나 간섭하지 않는다 — 물결치는 것은 물이다. 앞 단락에서 저자가 이미 쓴 이미지는 "ripples on a pond"(연못 위 잔물결)이므로, 전자가 파동처럼 퍼지고 간섭한다는 취지라면 비교 대상은 '물 위의 잔물결' 또는 '빛(파동) 자체'여야 한다. 현재 표현은 '수면에 반사된 빛'으로 읽혀 파동 간섭이라는 요지를 흐린다. 한국어 번역 '물 위의 빛처럼'도 같은 혼동을 그대로 옮겼고, vocab 예문 2곳에도 복제되어 있다. — `page1.body 3단락 마지막 문장 (page3 sentences[14], translation_ko [14], page4.vocab 'ripple'/'interfere' 예문)`
+- 고3 Sun #16 [explanation] refuse의 목적어인 to부정사구를 M(수식어)으로 오태깅했다. refuse는 to부정사를 목적어로 취하는 타동사이므로 "to fit that picture."는 O여야 한다. — `page3.sentences[index=2].segments[3] (line 148)`
+- 고3 Sun #16 [explanation] 종속접속사 while이 이끄는 부사절을 '등위(coordinate) 병렬'로 설명해 접속사 분류가 틀렸다. — `page3.sentences[index=5].grammar_note (line 188)`
+- 고3 Sun #16 [translation] 'dim blue light'의 dim을 '어두운'으로 옮겨, 세기(밝기)가 아니라 색조(짙은 파란색)로 오독될 소지가 있다. 이 지문은 '색 = 에너지 결정, 밝기 = 무관'이라는 대비가 논지의 핵심이므로, 밝기 축의 형용사를 색 축으로 읽히게 하는 번역은 요지 이해를 방해한다. '희미한/약한 파란빛'이 정확하다. — `page3.translation_ko 문장 [5] ("어두운 파란빛")`
+- 고3 Sun #17 [explanation] 본문의 빈칸 마커 <blank>가 구문분석 세그먼트에서 리터럴 단어 "blank"로 남아, 존재하지 않는 영어 명사 "the higher blank"가 정식 본문인 것처럼 제시된다. 학생 교재로 인쇄되면 오식으로 읽힌다. — `page3.sentences[17] (index 18), segment C / text "to choose the one with the higher blank."`
+- 고3 Sun #17 [explanation] 본문에 없는 collocation을 문법 규칙처럼 제시. 실제 본문 구조는 "add ... together"(구동사) + "into a single number"(결과를 나타내는 전치사구)이며, add의 표준 결합은 "add A to B"다. "add A into B"를 하나의 패턴으로 학습시키면 잘못된 표현을 유도한다. — `page3.sentences[8] (index 9), grammar_note "3형식 (add A into B)"`
+- 고3 Sun #17 [answer] 빈칸의 정답 'expected value'가 본문에 그대로 3회 노출되어 있고, 그중 한 번은 <u>밑줄</u>로 강조까지 되어 있어 추론 문항이 아니라 단순 어구 찾기(복사) 문항이 된다. 변별력이 사실상 없다. — `page2.questions[1] (빈칸 추론, answer_index 1) / page1.body`
+- 고3 Sun #18 [language] "book a doctor"는 영어 연어(collocation) 오류. 영어에서 book의 목적어는 예약 대상(appointment, flight, table, room)이지 사람 자체가 아니다. 의사 진료 예약은 "book a doctor's appointment" 또는 "book an appointment with a doctor"로 쓴다. 같은 문장의 나머지 병렬 항목(apply for a job, pay a bill, meet a teacher)은 모두 자연스러운 연어라 이 항목만 튄다. — `page1.body, 2문장 (1단락)`
+- 고3 Sun #18 [explanation] 부분부정 주어 "Not everyone"을 M(수식어)으로 오태깅. 해당 절이 V(reaches)+O(the online world)만 있고 S가 없는 비문 구조가 된다. — `page3.sentences[index=5].segments[0]`
+- 고3 Sun #18 [explanation] O로 태깅된 텍스트 안에 목적어가 아닌 병렬 동사구 3개(apply for a job / pay a bill / meet a teacher)가 통째로 포함됨. book의 실제 목적어는 "a doctor"뿐이며, 태그(role=O)와 note("동사구 병렬")가 서로 모순된다. — `page3.sentences[index=2].segments[2]`
+- 고3 Sun #18 [translation] "for good"(영구히, 되돌릴 수 없이)을 "완전히"(정도·전부)로 옮겨 어의가 바뀜. 시간적 영속성 → 양적 완전성으로 전환된 오역. — `page3.translation_ko 문장 [11]`
+- 고3 Sun #18 [answer] 빈칸 추론 문제의 정답 'exclusion'이 같은 파일 page3 문장 분석과 translation_ko에 그대로 노출되어 있어, 학습자가 본문 추론 없이 정답을 확인할 수 있다. 정답 자체는 타당하나 문제로서의 변별력이 무력화된다. — `page2.questions[1] (빈칸 추론, answer_index 4) 및 page3.sentences[20]`
+- 고3 Sun #18 [vocab] synonyms가 ["entry"] 하나뿐인데, 본문 문맥의 access(이용 기회·이용 권한)와 entry(입장, 출입)는 의미가 어긋난다. meaning_ko "접근, 이용 (권한)"과도 대응이 맞지 않는다. — `page4.vocab[2] access — synonyms`
+- 고3 Sun #18 [vocab] 본문 문장에서 핵심 구조(three lines at once:)를 잘라내면서 비문에 가까운 영어가 되었다. run along + 추상명사(access)는 영어에서 성립하지 않는 결합이며, 예문이 access의 뜻을 보여주지도 못한다. — `page4.vocab[2].examples[0].en "The gap runs along access to devices."`
+- 고3 Sun #19 [language] "glow"를 타동사로 쓴 비문. glow는 자동사(빛/열을 발하며 빛나다)로 목적어를 취하지 않으므로 "glows a little more heat into space"는 문법적으로 성립하지 않는다. 수능·모의고사 지문 수준에서 학습자가 그대로 습득하면 안 되는 오용이다. — `page1.body, 2문단 2번째 문장 (page3 sentences[7], translation_ko [7])`
+- 고3 Sun #19 [explanation] 구문 역할 오태깅: learn의 목적어인 to부정사구를 M(수식어)으로 태깅했다. learn to V의 to부정사는 타동사 learn의 목적어(O)이며, 같은 폴더의 형제 지문들도 이 구조를 O 또는 C로 태깅해 일관성도 깨진다. — `page3.sentences[11] (index 12), line 277`
+- 고3 Sun #19 [explanation] 오답 해설에 문맥과 무관한 어구('장부의 비유')가 들어가 문장이 성립하지 않는다. 본문 밑줄 어구 feed on itself는 '먹이/먹고 자라다'라는 비유이지 '장부(ledger)'와는 아무 관련이 없다. 오답 4번(feed exact numbers into a model)이 왜 오답인지를 설명하지 못하는 오기다. — `answers.explanations[2].rationales[3], line 412`
+- 고3 Sun #19 [answer] 오답 선지 4번("scientists can feed exact numbers into a model of the climate")의 해설이 본문에 존재하지 않는 '장부의 비유'를 근거로 들고 있다. 다른 지문(2026-08-J/01.json, 부기/장부 소재)의 해설 문구가 그대로 복사된 잔재로 보이며, 이 지문 맥락에서는 문장 자체가 성립하지 않는다. — `answers.explanations[2] (q_index 2, 함의 추론) → rationales[3], line 412`
+- 고3 Sun #19 [vocab] 표제어 형태와 뜻이 불일치한다. meaning_ko "빨아들이다, 흡수하다"와 synonyms ["absorb"]는 구동사 soak up의 의미이며, 단독 동사 soak은 '적시다/담그다/흠뻑 젖다'를 뜻한다. 두 예문 모두 표제어 soak이 아니라 soak up을 보여 주고 있어, 어떤 예문도 제시된 표제어의 뜻을 입증하지 못한다. — `page4.vocab[10] (word: "soak")`
+- 고3 Sun #20 [explanation] 20번 문장 마지막 segment "interpretation."의 역할을 O(목적어)로 태깅했으나, 이 단어는 전치사 with의 목적어로서 바로 앞 C segment "to meet it with steady, active"의 일부다. 문장에는 O 자리가 존재하지 않으며(To read ~ is not to reject it, but to meet ~ 의 2형식 구조), C 구가 전치사와 형용사 뒤에서 잘려 별개의 O로 분리되어 구문 골격이 왜곡됐다. — `page3.sentences[index=20].segments (20.json:344-351)`
+- 고3 Sun #20 [vocab] synonyms에 "shot"을 넣었으나, 본문은 frame과 shot을 명확히 구별되는 개념으로 사용한다. frame은 화면의 '틀/경계'이고 shot은 하나의 촬영 단위(컷)로, 동의어가 아니다. meaning_ko("(화면) 틀, 프레임")와도 어긋난다. — `page4.vocab[1] (word: "frame") — synonyms`
+- 고3 Sun #20 [vocab] reality의 동의어로 "fact"를 제시했으나 본문 문맥에서 두 단어는 대비적으로 기능한다. reality는 '실재/현실 전체', fact는 '개별 사실'로 의미 범위가 다르며, 특히 이 지문은 밑줄 문장에서 frame과 fact를 대립시키고 있어 학습자가 혼동할 수 있다. — `page4.vocab[4] (word: "reality") — synonyms: ["fact"]`
 
 </details>

@@ -4,33 +4,133 @@
   "confirmed": [
     {
       "severity": "warn",
-      "location": "page3.sentences[0] (index 1), segment \"to start a recycling club.\"",
-      "issue": "구문 역할 오태깅: 5형식 'want + O + to부정사' 구문에서 목적격보어(C)여야 할 to부정사구가 부사어(M)로 태깅되어 있다.",
-      "evidence": "본문 \"a student who wants her school to start a recycling club\" — 'her school'을 O로, 'to start a recycling club'을 M(부사어)으로 태깅함(role: \"M\"). 그러나 want+O+to-V 구조에서 to부정사구는 목적격보어이다. 참고로 같은 파일 index 1은 wants의 목적어를 'her school'(O)로 잡아 SVOC 구조임을 스스로 전제하고 있어 M 태깅과 모순된다.",
-      "suggestion": "\"to start a recycling club\"의 role을 M에서 C(목적격보어)로 수정.",
+      "location": "C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-08/04.json → page1.body, 2단락 2번째 문장 (page3 sentences[8])",
+      "issue": "등위접속사 and가 쉼표 없이 연속 사용되어 병렬 구조가 어색하다. \"clear reasons and solid facts\"와 \"numbers\"가 짝지어진 것처럼 오독될 수 있고, 3항 병렬이면 콤마 나열이 표준이다. 같은 지문 안의 다른 3항 병렬(\"honest, fair, and well prepared\", \"choose sound reasons, show real character, touch true feelings\")은 모두 콤마+and 형식을 지키고 있어 내부 일관성도 깨진다.",
+      "evidence": "\"A speaker who uses it gives clear reasons and solid facts and numbers.\"",
+      "suggestion": "\"A speaker who uses it gives clear reasons, solid facts, and numbers.\" 로 수정. (형용사 solid를 numbers까지 걸리게 하려면 \"clear reasons and solid facts and figures\"가 아니라 \"clear reasons and solid facts and numbers\" 대신 \"clear reasons and solid facts and numbers\"→\"clear reasons, and solid facts and numbers\"도 가능하나, 콤마 3항 나열이 가장 자연스럽다.) page3 sentences[8]의 O 세그먼트 텍스트도 함께 맞춰야 한다.",
+      "lens": "language",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "파일 근거로 확인됨. page1.body 2단락 2번째 문장과 page3 sentences[8]의 O 세그먼트 모두 \"clear reasons and solid facts and numbers.\"로 인용문과 정확히 일치한다.\n\n1) 문법 오류는 아니다. \"A and B and C\"(연접법/polysyndeton)는 문법적으로 타당하므로 error가 아닌 warn 등급 분류는 적절하다.\n\n2) 그러나 실제 모호성이 존재한다. 다만 지적자가 제시한 메커니즘(\"clear reasons and solid facts\" vs \"numbers\" 짝지음)보다는, 형용사 solid의 수식 범위 때문에 \"solid [facts and numbers]\"(2항) 대 \"[clear reasons]+[solid facts]+[numbers]\"(3항)로 갈리는 것이 더 개연성 높은 오독 경로다. 이는 지적 근거의 정교화일 뿐 반박은 아니며, 독자가 항목 수를 확정할 수 없다는 결함 자체는 유효하다.\n\n3) 내부 일관성 파괴는 직접 확인됨. 동일 지문 내 3항 병렬 두 곳이 모두 콤마+and 형식을 지킨다: \"who seems honest, fair, and well prepared\"(sentences[9]), \"choose sound reasons, show real character, touch true feelings, and...\"(sentences[20]). 8번 문장만 이 규약을 이탈한다.\n\n4) 교육적 가중치. lexile 800L / AR 5.4 고1 교재이며, 해당 문장은 page3 구조분석 대상이다. 그런데 목적어 전체가 단일 O 세그먼트로 뭉뚱그려져 있어 학생이 병렬 구조를 시각적으로 분해할 수 없다. 구조분석 페이지의 목적을 훼손한다.\n\n반박 검토 후 기각한 논거: (a) 의도적 수사법 가능성 — 주변 문체가 평이한 설명문이고 수사적 고조 신호가 없어 기법이 아닌 누락으로 읽힌다. (b) 한국어 번역이 해소해 준다 — \"명확한 이유와 탄탄한 사실과 수치를\"로 동일한 연접 모호성을 그대로 전이시켜 해소하지 못한다.\n\n결론: 인용문 정확, 비교 대상 문장 실재, 일관성 위반 확인 — 추정이 아닌 검증 가능한 근거에 기반하므로 유효한 warn 지적이다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-08/04.json → page1.body, 3단락 마지막 문장 (page3 sentences[17], translation_ko [17])",
+      "issue": "청중을 수식하는 형용사로 caring은 부적절한 연어(collocation)다. caring은 '남을 배려하는/보살피는 성향'을 뜻하므로 앞의 doubtful(의심하는 청중)과 대구를 이루지 못한다. 문맥상 필요한 의미는 '감정에 잘 반응하는/우호적인 청중'이므로 sympathetic, warm, caring이 아닌 어휘여야 한다. 번역문의 '배려심 많은 청중'도 같은 오류를 그대로 옮겨, 학생이 '왜 배려심 많은 청중에게 감성 호소를 먼저 하는가'를 논리적으로 연결하지 못한다.",
+      "evidence": "\"For a doubtful crowd, start with evidence, but for a caring one, open with a story that touches the heart.\" / translation_ko: \"의심 많은 청중에게는 근거로 시작하되, 배려심 많은 청중에게는 마음을 울리는 이야기로 시작하라.\"",
+      "suggestion": "\"but for a sympathetic one, open with a story that touches the heart.\" 로 교체하고 번역을 '공감하는 청중에게는'으로 수정. page3 sentences[17]의 M 세그먼트(\"for a caring one,\")도 동일하게 반영.",
+      "lens": "language",
+      "verdict": {
+        "isReal": true,
+        "confidence": "medium",
+        "reason": "지적은 실제 결함으로 확인된다. 근거는 파일에서 모두 검증됨.\n\n1) 사실 관계 확인: page1.body 3단락 마지막 문장은 \"For a doubtful crowd, start with evidence, but for a caring one, open with a story that touches the heart.\"로 인용과 정확히 일치한다. page3.sentences[17]도 \"For a doubtful crowd,\" / \"for a caring one,\"로 분절되어 있고(283, 287행), translation_ko [17]은 \"배려심 많은 청중에게는\"으로 오류를 그대로 옮긴다.\n\n2) 언어적 타당성: doubtful은 청중이 화자의 주장에 대해 갖는 인식적 태도(회의적/미확신)를 나타내므로 \"근거로 시작하라\"가 논리적으로 이어진다. 반면 caring은 제3자를 향한 성향 특질(자상한/보살피는; a caring nurse/parent)로, 화자의 논증을 어떻게 수용하는지에 대해 아무 정보를 주지 않는다. but이 요구하는 대조는 동일 축(화자에 대한 수용성) 위의 두 지점이어야 하는데 caring은 다른 축에 있어 대구가 성립하지 않는다. 문맥이 요구하는 '감정적으로 이미 열려 있는 청중'은 수사학에서 sympathetic audience가 관용적 연어이며 caring audience는 그렇지 않다.\n\n3) 파일 자체 근거로 뒷받침됨(단순 취향 문제 아님): page4 vocab의 doubtful 항목(499-507행)은 synonyms [\"skeptical\"], antonyms [\"convinced\"]로 등재되어, 파일 스스로 doubtful을 신념/확신 축에 위치시킨다. 그 반대편은 convinced이지 caring이 아니므로 짝이 어긋남이 파일 내부 의미 규정으로 확인된다. 또한 page4 예문(461, 505행)은 doubtful 절만 인용하고 caring 절은 누락시켜, 후반부가 약한 다리임을 방증한다.\n\n4) 교육적 영향: 문장 17은 \"it decides which appeal should lead\"(sentences 16)라는 지문 핵심 주장의 유일한 실례이므로, 여기서 대구가 깨지면 학생이 청중 유형과 호소 선택의 대응 논리를 연결하지 못한다.\n\n5) 반론 검토: caring을 '(사안에) 관심 있는 청중'으로 느슨히 읽으려는 해석은, 영어에서 한정적 용법의 caring이 그런 절대 자동사적 의미를 갖지 못하므로 성립하지 않고, 설령 인정해도 '이미 관심 있는 청중'에게는 감성 호소보다 행동 촉구가 자연스러워 논리가 구제되지 않는다.\n\nconfidence를 medium으로 둔 이유: 위치·인용·파일 내부 정합성 근거는 명확히 확인되나, 최종 판정이 어휘 연어의 적절성이라는 언어 판단에 의존하므로 코드 결함처럼 기계적으로 단정할 수는 없다. 다만 doubtful의 antonyms 등재가 파일 내부 증거로 대구 붕괴를 뒷받침하여 반박보다 인정이 타당하다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.sentences[3] (index 4), segments[1]",
+      "issue": "구문 역할 오태깅: 의문사 what을 O(목적어)로 태깅했으나 happen은 자동사이므로 what은 주어(S)다.",
+      "evidence": "본문 \"So what happened in those minutes?\" / 태깅 { \"role\": \"O\", \"text\": \"what\" }, { \"role\": \"V\", \"text\": \"happened\" }. 번역도 \"무슨 일이 일어난 것일까?\"로 what을 주어로 옮겼다.",
+      "suggestion": "what의 role을 \"S\"로 수정 (happen은 목적어를 취하지 않는 완전자동사).",
       "lens": "explanation",
       "verdict": {
         "isReal": true,
         "confidence": "high",
-        "reason": "파일 확인 결과 지적이 정확하다. page3.sentences[0](index 1) \"Imagine a student who wants her school to start a recycling club.\"에서 segments는 다음과 같다: V \"wants\" / O \"her school\" / M \"to start a recycling club.\" (라인 104-106). 'want + O + to-V'는 전형적인 5형식(SVOC) 구문으로, 'her school'은 목적어(O), 'to start a recycling club'은 목적격보어(C)이다. 의미상 '그녀는 자신의 학교가 재활용 동아리를 만들기를 원한다'로, 'her school'이 to부정사 동작의 의미상 주어이므로 to부정사구는 목적격보어(C)이지 부사어(M)가 될 수 없다. 또한 파일이 'her school'을 O로 태깅해 SVOC 구조를 전제하면서도 뒤따르는 to부정사를 M으로 태깅한 것은 내부적으로 모순된다. 따라서 role \"M\"은 명백한 오태깅이며 \"C\"가 맞다."
+        "reason": "파일 확인 결과 지적이 정확하다. page3.sentences[3](index 4), 파일 라인 131-139에 실제로 { \"role\": \"CONJ\", \"text\": \"So\" }, { \"role\": \"O\", \"text\": \"what\" }, { \"role\": \"V\", \"text\": \"happened\" }, { \"role\": \"M\", \"text\": \"in those minutes?\" } 로 태깅되어 있다. (1) happen은 자동사로 목적어를 취할 수 없으며, \"So what happened...?\"는 do-지원(did) 없이 what이 바로 과거형 동사와 결합하는 전형적인 주어 의문문이다. 따라서 what은 S다. (2) 해당 문장 세그먼트에 S 역할이 전혀 없어 절이 주어 없는 상태가 되며, 이는 page3의 다른 모든 정형절이 S를 표기하는 자체 규약과도 어긋난다. (3) 대조 근거로 index 14의 진짜 목적어 의문문은 { \"role\": \"O\", \"text\": \"what\" }, { \"role\": \"V\", \"text\": \"do they believe or fear?\" }처럼 do-지원이 나타나 목적어 추출임을 보여주는데, index 4에는 그것이 없다. (4) 라인 348의 번역 \"[4] 그렇다면 그 몇 분 동안 무슨 일이 일어난 것일까?\"에서 \"무슨 일이\"는 명백한 주격이라 O 태그와 모순된다. 반박 여지가 없으므로 올바른 태그는 { \"role\": \"S\", \"text\": \"what\" }이다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.sentences[0] (index 1), segments[5]",
+      "issue": "구문 역할 오태깅: want + O + to부정사 구조의 to부정사는 목적격보어(C)인데 M(수식어)으로 태깅했다.",
+      "evidence": "본문 \"Imagine a student who wants her school to start a recycling club.\" / 태깅 { \"role\": \"O\", \"text\": \"her school\" }, { \"role\": \"M\", \"text\": \"to start a recycling club.\" }. 동일 파일 sentence 7에서는 call O C의 보어를 \"C\"(logos)로 정확히 태깅해 기준이 불일치한다.",
+      "suggestion": "\"to start a recycling club\"의 role을 \"C\"로 수정하고 note에 '목적격보어(to부정사)' 추가.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "지적이 사실로 확인된다. content/passages/2026-08/04.json:104-106에서 \"wants\"(V) + \"her school\"(O) + \"to start a recycling club.\"(M)로 태깅되어 있는데, 이는 전형적인 5형식 want+O+to부정사 구조로 to부정사구는 목적격보어(C)다. \"her school\"은 wants의 실제 목적어가 아니라 부정사의 의미상 주어이며, to부정사구를 제거하면 문장이 성립하지 않으므로 수식어(M)로 볼 수 없다.\n\n결정적 근거는 동일 코퍼스의 확립된 관례다. 형제 파일들이 동일 구문(V + O + to부정사 보어)을 일관되게 C로 태깅하며 다수는 구문명을 note에 명시한다: 2026-08/03.json:271 및 :284 (둘 다 role \"C\"), 2026-08-Sun/10.json:223 (note \"force O to V (5형식)\"), 2026-08-Sun/02.json:318 (note \"trust O to V\"), 2026-08-Sun/06.json:327 (note \"ask O to V\"). 반면 코퍼스에서 M으로 태깅된 \"to ...\"는 전부 다른 구조다 — 전치사 to(belong to bioethics, to the sea, to the oxygen) 또는 note \"목적 부정사\"가 붙은 진짜 목적 부사구(2026-08-Sun/06.json:294, 10.json:272). 04.json의 해당 항목은 둘 중 어느 쪽도 아니다.\n\n또한 audit/2026-07/FIX-CONTRACT-NOTES.md:45가 허용 role 목록에 C를 포함하므로 태그 부재로 인한 대체 표기가 아니며, 같은 파일 내부에서도 line 174(\"called ... logos.\" → C)와 line 273(\"is called ... audience analysis,\" → C)로 목적격보어에 C를 쓰고 있어 불일치가 이 세그먼트에 국한됨이 확인된다. 다만 지적이 근거로 든 sentence 7 비교는 logos가 명사구 보어라 부정사 보어와 완전 대응은 아니며, 03.json·Sun 계열의 to부정사 보어가 더 직접적인 선례다(결론은 동일).\n\n참고로 audit/2026-08/REPORT.md:57에 이 동일 위치·동일 내용의 지적이 이미 기록되어 있어 기존에 확인된 결함이다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page4.vocab[9] (word: \"stir\") → examples[0].en / .ko",
+      "issue": "예문의 두 번째 절 \"but trust soon breaks\"가 비문법적·비관용적이다. 영어에서 trust는 be broken/be lost로 쓰이며 자동사 break의 주어로 \"trust breaks\"는 쓰지 않는다. 또한 본문 원문의 주어(the trick)와 목적어(the speaker's credibility)를 임의로 바꿔 버려 원문 의미도 변형되었다. ko 대역 \"신뢰가 곧 깨진다\"도 이 잘못된 영문을 그대로 따라간다.",
+      "evidence": "본문: \"Persuasion also carries a duty, since twisting facts or stirring fear may win today, but the trick soon breaks the speaker's credibility.\" / 예문: { \"en\": \"Stirring fear may win today, but trust soon breaks.\", \"ko\": \"공포를 자극하면 당장은 이겨도 신뢰가 곧 깨진다.\" }",
+      "suggestion": "본문 표현에 맞춰 \"Stirring fear may win today, but the trick soon breaks the speaker's credibility.\" (ko: \"공포를 부추기면 당장은 이겨도 그 속임수는 곧 화자의 공신력을 무너뜨린다.\") 또는 \"...but trust is soon broken.\"으로 수정.",
+      "lens": "vocab",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "파일에서 지적 내용이 그대로 확인된다. page4.vocab[9] (word: \"stir\") examples[0] (04.json 516행): en \"Stirring fear may win today, but trust soon breaks.\" / ko \"공포를 자극하면 당장은 이겨도 신뢰가 곧 깨진다.\"\n\n결함이 실재하는 근거 두 가지:\n\n1) 비관용적 영어 (핵심). 자동사 break는 구체 명사(glass/rope breaks)나 dawn/news/storm/voice/heart breaks 같은 고정 표현에만 쓰이며, trust는 이 집합에 속하지 않는다. 표준 결합은 trust is broken / breaks down / is lost다. 결정적으로 같은 파일이 올바른 형태를 이미 두 곳에서 쓰고 있다: page3 sentence 19 및 본문의 \"Once trust is gone\"(수동·형용사형), 그리고 vocab[2] credibility 예문(439행) \"A cheap trick soon breaks the speaker's credibility.\"(타동사+목적어). 즉 집필진이 의도한 패턴은 타동사 break + credibility이며, 문제의 예문은 목적어를 삭제하고 무관한 명사 trust를 주어로 승격시킨 변형이다.\n\n2) 원문 의미 변형. 본문(21행, page3 sentence 18)은 주어 \"the trick\", 목적어 \"the speaker's credibility\"다. 예문은 이 둘을 모두 trust로 대체해 인과 행위자(속임수)가 사라졌고, \"속임수가 공신력을 무너뜨린다\"는 명제가 소실되었다.\n\n다만 지적 중 ko 대역 부분은 다소 과장이다. \"신뢰가 깨지다\"는 한국어로 완전히 자연스러운 연어이며, ko 문장 자체는 결함이 아니라 잘못된 영문을 충실히 옮긴 결과일 뿐이다. 이는 en 라인의 결함을 상쇄하지 못한다.\n\n반박 가능성 검토 후 기각: (a) 압축·시적 어법 — 본 파일 vocab 예문은 일관되게 평이한 교과서 문체이고, Lexile 800L / AR 5.4 고교 EFL 자료에서 비표준 연어를 모범 문장으로 제시하는 것이 바로 문제다. (b) \"trust breaks\"가 저빈도로 관찰되기는 하나 학습 모델 문장으로 쓸 수준의 관용성이 없고, 동일 파일의 형제 항목이 올바른 형태를 쓴다는 점이 이를 확정한다. (c) 예문이 stir만 예시하면 된다는 반론 — 첫 절만으로 충분하므로 오히려 둘째 절은 불필요한 결함이다.\n\n수정 제안: en을 \"Stirring fear may win today, but the trick soon breaks the speaker's credibility.\" 또는 \"...but trust is soon broken.\"으로 하고 ko를 그에 맞춰 조정."
       }
     }
   ],
   "minors": [
     {
       "severity": "minor",
-      "location": "answers.explanations[2] (q_index 2), rationales[2]",
-      "issue": "해설이 본문에 없는 표현('통계 한 쪽')을 덧붙여 근거를 부정확하게 서술.",
-      "evidence": "본문은 \"a story about one crying child can move a crowd more than statistics\"로 '통계(statistics)'라고만 한다. 그러나 해설 rationale은 \"우는 아이 하나의 이야기가 통계 한 쪽보다 군중을 움직일 수 있다\"라고 하여 본문에 없는 '한 쪽(a page)'을 추가했다.",
-      "suggestion": "'통계 한 쪽'을 '통계'로 수정하여 본문(statistics)과 일치시킴.",
+      "location": "C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-08/04.json → page1.body, 4단락 전체",
+      "issue": "한 단락 3문장 안에서 결과 접속사 so/So가 4회 반복되어(문중 so 2회 + 문두 So 1회, 그리고 1단락 문두 So와 중복) 담화 표지가 과다하다. 특히 2번째 문장 끝의 \"so honest persuasion is...\"와 곧바로 이어지는 3번째 문장 문두 \"So before your next speech\"가 연속되어 결론이 두 번 도출되는 것처럼 읽힌다.",
+      "evidence": "\"...no appeal can bring it back, so honest persuasion is not a weapon but a bridge between minds. So before your next speech, remember the recycling club...\"",
+      "suggestion": "마지막 문장의 문두 So를 제거하거나 다른 표지로 교체: \"Before your next speech, then, remember the recycling club: ...\" 또는 앞 문장의 so를 \"and thus\"로 바꿔 중복을 해소. page3 sentences[20]의 CONJ 세그먼트도 함께 조정.",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "answers.explanations[2].rationales[2]",
+      "issue": "해설이 본문에 없는 표현(\"통계 한 쪽\")을 덧붙여 선택지·본문과 어긋난다.",
+      "evidence": "본문/선택지: \"A story about one crying child can move a crowd more than statistics.\" 해설: \"우는 아이 하나의 이야기가 통계 한 쪽보다 군중을 움직일 수 있다는 내용은 본문과 일치한다.\" 본문에는 'a page of statistics' 같은 표현이 없다.",
+      "suggestion": "\"통계 한 쪽보다\" → \"통계보다\"로 수정 (동일 파일 translation_ko [11]과 일치시킬 것).",
       "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko 문장 [1] (04.json:348)",
+      "issue": "사역/희망 구문의 행위 주체가 미세하게 바뀜. 영문은 'wants her school to start a recycling club'로 '학교(기관)가 동아리를 개설하기를 원한다'는 뜻이나, 번역은 '자신의 학교에 재활용 동아리를 만들고 싶어 하는'으로 학생 본인이 만드는 것처럼 읽힌다.",
+      "evidence": "영문: \"Imagine a student who wants her school to start a recycling club.\" / 번역: \"[1] 자신의 학교에 재활용 동아리를 만들고 싶어 하는 한 학생을 상상해 보라.\"",
+      "suggestion": "'자신의 학교가 재활용 동아리를 만들어 주기를 바라는 한 학생을 상상해 보라.'처럼 want+O+to부정사의 목적어 주체를 살려 번역하면 교장에게 허락을 구하는 뒤 문맥([2][3])과도 더 잘 이어진다.",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page1.body / page2.questions[3] (요약문 빈칸 완성) hints",
+      "issue": "주관식 4번의 hints 배열이 정답 두 개(emotion, audience)를 그대로 노출하면서 오답 후보를 3개만 섞어 두어, 빈칸 (A)/(B)의 변별력이 크게 낮다. 특히 (A)는 요약문에 이미 'logic, character, and ___'가 제시되어 hints 중 emotion 외에는 문법·의미상 들어갈 수 없고, (B)도 'studies the ___ before the speech'에 audience 외 후보가 없어 본문 이해 없이 hints만 보고 소거법으로 풀린다.",
+      "evidence": "hints: [\"logic\", \"emotion\", \"audience\", \"evidence\", \"trust\"] / summary_template: \"Aristotle taught that speakers persuade through logic, character, and <blank> (A). A wise speaker also studies the <blank> (B) before the speech, deciding which appeal should lead.\" — logic는 이미 요약문에 쓰였고 evidence·trust는 (A)(B) 어느 자리에도 문맥상 부적합하다.",
+      "suggestion": "hints에 본문 어휘 중 실제 혼동 가능한 후보(예: pathos, listeners, credibility)를 넣거나, 조건을 '본문에서 찾아 쓸 것'으로 두고 hints 자체를 제거해 소거법 풀이를 막는 것이 좋다.",
+      "lens": "answer"
+    },
+    {
+      "severity": "minor",
+      "location": "answers.explanations[2].rationales[2] (q_index 2, 3번 선지 해설)",
+      "issue": "해설이 본문에 없는 '한 쪽(a page of)'이라는 분량 표현을 덧붙여 본문 근거를 부정확하게 인용한다. 본문은 통계의 분량을 전혀 언급하지 않으므로, 학생이 해설을 근거로 본문을 대조할 때 불일치가 생긴다.",
+      "evidence": "해설: \"우는 아이 하나의 이야기가 통계 한 쪽보다 군중을 움직일 수 있다는 내용은 본문과 일치한다.\" / 본문: \"a story about one crying child can move a crowd more than statistics\" (분량 언급 없음). 같은 파일의 translation_ko [11]도 \"통계보다 군중을 더 움직일 수 있다\"로 '한 쪽'이 없다. 저장소 전체에서 '통계 한 쪽'은 이 한 줄에만 등장한다.",
+      "suggestion": "'통계 한 쪽보다'를 '통계보다'로 수정해 본문 및 translation_ko와 일치시킨다.",
+      "lens": "answer"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[1] (word: \"appeal\") → synonyms[0]",
+      "issue": "동의어 \"plea\"는 '간청·탄원'의 뜻으로, 본문에서 쓰인 appeal(아리스토텔레스의 세 가지 수사적 호소=설득 전략)의 문맥적 의미와 일치하지 않는다. meaning_ko에 '설득 전략'까지 명시해 놓고 동의어는 그 뜻을 반영하지 않아 학습자가 혼동할 수 있다.",
+      "evidence": "본문: \"he found that strong speakers rely on three basic appeals.\" / \"The first appeal is logic, which Aristotle called logos.\" / page4.vocab: { \"word\": \"appeal\", \"meaning_ko\": \"호소, 설득 전략\", \"synonyms\": [\"plea\"] }",
+      "suggestion": "문맥 의미에 맞는 \"persuasive strategy\" 또는 \"rhetorical appeal\"을 병기하거나, \"plea\" 대신 \"call\"/\"approach\" 계열로 조정.",
+      "lens": "vocab"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[11] (word: \"audience\") → meaning_ko",
+      "issue": "meaning_ko \"청중, 관중\"에서 '관중'은 스포츠·경기 관람객(spectators)에 가까운 뜻으로, 본문의 연설 청자(listeners) 문맥과 어긋난다. 같은 항목의 동의어가 \"listeners\"인 점과도 일관되지 않는다.",
+      "evidence": "본문: \"a wise speaker also studies the <u>audience</u> before the speech begins\", \"listeners trust a speaker who seems honest\" / page4.vocab: { \"word\": \"audience\", \"meaning_ko\": \"청중, 관중\", \"synonyms\": [\"listeners\"] }",
+      "suggestion": "\"청중, 청자\" 또는 \"청중(듣는 사람들)\"로 수정.",
+      "lens": "vocab"
     }
   ],
   "blockers": [],
   "counts": {
-    "raw": 2,
-    "verified": 1,
-    "confirmed": 1,
-    "minor": 1
+    "raw": 13,
+    "verified": 6,
+    "confirmed": 5,
+    "minor": 7
   }
 }

@@ -1,0 +1,107 @@
+{
+  "grade": "sun-g3",
+  "seq": 5,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page3.sentences[7] (index 8), segments[4] — \"whatever one body loses in a collision,\"",
+      "issue": "구문 역할 오태깅: whatever가 이끄는 명사절을 부사적 수식어(M)로 태깅했으나, 실제로는 뒤에 오는 must gain의 목적어(O)가 앞으로 도치된 것이다. 같은 segment의 note가 이미 '복합관계대명사 whatever'라고 명시하는데, 복합관계대명사절은 명사절이므로 M 태그는 자기 note와 모순된다. 이 태깅대로 읽으면 'another must gain'이 목적어 없는 불완전한 3형식 절로 보인다.",
+      "evidence": "본문: \"No outside push disturbs it, so whatever one body loses in a collision, another must gain.\" / 같은 파일 translation_ko [8]: \"어떤 외부의 힘도 그것을 교란하지 않으므로, 한 물체가 충돌에서 잃는 것은 무엇이든 다른 물체가 얻어야 한다.\" — 번역에서 whatever절이 '얻다(gain)'의 목적어임이 확인된다. 해당 태깅은 { \"role\": \"M\", \"text\": \"whatever one body loses in a collision,\", \"note\": \"복합관계대명사 whatever\" }.",
+      "suggestion": "role을 \"M\" → \"O\"로 수정하고, note를 \"복합관계대명사 whatever절(= must gain의 목적어, 도치)\" 정도로 보강한다. grammar_note도 \"so 결과절 + whatever 명사절(목적어 도치)\"로 다듬으면 학생이 문장 구조를 정확히 파악할 수 있다.",
+      "lens": "explanation",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "파일에서 확인됨. page3.sentences[7] (index 8) segments[4]는 { \"role\": \"M\", \"text\": \"whatever one body loses in a collision,\", \"note\": \"복합관계대명사 whatever\" }로 태깅되어 있다. 세 가지 근거가 일치한다. (1) 자기 note와 모순: 복합관계대명사 whatever가 이끄는 절은 명사절이므로 문장 성분은 S/O/C여야 하며 부사적 수식어 M이 될 수 없다. 같은 파일 index 4는 \"pointing wherever the motion points.\"를 M으로 태깅하며 note를 \"복합관계부사\"라고 적어, 이 파일 자체가 복합관계부사(부사절→M)와 복합관계대명사(명사절)를 구분하는 관례를 갖고 있음을 보여준다. index 8은 대명사라고 적어 놓고 M을 붙여 관례에 어긋난다. (2) 구조적 결함: M 태깅을 따르면 so 결과절이 S(\"another\") + V(\"must gain.\")만 남아, 타동사 gain이 목적어 없는 불완전한 절이 된다. gain의 목적어는 문장 내 다른 어디에도 없다. (3) 번역 확인: translation_ko [8] \"한 물체가 충돌에서 잃는 것은 무엇이든 다른 물체가 얻어야 한다\"에서 '잃는 것은 무엇이든'이 '얻다'의 대상(목적어)인 명사 성분임이 명확하다. 양보 부사절('무엇을 잃든 상관없이') 해석은 gain을 목적어 없이 남겨 의미가 성립하지 않으므로 배제된다. 따라서 해당 절은 must gain의 목적어가 전치된 것이며 O로 태깅되어야 한다. grammar_note \"so 결과절 + whatever 복합관계대명사\"도 대명사임을 재확인해 M 태그와 충돌한다. 위치 기반으로 전치 성분을 일괄 M 처리하는 관례일 가능성도 검토했으나, index 1(지각동사 O), index 16(REL) 등에서 이 파일은 위치가 아닌 기능에 따라 태깅하므로 그런 예외 규칙은 근거가 없다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.sentences[9] (index 10).grammar_note — \"not only A but also B (how 명사절)\"",
+      "issue": "본문에 존재하지 않는 구조를 grammar_note가 단정한다. 해당 문장은 세미콜론으로 두 절을 잇고 두 번째 절에서 also를 쓴 형태(not only ... ; ... also)이며 상관접속사 but(also)이 문장에 없다. 'not only A but also B'라고 표기하면 학생이 본문에서 but also를 찾으려다 혼란을 겪고, 상관접속사 병렬 구조를 오해하게 된다.",
+      "evidence": "본문 문장 10: \"But a collision is not only about the final tally; it is also about how the change is delivered.\" — but also가 등장하지 않는다. 대조적으로 같은 월 세트의 14.json 문장 18은 실제로 but이 있는 경우여서 \"ask + not only A but B (의문 명사절)\"로 정확히 기술되어 있다.",
+      "suggestion": "grammar_note를 \"not only A ; also B (but 생략된 상관 구조) + how 명사절\" 또는 \"세미콜론 대조 + not only/also 상관 + how 명사절\"처럼 본문 실제 형태에 맞게 수정한다.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "지적이 파일로 확인되는 실제 결함이다. 05.json line 254의 grammar_note는 \"not only A but also B (how 명사절)\"이고, line 248 세그먼트 note도 \"not only ~ but also\"인데, 해당 본문 문장(page3.sentences[9], index 10)은 \"But a collision is not only about the final tally; it is also about how the change is delivered.\"로 but(also)이 존재하지 않는다. 문두 But은 앞 문장과의 역접 접속사일 뿐 상관접속사의 B항을 잇는 but이 아니다.\n\n구조적으로도 오기술이다. 이 문장은 세미콜론으로 두 개의 독립절(is ... ; it is ...)을 이은 형태이며, 실제 segments 배열도 C / S / V / M / C로 두 절을 분리해 놓았다. 반면 not only A but also B는 한 절 안에서 구성 요소를 병렬하는 상관접속사 구문이므로, 세그먼트 분할 자체가 note와 모순된다. 또 같은 파일의 다른 문장들은 CONJ 역할에 본문의 실제 접속사(and, so, yet, or, But)를 그대로 넣는 규칙을 지키는데, 문장 10에는 but에 해당하는 CONJ 세그먼트가 없다.\n\n동일 월 세트의 14.json 문장 18(\"...ask not only what such tools can do but what they should do.\")은 본문에 but은 있고 also는 없기 때문에 note를 \"ask + not only A but B\"로 적어 토큰 수준의 본문-주석 일치 원칙을 지키고 있다. 즉 저자 스스로 이 구분을 관리하고 있으므로, 05.json이 없는 but also를 넣은 것은 기준 위반이다.\n\n학습자 영향도 구체적이다. 학생이 note를 보고 본문에서 but also를 찾다가 also만 발견해 B항 위치를 오인하거나 텍스트 누락으로 오해할 수 있다. 다만 의미 관계(not only X, also Y)와 how 명사절 부분은 정확하므로 error가 아닌 warn 수준이 타당하다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.translation_ko 문장 [18] (05.json:350) / page3.sentences index 18 (05.json:345)",
+      "issue": "page1 본문의 빈칸(<blank>)이 번역문에서는 정답인 balance로 채워져 '완고한 균형'으로 옮겨져 있다. page2 두 번째 문항(빈칸 추론, answer_index 4 = \"balance\")의 정답이 번역문에서 그대로 노출된다. 또한 엄밀한 대조 기준으로는 원문에 없는 단어를 추가한 것이므로 원문-번역 불일치이기도 하다.",
+      "evidence": "page1.body: \"So the study of collisions is, at heart, the study of a stubborn <blank>.\" / translation_ko [18]: \"그래서 충돌에 대한 연구는 본질적으로 완고한 균형에 대한 연구다.\" / page2 choices: [\"silence\",\"shortcut\",\"accident\",\"surprise\",\"balance\"], answer_index: 4",
+      "suggestion": "page3가 학생 노출면이면 [18]을 \"그래서 충돌에 대한 연구는 본질적으로 완고한 ____에 대한 연구다.\"처럼 빈칸을 유지하도록 수정한다. page3가 해설(정답)면이라는 편집 방침이면 page3.sentences의 balance 복원과 동일하므로 현행 유지 가능 — 두 경우 중 어느 쪽인지 편집 규격에 맞춰 통일할 것.",
+      "lens": "translation",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "파일로 지적 내용이 정확히 확인됨. (1) 05.json:26 page1.body 마지막 문장은 \"the study of a stubborn <blank>.\"로 빈칸 상태. (2) 05.json:54-61 page2 두 번째 문항(빈칸 추론) choices는 [\"silence\",\"shortcut\",\"accident\",\"surprise\",\"balance\"]이며 answer_index:4 → 정답 \"balance\". (3) 05.json:350 page3.translation_ko 문장 [18]은 \"그래서 충돌에 대한 연구는 본질적으로 완고한 균형에 대한 연구다.\"로 정답 balance를 '균형'으로 그대로 노출. (4) 더 나아가 05.json:345 page3.sentences index 18의 C 세그먼트 원문 자체가 \"the study of a stubborn balance.\"로 영어 정답까지 노출되어 있어, 지적보다 결함 범위가 오히려 넓음. page3는 정답 해설부(answers.explanations, 352-420행)가 아니라 문장구조 분석+전문 번역 학습 자료 영역이므로 노출이 정당화되지 않음. 또한 원문 <blank>에 대응어가 없는데 번역에 '균형'을 추가한 것이므로 원문-번역 불일치이기도 함. (참고: 05.json:552 page4 vocab \"stubborn\" 예문에도 동일 문장이 완성형으로 등장하여 동일 누출이 반복됨.)"
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page4.vocab[1] (velocity) — synonyms",
+      "issue": "velocity의 동의어로 \"speed\"를 제시했는데, 이는 본문이 명시적으로 가르치는 벡터/스칼라 구분과 정면으로 충돌한다. 이 지문은 운동량이 방향을 갖는 이유를 velocity가 방향을 갖기 때문이라고 설명하는 것이 핵심 논리이므로, speed(방향 없는 크기)를 동의어로 등재하면 학생이 이 논리를 무너뜨려 이해한다.",
+      "evidence": "본문 4번 문장: \"Because velocity has a direction, momentum does too, pointing wherever the motion points.\" 또한 같은 vocab 항목 자신이 meaning_ko를 \"속도 (방향을 가진)\"로 달아 방향성을 명시하고 있으며, examples[0]도 \"Velocity has a direction as well as a size.\"로 speed와의 차이를 강조한다. 동일 파일 내에서 meaning_ko·example과 synonyms가 서로 모순된다.",
+      "suggestion": "synonyms에서 \"speed\"를 삭제하거나 최소한 구분 주석을 단다. 물리 문맥에서는 speed=속력(스칼라), velocity=속도(벡터)이므로 동의어가 아니다. 굳이 채우려면 빈 배열로 두는 편이 안전하다.",
+      "lens": "vocab",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "지적이 파일 근거로 명확히 확인된다. page4.vocab[1] (line 436-444)은 velocity 항목이며 line 439에 정확히 \"synonyms\": [\"speed\"]가 존재한다. 동일 항목 내부에서 정면 모순이 발생한다: (1) meaning_ko가 \"속도 (방향을 가진)\" (line 438)로 방향성을 괄호까지 써서 정의적 속성으로 명시하고, (2) examples[0]가 \"Velocity has a direction as well as a size.\" / \"속도는 크기뿐 아니라 방향도 가진다.\" (line 442)로 speed와의 차이를 가르치는 목적의 예문인데, synonyms는 방향이 없다는 점이 정의적 속성인 speed를 등재한다.\n\n본문 의존도도 지적대로 load-bearing이다. page1 body 및 page3 sentence 4 (line 172-179)의 \"Because velocity has a direction, momentum does too, pointing wherever the motion points.\"가 운동량이 벡터인 이유를 설명하는 핵심 논리 사슬이고, textbook_tieback.body_ko (line 93)도 \"속도가 방향을 가지므로 운동량도 방향을 가지는 벡터량이다\"로 재차 강조한다.\n\n결정적으로 이 구분은 채점 대상이다. page2 question 0의 오답 선택지 3 \"The direction in which an object moves has no effect at all on its momentum.\"에 대한 rationale (line 363)이 \"4번에서 속도의 방향 때문에 운동량도 방향을 가진다고 했으므로 '방향이 영향 없다'는 모순이다\"라고 명시한다. velocity=speed로 학습한 학생은 정확히 이 오답으로 유도된다.\n\n반박 시도도 성립하지 않는다. \"vocab 동의어는 원래 근사값\"이라는 변호는, 이 파일 자신의 내부 관례가 반증한다 — 정밀한 물리 용어인 momentum(line 428)과 impulse(line 472)는 모두 \"synonyms\": []로 비워 두었고, 다른 항목들(conservation→preservation, rigid→stiff, stubborn→obstinate)은 진짜 대체 가능한 어휘만 넣었다. velocity만 이 관례를 이탈해 근사어를 넣었다. examples[1]의 \"high velocity\"(line 443) 느슨한 용법은 용례일 뿐 정의적 동의어 등재를 정당화하지 못한다.\n\n수정 방향: synonyms를 []로 비우거나(momentum/impulse와 동일 관례), 최소한 speed를 antonyms 성격의 대조어로 옮기거나 \"speed(크기만)\"처럼 구분 주석을 달아야 한다."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page1.body, 3rd paragraph (also mirrored in page3.sentences[13] and translation_ko [14])",
+      "issue": "'thinner' is used as a flat adverb modifying the verb 'spreads'; standard expository prose would use 'more thinly'.",
+      "evidence": "\"By lengthening the crash, the crumpling spreads the same impulse thinner, so <u>the force on the passengers is softened</u>.\"",
+      "suggestion": "Consider 'spreads the same impulse more thinly'. Note this wording is duplicated in page3.sentences[13] segment {\"role\":\"M\",\"text\":\"thinner,\"} and in translation_ko sentence [14] ('더 얇게 퍼뜨려서'), so a change must propagate to both to keep body/analysis/translation in sync.",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "page1.body, 3rd paragraph",
+      "issue": "'a longer while' is an unusual collocation for expository prose; 'while' as a countable noun modified by a comparative reads awkwardly.",
+      "evidence": "\"The same change in momentum can arrive as a huge force over a brief instant or a gentle force spread across a longer while.\"",
+      "suggestion": "Consider 'across a longer stretch' or 'over a longer period'. Note 'stretch' already appears in the preceding sentence ('a force must act on it for some stretch of time'), so 'period' may avoid repetition.",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "page1.body — <u>conservation of momentum</u>",
+      "issue": "본문에 밑줄이 두 군데 있으나 그중 'conservation of momentum'은 어떤 문제에서도 사용되지 않는 고아 밑줄이다. 학생이 존재하지 않는 밑줄 문항을 찾게 만든다.",
+      "evidence": "본문 <u> 태그 목록: ['conservation of momentum', 'the force on the passengers is softened']. 이 중 questions[2] stem이 인용하는 것은 'the force on the passengers is softened' 하나뿐이며, 'conservation of momentum'을 인용하는 문항은 page2.questions 전체에 없다.",
+      "suggestion": "해당 <u> 태그를 제거하거나, 이 밑줄을 사용하는 문항(예: 지칭/의미 추론)을 추가할 것.",
+      "lens": "answer"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[1] (velocity) — examples[1]",
+      "issue": "두 번째 예문이 velocity를 방향성 없는 일상적 \"빠르기(speed)\" 의미로 사용하여, 이 단어를 벡터량으로 가르치려는 항목의 취지를 약화시킨다. 예문은 단어 뜻을 잘 보여줘야 하는데 오히려 혼동을 강화한다.",
+      "evidence": "examples[1]: \"The car reached a high velocity on the track.\" / \"그 차는 트랙에서 빠른 속도에 이르렀다.\" — 여기서 velocity는 방향 정보 없이 크기만 나타내므로 meaning_ko \"속도 (방향을 가진)\"와 어긋난다. 본문 4번 \"Because velocity has a direction\"이 강조하는 용법과도 다르다.",
+      "suggestion": "방향이 드러나는 예문으로 교체한다. 예: \"The cart had a velocity of 3 m/s to the right.\" / \"그 수레는 오른쪽으로 초속 3미터의 속도를 가졌다.\"",
+      "lens": "vocab"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[10] (erase) — antonyms",
+      "issue": "erase의 반의어로 \"keep\"을 제시했으나 의미 대응이 부정확하다. erase(지우다/없애다)의 자연스러운 반의어는 preserve/restore/retain 계열이며, \"keep\"은 alter 항목에도 동일하게 재사용되어 두 항목이 같은 일반어로 뭉뚱그려졌다.",
+      "evidence": "page4.vocab[10] antonyms: [\"keep\"] 이며, page4.vocab[8] (alter)의 antonyms도 동일하게 [\"keep\"]이다. 본문 16번 \"None of them can erase the momentum a moving body carries.\"의 문맥은 '지워 없애다'로, 대립 개념은 '보존하다(preserve)'에 가깝다.",
+      "suggestion": "erase의 antonyms를 [\"preserve\"] 또는 [\"restore\"]로 바꿔 alter의 [\"keep\"]과 구분한다.",
+      "lens": "vocab"
+    }
+  ],
+  "blockers": [],
+  "counts": {
+    "raw": 11,
+    "verified": 6,
+    "confirmed": 4,
+    "minor": 5
+  }
+}

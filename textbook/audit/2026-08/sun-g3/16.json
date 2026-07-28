@@ -1,0 +1,115 @@
+{
+  "grade": "sun-g3",
+  "seq": 16,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page1.body 3단락 마지막 문장 (page3 sentences[14], translation_ko [14], page4.vocab 'ripple'/'interfere' 예문)",
+      "issue": "\"like light on water\"라는 직유가 과학적으로 부정확하고 의미가 어긋난다. 물 위의 '빛'은 물결치거나 간섭하지 않는다 — 물결치는 것은 물이다. 앞 단락에서 저자가 이미 쓴 이미지는 \"ripples on a pond\"(연못 위 잔물결)이므로, 전자가 파동처럼 퍼지고 간섭한다는 취지라면 비교 대상은 '물 위의 잔물결' 또는 '빛(파동) 자체'여야 한다. 현재 표현은 '수면에 반사된 빛'으로 읽혀 파동 간섭이라는 요지를 흐린다. 한국어 번역 '물 위의 빛처럼'도 같은 혼동을 그대로 옮겼고, vocab 예문 2곳에도 복제되어 있다.",
+      "evidence": "본문: \"An electron, once imagined as a hard tiny ball, could ripple and interfere like light on water.\" / 번역: \"[14] 한때 단단하고 작은 공으로 여겨졌던 전자가 물 위의 빛처럼 물결치고 간섭할 수 있었다.\" / vocab: \"An electron could ripple and interfere like light.\", \"An electron could ripple like light on water.\"",
+      "suggestion": "\"like ripples on water\" 또는 \"like waves on water\"로 수정하고(1단락 \"ripples on a pond\"와도 호응), 번역을 '물 위의 잔물결처럼'으로 함께 고친다. vocab 'ripple'/'interfere' 예문도 동일하게 정정.",
+      "lens": "language",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "지적이 파일 근거로 확인됨. page1.body 3단락 마지막 문장은 확실히 \"An electron, once imagined as a hard tiny ball, could ripple and interfere like light on water.\"이며, page3 sentences[14] 세그먼트(\"could ripple and interfere\" + \"like light on water.\"), translation_ko [14](\"물 위의 빛처럼 물결치고 간섭할 수 있었다\"), page4 vocab 'ripple' 예문(\"An electron could ripple like light on water.\" / \"전자는 물 위의 빛처럼 물결칠 수 있었다.\")에 그대로 복제되어 있음.\n\n결함이 실재하는 이유: 직유의 비교 대상(vehicle)이 문장의 동사 두 개를 모두 수행할 수 없음. 'light on water'는 영어 관용상 '수면에 반사된 빛/윤슬'로 읽히는데, 반사광은 스스로 ripple하지 않고(물결치는 것은 물이고 반사광은 그것을 따라 보일 뿐), interfere는 더더욱 성립하지 않음. 그런데 ripple/interfere는 이 단락이 확립하려는 핵심 파동 거동이며(sentence 13 \"electrons spreading and overlapping exactly as waves do\"), 'interfere'는 vocab에 '간섭하다'로 등재되고 예문이 \"Two water waves interfere where they meet.\"인 물리 용어라 요지 자체가 흐려짐.\n\n반박 가능성 검토: 'light on water'를 '물 위를 지나는 빛(파동)'으로 선해할 여지는 있으나 무리한 독해이고, 1단락이 이미 \"spreads out like ripples on a pond\"를 썼으므로 'ripples on water' 또는 '빛(파동) 자체'가 정확하면서 첫 이미지와 수미상관을 이루는 자연스러운 선택이었음. 결정적으로 같은 파일 내 vocab 'interfere' 예문은 \"An electron could ripple and interfere like light.\"로 'on water'가 빠져 있고 한국어도 \"전자는 빛처럼\"이라 물이 없음 — 동일 문장의 파생본들이 서로 불일치하며, 물이 빠진 쪽이 물리적으로 정합적임. 이는 해당 표현이 의도된 선택이 아니라 실수임을 파일 스스로 방증함.\n\n경미한 정정: 지적은 vocab 예문 '2곳'에 복제되었다고 했으나 실제로 'on water'가 붙은 것은 'ripple' 예문 1곳뿐이며 'interfere' 예문에는 없음(지적자가 인용한 근거 문자열 자체에도 그 차이가 드러남). 위치 집계상 사소한 과대 계상이나 결함 성립 여부에는 영향 없고, 심각도 warn 등급도 적정함."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.sentences[index=2].segments[3] (line 148)",
+      "issue": "refuse의 목적어인 to부정사구를 M(수식어)으로 오태깅했다. refuse는 to부정사를 목적어로 취하는 타동사이므로 \"to fit that picture.\"는 O여야 한다.",
+      "evidence": "본문: \"Yet one stubborn experiment refused to fit that picture.\" / 파일: { \"role\": \"M\", \"text\": \"to fit that picture.\", \"note\": \"refuse to V\" } — grammar_note 자체가 \"refuse to V\"라고 동사 보충 패턴임을 밝히면서도 역할 태그는 M으로 모순된다. 같은 파일 11번 문장은 asked의 목적어 \"whether a particle could behave like a wave.\"를 O로 올바르게 태깅해 내부 일관성도 깨진다.",
+      "suggestion": "role을 \"M\"에서 \"O\"로 수정하고 note를 \"refuse + to부정사(목적어)\"로 명확히 한다.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "지적이 실제 결함으로 확인됨. 파일 근거:\n\n(1) 인용 정확성: textbook/content/passages/2026-08-Sun/16.json:148 = { \"role\": \"M\", \"text\": \"to fit that picture.\", \"note\": \"refuse to V\" }, 그리고 line 150의 \"grammar_note\": \"refuse to V\". 지적된 본문·역할·note가 모두 일치하며, note가 동사 보충 패턴을 명시하면서 role은 M인 자기모순이 실재함.\n\n(2) 스키마 위반(모호하지 않음): textbook/templates/AUTHORING-GUIDE.md:210-212에서 O=목적어, M=수식어(부사·전치사구·시간·장소)로 명시 정의됨. refuse의 to부정사 보충어는 부사·전치사구·시간·장소 어디에도 해당하지 않아 M의 정의 범주를 전부 벗어남. 삭제 시 비문(*one experiment refused)이 되어 표준 목적어 판별 테스트를 통과함.\n\n(3) 프로젝트 자체 선례가 동일 사안으로 이미 확정됨(결정적): textbook/audit/2026-07/jupiter-g2/05.json에서 동일 동사 refuse to V의 오태깅(당시 C)이 severity=blocker, verdict isReal=true, confidence=high로 판정됨. 해당 수정은 실제 반영되어 textbook/content/passages/2026-07-J/05.json:159가 현재 { \"role\": \"O\", \"text\": \"to blend,\", \"note\": \"refuse to V(부정사 목적어)\" }로 되어 있음. 즉 이 구문의 교정형이 이미 저장소에 존재함.\n\n(4) 내부 일관성 붕괴 확인: 같은 파일 sentence 11(line 251)은 asked의 목적어 \"whether a particle could behave like a wave.\"를 O로, sentence 12(line 260)는 proposed의 that절을 O로 태깅함. 형제 파일도 병렬 구문을 O로 처리: promise to V(2026-08-Sun/09.json:213), begin to V(2026-08-Sun/07.json:275).\n\n반박 가능성 검토 및 기각: \"동사 보충 to부정사를 M으로 두는 것이 하우스 컨벤션\"이라는 반론(learn to V 19.json:277, aim to V 18.json:309 근거)을 검토했으나 성립하지 않음. 해당 사례는 본 건 포함 전 코퍼스에서 3건에 불과하고, O로 태깅된 promise/begin 사례와 충돌하며, 명문 스키마에 반함. 무엇보다 유지보수자들이 refuse to V에 대해 이미 O로 판정·수정했으므로 이들은 컨벤션이 아니라 미수정 잔여 결함임.\n\n결론: role은 M이 아니라 O여야 함. 다만 본 지적은 warn으로 분류되었으나 프로젝트는 동일 사안을 blocker로 처리했으므로 심각도가 과소평가되었을 가능성이 있음(지적 자체의 타당성에는 영향 없음)."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.sentences[index=5].grammar_note (line 188)",
+      "issue": "종속접속사 while이 이끄는 부사절을 '등위(coordinate) 병렬'로 설명해 접속사 분류가 틀렸다.",
+      "evidence": "본문: \"In reality, dim blue light released electrons at once, while intense red light released none at all.\" / 파일 grammar_note: \"while 대조 등위(3형식 병렬)\". while은 종속접속사이며 \"while intense red light released none at all\"은 주절이 아니라 종속 부사절이다. 실제 등위접속사가 쓰인 15번(\"and\" 등위절)·18번(\"and\" 등위 동사)과 같은 '등위' 용어를 쓰면 학생이 while을 and류 등위접속사로 오해한다.",
+      "suggestion": "\"while 대조의 종속접속사(부사절) — 주절과 3형식 구조가 대조를 이룸\" 정도로 수정한다.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "지적이 타당하다. 파일 근거로 확인됨.\n\n1) 문법적 사실: 16.json line 188 `\"while 대조 등위(3형식 병렬)\"`. while은 종속접속사이며, 본문(line 26) \"In reality, dim blue light released electrons at once, while intense red light released none at all.\"에서 \"while intense red light released none at all\"은 종속 부사절이지 등위절이 아니다. line 345 국역도 \"~한 반면\"으로 종속 대조를 표현한다.\n\n2) 파일 내부 불일치: 같은 파일에서 등위(等位)는 실제 등위접속사에만 쓰인다 — index 15 line 298 \"each 동격 + and 등위절(neither)\", index 18 line 331 \"give up ~ and hold ~\", index 14 line 283 \"등위 동사\". 반면 종속접속사는 전부 부사절로 표기 — index 3 line 163 \"when 부사절\", index 11 line 253 \"if 부사절\", index 13 line 273 \"until 부사절\", index 8 line 218 \"no matter how 양보절\". index 5만 유일한 예외다.\n\n3) 코퍼스 전체 관례 위반(결정적): 다른 모든 지문에서 while은 예외 없이 부사절/대조절로 표기된다 — 2026-08-Sun/18.json:206 \"while 대조 부사절\"(같은 시리즈 인접 지문, line 204 세그먼트 note도 \"대조 while 부사절\"), 2026-08-Sun/15.json:156 \"while 대조절 + and 병렬\"(line 147 note \"대조 접속사\"), 2026-06-Sun/20.json:400 \"while 대조절\", 2026-06-J/03.json:350, 12.json:191, 18.json:537, 04.json:404 모두 \"while 대조\"이며 등위 표기는 없다. 특히 2026-06/05.json:333 \"등위접속사 and + while 대조 부사절\"은 저자 스스로 한 노트 안에서 등위접속사(and)와 while 부사절을 명시적으로 구분한다.\n\n4) 용어 체계상 등위는 and/but/yet/or/for/세미콜론에만 배정되어 있다(예: 2026-08-Sun/06.json:307 \"for(이유 등위접속사)\", 2026-08-Sun/19.json 다수 \"and 등위절\"). 따라서 while에 등위를 붙이면 학생이 while을 and류 등위접속사로 오인할 수 있다.\n\n반론 여지: \"병렬\"은 두 3형식 절의 구조적 대칭을 가리킬 수 있어 완전한 오류는 아니라는 해석이 가능하다. 그러나 \"등위\"는 이 코퍼스에서 명확히 접속사 분류 용어로 사용되므로, while에 적용한 것은 실제 분류 오류다. 심각도는 warn 수준이 적절하며, \"while 대조 부사절(3형식 병렬)\" 정도로 수정하면 코퍼스 관례와도 일치한다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.translation_ko 문장 [5] (\"어두운 파란빛\")",
+      "issue": "'dim blue light'의 dim을 '어두운'으로 옮겨, 세기(밝기)가 아니라 색조(짙은 파란색)로 오독될 소지가 있다. 이 지문은 '색 = 에너지 결정, 밝기 = 무관'이라는 대비가 논지의 핵심이므로, 밝기 축의 형용사를 색 축으로 읽히게 하는 번역은 요지 이해를 방해한다. '희미한/약한 파란빛'이 정확하다.",
+      "evidence": "본문: \"In reality, dim blue light released electrons at once, while intense red light released none at all.\" / 번역: \"[5] 실제로는 어두운 파란빛이 전자를 즉시 방출시킨 반면, 강렬한 붉은빛은 전자를 전혀 방출시키지 못했다.\" (대비쌍이 dim↔intense 즉 세기이며, 7번 문장 \"set only by the light's color, not its brightness\" / \"빛의 밝기가 아니라 오직 색으로만 정해지는\"이 이 구분에 의존한다)",
+      "suggestion": "\"실제로는 희미한 파란빛이 전자를 즉시 방출시킨 반면, 강렬한 붉은빛은 전자를 전혀 방출시키지 못했다.\"로 수정",
+      "lens": "translation",
+      "verdict": {
+        "reason": "파일로 확인됨. page3.translation_ko 문장 [5]은 \"실제로는 어두운 파란빛이 전자를 즉시 방출시킨 반면, 강렬한 붉은빛은...\"이고, 원문(page1.body 및 page3 sentence 5 segments)은 \"dim blue light ... while intense red light\"로 대비쌍이 dim↔intense, 즉 명백히 세기(밝기) 축이다. 이 지문의 논지는 문장 [7] \"빛의 밝기가 아니라 오직 색으로만 정해지는\"(set only by the light's color, not its brightness)이며, page2 정답 선지(index 2)와 answers 해설의 오답 근거(\"7번은 광자 에너지가 밝기가 아니라 색으로 정해진다고 했으므로 '밝기가 더 중요하다'는 정반대다\")까지 모두 밝기/색 축 구분에 의존한다. 즉 [5]는 '세기 약한 파란빛은 되고, 세기 강한 붉은빛은 안 된다 → 세기 무관, 색이 결정'이라는 교차 대비를 세우는 자리다. 한국어에서 \"어두운\"이 색 명사(파란빛/파란색)를 직접 수식하면 '짙은 남색/진한 파랑'이라는 색조 해석이 기본값으로 우세해, 이 교차 대비가 무너지고 '약한데도 작동한다'는 논증력이 소실된다. 결정적으로 파일 내부에 불일치가 존재한다: page4 vocab의 \"intense\"는 \"강렬한, 세기가 강한\"으로 세기 축, 반의어도 \"faint\"로 명시했는데, 같은 대비쌍의 짝인 dim만 색 축으로 읽히는 어휘로 옮겨 한 쌍의 두 항이 서로 다른 축에 놓였다. \"어둡다\"가 공간/조명을 수식할 때는 광량 의미가 살지만 색 명사 직접 수식에서는 그렇지 않으므로 반박 근거로 충분하지 않다. '희미한/약한 파란빛'으로 바꾸면 무비용으로 모호성이 제거된다. warn 등급의 타당한 지적이다.",
+        "isReal": true,
+        "confidence": "high"
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page1.body 1단락 4번째 문장 (page3 sentences[4], translation_ko [4])",
+      "issue": "고전 파동설의 예측을 부정확하게 압축했다. 파동설의 핵심 예측은 '밝기와 무관하게 어떤 빛이든 충분한 시간이 지나면 전자를 방출시킨다'(어두운 빛은 시간이 더 걸릴 뿐)이다. 그런데 본문은 주어를 'brighter light'로 한정해 놓고 다시 'given enough time'을 붙여, 밝은 빛인데 왜 시간이 필요한지가 논리적으로 어긋난다. 뒤 문장의 반증('dim blue light... at once')과의 대조도 흐려진다.",
+      "evidence": "\"Wave theory predicted that brighter light should always free electrons, given enough time.\"",
+      "suggestion": "\"Wave theory predicted that any light should eventually free electrons, and that brighter light should do so more easily.\" 정도로 다듬으면 뒤의 반증 사례와 대조가 선명해진다.",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "page1.body 2단락 3번째 문장 (page3 sentences[8])",
+      "issue": "주어의 수 불일치로 인한 어색함. 주절 주어는 단수 \"A red photon\"인데 양보절 \"no matter how many arrive\"는 복수 광자를 전제한다. 의미는 전달되지만 지시 대상이 단수에서 복수로 소리 없이 옮겨가 읽기에 걸린다.",
+      "evidence": "\"A red photon is simply too weak to eject an electron, no matter how many arrive.\"",
+      "suggestion": "\"Red photons are simply too weak to eject an electron, no matter how many arrive.\" 또는 \"...no matter how many of them arrive.\"로 지시를 명시.",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.sentences[index=10].segments[2],[4] (lines 238, 240 영역)",
+      "issue": "과거진행형 was acting을 V 두 개로 분리 태깅해 술어가 둘인 것처럼 보인다. 파일 내 다른 문장의 동사구 태깅 방식과 불일치한다.",
+      "evidence": "본문: \"Here light was clearly acting like a particle\" / 파일: { \"role\": \"V\", \"text\": \"was\" }, { \"role\": \"M\", \"text\": \"clearly\" }, { \"role\": \"V\", \"text\": \"acting\" }. 반면 3번은 \"can knock\", 14번은 \"could ripple and interfere\", 18번은 \"must give up\"을 각각 단일 V 세그먼트로 묶었다. grammar_note도 \"과거진행\"이라 하나의 동사구임을 전제한다.",
+      "suggestion": "\"was clearly acting\"을 하나의 V로 묶거나, 최소한 다른 문장과 동일하게 조동사+본동사를 단일 V 세그먼트로 처리하는 규칙을 통일한다.",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko 문장 [10] (\"행동하며 … 전달했다\")",
+      "issue": "한 문장 안에서 앞 절은 현재형 어미('행동하며'), 뒤 분사구문은 과거형('전달했다')으로 시제 어미가 엇갈린다. 원문은 was acting … delivering으로 단일 시제이며, 앞뒤 문장 [8][9][11]이 모두 현재형으로 처리되어 있어 [10]의 종결 어미만 과거인 것이 부자연스럽다.",
+      "evidence": "본문: \"Here light was clearly acting like a particle, delivering its energy in whole lumps rather than a gentle flow.\" / 번역: \"[10] 여기서 빛은 분명히 입자처럼 행동하며, 에너지를 부드러운 흐름이 아니라 통째의 덩어리로 전달했다.\"",
+      "suggestion": "\"여기서 빛은 분명히 입자처럼 행동하고 있었으며, 에너지를 부드러운 흐름이 아니라 통째의 덩어리로 전달하고 있었다.\" 등으로 시제를 통일",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page2.questions[0].choices[4] (요지, 5번 선지)",
+      "issue": "오답 선지가 변별력이 없다. 본문 문장 7의 정확한 역(逆)진술이라 즉시 제거되고, 내용상 세부사항 수준이라 '요지' 후보로 기능하지 못한다.",
+      "evidence": "선지: \"The color of light matters far less than its brightness for freeing electrons.\" / 본문 7번: \"Each photon carries a fixed amount of energy set only by the light's color, not its brightness.\" (해설 rationales도 \"7번은 … 밝기가 아니라 색으로 정해진다고 했으므로 '밝기가 더 중요하다'는 정반대다\"라고 인정)",
+      "suggestion": "요지 문항답게 전체 논지를 부분만 포착한 함정형으로 교체 권장(예: \"Einstein's photon idea alone settled the debate about the nature of light.\" — 광전 효과 단락만 반영하고 물질파·이중성을 누락한 부분 요약형).",
+      "lens": "answer"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[5] (word: \"intense\") — antonyms",
+      "issue": "antonyms를 `faint`로 잡았으나, 본문이 같은 문장에서 `intense`와 직접 대비시키는 낱말은 `dim`이다. 지문 근거형 반의어를 두는 편이 대비 학습에 더 효과적이다.",
+      "evidence": "본문: \"In reality, dim blue light released electrons at once, while intense red light released none at all.\" / 어휘 항목: \"antonyms\": [\"faint\"]",
+      "suggestion": "antonyms에 `dim`을 추가하거나 `faint`를 `dim`으로 교체할 것.",
+      "lens": "vocab"
+    }
+  ],
+  "blockers": [],
+  "counts": {
+    "raw": 14,
+    "verified": 8,
+    "confirmed": 4,
+    "minor": 6
+  }
+}

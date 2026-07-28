@@ -4,54 +4,109 @@
   "confirmed": [
     {
       "severity": "warn",
-      "location": "answers.explanations[q_index=0].evidence",
-      "issue": "해설 evidence가 인용하는 문장 번호가 본문의 실제 문장 번호(page3.sentences / translation_ko의 [1]~[19])와 전혀 일치하지 않는다. 세 방법의 위치를 '지층 누중(1~3번), 표준 화석(4~6번), 방사성 붕괴(7번), geologic time(8번)'으로 적었으나 실제 문장 배치는 지층 누중=1~6, 표준 화석=7~12, 방사성=13~17, 결론=18~19이다. 인용 번호가 모두 어긋나 학생이 번호를 따라가면 엉뚱한 문장에 도달한다.",
-      "evidence": "evidence: \"본문은 지층 누중(1~3번)으로 상대 순서를, 표준 화석(4~6번)으로 먼 지층의 대비를, 방사성 붕괴(7번)로 절대 연령을 얻어 ...(8번)라고 종합한다.\" 그러나 실제 sentences: index 7 = 'Relative order, however, is not the whole story', index 12 = 'These reliable markers are called index fossils', index 13 = 'Still, fossils alone cannot tell us...', index 18 = 'science has slowly assembled the vast calendar we call geologic time.'",
-      "suggestion": "정답 자체는 옳으나, 인용 번호를 실제 문장 인덱스(지층누중 1~6, 표준화석 7~12, 방사성 13~17, 결론 18~19)에 맞게 수정.",
+      "location": "answers.explanations[0].evidence (q_index 0, 요지)",
+      "issue": "근거의 문장 번호가 전부 page3.sentences 인덱스와 어긋난다. 인용문 \"science has assembled the vast calendar we call geologic time\"을 '8번'이라 했으나 실제로는 18번 문장이고, 지층 누중(1~3번)·표준 화석(4~6번)·방사성 붕괴(7번)라는 구간 표기도 실제 구성(누중 4~6, 표준 화석 9~12, 방사성 붕괴 14~16)과 모두 불일치한다. 학생이 해당 번호를 찾아가면 전혀 다른 문장이 나온다.",
+      "evidence": "해설: \"지층 누중(1~3번)으로 상대 순서를, 표준 화석(4~6번)으로 먼 지층의 대비를, 방사성 붕괴(7번)로 절대 연령을 얻어 \\\"science has assembled the vast calendar we call geologic time\\\"(8번)라고 종합한다.\" / 실제 page3.sentences: 8번 = \"Two distant cliffs may hold layers of the very same age, yet nothing on the surface says so.\", 18번 = \"Out of these three tools working together, science has slowly assembled the vast calendar we call geologic time.\"",
+      "suggestion": "'지층 누중(4~6번), 표준 화석(9~12번), 방사성 붕괴(14~16번) ... (18번)'으로 수정. 같은 폴더 08.json은 evidence의 'N번'이 page3.sentences 인덱스와 정확히 일치하므로 그 관례를 따를 것.",
       "lens": "explanation",
       "verdict": {
         "isReal": true,
         "confidence": "high",
-        "reason": "파일 확인 결과 지적이 정확하다. answers.explanations[q_index=0].evidence는 세 방법의 위치를 '지층 누중(1~3번), 표준 화석(4~6번), 방사성 붕괴(7번)'로, 그리고 인용 \"science has assembled the vast calendar we call geologic time\"을 (8번)으로 표기했다. 그러나 page3.sentences/translation_ko의 실제 배치는 지층 누중=[1]~[6], 표준 화석=[7]~[12], 방사성=[13]~[17], 결론(geologic time 문장)=[18]이다. 결정적으로 evidence가 인용한 geologic time 문장은 실제 index 18인데 (8번)으로 적혀 있으며, 실제 index 8은 'Two distant cliffs may hold layers of the very same age...'로 전혀 다른 문장이다. 인용 번호가 전부 어긋나 학생이 번호를 따라가면 엉뚱한 문장에 도달한다. q_index=3의 evidence도 the oldest=2번(실제 [4]), index fossils=6번(실제 [12])으로 동일한 번호 오류를 보여 체계적 결함임이 확인된다."
+        "reason": "파일 확인 결과 지적이 정확하다. answers.explanations[0].evidence(라인 326)는 \"지층 누중(1~3번)…표준 화석(4~6번)…방사성 붕괴(7번)…\\\"science has assembled the vast calendar we call geologic time\\\"(8번)\"이라 적혀 있으나, page3.sentences의 실제 index와 전부 어긋난다. 실제로 지층 누중은 index 4~6(index 5 = \"This idea is called the principle of superposition\"), 표준 화석은 index 9~12(index 12 = \"These reliable markers are called index fossils\"), 방사성 붕괴는 index 14~16(index 15 = \"Such atoms decay at a fixed, unchanging rate\"), 인용된 문장은 index 18(\"Out of these three tools working together, science has slowly assembled the vast calendar we call geologic time.\")이다. index 8은 \"Two distant cliffs may hold layers of the very same age, yet nothing on the surface says so.\"로 인용문과 무관하다. translation_ko의 [1]~[19] 번호도 sentences index와 정확히 일치하므로 이 번호를 정당화할 다른 번호 체계가 파일 내에 존재하지 않는다. 학습자가 번호를 따라가면 실제로 전혀 다른 문장에 도달하므로 실질적 결함이다. (참고로 동일 파일 q_index 3의 evidence도 \"2번\"·\"6번\"으로 같은 유형의 오번호를 가지고 있어 문제가 국소적 오타가 아님을 뒷받침한다.)"
       }
     },
     {
       "severity": "warn",
-      "location": "answers.explanations[q_index=3].evidence / rationales",
-      "issue": "요약문 완성 해설이 (A) 근거를 '2번', (B) 근거를 '6번'으로 인용하나, 실제 문장 번호는 (A) the oldest 근거가 [4], (B) index fossils 근거가 [12]이다. 정답(oldest/fossils)은 옳지만 근거 문장 번호가 틀렸다.",
-      "evidence": "evidence: \"(A)는 ... 2번 \\\"the deepest layers were laid down first, so they must be the oldest\\\". (B)는 ... 6번 \\\"These reliable markers are called index fossils\\\".\" 실제 sentences: index 4 = 'the deepest layers / were laid down / first ... / the oldest'; index 12 = 'These reliable markers / are called / index fossils'.",
-      "suggestion": "(A) 인용 2번→4번, (B) 인용 6번→12번으로 정정.",
+      "location": "answers.explanations[3].evidence (q_index 3, 요약문 빈칸 완성)",
+      "issue": "모범답안 (A)/(B)의 근거 문장 번호가 둘 다 틀렸다. (A) 근거로 인용한 문장은 4번, (B) 근거로 인용한 문장은 12번인데 각각 '2번', '6번'으로 표기했다.",
+      "evidence": "해설: \"(A)는 ... 2번 \\\"the deepest layers were laid down first, so they must be the oldest\\\". (B)는 ... 6번 \\\"These reliable markers are called index fossils\\\".\" / 실제 page3.sentences: 2번 = \"Layer after layer of sediment settled here, one sheet upon another, over hundreds of millions of years.\", 4번 = \"Unless the ground has been overturned, the deepest layers were laid down first, so they must be the oldest.\", 6번 = \"It lets scientists order events without knowing an exact year, simply by trusting the stack itself.\", 12번 = \"These reliable markers are called index fossils, and they let scientists knit scattered outcrops into one shared timeline.\"",
+      "suggestion": "'2번'→'4번', '6번'→'12번'으로 수정. rationales의 \"2번의 the oldest\", \"6번의 index fossils\"도 동일하게 4번·12번으로 고칠 것.",
       "lens": "explanation",
       "verdict": {
         "isReal": true,
         "confidence": "high",
-        "reason": "파일 확인 결과 지적이 정확하다. answers.explanations[q_index=3].evidence(라인 378)는 (A) 'the oldest' 근거를 \"2번\", (B) 'index fossils' 근거를 \"6번\"으로 인용한다. 그러나 page3.sentences 실제 index를 보면: (A) \"the deepest layers were laid down first, so they must be the oldest\"는 index 4(라인 132-143)이고 index 2(라인 112-118)는 \"Layer after layer of sediment settled...\"로 무관하다. (B) \"These reliable markers are called index fossils\"는 index 12(라인 221-232)이고 index 6(라인 156-164)은 \"It lets scientists order events...\"로 무관하다. translation_ko(라인 318)도 [4]=\"가장 오래되었음\", [12]=\"표준 화석이라 불리며\"로 일치한다. 정답(oldest/fossils)은 옳으나 근거 문장 번호가 4→2, 12→6으로 잘못 인용된 실제 결함이다."
+        "reason": "확인됨. answers.explanations[3].evidence(line 378)는 (A) 근거로 \"2번 \\\"the deepest layers were laid down first, so they must be the oldest\\\"\", (B) 근거로 \"6번 \\\"These reliable markers are called index fossils\\\"\"를 인용하는데, 인용된 영문 문장은 파일 자체의 정본 번호 체계에서 각각 4번과 12번이다. page3.sentences의 index 4(line 132-143)가 \"Unless the ground has been overturned, the deepest layers were laid down first, so they must be the oldest.\", index 12(line 221-232)가 \"These reliable markers are called index fossils, and they let scientists knit scattered outcrops into one shared timeline.\"이며, 실제 2번은 \"Layer after layer of sediment settled here...\", 6번은 \"It lets scientists order events without knowing an exact year...\"로 인용문과 무관하다. page3.translation_ko(line 318)의 [1]~[19] 대괄호 번호도 동일하게 [4]/[12]로 확인되어, 학생이 참조 가능한 유일한 문장 번호 체계 기준으로 두 인용 번호가 모두 틀렸다. rationales(line 380-381)도 \"2번의 the oldest\", \"6번의 index fossils\"로 같은 오류를 반복한다. 참고로 같은 파일 q_index 0의 evidence(line 326)가 \"1~3번/4~6번/7번/8번\"처럼 문단 단위의 다른 번호 체계를 쓰는 정황이 있으나, 그 체계로도 (A)=2, (B)=6은 성립하지 않으므로(문단1이 1~6문장, 문단2가 7~12문장) 지적을 반박할 근거가 되지 못한다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "answers.explanations[0].evidence (q_index 0, 요지)",
+      "issue": "해설의 근거 문장 번호가 page3.sentences의 index와 어긋난다. 인용된 문장 \"science has assembled the vast calendar we call geologic time\"은 8번이 아니라 18번 문장이며, 지층 누중은 1~3번이 아니라 3~6번, 표준 화석은 4~6번이 아니라 9~12번, 방사성 붕괴는 7번이 아니라 14~17번이다. 학생이 8번을 찾아가면 전혀 다른 문장이 나온다.",
+      "evidence": "해설: \"본문은 지층 누중(1~3번)으로 상대 순서를, 표준 화석(4~6번)으로 먼 지층의 대비를, 방사성 붕괴(7번)로 절대 연령을 얻어 \\\"science has assembled the vast calendar we call geologic time\\\"(8번)라고 종합한다.\" / page3 index 8: \"Two distant cliffs may hold layers of the very same age, yet nothing on the surface says so.\" / page3 index 18: \"Out of these three tools working together, science has slowly assembled the vast calendar we call geologic time.\"",
+      "suggestion": "문장 번호를 page3 index 기준으로 수정: 지층 누중(3~6번), 표준 화석(9~12번), 방사성 붕괴(14~17번), 종합 문장(18번). 또한 인용문도 본문 원문 \"has slowly assembled\"와 일치시킬 것.",
+      "lens": "answer",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "확인됨. answers.explanations[0].evidence(line 326)의 문장 번호가 page3.sentences의 index와 전면적으로 어긋난다. (1) 인용문 \"science has ... assembled the vast calendar we call geologic time\"은 page3 index 18(line 292-300)이며, index 8(line 176-188)은 \"Two distant cliffs may hold layers of the very same age, yet nothing on the surface says so.\"로 전혀 다른 문장이다. (2) 지층 누중은 index 3~6(rule 제시, unless...the oldest, principle of superposition, order events)이지 1~3이 아니다. index 1~2는 협곡 일기·퇴적물 도입부다. (3) 표준 화석은 index 9~12(To link them...fossils, Certain species, A rock that carries, are called index fossils)이지 4~6이 아니며, 4~6은 오히려 지층 누중 구간이다. (4) 방사성 붕괴는 index 14~17이지 7이 아니며, index 7은 \"Relative order, however, is not the whole story.\"다. 파일 내 canonical 번호 체계가 다를 가능성은 translation_ko(line 318)가 동일한 1~19 연속 번호를 쓰는 것으로 배제된다. 또한 동일 오류가 explanations[3](line 378: \"2번\"→실제 4번, \"6번\"→실제 12번)와 explanations[1](line 343: \"2번\"→실제 3번)에도 전파되어 있어 단발 오타가 아닌 체계적 결함이다. 학생이 8번을 참조하면 근거가 아닌 문장을 보게 되는 실제 학습 피해가 발생한다. 지적 중 유일한 사소한 부정확은 인용문이 실제로는 \"has slowly assembled\"라는 점이나, 이는 지적의 타당성을 훼손하지 않는다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "answers.explanations[3].evidence / rationales (q_index 3, 요약문 빈칸 완성)",
+      "issue": "모범답안 근거로 제시한 문장 번호가 실제 page3 index와 불일치한다. (A) oldest의 근거는 2번이 아니라 4번 문장, (B) fossils의 근거는 6번이 아니라 12번 문장이다. rationales에서도 동일한 오기가 반복된다.",
+      "evidence": "해설: \"(A)는 가장 깊은 층의 나이 → 2번 \\\"the deepest layers were laid down first, so they must be the oldest\\\". (B)는 먼 절벽을 잇는 지표 → 6번 \\\"These reliable markers are called index fossils\\\".\" / page3 index 2: \"Layer after layer of sediment settled here, one sheet upon another, over hundreds of millions of years.\" / page3 index 6: \"It lets scientists order events without knowing an exact year...\"",
+      "suggestion": "(A) 근거를 4번, (B) 근거를 12번으로 수정하고 rationales의 \"2번의 the oldest\", \"6번의 index fossils\"도 각각 4번·12번으로 정정.",
+      "lens": "answer",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일에서 직접 확인됨. answers.explanations[3] (q_index 3, 요약문 빈칸 완성)의 evidence(라인 378)는 (A)의 근거를 \"2번 \\\"the deepest layers were laid down first, so they must be the oldest\\\"\", (B)의 근거를 \"6번 \\\"These reliable markers are called index fossils\\\"\"로 제시한다. 그러나 page3.sentences의 실제 index는 다음과 같다: index 2(라인 111-120) = \"Layer after layer of sediment settled here, one sheet upon another, over hundreds of millions of years.\"로 oldest 언급 없음. 인용된 \"the deepest layers were laid down first, so they must be the oldest\"는 index 4(라인 131-144)의 segments와 축자적으로 일치한다. index 6(라인 154-165) = \"It lets scientists order events without knowing an exact year, simply by trusting the stack itself.\"로 index fossils 언급 없음. 인용된 \"These reliable markers are called index fossils\"는 index 12(라인 220-233)와 축자적으로 일치한다. 또한 rationales(라인 380-381)에서도 \"2번의 the oldest\", \"6번의 index fossils\"로 동일한 오기가 반복된다. 인용된 영문 문장 자체가 index 4/12와 verbatim 일치하므로 다른 번호 체계를 일관되게 적용한 경우로 방어할 수 없다. 참고로 같은 파일의 q_index 0(라인 326), q_index 1(라인 343) evidence도 느슨한 문단/절 단위 번호를 쓰는 광범위한 번호 불일치가 있으나, 이는 q_index 3의 오기를 정당화하지 못한다. 지적대로 (A)는 4번, (B)는 12번이 정확하다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page4.vocab[6] (word: \"decay\") — antonyms",
+      "issue": "`decay`의 반의어로 제시된 \"accumulate\"가 의미 축이 어긋난다. accumulate는 '축적되다/쌓이다'로, scatter/disperse(흩어지다)의 반대말이지 decay(붕괴하다)의 반대말이 아니다. 특히 본문에서 decay는 방사성 붕괴라는 물리적 의미로만 쓰이므로, 그 반대는 '안정 상태를 유지하다(remain stable / endure / persist)' 계열이어야 한다. 학생이 '붕괴하다 ↔ 축적되다'로 암기하면 오개념이 생긴다.",
+      "evidence": "본문: \"Such atoms decay at a fixed, unchanging rate that no heat or pressure can speed up.\" 및 \"each decaying atom\" — decay는 전적으로 방사성 붕괴 의미. 어휘 항목은 meaning_ko도 \"붕괴하다, 쇠퇴하다\"로 잡아 놓고 antonyms에는 [\"accumulate\"]를 넣었다. 같은 교재 내 다른 지문의 관례를 보면 의미 축을 맞춰 반의어를 고른다: 05.json settle→ant [\"fluctuate\"], 06.json collapse→ant [\"endure\",\"hold\"]. 또한 19.json의 scatter 항목이 ant=[\"gather\",\"concentrate\"]로 되어 있어, accumulate가 속한 축이 '모이다/흩어지다'임을 교재 스스로 확인해 준다. 참고로 같은 07.json의 assemble 항목도 ant=[\"scatter\"]로 이미 그 축을 쓰고 있다.",
+      "suggestion": "antonyms를 [\"accumulate\"] 대신 본문 문맥(안정성)에 맞는 [\"endure\"] 또는 [\"persist\"](물리 맥락 강조 시 \"remain stable\")로 교체할 것. 06.json collapse 항목의 ant=[\"endure\",\"hold\"] 처리와 일관된다.",
+      "lens": "vocab",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 근거로 지적이 모두 확인됨. 07.json page4.vocab[6](L459-467): word \"decay\", meaning_ko \"붕괴하다, 쇠퇴하다\", synonyms [\"disintegrate\"], antonyms [\"accumulate\"]. 본문에서 decay는 예외 없이 방사성 붕괴 의미로만 쓰인다(page1 L21 \"Such atoms decay at a fixed, unchanging rate that no heat or pressure can speed up\", page3 sentence 15, sentence 19 \"each decaying atom\"). 어휘 항목의 두 예문도 모두 원자 붕괴(\"Such atoms decay...\", \"Unstable atoms decay into lighter ones\")로, '썩다/쇠퇴하다' 용례는 지문 어디에도 없다.\n\n의미 축 불일치가 명확하다. accumulate(축적되다)는 disperse/scatter/deplete의 반대축이며, 붕괴(불안정→안정 전이)의 반대는 remain stable/endure/persist 계열이다. 항목 자신의 synonym이 disintegrate인 점도 축을 '해체 vs 존속'으로 못박는다.\n\n교재 자체 관례와도 어긋난다(모두 실파일 확인): 05.json L489-493 settle→ant [\"fluctuate\"], 06.json L498-502 collapse→ant [\"endure\",\"hold\"], 19.json L475-479 scatter→syn [\"disperse\",\"spread\"]/ant [\"gather\",\"concentrate\"], 그리고 같은 07.json의 assemble→ant [\"scatter\"](L503-507). 즉 교재는 accumulate가 속한 축을 '모이다↔흩어지다'로 스스로 규정해 두었고, '붕괴' 계열 표제어에는 endure/hold를 반의어로 쓴 선례가 있다.\n\n결정적 대조 근거: 2026-08/08.json L540-548의 또 다른 decay 항목은 meaning_ko \"썩다, 분해되다\", syn [\"rot\"]일 때 ant를 [\"grow\"]로 축을 맞춰 놓았다. 동일 표제어라도 의미에 맞춰 반의어를 고르는 것이 교재 원칙임을 확인해 주며, 07.json만 이 원칙에서 이탈했다.\n\n반박 가능성 검토: '감소↔증가'로 보면 accumulate가 완전한 오답은 아니라는 변호가 가능하나, 이는 decay를 \"감소하다\"로 재해석하는 것으로 명시된 meaning_ko(\"붕괴하다\")와도, 개별 원자의 상태 전이라는 본문 용법과도 맞지 않는다. 오히려 방사성 붕괴에서는 딸원소(stable product)가 축적되므로 accumulate는 붕괴의 반대가 아니라 동반 과정이며(본문 L21 \"the ratio between a parent atom and its stable product\"), '붕괴하다↔축적되다' 암기는 실제 오개념을 유발한다. 따라서 warn 등급의 실제 결함으로 인정한다."
       }
     }
   ],
   "minors": [
     {
       "severity": "minor",
-      "location": "page3.sentences[index=4].segments (\"first,\")",
-      "issue": "부사 'first,'(M)에 붙은 note가 '수동태'로 되어 있다. 'first'는 부사(시간 순서)일 뿐 수동태 요소가 아니다. 수동태는 앞 segment 'were laid down'에 해당한다. 역할 태깅(M)은 옳으나 note가 오기재.",
-      "evidence": "{ \"role\": \"M\", \"text\": \"first,\", \"note\": \"수동태\" } — 실제 수동태는 바로 앞 { \"role\": \"V\", \"text\": \"were laid down\" }이다.",
-      "suggestion": "'first,'의 note를 '순서 부사' 등으로 수정하고 '수동태' 표기 제거.",
+      "location": "page1.body, final paragraph (07.json line 21) — sentence 19 in page3.sentences",
+      "issue": "Misattached participial phrase. \"read as a whole\" grammatically modifies the subject \"they\" (= cliff, shell, atom), but what is actually \"read as a whole\" is the collection of lines they add, not the cliffs/shells/atoms themselves. The page3 grammar gloss labels it as a 분사구문 hanging on \"they,\" so the misattachment is carried into the analysis page.",
+      "evidence": "\"Each towering cliff, each buried shell, and each decaying atom adds a single line, and read as a whole they turn silent stone into a legible <blank>.\"",
+      "suggestion": "Anchor the participle to the lines: \"...adds a single line, and those lines, read as a whole, turn silent stone into a legible record.\" If reworded, update page3.sentences[19] segments and the [19] clause of translation_ko to match.",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.sentences[3].segments (index 4, \"first,\" 세그먼트의 note)",
+      "issue": "부사 first에 '수동태'라는 note가 붙어 있다. 수동태는 바로 앞 V 세그먼트 \"were laid down\"의 속성이지 부사 first의 속성이 아니다. note가 한 칸 밀려 붙은 형태로, 구문 역할 주석이 실제 문법 요소와 어긋난다.",
+      "evidence": "page3.sentences[3]: {\"role\":\"V\",\"text\":\"were laid down\"} (note 없음), 바로 뒤 {\"role\":\"M\",\"text\":\"first,\",\"note\":\"수동태\"}",
+      "suggestion": "'수동태' note를 V 세그먼트 \"were laid down\"으로 옮기고, \"first,\"의 note는 '순서 부사' 등으로 바꾸거나 삭제할 것.",
       "lens": "explanation"
     },
     {
       "severity": "minor",
-      "location": "answers.explanations[q_index=0].evidence 및 rationales; q_index=1, q_index=3 evidence",
-      "issue": "해설의 evidence/rationale가 인용하는 문장 번호가 실제 본문(page3.sentences 및 지문 순서)과 일치하지 않는다. 정답 자체는 옳지만 학생이 근거 문장을 대조할 때 혼동을 줄 수 있다.",
-      "evidence": "q0 evidence: '\"science has assembled the vast calendar we call geologic time\"(8번)'이라 하나 본문 원문은 'has slowly assembled'이며 해당 문장은 page3 기준 18번이다. q1 evidence: \"2번 'Geologists read this record', 1번 'a diary written in rock'\"이라 하나 'Geologists read this record'는 실제 3번 문장이다. q3 evidence: '2번 \"the deepest layers were laid down first, so they must be the oldest\"'는 실제 4번, '6번 \"These reliable markers are called index fossils\"'는 실제 12번이다.",
-      "suggestion": "해설의 문장 번호를 page3.sentences 인덱스(또는 지문 실제 순서)에 맞춰 정정하고, q0 인용은 'has slowly assembled'로 원문과 일치시킨다. 정답(answer_index/model_answer)은 모두 타당하므로 변경 불필요.",
+      "location": "answers.explanations[1].evidence (q_index 1, 빈칸 추론)",
+      "issue": "근거 문장 번호 오기. \"Geologists read this record\"는 2번이 아니라 3번 문장이다. (\"a diary written in rock\"의 1번은 정확함.)",
+      "evidence": "해설: \"빈칸 앞 \\\"turn silent stone into a legible ___\\\"과 2번 \\\"Geologists read this record\\\", 1번 \\\"a diary written in rock\\\" 이 단서다.\" / page3 index 3: \"Geologists / read / this record / with a simple rule.\"",
+      "suggestion": "\"2번\"을 \"3번\"으로 수정.",
+      "lens": "answer"
+    },
+    {
+      "severity": "minor",
+      "location": "page2.questions[1].stem (빈칸 추론)",
+      "issue": "stem이 \"밑줄 친 빈칸\"이라고 했으나 page1.body의 해당 지점은 <blank> 토큰일 뿐 <u> 밑줄 태그가 없다. 본문에서 실제 <u> 표시가 된 곳은 \"principle of superposition\"과 \"a built-in stopwatch\" 두 곳뿐이어서, 학생이 밑줄 친 부분을 찾으면 혼동할 수 있다.",
+      "evidence": "page1.body: \"...they turn silent stone into a legible <blank>.\" (밑줄 태그 없음) vs 본문 내 실제 밑줄: \"<u>principle of superposition</u>\", \"<u>a built-in stopwatch</u>\" / stem: \"윗글의 밑줄 친 빈칸에 들어갈 말로 가장 적절한 것은?\"",
+      "suggestion": "stem을 수능 표준 형태인 \"윗글의 빈칸에 들어갈 말로 가장 적절한 것은?\"으로 바꾸거나, 렌더링에서 빈칸에 밑줄이 적용되는지 확인할 것.",
       "lens": "answer"
     }
   ],
   "blockers": [],
   "counts": {
-    "raw": 5,
-    "verified": 3,
-    "confirmed": 2,
-    "minor": 2
+    "raw": 11,
+    "verified": 7,
+    "confirmed": 5,
+    "minor": 4
   }
 }

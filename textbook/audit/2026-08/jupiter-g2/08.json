@@ -3,68 +3,205 @@
   "seq": 8,
   "confirmed": [
     {
-      "severity": "warn",
-      "location": "page3.sentences[15] (index 16), segment \"not a fact\"",
-      "issue": "주격 보어를 M(수식어)로 오태깅. role은 \"M\"인데 note는 \"부정 보어\"라고 명시하여 태그와 주석이 서로 모순된다. is의 보어이므로 role은 C여야 한다.",
-      "evidence": "본문: \"Beauty, after all, is not a fact you can measure with a ruler\" — 대비 구조 \"it is a judgment\"에서는 동일한 보어를 role \"C\"(a judgment)로 정확히 태깅했으나, 앞의 \"not a fact\"는 role \"M\" / note \"부정 보어\"로 불일치.",
-      "suggestion": "\"not a fact\"의 role을 M에서 C로 수정(2형식 부정 보어). 후행 관계절 \"you can measure with a ruler\"는 M 유지.",
+      "severity": "blocker",
+      "location": "page3.sentences[19] (index 20), segments[0]",
+      "issue": "구문 역할 오태깅: 문장의 주어인 to부정사구가 M(수식어)으로 태깅되어 문장에 주어(S)가 없다. 같은 세그먼트의 note와 grammar_note는 스스로 '주어'라고 명시하고 있어 자기모순이다.",
+      "evidence": "segments: {\"role\":\"M\",\"text\":\"To read the humanities well, then,\",\"note\":\"to부정사 주어 + 삽입\"}, {\"role\":\"V\",\"text\":\"is\"}, {\"role\":\"C\",...}; grammar_note: \"to부정사 주어·보어 + treat A as B\". 본문: \"To read the humanities well, then, is to treat every strong page as an invitation to <blank>.\"",
+      "suggestion": "\"To read the humanities well\"를 role \"S\"로 바꾸고 \"then,\"만 삽입 M으로 분리한다.",
       "lens": "explanation",
       "verdict": {
         "isReal": true,
         "confidence": "high",
-        "reason": "파일 확인 결과 지적은 실제 결함이다. page3.sentences[15](index 16), 세그먼트 \"not a fact\"는 role \"M\"이지만 note가 \"부정 보어\"로 명시되어 태그와 주석이 서로 모순된다. 문장 \"Beauty, after all, is not a fact ...\"에서 \"not a fact\"는 계사 is의 주격 보어이므로 role은 C여야 한다. 결정적으로 동일 문장 뒷부분의 대비 구조 \"it is a judgment\"에서 구조적으로 동일한 보어 \"a judgment\"는 정확히 role \"C\"(line 591-592)로 태깅되어 있어 불일치가 명확하다. 나아가 index 10의 \"not decoration\"(부정 주격 보어) 역시 role \"C\" + note \"부정 보어\"(line 382-385)로 올바르게 처리되어 있어, 부정 보어를 C로 태깅하는 것이 이 파일의 일관된 관례임을 확인했다. 따라서 index 16의 \"M\"은 명백한 오태깅이다."
+        "reason": "파일 확인 결과 지적이 정확하다. C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-08-J/08.json 의 page3.sentences[19] (index 20) segments[0]은 role이 \"M\"이나, text는 \"To read the humanities well, then,\"으로 동사 \"is\"(segments[1], role V)의 문법적 주어다. 결과 역할 배열이 M-V-C가 되어 S가 없다. 자기모순도 확인됨: 해당 세그먼트 note가 \"to부정사 주어 + 삽입\", 문장 grammar_note가 \"to부정사 주어·보어 + treat A as B\"로 스스로 '주어'라 명시한다. 파일 내 S 누락 문장은 이 문장과 index 14뿐인데, 14는 \"Suppose | an essay claims...\"로 정당한 명령문이므로 파일 전체 규약 문제가 아니다. 프로젝트 규약도 반대다: 동일 패턴이 2026-07-J/08.json p3 s12 \"To accept an argument without testing it\" → S, 2026-08/10.json p3 s3 \"To read well\" → S, 2026-08-Sun/20.json p3 s20 \"To read a screen well\" → S로 태깅되어 있어 본 건이 4건 중 유일한 이탈이다. 삽입구 \"then,\" 때문에 M을 썼다는 변호는 성립하지 않는다(삽입은 주어 세그먼트 내부에 포함될 뿐 핵은 여전히 to부정사 주어이며, note가 '주어 + 삽입'으로 두 사실을 함께 기록하고 있다). 수정: segments[0].role을 \"M\" → \"S\"로 변경."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "page3.sentences[15] (index 16), segments[3]",
+      "issue": "구문 역할 오태깅: 2형식 be동사의 주격보어 \"not a fact\"가 M으로 태깅되어 첫 절(Beauty ... is not a fact ...)에 보어(C)가 존재하지 않는다. note는 '부정 보어'라고 적혀 있어 role 값과 모순된다.",
+      "evidence": "segments: {\"role\":\"S\",\"text\":\"Beauty,\"}, {\"role\":\"M\",\"text\":\"after all,\"}, {\"role\":\"V\",\"text\":\"is\"}, {\"role\":\"M\",\"text\":\"not a fact\",\"note\":\"부정 보어\"} — 뒤 절은 동일 구조에서 {\"role\":\"C\",\"text\":\"a judgment\"}로 올바르게 태깅되어 있어 일관성도 깨진다.",
+      "suggestion": "\"not a fact\"의 role을 \"C\"로 수정한다(부정어 not은 M으로 분리하거나 보어에 포함).",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 직접 확인 결과 지적이 정확함. page3.sentences[15] (index 16) segments[3]은 {\"role\":\"M\",\"text\":\"not a fact\",\"note\":\"부정 보어\"}로, note가 '보어'라고 명시하면서 role은 M이어서 자체 모순이다. 그 결과 첫 절 \"Beauty, after all, is not a fact ...\"는 S/M/V/M/M 구성이 되어 2형식 be동사 절에 C 세그먼트가 전혀 없다. 동일 문장 뒤 절은 {\"role\":\"S\",\"text\":\"it\"},{\"role\":\"V\",\"text\":\"is\"},{\"role\":\"C\",\"text\":\"a judgment\"}로 같은 SVC 구조를 C로 올바르게 태깅했고, 인접 sentences[16]도 {\"role\":\"V\",\"text\":\"has to be\"},{\"role\":\"C\",\"text\":\"wrong.\"}로 be동사 뒤 보어를 C로 처리한다. 따라서 M은 이 파일의 일관된 관례가 아니라 명백한 오태깅이며, 반박 근거를 찾지 못했다. (유일한 미세 논점은 not이 부사적 요소라는 점이나, 세그먼트 텍스트의 핵은 명사구 보어이고 note 스스로 보어라고 규정한다.)"
       }
     },
     {
       "severity": "warn",
-      "location": "answers.explanations[1] (q_index 1, 빈칸 추론) evidence / rationales",
-      "issue": "해설의 문장 번호가 page3 sentences의 index와 불일치. 해설은 대화 비유 근거를 \"9번\"·\"10번\"(및 \"9~10번\")으로 지목하나, 실제 해당 내용은 page3 index 18·19이다. 구문분석에서 \"9번\"은 전혀 다른 문장(비평가가 설명하는 내용)이라 근거 위치를 오도한다.",
-      "evidence": "해설: \"빈칸 앞 9번에서 'reading art is ... more like joining a long conversation'\" / \"10번에서 저자와 독자가 주장을 주고받으며 이해가 자란다\". 그러나 page3 index 18 = \"This is why reading art is less like copying an answer and more like joining a long conversation.\", index 19 = \"The essay offers a claim, the reader tests it, and understanding grows...\". index 9 = \"A critic may explain who paid for a work...\"(무관).",
-      "suggestion": "해설의 문장 번호를 page3 index에 맞춰 9→18, 10→19로 정정(또는 인용문만 남기고 번호 삭제).",
+      "location": "answers.explanations[1].evidence (q_index 1, 빈칸 추론)",
+      "issue": "해설이 인용하는 문장 번호가 page3.sentences의 실제 index와 불일치한다. '9번/10번'으로 지칭한 내용은 실제로는 18번·19번 문장이다. 학생이 9번(초상화·기근 문장)을 찾아가면 근거를 확인할 수 없다.",
+      "evidence": "해설: \"빈칸 앞 9번에서 \\\"reading art is ... more like joining a long conversation\\\"이라 했고, 10번에서 저자와 독자가 주장을 주고받으며 이해가 자란다\". 그러나 page3 index 9는 \"A critic may explain who paid for a work...\", index 10은 \"That background is not decoration; ...\"이고, 인용된 내용은 index 18·19다.",
+      "suggestion": "'9번→18번', '10번→19번'으로 문장 번호를 수정한다.",
       "lens": "explanation",
       "verdict": {
         "isReal": true,
         "confidence": "high",
-        "reason": "파일 근거로 지적이 확인된다. answers.explanations[1] (q_index 1, 빈칸 추론)의 evidence(라인 771)는 \"빈칸 앞 9번에서 'reading art is ... more like joining a long conversation'\", \"10번에서 저자와 독자가 주장을 주고받으며 이해가 자란다\"고 하고, rationales[0](라인 773)은 \"9~10번과 직접 일치\"라고 한다. 그러나 page3 sentences에서 해당 영어 문장은 실제로 index 18(\"This is why reading art is less like copying an answer and more like joining a long conversation.\", 라인 666)과 index 19(\"The essay offers a claim, the reader tests it, and understanding grows in the space between them.\", 라인 677-711)에 위치한다. index 9(라인 352-364)는 \"A critic may explain who paid for a work...\"로 비평가가 맥락을 설명하는 무관한 내용이고, index 10(라인 375-401)은 \"That background is not decoration; it is the ground...\"로 배경이 판단의 토대라는 무관한 내용이다. 따라서 해설이 지목한 \"9번/10번/9~10번\"은 실제 근거 문장 index(18/19)와 불일치하며, 특히 index 9는 전혀 다른 내용이라 학습자를 오도한다. 동일 유형의 체계적 오프셋이 explanations[2](라인 794, index 17 내용을 \"8번\"으로 지칭)에서도 재현되어 지적의 신뢰도가 높다."
+        "reason": "파일 근거로 확인됨. answers.explanations[1].evidence(771행)는 \"빈칸 앞 9번에서 \\\"reading art is ... more like joining a long conversation\\\"\", \"10번에서 저자와 독자가 주장을 주고받으며 이해가 자란다\"고 인용하지만, page3.sentences index 9(352-369행)는 \"A critic may explain who paid for a work, who was allowed to see it, and what beliefs surrounded it.\", index 10(371-405행)은 \"That background is not decoration; it is the ground on which any fair judgment must stand.\"이다. 실제 인용 내용은 index 18(666행 \"why reading art is less like copying an answer and more like joining a long conversation\")과 index 19(673-718행 \"The essay offers a claim, the reader tests it, and understanding grows in the space between them\")다. 같은 블록의 rationales[0](773행) \"9~10번과 직접 일치한다\"에도 동일 오류가 반복된다. translation_ko(740행)의 [9]/[10]/[18]/[19] 번호도 sentences index와 일치하므로, 파일 내 유일한 문장 번호 체계 기준으로 명백한 불일치다(9칸 어긋남). 대안 번호 체계 가능성도 배제됨: 해당 문장이 속한 4단락은 문장이 3개(18·19·20)뿐이라 단락 내 번호로도 9/10이 나올 수 없다. 참고로 지적문의 괄호 설명 \"9번(초상화·기근 문장)\"은 부정확하며(초상화·기근은 index 8), index 9는 비평가·후원자 문장이지만, 지적의 핵심 주장(9·10이 아니라 18·19)은 정확하다. 동일 결함이 explanations[2].evidence(794행)에도 존재한다: \"8번은 \\\"Two honest readers may weigh ... reach opposite verdicts\\\"\"라 했으나 실제 index는 17이다. 학생이 9번을 찾아가면 근거를 확인할 수 없다는 영향 판단도 타당하다."
       }
     },
     {
       "severity": "warn",
-      "location": "answers.explanations[2] (q_index 2, 함의 추론) evidence",
-      "issue": "해설이 핵심 근거 문장을 \"8번\"으로 지목하나 실제로는 page3 index 17이다. index 8은 초상화 무게에 관한 문장으로 함의와 무관해, 구문분석을 대조하는 학습자를 오도한다.",
-      "evidence": "해설: \"8번은 'Two honest readers may weigh the same brushwork and still reach opposite verdicts, and neither has to be wrong'이다.\" 그러나 page3에서 이 문장은 index 17이며, index 8 = \"A portrait painted during a famine carries a weight...\".",
-      "suggestion": "해설의 문장 번호를 8→17로 정정(또는 번호 없이 인용문만 유지).",
+      "location": "answers.explanations[2].evidence (q_index 2, 함의 추론)",
+      "issue": "해설이 지칭한 '8번' 문장이 실제 page3.sentences index 8과 다르다. 인용문은 index 17 문장이다. 또한 '앞 문장'으로 제시한 미적 판단 근거는 index 16이므로 번호 체계가 전반적으로 어긋나 있다.",
+      "evidence": "해설: \"8번은 \\\"Two honest readers may weigh the same brushwork and still reach opposite verdicts, and neither has to be wrong\\\"이다.\" 그러나 page3 index 8은 \"A portrait painted during a famine carries a weight...\"이며, 인용문은 index 17이다.",
+      "suggestion": "'8번'을 '17번'으로, '앞 문장'은 '16번'으로 명시해 수정한다.",
       "lens": "explanation",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "파일 근거로 지적이 전부 확인된다. answers.explanations[2].evidence(line 794)는 \"8번은 \\\"Two honest readers may weigh the same brushwork and still reach opposite verdicts...\\\"이다\"라고 하지만, page3.sentences의 index 8(lines 324-349)은 \"A portrait painted during a famine carries a weight that the same brushstrokes would not carry in a season of plenty.\"이고, 인용된 문장은 index 17(lines 603-651)이다. 또 evidence가 \"앞 문장\"으로 제시한 미적 판단(Beauty ... is a judgment shaped by culture, memory, and taste)은 index 16(lines 557-600)으로, index 17 바로 앞이라는 점이 오히려 정답 번호가 17임을 재확인시킨다. page3.translation_ko(line 740)도 동일한 1~20 번호 체계를 사용해 [8]=기근 초상화, [17]=두 정직한 독자로 매기고 있어, 파일 내에 \"8번\"을 정당화할 대체 번호 체계가 존재하지 않는다. 나아가 explanations[1].evidence(line 771)의 \"9번\"/\"10번\"도 실제로는 index 18/19에 해당해, 번호 체계가 전반적으로 어긋나 있다는 지적까지 뒷받침된다. 다만 성격은 런타임 버그가 아니라 학습자 노출 해설의 참조 라벨 오류다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.translation_ko 문장 [14] (08.json, line 740)",
+      "issue": "영문 'a sculpture'를 '한 조각'으로 옮겨 어휘 오역 소지가 있다. 한국어에서 '조각'은 단독으로 쓰이면 'a piece/fragment(파편)'로 먼저 읽히며, 회화·붓질을 다루는 이 지문 맥락에서는 '한 조각이 당대의 모든 규칙을 깼다'가 '작품의 한 파편'처럼 오독된다. 파일 내부의 page4 vocab도 sculpture를 '조각, 조각 작품'으로 풀어 두어 온전한 형태가 의도였음을 보여준다.",
+      "evidence": "영문 본문: \"Suppose an essay claims that a sculpture broke every rule of its time.\" / 번역: \"[14] 어떤 에세이가 한 조각이 당대의 모든 규칙을 깼다고 주장한다고 해 보자.\" / page4.vocab: {\"word\": \"sculpture\", \"meaning_ko\": \"조각, 조각 작품\"}",
+      "suggestion": "'한 조각상이' 또는 '어떤 조각 작품이'로 수정한다. 예: \"어떤 에세이가 한 조각 작품이 당대의 모든 규칙을 깼다고 주장한다고 해 보자.\" (page4.vocab의 sculpture 예문 \"그 글은 한 조각이 모든 규칙을 깼다고 주장한다.\"도 동일하게 손보면 일관된다.)",
+      "lens": "translation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "medium",
+        "reason": "파일 근거로 지적 내용이 그대로 확인된다. page1.body(line 26)의 영문은 \"Suppose an essay claims that a sculpture broke every rule of its time.\"이고, page3.translation_ko(line 740) 문장 [14]은 \"어떤 에세이가 한 조각이 당대의 모든 규칙을 깼다고 주장한다고 해 보자.\"로 되어 있어 인용이 정확하다.\n\n실제 결함으로 판단한 근거:\n1) 한국어에서 '한 조각'은 수량 표현(케이크 한 조각)으로 먼저 읽히며, 'a piece/fragment'가 기본 해석이다. 'sculpture' 의미의 조각은 통상 '조각 작품/조각상'처럼 보강되거나 조각 분야가 명시된 맥락을 필요로 한다.\n2) 이 지문의 주변 맥락이 오독을 오히려 강화한다. 같은 단락과 인접 문장들이 그림, 초상화, 붓질(8번), 붓놀림(17번) 등 회화 중심이라, 독자는 '조각'을 '작품의 한 파편'으로 읽기 쉽다. 게다가 '한 조각이 규칙을 깼다'는 주어 자리에 작품이 와야 의미가 성립해 독자가 되짚어 읽어야 한다.\n3) 파일 내부 정합성 근거: page4.vocab(line 1003-1005)이 sculpture를 \"조각, 조각 작품\"으로 병기해, 제작 의도가 온전한 '작품'이었음을 보여준다. 병기 자체가 단독 '조각'만으로는 부족함을 시사한다.\n\n지적이 다소 과소평가한 점: 동일한 표현이 page4.vocab 예문 번역(line 1014) \"그 글은 한 조각이 모든 규칙을 깼다고 주장한다.\"에도 반복되어, 수정 대상은 1곳이 아니라 2곳이다. 이는 지적을 약화시키지 않고 오히려 강화한다.\n\n다만 '조각'이 사전적으로 sculpture의 정당한 대응어인 것은 사실이므로 명백한 어휘 오역(error)은 아니고, 맥락상 오독 소지에 관한 warn 등급 지적으로서 타당하다. 등급이 warn으로 매겨진 점과 일치하므로 유효한 결함으로 인정한다. 권장 수정은 '어떤 조각 작품이' 또는 '한 조각상이' 수준의 보강이다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "answers.explanations[1].evidence (q_index 1, 빈칸 추론)",
+      "issue": "해설이 인용한 문장 번호가 page3.sentences 인덱스와 불일치한다. \"9번\", \"10번\"으로 지목했으나 실제 근거 문장은 각각 18번, 19번이다. 학생이 해설을 따라 9·10번을 찾으면 전혀 무관한 문장(비평가의 설명 / 배경은 장식이 아니다)을 보게 된다.",
+      "evidence": "해설: \"빈칸 앞 9번에서 \\\"reading art is ... more like joining a long conversation\\\"이라 했고, 10번에서 저자와 독자가 주장을 주고받으며 이해가 자란다고 한다.\" | 실제 page3: index 18 = \"This is why reading art is less like copying an answer and more like joining a long conversation.\", index 19 = \"The essay offers a claim, the reader tests it, and understanding grows in the space between them.\" | index 9 = \"A critic may explain who paid for a work...\", index 10 = \"That background is not decoration; it is the ground on which any fair judgment must stand.\"",
+      "suggestion": "\"9번\"→\"18번\", \"10번\"→\"19번\"으로 수정. 정답 0 'join a conversation' 자체는 본문 \"...as an invitation to <blank>\" + 20번 \"to treat every strong page as an invitation to join a conversation\"과 일치하므로 정답은 유효하다.",
+      "lens": "answer",
+      "verdict": {
+        "reason": "지적이 파일로 명확히 확인됨. answers.explanations[1].evidence(771행)는 \"빈칸 앞 9번에서 reading art is ... more like joining a long conversation\", \"10번에서 저자와 독자가 주장을 주고받으며 이해가 자란다\"고 하고 rationales[0](773행)도 \"9~10번\"을 반복한다. 그러나 page3.sentences의 실제 인덱스는 18번(\"This is why reading art is less like copying an answer and more like joining a long conversation.\", 654-671행)과 19번(\"The essay offers a claim, the reader tests it, and understanding grows in the space between them.\", 673-718행)이다. 인덱스 9번은 \"A critic may explain who paid for a work...\"(352-369행), 10번은 \"That background is not decoration; it is the ground...\"(371-405행)로 빈칸 근거와 무관하다. 대안 번호 체계 가능성도 배제된다: translation_ko(740행)가 [1]~[20]으로 page3.sentences와 동일한 번호를 쓰므로 파일 내 유일하고 명시적인 문장 번호 체계이며, 4단락은 18~20번만 포함해 단락 내 국소 번호로도 9/10이 나올 수 없다. 참고로 explanations[2].evidence(794행)도 실제 17번 문장을 \"8번\"으로 지목해 동일하게 9만큼 어긋나 있어(이전 초안 기준으로 작성된 흔적), 일관된 대체 규약이 아니라 갱신 누락 결함임을 뒷받침한다. 학생이 해설을 따라가면 실제로 무관한 문장을 보게 되므로 학습상 실질 피해도 성립한다.",
+        "isReal": true,
+        "confidence": "high"
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "answers.explanations[2].evidence (q_index 2, 함의 추론)",
+      "issue": "해설이 인용한 문장 번호가 실제 인덱스와 불일치한다. \"8번\"이라 했으나 해당 문장은 17번이며, 8번은 초상화·기근 문장이다. 함께 언급한 \"앞 문장\"(아름다움=판단)도 실제로는 16번이라 번호 기준이 무너진다.",
+      "evidence": "해설: \"8번은 \\\"Two honest readers may weigh the same brushwork and still reach opposite verdicts, and neither has to be wrong\\\"이다.\" | 실제 page3: index 17 = \"Two honest readers / may weigh / the same brushwork / and / still / reach / opposite verdicts, / and / neither / has to be / wrong.\", index 8 = \"A portrait / painted during a famine / carries / a weight / that the same brushstrokes would not carry in a season of plenty.\"",
+      "suggestion": "\"8번\"→\"17번\"으로 수정하고 \"앞 문장\"이 16번임을 명시. 정답 4 \"thoughtful readers can judge the same work in conflicting ways\"는 밑줄 구·문맥과 일치하므로 정답 자체는 유효하다.",
+      "lens": "answer",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "파일 근거로 지적이 그대로 확인된다. answers.explanations[2].evidence(라인 794)는 \"8번은 \\\"Two honest readers may weigh the same brushwork and still reach opposite verdicts, and neither has to be wrong\\\"이다\"라고 쓰고 있으나, page3.sentences의 실제 index 17(라인 603-651)이 해당 문장이다. index 8(라인 324-350)은 \"A portrait / painted during a famine / carries / a weight / that the same brushstrokes would not carry in a season of plenty.\"로 초상화·기근 문장이며 함의 추론 대상과 무관하다. 이어지는 \"앞 문장은 아름다움이 자로 잴 수 있는 사실이 아니라 판단\"이라는 서술 역시 실제로는 index 16(라인 557-601, \"Beauty, after all, is not a fact you can measure with a ruler; it is a judgment...\")이고, 인용된 \"8번\"의 앞 문장인 index 7은 \"The first tool a careful reader reaches for is context.\"여서 해설의 서술과 맞지 않는다. 즉 번호와 \"앞 문장\" 기준이 동시에 무너진다. 대안 번호 체계로 방어되지 않는다: translation_ko(라인 740)가 동일한 [1]~[20] 번호를 쓰며 [8]=초상화·기근, [17]=두 독자 문장으로 일치하고, 문단 내 상대 번호로 봐도 두 독자 문장은 3문단의 6번째라 8이 될 수 없다. 또한 explanations[1].evidence(라인 771)도 \"9번\"·\"10번\"으로 실제 index 18·19를 지칭해 동일하게 9씩 어긋나 있어, 해설 번호가 page3의 실제 인덱스와 계통적으로 불일치함을 뒷받침한다. 인용된 영어 원문 자체는 정확하지만, 학생이 번호를 따라가면 전혀 다른 문장에 도달하므로 단순 표기 흠이 아니라 오도하는 결함이다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page4.vocab[9] (word: \"passive\") → synonyms[1] \"receptive\"",
+      "issue": "synonyms에 \"receptive\"를 넣은 것은 의미 불일치다. receptive는 '(새 생각을) 잘 받아들이는, 수용적인'이라는 긍정적 태도를 뜻하며, 본문이 부정적으로 대비시키는 passive(수동적·소극적)와 동의어가 아니다. 본문은 passive spectator ↔ active reader 구도이므로, receptive를 동의어로 제시하면 '수용적으로 읽는 태도'까지 부정적인 것으로 오해하게 만든다.",
+      "evidence": "본문: \"To follow such a text, you cannot stay a passive spectator. You must become an active reader who builds sense from clues the writer only half states.\" / vocab: \"word\": \"passive\", \"meaning_ko\": \"수동적인, 소극적인\", \"synonyms\": [\"inactive\", \"receptive\"]",
+      "suggestion": "\"receptive\"를 삭제하고 \"submissive\" 또는 \"unresponsive\", \"inert\" 같이 본문 문맥(수동적 관람자)과 일치하는 어휘로 교체할 것.",
+      "lens": "vocab",
       "verdict": {
         "isReal": true,
         "confidence": "high",
-        "reason": "파일 근거로 지적의 모든 사실 주장이 확인된다. answers.explanations[2](q_index 2, 함의 추론) evidence(라인 794)는 \"8번은 \\\"Two honest readers may weigh the same brushwork and still reach opposite verdicts, and neither has to be wrong\\\"이다.\"라고 명시한다. 그러나 page3에서 이 문장은 index 17(라인 603-651)이며, index 8(라인 324-349)은 \"A portrait painted during a famine carries a weight that the same brushstrokes would not carry in a season of plenty.\"로 초상화 무게에 관한 완전히 다른 문장이다. 즉 evidence가 지목한 \"8번\" 포인터는 page3 index 체계상 실제 근거 문장(17번)이 아니라 함의와 무관한 문장(8번)을 가리킨다. 구문분석 페이지(page3)의 index를 대조하며 학습하는 학생은 8번을 찾아 엉뚱한 문장을 보게 되어 오도된다. 참고로 explanations[1]도 \"9번/10번\"이라 하나 해당 대화 내용은 실제 index 18-20이어서 해설의 문장 번호 체계가 page3 index와 불일치하는 동일 결함 패턴이 존재하나, 이 지적의 대상인 [2]의 \"8번\" 불일치는 그 자체로 명확히 성립한다."
+        "reason": "File-verified at page4.vocab[9] (lines 1022-1042): {\"word\": \"passive\", \"meaning_ko\": \"수동적인, 소극적인\", \"synonyms\": [\"inactive\", \"receptive\"], \"antonyms\": [\"active\"]}. The entry itself fixes the pejorative attitudinal sense of 'passive' via its meaning_ko, its antonym 'active', and both examples ('You cannot stay a passive spectator of the argument.' / 'A passive learner rarely questions the text.'). Under that sense 'receptive' is wrong: it means 'open/willing to consider new ideas', a positive engaged disposition whose standard synonyms are open-minded/amenable/responsive and whose antonyms are unreceptive/resistant — it is NOT antonymous with 'active', so it directly contradicts the entry's own antonyms axis and yields the false inference 'receptive ↔ active'. The passage reinforces the harm: page1.body sets up 'passive spectator' vs 'active reader' as an explicit negative/positive contrast, and page2.textbook_tieback.body_ko (line 102) says readers must escape the '수동적 태도' of accepting information as-is — so tagging 수용적(receptive) as a synonym miscodes a positive reading stance as negative. I considered the strongest rebuttal — that 'passive/receptive' legitimately pair in the technical register (passive/receptive vocabulary, receptive vs. productive skills) — but the entry's meaning_ko, antonyms, and both examples exclude that register, so the defense does not apply. Every sibling vocab entry (spectator, thoughtful, decoration) keeps synonyms within a single sense; 'receptive' is the lone connotation-crossing outlier. This is a substantive factual error in a memorized study field, not a stylistic quibble."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page4.vocab[8] (word: \"sculpture\") → examples[0].ko",
+      "issue": "예문 대역에서 sculpture를 \"한 조각\"으로 옮겼다. 한국어 \"조각\"은 단독으로 쓰이면 '한 조각(a piece/fragment)'으로 먼저 읽혀, 조각 작품(statue)이라는 뜻이 전달되지 않는다. 같은 vocab 항목의 meaning_ko가 \"조각, 조각 작품\"이라고 밝히고 있는데 예문 대역은 그 뜻을 보여주지 못한다(④ 단어 뜻을 잘 보여주는가 위배).",
+      "evidence": "vocab: {\"word\": \"sculpture\", \"meaning_ko\": \"조각, 조각 작품\", examples[0] en: \"The essay claims that a sculpture broke every rule.\", ko: \"그 글은 한 조각이 모든 규칙을 깼다고 주장한다.\"} / 본문: \"Suppose an essay claims that a sculpture broke every rule of its time.\"",
+      "suggestion": "\"그 글은 어떤 조각 작품이 모든 규칙을 깼다고 주장한다.\"처럼 '조각 작품/조각품'으로 명확히 옮길 것. (page3.translation_ko [14] \"한 조각이 당대의 모든 규칙을 깼다\"도 동일 문제)",
+      "lens": "vocab",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "파일에서 확인됨. page4.vocab[8] (sculpture, line 1003-1019)의 examples[0].ko가 \"그 글은 한 조각이 모든 규칙을 깼다고 주장한다.\"로 되어 있다. 한국어 \"조각\"은 동음이의어(조각=piece/fragment vs 彫刻=sculpture)인데, 수량 표현 \"한 + 조각\"은 \"한 조각의 빵\", \"케이크 한 조각\"처럼 굳어진 연어라 fragment 의미로 먼저(사실상 배타적으로) 파싱된다. 문장 내 다른 단서(\"규칙을 깼다\")도 미술 작품 맥락을 주지 못해 조각 작품 의미를 차단할 요소가 없다. 같은 항목의 meaning_ko(line 1005)가 \"조각, 조각 작품\"으로 굳이 \"조각 작품\"을 병기해 스스로 중의성을 인정하고 있고, 같은 항목의 examples[1] ko(line 1018) \"그 대리석 조각은 조용한 홀에 서 있었다\"는 \"대리석\"+\"서 있었다\"로 조각 작품 의미를 확정지어 대비가 뚜렷하다. 즉 첫 예문만 표제어 뜻을 보여주지 못한다(④ 위배). 추가로 동일 오류가 page3.translation_ko 문장 [14](line 740) \"어떤 에세이가 한 조각이 당대의 모든 규칙을 깼다고 주장한다고 해 보자.\"에도 반복되어 있어, 예문 대역 한 곳의 단발 실수가 아니라 일관된 결함이다. 반박 가능성(\"한\"을 관형사 a로 읽어 \"한 조각(작품)\"으로 이해 가능)은 \"한 조각\"이 그 자체로 완결된 고빈도 명사구여서 성립하지 않는다. 수정 방향: \"조각 작품 하나가\" 또는 \"어떤 조각상이\"로 대체."
       }
     }
   ],
   "minors": [
     {
       "severity": "minor",
-      "location": "answers.explanations[1].evidence (q_index 1, 빈칸 추론)",
-      "issue": "해설이 근거 문장을 잘못된 문장 번호로 지목함. 실제 관련 문장은 page3 index 18~20이지만 해설은 '9번' '10번'이라고 인용한다.",
-      "evidence": "해설: \"빈칸 앞 9번에서 \\\"reading art is ... more like joining a long conversation\\\"이라 했고, 10번에서 ...\" 그러나 해당 문장은 page3 sentences index 18(\"reading art is less like copying an answer and more like joining a long conversation\")과 index 19~20이다.",
-      "suggestion": "문장 번호를 18~20으로 정정. 정답(answer_index 0 = join a conversation)은 본문 \"more like joining a long conversation\" 및 빈칸 자리 원문 \"invitation to join a conversation\"으로 타당하므로 정답 자체는 문제없음.",
+      "location": "page1.body, 3단락 마지막 문장",
+      "issue": "본문 2단락에서 \"the same brushstrokes\"로 쓴 어휘를 3단락에서는 \"the same brushwork\"로 바꿔 썼다. 두 표현이 가리키는 대상은 동일하나, brushwork는 gloss_extra(spectator/verdict/brushstroke)에도 없는 미제시 어휘라 고2(CEFR B1~B2) 학습자가 3번 문항(밑줄 reach opposite verdicts 함의 추론)의 근거 문장을 읽을 때 불필요한 부담이 생긴다.",
+      "evidence": "2단락: \"a weight that the same brushstrokes would not carry in a season of plenty\" / 3단락: \"Two honest readers may weigh the same brushwork and still reach opposite verdicts\"",
+      "suggestion": "3단락을 \"may weigh the same brushstrokes\"로 통일하거나, brushwork를 gloss_extra에 추가한다.",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "page1.body, 3단락 마지막 절 \"and neither has to be wrong\"",
+      "issue": "의도한 의미는 '어느 쪽도 반드시 틀린 것은 아니다'(부분부정)인데, \"neither has to be wrong\"은 '어느 쪽도 틀려야 할 의무가 없다'로 읽혀 modality가 어색하다. 영어 원어민 문어에서는 need not / is necessarily 구문이 자연스럽다.",
+      "evidence": "\"Two honest readers may weigh the same brushwork and still reach opposite verdicts, and neither has to be wrong.\"",
+      "suggestion": "\"and neither need be wrong\" 또는 \"and neither one is necessarily wrong\"으로 다듬는다.",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "page2.questions[1].stem",
+      "issue": "stem은 \"밑줄 친 빈칸\"이라 하지만 본문의 빈칸은 <blank> 토큰일 뿐 <u> 밑줄 표시가 없고, 정작 본문의 <u> 밑줄은 \"context\"와 \"reach opposite verdicts\" 두 곳이다. 3번 문제가 이미 \"reach opposite verdicts\" 밑줄을 쓰고 있어 밑줄 지시어가 중복·혼동될 수 있다.",
+      "evidence": "stem: \"윗글의 밑줄 친 빈칸에 들어갈 말로 가장 적절한 것은?\" | page1.body: \"...is to treat every strong page as an invitation to <blank>.\" (밑줄 태그 없음) 그리고 \"<u>context</u>\", \"Two honest readers may weigh the same brushwork and still <u>reach opposite verdicts</u>\"",
+      "suggestion": "stem을 \"윗글의 빈칸에 들어갈 말로 가장 적절한 것은?\"로 바꾸거나 렌더러가 <blank>를 밑줄 빈칸로 그리도록 통일한다.",
       "lens": "answer"
     },
     {
       "severity": "minor",
-      "location": "answers.explanations[2].evidence (q_index 2, 함의 추론)",
-      "issue": "해설이 근거 문장을 '8번'으로 인용하나 실제 page3에서 해당 문장은 index 17이다.",
-      "evidence": "해설: \"8번은 \\\"Two honest readers may weigh the same brushwork and still reach opposite verdicts, and neither has to be wrong\\\"이다.\" 그러나 이 문장은 page3 sentences index 17이다.",
-      "suggestion": "문장 번호를 17로 정정. 정답(answer_index 4)은 본문 근거로 정확하므로 정답 판정에는 영향 없음.",
-      "lens": "answer"
+      "location": "page4.vocab[4] (word: \"brushstroke\") → examples[0].en",
+      "issue": "예문이 본문 명제를 왜곡한다. 본문은 '같은 붓질이라도 풍요의 계절에는 (기근 때 같은) 그 무게를 지니지 못한다'는 상대적 비교인데, 예문은 \"carry no weight\"로 '아무 무게도 없다'는 절대 부정으로 바꿔 놓았다. 문법 자체는 옳으나 본문 문맥을 잘못 학습시킬 수 있다.",
+      "evidence": "본문: \"A portrait painted during a famine carries a weight that the same brushstrokes would not carry in a season of plenty.\" / 예문 en: \"The same brushstrokes carry no weight in a season of plenty.\" ko: \"같은 붓질도 풍요의 계절에는 무게를 지니지 못한다.\"",
+      "suggestion": "\"The same brushstrokes would not carry that weight in a season of plenty.\"로 수정할 것.",
+      "lens": "vocab"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[11] (word: \"decoration\") → antonyms[0] \"essence\"",
+      "issue": "antonyms의 \"essence\"는 어휘적 반의어가 아니라 본문 논지에서 파생된 개념적 대비다. decoration은 '장식(품)'이라는 구체 명사이고 essence는 '본질'이라는 추상 명사여서 학생이 반의어 쌍으로 외우면 오해가 생긴다.",
+      "evidence": "본문: \"That background is not decoration; it is the ground on which any fair judgment must stand.\" / vocab: {\"word\": \"decoration\", \"meaning_ko\": \"장식, 꾸밈\", \"antonyms\": [\"essence\"]}",
+      "suggestion": "antonyms를 비우거나, 정말 대비를 살리려면 \"substance\" 정도로 바꾸고 '문맥상 대비어'임을 표시할 것.",
+      "lens": "vocab"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[3] (word: \"famine\") → synonyms[0] \"starvation\"",
+      "issue": "famine은 '광범위한 식량 부족 사태'(사회적 사건)이고 starvation은 '개인이 굶주려 죽어가는 상태'(개체 상태)로 지시 대상이 다르다. 유의어로 단독 제시하면 의미 구분이 흐려진다.",
+      "evidence": "vocab: {\"word\": \"famine\", \"meaning_ko\": \"기근, 심각한 식량 부족\", \"synonyms\": [\"starvation\"]} / 본문: \"A portrait painted during a famine carries a weight...\"",
+      "suggestion": "\"food shortage\" 또는 \"hunger crisis\"를 함께 제시하거나 starvation을 이들로 교체할 것.",
+      "lens": "vocab"
     }
   ],
-  "blockers": [],
+  "blockers": [
+    {
+      "severity": "blocker",
+      "location": "page3.sentences[19] (index 20), segments[0]",
+      "issue": "구문 역할 오태깅: 문장의 주어인 to부정사구가 M(수식어)으로 태깅되어 문장에 주어(S)가 없다. 같은 세그먼트의 note와 grammar_note는 스스로 '주어'라고 명시하고 있어 자기모순이다.",
+      "evidence": "segments: {\"role\":\"M\",\"text\":\"To read the humanities well, then,\",\"note\":\"to부정사 주어 + 삽입\"}, {\"role\":\"V\",\"text\":\"is\"}, {\"role\":\"C\",...}; grammar_note: \"to부정사 주어·보어 + treat A as B\". 본문: \"To read the humanities well, then, is to treat every strong page as an invitation to <blank>.\"",
+      "suggestion": "\"To read the humanities well\"를 role \"S\"로 바꾸고 \"then,\"만 삽입 M으로 분리한다.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 확인 결과 지적이 정확하다. C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-08-J/08.json 의 page3.sentences[19] (index 20) segments[0]은 role이 \"M\"이나, text는 \"To read the humanities well, then,\"으로 동사 \"is\"(segments[1], role V)의 문법적 주어다. 결과 역할 배열이 M-V-C가 되어 S가 없다. 자기모순도 확인됨: 해당 세그먼트 note가 \"to부정사 주어 + 삽입\", 문장 grammar_note가 \"to부정사 주어·보어 + treat A as B\"로 스스로 '주어'라 명시한다. 파일 내 S 누락 문장은 이 문장과 index 14뿐인데, 14는 \"Suppose | an essay claims...\"로 정당한 명령문이므로 파일 전체 규약 문제가 아니다. 프로젝트 규약도 반대다: 동일 패턴이 2026-07-J/08.json p3 s12 \"To accept an argument without testing it\" → S, 2026-08/10.json p3 s3 \"To read well\" → S, 2026-08-Sun/20.json p3 s20 \"To read a screen well\" → S로 태깅되어 있어 본 건이 4건 중 유일한 이탈이다. 삽입구 \"then,\" 때문에 M을 썼다는 변호는 성립하지 않는다(삽입은 주어 세그먼트 내부에 포함될 뿐 핵은 여전히 to부정사 주어이며, note가 '주어 + 삽입'으로 두 사실을 함께 기록하고 있다). 수정: segments[0].role을 \"M\" → \"S\"로 변경."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "page3.sentences[15] (index 16), segments[3]",
+      "issue": "구문 역할 오태깅: 2형식 be동사의 주격보어 \"not a fact\"가 M으로 태깅되어 첫 절(Beauty ... is not a fact ...)에 보어(C)가 존재하지 않는다. note는 '부정 보어'라고 적혀 있어 role 값과 모순된다.",
+      "evidence": "segments: {\"role\":\"S\",\"text\":\"Beauty,\"}, {\"role\":\"M\",\"text\":\"after all,\"}, {\"role\":\"V\",\"text\":\"is\"}, {\"role\":\"M\",\"text\":\"not a fact\",\"note\":\"부정 보어\"} — 뒤 절은 동일 구조에서 {\"role\":\"C\",\"text\":\"a judgment\"}로 올바르게 태깅되어 있어 일관성도 깨진다.",
+      "suggestion": "\"not a fact\"의 role을 \"C\"로 수정한다(부정어 not은 M으로 분리하거나 보어에 포함).",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 직접 확인 결과 지적이 정확함. page3.sentences[15] (index 16) segments[3]은 {\"role\":\"M\",\"text\":\"not a fact\",\"note\":\"부정 보어\"}로, note가 '보어'라고 명시하면서 role은 M이어서 자체 모순이다. 그 결과 첫 절 \"Beauty, after all, is not a fact ...\"는 S/M/V/M/M 구성이 되어 2형식 be동사 절에 C 세그먼트가 전혀 없다. 동일 문장 뒤 절은 {\"role\":\"S\",\"text\":\"it\"},{\"role\":\"V\",\"text\":\"is\"},{\"role\":\"C\",\"text\":\"a judgment\"}로 같은 SVC 구조를 C로 올바르게 태깅했고, 인접 sentences[16]도 {\"role\":\"V\",\"text\":\"has to be\"},{\"role\":\"C\",\"text\":\"wrong.\"}로 be동사 뒤 보어를 C로 처리한다. 따라서 M은 이 파일의 일관된 관례가 아니라 명백한 오태깅이며, 반박 근거를 찾지 못했다. (유일한 미세 논점은 not이 부사적 요소라는 점이나, 세그먼트 텍스트의 핵은 명사구 보어이고 note 스스로 보어라고 규정한다.)"
+      }
+    }
+  ],
   "counts": {
-    "raw": 5,
-    "verified": 3,
-    "confirmed": 3,
-    "minor": 2
+    "raw": 15,
+    "verified": 9,
+    "confirmed": 9,
+    "minor": 6
   }
 }

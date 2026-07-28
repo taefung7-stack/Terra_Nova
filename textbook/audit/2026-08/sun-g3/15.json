@@ -1,0 +1,60 @@
+{
+  "grade": "sun-g3",
+  "seq": 15,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page3.sentences[2] (index 3) — segments[2].note 및 grammar_note (파일 라인 163, 165)",
+      "issue": "목적어 명사절 세 개를 모두 '간접의문 명사절'로 묶어 설명했으나, 세 절 중 둘은 간접의문문이 아니라 관계대명사 what이 이끄는 명사절이다. 같은 파일 내 다른 문장의 설명과도 어긋나는 문법 용어 오류다.",
+      "evidence": "본문: \"These beliefs shape what people eat, how they marry, and what they treat as sacred.\" / 해당 note: \"명사절 병렬(목적어)\", grammar_note: \"간접의문 명사절 병렬 목적어\". 그런데 같은 파일 page3.sentences[9](index 10)에서는 \"what we call religious tolerance.\"에 대해 note를 \"관계대명사 what 보어절\", grammar_note를 \"be + what 명사절 보어\"로 정확히 표기하고 있다.",
+      "suggestion": "grammar_note를 '관계대명사 what절 + 간접의문(how)절 병렬 목적어' 정도로 수정하고, segments[2].note도 'what 명사절 2개 + how 간접의문절 병렬(목적어)'처럼 구분해 주는 것이 좋다. 'what people eat', 'what they treat as sacred'는 선행사를 포함한 관계대명사 what절이고, 'how they marry'만 간접의문절이다.",
+      "lens": "explanation",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "지적이 파일 근거로 확인된다. 반박하려 했으나 증거가 명확하다.\n\n1) 문법 사실: page3.sentences[2](index 3) 본문 \"These beliefs shape what people eat, how they marry, and what they treat as sacred.\"에서 세 명사절은 동질적이지 않다. \"what people eat\"의 what은 eat의 목적어 자리를 채우는 선행사 포함 관계대명사(= the things that people eat)이고, \"what they treat as sacred\"도 treat의 목적어 공백을 채우는 관계대명사다. 진짜 간접의문문은 \"how they marry\" 하나뿐이다. 따라서 line 165의 grammar_note \"간접의문 명사절 병렬 목적어\"는 셋 중 둘에 대해 틀린 문법 용어다.\n\n2) 파일 내부 모순(결정적): 같은 파일 line 240에서 \"what we call religious tolerance.\"를 \"관계대명사 what 보어절\", line 242에서 \"be + what 명사절 보어\"로 표기한다. \"what we call X\"와 \"what they treat as X\"는 what + S + V + 목적보어로 구조가 동일하며 what이 목적어 공백을 채운다는 점도 같다. 동일 파일 내에서 같은 구조를 하나는 관계대명사, 하나는 간접의문으로 표기한 것은 직접적 모순이다.\n\n3) 코퍼스 증거: 프로젝트가 이 구분을 의도적 범주로 유지함이 확인된다. 2026-06/04.json line 199 \"선행사 포함 What절 주어 + 간접의문문\"은 한 grammar_note 안에서 두 범주를 명시적으로 대비한다. 2026-08-Sun/04.json line 182 \"관계대명사 what(call O C)\", 2026-07-Sun/12.json, 2026-08-J/05.json line 172 등 20여 파일이 call/treat형 what절을 일관되게 \"관계대명사 what\"으로 태깅한다.\n\n4) 범위 보정: 지적은 위치를 \"segments[2].note 및 grammar_note\"로 적었으나, line 163의 note \"명사절 병렬(목적어)\"는 세 절 모두에 참인 범주 중립적 표현이라 실제로는 정확하다. 결함은 line 165의 grammar_note에 국한된다. 위치 귀속이 다소 과하지만 핵심 주장은 성립한다.\n\n수정안: \"관계대명사 what절 + 간접의문 how절 병렬 목적어\"."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko 문장 [17]",
+      "issue": "원문에 없는 강조 보조사 '마저'가 추가되어 원문보다 어조가 다소 강해짐(과장이라 보기는 어려운 수준의 문체 가감).",
+      "evidence": "영문: \"It is the demanding discipline of keeping the door open to those we are sure are wrong.\" / 번역: \"그것은 우리가 틀렸다고 확신하는 이들에게마저 문을 열어 두는, 고된 규율이다.\"",
+      "suggestion": "\"우리가 틀렸다고 확신하는 이들에게 문을 열어 두는 고된 규율이다\"로 다듬으면 원문 대응이 더 정확하다. 의미 왜곡은 없으므로 유지해도 무방.",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko 문장 [15]",
+      "issue": "'so that ~ may'(목적)를 '그럼으로써 ~ 하기 위함이다'로 옮겨 수단 표현과 목적 표현이 중복됨.",
+      "evidence": "영문: \"A tolerant society answers the second question with a firm no, precisely so that the first may be argued in freedom rather than settled by the sword.\" / 번역: \"... 단호히 아니라고 답하는데, 바로 그럼으로써 첫 번째 물음이 칼로 결판나는 대신 자유 속에서 논의될 수 있게 하기 위함이다.\"",
+      "suggestion": "\"... 답하는데, 이는 바로 첫 번째 물음이 칼로 결판나는 대신 자유 속에서 논의될 수 있게 하기 위함이다\"로 정리.",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page2.questions[2].stem (2026-08-Sun/15.json, line 66)",
+      "issue": "함의 추론 stem이 \"윗글의 밑줄 친 ...\"으로 시작해 놓고 뒤에서 \"다음 글에서 의미하는 바\"라고 해 지시 대상이 앞글인지 뒷글인지 모순된다.",
+      "evidence": "stem 원문: \"윗글의 밑줄 친 keeping the door open to those we are sure are wrong 이 다음 글에서 의미하는 바로 가장 적절한 것은?\"",
+      "suggestion": "\"밑줄 친 keeping the door open to those we are sure are wrong이 다음 글에서 의미하는 바로 가장 적절한 것은?\" 처럼 '윗글의'를 빼거나, \"윗글에서 의미하는 바\"로 통일한다. 또한 인용구와 조사 사이의 불필요한 공백(\"wrong 이\")을 \"wrong이\"로 붙인다.",
+      "lens": "answer"
+    },
+    {
+      "severity": "minor",
+      "location": "page2.questions[1].choices (2026-08-Sun/15.json, lines 54-60)",
+      "issue": "빈칸 추론 오답 선지의 변별력이 낮다. indifference/conquest/silence/certainty 네 개 모두 본문이 명시적으로 부정하거나 배격한 개념이어서, 본문 논지를 대충 파악해도 소거가 즉시 가능하다. 난이도 '중간' 대비 함정 강도가 약하다.",
+      "evidence": "본문이 각각을 직접 부정함: \"Tolerance, rightly understood, is not the same as indifference.\"(indifference), \"Rulers pressed one faith upon everyone\"를 실패로 규정(conquest), \"Fear can silence a prayer, but it cannot plant a sincere one.\"(silence), \"no single group owns the whole truth\"(certainty). 정답 restraint만 유일하게 긍정적으로 남는다.",
+      "suggestion": "오답 중 1~2개를 본문 어휘와 인접하지만 미묘하게 어긋나는 긍정어(예: humility, coexistence, forbearance)로 교체해 정답 restraint와의 변별에 실제 판단이 필요하도록 만든다.",
+      "lens": "answer"
+    }
+  ],
+  "blockers": [],
+  "counts": {
+    "raw": 9,
+    "verified": 5,
+    "confirmed": 1,
+    "minor": 4
+  }
+}

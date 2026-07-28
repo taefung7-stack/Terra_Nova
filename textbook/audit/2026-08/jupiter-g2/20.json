@@ -1,13 +1,157 @@
 {
   "grade": "jupiter-g2",
   "seq": 20,
-  "confirmed": [],
-  "minors": [],
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page3.sentences[16] (index 17), segments lines 287-290",
+      "issue": "삽입절 \"they taught\"를 S+V로 오태깅. grammar_note 및 같은 파일 내 동일 구조(문장 8)의 처리와 정면으로 모순된다.",
+      "evidence": "본문: \"To become truly good, they taught, one must patiently learn to govern the movements of the heart.\" / 태깅: { \"role\": \"S\", \"text\": \" they\" }, { \"role\": \"V\", \"text\": \" taught,\" }, { \"role\": \"S\", \"text\": \" one\" }, { \"role\": \"V\", \"text\": \" must patiently learn\" } / 그러나 같은 문장의 grammar_note는 \"부사적 to부정사 + 삽입절(they taught) + learn to부정사\"라고 명시. 또한 문장 8의 동일 구조는 { \"role\": \"M\", \"text\": \" he said,\", \"note\": \"삽입절\" }로 처리됨.",
+      "suggestion": "문장 8과 동일하게 { \"role\": \"M\", \"text\": \" they taught,\", \"note\": \"삽입절\" } 하나로 통합하고, 주절 S는 \"one\", V는 \"must patiently learn\" 하나만 남길 것. 현재대로면 한 문장에 S/V가 두 쌍 존재해 학생이 등위절로 오독한다.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 확인 결과 지적이 사실이다. page3.sentences[16](index 17)의 segments(287-290행)는 삽입절 \"they taught\"를 { role: \"S\", text: \" they\" }, { role: \"V\", text: \" taught,\" }로 태깅해, 한 문장 안에 접속사/종속 표지 없이 S+V가 두 쌍(they/taught, one/must patiently learn) 존재하는 구조적으로 모순된 태깅이 된다. 결정적 근거: (1) 같은 문장의 grammar_note(293행)가 \"부사적 to부정사 + 삽입절(they taught) + learn to부정사\"라고 명시해 segments 태깅과 정면 충돌한다. (2) 같은 파일 문장 8(184행)은 동일 구조를 { role: \"M\", text: \" he said,\", note: \"삽입절\" }로 처리하고 grammar_note(188행)도 \"삽입절(he said)\"이라 하여 파일 내 확립된 규약과 어긋난다. (3) translation_ko(296행)도 \"...배워야 한다고 그들은 가르쳤다\"로 삽입절 해석을 따른다. 다만 \"they taught\"가 통사적으로는 주절이라 절대적 문법 오류라기보다 파일 내 일관성 규약 위반이며, warn 수준 지적으로 적절하다. 수정 방향: { role: \"M\", text: \" they taught,\", note: \"삽입절\" }로 통일."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.sentences[9] (index 10), segments lines 206-207",
+      "issue": "부분부정 주어 \"Not everyone\"을 \"Not\"(M)과 \"everyone,\"(S)으로 분리해 오태깅. grammar_note 자체가 두 단어를 한 덩어리로 설명하고 있어 자기모순.",
+      "evidence": "본문: \"Not everyone, however, agreed that people begin so gently.\" / 태깅: { \"role\": \"M\", \"text\": \"Not\" }, { \"role\": \"S\", \"text\": \" everyone,\" } / grammar_note: \"부분부정 not everyone + 삽입 however + agree that 명사절\" — note는 \"not everyone\"을 한 단위(부분부정 주어)로 명시함.",
+      "suggestion": "{ \"role\": \"S\", \"text\": \"Not everyone\", \"note\": \"부분부정 주어\" } 한 세그먼트로 통합. 부수적으로 현재 \"everyone,\"에 붙은 쉼표는 삽입어구 however의 앞 쉼표이므로 S가 아니라 M(however) 쪽에 귀속되어야 한다.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "CONFIRMED by direct file evidence plus corpus comparison. At 2026-08-J/20.json lines 206-207 the partial-negation subject \"Not everyone\" is split into { \"role\": \"M\", \"text\": \"Not\" } and { \"role\": \"S\", \"text\": \" everyone,\" }, while line 212's grammar_note says \"부분부정 not everyone + 삽입 however + agree that 명사절\" — explicitly describing the two words as one partial-negation unit. The tagging therefore contradicts the file's own note.\n\nThe split is also linguistically wrong, not merely stylistic: \"Not\" negates the quantifier \"everyone\" and the two form a single subject NP. Tagging \"Not\" as an adverbial M implies sentence-level negation (\"everyone did not agree\" = total negation), inverting the meaning the passage requires. The split further orphans the comma in \" everyone,\" which belongs to the inserted \"however,\" leaving \"Not\" detached from any comma logic.\n\nI tested the main counterargument — that separating negators is house convention — and the corpus refutes it. Every other \"Not everyone\" in the passage set keeps the phrase as ONE segment: 2026-07-J/20.json:507 tags it S, 2026-08-Sun/18.json:173 tags it M, 2026-06-Mars/02.json:105 tags it M. This file is the sole outlier that splits it. Note that 2026-08-Sun/18.json shows maintainers do sometimes choose M for the whole phrase, so the M role itself is not the defect — the split into two segments is.\n\nCaveat: the corpus is genuinely inconsistent about whether the unified phrase should be S or M (S in one file, M in two others). That is a separate pre-existing convention gap and does not weaken this finding, since under either convention \"Not everyone\" is a single segment."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.sentences[10] (index 11), segments lines 219-223",
+      "issue": "\"so ...\" 결과절을 that절 밖의 최상위 주절로 분절해, 순자가 '주장한 내용'의 범위를 잘못 표시. 같은 파일의 translation_ko와 어긋난다.",
+      "evidence": "본문: \"Xunzi held that human desire, left alone, runs toward greed and conflict, so the crooked wood must be steamed straight by teachers, laws, and long discipline.\" / 태깅에서 O 세그먼트가 \"...runs toward greed and conflict,\"에서 끝나고 이후 \"the crooked wood\"가 새 S, \"must be steamed straight\"가 새 V로 최상위에 놓임 → 결과절이 held의 목적어 밖으로 나감(= 필자의 단언이 됨). / 반면 translation_ko [11]은 \"순자는 인간의 욕망을 내버려 두면 탐욕과 다툼으로 흘러가므로, 굽은 나무는 스승과 법과 오랜 수양으로 쪄서 곧게 펴야 한다고 보았다\"로, 결과절까지 모두 '보았다(held)'의 목적어 안에 넣어 번역함.",
+      "suggestion": "결과절이 that절 내부임을 드러내도록 O 세그먼트 범위를 \"...must be steamed straight by teachers, laws, and long discipline.\"까지 확장하거나, 최소한 CONJ/S/V 세그먼트에 \"that절 내부 결과절\" note를 달아 최상위 주절로 오독되지 않게 할 것. 현재 분절은 성악설 주장의 귀속 주체를 흐린다.",
+      "lens": "explanation",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "지적이 파일 근거로 확인된다. 반박을 시도했으나 실패했다.\n\n[사실 확인]\n- 219행: O = \" that human desire, left alone, runs toward greed and conflict,\" — Xunzi가 held한 내용이 \"conflict,\"에서 닫힌다.\n- 220-223행: CONJ \" so\" + S \" the crooked wood\" + V \" must be steamed straight\" + M \" by teachers, laws, and long discipline.\" 가 최상위에 배치됨.\n- 296행 translation_ko [11]: \"순자는 인간의 욕망을 내버려 두면 탐욕과 다툼으로 흘러가므로, 굽은 나무는 스승과 법과 오랜 수양으로 쪄서 곧게 펴야 한다고 보았다.\" → 결과절까지 전부 '보았다(held)'의 목적어 안.\n\n[코퍼스 관례 대조 — 반박 시도의 핵심]\n\"CONJ so + 새 최상위 S/V\"가 이 파일만의 자의적 표기가 아니라 코퍼스 전반에서 '필자 목소리의 등위 주절'을 뜻하는 관례임을 확인:\n- 2026-08-J/01.json:264-276 — \"single atoms are far too small to weigh, so chemists count them in huge bundles\" (둘 다 필자 단언), grammar_note \"too ~ to + so 결과 등위절\".\n- 2026-06-J/07.json:318-333 — 동일 패턴, grammar_note \"so 결과 + the moment 시간절\".\n- 같은 파일 index 8(178-186행), index 15(265-268행)도 CONJ 뒤 최상위 S/V = 진짜 등위 주절.\n반면 보고동사 that절 안에 내포된 내용은 index 7(170행)처럼 O 세그먼트 안에 유지된다. 즉 내포절을 최상위로 빼는 선례가 코퍼스에 없다.\n\n[같은 파일 내 3중 불일치]\n- 296행 translation_ko [11]: '…고 보았다' 안에 결과절 포함\n- 87행 textbook_tieback: \"순자는 …굽은 성품을 바로잡아야 한다고 했다\"\n- 338행 해설: 밑줄 문장을 순자의 성악 관점으로 귀속\n세 곳 모두 결과절을 순자의 주장 범위 안으로 처리하는데, page3 태깅만 밖으로 빼냈다.\n\n[반박 논거와 그 한계]\n영어 \"X held that A, so B\"는 원리상 범위 중의적이고, 225행 grammar_note가 \"hold that절 … + so 결과\"로 범위를 명시하지 않아 의도적 단순화라는 변호가 가능하다. 그러나 (a) 태깅 자체가 범위 주장을 전달하고, (b) 같은 파일이 세 번이나 반대 방향으로 중의성을 해소하며, (c) 코퍼스 관례상 해당 패턴은 필자 단언을 의미하므로 변호가 성립하지 않는다.\n\n[영향]\n맹자 성선설 대 순자 성악설의 '견해 대비'가 핵심인 윤리와 사상 지문에서, 순자의 교화론 명제가 교재 필자의 규범적 단언처럼 읽히게 되어 귀속이 어긋난다. 사실 오류는 아니고 주석 범위(annotation scope) 결함으로 심각도는 중간 이하이나, 실재하는 결함이다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-08-J/20.json → page3.translation_ko 문장 [16]",
+      "issue": "'pull against one another'(서로 맞당기다·길항하다)의 대립 뉘앙스가 소실되어 '서로 끌어당긴다'로 오독될 수 있는 오역",
+      "evidence": "영문 본문(page1.body / page3 sentences[16]): \"tracing how feeling, will, and reason pull against one another.\" / 번역: \"[16] 후대의 성리학자들은 이 통찰을 마음의 정교한 지도로 바꾸어, 감정과 의지와 이성이 서로 어떻게 당기는지를 추적했다.\"",
+      "suggestion": "\"감정과 의지와 이성이 서로 어떻게 맞당기며 갈등하는지를 추적했다\" 또는 \"서로 어떻게 반대 방향으로 잡아당기는지를 추적했다\"로 수정. 심성론(감정·이성의 긴장) 맥락과도 부합함.",
+      "lens": "translation",
+      "verdict": {
+        "reason": "확인됨. page3.translation_ko 문장 [16]은 원문 \"tracing how feeling, will, and reason pull against one another\"를 \"감정과 의지와 이성이 서로 어떻게 당기는지를 추적했다\"로 옮겼는데, 대립을 표시하는 전치사 against의 의미가 전혀 반영되지 않았다. 한국어 \"서로 당기다\"는 별도의 대립 표지(맞서, 반대로, 밀고 당기다, 길항)가 없으면 자석처럼 서로 끌어당기는 상호 인력으로 읽히는 것이 기본값이므로, 원문의 길항·긴장 의미가 정반대에 가깝게 오독될 수 있다. 이는 단순 뉘앙스 손실이 아니라 지문 논지와 충돌한다. 해당 문단과 빈칸 추론 정답(page2 questions[1] answer_index 1, \"govern the movements of the heart\")은 마음이 서로 맞서는 힘들의 장이어서 '다스림'이 필요하다는 전제에 의존하는데, 세 요소가 서로 끌어당긴다면 다스릴 대상 자체가 사라진다. 같은 오역이 answers.explanations[1].evidence(파일 321행)의 \"감정·의지·이성이 서로 당기는 방식\"에도 전파되어 있다. 반면 page3.sentences[16] 세그먼트(279행)는 영문을 원형대로 보존하므로 결함은 한국어 번역에 한정된다. 또한 이 파일의 다른 번역은 [9] \"not A but B\", [15] \"less A than B\" 등 까다로운 구문을 정확히 처리할 만큼 정교하므로, 의도적 문체 선택이 아니라 실제 누락으로 판단된다. 수정안: \"감정과 의지와 이성이 서로 어떻게 맞당기는지\" 또는 \"서로 어떻게 밀고 당기며 맞서는지\".",
+        "confidence": "high",
+        "isReal": true
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page4.vocab[7].examples[1].ko (discipline)",
+      "issue": "예문 en의 discipline은 '단련/훈련' 뜻인데 ko 대역이 '수양'으로 되어 있어 단어 뜻과 문맥이 어긋난다. meaning_ko에 이미 '절제된 훈련'이라는 적절한 대역이 있는데도 사용되지 않았다.",
+      "evidence": "vocab: {\"word\":\"discipline\", \"meaning_ko\":\"수양, 절제된 훈련\"}. 예문: {\"en\":\"Mastery of the violin demands years of discipline.\", \"ko\":\"바이올린 숙달에는 여러 해의 수양이 필요하다.\"} — '수양'은 본문 문맥(\"by teachers, laws, and long discipline\")의 도덕적 자기 수양 뜻이라 바이올린 연습에는 부적절하다.",
+      "suggestion": "ko를 '바이올린 숙달에는 여러 해의 (꾸준한) 훈련이 필요하다.'로 수정한다.",
+      "lens": "vocab",
+      "verdict": {
+        "isReal": true,
+        "confidence": "medium",
+        "reason": "파일에서 지적 내용이 그대로 확인된다. page4.vocab[7]은 discipline이 맞고(restless/humane/ritual/reflection/sprout/coax/greed 다음 8번째, 인덱스 7), line 450의 meaning_ko는 \"수양, 절제된 훈련\", line 455의 examples[1]은 en \"Mastery of the violin demands years of discipline.\" / ko \"바이올린 숙달에는 여러 해의 수양이 필요하다.\"로 일치한다.\n\n결함으로 인정하는 근거는 단순한 어감 선호가 아니라 파일 자체의 내부 규약 위반이다. 이 파일의 vocab 항목은 examples[0]에 본문 문맥 문장, examples[1]에 확장(2차) 용례를 배치하고, meaning_ko가 두 개의 대역을 가질 때 examples[1]에서 두 번째 대역으로 회전시키는 일관된 패턴을 따른다. 실제로 verdict(line 476: 판결 → 평결)와 conviction(line 487-488: 신념 → 확신)이 이 패턴을 명시적으로 보여 준다. discipline만 두 예문 모두 첫 대역 '수양'을 사용해 '절제된 훈련'이 미사용으로 남고, 두 예문/두 대역 구조가 가르치려는 의미 구분 자체가 무너진다.\n\n또한 answers.explanations[2].key_terms(line 347)에서 저자들이 discipline을 \"수양, 훈련\"으로 병기한 점도, 비도덕적 문맥에는 '훈련' 계열 대역이 적용된다는 저자 의도를 뒷받침한다. 한국어 용법상으로도 수양(修養)은 마음·인격·도덕과 연어를 이루며, '바이올린 숙달에는 여러 해의 수양'은 부자연스럽고 훈련/연마/절제된 훈련이 자연스럽다.\n\n다만 confidence를 medium으로 둔 이유는, 수양(修養)이 '닦고 기름'이라는 넓은 뜻을 가져 기예 연마에 쓰이는 것이 절대적 오역이라고까지는 보기 어렵고 의미 전달 자체는 되기 때문이다. 따라서 error가 아닌 warn 등급으로서의 지적은 타당하다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page4.vocab[11].examples[0].en (bystander)",
+      "issue": "예문 영어의 연어(collocation)가 비관용적이다. 'pull a gasp from'은 영어에서 쓰지 않는 표현이며 'draw a gasp from'이 옳다.",
+      "evidence": "예문: {\"en\":\"A child at risk pulls a gasp from any bystander.\"} — 본문 자체는 \"When a child near a well is suddenly in danger, any bystander gasps\"로 평이하게 쓰고 있다.",
+      "suggestion": "\"A child at risk draws a gasp from any bystander.\" 또는 본문에 맞춰 \"Any bystander gasps at the sight of a child in danger.\"로 바꾼다.",
+      "lens": "vocab",
+      "verdict": {
+        "isReal": true,
+        "confidence": "medium",
+        "reason": "파일에서 지적 위치와 인용문이 정확히 확인됨. page4.vocab[11] (word: \"bystander\") examples[0].en = \"A child at risk pulls a gasp from any bystander.\" (파일 498행).\n\n지적 내용도 언어학적으로 타당하다:\n1. 'gasp'와 결합하는 관용적 연어는 draw/elicit/provoke a gasp from이며, 'pull a gasp from'은 영어에서 정착된 결합이 아니다. 'pull'은 물리적 당김이나 pull a face/pull a muscle 같은 고정 표현에서 쓰이지, 반응을 이끌어내는 경동사(light verb)로 'gasp'와 짝지어 쓰이지 않는다.\n2. 결정적 근거: 같은 항목의 한국어 대역이 \"…놀란 숨을 자아낸다\"로 되어 있다. '자아내다'는 정확히 draw/elicit의 의미역이므로, 집필 의도 자체가 draw였고 영어 동사 선택이 의도와 어긋난 것임을 파일 내부 증거가 확인해 준다. 이는 취향 차이가 아니라 실제 불일치다.\n3. 위치가 어휘 학습용 예문 슬롯이라는 점이 중요하다. 예문은 학습자가 모방·암기하는 표준 용법 모델이므로, 창작 문장에서라면 허용될 수 있는 비관용적 결합도 여기서는 결함으로 본다.\n\n반박 검토했으나 기각한 논거: (a) 문학적 파격이라는 변호 — EFL 어휘 예문에는 적용되지 않음. (b) 지적자의 보조 근거(\"본문은 평이하게 any bystander gasps로 씀\")는 그 자체로는 결함 증명이 못 됨 — 예문이 본문과 달라도 무방하기 때문. 그러나 연어 문제는 이 보조 논거와 독립적으로 성립하므로 결론은 유지된다.\n\nconfidence를 high가 아닌 medium으로 둔 이유: 문장이 문법적으로 틀리지 않고 의미 전달도 되며, 결함의 성격이 정오(正誤)가 아니라 관용성(idiomaticity)이다. 코퍼스 빈도를 직접 조회해 검증한 것이 아니라 언어 지식에 의존한 판단이라는 한계도 있다. 지적이 error가 아닌 warn 등급으로 제기된 것은 이 심각도에 적절하다.\n\n수정안: \"A child at risk draws a gasp from any bystander.\" (한국어 대역 '자아낸다'와도 정합)"
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page1.body, 2문단 첫 문장 (분해 sentence index 6)",
+      "issue": "비관용적 연어(collocation). 'take an idea deeper inside the person'은 영어에서 자연스럽지 않다. 'take'는 방향 부사구와 결합할 때 목적어를 물리적으로 옮기는 뜻이 우선이라, 추상적 '사상을 내면으로 심화시켰다'는 의미가 어색하게 전달된다.",
+      "evidence": "\"Mencius took this very same idea deeper inside the person.\"",
+      "suggestion": "\"Mencius carried this same idea deeper into the person.\" 또는 \"Mencius pushed this same idea further inward.\" (아울러 'this very same idea'의 'very'는 강조 중복이라 삭제 가능)",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "page1.body, 3문단 첫 문장 (분해 sentence index 10)",
+      "issue": "보어 결락으로 인한 어색한 구문. 자동사 'begin'을 양태 부사구 'so gently'만으로 마무리해 '무엇으로서 시작하는가'가 비어 있다. 의도된 의미는 '인간이 그렇게 온순한 상태로 출발한다'이므로 보어가 필요하다.",
+      "evidence": "\"Not everyone, however, agreed that people begin so gently.\"",
+      "suggestion": "\"...agreed that people start out so gentle.\" 또는 \"...agreed that human nature begins in such a gentle state.\"",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-08-J/20.json → page3.translation_ko 문장 [16]",
+      "issue": "'Later Confucian scholars'(후대 유학자들)를 '후대의 성리학자들'로 특정 학파(성리학/Neo-Confucianism)로 좁혀 번역한 과잉 특정",
+      "evidence": "page3 sentences[16] segments: { \"role\": \"S\", \"text\": \"Later Confucian scholars\" } / 번역: \"[16] 후대의 성리학자들은 ...\"",
+      "suggestion": "\"후대의 유학자들은\"으로 수정. 성리학 언급은 page2.textbook_tieback의 배경 설명에 이미 있으므로 본문 번역은 원문 범위를 유지하는 편이 안전함.",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-08-J/20.json → page3.translation_ko 문장 [9]",
+      "issue": "'feeds a young plant'(어린 식물에 양분을 주다)를 '돌보듯'으로 일반화하여, 뒤의 'gluing on leaves'(잎을 붙이다)와 이루는 '안에서 길러냄 vs 밖에서 갖다 붙임' 대비가 약화됨",
+      "evidence": "영문: \"the way a patient farmer feeds a young plant instead of gluing on leaves.\" / 번역: \"[9] ... 참을성 있는 농부가 잎을 붙이는 대신 여린 식물을 돌보듯 살살 끌어내어지는 것이다.\"",
+      "suggestion": "\"농부가 잎을 갖다 붙이는 대신 어린 식물에 양분을 주어 기르듯\" 정도로 'feed'의 의미를 살릴 것.",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-08-J/20.json → page3.translation_ko 문장 [10]",
+      "issue": "'agreed'(동의했다)를 '여긴 것은 아니었다'(생각하다)로 옮겨, 앞 단락 맹자 주장에 대한 '동의 여부'라는 논쟁 구도가 흐려짐",
+      "evidence": "영문: \"Not everyone, however, agreed that people begin so gently.\" / 번역: \"[10] 그러나 모든 사람이 인간이 그렇게 온순하게 시작한다고 여긴 것은 아니었다.\"",
+      "suggestion": "\"그러나 모든 사람이 인간이 그렇게 온순하게 출발한다는 데 동의한 것은 아니었다.\"로 수정.",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page1.gloss_extra[0] / page4.vocab[0] (restless), page1.gloss_extra[2] / page4.vocab[10] (conviction)",
+      "issue": "gloss_extra와 page4.vocab에 동일 단어가 완전히 같은 한국어 뜻으로 중복 수록되어 있다. gloss_extra는 vocab에서 다루지 않는 단어를 보조 설명하는 자리이므로 12개 어휘 슬롯 중 2개가 중복 낭비된다.",
+      "evidence": "gloss_extra: {\"term\":\"restless\",\"ko\":\"가만있지 못하는, 산만한\"} / vocab: {\"word\":\"restless\",\"meaning_ko\":\"가만있지 못하는, 산만한\"}. gloss_extra: {\"term\":\"conviction\",\"ko\":\"굳은 신념, 확신\"} / vocab: {\"word\":\"conviction\",\"meaning_ko\":\"굳은 신념, 확신\"}.",
+      "suggestion": "gloss_extra에서 restless·conviction을 빼고 vocab에 없는 본문 단어(예: unsteady, courtesy, dispute, craft)로 교체하거나, vocab 슬롯을 해당 단어들로 대체한다.",
+      "lens": "vocab"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[3].examples[0] (reflection)",
+      "issue": "예문이 본문의 논리를 왜곡한다. 본문에서 reflection은 실천의 '수단' 중 하나이고 습관화를 이루는 주체는 매일의 실천인데, 예문은 reflection 자체를 습관화의 주체로 만든다.",
+      "evidence": "본문: \"It must be practiced daily, through ritual, study, and honest reflection, until kindness turns from effort into habit.\" / 예문: {\"en\":\"Honest reflection turns kindness into a habit.\"}",
+      "suggestion": "\"Daily practice, including honest reflection, turns kindness into a habit.\" 처럼 reflection을 수단으로 두는 문장으로 조정한다.",
+      "lens": "vocab"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[1].examples[0] (humane)",
+      "issue": "예문이 본문 내용을 잘못 귀속시킨다. 'calm and humane'은 고대 중국 철학자들이 공통으로 던진 물음의 일부이지 공자가 그렇게 바랐다고 본문이 진술한 바가 아니다.",
+      "evidence": "본문: \"Instead, they asked how a restless, unsteady mind could slowly become a calm and humane one.\" — 주어는 they(고대 중국 철학자들)이며, 다음 문장에서야 Confucius가 등장한다. 예문: {\"en\":\"Confucius wanted to shape a settled, humane mind.\"}",
+      "suggestion": "\"They asked how a restless mind could become a calm and humane one.\" 처럼 본문 주체에 맞추거나, 공자를 빼고 일반 문장으로 바꾼다.",
+      "lens": "vocab"
+    }
+  ],
   "blockers": [],
   "counts": {
-    "raw": 0,
-    "verified": 0,
-    "confirmed": 0,
-    "minor": 0
+    "raw": 16,
+    "verified": 8,
+    "confirmed": 6,
+    "minor": 8
   }
 }

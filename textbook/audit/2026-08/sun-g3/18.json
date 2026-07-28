@@ -1,0 +1,186 @@
+{
+  "grade": "sun-g3",
+  "seq": 18,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page1.body, 2문장 (1단락)",
+      "issue": "\"book a doctor\"는 영어 연어(collocation) 오류. 영어에서 book의 목적어는 예약 대상(appointment, flight, table, room)이지 사람 자체가 아니다. 의사 진료 예약은 \"book a doctor's appointment\" 또는 \"book an appointment with a doctor\"로 쓴다. 같은 문장의 나머지 병렬 항목(apply for a job, pay a bill, meet a teacher)은 모두 자연스러운 연어라 이 항목만 튄다.",
+      "evidence": "\"People book a doctor, apply for a job, pay a bill, and even meet a teacher without ever leaving home.\"",
+      "suggestion": "\"People book a doctor's appointment, apply for a job, pay a bill, and even meet a teacher without ever leaving home.\" (병렬 리듬을 유지하려면 \"see a doctor\"도 가능)",
+      "lens": "language",
+      "verdict": {
+        "isReal": true,
+        "confidence": "medium",
+        "reason": "Confirmed in file. textbook/content/passages/2026-08-Sun/18.json line 26 (page1.body, sentence 2) reads: \"People book a doctor, apply for a job, pay a bill, and even meet a teacher without ever leaving home.\" In standard English, book takes the reserved thing as object (appointment, flight, table, room) or, by metonymy, a performer/professional hired for an engagement (\"book a band/speaker\") — a sense that means \"hire to perform\", not \"reserve a consultation with\". The intended meaning here is medical-appointment booking, which is confirmed by the file's own Korean gloss at line 93 (\"진료 예약\") and the translation at line 345 (\"의사를 예약하고\"). Idiomatic English requires \"book a doctor's appointment\" or \"book an appointment with a doctor\". The three parallel items in the same series (apply for a job, pay a bill, meet a teacher) are all natural collocations, making this item the sole outlier, as the reviewer states. Confidence is medium rather than high because informal British/telehealth-app usage (\"book a doctor online\", \"book a GP\") does occur as ellipsis for \"book a doctor('s appointment)\"; it is not outright ungrammatical, which is why warn-level severity is proportionate rather than error-level. Given this is Korean EFL exam-prep prose at 1050L where students memorize collocation chunks, the correction is warranted. Note the fix has ripple scope: page3 sentence 2 (lines 143-146) tags the entire parallel verb-phrase chain \"a doctor, apply for a job, pay a bill, and even meet a teacher\" as a single role \"O\" object of book, so segmentation and the line 345 translation must be updated alongside page1.body."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.sentences[index=5].segments[0]",
+      "issue": "부분부정 주어 \"Not everyone\"을 M(수식어)으로 오태깅. 해당 절이 V(reaches)+O(the online world)만 있고 S가 없는 비문 구조가 된다.",
+      "evidence": "본문: \"Not everyone reaches the online world on equal terms, and this uneven access is what scholars call the digital divide.\" / 파일: { \"role\": \"M\", \"text\": \"Not everyone\" }, { \"role\": \"V\", \"text\": \"reaches\" }, { \"role\": \"O\", \"text\": \"the online world\" }. 뒤 등위절은 \"this uneven access\"를 S로 정상 태깅하고 있어 앞 절만 S가 비어 있음. 같은 폴더 20.json index 16의 동일 유형(부분부정)에서는 \"None of this\"를 { \"role\": \"S\" }로 태깅하고 grammar_note도 \"부분부정 + yet 등위절\"로 동일 → 교재 자체 관례상으로도 S가 맞음.",
+      "suggestion": "\"Not everyone\"의 role을 M → S로 수정. (grammar_note \"부분부정 + and 등위절\"은 그대로 유효)",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "지적이 파일 근거로 완전히 확인됨. 반박 시도가 모두 실패했다.\n\n1) 인용 정확성: 18.json page3.sentences[index=5].segments[0]은 실제로 { \"role\": \"M\", \"text\": \"Not everyone\" }이며(파일 173행), 이어서 V \"reaches\", O \"the online world\"가 온다. 본문 문장도 지적이 인용한 그대로다.\n\n2) 문법적 사실: \"Not everyone\"은 정형절의 주어 위치에 있는 한정 명사구이고, 동사 reaches의 3인칭 단수 일치 대상이다. 도치·허사 구문이 아니므로 주어로 볼 수밖에 없으며, M 태깅 시 해당 절은 S 없이 V+O+M만 남는 구조적 비문이 된다.\n\n3) 동일 엔트리 내부 모순: 같은 index=5 안에서 and로 연결된 뒤 등위절은 \"this uneven access\"를 S로 태깅한다. 동일한 평서 SVO 절 두 개 중 앞절만 S가 비어 있어, 외부 관례를 따지기 전에 그 자체로 자기모순이다.\n\n4) 코퍼스 관례: 전체 passages에서 부정/부분부정 주어는 S 34회 대 M 5회로 S가 압도적이다. 게다가 M 5건 중 2026-06-J/06.json idx13, 2026-07-Sun/08.json idx12는 독립분사구문, 2026-07-J/01.json idx13은 축약 관계절로 정당한 M이다. 주어 위치의 진짜 오태깅은 18.json idx5와 2026-06-Mars/02.json idx14 둘뿐이다.\n\n5) 결정적 최소대립쌍: 2026-07-J/20.json index 13은 동일 어구 \"Not everyone\"을 동일한 주어 위치에서 { \"role\": \"S\" }로 태깅하고 grammar_note도 \"부분 부정 (Not everyone)\"이다. 지적이 든 20.json index 16(\"None of this\" → S, \"부분부정 + yet 등위절\") 근거도 서술 그대로 확인된다.\n\n심각도 warn은 타당하다. 런타임 결함은 아니지만 문장 성분 분석을 가르치는 page3의 목적상 주어를 수식어로 오표기하는 것은 학생에게 잘못된 구문 분석을 가르치고 교재 자체 관례와도 충돌한다.\n\n추가(원 지적 범위 밖): 2026-06-Mars/02.json index 14도 \"Not everyone\"이 M으로 오태깅되어 있고 grammar_note가 빈 문자열이므로 수정 시 함께 다루는 것이 좋다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.sentences[index=2].segments[2]",
+      "issue": "O로 태깅된 텍스트 안에 목적어가 아닌 병렬 동사구 3개(apply for a job / pay a bill / meet a teacher)가 통째로 포함됨. book의 실제 목적어는 \"a doctor\"뿐이며, 태그(role=O)와 note(\"동사구 병렬\")가 서로 모순된다.",
+      "evidence": "본문: \"People book a doctor, apply for a job, pay a bill, and even meet a teacher without ever leaving home.\" / 파일: { \"role\": \"V\", \"text\": \"book\" }, { \"role\": \"O\", \"text\": \"a doctor, apply for a job, pay a bill, and even meet a teacher\", \"note\": \"동사구 병렬\" }. apply/pay/meet은 book과 병렬인 술어동사이므로 O 성분이 될 수 없음.",
+      "suggestion": "V \"book\" + O \"a doctor,\" 로 끊고, 나머지를 V \"apply for\"/O \"a job,\", V \"pay\"/O \"a bill,\", CONJ \"and even\", V \"meet\"/O \"a teacher\" 처럼 병렬 술부로 분리 태깅. 최소한 role을 O가 아닌 병렬 술부 표기로 교체.",
+      "lens": "explanation",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "File-confirmed at page3.sentences[index=2].segments[2] (line 145 of textbook/content/passages/2026-08-Sun/18.json): { \"role\": \"O\", \"text\": \"a doctor, apply for a job, pay a bill, and even meet a teacher\", \"note\": \"동사구 병렬\" }. In \"People book a doctor, apply for a job, pay a bill, and even meet a teacher without ever leaving home,\" the verbs apply/pay/meet are finite predicates coordinated with \"book\" under the subject \"People\"; only \"a doctor\" is the object of \"book\". Tagging all three coordinate VPs as a single O constituent is a wrong parse, and the note (\"동사구 병렬\") contradicts the role (O) on the same segment — a segment cannot simultaneously be an object and a set of parallel verb phrases. The file's own conventions confirm this is an inconsistency rather than deliberate shorthand: index=9 splits the coordinate VP into CONJ \"yet\" / V \"feel\" / C \"lost\", and index=7 and index=18 split coordinate clauses into separate S/V/O segments with a CONJ separator, so the schema both supports and normally requires repeated V segments. The sentence-level grammar_note (line 148, \"동사구 병렬 + without V-ing\") diagnoses the structure correctly, which the segmentation then fails to encode. Severity is a bounded content/pedagogy defect on one segment (page3 is a sentence-structure analysis page, so the mislabel teaches a wrong parse), not a schema or runtime failure; correct segmentation would be V \"book\" / O \"a doctor,\" / V \"apply for a job,\" / V \"pay a bill,\" / CONJ \"and\" / V \"even meet a teacher\" / M \"without ever leaving home.\""
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.translation_ko 문장 [11]",
+      "issue": "\"for good\"(영구히, 되돌릴 수 없이)을 \"완전히\"(정도·전부)로 옮겨 어의가 바뀜. 시간적 영속성 → 양적 완전성으로 전환된 오역.",
+      "evidence": "영문: \"This matters because so many basic services have moved online for good.\" / 번역: \"[11] 이것이 중요한 이유는 그토록 많은 기본 서비스가 완전히 온라인으로 옮겨 갔기 때문이다.\"",
+      "suggestion": "\"…기본 서비스가 아예(영영) 온라인으로 옮겨 가 버렸기 때문이다\" 또는 \"…온라인으로 옮겨 간 뒤 되돌아오지 않기 때문이다\"로 수정.",
+      "lens": "translation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 확인 결과 지적이 정확하다. page1.body(line 26)에 \"This matters because so many basic services have moved online for good.\"가, page3.translation_ko(line 345) 문장 [11]에 \"이것이 중요한 이유는 그토록 많은 기본 서비스가 완전히 온라인으로 옮겨 갔기 때문이다.\"가 원문 그대로 존재한다.\n\n\"for good\"은 \"영구히, 영영, 돌이킬 수 없이\"를 뜻하는 고정 관용구로, 시간적 영속성을 나타내는 부사구이며 정도(degree)를 나타내지 않는다. 반면 \"완전히\"는 한국어에서 표준적으로 정도·전부성(\"100% 정도로\")을 뜻하므로, 시간축의 의미가 정도축으로 치환되었다. 지적의 진단이 정확하다.\n\n의미 왜곡도 실질적이다. \"완전히 온라인으로 옮겨 갔다\"는 오프라인 창구가 전혀 남지 않았다는 강한 주장이 되는데, 본문은 [14] \"When essential doors open only through a screen\"처럼 조건절로만 그 상황을 제시하며, 글 전체 논지는 오히려 비디지털 접근이 여전히 필요한 사람들이 있다는 것이다. 따라서 오역이 논지와도 미묘하게 충돌한다.\n\npage3 index 11 구조 분석에서 \"online for good\"을 M(수식어)으로 태깅하고 \"현재완료\"를 명시한 점도 영속성 해석을 뒷받침한다(have moved + for good = 이동의 영구성).\n\n보정 장치도 없다. \"for good\"은 gloss_extra(line 29-33)에도, page4 vocab(line 418-551)에도 등재되어 있지 않아, 학습자에게는 이 번역문이 유일한 단서다. 고3 대상 EFL 교재에서 빈출 관용구를 잘못 각인시키는 결과가 된다.\n\n수정 제안: \"영구히 온라인으로 옮겨 갔기 때문이다\" 또는 자연스럽게 \"아예 온라인으로 옮겨 가 굳어졌기 때문이다\".\n\n반박 시도: \"완전히\"가 \"아예/영영\"의 관용적 뉘앙스로 읽힐 여지를 검토했으나, \"아예\"와 달리 \"완전히\"는 영속성 함의를 단독으로 갖지 않으므로 반박이 성립하지 않는다. 다만 severity는 warn 수준이 타당하며, 문장 전체 논지를 뒤집는 치명적 오역은 아니다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page2.questions[1] (빈칸 추론, answer_index 4) 및 page3.sentences[20]",
+      "issue": "빈칸 추론 문제의 정답 'exclusion'이 같은 파일 page3 문장 분석과 translation_ko에 그대로 노출되어 있어, 학습자가 본문 추론 없이 정답을 확인할 수 있다. 정답 자체는 타당하나 문제로서의 변별력이 무력화된다.",
+      "evidence": "page1.body 빈칸: \"It is to make sure that going digital never becomes another quiet form of <blank>.\" / page3.sentences[20].segments C: \"to make sure that going digital never becomes another quiet form of exclusion.\" / translation_ko [20]: \"디지털화가 결코 또 하나의 조용한 소외의 형태가 되지 않도록 하는 것이다.\" / page4.vocab 'inclusion' antonyms: [\"exclusion\"]",
+      "suggestion": "page3 문장 20의 해당 부분을 본문과 동일하게 <blank>(또는 ___)로 처리하고 translation_ko [20]의 '소외의'도 빈칸 처리하여, 정답 노출을 answers.explanations 영역으로만 한정할 것.",
+      "lens": "answer",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 근거로 전부 확인됨. page1.body(line 26) 빈칸 문장 \"...never becomes another quiet form of <blank>.\"의 정답은 page2.questions[1](line 50-62, answer_index 4) = 'exclusion'인데, 동일 파일 page3.sentences의 index 20 segment C(line 340)가 \"to make sure that going digital never becomes another quiet form of exclusion.\"으로 빈칸을 그대로 복원해 노출하고, page3.translation_ko [20](line 345)도 \"...조용한 소외의 형태가 되지 않도록 하는 것이다\"로 한국어 정답을 제공한다. page4.vocab 'inclusion' antonyms:[\"exclusion\"](line 501)이 추가 보강 노출. 반박 시도는 모두 실패: (1) page3는 정답지가 아니라 본문 문장분석·전문번역이라는 학습 콘텐츠이며, 스키마에 hidden/teacher_only/reveal_after 같은 게이팅 필드가 전무하고 answers 블록은 별도 파일이 아닌 같은 최상위(line 347)에 있어 구조상 page3를 은닉 대상으로 취급하지 않음. (2) 같은 파일의 다른 빈칸형 문항 page2.questions[3]은 별도 작성된 summary_template를 써서 page3 문장에 중복되지 않아 누출이 없음 — 파일 내부적으로 처리가 불일치. (3) '추론 가능성'은 쟁점이 아니며, line 340은 추론 없이 그대로 읽힘. 다만 지적의 'page3.sentences[20]' 표기는 0-based 배열 인덱스로는 19(객체 필드 index 값이 20)라는 사소한 부정확이 있으나 결함 성립에는 영향 없음."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page4.vocab[2] access — synonyms",
+      "issue": "synonyms가 [\"entry\"] 하나뿐인데, 본문 문맥의 access(이용 기회·이용 권한)와 entry(입장, 출입)는 의미가 어긋난다. meaning_ko \"접근, 이용 (권한)\"과도 대응이 맞지 않는다.",
+      "evidence": "본문: \"So the gap runs along three lines at once: access to devices, access to a stable network, and the confidence to use both.\" / \"A student without reliable internet...\" — 여기서 access는 물리적 '입장'이 아니라 '이용할 수 있음'의 뜻이다. 반면 page4.vocab[2].synonyms = [\"entry\"].",
+      "suggestion": "synonyms를 [\"availability\", \"admittance\"] 또는 문맥에 맞게 [\"use\", \"availability\"]로 교체하거나, 최소한 entry를 빼고 availability를 추가한다.",
+      "lens": "vocab",
+      "verdict": {
+        "isReal": true,
+        "confidence": "medium",
+        "reason": "파일 확인 결과 지적의 사실관계가 모두 정확하다. page4.vocab[2] = access, meaning_ko = \"접근, 이용 (권한)\", synonyms = [\"entry\"] (18.json 442-445행).\n\n핵심은 \"entry\"가 문맥상 타당한 동의어인가이다. 사전상 entry/entrance는 access의 동의어로 등재되지만, 이는 물리적 통행(\"access to the building\") 의미에 한정된다. 본문의 access는 전적으로 추상적 \"이용 가능성·이용 기회\" 의미다 — \"access to devices, access to a stable network\" (26행, page3 sentence 10), \"A student without reliable internet\" (26행).\n\n결정적 근거는 해당 vocab 항목 자신의 예문에 대입해 보면 드러난다: \"Students need access to a stable network\" → \"Students need entry to a stable network\"는 비문에 가깝다. \"entry to devices\"도 성립하지 않는다. 즉 이 표제어가 스스로 제시한 두 예문 어디에도 entry를 치환할 수 없다.\n\nmeaning_ko와의 대응도 어긋난다. \"접근, 이용 (권한)\"에서 의미의 무게중심인 \"이용\"과 \"(권한)\"을 entry(입장·출입)는 전혀 담지 못하고, 버려진 \"접근\" 쪽 절반에만 느슨하게 걸린다.\n\n반박 측 논거를 검토했으나 기각한다. (1) 다른 항목도 동의어 1개인 경우가 많다(uneven→unequal, confidence→assurance, gadget→device, inclusion→involvement). 그러나 이들은 모두 문맥 치환이 가능하다. 결함은 개수가 아니라 적합성이며, 지적도 적합성을 본론으로 삼고 있다. (2) 사전에 등재된 동의어이므로 무방하다는 논거는, 다의어의 어느 의미갈래에 속하는 동의어인지를 무시한 것으로 성립하지 않는다.\n\n다만 severity는 warn이 적절하다. 정답/해설 정합성을 훼손하지 않는 어휘 페이지 품질 이슈이며, 오류(error)는 아니다. 이 등급 내에서는 학생이 암기 후 오용할 소지가 있는 실질적 결함이므로 isReal=true. 사전 등재 사실이 반박 여지를 남기므로 confidence는 medium.\n\n개선안: synonyms를 [\"availability\", \"admission\"] 또는 [\"availability\", \"use\"]로 교체."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page4.vocab[2].examples[0].en \"The gap runs along access to devices.\"",
+      "issue": "본문 문장에서 핵심 구조(three lines at once:)를 잘라내면서 비문에 가까운 영어가 되었다. run along + 추상명사(access)는 영어에서 성립하지 않는 결합이며, 예문이 access의 뜻을 보여주지도 못한다.",
+      "evidence": "본문 원문: \"So the gap runs along three lines at once: access to devices, access to a stable network, and the confidence to use both.\" — run along의 목적어는 lines이지 access가 아니다. 예문은 \"The gap runs along access to devices.\"로 축약되어 있다.",
+      "suggestion": "\"The gap runs along three lines, starting with access to devices.\" 또는 examples[1]처럼 \"Many families still lack access to devices.\" 형태로 교체한다.",
+      "lens": "vocab",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "파일로 확인됨. page1.body(26행) 원문은 \"So the gap runs along three lines at once: access to devices, access to a stable network, and the confidence to use both.\"이고, page4.vocab[2](\"access\") examples[0].en(448행)은 \"The gap runs along access to devices.\"로 축약되어 있다. 지적 내용이 원문과 정확히 일치한다.\n\n실제 결함인 이유:\n1) 구조 파괴가 문법적 파탄으로 이어짐. run along의 목적어는 \"three lines\"이며, \"access to devices...\"는 콜론 뒤 동격 나열로 lines를 풀어 쓴 것이다. 이는 파일 자체의 주석에도 명시돼 있다(237행 note \"콜론 동격 나열\", 239행 \"1형식 + 콜론 동격 병렬\"). 동격항을 본체로 승격시키면서 핵심어 lines가 사라졌다.\n2) run along은 선형적 대상(road, river, wall, border, fault line)을 요구하는 공간/경로 연어다. 원문은 lines가 그 선형성을 제공해 은유가 성립하지만, access는 선형적 연장이 없는 불가산 추상명사여서 \"runs along access\"는 성립 가능한 해석이 없다. 같은 파일 548행 \"The pipe runs underneath the floor\"는 정상적 공간 용법으로, 저자들도 다른 곳에서는 이 제약을 지키고 있음을 보여준다.\n3) 어휘 예문으로서의 기능도 실패한다. access(접근, 이용 권한)의 의미를 보여주지 못한 채 깨진 틀만 제공하며, 정작 examples[1] \"Students need access to a stable network.\"(449행)는 자연스럽고 의미도 명확하다. 첫 예문은 학습자가 모방할 위험만 있고 추가 학습 가치가 없다.\n4) 한국어 대역도 함께 어긋났다. \"그 격차는 기기 접근을 따라 이어진다\"(448행)는 파일 자체 번역(345행 \"[10] 그래서 그 격차는 세 갈래를 따라 동시에 이어진다\")에서 \"세 갈래를 따라\"를 누락한 것으로, 축약이 대역까지 전파되었고 수정되지 않았다.\n\n반론 검토: \"인용 축약이므로 허용된다\"는 방어는 성립하지 않는다. 축약 예문이라도 단독으로 문법적이어야 하는데 이 문장은 그렇지 않다. 심각도가 warn(본문·정답이 아닌 어휘 예문)인 점은 타당하나, 오탐이 아닌 실제 결함이다.\n\n수정 방향: examples[0]을 원문 구조를 살려 \"The gap runs along three lines, starting with access to devices.\" 또는 access의 뜻이 드러나는 \"Not everyone has equal access to devices.\"로 교체하고, ko 대역도 함께 맞춘다."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page1.body, 3단락 \"A student without reliable internet falls behind on homework that assumes it.\"",
+      "issue": "대명사 it의 선행사가 부정 전치사구(without reliable internet) 안에 들어 있어 지시가 어색하고, \"homework that assumes it\"은 압축이 과해 의미가 모호하다(숙제가 무엇을 전제하는지 — 인터넷의 존재인지 접근인지). 고3 수준 독해에서 순간적 오독을 유발할 수 있다.",
+      "evidence": "\"A student without reliable internet falls behind on homework that assumes it.\"",
+      "suggestion": "\"A student without reliable internet falls behind on homework that assumes everyone has it.\" 또는 \"...on homework that takes such access for granted.\"",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.sentences[5].segments (index 5 첫 절)",
+      "issue": "구문 분석 라벨 오류. \"Not everyone\"은 해당 절의 주어(S)인데 수식어(M)로 태깅되어 있어, 같은 절에 S 없이 V/O만 남는다. 바로 뒤 등위절에서는 \"this uneven access\"를 올바르게 S로 태깅하고 있어 내부 일관성도 깨진다. grammar_note의 \"부분부정\" 설명 자체는 맞다.",
+      "evidence": "{ \"role\": \"M\", \"text\": \"Not everyone\" }, { \"role\": \"V\", \"text\": \"reaches\" }, { \"role\": \"O\", \"text\": \"the online world\" }",
+      "suggestion": "\"Not everyone\"의 role을 \"M\"에서 \"S\"로 수정.",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.sentences[index=17].segments[2]",
+      "issue": "\"aims\"의 필수 보충어인 to부정사구를 M(수식어)으로 태깅. 삭제하면 문장이 성립하지 않는 필수 성분이며, 동일 폴더 내 다른 지문의 관례와도 불일치.",
+      "evidence": "본문: \"It aims to bring devices, affordable networks, and patient training to the people society tends to overlook.\" / 파일: { \"role\": \"V\", \"text\": \"aims\" }, { \"role\": \"M\", \"text\": \"to bring devices, ...\", \"note\": \"aim to V + 목적격 관계절 생략\" }. 같은 폴더 07.json은 동사의 to부정사 보충어를 { \"role\": \"O\", \"text\": \"to fuse heavier elements,\" }로, 13.json은 { \"role\": \"C\", \"text\": \"to keep inflation mild and steady,\" }로 태깅함. note 자체가 \"aim to V\"라고 필수 연결을 명시하고 있어 M 태그와 어긋남.",
+      "suggestion": "role을 M → O(또는 교재 관례에 맞춰 C)로 수정.",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.sentences[index=18].segments[6]",
+      "issue": "4형식 teach의 간접목적어(neighbors)와 직접목적어(how to browse safely)를 하나의 O 세그먼트로 병합. note에 \"teach O how to V(4형식)\"라 적어 4형식임을 밝히면서도 IO/DO를 구분해 보여 주지 않아 구문분석 학습 목적에 미치지 못한다.",
+      "evidence": "본문: \"volunteers teach neighbors how to browse safely.\" / 파일: { \"role\": \"O\", \"text\": \"neighbors how to browse safely.\", \"note\": \"teach O how to V(4형식)\" }",
+      "suggestion": "IO \"neighbors\" / DO \"how to browse safely\" 로 분리하거나, 최소 O 세그먼트를 두 개로 나눠 4형식 구조가 시각적으로 드러나게 수정.",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko 문장 [7]",
+      "issue": "조동사 may(가능성·예시 제시)가 번역에서 누락되어, 예시적 가정이 단정 서술로 바뀜. 같은 문단의 [9]에서는 may를 \"~할 수 있다\"로 살렸으므로 내부 일관성도 깨짐.",
+      "evidence": "영문: \"One person may have a new laptop and steady internet, while a neighbor shares one cracked screen with a whole family.\" / 번역: \"[7] 어떤 사람은 새 노트북과 안정적인 인터넷을 가진 반면, 이웃은 온 가족과 금 간 화면 하나를 함께 쓴다.\" (비교: \"[9] …막막함을 느낄 수 있다.\")",
+      "suggestion": "\"어떤 사람은 새 노트북과 안정적인 인터넷을 가지고 있을 수 있는 반면, …\"처럼 may를 살려 [9]와 톤을 맞출 것.",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page2.questions[1].choices",
+      "issue": "빈칸 추론 오답 선지 4개(convenience, abundance, curiosity, progress)가 모두 긍정 가치어이고 정답만 유일한 부정어라, 본문을 읽지 않고 '부정어 하나 고르기'만으로 정답에 도달할 수 있다. 함정 설계가 약하다.",
+      "evidence": "choices: [\"convenience\",\"abundance\",\"curiosity\",\"progress\",\"exclusion\"] / 빈칸 문맥: \"never becomes another quiet form of <blank>\" — never가 있어 빈칸에는 부정어가 들어가야 함이 자명하다.",
+      "suggestion": "오답 중 1~2개를 본문 어휘와 연결되는 부정 방향 어휘(예: inconvenience, dependence, division 등)로 교체해, 부정어라는 이유만으로는 변별되지 않도록 조정할 것.",
+      "lens": "answer"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[0].examples[1].en \"A wide divide splits the two regions.\"",
+      "issue": "divide(격차/분열)는 통상 between/among과 결합해 'a divide between the two regions' 형태로 쓰인다. divide가 타동사 split의 주어로 두 지역을 가르는 주체처럼 쓰인 문장은 부자연스럽다.",
+      "evidence": "page4.vocab[0].examples[1]: {\"en\": \"A wide divide splits the two regions.\", \"ko\": \"넓은 격차가 두 지역을 갈라놓는다.\"} — 본문 용법은 \"this uneven access is what scholars call the digital divide\"로 명사 보어형이다.",
+      "suggestion": "\"A wide divide has opened between the two regions.\"(넓은 격차가 두 지역 사이에 벌어졌다)로 수정한다.",
+      "lens": "vocab"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[8] affordable — synonyms [\"inexpensive\", \"cheap\"]",
+      "issue": "cheap는 '싸구려의'라는 품질 폄하 함의를 자주 동반하므로 affordable(감당할 만한)의 동의어로 제시하면 뉘앙스 오해를 유발한다. 본문의 affordable networks는 '값이 싼 저질 통신'이 아니라 '부담 가능한 요금'을 뜻한다.",
+      "evidence": "본문: \"It aims to bring devices, affordable networks, and patient training to the people society tends to overlook.\" — 번역도 \"저렴한 네트워크\"로 부담 가능성의 의미다.",
+      "suggestion": "cheap를 빼고 [\"inexpensive\", \"reasonable\"] 또는 [\"inexpensive\", \"low-cost\"]로 바꾼다.",
+      "lens": "vocab"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[7] inclusion — synonyms [\"involvement\"]",
+      "issue": "본문의 inclusion은 '소외된 집단을 제도 안으로 포용함'이라는 사회정책적 의미인데, involvement(관여, 참여)는 개인의 개입 정도를 가리켜 층위가 다르다. antonym exclusion은 정확하나 synonym이 약하다.",
+      "evidence": "본문: \"The answer that experts propose is digital inclusion. It aims to bring devices, affordable networks, and patient training to the people society tends to overlook.\"",
+      "suggestion": "synonyms를 [\"integration\", \"acceptance\"] 또는 [\"involvement\", \"integration\"]으로 보강한다.",
+      "lens": "vocab"
+    },
+    {
+      "severity": "minor",
+      "location": "page1.gloss_extra[0..2] vs page4.vocab[1],[3],[9]",
+      "issue": "gloss_extra의 세 항목(uneven, reliable, overlook)이 page4.vocab에 ko 뜻까지 글자 그대로 중복 수록되어 있다. 본문 옆 각주와 어휘 페이지가 완전히 겹쳐 학습 분량만 늘고 다른 미지어(scholars, steady, for good 등)는 어디에도 처리되지 않는다.",
+      "evidence": "page1.gloss_extra: {\"term\":\"uneven\",\"ko\":\"고르지 않은, 불균등한\"}, {\"term\":\"reliable\",\"ko\":\"믿을 만한, 안정적인\"}, {\"term\":\"overlook\",\"ko\":\"간과하다, 못 보고 넘기다\"} / page4.vocab[1].meaning_ko \"고르지 않은, 불균등한\", vocab[3].meaning_ko \"믿을 만한, 안정적인\", vocab[9].meaning_ko \"간과하다, 못 보고 넘기다\" — 완전 동일.",
+      "suggestion": "gloss_extra를 vocab에 없는 항목(예: on equal terms 동등한 조건으로 / for good 완전히, 영구히 / scholars 학자들)으로 교체해 중복을 없앤다.",
+      "lens": "vocab"
+    }
+  ],
+  "blockers": [],
+  "counts": {
+    "raw": 18,
+    "verified": 8,
+    "confirmed": 7,
+    "minor": 10
+  }
+}

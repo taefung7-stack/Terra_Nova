@@ -1,22 +1,107 @@
 {
   "grade": "saturn-g1",
   "seq": 10,
-  "confirmed": [],
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page1.body, 1문단 첫 문장 (line 21)",
+      "issue": "\"hides a hand behind it\"는 비문에 가까운 비관용 표현이다. 의도한 뜻은 '텍스트를 만든 손(주체)'이므로 정관사 the가 필요하며, 부정관사 a를 쓰면 '손 하나를 뒤에 숨긴다'는 문자적·기괴한 의미로 읽힌다.",
+      "evidence": "\"Every text carries a message, but it also hides a hand behind it.\" / 번역문도 이를 소화하지 못하고 \"그 뒤에는 어떤 손길도 숨어 있다\"로 어색하게 옮겨져 있다.",
+      "suggestion": "\"but it also hides the hand behind it\" 또는 뜻을 명확히 하여 \"but it also hides the hand that shaped it\"으로 수정. 번역도 '그 뒤에 있는 손(필자의 의도)은 숨긴다'로 함께 고칠 것.",
+      "lens": "language",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 근거로 지적이 확인됨. (1) line 21 page1.body 첫 문장이 정확히 \"Every text carries a message, but it also hides a hand behind it.\"로 존재한다. (2) \"hides a hand behind it\"는 관용 표현이 아니다. 실제 영어 관용구는 \"the hand behind X\"(배후의 주체), \"have a hand in X\", \"hidden hand\"이며, 부정관사 a를 쓴 \"hides a hand behind it\"는 '손 하나를 뒤에 숨긴다'는 문자적 독해를 강제한다는 지적이 타당하다. (3) 추가로 더 명확한 문법 결함이 있다: 주어 \"it\"(텍스트)과 \"behind it\"의 \"it\"이 동일 지시체이므로 영어 규범상 \"behind itself\"여야 하며, \"behind it\"은 별개 지시체를 강제해 의도한 의미가 성립하지 않는다. 이는 관사 문제와 독립된 비문 근거다. (4) 번역문(line 309) \"그 뒤에는 어떤 손길도 숨어 있다\"는 한국어 부정극어 '어떤~도'를 긍정 서술어 '숨어 있다'와 결합한 비문에 가까운 문장으로, 번역자가 원문 모호성을 소화하지 못했다는 지적을 그대로 뒷받침한다. (5) 결함이 page3 sentence 1 segments(line 108-109, O=\"a hand\" / M=\"behind it.\")로 복제되어 구문 분석 학습 자료에까지 전파되어 있다. 820L EFL 교재 지문이라는 맥락상 문학적 은유로 옹호하기 어렵다. 다만 지적이 제시한 수정안(the로 교체)만으로는 it/itself 공지시 문제가 남으므로, 권장 수정은 \"a hand lies hidden behind it\" 또는 \"그것을 쓴 손이 그 뒤에 숨어 있다\"에 해당하는 재작성이다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.sentences[0] (index 1) / page3.translation_ko [1]",
+      "issue": "1번 문장의 구문분석(S-V-O 타동사 구조)과 번역이 서로 다른 구조를 가르친다. 분석은 it=S / hides=V / a hand=O로 태깅해 '텍스트가 손을 숨긴다'는 타동사 구문인데, 번역은 '그 뒤에는 어떤 손길도 숨어 있다'로 a hand를 주어로 삼은 자동사(숨어 있다) 구문으로 옮겼다. 학생이 page3 구문 패널과 번역 패널을 나란히 보면 목적어 a hand가 번역에서는 주어로 나타나 O 태깅의 근거를 확인할 수 없다. 또한 '어떤 손길도'는 부정문에서 쓰이는 부정극성 표현이라 긍정 평서문 번역으로 부적절하다.",
+      "evidence": "본문: \"Every text carries a message, but it also hides a hand behind it.\" / 구문분석: { \"role\": \"S\", \"text\": \"it\" }, { \"role\": \"V\", \"text\": \"hides\" }, { \"role\": \"O\", \"text\": \"a hand\" } / 번역: \"[1] 모든 텍스트는 메시지를 담고 있지만, 그 뒤에는 어떤 손길도 숨어 있다.\"",
+      "suggestion": "번역을 타동사 구조가 드러나도록 수정한다. 예: '모든 텍스트는 메시지를 담고 있지만, 동시에 그 뒤에 어떤 손길을 숨기고 있다.' — 이렇게 하면 a hand가 목적어임이 번역에서도 확인되고 '어떤 손길도'의 부정극성 문제도 해소된다.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 확인 결과 지적이 두 가지 모두 사실로 확인된다. (1) 구조 불일치: page3.sentences[0] (line 105-109)은 {\"role\":\"S\",\"text\":\"it\"}, {\"role\":\"V\",\"text\":\"hides\"}, {\"role\":\"O\",\"text\":\"a hand\"}, {\"role\":\"M\",\"text\":\"behind it.\"}로 명백한 타동사 S-V-O 구조를 태깅했으나, translation_ko [1] (line 309)은 \"그 뒤에는 어떤 손길도 숨어 있다\"로 옮겨 '숨어 있다'(숨다+아 있다, 자동사) 구문을 쓰고 목적어 a hand를 한국어 표면 주어로 만들었다. 주어 it(텍스트)은 행위자로서 사라진다. 따라서 학생이 구문 패널과 번역 패널을 대조할 때 O 태그에 대응하는 요소를 번역에서 찾을 수 없다. 이는 이 파일의 일반적 관행이 아니다 — 같은 translation_ko의 [2](picks/drops/frames 모두 타동사로), [13](\"그것은 ... 독자의 관점을 형성할 수 있다\")는 태깅된 S-V-O를 정확히 보존하므로 [1]은 예외적 이탈이다. (2) 부정극성 오용: '어떤 N도'는 부정 서술어를 요구하는 부정극성 표현인데(어떤 손길도 없다/숨어 있지 않다) 여기서는 긍정 평서문 '숨어 있다'에 결합해 비문 또는 의미 역전을 낳는다. 원문은 손이 숨겨져 있다고 긍정 단언하므로 '하나의 손' 또는 '어떤 손길이'가 맞다. 비특정 부정칭 독해로 방어하려면 '어떤 손길이'처럼 이/가 표지가 필요하며 조사 '도'로는 불가능하다. 반박 근거를 찾지 못했다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.sentences[6] (index 7)",
+      "issue": "목적어 명사구 내부의 형용사구를 문장 수준 수식어(M)로 오태깅했다. \"for it\"은 앞의 명사 the reasons를 뒤에서 꾸미는 형용사구로, 목적어 NP('the writer's main claim and the reasons for it') 안에 속한다. 이를 M으로 분리하면 동사 finds를 꾸미는 부사구처럼 읽혀, '무엇을 찾는가'라는 목적어의 범위를 학생이 잘못 파악하게 된다. 같은 파일 12번 문장에서 'about its cost'를 M으로 태깅한 것은 실제로 동사 say를 꾸미는 부사구이므로 타당하지만, 7번의 'for it'은 성격이 다르다.",
+      "evidence": "본문: \"First, she finds the writer's main claim and the reasons for it.\" / 구문분석: { \"role\": \"O\", \"text\": \"the writer's main claim and the reasons\" }, { \"role\": \"M\", \"text\": \"for it.\" } / 대조: 12번 문장 { \"role\": \"O\", \"text\": \"nothing at all\" }, { \"role\": \"M\", \"text\": \"about its cost.\" } / 번역 [7]도 '그것을 뒷받침하는 근거'로 for it을 the reasons에 붙여 옮김",
+      "suggestion": "O 세그먼트를 \"the writer's main claim and the reasons for it.\"으로 합치거나, NP 내부 수식을 표시하는 별도 역할(예: REL과 같은 층위의 수식 태그)로 구분한다.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 확인 결과 지적 내용이 사실이며 실제 결함이다.\n\n1) 근거 사실 확인: page3.sentences[6](index 7)은 { \"role\": \"O\", \"text\": \"the writer's main claim and the reasons\" }, { \"role\": \"M\", \"text\": \"for it.\" }로 태깅되어 있다(파일 라인 174-175). 인용된 근거가 정확하다.\n\n2) 문법적 판단: \"the reasons for it\"의 \"for it\"은 명사 reasons의 후치 수식(명사 보충어) PP다. \"reasons for X\"는 고정된 명사-보충어 패턴이며, \"for it\"을 동사 finds에 거는 부사적 해석(\"그것을 위하여 찾는다\")은 본문 맥락상 성립하지 않는다. 따라서 O 경계가 목적어 NP를 중간에서 잘라낸 것이 맞다.\n\n3) 파일 내부 관례와의 불일치: 같은 파일이 명사 후치 수식 PP는 O 안에 포함시키고 있다. 12번 { \"role\": \"O\", \"text\": \"every benefit of a plan\" }에서 of-PP를 O 내부에 유지했고, 14번 { \"role\": \"O\", \"text\": \"the gaps as well\" }도 마찬가지다. 반면 M 태그가 붙은 것들(1번 \"behind it\", 6번 \"at once\", 10번 \"after the page\", 12번 \"about its cost\")은 모두 진짜 동사 수식 부사구다. 특히 12번 \"say nothing at all about its cost\"의 about-PP는 say X about Y 구조로 동사에 걸리므로 M이 타당하다는 지적자의 대조 분석도 정확하다. 즉 7번만 관례에서 벗어난 예외다.\n\n4) 번역과의 모순: translation_ko [7]은 \"필자의 중심 주장과 그것을 뒷받침하는 근거를 찾는다\"로 for it을 the reasons에 붙여 옮겼다. 구문분석 태깅이 자체 번역과 상충한다.\n\n반박 가능성 검토: 문장이 길어 O를 분할했다는 편의적 해석도 생각해 볼 수 있으나, \"for it\"은 2단어에 불과해 분할 필요가 없고, 파일 내 다른 사례가 더 긴 후치 수식구도 O 안에 유지하고 있어 이 변호는 성립하지 않는다.\n\n심각도는 warn 수준(정답·해설에 오류를 유발하지는 않고 학습자의 목적어 범위 파악에 혼선을 주는 교육적 정확성 문제)이나, 지적 자체는 유효하다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.translation_ko 문장 [1]",
+      "issue": "주어-술어 관계 왜곡 및 'also' 오역 — 원문은 '텍스트가 그 뒤에 손(필자의 의도)을 숨긴다'는 능동 구조이나, 번역은 '어떤 손길도 숨어 있다'는 존재문으로 바꾸어 '텍스트의 감춤'이라는 행위 주체를 지웠다. 또한 부사 also(또한/역시)를 '어떤 …도'로 옮겨 '또한'의 의미가 사라지고 오히려 부정극성('아무 손길도')처럼 읽힐 소지가 있다.",
+      "evidence": "영문: \"Every text carries a message, but it also hides a hand behind it.\" / 번역: \"[1] 모든 텍스트는 메시지를 담고 있지만, 그 뒤에는 어떤 손길도 숨어 있다.\"",
+      "suggestion": "\"모든 텍스트는 메시지를 담고 있지만, 동시에 그 뒤에 어떤 손(필자의 손길)을 숨기고 있기도 하다.\" 처럼 텍스트를 주어로 유지하고 also를 '또한/동시에'로 살릴 것. 이 문장은 지문 전체 논지(필자의 숨은 선택)를 여는 문장이라 정확도가 중요하다.",
+      "lens": "translation",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "파일 확인 결과 지적이 정확하다. 원문(line 21) \"Every text carries a message, but it also hides a hand behind it.\"는 타동사 구조이며, 같은 파일의 page3.sentences[1] 구문 분석(lines 105-109)이 이를 S=\"it\" / V=\"hides\" / O=\"a hand\" / M=\"behind it\"로 명시적으로 인코딩하고 있다. 그러나 translation_ko 문장 [1](line 309)은 \"그 뒤에는 어떤 손길도 숨어 있다\"로 옮겨, (1) 타동사 '숨기다'를 자동사/존재문 '숨어 있다'로 바꾸어 '텍스트가 감춘다'는 행위 주체를 삭제했고, (2) 부사 also(line 106에서 role=\"M\"으로 태깅됨)를 '어떤 …도'라는 한정사+보조사 구성으로 옮겼다. 한국어에서 '어떤 X도'는 부정 서술어를 요구하는 부정극성 패턴이므로 긍정 서술어 '숨어 있다'와 결합하면 비문에 가깝게 읽히며, 'but ... also'가 담당하던 첨가·대조의 축이 소실된다. 이 문장은 지문의 주제문이자 page1 본문 첫 문장 겸 구문 분석 예시로 재사용되는 핵심 문장이라 영향도 또한 낮지 않다. 나머지 19개 문장 번역은 정확하여 [1]에 국한된 결함이다."
+      }
+    }
+  ],
   "minors": [
     {
       "severity": "minor",
-      "location": "page1.body, 첫 단락 첫 문장",
-      "issue": "\"hides a hand behind it\"는 은유가 다소 억지스럽고 어색한 표현이다. 영어에서 배후의 의도를 뜻할 때는 보통 \"there is a hand behind it\" 또는 \"a hidden hand\" 형태를 쓰며, 텍스트가 손을 '숨긴다(hides)'는 능동 구성은 콜로케이션상 부자연스럽다. 다만 비문은 아니며 은유로 해독은 가능하다.",
-      "evidence": "\"Every text carries a message, but it also hides a hand behind it.\"",
-      "suggestion": "\"but there is also a hand behind it\" 또는 \"but a hidden hand shapes it\" 등 자연스러운 관용 표현으로 다듬는 것을 권한다. (문체 수준 제안이므로 필수는 아님)",
+      "location": "page1.body, 2~4문단 전반 (line 21)",
+      "issue": "일반적 독자를 지칭하는 대명사로 she를 지문 전체에 걸쳐 일관 사용한다. 현대 영어에서 허용되는 용법이나, 동일 세트의 다른 지문들이 we/you/중립 주어를 쓰는 것과 대비되어 이 지문만 성별 특정 대명사가 반복 노출된다.",
+      "evidence": "\"First, she finds the writer's main claim...\", \"She reads between the lines...\", \"the skill that protects her most\" (동일 세트 09.json은 \"we call this exchange trade\", 11.json은 \"Snap a hand warmer\"처럼 중립 주어 사용)",
+      "suggestion": "교재 전체 톤 통일을 원한다면 a critical reader / they 또는 you로 환치 검토. 의미·정답에는 영향 없으므로 유지해도 무방하다.",
       "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "answers.explanations[0].rationales[2] (q_index 0, 3번 선택지 해설)",
+      "issue": "해설이 본문의 proof(증거)를 '근거'로 바꿔 서술해, 이 지문이 구분해 쓰는 두 개념을 뒤섞었다. 본문과 다른 해설들은 reasons=근거 / proof=증거로 일관되게 구분하는데(번역 [9]도 '증거처럼 느껴질 수 있다'), 이 rationale만 '근거처럼 보일 수 있다'로 적었다. 해당 선택지 원문도 'solid proof'이므로 '증거'가 맞다.",
+      "evidence": "본문: \"A number or a famous name can feel like proof while proving nothing at all.\" / 선택지 3: \"A number or a famous name in a text is always solid proof of the writer's claim.\" / 번역 [9]: \"숫자나 유명한 이름은 아무것도 증명하지 않으면서도 증거처럼 느껴질 수 있다.\" / 문제의 해설: \"숫자나 유명한 이름은 증명하는 바 없이 근거처럼 보일 수 있다고 했으므로 '항상 확실한 증거'는 틀렸다.\"",
+      "suggestion": "'근거처럼 보일 수 있다'를 '증거처럼 느껴질 수 있다'로 수정해 본문·번역·선택지의 proof 번역어와 통일한다.",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko 문장 [18]",
+      "issue": "직역체로 인한 부자연스러운 한국어 — 'slower to panic'을 '당황하는 데 더 느리다'로 축자 번역해 고1 학습자가 의미를 파악하기 어렵다. 의미 오류는 아니나 문체상 다듬는 것이 좋다.",
+      "evidence": "영문: \"A reader who does this is harder to fool and slower to panic.\" / 번역: \"[18] 이렇게 하는 독자는 속이기 더 어렵고 당황하는 데 더 느리다.\"",
+      "suggestion": "\"이렇게 하는 독자는 속아 넘어가기 더 어렵고, 쉽게 당황하지도 않는다.\" 정도로 자연스럽게 다듬을 것.",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page1.gloss_extra[0]~[2] vs page4.vocab[1],[4],[7]",
+      "issue": "gloss_extra의 세 항목(claim, convincing, absent)이 page4.vocab에 동일 의미로 그대로 중복 수록되어 어휘 학습 분량이 낭비된다. gloss_extra는 본문 즉석 각주, vocab은 심화 학습으로 역할이 분리되어야 한다.",
+      "evidence": "gloss_extra: {\"term\": \"absent\", \"ko\": \"빠져 있는, 부재하는\"} / page4.vocab: {\"word\": \"absent\", \"meaning_ko\": \"빠져 있는, 부재하는\"} (convincing \"설득력 있는\", claim \"주장\"도 동일 중복)",
+      "suggestion": "gloss_extra는 vocab에 없는 어휘(예: shaky, telling, hold up to the light)로 교체하거나, vocab 쪽 중복 항목을 본문의 다른 핵심어(shaky, visible, panic 등)로 대체한다.",
+      "lens": "vocab"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[6] (\"silence\") — synonyms",
+      "issue": "synonym \"omission\"은 본문 문맥(말하지 않음)에서만 성립하는 문맥 한정 동의어로, 표제어 silence의 기본 뜻(소리 없음)과는 일반적으로 호환되지 않아 학습자가 오용할 수 있다.",
+      "evidence": "본문: \"That silence is a choice, and it can shape a reader's view as strongly as any sentence on the page.\" / vocab: {\"word\": \"silence\", \"meaning_ko\": \"침묵, 언급하지 않음\", \"synonyms\": [\"omission\"]}",
+      "suggestion": "synonyms를 [\"omission (문맥상)\"]처럼 문맥 한정임을 표시하거나 \"reticence\"를 병기해 일반 의미와 문맥 의미를 구분한다.",
+      "lens": "vocab"
     }
   ],
   "blockers": [],
   "counts": {
-    "raw": 1,
-    "verified": 0,
-    "confirmed": 0,
-    "minor": 1
+    "raw": 12,
+    "verified": 7,
+    "confirmed": 4,
+    "minor": 5
   }
 }

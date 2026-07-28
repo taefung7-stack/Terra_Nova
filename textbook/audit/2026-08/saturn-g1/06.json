@@ -4,50 +4,170 @@
   "confirmed": [
     {
       "severity": "warn",
-      "location": "page3.sentences[index=5].segments (lines 148-154)",
-      "issue": "구문 역할 오태깅: 'Where you live'가 M(수식어)로 태깅되어 있으나, 실제로는 동사 'shapes'의 주어(명사절)이다. 문장에 다른 주어가 없어 S 역할이 누락된 상태다.",
-      "evidence": "sentences[5]: { role:'M', text:'Where you live' } ... { role:'V', text:'shapes' } { role:'O', text:'much of the way you live each day.' } / translation_ko[5]: '당신이 어디에 사는가가 당신이 매일 어떻게 사는지의 많은 부분을 조용히 결정한다.' — '-가'가 주어임을 확인시켜 준다.",
-      "suggestion": "'Where you live' 세그먼트의 role을 M에서 S(주어 명사절)로 수정.",
+      "location": "page1.body, 2nd paragraph, 마지막 문장",
+      "issue": "비교 대상이 논리적으로 어긋난다. 단수 개별 주어 \"Each new arrival\"의 행위 결과를 '전년 대비(than the year before)'라는 연간 총량 기준과 비교하고 있다. 개별 유입자 한 명이 만드는 변화는 '직전 상태'와의 비교이지 '지난해'와의 비교가 아니다.",
+      "evidence": "\"Each new arrival makes the city a little larger and a little busier than the year before.\"",
+      "suggestion": "\"than it was the day before\"로 시간 기준을 개별 단위에 맞추거나, 주어를 총량으로 바꿔 \"Each year's new arrivals make the city a little larger and a little busier than the year before.\"로 수정한다.",
+      "lens": "language",
+      "verdict": {
+        "isReal": true,
+        "confidence": "medium",
+        "reason": "근거 문장이 파일에 그대로 확인된다. page1.body 2단락 마지막 문장(line 21), page3 sentences[10] segments(line 210-213), translation_ko [10](line 344) 세 곳에 동일하게 존재: \"Each new arrival makes the city a little larger and a little busier than the year before.\"\n\n지적이 실제 결함인 이유:\n1) 주어 \"Each new arrival\"은 distributive singular로, 문법상 개별 유입자 한 명 단위의 술어를 강제한다. 그런데 비교 기준 \"than the year before\"는 연간 총량 스냅샷 기준이다. 개인 1명이 만드는 한계 변화량을 전년도 대비 연간 증분과 비교하는 것은 층위 불일치다.\n2) 범위(scope) 모순이 발생한다. \"each\"가 반복 적용되면 수천 명 각각이 동일한 고정 기준점(지난해)보다 도시를 더 크게 만든다는 뜻이 되어, 반복되는 주어와 고정된 연간 기준이 충돌한다. 논리적으로 맞는 표현은 \"than it was before\" / \"than the day before\" 같은 직전 상태 기준이다.\n3) 문맥도 이를 뒷받침한다. 2단락은 연간 통계가 아니라 지속적 유입(젊은이 이주, 가족이 뒤따름)을 서술한다. \"each year\"는 1단락의 집계 통계 문장에만 등장하며 개별 행위 서술과는 다른 층위다.\n4) 한국어 번역(line 344)에서 불일치가 더 노골적으로 드러난다: \"새로 온 사람 한 명 한 명이 도시를 지난해보다 조금 더 크고 조금 더 분주하게 만든다\" — 개별 단위 읽기와 연간 기준이 명시적으로 병치되어 어색함이 확정된다.\n\n반박 검토: 누적 성장에 대한 느슨한 관용 표현으로 볼 여지는 있으나, \"Each ... makes\"가 개별 층위를 문법적으로 고정하므로 관용적 허용 범위를 넘는다. 다만 정답·문항 정합성에는 영향이 없고(어떤 문항도 이 문장을 근거로 삼지 않음) 독해 방해도 경미하므로 error가 아닌 warn 등급이 적절하다. 즉 등급 포함하여 지적이 타당하다. confidence를 medium으로 둔 것은 문체적 허용 여부에 원어민 판단 편차가 있을 수 있기 때문이다."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "page3.sentences[5].segments (index 5, line 150)",
+      "issue": "주절의 주어인 명사절 \"Where you live\"를 M(수식어)으로 오태깅했다. 그 결과 이 문장에는 S 태그가 하나도 없어, 학생이 구문분석을 보면 주어 없는 문장으로 오해하게 된다.",
+      "evidence": "본문: \"Where you live quietly shapes much of the way you live each day.\" / page3 태깅: { \"role\": \"M\", \"text\": \"Where you live\" }, { \"role\": \"M\", \"text\": \"quietly\" }, { \"role\": \"V\", \"text\": \"shapes\" }, { \"role\": \"O\", \"text\": \"much of the way you live each day.\" } / 반면 translation_ko는 주어로 정확히 옮김: \"[5] 당신이 어디에 사는가가 당신이 매일 어떻게 사는지의 많은 부분을 조용히 결정한다.\"",
+      "suggestion": "\"Where you live\"의 role을 S로 수정 (의문사절 주어). 필요하면 S 안에서 명사절임을 별도 표기.",
       "lens": "explanation",
       "verdict": {
         "isReal": true,
         "confidence": "high",
-        "reason": "파일 확인 결과 지적이 정확함. content/passages/2026-08/06.json의 sentences[index=5] segments(라인 150-153)는 { role:'M', text:'Where you live' }, { role:'M', text:'quietly' }, { role:'V', text:'shapes' }, { role:'O', text:'much of the way you live each day.' }로 되어 있다. 'Where you live'는 동사 'shapes'의 주어 역할을 하는 명사절(간접의문문)이며, 이 문장에는 다른 S 태그 세그먼트가 전혀 없다. 따라서 M(수식어)이 아니라 S로 태깅되어야 하며, 현재 상태는 주어가 누락된 구조적 오태깅이다. '무엇이 shapes 하는가?'→'Where you live'가 답이라는 점, 그리고 한국어 번역의 '-가' 주격 표지가 이를 뒷받침한다. 실제 결함이 맞음."
+        "reason": "지적이 파일 근거로 완전히 확인됨. (1) page3.sentences[5] (line 147-155) 세그먼트가 인용대로 M/M/V/O이며, S 태그가 전혀 없음 — 20개 문장 중 V가 있으면서 S가 없는 유일한 문장. (2) 문법적으로 \"Where you live\"는 명사절(free relative)로 타동사 \"shapes\"의 주어이며, 다른 주어 후보가 없어 부사적 수식어 해석이 불가능(그 경우 문장이 무주어 비문이 됨). 3인칭 단수 \"shapes\"의 수일치도 절 주어와 부합. (3) 같은 파일의 자체 관행과 모순: sentence 4는 \"how people work,\"/\"how they travel,\"를, sentence 16은 \"how a city can grow without falling apart.\"를 O로 태깅해 wh-절을 논항(S/O)으로 처리함. 반면 진짜 부사절인 sentence 12/6은 CONJ(\"When\"/\"because\") + 별도 S/V 구조를 가짐 — 문제 세그먼트는 CONJ도 S도 없이 절 전체를 M으로 삼킴. (4) translation_ko(line 344)는 \"[5] 당신이 어디에 사는가가 ... 조용히 결정한다\"로 주격 조사 '가'를 써 주어로 명시, 태깅과 직접 충돌. page3는 S/V/O 구문분석 학습이 목적인 페이지이고 해당 문장은 page1 subtitle과 호응하는 지문의 주제문이므로 blocker 등급도 타당. 반박 근거를 찾지 못함."
       }
     },
     {
       "severity": "warn",
-      "location": "answers.explanations[q_index=3].evidence (line 392) 및 rationales(A)",
-      "issue": "해설의 evidence가 본문에 없는 문장을 인용한다. 본문(page1 body / page3 문장 3)은 'This move to city life is called urbanization'인데, 해설은 'This shift toward city life is called urbanization'으로 잘못 인용했다(move → shift, to → toward). 정답 자체는 옳으나 근거 인용이 본문과 불일치한다.",
-      "evidence": "answers.explanations[3].evidence: \"...본문 \\\"This shift toward city life is called urbanization\\\"...\" / 실제 본문 page1: 'This move to city life is called <u>urbanization</u>' / page3 sentence[3]: S='This move to city life', V='is called', C='urbanization,'",
-      "suggestion": "evidence 인용을 실제 본문 표현 'This move to city life is called urbanization'로 정정(page4 vocab 예문의 'shift' 표현도 본문과 일치하도록 검토 권장).",
+      "location": "answers.explanations[3].evidence (q_index 3, line 392)",
+      "issue": "해설의 본문 인용문이 실제 본문 문장과 다르다. 본문에 존재하지 않는 \"This shift toward city life\"를 큰따옴표로 직접 인용해 근거로 제시했다.",
+      "evidence": "해설: \"(A)는 사람을 도시로 끌어들이는 흐름 → 본문 \\\"This shift toward city life is called urbanization\\\".\" / 실제 본문(page1.body): \"This move to city life is called <u>urbanization</u>, and it changes far more than a map.\" (page3 구문분석도 S를 \"This move to city life\"로 표기)",
+      "suggestion": "인용을 본문 그대로 \"This move to city life is called urbanization\"으로 교체 (page4 vocab 예문 line 413도 동일 불일치).",
       "lens": "explanation",
       "verdict": {
         "isReal": true,
         "confidence": "high",
-        "reason": "확인됨. answers.explanations[3].evidence(line 392)는 본문을 \"This shift toward city life is called urbanization\"로 인용하나, 실제 page1 body(line 21)는 \"This move to city life is called <u>urbanization</u>\"이고 page3 sentence[3](lines 127-129)도 S=\"This move to city life\" / V=\"is called\" / C=\"urbanization,\"로 되어 있다. 인용문이 move→shift, to→toward로 본문과 불일치한다. 정답 자체((A) urbanization, (B) planners)는 옳으므로 경미한(warn) 결함이나, 근거 인용이 본문에 없는 문장을 제시한다는 지적은 파일 근거로 명확히 확인된다."
+        "reason": "파일 근거로 확인됨. page1.body(21행)는 \"This move to city life is called <u>urbanization</u>, and it changes far more than a map.\"이고, page3 sentence 3의 S(127행)도 \"This move to city life\", translation_ko [3]도 \"도시 생활로의 이 이동\"으로 일관된다. 그러나 answers.explanations[3].evidence(392행)는 본문이라고 명시하며 큰따옴표로 \"This shift toward city life is called urbanization\"을 직접 인용한다. \"shift\"라는 단어는 page1.body 어디에도 존재하지 않는다. 같은 evidence 필드의 (B) 인용 \"planners now ask how a city can grow\"는 본문과 정확히 일치하므로, 이 필드는 축자 인용 관례를 따르는 것이 확인되며 (A)만 어긋난 것이다(패러프레이즈 관례로 변호 불가). 동일 오문이 page4 vocab의 urbanization 예문(413행)에도 남아 있어 구 초안 잔재로 보인다. 의미는 동등하고 정답 키에는 영향이 없어 warn 수준이 타당하나, 학습자가 본문에서 해당 문장을 찾을 수 없으므로 인용 불일치 결함은 실재한다."
       }
     },
     {
       "severity": "warn",
-      "location": "answers.explanations[q_index=3].evidence (line 392)",
-      "issue": "Q3(요약문 빈칸) 정답 근거로 인용한 본문 문장이 실제 본문과 다르게 조작 인용되어 있다. 정답 자체((A) urbanization / (B) planners)는 본문에서 도출 가능해 옳지만, 근거 인용문이 부정확하다.",
-      "evidence": "해설 근거는 \"This shift toward city life is called urbanization\"을 본문 인용으로 제시하지만, 실제 본문은 page1 body와 page3 segment 3([3])에서 모두 \"This move to city life is called urbanization\"으로 되어 있다(line 127: {\"role\":\"S\",\"text\":\"This move to city life\"}). 'shift toward'가 아니라 'move to'다.",
-      "suggestion": "근거 인용문을 본문 그대로 \"This move to city life is called urbanization\"으로 수정한다. (참고: 별개로 page4 vocab 예문 line 413도 'This shift toward city life'로 본문과 불일치하나 answer 관점 밖이다.)",
+      "location": "C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-08/06.json — answers.explanations[3].evidence (line 392)",
+      "issue": "4번(요약문 빈칸 완성) 해설의 evidence가 본문을 직접 인용한다고 표시하면서 실제 본문과 다른 문장을 인용한다. 본문은 \"This move to city life is called urbanization\"인데 해설은 \"This shift toward city life is called urbanization\"으로 적었다(move → shift, to → toward). 정답 (A) urbanization / (B) planners 자체는 타당하나, 학생이 해설의 인용구를 본문에서 찾으려 하면 해당 문장이 존재하지 않아 근거 확인이 막힌다. 같은 오인용이 page4 vocab examples[0](413행)에도 반복된다.",
+      "evidence": "본문(page1.body): \"This move to city life is called <u>urbanization</u>, and it changes far more than a map.\" / 해설(392행): \"(A)는 사람을 도시로 끌어들이는 흐름 → 본문 \\\"This shift toward city life is called urbanization\\\".\" / page3 문장 3도 본문과 동일하게 { \"role\": \"S\", \"text\": \"This move to city life\" }로 되어 있어, 어긋난 쪽은 해설·vocab 인용이다.",
+      "suggestion": "해설 evidence의 인용구를 본문 그대로 \"This move to city life is called urbanization\"으로 수정한다. page4 vocab의 urbanization 예문(413행)도 동일하게 본문 표현에 맞추면 본문·해설·어휘 3자가 일치한다.",
       "lens": "answer",
       "verdict": {
         "isReal": true,
         "confidence": "high",
-        "reason": "확인됨. answers.explanations[q_index=3].evidence(line 392)는 본문 인용으로 \"This shift toward city life is called urbanization\"을 큰따옴표로 제시한다. 그러나 실제 본문은 page1 body(line 21)에서 \"This move to city life is called <u>urbanization</u>\", page3 segment 3(line 127-129)에서 S=\"This move to city life\" / V=\"is called\" / C=\"urbanization,\"로 모두 \"move to\"이다. 즉 인용문의 \"shift toward\"는 본문에 존재하지 않으며 조작된 인용이다. 정답 (A) urbanization / (B) planners 자체는 본문에서 도출 가능해 옳으나, 근거로 제시된 직접 인용문이 부정확하다. (동일한 부정확 표현이 page4 vocab 예문 line 413에도 반복되나, 지적 대상인 line 392는 명확히 확인된다.) 지적은 실제 결함이다."
+        "reason": "파일 확인 결과 지적이 사실로 확인됨. page1.body(21행)는 \"This move to city life is called <u>urbanization</u>, and it changes far more than a map.\"인데, answers.explanations[3].evidence(392행)는 이를 본문 직접 인용 형식(본문 \"...\")으로 표시하면서 \"This shift toward city life is called urbanization\"으로 적어 move→shift, to→toward 두 군데가 어긋난다. 같은 evidence의 뒷부분 \"planners now ask how a city can grow\"는 본문과 정확히 일치하므로, 해당 필드가 축약 요약이 아니라 축자 인용 의도임이 확인되어 오인용이라는 판단을 뒷받침한다. page4 vocab urbanization examples[0](413행)도 동일하게 \"This shift toward city life is called urbanization.\"으로 되어 있으며, 다른 vocab 예문들(424·435·446·501행 등)이 모두 본문 문장을 그대로 또는 축약해 쓰는 것과 달리 어휘가 바뀌어 있어 동일 오류의 반복이다. 반면 page3 sentences[2](127행)는 { \"role\": \"S\", \"text\": \"This move to city life\" }로 본문과 일치하고 translation_ko(344행) [3]도 \"도시 생활로의 이 이동\"으로 body와 부합하므로, 어긋난 쪽은 body가 아니라 해설·vocab 인용이다. 다만 정답 (A) urbanization / (B) planners와 문제 자체의 타당성에는 영향이 없어, 학생이 인용구를 본문에서 검색해 근거를 확인하려 할 때 막히는 수준의 경미(warn) 결함이다."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "page4.vocab[0] (urbanization) examples[0] / answers.explanations[3].evidence",
+      "issue": "vocab 예문 en이 본문에 없는 문구(\"This shift toward city life\")를 본문 인용처럼 제시한다. ko 대역은 본문 문장을 그대로 번역해 놓아 en-ko가 서로 다른 원문을 가리킨다. 동일한 오인용이 답지 evidence에도 본문 인용(\" \")으로 반복된다.",
+      "evidence": "본문(page1.body): \"This move to city life is called <u>urbanization</u>, and it changes far more than a map.\" / page4.vocab[0].examples[0].en: \"This shift toward city life is called urbanization.\" ko: \"도시 생활로의 이 이동을 도시화라고 부른다.\" / answers.explanations[3].evidence: \"(A)는 ... 본문 \\\"This shift toward city life is called urbanization\\\".\" (page3.translation_ko [3]도 \"도시 생활로의 이 이동은 도시화라고 불리며\"로 move 기준)",
+      "suggestion": "예문 en을 본문 그대로 \"This move to city life is called urbanization.\"로 고치고, answers.explanations[3].evidence의 인용도 \"This move to city life is called urbanization\"으로 수정한다.",
+      "lens": "vocab",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일로 확인된 실제 결함이다. 본문(page1.body)은 \"This move to city life is called <u>urbanization</u>\"이며, page3 sentence 3 세그먼트(\"This move to city life\")와 translation_ko [3](\"도시 생활로의 이 이동은\")도 move 기준으로 일관된다. 그러나 (1) page4.vocab[0].examples[0].en은 \"This shift toward city life is called urbanization.\"로 본문에 존재하지 않는 문구인데, 같은 항목의 ko는 \"도시 생활로의 이 이동을 도시화라고 부른다.\"로 move를 번역해 en-ko가 서로 다른 원문을 가리킨다. (2) 더 결정적으로 answers.explanations[3].evidence가 본문 + 큰따옴표 형식으로 \"This shift toward city life is called urbanization\"을 본문 직접 인용처럼 제시한다. 이 파일의 다른 evidence 인용은 모두 본문과 축자적으로 일치한다(explanations[2]의 \"housing runs short and rents climb beyond reach\", 동일 evidence의 \"planners now ask how a city can grow\"). 즉 오직 이 한 문자열만 존재하지 않는 인용이며, 답지 근거로 본문 위치를 찾게 하는 기능을 훼손한다. 반박 근거로 검토한 \"vocab 예문은 원래 패러프레이즈 관행\"(예: vocab[7] \"without breaking\" vs 본문 \"without falling apart\", vocab[2]의 축약)은 vocab[0]만 놓고 보면 성립하나, ko 대역 불일치와 답지의 본문 직접 인용 오기까지는 정당화하지 못한다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page4.vocab[4] (rent) synonyms",
+      "issue": "synonyms에 실제 영어에서 쓰이지 않는 조어 \"lease cost\"를 제시했다. rent(임대료)의 표준 동의어는 rental / rental fee / rental payment이다.",
+      "evidence": "page4.vocab[4]: { \"word\": \"rent\", \"meaning_ko\": \"임대료, 집세\", \"synonyms\": [\"lease cost\"] } — 본문 \"housing runs short and rents climb beyond reach\"의 rents(명사, 임대료)와 대응하는 자연스러운 동의어가 아니다.",
+      "suggestion": "\"lease cost\"를 \"rental\" 또는 \"rental fee\"로 교체한다.",
+      "lens": "vocab",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일에서 지적 내용이 그대로 확인된다. content/passages/2026-08/06.json 라인 450-460, page4.vocab[4]: { \"word\": \"rent\", \"pos\": \"n.\", \"meaning_ko\": \"임대료, 집세\", \"synonyms\": [\"lease cost\"] }.\n\n실제 결함으로 판단한 근거:\n1) \"lease cost\"는 명사 rent(주기적 임대료)의 표준 동의어가 아니다. 코퍼스상 표준형은 rental / rental fee / rental payment / rental charge이며, 임대차 문맥에서는 lease payment / lease rate가 쓰인다. \"lease cost\"는 리스 전체의 비용을 가리키는 회계적 주변 표현일 뿐 rent의 대체어로 성립하지 않는다.\n2) 본문 문맥과 충돌한다. page1.body(라인 21) \"housing runs short and rents climb beyond reach\"는 명백히 주거용 정기 임대료다. 대입하면 \"lease costs climb beyond reach\"가 되어 부자연스럽다. 같은 항목의 예문 \"High rent forced them to move farther out.\"도 대체가 불가능하다.\n3) 파일 내부 일관성에도 어긋난다. 나머지 vocab 11개 항목의 synonyms는 모두 단어 하나짜리 사전급 동의어(pledge, task, newcomer, diminish, scarce, designer, zone, throng, burden, stable)이고, 유일한 다어절 항목인 urbanization의 \"urban growth\"(라인 410)는 실제로 확립된 연어다. \"lease cost\"만 단일어도 아니고 확립된 연어도 아닌 예외다.\n4) synonyms 배열에 항목이 하나뿐이라 학습자에게 제시되는 유일한 동의어가 비표준 조어다. 완화 요소가 아니라 오히려 결함을 강화한다.\n\n반박 시도가 성립하지 않는 이유: \"warn 수준의 취향 문제\"라는 반론은, 이 파일이 고1 학습자용 어휘 학습 자료이고 비표준 조어를 정답 동의어로 제시하면 잘못된 산출을 가르치게 되므로 성립하지 않는다. meaning_ko(\"임대료, 집세\")는 정확하지만 지적 대상인 영어 synonyms 필드의 오류를 상쇄하지 못한다.\n\n수정 권고: \"synonyms\": [\"rental\"] 또는 [\"rental fee\"]로 교체."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page4.vocab[7] (planner) examples[0]",
+      "issue": "본문 인용처럼 보이는 예문이 본문 표현과 다르다. 본문은 \"without falling apart\"인데 예문은 \"without breaking\"으로 바뀌어 있어, 학생이 본문에서 해당 문장을 찾지 못한다.",
+      "evidence": "본문: \"So planners now ask how a city can grow without falling apart.\" / page4.vocab[7].examples[0].en: \"Planners now ask how a city can grow without breaking.\" (ko \"무너지지 않고\"는 falling apart 기준 번역)",
+      "suggestion": "예문 en을 \"Planners now ask how a city can grow without falling apart.\"로 본문과 일치시킨다.",
+      "lens": "vocab",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "파일에서 직접 확인됨. page1.body(21행)와 page3 sentence 16(292행)은 모두 \"how a city can grow without falling apart\"이고, translation_ko [16]도 \"무너지지 않고 성장할 수 있는지\"로 이에 대응한다. 반면 page4.vocab[7](planner) examples[0].en(490행)은 \"Planners now ask how a city can grow without breaking.\"로 핵심 어구가 \"falling apart\" → \"breaking\"으로 치환되어 있으며, 같은 항목의 ko(\"무너지지 않고 성장하는 법\")는 본문 번역과 동일해 본문 인용 의도임이 드러난다. 반박 가능성(의도적 패러프레이즈)도 검토했으나 성립하지 않는다: 동일 파일의 다른 examples[0]들은 본문 문장의 축약 인용(vocab[1] 424행은 본문 문장 그대로, vocab[3] 446행·vocab[8] 501행·vocab[10] 523행·vocab[11] 534행은 본문 부분 인용)으로 \"본문 인용\" 규약이 일관되게 지켜지고 있어 vocab[7]만 이탈한 것이다. 단순 어미 축약(trim)이 아니라 핵심 표현의 어휘 치환이므로 학생이 본문에서 해당 문장을 대조·검색하기 어렵다. 참고로 vocab[0] examples[0](413행)도 본문 \"This move to city life\"를 \"This shift toward city life\"로 바꾼 동일 유형의 결함이 있어(answers 392행 evidence에도 같은 오인용이 전파됨) 지적된 패턴의 실재성을 뒷받침한다. 수정 방향: 490행 en을 \"So planners now ask how a city can grow without falling apart.\"(또는 \"Planners now ask how a city can grow without falling apart.\")로 교정."
       }
     }
   ],
-  "minors": [],
-  "blockers": [],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page1.body, 4th paragraph",
+      "issue": "처음 언급되는 명사에 정관사를 사용해 기지정보처럼 읽힌다. 앞 문맥에 tall towers가 도입된 적이 없다.",
+      "evidence": "\"They protect parks and rivers so that nature can still live among the tall towers.\"",
+      "suggestion": "\"among tall towers\" 또는 \"among the city's tall towers\"로 다듬으면 자연스럽다. 다만 장면 묘사의 총칭 용법으로도 읽혀 허용 범위 내이므로 우선순위는 낮다.",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.sentences[19].segments (index 19, line 328)",
+      "issue": "부사 alone을 목적어(O) 덩어리에 포함시켜 O의 범위가 과도하다. 동일 파일의 다른 문장에서는 부사를 별도 M으로 분리하는 방식을 쓰고 있어 태깅 기준이 일관되지 않다.",
+      "evidence": "태깅: { \"role\": \"O\", \"text\": \"the whole load alone.\" } / 본문: \"so no single district carries the whole load alone.\" 비교: index 14에서 \"almost\"를 { \"role\": \"M\", \"text\": \"almost\" }로, index 9에서 \"often\"을 M으로 각각 분리함.",
+      "suggestion": "O를 \"the whole load\"로 하고 \"alone\"은 M으로 분리.",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko 문장 [5]",
+      "issue": "동사 'shapes'를 '결정한다'로 옮겨 원문보다 의미가 강해짐(과장 번역).",
+      "evidence": "영문: \"Where you live quietly shapes much of the way you live each day.\" / 번역: \"당신이 어디에 사는가가 당신이 매일 어떻게 사는지의 많은 부분을 조용히 결정한다.\" (참고: page1 subtitle도 \"quietly reshapes the life you lead\"로 '형성' 뉘앙스)",
+      "suggestion": "\"…많은 부분을 조용히 형성한다(좌우한다).\"로 수정",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko 문장 [19]",
+      "issue": "강조 부사 'even'이 번역에서 누락됨.",
+      "evidence": "영문: \"Some cities even spread their offices and homes across many centers, so no single district carries the whole load alone.\" / 번역: \"어떤 도시들은 사무실과 주거를 여러 중심지로 분산해서, 어느 한 구역도 전체 부담을 홀로 지지 않도록 한다.\"",
+      "suggestion": "\"어떤 도시들은 사무실과 주거를 여러 중심지로 분산하기까지 해서…\" 처럼 'even'의 강조를 살릴 것",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[9] (crowd), page4.vocab[6] (rare)",
+      "issue": "표제어가 지문 난이도(Lexile 800L, AR 5.9, 고1) 대비 기초어에 해당해 학습 가치가 낮다. 같은 문장에서 더 유용한 어휘(예: shrink는 이미 수록됨 / beyond reach, load 등)와 비교해 표제어 선정 효율이 떨어진다.",
+      "evidence": "page4.vocab[6] { \"word\": \"rare\", \"meaning_ko\": \"드문, 희귀한\" }, page4.vocab[9] { \"word\": \"crowd\", \"meaning_ko\": \"인파, 군중\" } — 본문 \"Clean air grows rare\", \"to move huge crowds\"는 모두 기본 의미 그대로 쓰였다(문맥 특수 의미 없음).",
+      "suggestion": "rare/crowd 대신 본문의 고1 수준 표현(예: beyond reach, arrival의 '신규 유입자' 용법, spread ... across many centers)을 표제어로 승격하는 것을 검토한다.",
+      "lens": "vocab"
+    }
+  ],
+  "blockers": [
+    {
+      "severity": "blocker",
+      "location": "page3.sentences[5].segments (index 5, line 150)",
+      "issue": "주절의 주어인 명사절 \"Where you live\"를 M(수식어)으로 오태깅했다. 그 결과 이 문장에는 S 태그가 하나도 없어, 학생이 구문분석을 보면 주어 없는 문장으로 오해하게 된다.",
+      "evidence": "본문: \"Where you live quietly shapes much of the way you live each day.\" / page3 태깅: { \"role\": \"M\", \"text\": \"Where you live\" }, { \"role\": \"M\", \"text\": \"quietly\" }, { \"role\": \"V\", \"text\": \"shapes\" }, { \"role\": \"O\", \"text\": \"much of the way you live each day.\" } / 반면 translation_ko는 주어로 정확히 옮김: \"[5] 당신이 어디에 사는가가 당신이 매일 어떻게 사는지의 많은 부분을 조용히 결정한다.\"",
+      "suggestion": "\"Where you live\"의 role을 S로 수정 (의문사절 주어). 필요하면 S 안에서 명사절임을 별도 표기.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "지적이 파일 근거로 완전히 확인됨. (1) page3.sentences[5] (line 147-155) 세그먼트가 인용대로 M/M/V/O이며, S 태그가 전혀 없음 — 20개 문장 중 V가 있으면서 S가 없는 유일한 문장. (2) 문법적으로 \"Where you live\"는 명사절(free relative)로 타동사 \"shapes\"의 주어이며, 다른 주어 후보가 없어 부사적 수식어 해석이 불가능(그 경우 문장이 무주어 비문이 됨). 3인칭 단수 \"shapes\"의 수일치도 절 주어와 부합. (3) 같은 파일의 자체 관행과 모순: sentence 4는 \"how people work,\"/\"how they travel,\"를, sentence 16은 \"how a city can grow without falling apart.\"를 O로 태깅해 wh-절을 논항(S/O)으로 처리함. 반면 진짜 부사절인 sentence 12/6은 CONJ(\"When\"/\"because\") + 별도 S/V 구조를 가짐 — 문제 세그먼트는 CONJ도 S도 없이 절 전체를 M으로 삼킴. (4) translation_ko(line 344)는 \"[5] 당신이 어디에 사는가가 ... 조용히 결정한다\"로 주격 조사 '가'를 써 주어로 명시, 태깅과 직접 충돌. page3는 S/V/O 구문분석 학습이 목적인 페이지이고 해당 문장은 page1 subtitle과 호응하는 지문의 주제문이므로 blocker 등급도 타당. 반박 근거를 찾지 못함."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "page4.vocab[0] (urbanization) examples[0] / answers.explanations[3].evidence",
+      "issue": "vocab 예문 en이 본문에 없는 문구(\"This shift toward city life\")를 본문 인용처럼 제시한다. ko 대역은 본문 문장을 그대로 번역해 놓아 en-ko가 서로 다른 원문을 가리킨다. 동일한 오인용이 답지 evidence에도 본문 인용(\" \")으로 반복된다.",
+      "evidence": "본문(page1.body): \"This move to city life is called <u>urbanization</u>, and it changes far more than a map.\" / page4.vocab[0].examples[0].en: \"This shift toward city life is called urbanization.\" ko: \"도시 생활로의 이 이동을 도시화라고 부른다.\" / answers.explanations[3].evidence: \"(A)는 ... 본문 \\\"This shift toward city life is called urbanization\\\".\" (page3.translation_ko [3]도 \"도시 생활로의 이 이동은 도시화라고 불리며\"로 move 기준)",
+      "suggestion": "예문 en을 본문 그대로 \"This move to city life is called urbanization.\"로 고치고, answers.explanations[3].evidence의 인용도 \"This move to city life is called urbanization\"으로 수정한다.",
+      "lens": "vocab",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일로 확인된 실제 결함이다. 본문(page1.body)은 \"This move to city life is called <u>urbanization</u>\"이며, page3 sentence 3 세그먼트(\"This move to city life\")와 translation_ko [3](\"도시 생활로의 이 이동은\")도 move 기준으로 일관된다. 그러나 (1) page4.vocab[0].examples[0].en은 \"This shift toward city life is called urbanization.\"로 본문에 존재하지 않는 문구인데, 같은 항목의 ko는 \"도시 생활로의 이 이동을 도시화라고 부른다.\"로 move를 번역해 en-ko가 서로 다른 원문을 가리킨다. (2) 더 결정적으로 answers.explanations[3].evidence가 본문 + 큰따옴표 형식으로 \"This shift toward city life is called urbanization\"을 본문 직접 인용처럼 제시한다. 이 파일의 다른 evidence 인용은 모두 본문과 축자적으로 일치한다(explanations[2]의 \"housing runs short and rents climb beyond reach\", 동일 evidence의 \"planners now ask how a city can grow\"). 즉 오직 이 한 문자열만 존재하지 않는 인용이며, 답지 근거로 본문 위치를 찾게 하는 기능을 훼손한다. 반박 근거로 검토한 \"vocab 예문은 원래 패러프레이즈 관행\"(예: vocab[7] \"without breaking\" vs 본문 \"without falling apart\", vocab[2]의 축약)은 vocab[0]만 놓고 보면 성립하나, ko 대역 불일치와 답지의 본문 직접 인용 오기까지는 정당화하지 못한다."
+      }
+    }
+  ],
   "counts": {
-    "raw": 3,
-    "verified": 3,
-    "confirmed": 3,
-    "minor": 0
+    "raw": 14,
+    "verified": 9,
+    "confirmed": 7,
+    "minor": 5
   }
 }

@@ -1,46 +1,158 @@
 {
   "grade": "jupiter-g2",
   "seq": 13,
-  "confirmed": [],
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page1.body, 2단락 마지막 문장 (page3 sentences[10] 'in peace' 세그먼트 및 translation_ko [10]과 동일 문장)",
+      "issue": "\"can be removed in peace\"의 관용 표현 오용. 영어에서 in peace는 '방해받지 않고/편안히'(leave me in peace, rest in peace)라는 뜻이며, 여기서 의도한 '유혈·소요 없이, 평화적으로'라는 의미로는 쓰이지 않는다. 게다가 removed(제거되다)와 결합하면 '조용히 사라지다/죽다'는 어색한 함의까지 생겨 비문에 가깝다.",
+      "evidence": "\"Officials who governed well may win another term, while those who ignored the public can be removed in peace.\"",
+      "suggestion": "peacefully 또는 without violence로 교체: \"...those who ignored the public can be removed peacefully.\" 이에 맞춰 page3 sentences[10]의 { \"role\": \"M\", \"text\": \"in peace.\" } 세그먼트도 \"peacefully.\"로 수정 필요.",
+      "lens": "language",
+      "verdict": {
+        "isReal": true,
+        "confidence": "medium",
+        "reason": "파일 확인 결과 지적된 문장은 실재한다. page1.body 2단락 마지막 문장(line 26) \"Officials who governed well may win another term, while those who ignored the public can be removed in peace.\", page3 sentences[10] 세그먼트 { role: \"V\", text: \"can be removed\" } + { role: \"M\", text: \"in peace.\", note: \"전치사구 부사\" }(lines 229-230), translation_ko [10] \"국민을 무시한 자들은 평화롭게 물러나게 할 수 있다\"(line 344)로 3곳에서 일치한다.\n\n지적의 핵심은 타당하다. translation_ko가 \"평화롭게\"로 옮긴 것에서 의도된 의미가 '유혈·소요 없이(방식/manner)'임이 확정되는데, 영어 in peace는 전형적으로 대상이 놓이는 '상태'(leave/let someone be in peace, rest in peace, live in peace)를 가리키며 어떤 행위가 수행되는 '방식'을 수식하는 데는 쓰이지 않는다. 특히 remove의 수동태(be removed)에 결합하면 \"제거된 뒤 방해받지 않고 놓이다\" 또는 rest in peace 계열의 완곡한 죽음 함의로 읽히기 쉬워, 의도한 '평화적 정권 교체' 의미를 전달하지 못하고 오독을 유발한다. 의도한 뜻을 담으려면 removed peacefully / removed without upheaval / voted out at the ballot box 형태여야 한다.\n\n다만 지적의 절대적 표현(\"in peace는 평화적으로의 뜻으로 결코 쓰이지 않는다\")은 다소 과장이다. live in peace, the country remained in peace처럼 in war와 대비되는 '평화 상태'의 용법은 존재한다. 따라서 결함의 본질은 \"in peace라는 표현 자체가 틀렸다\"가 아니라 \"be removed라는 행위 수동태의 방식 부사 자리에 in peace를 쓴 결합이 비관용적이며 원치 않는 함의를 낳는다\"는 데 있다. 지적자가 근거로 제시한 문장 자체는 정확하고, 수능 대비 교재(Lexile 1060L) 본문으로서 관용성이 요구되는 맥락임을 고려하면 수정 대상 결함으로 인정된다. 문법적 파괴(비문)까지는 아니고 관용·자연스러움 층위의 문제이므로 warn 등급은 적절하며, confidence는 medium으로 둔다."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "page3.translation_ko 문장 [10] / answers.explanations[2].evidence (q_index 2, 함의 추론)",
+      "issue": "본문의 수동태 \"can be removed\"를 한국어에서 능동·사역으로 옮겨, 행위자와 대상이 뒤바뀌어 읽힌다. 같은 오역이 해설(evidence)에도 그대로 전파되어 있다.",
+      "evidence": "본문 page1: \"while those who ignored the public can be removed in peace.\" / page3.sentences[10]은 이를 { \"role\": \"V\", \"text\": \"can be removed\" }, grammar_note \"관계절 + while 대조 + 수동태 (can be removed)\"로 올바르게 수동으로 분석함. 그러나 translation_ko [10]은 \"국민을 무시한 자들은 평화롭게 물러나게 할 수 있다\", answers.explanations[2].evidence도 \"국민을 무시한 자는 물러나게 할 수 있다\"로 적어, '무시한 자들'이 (누군가를) 물러나게 하는 주체처럼 읽힌다.",
+      "suggestion": "\"국민을 무시한 자들은 평화롭게 물러나게 된다(자리에서 물러나게 할 수 있다 → 유권자에 의해 교체될 수 있다)\"처럼 수동으로 통일. 해설 evidence도 \"국민을 무시한 자는 (유권자에 의해) 평화롭게 교체될 수 있다\"로 수정. 같은 파일의 grammar_note가 이미 수동태로 분석하고 있어 현재 상태는 자기모순.",
+      "lens": "explanation",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "파일 확인 결과 지적이 사실이다.\n\n[근거 1] 원문(page1, line 26)은 명백한 수동태: \"Officials who governed well may win another term, while those who ignored the public can be removed in peace.\" — 무시한 자들은 제거되는 '대상'이다.\n\n[근거 2] page3.sentences[10](line 220-232)은 이를 올바르게 분석: { \"role\": \"V\", \"text\": \"can be removed\" }, grammar_note \"관계절 + while 대조 + 수동태 (can be removed)\".\n\n[근거 3] 그러나 translation_ko [10](line 344)은 \"잘 다스린 공직자는 또 한 번의 임기를 얻을 수 있는 반면, 국민을 무시한 자들은 평화롭게 물러나게 할 수 있다\"로 옮겼다. \"-게 하다\"는 능동 사역 구문으로 주어/주제가 사역의 주체다. 여기에 (a) 목적격 '를'이 아닌 주제격 '은'이 붙었고, (b) 바로 앞 대조절의 \"공직자는 ... 얻을 수 있는\"이 명백한 행위주-주어여서 '반면' 병렬이 두 주제어를 동일하게 파싱하도록 강제하며, (c) 사역주(유권자/국민)가 절 안에 전혀 표현되지 않았다. 따라서 기본 독해는 \"무시한 자들이 (누군가를) 물러나게 할 수 있다\"가 되어 행위자와 대상이 뒤바뀐다.\n\n[근거 4] 동일 파일이 다른 수동태는 모두 올바른 피동 형태로 처리해 [10]이 예외임이 드러난다: [4] \"are gathered, counted, turned into\" → \"모이고, 집계되고, 바뀌는\", [8] \"to be trusted\" → \"신임받기를\", [12] \"are added\" → \"더해지면\", [14] \"is not wasted\" → \"낭비되지 않는데\". 즉 -되다/-받다/-지다 계열을 쓰던 파일이 [10]에서만 능동 사역 -게 하다를 썼다.\n\n[근거 5] 전파 확인: answers.explanations[2].evidence(line 386)에 \"국민을 무시한 자는 물러나게 할 수 있다\"로 동일 구문이 그대로 반복된다. 게다가 같은 evidence의 다음 문장이 \"유권자가 대표자를 주기적으로 평가해 유지·교체함을 뜻한다\"라고 의도된 의미를 밝혀, 앞 구절이 자기 모순임을 스스로 드러낸다.\n\n즉 번역/해설 계층이 같은 파일의 문장 분석 계층(수동태 명시)과 정면으로 어긋나며, 오역이 두 곳에 전파되어 있다. \"물러나게 될 수 있다\" 또는 \"(유권자에 의해) 평화롭게 물러나게 된다\" 등으로 수정되어야 한다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.sentences[7].grammar_note",
+      "issue": "본문에 존재하지 않는 구문(never A but B)을 문법 포인트로 제시했고, A/B 순서도 본문과 반대다.",
+      "evidence": "본문: \"that legitimate authority flows upward from the people, never downward from a throne.\" — but이 없고 콤마 병치 대조다. 그런데 grammar_note는 \"mean + that 명사절 (never A but B 대조)\". 상관어구 never A but B라면 never가 A 앞에 와야 하는데, 본문은 never가 두 번째 요소(downward from a throne) 앞에 온다. 실제로 translation_ko [7]은 \"왕좌에서 아래로가 아니라 국민으로부터 위로 흐른다\"로 올바르게 옮겨 놓아 note와 어긋난다.",
+      "suggestion": "\"mean + that 명사절 (A, never B 대조 — upward ↔ downward)\" 또는 \"not A but B가 아닌 콤마 병치 대조\"로 수정.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 근거로 지적의 모든 하위 주장이 확인됨.\n\n1) 본문에 but 없음: page1.body(26행) 및 page3.sentences[7].segments의 O 텍스트(188행)는 \"that legitimate authority flows upward from the people, never downward from a throne.\" — 상관접속사 but이 존재하지 않고, 콤마 병치(asyndetic) 대조다.\n\n2) A/B 순서 반대: grammar_note(190행)는 \"mean + that 명사절 (never A but B 대조)\". 상관어구 never A but B에서는 never가 부정 요소 A 앞에 오고 but 뒤 B가 긍정 요소인데, 본문은 긍정 요소(upward from the people)가 먼저 오고 never가 두 번째 요소(downward from a throne) 앞에 온다. 즉 실제 구조는 \"B, never A\" 형태로 note가 제시한 슬롯 순서와 정반대다.\n\n3) 번역과의 불일치: translation_ko [7](344행) \"그것은 정당한 권력이 왕좌에서 아래로가 아니라 국민으로부터 위로 흐른다는 뜻이다\"로 의미를 올바르게 옮겼고, page4.vocab throne 예문 ko(546행)도 \"권력은 국민으로부터 위로 흐르지, 결코 왕좌에서 아래로 흐르지 않는다\"로 정확하다. 두 번역 모두 grammar_note가 명명한 never A but B 구문 분석과 어긋난다.\n\n또한 같은 세그먼트의 note는 \"that 명사절 (목적어)\"로 중립·정확하게 기술되어 있어, 오류는 grammar_note 라벨에 국한된다. 문법 학습 자료에서 본문에 없는 구문을 문법 포인트로 제시한 것은 문체 문제가 아니라 실질적 오류이므로 warn 등급이 적절하다. 정답·해설에는 전파되지 않아 심각도는 warn 이상으로 올릴 필요 없음.\n\n반박 가능성 검토: \"never A but B\"를 단순히 '부정-긍정 대조'의 약칭으로 관대하게 읽더라도, 슬롯 순서가 여전히 뒤집혀 있고 본문에 없는 어휘(but)를 특정 상관어구로 단정했으므로 관대한 해석으로도 구제되지 않는다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.sentences[14].segments vs page3.sentences[10].segments",
+      "issue": "동일한 수동태 구문을 한 페이지 안에서 두 가지 방식으로 태깅해 구문분석 기준이 일관되지 않다.",
+      "evidence": "문장 14: { \"role\": \"V\", \"text\": \"is\" }, { \"role\": \"C\", \"text\": \"not wasted,\", \"note\": \"수동태 보어\" } — be동사만 V로 두고 과거분사를 C로 분리. 문장 10: { \"role\": \"V\", \"text\": \"can be removed\" } — 수동태 전체를 V로 통합. 문장 12의 { \"role\": \"M\", \"text\": \"When millions of ballots are added together,\" } 역시 수동을 분리하지 않음.",
+      "suggestion": "수동태 태깅 원칙을 하나로 통일(권장: 문장 10처럼 be+p.p.를 V로 통합). 문장 14를 { \"role\": \"V\", \"text\": \"is not wasted,\" }로 수정. 참고로 \"수동태 보어\"라는 용어는 학교문법상 성립하지 않는 표현이라 그대로 두면 오개념을 준다.",
+      "lens": "explanation",
+      "verdict": {
+        "confidence": "medium",
+        "isReal": true,
+        "reason": "지적의 인용은 파일과 축자적으로 일치하며, 핵심 대비는 실재하는 불일치다.\n\n확인된 근거:\n- 문장 14 (line 275-276): { \"role\": \"V\", \"text\": \"is\" }, { \"role\": \"C\", \"text\": \"not wasted,\", \"note\": \"수동태 보어\" } — be동사만 V, 과거분사는 C로 분리.\n- 문장 10 (line 229, 232): { \"role\": \"V\", \"text\": \"can be removed\" }, grammar_note \"수동태 (can be removed)\" — 수동태 전체를 하나의 V로 통합.\n\n결정적 근거는 문장 14의 note가 스스로 해당 구문을 \"수동태\"로 명시했다는 점이다. 만약 note가 \"형용사 보어\"였다면 wasted를 상태 형용사로 보는 정당한 대안 분석(문장 1 \"almost weightless\" C, 문장 17 \"blurry and unrepresentative\" C와 평행)으로 방어 가능했겠지만, 파일은 문장 10과 동일한 \"수동태\"라는 라벨을 쓰면서 분절 방식만 다르게 적용했다. 즉 주석은 \"수동태\"라 말하고 분절은 \"계사+보어\"로 처리해 내부적으로 어긋난다. 두 문장 모두 page3의 주절 수동태이고 S/V 층위에서 분절되어 있어 직접 비교 대상이 맞다.\n\n또한 문장 4(line 157 \"수동태 병렬\")와 문장 12(line 248 \"when 부사절 (수동)\"), 문장 8(line 205 \"to부정사 수동\")은 모두 수동 구문을 쪼개지 않고 한 덩어리로 유지한다. 따라서 이 파일의 지배적 관례는 \"수동태=한 단위\"이며 문장 14가 유일한 이탈 사례다. 문장 14의 grammar_note(line 283)도 \"for 이유 접속사 + become 보어 + 관계절\"로 뒤 절만 설명하고 앞 절 수동태에 대한 언급이 없어, 규칙이 명시되지 않은 채 C로 흡수된 정황과 부합한다.\n\n다만 지적이 든 세 번째 근거(문장 12)는 부적절하다. 그것은 종속절 전체를 M 한 덩어리로 포장한 것이라 내부를 아예 분절하지 않으므로 V/C 분리 관례의 증거가 되지 못한다. 그러나 지적의 본체인 문장 14 대 문장 10 비교만으로도 결함은 성립한다.\n\n심각도는 warn 수준이 타당하다. 두 분절 방식 각각은 개별적으로 교육상 허용 가능하며 오역이나 문법 오류는 아니다. 문제는 학생이 하나의 체계로 읽는 구문분석 페이지 안에서 동일 라벨(수동태)에 두 가지 분절 기준이 11줄 간격으로 병존한다는 일관성 결함이다. 확신도를 medium으로 두는 이유는 \"is not wasted\"의 형용사적 분석 자체가 언어학적으로 완전히 배제되지는 않기 때문이며, 다만 파일 자신의 note 문구가 그 방어를 무력화한다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.translation_ko 문장 [10]",
+      "issue": "수동태 \"can be removed\"를 사동/능동 \"물러나게 할 수 있다\"로 옮겨 주어가 뒤바뀜. 영문에서 '무시한 자들'은 제거되는 대상(피동)인데, 번역문에서는 '무시한 자들'이 (누군가를) 물러나게 하는 행위자로 읽힐 수 있다. 또한 page3 문법 주석 자체가 '수동태 (can be removed)'로 명시되어 있어 문장분석과 번역이 서로 어긋난다.",
+      "evidence": "영문 [10]: \"Officials who governed well may win another term, while those who ignored the public can be removed in peace.\" / 번역: \"잘 다스린 공직자는 또 한 번의 임기를 얻을 수 있는 반면, 국민을 무시한 자들은 평화롭게 물러나게 할 수 있다.\" / grammar_note: \"관계절 + while 대조 + 수동태 (can be removed)\"",
+      "suggestion": "\"국민을 무시한 자들은 평화롭게 물러나게 될 수 있다\" 또는 \"평화롭게 교체될 수 있다\"로 수정해 피동 관계를 살릴 것.",
+      "lens": "translation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 근거로 확인됨. 13.json line 344 translation_ko [10]: \"국민을 무시한 자들은 평화롭게 물러나게 할 수 있다.\" / line 232 grammar_note: \"관계절 + while 대조 + 수동태 (can be removed)\" / line 26 원문: \"those who ignored the public can be removed in peace.\"\n\n(1) 언어학적 사실: \"물러나다\"는 자동사이고 \"-게 하다\"는 사동 구문이므로 \"물러나게 할 수 있다\"는 \"(누군가를) 물러나게 만들 수 있다\"라는 사동/능동이다. 영문 수동태에서 those(무시한 자들)는 제거되는 피동주인데, 번역에서는 동일 NP가 사동주로 읽혀 행위자-피행위자 관계가 뒤집힌다.\n\n(2) 반박 시도와 그 실패: 한국어는 \"그 사람은 해고할 수 있다\"처럼 목적어의 주제화(-은/는) + 행위자 생략을 허용하므로 \"자들은 (유권자가) 물러나게 할 수 있다\"라는 정독도 이론상 가능하다. 그러나 이 문장에서는 두 조건이 이 해석을 차단한다. 첫째, 병렬된 앞절 \"잘 다스린 공직자는 ... 얻을 수 있는\"이 [관계절] N-은 ... -할 수 있다 형태의 명백한 행위자+능력 구문이며, 뒷절이 동일 프레임을 반복하므로 독자는 같은 행위자 해석으로 파싱하도록 유도된다. 둘째, 해당 문장 내에 사동주로 복원할 행위자(유권자/국민)가 없다.\n\n(3) 동일 표현이 line 386(answers, q_index 2)에도 나오지만 그곳은 \"유권자가 대표자를 주기적으로 평가해 유지·교체함\"이라는 문맥이 행위자를 명시하므로 문제가 없다. 지적이 page3로 범위를 한정한 것은 정확하다.\n\n(4) 내부 모순: 동일 레코드에서 문장분석은 \"수동태\"로 명시하는데 번역은 사동으로 처리해 두 레이어가 충돌한다. 형제 파일(11/12/14.json)에서도 grammar_note는 영문 구조를 기술하고 translation_ko가 이에 부합하는 것이 이 컬렉션의 관행이므로, 수동태 학습이 목적인 page3에서 예시 문장이 자기 주석과 어긋나는 것은 실질적 결함이다. 다만 report card 비유와 line 386의 올바른 해설로 전체 의미는 보존되므로 warn 등급이 타당하다. 수정안: \"평화롭게 물러나게 될 수 있다\" 또는 \"평화롭게 교체될 수 있다\"."
+      }
+    }
+  ],
   "minors": [
     {
       "severity": "minor",
-      "location": "page1.body, paragraph 2 (sentence: \"An election therefore works like a regular report card. Officials who governed well may win another term, while those who ignored the public can be removed in peace.\")",
-      "issue": "\"removed in peace\" is an unusual collocation for the intended meaning (peacefully / without upheaval); \"in peace\" idiomatically leans toward \"left undisturbed,\" which can momentarily read against the sense of officials being voted out.",
-      "evidence": "\"those who ignored the public can be removed in peace.\"",
-      "suggestion": "Consider \"can be removed peacefully\" or \"can be voted out peacefully\" for a cleaner, unambiguous collocation. Not an error; purely stylistic.",
+      "location": "page1.body, 2단락 (page3 sentences[8])",
+      "issue": "\"hold office only on loan\"은 은유로는 통하나 관용적으로는 어색한 결합이다. on loan은 물건·인력이 '대여 중'일 때 쓰는 표현이라 office(직위)와 함께 쓰면 원어민 기준 다소 억지스럽다. 학년 수준(고2)에서 해석 부담도 있다.",
+      "evidence": "\"Because leaders hold office only on loan, they must return to the voters and ask to be trusted again.\"",
+      "suggestion": "\"Because leaders hold power only on loan from the people, ...\" 처럼 대여의 출처를 명시하거나, \"Because power is only lent to leaders, ...\"로 완화.",
       "lens": "language"
     },
     {
       "severity": "minor",
-      "location": "page3.sentences[8] (index 8), segment \"to be trusted again.\"",
-      "issue": "\"ask to be trusted again\"의 to부정사가 M(수식어)로 태깅되었으나, 이 to부정사는 자동사적 ask의 목적(보어) 성분에 해당하며 단순 부사 수식이 아니다. grammar_note는 'to부정사 수동'으로만 처리해 역할을 흐린다.",
-      "evidence": "본문: \"they must return to the voters and ask to be trusted again.\" 여기서 to be trusted again은 ask의 내용(=신임받기를 청하다)을 이루는 성분이다.",
-      "suggestion": "to부정사를 ask의 목적/보어 성분으로 명시하거나 최소한 M 대신 그 기능을 note에 보강. (판매에 지장 없는 미세 태깅 개선)",
+      "location": "page1.body, 4단락 (page3 sentences[15])",
+      "issue": "\"stop believing that this message travels\"에서 travels가 목적어·도착점 없이 단독으로 쓰여 의미가 다소 불명확하다. 바로 앞 문장의 '메시지가 정부에 전달된다'는 뜻을 살리려면 도달 대상이 암시되는 편이 가독성에 낫다.",
+      "evidence": "\"The danger appears when citizens stop believing that this message travels.\"",
+      "suggestion": "\"...stop believing that this message ever reaches anyone.\" 또는 \"...that this message travels at all.\" 로 보완.",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "page2.questions[1].stem (본문 <blank> 표기와의 정합)",
+      "issue": "발문은 '밑줄 친 빈칸'이라 하지만 본문 body의 해당 지점은 <u> 태그 없이 <blank>로만 표기되어 있다. 본문에서 <u>가 실제로 쓰인 곳은 popular sovereignty와 like a regular report card 두 곳뿐이라, 렌더링 시 '밑줄 친 빈칸'이 존재하지 않게 되어 학생이 혼동할 수 있다.",
+      "evidence": "본문: \"...to keep <blank>.\" / 발문: \"윗글의 밑줄 친 빈칸에 들어갈 말로 가장 적절한 것은?\"",
+      "suggestion": "발문을 \"윗글의 빈칸에 들어갈 말로 가장 적절한 것은?\"으로 바꾸거나, 본문 <blank>를 밑줄 처리되도록 렌더링 규칙을 맞출 것.",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.sentences[3].segments (role \"REL\")",
+      "issue": "관계사절 role 태그가 19개 문장 중 이 문장에서만 REL로, 나머지 동일 구조는 모두 M으로 태깅되어 있다.",
+      "evidence": "문장 3: { \"role\": \"REL\", \"text\": \"where one lucky ticket wins.\", \"note\": \"관계부사 where (lottery 수식)\" }. 반면 구조가 같은 문장 4의 { \"role\": \"M\", \"text\": \"when scattered private opinions are gathered, ...\", \"note\": \"관계부사 when + 수동태 병렬\" }, 문장 10의 { \"role\": \"M\", \"text\": \"who governed well\" }, 문장 14의 { \"role\": \"M\", \"text\": \"that no honest government can ignore.\" }는 모두 M. REL은 파일 전체에서 1회만 등장.",
+      "suggestion": "관계사절 태그를 M(또는 일괄 REL) 중 하나로 통일.",
       "lens": "explanation"
     },
     {
       "severity": "minor",
-      "location": "page3.sentences[14] (index 14), segment \"not wasted,\" (role C, note \"수동태 보어\")",
-      "issue": "\"is not wasted\"는 be+과거분사 수동태 술부인데 \"not wasted\"만 떼어 C(보어)로 태깅하고 note를 '수동태 보어'라 한 것은 술어 구조를 형용사 보어처럼 오인하게 할 수 있다. grammar_note는 'become 보어'만 언급.",
-      "evidence": "본문: \"even a losing vote is not wasted, for it becomes part of a larger message ...\" — is wasted는 수동태 동사구다.",
-      "suggestion": "\"is not wasted\"를 수동태 술어로 일관 표기하거나 note에서 '보어'라는 표현을 지양. 지도학습상 오해 소지만 있는 미세 사항.",
-      "lens": "explanation"
-    },
-    {
-      "severity": "minor",
-      "location": "page3.translation_ko 문장 [10]",
-      "issue": "영문은 수동태 'those who ignored the public can be removed in peace'(무시한 자들은 평화롭게 물러나게 될/제거될 수 있다)인데, 번역은 '평화롭게 물러나게 할 수 있다'로 태(voice)를 능동·사역으로 뒤집어 주어가 모호해진다. 또한 'in peace'는 '평화롭게(교체가 소란·폭력 없이 이뤄짐)'의 뜻으로 물러나는 방식이 아니라 제거 방식을 수식한다. 의미(무능한 공직자는 교체될 수 있다)는 전달되나 태 처리가 어색하다.",
-      "evidence": "본문: \"Officials who governed well may win another term, while those who ignored the public can be removed in peace.\" / 번역: \"...국민을 무시한 자들은 평화롭게 물러나게 할 수 있다.\"",
-      "suggestion": "수동태를 살려 '국민을 무시한 자들은 평화롭게 물러나게 된다/교체될 수 있다'로 다듬으면 원문 태와 일치한다.",
+      "location": "page3.translation_ko 문장 [8]",
+      "issue": "\"hold office\"의 office(공직·직위)를 '권한'으로 옮겨, 바로 앞 [6]·[5]의 authority(권한)와 어휘가 겹친다. 의미상 큰 왜곡은 아니나 '직위를 빌려서 맡고 있을 뿐'이라는 원문의 구체성이 사라진다.",
+      "evidence": "영문 [8]: \"Because leaders hold office only on loan, they must return to the voters and ask to be trusted again.\" / 번역: \"지도자들은 권한을 빌려서만 쥐고 있으므로, ...\"",
+      "suggestion": "\"지도자들은 공직을 빌려서 맡고 있을 뿐이므로\"로 수정.",
       "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko 문장 [2]",
+      "issue": "\"In a nation of millions\"를 \"수백만의 나라에서는\"으로 옮겨 단위 명사가 빠져 '수백만 개의 나라'로 오독될 여지가 있다.",
+      "evidence": "영문 [2]: \"In a nation of millions, no one voter picks the winner alone, ...\" / 번역: \"수백만의 나라에서는 어떤 유권자도 혼자 승자를 뽑지 못하므로, ...\"",
+      "suggestion": "\"수백만 명이 사는 나라에서는\"으로 수정.",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page1.body (line 26) — \"<u>popular sovereignty</u>\"",
+      "issue": "본문에 밑줄 처리된 'popular sovereignty'가 어떤 문항에서도 인용·활용되지 않는 고아(orphan) 밑줄이다. 밑줄 친 어구를 묻는 문항(page2.questions[2])은 'like a regular report card'만 인용하므로, 학생 입장에서 밑줄이 두 개인데 출제 대상은 하나여서 불필요한 혼선을 준다.",
+      "evidence": "본문: \"an idea that political scientists call <u>popular sovereignty</u>\" / 문항 stem: \"밑줄 친 like a regular report card 가 다음 글에서 의미하는 바로...\" — popular sovereignty를 대상으로 하는 문항은 page2.questions 어디에도 없다. 참고로 page3 sentence 6은 이 구를 밑줄 없이 \"...call popular sovereignty.\"로 싣고 있다.",
+      "suggestion": "popular sovereignty의 <u> 태그를 제거하거나, 해당 어구를 묻는 문항을 추가해 밑줄과 문항을 1:1로 대응시킬 것.",
+      "lens": "answer"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[7] (word: \"unrepresentative\") — examples[1].ko",
+      "issue": "두 번째 예문의 한국어 대역이 어색하고 원문 구조를 잘못 옮겼다. 영어 \"unrepresentative of the public\"은 '대중을 대표하지 못하는'이라는 뜻인데, 대역 \"대중의 대표성이 없는\"은 '대중이 가진 대표성이 없다'로 읽혀 소유 관계가 뒤바뀐 것처럼 들린다. 영어 예문(en) 자체는 leave + O + 형용사 보어 구조로 문법상 옳다.",
+      "evidence": "page4.vocab[7].examples[1]: { \"en\": \"A low turnout leaves the result unrepresentative of the public.\", \"ko\": \"낮은 투표율은 그 결과를 대중의 대표성이 없는 것으로 만든다.\" }",
+      "suggestion": "ko를 \"낮은 투표율은 그 결과가 대중을 대표하지 못하게 만든다.\"로 수정한다.",
+      "lens": "vocab"
     }
   ],
-  "blockers": [],
+  "blockers": [
+    {
+      "severity": "blocker",
+      "location": "page3.translation_ko 문장 [10] / answers.explanations[2].evidence (q_index 2, 함의 추론)",
+      "issue": "본문의 수동태 \"can be removed\"를 한국어에서 능동·사역으로 옮겨, 행위자와 대상이 뒤바뀌어 읽힌다. 같은 오역이 해설(evidence)에도 그대로 전파되어 있다.",
+      "evidence": "본문 page1: \"while those who ignored the public can be removed in peace.\" / page3.sentences[10]은 이를 { \"role\": \"V\", \"text\": \"can be removed\" }, grammar_note \"관계절 + while 대조 + 수동태 (can be removed)\"로 올바르게 수동으로 분석함. 그러나 translation_ko [10]은 \"국민을 무시한 자들은 평화롭게 물러나게 할 수 있다\", answers.explanations[2].evidence도 \"국민을 무시한 자는 물러나게 할 수 있다\"로 적어, '무시한 자들'이 (누군가를) 물러나게 하는 주체처럼 읽힌다.",
+      "suggestion": "\"국민을 무시한 자들은 평화롭게 물러나게 된다(자리에서 물러나게 할 수 있다 → 유권자에 의해 교체될 수 있다)\"처럼 수동으로 통일. 해설 evidence도 \"국민을 무시한 자는 (유권자에 의해) 평화롭게 교체될 수 있다\"로 수정. 같은 파일의 grammar_note가 이미 수동태로 분석하고 있어 현재 상태는 자기모순.",
+      "lens": "explanation",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "파일 확인 결과 지적이 사실이다.\n\n[근거 1] 원문(page1, line 26)은 명백한 수동태: \"Officials who governed well may win another term, while those who ignored the public can be removed in peace.\" — 무시한 자들은 제거되는 '대상'이다.\n\n[근거 2] page3.sentences[10](line 220-232)은 이를 올바르게 분석: { \"role\": \"V\", \"text\": \"can be removed\" }, grammar_note \"관계절 + while 대조 + 수동태 (can be removed)\".\n\n[근거 3] 그러나 translation_ko [10](line 344)은 \"잘 다스린 공직자는 또 한 번의 임기를 얻을 수 있는 반면, 국민을 무시한 자들은 평화롭게 물러나게 할 수 있다\"로 옮겼다. \"-게 하다\"는 능동 사역 구문으로 주어/주제가 사역의 주체다. 여기에 (a) 목적격 '를'이 아닌 주제격 '은'이 붙었고, (b) 바로 앞 대조절의 \"공직자는 ... 얻을 수 있는\"이 명백한 행위주-주어여서 '반면' 병렬이 두 주제어를 동일하게 파싱하도록 강제하며, (c) 사역주(유권자/국민)가 절 안에 전혀 표현되지 않았다. 따라서 기본 독해는 \"무시한 자들이 (누군가를) 물러나게 할 수 있다\"가 되어 행위자와 대상이 뒤바뀐다.\n\n[근거 4] 동일 파일이 다른 수동태는 모두 올바른 피동 형태로 처리해 [10]이 예외임이 드러난다: [4] \"are gathered, counted, turned into\" → \"모이고, 집계되고, 바뀌는\", [8] \"to be trusted\" → \"신임받기를\", [12] \"are added\" → \"더해지면\", [14] \"is not wasted\" → \"낭비되지 않는데\". 즉 -되다/-받다/-지다 계열을 쓰던 파일이 [10]에서만 능동 사역 -게 하다를 썼다.\n\n[근거 5] 전파 확인: answers.explanations[2].evidence(line 386)에 \"국민을 무시한 자는 물러나게 할 수 있다\"로 동일 구문이 그대로 반복된다. 게다가 같은 evidence의 다음 문장이 \"유권자가 대표자를 주기적으로 평가해 유지·교체함을 뜻한다\"라고 의도된 의미를 밝혀, 앞 구절이 자기 모순임을 스스로 드러낸다.\n\n즉 번역/해설 계층이 같은 파일의 문장 분석 계층(수동태 명시)과 정면으로 어긋나며, 오역이 두 곳에 전파되어 있다. \"물러나게 될 수 있다\" 또는 \"(유권자에 의해) 평화롭게 물러나게 된다\" 등으로 수정되어야 한다."
+      }
+    }
+  ],
   "counts": {
-    "raw": 4,
-    "verified": 0,
-    "confirmed": 0,
-    "minor": 4
+    "raw": 17,
+    "verified": 9,
+    "confirmed": 5,
+    "minor": 8
   }
 }

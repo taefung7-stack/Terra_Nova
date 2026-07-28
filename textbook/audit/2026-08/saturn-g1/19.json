@@ -1,13 +1,104 @@
 {
   "grade": "saturn-g1",
   "seq": 19,
-  "confirmed": [],
-  "minors": [],
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page1.body, 3rd paragraph (also duplicated in page3.sentences[13] and page4.vocab 'childcare' example)",
+      "issue": "동사-목적어 연어(collocation) 오류. 'hold a job'은 자연스럽지만 'hold childcare'는 비문에 가까운 어색한 표현이다. 하나의 동사 'hold'를 성격이 다른 두 명사(jobs, childcare)에 억지로 걸치면서 뒤쪽 명사가 동사와 결합하지 못한다.",
+      "evidence": "\"Many parents also worry that both jobs and childcare are hard to hold at once.\"",
+      "suggestion": "'hold'를 두 명사 모두에 통하는 동사로 교체할 것. 예: \"...worry that juggling both a job and childcare at once is hard.\" 또는 \"...worry that it is hard to manage both work and childcare at once.\" 본문 4단락이 이미 'balance work and family'를 쓰고 있으므로 'manage/balance' 계열이 일관성도 좋다. 수정 시 page3.sentences[13]의 C 세그먼트와 page4.vocab 'childcare' 예문도 함께 고쳐야 한다.",
+      "lens": "language",
+      "verdict": {
+        "confidence": "medium",
+        "isReal": true,
+        "reason": "확인됨. 지적 문장은 page1.body 3번째 단락(line 21), page3.sentences[13](line 246), page4.vocab 'childcare' 예문(line 450) 세 곳에 그대로 존재한다: \"Many parents also worry that both jobs and childcare are hard to hold at once.\"\n\n다만 검수자가 기술한 메커니즘은 부정확하다. 이 문장은 타동사가 두 목적어를 취하는 구조가 아니라 tough-movement 구문(\"X is hard to hold\")이며, page3.sentences[13]의 분석도 S=\"both jobs and childcare\" / V=\"are\" / C=\"hard to hold at once\"로 서술형용사+부정사 구조임을 확인해 준다.\n\n그러나 구조를 바로잡아도 연어 결함은 남는다. tough 구문에서도 부정사의 공백은 동사의 정당한 목적어여야 하므로 \"hold jobs\"와 \"hold childcare\"로 각각 환원되는데, 후자가 성립하지 않는다. 'hold a job'은 '직장을 유지하다'라는 고정 관용구지만, childcare는 provide/arrange/manage하는 대상이지 hold하는 대상이 아니어서 두 명사를 하나의 hold 아래 등위 접속하면 zeugma가 발생한다.\n\n파일 내부 근거가 이를 뒷받침한다. (1) translation_ko [13]은 \"일과 육아를 한꺼번에 감당하기가 어렵다\"로, page4 vocab 'childcare' 예문도 \"감당하기는 어렵다\"로 옮겼는데, 감당하다는 manage/handle/juggle에 해당하며 hold가 담지 못하는 의미다. 즉 영어가 자체 의도한 의미를 전달하지 못한다. (2) 같은 지문이 page1.body와 page3.sentences[17]에서 \"help parents balance work and family\"라는 자연스러운 연어를 이미 두 번 사용하고 있어, 문서 자체가 관용적 형태를 보여준다.\n\n반론 검토: 'hold'를 '유지하다'의 포괄적 의미로 볼 여지가 있으나 'hold childcare'는 그 의미로도 용례가 없다. 850L 학습자용 단순화라는 변호도, juggle/manage/balance가 더 어렵지 않고 지문 자체가 balance를 교육 어휘로 다루므로 성립하지 않는다.\n\n수정 시 세 곳 모두를 juggle/manage/balance 계열로 교체해야 한다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.sentences[1] (index 2), 19.json line 116",
+      "issue": "5형식 call + O + O.C 구조의 목적격보어(population aging)를 목적어에 통째로 붙여 O 하나로 태깅했다. C 태그가 없어 구문 역할 오태깅이며, 같은 달 다른 지문들이 지키는 표기 관례와도 어긋난다.",
+      "evidence": "19.json: { \"role\": \"O\", \"text\": \"this slow change population aging,\" } — 본문은 \"People call this slow change <u>population aging</u>\". 대조: 09.json은 { \"role\": \"O\", \"text\": \"this exchange\" }, { \"role\": \"C\", \"text\": \"trade.\" }; 08.json은 O \"this endless loop\" / C \"the water cycle,\"; 07.json은 O \"this idea\" / C \"the multiplication principle,\" 에 \"note\": \"call + O + C\" 까지 명시; 11.json은 O \"it\" / C \"exothermic,\". 즉 2026-08 코퍼스 전체가 call 5형식을 O와 C로 분리한다.",
+      "suggestion": "{ \"role\": \"O\", \"text\": \"this slow change\" }, { \"role\": \"C\", \"text\": \"population aging,\" } 로 분리해 5형식임을 드러낼 것. 필요시 07.json처럼 \"note\": \"call + O + C\" 추가.",
+      "lens": "explanation",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "파일 근거로 명확히 확인됨. (1) 19.json line 21 본문: \"People call this slow change <u>population aging</u>, and it changes far more than...\" — 명백한 call + O + O.C 5형식이며, <u> 태그가 population aging을 보어/핵심어로 분리 표시. 해당 어구는 line 378 어휘 항목으로도 등재됨. (2) 19.json line 116: { \"role\": \"O\", \"text\": \"this slow change population aging,\" } — O와 C를 한 세그먼트로 병합, C 태그 부재. \"this slow change population aging\"은 영어에서 단일 명사구로 성립하지 않으므로 방어 가능한 대체 분석이 아님. (3) 같은 sentences 배열의 바로 앞 문장 line 108에서 { \"role\": \"C\", \"text\": \"older.\" }로 C 태그를 정상 사용 중 → 스키마 차이나 C 미지원 가능성은 배제됨. (4) 2026-08 코퍼스 관례 확인: call/called 5형식 12건 중 10건이 O/C 분리 — 05.json:152-153(that half/oxidation), 07.json:136-137(this idea/the multiplication principle, \"note\":\"call + O + C\" 명시), 08.json:192-193, 09.json:141-142 및 213-214, 11.json:152-153, 12.json:124-125 및 296-297, 14.json:115-116, 18.json:248-249, 04.json:173-174(called + C \"logos.\"). make 계열도 06.json:212-213, 07.json:219-220, 13.json:192-193에서 동일하게 O/C 분리. 유일한 예외 01.json:142는 동일 결함의 두 번째 사례일 뿐 반대 관례가 아님. 따라서 구문 역할 오태깅이자 표기 관례 위반이 모두 성립."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.sentences[16] (index 17), 19.json line 289",
+      "issue": "help + O + 원형부정사 구조에서 목적어(parents)와 목적격보어(balance work and family)를 하나의 O로 묶어 태깅했다. 학생이 balance를 명사로 오해할 소지가 있고, 동일 코퍼스의 help 처리 관례와 정면으로 충돌한다.",
+      "evidence": "19.json: { \"role\": \"O\", \"text\": \"parents balance work and family,\" } — 본문은 \"help parents balance work and family\". 대조: 07.json line 315-317은 { \"role\": \"V\", \"text\": \"help\" }, { \"role\": \"O\", \"text\": \"engineers\" }, { \"role\": \"C\", \"text\": \"design passwords,\", \"note\": \"help + O + 동사원형\" } 로 분리하고 규칙을 note에 명기함.",
+      "suggestion": "{ \"role\": \"O\", \"text\": \"parents\" }, { \"role\": \"C\", \"text\": \"balance work and family,\" } 로 분리하고 \"help + O + 동사원형\" note를 달 것.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "지적이 파일 근거로 전부 확인된다. (1) 19.json:288-289는 실제로 { \"role\": \"V\", \"text\": \"help\" }, { \"role\": \"O\", \"text\": \"parents balance work and family,\" }로, help의 목적어(parents)와 목적격보어(balance work and family)를 하나의 O로 병합했고 note/grammar_note가 전혀 없다(19.json 내 grammar_note 0건). (2) 대조 근거인 07.json:315-317도 정확히 인용대로 V/help + O/engineers + C/design passwords, + \"note\": \"help + O + 동사원형\"으로 분리돼 있으며, 같은 문장에서 biologists/compare genes, airlines/plan routes까지 3회 반복 분리한다. (3) 이는 07.json 한 건의 우연이 아니라 코퍼스 전반의 지배적 관례다 — 2026-06-Mars/03.json:98, 14.json:100, 20.json:101, 2026-06-Sun/11.json:554, 18.json:492, 19.json:514 모두 V/help+O+C 및 \"help + O + 동사원형\" 표기를 사용한다. 반례는 2026-08-J/15.json:377-378(병합) 단 1건인데, 그조차 \"note\": \"help O (원형)\"와 문장 단위 grammar_note \"help O 원형부정사\"로 원형부정사임을 명시한다. 즉 19.json은 유일한 반례보다도 정보가 부족하다(병합 + 무표기). 교육적 위해 주장도 구체적이다: balance는 명사/동사 동형이고 뒤따르는 work 역시 중의적이어서, 전체가 O로 묶이고 아무 주석이 없으면 \"parents balance work\"를 명사구로 오독할 여지가 실재한다. 방어 가설도 검토했으나 기각된다 — 같은 문장의 나머지 두 등위 술부(welcome/build)는 평범한 V+O로 태깅돼 있어 '연속 동사구 포맷 규칙'으로 병합을 설명할 수 없다. JSON 자체는 유효하고 translation_ko(\"부모가 일과 가정을 조화시키도록 돕고\")도 정확하므로 error가 아닌 warn 등급은 과장 없이 적절하다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page4.vocab[3] (\"retired\") → synonyms",
+      "issue": "synonyms에 제시된 \"former\"가 본문 문맥의 retired와 의미가 일치하지 않는다. 본문의 retired는 '(직장에서) 은퇴한' 상태를 뜻하는데, former는 '이전의, 전(前)-'이라는 전혀 다른 의미다. 학생이 제시된 유의어를 그대로 대입하면 비문/오문이 된다.",
+      "evidence": "본문: \"A smaller group of workers must support more retired people, so each worker carries a heavier load.\" / page4.vocab: { \"word\": \"retired\", \"meaning_ko\": \"은퇴한\", \"synonyms\": [\"former\"] } — 여기에 former를 대입한 \"more former people\"은 의미가 성립하지 않는다. former는 'a former teacher(전직 교사)'처럼 직위 명사 앞에서만 제한적으로 쓰이며 '은퇴한'과 등가가 아니다.",
+      "suggestion": "synonyms를 [\"retired\"의 실제 유의어인 \"pensioned\", \"no longer working\"] 또는 명사형 문맥에 맞는 [\"retiree(n.)\"] 계열로 교체하고, former는 삭제한다. 가장 안전한 대안은 synonyms: [\"pensioned off\"] 또는 antonyms의 \"working\"과 짝이 맞는 [\"not working anymore\"] 수준의 풀이형 제시다.",
+      "lens": "vocab",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "지적이 파일 근거로 정확히 확인된다. C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-08/19.json 411-420행의 page4.vocab[3]은 { \"word\": \"retired\", \"pos\": \"adj.\", \"meaning_ko\": \"은퇴한\", \"synonyms\": [\"former\"], \"antonyms\": [\"working\"] }이며, 인용된 본문(21행 \"A smaller group of workers must support more retired people\")도 원문 그대로다.\n\n의미론적으로 결함이 성립한다. 본문의 retired는 일반 명사 people을 수식하는 상태 형용사로 '노동시장에서 은퇴한'(meaning_ko와 일치)을 뜻한다. 반면 former는 직위·역할 명사 앞에서만 '전(前)-'을 표시하는 한정 용법 형용사여서 \"more former people\"은 의미가 성립하지 않는다. 두 단어는 \"a retired general ≈ a former general\"처럼 '전직 직위' 프레임에서만 근접할 뿐이고, 그 용법조차 여기 명시된 '은퇴한'이라는 뜻과는 다르다.\n\n특히 결정적인 것은 해당 엔트리 자신의 예문 두 개(417-418행 \"support a larger group of retired people\", \"Retired citizens often rely on a pension.\")가 모두 former를 대입할 수 없는 프레임이라는 점이다. 유의어가 단 하나만, 프레임 제약이나 뜻풀이 없이 제시되어 있어 학습자에게는 사실상 등가 선언으로 기능하며, 표준적인 유의어 대입 연습을 하면 두 예문 모두에서 비문이 산출된다.\n\n반박 가능성도 검토했으나 기각한다. (1) \"유의어가 모든 프레임에서 치환될 필요는 없다\"는 일반론은 맞지만, 이 파일의 다른 항목들(elderly → aged/old, uncertain → unsure, decline → fall/decrease, newcomer → immigrant)은 전부 프레임 치환이 가능해 이 항목만 예외이므로 편집 관행으로 정당화되지 않는다. (2) 일부 시소러스가 former를 등재하는 것은 'ex-officeholder' 의미 아래에서일 뿐 여기 표기된 '은퇴한' 의미가 아니다. warn 등급도 본문·정답 키에 영향을 주지 않는 보조 어휘란의 정확성 문제이므로 타당하다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page4.vocab[1] (\"elderly\") → pos / meaning_ko (page1.gloss_extra[2] 동일)",
+      "issue": "pos를 \"adj.\"로만, meaning_ko를 \"고령의, 노인의\"라는 형용사 뜻으로만 제시했으나, 본문에서 elderly는 'the + 형용사 = 복수 보통명사(노인들)' 용법으로 쓰였다. 제시된 품사·뜻이 본문 문맥의 실제 용법을 설명하지 못해, 학생이 \"the share of the elderly\"를 해석할 근거를 얻지 못한다.",
+      "evidence": "본문: \"the share of young workers drops while the share of the elderly climbs.\" — the elderly가 of의 목적어인 명사구로 기능한다. 그런데 page4.vocab는 { \"word\": \"elderly\", \"pos\": \"adj.\", \"meaning_ko\": \"고령의, 노인의\" }이고 page1.gloss_extra도 { \"term\": \"elderly\", \"ko\": \"고령의, 노인의\" }로 동일하다. 정작 자기 예문 { \"en\": \"The share of the elderly keeps climbing.\", \"ko\": \"고령층의 비중이 계속 높아진다.\" }는 ko를 '고령층(명사)'으로 옮겨, 표기된 품사·뜻과 예문 대역이 서로 어긋난다.",
+      "suggestion": "pos를 \"adj. (the ~ n. 노인들)\"처럼 병기하고 meaning_ko를 \"고령의, 노인의; (the elderly) 노인들, 고령층\"으로 보강한다. page1.gloss_extra의 ko도 동일하게 수정한다.",
+      "lens": "vocab",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "파일 근거로 지적의 모든 사실 전제가 확인됨.\n\n1) 본문(page1.body, L21): \"the share of young workers drops while the share of the elderly climbs.\" — the elderly가 전치사 of의 목적어인 명사구로 기능.\n2) page3.sentences[2] (L131): { \"role\": \"S\", \"text\": \"the share of the elderly\" } — 파일 자체가 이 구를 주어(명사구)로 태깅해 명사 용법임을 재확인.\n3) page4.vocab[1] (L389-391): { \"word\": \"elderly\", \"pos\": \"adj.\", \"meaning_ko\": \"고령의, 노인의\" }.\n4) page1.gloss_extra[2] (L27): { \"term\": \"elderly\", \"ko\": \"고령의, 노인의\" } — 동일하게 형용사 뜻만 제시.\n5) 결정적 자기모순: 같은 vocab 항목의 첫 예문(L395) { \"en\": \"The share of the elderly keeps climbing.\", \"ko\": \"고령층의 비중이 계속 높아진다.\" }는 ko를 '고령층'이라는 명사로 옮김. 반면 두 번째 예문(L396) \"elderly citizens\"만 실제 한정 형용사 용법. 즉 표기된 meaning_ko(\"고령의, 노인의\")로는 자기 예문의 대역(\"고령층\")을 도출할 수 없음.\n\n반박 검토: elderly는 사전적으로 형용사가 맞고 \"the + 형용사\"는 통사적 생산 규칙이므로 pos:\"adj.\" 자체가 오류는 아님. 따라서 \"품사 표기가 틀렸다\"는 강한 주장은 성립하지 않음. 그러나 지적의 실질은 그것이 아니라 — 본문 핵심 문장(요지·세부내용 문항 선택지에도 등장)의 용법을 설명하는 유일한 어휘 자료가 학생에게 해석 경로를 주지 못하고, 게다가 자기 예문 대역과 어긋난다는 점. 이는 실제 학습 결함이며 warn 등급이 적절.\n\n수정 방향: pos 교체가 아니라 보강(예: pos \"adj. (the ~ n. 노인들)\" 또는 meaning_ko에 \"the elderly: 노인들, 고령층\" 병기)이며, page1.gloss_extra[2]도 동일하게 반영해야 함."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page1.body, 1st paragraph (page3.sentences[2], translation_ko [2])",
+      "issue": "의미상 헐거운 술어-목적어 결합 + 불필요한 동격 설명. 고령화가 'headcount를 바꾼다'가 아니라 'headcount 이상의 것을 바꾼다'는 뜻인데, 'changes far more than a simple headcount'는 비교 대상이 목적어인지 비교급 수식인지 순간적으로 흐려진다. 또한 'a simple headcount'를 'a plain count of people'로 풀어 준 동격구는 gloss 성격의 군더더기로, 어휘 수준상 saturn-g1에게 굳이 필요하지 않다.",
+      "evidence": "\"People call this slow change <u>population aging</u>, and it changes far more than a simple headcount, or a plain count of people.\"",
+      "suggestion": "동격구를 덜어내고 비교 대상을 분명히 할 것. 예: \"...and it changes far more than a simple headcount.\" 정도로 줄이거나, 뜻을 살리려면 \"...and its effects reach far beyond a simple headcount.\"로 바꿀 수 있다. 단 'far more than a [명사]'는 코퍼스 전반(06.json, 07.json, 10.json, 17.json)에서 확인되는 하우스 스타일이므로 구문 자체는 유지해도 무방하며, 실제 손댈 부분은 뒤의 동격구다.",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[11] (\"fortune\") → antonyms",
+      "issue": "antonyms의 \"pittance\"가 학년(saturn-g1, 고1) 대비 지나치게 고난도·저빈도 어휘다. 목표어를 익히기 위한 보조 정보가 목표어보다 어려워 학습 부담만 늘린다.",
+      "evidence": "본문: \"Housing costs a fortune, and raising a child demands long years of money and time.\" 문맥의 fortune은 '거액'이라는 구어적 관용 표현(cost a fortune)인데, 대응 antonym으로 제시된 pittance(쥐꼬리만 한 액수)는 고1 교육과정 어휘 범위를 크게 벗어난다. 같은 파일의 다른 항목들이 antonyms를 [\"young\"], [\"working\"], [\"certain\"], [\"city\"] 등 기초어로 통일한 것과도 수준이 어긋난다.",
+      "suggestion": "antonyms를 [] 로 비우거나(같은 파일의 population aging·pension·childcare·headcount처럼), 고1 수준의 [\"a small amount\"] 정도로 낮춘다.",
+      "lens": "vocab"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[0,2,4] 와 page1.gloss_extra[0,1,2] 중복",
+      "issue": "page1.gloss_extra의 3개 항목(pension, sustainable, elderly)이 page4.vocab에 뜻까지 동일하게 그대로 재수록되어 있다. 본문 옆 각주(gloss)는 통상 page4 어휘 목록에 없는 보조 어휘를 다루는 자리인데, 전 항목이 중복되어 gloss_extra가 정보를 추가하지 못한다.",
+      "evidence": "page1.gloss_extra: { \"term\": \"pension\", \"ko\": \"연금\" }, { \"term\": \"sustainable\", \"ko\": \"지속 가능한\" }, { \"term\": \"elderly\", \"ko\": \"고령의, 노인의\" } / page4.vocab: { \"word\": \"pension\", \"meaning_ko\": \"연금\" }, { \"word\": \"sustainable\", \"meaning_ko\": \"지속 가능한\" }, { \"word\": \"elderly\", \"meaning_ko\": \"고령의, 노인의\" } — 3개 모두 term·ko가 완전히 동일하다.",
+      "suggestion": "gloss_extra는 page4.vocab에 없으면서 본문 독해를 막는 어휘(예: tangled, flips upside down, share, retiree 관련 표현)로 교체해 중복을 없앤다.",
+      "lens": "vocab"
+    }
+  ],
   "blockers": [],
   "counts": {
-    "raw": 0,
-    "verified": 0,
-    "confirmed": 0,
-    "minor": 0
+    "raw": 9,
+    "verified": 6,
+    "confirmed": 5,
+    "minor": 3
   }
 }

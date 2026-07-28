@@ -1,0 +1,102 @@
+{
+  "grade": "sun-g3",
+  "seq": 13,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page1.body, 1문단 3번째 문장 (page3 sentences[2], translation_ko [3])",
+      "issue": "'이자(interest)'와 '이자율(interest rate)'을 동일시하는 개념 오류. 앞 문장에서 정의한 'a fee'(절대 금액)를 곧바로 'the interest rate'(원금 대비 기간당 비율)와 등치시켰다. 이 문장은 밑줄(<u>)이 쳐진 지문의 핵심 개념 정의문이고, 연계 단원(경제 V-1)이 이자와 이자율을 구분해 다루므로 학습상 혼동을 유발한다.",
+      "evidence": "\"Whenever someone lends money, they charge a fee for the wait and the risk. That fee is the <u>interest rate</u>, and it is simply the price of money over time.\" — 'a fee'는 금액이고 'interest rate'는 비율이므로 'That fee is the interest rate'는 성립하지 않는다. 뒤에 붙인 'over time'이라는 단서는 시간 요소를 인식했음을 보여주나 그것을 'fee' 쪽이 아니라 서술부에 붙여 놓았다.",
+      "suggestion": "\"That fee, expressed as a rate, is the <u>interest rate</u> ...\" 또는 \"The size of that fee is set by the <u>interest rate</u>, which is simply the price of money over time.\"로 수정. 문항 정답(Q1 '중앙은행이 금리로 경기를 조종', Q4 (A) rate)에는 영향이 없으므로 blocker는 아니다.",
+      "lens": "language",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 근거로 확인됨. page1.body 1문단 3번째 문장은 정확히 \"Whenever someone lends money, they charge a fee for the wait and the risk. That fee is the <u>interest rate</u>, and it is simply the price of money over time.\"이다. 'a fee'는 바로 앞 절에서 charge의 목적어(page3 sentences index 2: role O, text \"a fee\")로 도입된 절대 금액이며, index 3에서 S \"That fee\" / V \"is\" / C \"the interest rate,\"의 2형식 동일시 구문으로 비율 개념과 등치된다. 금액 ≠ 비율이므로 범주 오류가 맞다.\n\n지적의 세부 사항도 모두 확인된다: (1) 'over time' 단서가 주어부('fee')가 아니라 서술부('the price of money over time')에 붙어 있어, 시간·원금 대비 개념이 'fee' 쪽에 반영되지 않았다. (2) 위치 지정이 정확하다 — page1.body 1문단 3문장, page3 sentences index 3(0-index sentences[2]), translation_ko [3] \"그 대가가 바로 이자율이며\"로 한국어 번역에도 동일 오류가 그대로 전파되어 있다. (3) 해당 문장은 <u> 밑줄이 걸린 핵심 개념 정의문이고, page2 서술형 summary_template(\"The interest <blank> (A) is the price of money\", model_answer \"(A) rate\")과 answers.explanations의 evidence(모두 \"3번 the interest rate\" 인용)가 이 문장에 의존한다. (4) meta.linked_unit이 \"경제 V-1 금융시장과 통화 정책\"이고 textbook_tieback.body_ko가 \"돈의 값인 이자율을 결정하는 곳\", tags에 '이자율'과 '기준금리'를 별도로 두고 있어 연계 단원이 이자/이자율 구분을 다룬다는 전제도 성립한다.\n\n반박 검토 결과 기각: '이자율=돈의 값'이라는 프레이밍 자체는 표준적 교과서 단순화로 문제없고 빈칸 정답(money)의 근거이기도 하나, 결함은 프레이밍이 아니라 'a fee'(금액)를 'the interest rate'(비율)로 잇는 그 연결 문장 자체다. 'fee'를 느슨하게 '대가/청구액'으로 읽어도 여전히 금액을 비율과 등치시킨다. 다만 지문의 나머지(sentences 5·9·10·11)는 rate를 올리고 내리는 수준 개념으로 올바르게 사용하므로, 전반적 오류가 아닌 국소적 연결 문장 오류이며 warn 등급이 적절하다. 수정안 예시: \"That fee, set as a share of the amount borrowed each year, is the interest rate.\""
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.sentences[index=20].segments[3] (line 365)",
+      "issue": "구문 역할 오태깅: \"setting the right price for money.\"가 M(수식어)으로 태깅되었으나, 이는 구동사 come down to의 전치사 to가 취하는 목적어(동명사구)이므로 O가 되어야 한다. 이 조각을 M으로 두면 문장에 목적어가 없는 것으로 보여, 같은 sentence의 grammar_note \"come down to V-ing\"(= to 뒤에 동명사가 온다)와도 어긋난다.",
+      "evidence": "본문: \"In the end, guiding a nation's growth often comes down to setting the right price for <blank>.\" / 파일: { \"role\": \"M\", \"text\": \"setting the right price for money.\", \"note\": \"come down to V-ing\" } / 프로젝트 규약(audit/2026-07/FIX-CONTRACT-BLANK-SYNTAX.md)은 전치사의 목적어를 O로 태깅하도록 명시: `{ \"role\":\"O\", \"text\":\"discoveries.\", \"note\":\"전치사 into의 목적어\" }`",
+      "suggestion": "segments[3]의 role을 \"M\" → \"O\"로 변경하고 note를 \"전치사 to의 목적어(동명사)\" 정도로 다듬는다.",
+      "lens": "explanation",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "지적이 파일 근거로 완전히 확인됨. (1) 해당 세그먼트 실재: textbook/content/passages/2026-08-Sun/13.json:359-368, page3 sentence index=20, segments[3] = { \"role\": \"M\", \"text\": \"setting the right price for money.\", \"note\": \"come down to V-ing\" }, 직전 segments[2] = { \"role\": \"V\", \"text\": \"often comes down to\" }.\n\n(2) 내부 모순 실재: 전치사 to가 이미 V 세그먼트(\"often comes down to\") 안에 흡수되어 있으므로, 뒤따르는 동명사구에는 전치사가 남아있지 않다. 따라서 이를 M(전치사구 수식어)으로 볼 근거가 없고, 구동사의 목적어 = O가 되어야 한다. 현재 태깅은 S + V + (O 없음) 구조가 되어, 같은 세그먼트의 note \"come down to V-ing\"(to 뒤 동명사가 온다) 및 grammar_note \"동명사 주어 + come down to V-ing\"와 정면으로 충돌한다.\n\n(3) 프로젝트 자체 선례가 반대로 되어 있음(가장 결정적): textbook/content/passages/2026-08/11.json:344-345에서 동일 구동사를 { \"role\": \"V\", \"text\": \"comes down to\" }, { \"role\": \"O\", \"text\": \"the direction heat moves.\" }로 태깅. 동일 동사·동일 분할 지점인데 역할만 다르므로, 태깅 철학 차이가 아니라 이 파일의 오류다.\n\n(4) 인용된 규약 문서 실재·내용 일치: textbook/audit/2026-07/FIX-CONTRACT-BLANK-SYNTAX.md:19-23에 정답 단어의 문법 역할을 \"보통 목적어 O 또는 보어 C\"로 드러내라고 명시하고, 예시로 { \"role\":\"O\", \"text\":\"discoveries.\", \"note\":\"전치사 into의 목적어\" }(전치사를 V에 남기고 그 목적어를 O로)를 제시. 지적의 근거주장 그대로다.\n\n(5) 이 문장은 실제로 해당 규약의 적용 대상: page1.body(line 26)가 \"...comes down to setting the right price for <blank>.\"로 끝나는 빈칸 문장이므로 FIX-CONTRACT-BLANK-SYNTAX 규약이 직접 적용된다.\n\n반박 검토: 같은 폴더에 depend on류가 M으로 태깅된 사례(07.json:286, 16.json:306, 03.json:162, 15.json:333)가 있으나, 그 경우들은 모두 전치사를 V 밖에 두어(V=\"depends\", M=\"on it.\") M이 진짜 전치사구를 덮는다. 본 건은 전치사가 V 안에 있어 상황이 다르므로 반박 근거가 되지 못한다. severity warn도 적절(구문 역할 라벨 자체가 교육 콘텐츠인 교재에서의 정확성 결함)."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page4.vocab[1] (word: \"borrow\")",
+      "issue": "고3(sun-g3) 수준 대비 지나치게 기초적인 어휘가 표제어로 등재되어 있다. 본문의 실제 난도(Lexile 1070L / AR 8.2)와 어휘 목록의 다른 항목들(nudge, coax, lever, ripple)에 비해 borrow는 중학 수준 기본어이므로 학습 가치가 낮다.",
+      "evidence": "본문: \"Money seems free to borrow, but it never really is.\" / \"tempting firms and families to borrow more freely.\" — 같은 vocab 목록에는 \"nudge\", \"coax\", \"ripple\" 같은 고난도 어휘가 함께 실려 있어 수준 편차가 크다.",
+      "suggestion": "borrow를 삭제하고, 본문에 실제로 등장하는 미등재 고난도 어휘(예: bargaining, drift, stall, guardian, tempt)로 교체하는 것이 좋다. 다만 borrow-lend 대비가 지문 이해의 핵심이라면 gloss_extra 수준으로 내리는 방안도 있다.",
+      "lens": "vocab",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "지적이 타당하다. 반박을 시도했으나 프로젝트 자체 규정으로 명확히 확인된다.\n\n1) 명문화된 규칙 위반: C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/templates/AUTHORING-GUIDE.md 262-266행은 \"난이도 (필수)\"로 vocab을 \"본문에 실제 등장 + 해당 학년 이상 난이도\" 단어로 구성하라고 규정하며, \"element·column·bond·predict 같은 중학 기초어는 금지\", \"본문에서 가장 어렵거나 학술적·저빈도인 단어를 골라라\", \"단어장은 '본문에서 가장 어려운 단어 모음'이어야 한다\", \"고1<고2<고3 순으로 난이도 상향\"을 명시한다. borrow는 금지 예시(bond, predict)와 동급의 중학 기초 동사이므로 이 필수 규칙에 정면으로 위배된다.\n\n2) 근거주장 사실 확인: 13.json 456행 page4.vocab[1]이 word \"borrow\"로 지적 위치가 정확하다. 본문 26행에 \"Money seems free to borrow\"와 \"tempting firms and families to borrow more freely\"가 실재하므로 '본문 등장' 조건만 충족하고 '난이도' 조건은 미충족이다.\n\n3) 수준 편차 실재: 같은 목록에 nudge(500행), coax(511행), lever(489행), ripple(566행), steer(555행) 등 저빈도 고난도 어휘가 함께 실려 있어 편차가 크다. 메타데이터(14-15행 lexile 1070L, ar_level 8.2)와 sun(고3) 세트라는 점도 최상위 난도 기준 적용을 뒷받침한다.\n\n4) 도메인 용어 방어 논거는 성립하지 않음: interest rate/financial market/central bank/inflation은 경제 단원 전문용어로 정당하지만, borrow는 전문용어가 아닌 일반 일상 동사다. 더구나 이 파일 스스로 borrow 계열 어휘인 \"borrower\"를 30행 page1.gloss_extra에 gloss로 처리했으므로, 동일 문서 내에서 gloss 수준 어휘를 vocab 카드로 승격한 자체 모순이 된다. 또한 본문에는 bargaining, stall, drift 등 더 적합한 고난도 후보가 남아 있어 대체 가능하다.\n\n심각도는 warn 수준이 적절하며(스키마 오류나 정답 오류가 아닌 학습 가치 문제), 수정 방향은 borrow 카드를 본문 내 미등재 고난도 어휘로 교체하는 것이다."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page3.sentences[index=1].segments[5] (line 138)",
+      "issue": "V 조각에 부사가 섞여 있다. \"never really is.\"에서 실제 동사는 is이고 never·really는 수식어(M)이므로, S/V/O/C/M 색칠 학습 목적상 분리 태깅이 필요하다. 동일 유형이 sentence 18의 V \"ripples outward\"(outward는 부사)와 sentence 20의 V \"often comes down to\"(often은 부사)에서도 반복된다.",
+      "evidence": "본문: \"Money seems free to borrow, but it never really is.\" / 파일: { \"role\": \"V\", \"text\": \"never really is.\" }, { \"role\": \"V\", \"text\": \"ripples outward\" }, { \"role\": \"V\", \"text\": \"often comes down to\" }",
+      "suggestion": "{ \"role\":\"M\", \"text\":\"never really\" } + { \"role\":\"V\", \"text\":\"is.\" }로 분리(18·20번도 동일 처리).",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "answers.explanations[q_index=0].rationales[4] (line 384)",
+      "issue": "근거 문장 번호 인용이 과하다. \"13~14번\"을 근거로 들었으나 저축이 줄어든다는 내용은 14번에만 있고, 13번(\"주된 임무는 인플레이션을 완만·안정적으로 유지\")에는 물가 상승이 저축을 갉아먹는다는 진술이 없다.",
+      "evidence": "파일: \"13~14번에서 지나친 물가 상승은 저축을 갉아먹는다고 했으므로 '물가 상승이 늘 좋다'는 정반대다.\" / 본문 13번: \"Its main task is to keep inflation mild and steady, neither racing upward nor sliding into decline.\" / 본문 14번: \"If money loses value too fast, savings shrink and plans collapse.\"",
+      "suggestion": "인용을 \"14번\"으로 좁히거나, 13번을 언급하려면 '완만한 인플레이션이 목표'라는 취지로 문구를 바꾼다.",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.sentences[index=2].segments[1] (line 146)",
+      "issue": "note 위치 정합 위반. \"복합관계부사 whenever\" note가 whenever 조각이 아니라 그 뒤의 절 조각(\"someone lends money,\")에 붙어 있어, 루비 주석이 설명 대상 단어 아래가 아닌 엉뚱한 덩어리 아래에 렌더링된다. (동일 패턴이 10·11번 \"때 부사절\", 14·15번 \"조건 부사절\" note에도 있으나 그쪽은 절 전체를 가리키므로 문제없음 — 2번만 특정 단어를 가리킨다.)",
+      "evidence": "파일: { \"role\": \"CONJ\", \"text\": \"Whenever\" }, { \"role\": \"M\", \"text\": \"someone lends money,\", \"note\": \"복합관계부사 whenever\" } / 규약(templates/AUTHORING-GUIDE.md): \"note는 그 설명이 가리키는 정확한 영어 표현 위 segment에만 붙인다.\"",
+      "suggestion": "note를 CONJ \"Whenever\" 조각으로 옮기거나, M 조각의 note를 \"때 부사절\"로 바꾼다.",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "answers.explanations[0].rationales[4]",
+      "issue": "1번 문항 5번 선지 해설이 인용한 문장 번호가 부정확하다. '지나친 물가 상승이 저축을 갉아먹는다'는 내용은 14번 문장(If money loses value too fast, savings shrink)이며, 13번은 '인플레이션을 완만·안정적으로 유지'라는 목표 진술이다. \"13~14번\"으로 묶어 인용하면 근거 문장 지시가 흐려진다.",
+      "evidence": "rationale: \"13~14번에서 지나친 물가 상승은 저축을 갉아먹는다고 했으므로...\" / 실제 근거는 [14] \"If money loses value too fast, savings shrink and plans collapse.\" 단독이다.",
+      "suggestion": "\"14번에서 돈이 가치를 너무 빨리 잃으면 저축이 쪼그라든다고 했으므로...\"로 근거 문장을 14번으로 특정.",
+      "lens": "answer"
+    },
+    {
+      "severity": "minor",
+      "location": "answers.explanations[2].rationales[2]",
+      "issue": "3번 문항 3번 선지 해설이 근거로 든 '5·10번' 중 5번은 소비·투자 반응(A high rate makes borrowing costly, so people spend and invest less)이고 10번은 수요 냉각이라 타당하나, '공장(factories)'이 금리에 반응한다는 근거는 15번 문장(물가 하락 시 factories stall)에 있어 인용 문장에 빠져 있다.",
+      "evidence": "rationale: \"'소비자·공장이 금리를 늘 무시한다'는 5·10번(수요가 반응함)과 모순된다.\" / 공장 관련 근거는 [15] \"If prices fall for too long, shoppers wait, factories stall, and jobs vanish.\"",
+      "suggestion": "\"5·10·15번\"으로 근거 문장을 보강하거나, 해설 문구를 '소비·수요가 금리에 반응한다'로 한정.",
+      "lens": "answer"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[7] (word: \"inflation\") / page1.gloss_extra[1]",
+      "issue": "동일 단어 inflation이 page1.gloss_extra와 page4.vocab에 중복 등재되어 있다. gloss_extra는 본문 옆 즉석 주석, page4.vocab은 심화 어휘 학습란으로 역할이 분리되어야 하는데 같은 뜻풀이가 두 곳에 반복된다.",
+      "evidence": "page1.gloss_extra: { \"term\": \"inflation\", \"ko\": \"인플레이션, 물가 상승\" } / page4.vocab: { \"word\": \"inflation\", \"meaning_ko\": \"인플레이션, 물가 상승\" } — 뜻풀이 문자열까지 완전히 동일하다. (borrower/borrow도 어근이 겹친다.)",
+      "suggestion": "inflation은 page4.vocab에만 남기고 gloss_extra에서는 제거하거나, gloss_extra를 본문 1회 노출 어휘(borrower, mortgage)로만 한정해 역할을 분리한다.",
+      "lens": "vocab"
+    }
+  ],
+  "blockers": [],
+  "counts": {
+    "raw": 10,
+    "verified": 4,
+    "confirmed": 3,
+    "minor": 6
+  }
+}

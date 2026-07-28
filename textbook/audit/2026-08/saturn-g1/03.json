@@ -4,46 +4,165 @@
   "confirmed": [
     {
       "severity": "warn",
-      "location": "page3.translation_ko [8]",
-      "issue": "본문 \"a warm greeting from a far-away friend\"의 번역이 '멀리서 태어난 친구'로 되어 있어 오역. far-away friend는 '멀리 있는(사는) 친구'를 뜻하며 '태어난'이라는 근거가 본문에 없다.",
-      "evidence": "본문(page1.body / page3 sentence 8): \"learn a warm greeting from a far-away friend\" / translation_ko [8]: \"멀리서 태어난 친구에게서 따뜻한 인사를 배울 수도 있다\"",
-      "suggestion": "'멀리 사는(멀리 있는) 친구에게서 따뜻한 인사를 배울 수도 있다'로 수정.",
+      "location": "C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-08/03.json — page1.body, 2문단 마지막 예시 문장 (line 21); page3 sentences[8] (line 184)",
+      "issue": "\"from a far-away friend\"가 해당 단락의 전제와 논리적으로 충돌한다. 2문단은 여러 문화의 습관이 \"한곳에서 만날 때(When these habits meet in one place)\" 생기는 일상의 교류를 말하므로, 인사말을 배우는 상대는 같은 도시에 함께 사는 친구여야 한다. 그런데 \"far-away friend\"는 '멀리 있는(떨어져 사는) 친구'로 읽혀, 바로 앞 문장이 세운 '한곳에서 만난다'는 설정을 스스로 부정한다. 국문 번역이 이를 \"멀리서 태어난 친구\"로 바꿔 옮긴 점이 원문 표현이 의도한 뜻을 담지 못하고 있음을 보여준다.",
+      "evidence": "본문: \"When these habits meet in one place, they can enrich daily life in small and quiet ways. A student may taste a new dish, hear a new song, or learn a warm greeting from a far-away friend.\" / 번역[8]: \"멀리서 태어난 친구에게서 따뜻한 인사를 배울 수도 있다.\"",
+      "suggestion": "영문을 의도한 뜻(먼 곳 출신)으로 명확히 하여 \"from a friend from a far-away country\" 또는 \"from a friend born far away\"로 수정. 그러면 번역 \"멀리서 태어난 친구\"와도 일치한다.",
+      "lens": "language",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "지적이 파일 근거로 확인된다. page1.body 2문단(line 21)은 \"When these habits meet in one place, they can enrich daily life...\"로 '한곳에서의 접촉'을 전제로 세우고, 바로 다음 문장이 그 전제의 구체 예시(\"A student may taste a new dish, hear a new song, or learn a warm greeting from a far-away friend\")인데, 세 예시가 모두 대면 접촉 행위(맛보기·듣기·인사 배우기)임에도 출처를 \"a far-away friend\"로 지정한다. 한정 형용사 far-away는 관용적으로 지시 대상의 '현재 위치'가 멀다는 뜻(a far-away land/country)이며 '출신지가 먼'을 의미하지 않으므로, 앞 문장이 세운 in one place 설정을 스스로 부정한다. 결정적 방증: 본문은 원거리 출신+현재 동거를 표현할 방법을 이미 알고 실제로 사용한다 — sentence 2 \"People from many countries now live, work, and study in the same city\"처럼 출신(from many countries)과 현재 위치(in the same city)를 명시 대조한다. sentence 8에는 그 구성이 없어 '출신' 독법이 성립하지 않는다. 또한 page3 sentences[8]는 해당 표현을 부사구로 고정 분해해 두었고({ \"role\": \"M\", \"text\": \"from a far-away friend.\" }, line 184), translation_ko [8](line 327)은 이를 \"멀리서 태어난 친구에게서\"로 옮기며 원문에 없는 '태어난'을 삽입한다 — 직역(\"멀리 있는 친구에게서\")이 [7] \"이런 습관들이 한곳에서 만나면\"과 충돌하기 때문에 번역자가 원문을 보정한 흔적으로, 원문 표현이 의도한 뜻을 담지 못했음을 방증한다. 다만 지적의 \"같은 도시에 함께 사는 친구여야 한다\"는 규정은 다소 과하다: 친구의 출신은 멀어도 무관하고, 결함의 핵심은 far-away가 출신이 아니라 현재 위치를 수식한다는 점이다(수정 방향: \"from a friend from far away\" 등). 이 한정은 지적의 성립을 훼손하지 않는다. warn/language 등급도 적절하다(정답 키 오류가 아닌 응집성·어휘 선택 결함이며, 해당 단락이 page2 문항 3의 선택지 B와 연동된다)."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "page3.translation_ko 문장 [12] (03.json:327)",
+      "issue": "본문에 없는 빈도부사 '흔히'를 삽입하고, 본문의 조동사 can(가능성)을 단정 서술로 바꿔 번역했다. 본문은 '두려움이 편견으로 굳을 수 있다'는 가능성 진술인데, 번역은 '흔히 굳는다'는 일반적 사실 진술이 되어 명제의 강도가 달라졌다.",
+      "evidence": "본문: \"A person may fear what feels strange, and this fear **can** harden into a fixed idea about a whole group.\" / 번역 [12]: \"사람은 낯설게 느껴지는 것을 두려워할 수 있고, 그 두려움은 **흔히** 한 집단 전체에 대한 고정된 생각으로 굳는다.\" — 본문에 often/usually에 해당하는 어휘가 없다. page4 vocab의 harden 예문 \"Fear **often** hardens into a fixed idea about a whole group.\"의 often이 번역에 혼입된 것으로 보인다.",
+      "suggestion": "\"그 두려움은 한 집단 전체에 대한 고정된 생각으로 굳어질 수 있다.\"로 수정해 can의 가능성 의미를 살리고 '흔히'를 삭제한다.",
       "lens": "explanation",
       "verdict": {
         "isReal": true,
         "confidence": "high",
-        "reason": "파일에서 지적이 확인됨. page1.body와 page3 sentence 8(index 8)의 영어 원문은 \"learn a warm greeting from a far-away friend\"이며, 이는 '멀리 있는/먼 곳의 친구'를 뜻한다. 그러나 page3.translation_ko [8]은 \"혹은 멀리서 태어난 친구에게서 따뜻한 인사를 배울 수도 있다\"로 되어 있어, 원문에 없는 '태어난(born)'이라는 의미를 추가한 오역이다. far-away는 위치/거리를 나타낼 뿐 출생지를 의미하지 않으며, 본문 어디에도 태어남에 대한 근거가 없다. 올바른 번역은 '멀리 사는 친구' 또는 '먼 곳에서 온 친구' 등이다. 실제 결함으로 확인."
+        "reason": "확인됨. 본문(03.json:21)은 \"this fear **can** harden into a fixed idea about a whole group\"이고 page3 sentence 12 세그먼트(라인 227)도 V=\"can harden\"으로 조동사를 명시한다. 그러나 translation_ko [12](라인 327)은 \"그 두려움은 **흔히** 한 집단 전체에 대한 고정된 생각으로 **굳는다**\"로, (1) 본문에 없는 빈도부사 '흔히'를 삽입하고 (2) can의 가능성 양태를 삭제해 단정 서술로 바꿨다. 본문 해당 문장에 often/usually/frequently/commonly 어휘는 존재하지 않는다.\n\n혼입 경로도 근거로 확인된다: page4 vocab의 harden 예문(라인 473)이 \"Fear **often** hardens into a fixed idea about a whole group.\" / \"두려움은 **흔히** 한 집단 전체에 대한 고정된 생각으로 굳는다.\"이며, 이 한국어가 [12] 후반절과 '흔히'·'굳는다'까지 거의 자구 그대로 일치한다.\n\n하우스 스타일 예외로 방어되지 않는다. 동일 translation_ko 내 [13]은 \"can lead\"를 \"이어질 수 있다\"로, [7]/[10]/[11]/[18]도 can을 모두 \"-할 수 있다\"로 보존하므로 [12]만 이례적이다. tieback body_ko(라인 82)의 \"굳는다\"는 문장 정렬 번역이 아닌 독립 요약이라 면책 사유가 아니다.\n\n실제 영향: page2 Q3 선택지 2(라인 65)가 \"Prejudice **can** harden into a fixed idea about a whole group.\"로 can의 양태 자체를 일치 판단 대상으로 삼는다. 번역이 가능성 진술을 습관적 일반화로 격상시키면 학습자가 시험 대상인 양태 강도를 오인할 수 있다. 명제 강도 변화는 실질적 결함이다."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "page3.translation_ko 문장 [8] (03.json:327)",
+      "issue": "'a far-away friend'를 '멀리서 태어난 친구'로 오역했다. 본문은 친구의 출생지를 전혀 언급하지 않으며, far-away는 '멀리 있는/먼 곳의'라는 뜻이다.",
+      "evidence": "본문: \"A student may taste a new dish, hear a new song, or learn a warm greeting **from a far-away friend**.\" / 번역 [8]: \"...혹은 **멀리서 태어난** 친구에게서 따뜻한 인사를 배울 수도 있다.\" — 본문에 born/birth에 해당하는 근거가 없다.",
+      "suggestion": "\"먼 곳에서 온 친구에게서\" 또는 \"멀리 있는 친구에게서\"로 수정한다.",
+      "lens": "explanation",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "파일로 확인됨. page1.body(21행)와 page3 sentences[8]의 M 세그먼트(184행) 모두 원문은 \"from a far-away friend\"이며, born/birth/origin에 해당하는 어휘가 전혀 없다. 그러나 327행 translation_ko의 [8]은 \"혹은 멀리서 태어난 친구에게서 따뜻한 인사를 배울 수도 있다\"로 되어 있어, '태어나다'라는 출생 정보를 원문에 없이 추가했다. far-away는 '멀리 있는/먼 곳의'를 뜻하는 위치 수식어이므로 \"먼 곳의 친구\" 또는 \"멀리 있는 친구\"가 정확하다. 동일 문서 내 일관성 대조로도 확인된다: [2]에서 \"People from many countries\"를 \"서로 다른 나라에서 온 사람들\"로 '온'을 써서 정확히 옮겼으므로, [8]의 '태어난'은 문서의 번역 관행이 아니라 고립된 오역이다. 다만 severity에 대해서는 이견 가능: 이 문장은 page2 문항이나 answers.explanations 어디에서도 근거로 쓰이지 않아 정답·해설에 영향을 주지 않으며 의미상 근접 오역이므로 'blocker'보다는 minor 수준이 타당하다. 그럼에도 지적의 사실적 핵심(원문에 없는 출생 정보 추가 = 오역)은 파일 근거로 명확히 성립한다."
       }
     },
     {
       "severity": "warn",
-      "location": "page3.translation_ko 문장 [8]",
-      "issue": "'far-away friend'(멀리 있는/먼 곳의 친구)를 '멀리서 태어난 친구'로 옮겨 원문에 없는 '태어난(born)' 의미를 덧붙인 오역.",
-      "evidence": "영문: \"learn a warm greeting from a far-away friend.\" / 번역: \"멀리서 태어난 친구에게서 따뜻한 인사를 배울 수도 있다.\" 'far-away'는 친구가 먼 곳에 있음을 뜻하며 출생(태어남)을 지시하지 않는다.",
-      "suggestion": "\"멀리 있는 친구에게서\" 또는 \"먼 곳의 친구에게서\"로 수정.",
+      "location": "answers.explanations[0].rationales[3] (03.json:340)",
+      "issue": "본문 근거를 잘못 인용했다. 본문은 '숨겨진(hidden) 분노'라고 했는데 해설은 '무시된 분노'로 바꿔 서술하여, 학생이 본문에서 대응 근거를 찾을 수 없다.",
+      "evidence": "본문: \"History shows that **hidden** anger rarely stays quiet for very long.\" / 해설: \"오히려 **무시된** 분노가 오래 조용하지 않다고 경고하므로...\" — hidden(숨겨진)과 '무시된(ignored)'은 다른 개념이며 본문에 ignore 계열 어휘는 없다.",
+      "suggestion": "\"오히려 숨겨진 분노가 오래 조용히 있지는 않다고 경고하므로\"로 본문 표현에 맞춰 수정한다.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일로 확인된 실제 결함(경미, warn 수준). 본문(03.json:21, 3단락 마지막 문장)은 \"History shows that hidden anger rarely stays quiet for very long.\"이고, page3 sentence 15(라인 257)의 S 세그먼트도 \"hidden anger\", 파일 자체의 국문 번역(라인 327 [15])도 \"숨겨진 분노\"로 일관되게 표기한다. 그런데 answers.explanations[0].rationales[3](라인 340)은 \"오히려 무시된 분노가 오래 조용하지 않다고 경고하므로\"라고 서술하여 본문 어휘 hidden(숨겨진)을 '무시된(ignored)'으로 바꿔 인용했다. 본문 전체에 ignore/neglect/overlook 계열 어휘는 없으며, 파일 내 유일한 \"ignore\" 출현은 무관한 Q2 오답 선택지 \"ignore every difference\"(라인 51)뿐이다. 따라서 학생이 '무시된'에 대응하는 본문 근거를 찾을 수 없다는 지적은 성립한다. 다만 해설의 결론(편견은 저절로 사라지지 않는다)은 여전히 타당하고 두 어휘의 의미가 인접하므로 정오답을 흔드는 논리 오류는 아니며, '무시된'을 '숨겨진'으로 고치는 단어 수준 수정으로 해소된다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-08/03.json — page3.translation_ko 문장 [8]",
+      "issue": "'from a far-away friend'를 '멀리서 태어난 친구에게서'로 오역. far-away는 '멀리 있는/먼 곳의'라는 뜻이며 '태어난(born)'에 해당하는 어휘는 원문에 없다. 출생지 정보를 임의로 추가한 오역이다.",
+      "evidence": "영문 본문(page1.body / page3 sentences[8] segments): \"learn a warm greeting from a far-away friend\" / 번역: \"[8] 학생은 새로운 음식을 맛보고, 새로운 노래를 듣고, 혹은 멀리서 태어난 친구에게서 따뜻한 인사를 배울 수도 있다.\"",
+      "suggestion": "'멀리 있는 친구에게서' 또는 '먼 곳에 사는 친구에게서'로 수정.",
       "lens": "translation",
       "verdict": {
         "isReal": true,
         "confidence": "high",
-        "reason": "파일 근거로 확인됨. page3 영문 문장 [8]은 \"learn a warm greeting from a far-away friend\"이며, 'far-away friend'는 '멀리 있는/먼 곳의 친구'(거리·소재를 뜻하는 형용사)로 출생(born)을 지시하지 않는다. 그러나 translation_ko 문장 [8]은 \"멀리서 태어난 친구에게서 따뜻한 인사를 배울 수도 있다\"로 옮겨 원문에 없는 '태어난(born)' 의미를 덧붙였다. 이는 원문에 없는 정보를 추가한 오역으로, '멀리 있는 친구' 또는 '먼 곳의 친구'가 정확한 번역이다. 지적은 실제 결함이다."
+        "reason": "파일 근거로 확인됨. C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-08/03.json의 page1.body(라인 21)와 page3.sentences[index 8].segments(라인 183-184) 모두 영문은 \"learn a warm greeting from a far-away friend\"이며 'born'이나 출생을 뜻하는 어휘가 전혀 없다. 그러나 page3.translation_ko(라인 327)의 [8]번 문장은 \"학생은 새로운 음식을 맛보고, 새로운 노래를 듣고, 혹은 멀리서 태어난 친구에게서 따뜻한 인사를 배울 수도 있다\"로 되어 있어, far-away('먼 곳의/멀리 있는')를 '멀리서 태어난'으로 옮기며 원문에 없는 출생지 정보를 임의로 추가했다. 근거 없는 의미 추가이자 오역이며 적절한 번역은 '먼 곳에서 온 친구' 또는 '멀리 사는 친구'다. 같은 파일 sentence[2]의 'People from many countries'는 '서로 다른 나라에서 온 사람들'로 올바르게 처리되어 있어, [8]번 문장만의 국소적 오역임이 대비되어 확인된다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-08/03.json — page3.translation_ko 문장 [12]",
+      "issue": "조동사 can(가능성)을 '흔히'(빈도 부사 often)로 오역. 본문 sentences[12]의 V 세그먼트는 'can harden'인데, page4 vocab 예문의 'Fear often hardens...' 번역문(\"두려움은 흔히 ... 굳는다\")이 그대로 옮겨 붙은 것으로 보인다. '~할 수 있다'는 가능성 진술이 '자주 그렇다'는 일반화로 바뀌어 의미가 강해졌다.",
+      "evidence": "영문 본문: \"this fear can harden into a fixed idea about a whole group\" (page3 sentences index 12: {\"role\":\"V\",\"text\":\"can harden\"}) / 번역: \"[12] 사람은 낯설게 느껴지는 것을 두려워할 수 있고, 그 두려움은 흔히 한 집단 전체에 대한 고정된 생각으로 굳는다.\" / 참고 page4 vocab harden 예문: \"Fear often hardens into a fixed idea about a whole group.\" → \"두려움은 흔히 한 집단 전체에 대한 고정된 생각으로 굳는다.\"",
+      "suggestion": "'그 두려움은 한 집단 전체에 대한 고정된 생각으로 굳어질 수 있다'로 수정.",
+      "lens": "translation",
+      "verdict": {
+        "reason": "지적이 파일 근거로 명확히 확인된다. page3 sentences[12]의 V 세그먼트는 {\"role\":\"V\",\"text\":\"can harden\"}(226-228행)이고 page1 본문도 \"this fear can harden into a fixed idea about a whole group\"(21행)로, 원문에 빈도 요소(often 등)가 전혀 없다. 그런데 page3.translation_ko [12](327행)는 \"그 두려움은 흔히 한 집단 전체에 대한 고정된 생각으로 굳는다\"로, 조동사 can을 누락하고 빈도 부사 '흔히'를 삽입했다. 같은 문장 앞 절의 may fear는 \"두려워할 수 있고\"로 가능성을 살렸기 때문에 may…can 병렬 구조도 깨졌다. 또한 page4 vocab harden 예문(473행) \"Fear often hardens into a fixed idea about a whole group.\" → \"두려움은 흔히 한 집단 전체에 대한 고정된 생각으로 굳는다.\"가 [12] 후반부와 완전히 일치해, 예문 번역이 그대로 옮겨 붙었다는 지적의 원인 분석까지 뒷받침된다. 파일 내 다른 can 처리([10] '만들 수 있다', [11] '낳기도 한다', [13] '이어질 수 있다')와도 불일치하며, page2 선택지 및 해설(365행)이 이를 가능성으로 다루는 것과도 어긋난다. 문법 분석 페이지에서 V로 강조된 조동사가 번역에서 사라지고 의미가 '가능성'에서 '일반적 사실'로 강화된 것이므로 실제 결함이다.",
+        "confidence": "high",
+        "isReal": true
       }
     }
   ],
   "minors": [
     {
       "severity": "minor",
-      "location": "page3.translation_ko 문장 [12]",
-      "issue": "원문 'can harden'(굳을 수 있다)의 가능성 표현을 '흔히 굳는다'로 옮겨 빈도 부사 '흔히(often)'를 추가.",
-      "evidence": "영문: \"this fear can harden into a fixed idea about a whole group.\" / 번역: \"그 두려움은 흔히 한 집단 전체에 대한 고정된 생각으로 굳는다.\" 원문에는 'often'에 해당하는 어휘가 없고 조동사 'can'만 있다.",
-      "suggestion": "\"그 두려움은 한 집단 전체에 대한 고정된 생각으로 굳어질 수 있다\"로 수정.",
+      "location": "C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-08/03.json — page1.body, 1문단 네 번째 문장 (line 21); page3 sentences[4] (line 137)",
+      "issue": "\"it grows faster than before\"의 비교 대상 \"before\"가 특정 시점을 지시하지 않아 비교급이 헐겁다. 앞 절 \"This mixing is not new\"가 '과거에도 있었다'는 뜻이므로, 여기서 필요한 것은 막연한 과거가 아니라 '역대 어느 때보다'라는 최상급적 강조다. 국문 번역이 \"그 어느 때보다 빠르게\"로 옮긴 것이 이 의도를 보여준다.",
+      "evidence": "본문: \"This mixing is not new, but it grows faster than before as people move for jobs, safety, or study.\" / 번역[4]: \"이러한 섞임은 새로운 것이 아니지만, ... 그 어느 때보다 빠르게 늘어난다.\"",
+      "suggestion": "\"it grows faster than ever before\"로 수정하면 번역과 일치하고 비교 의미도 명확해진다. (동일 표현이 10문단 \"more creative and open than before\"에도 있으나 그쪽은 '이전의 그 공동체'라는 선행 기준이 있어 문제없다.)",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko 문장 [4] (03.json:327)",
+      "issue": "비교급 'faster than before'(이전보다 빠르게)를 '그 어느 때보다 빠르게'라는 최상급 뉘앙스로 과장 번역했다.",
+      "evidence": "본문: \"This mixing is not new, but it grows **faster than before** as people move for jobs, safety, or study.\" / 번역 [4]: \"...**그 어느 때보다** 빠르게 늘어난다.\" — than before는 특정 과거 시점과의 비교이지 than ever(역대 최고)가 아니다.",
+      "suggestion": "\"예전보다 빠르게 늘어난다\"로 수정한다.",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-08/03.json — page3.translation_ko 문장 [4]",
+      "issue": "'faster than before'(이전보다 더 빠르게)를 '그 어느 때보다 빠르게'로 번역해 최상급(faster than ever)에 해당하는 과장이 들어갔다. 같은 지문 [10]에서는 'than before'를 '이전보다'로 정확히 옮기고 있어 일관성도 어긋난다.",
+      "evidence": "영문 본문: \"it grows faster than before as people move for jobs, safety, or study\" (page3 sentences index 4: {\"role\":\"M\",\"text\":\"faster than before\"}) / 번역: \"[4] ... 사람들이 일자리, 안전, 또는 학업을 위해 이동하면서 그 어느 때보다 빠르게 늘어난다.\" / 대조 [10]: \"more creative and open than before\" → \"이전보다 더 창의적이고 개방적으로\"",
+      "suggestion": "'예전보다 더 빠르게 늘어난다'로 수정.",
       "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "content/passages/2026-08/03.json > answers.explanations[0].rationales[3] (line 340)",
+      "issue": "오답 해설이 본문 어구를 잘못 옮겼다. 본문의 'hidden anger'는 '숨겨진 분노'인데 해설은 '무시된 분노'라고 적었다. 같은 파일의 translation_ko는 [15]에서 '숨겨진 분노'로 정확히 번역하고 있어 파일 내부에서도 표현이 어긋난다.",
+      "evidence": "본문(page1.body 3단락): \"History shows that hidden anger rarely stays quiet for very long.\" / translation_ko [15]: \"숨겨진 분노가 아주 오래 조용히 있는 경우는 드물다는 것을 역사는 보여 준다.\" / 그러나 answers.explanations[0].rationales[3]: \"오히려 무시된 분노가 오래 조용하지 않다고 경고하므로\"",
+      "suggestion": "rationales[3]의 '무시된 분노'를 '숨겨진 분노'로 수정하여 본문·번역과 용어를 통일한다.",
+      "lens": "answer"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[3] (\"discrimination\") — synonyms",
+      "issue": "synonym \"unfairness\"는 '불공정함'이라는 추상적 성질을 뜻하고, discrimination은 '특정 집단을 달리 대우하는 행위'를 뜻해 의미 범위가 어긋난다. 정확한 동의어가 아니라 상위·인접 개념이다.",
+      "evidence": "본문: \"Such a prejudice can lead to unfair treatment, or discrimination, in schools, jobs, and streets.\" — 본문 스스로 discrimination을 unfairness가 아니라 unfair treatment(부당한 대우)와 동격으로 놓는다. 항목은 \"synonyms\": [\"unfairness\"]로 되어 있다.",
+      "suggestion": "본문 표현을 살려 [\"unfair treatment\"] 또는 [\"bias\"]로 교체한다.",
+      "lens": "vocab"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[7] (\"harden\") — examples[1]",
+      "issue": "두 번째 예문이 meaning_ko와 본문 문맥이 다루지 않는 별개의 뜻(감정·어조가 차가워지다)을 가르친다. 첫 예문과 본문은 모두 'harden into + 고정관념'이라는 추상적 굳어짐인데, 두 번째 예문만 목소리 어조 용법이라 단어 뜻을 보여 주는 예시로서 초점이 흐려진다.",
+      "evidence": "본문: \"this fear can harden into a fixed idea about a whole group\" / meaning_ko: \"굳어지다, 완고해지다\". 그런데 examples[1]은 \"His voice hardened when he heard the lie.\"(그 거짓말을 듣자 그의 목소리가 굳어졌다.)로 harden into 구문도, 고정관념 의미도 담고 있지 않다.",
+      "suggestion": "본문 용법을 재확인시키는 예문으로 교체한다. 예: \"Over the years his opinions hardened into prejudice.\" (세월이 흐르며 그의 생각은 편견으로 굳어졌다.)",
+      "lens": "vocab"
     }
   ],
-  "blockers": [],
+  "blockers": [
+    {
+      "severity": "blocker",
+      "location": "page3.translation_ko 문장 [12] (03.json:327)",
+      "issue": "본문에 없는 빈도부사 '흔히'를 삽입하고, 본문의 조동사 can(가능성)을 단정 서술로 바꿔 번역했다. 본문은 '두려움이 편견으로 굳을 수 있다'는 가능성 진술인데, 번역은 '흔히 굳는다'는 일반적 사실 진술이 되어 명제의 강도가 달라졌다.",
+      "evidence": "본문: \"A person may fear what feels strange, and this fear **can** harden into a fixed idea about a whole group.\" / 번역 [12]: \"사람은 낯설게 느껴지는 것을 두려워할 수 있고, 그 두려움은 **흔히** 한 집단 전체에 대한 고정된 생각으로 굳는다.\" — 본문에 often/usually에 해당하는 어휘가 없다. page4 vocab의 harden 예문 \"Fear **often** hardens into a fixed idea about a whole group.\"의 often이 번역에 혼입된 것으로 보인다.",
+      "suggestion": "\"그 두려움은 한 집단 전체에 대한 고정된 생각으로 굳어질 수 있다.\"로 수정해 can의 가능성 의미를 살리고 '흔히'를 삭제한다.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "확인됨. 본문(03.json:21)은 \"this fear **can** harden into a fixed idea about a whole group\"이고 page3 sentence 12 세그먼트(라인 227)도 V=\"can harden\"으로 조동사를 명시한다. 그러나 translation_ko [12](라인 327)은 \"그 두려움은 **흔히** 한 집단 전체에 대한 고정된 생각으로 **굳는다**\"로, (1) 본문에 없는 빈도부사 '흔히'를 삽입하고 (2) can의 가능성 양태를 삭제해 단정 서술로 바꿨다. 본문 해당 문장에 often/usually/frequently/commonly 어휘는 존재하지 않는다.\n\n혼입 경로도 근거로 확인된다: page4 vocab의 harden 예문(라인 473)이 \"Fear **often** hardens into a fixed idea about a whole group.\" / \"두려움은 **흔히** 한 집단 전체에 대한 고정된 생각으로 굳는다.\"이며, 이 한국어가 [12] 후반절과 '흔히'·'굳는다'까지 거의 자구 그대로 일치한다.\n\n하우스 스타일 예외로 방어되지 않는다. 동일 translation_ko 내 [13]은 \"can lead\"를 \"이어질 수 있다\"로, [7]/[10]/[11]/[18]도 can을 모두 \"-할 수 있다\"로 보존하므로 [12]만 이례적이다. tieback body_ko(라인 82)의 \"굳는다\"는 문장 정렬 번역이 아닌 독립 요약이라 면책 사유가 아니다.\n\n실제 영향: page2 Q3 선택지 2(라인 65)가 \"Prejudice **can** harden into a fixed idea about a whole group.\"로 can의 양태 자체를 일치 판단 대상으로 삼는다. 번역이 가능성 진술을 습관적 일반화로 격상시키면 학습자가 시험 대상인 양태 강도를 오인할 수 있다. 명제 강도 변화는 실질적 결함이다."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "page3.translation_ko 문장 [8] (03.json:327)",
+      "issue": "'a far-away friend'를 '멀리서 태어난 친구'로 오역했다. 본문은 친구의 출생지를 전혀 언급하지 않으며, far-away는 '멀리 있는/먼 곳의'라는 뜻이다.",
+      "evidence": "본문: \"A student may taste a new dish, hear a new song, or learn a warm greeting **from a far-away friend**.\" / 번역 [8]: \"...혹은 **멀리서 태어난** 친구에게서 따뜻한 인사를 배울 수도 있다.\" — 본문에 born/birth에 해당하는 근거가 없다.",
+      "suggestion": "\"먼 곳에서 온 친구에게서\" 또는 \"멀리 있는 친구에게서\"로 수정한다.",
+      "lens": "explanation",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "파일로 확인됨. page1.body(21행)와 page3 sentences[8]의 M 세그먼트(184행) 모두 원문은 \"from a far-away friend\"이며, born/birth/origin에 해당하는 어휘가 전혀 없다. 그러나 327행 translation_ko의 [8]은 \"혹은 멀리서 태어난 친구에게서 따뜻한 인사를 배울 수도 있다\"로 되어 있어, '태어나다'라는 출생 정보를 원문에 없이 추가했다. far-away는 '멀리 있는/먼 곳의'를 뜻하는 위치 수식어이므로 \"먼 곳의 친구\" 또는 \"멀리 있는 친구\"가 정확하다. 동일 문서 내 일관성 대조로도 확인된다: [2]에서 \"People from many countries\"를 \"서로 다른 나라에서 온 사람들\"로 '온'을 써서 정확히 옮겼으므로, [8]의 '태어난'은 문서의 번역 관행이 아니라 고립된 오역이다. 다만 severity에 대해서는 이견 가능: 이 문장은 page2 문항이나 answers.explanations 어디에서도 근거로 쓰이지 않아 정답·해설에 영향을 주지 않으며 의미상 근접 오역이므로 'blocker'보다는 minor 수준이 타당하다. 그럼에도 지적의 사실적 핵심(원문에 없는 출생 정보 추가 = 오역)은 파일 근거로 명확히 성립한다."
+      }
+    }
+  ],
   "counts": {
-    "raw": 3,
-    "verified": 2,
-    "confirmed": 2,
-    "minor": 1
+    "raw": 17,
+    "verified": 11,
+    "confirmed": 6,
+    "minor": 6
   }
 }

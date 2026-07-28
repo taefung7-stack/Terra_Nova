@@ -1,22 +1,194 @@
 {
   "grade": "saturn-g1",
   "seq": 1,
-  "confirmed": [],
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page1.body, 2문단 3번째 문장",
+      "issue": "논리 비약 + 개념 오류: 원자력 발전소를 예로 든 직후 \"So\"로 \"fossil-fuel plant\"라는 결론을 도출한다. 원자력은 화석 연료가 아니므로, 전제(석탄+원자력)와 결론(화석 연료 발전소)의 범주가 일치하지 않는다.",
+      "evidence": "\"A coal plant burns fuel to boil water, and the rushing steam then turns a wheel. A nuclear plant heats its water in another way, but the steam still does the very same job. So a fossil-fuel plant is really a machine that turns heat into motion, and motion into electricity.\"",
+      "suggestion": "결론 주어를 상위 범주로 바꿀 것: \"So a thermal plant is really a machine that turns heat into motion, and motion into electricity.\" (또는 \"a heat-driven plant\"). page2 textbook_tieback가 이미 '화력·원자력'을 열 기반으로 함께 묶고 있으므로 그와도 일치한다.",
+      "lens": "language",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "파일 확인 결과 지적은 정확하다. page1.body 2문단은 (1) coal plant, (2) nuclear plant \"but the steam still does the very same job\"로 두 사례를 제시한 뒤 (3) \"So a fossil-fuel plant is really a machine that turns heat into motion\"으로 결론짓는다. 원자력은 화석 연료가 아니므로 전제(석탄+원자력)와 결론(화석 연료 발전소)의 범주가 불일치하고, 원자력 문장이 결론에 기여하지 못하는 비약이 된다. 올바른 일반화는 \"a thermal plant / heat-driven plant\"다. 이는 지문 자체의 논지와도 충돌한다: subtitle \"Almost every power plant plays the same simple trick\", illustration_caption \"석탄·원자력·풍력·수력은 모두 자석을 돌려\", textbook_tieback \"화력·원자력은 열로 물을 끓여 나온 수증기로 터빈을 돌리고\", 그리고 answers 설명 \"석탄·원자력은 모두 열→수증기→터빈이라는 공통점이 있다고 본문이 명시\" — 모두 '열 발전 공통 원리'를 의도했음을 보여준다. 동일 오류가 page3 sentence 9(S: \"a fossil-fuel plant\"), translation_ko [9] \"화석 연료 발전소\", page4 vocab \"fossil-fuel\" 예문(라인 544)에 그대로 전파되어 있어 번역 아티팩트가 아닌 원문 결함이다. 통합과학에서 화력과 원자력을 명확히 구분하는 만큼 개념 오류로 실제 수정 대상이다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.sentences[index=4].segments (01.json line 142)",
+      "issue": "5형식 call O C 구문의 O와 C를 하나의 O 세그먼트로 병합해 오태깅했다. 'Scientists call this electromagnetic induction'에서 this가 목적어, electromagnetic induction이 목적격 보어인데, 둘을 합쳐 O 하나로 처리했다. 학생이 'this electromagnetic induction'을 하나의 명사구 목적어(=이 전자기 유도)로 오해하게 되어 구문분석 지도 목적을 훼손한다.",
+      "evidence": "본문: \"Scientists call this <u>electromagnetic induction</u>, and it is the quiet heart of nearly every generator on Earth.\" / 파일 태깅: { \"role\": \"V\", \"text\": \"call\" }, { \"role\": \"O\", \"text\": \"this electromagnetic induction,\" } — C 세그먼트가 없음. 동월 자매 파일들은 동일 구문을 일관되게 O+C로 분리함: 2026-08/09.json \"{ role: O, text: 'this exchange' }, { role: C, text: 'trade.' }\", 2026-08/14.json \"{ role: O, text: 'this natural warming' }, { role: C, text: 'the greenhouse effect,' }\", 2026-08/07.json은 \"note\": \"call + O + C\"까지 명시.",
+      "suggestion": "세그먼트를 { \"role\": \"O\", \"text\": \"this\" }, { \"role\": \"C\", \"text\": \"electromagnetic induction,\", \"note\": \"call O C\" } 로 분리한다. 번역문 [4] '과학자들은 이를 전자기 유도라 부르며'는 이미 O/C를 구분해 옮기고 있으므로 번역 수정은 불필요하다.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "지적이 파일 근거로 명확히 확인됨. 01.json line 140-142에서 { \"role\": \"S\", \"text\": \"Scientists\" }, { \"role\": \"V\", \"text\": \"call\" }, { \"role\": \"O\", \"text\": \"this electromagnetic induction,\" }로 태깅되어 있고 C 세그먼트가 없음. 해당 문장은 5형식 SVOC(call O C) 구문으로 this가 목적어, electromagnetic induction이 목적격 보어이며, 앞 문장(index=3 \"this simple motion pushes electrons\")을 지시하는 대명사 this가 명사구 한정사로 오독되도록 병합되어 있음. 본문에서 electromagnetic induction만 <u> 밑줄 처리된 점도 이것이 독립된 명명 대상(보어)임을 뒷받침함. 동월 자매 파일 전수 검사 결과 call SVOC 구문 8건 모두 O/C를 분리하며 반례가 전무함: 05.json:151-153(O \"that half\"/C \"oxidation,\"), 07.json:135-137(O \"this idea\"/C \"the multiplication principle,\", note \"call + O + C\" 명시), 08.json:191-193(O \"this endless loop\"/C \"the water cycle,\"), 09.json:140-142, 209-214, 11.json:151-153, 12.json:123-125, 295-297. 특히 08.json의 \"Scientists call this endless loop / the water cycle,\"는 구조적으로 거의 동일한 쌍둥이 사례인데 올바르게 분리되어 있어, 01.json이 대안적 표기 관례가 아니라 명백한 이탈임이 확정됨. 04.json:173-174는 관계대명사 which가 목적어로 전치된 구문(which Aristotle called logos)이라 C만 태깅된 것이 정합적이며 병합의 선례가 되지 못함. 구문분석 지도용 자료에서 해당 문장이 예시하려는 바로 그 구문의 구성소 경계를 잘못 가르치는 결함이므로 실제 결함으로 인정함."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.translation_ko [18]",
+      "issue": "\"add no carbon\"(탄소를 전혀 배출하지 않는다)를 \"탄소가 적지만\"(비교급, 적게 배출)으로 옮겨 절대 부정을 상대 비교로 약화시킨 오역. 같은 파일 page4 vocab에서는 동일 표현을 \"탄소를 더하지 않는다\"로 정확히 번역하고 있어 내부 불일치이기도 하다.",
+      "evidence": "영문: \"Renewable sources waste less and add no carbon, yet the wind falls quiet and the sky grows dark without warning.\" / 번역: \"[18] 재생원은 손실과 탄소가 적지만, 바람은 예고 없이 잦아들고 하늘은 어두워진다.\" / 대조(page4.vocab carbon): \"Renewable power adds no carbon to the air.\" → \"재생 에너지는 공기에 탄소를 더하지 않는다.\"",
+      "suggestion": "\"재생 에너지원은 낭비가 더 적고 탄소를 전혀 배출하지 않지만, 바람은 예고 없이 잦아들고 하늘은 어두워진다.\"로 수정.",
+      "lens": "translation",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "파일 확인 결과 지적이 정확하다. page1 body(21행) 및 page3 문장 18의 segments(312-317행)는 \"Renewable sources waste less and add no carbon\"으로, waste에는 비교급 less, carbon에는 절대 부정 no를 각각 다른 수량어로 명확히 구분한다. segments도 {\"role\":\"O\",\"text\":\"less\"}와 {\"role\":\"O\",\"text\":\"no carbon,\"}로 분리 보존한다. 그러나 page3.translation_ko(354행) [18]은 \"재생원은 손실과 탄소가 적지만\"으로 두 목적어를 하나의 비교급 술어 \"적다\"로 합쳐, 탄소를 '전혀 배출하지 않는다'(절대 부정)에서 '조금 배출한다'(상대 비교)로 의미를 약화시킨다. 내부 불일치도 확인됨: 동일 영문 \"Renewable power adds no carbon to the air.\"가 page4 vocab의 renewable 항목(457행)과 carbon 항목(522행)에서 모두 \"재생 에너지는 공기에 탄소를 더하지 않는다.\"로 절대 부정으로 정확히 번역되어 있다. page2 textbook_tieback(82행)의 \"손실과 탄소 배출이 적지만\"은 영문 대응 번역이 아닌 한국어 해설문이므로 page3 오역을 정당화하지 못한다. 화력(탄소 배출) 대 재생(무탄소) 대비가 지문 논지의 핵심이므로 학습자에게 실질적 의미 손상이 있다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.translation_ko [16]",
+      "issue": "\"the same hard limit\"에서 same이 limit을 수식(똑같은 한계)하는데, 번역은 \"똑같이\"를 부사로 처리해 '완고한'을 수식하게 만들어 구조가 어긋났다. 또한 hard limit을 '완고한 한계'로 옮긴 것은 어색한 오역(완고하다는 사람의 성격에 쓰는 말)이다. 뒤 문장 [17]에서 이 한계가 '모든 발전소에 공통된 열손실'임을 밝히므로 '똑같은' 이 limit에 걸려야 한다.",
+      "evidence": "영문: \"Every method faces the same hard limit.\" / 번역: \"[16] 모든 방식은 똑같이 완고한 한계에 부딪힌다.\"",
+      "suggestion": "\"모든 방식은 똑같은 냉엄한 한계에 부딪힌다\" 또는 \"모든 방식이 동일한 근본적 한계에 부딪힌다\"로 수정.",
+      "lens": "translation",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "파일에서 지적 내용이 그대로 확인된다. page1 body 및 page3.sentences[index 16]의 영문은 \"Every method faces the same hard limit.\"이며, O 세그먼트가 \"the same hard limit.\"으로 묶여 있어 same이 limit을 수식하는 한정사임이 명확하다. 반면 page3.translation_ko [16]은 \"모든 방식은 똑같이 완고한 한계에 부딪힌다.\"로, 부사형 '똑같이'가 바로 뒤 형용사 '완고한'에 인접해 정도(degree)를 수식하는 구조가 되어 \"동일한 한계\"라는 동일성 관계가 \"똑같은 정도로 완고한 한계\"로 어긋난다. 올바른 형태는 관형형 '똑같은 한계'다. 의미상 손해도 실재한다: [17]이 \"Some of the energy always leaks away as waste heat, so no plant is perfect\"로 모든 방식에 공통된 단일 한계(폐열)를 지목하고, 같은 파일의 answers.explanations(q_index 0)도 \"모든 방식이 열 손실을 겪는다고 못박는다\", textbook_tieback body_ko도 \"어떤 방식이든 에너지 전환 과정에서 일부는 열로 손실되며\"라고 명시한다. 또한 지문 전체가 sameness 사슬(subtitle \"the same simple trick\", [2] \"the answer is surprisingly the same\", [8] \"the very same job\")로 전개되며 [16]이 그 마지막 고리이므로 '똑같은'이 limit에 걸려야 한다. 부차 지적인 'hard limit → 완고한 한계'도 타당하다. '완고하다'는 사람의 성격/태도에 쓰는 말이라 물리적 제약에는 비관용적이며, 같은 파일 tieback이 동일 개념을 \"간헐성이라는 한계\"처럼 수식어 없이 처리한 것과도 대비된다. 반박 가능성으로 '똑같이'를 VP 전체 수식(모든 방식이 똑같이 ~에 부딪힌다)으로 느슨하게 읽을 여지를 검토했으나, 여기서는 '똑같이'가 형용사 '완고한' 바로 앞에 놓여 한국어 부사-형용사 인접 규칙상 정도 수식 해석이 강제되므로 이 반박은 성립하지 않는다. 다만 문장이 이해 불가능한 수준은 아니고 의미 열화 및 [17]과의 연결 상실이 핵심이므로 warn 등급 분류는 적절하다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page4.vocab[0] (\"induction\") synonyms",
+      "issue": "induction의 유의어로 \"generation\"을 제시했으나 의미가 일치하지 않는다. induction은 자석-코일의 상대 운동으로 기전력이 유도되는 '현상'이고, generation은 전기를 만들어내는 '발전/생성' 행위다. 게다가 같은 vocab 목록에 generator(발전기)가 별도 표제어로 있어 학생이 '유도=발전'으로 오인할 위험이 크다.",
+      "evidence": "본문: \"Scientists call this <u>electromagnetic induction</u>, and it is the quiet heart of nearly every generator on Earth.\" — 본문 자체가 induction(원리)과 generator(장치/발전)를 구분해 서술한다. 그런데 page4.vocab[0]은 \"synonyms\": [\"generation\"].",
+      "suggestion": "synonyms를 빈 배열([])로 두거나, 굳이 넣는다면 \"electromagnetic induction\"의 상위 개념이 아닌 실제 동의 표현이 없으므로 삭제한다. 같은 파일 02.json에서도 discriminant·coefficient 등은 synonyms를 []로 비워 두는 관례가 있다.",
+      "lens": "vocab",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일에서 직접 확인됨. page4.vocab[0] (line 417-420)은 word=\"induction\", meaning_ko=\"(전자기) 유도\", synonyms=[\"generation\"]으로 지적 내용과 정확히 일치한다.\n\n실제 결함으로 판단하는 근거:\n\n1) 의미 불일치가 명확하다. meaning_ko가 \"(전자기) 유도\"로 명시되어 induction의 일반적 의미(귀납 등)가 아닌 물리 현상으로 범위가 한정되어 있다. induction은 자석-코일의 상대 운동으로 기전력이 유도되는 '현상/원리'이고, generation은 전기를 만들어내는 '발전 행위'다. \"electromagnetic generation\"이라는 용어는 성립하지 않으며 상호 치환 불가능하다. synonyms 필드는 치환 가능성을 주장하는 필드이므로 부적절하다.\n\n2) 같은 vocab 항목 내부에서 자기모순이 발생한다. vocab[0]의 두 번째 예문(line 424) \"A generator works by induction between a magnet and a coil.\"는 generator가 induction을 '이용'하는 관계임을 보여준다. 동일 항목이 induction=generation이라 하면서 동시에 generation이 induction의 결과임을 예시한다.\n\n3) 학생 오인 위험이 구체적이다. generator가 line 461-464에 별도 표제어(meaning_ko \"발전기\", synonyms [\"dynamo\"])로 존재한다. generation↔generator의 파생 관계 때문에 '유도=발전' 오인이 사실상 불가피하다.\n\n4) 파일 자체 개념 틀과 충돌한다. meta.key_concepts(line 16)는 \"전자기 유도\"와 \"발전\"을 별개 개념으로 나열하고, textbook_tieback(line 82)은 전자기 유도를 발전 방식이 이용하는 '원리'로 서술한다. 본문(page1.body)도 \"Scientists call this electromagnetic induction, and it is the quiet heart of nearly every generator on Earth.\"로 원리와 장치를 구분한다.\n\n검토했으나 기각한 반론: (a) induction의 넓은 의미로 '유발/생성'이라 볼 여지 — meaning_ko와 두 예문이 모두 전자기 유도로 범위를 못박아 일반 의미 원용이 불가하다. (b) 이 파일의 synonyms 필드가 전반적으로 느슨한 근사 대응이다(turbine→\"rotor\" line 442, current→\"electric flow\" line 508) — 사실이나 rotor는 최소한 터빈의 부품 수준 인접 지시체인 반면 generation은 induction과 존재론적 범주 자체가 다르고, 다른 느슨한 대응들과 달리 이 항목만 별도 표제어(generator)와 충돌한다. 따라서 단순 표기 관행으로 면책되지 않는다.\n\nwarn 등급은 타당하며, synonyms를 빈 배열로 두거나 전자기 유도에 부합하는 표현으로 교체하는 것이 적절하다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page4.vocab[2] (\"turbine\") synonyms",
+      "issue": "\"rotor\"는 turbine의 유의어가 아니라 turbine을 구성하는 '부품'(회전자)이다. 부분-전체 관계를 동의어로 제시해 의미 불일치가 발생한다. rotor는 발전기·모터에도 쓰이는 일반 부품명이라 turbine으로 치환 불가능하다.",
+      "evidence": "본문: \"A wind turbine lets moving air spin its blades directly\" — 여기서 turbine은 blades를 포함한 장치 전체를 가리킨다. 그런데 page4.vocab[2]는 \"synonyms\": [\"rotor\"], meaning_ko도 \"터빈, 회전 날개 장치\"로 장치 전체를 뜻한다고 스스로 밝히고 있다.",
+      "suggestion": "\"rotor\"를 삭제하고 synonyms를 []로 두거나, 필요하면 \"(wind) turbine = 풍력 발전기의 회전 장치\" 수준의 설명으로 대체한다.",
+      "lens": "vocab",
+      "verdict": {
+        "isReal": true,
+        "confidence": "medium",
+        "reason": "지적이 파일 근거로 확인됨. page4.vocab[2](438-448행)는 word \"turbine\", meaning_ko \"터빈, 회전 날개 장치\", synonyms [\"rotor\"]로 되어 있다.\n\n핵심 근거는 해당 항목 자신의 예문이다. 445행 \"The steam turns a turbine that drives the generator.\"는 turbine을 발전기를 '구동하는' 완결된 기계로 규정한다. rotor는 발전기를 구동하는 주체가 아니라 터빈(및 발전기) 내부의 회전 부품이므로, 이 예문에 rotor를 대입하면 \"a rotor that drives the generator\"가 되어 기술적으로 성립하지 않는다. 즉 항목이 스스로 정의한 의미 층위와 synonyms가 어긋난다.\n\n본문 프레이밍도 일치한다. 21행 및 233-237행의 \"A wind turbine lets moving air spin its blades\"는 blades를 turbine의 소유물(\"its blades\")로 명시해 부분-전체 관계를 분명히 한다. 전체를 뜻하는 표제어에 부분을 동의어로 제시한 것이 맞다. 또한 rotor는 발전기·모터·헬리콥터에 두루 쓰이는 다의적 부품명이라, 뜻풀이 없이 한 단어만 노출되는 고1 학습자용 synonyms 항목으로는 실질적 오학습 위험이 있다.\n\n반론 검토 후 기각: (1) 같은 vocab 배열의 induction→\"generation\", current→\"electric flow\", fossil-fuel→\"coal-based\" 등도 느슨한 연관어라 이 필드가 엄밀한 동의어 필드가 아니라고 볼 여지가 있으나, 이는 개별 항목을 면책하기보다 더 넓은 품질 문제를 시사할 뿐이며 rotor 항목이 자기 예문과 충돌한다는 사실을 해소하지 못한다. (2) 공학 문헌에서 풍력 rotor(허브+블레이드)가 쓰이긴 하나, 그 용법조차 turbine 전체가 아닌 회전 조립체를 가리켜 부분-전체 지적을 오히려 뒷받침한다.\n\n다만 본문·문항·정답 해설에는 영향이 없어 심각도는 warn이 타당하다. 신뢰도를 medium으로 둔 이유는 synonyms 필드의 엄밀성 기준이 스키마에 명시돼 있지 않아 판정이 필드 운용 규약에 일부 의존하기 때문이다. 수정 방향은 rotor 삭제 후 \"wind wheel\" 등 장치 전체를 가리키는 어휘로 교체하거나, 유지한다면 부품임을 밝히는 주석을 다는 것이다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page4.vocab[11] (\"fossil-fuel\") synonyms",
+      "issue": "\"coal-based\"는 fossil-fuel의 동의어가 아니라 하위 개념이다. 화석 연료에는 석탄 외에 석유·천연가스가 포함되므로 의미를 부당하게 축소한다. 본문이 coal plant와 fossil-fuel plant를 층위가 다른 표현으로 구분해 쓰고 있어 오해가 더 커진다.",
+      "evidence": "본문: \"A coal plant burns fuel to boil water...\" / \"A nuclear plant heats its water in another way...\" / \"So a fossil-fuel plant is really a machine that turns heat into motion\" — coal plant는 개별 사례, fossil-fuel plant는 이를 아우르는 일반화 표현이다. 그런데 page4.vocab[11]은 \"synonyms\": [\"coal-based\"].",
+      "suggestion": "\"coal-based\"를 삭제하거나 \"carbon-based\" 정도로 바꾼다. antonyms의 \"renewable\"은 적절하므로 유지.",
+      "lens": "vocab",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "파일에서 지적 내용이 그대로 확인된다. page4.vocab[11]은 word \"fossil-fuel\", meaning_ko \"화석 연료의\", synonyms [\"coal-based\"], antonyms [\"renewable\"]이다. 'fossil fuel'은 석탄·석유·천연가스를 포괄하는 상위 범주이고 'coal-based'는 그중 한 사례만 지칭하는 하위 개념이므로, 동의어가 아니라 하위어(hyponym)를 동의어 칸에 넣은 사실 오류다. 근거주장도 정확하다: page1 본문이 \"A coal plant burns fuel to boil water...\" → \"A nuclear plant heats its water in another way...\" → \"So a fossil-fuel plant is really a machine that turns heat into motion\"으로 개별 사례에서 일반화로 올라가는 층위 구조를 명시적으로 만들고, page3 sentences[6](\"A coal plant\")과 sentences[9](\"a fossil-fuel plant\")도 이 두 층위를 구분해 분해해 둔다. 따라서 어휘 항목이 본문이 방금 가르친 상하위 관계를 붕괴시켜 학습 방해가 실제로 발생한다. 같은 항목의 antonyms가 \"renewable\"이라는 범주 층위 단어인 점과도 내적으로 불일치한다. 다른 항목(induction→generation, turbine→rotor 등)의 느슨함은 대체로 동일 층위 근사이며 분류 위계를 뒤집지 않으므로 이 건의 면책 근거가 되지 않는다. 통합과학 연계 단원(발전과 신재생 에너지)에서 화력 발전 연료 구분을 다루므로 교과 정합성 측면에서도 결함이다."
+      }
+    }
+  ],
   "minors": [
     {
       "severity": "minor",
-      "location": "page3.translation_ko 문장 [18]",
-      "issue": "영문 \"add no carbon\"(탄소를 전혀 배출하지 않음, 절대적 제로)을 \"탄소가 적지만\"(탄소가 적음, 상대적)으로 옮겨 절대 표현을 상대 표현으로 약화시킴.",
-      "evidence": "영문: \"Renewable sources waste less and add no carbon, yet the wind falls quiet...\" / 번역: \"재생원은 손실과 탄소가 적지만, 바람은 예고 없이 잦아들고 하늘은 어두워진다.\"",
-      "suggestion": "\"재생원은 손실이 적고 탄소를 전혀 배출하지 않지만\"처럼 'no carbon'의 제로 의미를 살려 옮긴다.",
+      "location": "page1.body, 3문단 마지막 문장",
+      "issue": "지시 대상 없는 정관사: \"the roof\"의 선행 언급이 본문에 전혀 없다. 해당 단락은 turbine, hydro plant, solar panel을 다루며 roof(지붕)는 처음 등장하는데 정관사를 써서 고1 독자가 무엇의 지붕인지 되짚어야 한다.",
+      "evidence": "\"Nothing boils and nothing burns, so no smoke ever leaves the roof.\"",
+      "suggestion": "\"so no smoke ever rises from the panel.\" 또는 \"so no smoke ever leaves a chimney.\"처럼 앞서 언급된 대상이나 화력 발전과 대비되는 명확한 대상으로 교체.",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "page1.body, 2문단 마지막 문장",
+      "issue": "단락 마무리 문장이 앞선 원자력 서술과 충돌하는 인상을 준다. 같은 단락에서 원자력을 다룬 직후 '거슬러 올라가면 불에 닿는다'로 닫아 원자력=연소라는 오해를 강화한다. \"often\"으로 완화되어 있어 치명적이지는 않으나 위 1번 결함과 겹쳐 효과가 커진다.",
+      "evidence": "\"Trace any wall socket backward, and you often arrive at a fire.\"",
+      "suggestion": "\"and you often arrive at boiling water.\" 로 바꾸면 석탄·원자력 양쪽을 정확히 포괄하면서 문장의 인상적인 마무리 효과도 유지된다.",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "answers.explanations[0].rationales[3] (line 367) 및 answers.explanations[2].evidence (line 388)",
+      "issue": "해설이 본문을 큰따옴표로 직접 인용하면서 부사 truly를 누락했다. 의미 왜곡은 없으나 '본문 그대로의 인용'이 아니어서 인용 정확도 결함이다.",
+      "evidence": "본문 원문: \"Some of the energy always leaks away as waste heat, so no plant is truly perfect.\" / 해설 인용: 본문은 \"no plant is perfect\"라며… (line 367), 본문은 \"Some of the energy always leaks away as waste heat, so no plant is perfect\"라며… (line 388) — 두 곳 모두 truly 누락. 같은 파일 page4 vocab 예문(line 479) \"Waste heat is one reason no plant is perfect.\"는 창작 예문이므로 해당 없음.",
+      "suggestion": "두 인용을 본문과 동일하게 \"no plant is truly perfect\" / \"...so no plant is truly perfect\"로 맞춘다.",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko [12]",
+      "issue": "\"moving air\"의 moving(움직이는/흐르는)과 \"instead\"(대신)가 모두 누락됐다. instead는 풍력(공기)과 수력(물)을 대비하는 접속 표현이라 논리 연결이 약해진다.",
+      "evidence": "영문: \"A wind turbine lets moving air spin its blades directly, and a hydro plant uses falling water instead.\" / 번역: \"[12] 풍력 터빈은 공기가 날개를 직접 돌리게 하고, 수력은 떨어지는 물을 쓴다.\"",
+      "suggestion": "\"풍력 터빈은 움직이는 공기가 날개를 직접 돌리게 하고, 수력 발전소는 그 대신 떨어지는 물을 이용한다.\"",
       "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko [3]",
+      "issue": "\"a coil of wire\"의 'of wire'(전선을 감은)와 \"this simple motion\"의 simple(단순한)이 누락됐다. simple은 1문단의 핵심 논지(단순한 동작 하나가 발전의 원리)와 부제 \"the same simple trick\"에 연결되는 어휘라 빠뜨리면 강조가 사라진다.",
+      "evidence": "영문: \"A magnet spins near a coil of wire, and this simple motion pushes electrons through the wire.\" / 번역: \"[3] 자석이 코일 가까이에서 돌고, 이 운동이 전선으로 전자를 밀어낸다.\"",
+      "suggestion": "\"자석이 전선 코일 가까이에서 회전하고, 이 단순한 움직임이 전선을 통해 전자를 밀어낸다.\"",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko [4], [9], [15], [20]",
+      "issue": "강조 어구가 반복적으로 누락됐다: [4] \"on Earth\"(지구상의), [9] \"really\"(사실상), [15] \"ever\"(결코), [20] \"truly\"(정말로).",
+      "evidence": "[4] \"the quiet heart of nearly every generator on Earth\" → \"거의 모든 발전기의 조용한 심장\" / [9] \"a fossil-fuel plant is really a machine that...\" → \"화석 연료 발전소는 ... 기계다\" / [15] \"no smoke ever leaves the roof\" → \"지붕에서 연기가 나가지 않는다\" / [20] \"the moment a city truly needs the power back\" → \"도시가 전력을 되찾아야 하는 순간\"",
+      "suggestion": "각각 \"지구상 거의 모든 발전기\", \"사실상 ...하는 기계다\", \"연기가 결코 새어 나가지 않는다\", \"도시가 정말로 전력을 다시 필요로 하는 순간\"으로 보완.",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "answers.explanations[0].rationales[3] / answers.explanations[2].evidence (01.json lines 367, 388)",
+      "issue": "해설의 본문 인용이 원문과 불일치한다. 큰따옴표로 직접 인용한 형태인데 본문의 부사 \"truly\"가 누락되었다. 정답 판정에는 영향이 없으나, 근거로 제시된 인용문이 본문과 글자 그대로 일치하지 않아 학생이 본문에서 해당 문장을 찾을 때 혼선을 줄 수 있다.",
+      "evidence": "본문(page1.body): \"Some of the energy always leaks away as waste heat, so no plant is truly perfect.\" / 해설 q_index 2 evidence: \"Some of the energy always leaks away as waste heat, so no plant is perfect\" (truly 누락). 해설 q_index 0 rationales[3]: \"본문은 \\\"no plant is perfect\\\"라며…\" (truly 누락).",
+      "suggestion": "두 곳의 인용을 본문 그대로 \"no plant is truly perfect\"로 수정한다.",
+      "lens": "answer"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[5] (\"waste heat\") synonyms",
+      "issue": "\"lost heat\"는 영어에서 확립된 어휘·연어가 아니라 뜻풀이를 영어로 옮긴 임시 표현이다. 유의어 칸에는 실제로 통용되는 표현이 들어가야 한다.",
+      "evidence": "본문: \"Some of the energy always leaks away as waste heat, so no plant is truly perfect.\" — 본문은 waste heat라는 정착된 술어를 쓰는데, page4.vocab[5]의 \"synonyms\": [\"lost heat\"]는 사전에 오르지 않는 조어다.",
+      "suggestion": "\"heat loss\" 또는 \"excess heat\"로 교체하거나 synonyms를 []로 비운다.",
+      "lens": "vocab"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[8] (\"current\") synonyms",
+      "issue": "\"electric flow\"는 실제 영어 표현이 아니다(정상 표현은 electric current / flow of charge). 유의어로 제시하면 학생이 어색한 영어를 학습하게 된다.",
+      "evidence": "본문: \"Light hits the panel, and the energy knocks electrons loose, turning sunlight into current in a single step.\" 그런데 page4.vocab[8]은 \"synonyms\": [\"electric flow\"].",
+      "suggestion": "\"electric current\" 또는 \"flow of charge\"로 교체한다.",
+      "lens": "vocab"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[10] (\"store\")",
+      "issue": "고1(saturn-g1) 대비 난도가 지나치게 낮은 기초 어휘다. store(저장하다)는 중학 기본 어휘 수준이며, 같은 목록의 induction·turbine·electromagnetic 계열 전문어와 수준 편차가 크다. 12개 표제어 중 한 자리를 소모할 만한 가치가 낮다.",
+      "evidence": "본문: \"Engineers now store the extra energy in huge batteries\" — 문맥도 사전적 기본 의미 그대로여서 추가 학습 부담이 없다. meta.lexile은 \"830L\", meta.ar_level은 5.9로 설정되어 있다.",
+      "suggestion": "본문의 intermittency 관련 고난도 표현(예: \"the odd one out\", \"leak away\", \"without warning\")이나 hydro, panel 같은 단원 연계어로 교체를 검토한다.",
+      "lens": "vocab"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[3] (\"renewable\") antonyms",
+      "issue": "철자 표기가 통용형과 다르다. 사전 표제형은 하이픈을 넣은 \"non-renewable\"이 일반적이며, 같은 파일 page4.vocab[11]에서는 \"fossil-fuel\"처럼 하이픈을 쓰고 있어 표기 일관성도 어긋난다.",
+      "evidence": "page4.vocab[3]: \"antonyms\": [\"nonrenewable\"] / 같은 page4 내 page4.vocab[11]: \"word\": \"fossil-fuel\".",
+      "suggestion": "\"non-renewable\"로 통일한다.",
+      "lens": "vocab"
     }
   ],
   "blockers": [],
   "counts": {
-    "raw": 1,
-    "verified": 0,
-    "confirmed": 0,
-    "minor": 1
+    "raw": 20,
+    "verified": 9,
+    "confirmed": 7,
+    "minor": 11
   }
 }

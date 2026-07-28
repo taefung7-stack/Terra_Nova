@@ -4,50 +4,146 @@
   "confirmed": [
     {
       "severity": "warn",
-      "location": "answers.explanations[q_index=3].rationales[1] (B unreliable)",
-      "issue": "rationale가 unreliable의 근거 문장을 '7번'이라고 지목하지만, unreliable은 page3 sentences의 14번 문장에 나온다. 7번 문장은 시점(point of view) 정의 문장이다.",
-      "evidence": "page3 sentence 7: \"The spot ... is called the point of view.\" / sentence 14: \"critics call that voice unreliable\". 그런데 rationale은 \"(B) unreliable — '온전히 믿을 수 없을 때 부르는 이름'은 7번의 unreliable과 일치한다.\"라고 적었다.",
-      "suggestion": "'7번'을 '14번'으로 수정한다.",
+      "location": "answers.explanations[3].rationales (q_index 3, 요약문 빈칸 완성)",
+      "issue": "모범답안 근거로 제시한 문장 번호가 page3.sentences의 실제 index와 어긋난다. (A)는 '2번', (B)는 '7번'이라 했으나 실제로는 각각 4번, 14번 문장이다. 문단 번호로 봐도 각각 1문단, 3문단이라 맞지 않는다.",
+      "evidence": "rationales: \"(A) narrator — '이야기를 전달하는 목소리'는 2번의 the narrator와 일치한다.\" / \"(B) unreliable — '온전히 믿을 수 없을 때 부르는 이름'은 7번의 unreliable과 일치한다.\" 그러나 page3.sentences index 4 = \"This teller / is / the narrator, / the voice / that stands between the reader and the events.\", index 14 = \"When the narrator's account cannot be fully trusted, / critics / call / that voice / unreliable, ...\". 같은 항목의 evidence 필드도 이 두 문장을 인용한다(\"This teller is the narrator\", \"critics call that voice unreliable\").",
+      "suggestion": "'2번'→'4번', '7번'→'14번'으로 수정하거나, 다른 explanation처럼 문장 번호 대신 원문 인용으로 통일한다.",
       "lens": "explanation",
       "verdict": {
         "isReal": true,
         "confidence": "high",
-        "reason": "파일 근거로 지적이 확인된다. answers.explanations[q_index=3].rationales[1] (라인 406)은 \"(B) unreliable — '온전히 믿을 수 없을 때 부르는 이름'은 7번의 unreliable과 일치한다\"라고 적었으나, page3 sentences의 7번(라인 197-206)은 \"The spot from which the narrator watches is called the point of view.\"로 시점(point of view) 정의 문장이며 'unreliable'이라는 단어가 전혀 없다. 실제 'unreliable'은 14번 문장(라인 280-293) \"When the narrator's account cannot be fully trusted, critics call that voice unreliable...\"에 나오며, 이는 rationale의 국어 설명('온전히 믿을 수 없을 때 부르는 이름')과 정확히 일치한다. 따라서 문장 번호 지목이 7번이 아니라 14번이어야 하므로 오기가 맞다. (참고로 나란한 (A) rationale의 '2번' 역시 narrator가 실제로는 4번 문장에 나와 부정확하나, 지적 대상은 (B)의 7↔14 불일치이며 이는 명백히 확인됨.)"
+        "reason": "파일로 명확히 확인되는 실제 결함이다. answers.explanations[3].rationales (04.json 405-406행)는 \"(A) narrator ... 2번의 the narrator와 일치\", \"(B) unreliable ... 7번의 unreliable과 일치\"라고 기술한다. 그러나 page3.sentences의 실제 내용은 index 2 = \"Before a single event happens, the story has already chosen a pair of eyes for us to borrow.\"(141-149행)로 narrator가 등장하지 않고, index 7 = \"The spot from which the narrator watches is called the point of view.\"(198-205행)로 unreliable이 등장하지 않는다. 해당 단어가 실제로 나오는 문장은 각각 index 4(\"This teller is the narrator, the voice that stands between the reader and the events.\", 163-171행)와 index 14(\"When the narrator's account cannot be fully trusted, critics call that voice unreliable, ...\", 281-291행)이다. 결정적으로 같은 explanation 객체의 evidence 필드(403행)가 \"This teller is the narrator\"와 \"critics call that voice unreliable\"을 그대로 인용하고 있어, 의도된 근거 문장이 4번·14번임이 파일 내부에서 자기 확인된다. 문단 번호로 보는 대안 해석도 성립하지 않는다: page1.body는 4개 문단뿐이라 \"7번\"은 문단 번호일 수 없고, narrator 정의는 1문단, unreliable은 3문단이라 2/7 어느 쪽과도 맞지 않는다. 또한 같은 파일 q_index 0의 evidence(351행)가 \"1~4번\", \"7~12번\"으로 page3.sentences index를 정확히 참조하고 있어 이 파일의 번호 표기 관례가 문장 index임이 확립되며, 따라서 2번/7번은 단순 오기(off-by 오류)로 확정된다. 학습자가 근거 문장을 찾아갈 때 엉뚱한 문장으로 유도되므로 warn 등급의 실제 결함이 맞다."
       }
     },
     {
       "severity": "warn",
-      "location": "answers.explanations[q_index=3].rationales[0] (A narrator)",
-      "issue": "rationale가 narrator의 근거 문장을 '2번'이라고 지목하지만, 'This teller is the narrator'는 page3 sentences의 4번 문장이다. 2번 문장은 'a pair of eyes'를 다루는 문장이다.",
-      "evidence": "page3 sentence 4: \"This teller is the narrator, the voice that stands between the reader and the events.\" / sentence 2: \"Before a single event happens, the story has already chosen a pair of eyes for us to borrow.\" 그런데 rationale은 \"(A) narrator — '이야기를 전달하는 목소리'는 2번의 the narrator와 일치한다.\"라고 적었다.",
-      "suggestion": "'2번'을 '4번'으로 수정한다.",
+      "location": "page3.sentences[15] (index 16) grammar_note / segments note",
+      "issue": "콜론 뒤 의문절을 '간접의문'이라고 설명했으나, 본문은 조동사 도치를 그대로 쓴 직접의문문 형태다. 간접의문(명사절)이면 어순이 'how much this voice can actually see'여야 하므로 문법 설명이 사실과 반대다. 학생이 이 노트를 근거로 간접의문 어순 문제를 풀면 오답을 유도한다.",
+      "evidence": "본문: \"...begins with a simple question: who is speaking, and how much can this voice actually see?\" (can this voice = 도치). 해당 grammar_note: \"동명사 주어 + begin with + 동격 의문절(간접의문)\", segment note: \"동격 의문절\".",
+      "suggestion": "'간접의문' 표현을 삭제하고 '콜론 뒤 직접의문문(동격)' 또는 '질문 내용을 콜론으로 제시(도치 유지)'로 고친다. 비교 대상으로 index 5의 진짜 간접의문(\"which moments matter\", 도치 없음)과 대조해 주면 더 좋다.",
       "lens": "explanation",
       "verdict": {
         "isReal": true,
         "confidence": "high",
-        "reason": "파일 근거로 확인됨. answers.explanations[q_index=3].rationales[0] (라인 405)은 \"(A) narrator — '이야기를 전달하는 목소리'는 2번의 the narrator와 일치한다.\"라고 적었다. 그러나 page3.sentences에서 \"This teller is the narrator, the voice that stands between the reader and the events.\"는 index 4번 문장(라인 163-171)이다. index 2번 문장(라인 141-149)은 \"Before a single event happens, the story has already chosen a pair of eyes for us to borrow.\"로 'a pair of eyes'를 다루며 'the narrator'라는 표현 자체가 없다. 실제로 같은 explanation의 evidence 필드(라인 403)도 근거를 \"This teller is the narrator\"로 정확히 인용하므로 rationale의 '2번' 지목은 명백한 문장 번호 오류다. 지적이 정확하다. (참고로 rationales[1]의 '7번' 지목도 동일 유형의 오류로, unreliable은 실제 14번 문장에 있으나 이는 본 지적 범위 밖이다.)"
+        "reason": "지적이 파일 근거로 확인됨. page1.body 및 page3.sentences[15](index 16)의 본문은 \"...begins with a simple question: who is speaking, and how much can this voice actually see?\"로, 두 번째 절이 'can this voice'라는 조동사 도치 + 물음표로 끝나는 명백한 직접의문문 형태다. 그런데 해당 grammar_note는 \"동명사 주어 + begin with + 동격 의문절(간접의문)\", segment note는 \"동격 의문절\"로 되어 있다. 한국 영문법 교육에서 '간접의문(문)'은 「의문사+주어+동사」의 비도치 어순을 정의적 속성으로 갖는 용어이므로, 간접의문이라면 'how much this voice can actually see'여야 한다. 즉 라벨이 본문 어순과 정반대다.\n\n결정적 근거: 같은 파일 index 5(line 178~180)에서 \"which moments matter and which quietly disappear\"를 \"which 간접의문(명사절) 병렬\"로 표기했는데, 이것은 decides의 목적어이자 비도치·물음표 없음으로 진짜 간접의문이다. 따라서 저자가 용어를 정확히 쓸 줄 아는데도 index 16에서만 잘못 적용한 내부 불일치이며, 독자적 표기 관례로 방어되지 않는다.\n\n부연: 본문 영어 자체는 결함이 아니다. 콜론 뒤 동격 위치의 직접의문문은 정상적 영어이고, '동격(의문절)'이라는 라벨 부분도 타당하다. 오류는 괄호 안 '(간접의문)' 한 지점에 한정된다. 다만 간접의문 어순은 고교 내신·모의고사 빈출 포인트여서, 학생이 도치형 예문을 '간접의문'의 사례로 기억하면 해당 유형에서 직접적 오답 유도가 되므로 실질적 결함으로 인정된다. 심각도 warn 및 제안된 수정 어순 모두 적절하다."
       }
     },
     {
       "severity": "warn",
-      "location": "content/passages/2026-08-J/04.json → answers.explanations[q_index=3].rationales",
-      "issue": "요약문 정답 해설의 본문 문장 번호 인용이 틀림. (A) narrator 근거를 '2번 문장'이라 했으나 실제 'This teller is the narrator'는 [4]번 문장이고 [2]번은 'a pair of eyes'에 관한 문장이다. (B) unreliable 근거를 '7번 문장'이라 했으나 'critics call that voice unreliable'은 [14]번 문장이며 [7]번은 point of view를 정의하는 문장이다. 정답 자체(A=narrator, B=unreliable)는 옳으나 해설의 문장 참조가 잘못되어 있어 교사·학생이 근거 문장을 찾을 때 불일치가 발생한다.",
-      "evidence": "rationales: \"(A) narrator — '이야기를 전달하는 목소리'는 2번의 the narrator와 일치한다.\" / \"(B) unreliable — '온전히 믿을 수 없을 때 부르는 이름'은 7번의 unreliable과 일치한다.\" 그러나 page3 sentences: [4] 'This teller is the narrator', [14] 'critics call that voice unreliable', [2] '...a pair of eyes for us to borrow', [7] '...is called the point of view.'",
-      "suggestion": "'2번' → '4번', '7번' → '14번'으로 문장 번호를 수정한다. (evidence 필드는 영어 원문 인용으로 이미 정확하므로 rationales의 숫자만 바로잡으면 된다.)",
+      "location": "answers.explanations[3].rationales[0] (q_index 3, 요약문 빈칸 완성)",
+      "issue": "모범답안 해설의 문장 번호 근거가 틀림 — (A) narrator의 출처를 '2번'이라 했으나 실제로는 page3 sentence index 4번이다.",
+      "evidence": "해설: \"(A) narrator — '이야기를 전달하는 목소리'는 2번의 the narrator와 일치한다.\" / 실제 page3 index 2 = \"Before a single event happens, / the story / has already chosen / a pair of eyes / for us to borrow.\" (narrator 미등장). narrator가 나오는 것은 index 4 = \"This teller / is / the narrator, / the voice / that stands between the reader and the events.\"",
+      "suggestion": "'2번' → '4번'으로 수정. (같은 항목의 evidence 필드는 \"This teller is the narrator\"를 올바로 인용하고 있으므로 번호만 고치면 된다.)",
       "lens": "answer",
       "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "지적이 파일 내용으로 정확히 확인됨. answers.explanations[3].rationales[0] (파일 405행)은 \"(A) narrator — '이야기를 전달하는 목소리'는 2번의 the narrator와 일치한다.\"라고 서술하나, page3.sentences의 index 2(140~150행)는 \"Before a single event happens, / the story / has already chosen / a pair of eyes / for us to borrow.\"로 narrator가 전혀 등장하지 않음. the narrator가 실제로 등장하는 문장은 index 4(162~172행) \"This teller / is / the narrator, / the voice / that stands between the reader and the events.\"이며, 같은 항목의 evidence 필드(403행)가 \"This teller is the narrator\"를 인용하고 있어 근거 문장 자체는 index 4가 맞음을 자체 확인해 줌. 문장 번호 체계는 sentences 배열의 명시적 index 필드(1~18)와 translation_ko의 [1]~[18] 대괄호 표기가 일치하므로 0-base나 문단 상대번호 같은 대안 해석의 여지가 없어 반박 불가. 동일 결함이 rationales[1](406행)에도 존재: unreliable을 '7번'이라 했으나 index 7은 \"The spot ... is called the point of view.\"이고 unreliable은 index 14(286행 \"critics call that voice unreliable\")에 나옴. 다만 모범답안 \"(A) narrator (B) unreliable\" 자체와 evidence 인용은 정확하므로, 결함 범위는 rationales의 문장 번호 오기에 한정되며 warn 등급이 적절함."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "answers.explanations[3].rationales[1] (q_index 3, 요약문 빈칸 완성)",
+      "issue": "모범답안 해설의 문장 번호 근거가 틀림 — (B) unreliable의 출처를 '7번'이라 했으나 실제로는 page3 sentence index 14번이다.",
+      "evidence": "해설: \"(B) unreliable — '온전히 믿을 수 없을 때 부르는 이름'은 7번의 unreliable과 일치한다.\" / 실제 page3 index 7 = \"The spot / from which the narrator watches / is called / the point of view.\" (unreliable 미등장). unreliable은 index 14 = \"When the narrator's account cannot be fully trusted, / critics / call / that voice / unreliable, ...\"",
+      "suggestion": "'7번' → '14번'으로 수정.",
+      "lens": "answer",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "파일로 명확히 확인됨. answers.explanations[3].rationales[1] (04.json 406행)은 \"(B) unreliable — '온전히 믿을 수 없을 때 부르는 이름'은 7번의 unreliable과 일치한다.\"라고 적혀 있으나, page3.sentences 중 index 7 (198-206행)은 \"The spot / from which the narrator watches / is called / the point of view.\"로 unreliable이 전혀 등장하지 않는다. unreliable은 index 14 (280-292행) \"When the narrator's account cannot be fully trusted, / critics / call / that voice / unreliable, ...\"에 있다. 대체 번호 체계 가능성도 배제됨: page3는 명시적 index 필드 1~18을 쓰고 translation_ko(343행)도 동일한 [1]~[18] 번호를 사용하는데 거기서도 [7]은 시점 문장, [14]가 unreliable 문장이다. 참고로 같은 배열의 rationales[0](405행) \"2번의 the narrator\" 역시 틀렸다(index 2는 \"a pair of eyes\" 문장이고 the narrator는 index 4). evidence 필드(403행)는 원문을 정확히 인용하므로 결함은 rationales의 문장 번호 인용에 한정되지만, 학습자가 실제로 찾아가야 할 번호가 틀린 것이므로 warn 수준 실결함이 맞다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page4.vocab[0] (narrator) → examples[0].en",
+      "issue": "예문이 비문법적이다. 가산 단수명사 reader/events 앞의 한정사가 빠져 \"between reader and events\"가 되었다. 본문 원문은 관사를 갖추고 있는데, 예문으로 축약하는 과정에서 관사가 탈락했다.",
+      "evidence": "page4 예문: \"This teller is the narrator between reader and events.\" / 본문(page1.body): \"This teller is the <u>narrator</u>, the voice that stands between the reader and the events.\"",
+      "suggestion": "\"This teller is the narrator between the reader and the events.\" 또는 본문에 맞춰 \"This teller is the narrator, the voice that stands between the reader and the events.\"로 수정.",
+      "lens": "vocab",
+      "verdict": {
         "isReal": true,
         "confidence": "high",
-        "reason": "파일 근거로 지적이 정확히 확인됨. answers.explanations[q_index=3].rationales(라인 404-407)에서 (A)는 'the narrator'가 '2번' 문장에 있다고 하나, 실제 page3 sentences[2](라인 140-150)는 'a pair of eyes for us to borrow' 문장이고 'This teller is the narrator'는 sentences[4](라인 162-172)에 있다. (B)는 'unreliable'이 '7번'이라 하나, sentences[7](라인 197-206)은 'is called the point of view' 문장이며 'critics call that voice unreliable'은 sentences[14](라인 279-293)에 있다. 정답 자체(A=narrator, B=unreliable)는 model_answer_en(라인 402) 및 summary_template(라인 87)과 일치해 옳으나, rationales의 문장 번호 인용(2번/7번)이 실제 위치(4번/14번)와 불일치한다. evidence 필드(라인 403)는 문장 번호 없이 정확히 인용하므로 오류는 rationales 배열에 국한된 실제 결함이다."
+        "reason": "파일 확인 결과 지적이 정확하다. 04.json 424행 page4.vocab[0](narrator) examples[0].en은 \"This teller is the narrator between reader and events.\"로, 26행 page1.body 원문 \"This teller is the <u>narrator</u>, the voice that stands between the reader and the events.\"에서 the가 두 번 탈락했다.\n\n문법적 판단: reader와 events는 특정 지시(이 이야기의 독자/사건)를 갖는 가산명사로 정관사가 필요하다. \"between mother and child\"처럼 관사 없는 상호 표현 관용구가 존재하나, 이는 병렬 단수 무관사형을 요구하므로 단수 reader + 복수 events의 혼합 구조에는 적용되지 않는다. 따라서 문체적 선택이 아닌 비문이다.\n\n우발적 탈락임을 뒷받침하는 근거: (1) 같은 문장 내 narrator는 the를 유지해 일관성이 없다. (2) 동일 vocab 배열의 다른 예문들(435행 \"The position the narrator watches from is the point of view.\", 501행 \"It reports what one character can witness.\")은 모두 한정사를 정상적으로 갖춰 파일 전반의 규범과 어긋난다.\n\n심각도는 warn이 타당하다. 한국 영어 교재의 예문은 올바른 용법의 모델 역할을 하므로 비문 예문은 실제 결함이나, \"between the reader and the events\"로 고치면 되는 경미하고 기계적인 수정 사항이다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page4.vocab[10] (interpret) → antonyms",
+      "issue": "antonyms에 \"misread\"를 넣었으나 이는 반의어가 아니다. misread는 '해석하다'의 반대가 아니라 '잘못 해석하다'로 interpret의 하위·양태 변형(부정확한 해석)이며, 실제로 본문에서도 서술자의 행위 중 하나로 interpret와 대립 없이 쓰인다. 학생이 interpret ↔ misread를 반의 관계로 암기하면 오개념이 생긴다.",
+      "evidence": "page4: { \"word\": \"interpret\", \"antonyms\": [\"misread\"] } / 본문(page1.body): \"A teller may hide a crucial fact, misread a rival's motive, or color a memory with private longing.\" — misread가 '해석하지 않음'이 아니라 '틀리게 해석함'으로 쓰임",
+      "suggestion": "antonyms를 빈 배열로 두거나(interpret는 명확한 반의어가 없음), 굳이 넣는다면 \"misinterpret\"가 아닌 실제 대립 개념을 쓰지 말고 삭제 권장. misread는 오히려 별도 표제어나 참고어(관련어)로 분리.",
+      "lens": "vocab",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "File-confirmed. page4.vocab[10] (line 528-532) is exactly {\"word\":\"interpret\",\"synonyms\":[\"read\",\"construe\"],\"antonyms\":[\"misread\"]}. \"misread\" is not an antonym of \"interpret\": the mis- prefix marks erroneous manner, not negation of the act, so misread entails interpreting (badly) rather than opposing it. Three confirmations: (1) page1.body line 26 uses misread as a coordinate verb with hide/color for what a narrator does — \"A teller may hide a crucial fact, misread a rival's motive, or color a memory\" — with no opposition to interpret; (2) page3 sentence 13 (line 270) parses misread as a V in the may hide/misread/color parallel and the translation (line 343) renders it \"잘못 읽거나\" i.e. reads wrongly; (3) decisively, the same entry lists \"read\" as a SYNONYM while listing \"misread\" as an ANTONYM — two forms differing only by that prefix — which is internally incoherent. The file also proves an empty antonyms list is schema-valid (narrator, point of view, account, witness, verdict at lines 422/433/477/499/543), and every other antonym pair in the file is a genuine polar opposite (reliable/unreliable, distant/intimate, sink/float, scatter/arrange, narrow/sweeping, stay/migrate), so this entry deviates from the file's own standard. Students memorizing interpret ↔ misread would acquire a real misconception."
       }
     }
   ],
-  "minors": [],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page1.body, 1문단 4번째 문장",
+      "issue": "지시사 'This teller'의 선행사가 불명확하다. 'teller'는 앞에서 한 번도 쓰이지 않은 새 명사인데 'This'가 붙어 이미 언급된 대상처럼 제시된다. 실제 선행사는 1문장의 'someone'이지만, 그 사이에 'a pair of eyes'와 'That choice'가 끼어들어 직전 지시 대상이 '사람'이 아니라 '선택(choice)'이 되어 지시 연결이 끊긴다.",
+      "evidence": "\"Every story reaches us through someone. Before a single event happens, the story has already chosen a pair of eyes for us to borrow. That choice quietly shapes everything we are allowed to feel. This teller is the <u>narrator</u>, the voice that stands between the reader and the events.\"",
+      "suggestion": "'This teller' 대신 'That someone is the <u>narrator</u>' 또는 'The one who tells is the <u>narrator</u>'처럼 1문장의 'someone'을 직접 받도록 고치면 지시 연결이 명확해진다.",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.sentences[6] (index 7) segments[1] role",
+      "issue": "관계절 역할 태깅이 다른 문장과 불일치한다. 'from which the narrator watches'는 The spot을 수식하는 관계절인데 role이 M으로 잡혀 있다. 같은 파일의 index 3·4·10에서는 동일한 성격의 관계절을 REL로 태깅했다.",
+      "evidence": "index 7: { \"role\": \"M\", \"text\": \"from which the narrator watches\", \"note\": \"전치사+관계대명사\" } vs index 4: { \"role\": \"REL\", \"text\": \"that stands between the reader and the events.\", \"note\": \"관계절 (the voice 수식)\" }",
+      "suggestion": "role을 REL로 바꾸고 note를 '관계절 (The spot 수식, 전치사+관계대명사)'로 통일한다.",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.sentences[11] (index 12) segments",
+      "issue": "종속절(Because절)의 주어·동사를 주절과 같은 층위의 S/V로 태깅해, 한 문장에 S가 둘, V가 둘 나타난다. 같은 파일의 index 8·14·18에서는 종속절 전체를 하나의 M 세그먼트로 묶었으므로 기준이 엇갈리고, 학생이 'a narrator'를 주절 주어로 오인할 수 있다.",
+      "evidence": "index 12: [{\"role\":\"CONJ\",\"text\":\"Because\"},{\"role\":\"S\",\"text\":\"a narrator\"},{\"role\":\"V\",\"text\":\"selects and arranges,\"},{\"role\":\"S\",\"text\":\"the reader\"},{\"role\":\"V\",\"text\":\"gets\"},...] vs index 14: {\"role\":\"M\",\"text\":\"When the narrator's account cannot be fully trusted,\",\"note\":\"when 부사절 (수동)\"}",
+      "suggestion": "\"Because a narrator selects and arranges,\" 전체를 M(이유 부사절, 동사 병렬)으로 묶어 index 8·14·18과 태깅 기준을 통일한다.",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.sentences[14] (index 15) segments[1], sentences[8] (index 9) segments[5]",
+      "issue": "부사가 동사 세그먼트에 흡수되어 V 태그가 부정확하다. index 15의 'must then read'에서 then은 접속부사(M), index 9의 'can never step'에서 never는 부정부사로, 다른 문장(index 3의 'quietly', index 6의 'rarely')에서는 동일한 부사를 M으로 분리해 태깅했다.",
+      "evidence": "index 15: {\"role\":\"V\",\"text\":\"must then read\"} / index 9: {\"role\":\"V\",\"text\":\"can never step\"} vs index 6: {\"role\":\"M\",\"text\":\"rarely\"},{\"role\":\"V\",\"text\":\"notice\"}",
+      "suggestion": "then / never를 M으로 분리하거나, 조동사+부사+본동사를 V로 묶는 방식을 파일 전체에 일관 적용한다.",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko 문장 [18]",
+      "issue": "목적 연결어미 '-하려면'과 서술형 술어 '배운다'의 호응이 어색하다. 영문은 서술문(a careful reader learns to…)이므로 의미 오역은 아니나, '-하려면'은 통상 당위·명령 술어와 호응한다.",
+      "evidence": "EN: \"To grasp a story fully, then, a careful reader learns to watch not only the events but also the shaping <blank>.\" / KO: \"[18] 그러므로 이야기를 온전히 파악하려면, 세심한 독자는 사건뿐 아니라 그것을 빚어내는 목소리까지 지켜보는 법을 배운다.\"",
+      "suggestion": "'그러므로 이야기를 온전히 파악하기 위해, 세심한 독자는 사건뿐 아니라 그것을 빚어내는 목소리까지 지켜보는 법을 배운다.' 또는 '…파악하려면 세심한 독자는 …지켜보는 법을 배워야 한다.'로 호응을 맞춘다.",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page2.questions[1].stem (빈칸 추론)",
+      "issue": "stem이 '밑줄 친 빈칸'이라 하지만 본문에서 해당 자리는 <u>가 아니라 <blank> 태그로 표기되어 있어, 같은 지문에서 <u>로 표시된 세 구(narrator / point of view / read against the narration)와 표기 규약이 충돌한다. 특히 3번 문항이 <u>read against the narration</u>을 인용하므로 학생이 '밑줄 친' 대상을 혼동할 수 있다.",
+      "evidence": "본문: \"...watch not only the events but also the shaping <blank>.\" 이며 밑줄은 \"This teller is the <u>narrator</u>\", \"called the <u>point of view</u>\", \"<u>read against the narration</u>\" 세 곳뿐이다. stem: \"윗글의 밑줄 친 빈칸에 들어갈 말로 가장 적절한 것은?\"",
+      "suggestion": "stem을 \"윗글의 빈칸에 들어갈 말로 가장 적절한 것은?\"으로 수정해 <u> 표기와의 충돌을 없앤다. (정답 voice 자체는 page3 index 18 \"to watch not only the events but also the shaping voice.\"로 확정적이며 정답 오류는 아님.)",
+      "lens": "answer"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[7] (witness) → examples[0].en",
+      "issue": "본문 문장을 축약하면서 대명사 It의 지시 대상이 사라져 예문 단독으로는 의미가 불분명하다. 본문의 It은 앞 문장의 the story/화자 상황을 받는데, 예문에서는 선행사가 없다.",
+      "evidence": "page4 예문: \"It reports what one character can witness.\" / 본문(page1.body): \"When the teller says \\\"I\\\" and reports only what one character can personally witness, the story is tied to a single, limited window on the world.\"",
+      "suggestion": "주어를 명시해 \"A first-person narrator reports only what one character can personally witness.\"처럼 고쳐 단어 뜻(직접 목격하다)이 더 잘 드러나게 할 것.",
+      "lens": "vocab"
+    }
+  ],
   "blockers": [],
   "counts": {
-    "raw": 3,
-    "verified": 3,
-    "confirmed": 3,
-    "minor": 0
+    "raw": 13,
+    "verified": 6,
+    "confirmed": 6,
+    "minor": 7
   }
 }

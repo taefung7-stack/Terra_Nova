@@ -4,46 +4,127 @@
   "confirmed": [
     {
       "severity": "warn",
-      "location": "answers.explanations[q_index=0].evidence (line 357)",
-      "issue": "해설 evidence가 본문을 직접 인용부호로 인용하면서 본문에 없는 'either'를 삽입했다. 인용부호는 원문 그대로 인용을 뜻하는데 실제 본문·구문분석과 불일치한다.",
-      "evidence": "해설: \"Every chemical reaction either gives out energy or takes it in\". 그러나 본문(page1.body) 및 page3 sentence 3은 \"Every chemical reaction gives out energy or takes it in\"으로 'either'가 없다 (segments: S \"Every chemical reaction\" / V \"gives out\" / O \"energy\" / CONJ \"or\" / V \"takes\" / O \"it\" / M \"in.\").",
-      "suggestion": "인용문에서 'either'를 삭제해 본문 원문(\"Every chemical reaction gives out energy or takes it in\")과 정확히 일치시킨다.",
-      "lens": "explanation",
+      "location": "page1.body, 2문단 2번째 문장 (page3.sentences[7] / translation_ko [7])",
+      "issue": "철의 산화(녹슴)를 \"burning\"(연소)이라고 지칭하여 과학 개념 오류를 유발한다. 녹슴은 느린 산화 반응이지 연소가 아니다. 한국어 번역이 이를 \"이 숨은 연소\"로 직역해 오개념이 더 강화된다. 본 지문은 통합과학 성취기준(10통과2-01-06) 연계 지문이므로 용어 정확성이 요구된다.",
+      "evidence": "본문: \"Inside a hand warmer, iron powder rusts quickly, and this hidden burning warms your fingers.\" / 번역: \"[7] 손난로 안에서는 철 가루가 빠르게 녹슬고, 이 숨은 연소가 손가락을 데운다.\"",
+      "suggestion": "\"this hidden burning\"을 \"this slow oxidation\" 또는 \"this quiet reaction with oxygen\"으로 바꾸고, 번역도 \"이 조용한 산화 반응이\"로 수정한다. 비유를 유지하려면 최소한 \"this slow, flameless burning\"처럼 연소가 아님을 드러내는 수식이 필요하다.",
+      "lens": "language",
       "verdict": {
         "isReal": true,
         "confidence": "high",
-        "reason": "확인됨. line 357의 evidence는 한글 인용부호(큰따옴표)로 본문을 직접 인용하는 형식(\"글은 \\\"...\\\"으로 ... 제시하고\")인데, 인용문이 \"Every chemical reaction either gives out energy or takes it in\"으로 'either'를 포함한다. 그러나 실제 본문(line 21 page1.body): \"Every chemical reaction gives out energy or takes it in.\"에는 'either'가 없고, page3 sentence 3 구문분석(line 133~139): S\"Every chemical reaction\"/V\"gives out\"/O\"energy\"/CONJ\"or\"/V\"takes\"/O\"it\"/M\"in.\"에도 'either'가 없으며, 번역문(line 349 [3]) \"모든 화학 반응은 에너지를 내놓거나 흡수한다\"에도 대응어가 없다. 'either'는 선택지(line 41 \"Chemical reactions either release or absorb heat\")에는 존재하나, evidence는 선택지가 아니라 본문(글)을 인용한다고 명시했으므로 직접 인용부호와 실제 원문이 불일치한다. 지적은 실제 결함이다."
+        "reason": "파일에서 지적 내용이 그대로 확인되며, 파일 내부 모순이 결정적 근거다.\n\n1) 원문 확인: page1.body 2문단 2번째 문장 = \"Inside a hand warmer, iron powder rusts quickly, and this hidden burning warms your fingers.\" / page3.sentences[index 7]의 segments에 { \"role\": \"S\", \"text\": \"this hidden burning\" } / translation_ko [7] = \"손난로 안에서는 철 가루가 빠르게 녹슬고, 이 숨은 연소가 손가락을 데운다.\" — 인용된 근거가 모두 정확하다.\n\n2) 개념 오류: 연소는 빛과 열을 내는 빠른 산화로 정의되며, 녹슴(철의 산화)은 통합과학에서 연소와 대비되는 '느린 산화'의 대표 사례다. 녹슴을 연소라고 부르면 해당 단원이 가르치려는 구분 자체가 뒤집힌다. 특히 바로 앞 문장(index 6)이 \"a burning candle\"이라는 실제 연소 예시이므로 다음 문장의 \"this hidden burning\"은 두 현상을 동일시하도록 유도한다. 완충 표현(a kind of, like, 따옴표)도 없다.\n\n3) 번역이 오개념을 강화: 영어 burning은 비유적 용법 여지가 있으나 한국어 \"연소\"는 과학 교과의 경성 술어다. \"이 숨은 연소\"는 녹슴이 곧 연소라고 단정한다.\n\n4) 파일 내부 모순(핵심): 같은 파일의 page2.textbook_tieback.body_ko는 \"연소, 손난로 속 철 가루의 산화, 세포 호흡\"으로 연소와 산화를 별개 항목으로 나열하고, visual_aid steps에도 \"철 가루 산화로 발열\"이라고 적어 손난로를 '산화'로 정확히 표기한다. 즉 이 지문의 교과 연계 서술부는 올바른 용어를 쓰는데 본문·번역만 '연소/burning'으로 어긋나 있다.\n\n5) 범위 정당성: meta.achievement_standard가 10통과2-01-06이고 achievement_verified가 true이며 key_concepts에 발열 반응·흡열 반응이 포함되어 용어 정밀성이 요구되는 지문이다.\n\n반박 시도로는 index 8의 \"Even a rusting fence gives off heat, though far too slowly for anyone to notice\"가 느린 반응임을 보완한다는 점, \"hidden\"이 비유 신호로 읽힐 수 있다는 점을 검토했으나, 한국어 \"연소\" 단정과 tieback과의 명시적 불일치를 상쇄하지 못한다. 수정 방향은 \"this hidden burning\"을 \"this slow oxidation\"/\"this quiet reaction\" 등으로, 번역 [7]을 \"이 숨은 산화\" 등으로 바꾸는 것이다."
       }
     },
     {
       "severity": "warn",
-      "location": "answers.explanations[q_index=3].evidence (line 397)",
-      "issue": "(B) 근거로 본문 인용 '\"the reaction is endothermic\"'를 제시하지만, 이 문구는 본문에 존재하지 않는다. 실제 본문 표현은 다르며, 해당 문구는 page4 vocab 예문(line 429)에만 있어 근거 출처가 잘못됐다.",
-      "evidence": "해설: (B) ... → 본문 \"the reaction is endothermic\". 그러나 본문(page1.body) 및 page3 sentence 4는 \"a reaction that soaks up heat instead is endothermic\"이다. \"the reaction is endothermic\"는 page4 vocab 예문 \"When it absorbs heat instead, the reaction is endothermic.\"에만 등장한다.",
-      "suggestion": "(B) 근거 인용을 실제 본문 표현 \"a reaction that soaks up heat instead is endothermic\"로 교체한다.",
+      "location": "answers.explanations[0].evidence (q_index 0)",
+      "issue": "해설이 본문을 인용부호로 직접 인용하면서 본문에 없는 단어 \"either\"를 추가했다. 학생이 본문에서 해당 문장을 찾을 때 문구가 일치하지 않아 혼동을 준다.",
+      "evidence": "해설: \"Every chemical reaction either gives out energy or takes it in\" / 실제 본문: \"Every chemical reaction gives out energy or takes it in.\"",
+      "suggestion": "해설 인용을 본문 그대로 \"Every chemical reaction gives out energy or takes it in\"으로 수정하거나, 본문을 \"Every chemical reaction either gives out energy or takes it in.\"으로 바꿔 일치시킨다(후자가 영어 표현상 더 자연스러움).",
+      "lens": "language",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "파일 확인 결과 지적이 사실이다. page1.body(21행)는 \"Every chemical reaction gives out energy or takes it in.\"이며, page3 문장 3의 구조 분석(133-139행)도 S=Every chemical reaction / V=gives out / O=energy / CONJ=or / V=takes / O=it / M=in.으로 \"either\"가 없다. 그러나 answers.explanations[0].evidence(357행)는 이스케이프된 큰따옴표로 직접 인용 형식을 취하면서 \"Every chemical reaction either gives out energy or takes it in\"이라고 적어 본문에 없는 either를 삽입했다. 직접 인용 부호를 쓴 이상 본문과 문자 그대로 일치해야 하므로, 학생이 본문에서 해당 문장을 검색·대조할 때 불일치가 발생한다. 다만 either 추가가 의미를 바꾸지는 않으므로 심각도는 낮은 인용 정확성 결함이다. 같은 배열의 explanations[3] evidence도 \"the reaction is endothermic\"으로 본문(\"a reaction that soaks up heat instead is endothermic\")과 다르게 느슨히 인용하고 있어, 이번 건이 오독이 아니라 실제 인용 편차 패턴임을 뒷받침한다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "answers.explanations[0].evidence (q_index 0, 요지)",
+      "issue": "해설의 '본문 직접 인용'이 실제 본문 문장과 다르다. 존재하지 않는 either가 삽입된 형태로 큰따옴표 인용되어 있어, 학생이 본문에서 해당 문장을 찾을 수 없다.",
+      "evidence": "해설: 글은 \"Every chemical reaction either gives out energy or takes it in\"으로 ... / 실제 본문(page1.body): \"Every chemical reaction gives out energy or takes it in.\" (page3 sentences[2] 분석도 either 없이 S+V(gives out)+O+CONJ+V(takes)+O로 태깅되어 있어 해설만 어긋남)",
+      "suggestion": "인용을 본문 그대로 \"Every chemical reaction gives out energy or takes it in\"으로 수정한다.",
       "lens": "explanation",
       "verdict": {
         "isReal": true,
         "confidence": "high",
-        "reason": "확인됨. line 397의 (B) 근거는 본문 인용으로 \"the reaction is endothermic\"를 제시하나, 이 정확한 문구는 page1.body(line 21)에도 page3 sentence 4(lines 143-158)에도 존재하지 않는다. 본문의 실제 표현은 \"a reaction that soaks up heat instead is endothermic\"이다. \"the reaction is endothermic\"라는 정확한 문구는 오직 page4 vocab 예문(line 429: \"When it absorbs heat instead, the reaction is endothermic.\")에만 등장한다. 따라서 해설이 본문에 없는 문구를 본문 인용으로 잘못 제시했고 출처가 vocab 예문으로 잘못됐다는 지적은 파일 근거로 명확히 확인되는 실제 결함이다."
+        "reason": "파일로 명확히 확인됨. page1.body(21행)의 실제 문장은 \"Every chemical reaction gives out energy or takes it in.\"으로 either가 없다. 그러나 answers.explanations[0].evidence(357행)는 큰따옴표 직접 인용 형태로 \"Every chemical reaction either gives out energy or takes it in\"이라고 적어 원문에 없는 either를 삽입했다. page3 sentences index 3(130~141행)도 S(Every chemical reaction)+V(gives out)+O(energy)+CONJ(or)+V(takes)+O(it)+M(in.)로 either 없이 태깅되어 있고, translation_ko [3]도 동일하게 either 없는 문장을 옮긴다. 즉 본문·구문분석·해석이 모두 일치하고 해설의 직접 인용만 어긋나므로, 학생이 본문에서 해당 인용문을 그대로 찾을 수 없다는 지적은 사실이다. 다만 either...or는 의미상 등가여서 정답 판정에는 영향이 없어 심각도는 낮은 표기 오류(warn) 수준이다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "answers.explanations[3].evidence (q_index 3, 요약문 빈칸 완성)",
+      "issue": "(B)의 근거로 제시한 '본문' 인용문이 본문에 존재하지 않는 문장이다. 해당 문자열은 page4 vocab의 예문에만 있고 page1.body에는 없어, '본문에서 제시된 단어를 그대로 활용할 것'이라는 조건의 근거 제시가 부정확하다.",
+      "evidence": "해설: (B)는 ... → 본문 \"the reaction is endothermic\". / 실제 본문(page1.body): \"...while a reaction that soaks up heat instead is <u>endothermic</u>.\" — 'the reaction is endothermic'이라는 문자열은 body에 없음(page4 vocab 예문 \"When it absorbs heat instead, the reaction is endothermic.\"과 혼동)",
+      "suggestion": "(B) 근거를 본문 문장인 \"a reaction that soaks up heat instead is endothermic\"으로 교체한다.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 근거로 지적이 사실로 확인됨. answers.explanations[3].evidence(라인 397)는 본문 인용 형식(본문 \\\"...\\\")으로 \\\"the reaction is endothermic\\\"을 제시하지만, page1.body(라인 21)의 실제 문장은 \\\"...while a reaction that soaks up heat instead is <u>endothermic</u>.\\\"이며 해당 문자열은 body에 존재하지 않는다. grep 결과 그 문자열은 오직 page4 vocab의 endothermic 예문(라인 429 \\\"When it absorbs heat instead, the reaction is endothermic.\\\")에만 존재하므로, vocab 예문과의 혼동이라는 지적 내용까지 정확하다. 같은 evidence의 (A) 부분 \\\"scientists call it exothermic\\\"은 body와 정확히 일치하는 축자 인용이어서, 이 필드가 축자 인용 규약을 따른다는 점이 확인되고 (B)만 규약을 위반한다. 또한 동일 파일 라인 357에도 유사한 부정확 인용(본문 \\\"Every chemical reaction gives out energy or takes it in\\\"에 없는 \\\"either\\\" 삽입)이 있어 단발성 오탐이 아니다. 다만 정답(endothermic) 자체는 타당하고 단어는 body에 실재하므로 조건 충족성이나 채점에는 영향이 없어, error가 아닌 warn 등급이 적절하다는 원 지적의 심각도 판단도 타당하다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "answers.explanations[0].evidence (q_index 0, 요지)",
+      "issue": "해설의 근거를 본문 직접 인용(큰따옴표)으로 제시했으나 실제 본문 문장과 다르다. 없는 단어 either가 삽입되어 있어, 해설을 본문과 대조하는 학생·교사에게 혼란을 준다.",
+      "evidence": "해설: \"Every chemical reaction either gives out energy or takes it in\" / 실제 본문(line 21): \"Every chemical reaction gives out energy or takes it in.\"",
+      "suggestion": "인용을 본문 그대로 \"Every chemical reaction gives out energy or takes it in\"으로 수정한다.",
+      "lens": "answer",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "지적이 사실로 확인됨. answers.explanations[0].evidence(357행)는 큰따옴표로 본문 직접 인용 형식을 취해 \"Every chemical reaction either gives out energy or takes it in\"이라 적었으나, page1.body(21행) 실제 문장은 \"Every chemical reaction gives out energy or takes it in.\"으로 either가 없다. page3 sentences[index:3](133-139행)의 분해 세그먼트(S: Every chemical reaction / V: gives out / O: energy / CONJ: or / V: takes / O: it / M: in.)에도 either 토큰이 없어 본문에 해당 단어가 부재함이 이중 확인된다. 같은 explanations 배열의 q_index 1(\"they move heat in opposite directions\"), q_index 2(\"the salt dissolves while pulling heat from everything around it\")는 본문과 정확히 일치하므로, 큰따옴표는 축자 인용 규약이며 이 사례만 규약을 위반한다. 반박 시도: (1) 의미는 동일하다 — 맞지만 지적 대상은 의미 오류가 아니라 인용 불일치이므로 반박이 되지 않음. (2) 선택지 4(\"Chemical reactions either release or absorb heat\")의 표현이 혼입된 것으로 보이나, 이는 원인 설명일 뿐 인용문 부정확성을 정당화하지 못함. 다만 정답(4)이나 근거 논리 자체는 타당하므로 warn 등급이 적절하며, q_index 3의 evidence도 \"the reaction is endothermic\"으로 본문(\"a reaction that soaks up heat instead is endothermic\")과 불일치해 동일 유형 문제가 반복됨."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "answers.explanations[3].evidence (q_index 3, 요약문 빈칸 완성)",
+      "issue": "(B) endothermic의 근거를 본문 인용처럼 제시했으나 본문에 존재하지 않는 문장이다. 조건이 \"본문에서 제시된 단어를 그대로 활용할 것\"인 서술형 문항이므로 근거 인용의 정확성이 특히 중요하다.",
+      "evidence": "해설: 본문 \"the reaction is endothermic\" / 실제 본문(line 21): \"a reaction that soaks up heat instead is <u>endothermic</u>\" — \"the reaction is endothermic\"이라는 구는 본문에 없다(page4 vocab 예문 \"When it absorbs heat instead, the reaction is endothermic.\"은 본문이 아닌 어휘 예문).",
+      "suggestion": "인용을 본문 그대로 \"a reaction that soaks up heat instead is endothermic\"으로 교체한다.",
+      "lens": "answer",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "지적이 파일 근거로 정확히 확인된다.\n\n1) 해설 인용문: line 397 `answers.explanations[3].evidence` = `(A)는 촛불처럼 열을 방출하는 반응의 이름 → 본문 \"scientists call it exothermic\". (B)는 냉찜질 팩의 염처럼 열을 끌어들이는 반응 → 본문 \"the reaction is endothermic\".` — 두 인용 모두 \"본문\"이라는 라벨로 제시된다.\n\n2) 실제 page1.body(line 21): `...scientists call it <u>exothermic</u>, while a reaction that soaks up heat instead is <u>endothermic</u>.` — (A) 인용 \"scientists call it exothermic\"은 본문에 그대로 존재하나, (B) 인용 \"the reaction is endothermic\"은 본문에 존재하지 않는다.\n\n3) grep 결과 \"the reaction is endothermic\"의 파일 내 유일한 출처는 line 429, 즉 page4.vocab[\"endothermic\"].examples[0].en = \"When it absorbs heat instead, the reaction is endothermic.\" — 본문이 아닌 어휘 예문이다. 지적의 근거주장이 문자 그대로 맞다.\n\n핵심은 비대칭성이다. (A) 인용은 축자적으로 정확하므로 병렬 구조인 (B) 인용도 동일하게 축자 인용으로 읽히지만 실제로는 날조된 문장이다. 게다가 해당 문항(line 74)의 조건이 \"본문에서 제시된 단어를 그대로 활용할 것\"이므로, 해설의 역할은 학생을 본문의 정확한 근거 위치로 안내하는 것이다. 본문을 검색해도 없는 문장을 근거로 제시한 것은 이 조건형 서술형 문항에서 특히 부적절하다.\n\n같은 파일 line 357(q_index 0)에서도 본문은 \"Every chemical reaction gives out energy or takes it in\"인데 해설은 \"Every chemical reaction either gives out energy or takes it in\"으로 either를 삽입해 인용하고 있어, 이 파일의 인용 충실도 문제가 1회성 착오가 아닌 반복 패턴임을 보여준다.\n\n다만 심각도는 제한적이다: 정답 자체(endothermic)는 옳고 page1.body에 <u>endothermic</u>으로 실재하므로 학생이 오답으로 유도되지는 않는다. 정답 오류가 아니라 해설 인용 정확성 결함(warn 등급이 타당)이다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page4.vocab[3] (word: \"dissolve\") — synonyms",
+      "issue": "synonyms의 \"melt away\"가 의미 불일치. melt away는 '서서히 사라지다/녹아 없어지다'라는 뜻의 구동사로, 용매에 용해된다는 본문 의미를 나타내지 못한다. 또한 이 지문은 용해(dissolve)와 융해(melt)를 구분해 다루므로 두 개념을 동일시하면 연계 단원 개념을 흐린다.",
+      "evidence": "본문: \"the salt dissolves while pulling heat from everything around it\" (염이 물에 용해됨) / 같은 파일 page4.vocab[1] endothermic 예문은 융해를 별도로 제시: \"Melting ice is an endothermic change.\" (\"얼음이 녹는 것은 흡열 변화다.\") / meta.linked_unit: \"통합과학2 화학 반응과 열의 출입\"",
+      "suggestion": "synonyms를 [\"break down in liquid\"] 대신 용해 의미가 분명한 [\"go into solution\"] 또는 학년 수준을 고려해 [\"melt in water\"]가 아닌 [\"become dissolved\"] 계열로 바꾸거나, 정확한 동의어가 없으면 빈 배열로 둔다.",
+      "lens": "vocab",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 확인 결과 지적이 사실로 확인됨. page4.vocab[3] (line 445-453)의 word \"dissolve\", meaning_ko \"녹다, 용해되다\"에 대해 line 448에서 synonyms: [\"melt away\"]가 설정되어 있음.\n\n근거 1 (의미 불일치): \"melt away\"는 구동사로 주된 의미가 '서서히 사라지다/자취를 감추다'(his fears melted away)이며, 부차적으로 '열에 의해 녹아 없어지다'임. 용매에 용해된다는 dissolve의 의미(meaning_ko \"용해되다\")를 나타내지 못함. 해당 항목의 두 예문 모두 용해임 — line 451 \"The salt dissolves and pulls heat from its surroundings\", line 452 \"Sugar dissolves quickly in warm water\" — 어느 쪽도 \"melt away\"로 치환 불가.\n\n근거 2 (개념 혼동): 같은 파일이 융해를 별도 개념으로 명시적으로 분리 제시함. line 430 endothermic 예문 \"Melting ice is an endothermic change.\" / \"얼음이 녹는 것은 흡열 변화다.\" 반면 본문(line 21)과 line 383 해설은 용해를 \"the salt dissolves while pulling heat from everything around it\"로 다룸. meta.linked_unit(line 8) \"통합과학2 화학 반응과 열의 출입\" 단원에서 용해열과 융해열은 구분되는 개념이므로 두 개념을 동일시하는 synonym은 연계 단원 학습을 저해함.\n\n근거 3 (파일 내 일관성 위반): 다른 vocab 항목의 synonyms는 직접적 의미 등가어를 사용함 — absorb → [\"soak up\", \"take in\"] (line 470), rust → [\"corrode\"] (line 481), combine → [\"merge\", \"unite\"] (line 535). \"melt away\"만 의미 등가성이 성립하지 않음.\n\n반박 검토: \"녹다\"라는 한국어가 구어에서 용해·융해를 모두 포괄한다는 반론이 가능하나, 등재된 synonym이 \"melt\"가 아니라 구동사 \"melt away\"이고 이는 영어에서 dissolve와 등가가 아니며, 과학 단원 맥락에서는 melt조차 부적절하므로 반박 성립하지 않음. 다만 정답 키나 본문 오류가 아닌 어휘 보조 자료 품질 문제이므로 warn 등급이 적절함."
       }
     }
   ],
   "minors": [
     {
       "severity": "minor",
-      "location": "answers.explanations[0].evidence (q_index 0)",
-      "issue": "해설의 본문 인용이 실제 지문과 다르게 'either'를 삽입해 부정확하게 인용함. 정답 타당성에는 영향 없음.",
-      "evidence": "해설 인용: \"Every chemical reaction either gives out energy or takes it in\" / 실제 본문(page1, page3 sentence 3): \"Every chemical reaction gives out energy or takes it in\" (either 없음)",
-      "suggestion": "인용문에서 'either'를 삭제하여 본문과 일치시키거나, 근거를 요약 서술로 바꾼다.",
-      "lens": "answer"
+      "location": "page1.body, 3문단 3번째 문장 (page3.sentences[14])",
+      "issue": "등위접속사 and로 묶인 두 절의 화제가 서로 무관하다. 앞절은 냉찜질 팩이 차갑게 느껴지는 '결과' 설명이고, 뒷절은 베이킹 소다라는 완전히 새로운 예시다. 한 문장 안에 결과 진술과 신규 예시를 병렬로 붙여 논리 전개의 가독성이 떨어진다.",
+      "evidence": "\"That is why the pack feels icy on a swollen ankle, and baking soda also takes in heat when it breaks down in a hot oven.\"",
+      "suggestion": "두 문장으로 분리한다. 예: \"That is why the pack feels icy on a swollen ankle. Baking soda also takes in heat when it breaks down in a hot oven.\"",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko 문장 [15]",
+      "issue": "'on a grand scale'을 '훨씬 큰 규모로'로 옮기면서 원문에 없는 비교급 강조어('훨씬')를 덧붙임. 원문은 단순히 '대규모로'라는 뜻이며 비교 대상이 명시되어 있지 않다.",
+      "evidence": "영문: \"Photosynthesis works the same way on a grand scale, as plants absorb sunlight to build sugar, storing energy inside chemical bonds.\" / 번역: \"[15] 광합성도 훨씬 큰 규모로 같은 방식으로 작동하는데, 식물은 당을 만들기 위해 햇빛을 흡수하며 화학 결합 안에 에너지를 저장한다.\" (page4 vocab의 photosynthesis 예문 번역에서도 동일하게 '훨씬 큰 규모로'로 처리됨)",
+      "suggestion": "'광합성도 아주 큰 규모로 같은 방식으로 작동하는데' 또는 '대규모로'로 수정",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko 문장 [8]",
+      "issue": "'far too slowly'의 강조 부사 'far'가 번역에서 누락되어 강조 정도가 약해짐.",
+      "evidence": "영문: \"Even a rusting fence gives off heat, though far too slowly for anyone to notice.\" / 번역: \"[8] 녹스는 울타리조차 열을 내보내지만, 누구도 알아차리기에는 너무 느리다.\"",
+      "suggestion": "'누구도 알아차리기에는 훨씬 너무 느리다' → 자연스럽게 '너무나 느려서 아무도 알아차리지 못한다' 정도로 강조 반영",
+      "lens": "translation"
     }
   ],
   "blockers": [],
   "counts": {
-    "raw": 3,
-    "verified": 2,
-    "confirmed": 2,
-    "minor": 1
+    "raw": 12,
+    "verified": 9,
+    "confirmed": 7,
+    "minor": 3
   }
 }

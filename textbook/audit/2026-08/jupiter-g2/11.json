@@ -4,46 +4,350 @@
   "confirmed": [
     {
       "severity": "warn",
-      "location": "answers.explanations[q_index=0].evidence / rationales, and [q_index=1].evidence, [q_index=2].evidence",
-      "issue": "해설의 근거 인용 번호('2번','3번','4번','6번','8번','9번')가 학생이 볼 수 있는 유일한 번호 체계(page3 sentences 1~20)와 어긋난다. 실제로는 훨씬 뒤 문장을 가리키므로 근거 추적이 오도된다.",
-      "evidence": "q_index=2 evidence: \"9번은 학자들이 refusing to surrender every judgment ... 지킨다고 하고, 그 앞 8번은 어떤 관습도 비판을 넘어서면 잔인함이 전통 뒤에 숨는다고 경고한다\"고 하지만, 해당 내용은 page3 sentences index 18(\"If any practice were beyond criticism ... cruelty could hide behind the word tradition\")·index 19(\"most scholars keep understanding while refusing to surrender every judgment\")에 있다. page3의 실제 8번(index 8)은 \"A tropical valley shapes life around entirely different materials.\", 9번(index 9)은 \"Neither group is closer to one correct way of living.\"로 전혀 다른 내용이다. 또 q_index=1 evidence의 \"2번 has slowly shaped its way ... to fit the land\"은 실제로는 index 4, \"3번 a learned answer to the particular problems a group has faced\"은 실제로는 index 5 문장이다.",
-      "suggestion": "인용 번호를 page3 sentences의 실제 index(예: 잔인함=18번, 판단 유보 거부=19번, has slowly shaped=4번, a learned answer=5번)로 통일하거나, 문장 번호 대신 영어 원문 인용만 남긴다. 정답 자체는 옳음.",
+      "location": "page1.body 4단락 — \"So most scholars keep understanding while refusing to surrender every judgment.\"",
+      "issue": "'keep understanding'이 중의적이다. keep + V-ing는 영어에서 기본적으로 '계속 ~하다'로 읽히므로 '계속 이해한다'라는 미완결 문장처럼 들린다. 의도는 '이해(라는 태도)를 유지한다'인데, 목적어 명사가 없어 어색한 비문에 가깝다. page3의 문법 해설이 이를 '동명사 목적어'로 단정한 것도 자연스러운 독해와 충돌해 학습자에게 혼동을 준다.",
+      "evidence": "본문: \"most scholars keep understanding while refusing to...\" / page3 index 19 grammar_note: \"keep O(동명사) + while 분사구문 (refuse to-V)\"",
+      "suggestion": "목적어를 명시해 중의성을 제거한다: \"So most scholars keep their understanding while refusing to surrender all judgment.\" 또는 \"So most scholars hold on to understanding while refusing to give up judgment altogether.\"",
+      "lens": "language",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일에서 지적 내용이 그대로 확인되며, 파일 내부의 다른 필드들이 오히려 결함을 입증한다.\n\n1) 본문(line 21, page1.body 4단락): \"So most scholars keep understanding while refusing to <u>surrender every judgment</u>.\" — 인용 그대로 존재.\n\n2) 자연스러운 독해는 'keep + V-ing = 계속 ~하다'이다. 특히 바로 뒤에 \"while refusing\"이라는 while + V-ing 부사구가 병렬로 붙어 있어 'keep understanding while refusing'은 두 개의 진행 동작으로 읽히도록 강하게 유도된다. 이때 understanding에 목적어가 없어 '무엇을 계속 이해하는가'가 비는 미완결 문장으로 들린다.\n\n3) 저자의 의도는 명사 목적어 독해임이 파일 내에서 확인된다. translation_ko(line 325) [19]: \"대부분의 학자는 모든 판단을 내주기를 거부하면서 **이해를 지킨다**\" — 즉 '이해(라는 것)를 유지한다'. page4 vocab surrender 예문(line 527)도 동일하게 \"이해를 지킨다\"로 번역. 영어의 기본 독해('계속 이해한다')와 인쇄된 번역('이해를 지킨다')이 서로 다르다.\n\n4) page3 index 19 grammar_note(line 309) \"keep O(동명사) + while 분사구문 (refuse to-V)\" 및 segments(line 306) role \"O\" = \"understanding\". 이 해설은 내부적으로 모순된다. keep + 동명사는 바로 '계속 ~하다'라는 상(aspect) 구문인데, 이를 '목적어(O)'로 단정해 '이해를 유지한다'는 뜻으로 처리했다. 즉 '계속 ~하다' 독해를 낳는 구조를 불러오면서 뜻은 '~을 유지한다'로 설명하는 충돌이다.\n\n5) 같은 파일 index 15(line 257)는 \"understanding a reason\"에 \"동명사 주어\" 주석을 달았는데, 거기서는 동명사가 목적어(a reason)를 가져 분석이 명확하다. index 19는 목적어 없는 맨 understanding이라 keep V-ing 독해로 기울며, 이 대비가 결함을 부각한다.\n\n6) 해설(line 367)은 \"이해의 **습관**을 지킨다\"로 '습관'이라는 명사를 보충해 의역했다. 영어 원문의 bare understanding이 의도한 의미를 스스로 전달하지 못함을 저자 측도 사실상 보완한 흔적이다.\n\n반론 검토: keep + 추상명사(keep faith, keep silence)는 문법적으로 가능하므로 이 문장이 비문은 아니다. 그러나 지적의 요지는 비문 주장이 아니라 (a) 기본 독해와 의도 의미의 불일치로 인한 중의성, (b) page3 문법 해설이 자연스러운 독해와 충돌해 학습자에게 혼동을 준다는 것이며, 두 가지 모두 파일 근거로 확인된다. 특히 page3이 문장 구조 분해를 명시적으로 제공하는 고교 학습 교재(1020L)라는 성격상, 인쇄된 구조 해설·번역이 가장 자연스러운 파싱과 어긋나는 것은 실질적 결함이다."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "answers.explanations[0].evidence / rationales (q_index 0, 요지)",
+      "issue": "해설이 인용하는 문장 번호가 학생이 볼 수 있는 어떤 번호 체계와도 일치하지 않는다. page3.sentences와 translation_ko는 1~20번으로 매겨져 있고 본문 단락은 4개뿐인데, 해설은 4번·6번·8~9번을 근거로 든다. 학생이 해당 번호를 찾아가면 전혀 다른 내용이 나온다.",
+      "evidence": "evidence: \"문화가 유전이 아니라 학습된 답이라 장소마다 다르며(4번), 각 관습을 그 맥락에서 이해하는 문화 상대주의를 권하되(6번), 잔인함이 전통 뒤에 숨지 않도록 모든 판단을 포기하지는 않는다(8~9번)\". 그러나 실제 4번은 \"Each community has slowly shaped its way of eating, dressing, and greeting...\"이고, 6번은 \"Because culture is learned rather than inherited, it changes from place to place.\"이며, 8~9번은 \"A tropical valley shapes life around entirely different materials.\" / \"Neither group is closer to one correct way of living.\"이다. 상대주의 권고는 12~13번, 판단 포기 거부는 18~19번이다.",
+      "suggestion": "page3.sentences 인덱스 기준으로 재매핑할 것: 학습성·장소차 → 5~6번, 상대주의 권고 → 12~13번, 판단 유보의 한계 → 18~19번. 또는 01.json/13.json처럼 영어 원문을 직접 인용하는 방식으로 통일.",
       "lens": "explanation",
       "verdict": {
         "isReal": true,
         "confidence": "high",
-        "reason": "파일 검증 결과 지적이 정확하다. 학생이 볼 수 있는 유일한 번호 체계는 page3.sentences의 index 1~20이며, 이는 translation_ko의 [1]~[20]과 1:1로 정확히 일치한다. 그런데 answers.explanations의 근거 인용 번호가 이 체계와 체계적으로 어긋난다.\n\nq_index=1 evidence: \"2번 has slowly shaped its way ... to fit the land, the climate, and the history\"라고 하지만 이 문장은 실제 index 4다. index 2는 \"He often decides that one habit is refined and the other is crude.\"이다. \"3번 a learned answer to the particular problems a group has faced\"는 실제 index 5이며, index 3은 \"Yet a custom that looks odd from the outside is rarely an accident.\"이다.\n\nq_index=2 evidence: \"9번은 학자들이 refusing to surrender every judgment\"는 실제 index 19(\"So most scholars keep understanding while refusing to surrender every judgment\")이고, index 9는 \"Neither group is closer to one correct way of living.\"이다. \"8번은 ... 잔인함이 전통 뒤에 숨는다\"는 실제 index 18이며, index 8은 \"A tropical valley shapes life around entirely different materials.\"이다.\n\nq_index=0 evidence도 마찬가지로 \"장소마다 다르며(4번)\"는 실제 index 6, \"문화 상대주의를 권하되(6번)\"는 실제 index 12~13, \"모든 판단을 포기하지 않는다(8~9번)\"는 실제 index 18~19를 가리킨다.\n\n모든 인용 번호가 실제 훨씬 뒤 문장을 가리켜 근거 추적이 오도되며, 파일 근거로 명확히 확인되는 실제 결함이다."
+        "reason": "파일 근거로 확인됨. answers.explanations[0].evidence는 '문화가 유전이 아니라 학습된 답이라 장소마다 다르며(4번), ... 문화 상대주의를 권하되(6번), ... 모든 판단을 포기하지는 않는다(8~9번)'라고 인용하지만, page3.sentences와 translation_ko의 실제 번호는 다음과 같다: index 4 = 'Each community has slowly shaped its way of eating, dressing, and greeting to fit the land, the climate, and the history around it.'(학습/장소 변이 아님), index 6 = 'Because culture is learned rather than inherited, it changes from place to place.'(상대주의 권고 아님), index 8 = 'A tropical valley shapes life around entirely different materials.', index 9 = 'Neither group is closer to one correct way of living.'(판단 포기 거부 아님). 지적이 제시한 정정값도 정확하다 — 상대주의 권고는 index 12('The better choice is to read each custom inside its own context.')~13('This attitude, known as cultural relativism, asks us...'), 모든 판단 포기 거부는 index 18('If any practice were beyond criticism, then cruelty could hide behind the word tradition...')~19('So most scholars keep understanding while refusing to surrender every judgment.')다.\n\n대안 번호 체계로 구제되지 않는다. 학생이 볼 수 있는 번호는 page3.sentences의 index 1~20과 translation_ko의 [1]~[20] 두 가지뿐이며 둘은 서로 완전히 일치한다. 본문 단락은 4개뿐이라 단락 번호로도 8~9번을 설명할 수 없고, page2 선택지 번호(5개)나 page4 vocab 순서와도 대응하지 않는다.\n\n또한 이는 단일 오타가 아니라 파일 전반의 계통적 오프셋이다. q_index 1 evidence는 'has slowly shaped its way...'를 2번(실제 4번), 'a learned answer to the particular problems a group has faced'를 3번(실제 5번)으로 인용하고, q_index 2 evidence는 'refusing to surrender every judgment'를 9번(실제 19번), 그 앞 경고를 8번(실제 18번)으로 인용하며, q_index 3 evidence는 'culture is learned rather than inherited'를 4번(실제 6번), 'read each custom inside its own context'를 '7번 앞'(실제 12번)으로 인용한다. 즉 해설 4개 전부가 page3에 존재하지 않는 축약된 문장 분할 기준을 쓰고 있어, 학생이 인용 번호를 따라가면 매번 무관한 문장에 도달한다. 지적은 q_index 0을 위치로 특정했으나 해당 위치의 사실 주장 자체가 파일과 정확히 부합하므로 유효한 결함이다."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "answers.explanations[1].evidence / rationales (q_index 1, 빈칸 추론)",
+      "issue": "빈칸 추론의 근거 문장 번호가 모두 어긋난다. 정답 근거로 제시한 '2번·3번'이 실제로는 4번·5번이며, rationales의 '4번', '상대주의(6번)'도 실제 내용과 맞지 않는다. 정답 자체(index 3)는 옳으나 근거 추적이 불가능하다.",
+      "evidence": "evidence: \"2번 \\\"has slowly shaped its way ... to fit the land, the climate, and the history\\\"와 3번 \\\"a learned answer to the particular problems a group has faced\\\"가 단서다.\" 실제 page3.sentences에서 \"has slowly shaped\"는 index 4, \"a learned answer to the particular problems\"는 index 5다. index 2는 \"He often decides that one habit is refined and the other is crude.\", index 3은 \"Yet a custom that looks odd from the outside is rarely an accident.\"이다.",
+      "suggestion": "'2~3번'을 '4~5번'으로, rationales의 '상대주의(6번)'를 '12~13번'으로, '4번'을 '6번'으로 수정.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 검증 결과 지적의 모든 사실 주장이 정확히 확인된다. page3.sentences의 index는 translation_ko의 [1]~[20] 번호와 정확히 일치하므로 파일 내에 권위 있는 문장 번호 체계가 존재하며, 그 기준으로 판정하면 다음이 모두 어긋난다. (1) answers.explanations[1].evidence가 단서로 제시한 \"has slowly shaped its way ... to fit the land, the climate, and the history\"는 실제 index 4(2번 아님), \"a learned answer to the particular problems a group has faced\"는 실제 index 5(3번 아님)다. index 2는 \"He often decides that one habit is refined and the other is crude.\", index 3은 \"Yet a custom that looks odd from the outside is rarely an accident.\"로 인용 내용과 전혀 무관하다. (2) rationales도 동일하게 어긋난다: rationale[0]의 '2번'과 rationale[3]의 '2~3번'은 실제 4~5번이고, rationale[4]가 '문화가 장소마다 달라진다는 4번'이라 한 내용은 실제 index 6이며, rationale[2]의 '상대주의(6번)'는 실제로 index 12~13(\"The better choice is to read each custom inside its own context\" / \"This attitude, known as cultural relativism\")이고 index 6은 상대주의가 아니라 문화의 학습성·가변성 문장이다. (3) 오프셋이 -2와 -6/-7로 일관되지 않아 '다른 번호 체계를 쓴 것'이라는 방어가 불가능하다. 동일 결함이 explanations[0]('4번','6번','8~9번')과 explanations[3]('4번','7번 앞')에도 퍼져 있어 국소 오타가 아니라 answers 블록 전반의 근거 추적 불능 문제다. 다만 정답 자체(answer_index 3, \"solve the problems of its own place\")는 sentence 20의 \"trying to solve the problems of its own place\"와 일치하여 옳으며, 지적도 이를 정확히 인정하고 있다. 학습자가 해설의 근거 문장을 따라갈 수 없게 만드는 실제 결함이 맞다."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "answers.explanations[2].evidence (q_index 2, 함의 추론)",
+      "issue": "밑줄 표현이 실제로 등장하는 문장 번호를 잘못 지시한다. 'surrender every judgment'가 있는 문장을 9번이라 했으나 실제로는 19번이고, '그 앞 8번'이라 한 가정법 경고 문장은 18번이다.",
+      "evidence": "evidence: \"9번은 학자들이 \\\"refusing to surrender every judgment\\\"하며 이해의 습관을 지킨다고 하고, 그 앞 8번은 어떤 관습도 비판을 넘어서면 잔인함이 전통 뒤에 숨는다고 경고한다.\" 실제 index 19 = \"So most scholars keep understanding while refusing to surrender every judgment.\", index 18 = \"If any practice were beyond criticism, then cruelty could hide behind the word tradition...\". index 8~9는 \"A tropical valley shapes life...\" / \"Neither group is closer...\"로 논지와 무관하다.",
+      "suggestion": "'9번'→'19번', '8번'→'18번'으로 수정.",
+      "lens": "explanation",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "파일로 확인됨. page3.sentences의 index 19 = \"So most scholars keep understanding while refusing to surrender every judgment.\", index 18 = \"If any practice were beyond criticism, then cruelty could hide behind the word tradition, and no shared human right could be defended.\" 이며 translation_ko의 [18]/[19]도 동일하게 대응한다. 반면 index 8 = \"A tropical valley shapes life around entirely different materials.\", index 9 = \"Neither group is closer to one correct way of living.\"로 해당 논지와 무관하다. 그럼에도 answers.explanations[2].evidence(줄 367)는 밑줄 표현을 \"9번\", 가정법 경고를 \"그 앞 8번\"으로 지시하며, rationales[2](줄 371)도 \"8번의 경고대로\"라고 잘못된 번호를 반복한다. 파일 내 유일하게 정의된 문장 번호 체계(page3 sentences[].index 1~20, translation_ko [1]~[20]와 일치)를 기준으로 정확히 10만큼 어긋난 오지시이며, 학습자에게 노출되는 해설의 사실 오류다. 참고로 동일한 off-by-10 패턴이 explanations[0](4/6/8~9번), [1](2번/3번), [3](4번/\"7번 앞\")에도 나타나 체계적 결함으로 보이나, 이는 지적을 약화시키지 않고 오히려 범위를 넓힌다."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "answers.explanations[3].evidence (q_index 3, 요약문 빈칸 완성)",
+      "issue": "서술형 정답의 근거 위치 지시가 모두 틀렸다. (A) 근거를 '4번', (B) 근거를 '7번 앞'이라 했으나 실제는 각각 6번과 12번이다. 게다가 '7번 앞'이라는 표현은 20문장 체계에서 지시 대상이 특정되지 않는다.",
+      "evidence": "evidence: \"(A)는 문화가 유전이 아니라 무엇인지 → 4번 \\\"culture is learned rather than inherited\\\". (B)는 관습을 그 안에서 읽어야 하는 것 → 7번 앞 \\\"read each custom inside its own context\\\".\" 실제 \"culture is learned rather than inherited\"는 index 6, \"to read each custom inside its own context\"는 index 12(\"The better choice is to read each custom inside its own context.\")다.",
+      "suggestion": "'4번'→'6번', '7번 앞'→'12번'으로 수정.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일로 직접 확인됨. page3.sentences는 index 1~20 체계이며, \"culture is learned rather than inherited\"는 index 6(sentences[5], \"Because culture is learned rather than inherited, it changes from place to place.\"), \"to read each custom inside its own context\"는 index 12(\"The better choice is to read each custom inside its own context.\")다. 그러나 answers.explanations[3].evidence는 각각 \"4번\", \"7번 앞\"이라 지시한다. 실제 4번은 \"Each community has slowly shaped its way of eating, dressing, and greeting...\", 7번은 \"A society in a cold region builds its meals and festivals...\"로 인용된 문구를 담고 있지 않다. \"7번 앞\"을 6번으로 해석해도 그것은 (B)의 context 문장이 아니라 (A)의 learned 문장이라 지시 대상이 특정되지 않는다는 지적도 타당하다.\n\n다만 반박 시도 결과 한 가지 정상참작 사유가 있다: 이 오번호는 explanations[3] 고유 결함이 아니라 파일 전체에 공통된다. explanations[1]은 index 4 내용을 \"2번\", index 5를 \"3번\"이라 하고, explanations[2]는 index 19를 \"9번\", index 18을 \"8번\"이라 한다. 매핑 편차가 +2, +2, +6, +10으로 일정하지 않아 별도의 일관된 대체 번호 체계(문단별 번호 등)로 방어할 수 없고, 최종 20문장 분할 이전의 낡은 번호가 갱신되지 않은 채 남은 것으로 보인다. 따라서 지적된 사실관계 자체는 100% 정확하며, 오히려 범위가 explanations 전체로 더 넓다."
       }
     },
     {
       "severity": "warn",
-      "location": "answers.explanations[*].evidence / rationales (q_index 0,1,2,3)",
-      "issue": "해설의 근거 인용에 쓰인 '~번' 문장 번호가 page3의 실제 문장 번호(1~20)와 전혀 맞지 않는다. 정답 자체는 모두 옳으나, 교사가 근거를 추적할 때 잘못된 문장을 가리켜 혼란을 준다.",
-      "evidence": "Q1 evidence: '장소마다 다르며(4번)'라 했으나 '장소마다 달라진다(changes from place to place)'는 실제로 문장[6]이고, 문장[4]는 'Each community has slowly shaped its way...'다. 또 '문화 상대주의를 권하되(6번)'라 했으나 relativism 설명은 문장[12]~[13]('The better choice is to read each custom inside its own context. This attitude, known as cultural relativism...')이며 문장[6]은 relativism이 아니다. '모든 판단을 포기하지는 않는다(8~9번)'라 했으나 'refusing to surrender every judgment'는 문장[19]다. Q2 evidence도 '2번 \"has slowly shaped...\"', '3번 \"a learned answer to the particular problems\"'라 인용하나 이는 각각 문장[4], 문장[5]다. Q4 evidence '7번 앞 \"read each custom inside its own context\"'도 실제로는 문장[12]다.",
-      "suggestion": "해설의 '~번' 인용을 page3의 실제 문장 번호(1~20) 체계에 맞게 전면 재정렬하거나, 문장 번호 대신 단락 기준으로 통일해 근거 추적이 가능하도록 수정.",
+      "location": "page3.sentences[1].grammar_note (index 2)",
+      "issue": "grammar_note의 '(병렬 보어)' 라벨이 부정확하다. refined와 crude는 하나의 절 안에서 병렬된 보어가 아니라, that절 내부에서 등위접속된 두 개의 독립된 절(one habit is refined / the other is crude)의 각각의 보어다. 병렬 단위는 보어가 아니라 절이다.",
+      "evidence": "segments: { \"role\": \"O\", \"text\": \"that one habit is refined and the other is crude.\", \"note\": \"that 명사절 (목적어)\" } / grammar_note: \"decide that 명사절 + 빈도부사 often (병렬 보어)\"",
+      "suggestion": "'(병렬 보어)'를 '(that절 내 등위절 병렬: one ~ the other)'로 수정.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "지적이 타당하다. page3.sentences[1] (index 2, line 115)의 grammar_note는 \"decide that 명사절 + 빈도부사 often (병렬 보어)\"인데, 해당 문장 \"He often decides that one habit is refined and the other is crude.\"에서 and로 등위접속된 단위는 보어가 아니라 [one habit is refined] / [the other is crude]라는 두 개의 완전한 절(각각 S+V+C)이다. 하나의 주어·동사가 두 보어를 공유하는 구조(예: \"refined and elegant\")가 아니므로 \"병렬 보어\"는 부정확하다.\n\n파일 자체의 라벨링 관례가 이를 뒷받침한다: (1) line 113에서 that절 전체가 단일 \"O\" 세그먼트로 처리되어 이 문장 세그먼트에는 \"C\" role이 아예 존재하지 않는데, 존재하지 않는 성분을 병렬 단위로 명명했다. (2) 반면 sentence 5(line 144,148,151)와 sentence 20(line 317-318)은 실제로 보어가 병렬일 때 \"C\" 세그먼트를 두 개 부여하고 각각 \"not A; it is B 병렬\", \"not A but B\"로 표기한다. (3) sentence 4(line 137)는 진짜 구 단위 병렬을 \"(동명사 병렬 목적어)\"로 정확히 표기한다. 즉 이 파일은 병렬 단위를 정확히 명시하는 관례를 지키고 있으며, sentence 2만 절 단위 등위접속을 보어 병렬로 잘못 명명했다. 정확한 표기는 \"병렬 절\" 또는 \"one ~ the other 대조\" 등이 되어야 한다.\n\n다만 심각도는 낮은 편(warn 수준 적정)이다. segments 배열과 \"that 명사절 (목적어)\" 주석 자체는 정확하고, 정답 키나 해설에는 영향이 없는 보조 문법 라벨의 부정확성이다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.translation_ko 문장 [18] (원문 page1.body 4단락)",
+      "issue": "영어 관용구 \"beyond criticism\"(비판의 여지가 없는 / 비판할 수 없는)을 \"비판을 넘어선다\"로 축자 직역해 의미가 왜곡됨. 한국어에서 '비판을 넘어서다'는 '비판을 초월할 만큼 훌륭하다'로 읽히기 쉬워, 본문이 경계하는 '어떤 관습도 비판 대상이 될 수 없다면'이라는 극단적 상대주의의 가정이 학생에게 전달되지 않음. 이 문장은 3번 문항(함의 추론, surrender every judgment)의 핵심 근거 문장이라 오독 시 정답 도출 경로가 끊김.",
+      "evidence": "영문: \"If any practice were beyond criticism, then cruelty could hide behind the word tradition, and no shared human right could be defended.\" / 번역: \"[18] 만약 어떤 관습이든 비판을 넘어선다면, 잔인함이 전통이라는 말 뒤에 숨을 수 있고, 어떤 공유된 인권도 지켜질 수 없을 것이다.\" (동일 오역이 page4 vocab 'criticism' 예문 ko에도 반복: \"어떤 관습이든 비판을 넘어선다면 잔인함이 숨을 수 있다.\")",
+      "suggestion": "\"만약 어떤 관습이든 비판할 수 없는 것이 된다면\" 또는 \"어떤 관습이든 비판의 대상에서 벗어난다면\"으로 수정. page4 vocab 'criticism' 예문 번역도 동일하게 정정.",
+      "lens": "translation",
+      "verdict": {
+        "confidence": "medium",
+        "isReal": true,
+        "reason": "파일 근거로 지적 내용이 그대로 확인된다. line 325의 translation_ko 문장 [18]은 \"만약 어떤 관습이든 비판을 넘어선다면, 잔인함이 전통이라는 말 뒤에 숨을 수 있고...\"이고, line 494 page4 vocab 'criticism' 예문 ko에도 \"어떤 관습이든 비판을 넘어선다면 잔인함이 숨을 수 있다.\"로 동일 표현이 반복된다. 원문(line 21) \"If any practice were beyond criticism\"의 \"beyond criticism\"은 \"비판이 미치지 않는 / 비판 대상이 될 수 없는\"이라는 고정 관용구인데, 한국어 \"~을 넘어서다\"는 통상 '초월하다/능가하다'(한계를 넘어서다, 기대를 넘어서다)로 읽혀 '비판할 수 없음(면제)'이 아니라 '비판을 초월할 만큼 훌륭함'으로 오독될 소지가 크다. 이 문장은 본문이 경계하는 극단적 상대주의의 전제를 담고 있고(tieback line 82 \"극단적 상대주의는 경계해야 한다\"), 1번 문항 오답 2번(\"no custom can ever be questioned or criticized at all\")을 반박하는 해설(line 336)도 같은 모호한 표현을 재사용하므로 개념 전달이 흐려진다. 다만 지적 중 \"3번 문항 정답 도출 경로가 끊긴다\"는 과장이다. 3번의 실제 근거는 문장 [19] \"모든 판단을 내주기를 거부하면서\"(line 325, 원문 refusing to surrender every judgment)이며 이 번역은 정확해 정답 경로 자체는 유지된다. 또한 [18]의 귀결절(\"잔인함이 전통 뒤에 숨을 수 있고\")이 문맥상 의미를 부분적으로 복구해 준다. 따라서 치명적 오류는 아니지만, 관용구를 축자 직역해 핵심 개념어의 의미가 흐려진 warn 등급 번역 결함으로는 실재한다. 권장 수정: \"어떤 관습이든 비판의 대상이 될 수 없다면\" 또는 \"비판을 받을 수 없는 것이라면\"(page3 [18] 및 page4 vocab 'criticism' 예문 두 곳 동일 적용)."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "answers.explanations[0].evidence / rationales (q_index 0, 요지)",
+      "issue": "해설이 인용하는 본문 문장 번호가 page3.sentences의 실제 index와 전부 어긋난다. 학생이 지시된 문장을 찾아가면 전혀 다른 내용이 나온다.",
+      "evidence": "해설: \"문화가 유전이 아니라 학습된 답이라 장소마다 다르며(4번)\" / \"문화 상대주의를 권하되(6번)\" / \"모든 판단을 포기하지는 않는다(8~9번)\". 그러나 page3 [4]는 \"Each community has slowly shaped its way of eating, dressing, and greeting\", [6]은 \"Because culture is learned rather than inherited, it changes from place to place\", [8]은 \"A tropical valley shapes life around entirely different materials\", [9]는 \"Neither group is closer to one correct way of living.\" 상대주의는 [12]~[13], 판단의 한계는 [17]~[19]다. rationales도 동일하게 \"8번은 ... 잔인함이 전통 뒤에 숨는다\"(실제 [18]), \"4번 '문화는 장소마다 달라진다'\"(실제 [6]), \"5번은 자기 관습의 잣대로 ... 자문화 중심주의\"(실제 [10]~[11])로 어긋난다.",
+      "suggestion": "정답 자체(answer_index 0)는 타당하므로 근거 문장 번호만 page3 index 기준으로 수정: 학습성 → [5]·[6], 상대주의 → [12]·[13], 판단의 한계 → [17]~[19], 자문화중심주의 → [10]·[11].",
+      "lens": "answer",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "확인됨. answers.explanations[0]의 evidence/rationales가 인용하는 문장 번호가 page3.sentences의 실제 index 및 translation_ko의 [n] 번호와 전부 어긋난다.\n\nevidence: \"학습된 답이라 장소마다 다르며(4번)\" → 해당 내용(\"Because culture is learned rather than inherited, it changes from place to place\")은 실제 [6]이고, [4]는 \"Each community has slowly shaped its way of eating, dressing, and greeting...\"이다. \"문화 상대주의를 권하되(6번)\" → 상대주의는 실제 [12]~[13](\"The better choice is to read each custom inside its own context\" / \"known as cultural relativism\"). \"모든 판단을 포기하지는 않는다(8~9번)\" → 실제 [18]~[19]이며, [8]은 \"A tropical valley shapes life around entirely different materials\", [9]는 \"Neither group is closer to one correct way of living.\"이다.\n\nrationales도 동일: \"8번은 ... 잔인함이 전통 뒤에 숨는다\"(실제 [18]), \"4번 '문화는 장소마다 달라진다'\"(실제 [6]), \"5번은 자기 관습의 잣대로 ... 자문화 중심주의\"(실제 [10]~[11]; [5]는 \"Culture is not a fixed set of manners...\").\n\n반박 시도 결과 모두 실패: (1) 선택지 번호 해석 불가 — 문맥이 본문 문장 내용을 인용하며, 선택지 4번은 \"People eat and dress the same way everywhere\"로 전혀 다름. (2) 일정 오프셋/문단별 번호 아님 — 4→6(+2), 6→12(+6), 8~9→18~19(+10)로 불규칙. (3) 대체 번호 체계 부재 — sentences[].index(1~20)와 translation_ko의 [1]~[20]이 본문 순서와 정확히 일치하는 유일한 체계다.\n\n또한 이 결함은 explanations[0]에 국한되지 않고 전 항목에 걸친 체계적 오번호다: q_index 1은 \"2번\"(실제 [4]) \"3번\"(실제 [5]) \"6번\"(실제 [12]~[13]) \"4번\"(실제 [6]), q_index 2는 \"9번\"/\"8번\"(실제 [19]/[18]), q_index 3은 \"4번\"(실제 [6]) \"7번 앞\"(실제 [12])으로 인용한다. 지적보다 범위가 오히려 넓어 blocker 등급이 타당하다."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "answers.explanations[1].evidence / rationales (q_index 1, 빈칸 추론)",
+      "issue": "빈칸 정답의 핵심 근거로 제시한 문장 번호가 실제 본문 문장 번호와 불일치한다.",
+      "evidence": "해설: \"2번 \\\"has slowly shaped its way ... to fit the land, the climate, and the history\\\"와 3번 \\\"a learned answer to the particular problems a group has faced\\\"가 단서다.\" 실제로 전자는 page3 [4], 후자는 [5]다. rationales의 \"...2번과 반대다\", \"...6번(상대주의)과 정면 모순\", \"...4번과 맞지 않는다\"도 각각 [4], [12]~[13], [6]을 가리켜야 한다.",
+      "suggestion": "정답(answer_index 3, \"solve the problems of its own place\")은 page3 [20] \"trying to solve the problems of its own place\"로 확정되므로 유지하고, 근거 번호를 [4]·[5]·[6]·[12]로 교정.",
+      "lens": "answer",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "확인됨. page3.sentences의 index가 파일 내 유일한 문장 번호 체계인데, answers.explanations[1]의 evidence/rationales가 인용한 번호가 전부 불일치한다.\n\nevidence: \"2번 has slowly shaped its way ... to fit the land, the climate, and the history\"는 실제 index 4 (line 130-138). index 2는 \"He often decides that one habit is refined and the other is crude.\"다. \"3번 a learned answer to the particular problems a group has faced\"는 실제 index 5 (line 140-152). index 3은 \"Yet a custom that looks odd from the outside is rarely an accident.\"다. 지적이 주장한 [4]/[5] 매핑이 정확히 맞다.\n\nrationales: \"...2번과 반대다\"→[4], \"상대주의(6번)와 정면 모순\"→[12]~[13] (index 12가 \"read each custom inside its own context\", index 13이 \"known as cultural relativism\"이므로 12~13 범위 타당; index 6은 \"Because culture is learned rather than inherited\"로 상대주의가 아님), \"장소마다 달라진다는 4번\"→[6] (line 159-160 \"it changes from place to place\"). 지적의 세 매핑 모두 파일로 확인된다.\n\n대안 해석 검토 후 기각: (1) 균일한 off-by-N 아님 — 오프셋이 -2,-2,-2,-6,-10으로 제각각. (2) 단락 내부 번호도 아님 — \"Each community has slowly shaped\"는 1단락 4번째 문장(2번째 아님), \"it changes from place to place\"는 2단락 1번째 문장(4번째 아님). 어떤 해석으로도 번호가 맞지 않는다.\n\n단, 지적의 범위가 실제 결함보다 좁다. 동일한 불일치가 explanations[0](4번/6번/8~9번 → 실제 [6]/[12-13]/[18-19]), [2](9번/8번 → [19]/[18]), [3](4번/\"7번 앞\" → [6]/[12])에도 그대로 존재한다. 해설 전체가 page3 index와 다른 구(舊) 번호 체계로 작성된 것으로 보이며, q_index 1만 고치면 나머지 3개 블록이 틀린 채로 남고 파일 내 번호 체계가 오히려 뒤섞인다. 수정은 explanations 4개 블록 전체를 대상으로 해야 한다."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "answers.explanations[2].evidence (q_index 2, 함의 추론)",
+      "issue": "밑줄 어구 해설의 근거 문장 번호가 실제 index와 어긋난다.",
+      "evidence": "해설: \"9번은 학자들이 \\\"refusing to surrender every judgment\\\"하며 ... 그 앞 8번은 어떤 관습도 비판을 넘어서면 잔인함이 전통 뒤에 숨는다고 경고한다.\" 실제로 surrender 문장은 page3 [19] \"So most scholars keep understanding while refusing to surrender every judgment\", 경고 문장은 [18] \"If any practice were beyond criticism, then cruelty could hide behind the word tradition\"이다. rationales[2]의 \"8번의 경고대로\"도 [18]이다.",
+      "suggestion": "밑줄 인용구(\"surrender every judgment\")와 body의 <u>surrender every judgment</u>는 정확히 일치하고 정답(answer_index 2)도 타당하므로, 문장 번호만 [18]·[19]로 교정.",
       "lens": "answer",
       "verdict": {
         "isReal": true,
         "confidence": "high",
-        "reason": "파일 근거로 지적이 모두 확인됨. page3.sentences의 실제 index(1~20)와 answers.explanations의 '~번' 인용이 체계적으로 불일치한다. 구체 대조: (Q1 evidence, line 333) '장소마다 다르며(4번)' → 'changes from place to place / 장소마다 달라진다'는 실제 index [6](line 159-160)이고 index[4]는 'Each community has slowly shaped its way...'(line 132-135); '문화 상대주의를 권하되(6번)' → relativism 설명은 index[12]~[13](line 221-236)이며 index[6]은 'Because culture is learned...'; '모든 판단을 포기하지는 않는다(8~9번)' → 'refusing to surrender every judgment'는 index[19](line 307). (Q2 evidence, line 350) '2번 has slowly shaped...'는 실제 index[4], '3번 a learned answer to the particular problems...'는 index[5](line 148). (Q3 evidence, line 367) '9번 refusing to surrender...'는 index[19], '8번 어떤 관습도 비판을 넘어서면...'는 index[18](line 288-296). (Q4 evidence, line 385) '(A) 4번 culture is learned rather than inherited'는 index[6], '(B) 7번 앞 read each custom inside its own context'는 index[12]. rationales의 참조(8번→[18], 4번→[6], 5번→[10-11] 등)도 동일하게 어긋남. 정답 자체는 옳으나 근거 문장 번호가 실제 index와 전혀 맞지 않아 교사가 근거 추적 시 잘못된 문장을 가리키게 된다. 지적 내용이 파일과 정확히 일치하므로 실제 결함."
+        "reason": "지적이 파일 근거로 정확히 확인된다.\n\n1) 지적 대상 확인 (11.json, answers.explanations[2], q_index 2 함의 추론):\n- evidence: \"9번은 학자들이 \\\"refusing to surrender every judgment\\\"하며...\" → 그러나 page3.sentences[9] / translation_ko [9]는 \"어느 집단도 하나의 올바른 삶의 방식에 더 가깝지 않다\"(Neither group is closer to one correct way of living)이다. 인용된 \"So most scholars keep understanding while refusing to surrender every judgment\"는 index 19이다.\n- evidence: \"그 앞 8번은 어떤 관습도 비판을 넘어서면 잔인함이 전통 뒤에 숨는다고 경고\" → sentences[8]은 \"열대의 계곡은 전혀 다른 재료를 중심으로 삶을 꾸린다\"(A tropical valley shapes life...)이다. 해당 경고문(\"If any practice were beyond criticism, then cruelty could hide behind the word tradition\")은 index 18이다.\n- rationales[2] \"(정답) 8번의 경고대로...\" 역시 동일하게 18을 가리켜야 한다.\n지적서가 제시한 세 항목 모두 파일 내용과 일치.\n\n2) \"다른 번호 체계일 수 있다\"는 반박 가능성은 형제 파일로 배제된다. 동일 디렉터리 2026-08-J의 13.json은 evidence의 \"4번/14번/9번/10번/5번\"이 page3.sentences[].index 4/14/9/10/5의 인용 문장과 정확히 일치하고, 07.json·04.json도 마찬가지다. 즉 이 프로젝트의 확립된 규약은 \"N번 = page3.sentences[].index = translation_ko [N]\"이며, 11.json이 이를 위반한 것이다.\n\n3) 참고(지적 범위 확대): 결함은 explanations[2]에 국한되지 않는다. explanations[0](\"4번\"→실제 5~6, \"6번\"→13, \"8~9번\"→18~19, \"5번\"→10~11), explanations[1](\"2번\"→4, \"3번\"→5), explanations[3](\"4번\"→6, \"7번 앞\"→12)도 모두 어긋난다. 초안 단계의 문단 단위/축약 번호가 최종 page3 index로 갱신되지 않은 것으로 보이며, 학습자가 근거 번호를 따라가면 전혀 무관한 문장에 도달하므로 해설 신뢰성을 해치는 실제 결함이다."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "answers.explanations[3].evidence (q_index 3, 요약문 빈칸 완성)",
+      "issue": "서술형 모범답안의 근거 문장 번호가 어긋나고, \"7번 앞\"이라는 표기 자체가 실제 위치를 가리키지 못한다.",
+      "evidence": "해설: \"(A)는 ... → 4번 \\\"culture is learned rather than inherited\\\". (B)는 ... → 7번 앞 \\\"read each custom inside its own context\\\".\" 실제로 (A) 근거는 page3 [6] \"Because culture is learned rather than inherited\", (B) 근거는 [12] \"The better choice is to read each custom inside its own context.\"다.",
+      "suggestion": "모범답안 \"(A) learned (B) context\"는 본문 원문 그대로이므로 유지하고, 근거를 [6]과 [12]로 교정.",
+      "lens": "answer",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 근거로 확인됨. 이 JSON이 정의하는 유일한 문장 번호 체계는 page3.sentences[].index(1~20)이며 page3.translation_ko의 [1]~[20]과 정확히 일치한다. 이 체계에 따르면 \"culture is learned rather than inherited\"는 index 6(page3 sentences index 6, \"Because / culture is learned rather than inherited, / it / changes / from place to place\"), \"read each custom inside its own context\"는 index 12(\"The better choice is to read each custom inside its own context.\")다.\n\n그런데 answers.explanations[3].evidence(요약문 빈칸 완성, q_index 3)는 \"(A) ... → 4번 \\\"culture is learned rather than inherited\\\". (B) ... → 7번 앞 \\\"read each custom inside its own context\\\"\"라고 적혀 있다. 실제 index 4는 \"Each community has slowly shaped its way of eating, dressing, and greeting...\"이고, index 7은 \"A society in a cold region builds its meals and festivals around the resources it has.\"로, 인용된 영문과 전혀 다른 문장이다. 즉 (A)는 6→4로, (B)는 12→7로 어긋난다.\n\n또한 \"7번 앞\"이라는 표기는 위치 지정으로서도 무효다. 문자 그대로 7번 이전 구간을 가리키면 index 6 부근(=(A)의 근거 영역)이 되어 (B) 근거인 index 12를 전혀 지시하지 못하며, 이 파일의 다른 해설이 쓰는 \"그 앞 8번\"(explanations[2]) 같은 상대 표기와도 일관되지 않는다.\n\n참고로 동일한 오프셋 문제가 explanations[0](4번/6번/8~9번), [1](2번/3번), [2](8번/9번)에도 나타나 파일 전반의 번호 체계가 page3 index와 불일치하지만, 지적 대상인 explanations[3].evidence에 한정해도 인용 영문과 번호가 명백히 어긋나므로 실제 결함이다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page2.questions[1].stem (빈칸 추론)",
+      "issue": "stem이 \"밑줄 친 빈칸\"이라고 하지만 본문의 해당 자리는 밑줄이 아니라 <blank> 표기이며, 본문에서 실제로 <u>밑줄</u>이 쳐진 곳은 ethnocentrism, cultural relativism, surrender every judgment 세 군데뿐이다. 학생이 밑줄 어구 문제(3번 문항)와 혼동할 수 있다.",
+      "evidence": "stem: \"윗글의 밑줄 친 빈칸에 들어갈 말로 가장 적절한 것은?\" / body 말미: \"each written by a people trying to <blank>.\" (밑줄 태그 없음). 반면 body에는 \"<u>ethnocentrism</u>\", \"<u>cultural relativism</u>\", \"<u>surrender every judgment</u>\"만 <u>로 표시되어 있다.",
+      "suggestion": "수능 표준 표현인 \"다음 빈칸에 들어갈 말로 가장 적절한 것은?\" 또는 \"윗글의 빈칸에 들어갈 말로 가장 적절한 것은?\"으로 수정.",
+      "lens": "answer",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "지적이 파일 근거로 그대로 확인된다. (1) line 48 stem은 정확히 \"윗글의 밑줄 친 빈칸에 들어갈 말로 가장 적절한 것은?\"이다. (2) line 21 body 말미는 \"each written by a people trying to <blank>.\"로, 해당 자리에 <u> 태그가 전혀 없다. (3) body 내 <u>는 정확히 ethnocentrism, cultural relativism, surrender every judgment 세 곳뿐이다. (4) 결정적으로 같은 questions 배열의 line 61(함의 추론)이 \"밑줄 친 surrender every judgment\"라는 표현을 쓰므로, 한 페이지 안에서 \"밑줄 친\"이 서로 다른 대상을 가리키는 내부 충돌이 발생한다. 반박 시도로 \"<blank>가 렌더링 시 밑줄(______)로 표시되므로 서술이 맞다\"를 검토했으나, 그렇더라도 동일 문항 세트 내 3번 문항과의 지시어 충돌은 해소되지 않는다. 또한 수능 관행상 \"밑줄 친\"은 어휘·어법·함의 문항 접두사이고 빈칸 추론은 \"다음 빈칸에 들어갈 말로...\"가 표준이라 \"밑줄 친 빈칸\"은 비관행적 조합이다. 다만 정답 자체는 결함이 없다: answer_index 3 \"solve the problems of its own place\"는 page3 문장 20 및 answers.explanations[1] evidence와 정확히 일치하므로 오답 키 오류가 아니라 stem 문구 오류이며, warn 등급이 적절하다. 수정 방향은 stem을 \"윗글의 빈칸에 들어갈 말로 가장 적절한 것은?\"으로 바꾸는 것이다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page4.vocab[10] (scattered).synonyms[1] = \"random\"",
+      "issue": "synonyms의 의미 불일치. scattered는 '공간적으로 흩어진'(분포)을 뜻하는 반면 \"random\"은 '무작위의'(규칙성 없음)로 의미 축이 다르다. 특히 본문의 \"a scattered pile of oddities\"는 '아무렇게나 쌓인/흩어진 더미'라는 공간적 이미지이며, 이를 random으로 치환하면 뜻이 성립하지 않는다(*a random pile은 다른 뜻). meaning_ko \"흩어진, 산발적인\"에도 random은 대응하지 않는다.",
+      "evidence": "본문: \"the world's countless customs are not a scattered pile of oddities but a library of solutions\" / page4: \"word\": \"scattered\", \"meaning_ko\": \"흩어진, 산발적인\", \"synonyms\": [\"dispersed\", \"random\"]",
+      "suggestion": "\"random\"을 삭제하고 \"strewn\" 또는 \"sporadic\"(산발적인 뜻을 살릴 경우)으로 교체한다. \"dispersed\"는 적절하므로 유지.",
+      "lens": "vocab",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일에서 지적 내용이 그대로 확인된다. page4.vocab[10] (line 509-519): {\"word\": \"scattered\", \"meaning_ko\": \"흩어진, 산발적인\", \"synonyms\": [\"dispersed\", \"random\"]}. 첫 번째 synonym \"dispersed\"는 공간적 분산 축으로 meaning_ko와 정확히 대응하지만, \"random\"은 '무작위의/임의의'로 규칙성 부재 축이라 의미 축이 다르다. meaning_ko의 '흩어진'(공간적 분산), '산발적인'(간헐적 발생) 어느 쪽에도 random은 대응하지 않는다.\n\n치환 검증: 본문(line 21)의 \"the world's countless customs are not a scattered pile of oddities but a library of solutions\"에서 대조 구도는 '흩어진 더미 vs 정리된 서고'(무질서한 분산 vs 조직화)이다. 이를 \"a random pile\"로 치환하면 '아무렇게나 고른 더미'라는 다른 뜻이 되어 library와의 대조가 성립하지 않는다. 더욱이 해당 vocab 항목 자신의 예문 두 개(\"Customs are not a scattered pile of oddities.\" / \"Papers lay scattered across the desk.\")가 모두 공간적 분산 용법이라 random은 항목 내부 어느 예문에도 치환되지 않는다.\n\n반박 가능성 검토 후 기각: 구어체에서 random이 haphazard에 근접하고 scattered가 '산만한'(scattered thoughts) 뜻을 가질 수 있으나, 이 항목이 명시한 meaning_ko와 예문은 모두 공간적 분산 용법에 한정된다. 또한 같은 파일의 다른 vocab 항목들(refined: polished/cultivated, crude: coarse/rough, yardstick: standard/measure, surrender: relinquish/give up)은 모두 동일 의미 축의 엄밀한 동의어 쌍으로 일관 편집되어 있어 random만 기준을 벗어난 이상치다.\n\n단, 정답 키·본문·구조에는 영향이 없고 학습자에게 잘못된 치환을 가르치는 품질 결함이므로 warn 등급이 적절하다. \"dispersed\" 단독 유지 또는 strewn/scattered about 계열로 교체 권장."
       }
     }
   ],
   "minors": [
     {
       "severity": "minor",
-      "location": "page3.sentences[index=2].grammar_note",
-      "issue": "'(병렬 보어)' 표기가 부정확하다. that절 내부 \"one habit is refined and the other is crude\"는 각각 주어·동사·보어를 갖춘 두 개의 절이 등위접속된 병렬 절이며, 하나의 술어에 대한 병렬 보어가 아니다.",
-      "evidence": "grammar_note: \"decide that 명사절 + 빈도부사 often (병렬 보어)\" — 본문 \"that one habit is refined and the other is crude\"는 [one habit is refined] and [the other is crude] 두 절의 병렬이다.",
-      "suggestion": "'(병렬 절)' 또는 '(that절 내 등위절 병렬)'로 수정. O 태깅 자체는 정확하므로 문구만 조정.",
+      "location": "page1.body 2단락 — \"When we judge another group by the yardstick of our own habits, we treat our own customs as natural. Then we fall into ethnocentrism and lose the ability to see...\"",
+      "issue": "인과 순서가 순환적이다. '자기 관습을 자연스러운 것으로 여기는 것'은 자문화중심주의에 빠지기 '이전 단계'가 아니라 자문화중심주의 그 자체(또는 그 정의)에 해당한다. 따라서 'Then we fall into ethnocentrism'은 이미 일어난 일을 다시 결과로 제시하는 셈이 되어, 개념 정의를 배우는 학습자에게 논리 전개가 흐릿하다.",
+      "evidence": "\"...we treat our own customs as natural. Then we fall into ethnocentrism and lose the ability to see why the other way makes sense.\" (textbook_tieback: \"자기 문화의 잣대로 다른 문화를 판단하며 우열을 가리는 태도를 자문화 중심주의라 하고\")",
+      "suggestion": "정의문으로 묶어 순환을 없앤다: \"When we judge another group by the yardstick of our own habits, we treat our own customs as natural. This attitude is called ethnocentrism, and it costs us the ability to see why the other way makes sense.\" (12번 문장의 \"This attitude, known as cultural relativism\"과 대구를 이루어 가독성도 좋아진다)",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "page1.body 4단락 — \"cruelty could hide behind the word tradition\"",
+      "issue": "메타언어적으로 언급되는 단어에 인용부호가 없어, 'the word tradition'이 순간적으로 '전통이라는 단어'인지 명사 연쇄인지 모호하게 읽힌다. 영어 교재 본문에서는 단어 자체를 지칭할 때 따옴표나 이탤릭 처리가 표준이다.",
+      "evidence": "\"...then cruelty could hide behind the word tradition, and no shared human right could be defended.\" / page3 index 18 도 \"behind the word tradition,\"으로 그대로 둠",
+      "suggestion": "따옴표를 넣는다: \"cruelty could hide behind the word \\\"tradition\\\"\" (본문 렌더링 방식에 따라 이탤릭 태그도 가능)",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.sentences[12].segments (index 13)",
+      "issue": "ask O to-V 5형식에서 C 구간에 부사구 'by the meaning'까지 포함시켜 구문 역할 경계가 흐려졌다. 같은 교재 03.json #18은 'C: release chemical messengers' / 'M: that drift across...'처럼 수식어를 C에서 분리하는데, 여기서는 그 관례를 따르지 않았다.",
+      "evidence": "{ \"role\": \"C\", \"text\": \"to understand a practice by the meaning\", \"note\": \"ask O to-V 5형식\" } — 'by the meaning'은 understand를 수식하는 방법 부사구이므로 C(목적격보어)의 핵심이 아니다.",
+      "suggestion": "C를 'to understand a practice'로 자르고 'by the meaning'을 M(방법 전치사구, meaning은 뒤 관계절의 선행사)으로 분리.",
       "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko 문장 [13]",
+      "issue": "ask O to-V 구문의 목적어 'us'가 번역에서 누락되고, 관계절 'the meaning it holds for the people who follow it'의 주어 'it(관습)'이 생략되어 '지니는'의 주체가 불명확함. page3 문장 분석에서 'ask O to-V 5형식'을 명시적으로 가르치고 있어 번역과 문법 설명이 어긋남.",
+      "evidence": "영문: \"This attitude, known as cultural relativism, asks us to understand a practice by the meaning it holds for the people who follow it.\" / 번역: \"[13] 문화 상대주의라 알려진 이 태도는, 어떤 관습을 그것을 따르는 사람들에게 지니는 의미로 이해하라고 요구한다.\" (segments에 { \"role\": \"O\", \"text\": \"us\" } 존재)",
+      "suggestion": "\"…이 태도는 우리에게, 어떤 관습을 그것이 그 관습을 따르는 사람들에게 지니는 의미로 이해하라고 요구한다.\"로 목적어 '우리에게'와 관계절 주어를 복원.",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko 문장 [7]",
+      "issue": "'builds its meals and festivals around ~'를 \"식사와 축제를 세운다\"로 옮겨 한국어 연어(collocation)가 부자연스러움. 'build A around B'는 'B를 중심으로 A를 짜다/구성하다'의 뜻.",
+      "evidence": "영문: \"A society in a cold region builds its meals and festivals around the resources it has.\" / 번역: \"[7] 추운 지역의 사회는 자신이 가진 자원을 중심으로 식사와 축제를 세운다.\"",
+      "suggestion": "\"…자원을 중심으로 식사와 축제를 꾸린다/구성한다\"로 수정 (같은 구조인 [8] '삶을 꾸린다'와 표현을 통일).",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page2.questions[3].hints",
+      "issue": "서술형 힌트 5개 중 정답 2개를 제외한 오답 힌트가 변별력이 낮다. 'climate'와 'relativism'은 요약문 구조상 (A)/(B) 어디에도 문법적으로 들어갈 수 없어 사실상 3지선다로 축소된다.",
+      "evidence": "hints: [\"learned\", \"climate\", \"context\", \"relativism\", \"judgment\"] / summary_template: \"Because culture is <blank> (A) rather than inherited ... read a practice inside its own <blank> (B)\". (A)는 'rather than inherited'와 대응하는 분사/형용사여야 하고 (B)는 'inside its own ___' 자리라, climate·relativism은 즉시 배제된다.",
+      "suggestion": "(A) 자리 함정으로 'inherited'나 'shaped', (B) 자리 함정으로 'setting' 같이 문법적으로는 들어갈 수 있으나 본문 표현이 아닌 어휘를 넣어 변별력을 높일 것.",
+      "lens": "answer"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[7] (context)",
+      "issue": "학년 대비 기초어. context(맥락)는 고2 학습자에게 이미 익숙한 어휘이며, 제시된 synonyms \"setting\", \"background\"도 기초어라 어휘 확장 효과가 제한적이다. 다만 본문의 핵심 개념어이자 page2 서술형 정답((B) context)이라 수록 자체의 명분은 있으므로 minor로 판단한다.",
+      "evidence": "page4: { \"word\": \"context\", \"meaning_ko\": \"맥락, 정황\", \"synonyms\": [\"setting\", \"background\"] } / page2 model_answer: \"(A) learned  (B) context\"",
+      "suggestion": "수록을 유지하되 synonyms를 \"circumstances\", \"framework\" 등 한 단계 높은 어휘로 올려 학습 가치를 보강한다.",
+      "lens": "vocab"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[4] (inherited).synonyms[1] = \"handed down\"",
+      "issue": "품사 형태 불일치. 표제어 inherited는 pos가 \"adj.\"인데 synonyms에 제시된 \"handed down\"은 구동사의 과거분사구 형태로 표제어와 형태가 대응하지 않는다(단일 형용사 innate와 나란히 제시되어 학습자가 품사를 혼동할 수 있다). 다만 본문에 \"handed down by nature\" 표현이 실제로 있어 문맥 연결성은 확보되므로 minor로 본다.",
+      "evidence": "본문: \"Culture is not a fixed set of manners handed down by nature\" / page4: { \"word\": \"inherited\", \"pos\": \"adj.\", \"synonyms\": [\"innate\", \"handed down\"] }",
+      "suggestion": "\"handed down\" → \"hereditary\" 또는 \"innate\"만 남기고, handed down은 별도 표현으로 gloss_extra에 옮긴다.",
+      "lens": "vocab"
     }
   ],
-  "blockers": [],
+  "blockers": [
+    {
+      "severity": "blocker",
+      "location": "answers.explanations[0].evidence / rationales (q_index 0, 요지)",
+      "issue": "해설이 인용하는 문장 번호가 학생이 볼 수 있는 어떤 번호 체계와도 일치하지 않는다. page3.sentences와 translation_ko는 1~20번으로 매겨져 있고 본문 단락은 4개뿐인데, 해설은 4번·6번·8~9번을 근거로 든다. 학생이 해당 번호를 찾아가면 전혀 다른 내용이 나온다.",
+      "evidence": "evidence: \"문화가 유전이 아니라 학습된 답이라 장소마다 다르며(4번), 각 관습을 그 맥락에서 이해하는 문화 상대주의를 권하되(6번), 잔인함이 전통 뒤에 숨지 않도록 모든 판단을 포기하지는 않는다(8~9번)\". 그러나 실제 4번은 \"Each community has slowly shaped its way of eating, dressing, and greeting...\"이고, 6번은 \"Because culture is learned rather than inherited, it changes from place to place.\"이며, 8~9번은 \"A tropical valley shapes life around entirely different materials.\" / \"Neither group is closer to one correct way of living.\"이다. 상대주의 권고는 12~13번, 판단 포기 거부는 18~19번이다.",
+      "suggestion": "page3.sentences 인덱스 기준으로 재매핑할 것: 학습성·장소차 → 5~6번, 상대주의 권고 → 12~13번, 판단 유보의 한계 → 18~19번. 또는 01.json/13.json처럼 영어 원문을 직접 인용하는 방식으로 통일.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 근거로 확인됨. answers.explanations[0].evidence는 '문화가 유전이 아니라 학습된 답이라 장소마다 다르며(4번), ... 문화 상대주의를 권하되(6번), ... 모든 판단을 포기하지는 않는다(8~9번)'라고 인용하지만, page3.sentences와 translation_ko의 실제 번호는 다음과 같다: index 4 = 'Each community has slowly shaped its way of eating, dressing, and greeting to fit the land, the climate, and the history around it.'(학습/장소 변이 아님), index 6 = 'Because culture is learned rather than inherited, it changes from place to place.'(상대주의 권고 아님), index 8 = 'A tropical valley shapes life around entirely different materials.', index 9 = 'Neither group is closer to one correct way of living.'(판단 포기 거부 아님). 지적이 제시한 정정값도 정확하다 — 상대주의 권고는 index 12('The better choice is to read each custom inside its own context.')~13('This attitude, known as cultural relativism, asks us...'), 모든 판단 포기 거부는 index 18('If any practice were beyond criticism, then cruelty could hide behind the word tradition...')~19('So most scholars keep understanding while refusing to surrender every judgment.')다.\n\n대안 번호 체계로 구제되지 않는다. 학생이 볼 수 있는 번호는 page3.sentences의 index 1~20과 translation_ko의 [1]~[20] 두 가지뿐이며 둘은 서로 완전히 일치한다. 본문 단락은 4개뿐이라 단락 번호로도 8~9번을 설명할 수 없고, page2 선택지 번호(5개)나 page4 vocab 순서와도 대응하지 않는다.\n\n또한 이는 단일 오타가 아니라 파일 전반의 계통적 오프셋이다. q_index 1 evidence는 'has slowly shaped its way...'를 2번(실제 4번), 'a learned answer to the particular problems a group has faced'를 3번(실제 5번)으로 인용하고, q_index 2 evidence는 'refusing to surrender every judgment'를 9번(실제 19번), 그 앞 경고를 8번(실제 18번)으로 인용하며, q_index 3 evidence는 'culture is learned rather than inherited'를 4번(실제 6번), 'read each custom inside its own context'를 '7번 앞'(실제 12번)으로 인용한다. 즉 해설 4개 전부가 page3에 존재하지 않는 축약된 문장 분할 기준을 쓰고 있어, 학생이 인용 번호를 따라가면 매번 무관한 문장에 도달한다. 지적은 q_index 0을 위치로 특정했으나 해당 위치의 사실 주장 자체가 파일과 정확히 부합하므로 유효한 결함이다."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "answers.explanations[1].evidence / rationales (q_index 1, 빈칸 추론)",
+      "issue": "빈칸 추론의 근거 문장 번호가 모두 어긋난다. 정답 근거로 제시한 '2번·3번'이 실제로는 4번·5번이며, rationales의 '4번', '상대주의(6번)'도 실제 내용과 맞지 않는다. 정답 자체(index 3)는 옳으나 근거 추적이 불가능하다.",
+      "evidence": "evidence: \"2번 \\\"has slowly shaped its way ... to fit the land, the climate, and the history\\\"와 3번 \\\"a learned answer to the particular problems a group has faced\\\"가 단서다.\" 실제 page3.sentences에서 \"has slowly shaped\"는 index 4, \"a learned answer to the particular problems\"는 index 5다. index 2는 \"He often decides that one habit is refined and the other is crude.\", index 3은 \"Yet a custom that looks odd from the outside is rarely an accident.\"이다.",
+      "suggestion": "'2~3번'을 '4~5번'으로, rationales의 '상대주의(6번)'를 '12~13번'으로, '4번'을 '6번'으로 수정.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 검증 결과 지적의 모든 사실 주장이 정확히 확인된다. page3.sentences의 index는 translation_ko의 [1]~[20] 번호와 정확히 일치하므로 파일 내에 권위 있는 문장 번호 체계가 존재하며, 그 기준으로 판정하면 다음이 모두 어긋난다. (1) answers.explanations[1].evidence가 단서로 제시한 \"has slowly shaped its way ... to fit the land, the climate, and the history\"는 실제 index 4(2번 아님), \"a learned answer to the particular problems a group has faced\"는 실제 index 5(3번 아님)다. index 2는 \"He often decides that one habit is refined and the other is crude.\", index 3은 \"Yet a custom that looks odd from the outside is rarely an accident.\"로 인용 내용과 전혀 무관하다. (2) rationales도 동일하게 어긋난다: rationale[0]의 '2번'과 rationale[3]의 '2~3번'은 실제 4~5번이고, rationale[4]가 '문화가 장소마다 달라진다는 4번'이라 한 내용은 실제 index 6이며, rationale[2]의 '상대주의(6번)'는 실제로 index 12~13(\"The better choice is to read each custom inside its own context\" / \"This attitude, known as cultural relativism\")이고 index 6은 상대주의가 아니라 문화의 학습성·가변성 문장이다. (3) 오프셋이 -2와 -6/-7로 일관되지 않아 '다른 번호 체계를 쓴 것'이라는 방어가 불가능하다. 동일 결함이 explanations[0]('4번','6번','8~9번')과 explanations[3]('4번','7번 앞')에도 퍼져 있어 국소 오타가 아니라 answers 블록 전반의 근거 추적 불능 문제다. 다만 정답 자체(answer_index 3, \"solve the problems of its own place\")는 sentence 20의 \"trying to solve the problems of its own place\"와 일치하여 옳으며, 지적도 이를 정확히 인정하고 있다. 학습자가 해설의 근거 문장을 따라갈 수 없게 만드는 실제 결함이 맞다."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "answers.explanations[2].evidence (q_index 2, 함의 추론)",
+      "issue": "밑줄 표현이 실제로 등장하는 문장 번호를 잘못 지시한다. 'surrender every judgment'가 있는 문장을 9번이라 했으나 실제로는 19번이고, '그 앞 8번'이라 한 가정법 경고 문장은 18번이다.",
+      "evidence": "evidence: \"9번은 학자들이 \\\"refusing to surrender every judgment\\\"하며 이해의 습관을 지킨다고 하고, 그 앞 8번은 어떤 관습도 비판을 넘어서면 잔인함이 전통 뒤에 숨는다고 경고한다.\" 실제 index 19 = \"So most scholars keep understanding while refusing to surrender every judgment.\", index 18 = \"If any practice were beyond criticism, then cruelty could hide behind the word tradition...\". index 8~9는 \"A tropical valley shapes life...\" / \"Neither group is closer...\"로 논지와 무관하다.",
+      "suggestion": "'9번'→'19번', '8번'→'18번'으로 수정.",
+      "lens": "explanation",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "파일로 확인됨. page3.sentences의 index 19 = \"So most scholars keep understanding while refusing to surrender every judgment.\", index 18 = \"If any practice were beyond criticism, then cruelty could hide behind the word tradition, and no shared human right could be defended.\" 이며 translation_ko의 [18]/[19]도 동일하게 대응한다. 반면 index 8 = \"A tropical valley shapes life around entirely different materials.\", index 9 = \"Neither group is closer to one correct way of living.\"로 해당 논지와 무관하다. 그럼에도 answers.explanations[2].evidence(줄 367)는 밑줄 표현을 \"9번\", 가정법 경고를 \"그 앞 8번\"으로 지시하며, rationales[2](줄 371)도 \"8번의 경고대로\"라고 잘못된 번호를 반복한다. 파일 내 유일하게 정의된 문장 번호 체계(page3 sentences[].index 1~20, translation_ko [1]~[20]와 일치)를 기준으로 정확히 10만큼 어긋난 오지시이며, 학습자에게 노출되는 해설의 사실 오류다. 참고로 동일한 off-by-10 패턴이 explanations[0](4/6/8~9번), [1](2번/3번), [3](4번/\"7번 앞\")에도 나타나 체계적 결함으로 보이나, 이는 지적을 약화시키지 않고 오히려 범위를 넓힌다."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "answers.explanations[3].evidence (q_index 3, 요약문 빈칸 완성)",
+      "issue": "서술형 정답의 근거 위치 지시가 모두 틀렸다. (A) 근거를 '4번', (B) 근거를 '7번 앞'이라 했으나 실제는 각각 6번과 12번이다. 게다가 '7번 앞'이라는 표현은 20문장 체계에서 지시 대상이 특정되지 않는다.",
+      "evidence": "evidence: \"(A)는 문화가 유전이 아니라 무엇인지 → 4번 \\\"culture is learned rather than inherited\\\". (B)는 관습을 그 안에서 읽어야 하는 것 → 7번 앞 \\\"read each custom inside its own context\\\".\" 실제 \"culture is learned rather than inherited\"는 index 6, \"to read each custom inside its own context\"는 index 12(\"The better choice is to read each custom inside its own context.\")다.",
+      "suggestion": "'4번'→'6번', '7번 앞'→'12번'으로 수정.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일로 직접 확인됨. page3.sentences는 index 1~20 체계이며, \"culture is learned rather than inherited\"는 index 6(sentences[5], \"Because culture is learned rather than inherited, it changes from place to place.\"), \"to read each custom inside its own context\"는 index 12(\"The better choice is to read each custom inside its own context.\")다. 그러나 answers.explanations[3].evidence는 각각 \"4번\", \"7번 앞\"이라 지시한다. 실제 4번은 \"Each community has slowly shaped its way of eating, dressing, and greeting...\", 7번은 \"A society in a cold region builds its meals and festivals...\"로 인용된 문구를 담고 있지 않다. \"7번 앞\"을 6번으로 해석해도 그것은 (B)의 context 문장이 아니라 (A)의 learned 문장이라 지시 대상이 특정되지 않는다는 지적도 타당하다.\n\n다만 반박 시도 결과 한 가지 정상참작 사유가 있다: 이 오번호는 explanations[3] 고유 결함이 아니라 파일 전체에 공통된다. explanations[1]은 index 4 내용을 \"2번\", index 5를 \"3번\"이라 하고, explanations[2]는 index 19를 \"9번\", index 18을 \"8번\"이라 한다. 매핑 편차가 +2, +2, +6, +10으로 일정하지 않아 별도의 일관된 대체 번호 체계(문단별 번호 등)로 방어할 수 없고, 최종 20문장 분할 이전의 낡은 번호가 갱신되지 않은 채 남은 것으로 보인다. 따라서 지적된 사실관계 자체는 100% 정확하며, 오히려 범위가 explanations 전체로 더 넓다."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "answers.explanations[0].evidence / rationales (q_index 0, 요지)",
+      "issue": "해설이 인용하는 본문 문장 번호가 page3.sentences의 실제 index와 전부 어긋난다. 학생이 지시된 문장을 찾아가면 전혀 다른 내용이 나온다.",
+      "evidence": "해설: \"문화가 유전이 아니라 학습된 답이라 장소마다 다르며(4번)\" / \"문화 상대주의를 권하되(6번)\" / \"모든 판단을 포기하지는 않는다(8~9번)\". 그러나 page3 [4]는 \"Each community has slowly shaped its way of eating, dressing, and greeting\", [6]은 \"Because culture is learned rather than inherited, it changes from place to place\", [8]은 \"A tropical valley shapes life around entirely different materials\", [9]는 \"Neither group is closer to one correct way of living.\" 상대주의는 [12]~[13], 판단의 한계는 [17]~[19]다. rationales도 동일하게 \"8번은 ... 잔인함이 전통 뒤에 숨는다\"(실제 [18]), \"4번 '문화는 장소마다 달라진다'\"(실제 [6]), \"5번은 자기 관습의 잣대로 ... 자문화 중심주의\"(실제 [10]~[11])로 어긋난다.",
+      "suggestion": "정답 자체(answer_index 0)는 타당하므로 근거 문장 번호만 page3 index 기준으로 수정: 학습성 → [5]·[6], 상대주의 → [12]·[13], 판단의 한계 → [17]~[19], 자문화중심주의 → [10]·[11].",
+      "lens": "answer",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "확인됨. answers.explanations[0]의 evidence/rationales가 인용하는 문장 번호가 page3.sentences의 실제 index 및 translation_ko의 [n] 번호와 전부 어긋난다.\n\nevidence: \"학습된 답이라 장소마다 다르며(4번)\" → 해당 내용(\"Because culture is learned rather than inherited, it changes from place to place\")은 실제 [6]이고, [4]는 \"Each community has slowly shaped its way of eating, dressing, and greeting...\"이다. \"문화 상대주의를 권하되(6번)\" → 상대주의는 실제 [12]~[13](\"The better choice is to read each custom inside its own context\" / \"known as cultural relativism\"). \"모든 판단을 포기하지는 않는다(8~9번)\" → 실제 [18]~[19]이며, [8]은 \"A tropical valley shapes life around entirely different materials\", [9]는 \"Neither group is closer to one correct way of living.\"이다.\n\nrationales도 동일: \"8번은 ... 잔인함이 전통 뒤에 숨는다\"(실제 [18]), \"4번 '문화는 장소마다 달라진다'\"(실제 [6]), \"5번은 자기 관습의 잣대로 ... 자문화 중심주의\"(실제 [10]~[11]; [5]는 \"Culture is not a fixed set of manners...\").\n\n반박 시도 결과 모두 실패: (1) 선택지 번호 해석 불가 — 문맥이 본문 문장 내용을 인용하며, 선택지 4번은 \"People eat and dress the same way everywhere\"로 전혀 다름. (2) 일정 오프셋/문단별 번호 아님 — 4→6(+2), 6→12(+6), 8~9→18~19(+10)로 불규칙. (3) 대체 번호 체계 부재 — sentences[].index(1~20)와 translation_ko의 [1]~[20]이 본문 순서와 정확히 일치하는 유일한 체계다.\n\n또한 이 결함은 explanations[0]에 국한되지 않고 전 항목에 걸친 체계적 오번호다: q_index 1은 \"2번\"(실제 [4]) \"3번\"(실제 [5]) \"6번\"(실제 [12]~[13]) \"4번\"(실제 [6]), q_index 2는 \"9번\"/\"8번\"(실제 [19]/[18]), q_index 3은 \"4번\"(실제 [6]) \"7번 앞\"(실제 [12])으로 인용한다. 지적보다 범위가 오히려 넓어 blocker 등급이 타당하다."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "answers.explanations[1].evidence / rationales (q_index 1, 빈칸 추론)",
+      "issue": "빈칸 정답의 핵심 근거로 제시한 문장 번호가 실제 본문 문장 번호와 불일치한다.",
+      "evidence": "해설: \"2번 \\\"has slowly shaped its way ... to fit the land, the climate, and the history\\\"와 3번 \\\"a learned answer to the particular problems a group has faced\\\"가 단서다.\" 실제로 전자는 page3 [4], 후자는 [5]다. rationales의 \"...2번과 반대다\", \"...6번(상대주의)과 정면 모순\", \"...4번과 맞지 않는다\"도 각각 [4], [12]~[13], [6]을 가리켜야 한다.",
+      "suggestion": "정답(answer_index 3, \"solve the problems of its own place\")은 page3 [20] \"trying to solve the problems of its own place\"로 확정되므로 유지하고, 근거 번호를 [4]·[5]·[6]·[12]로 교정.",
+      "lens": "answer",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "확인됨. page3.sentences의 index가 파일 내 유일한 문장 번호 체계인데, answers.explanations[1]의 evidence/rationales가 인용한 번호가 전부 불일치한다.\n\nevidence: \"2번 has slowly shaped its way ... to fit the land, the climate, and the history\"는 실제 index 4 (line 130-138). index 2는 \"He often decides that one habit is refined and the other is crude.\"다. \"3번 a learned answer to the particular problems a group has faced\"는 실제 index 5 (line 140-152). index 3은 \"Yet a custom that looks odd from the outside is rarely an accident.\"다. 지적이 주장한 [4]/[5] 매핑이 정확히 맞다.\n\nrationales: \"...2번과 반대다\"→[4], \"상대주의(6번)와 정면 모순\"→[12]~[13] (index 12가 \"read each custom inside its own context\", index 13이 \"known as cultural relativism\"이므로 12~13 범위 타당; index 6은 \"Because culture is learned rather than inherited\"로 상대주의가 아님), \"장소마다 달라진다는 4번\"→[6] (line 159-160 \"it changes from place to place\"). 지적의 세 매핑 모두 파일로 확인된다.\n\n대안 해석 검토 후 기각: (1) 균일한 off-by-N 아님 — 오프셋이 -2,-2,-2,-6,-10으로 제각각. (2) 단락 내부 번호도 아님 — \"Each community has slowly shaped\"는 1단락 4번째 문장(2번째 아님), \"it changes from place to place\"는 2단락 1번째 문장(4번째 아님). 어떤 해석으로도 번호가 맞지 않는다.\n\n단, 지적의 범위가 실제 결함보다 좁다. 동일한 불일치가 explanations[0](4번/6번/8~9번 → 실제 [6]/[12-13]/[18-19]), [2](9번/8번 → [19]/[18]), [3](4번/\"7번 앞\" → [6]/[12])에도 그대로 존재한다. 해설 전체가 page3 index와 다른 구(舊) 번호 체계로 작성된 것으로 보이며, q_index 1만 고치면 나머지 3개 블록이 틀린 채로 남고 파일 내 번호 체계가 오히려 뒤섞인다. 수정은 explanations 4개 블록 전체를 대상으로 해야 한다."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "answers.explanations[2].evidence (q_index 2, 함의 추론)",
+      "issue": "밑줄 어구 해설의 근거 문장 번호가 실제 index와 어긋난다.",
+      "evidence": "해설: \"9번은 학자들이 \\\"refusing to surrender every judgment\\\"하며 ... 그 앞 8번은 어떤 관습도 비판을 넘어서면 잔인함이 전통 뒤에 숨는다고 경고한다.\" 실제로 surrender 문장은 page3 [19] \"So most scholars keep understanding while refusing to surrender every judgment\", 경고 문장은 [18] \"If any practice were beyond criticism, then cruelty could hide behind the word tradition\"이다. rationales[2]의 \"8번의 경고대로\"도 [18]이다.",
+      "suggestion": "밑줄 인용구(\"surrender every judgment\")와 body의 <u>surrender every judgment</u>는 정확히 일치하고 정답(answer_index 2)도 타당하므로, 문장 번호만 [18]·[19]로 교정.",
+      "lens": "answer",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "지적이 파일 근거로 정확히 확인된다.\n\n1) 지적 대상 확인 (11.json, answers.explanations[2], q_index 2 함의 추론):\n- evidence: \"9번은 학자들이 \\\"refusing to surrender every judgment\\\"하며...\" → 그러나 page3.sentences[9] / translation_ko [9]는 \"어느 집단도 하나의 올바른 삶의 방식에 더 가깝지 않다\"(Neither group is closer to one correct way of living)이다. 인용된 \"So most scholars keep understanding while refusing to surrender every judgment\"는 index 19이다.\n- evidence: \"그 앞 8번은 어떤 관습도 비판을 넘어서면 잔인함이 전통 뒤에 숨는다고 경고\" → sentences[8]은 \"열대의 계곡은 전혀 다른 재료를 중심으로 삶을 꾸린다\"(A tropical valley shapes life...)이다. 해당 경고문(\"If any practice were beyond criticism, then cruelty could hide behind the word tradition\")은 index 18이다.\n- rationales[2] \"(정답) 8번의 경고대로...\" 역시 동일하게 18을 가리켜야 한다.\n지적서가 제시한 세 항목 모두 파일 내용과 일치.\n\n2) \"다른 번호 체계일 수 있다\"는 반박 가능성은 형제 파일로 배제된다. 동일 디렉터리 2026-08-J의 13.json은 evidence의 \"4번/14번/9번/10번/5번\"이 page3.sentences[].index 4/14/9/10/5의 인용 문장과 정확히 일치하고, 07.json·04.json도 마찬가지다. 즉 이 프로젝트의 확립된 규약은 \"N번 = page3.sentences[].index = translation_ko [N]\"이며, 11.json이 이를 위반한 것이다.\n\n3) 참고(지적 범위 확대): 결함은 explanations[2]에 국한되지 않는다. explanations[0](\"4번\"→실제 5~6, \"6번\"→13, \"8~9번\"→18~19, \"5번\"→10~11), explanations[1](\"2번\"→4, \"3번\"→5), explanations[3](\"4번\"→6, \"7번 앞\"→12)도 모두 어긋난다. 초안 단계의 문단 단위/축약 번호가 최종 page3 index로 갱신되지 않은 것으로 보이며, 학습자가 근거 번호를 따라가면 전혀 무관한 문장에 도달하므로 해설 신뢰성을 해치는 실제 결함이다."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "answers.explanations[3].evidence (q_index 3, 요약문 빈칸 완성)",
+      "issue": "서술형 모범답안의 근거 문장 번호가 어긋나고, \"7번 앞\"이라는 표기 자체가 실제 위치를 가리키지 못한다.",
+      "evidence": "해설: \"(A)는 ... → 4번 \\\"culture is learned rather than inherited\\\". (B)는 ... → 7번 앞 \\\"read each custom inside its own context\\\".\" 실제로 (A) 근거는 page3 [6] \"Because culture is learned rather than inherited\", (B) 근거는 [12] \"The better choice is to read each custom inside its own context.\"다.",
+      "suggestion": "모범답안 \"(A) learned (B) context\"는 본문 원문 그대로이므로 유지하고, 근거를 [6]과 [12]로 교정.",
+      "lens": "answer",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 근거로 확인됨. 이 JSON이 정의하는 유일한 문장 번호 체계는 page3.sentences[].index(1~20)이며 page3.translation_ko의 [1]~[20]과 정확히 일치한다. 이 체계에 따르면 \"culture is learned rather than inherited\"는 index 6(page3 sentences index 6, \"Because / culture is learned rather than inherited, / it / changes / from place to place\"), \"read each custom inside its own context\"는 index 12(\"The better choice is to read each custom inside its own context.\")다.\n\n그런데 answers.explanations[3].evidence(요약문 빈칸 완성, q_index 3)는 \"(A) ... → 4번 \\\"culture is learned rather than inherited\\\". (B) ... → 7번 앞 \\\"read each custom inside its own context\\\"\"라고 적혀 있다. 실제 index 4는 \"Each community has slowly shaped its way of eating, dressing, and greeting...\"이고, index 7은 \"A society in a cold region builds its meals and festivals around the resources it has.\"로, 인용된 영문과 전혀 다른 문장이다. 즉 (A)는 6→4로, (B)는 12→7로 어긋난다.\n\n또한 \"7번 앞\"이라는 표기는 위치 지정으로서도 무효다. 문자 그대로 7번 이전 구간을 가리키면 index 6 부근(=(A)의 근거 영역)이 되어 (B) 근거인 index 12를 전혀 지시하지 못하며, 이 파일의 다른 해설이 쓰는 \"그 앞 8번\"(explanations[2]) 같은 상대 표기와도 일관되지 않는다.\n\n참고로 동일한 오프셋 문제가 explanations[0](4번/6번/8~9번), [1](2번/3번), [2](8번/9번)에도 나타나 파일 전반의 번호 체계가 page3 index와 불일치하지만, 지적 대상인 explanations[3].evidence에 한정해도 인용 영문과 번호가 명백히 어긋나므로 실제 결함이다."
+      }
+    }
+  ],
   "counts": {
-    "raw": 3,
-    "verified": 2,
-    "confirmed": 2,
-    "minor": 1
+    "raw": 25,
+    "verified": 17,
+    "confirmed": 13,
+    "minor": 8
   }
 }

@@ -1,0 +1,144 @@
+{
+  "grade": "sun-g3",
+  "seq": 3,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page1.body, 1문단 4~5번째 문장 (page3 sentences[4] 대응)",
+      "issue": "동어반복으로 인한 논리 전개 결함. 4번 문장이 이미 '빛·물·이산화탄소로 당을 만든다'를 완결적으로 서술했는데, 5번 문장이 같은 내용을 거의 그대로 되풀이한다. 또한 'In doing so'가 가리킬 선행 '별개의 행위'가 없어 연결어가 공회전한다.",
+      "evidence": "\"Plants use it to build sugar from nothing more than light, water, and the carbon dioxide in the surrounding air. In doing so, they use light energy to turn water and carbon dioxide into sugar you can actually hold.\"",
+      "suggestion": "두 문장을 통합하거나 5번 문장을 결과 중심으로 재작성. 예: \"Plants use it to build sugar from nothing more than light, water, and the carbon dioxide in the surrounding air — turning weightless sunlight into something you can actually hold.\"",
+      "lens": "language",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "지적이 파일 근거로 확인된다. page1.body(26행)에 인용문이 그대로 존재하며 page3 sentences[4](index 5, 176-187행)와 대응한다.\n\n1) 동어반복 실재. 4번 \"Plants use it to build sugar from nothing more than light, water, and the carbon dioxide in the surrounding air\"와 5번 \"they use light energy to turn water and carbon dioxide into sugar\"는 행위자(plants/they), 동사 프레임(use X to V), 입력(빛·물·이산화탄소), 산출(sugar)이 모두 동일하다. 차이는 \"build A from B\" → \"turn B into A\"라는 동의 표현 치환과 관계절 \"you can actually hold\"뿐이며, 후자의 '저장 가능한 실체'라는 함의도 2번 \"stored away as food\"에서 이미 선점되었다. 즉 5번의 순증 정보는 관계절 하나로, 완결된 문장 하나를 정당화하지 못한다.\n\n2) 연결어 공회전 실재. \"In doing so\"는 주절과 구별되는 선행 행위를 지시해야 하는데, 선행 행위(빛·물·CO2로 당 만들기)가 곧 주절 행위(빛에너지로 물·CO2를 당으로 바꾸기)와 동일하다. 결과적으로 \"당을 만듦으로써 당을 만든다\"는 순환이 되어 결속 표지가 무효화된다.\n\n3) 파일 자체 근거가 지적을 뒷받침. answers.explanations[0]의 evidence(363행)는 요지 근거로 2·10·7~15·16~17번만 인용하고 5번을 전혀 인용하지 않으며, rationales[0](365행) \"식물이 빛·물·이산화탄소로 당을 만든다\"는 4번만으로 충족된다. 지문의 자체 해설 장치가 5번을 무정보로 취급한다.\n\n4) 반박 가능성 검토 후 기각. (a) 교육적 반복이라는 변호는 성립하지 않는다 — 6~20번은 중복 없이 논지를 전진시키며(6번 두 단계 제시 → 7~10 명반응 → 11~15 암반응 → 16~20 함의), 4~5번만 이 지문 자체의 기준에서 이탈한다. 게다가 1080L·AR 8.4 수능형 요지 지문이다. (b) 5번이 단계 구분을 예고한다는 변호도 불가 — 단계 도입은 6번 \"The work happens in two linked stages\"가 담당하고 5번은 단계를 언급하지 않는다.\n\n다만 5번은 page3 grammar_note(186행)에서 \"turn A into B\"와 목적격 관계대명사 생략을 가르치는 문법 포인트를 담당하므로, 단순 삭제가 아니라 동일 구문을 유지하되 새로운 내용(예: 명반응·암반응 예고 또는 산소 방출)을 싣는 재작성이 적절한 수정 방향이다. 결함 자체의 실재성에는 영향이 없다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page1.body, 3문단 첫 문장 (page3 sentences[11] 대응)",
+      "issue": "과학적 과장/오개념 유발. 암반응(캘빈 회로)은 '빛 비의존적(light-independent)'이지 '빛과 전혀 무관'하지 않다. 실제로는 루비스코 등 효소가 빛에 의해 활성화되며 통상 낮에 진행된다. 'never touches light at all'은 '암반응은 밤에 일어난다'는 대표적 오개념을 학생에게 심을 수 있다. tieback 해설(body_ko)도 '운반 분자의 에너지를 이용'이라고만 하여 본문의 강한 단정을 뒷받침하지 않는다.",
+      "evidence": "\"The second stage never touches light at all.\"",
+      "suggestion": "\"The second stage does not use light directly.\" 또는 \"The second stage needs no light of its own.\"으로 완화. 2번 선택지 오답 근거(\"두 단계 모두 직접 햇빛이 필요하다\"의 반박)는 이 표현으로도 그대로 유지된다.",
+      "lens": "language",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "지적이 파일 근거로 명확히 확인되어 반박에 실패했다.\n\n1) 인용 근거 정확: page1.body(line 26) 3문단 첫 문장이 \"The second stage never touches light at all.\"로 원문 그대로 존재하며, page3 sentences[11](line 249-252)의 segments(\"The second stage\" / \"never touches\" / \"light\" / \"at all\")와도 정확히 대응한다. 위치 지정이 옳다.\n\n2) 과학적 오류가 실재: 캘빈 회로는 light-independent(빛을 직접 사용하지 않음)일 뿐, 빛과 무관하지 않다. 루비스코 활성화효소, 페레독신-티오레독신계에 의한 효소 활성화, 스트로마 pH·Mg2+ 변화 등이 모두 빛에 의해 조절되며 통상 낮에 진행된다. \"never ... at all\"이라는 이중 강조는 '직접 사용하지 않음'을 넘어 '빛과 전혀 무관'이라는 절대 단정으로 읽히고, 이는 '암반응=밤에 일어난다'는 대표적 오개념을 유발한다.\n\n3) 오류가 본문 한 문장에 그치지 않고 채점 논리에 고착됨(가중 요인): page2 Q1 오답 선택지(line 43) \"The two stages of photosynthesis both need direct sunlight to run at all.\"를 answers의 rationale(line 366)이 \"11번에서 두 번째 단계는 빛에 전혀 닿지 않는다고 했으므로 ... 모순이다\"라며 배제한다. 학생은 '2단계는 빛에 전혀 닿지 않는다'를 정답 논리로 승인하도록 평가받는다. 선택지의 \"direct sunlight\"만 부정하는 것은 타당하나, 근거를 절대 단정으로 제시한 점이 결함이다. translation_ko(line 355)의 \"[11] 두 번째 단계는 빛에 전혀 닿지 않는다.\" 역시 완화 없이 절대 단정을 강화한다.\n\n4) tieback 미지지 주장도 확인: textbook_tieback.body_ko(line 93)는 \"암반응에서는 이 운반 분자의 에너지를 이용해 이산화탄소를 고정하여 당의 탄소 골격을 만든다\"라고만 서술할 뿐, 빛과의 무관성을 주장하지 않는다. 즉 본문의 강한 단정을 교과 연계 해설이 뒷받침하지 않으며 교정 장치도 없다.\n\n반박 시도 및 기각: (a) '독해 지문의 허용 가능한 단순화'라는 방어는 meta가 성취기준 12세대03-04(line 10)과 교과 단원(line 8)에 명시적으로 연계되고 tieback이 내용 정합성을 목적으로 하는 구조여서 성립하지 않는다. (b) '비유적 표현'이라는 방어는 해당 문장이 2단계를 정의하는 자리에 놓이고 answers가 이를 문자 그대로의 사실 전제로 사용하므로 성립하지 않는다(\"energy translator\", \"tiny charged batteries\" 같은 명시적 비유와 층위가 다르다). (c) 영어 본문에 light-independent/암반응이라는 정확한 용어가 등장하지 않아 학생이 참조할 교정 기준도 없다.\n\n범위는 좁고 수정 비용은 낮으나(예: \"needs no light directly\" 및 rationale 동반 수정), 지적은 사실·위치·파급 모두 파일에서 4개 지점(line 26, 252, 355, 366)으로 교차 확인되는 실제 결함이다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.sentences[index=5].segments[0].note (\"In doing so,\" → \"분사구 부사\")",
+      "issue": "\"In doing so\"를 분사구(분사구문)로 잘못 명명했다. 실제로는 전치사 In + 동명사 doing의 전치사구(동명사구)이며, 분사구문이 아니다.",
+      "evidence": "본문: \"In doing so, they use light energy to turn water and carbon dioxide into sugar you can actually hold.\" / 해당 note: \"분사구 부사\". 같은 파일 index=16은 \"Seen this way,\"를 \"분사구문(수동)\"으로 올바르게 표기하고 있어, 파일 내부적으로도 두 구조를 구분하면서 index=5만 오분류되어 있다.",
+      "suggestion": "note를 \"전치사구(In + 동명사)\" 또는 \"전치사 + 동명사구(부사적)\"로 수정. 분사구문과 동명사구를 구분해 학습하는 단원 특성상 오해 소지가 크다.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 근거로 확인됨. page3.sentences[index=5].segments[0] (line 179)의 note가 \"분사구 부사\"인데, 해당 텍스트 \"In doing so,\"는 전치사 In + 동명사 doing + 목적어 so 구조의 전치사구이며 분사(구)가 아니다. 분사구문은 전치사 도입 없이 축약된 부사절이라는 정의상 이 구조와 구분된다. 같은 파일 index=16 (line 301) \"Seen this way,\"는 \"분사구문(수동)\"으로 정확히 표기되어 있고, index=2 (line 146) \"Inside it,\" → \"장소 부사구\", index=7 (line 200) \"In the first stage,\" → \"부사구\"처럼 전치사구는 별도로 \"부사구\"라 라벨링하고 있어, 파일 자체 표기 관례가 엄밀함을 보여준다. 즉 index=5만 관례에서 벗어나 오분류되었고, \"부사구\" 같은 올바른 라벨이 이미 파일 내에 존재했다. page3은 문장 구조 분석 페이지로 분사구문 vs 전치사+동명사는 수능/내신 빈출 문법 포인트이므로 학생 대상 콘텐츠의 실질적 정확성 결함이다. 다만 지적문이 \"분사구문으로 명명\"이라 했으나 실제 표기는 \"분사구\"인 점은 지적 측의 사소한 표현 부정확이며, 분사 계열 용어를 동명사 구조에 적용한 오류라는 본질은 그대로 성립한다. 심각도 warn은 타당(단일 라벨, 기능적 파급 없음)."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page2.questions[1] (빈칸 추론, answer_index 3) / page1.body 마지막 문장",
+      "issue": "정답 자체는 타당하나, 정답어 sunlight가 빈칸 바로 앞 문장과 제목에 그대로 노출되어 추론 문항으로서 변별력이 사실상 없다. 오답 선지(soil/oxygen/water/minerals)는 함정으로 기능하지 못한다.",
+      "evidence": "빈칸 문장: \"Coal and oil, too, are only ancient sunlight, saved by plants and pressed underground for ages. So the whole living world runs, in the end, on borrowed <blank>.\" — 직전 문장에 정답어 sunlight가 그대로 있고, page1.title도 \"The Leaf That Rewrites Sunlight\"이며 본문 내 sunlight 총 3회 등장(\"Inside it, sunlight is quietly captured\", \"colored pigments soak up sunlight\"). 반면 오답 4개 중 soil·minerals는 본문에 단 한 번도 등장하지 않아(해설도 \"'무기질(minerals)'은 본문에 근거가 없고\"라고 인정) 즉시 소거되고, oxygen·water는 에너지원 문맥과 무관해 학생이 본문을 읽지 않고 앞 문장만 복사해도 정답이 나온다.",
+      "suggestion": "두 가지 중 하나를 권장. (1) 빈칸을 단어가 아닌 구 단위로 바꿔 어휘 복사로 풀리지 않게 한다(예: 선지를 'borrowed sunlight / stored minerals / recycled oxygen / underground heat / falling water'처럼 수식어를 포함한 명사구로 구성). (2) sunlight를 정답으로 유지하려면 직전 문장의 \"only ancient sunlight\"를 \"only ancient light, saved by plants\" 등으로 바꿔 정답어의 직전 노출을 제거하고, oxygen·water를 명반응 산물/반응물이라는 점을 이용한 매력적 오답으로 재설계한다.",
+      "lens": "answer",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 근거로 지적의 모든 사실 주장이 확인됨. (1) page1.body 빈칸 직전 문장이 \"Coal and oil, too, are only ancient sunlight, ... So the whole living world runs, in the end, on borrowed <blank>.\"로, 정답어 sunlight가 바로 앞 문장에 그대로 노출됨. (2) page1.title이 \"The Leaf That Rewrites Sunlight\"이고 본문 내 sunlight가 3회 등장(\"Inside it, sunlight is quietly captured\", \"colored pigments soak up sunlight\", \"only ancient sunlight\"). (3) page2.questions[1] choices = [soil, oxygen, water, sunlight, minerals], answer_index 3 = sunlight로 일치. (4) soil·minerals는 page1.body에 단 한 번도 등장하지 않으며, answers.explanations[1].rationales가 직접 \"'무기질(minerals)'은 본문에 근거가 없고\"라고 인정 — 빈칸 문맥을 읽지 않고도 소거 가능함을 자인. 실제 수능 빈칸 추론은 어휘적으로 회수 불가능한 추상적 재진술을 표적으로 삼는데, 이 문항은 직전 문장의 단순 복사로 정답이 도출되어 style \"빈칸 추론\"이 표방한 인지 목표를 달성하지 못함. 다만 지적 중 oxygen·water가 \"함정으로 기능하지 못한다\"는 부분은 다소 과장됨(둘 다 본문 내 어휘라 부주의한 학생을 유인할 여지 있음). 그러나 핵심 결함인 정답어의 직전 문장 노출은 distractor 분석과 무관하게 독립적으로 성립. 정답 자체는 타당하고 문항이 파손된 것은 아니므로 warn 등급이 적정."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page4.vocab[3] (word: \"molecule\", synonyms)",
+      "issue": "\"particle\"를 molecule의 동의어로 제시했으나, particle(입자)은 molecule(분자)의 상위 개념일 뿐 동의어가 아니다. 특히 본문이 원자·분자를 명확히 구분하는 과학 지문이라 학생에게 개념 혼동을 준다.",
+      "evidence": "본문: \"colored pigments ... split ordinary water molecules apart\" / \"Carbon atoms are joined, one by one, into the long backbone of a sugar.\" — 본문 자체가 atom(원자)과 molecule(분자)을 구분해 사용하며, particle은 본문에 등장하지 않는 더 넓은 상위어다.",
+      "suggestion": "synonyms에서 \"particle\"을 삭제하거나, 정확한 대체어(예: 없음으로 두기, 또는 \"compound\"는 의미가 또 달라 부적절하므로 빈 배열 권장)로 바꾼다. 굳이 관련어를 보이려면 synonyms가 아닌 관련어/상위어 표기로 분리한다.",
+      "lens": "vocab",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "File evidence confirms the defect. Line 466 (page4.vocab[3], word \"molecule\") lists \"synonyms\": [\"particle\"] exactly as alleged. particle is a superordinate term covering atoms, ions, and subatomic entities, not a synonym of molecule, and substitution fails in both directions (\"split ordinary water particles apart\" is wrong; an atom is a particle but not a molecule). The error is aggravated by this specific passage: line 26 uses \"split ordinary water molecules apart\" (sentence 7) and \"Carbon atoms are joined, one by one, into the long backbone of a sugar\" (sentence 13), so the text deliberately contrasts atom-level and molecule-level entities; line 514 likewise glosses bond with \"A chemical bond holds two atoms together.\" Teaching molecule = particle primes students to collapse exactly the atom/molecule distinction the passage depends on, and meta.key_concepts includes 탄소 고정 (carbon fixation). The file's own convention refutes any necessity defense: sibling synonyms are true substitutes (release/emit, trap/capture, bond/link, carrier/transporter, stable/steady, pigment/dye), and technical terms with no true synonym are correctly left as empty arrays, as with photosynthesis (line 433) and carbon dioxide (line 455) — so the schema did not force a synonym here. particle also appears nowhere else in the file (not in the body, translation, or questions), so it is not drawn from the passage. Fix: set synonyms to [] per the existing convention."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page1.body, 1문단 첫 문장 (page3 sentences[1] 대응)",
+      "issue": "비관용적 표현. 'on the whole of Earth'는 영어권 표준 용법이 아니다. 'on Earth' 또는 'in the whole world'가 자연스럽다. 수능형 지문의 문체 기준에서 어색하다.",
+      "evidence": "\"...yet it is one of the busiest chemical factories on the whole of Earth.\"",
+      "suggestion": "\"one of the busiest chemical factories on Earth\"로 수정.",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "page1.body, 3문단 (page3 sentences[13] 대응)",
+      "issue": "수식어 부정확. 광합성 산물인 포도당의 탄소 골격은 6개 탄소로, 'long backbone'이라 부르기에 부적절하다. 학생이 '당 = 긴 사슬 고분자'로 오인할 소지가 있다.",
+      "evidence": "\"Carbon atoms are joined, one by one, into the long backbone of a sugar.\"",
+      "suggestion": "'long'을 삭제하거나 \"into the carbon backbone of a sugar\"로 수정.",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "page1.body, 3문단 (page3 sentences[12] 대응)",
+      "issue": "표현 정밀도. 캘빈 회로는 잎 내부의 기공을 통해 들어온 세포간극 공기에서 CO2를 고정하며, 'straight from the air(공기에서 곧장)'는 직접성을 다소 과장한다. 교재 수준의 비유로는 허용 범위이나 정밀 표현은 아니다.",
+      "evidence": "\"...drive a slow, patient cycle that grabs carbon dioxide straight from the air.\"",
+      "suggestion": "\"...that pulls carbon dioxide from the air inside the leaf.\" 정도로 다듬으면 정확도가 올라간다.",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.sentences[index=9].segments[3] (role \"M\", text \"ready to power the very next step.\")",
+      "issue": "주어를 서술하는 형용사구(주격 보어적 후치 수식)를 M으로 태깅했다. note는 \"형용사구 후치\"라 하면서 역할은 부사적 수식어로 잡혀 있다.",
+      "evidence": "본문: \"These carriers act like tiny charged batteries, ready to power the very next step.\" / 해당 세그먼트 role \"M\", note \"형용사구 후치\". 이 구는 동사 act가 아니라 주어 These carriers를 서술한다.",
+      "suggestion": "국내 교재 관행상 M 표기도 통용되므로 필수 수정은 아니나, 주어 서술 형용사구임을 note에 명시(예: \"주어 서술 형용사구\")하면 오해가 줄어든다.",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko 문장 [4]",
+      "issue": "\"from nothing more than A, B, and C\"를 \"A, B, C, 그 이상의 것 없이\"로 직역해 한국어 문장이 어색하고 '오직 ~만으로'라는 한정 의미가 흐려짐. 오역은 아니나 가독성 저하.",
+      "evidence": "영문: \"Plants use it to build sugar from nothing more than light, water, and the carbon dioxide in the surrounding air.\" / 번역: \"식물은 빛과 물, 그리고 주변 공기 속 이산화탄소, 그 이상의 것 없이 당을 만드는 데 그것을 사용한다.\"",
+      "suggestion": "\"식물은 오직 빛과 물, 그리고 주변 공기 속 이산화탄소만으로 당을 만드는 데 광합성을 이용한다.\" 정도로 다듬기.",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko 문장 [13]",
+      "issue": "수동태 \"are joined ... into\"를 자동사적 표현 \"이어진다\"로 옮겨, 결합이 '이루어지는' 피동 뉘앙스와 '~로 결합되어 들어간다'는 방향성이 다소 약해짐. 의미 왜곡은 아님.",
+      "evidence": "영문: \"Carbon atoms are joined, one by one, into the long backbone of a sugar.\" / 번역: \"탄소 원자들은 하나씩 하나씩 당의 긴 골격 속으로 이어진다.\"",
+      "suggestion": "\"탄소 원자들이 하나씩 하나씩 결합되어 당의 긴 골격을 이룬다.\" 등으로 수동 결합의 의미를 살리면 더 정확.",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[1] (word: \"pigment\", synonyms)",
+      "issue": "synonym \"dye\"는 일반적 '색을 내는 물질'로는 통하나, 본문의 pigment는 엽록소 같은 '빛을 흡수하는 생체 색소'를 가리켜 dye(염료, 보통 용해성 착색제)와 용법이 어긋난다. gloss_extra의 정의와도 초점이 다르다.",
+      "evidence": "본문: \"colored pigments soak up sunlight and use its energy to split ordinary water molecules apart\" / page1.gloss_extra: { \"term\": \"pigment\", \"ko\": \"색소 (빛을 흡수하는 물질)\" }",
+      "suggestion": "\"dye\" 대신 \"coloring matter\" 정도로 바꾸거나, 본문 맥락에 맞게 synonyms를 비우고 예문으로 생체 색소 용법만 보여준다.",
+      "lens": "vocab"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[10] (word: \"translator\")",
+      "issue": "고3(sun-g3, 1080L) 대비 표제어 자체가 지나치게 기초어다. 본문에서 가치 있는 부분은 단어 뜻이 아니라 'energy translator'라는 비유적 용법인데, 표제어를 단어 단위로 잡아 학습 가치가 떨어진다.",
+      "evidence": "본문: \"Seen this way, a leaf is really an <u>energy translator</u>.\" — 3번 문항도 이 비유(함의 추론)를 묻고 있어 학습 초점은 비유적 확장 의미에 있다.",
+      "suggestion": "표제어를 \"energy translator\"(비유 표현) 또는 본문의 \"rewrite/convert\"류 고급 어휘로 교체하거나, meaning_ko를 '(비유) 에너지를 다른 형태로 바꾸는 것'으로 앞세워 비유 용법 중심으로 재구성한다.",
+      "lens": "vocab"
+    }
+  ],
+  "blockers": [],
+  "counts": {
+    "raw": 15,
+    "verified": 7,
+    "confirmed": 5,
+    "minor": 8
+  }
+}

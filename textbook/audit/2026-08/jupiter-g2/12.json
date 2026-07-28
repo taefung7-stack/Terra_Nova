@@ -3,48 +3,176 @@
   "seq": 12,
   "confirmed": [
     {
-      "severity": "blocker",
-      "location": "page1.body, 마지막 문장 (page3 sentences index 18의 관계절)",
-      "issue": "주어-동사 수 일치 오류(비문). 관계절의 주어가 단수·불가산 명사 'randomness'인데 동사가 원형 'obey'로 되어 있다. 'obeys'가 되어야 한다.",
-      "evidence": "\"...more like a hidden rule that quiet <blank> obey without being told.\" 정답(answer_index 3)이 'randomness'(불가산 단수)이므로 관계절은 실질적으로 \"that quiet randomness obey\"가 되어 단수 주어에 복수형 동사가 붙는다. page3의 문장 분석에서도 { \"role\": \"REL\", \"text\": \"that quiet randomness obey\" }로 'obey'를 그대로 두고 있다.",
-      "suggestion": "동사를 'obeys'로 수정: \"...a hidden rule that quiet randomness obeys without being told.\" (page3 index 18의 REL 세그먼트도 'that quiet randomness obeys'로 함께 수정)",
+      "severity": "warn",
+      "location": "page1.body — 마지막 문장 (4단락 끝) / page2.questions[1] 빈칸 추론",
+      "issue": "빈칸 슬롯의 문법이 5개 선택지 중 4개를 자동으로 배제한다. 본문 슬롯이 \"that quiet <blank> obeys\"로, (a) 관형어 quiet 뒤에 관사 없이 오므로 가산 단수는 불가하고 (b) 관계절 동사가 3인칭 단수 obeys이므로 복수 주어도 불가하다. 그런데 오답 4개(engines, melodies, puzzles, machines)는 모두 복수 가산명사라 'quiet engines obeys'처럼 비문이 된다. 결국 불가산명사인 정답 randomness만 문법적으로 성립해, 지문 내용을 전혀 이해하지 못해도 수·관사만 보고 정답을 고를 수 있다. 같은 2026-08-J 세트의 나머지 19개 지문은 모두 선택지가 슬롯에 문법적으로 호환되도록(전부 단수명사 또는 전부 동사원형 또는 전부 병렬 구) 설계되어 있어, 12번만 이 관례를 어긴다.",
+      "evidence": "본문: \"That is why the normal distribution feels less like a formula and more like a hidden rule that quiet <blank> obeys without being told.\" / 선택지: [\"engines\", \"melodies\", \"puzzles\", \"randomness\", \"machines\"] (answer_index 3)",
+      "suggestion": "오답을 슬롯에 문법적으로 맞는 불가산·단수 추상명사로 교체할 것. 예: [\"machinery\", \"melody\", \"logic\", \"randomness\", \"design\"] 또는 [\"habit\", \"memory\", \"intention\", \"randomness\", \"purpose\"]. 이러면 5개 모두 'quiet ___ obeys'에 자연스럽게 들어가 내용 추론이 실제로 요구된다. (본문 문장 자체는 수정 불필요.)",
       "lens": "language",
       "verdict": {
         "isReal": true,
         "confidence": "high",
-        "reason": "확인됨. page1.body 마지막 문장 \"...a hidden rule that quiet <blank> obey without being told.\"에서 빈칸 정답(answer_index 3)은 'randomness'(불가산·단수 명사)다. 관계절 \"that quiet randomness obey\"에서 관계대명사 that은 선행사 'a hidden rule'을 가리키는 목적어이고, 관계절의 실제 주어는 단수 'randomness'이므로 동사는 3인칭 단수 현재형 'obeys'가 되어야 한다. 그러나 원형 'obey'로 되어 있어 주어-동사 수 일치 오류(비문)다. page3 sentences index 18에도 { \"role\": \"REL\", \"text\": \"that quiet randomness obey\" }로 동일하게 'obey'가 그대로 있어 오류가 두 곳에서 확인된다. 지적이 정확하다."
+        "reason": "파일 근거로 지적의 모든 주장이 확인됨.\n\n1) 본문 슬롯 (12.json page1.body 마지막 문장): \"...more like a hidden rule that quiet <blank> obeys without being told.\" — 관계절 동사가 3인칭 단수 obeys로 확정.\n\n2) 선택지 (page2.questions[1]): [\"engines\",\"melodies\",\"puzzles\",\"randomness\",\"machines\"], answer_index 3. 오답 4개는 모두 복수 가산명사 → \"quiet engines obeys\"는 수일치 위반 비문. 또한 관형어 quiet 앞에 관사가 없어 가산 단수로 바꿔도 성립 불가. 결국 불가산명사 randomness만 문법적으로 유일하게 성립.\n\n3) 이 의존성은 파일 자체가 명시적으로 인정함. page3 sentences[18] 세그먼트 note: \"관계대명사 that (선행사 randomness 단수 → obeys)\" — 즉 obeys의 단수형은 정답 randomness에만 맞춰 설계된 것.\n\n4) 관례 위반도 확인. 같은 2026-08-J 세트 20개 지문의 빈칸 추론 문항을 전수 추출한 결과, 나머지 19개는 모두 슬롯에 문법적으로 호환됨: 03/05/16은 전부 형용사, 07/10/18은 슬롯과 일치하는 명사(전부 단수 또는 전부 복수), 14는 \"who we already ___\"에 are/hide/doubt/forget/perform 전부 복수주어 호환, 17은 \"what a ruler never ___\"에 3인칭 단수 호환, 02/06/08/11/13/15/19/20은 전부 병렬 동사구. 12번만 슬롯의 수일치가 5지 중 4지를 자동 배제한다.\n\n결과적으로 지문 내용을 전혀 읽지 않아도 수·관사만으로 정답 도출이 가능한 구조적 결함이며, 세트 내 유일한 예외다. 오답이 의미적으로도 틀리다는 점은 결함을 상쇄하지 못함 — 문제는 내용 이해 없이도 정답이 가능하다는 것 자체이기 때문."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "page3.sentences[index=18].segments[3].note",
+      "issue": "관계대명사 that의 선행사를 오지정했다. 본문 \"a hidden rule that quiet randomness obeys without being told\"에서 that의 선행사는 'a hidden rule'(obeys의 목적어)이고, 'quiet randomness'는 관계절의 주어다. 그런데 note는 선행사를 randomness라고 단정하고, obeys의 -s를 '선행사 randomness가 단수이기 때문'이라고 설명한다. 주어-선행사를 뒤바꾼 구조 오분석이며, 학생이 목적격 관계대명사절을 주격으로 오해하게 만든다.",
+      "evidence": "본문(page1.body): \"...more like a hidden rule that quiet <blank> obeys without being told.\" / 오류 note: \"관계대명사 that (선행사 randomness 단수 → obeys)\" / 같은 문장 segments: { \"role\": \"REL\", \"text\": \"that quiet randomness obeys\" }",
+      "suggestion": "note를 \"목적격 관계대명사 that (선행사 a hidden rule; 관계절 주어는 quiet randomness → obeys)\"로 수정한다.",
+      "lens": "explanation",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "확인됨. page3.sentences[index=18].segments[3] (파일 305행)의 note가 \"관계대명사 that (선행사 randomness 단수 → obeys)\"로 되어 있으나, 해당 절 \"that quiet randomness obeys\"에서 obeys는 이미 절 내부 주어 quiet randomness를 가지므로 that은 주격이 아니라 obeys의 목적어이고, 선행사는 직전 segment(304행)가 끝나는 'a hidden rule'이다. 즉 note는 관계절의 주어(randomness)를 선행사로 뒤바꿔 지정했고, obeys의 -s를 '선행사가 단수라서'라고 잘못된 인과로 설명했다(실제로는 절 내부 주어의 수 일치). 파일 자체 근거로도 모순이 확인된다: 311행 국역은 \"조용한 무작위성이 시키지 않아도 따르는 숨은 규칙\"으로 randomness를 주어, hidden rule을 피수식 명사로 정확히 처리했고, 336행 해설도 \"규칙을 따르는 주체는 무작위성\"이라고 명시한다. 대안 해석(that을 접속사로 보기)은 obeys의 타동사 목적어 공백이 남고 role이 명시적으로 \"REL\"이라는 점에서 배제된다. 문법 주석 자체가 산출물인 교재에서 목적격 관계대명사절을 주격으로 오해시키는 구조 오분석이므로 실질 결함이다."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "answers.explanations[q_index=1].evidence",
+      "issue": "빈칸 추론 해설의 evidence가 본문을 잘못 인용했다. 본문 동사는 obeys(3인칭 단수)인데 해설은 obey로 인용한다. 이 문항은 빈칸에 들어갈 주어를 고르는 문항이므로, 동사의 수일치(obeys)가 곧 '단수 명사(randomness)'를 고르는 핵심 근거인데, 인용을 obey로 바꿔버리면 정답 근거 자체가 사라진다. 오히려 복수형 engines/melodies/puzzles/machines를 배제할 수 없게 되어 오답 유도가 된다.",
+      "evidence": "본문(page1.body): \"a hidden rule that quiet <blank> obeys without being told.\" / 해설 evidence: \"빈칸 앞 \\\"a hidden rule that quiet ___ obey\\\"와 글 전체 주제...\"",
+      "suggestion": "인용을 \"a hidden rule that quiet ___ obeys\"로 바로잡고, rationales에도 'obeys의 단수 수일치 → 복수형 engines/melodies/puzzles/machines 배제'라는 문법 근거를 추가한다.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "medium",
+        "reason": "인용 오류 자체는 파일로 확인됨. page1.body(line 21)는 \"a hidden rule that quiet <blank> obeys without being told.\"인데, answers.explanations[q_index=1].evidence(line 336)는 \"빈칸 앞 \\\"a hidden rule that quiet ___ obey\\\"\"로 인용한다. 직접 인용 형식(따옴표)을 쓰면서 동사 형태를 obeys → obey로 바꿨으므로 인용 부정확은 사실이다. 더욱이 같은 파일 page3 sentences[18] segments의 note(line 305)가 \"관계대명사 that (선행사 randomness 단수 → obeys)\"라고 명시해, 수일치가 이 문항의 문법적 단서임을 파일 스스로 인정한다. 따라서 지적의 핵심 사실 주장은 근거가 있다.\n\n다만 지적이 주장하는 영향(blocker, \"정답 근거 자체가 사라진다\", \"오답 유도\")은 과장이다: (1) 학생이 보는 지문(page1.body)과 선택지(page2)는 정상이며 obeys가 그대로 있어 문항 자체는 정상 작동하고 정답이 유일하게 결정된다. (2) 문제의 텍스트는 answers.explanations 내부 해설(교사/정답지 영역)이라 학생에게 노출되지 않으므로 오답 유도가 발생하지 않는다. (3) 해당 evidence는 수일치 외에 \"글 전체 주제(무작위한 결과가 종 모양으로 수렴)\"도 근거로 제시하고, 5개 rationales 역시 모두 의미 기반 배제 논리라 engines/melodies/puzzles/machines는 의미상으로도 배제된다.\n\n결론: 결함은 실재하나 blocker가 아니라 정답지 인용 정확성 수준의 minor 이슈. 수정은 evidence의 obey → obeys 한 글자면 충분하다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.sentences[index=3].segments[9]",
+      "issue": "구문 역할 오태깅(C). 해당 절의 동사 rises는 완전자동사로 보어를 취하지 않는다. 콜론 뒤 \"a smooth mound, high in the middle, thin at the edges.\"는 주어 'a familiar shape'에 대한 동격 명사구이지 주격보어가 아니다. 같은 segment의 note가 이미 \"동격 명사구\"라고 적혀 있어 role 태그(C)와 note가 서로 모순된다.",
+      "evidence": "본문: \"...and a familiar shape rises from the noise: a smooth mound, high in the middle, thin at the edges.\" / 태깅: { \"role\": \"C\", \"text\": \"a smooth mound, high in the middle, thin at the edges.\", \"note\": \"동격 명사구\" }",
+      "suggestion": "role을 C가 아닌 M(또는 동격 전용 태그 APP)로 바꿔 note의 '동격 명사구' 설명과 일치시킨다. grammar_note의 '+ 동격' 표현은 그대로 유지 가능.",
+      "lens": "explanation",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "파일에서 확인됨. page3.sentences[index=3].segments[9] (12.json 131행)은 { \"role\": \"C\", \"text\": \"a smooth mound, high in the middle, thin at the edges.\", \"note\": \"동격 명사구\" }로, role 태그와 note가 정면으로 모순된다. 해당 절 \"a familiar shape rises from the noise: ...\"의 동사 rises는 완전자동사(1형식)로 주격보어를 취할 수 없으며, 콜론 뒤 명사구는 주어 'a familiar shape'에 대한 동격어다. 문장 단위 grammar_note(133행)도 \"... + 동격\"으로 끝나 동격 분석임을 스스로 밝히고 있다. 결정적 근거는 동일 파일 내 일관성 위반이다: index=12의 segments[4] { \"role\": \"M\", \"text\": \"the standard normal distribution.\", \"note\": \"동격\" }는 같은 동격 구성을 M으로 태깅했다. 즉 이 파일의 동격 표기 관례는 M이며 index=3만 C로 이탈했다. 또한 이 파일의 다른 모든 C(index=2, 9, 13, 15, 18은 be동사 뒤 보어, index=10은 사역동사 let의 목적격보어)는 전부 연결동사·사역동사 뒤의 진성 보어여서, 콜론 동격을 C로 볼 선례가 없다. 따라서 role 태그 C는 오태깅이며 M(동격)으로 정정되어야 한다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.sentences[index=3].segments[1]",
+      "issue": "목적어 범위 오태깅. \"this thousands of times\"를 하나의 O로 묶었으나, Repeat의 목적어는 대명사 'this'뿐이고 'thousands of times'는 횟수를 나타내는 부사구(M)다. index 1 문장에서 동일 구조인 \"Toss / a fair coin(O) / ten times(M)\"를 O와 M으로 올바르게 분리한 것과도 태깅 기준이 어긋난다.",
+      "evidence": "본문: \"Repeat this thousands of times and plot how often each count appears\" / 태깅: { \"role\": \"O\", \"text\": \"this thousands of times\" } / 비교 index 1: { \"role\": \"O\", \"text\": \"a fair coin\" }, { \"role\": \"M\", \"text\": \"ten times.\" }",
+      "suggestion": "O는 \"this\", M은 \"thousands of times\"로 분리한다.",
+      "lens": "explanation",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "파일에서 지적 내용이 그대로 확인됨. page3.sentences[index=3].segments[1] = { \"role\": \"O\", \"text\": \"this thousands of times\" }. 'Repeat this thousands of times'에서 타동사 Repeat의 목적어는 대명사 'this'뿐이며, 'thousands of times'는 횟수를 나타내는 부사적 명사구(M)다. 'this thousands'는 지시사 단수 this가 복수 thousands를 수식할 수 없어 하나의 명사구로 성립하지 않으므로(These thousands가 되어야 함) 병합 태깅은 문법적으로 불가능하다. 같은 파일의 translation_ko도 \"[3] 이것을 수천 번 반복해\"로 목적어(이것을)와 횟수 부사(수천 번)를 분리해 읽고 있다. 또한 동일 파일 내 태깅 기준과도 어긋난다: index 1은 \"Toss(V) / a fair coin(O) / ten times.(M)\"로, index 8은 \"squeezes(V) / it(O) / into a tall, narrow spike.(M)\"로 목적어 뒤 부사 요소를 M으로 분리한다. 즉 실제 문법 오류이자 내부 일관성 위반이며, 반박할 근거(다른 태깅 컨벤션 등)는 파일에서 발견되지 않음."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page4.vocab[5] (\"limiting\") examples[0]",
+      "issue": "예문의 영어와 한국어 대역이 불일치한다. en \"Mathematicians describe this limiting shape as normal.\"에서 describe X as normal은 '이 모양을 정상적/평범하다고 기술한다'는 뜻이 되어, ko \"수학자들은 이 극한의 모양을 정규분포로 기술한다\"와 맞지 않는다. 본문 표현은 전치사 with + 명사구다.",
+      "evidence": "본문(page1.body): \"Mathematicians describe this limiting shape with the <u>normal distribution</u>, which is defined by just two numbers.\" / vocab 예문 en: \"Mathematicians describe this limiting shape as normal.\" ko: \"수학자들은 이 극한의 모양을 정규분포로 기술한다.\"",
+      "suggestion": "예문 en을 본문대로 \"Mathematicians describe this limiting shape with the normal distribution.\"로 고치거나, ko를 \"수학자들은 이 극한의 모양을 정규적이라고 기술한다\"로 맞춘다.",
+      "lens": "vocab",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일에서 지적 내용이 그대로 확인됨. page4.vocab[5] (\"limiting\") examples[0]은 en \"Mathematicians describe this limiting shape as normal.\" / ko \"수학자들은 이 극한의 모양을 정규분포로 기술한다.\" (line 447)로, 한국어는 page3.translation_ko 문장 [6] \"수학자들은 이 극한의 모양을 정규분포로 기술하는데...\"를 그대로 가져왔으나 영어만 본문(page1.body, line 21) \"describe this limiting shape with the normal distribution\"에서 \"as normal\"로 변형되었다. \"describe X as normal\"의 normal은 서술 형용사(정상적인/정규적인)이며 명사구 \"the normal distribution\"이 아니므로 ko의 \"정규분포로\"(명사 = 분포 그 자체)와 대응하지 않는다. 같은 파일의 page4.vocab[1] (line 403) \"The normal distribution describes this limiting bell shape.\"는 명사구를 보존하고 있어 파일 자체 관례와도 어긋나며, page3 sentence 6 (lines 158-166)은 본문을 3형식 + M 전치사구 \"with the normal distribution\"으로 명시 분석하고 있어 문법 분석과도 충돌한다. 다만 통계 맥락에서 \"describe ... as normal\" 자체가 비문이거나 사실 오류는 아니므로 결함의 성격은 en/ko 대역 불일치 및 본문 표현 이탈이다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page4.vocab[2] (\"standard deviation\").synonyms[0] = \"spread\"",
+      "issue": "synonym 부적절. standard deviation(표준편차)은 정의된 통계량이고, spread는 '퍼진 정도'라는 일반 개념어로 동의어가 아니다. 게다가 본문에서 spread는 동사(spreads)로만 쓰여 품사도 일치하지 않는다. 학생이 두 말을 교체 가능한 동의어로 오인할 수 있다.",
+      "evidence": "본문(page1.body): \"the standard deviation sets how wide the bell <b>spreads</b>\" — spread는 동사로 등장. vocab: {\"word\": \"standard deviation\", \"synonyms\": [\"spread\"]}",
+      "suggestion": "synonyms를 비우거나, 관계를 설명하는 형태(예: 관련어 'dispersion, variability')로 바꾼다.",
+      "lens": "vocab",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일로 확인됨. line 408-411: page4.vocab[2] = {\"word\": \"standard deviation\", \"pos\": \"n.\", \"meaning_ko\": \"표준편차\", \"synonyms\": [\"spread\"]}. 지적이 정확하다.\n\n(1) 의미 불일치: standard deviation은 분산의 제곱근으로 정의된 특정 통계량이고, spread는 '퍼진 정도'라는 일반 개념어다. 파일 자신이 이 구별을 보여준다 — line 82 textbook_tieback: \"표준편차는 곡선의 퍼진 정도를 정한다\". X를 '정하는' 것은 X의 동의어가 될 수 없다. 해당 vocab 항목 자체의 예문(line 414)에 대입하면 \"The spread sets how wide the bell spreads\"라는 동어반복 비문이 된다.\n\n(2) 품사 불일치: line 21 page1.body \"the standard deviation sets how wide the bell spreads\" — spreads는 정동사. line 177 page3 세그먼트가 이를 확증한다: {\"role\":\"O\",\"text\":\"how wide the bell spreads.\"} (the bell=S, spreads=V). vocab 항목은 pos=\"n.\"인데 본문 출현형은 동사다.\n\n(3) 파일 내 규약 위반: 동일 유형의 다어절 통계 용어인 binomial distribution(line 389)과 normal distribution(line 400)은 모두 synonyms=[]로 비어 있다. synonyms를 가진 나머지 항목들(symmetric/balanced, elegant/graceful, jagged/uneven, marvel/wonder, outcome/result, standardize/normalize)은 전부 품사가 일치하는 진짜 어휘적 동의어다. standard deviation만 유일한 예외다.\n\n반박 여지(부분적): line 40 page2 선택지에 \"its mean and spread\"로 spread가 명사로 쓰이며, 통계학에서 spread를 산포의 포괄 용어로 느슨히 쓰기도 한다. 그러나 이는 품사 지적만 약화시킬 뿐, 일반 개념어와 특정 명명 통계량의 교체 불가라는 핵심 결함은 그대로 남는다. 학생이 둘을 교체 가능한 동의어로 오인할 실질적 위험이 있다.\n\n수정 방향: 형제 항목들과 동일하게 synonyms를 []로 비운다.\n\n참고: 지적의 근거 인용에 \"<b>spreads</b>\"라 되어 있으나 실제 본문에는 <b> 태그가 없다(평문). 인용 표기상의 사소한 부정확이며 지적의 실질에는 영향 없음.\n\n파일: C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-08-J/12.json (line 411)"
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page4.vocab[6] (\"rescale\").synonyms[0] = \"standardize\"",
+      "issue": "동일 vocab 목록 안에서 rescale과 standardize를 각각 다른 표제어·다른 meaning_ko로 실어 놓고, rescale의 동의어로 standardize를 지정해 자기모순이 된다. rescale은 '척도를 다시 맞추다'(임의 배율 변환) 일반 동작이고, standardize는 '평균을 빼고 표준편차로 나누는' 특정 변환이어서 포함관계이지 동의어가 아니다.",
+      "evidence": "vocab[6]: {\"word\":\"rescale\",\"meaning_ko\":\"척도를 다시 맞추다\",\"synonyms\":[\"standardize\"]} / vocab[7]: {\"word\":\"standardize\",\"meaning_ko\":\"표준화하다\",\"synonyms\":[\"normalize\"]}. 본문: \"We subtract the mean and divide by the standard deviation. This <b>rescales</b> any bell into a single reference curve centered at zero\"",
+      "suggestion": "rescale의 synonyms를 \"readjust the scale\" 계열(예: 'convert, transform')로 바꾸거나 비우고, standardize와의 관계는 별도 note로 처리한다.",
+      "lens": "vocab",
+      "verdict": {
+        "reason": "파일에서 지적 내용이 그대로 확인된다. page4.vocab[6] = {\"word\":\"rescale\",\"meaning_ko\":\"척도를 다시 맞추다\",\"synonyms\":[\"standardize\"]}, vocab[7] = {\"word\":\"standardize\",\"meaning_ko\":\"표준화하다\",\"synonyms\":[\"normalize\"]}로 같은 목록에 인접해 실려 있다.\n\n반박을 시도했으나 실패했다. 문맥 한정 동의어라는 변호는 가능하다 — 본문 12번 문장 \"This rescales any bell into a single reference curve\"의 \"This\"는 11번 \"We subtract the mean and divide by the standard deviation\"을 받으므로, 이 지점의 rescale은 실제로 표준화 동작이다. 그러나 다음 이유로 결함이 성립한다:\n\n1. 자기모순: 같은 vocab 배열이 두 단어를 별도 표제어로 분리하고 서로 다른 meaning_ko(\"척도를 다시 맞추다\" vs \"표준화하다\")를 부여해 놓고, 한쪽을 다른 쪽의 동의어로 지정했다. 학습자가 vocab[6]에서 \"rescale=standardize\"를 배운 뒤 vocab[7]에서 두 뜻이 다르다고 배우게 된다.\n2. 비대칭: standardize의 synonyms는 [\"normalize\"]이며 rescale을 포함하지 않아 상호 참조가 성립하지 않는다.\n3. 대입 검증 실패(결정적): 해당 표제어 자신의 두 번째 예문 \"Rescale the graph so the values fit the page.\"(값들이 페이지에 맞도록 그래프의 척도를 다시 맞춰라)에는 standardize를 대입할 수 없다. 즉 항목이 스스로 제시한 일반적 배율 변환 용례에서 동의어가 깨진다.\n4. 파일의 다른 부분도 두 개념을 일관되게 구분한다. translation_ko는 12번을 \"다시 척도를 맞춘다\", 14번 standardized를 \"표준화되면\"으로 구분 번역했다.\n\n의미론적으로 standardize(평균을 빼고 표준편차로 나누는 특정 변환)는 rescale(임의 배율 변환)의 하위어이지 동의어가 아니다. 지적이 제시한 포함관계 논거가 정확하다. warn 등급도 적정하다(오답을 유발하는 치명적 오류는 아니나 어휘 학습상 혼동을 준다).",
+        "isReal": true,
+        "confidence": "high"
       }
     }
   ],
   "minors": [
     {
       "severity": "minor",
-      "location": "page3.sentences[index=3], 마지막 segment (role \"C\")",
-      "issue": "콜론 뒤 동격 명사구를 주격보어(C)로 태깅했으나, 해당 절의 동사 rises는 완전자동사(1형식)라 보어를 취할 수 없다. 이 구는 주어 'a familiar shape'를 재진술하는 동격어이지 rises의 보어가 아니다.",
-      "evidence": "본문: \"a familiar shape rises from the noise: a smooth mound, high in the middle, thin at the edges.\" 태깅: { \"role\": \"C\", \"text\": \"a smooth mound, high in the middle, thin at the edges.\", \"note\": \"동격 명사구\" }",
-      "suggestion": "note는 '동격'으로 정확하나 role 문자를 C 대신 M(또는 동격 표기)으로 조정. rises가 1형식임을 감안해 보어(C)로 오독되지 않도록 함.",
+      "location": "answers.explanations[1].evidence (q_index 1, 빈칸 추론 해설)",
+      "issue": "해설이 본문을 인용하면서 동사 어형을 잘못 옮겼다. 본문은 obeys(3인칭 단수)인데 해설 인용문은 obey로 적혀 있다. 학생이 해설의 인용을 근거로 복수 선택지를 고를 수 있다는 오해를 줄 수 있어, 위 warn 항목과 맞물리면 혼선이 커진다.",
+      "evidence": "해설: \"빈칸 앞 \\\"a hidden rule that quiet ___ obey\\\"와 글 전체 주제...\" / 본문: \"a hidden rule that quiet <blank> obeys without being told\"",
+      "suggestion": "해설 인용을 본문 그대로 \"a hidden rule that quiet ___ obeys\"로 수정할 것.",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.sentences[index=11].segments",
+      "issue": "동사 병렬 분석이 불완전하다. \"We subtract the mean and divide by the standard deviation\"에서 divide는 생략된 목적어(the difference / it)를 갖는 타동사이며, 병렬 대상은 'subtract the mean'과 'divide (it) by the standard deviation'이다. 현재 태깅은 divide를 목적어 없는 자동사처럼 보이게 하여, 표준화 공식 (X−m)/σ의 구조를 학생이 오해할 수 있다.",
+      "evidence": "본문: \"We subtract the mean and divide by the standard deviation.\" / 태깅: { \"role\": \"V\", \"text\": \"divide\" }, { \"role\": \"M\", \"text\": \"by the standard deviation.\", \"note\": \"전치사구\" } / grammar_note: \"동사 병렬 (subtract / divide by)\"",
+      "suggestion": "grammar_note에 'divide의 목적어(the result)가 문맥상 생략된 병렬 구조'임을 한 줄 덧붙인다.",
       "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "answers.explanations[1].evidence (q_index 1, 빈칸 추론)",
+      "issue": "해설의 근거 인용문이 본문과 다르게 표기됨. 본문은 \"that quiet <blank> obeys\"(3인칭 단수 -s)인데 해설은 \"a hidden rule that quiet ___ obey\"로 동사를 obey(원형)로 인용했다. 정답 randomness 자체는 타당하나, page3 sentence 18의 문법 노트가 \"관계대명사 that (선행사 randomness 단수 → obeys)\"라고 단수 일치를 명시적으로 가르치고 있어 해설의 인용이 그 교수 포인트와 충돌한다. 또한 인용 형식도 본문의 <blank> 표기가 아닌 ___ 로 되어 있다.",
+      "evidence": "본문(page1.body): \"...more like a hidden rule that quiet <blank> obeys without being told.\" / 해설(answers.explanations[1].evidence): \"빈칸 앞 \\\"a hidden rule that quiet ___ obey\\\"와 글 전체 주제...\" / page3 sentences[17]: { \"role\": \"REL\", \"text\": \"that quiet randomness obeys\", \"note\": \"관계대명사 that (선행사 randomness 단수 → obeys)\" }",
+      "suggestion": "해설 evidence의 인용을 본문 그대로 \"a hidden rule that quiet <blank> obeys without being told\"로 수정한다.",
+      "lens": "answer"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[11] (\"extremes\").antonyms[0] = \"center\"",
+      "issue": "antonym이 부정확하다. extremes(양극단)의 대응어로 본문이 제시하는 것은 'an average(평균)'이며, center는 곡선의 위치를 가리키는 일반 명사로 반의어라기보다 대비어에 가깝다. 또한 복수형 표제어(extremes)에 단수 center를 대응시켜 형태도 어긋난다.",
+      "evidence": "본문(page1.body): \"pile up <b>around an average</b> and thin out <b>toward the extremes</b>\" / vocab: {\"word\":\"extremes\",\"antonyms\":[\"center\"]}",
+      "suggestion": "antonyms를 [\"the average\"] 또는 [\"the middle\"]로 바꿔 본문 대비 구조와 맞춘다.",
+      "lens": "vocab"
     }
   ],
   "blockers": [
     {
       "severity": "blocker",
-      "location": "page1.body, 마지막 문장 (page3 sentences index 18의 관계절)",
-      "issue": "주어-동사 수 일치 오류(비문). 관계절의 주어가 단수·불가산 명사 'randomness'인데 동사가 원형 'obey'로 되어 있다. 'obeys'가 되어야 한다.",
-      "evidence": "\"...more like a hidden rule that quiet <blank> obey without being told.\" 정답(answer_index 3)이 'randomness'(불가산 단수)이므로 관계절은 실질적으로 \"that quiet randomness obey\"가 되어 단수 주어에 복수형 동사가 붙는다. page3의 문장 분석에서도 { \"role\": \"REL\", \"text\": \"that quiet randomness obey\" }로 'obey'를 그대로 두고 있다.",
-      "suggestion": "동사를 'obeys'로 수정: \"...a hidden rule that quiet randomness obeys without being told.\" (page3 index 18의 REL 세그먼트도 'that quiet randomness obeys'로 함께 수정)",
-      "lens": "language",
+      "location": "page3.sentences[index=18].segments[3].note",
+      "issue": "관계대명사 that의 선행사를 오지정했다. 본문 \"a hidden rule that quiet randomness obeys without being told\"에서 that의 선행사는 'a hidden rule'(obeys의 목적어)이고, 'quiet randomness'는 관계절의 주어다. 그런데 note는 선행사를 randomness라고 단정하고, obeys의 -s를 '선행사 randomness가 단수이기 때문'이라고 설명한다. 주어-선행사를 뒤바꾼 구조 오분석이며, 학생이 목적격 관계대명사절을 주격으로 오해하게 만든다.",
+      "evidence": "본문(page1.body): \"...more like a hidden rule that quiet <blank> obeys without being told.\" / 오류 note: \"관계대명사 that (선행사 randomness 단수 → obeys)\" / 같은 문장 segments: { \"role\": \"REL\", \"text\": \"that quiet randomness obeys\" }",
+      "suggestion": "note를 \"목적격 관계대명사 that (선행사 a hidden rule; 관계절 주어는 quiet randomness → obeys)\"로 수정한다.",
+      "lens": "explanation",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "확인됨. page3.sentences[index=18].segments[3] (파일 305행)의 note가 \"관계대명사 that (선행사 randomness 단수 → obeys)\"로 되어 있으나, 해당 절 \"that quiet randomness obeys\"에서 obeys는 이미 절 내부 주어 quiet randomness를 가지므로 that은 주격이 아니라 obeys의 목적어이고, 선행사는 직전 segment(304행)가 끝나는 'a hidden rule'이다. 즉 note는 관계절의 주어(randomness)를 선행사로 뒤바꿔 지정했고, obeys의 -s를 '선행사가 단수라서'라고 잘못된 인과로 설명했다(실제로는 절 내부 주어의 수 일치). 파일 자체 근거로도 모순이 확인된다: 311행 국역은 \"조용한 무작위성이 시키지 않아도 따르는 숨은 규칙\"으로 randomness를 주어, hidden rule을 피수식 명사로 정확히 처리했고, 336행 해설도 \"규칙을 따르는 주체는 무작위성\"이라고 명시한다. 대안 해석(that을 접속사로 보기)은 obeys의 타동사 목적어 공백이 남고 role이 명시적으로 \"REL\"이라는 점에서 배제된다. 문법 주석 자체가 산출물인 교재에서 목적격 관계대명사절을 주격으로 오해시키는 구조 오분석이므로 실질 결함이다."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "answers.explanations[q_index=1].evidence",
+      "issue": "빈칸 추론 해설의 evidence가 본문을 잘못 인용했다. 본문 동사는 obeys(3인칭 단수)인데 해설은 obey로 인용한다. 이 문항은 빈칸에 들어갈 주어를 고르는 문항이므로, 동사의 수일치(obeys)가 곧 '단수 명사(randomness)'를 고르는 핵심 근거인데, 인용을 obey로 바꿔버리면 정답 근거 자체가 사라진다. 오히려 복수형 engines/melodies/puzzles/machines를 배제할 수 없게 되어 오답 유도가 된다.",
+      "evidence": "본문(page1.body): \"a hidden rule that quiet <blank> obeys without being told.\" / 해설 evidence: \"빈칸 앞 \\\"a hidden rule that quiet ___ obey\\\"와 글 전체 주제...\"",
+      "suggestion": "인용을 \"a hidden rule that quiet ___ obeys\"로 바로잡고, rationales에도 'obeys의 단수 수일치 → 복수형 engines/melodies/puzzles/machines 배제'라는 문법 근거를 추가한다.",
+      "lens": "explanation",
       "verdict": {
         "isReal": true,
-        "confidence": "high",
-        "reason": "확인됨. page1.body 마지막 문장 \"...a hidden rule that quiet <blank> obey without being told.\"에서 빈칸 정답(answer_index 3)은 'randomness'(불가산·단수 명사)다. 관계절 \"that quiet randomness obey\"에서 관계대명사 that은 선행사 'a hidden rule'을 가리키는 목적어이고, 관계절의 실제 주어는 단수 'randomness'이므로 동사는 3인칭 단수 현재형 'obeys'가 되어야 한다. 그러나 원형 'obey'로 되어 있어 주어-동사 수 일치 오류(비문)다. page3 sentences index 18에도 { \"role\": \"REL\", \"text\": \"that quiet randomness obey\" }로 동일하게 'obey'가 그대로 있어 오류가 두 곳에서 확인된다. 지적이 정확하다."
+        "confidence": "medium",
+        "reason": "인용 오류 자체는 파일로 확인됨. page1.body(line 21)는 \"a hidden rule that quiet <blank> obeys without being told.\"인데, answers.explanations[q_index=1].evidence(line 336)는 \"빈칸 앞 \\\"a hidden rule that quiet ___ obey\\\"\"로 인용한다. 직접 인용 형식(따옴표)을 쓰면서 동사 형태를 obeys → obey로 바꿨으므로 인용 부정확은 사실이다. 더욱이 같은 파일 page3 sentences[18] segments의 note(line 305)가 \"관계대명사 that (선행사 randomness 단수 → obeys)\"라고 명시해, 수일치가 이 문항의 문법적 단서임을 파일 스스로 인정한다. 따라서 지적의 핵심 사실 주장은 근거가 있다.\n\n다만 지적이 주장하는 영향(blocker, \"정답 근거 자체가 사라진다\", \"오답 유도\")은 과장이다: (1) 학생이 보는 지문(page1.body)과 선택지(page2)는 정상이며 obeys가 그대로 있어 문항 자체는 정상 작동하고 정답이 유일하게 결정된다. (2) 문제의 텍스트는 answers.explanations 내부 해설(교사/정답지 영역)이라 학생에게 노출되지 않으므로 오답 유도가 발생하지 않는다. (3) 해당 evidence는 수일치 외에 \"글 전체 주제(무작위한 결과가 종 모양으로 수렴)\"도 근거로 제시하고, 5개 rationales 역시 모두 의미 기반 배제 논리라 engines/melodies/puzzles/machines는 의미상으로도 배제된다.\n\n결론: 결함은 실재하나 blocker가 아니라 정답지 인용 정확성 수준의 minor 이슈. 수정은 evidence의 obey → obeys 한 글자면 충분하다."
       }
     }
   ],
   "counts": {
-    "raw": 2,
-    "verified": 1,
-    "confirmed": 1,
-    "minor": 1
+    "raw": 12,
+    "verified": 8,
+    "confirmed": 8,
+    "minor": 4
   }
 }

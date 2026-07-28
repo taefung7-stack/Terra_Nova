@@ -4,24 +4,154 @@
   "confirmed": [
     {
       "severity": "warn",
-      "location": "page3.sentences[index 17], segments[0]",
-      "issue": "\"This is why the discriminant matters so much.\"의 첫 요소 \"This\"를 role \"C\"(보어)로 태깅하고 note에 \"보어 도치 강조\"라고 달았으나, 이 문장은 도치가 없는 정상 S-V-C 어순이다. \"This\"는 주어(S), \"is\"가 동사(V), \"why the discriminant matters so much\"가 보어다. 주어를 보어로 오태깅하고 존재하지 않는 도치를 설명해 학습자에게 잘못된 구문 정보를 준다.",
-      "evidence": "본문: \"This is why the discriminant matters so much.\" / JSON: { \"role\": \"C\", \"text\": \"This\", \"note\": \"보어 도치 강조\" }, { \"role\": \"V\", \"text\": \"is\" }, { \"role\": \"M\", \"text\": \"why the discriminant matters so much.\", \"note\": \"관계부사절\" }",
-      "suggestion": "\"This\"를 role \"S\"로 바꾸고 note(\"보어 도치 강조\")를 삭제한다. 뒤의 \"why ...\" 절은 M이 아니라 보어(C)이므로 C로 정정하는 것이 정확하다(문장은 정상 SVC).",
+      "location": "page1.body 3단락 (\"When the discriminant is positive, the square root is a normal number...\")",
+      "issue": "수학 용어 오용: 실수(real number)를 뜻하려고 \"a normal number\"라고 썼다. \"normal number(정규수)\"는 수론에서 자릿수가 균등분포하는 수를 가리키는 별개의 전문 용어여서, 수학 연계 지문(공통수학1 판별식 단원)에서는 개념 오류로 읽힌다. 또한 이 문장이 노리는 대비는 '실수 vs 실수가 아닌 수'이므로 real이 정확한 대응어다.",
+      "evidence": "\"When the discriminant is positive, the square root is a normal number, so the formula produces two different real roots.\" — 같은 문장 뒤쪽과 4단락에서는 정확히 \"two different real roots\", \"no real number works as its square root\"로 real을 쓰고 있어 용어가 한 문장 안에서 어긋난다.",
+      "suggestion": "\"the square root is a real number\"로 수정. 어휘 난도도 올라가지 않고(real은 이미 본문에 반복 등장), 음수 경우의 \"no real number works as its square root\"와 용어가 일치해 세 경우의 대비가 선명해진다. page3.sentences[12]의 segment {\"role\":\"C\",\"text\":\"a normal number,\"}와 translation_ko [12]의 \"제곱근이 보통의 수가 되므로\"(→ \"제곱근이 실수가 되므로\")도 함께 고쳐야 한다.",
+      "lens": "language",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 근거로 확인됨. page1.body 3단락: \"When the discriminant is positive, the square root is a normal number, so the formula produces two different real roots.\" 같은 문장 뒷부분은 'two different real roots', 바로 뒤 대응 문장은 'no real number works as its square root', 1단락은 'no real root at all', 4단락은 'a real solution'으로 일관되게 real을 쓴다. 즉 세 경우(양수/0/음수)를 대비시키는 삼분 구조에서 유독 양수 분기만 'normal'로 흔들려 용어가 어긋난다. page3 문장 분해에서도 index 12(\"the square root is a normal number\")와 index 16(\"no real number works as its square root\")이 명시적으로 대칭 구문으로 잡혀 있어 불일치가 교육 분석 레이어에서도 드러난다. 또한 이 지문은 meta.subject '공통수학', linked_unit '공통수학1 이차방정식과 판별식', key_concepts '실근과 중근'이고 tieback(body_ko)은 '판별식이 양수이면 서로 다른 두 실근'으로 정확한 용어를 쓰므로, real은 장식이 아니라 단원의 핵심 대비를 지탱하는 용어다. 다만 한 가지 유보: translation_ko가 해당 부분을 '제곱근이 보통의 수가 되므로'로 옮긴 것으로 보아 저자 의도는 수론의 normal number(정규수)가 아니라 790L 독자를 위한 평이한 완곡 표현이었을 가능성이 높다. 따라서 '독자가 정규수로 오독한다'는 근거 설명은 다소 과장이고 명백한 사실 오류도 아니다(문장의 결론 'two different real roots'는 맞다). 그러나 지적의 핵심 주장 - real이 정확한 대응어이며 같은 단락 안에서 용어가 어긋난다 - 는 파일로 명확히 확인되므로 warn 등급의 실제 결함으로 인정한다. 수정 제안: \"the square root is a real number\"."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "page3.sentences[16] (index 17), segments[0] — line 298",
+      "issue": "\"This is why ~\" 문장의 주어 This를 보어(C)로 오태깅하고 \"보어 도치 강조\"라는 존재하지 않는 문법 설명을 달았다. 본문 문장은 도치가 아니라 평범한 S+V+C 어순이다.",
+      "evidence": "본문: \"This is why the discriminant matters so much.\" / 파일: { \"role\": \"C\", \"text\": \"This\", \"note\": \"보어 도치 강조\" }",
+      "suggestion": "role을 \"S\"로 바꾸고 note(\"보어 도치 강조\")를 삭제한다. 도치 문장은 \"Why the discriminant matters is this\" 형태여야 하므로 현 문장에는 해당하지 않는다.",
       "lens": "explanation",
       "verdict": {
         "isReal": true,
         "confidence": "high",
-        "reason": "파일 page3.sentences[index 17] segments[0]에서 \"This\"를 role \"C\"(보어)로 태깅하고 note에 \"보어 도치 강조\"를 달았음이 확인된다(line 298). 그러나 \"This is why the discriminant matters so much.\"는 도치 없는 정상 S-V-C 어순으로, \"This\"는 주어(S), \"is\"가 동사, \"why...\" 명사절(관계부사절)이 보어다. 보어 도치라면 C-V-S 어순(예: Important is X)이어야 하나 여기엔 그런 도치가 전혀 없다. 따라서 주어를 보어로 오태깅했고 존재하지 않는 도치를 설명한 것이 맞다. 같은 파일 내 유사 구조(index 9 \"The result\"=S, index 2 \"the highest power\"=S)의 자체 태깅 관례와도 어긋난다. 학습자에게 잘못된 구문 정보를 주는 실제 결함이다."
+        "reason": "파일 근거로 지적이 정확히 확인됨. 본문(line 21)은 \"This is why the discriminant matters so much.\"로 도치가 전혀 없는 평범한 S+V+C 어순이며, line 298의 태깅은 지적 내용과 문자 그대로 일치한다: { \"role\": \"C\", \"text\": \"This\", \"note\": \"보어 도치 강조\" }.\n\n두 개의 독립된 결함이 모두 성립한다.\n(1) 역할 오태깅: \"This\"는 계사 \"is\"의 문법적 주어(S)이지 보어가 아니다. 해당 문장 segments(line 298-300)에는 C, V, M만 있고 S 태그가 전혀 없어 주어 없는 문장이 되며, 이는 구조적으로 불가능하다.\n(2) 존재하지 않는 문법 설명: \"보어 도치 강조\"는 이 문장에 없는 구문이다. 실제 보어 도치라면 V-S 어순(예: \"Such is the reason...\")이 되어야 하지만, 여기서는 This(S) + is(V) + why절(C) 순서다.\n\n파일 자체의 태깅 관례와 대조하면 이것이 하우스 스타일이 아니라 명백한 이탈임이 확인된다. 인접 문장들은 동사 앞 주어를 일관되게 S로 태깅한다 — line 306의 { \"role\": \"S\", \"text\": \"It\" }는 거의 동일한 구조인 \"It works like...\"에 대한 것이고, line 279/286/290도 마찬가지다. 반면 C 역할은 계사 뒤 보어에만 사용된다(line 255 \"zero,\", line 281 \"negative,\").\n\n부수적 파급: line 300의 \"why the discriminant matters so much.\" 세그먼트는 M/관계부사절로 태깅되었으나, \"is\"의 주격보어이므로 C여야 한다. 이는 C/S 뒤바꿈의 하위 결과다.\n\n추가로 동일 파일 내 한국어 번역(line 336) \"[17] 이것이 바로 판별식이 그토록 중요한 이유다.\"도 \"This\"를 주어 '이것이'로 옮겨, 도치 노트와 파일 내부에서 모순된다. 학습자에게 허위 문법 개념을 주입하는 blocker 등급 결함이 맞다."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "page3.sentences[16] (index 17), segments[2] — line 300",
+      "issue": "주격보어인 관계부사절 \"why the discriminant matters so much\"를 수식어(M)로 오태깅했다. be동사 is 뒤의 필수 성분이므로 M이 될 수 없으며, 이를 M으로 두면 문장에 보어가 없어 sentence 17 전체 구문분석이 성립하지 않는다.",
+      "evidence": "본문: \"This is why the discriminant matters so much.\" / 파일: { \"role\": \"M\", \"text\": \"why the discriminant matters so much.\", \"note\": \"관계부사절\" }",
+      "suggestion": "role을 \"C\"로 수정한다. note는 \"관계부사절(선행사 the reason 생략)\" 또는 \"why 명사절 보어\"로 다듬으면 더 정확하다.",
+      "lens": "explanation",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "파일에서 직접 확인됨. page3.sentences index 17의 segments는 [C \"This\" (note: 보어 도치 강조), V \"is\", M \"why the discriminant matters so much.\" (note: 관계부사절)]로, 지적 내용과 정확히 일치한다.\n\n지적이 실제 결함인 근거:\n1) \"why the discriminant matters so much\"는 연결동사 is의 필수 주격보어(명사절)이다. 이를 M(수식어)으로 태깅하면 SVC 구조에서 보어가 사라져 구문분석이 성립하지 않는다.\n2) 더 나아가 \"This\"가 C로 태깅되어 있어 문장에 S 자체가 없다. note의 \"보어 도치 강조\" 주장도 근거가 없다 — \"This is why...\"는 도치가 아닌 평범한 S-V-C 어순이다.\n3) 동일 파일 내 일관성 위반: index 16은 \"the discriminant\"(S) / \"is\"(V) / \"negative,\"(C)로 통상적 S-V-C 태깅을 쓰고 있어, 스키마가 index 17식 처리를 의도하지 않았음을 보여준다.\n4) translation_ko의 [17] \"이것이 바로 판별식이 그토록 중요한 이유다\"도 해당 절을 술어명사(보어)로 번역하고 있어, 본문 자체가 보어 해석을 지지한다.\n5) 부수적으로 \"관계부사절\"이라는 note도 부정확하다 — 수식하는 관계부사절이 아니라 보어로 기능하는 자유관계절/명사절이다.\n\n올바른 태깅: S \"This\" / V \"is\" / C \"why the discriminant matters so much.\""
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.sentences[1] (index 2), segments[4] — line 117",
+      "issue": "동격 명사 one과 관계사 in which를 한 덩어리로 묶어 REL로 태깅해, 학생이 \"one in which\" 전체를 관계사로 오인하게 된다. one은 a quadratic equation의 동격 명사이고, 관계사는 in which뿐이다.",
+      "evidence": "본문: \"Mathematicians draw curves like this with a quadratic equation, one in which the highest power of the unknown is the square.\" / 파일: { \"role\": \"REL\", \"text\": \"one in which\", \"note\": \"관계사절\" }",
+      "suggestion": "\"one\"(동격, a quadratic equation과 동격)과 \"in which\"(관계사, 절 내부에서는 부사구 역할)를 별도 세그먼트로 분리한다.",
+      "lens": "explanation",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "파일 근거로 확인됨. 02.json:117에 `{ \"role\": \"REL\", \"text\": \"one in which\", \"note\": \"관계사절\" }`이 실재하고, 본문(02.json:21)은 \"with a quadratic equation, one in which the highest power of the unknown is the square.\"로 확인된다. 여기서 one은 a quadratic equation의 동격 명사(관계사절의 선행사)이고 관계사는 in which뿐이므로, 둘을 한 REL 덩어리로 묶은 것은 문법적으로 부정확하다.\n\n같은 코퍼스의 자체 컨벤션이 이를 결함으로 확정한다: (1) 16.json:164는 동일 구조(\"the same as the order / in which / things / really / happened\")에서 선행사를 C로 분리하고 `in which`만 단독 REL로 태깅한다. (2) 바로 같은 파일 02.json:130은 동격어를 별도 M 세그먼트 + note \"roots와 동격\"으로 처리해, 스키마에 동격 전용 처리 방식이 이미 존재함을 보여준다. (3) 2026-08 전체 REL 세그먼트(that/which/who/where 등) 중 선행사 명사를 포함한 사례는 이 한 건뿐이다.\n\n따라서 스타일 선택이 아니라 단독 이탈(inconsistency)이며, 학생이 \"one in which\"를 하나의 관계사 표현으로 오인할 수 있다는 지적이 타당하다. 나머지 S/V/C 분해는 정확하므로 심각도는 warn 수준이 적절하다. 수정 방향: one을 동격 세그먼트(note \"a quadratic equation와 동격\")로 분리하고 REL은 \"in which\"만 남긴다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page4.vocab[9] (word: \"repeated\") — synonyms",
+      "issue": "synonym \"duplicated\"가 제시된 두 예문 어디에도 대입되지 않아 의미 불일치다.",
+      "evidence": "예문2: \"Repeated practice makes a skill automatic.\" / \"거듭된 연습은 기술을 몸에 배게 한다.\" — 여기서 repeated는 '반복되는'의 뜻이며 duplicated(복제된, 사본이 만들어진)로 바꾸면 \"Duplicated practice\"가 되어 비문에 가깝다. 예문1의 \"one repeated root\"(중근) 역시 duplicated root라고 하지 않는다.",
+      "suggestion": "synonyms를 [\"recurring\"] 또는 [\"double\"](중근 맥락)로 교체한다.",
+      "lens": "vocab",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 확인 결과 지적이 사실이다. page4.vocab[9] (word: \"repeated\", 501행)의 synonyms는 [\"duplicated\"] 단 하나이며, 제시된 두 예문 어디에도 자연스럽게 대입되지 않는다. 예문2 \"Repeated practice makes a skill automatic.\"(ko: \"거듭된 연습\")은 '반복적으로 행해지는'이라는 반복상(iterative) 의미인데, duplicated는 '복제된/사본이 만들어진'이라는 뜻이라 \"Duplicated practice\"는 비문에 가깝다. 예문1 \"one repeated root\"(중근) 역시 영어 수학 표준 용어는 repeated/double/multiple root이며 \"duplicated root\"는 쓰이지 않는다. meaning_ko의 \"중복된\"이 duplicated의 유일한 근거이나, 그 의미를 예시하는 예문이 하나도 없어 학습자에게 잘못된 대입 모델을 준다. 같은 파일의 다른 항목들(compute-calculate, vanish-disappear, collapse-merge, reveal-show/expose, unknown-variable)은 모두 자기 예문에 대입 가능하여 이 항목만 예외적으로 어긋난다. 반박 여지가 없는 실제 결함이며, recurring 또는 (수학 의미) double/multiple 등이 적절한 대안이다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page4.vocab[5] (word: \"expression\") — synonyms",
+      "issue": "synonym \"form\"이 부정확하다. 해당 항목의 예문이 expression과 form을 서로 다른 개념으로 대비시켜 쓰고 있어, 동의어 제시와 예문이 자기모순이다.",
+      "evidence": "예문2: \"Write the expression in a simpler form.\" / \"그 식을 더 간단한 형태로 써라.\" — 한 문장 안에서 expression(식)과 form(형태)이 별개 대상으로 쓰인다. 동의어라면 \"Write the form in a simpler form\"이 성립해야 하나 성립하지 않는다.",
+      "suggestion": "수학 맥락의 meaning_ko \"(수학의) 식\"에 맞춰 synonyms를 [\"term\"] 또는 [\"formula\"]로 바꾸거나 빈 배열로 둔다.",
+      "lens": "vocab",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "확인됨 — 실제 결함. C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-08/02.json 의 page4.vocab[5] (lines 453-463): word \"expression\", meaning_ko \"(수학의) 식, 표현\", synonyms [\"form\"], 예문2 \"Write the expression in a simpler form.\" / \"그 식을 더 간단한 형태로 써라.\"\n\n1) 항목이 명시적으로 채택한 수학적 의미에서 expression(식: 수·변수·연산자의 결합, 예 b²-4ac)과 form(형태: 그 식이 쓰인 꼴 — standard form, factored form, simplest form)은 별개의 전문 용어이며 동의어가 아니다. 본문 자체도 \"A small expression called the discriminant hides inside the quadratic formula.\"로 expression을 이 전문적 의미로 쓴다.\n\n2) 자기모순이 한 항목 안에서 성립한다. synonyms가 두 단어를 호환 가능하다고 선언한 바로 다음 줄의 예문이 두 단어를 서로 다른 지시 대상(고쳐 쓸 대상 vs 목표 형태)으로 대비시켜 쓴다. 학습자는 상충하는 신호를 받는다.\n\n3) 같은 파일의 다른 항목들이 적용한 기준과도 어긋난다. compute/calculate, vanish/disappear, collapse/merge, reveal/show·expose는 모두 동일 의미 치환이 성립하는 진짜 동의어다. expression/form만 유일하게 자기 예문 한 문장 안에서 서로 다른 자리를 차지한다.\n\n4) 두 번째 뜻 \"표현\"으로도 구제되지 않는다. 일반 의미에서도 expression에 대응하는 것은 phrase/wording이지 form이 아니다.\n\n다만 지적자가 제시한 근거(치환 테스트 \"Write the form in a simpler form\")는 그 자체로는 약한 논거다. 근사 동의어는 원래 collocation 내 완전 치환을 견디지 못하는 경우가 많기 때문이다. 결함 자체는 파일 근거로 명확히 확인되므로 isReal=true이나, 실질 근거는 치환 불가가 아니라 수학 전문 용어상의 개념 구분과 항목 내부 모순이다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page4.vocab[6] (word: \"compute\") — examples[0].ko",
+      "issue": "coefficient 항목과 동일한 결함으로, 예문 대역이 주어와 목적어 관계를 뒤집어 '그것이 계산한다'는 뜻이 되었다.",
+      "evidence": "\"en\": \"You compute it from the coefficients of the equation.\" / \"ko\": \"그것은 방정식의 계수들로 계산한다.\" — compute의 행위 주체는 You인데 한국어에서는 '그것은'이 주어가 되어 계산의 주체가 뒤바뀐다. 표제어 compute의 뜻 '계산하다'를 보여주는 예문인 만큼 태(態)가 어긋나면 학습에 방해가 된다.",
+      "suggestion": "\"당신은 방정식의 계수들로부터 그것을 계산한다.\" 또는 \"그것은 방정식의 계수들로부터 계산된다.\"로 수정한다.",
+      "lens": "vocab",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "파일에서 지적 내용이 그대로 확인된다. C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-08/02.json 471행, page4.vocab[6] (word: \"compute\", meaning_ko: \"계산하다\")의 examples[0]은 정확히 {\"en\": \"You compute it from the coefficients of the equation.\", \"ko\": \"그것은 방정식의 계수들로 계산한다.\"} 이다.\n\n영어는 주어 You, 목적어 it(판별식), 출처 from the coefficients 구조인데, 한국어는 영어의 목적어에 해당하는 '그것'에 주격/주제 조사 '은'을 붙여 주어 자리에 놓고 능동형 '계산한다'를 그대로 썼다. 그 결과 '그것이 계산을 수행한다'는 뜻이 되어 행위 주체가 뒤바뀐다. 게다가 '계수들로'는 '~로부터(from)'가 아니라 도구격 '~로(with)'여서, 그것이 계수를 도구 삼아 계산한다는 오독을 더 강화한다.\n\n반박 가능성을 검토했으나 성립하지 않는다. (1) 한국어의 주어 생략 관행으로는 변호할 수 없다 — 주어를 생략한 것이 아니라 '그것은'을 명시적으로 넣었기 때문이다. (2) 문체상 허용되는 피동 표현도 아니다 — '계산된다'라는 표준 피동형이 있음에도 능동형 '계산한다'를 썼다.\n\n교육적 결함이라는 판단도 타당하다. 이 문장은 표제어 compute(계산하다)의 태를 보여주는 대표 예문이고, 같은 항목의 두 번째 예문(\"Computers compute millions of sums every second.\" / \"컴퓨터는 매초 수백만 번의 덧셈을 계산한다.\")은 주어-목적어 대응이 올바르므로 항목 내부에서 모순이 생긴다. 또한 page4.vocab[2] (coefficient)의 \"You compute it from the three coefficients.\" / \"그것은 방정식의 세 계수로 계산한다.\"도 동일한 결함을 보여, 일회성 오타가 아니라 반복 패턴이라는 지적의 전제까지 확인된다.\n\n수정 방향은 '그것은 방정식의 계수들로 계산된다' 또는 '방정식의 계수들로 그것을 계산한다' 정도가 적절하다."
       }
     }
   ],
-  "minors": [],
-  "blockers": [],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page1.body 3단락 (\"Now the parabola only touches the axis at a single point.\")",
+      "issue": "부사 only의 위치가 수식 대상과 어긋나고 의미가 중복된다. 실제로 한정하려는 것은 동사 touches가 아니라 \"at a single point\"인데 only가 동사 앞에 놓였고, 뒤의 \"a single point\"가 이미 '한 점뿐'이라는 뜻을 담고 있어 겹친다.",
+      "evidence": "\"When the discriminant is exactly zero, the square root vanishes, and the two roots collapse into one repeated root. Now the parabola only touches the axis at a single point.\"",
+      "suggestion": "\"Now the parabola touches the axis at only a single point.\" 또는 중복을 없애 \"Now the parabola just touches the axis at a single point.\"로 다듬는다(후자는 접한다는 뉘앙스도 살린다). 수정 시 page3.sentences[15]의 {\"role\":\"M\",\"text\":\"only\"} 위치도 함께 조정 필요.",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.sentences[9] (index 10), segments[3]-[4] — lines 211-212",
+      "issue": "4형식 수여동사 give의 간접목적어(it)와 직접목적어(all its power)를 둘 다 role \"O\"로 표기해 두 목적어의 구분이 사라진다. note로만 4형식임을 알려 역할 태그 자체는 정보를 주지 못한다.",
+      "evidence": "본문: \"that spot gives it all its power.\" / 파일: { \"role\": \"O\", \"text\": \"it\" }, { \"role\": \"O\", \"text\": \"all its power.\", \"note\": \"give A B 4형식\" }",
+      "suggestion": "파일 스키마가 허용한다면 IO/DO로 구분하거나, 최소한 note에 \"it=간접목적어, all its power=직접목적어\"를 명시한다.",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[4] (word: \"formula\") — synonyms",
+      "issue": "synonym \"rule\"은 본문 문맥(근의 공식)의 뜻과 어긋난다. 본문의 formula는 계산 절차를 나타내는 수식이지 규칙(rule)이 아니다.",
+      "evidence": "본문(page1.body): \"A small expression called the <u>discriminant</u> hides inside the quadratic formula.\" 및 meaning_ko \"공식\". 예문1 \"The quadratic formula produces the roots of an equation.\"에 rule을 대입하면 \"The quadratic rule\"이 되어 수학 용어로 성립하지 않는다.",
+      "suggestion": "synonyms를 [\"equation\"] 대신 빈 배열로 두거나, 일반 의미를 살리려면 [\"recipe\"] 같은 비수학적 동의어는 피하고 삭제하는 편이 낫다.",
+      "lens": "vocab"
+    }
+  ],
+  "blockers": [
+    {
+      "severity": "blocker",
+      "location": "page3.sentences[16] (index 17), segments[0] — line 298",
+      "issue": "\"This is why ~\" 문장의 주어 This를 보어(C)로 오태깅하고 \"보어 도치 강조\"라는 존재하지 않는 문법 설명을 달았다. 본문 문장은 도치가 아니라 평범한 S+V+C 어순이다.",
+      "evidence": "본문: \"This is why the discriminant matters so much.\" / 파일: { \"role\": \"C\", \"text\": \"This\", \"note\": \"보어 도치 강조\" }",
+      "suggestion": "role을 \"S\"로 바꾸고 note(\"보어 도치 강조\")를 삭제한다. 도치 문장은 \"Why the discriminant matters is this\" 형태여야 하므로 현 문장에는 해당하지 않는다.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 근거로 지적이 정확히 확인됨. 본문(line 21)은 \"This is why the discriminant matters so much.\"로 도치가 전혀 없는 평범한 S+V+C 어순이며, line 298의 태깅은 지적 내용과 문자 그대로 일치한다: { \"role\": \"C\", \"text\": \"This\", \"note\": \"보어 도치 강조\" }.\n\n두 개의 독립된 결함이 모두 성립한다.\n(1) 역할 오태깅: \"This\"는 계사 \"is\"의 문법적 주어(S)이지 보어가 아니다. 해당 문장 segments(line 298-300)에는 C, V, M만 있고 S 태그가 전혀 없어 주어 없는 문장이 되며, 이는 구조적으로 불가능하다.\n(2) 존재하지 않는 문법 설명: \"보어 도치 강조\"는 이 문장에 없는 구문이다. 실제 보어 도치라면 V-S 어순(예: \"Such is the reason...\")이 되어야 하지만, 여기서는 This(S) + is(V) + why절(C) 순서다.\n\n파일 자체의 태깅 관례와 대조하면 이것이 하우스 스타일이 아니라 명백한 이탈임이 확인된다. 인접 문장들은 동사 앞 주어를 일관되게 S로 태깅한다 — line 306의 { \"role\": \"S\", \"text\": \"It\" }는 거의 동일한 구조인 \"It works like...\"에 대한 것이고, line 279/286/290도 마찬가지다. 반면 C 역할은 계사 뒤 보어에만 사용된다(line 255 \"zero,\", line 281 \"negative,\").\n\n부수적 파급: line 300의 \"why the discriminant matters so much.\" 세그먼트는 M/관계부사절로 태깅되었으나, \"is\"의 주격보어이므로 C여야 한다. 이는 C/S 뒤바꿈의 하위 결과다.\n\n추가로 동일 파일 내 한국어 번역(line 336) \"[17] 이것이 바로 판별식이 그토록 중요한 이유다.\"도 \"This\"를 주어 '이것이'로 옮겨, 도치 노트와 파일 내부에서 모순된다. 학습자에게 허위 문법 개념을 주입하는 blocker 등급 결함이 맞다."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "page3.sentences[16] (index 17), segments[2] — line 300",
+      "issue": "주격보어인 관계부사절 \"why the discriminant matters so much\"를 수식어(M)로 오태깅했다. be동사 is 뒤의 필수 성분이므로 M이 될 수 없으며, 이를 M으로 두면 문장에 보어가 없어 sentence 17 전체 구문분석이 성립하지 않는다.",
+      "evidence": "본문: \"This is why the discriminant matters so much.\" / 파일: { \"role\": \"M\", \"text\": \"why the discriminant matters so much.\", \"note\": \"관계부사절\" }",
+      "suggestion": "role을 \"C\"로 수정한다. note는 \"관계부사절(선행사 the reason 생략)\" 또는 \"why 명사절 보어\"로 다듬으면 더 정확하다.",
+      "lens": "explanation",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "파일에서 직접 확인됨. page3.sentences index 17의 segments는 [C \"This\" (note: 보어 도치 강조), V \"is\", M \"why the discriminant matters so much.\" (note: 관계부사절)]로, 지적 내용과 정확히 일치한다.\n\n지적이 실제 결함인 근거:\n1) \"why the discriminant matters so much\"는 연결동사 is의 필수 주격보어(명사절)이다. 이를 M(수식어)으로 태깅하면 SVC 구조에서 보어가 사라져 구문분석이 성립하지 않는다.\n2) 더 나아가 \"This\"가 C로 태깅되어 있어 문장에 S 자체가 없다. note의 \"보어 도치 강조\" 주장도 근거가 없다 — \"This is why...\"는 도치가 아닌 평범한 S-V-C 어순이다.\n3) 동일 파일 내 일관성 위반: index 16은 \"the discriminant\"(S) / \"is\"(V) / \"negative,\"(C)로 통상적 S-V-C 태깅을 쓰고 있어, 스키마가 index 17식 처리를 의도하지 않았음을 보여준다.\n4) translation_ko의 [17] \"이것이 바로 판별식이 그토록 중요한 이유다\"도 해당 절을 술어명사(보어)로 번역하고 있어, 본문 자체가 보어 해석을 지지한다.\n5) 부수적으로 \"관계부사절\"이라는 note도 부정확하다 — 수식하는 관계부사절이 아니라 보어로 기능하는 자유관계절/명사절이다.\n\n올바른 태깅: S \"This\" / V \"is\" / C \"why the discriminant matters so much.\""
+      }
+    }
+  ],
   "counts": {
-    "raw": 1,
-    "verified": 1,
-    "confirmed": 1,
-    "minor": 0
+    "raw": 13,
+    "verified": 10,
+    "confirmed": 7,
+    "minor": 3
   }
 }

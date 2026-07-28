@@ -1,0 +1,105 @@
+{
+  "grade": "sun-g3",
+  "seq": 14,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page3.sentences[index=7].segments (C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-08-Sun/14.json:307-336)",
+      "issue": "7번 문장 구문 태깅 오류: to부정사 병렬의 두 번째 항인 'paste'를 주절 본동사(V)로 태깅했고, 그 목적어 'it'을 M(수식어)에 묶어 목적어 표시가 누락되었다.",
+      "evidence": "본문: \"Researchers learned to remove a useful gene from one organism and paste it into another.\" / JSON 태깅: {\"role\":\"V\",\"text\":\"paste\"}, {\"role\":\"M\",\"text\":\"it into another.\"} — 그런데 grammar_note는 \"learn to V + and 병렬\"이라고 to부정사 병렬임을 스스로 밝히고 있다. 즉 paste는 'to remove ... and (to) paste ...'의 두 번째 to부정사이지 주절 동사가 아니며, it은 paste의 목적어(O)다.",
+      "suggestion": "'paste'는 앞의 O(to부정사 목적어)에 이어지는 병렬 항으로 처리하고(예: O 역할로 \"(to) paste it into another\" 통합, 또는 note에 'to remove와 병렬'을 명시), 'it'은 O, 'into another'만 M으로 분리할 것. 현재대로면 학생이 learned의 주어가 paste도 지배하는 것으로 오해한다.",
+      "lens": "explanation",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "지적이 파일에서 그대로 확인됨. 14.json 307-336행: {\"role\":\"V\",\"text\":\"paste\"}(327-329행), {\"role\":\"M\",\"text\":\"it into another.\"}(330-333행), grammar_note는 \"learn to V + and 병렬\"(335행).\n\n두 지적 모두 실재하며 파일 내부적으로 자기모순임:\n\n1) paste의 V 태깅 오류 — 같은 문장에서 learned가 이미 V(314-315행), \"to remove a useful gene from one organism\"이 note \"to부정사 목적어\"와 함께 O(318-320행)로 태깅되어 있음. paste는 원형으로 to remove와 병렬을 이루는 두 번째 to부정사(to remove ... and (to) paste ...)이지 주절 정형동사가 아님. grammar_note 자체가 \"learn to V + and 병렬\"이라고 to부정사 병렬임을 명시하여 V 태깅과 충돌함.\n\n2) 목적어 표시 누락 — it은 paste의 목적어이고 into another가 전치사 수식어인데, 둘을 하나의 M으로 묶어 목적어 관계가 소실됨.\n\n파일 자체의 선례가 결정적 반증 차단 근거: index 12(434-475행)는 진짜 정형동사 병렬(grammar_note \"동사 병렬 (search / locate / edit)\")로, 동일한 대명사 목적어를 {\"role\":\"V\",\"text\":\"edit\"} + {\"role\":\"O\",\"text\":\"it\"} + {\"role\":\"M\",\"text\":\"directly inside a living cell.\"}(461-471행)로 분리 태깅함. 즉 O 분리 관례가 같은 파일에 존재하며 index 7만 이를 위반. index 12는 정형동사 병렬이라 V가 맞지만 index 7은 부정사 병렬이라 V가 틀림 — 동사병렬 패턴을 부정사 구조에 잘못 복사한 것으로 보임.\n\n이 파일 어디에도 비정형 병렬항을 V로 태깅한 다른 사례나 이를 허용하는 대체 역할 스키마 문서는 확인되지 않음."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page4.vocab[4] (word: \"organism\") — synonyms",
+      "issue": "synonym \"creature\"가 본문 문맥의 organism과 의미 범위가 불일치한다. creature는 통상 동물·생명체(주로 동물)를 가리켜 세균·식물을 포괄하지 못하는데, 본문의 organism은 정확히 세균을 지시 대상으로 삼는다.",
+      "evidence": "본문: \"Researchers learned to remove a useful gene from one organism and paste it into another.\" 및 \"A bacterium given the human gene for insulin, for example, will faithfully read that borrowed instruction.\" — 여기서 유전자를 주고받는 organism의 대표 사례가 bacterium(세균)이다. 반면 meaning_ko는 \"생물, 유기체\"로 올바르게 넓게 잡혀 있어 synonym만 좁다.",
+      "suggestion": "\"creature\"를 삭제하고 \"living thing\" 또는 \"life form\"으로 교체한다(본문의 bacterium까지 포괄 가능).",
+      "lens": "vocab",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "파일 확인 결과 지적이 사실로 입증된다. page4.vocab[4] (846-851행)은 word \"organism\", meaning_ko \"생물, 유기체\", synonyms [\"creature\"]로 지적 내용과 정확히 일치한다.\n\n의미 범위 불일치는 실제 결함이다. (1) creature는 표준 사전 정의상 \"동물, (인간과 구별되는) 생명체\"로, 세균·식물을 관용적으로 포괄하지 않는다. (2) 반면 본문의 organism이 지시하는 대표 사례는 정확히 세균이다 — 26행 본문 \"remove a useful gene from one organism and paste it into another\" 직후 \"A bacterium given the human gene for insulin\"이 그 구체적 사례로 이어지고, page3 문장 7(319행)·문장 13(497행 \"between organisms\")도 동일 지시 대상을 가지며, 국역(677행)은 \"한 생물에서... 다른 생물에\", 교과 연계(102행)는 명시적으로 세균을 다룬다. 즉 synonym이 배제하는 바로 그 범주가 본문의 핵심 지시 대상이다. \"a creature given the human gene for insulin\"은 대장균을 가리키는 표현으로 성립하지 않는다.\n\n반박 가능성도 검토했으나 기각된다. (a) \"synonym은 느슨한 참고일 뿐 대체 가능성이 불필요하다\"는 반론 — 이 파일 자체가 inherited/hereditary, faulty/defective, precision/accuracy, sequence/order처럼 엄밀히 대체 가능한 쌍만 제시하므로 해당 항목은 파일 자신의 기준에서 이탈한다. (b) \"creature의 고어·종교적 용법은 모든 피조물을 포함한다\"는 반론 — 사실이나 한국 EFL 학습자가 매핑할 레지스터가 아니며 오히려 오해를 키운다.\n\n심각도 warn 판정도 타당하다. meaning_ko는 올바르게 넓게 잡혀 있어 주 뜻풀이는 정확하고, synonym만 본문 지시 대상 대비 좁다. 수정안은 genome·embryo·recombinant처럼 synonyms를 빈 배열로 두거나 \"living thing\"으로 교체하는 것이다."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page3.sentences[index=17].segments (C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-08-Sun/14.json:584-589)",
+      "issue": "17번 문장에서 관계절 'that follows'를 별도 REL 세그먼트로 분리하지 않고 M 덩어리 안에 넣은 채 note만 '주격 관계대명사'로 달아, 같은 파일 내 10·14·19번의 REL 분리 방식과 일관되지 않다.",
+      "evidence": "17번: {\"role\":\"M\",\"text\":\"through every cell that follows,\",\"note\":\"주격 관계대명사\"} vs 10번: {\"role\":\"O\",\"text\":\"a medicine\"}, {\"role\":\"REL\",\"text\":\"that once had to be collected slowly from animals.\"} / 14번: {\"role\":\"O\",\"text\":\"a single faulty letter\"}, {\"role\":\"REL\",\"text\":\"that causes an inherited disease.\"}",
+      "suggestion": "'through every cell'(M)과 'that follows'(REL)로 분리해 다른 문장의 관계절 표기 방식과 통일할 것.",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.sentences[index=9].segments (C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-08-Sun/14.json:368-372)",
+      "issue": "9번 문장에서 삽입 부사구 'for example'을 과거분사 후치 수식구와 한 세그먼트로 묶고 note를 '과거분사 후치 수식'으로만 달아, 'for example'까지 A bacterium을 수식하는 분사구의 일부인 것처럼 보인다.",
+      "evidence": "{\"role\":\"M\",\"text\":\"given the human gene for insulin, for example,\",\"note\":\"과거분사 후치 수식\"} — 실제 본문 \"A bacterium given the human gene for insulin, for example, will faithfully read that borrowed instruction.\"에서 given ~ insulin만이 A bacterium을 수식하는 분사구이고 for example은 문장 전체에 걸리는 독립 삽입구다.",
+      "suggestion": "'given the human gene for insulin'(M, 과거분사 후치 수식)과 'for example'(M, 삽입 부사구)을 별도 세그먼트로 분리할 것.",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko 문장 [9]",
+      "issue": "'the human gene for insulin'을 '인슐린에 대한 인간 유전자'로 직역해 어색하다. 여기서 for는 '~을 만드는(암호화하는)' 의미다.",
+      "evidence": "영문: \"A bacterium given the human gene for insulin, for example, will faithfully read that borrowed instruction.\" / 번역: \"예컨대 인슐린에 대한 인간 유전자를 받은 세균은 그 빌려 온 지시문을 충실히 읽어 낼 것이다.\"",
+      "suggestion": "'인슐린을 만드는 인간 유전자를 받은 세균은 ~'으로 다듬으면 의미가 명확해진다.",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko 문장 [10]",
+      "issue": "부사 then을 '그러면'(조건적 뉘앙스)으로 옮겼다. 원문은 순차(그러고 나서)의 then이다.",
+      "evidence": "영문: \"It then produces a medicine that once had to be collected slowly from animals.\" / 번역: \"[10] 그러면 그것은 한때 동물에게서 느리게 모아야 했던 약을 만들어 낸다.\"",
+      "suggestion": "'그런 다음 그것은 ~을 만들어 낸다'로 수정.",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko 문장 [2]",
+      "issue": "'a long chemical thread'를 '길고 화학적인 실'로 직역해 한국어로 어색하다.",
+      "evidence": "영문: \"DNA was a long chemical thread, coiled tightly and hidden away\" / 번역: \"DNA는 길고 화학적인 실이었고, 단단히 감겨 숨겨져 있었으며\"",
+      "suggestion": "'DNA는 길게 이어진 화학 물질의 실이었고' 정도로 다듬는 것을 권장.",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page2.questions[1].stem",
+      "issue": "빈칸 문항 stem이 \"밑줄 친 빈칸\"이라고 지시하지만, page1.body의 해당 자리는 <blank> 플레이스홀더일 뿐 <u>...</u> 밑줄 마크업이 없다. 본문에서 실제로 <u>로 표시된 곳은 restriction enzymes와 lies less in the cutting than in the choosing 두 곳뿐이며, 학생이 \"밑줄 친\"이라는 지시어를 보고 이 두 밑줄을 먼저 찾게 되어 지시가 혼동될 수 있다.",
+      "evidence": "body: \"Real progress will depend on wisdom as much as on <blank>.\" / stem: \"윗글의 밑줄 친 빈칸에 들어갈 말로 가장 적절한 것은?\" / 본문 밑줄은 \"<u>restriction enzymes</u>\", \"<u>lies less in the cutting than in the choosing</u>\" 뿐",
+      "suggestion": "stem을 \"윗글의 빈칸에 들어갈 말로 가장 적절한 것은?\"으로 수정하거나, 렌더링 시 <blank>가 밑줄로 표시됨이 보장된다면 표기 규칙을 통일할 것. 정답 skill 자체는 20번 문장 \"depend on wisdom as much as on skill\"과 일치하여 타당함.",
+      "lens": "answer"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[7] (word: \"precision\") — examples[0].ko",
+      "issue": "예문 ko 대역에서 further의 \"멀리\"가 누락되어 page3 공식 번역과 어긋난다.",
+      "evidence": "examples[0].en \"Newer tools have pushed this precision much further.\" → ko \"더 새로운 도구들은 이 정밀함을 훨씬 더 밀어붙였다.\" 그러나 동일 문장에 대한 page3.translation_ko [11]은 \"더 새로운 도구들은 이 정밀함을 훨씬 더 멀리 밀어붙였다.\"이다.",
+      "suggestion": "ko를 \"…이 정밀함을 훨씬 더 멀리 밀어붙였다.\"로 수정해 본문 번역과 일치시킨다.",
+      "lens": "vocab"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[9] (word: \"strand\") — examples[0].ko",
+      "issue": "종속절 could be cut의 조동사 의미가 대역에서 탈락해 단순 조건절로 번역되었고, page3 번역과도 불일치한다.",
+      "evidence": "examples[0].en \"Once a strand could be cut cleanly, it could be joined again.\" → ko \"일단 가닥이 깨끗하게 잘리면, 다시 이어질 수 있었다.\" 그러나 본문 동일 문장의 page3.translation_ko [6]은 \"일단 가닥이 깨끗하게 잘릴 수 있게 되자, 그것은 새로운 순서로 다시 이어질 수도 있었다.\"이다.",
+      "suggestion": "ko를 \"일단 가닥이 깨끗하게 잘릴 수 있게 되자, 다시 이어질 수 있었다.\"로 수정한다.",
+      "lens": "vocab"
+    }
+  ],
+  "blockers": [],
+  "counts": {
+    "raw": 11,
+    "verified": 3,
+    "confirmed": 2,
+    "minor": 8
+  }
+}

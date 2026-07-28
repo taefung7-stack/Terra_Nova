@@ -1,0 +1,197 @@
+{
+  "grade": "sun-g3",
+  "seq": 17,
+  "confirmed": [
+    {
+      "severity": "blocker",
+      "location": "page3.sentences[11] (index 12), segment role \"O\" / text \"big\"",
+      "issue": "\"win big\"의 big을 목적어(O)로 오태깅. big은 여기서 부사(크게, 대박으로)이며 win은 자동사 용법이라 목적어가 없다. 파일 자체의 번역도 부사로 옮기고 있어 구문분석과 번역이 서로 모순된다.",
+      "evidence": "본문: \"You may still win big or lose everything on a single given try.\" / 같은 파일 translation_ko [12]: \"당신은 주어진 한 번의 시도에서 여전히 크게 이길 수도, 모든 것을 잃을 수도 있다.\" / page3 태깅: { \"role\": \"V\", \"text\": \"may still win\" }, { \"role\": \"O\", \"text\": \"big\" }",
+      "suggestion": "\"big\"의 role을 O에서 M(부사)으로 수정하고 note에 \"win big = 크게 이기다(big은 부사)\"를 달아 뒤의 \"lose everything\"(진짜 O)과 대비시킬 것. grammar_note도 \"조동사 + or 등위 동사(win big: 부사 / lose everything: 3형식)\" 정도로 보완.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "지적이 파일 근거로 정확히 확인된다. page3.sentences[11](index 12)의 세그먼트는 { \"role\": \"V\", \"text\": \"may still win\" }, { \"role\": \"O\", \"text\": \"big\" }로 태깅되어 있으며(파일 249-259행), 본문은 \"You may still win big or lose everything on a single given try.\"이다(26행).\n\n\"win big\"의 big은 목적어가 아니라 flat adverb(평판 부사)다. 근거: (1) 관사·한정사 결합 불가(\"*win a big\"/\"*win the big\"), (2) 수동태화 불가(\"*big was won\"), (3) 대명사 치환 불가(\"*win it\") — 목적어 판별 진단을 모두 통과하지 못한다. Merriam-Webster도 big을 부사(\"in a great or successful manner\", 예: made it big)로 등재한다. 여기서 win은 자동사 용법이다.\n\n또한 같은 파일 translation_ko [12]는 \"여전히 크게 이길 수도\"로 번역하여 big을 부사(크게)로 옮기고 있어, 구문분석(O)과 번역(부사)이 같은 파일 안에서 명백히 모순된다.\n\n반박 시도도 실패했다. 이 파일의 자체 스키마 관례가 단일 부사에 M을 쓰고 있고(idx 2 \"actually\", idx 7 \"first\", idx 8 \"Then\", idx 9 \"Finally\", idx 14 \"precisely\", idx 18 \"usually\", idx 17 \"both\"), 특히 idx 4에서는 동사 뒤 불변화사 \"aside\"를 M으로 태깅해 직접적으로 유사한 선례가 존재한다. 따라서 M 역할이 없어서 O로 대체했다는 변호도 성립하지 않는다. 병렬 등위항 \"lose everything\"에 진짜 목적어가 있어 패턴 매칭으로 big을 O 슬롯에 밀어 넣은 오류로 보인다.\n\n한국 EFL 문형(형식) 교육 맥락에서 1형식을 3형식으로 잘못 가르치는 결과가 되므로 blocker 등급도 타당하다. 올바른 태깅은 { \"role\": \"M\", \"text\": \"big\" }이며, grammar_note(\"조동사 + or 등위 동사\")는 형식 번호를 명시하지 않아 수정 없이 유지 가능하다."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "page3.sentences[4] (index 5), segment role \"M\" / text \"What would happen\"",
+      "issue": "주절의 주어 What을 M(가정 의문)으로 오태깅. What은 would happen의 주어이며, 이 문장 태깅에는 S와 V가 아예 존재하지 않아 학생이 주절 구조(What=S, would happen=V, 1형식)를 파악할 수 없다.",
+      "evidence": "본문: \"What would happen if you played this very same game thousands of times over?\" / page3 태깅: segments가 [{\"role\":\"M\",\"text\":\"What would happen\"}, {\"role\":\"CONJ\",\"text\":\"if\"}, {\"role\":\"M\",\"text\":\"you played this very same game thousands of times over?\"}] 로만 구성되어 S·V 태그가 전무함",
+      "suggestion": "\"What\"을 S, \"would happen\"을 V로 분리 태깅하고, if절 안도 최소한 주어 you / 동사 played가 보이도록 note를 보강. grammar_note는 \"가정법 과거(if+과거, would+동사원형) 의문문\"으로 명시하는 편이 정확하다.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 확인 결과 지적이 정확하다. page3.sentences[4] (index 5, 파일 175-183행)의 segments는 [{\"role\":\"M\",\"text\":\"What would happen\",\"note\":\"가정 의문\"}, {\"role\":\"CONJ\",\"text\":\"if\"}, {\"role\":\"M\",\"text\":\"you played this very same game thousands of times over?\",\"note\":\"조건 부사절\"}] 뿐이며 S·V 태그가 전무하다. 문법적으로 \"What would happen if you played...?\"에서 What은 would happen의 주어(의문대명사 주어)이고 would happen이 동사인 1형식 주절이므로, 이를 통째로 M(수식어)으로 태깅한 것은 명백한 오태깅이다. 파일 자체 관례와도 모순된다: (1) index 2는 동일한 의문문을 \"How much\"=M(실제로 부사구라 타당), \"is\"=V, \"a single turn\"=S, \"worth to you?\"=C로 정확히 분해하므로 이 파일은 의문문을 분해하는 규칙을 갖고 있다. (2) index 11은 \"what any one round will bring.\"을 O로 태깅해 what절을 기능 성분으로 다루고 있다. (3) page3의 19개 문장 중 V 태그가 하나도 없는 문장은 index 5가 유일하다. grammar_note에 \"가정법 의문문\"이라 적혀 있으나 segment role만으로는 학생이 주절 골격(What=S, would happen=V)을 파악할 수 없다. \"의문문 프레임을 통째로 묶었다\"는 반론도 성립하지 않는데, M은 이 파일에서 부사어를 지칭하는 역할이고(index 3의 because절, index 18의 when절) 주어+동사 결합체는 부사어가 아니기 때문이다. blocker 수준 지적으로 타당하다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.sentences[17] (index 18), segment C / text \"to choose the one with the higher blank.\"",
+      "issue": "본문의 빈칸 마커 <blank>가 구문분석 세그먼트에서 리터럴 단어 \"blank\"로 남아, 존재하지 않는 영어 명사 \"the higher blank\"가 정식 본문인 것처럼 제시된다. 학생 교재로 인쇄되면 오식으로 읽힌다.",
+      "evidence": "page1 본문: \"the rational move is usually to choose the one with the higher <blank>.\" / page3 세그먼트: { \"role\": \"C\", \"text\": \"to choose the one with the higher blank.\", \"note\": \"to부정사 보어\" }",
+      "suggestion": "\"to choose the one with the higher ______.\" 처럼 빈칸 기호로 표기하거나, 해설면이므로 정답을 넣어 \"the higher expected value\"로 복원하고 note에 (빈칸 정답)임을 표시할 것.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "지적이 파일로 정확히 확인된다. page1 body(line 26)는 \"...to choose the one with the higher <blank>.\"이고, page3 sentences[index 18]의 segment C(line 321)는 \"to choose the one with the higher blank.\" (note: \"to부정사 보어\")로, 꺾쇠가 제거되어 리터럴 영단어 \"blank\"만 남았다. 인용된 두 문자열 모두 원문과 일치한다.\n\n이것이 프로젝트 관례가 아님을 코퍼스 전수 조사로 입증했다. body에 <blank>를 포함한 201개 파일 중 처리 방식은 세 가지다: (1) 정답 단어로 치환 114개(2026-07-J/01.json→\"discoveries\", 2026-06/14.json→\"spring\"), (2) <blank> 마커를 그대로 보존 3개(2026-06/03.json:360, 2026-06/05.json:523, 2026-06/17.json:333 — 마지막은 \"빈칸 = 추론 보어\" 주석까지 명시), (3) 재구성·생략 83개. 2026-08-Sun/17.json은 마커를 리터럴 단어로 변질시킨 코퍼스 내 유일한 파일이다. 방어 논리가 모두 실패한다: 보존된 마커도, 채워진 정답도, blanket류 오탐(2026-07/14.json, 2026-06-Sun/13.json은 정상 단어)도 아니다.\n\n같은 디렉터리의 지배적 관례는 치환이다. 2026-08-Sun/16.json index 19는 자기 빈칸을 \"willing to choose between wave and particle.\"로 해소한다. 동일 적용 시 \"the higher expected value\"가 되며, 이는 파일 자체 정답 체계가 요구하는 값이다: page2 answer_index=1이 \"expected value\"를 지정하고, answers(line 361)는 해당 자리를 \"choose the one with the higher ___\"로 인용하며, translation_ko [18]은 \"더 높은 기댓값을 가진 쪽\"으로 번역한다. 즉 파싱 세그먼트가 같은 문장의 자국어 번역과 모순된다.\n\n지적의 언어학적 핵심도 타당하다. \"the higher blank\"는 blank를 비교급 수식 가능한 명사처럼 제시하는데, page3는 문법 역할 라벨(C/to부정사 보어)을 붙여 문장을 권위 있는 영어 모델로 보여주는 구문분석 페이지이므로, 생략을 알리던 꺾쇠가 사라진 이상 학생은 이를 정식 본문으로 읽는다.\n\n다만 심각도 보정: 지적자의 warn 등급이 타당하며 error는 아니다. 정답은 page2와 국문 번역에서 명확히 복구 가능해 학습 손실은 없고, 결함은 단일 세그먼트 문자열에 국한된 오식 수준이다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.sentences[8] (index 9), grammar_note \"3형식 (add A into B)\"",
+      "issue": "본문에 없는 collocation을 문법 규칙처럼 제시. 실제 본문 구조는 \"add ... together\"(구동사) + \"into a single number\"(결과를 나타내는 전치사구)이며, add의 표준 결합은 \"add A to B\"다. \"add A into B\"를 하나의 패턴으로 학습시키면 잘못된 표현을 유도한다.",
+      "evidence": "본문: \"Finally you add all of these weighted amounts together into a single number.\" / grammar_note: \"3형식 (add A into B)\"",
+      "suggestion": "grammar_note를 \"3형식 + add A together(구동사) + into ~(결과 부사구)\"로 수정.",
+      "lens": "explanation",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "지적이 파일 근거로 확인됨. C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-08-Sun/17.json 라인 216-226(page3.sentences index 9)에서 grammar_note가 \"3형식 (add A into B)\"로 되어 있고, 본문(라인 26)은 \"Finally you add all of these weighted amounts together into a single number.\"이다.\n\n확인된 근거:\n1) 구조 오분석: 실제 구조는 구동사 \"add ... together\" + 결과를 나타내는 전치사구 \"into a single number\"다. 세그먼트 자체도 \"together into a single number.\"를 하나의 M(부사구)으로 묶고 note를 \"결과 부사구\"라 달아 into구를 부가어(adjunct)로 처리했다. 그런데 grammar_note는 이를 \"add A into B\"라는 동사 결합 틀(complement frame)로 재라벨링하여, 같은 문장 안에서 자기 세그먼트 분석과 모순된다.\n2) 비표준 결합: add의 표준 틀은 \"add A to B\"이며, \"add A into B\"는 표준 collocation이 아니다. 또한 라벨이 '결합' 의미를 담당하는 핵심 요소 together를 누락해 구조를 잘못 요약한다.\n3) 코퍼스 자체 관행과 불일치: 동일 코퍼스 2026-07/05.json:580이 \"add A to B + so that 목적\"으로 표준형을 쓰고 있어, 17.json만 비표준형을 제시한다.\n4) 일반화 유도: 이 코퍼스의 grammar_note 괄호 슬롯은 \"compare A with B\"(2026-07-Sun/18.json:325), \"between A and B\"(2026-07-J/08.json:473) 등 A/B 자리표시자를 쓴 동사 패턴 템플릿 용도로 일관되게 사용된다. 따라서 A/B 표기는 해당 문장 기술이 아니라 학습 가능한 규칙으로 읽히며, 학생이 *\"add the numbers into the total\" 같은 잘못된 표현을 유도할 수 있다.\n\n경미(warn) 수준이나 실제 결함이 맞다. 수정 방향: \"3형식 (add A together) + 결과 전치사구 into\" 또는 단순히 \"3형식 + 구동사 add ~ together\" 등으로 표기."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "page3.translation_ko 문장 [18] (원문 page1.body 마지막 단락 / page3.sentences index 18)",
+      "issue": "본문의 빈칸(<blank>)을 번역문이 정답 'expected value(기댓값)'로 채워 노출했다. page2 두 번째 문항(빈칸 추론, answer_index 1 = \"expected value\")의 정답이 해석문만 보면 그대로 드러나 문항이 무력화된다.",
+      "evidence": "영문: \"the rational move is usually to choose the one with the higher <blank>.\" / page3.sentences[18] 세그먼트도 \"to choose the one with the higher blank.\"로 빈칸 처리 / 번역: \"[18] 두 개의 불확실한 선택지가 당신의 돈을 두고 겨룰 때, 합리적인 선택은 대개 더 높은 기댓값을 가진 쪽을 고르는 것이다.\"",
+      "suggestion": "번역도 빈칸 상태를 유지: \"합리적인 선택은 대개 더 높은 ______을(를) 가진 쪽을 고르는 것이다.\" 로 수정.",
+      "lens": "translation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "지적이 파일 근거로 정확히 확인됨. (1) page1.body 마지막 단락(line 26)에 \"to choose the one with the higher <blank>.\" 로 빈칸이 실재하고, (2) page2.questions[1](lines 50-62)이 그 빈칸을 묻는 빈칸 추론 문항으로 choices = [entry cost, expected value, prize amount, winning streak, gut feeling], answer_index=1 = \"expected value\" 이며, (3) page3.translation_ko(line 336)의 \"[18] 두 개의 불확실한 선택지가 당신의 돈을 두고 겨룰 때, 합리적인 선택은 대개 더 높은 기댓값을 가진 쪽을 고르는 것이다.\"가 그 자리를 정답의 한국어 대응어 '기댓값'으로 그대로 채워 노출한다. 반박 시도는 모두 파일 내부 근거로 기각됨: 같은 page3 블록의 sentences[index 18](lines 314-324)은 동일 문장을 \"to choose the one with the higher blank.\"로 빈칸 처리해 답을 감추고 있고, answers.explanations[1].evidence(line 361)도 \"choose the one with the higher ___\"로 마스킹한다. 즉 파일 자체가 마스킹 관례를 갖고 있으며 translation_ko [18]만 그 관례를 어긴 유일한 불일치 지점이다. 본문 다른 곳(문장 6, 11, 15, 16)에도 expected value/기댓값이 등장하지만 그것들은 추론을 요구하는 반면 [18]은 대상 문장 그 자체의 축자적 치환이라 5개 선택지 변별이 무력화된다. 열람 게이팅(reveal/stage 등) 필드도 존재하지 않는다. 위치·근거 모두 지적대로 정확하며 blocker 등급도 타당하다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page2.questions[1] (빈칸 추론, answer_index 1) / page1.body",
+      "issue": "빈칸의 정답 'expected value'가 본문에 그대로 3회 노출되어 있고, 그중 한 번은 <u>밑줄</u>로 강조까지 되어 있어 추론 문항이 아니라 단순 어구 찾기(복사) 문항이 된다. 변별력이 사실상 없다.",
+      "evidence": "본문 2문단: \"The tool for answering this is called <u>expected value</u>.\" / 3문단: \"A bet that looks thrilling can carry a negative expected value\" / 4문단(빈칸 문장): \"the rational move is usually to choose the one with the higher <blank>.\" 선택지 2번이 정확히 \"expected value\". 본문 내 'expected value' 등장 횟수 3회, 그중 1회는 밑줄 강조.",
+      "suggestion": "정답 선지를 본문에 그대로 나오지 않는 동의 표현(예: \"probability-weighted average\", \"long-run average payoff\")으로 바꾸거나, 빈칸 정답을 유지하려면 2문단의 <u>expected value</u> 밑줄 강조를 해제하고 3문단의 'a negative expected value'를 'a negative value' 등으로 완화해 직접 노출을 줄일 것.",
+      "lens": "answer",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "지적이 파일 근거로 명확히 확인됨. page1.body에서 정답 문자열 'expected value'가 최소 3회(문두 대문자 'Expected value does not promise'까지 포함하면 4회) 그대로 노출되며, 그중 1회는 '<u>expected value</u>'로 밑줄 강조까지 되어 있다. 결정적으로 빈칸이 있는 4문단은 'Because of this, expected value becomes a reliable guide...' 바로 두 문장 뒤에 '...choose the one with the higher <blank>.'가 오는 구조라, 정답이 빈칸 직전 동일 문단에 그대로 있다. page2.questions[1].choices[1]='expected value', answer_index=1로 문자열이 완전 일치한다. 반박 시도: (1) '수능 빈칸도 본문 어휘를 재사용한다' — 그러나 패러프레이즈가 아니라 문자 그대로 일치이고 밑줄까지 있어 해당 안 됨. (2) '오답 선택지 변별이 남아 있다' — 오답 4개(entry cost, prize amount, winning streak, gut feeling)는 본문에 전혀 등장하지 않으므로 '본문에 나오는 유일한 어구 고르기'로 풀이가 붕괴, 독해 없이 어휘 매칭만으로 정답 도달 가능. (3) '<u>는 용어 설명용' — 이 파일에서 <u>는 Q3(함의 추론)의 지시 대상 표시 용도로 쓰이는 강조 마커이고 용어 설명은 gloss_extra가 따로 담당하므로 성립하지 않음. 가중 근거로 answers.explanations[1].evidence가 '6번이 그 도구를 expected value로 명명했으므로'라며 밑줄 문장을 직접 지목하고, page3.translation_ko [18]은 '더 높은 기댓값을 가진 쪽을 고르는 것이다'로 정답을 그대로 노출한다. 따라서 추론 문항이 아닌 단순 어구 찾기가 되어 변별력이 사실상 없다는 지적은 실제 결함이다."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page1.body 3문단",
+      "issue": "연결부사 Instead 뒤 쉼표 누락 + 지시 대상이 직전 문장이 아니라 문단 첫 문장이어서 대비 관계가 순간적으로 모호하다.",
+      "evidence": "\"You may still win big or lose everything on a single given try. Instead it describes the steady center that quietly emerges across many rounds.\"",
+      "suggestion": "\"Instead, it describes the steady center...\"로 쉼표를 넣거나, 대비를 명확히 하려면 \"What it describes instead is the steady center that quietly emerges across many rounds.\" 정도로 조정.",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "page1.body 3문단",
+      "issue": "single과 given이 겹쳐 중복적이고 다소 어색한 수식이다.",
+      "evidence": "\"You may still win big or lose everything on a single given try.\"",
+      "suggestion": "\"on any single try\" 또는 \"on a given try\" 중 하나로 정리.",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "page1.body 4문단 마지막 문장",
+      "issue": "문두 과거분사 구문 Read가 학생 독해 시 명령문(\"~을 읽어라\")으로 먼저 파싱되어 순간적 중의성이 생긴다. 문법 오류는 아니나 고3 독해 부담을 키운다.",
+      "evidence": "\"Read through this lens, a messy world of chance turns into a clear and honest comparison of numbers.\"",
+      "suggestion": "\"Seen through this lens, ...\" 또는 \"When it is read through this lens, ...\"로 바꾸면 중의성이 사라진다.",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.sentences[1] (index 2), segments \"How much\"(M) / \"worth to you?\"(C)",
+      "issue": "\"How much\"를 단순 부사구(M)로, \"worth to you\"만 보어(C)로 분리한 태깅이 부정확하다. how much는 worth의 정도를 채우는 필수 요소로, 원래 위치는 \"a single turn is worth how much to you\"이며 의문사로 문두에 이동한 것이다. M/C로 쪼개면 두 요소가 하나의 보어 덩어리라는 점이 드러나지 않는다.",
+      "evidence": "본문: \"How much is a single turn actually worth to you?\" / page3 태깅: { \"role\": \"M\", \"text\": \"How much\", \"note\": \"의문부사구\" } ... { \"role\": \"C\", \"text\": \"worth to you?\", \"note\": \"의문문 보어\" }",
+      "suggestion": "\"How much\"의 note를 \"worth와 짝을 이루는 보어 요소가 의문사로 문두 이동(원위치: worth how much)\"으로 보강하거나, role을 C로 통일하고 분리 이유를 note에 명시.",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko [15]",
+      "issue": "조동사 can(가능성)이 원인·결과의 사실 진술로 번역되어 논지가 과장된다. 원문은 '음의 기댓값을 가질 수 있다'는 가능성 진술이고 분사구문은 그에 딸린 부수 상황인데, 번역은 '가질 수 있어서 … 빼앗는다'로 뒷부분을 단정한다.",
+      "evidence": "본문: \"A bet that looks thrilling can carry a negative expected value, slowly draining any player who cannot see past the excitement of the moment.\" / 번역: \"짜릿해 보이는 내기가 음(-)의 기댓값을 가질 수 있어서, 순간의 흥분 너머를 보지 못하는 어떤 플레이어든 서서히 밑천을 빼앗는다.\"",
+      "suggestion": "\"짜릿해 보이는 내기도 음(-)의 기댓값을 가질 수 있으며, 그럴 경우 순간의 흥분 너머를 보지 못하는 플레이어의 밑천을 서서히 빼앗아 간다.\" 정도로 가능성 어감을 유지.",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko 문장 [6]",
+      "issue": "'be called C'(수동태 명명)를 '~이라 불리는 것이다'라는 이중 서술로 옮겨 어색하다. page3.sentences[6]의 grammar_note가 '수동태 (be called C)'로 명시되어 있어 문형 대조 학습 목적과도 어긋난다.",
+      "evidence": "영문: \"The tool for answering this is called expected value.\" / 번역: \"[6] 이에 답하는 도구가 바로 기댓값이라 불리는 것이다.\"",
+      "suggestion": "\"이에 답하기 위한 도구는 기댓값이라고 불린다.\" 로 단순화.",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko 문장 [7]",
+      "issue": "'To find it'의 it(= expected value, 기댓값)이 '그것'으로만 옮겨져 지시 대상이 흐려진다. 앞 문장 [6]이 '~불리는 것이다'로 끝나 '그것'이 '도구'인지 '기댓값'인지 모호해진다.",
+      "evidence": "영문: \"To find it, you first list every possible outcome along with the payoff it brings.\" / 번역: \"[7] 그것을 구하려면, 먼저 가능한 모든 결과를 그것이 가져오는 보상과 함께 나열한다.\"",
+      "suggestion": "\"기댓값을 구하려면\" 또는 \"그 값을 구하려면\"으로 지시 대상을 명확히.",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page2.questions[1].stem",
+      "issue": "stem이 \"밑줄 친 빈칸\"이라고 하지만 본문의 빈칸은 <blank> 토큰일 뿐 <u> 밑줄 마크업이 없다. 본문에 실제로 <u>밑줄</u>이 걸린 두 곳(expected value, the long run…)과 지칭이 어긋나 학생이 밑줄 친 'expected value'를 빈칸으로 오인할 소지가 있다.",
+      "evidence": "stem: \"윗글의 밑줄 친 빈칸에 들어갈 말로 가장 적절한 것은?\" / body의 밑줄은 ['expected value', 'the long run reveals what a single try can hide'] 두 곳뿐이고, 빈칸 자리는 \"the one with the higher <blank>\"로 밑줄 마크업이 없음.",
+      "suggestion": "렌더링 시 <blank>를 밑줄 형태로 출력하도록 보장하거나, stem을 \"윗글의 빈칸에 들어갈 말로 가장 적절한 것은?\"으로 수정. (다만 이 표현은 01~20 전 파일 공통 관용구이므로 일괄 정책으로 처리 권장.)",
+      "lens": "answer"
+    }
+  ],
+  "blockers": [
+    {
+      "severity": "blocker",
+      "location": "page3.sentences[11] (index 12), segment role \"O\" / text \"big\"",
+      "issue": "\"win big\"의 big을 목적어(O)로 오태깅. big은 여기서 부사(크게, 대박으로)이며 win은 자동사 용법이라 목적어가 없다. 파일 자체의 번역도 부사로 옮기고 있어 구문분석과 번역이 서로 모순된다.",
+      "evidence": "본문: \"You may still win big or lose everything on a single given try.\" / 같은 파일 translation_ko [12]: \"당신은 주어진 한 번의 시도에서 여전히 크게 이길 수도, 모든 것을 잃을 수도 있다.\" / page3 태깅: { \"role\": \"V\", \"text\": \"may still win\" }, { \"role\": \"O\", \"text\": \"big\" }",
+      "suggestion": "\"big\"의 role을 O에서 M(부사)으로 수정하고 note에 \"win big = 크게 이기다(big은 부사)\"를 달아 뒤의 \"lose everything\"(진짜 O)과 대비시킬 것. grammar_note도 \"조동사 + or 등위 동사(win big: 부사 / lose everything: 3형식)\" 정도로 보완.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "지적이 파일 근거로 정확히 확인된다. page3.sentences[11](index 12)의 세그먼트는 { \"role\": \"V\", \"text\": \"may still win\" }, { \"role\": \"O\", \"text\": \"big\" }로 태깅되어 있으며(파일 249-259행), 본문은 \"You may still win big or lose everything on a single given try.\"이다(26행).\n\n\"win big\"의 big은 목적어가 아니라 flat adverb(평판 부사)다. 근거: (1) 관사·한정사 결합 불가(\"*win a big\"/\"*win the big\"), (2) 수동태화 불가(\"*big was won\"), (3) 대명사 치환 불가(\"*win it\") — 목적어 판별 진단을 모두 통과하지 못한다. Merriam-Webster도 big을 부사(\"in a great or successful manner\", 예: made it big)로 등재한다. 여기서 win은 자동사 용법이다.\n\n또한 같은 파일 translation_ko [12]는 \"여전히 크게 이길 수도\"로 번역하여 big을 부사(크게)로 옮기고 있어, 구문분석(O)과 번역(부사)이 같은 파일 안에서 명백히 모순된다.\n\n반박 시도도 실패했다. 이 파일의 자체 스키마 관례가 단일 부사에 M을 쓰고 있고(idx 2 \"actually\", idx 7 \"first\", idx 8 \"Then\", idx 9 \"Finally\", idx 14 \"precisely\", idx 18 \"usually\", idx 17 \"both\"), 특히 idx 4에서는 동사 뒤 불변화사 \"aside\"를 M으로 태깅해 직접적으로 유사한 선례가 존재한다. 따라서 M 역할이 없어서 O로 대체했다는 변호도 성립하지 않는다. 병렬 등위항 \"lose everything\"에 진짜 목적어가 있어 패턴 매칭으로 big을 O 슬롯에 밀어 넣은 오류로 보인다.\n\n한국 EFL 문형(형식) 교육 맥락에서 1형식을 3형식으로 잘못 가르치는 결과가 되므로 blocker 등급도 타당하다. 올바른 태깅은 { \"role\": \"M\", \"text\": \"big\" }이며, grammar_note(\"조동사 + or 등위 동사\")는 형식 번호를 명시하지 않아 수정 없이 유지 가능하다."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "page3.sentences[4] (index 5), segment role \"M\" / text \"What would happen\"",
+      "issue": "주절의 주어 What을 M(가정 의문)으로 오태깅. What은 would happen의 주어이며, 이 문장 태깅에는 S와 V가 아예 존재하지 않아 학생이 주절 구조(What=S, would happen=V, 1형식)를 파악할 수 없다.",
+      "evidence": "본문: \"What would happen if you played this very same game thousands of times over?\" / page3 태깅: segments가 [{\"role\":\"M\",\"text\":\"What would happen\"}, {\"role\":\"CONJ\",\"text\":\"if\"}, {\"role\":\"M\",\"text\":\"you played this very same game thousands of times over?\"}] 로만 구성되어 S·V 태그가 전무함",
+      "suggestion": "\"What\"을 S, \"would happen\"을 V로 분리 태깅하고, if절 안도 최소한 주어 you / 동사 played가 보이도록 note를 보강. grammar_note는 \"가정법 과거(if+과거, would+동사원형) 의문문\"으로 명시하는 편이 정확하다.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 확인 결과 지적이 정확하다. page3.sentences[4] (index 5, 파일 175-183행)의 segments는 [{\"role\":\"M\",\"text\":\"What would happen\",\"note\":\"가정 의문\"}, {\"role\":\"CONJ\",\"text\":\"if\"}, {\"role\":\"M\",\"text\":\"you played this very same game thousands of times over?\",\"note\":\"조건 부사절\"}] 뿐이며 S·V 태그가 전무하다. 문법적으로 \"What would happen if you played...?\"에서 What은 would happen의 주어(의문대명사 주어)이고 would happen이 동사인 1형식 주절이므로, 이를 통째로 M(수식어)으로 태깅한 것은 명백한 오태깅이다. 파일 자체 관례와도 모순된다: (1) index 2는 동일한 의문문을 \"How much\"=M(실제로 부사구라 타당), \"is\"=V, \"a single turn\"=S, \"worth to you?\"=C로 정확히 분해하므로 이 파일은 의문문을 분해하는 규칙을 갖고 있다. (2) index 11은 \"what any one round will bring.\"을 O로 태깅해 what절을 기능 성분으로 다루고 있다. (3) page3의 19개 문장 중 V 태그가 하나도 없는 문장은 index 5가 유일하다. grammar_note에 \"가정법 의문문\"이라 적혀 있으나 segment role만으로는 학생이 주절 골격(What=S, would happen=V)을 파악할 수 없다. \"의문문 프레임을 통째로 묶었다\"는 반론도 성립하지 않는데, M은 이 파일에서 부사어를 지칭하는 역할이고(index 3의 because절, index 18의 when절) 주어+동사 결합체는 부사어가 아니기 때문이다. blocker 수준 지적으로 타당하다."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "page3.translation_ko 문장 [18] (원문 page1.body 마지막 단락 / page3.sentences index 18)",
+      "issue": "본문의 빈칸(<blank>)을 번역문이 정답 'expected value(기댓값)'로 채워 노출했다. page2 두 번째 문항(빈칸 추론, answer_index 1 = \"expected value\")의 정답이 해석문만 보면 그대로 드러나 문항이 무력화된다.",
+      "evidence": "영문: \"the rational move is usually to choose the one with the higher <blank>.\" / page3.sentences[18] 세그먼트도 \"to choose the one with the higher blank.\"로 빈칸 처리 / 번역: \"[18] 두 개의 불확실한 선택지가 당신의 돈을 두고 겨룰 때, 합리적인 선택은 대개 더 높은 기댓값을 가진 쪽을 고르는 것이다.\"",
+      "suggestion": "번역도 빈칸 상태를 유지: \"합리적인 선택은 대개 더 높은 ______을(를) 가진 쪽을 고르는 것이다.\" 로 수정.",
+      "lens": "translation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "지적이 파일 근거로 정확히 확인됨. (1) page1.body 마지막 단락(line 26)에 \"to choose the one with the higher <blank>.\" 로 빈칸이 실재하고, (2) page2.questions[1](lines 50-62)이 그 빈칸을 묻는 빈칸 추론 문항으로 choices = [entry cost, expected value, prize amount, winning streak, gut feeling], answer_index=1 = \"expected value\" 이며, (3) page3.translation_ko(line 336)의 \"[18] 두 개의 불확실한 선택지가 당신의 돈을 두고 겨룰 때, 합리적인 선택은 대개 더 높은 기댓값을 가진 쪽을 고르는 것이다.\"가 그 자리를 정답의 한국어 대응어 '기댓값'으로 그대로 채워 노출한다. 반박 시도는 모두 파일 내부 근거로 기각됨: 같은 page3 블록의 sentences[index 18](lines 314-324)은 동일 문장을 \"to choose the one with the higher blank.\"로 빈칸 처리해 답을 감추고 있고, answers.explanations[1].evidence(line 361)도 \"choose the one with the higher ___\"로 마스킹한다. 즉 파일 자체가 마스킹 관례를 갖고 있으며 translation_ko [18]만 그 관례를 어긴 유일한 불일치 지점이다. 본문 다른 곳(문장 6, 11, 15, 16)에도 expected value/기댓값이 등장하지만 그것들은 추론을 요구하는 반면 [18]은 대상 문장 그 자체의 축자적 치환이라 5개 선택지 변별이 무력화된다. 열람 게이팅(reveal/stage 등) 필드도 존재하지 않는다. 위치·근거 모두 지적대로 정확하며 blocker 등급도 타당하다."
+      }
+    }
+  ],
+  "counts": {
+    "raw": 15,
+    "verified": 7,
+    "confirmed": 6,
+    "minor": 8
+  }
+}

@@ -4,57 +4,165 @@
   "confirmed": [
     {
       "severity": "warn",
-      "location": "page3.sentences[index=13], segment \"finished\"",
-      "issue": "구문 역할 오태깅: 'before it is finished'에서 'finished'를 M(수식어)으로 태깅했으나, 'is finished'는 be동사+과거분사 구조로 'finished'는 보어(C) 또는 'is finished' 전체가 동사(V, 수동태)여야 한다. M(부사적 수식어)이 아니다.",
-      "evidence": "본문 \"A single product may cross several borders before it is finished.\" / page3 태깅: { \"role\": \"S\", \"text\": \"it\" }, { \"role\": \"V\", \"text\": \"is\" }, { \"role\": \"M\", \"text\": \"finished.\" }. 대조: index=14에서는 'are shared'를 { \"role\": \"V\", \"text\": \"are shared,\" }로, index=2에서는 'easy to miss'를 { \"role\": \"C\" }로 태깅해 같은 파일 내 관례와도 불일치한다.",
-      "suggestion": "'finished'를 C로 태깅하거나, index=14의 'are shared' 처리 방식과 맞춰 'is finished'를 하나의 V(수동태)로 묶어라.",
+      "location": "page1.body 2단락 (\"When each country focuses on what it produces most cheaply, the whole world gains more goods for far less effort. Economists call this simple idea comparative advantage\")",
+      "issue": "비교우위(comparative advantage)의 개념 정의가 절대우위(absolute advantage)로 서술되어 개념 오류 소지가 있다. 비교우위는 '기회비용이 상대적으로 낮은 것'에 특화하는 것이지, '가장 싸게 생산하는 것(most cheaply)'에 특화하는 것이 아니다. 모든 재화를 더 싸게 만드는 나라도 비교우위 원리에 따라 특화·교역한다는 점이 이 이론의 핵심인데, 본문 정의로는 이 핵심이 소거된다.",
+      "evidence": "\"When each country focuses on what it produces most cheaply, the whole world gains more goods for far less effort. Economists call this simple idea <u>comparative advantage</u>\"",
+      "suggestion": "\"what it produces most cheaply\"를 \"what it gives up the least to produce\" 또는 \"what it produces at the lowest cost to itself(자국이 포기하는 것이 가장 적은 것)\" 류로 수정. 다만 이 표현은 page2 Q3 선택지·page2 요약문(B) cheaply·answers evidence와 연동되어 있으므로 일괄 수정 필요.",
+      "lens": "language",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "지적은 파일 근거로 확인되는 실제 결함이다.\n\n1) 인용 정확성: page1.body 2단락에 \"When each country focuses on what it produces most cheaply, the whole world gains more goods for far less effort. Economists call this simple idea <u>comparative advantage</u>\" 가 그대로 존재한다. page3 sentence 9-10, translation_ko [9]-[10](\"가장 싸게 생산하는 것에 집중\"), page4 vocab에도 동일 프레이밍이 반복된다.\n\n2) 개념 오류 성립: \"produces most cheaply\"는 절대적 생산비 최저, 즉 절대우위(absolute advantage)의 정의다. 비교우위는 상대적 기회비용으로 정의되며, 모든 재화에서 절대우위를 가진 나라도 기회비용이 낮은 재화에 특화해 교역 이익을 얻는다는 것이 이론의 핵심인데, 본문 정의는 이 핵심을 소거한다. 선행 문장들(warm fields / skilled workers)도 요소부존 기반 절대우위 독해를 강화한다.\n\n3) 결정적 내부 모순: 같은 파일의 textbook_tieback.body_ko는 \"각 나라가 상대적으로 더 싸게 만들 수 있는 것에 집중하는 것을 비교우위라 하며\"라고 서술해 '상대적으로'라는 필수 한정어를 포함한다. 한국어 해설은 맞고 영어 본문만 틀린 불일치는, 이것이 의도적 눈높이 단순화가 아니라 누락 오류임을 강하게 시사한다.\n\n4) 파급 및 하중: 오류가 정답 키까지 전이된다. q_index 2의 오답 선지 4 \"Every country can produce all of its goods most cheaply at home\"과 그 rationale이 절대비용 전제 위에서 작동하고, q_index 3은 model_answer \"(B) cheaply\"로 학생이 잘못된 정의어를 직접 재생산하도록 요구한다. 단순 표현 문제가 아니라 문항 정합성에 얹힌 결함이다.\n\n5) 수정 용이성: 한국어 해설이 이미 쓰고 있는 \"relatively\"를 body·sentence 9·translation에 삽입하면 해소되며, 830L/고1 난이도를 해치지 않는다. 따라서 \"수준상 불가피한 단순화\"라는 반박은 성립하지 않는다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "answers.explanations[3].evidence (q_index 3, 요약문 빈칸 완성)",
+      "issue": "본문 인용이 실제 본문과 다른 문장으로 조작(변형)되어 있다. 큰따옴표로 본문 인용임을 표시했으나 원문에 존재하지 않는 어형·구조다.",
+      "evidence": "해설: \"(A)는 국경을 넘어 상품을 교환하는 행위 → 본문 \\\"nations swap goods across borders, and this exchange is what we call trade\\\"\" / 실제 page1.body: \"So nations swap goods across their borders, and we call this exchange trade.\" (their 누락, 'we call this exchange trade' → 'this exchange is what we call trade'로 구조 변형)",
+      "suggestion": "인용을 본문 그대로 \"So nations swap goods across their borders, and we call this exchange trade.\"로 수정한다. (page4 vocab의 exchange/swap 예문에도 동일한 변형문 \"This exchange is what we call trade.\"가 쓰여 있어 함께 점검 권장)",
       "lens": "explanation",
       "verdict": {
         "isReal": true,
         "confidence": "high",
-        "reason": "Confirmed at page3.sentences[index=13]: \"before it is finished\" is tagged S=\"it\", V=\"is\", M=\"finished.\" This is a mis-tag. \"is finished\" is a passive construction (be + past participle), so \"finished\" is either part of the verb (V, passive) or a predicate complement (C) — it is not an adverbial modifier (M). The internal-consistency evidence is accurate and decisive: index=14 tags the parallel passive \"are shared\" as a single V (\"are shared,\"), and index=2/7/20 tag predicate complements after \"is\" as C (e.g., \"easy to miss\" = C at index=2). Under either the file's own passive convention (V) or copula-complement convention (C), M is inadmissible. Genuine defect."
+        "reason": "지적이 파일 근거로 정확히 확인됨. answers.explanations[3].evidence(392행)는 큰따옴표로 본문 인용임을 명시하며 \"nations swap goods across borders, and this exchange is what we call trade\"라고 적었으나, page1.body(21행) 원문은 \"So nations swap goods across their borders, and we call this exchange trade.\"이다. 두 지점이 다름: (1) their 누락(across their borders → across borders), (2) 5형식 SVOC \"we call this exchange trade\"를 의사분열문 \"this exchange is what we call trade\"로 구조 변형. page3.sentences index 4의 세그먼트 분해(we/call/this exchange/trade.)도 원문 구조가 SVOC임을 재확인해 준다.\n\n동일 파일 내 다른 evidence는 모두 축자 인용을 지키고 있어 이 건이 예외임이 드러난다: q_index 0은 \"No single country grows, digs, or builds everything\", q_index 2는 \"countries are not equally good at every task\"를 정확히 인용하며, 바로 같은 evidence 필드의 (B) 부분조차 \"focuses on what it produces most cheaply\"를 원문 그대로 쓴다.\n\n참고로 page4.vocab의 exchange 예문(435행)에 \"This exchange is what we call trade.\"라는 변형 문장이 존재하는데, examples 배열은 의도적 재작성이 허용되는 자리이므로 그 자체는 결함이 아니나, 그 변형형이 축자 인용이 요구되는 evidence 필드로 흘러든 정황으로 보인다.\n\n반박 가능한 근거는 의미 보존뿐이다. 의미가 같고 모범답안 (A) trade도 여전히 타당하다. 그러나 지적의 요지는 의미 오류가 아니라 \"본문 인용\"으로 표시된 문자열이 본문과 불일치한다는 것이며, 이는 파일상 명백하다. 따라서 warn 등급의 실제 결함으로 인정한다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.sentences[12] (index 13) segments",
+      "issue": "수동태 보어 'finished'를 M(수식어)으로 오태깅. 동일 파일 내 index 14의 'are shared'는 V로 묶어 처리하고 있어 구문분석 기준이 서로 충돌한다.",
+      "evidence": "index 13: { \"role\": \"V\", \"text\": \"is\" }, { \"role\": \"M\", \"text\": \"finished.\" } ↔ index 14: { \"role\": \"V\", \"text\": \"are shared,\" } (본문: \"A single product may cross several borders before it is finished. Because the steps are shared, ...\")",
+      "suggestion": "index 13을 { \"role\": \"V\", \"text\": \"is finished.\" }로 묶거나, 최소한 'finished'를 C로 태깅해 index 14와 기준을 통일한다.",
+      "lens": "explanation",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "지적이 파일 근거로 정확히 확인됨. 09.json 253-254행(index 13)은 { \"role\": \"V\", \"text\": \"is\" }, { \"role\": \"M\", \"text\": \"finished.\" }로 되어 있고, 262행(index 14)은 { \"role\": \"V\", \"text\": \"are shared,\" }로 되어 있어 인용이 verbatim 일치한다.\n\n핵심은 두 구문이 문법적으로 동일한 be + p.p. 수동태라는 점이다. \"before it is finished\"는 접속사 before가 이끄는 정형절이며, 파일 자체가 it을 S, is를 V로 태깅해 정형절로 인식하고 있다. 따라서 finished는 수식어가 될 수 없고 술부의 일부다.\n\n코퍼스 전체 조사 결과 규약이 명확하다. is called / is trapped / are joined / is oxidized / is softened / is passed / is measured / is followed / are shared 등 30건 이상의 정형 수동태가 예외 없이 단일 V 세그먼트로 묶여 있다. 심지어 자매 파일 2026-08/08.json 321행도 \"are shared\"를 V로 묶는다. 반면 과거분사가 M으로 태깅된 사례는 전부 진짜 비정형 수식어(분사구문·후치수식)이며 note로 \"과거분사 수식\", \"분사구문 given\", \"과거분사 후치 수식\", \"과거분사 삽입\"이라 명시되어 있다. 09.json의 \"finished.\"에는 그런 note가 없고 수식어도 아니다.\n\n또한 수동태 해석을 배제하고 finished를 형용사적 보어로 보더라도 이 파일의 보어 규약은 C이지 M이 아니다(index 2 \"is\"+C \"easy to miss.\", index 7 \"are\"+C \"not equally good\", index 20 \"stands\"+C \"entirely alone.\"). 어떤 해석 경로로도 M은 성립하지 않는다.\n\n현재 태깅은 S + 계사 V \"is\" + 부유하는 M만 남겨 술부가 비는 구조적으로 무효한 파싱이며, 8행 떨어진 동일 구문과 직접 충돌한다. 실제 결함이다. 수정안: { \"role\": \"V\", \"text\": \"is finished.\" } 로 병합(코퍼스 지배적 규약과 일치)."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.translation_ko 문장 [6]",
+      "issue": "\"at home\"을 '집에서'로 오역. 이 글에서 at home은 '국내에서/자국에서'라는 경제 용어적 의미이며, 문장 [17]의 동일 표현은 '국내 가격'으로 옳게 옮겨져 있어 번역 내부에서도 일관성이 깨진다. 학생이 '가정에서 물건을 만든다'는 엉뚱한 의미로 읽게 된다.",
+      "evidence": "영문 [6]: \"But why not just make everything at home instead?\" / 번역 [6]: \"그런데 왜 그냥 모든 것을 집에서 만들지 않는가?\" ← 대비: 영문 [17] \"Cheaper imports can lower prices at home\" → 번역 [17] \"더 싼 수입품은 국내 가격을 낮출 수 있지만\"",
+      "suggestion": "\"그런데 왜 그냥 모든 것을 국내에서 만들지 않는가?\"로 수정.",
+      "lens": "translation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일에서 지적 내용이 그대로 확인된다. page3.translation_ko 문장 [6]은 영문 \"But why not just make everything at home instead?\"를 \"그런데 왜 그냥 모든 것을 집에서 만들지 않는가?\"로 옮겼다. 여기서 at home은 문맥상 '국내에서/자국에서'(자급자족)를 뜻한다. 근거: (1) 앞 문장들의 주어가 nations/Each country이고, [7]의 답변이 \"countries are not equally good at every task\"이므로 논지 연결상 주체는 국가다. (2) 동일 파일 문장 [17] \"Cheaper imports can lower prices at home\"은 \"국내 가격\"으로 옳게 번역되어 있어 내부 불일치가 존재한다. (3) answers.explanations의 q_index 2 evidence/rationale도 같은 개념을 \"모든 나라가 국내에서 모든 재화를 가장 싸게 생산할 수 있다\"로 '국내'를 써서 서술한다. (4) page4 vocab의 import 예문도 \"at home\"을 \"국내 가격\"으로 번역한다. 한국어 '집에서'는 가정/주거 공간을 뜻하므로 학생이 비교우위 논지를 오독할 수 있다. 초급 독자용 구어체 의도라는 반론도 검토했으나, 같은 파일의 캡션·tieback·해설이 모두 국경/국내/비교우위 등 경제 용어를 쓰고 있어 근거가 없다. '국내에서' 또는 '자국에서'로 수정해야 한다."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "page2.questions[3] (요약문 빈칸 완성) summary_template / hints / model_answer + answers.explanations[3]",
+      "issue": "(A)의 정답 'trade'가 유일 정답이 아니다. 요약문 (A) 자리는 본문 문장을 거의 그대로 옮긴 것이고, 그 자리에 실제로 쓰인 본문 단어는 'swap'이다. 조건이 '본문에서 제시된 단어를 그대로 활용할 것'이므로 'swap'이 오히려 조건에 더 충실한 답인데, hints와 model_answer에는 'swap'이 빠져 있어 정답 처리에서 배제된다.",
+      "evidence": "본문(page1.body): \"So nations swap goods across their borders, and we call this exchange trade.\" / 요약문(summary_template): \"nations <blank> (A) goods across borders\" / hints: [\"trade\",\"cheaply\",\"advantage\",\"borders\",\"depends\"] (swap 없음) / model_answer: \"(A) trade  (B) cheaply\". 본문에서 trade는 명사(this exchange trade)로만 쓰이고 동사 용례가 없다. page4.vocab의 swap 항목도 \"So nations swap goods across their borders.\"를 예문으로 싣고 있어 (A) 자리 동사가 swap임을 뒷받침한다.",
+      "suggestion": "(A)를 'trade / swap 모두 정답 인정'으로 model_answer를 확장하거나, 유일 정답을 원하면 요약문 (A) 문장을 본문 4번 문장과 다른 구조로 바꿔 'swap'이 들어갈 여지를 없앤다(예: \"nations rely on the <blank>(A) of goods across borders\" 형태로 명사 자리를 만들어 trade만 성립하게 함).",
+      "lens": "answer",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "지적이 파일 근거로 전부 확인된다. (1) page1.body(21행): \"So nations swap goods across their borders, and we call this exchange trade.\" (2) summary_template(76행): \"nations <blank> (A) goods across borders\" — 본문 문장을 거의 그대로 옮긴 것이고 제거된 단어는 정확히 'swap'이다. (3) hints(75행) [\"trade\",\"cheaply\",\"advantage\",\"borders\",\"depends\"]에 swap 없음, model_answer(77·391행) \"(A) trade (B) cheaply\", rationales/key_terms(393-400행)에도 대체답 허용 없음.\n\n결정적 내부 근거 두 가지가 추가로 확인된다. 첫째, page3 sentences[index 4](130-144행)는 이 파일 자체의 구문 분석인데 'swap'에 role \"V\", 'goods'에 role \"O\"를 부여하고, 'trade'에는 role \"C\"(call의 목적격보어=명사)를 부여한다. 즉 (A) 자리의 동사가 swap이라는 것을 파일 스스로 태깅하고 있다. 둘째, page4.vocab의 swap 항목(516-526행)은 pos \"v.\"에 예문 \"So nations swap goods across their borders.\"를 싣는다.\n\n본문 내 trade 4회 출현(exchange trade / global trade today / Trade brings clear gains / keep trade fair)은 모두 명사이며 동사 용례가 전무하다. 따라서 조건 \"본문에서 제시된 단어를 그대로 활용할 것\"을 기준으로 보면, swap은 현재형 복수 동사 그대로 무변형 사용이 가능한 반면 trade는 본문에 없는 품사 전환을 요구한다. 오히려 answers.explanations[3].evidence(392행)조차 swap이 든 문장을 (A)의 근거로 인용한다(다만 본문을 \"and this exchange is what we call trade\"로 오인용).\n\n반박 가능성도 검토했으나 기각된다. hints를 폐쇄형 단어은행으로 보려 해도 2개 빈칸에 5개(오답용 advantage/borders/depends 포함) 제시된 보조 장치일 뿐이고, 문제에 인쇄된 조건은 hints가 아니라 본문을 지시한다. 출제 의도가 trade인 것은 분명하나 의도가 단일 정답성을 만들지는 않는다. 조건에 완전히 부합하는 swap이 정답 처리에서 배제되어 채점 대상 서술형 문항의 복수 정답 결함이 성립한다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "answers.explanations[3].evidence",
+      "issue": "해설의 근거 인용문이 본문과 일치하지 않는 창작 인용이다. 정답 근거로 제시된 영어 문장이 본문에 존재하지 않는다.",
+      "evidence": "해설: \"본문 \\\"nations swap goods across borders, and this exchange is what we call trade\\\"\" / 실제 본문: \"So nations swap goods across their borders, and we call this exchange trade.\" (their 누락, 후반절이 'this exchange is what we call trade'로 변형됨)",
+      "suggestion": "근거 인용을 본문 원문 그대로 \"So nations swap goods across their borders, and we call this exchange trade.\"로 수정한다.",
+      "lens": "answer",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 근거로 확인됨. answers.explanations[3].evidence(line 392)는 따옴표와 '본문' 표기를 붙여 \"nations swap goods across borders, and this exchange is what we call trade\"를 직접 인용으로 제시하나, page1.body(line 21)의 실제 문장은 \"So nations swap goods across their borders, and we call this exchange trade.\"이다. their 누락 및 후반절 구조 변형(we call this exchange trade → this exchange is what we call trade)으로 문자열이 본문에 존재하지 않는다. 동일 파일의 다른 evidence 인용(explanations[0]의 \"No single country grows, digs, or builds everything\", explanations[2]의 \"countries are not equally good at every task\", 그리고 같은 필드의 (B) 근거 \"focuses on what it produces most cheaply\")은 모두 본문과 축자 일치하므로, 이 항목만 파일 자체의 축자 인용 관행을 위반한다. 다만 의미는 보존되고 정답 (A) trade의 타당성은 훼손되지 않으므로 정답 오류가 아닌 인용 정확성 결함이며, warn 등급이 적절하다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page4.vocab[9] (word: \"industry\") → examples[0].en",
+      "issue": "예문이 비문이다. 이 뜻의 industry는 가산명사이므로 \"in growing industry\"는 관사가 빠진 틀린 표현이며, 본문에서도 관사를 붙여 쓰고 있다. 어휘 예문은 학생이 그대로 암기·모방하는 자료이므로 관사 누락은 그대로 오류 학습으로 이어진다.",
+      "evidence": "예문(en): \"Others find new jobs in growing industry.\" / 본문(page1.body): \"Some workers lose their jobs, while others find new ones in a growing industry.\" — 동일 표현을 본문은 \"in a growing industry\"로 정확히 쓰고 있어 예문만 관사가 빠져 있다. 같은 달 다른 지문(2026-08/01~20)의 page4.vocab 예문 어디에도 이런 무관사 패턴은 없어 하우스 스타일이 아니다.",
+      "suggestion": "\"Others find new jobs in a growing industry.\"로 관사 a를 추가한다. 한국어 대역 \"다른 이들은 성장하는 산업에서 새 일자리를 얻는다.\"는 그대로 두어도 무방하다.",
+      "lens": "vocab",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일로 확인된 실제 결함이다. 09.json:512 (page4.vocab[9] word:\"industry\") examples[0].en = \"Others find new jobs in growing industry.\" 인데, 동일 표현을 같은 파일 page1.body(line 21)는 \"others find new ones in a growing industry\", page3.sentences[18] M 세그먼트(line 316)는 \"in a growing industry.\"로 관사를 붙여 정확히 쓰고 있다. 이 뜻의 industry는 가산명사이며(같은 vocab 항목의 두 번째 예문도 \"The chip industry needs...\"로 한정사를 씀), \"growing\"의 수식을 받는 단수 가산명사는 한정사가 필수라 \"in growing industry\"는 비문이다. 무관사 mass-noun 용법(commerce and industry, 근면)으로 변호할 여지도 없다 — meaning_ko가 \"산업\"이고 예문의 ko 대역이 \"성장하는 산업에서 새 일자리를\"로 특정 성장 분야를 가리켜 mass 해석과 충돌하며, 본문 문장을 잘라 옮기며 관사만 빠뜨린 형태다. 하우스 스타일 방어도 성립하지 않는다: 2026-08 폴더 전체를 해당 무관사 패턴으로 grep한 결과 유일한 히트가 이 512행뿐이다. 어휘 예문은 학생이 그대로 암기·모방하는 자료이므로 오류 학습으로 직결된다. 수정안: \"Others find new jobs in a growing industry.\""
       }
     }
   ],
   "minors": [
     {
       "severity": "minor",
-      "location": "page1.body, 4번째 문단 마지막 문장",
-      "issue": "동격 that절 앞의 콤마 사용이 다소 비표준적이며, 콜론 또는 무콤마가 더 자연스럽다.",
-      "evidence": "\"the whole modern economy quietly runs on one simple promise, that no country in the world stands entirely <blank>.\"",
-      "suggestion": "\"...on one simple promise: that no country in the world stands entirely <blank>.\" 처럼 콜론을 쓰거나 콤마를 생략하는 편이 표준적이다. 다만 의미 전달에는 지장이 없어 문체 수준의 미세 사항이다.",
+      "location": "page1.body 1단락 (\"The parts often come from many different lands, and this is easy to miss.\")",
+      "issue": "지시대명사 this의 선행사가 불명확하다. 앞 절 전체(부품이 여러 나라에서 온다는 사실)를 가리키려는 의도로 보이나, 등위접속된 and 절의 주어 자리에 쓰여 고1 독자에게는 지시 대상이 모호하게 읽힌다.",
+      "evidence": "\"The parts often come from many different lands, and this is easy to miss.\"",
+      "suggestion": "\"..., and this fact is easy to miss.\" 또는 \"..., though we rarely notice it.\"로 지시 대상을 명시.",
       "lens": "language"
     },
     {
       "severity": "minor",
-      "location": "answers.explanations[q_index=3].evidence",
-      "issue": "해설의 근거 인용문이 본문과 다르게 표기되었다. 큰따옴표로 본문 직접 인용인 것처럼 제시했으나 실제 본문 문장과 어순·표현이 다르다(의미는 동일).",
-      "evidence": "해설 evidence: 본문 \"nations swap goods across borders, and this exchange is what we call trade\". 그러나 실제 page1/translation 대응 본문은 \"So nations swap goods across their borders, and we call this exchange trade.\"이다(their 누락, 'we call this exchange trade' → 'this exchange is what we call trade'로 변형).",
-      "suggestion": "인용을 본문 원문 그대로(\"...nations swap goods across their borders, and we call this exchange trade.\")로 수정하거나 따옴표 대신 요지 서술로 바꿔라.",
-      "lens": "explanation"
+      "location": "page1.body 4단락 (\"In the end, the whole modern economy quietly runs on one simple promise, that no country in the world stands entirely <blank>.\")",
+      "issue": "동격절을 이끄는 that 앞에 쉼표(,)를 쓴 구두점이 규범 문법상 어색하다. 동격의 that절은 보통 쉼표 없이 바로 연결하거나 콜론을 쓴다.",
+      "evidence": "\"runs on one simple promise, that no country in the world stands entirely <blank>.\"",
+      "suggestion": "\"on one simple promise: that no country ... stands entirely alone.\" 또는 쉼표를 삭제하여 \"one simple promise that no country ...\"로 수정.",
+      "lens": "language"
     },
     {
       "severity": "minor",
-      "location": "09.json → answers.explanations[q_index 3].evidence (line 392)",
-      "issue": "Q4(요약문) 정답 근거로 인용한 본문 문장이 실제 본문과 정확히 일치하지 않는 부정확 인용(paraphrase)이다. 정답 자체는 타당하나 근거 인용의 정확성 문제.",
-      "evidence": "근거 인용문: \"nations swap goods across borders, and this exchange is what we call trade\" / 실제 본문(page1.body): \"So nations swap goods across their borders, and we call this exchange trade.\"",
-      "suggestion": "근거 인용을 본문 원문 그대로(\"nations swap goods across their borders, and we call this exchange trade\")로 수정한다.",
-      "lens": "answer"
+      "location": "page1.body 3단락 (\"One region assembles the phones, another writes the software, and a third mines the metals inside them.\")",
+      "issue": "정관사 the의 지시 대상이 앞에 도입되지 않았다. 앞 문단·문장에서 특정 phones/software가 언급된 적이 없어 첫 등장에 the가 붙는 것은 부자연스럽다.",
+      "evidence": "\"One region assembles the phones, another writes the software, and a third mines the metals inside them.\"",
+      "suggestion": "\"One region assembles phones, another writes the software that runs them, and a third mines the metals inside them.\" 처럼 첫 명사는 무관사 복수로.",
+      "lens": "language"
     },
     {
       "severity": "minor",
-      "location": "09.json → page2.questions[3] model_answer / hints (line 74-77)",
-      "issue": "Q4 (A) 정답이 'trade'인데, 해당 빈칸에 대응하는 본문 동사는 'swap'('nations swap goods across their borders')이다. 조건이 '본문에서 제시된 단어를 그대로 활용'이므로 'trade'(본문에서는 명사로 등장)도 허용 가능하나, 학생이 본문 동사 'swap'을 쓸 여지가 있어 채점 혼선 소지가 있다.",
-      "evidence": "summary_template: \"nations <blank> (A) goods across borders\" / 본문 해당 문장: \"So nations swap goods across their borders...\" (동사는 swap). 본문에서 'trade'는 명사(\"we call this exchange trade\")로만 사용됨.",
-      "suggestion": "채점 기준에 'trade' 정답임을 명확히 하되, 본문 동사 'swap' 대비 왜 'trade'가 정답인지(요약문 어휘 조건) 해설에 보강하거나, 'swap'도 허용 여부를 명시한다.",
-      "lens": "answer"
+      "location": "page3.translation_ko 문장 [19]",
+      "issue": "목적을 나타내는 to부정사(to keep ...)를 '유지한다'는 사실 진술로 옮겨, 협정이 실제로 공정·안정을 달성한다는 뜻으로 읽힐 수 있다. 원문은 '유지하기 위해' 협정을 맺는다는 의도만 진술한다.",
+      "evidence": "영문 [19]: \"So nations sign agreements to keep trade fair and steady over time.\" / 번역 [19]: \"그래서 나라들은 협정을 맺어 오랜 시간 무역을 공정하고 안정되게 유지한다.\"",
+      "suggestion": "\"그래서 나라들은 오랜 시간 무역을 공정하고 안정되게 유지하기 위해 협정을 맺는다.\"로 수정.",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko 문장 [14]",
+      "issue": "\"the steps are shared\"(단계를 여러 나라가 나눠 맡는다)를 '생산 단계가 나뉘어 있기 때문에'로 옮기면서 '공유/분담'의 주체(여러 나라)가 사라져 국제 분업이라는 함의가 약해졌다. 오역까지는 아니나 의미 손실.",
+      "evidence": "영문 [14]: \"Because the steps are shared, each country depends on all the others to keep the long chain moving.\" / 번역 [14]: \"생산 단계가 나뉘어 있기 때문에, 각 나라는 그 긴 사슬이 계속 돌아가도록 다른 모든 나라에 의존한다.\"",
+      "suggestion": "\"생산 단계를 여러 나라가 나누어 맡기 때문에\" 정도로 보완.",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[4] (word: \"import\") → synonyms[0]",
+      "issue": "synonym \"incoming goods\"가 어휘적 동의어라기보다 서술형 풀이에 가깝고, import의 핵심 의미(외국에서 들여온 물품)를 정확히 담지 못한다. incoming goods는 단순히 '들어오는 물품'이라 국내 입고품까지 포괄해 antonym으로 제시된 export와의 대비가 흐려진다.",
+      "evidence": "page4.vocab[4]: \"word\": \"import\", \"synonyms\": [\"incoming goods\"], \"antonyms\": [\"export\"] / 본문 용례: \"Cheaper imports can lower prices at home\" — 여기서 imports는 '해외에서 들여온 수입품'이라는 뜻이다.",
+      "suggestion": "\"imported goods\" 또는 \"foreign goods\"처럼 '외국산'이라는 핵심 자질이 드러나는 표현으로 교체하면 export와의 대립 관계도 선명해진다. (다만 다어절 gloss형 synonym 자체는 타 지문에서도 쓰이는 하우스 스타일이므로 형식은 문제없다.)",
+      "lens": "vocab"
     }
   ],
-  "blockers": [],
+  "blockers": [
+    {
+      "severity": "blocker",
+      "location": "page2.questions[3] (요약문 빈칸 완성) summary_template / hints / model_answer + answers.explanations[3]",
+      "issue": "(A)의 정답 'trade'가 유일 정답이 아니다. 요약문 (A) 자리는 본문 문장을 거의 그대로 옮긴 것이고, 그 자리에 실제로 쓰인 본문 단어는 'swap'이다. 조건이 '본문에서 제시된 단어를 그대로 활용할 것'이므로 'swap'이 오히려 조건에 더 충실한 답인데, hints와 model_answer에는 'swap'이 빠져 있어 정답 처리에서 배제된다.",
+      "evidence": "본문(page1.body): \"So nations swap goods across their borders, and we call this exchange trade.\" / 요약문(summary_template): \"nations <blank> (A) goods across borders\" / hints: [\"trade\",\"cheaply\",\"advantage\",\"borders\",\"depends\"] (swap 없음) / model_answer: \"(A) trade  (B) cheaply\". 본문에서 trade는 명사(this exchange trade)로만 쓰이고 동사 용례가 없다. page4.vocab의 swap 항목도 \"So nations swap goods across their borders.\"를 예문으로 싣고 있어 (A) 자리 동사가 swap임을 뒷받침한다.",
+      "suggestion": "(A)를 'trade / swap 모두 정답 인정'으로 model_answer를 확장하거나, 유일 정답을 원하면 요약문 (A) 문장을 본문 4번 문장과 다른 구조로 바꿔 'swap'이 들어갈 여지를 없앤다(예: \"nations rely on the <blank>(A) of goods across borders\" 형태로 명사 자리를 만들어 trade만 성립하게 함).",
+      "lens": "answer",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "지적이 파일 근거로 전부 확인된다. (1) page1.body(21행): \"So nations swap goods across their borders, and we call this exchange trade.\" (2) summary_template(76행): \"nations <blank> (A) goods across borders\" — 본문 문장을 거의 그대로 옮긴 것이고 제거된 단어는 정확히 'swap'이다. (3) hints(75행) [\"trade\",\"cheaply\",\"advantage\",\"borders\",\"depends\"]에 swap 없음, model_answer(77·391행) \"(A) trade (B) cheaply\", rationales/key_terms(393-400행)에도 대체답 허용 없음.\n\n결정적 내부 근거 두 가지가 추가로 확인된다. 첫째, page3 sentences[index 4](130-144행)는 이 파일 자체의 구문 분석인데 'swap'에 role \"V\", 'goods'에 role \"O\"를 부여하고, 'trade'에는 role \"C\"(call의 목적격보어=명사)를 부여한다. 즉 (A) 자리의 동사가 swap이라는 것을 파일 스스로 태깅하고 있다. 둘째, page4.vocab의 swap 항목(516-526행)은 pos \"v.\"에 예문 \"So nations swap goods across their borders.\"를 싣는다.\n\n본문 내 trade 4회 출현(exchange trade / global trade today / Trade brings clear gains / keep trade fair)은 모두 명사이며 동사 용례가 전무하다. 따라서 조건 \"본문에서 제시된 단어를 그대로 활용할 것\"을 기준으로 보면, swap은 현재형 복수 동사 그대로 무변형 사용이 가능한 반면 trade는 본문에 없는 품사 전환을 요구한다. 오히려 answers.explanations[3].evidence(392행)조차 swap이 든 문장을 (A)의 근거로 인용한다(다만 본문을 \"and this exchange is what we call trade\"로 오인용).\n\n반박 가능성도 검토했으나 기각된다. hints를 폐쇄형 단어은행으로 보려 해도 2개 빈칸에 5개(오답용 advantage/borders/depends 포함) 제시된 보조 장치일 뿐이고, 문제에 인쇄된 조건은 hints가 아니라 본문을 지시한다. 출제 의도가 trade인 것은 분명하나 의도가 단일 정답성을 만들지는 않는다. 조건에 완전히 부합하는 swap이 정답 처리에서 배제되어 채점 대상 서술형 문항의 복수 정답 결함이 성립한다."
+      }
+    }
+  ],
   "counts": {
-    "raw": 5,
-    "verified": 1,
-    "confirmed": 1,
-    "minor": 4
+    "raw": 14,
+    "verified": 8,
+    "confirmed": 7,
+    "minor": 6
   }
 }

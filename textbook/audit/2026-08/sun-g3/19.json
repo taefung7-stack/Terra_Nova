@@ -1,0 +1,120 @@
+{
+  "grade": "sun-g3",
+  "seq": 19,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page1.body, 2문단 2번째 문장 (page3 sentences[7], translation_ko [7])",
+      "issue": "\"glow\"를 타동사로 쓴 비문. glow는 자동사(빛/열을 발하며 빛나다)로 목적어를 취하지 않으므로 \"glows a little more heat into space\"는 문법적으로 성립하지 않는다. 수능·모의고사 지문 수준에서 학습자가 그대로 습득하면 안 되는 오용이다.",
+      "evidence": "\"When the air warms, the planet glows a little more heat into space, and this loss gently slows the warming.\"",
+      "suggestion": "\"the planet radiates a little more heat into space\" 또는 \"the planet gives off a little more heat into space\"로 수정. page3 sentences[7]의 V 세그먼트(\"glows\")와 translation_ko [7](\"내보내는데\")도 함께 정합성 유지.",
+      "lens": "language",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "확인된 실제 결함이다. page1.body(line 26) 2문단 2번째 문장에 \"the planet glows a little more heat into space\"가 실재한다. glow는 표준 사전(OED, Merriam-Webster) 기준 자동사로, \"빛/열을 내며 빛나다\"는 의미이며 방출 대상을 목적어로 취하지 못한다. \"glow X into Y\" 구문을 허용하는 방언·전문어·관용 용법은 없다.\n\n가중 요소: 이 오용이 문법 학습 레이어에 그대로 코드화되어 있다. page3 sentences[7](lines 204-219)은 \"glows\"를 V로, \"a little more heat\"를 명시적으로 role: \"O\"(목적어)로 태깅하고 grammar_note를 \"when 부사절 + and 등위절(3형식)\"으로 단정한다. 즉 학습자에게 비문을 3형식 SVO로 분석하라고 적극적으로 가르치는 구조다. 단순 본문 오타보다 유해도가 높다.\n\n의도된 동사는 emission 계열임이 확인된다: translation_ko [7]이 \"지구는 우주로 조금 더 많은 열을 내보내는데\"로 번역되어 있고, textbook_tieback.body_ko도 \"더 많은 열을 우주로 내보내\"로 서술한다. 기후과학 표준 표현은 radiate/emit이며, radiates a little more heat into space로 대체하면 문법·의미가 모두 성립한다. 따라서 의도적 문체 효과가 아니라 어휘 선택 오류다.\n\n반박 시도 실패: 파일 자체 규약이 자동사를 올바로 처리할 줄 안다는 점이 sentence 13(\"hides\" → \"1형식 (자동사 + 부사구)\")과 sentence 16(\"tightens\" → 1형식)에서 확인되므로, sentence 7은 하우스 스타일이 아니라 국지적 오류다. 수능·모의고사 지문 수준에서 학습자가 습득하면 안 되는 명백한 오용이라는 지적 취지도 타당하다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.sentences[11] (index 12), line 277",
+      "issue": "구문 역할 오태깅: learn의 목적어인 to부정사구를 M(수식어)으로 태깅했다. learn to V의 to부정사는 타동사 learn의 목적어(O)이며, 같은 폴더의 형제 지문들도 이 구조를 O 또는 C로 태깅해 일관성도 깨진다.",
+      "evidence": "본문: \"Warming, in short, has learned to feed on itself.\" / 파일: { \"role\": \"V\", \"text\": \"has learned\" }, { \"role\": \"M\", \"text\": \"to feed on itself.\", \"note\": \"learn to V + 재귀\" } / 대조: 07.json:275 { \"role\": \"O\", \"text\": \"to fuse heavier elements,\", \"note\": \"begin to V\" }, 09.json:213 { \"role\": \"O\", \"text\": \"to honor certain terms,\", \"note\": \"promise to V\" }, 04.json:290 { \"role\": \"C\", \"text\": \"to read across the gaps.\", \"note\": \"learn to V\" }",
+      "suggestion": "role을 \"M\" → \"O\"로 수정하고, grammar_note도 \"현재완료 + learn to V(to부정사 목적어) + 재귀대명사\"처럼 목적어임이 드러나게 보완한다. 12번 문장은 함의 추론 문제(feed on itself)의 근거 문장이므로 역할 표시가 정확해야 한다.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "지적이 파일 근거로 명확히 확인되어 반박에 실패했다.\n\n1) 인용 정확성: 19.json:274-279 (page3.sentences index 12)은 지적한 그대로다. \"Warming, in short, has learned to feed on itself.\"에서 { \"role\": \"V\", \"text\": \"has learned\" } 다음 { \"role\": \"M\", \"text\": \"to feed on itself.\", \"note\": \"learn to V + 재귀\" }.\n\n2) 문법적 타당성: learn은 catenative 타동사이고 to feed on itself는 그 보충어(complement)다. 생략하면 문장이 성립하지 않으므로(부가어 삭제 테스트 실패) M(수식어)은 오태깅이다. 더구나 해당 세그먼트의 note가 스스로 \"learn to V\"라고 적고 있어 파일 내부적으로도 모순된다.\n\n3) 일관성 위배(지적보다 오히려 더 강함): 같은 폴더의 동일 구문 learn to V 사례 2건이 모두 보충어로 태깅됨.\n- 04.json:290 { \"role\": \"C\", \"text\": \"to read across the gaps.\", \"note\": \"learn to V\" }, grammar_note \"learn + to부정사\"\n- 20.json:314 { \"role\": \"C\", \"text\": \"to watch with gentle suspicion.\", \"note\": \"learn to V\" }, grammar_note \"learn to V + 전치사구\"\n즉 동일 동사·동일 구문·동일 note인데 C 2회 vs M 1회. 추가로 07.json:275 begin to V → O, 09.json:213 promise to V → O로 catenative 보충어를 O/C로 태깅하는 폴더 관행이 확인된다.\n\n4) 반증 검토 결과 면책 불가: 폴더 내 to부정사 M 태깅(01.json:237/289/301, 03.json:172/183/207, 06.json:294, 10.json:272, 19.json:347)은 전부 note가 \"목적 부정사\"/\"부사적용법\"인 진성 목적 부사구로, 이미 완결된 절에 붙은 별개 구문이다. 유일하게 유사한 16.json:148 refuse to V → M이 있으나 이는 경쟁 관행이라기보다 동일 유형의 오태깅으로 보이며 O/C 선례에 수적으로 밀린다.\n\n유일한 단서: 폴더가 catenative to부정사에 대해 O(begin/promise)와 C(learn) 사이에서 완전히 통일돼 있지는 않아 정확한 대체 역할은 논쟁 여지가 있다. 그러나 그 모호성은 O와 C 사이의 문제이고 M은 모든 선례 밖이며, 지적도 \"O 또는 C\"로 제시했으므로 결함 인정에 영향이 없다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "answers.explanations[2].rationales[3], line 412",
+      "issue": "오답 해설에 문맥과 무관한 어구('장부의 비유')가 들어가 문장이 성립하지 않는다. 본문 밑줄 어구 feed on itself는 '먹이/먹고 자라다'라는 비유이지 '장부(ledger)'와는 아무 관련이 없다. 오답 4번(feed exact numbers into a model)이 왜 오답인지를 설명하지 못하는 오기다.",
+      "evidence": "파일: \"'모형에 정확한 수치를 입력한다'는 장부의 비유가 아닌 되먹임 맥락을 문자적으로 오해한 것이다.\" / 본문 근거: \"Warming, in short, has learned to feed on itself.\" (page1 body, <u>feed on itself</u>) — 본문 어디에도 장부·회계 관련 서술이 없다.",
+      "suggestion": "\"'모형에 정확한 수치를 입력한다'는 feed를 '먹여 키우다'라는 비유가 아니라 '(데이터를) 입력하다'라는 문자적 의미로 오해한 것이다.\" 정도로 교체한다.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 근거로 확인되는 실제 결함이다. line 412의 rationale은 \\\"'모형에 정확한 수치를 입력한다'는 장부의 비유가 아닌 되먹임 맥락을 문자적으로 오해한 것이다.\\\"인데, 본문(line 26)의 밑줄 어구는 <u>feed on itself</u>로 '먹여 키우다'라는 섭식 비유이며 번역(line 365 [12]) 역시 \\\"스스로를 먹여 키우는 법을 배운 것\\\"으로 확정한다. grep 결과 '장부'는 이 파일에서 line 412 단 1회만 등장하고, 본문·번역·textbook_tieback(line 93)·삽화 캡션·vocab 어디에도 장부/회계/ledger 개념이 없다(디렉터리 내 다른 히트는 '심장부','문장부사'의 부분 문자열로 무관). 오답 4번(line 71 \\\"scientists can feed exact numbers into a model\\\")은 동사 feed의 자구적 의미(데이터 입력)로 오독하게 만드는 함정이므로, 해설은 '먹이/먹여 키우다 비유를 문자적으로 오해했다'가 되어야 한다. '장부의 비유가 아닌'이라는 부정 표현은 존재하지도 않는 비유를 부정해 문장이 성립하지 않고 오답 근거를 설명하지 못한다. 인접 rationale들(line 409/411/413)이 모두 본문 문장 번호(10번,11번)를 근거로 드는 것과 대비되는 이례적 오기다. 다만 정답 키(correct: 1, line 406)는 정확하므로 답안 오류가 아닌 해설 문구 오기로, warn 등급은 타당하다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "answers.explanations[2] (q_index 2, 함의 추론) → rationales[3], line 412",
+      "issue": "오답 선지 4번(\"scientists can feed exact numbers into a model of the climate\")의 해설이 본문에 존재하지 않는 '장부의 비유'를 근거로 들고 있다. 다른 지문(2026-08-J/01.json, 부기/장부 소재)의 해설 문구가 그대로 복사된 잔재로 보이며, 이 지문 맥락에서는 문장 자체가 성립하지 않는다.",
+      "evidence": "해당 rationale: \"'모형에 정확한 수치를 입력한다'는 장부의 비유가 아닌 되먹임 맥락을 문자적으로 오해한 것이다.\" 그러나 본문(page1.body)에는 장부·회계 관련 표현이 전혀 없고 밑줄구는 \"Warming, in short, has learned to <u>feed on itself</u>.\"이다. 비교: content/passages/2026-08-J/01.json:397 \"'실험을 공책에 기록해야 한다'는 장부의 비유를 문자 그대로 오해한 것이다.\"",
+      "suggestion": "이 선지의 함정 원리는 feed의 다의성(먹이다 vs. 데이터를 입력하다)이므로, 예: \"feed를 '데이터를 입력하다'라는 다른 뜻으로 오해한 선지로, 본문의 feed on itself(스스로를 먹여 키우다=자기 강화)와 무관하다.\" 로 교체할 것.",
+      "lens": "answer",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "지적이 파일 근거로 명확히 확인됨. (1) 19.json:412의 rationales[3] 문구가 지적 내용과 정확히 일치: \"'모형에 정확한 수치를 입력한다'는 장부의 비유가 아닌 되먹임 맥락을 문자적으로 오해한 것이다.\" (2) 해당 파일 전체를 대소문자 무시 grep(장부|회계|ledger|book)한 결과 유효 히트는 412행뿐이며, 나머지 2건은 스키마 키 'textbook_tieback'(91행)과 '문장부사'(342행)의 우연한 부분문자열 일치임. page1.body(26행)는 알베도·영구동토 융해·임계점 등 기후 되먹임만 다루고 회계/부기 이미지가 전무함. 밑줄구는 'feed on itself'이며 형제 rationales(409·410·411·413)는 모두 10~11번 문장에 정확히 근거를 둠. (3) 복사 출처 확정: 2026-08-J/01.json:397 \"'실험을 공책에 기록해야 한다'는 장부의 비유를 문자 그대로 오해한 것이다.\"는 동일한 q_index 2, 동일한 함의 추론 style, 동일한 rationales[0] 위치의 '문자적 오해' 기능을 가짐. 그 지문은 실제로 밑줄구가 'keep its books balanced'(395행)이고 551행에 '부기, 장부 정리' 어휘 항목이 있어 장부 비유가 정당함. (4) 문장 자체가 성립 불가: \"장부의 비유가 아닌 되먹임 맥락을 문자적으로 오해한 것\"은 자기모순적 구문이며, 선지 4번은 실제로는 'feed'의 다른 의미(입력하다)를 문자적으로 오독한 것이므로 올바른 해설은 장부가 아니라 동사 feed의 중의성을 지적해야 함. 부정어를 덧붙인 흔적은 복사 문구를 어설프게 덮은 잔재로 판단됨. 학생에게 제공되는 해설에 본문 무근거 서술이 실린 실제 결함임."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page4.vocab[10] (word: \"soak\")",
+      "issue": "표제어 형태와 뜻이 불일치한다. meaning_ko \"빨아들이다, 흡수하다\"와 synonyms [\"absorb\"]는 구동사 soak up의 의미이며, 단독 동사 soak은 '적시다/담그다/흠뻑 젖다'를 뜻한다. 두 예문 모두 표제어 soak이 아니라 soak up을 보여 주고 있어, 어떤 예문도 제시된 표제어의 뜻을 입증하지 못한다.",
+      "evidence": "본문: \"dark water soaks up far more sunlight than ice ever did.\" / 예문1 en: \"Dark water soaks up far more sunlight than ice.\" / 예문2 en: \"A sponge soaks up spilled water fast.\" — 표제어는 \"soak\", 예문은 모두 \"soaks up\".",
+      "suggestion": "표제어를 \"soak up\"으로 수정한다. 같은 폴더의 자매 지문들이 이미 다어절 표제어를 쓰고 있어(03.json \"carbon dioxide\", 10.json \"salt bridge\", 13.json \"interest rate\", 14.json \"restriction enzyme\") 컨벤션상 문제가 없다.",
+      "lens": "vocab",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "지적이 파일 근거로 명확히 확인된다. C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-08-Sun/19.json 의 page4.vocab[10] (line 550-558)은 headword를 \"soak\"로 등록했으나:\n\n(1) 의미 불일치: meaning_ko \"빨아들이다, 흡수하다\" + synonyms [\"absorb\"] + antonyms [\"repel\"]는 모두 구동사 soak up의 의미다. 단독 동사 soak은 '적시다/담그다/흠뻑 젖다'로, 등록된 뜻과 다르다.\n\n(2) 예문이 표제어를 입증하지 못함: 예문1 \"Dark water soaks up far more sunlight than ice.\" (line 556), 예문2 \"A sponge soaks up spilled water fast.\" (line 557) — 둘 다 \"soaks up\"이다. 파일 전체에서 해당 어휘의 출현 4회가 전부 \"soaks up\"이며 bare \"soak\"은 단 한 번도 나오지 않는다. 표제어 형태를 보여 주는 예문이 0개다.\n\n(3) 파일 내부 자기모순: 같은 문서 page3 line 256이 이 동사를 { \"role\": \"V\", \"text\": \"soaks up\" }로 두 단어 단위로 파싱한다. page3는 구동사로 분석하는데 page4는 particle을 떼어 낸 형태로 등록했다.\n\n(4) 코퍼스 관례 위반: 형제 파일들은 구동사를 모두 다단어 표제어로 등록한다 — \"pile up\", \"drift away\", \"swept away\" (2026-07/16.json), \"count on\" (13.json), \"stand up\" (2026-06-Mars/09.json), \"leave out\" (04.json), \"wipe out\" (11.json), \"give off\"/\"take in\" (2026-07/01.json), \"cancel out\" (2026-07-J/05.json), \"fence off\" (2026-07-Sun/17.json), \"cut off\" (2026-06-J/18.json). 특히 2026-07/01.json의 \"take in\"은 meaning_ko \"흡수하다, 받아들이다\" + synonyms [\"absorb\"]로 본 건과 의미상 동일 사례인데 두 단어 표제어로 올바르게 등록되어 있다. particle을 떼는 선례는 코퍼스에 전무하다.\n\n반박 가능성을 검토했으나 성립하지 않는다: soak이 드물게 흡수 맥락에 쓰인다는 논거는 등록된 gloss와 맞지 않고, 예문이 여전히 bare form을 보여 주지 못하는 문제를 해결하지 못한다. lemma 정규화라는 해석도 코퍼스 관례 및 동일 파일 page3 파싱과 모순된다.\n\n수정: line 551의 \"word\": \"soak\" → \"soak up\" (한 토큰 변경으로 meaning_ko, synonyms, 예문 2개, page3 파싱, 11개 선례와 모두 정합)."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page1.body 4문단 마지막 문장 vs page2.questions[1].stem",
+      "issue": "빈칸 표기와 발문 불일치. 본문의 빈칸은 <blank> 태그로만 표시되어 있고 밑줄(<u>) 처리가 없는데, 발문은 \"밑줄 친 빈칸\"이라고 지시한다. 본문에서 <u>는 feedback과 feed on itself에만 쓰이므로, 학생이 밑줄 친 부분을 찾을 때 3번 문항의 밑줄과 혼동될 수 있다.",
+      "evidence": "본문: \"cutting our emissions may slow the damage but can no longer fully <blank> it.\" / 발문: \"윗글의 밑줄 친 빈칸에 들어갈 말로 가장 적절한 것은?\"",
+      "suggestion": "발문을 \"윗글의 빈칸에 들어갈 말로 가장 적절한 것은?\"으로 수정하거나, 본문 빈칸을 밑줄 형태로 렌더링하도록 통일.",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "page2.questions[2].stem",
+      "issue": "발문 내 지시어 중복·모순. \"윗글의\"와 \"다음 글에서\"가 한 문장에 함께 쓰여 지시 대상이 어긋난다. 또한 인용 어구에 따옴표가 없어 조사 \"가\"가 영어구에 바로 붙는다.",
+      "evidence": "\"윗글의 밑줄 친 feed on itself 가 다음 글에서 의미하는 바로 가장 적절한 것은?\"",
+      "suggestion": "\"윗글의 밑줄 친 feed on itself가 의미하는 바로 가장 적절한 것은?\"으로 수정.",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "answers.explanations[0].rationales[0], line 375",
+      "issue": "한 문장 안에서 '1번'이 선택지 번호와 본문 문장 번호 두 가지 의미로 동시에 쓰여 학습자가 근거 위치를 오독할 수 있다.",
+      "evidence": "파일: \"1번 '항상 정해진 양만큼 데워진다'는 지구가 단순한 기계가 아니라는 1번 문장과 모순된다.\" (앞의 '1번'=선택지, 뒤의 '1번 문장'=page3 sentences index 1) / 다른 해설들은 \"9~12번\", \"14~16번\"처럼 본문 문장 번호로만 쓰고 있다.",
+      "suggestion": "\"'항상 정해진 양만큼 데워진다'는 지구가 단순한 기계가 아니라는 본문 1번 문장과 모순된다.\"처럼 선택지 번호를 빼거나 '선택지 ①'로 명시해 구분한다.",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "page1.gloss_extra vs page4.vocab[4], [6], [7]",
+      "issue": "page1에서 이미 한국어 뜻을 제공한 3개 단어가 page4.vocab에 그대로 다시 등재되어 있다. 12개 어휘 슬롯 중 3개(25%)가 학생이 지문을 읽는 시점에 이미 답을 받은 단어에 소모되어 실질 어휘 학습량이 줄어든다.",
+      "evidence": "page1.gloss_extra: [{\"term\":\"microbes\",\"ko\":\"미생물\"},{\"term\":\"threshold\",\"ko\":\"문턱, 임계점\"},{\"term\":\"emissions\",\"ko\":\"배출(량)\"}] / page4.vocab: {\"word\":\"microbe\",\"meaning_ko\":\"미생물\"}, {\"word\":\"threshold\",\"meaning_ko\":\"문턱, 임계점\"}(gloss_extra와 문자열까지 동일), {\"word\":\"emission\",\"meaning_ko\":\"배출, 방출(량)\"}",
+      "suggestion": "gloss_extra는 독해 방해를 막는 최소 힌트, page4.vocab은 암기 대상이라는 역할 분리를 유지하려면 셋 중 최소 1~2개(특히 threshold는 meaning_ko 문자열이 완전히 동일)를 한쪽에서 제거하고 본문 내 다른 어휘로 교체한다.",
+      "lens": "vocab"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[10].antonyms (word: \"soak\")",
+      "issue": "antonyms의 \"repel\"이 본문 문맥의 뜻과 어긋난다. repel은 '(물을) 튕겨내다'라는 방수(water-repellent) 맥락에서만 absorb의 반의어로 성립하는데, 본문에서 soak up의 목적어는 물이 아니라 햇빛(열)이다. 이 문맥에서의 반의어는 reflect 또는 release/give off다.",
+      "evidence": "본문: \"dark water soaks up far more sunlight than ice ever did.\" — 흡수 대상이 sunlight이다. 또한 같은 파일 page4.vocab[1] reflect의 antonyms가 [\"absorb\"]로 되어 있어, 본문 논리상 soak up의 반의어는 reflect여야 대칭이 맞는다.",
+      "suggestion": "antonyms를 [\"reflect\"]로 교체하면 vocab[1] reflect(antonyms: absorb)와 상호 대칭이 되고, 밝은 얼음은 반사·검은 물은 흡수라는 본문의 알베도 되먹임 논리와도 일치한다.",
+      "lens": "vocab"
+    }
+  ],
+  "blockers": [],
+  "counts": {
+    "raw": 12,
+    "verified": 7,
+    "confirmed": 5,
+    "minor": 5
+  }
+}

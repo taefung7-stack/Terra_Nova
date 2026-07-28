@@ -1,0 +1,173 @@
+{
+  "grade": "sun-g3",
+  "seq": 12,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page1.body 2단락 1문장 (동일 오류가 page3.sentences[6].segments 및 grammar_note에도 반복)",
+      "issue": "동명사 주어와 술어 동사의 논리적 불일치(비문성). 'adding numbers forever'(더하는 행위)가 'grow'(커지다)의 주어가 되어, 커지는 주체가 '행위'로 잘못 지정되었다. 커지는 것은 '합계(the total/the sum)'이다.",
+      "evidence": "\"At first this sounds impossible, since adding numbers forever should grow without any limit.\"  (page3 grammar_note도 \"2형식 + since 부사절(동명사 주어)\"로 그대로 승인)",
+      "suggestion": "\"since adding numbers forever should make the total grow without any limit\" 또는 \"since a sum that never ends should grow without any limit\"로 수정. page3 sentences[6] 세그먼트와 번역 [6]('숫자를 영원히 더하면 ... 커져야 하기 때문이다')도 함께 정합화할 것.",
+      "lens": "language",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "지적이 파일 근거로 확인됨. 문제 문장은 page1.body 2단락 1문장(line 26): \"At first this sounds impossible, since adding numbers forever should grow without any limit.\"\n\n결함 성립 근거:\n1. 'grow (without any limit)'는 비타동 상태변화 동사로, 주어가 스스로 크기가 증가하는 '양(quantity)'이어야 한다. 'adding numbers forever'는 행위/과정을 지시하므로 의미역 불일치다. 'without any limit'가 '무한 증대' 해석을 강제하므로 \"관행이 확산된다\" 류의 process-subject 독법도 봉쇄된다.\n2. 동일 파일 내 대조 근거: sentences[13] \"Adding more terms sharpens the match.\"는 동명사 주어 + 사역·타동사 'sharpen'이라 적법하다. 즉 저자 자신의 정상 패턴(행위 → 결과 야기)과 비교할 때 6번 문장만 이 패턴을 위반한다.\n3. 본문 다른 문장들은 증가/이동의 주체를 일관되게 '합계'로 지정한다: \"the running total creeps toward a fixed number\", \"it nudges the total\".\n4. translation_ko(line 345) [6]은 \"숫자를 영원히 더하면 아무 한계 없이 커져야 하기 때문이다\"로, 동명사를 주어가 아닌 조건 부사절로 바꾸고 커지는 주체를 암묵적(합계)으로 처리해 영어 구조를 조용히 교정한다. 번역이 원문 구조와 어긋난다는 사실 자체가 불일치의 방증이다.\n\n전파 위치(지적대로 반복 확인됨):\n- line 190: segments의 M \"adding numbers forever should grow without any limit.\", note \"이유 부사절(동명사 주어)\"\n- line 192: grammar_note \"2형식 + since 부사절(동명사 주어)\" — 비문 구조를 동명사 주어 모범 사례로 승인\n- 추가 발견(지적에 없던 4번째 지점): line 43 page2 선택지 B \"Adding numbers forever must always grow without any fixed limit.\" 및 line 356 rationale \"항상 한계 없이 커진다\"\n\n문법 분석 자체가 교육 콘텐츠의 핵심 산출물인 교재이므로, 의미적으로 부적격한 주어-술어 결합을 grammar_note가 정답으로 승인하는 것은 학습자에게 오류를 전파한다. 수정 방향: \"since a sum of endless numbers should grow without any limit\" 또는 \"since adding numbers forever should make the total grow without any limit\"처럼 커지는 주체를 the total/the sum으로 명시."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "answers.explanations[1] (q_index 1, 빈칸 추론) evidence",
+      "issue": "빈칸 추론 근거로 든 2번 문장의 의미를 정반대로 인용했다. 본문 2번은 계산기가 답을 '찾아보지 않는다'는 부정문인데, 해설은 \"2번은 계산기가 answer를 찾는다고 하고\"라며 긍정 진술로 뒤집어 근거를 삼았다. 정답(answer) 자체는 옳으나 근거 문장이 본문과 불일치한다.",
+      "evidence": "본문: \"it does not simply look the answer up.\" / 번역: \"그것은 그저 답을 찾아보는 것이 아니다.\" ↔ 해설: \"2번은 계산기가 answer를 찾는다고 하고, 14번은 기계가 \\\"a finite answer\\\"를 돌려준다고 한다.\" (또한 rationales[2]에도 \"answer는 2번·14번의 answer와 호응하며\"로 반복됨)",
+      "suggestion": "2번 인용을 삭제하거나 \"2번의 the answer(계산기가 찾으려는 '답')라는 어휘가 14번 a finite answer, 19번 a practical answer로 이어진다\"처럼 어휘 반복 근거로 정확히 재서술할 것.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 근거로 확인됨. page3.sentences[1](index 2)의 V 세그먼트는 \"does not simply look\"이고 본문(page1.body)은 \"it does not simply look the answer up.\", 번역은 \"[2] ... 그것은 그저 답을 찾아보는 것이 아니다.\"로 명백한 부정문이다. 그런데 answers.explanations[1].evidence(370행)는 \"2번은 계산기가 answer를 찾는다고 하고\"라며 긍정 명제로 인용해 극성을 뒤집었다.\n\n반박 시도 및 기각 사유:\n1) \"단어 호응(어휘 연결)을 뜻한 느슨한 표현\" 가능성 → rationales[2](374행)의 \"answer는 2번·14번의 answer와 호응하며\"는 어휘 호응 진술로 방어 가능하나, evidence 370행은 \"계산기가 answer를 찾는다고 하고\"라는 명시적 명제 진술이라 방어 불가. 지적이 rationales까지 싸잡아 동일 오류로 본 점은 다소 과하지만, 핵심 지적 대상(evidence)은 실재 결함.\n2) \"분해 구조상 부정이 드러나지 않았을 가능성\" → segments에 \"does not simply look\"이 그대로 있고 grammar_note도 부기되어 있어 부정은 명확·의도적.\n3) \"사소한 표현 문제\" → 해당 부정문은 \"계산기에 답 표가 없다(1번)\"는 글 전체 도입 논지와 직결되는 논지 담지 문장이며, 같은 파일 explanations[0].rationales[0]은 동일 극성을 정확히 처리(\"답을 적은 비밀 표가 없다고 했으므로\")하고 있어 파일 내부 불일치이기도 함.\n4) 정답 영향 → 없음. answer_index 2는 14·19번(a finite answer / tamed into a practical answer)으로 독립 뒷받침되므로 정답은 유효. 따라서 warn 등급이 적절하며, 지적의 심각도 산정도 타당함."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.sentences[16] (index 17) segments 마지막 role \"C\"",
+      "issue": "구문 역할 오태깅. \"small enough to trust yet never quite zero\"를 보어(C)로 태깅했으나, 주절은 수동태 \"is not ignored but bounded\"로 이미 완결된 문장이고 콤마 뒤 형용사구는 앞의 내용을 부연하는 후치 수식(형용사구 부대 상황)이다. 수동태 동사의 주격보어가 아니다.",
+      "evidence": "본문: \"The error is not ignored but bounded, small enough to trust yet never quite zero.\" / 태깅: { \"role\": \"C\", \"text\": \"small enough to trust yet never quite zero.\", \"note\": \"enough to 용법\" }",
+      "suggestion": "role을 \"M\"으로 바꾸고 note를 \"형용사구 후치 수식(부대 상황) + enough to 용법\"으로 수정.",
+      "lens": "explanation",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "지적이 타당하다(실제 결함). 근거: (1) C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-08-Sun/12.json line 320에서 문제의 태깅이 실재함을 확인: { \"role\": \"C\", \"text\": \"small enough to trust yet never quite zero.\", \"note\": \"enough to 용법\" } (page3.sentences[16], index 17). (2) 주절 \"The error is not ignored but bounded\"는 이미 완결된 수동태 절이다. bound는 타동사이며 그 수동태(be bounded)는 주격보어를 취하지 않는다. 여기서 is는 계사(copula)가 아니라 수동태 조동사이므로, 뒤따르는 형용사구는 구조적으로 보어가 될 수 없다. (3) 콤마로 분리된 \"small enough to trust yet never quite zero\"는 The error를 서술하는 분리형(비통합) 형용사구, 즉 후치 수식/부대상황 형용사구(adjunct)이므로 M이 맞다. (4) 같은 파일의 자체 관례와도 모순된다: 진짜 C는 모두 계사 직후 콤마 없이 온다(index 4 is+what절, 5 is+that절, 6 sounds impossible, 9 is smaller than, 14 is why, 15 become easy). 반면 콤마로 분리된 후치 수식어는 일관되게 M으로 태깅됨 — index 1 \"hidden somewhere inside it.\"(note: 과거분사 후치 수식), index 3 \"one after another.\"(동격 부사구), index 13 \"the way extra brushstrokes…\". 문제 세그먼트는 이 M 사례들과 구조적으로 동일한데 홀로 C로 태깅되어 있다. (5) 저작 가이드(textbook/templates/AUTHORING-GUIDE.md lines 204-214)는 C를 '보어', M을 '수식어(부사·전치사구·시간·장소)'로 좁게 정의하며, 분리형 부가어를 C로 볼 여지를 주지 않는다. (6) 본 저장소의 감사 선례도 동일 유형을 실제 결함으로 처리한다 — textbook/audit/2026-07/jupiter-g2/17.json 및 05.json에서 분사구문을 V로 오태깅한 건을 지적하며 \"분사구문은 독립적인 술어가 아니라 …수식하는 역할을 하므로, M(수식어)으로 태깅되어야 합니다\"라는 원칙을 명시. 반론 검토: 한국 학교문법이 때때로 '유사보어/서술적 수식어'를 인정하나, 그렇더라도 설명 note를 곁들인 M이 될 뿐 C가 될 수는 없고, 파일 자체의 일관된 관례가 이를 배제한다. 결함 범위는 role 값에 국한되며 note(\"enough to 용법\")와 grammar_note(\"not A but B(수동태) + enough to\")는 문제없다. 수정안: role을 \"C\"에서 \"M\"으로 변경하고 note를 \"형용사구 후치 수식(부대상황) + enough to 용법\" 정도로 보완."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page2.questions[3] (요약문 빈칸 완성) hints + summary_template",
+      "issue": "hints 5개(series, converge, terms, finite, remainder) 중 converge·terms·remainder 3개가 이미 summary_template 본문 안에 그대로 노출되어 있다. 그 결과 남는 후보가 series와 finite 둘뿐이고, (A)는 앞에 infinite가 있어 자동으로 series, (B)는 남은 finite로 결정되어 본문을 읽지 않고 소거법만으로 정답이 확정된다. 변별력이 사실상 0이다.",
+      "evidence": "summary_template: \"Because an infinite <blank> (A) can converge, ... A machine keeps only the leading terms and discards the tiny remainder, so it can hand back a <blank> (B) answer.\" / hints: [\"series\",\"converge\",\"terms\",\"finite\",\"remainder\"] / model_answer: \"(A) series  (B) finite\"",
+      "suggestion": "요약문에 이미 등장한 converge·terms·remainder를 hints에서 빼고, 오답 유인가가 있는 어휘(예: bounded, endless, exact 등 본문 출현어)로 교체하거나 hints 자체를 제거한다.",
+      "lens": "answer",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "지적이 파일 근거로 전부 확인됨. 반박 시도했으나 실패.\n\n1) 노출 확인(축자적): page2.questions[3].summary_template = \"Because an infinite <blank> (A) can converge, its running total settles on one exact value. A machine keeps only the leading terms and discards the tiny remainder, so it can hand back a <blank> (B) answer.\" hints 5개 중 converge / terms / remainder 3개가 요약문 본문에 그대로 인쇄되어 있음.\n\n2) 잔여 후보: hints=[series, converge, terms, finite, remainder]에서 노출된 3개를 빼면 {series, finite} 둘만 남음.\n\n3) (A) 강제: \"an infinite ___\"는 명사 자리 → 잔여 후보 중 finite는 형용사이므로 series만 가능. \"an infinite finite\"는 의미상으로도 성립 불가. 본문 독해 없이 결정됨.\n\n4) (B) 강제: 잔여가 finite 하나뿐. 게다가 노출을 무시하고 hints 5개 전체를 후보로 두더라도 \"a ___ answer\"는 형용사 자리이고 hints 중 형용사는 finite가 유일(series/terms/remainder=명사, converge=동사) → 품사만으로 유일 확정. 즉 (B)는 leakage와 무관하게도 독해 0으로 풀림.\n\n5) 정답 정합 확인: model_answer=\"(A) series  (B) finite\", answers.explanations[q_index 3]도 동일(문장 4번 \"an infinite series\", 14번 \"a finite answer\" 인용). 따라서 노출된 3개가 의도된 정답인데 오독한 것이 아님 — leakage가 실재함.\n\n6) 문항 맥락: page2.questions의 나머지 3개는 5지선다로 변별 장치가 정상 작동하나, 유일한 서술형인 이 항목만 변별이 무력화됨. 하우스 스타일 산물이 아님.\n\n유일한 미세 과장: 철자 정확도·품사 인식은 여전히 요구되므로 노력이 문자 그대로 0은 아님. 그러나 '요약문 빈칸 완성'이 측정하려는 본문 이해도 기여분은 0이므로 지적의 실질(변별력 상실)은 성립.\n\n권고: summary_template에서 converge/terms/remainder를 다른 표현으로 바꾸거나(예: settles on one value / early parts / leftover part), hints에서 노출어를 제거하고 동일 품사의 실질 오답(예: (A)용 명사 sequence·sum, (B)용 형용사 exact·bounded)을 추가해 품사 기반 소거를 차단할 것."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page4.vocab[0] (series) synonyms",
+      "issue": "수학 문맥에서 'series(급수)'의 동의어로 'sequence(수열)'를 제시한 것은 오개념을 유발한다. 본 지문은 미적분II '급수' 단원과 연계된 글로, series와 sequence는 교과에서 명시적으로 구분해 가르치는 별개 개념이다(수열의 합이 급수).",
+      "evidence": "page1.body: \"This endless sum of terms is what mathematicians call an infinite <u>series</u>.\" / meta.linked_unit: \"미적분II IV-1 급수와 테일러 근사\" / meta.key_concepts: [\"무한급수\", ...] — meaning_ko도 \"(수학) 급수, 연속\"으로 수학적 의미를 명시하고 있다.",
+      "suggestion": "synonyms를 [\"progression\"] 또는 [\"succession\"](일반 '연속' 의미)으로 바꾸거나, 수학적 의미에는 동의어를 두지 않고 빈 배열로 처리한다. 유지하려면 '수열(sequence)과는 구별됨' 주석을 추가한다.",
+      "lens": "vocab",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일에서 지적 내용이 그대로 확인된다. page4.vocab[0] (line 420-428)은 word \"series\", meaning_ko \"(수학) 급수, 연속\", synonyms [\"sequence\"]로 되어 있다. 이 항목은 스스로 \"(수학)\"을 앞세워 수학적 의미로 한정하고 있고, 두 예문 모두 \"An infinite series adds endless terms together.\" / \"This series converges to a single value.\"로 순수 수학 문맥이다. 이 프레임 안에서 sequence(수열)는 series(급수)의 동의어가 아니라 교과에서 명시적으로 구분되는 별개 개념이며, 급수는 수열의 합으로 정의된다.\n\n문맥 근거도 지적을 뒷받침한다: meta.linked_unit \"미적분II IV-1 급수와 테일러 근사\"(line 8), meta.key_concepts에 \"무한급수\"(line 17), page1.body \"an infinite <u>series</u>\"(line 26), page3 sentence 4 및 translation_ko \"무한급수\"(line 169, 345), answers.explanations[3].key_terms {\"en\":\"series\",\"ko\":\"급수\"}(line 411). 지문 내 series의 모든 출현이 수학적 의미이며 일반적 \"연속/일련\" 의미로 쓰인 곳은 한 군데도 없다.\n\nmeaning_ko에 \"연속\"이 병기되어 있다는 점이 유일한 방어 논거이나, synonyms에 어떤 의미 갈래에 대응하는지 라벨이 없어 학생은 \"급수 = sequence\"로 읽게 되고 수학 전용 예문 2개가 이 오독을 강화한다. 오히려 방어가 되지 않고 모호성을 키운다. 또한 지문의 핵심 논지가 \"끝없는 합이 하나의 값에 수렴한다\"이므로, 합(급수)과 항의 나열(수열)을 혼동시키는 것은 단원 목표 개념을 직접 훼손한다.\n\n비교 대조도 명확하다. 바로 다음 항목 converge(line 431-439)는 synonyms [\"approach\"], antonyms [\"diverge\"]로 수학적으로 올바른 짝을 제시한다. 반면 series는 antonyms가 비어 있고 동의어만 오개념을 유발한다. 파일 근거로 명확히 확인되는 실제 결함이며 단순 취향 지적이 아니다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page4.vocab[10] (endless) antonyms",
+      "issue": "antonyms의 'brief'가 본문 문맥의 뜻과 품사적 의미역이 맞지 않는다. 본문의 endless는 '항의 개수가 끝없는(무한한)' 수량 개념인데, 'brief'는 '시간이 짧은/간결한'이라는 지속시간 개념의 반의어다.",
+      "evidence": "page1.body: \"This <u>endless</u> sum of terms is what mathematicians call an infinite series.\" 및 \"such an unending sum can settle on a single, exact value.\" — meaning_ko도 \"끝없는, 무한한\"으로 수량적 무한을 가리킨다. 같은 파일 page4.vocab[2] infinite의 synonyms에 \"endless\"가 들어 있어 두 단어가 동의어로 처리되는데, infinite의 antonyms는 \"finite\"인 반면 endless만 \"brief\"로 어긋난다.",
+      "suggestion": "antonyms를 [\"finite\"] 또는 [\"limited\"]로 교체한다.",
+      "lens": "vocab",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일에서 직접 확인됨. page4.vocab[10]은 실제로 endless이며 antonyms=[\"brief\"](534행), meaning_ko는 \"끝없는, 무한한\"(532행)으로 수량적 무한을 선언하고, 예문 2개 모두 수량/공간 용법(\"This endless sum of terms can still settle\", \"The desert stretched in an endless line\")으로 시간 지속 용법이 아니다. 본문(26행)도 \"This endless sum of terms is what mathematicians call an infinite series\"로 항의 개수가 무한하다는 뜻이다. 따라서 지속시간이 짧다는 뜻의 brief는 이 항목이 스스로 확정한 어의와 대립하지 않는다. 결정적으로 같은 파일 내부 모순이 존재한다: vocab[2] infinite는 synonyms에 \"endless\"를 포함(445행)하면서 antonyms는 \"finite\"(446행)인데, endless만 \"brief\"로 처리되어 endless≡infinite인데 infinite↔finite, endless↔brief라는 상충 신호를 준다. 문맥상 올바른 반의어는 finite/limited/bounded이며 이는 파일 내 finite·bounded 항목에 이미 존재한다. 다만 지적 표현 중 \"품사적 의미역\" 부분은 부정확하다(pos는 양쪽 다 adj.로 일치하며, 실제 문제는 품사가 아니라 다의어 중 어느 어의를 취했는가의 의미 불일치다). 또 endless가 사전적으로 시간적 의미도 가지므로 brief가 절대적으로 틀린 반의어는 아니고, 이 항목의 synonyms \"ceaseless\" 역시 시간 뉘앙스가 있어 항목 자체가 다소 혼합적이다. 그러나 이는 심각도 조정 요소일 뿐이며, 어의 불일치와 내부 모순이라는 실질 주장은 파일 근거로 명확히 확인되므로 warn 수준의 실제 결함이다."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page1.body 2단락 3문장 (page3.sentences[8], 번역 [8])",
+      "issue": "수렴의 필요조건과 충분조건 혼동 소지. '항이 작아지는 것'만으로는 수렴이 보장되지 않는다(조화급수는 항이 0으로 가도 발산). 'so quickly'라는 정도 부사가 완충 역할을 하지만, 급수 단원 연계 지문으로서는 '충분히 빠르게'라는 조건성이 더 명시되는 편이 안전하다.",
+      "evidence": "\"Their terms shrink so quickly that the running total creeps toward a fixed number and stops moving in any meaningful way.\"",
+      "suggestion": "\"Their terms shrink quickly enough that the running total creeps toward a fixed number...\"처럼 조건성을 드러내면 개념 오해를 줄일 수 있다.",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "page1.body 2단락 4문장 (page3.sentences[9], 번역 [9])",
+      "issue": "일반화 과잉. 본문이 예시로 든 sine·e의 테일러 급수는 항이 부호를 바꾸거나 초반 몇 항에서 단조감소하지 않는데, '더하는 모든 새 항은 앞 항보다 작다'고 단정한다. 수렴급수 전반의 성질로 읽힐 수 있다.",
+      "evidence": "\"Each new term you add is smaller than the last, so it nudges the total by an ever tinier amount.\"",
+      "suggestion": "\"Each new term you add is soon smaller than the last\" 또는 \"In such series each new term eventually shrinks\"처럼 한정어를 추가.",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.sentences[7] (index 8) 마지막 segment note \"결과 부사절\"",
+      "issue": "note가 붙은 위치가 틀렸다. \"in any meaningful way\"는 전치사구(방법 부사구)일 뿐 결과 부사절이 아니다. 결과 부사절은 앞의 CONJ \"that\" 이하 전체(that the running total creeps ... and stops moving)이다.",
+      "evidence": "{ \"role\": \"M\", \"text\": \"in any meaningful way.\", \"note\": \"결과 부사절\" } / 본문: \"Their terms shrink so quickly that the running total creeps toward a fixed number and stops moving in any meaningful way.\"",
+      "suggestion": "해당 note를 \"방법 부사구\"로 바꾸고, \"결과 부사절\" 표시는 CONJ \"that\" 세그먼트에 붙일 것.",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.sentences[8] (index 9) 마지막 segment note \"결과 등위절\"",
+      "issue": "note 위치 오류. \"by an ever tinier amount\"는 정도를 나타내는 전치사구이며 결과 등위절이 아니다. 결과 등위절은 CONJ \"so\" 이하(so it nudges the total ...)이다.",
+      "evidence": "{ \"role\": \"M\", \"text\": \"by an ever tinier amount.\", \"note\": \"결과 등위절\" } / 본문: \"Each new term you add is smaller than the last, so it nudges the total by an ever tinier amount.\"",
+      "suggestion": "note를 \"정도 부사구(by + 차이)\"로 수정하고, \"결과 등위절\"은 CONJ \"so\"에 표기.",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.sentences[2] (index 3) 마지막 segment note \"동격 부사구\"",
+      "issue": "문법 용어 오류. \"one after another\"는 동격(apposition)이 아니라 방식·순차를 나타내는 부사구다. 동격은 명사구가 앞 명사를 다시 설명할 때 쓰는 용어로, 여기서는 동사 adds를 수식한다.",
+      "evidence": "{ \"role\": \"M\", \"text\": \"one after another.\", \"note\": \"동격 부사구\" } / 본문: \"it patiently adds together a long string of simple terms, one after another.\"",
+      "suggestion": "note를 \"방식(순차) 부사구\"로 수정.",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.sentences[1] (index 2) segment { role: \"M\", text: \"up.\" }",
+      "issue": "구동사의 불변화사(particle)를 수식어(M)로 태깅했다. note 자체가 \"구동사 look up\"이라고 밝히고 있어 역할 태그와 note가 서로 모순된다. look up은 분리 가능 타동사구로, up은 동사구의 일부이지 부사적 수식어가 아니다.",
+      "evidence": "{ \"role\": \"V\", \"text\": \"does not simply look\" }, { \"role\": \"O\", \"text\": \"the answer\" }, { \"role\": \"M\", \"text\": \"up.\", \"note\": \"구동사 look up\" }",
+      "suggestion": "up을 V(구동사 분리형 후반부)로 태깅하거나, V 세그먼트를 \"does not simply look ... up\"으로 묶어 분리 타동사구임을 note로 설명할 것.",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko [11]",
+      "issue": "'plain sum'을 '순수한 합'으로 옮긴 것은 오역에 가깝다. plain은 '단순한, 꾸밈없는'의 뜻이며, page1 본문 취지(복잡한 함수를 단순한 거듭제곱의 합으로 다시 씀)와도 '순수한'은 어긋난다. 수학 맥락에서 '순수'는 별개 함의를 낳을 수 있다.",
+      "evidence": "영문: \"A Taylor series rebuilds a complicated function as a plain sum of simple powers of x.\" / 번역: \"테일러 급수는 복잡한 함수를 x의 단순한 거듭제곱들의 순수한 합으로 다시 짜낸다.\"",
+      "suggestion": "\"...x의 거듭제곱들의 단순한 합으로 다시 구성한다\" 정도로 수정. (참고로 tieback body_ko도 \"x의 거듭제곱들의 합\"으로 표현하고 있어 일관성도 개선된다.)",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page2.questions[2].choices[1] / answers.explanations[2].evidence (함의 추론)",
+      "issue": "정답 선지는 \"approximation(근삿값)\"이라고 규정하는데, 본문 밑줄 문장 자체는 \"hand back a finite answer\"이고 5번 문장은 무한합이 \"a single, exact value\"에 정착한다고 서술한다. 해설이 괄호로 이 간극을 스스로 해명하고 있어(\"무한합 자체의 극한값은 exact이나...\") 학생 입장에서는 exact와 approximation이 충돌하는 것처럼 보인다. 정답 자체는 16·17번 문장(앞쪽 항만 남기고 나머지를 버리되 오차는 bounded)으로 타당하므로 결함은 아니나 근거 제시가 약하다.",
+      "evidence": "본문 [5] \"such an unending sum can settle on a single, exact value\" vs 선지 \"a converging series lets a few terms yield an accurate, usable approximation\" / 해설: \"(무한합 자체의 극한값은 exact이나, 기계가 실제로 내놓는 값은 근삿값이다.)\"",
+      "suggestion": "해설의 괄호 보충을 evidence 본문으로 끌어올려 \"the machine keeps only the leading terms and discards the tiny remainder\"와 \"The error is not ignored but bounded\"를 1차 근거로 명시하면 exact/approximation 혼동이 해소된다.",
+      "lens": "answer"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[7] (tame) examples[1].ko",
+      "issue": "예문 en의 'tools'를 ko에서 '기술들'로 옮겨 대역이 부정확하다. tools는 '도구/장비'이며, '기술'은 technology/techniques에 해당한다.",
+      "evidence": "examples[1]: { \"en\": \"New tools tamed the wild river.\", \"ko\": \"새 기술들이 사나운 강을 길들였다.\" }",
+      "suggestion": "ko를 \"새로운 도구들이 사나운 강을 길들였다.\"로 수정한다.",
+      "lens": "vocab"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[1] (converge) synonyms",
+      "issue": "synonyms의 'approach'가 느슨하다. converge는 '한 점/값으로 모여 정착하다'는 완결적 의미인데, approach는 단순히 '다가가다'로 수렴의 핵심(하나의 값에 도달·정착)을 담지 못한다. 본문의 '정착' 뉘앙스와 어긋난다.",
+      "evidence": "page1.body: \"the running total creeps toward a fixed number and stops moving in any meaningful way\" — 단순 접근이 아니라 '더 이상 움직이지 않는' 정착을 강조한다. 같은 파일 page3.translation_ko [8]도 \"어떤 고정된 수를 향해 서서히 다가가다가 의미 있는 정도로는 더 이상 움직이지 않게 된다\"로 정착을 명시한다.",
+      "suggestion": "synonyms에 \"meet\" 또는 \"come together\"를 추가하거나 \"approach (a limit)\"처럼 수학적 연어를 명시한다.",
+      "lens": "vocab"
+    }
+  ],
+  "blockers": [],
+  "counts": {
+    "raw": 18,
+    "verified": 8,
+    "confirmed": 6,
+    "minor": 10
+  }
+}

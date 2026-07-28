@@ -1,0 +1,166 @@
+{
+  "grade": "sun-g3",
+  "seq": 7,
+  "confirmed": [
+    {
+      "severity": "blocker",
+      "location": "page3.sentences[6] (index 7) grammar_note",
+      "issue": "문형 표기가 자체 모순이다. \"3형식(자동사+부사구)\"에서 3형식은 S+V+O 구조를 뜻하므로 자동사와 양립할 수 없고, 해당 문장에는 목적어가 아예 없다(1형식).",
+      "evidence": "본문: \"Billions of these bursts push outward as heat and light.\" / segments는 S(\"Billions of these bursts\") + V(\"push\") + M(\"outward as heat and light.\")만 있고 O 역할 태그가 없음. grammar_note: \"3형식(자동사+부사구)\"",
+      "suggestion": "\"1형식(자동사+부사구)\" 또는 \"완전자동사 push + 방향 부사구\"로 수정.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일에서 직접 확인됨. page3.sentences[6] (index 7, 파일 197-205행)의 segments는 S(\"Billions of these bursts\") + V(\"push\") + M(\"outward as heat and light.\", note \"부사구\") 세 개뿐이고 O 역할 태그가 전혀 없는데, grammar_note는 \"3형식(자동사+부사구)\"이다. 한국식 5형식 체계에서 3형식은 S+V+O로 타동사를 전제하므로 \"자동사\"와 괄호 안에서 정면 충돌하는 자체 모순이다. 실제 문장도 \"outward\"(부사) + \"as heat and light\"(전치사구)만 있어 목적어가 없는 1형식이며, translation_ko도 목적어를 제시하지 않는다. 결정적으로 이 파일 자체의 내부 관행과도 어긋난다: O 태그가 있는 index 8(212행 O=\"the inward pull of gravity\")은 \"3형식 + so + neither ~ nor\"로 표기된 반면, 목적어 없는 S+V+M 문장들인 index 9(\"과거분사 분사구문 + 자동사\"), index 12(\"and 등위절 (자동사 병렬)\"), index 16(\"자동사 + 주격 관계대명사\")은 모두 형식 번호 없이 자동사로만 표기된다. index 7만 유일하게 목적어 없는 자동사 절에 \"3형식\"을 붙인 예외로, 일관된 하우스 스타일이 아니라 오기임이 내부 증거로 입증된다. 문형 지도를 목적으로 하는 교재 페이지에서 틀린 형식 규칙을 가르치는 결함이므로 지적은 타당하다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "answers.explanations[0].rationales[0]",
+      "issue": "선택지 해설 안에서 '2번'이 본문 문장 번호를 가리키는데 선택지 번호로 읽혀 혼동을 준다. 선택지 2번은 \"A star's brightness has nothing to do with the fuel\"이어서 해설 문장이 성립하지 않는다.",
+      "evidence": "rationales[0]: \"1번 '고정되고 영원한 등불'은 별이 태어나 죽는 이야기라는 2번과 정반대다.\" (같은 파일 explanations[1].evidence에서는 \"2번(2번째) 문장\"이라고 구분해 표기함)",
+      "suggestion": "\"…본문 [2]번 문장과 정반대다\"처럼 문장 번호임을 명시.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 확인 결과 지적이 타당하다. answers.explanations[0].rationales[0](341행): \"1번 '고정되고 영원한 등불'은 별이 태어나 죽는 이야기라는 2번과 정반대다.\"\n\n(1) rationales는 선택지별 배열이고 rationales[0]의 서두 \"1번\"은 선택지 1(\"Stars are fixed, eternal lamps...\")을 가리킨다. 즉 문장 자체가 '선택지 번호' 프레임으로 시작하므로, 바로 뒤의 \"2번\"도 동일 표기로 선택지 2로 읽히는 것이 자연스럽다.\n\n(2) 선택지 2는 \"A star's brightness has nothing to do with the fuel in its core.\"(43행)로, 선택지 1과 '정반대' 관계가 아니다. 둘 다 오답 매력지일 뿐이므로 선택지 해석 시 문장이 성립하지 않는다.\n\n(3) 실제 의도된 지시 대상은 본문 2번째 문장(page3 index 2, \"Yet every star is really a slow story with a beginning, a long middle, and an end.\" / 번역 \"[2] 그러나 모든 별은 사실 시작과 긴 중간과 끝이 있는 느린 이야기다.\")이다. \"별이 태어나 죽는 이야기라는\"이 이 문장과 정확히 대응한다. 즉 한 문장 안에서 \"1번\"=선택지, \"2번\"=본문 문장이 동일 표기로 충돌한다.\n\n(4) 같은 파일이 이 모호성을 스스로 인정한다. explanations[1].evidence(356행)는 \"2번(2번째) 문장\"이라고 괄호와 '문장'을 덧붙여 명시적으로 구분 표기한다. 저자가 bare \"2번\"이 혼동을 준다는 점을 인지하고 있었다는 직접 증거다.\n\n(5) 대조적으로 explanations[0].evidence, [2], [3]의 \"5~9번\", \"5~6번\", \"8번 balances\", \"14번 the star's mass\" 등은 범위 표기이거나 영어 원문을 병기해 선택지로 오독될 여지가 없다. 문제는 rationales[0]처럼 선택지 번호와 문장 번호가 같은 문장 안에서 무표기로 섞인 경우에 한정된다.\n\n(6) 부수적으로 동일 결함이 explanations[1].rationales[1](359행) \"…'느린 이야기(a slow story)'로 본 2번 및…\"에도 재현된다. 선택지 해설 안에서 bare \"2번\"이 또 등장하며, 여기서도 선택지 2는 \"story\"(정답 자체)여서 오독 시 의미가 무너진다.\n\n따라서 '실제 결함'이며, \"본문 2번째 문장\" 또는 \"2번 문장\"처럼 명시 표기로 수정하는 것이 적절하다. 다만 심각도는 warn 수준(교정·명료성 문제이지 정답/채점 오류는 아님)이 맞다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.translation_ko 문장 [15]",
+      "issue": "'settles into a small, fading ember'의 settle into를 '가라앉는다'로 오역했다. settle into는 '~한 상태로 자리 잡다/안정되다'라는 뜻이며, 여기서는 태양 같은 별이 외피를 벗고 작은 백색 왜성(잉걸불) 상태로 '정착한다'는 의미다. '가라앉는다'는 물리적 하강/침강을 연상시켜 별의 최후 단계를 오해하게 만든다.",
+      "evidence": "영문: \"A modest star like our Sun gently sheds its outer layers and settles into a small, fading ember.\" / 번역: \"[15] 우리 태양 같은 평범한 별은 바깥층을 부드럽게 벗어 던지고 작고 스러져 가는 잉걸불로 가라앉는다.\"",
+      "suggestion": "\"...작고 스러져 가는 잉걸불로 자리 잡는다\" 또는 \"...잉걸불 상태로 남는다\"로 수정.",
+      "lens": "translation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "medium",
+        "reason": "파일 근거로 지적 내용이 그대로 확인된다. page1.body(26행) 영문 \"A modest star like our Sun gently sheds its outer layers and settles into a small, fading ember.\"에 대해 page3.translation_ko(331행) [15]는 \"…작고 스러져 가는 잉걸불로 가라앉는다.\"로 옮겼고, page4.vocab의 ember 예문(511행)도 \"태양은 작고 스러져 가는 잉걸불로 가라앉는다.\"로 동일하게 처리되어 있어 일회성 오타가 아니라 일관된 역어 선택이다.\n\n지적의 어학적 근거도 타당하다. 여기서 settle into는 \"~한 상태로 자리 잡다/안정되다\"라는 결과 상태 도달(resultative) 의미이며, 파일 자체가 page3 sentences[15] 세그먼트(299행)에서 \"into a small, fading ember\"를 \"결과 부사구\"로 태깅했고, textbook_tieback(93행)도 이 종착점을 백색 왜성으로 명시한다. 즉 문서 내부 근거가 \"결과 상태 도달\" 해석을 지지한다.\n\n다만 반박 여지도 존재한다. 한국어 \"가라앉다\"에는 물리적 침강 외에 \"(불길·기세 등이) 잦아들다\"라는 비유적 용법이 있어, 별이 희미해지는 맥락에서 fading 뉘앙스를 살린 의역으로 볼 소지가 있다. 그러나 결정적 문제는 조사 결합이다. 비유적 \"가라앉다\"는 \"불길이 가라앉다\"처럼 주어-자동사 구성으로 쓰이지 \"X로 가라앉다\"라는 결과 표지 '로'와 결합하지 않는다. 현재 번역은 결과격 '로'를 쓰면서 '가라앉다'를 택해 두 용법 사이에서 어색하며, 게다가 같은 지문 [12]에 \"핵은 더 수축하고\"라는 실제 중력 수축 서술이 인접해 있어 물리적 하강으로 오독될 위험이 실재한다. \"작고 스러져 가는 잉걸불로 자리 잡는다/남는다\" 등이 적절하다.\n\n결론적으로 사실관계 오류나 문항 정답에 영향을 주는 결함은 아니고 뉘앙스·자연스러움 층위의 문제이지만, 지적자가 스스로 warn 등급으로 분류한 점을 고려하면 지적의 내용과 심각도 모두 정확하다. 실제 결함으로 인정한다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.translation_ko 문장 [8]",
+      "issue": "'balances'를 '상쇄해서'로 옮겼다. 본문 취지는 두 힘이 '균형을 이룬다'(정유체 평형)는 것이고, 같은 파일 page4 vocab에서도 balance의 뜻을 '균형을 이루다'로 제시하고 있어 번역과 어휘 해설이 불일치한다. '상쇄'는 두 힘이 서로 없애 버린다는 뉘앙스로, 별 내부에서 두 힘이 팽팽히 맞선 상태를 가리키는 원문·연계 개념(정유체 평형)과 어긋난다.",
+      "evidence": "영문: \"This outward push exactly balances the inward pull of gravity, so the star neither collapses nor blows apart.\" / 번역: \"[8] 이 바깥으로 미는 힘은 안으로 당기는 중력을 정확히 상쇄해서...\" / page4: {\"en\": \"balance\", \"ko\": \"균형을 이루다\"} (answers.explanations[3].key_terms)",
+      "suggestion": "\"...안으로 당기는 중력과 정확히 균형을 이루어서...\"로 수정.",
+      "lens": "translation",
+      "verdict": {
+        "confidence": "medium",
+        "isReal": true,
+        "reason": "파일로 확인됨. page3.translation_ko 문장 [8](331행)은 \"안으로 당기는 중력을 정확히 상쇄해서\"로, 원문(26행) \"This outward push exactly balances the inward pull of gravity\"에 대응한다. 반면 같은 파일의 동일 물리 관계는 네 곳에서 모두 '균형'으로 표기된다: meta.key_concepts \"정유체 평형\"(18행), textbook_tieback.body_ko \"복사압과 중력이 균형을 이룬 상태를 정유체 평형이라 하며, 이 균형 덕분에\"(93행), explanations[0].rationales[2] \"핵융합의 힘이 중력과 균형을 이룬다\"(343행), explanations[3].key_terms {\"en\":\"balance\",\"ko\":\"균형을 이루다\"}(397행). 즉 balance의 역어가 파일 내에서 균형(4회) vs 상쇄(2회, 331행 및 393행 rationale)로 갈린 실제 내부 불일치다. 의미상으로도 문장 [9] \"steady tug of war / 꾸준한 줄다리기 속에 붙들린 채\"는 두 힘이 팽팽히 맞선 상태를 가리키므로, 서로 없애 버린다는 뉘앙스의 '상쇄'보다 '균형을 이루다'가 연계 개념(정유체 평형)에 부합한다. 다만 지적에 부정확한 점이 하나 있다: 근거를 \"page4 vocab\"이라 했으나 page4.vocab(404-537행)에는 balance 항목이 없고(eternal, scattered, fusion, nuclei, collapse, contract, swell, fuse, modest, ember, violent, scatter뿐), 실제 위치는 answers.explanations[3].key_terms(397행)다. 지적의 괄호 안 경로 표기는 정확하므로 위치 라벨링 오류에 그치며 지적의 실질을 무너뜨리지 않는다. 또한 '상쇄'가 알짜힘 0이라는 점에서 물리적으로 명백한 오역은 아니어서 심각도는 warn 수준이 타당하다(confidence medium: 결함 실재는 확실하나 오류가 아닌 용어 일관성/뉘앙스 사안)."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page4.vocab[4] (\"collapse\") antonyms",
+      "issue": "collapse의 반의어로 제시된 'expand'가 의미상 부정확하다. collapse(무너지다·붕괴하다)의 반의 개념은 '팽창'이 아니라 '버티다·지탱하다'(hold up, stand, endure)이며, 'expand'는 바로 다음 항목 contract의 반의어이자 swell의 유의어로 이미 쓰여 학습자에게 혼선을 준다.",
+      "evidence": "page4.vocab: { \"word\": \"collapse\", \"meaning_ko\": \"무너지다, 붕괴하다\", \"antonyms\": [\"expand\"] } / 바로 다음 { \"word\": \"contract\", \"antonyms\": [\"expand\"] } / { \"word\": \"swell\", \"synonyms\": [\"expand\"] }. 본문 [8]도 \"the star neither collapses nor blows apart\"로 collapse를 '팽창'이 아니라 '터져 나감(blow apart)'과 대비시킨다.",
+      "suggestion": "collapse의 antonyms를 [\"hold up\"] 또는 [\"stand firm\"]으로 바꾸어 expand의 삼중 사용을 피한다.",
+      "lens": "vocab",
+      "verdict": {
+        "isReal": true,
+        "confidence": "medium",
+        "reason": "파일 근거로 지적된 데이터가 모두 확인된다. page4.vocab[4] collapse(meaning_ko \"무너지다, 붕괴하다\")의 antonyms가 [\"expand\"]이고(450-454행), 바로 다음 vocab[5] contract(수축하다)의 antonyms도 [\"expand\"](461-465행), vocab[6] swell(부풀다, 팽창하다)의 synonyms가 [\"expand\"](472-475행)이다. 즉 동일 어휘 목록 안에서 expand가 '팽창'으로 정의되어 있으면서 동시에 '무너지다'의 반의어로도 쓰여, 한 단어가 세 항목 안에서 서로 다른 대립 관계를 이중으로 떠맡는 일관성 붕괴가 실재한다. 또한 collapse 항목이 스스로 채택한 예문이 page3 [8]의 \"The star neither collapses nor blows apart\"(215행, 국역 \"무너지지도 터져 나가지도 않는다\", 331행)로, 본문은 collapse를 '팽창'이 아니라 'blow apart'와 대비시키므로 예문이 제시된 반의어를 뒷받침하지 못한다. 본문에서 실제 팽창 사건(swell into a red giant, 12번 문장)은 오히려 핵의 수축과 동시에 일어나 collapse↔expand 대응을 더 약화시킨다. 다만 지적의 표현(\"의미상 부정확\")은 다소 과하다. 천체물리 맥락에서 중력 붕괴 대 팽창은 실재하는 개념쌍이므로 collapse↔expand가 고립적으로 틀린 것은 아니며, 진짜 결함은 인접 항목과의 충돌로 인한 학습 간섭이다. 따라서 하드 팩트 오류가 아닌 warn 수준의 어휘 세트 일관성 결함으로서 유효하며, 권고 방향(hold up/stand/endure 등 비충돌 반의어로 교체)도 타당하다."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "content/passages/2026-08-Sun/07.json → page1.body, 3단락 3번째 문장 (page3 sentences[12])",
+      "issue": "\"heats\"가 자동사로 쓰여 다소 어색하다. 영어에서 무생물 주어의 자동사 '가열되다'는 보통 \"heats up\" 또는 수동 \"is heated\"를 쓴다. 특히 앞의 \"contracts\"는 자연스러운 자동사여서 병렬 구조 때문에 \"heats\"의 어색함이 더 드러난다.",
+      "evidence": "\"The core contracts and heats further, and the outer layers swell into a vast, cooler red giant.\" — 한편 page4 vocab의 contract 예문 한국어 번역은 \"핵은 더 수축하고 가열된다\"로 수동/기동상 의미를 상정하고 있어, 의도한 뜻이 \"heats up\"임을 뒷받침한다.",
+      "suggestion": "\"The core contracts and heats up further, ...\" 로 수정하면 자동사 용법이 명확해지고 학습자가 타동사 오해 없이 읽을 수 있다. (수정 시 page3 sentences[12]의 V 세그먼트 \"contracts and heats\"도 \"contracts and heats up\"으로 함께 갱신 필요)",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "content/passages/2026-08-Sun/07.json → page1.body, 1단락 3번째 문장 (page3 sentences[3])",
+      "issue": "대명사 \"It\"의 선행사가 표면상 중의적이다. 직전 문장의 술어 명사가 \"a slow story\"여서, \"It is born inside a cold cloud of gas and dust\"의 It이 '별'이 아니라 '이야기(story)'로 먼저 읽힐 여지가 있다. 의미상 별이 분명하지만, 글 전체가 '별=이야기'라는 은유를 밀고 있어 혼동 가능성이 실제로 존재한다.",
+      "evidence": "\"Yet every star is really a slow story with a beginning, a long middle, and an end. It is born inside a cold cloud of gas and dust, where gravity pulls the scattered matter into a dense, spinning ball.\"",
+      "suggestion": "\"A star is born inside a cold cloud of gas and dust, ...\" 또는 \"Each one is born inside a cold cloud ...\"처럼 선행사를 명시하면 은유와 지시 대상이 깔끔히 분리된다. (수정 시 page3 sentences[3]의 S 세그먼트와 translation_ko [3]도 함께 확인)",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko [8] / answers.explanations[3].rationales[0] vs key_terms",
+      "issue": "balance의 번역이 '상쇄'로 되어 있어 같은 파일의 key_terms 정의(\"balance = 균형을 이루다\") 및 본문의 정유체 평형 개념과 어긋난다. '상쇄'는 힘이 사라진다는 뉘앙스라 평형 개념 학습에 혼선을 준다.",
+      "evidence": "본문: \"This outward push exactly balances the inward pull of gravity\" / 번역: \"이 바깥으로 미는 힘은 안으로 당기는 중력을 정확히 상쇄해서\" / explanations[3].rationales[0]: \"'바깥으로 미는 힘이 중력을 상쇄한다'는 8번 balances와 일치한다\" / explanations[3].key_terms: {\"en\":\"balance\",\"ko\":\"균형을 이루다\"}",
+      "suggestion": "'중력과 정확히 균형을 이루어'로 통일.",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.sentences[3] (index 4) segments[1].note vs translation_ko [4]",
+      "issue": "as절의 의미 태깅과 번역이 불일치한다. note는 '때 부사절'인데 번역은 비례(~ㄹ수록)로 처리했다.",
+      "evidence": "본문: \"As the center is squeezed, it grows hot enough to switch on the engine\" / segments[1].note: \"때 부사절\" / 번역: \"[4] 중심부가 압축될수록, 그것은 …뜨거워진다.\"",
+      "suggestion": "note를 '비례·때 부사절(as)'로 보완하거나 번역을 '중심부가 압축되면서'로 통일.",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko 문장 [3]",
+      "issue": "'a dense, spinning ball'에서 dense와 spinning은 ball을 각각 수식하는 병렬 형용사인데, 번역이 '조밀하게 회전하는'으로 옮겨 dense를 부사화했다. 그 결과 '회전이 조밀하다'는 잘못된 수식 관계가 된다.",
+      "evidence": "영문: \"where gravity pulls the scattered matter into a dense, spinning ball.\" / 번역: \"[3] ...중력이 흩어진 물질을 조밀하게 회전하는 공으로 끌어모은다.\"",
+      "suggestion": "\"...조밀하고 회전하는 공으로\" 또는 \"...빽빽하게 뭉쳐 회전하는 공으로\"로 수정.",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko 문장 [4]",
+      "issue": "접속사 As를 '~할수록'(비례)으로 번역했으나, 같은 파일 page3.sentences[3]의 segment note는 이 As절을 '때 부사절'로 표시하고 있어 번역과 구문 해설이 불일치한다.",
+      "evidence": "영문: \"As the center is squeezed, it grows hot enough to switch on the engine...\" / page3.sentences[3]: { \"role\": \"M\", \"text\": \"the center is squeezed,\", \"note\": \"때 부사절\" } / 번역: \"[4] 중심부가 압축될수록, ...\"",
+      "suggestion": "\"중심부가 압축되면서\"로 바꾸어 구문 해설(때 부사절)과 일치시킬 것.",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[1] (\"scattered\") 및 page4.vocab[11] (\"scatter\")",
+      "issue": "동일 어근(scatter)이 형용사형과 동사형으로 두 항목을 차지해, 12개 어휘 슬롯 중 2개가 사실상 한 단어에 배정되었다. 유의어·반의어까지 거울상(dispersed/gathered, disperse/gather)이라 학습 효율이 낮다.",
+      "evidence": "page4.vocab: { \"word\": \"scattered\", \"meaning_ko\": \"흩어진, 산재한\", \"synonyms\": [\"dispersed\"], \"antonyms\": [\"gathered\"] } 와 { \"word\": \"scatter\", \"meaning_ko\": \"흩뿌리다, 흩어지게 하다\", \"synonyms\": [\"disperse\"], \"antonyms\": [\"gather\"] }",
+      "suggestion": "한 항목으로 통합(scatter v. — 본문 scattered/scatters 두 형태 병기)하고, 남는 슬롯을 본문의 미수록 고난도 표현(gain the upper hand, tug of war 등)에 배정한다.",
+      "lens": "vocab"
+    },
+    {
+      "severity": "minor",
+      "location": "page1.gloss_extra[1], gloss_extra[2]",
+      "issue": "gloss_extra 항목의 표제형 기준이 일관되지 않다. contract는 원형인데 sheds는 3인칭 단수형, forging은 분사형으로 실려 있고, ko 대역도 forging만 관형형('만들어 내는')이라 표제어 형식이 뒤섞였다.",
+      "evidence": "page1.gloss_extra: { \"term\": \"contract\", \"ko\": \"수축하다\" }, { \"term\": \"sheds\", \"ko\": \"(껍질을) 벗어 던지다\" }, { \"term\": \"forging\", \"ko\": \"만들어 내는\" }",
+      "suggestion": "표제형을 원형으로 통일(shed, forge)하고 ko도 종결형('벗어 던지다', '만들어 내다')으로 맞춘다.",
+      "lens": "vocab"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[8] (\"modest\") examples[0].ko",
+      "issue": "meaning_ko는 크기 의미('그리 크지 않은')로 제시했으나 예문 대역은 '평범한'으로 옮겨, 표제어의 뜻을 예시해야 할 예문이 오히려 다른 의미(보통의·범상한)로 읽히게 한다. 본문에서 modest는 [16] \"A far heavier star\"와 대비되는 명백한 질량 대비어다.",
+      "evidence": "page4.vocab: \"meaning_ko\": \"그리 크지 않은, 보통의\", examples[0] { \"en\": \"A modest star like our Sun fades gently.\", \"ko\": \"우리 태양 같은 평범한 별은 부드럽게 스러진다.\" } / 본문 [15]-[16] \"A modest star like our Sun ... A far heavier star dies in a violent explosion\"",
+      "suggestion": "예문 ko를 '우리 태양처럼 그리 무겁지 않은 별은 부드럽게 스러진다.'로 수정해 크기·질량 의미를 드러낸다.",
+      "lens": "vocab"
+    }
+  ],
+  "blockers": [
+    {
+      "severity": "blocker",
+      "location": "page3.sentences[6] (index 7) grammar_note",
+      "issue": "문형 표기가 자체 모순이다. \"3형식(자동사+부사구)\"에서 3형식은 S+V+O 구조를 뜻하므로 자동사와 양립할 수 없고, 해당 문장에는 목적어가 아예 없다(1형식).",
+      "evidence": "본문: \"Billions of these bursts push outward as heat and light.\" / segments는 S(\"Billions of these bursts\") + V(\"push\") + M(\"outward as heat and light.\")만 있고 O 역할 태그가 없음. grammar_note: \"3형식(자동사+부사구)\"",
+      "suggestion": "\"1형식(자동사+부사구)\" 또는 \"완전자동사 push + 방향 부사구\"로 수정.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일에서 직접 확인됨. page3.sentences[6] (index 7, 파일 197-205행)의 segments는 S(\"Billions of these bursts\") + V(\"push\") + M(\"outward as heat and light.\", note \"부사구\") 세 개뿐이고 O 역할 태그가 전혀 없는데, grammar_note는 \"3형식(자동사+부사구)\"이다. 한국식 5형식 체계에서 3형식은 S+V+O로 타동사를 전제하므로 \"자동사\"와 괄호 안에서 정면 충돌하는 자체 모순이다. 실제 문장도 \"outward\"(부사) + \"as heat and light\"(전치사구)만 있어 목적어가 없는 1형식이며, translation_ko도 목적어를 제시하지 않는다. 결정적으로 이 파일 자체의 내부 관행과도 어긋난다: O 태그가 있는 index 8(212행 O=\"the inward pull of gravity\")은 \"3형식 + so + neither ~ nor\"로 표기된 반면, 목적어 없는 S+V+M 문장들인 index 9(\"과거분사 분사구문 + 자동사\"), index 12(\"and 등위절 (자동사 병렬)\"), index 16(\"자동사 + 주격 관계대명사\")은 모두 형식 번호 없이 자동사로만 표기된다. index 7만 유일하게 목적어 없는 자동사 절에 \"3형식\"을 붙인 예외로, 일관된 하우스 스타일이 아니라 오기임이 내부 증거로 입증된다. 문형 지도를 목적으로 하는 교재 페이지에서 틀린 형식 규칙을 가르치는 결함이므로 지적은 타당하다."
+      }
+    }
+  ],
+  "counts": {
+    "raw": 16,
+    "verified": 7,
+    "confirmed": 5,
+    "minor": 9
+  }
+}

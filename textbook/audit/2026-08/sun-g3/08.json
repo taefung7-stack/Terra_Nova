@@ -1,0 +1,187 @@
+{
+  "grade": "sun-g3",
+  "seq": 8,
+  "confirmed": [
+    {
+      "severity": "blocker",
+      "location": "page3.sentences[17].segments (index 17, C/O 분절)",
+      "issue": "빈칸 정답 'perspective.'를 목적어(O)로 오태깅했고, 보어(C) 분절이 명사구 중간에서 끊겼다. 본문은 'is therefore never trapped inside one narrow perspective.'로, be trapped는 수동태여서 목적어가 존재할 수 없으며 perspective는 전치사 inside의 목적어이자 'one narrow perspective' 명사구의 핵이다.",
+      "evidence": "본문: \"The reader who can gather, judge, and combine many texts is therefore never trapped inside one narrow <blank>.\" / page3: { \"role\": \"C\", \"text\": \"trapped inside one narrow\", \"note\": \"수동 보어\" }, { \"role\": \"O\", \"text\": \"perspective.\", \"note\": \"빈칸 정답 자리\" }",
+      "suggestion": "C를 \"trapped\"(수동 보어)로 두고 \"inside one narrow perspective.\"를 M(전치사구)으로 태깅하거나, C=\"trapped inside one narrow perspective.\" 한 덩어리로 묶고 빈칸 표시는 note로만 처리한다. O 역할은 삭제.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "지적이 파일 근거로 그대로 확인된다. 08.json 344-345행: { \"role\": \"C\", \"text\": \"trapped inside one narrow\", \"note\": \"수동 보어\" }, { \"role\": \"O\", \"text\": \"perspective.\", \"note\": \"빈칸 정답 자리\" } — 인용이 문자 그대로 일치한다.\n\n두 가지 결함이 모두 실재한다.\n\n(1) O 오태깅: 본문(26행)은 \"...is therefore never trapped inside one narrow <blank>.\"이고 빈칸 정답은 perspective(page2 answer_index 2, choices[2]). is ... trapped는 수동태이며, 파일 자신의 grammar_note(347행)도 \"be trapped 수동 보어\"로 수동임을 명시한다. 수동태는 목적격을 부여할 수 없으므로 이 절에 O는 구조적으로 존재할 수 없다. perspective는 전치사 inside의 목적어이자 'one narrow perspective' 명사구의 핵이다. O 태그는 존재하지 않는 통사 관계를 주장한다.\n\n(2) 명사구 중간 분절: C 세그먼트가 한정사+형용사 'one narrow'에서 끊겨 핵명사가 분리됐다. 같은 파일의 다른 모든 세그먼트는 NP를 온전히 유지한다 — 특히 143행은 동일한 NP 패턴 \"from only one narrow angle.\"을 하나의 M으로 온전히 유지한다(같은 지문 1번 문장). 262행 \"only the beginning of real synthesis.\", 299행 \"a kind of quiet authorship.\"도 마찬가지다.\n\n관례 대조로도 일탈이 확인된다: 동일 폴더 01.json 326행의 대응되는 빈칸 정답 문장은 { \"role\": \"C\", \"text\": \"an act of quiet balance.\", \"note\": \"빈칸 정답 자리\" }로, 보어를 쪼개지 않고 한 세그먼트로 유지하며 note만 붙인다.\n\n반증 가능성 검토: 20.json 348-349행에 동일 패턴(C \"to meet it with steady, active\" + O \"interpretation.\")이 존재한다. 그러나 그곳의 interpretation도 전치사 with의 목적어여서 절 차원의 O가 아니며, 이는 하우스 스타일 근거가 아니라 같은 버그의 2차 사례다. role enum을 정의하는 스키마 문서는 발견되지 않았고, 표준 문장분석 관례상 O는 동사의 목적어를 뜻하므로 수동 be trapped가 부여할 수 없다. 따라서 반박 근거를 찾지 못했고 지적은 실제 결함이다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.sentences[16].segments (index 16, V·M 분절)",
+      "issue": "구문분석 분절 텍스트가 본문 어순과 다르다. 본문은 'would badly mislead'인데 분절을 이어붙이면 'would mislead badly.'가 되어 원문 복원이 불가능하다(17문장 중 유일한 불일치).",
+      "evidence": "본문: \"In each case leaning on a single source alone would badly mislead.\" / page3: { \"role\": \"V\", \"text\": \"would mislead\" }, { \"role\": \"M\", \"text\": \"badly.\" }",
+      "suggestion": "M \"badly\"를 V 앞에 배치하거나(M: \"badly\" → V: \"mislead.\"), V를 \"would badly mislead.\" 한 덩어리로 묶어 본문 어순을 보존한다.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일로 확인됨. page1.body(line 26)는 \"In each case leaning on a single source alone would badly mislead.\"인데, page3.sentences[16].segments(lines 328-334)는 M \"In each case\" / S \"leaning on a single source alone\" / V \"would mislead\" / M \"badly.\" 로, 이어붙이면 \"…would mislead badly.\"가 되어 본문 어순과 불일치하고 원문 복원이 불가능하다. 나머지 16개 문장은 모두 본문 어순대로 정확히 복원되며(예: #8 \"may even flatly contradict\"처럼 부사를 V 안에 유지, #9 \"checks\"+\"patiently\" 순서 유지, #17 \"trapped inside one narrow\"+\"perspective.\"), 부사를 동사구 밖으로 빼 뒤로 옮긴 사례는 index 16이 유일하다. 같은 파일 page4 vocab 예문(line 541)도 \"Leaning on a single source would badly mislead.\"로 원어순을 유지해, 본문 의도 어순이 \"badly mislead\"임을 뒷받침한다. 의미 변화는 없고 문법적으로도 성립하므로 심각도는 낮은 경고 수준이지만, 지적된 사실 자체는 정확하다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.sentences[1].segments 마지막 M의 note",
+      "issue": "전치사구에 '이유 부사절' 주석을 잘못 달았다. 'from only one narrow angle.'은 부사절이 아니라 sees를 수식하는 전치사구이며, 이유절은 because가 이끄는 절 전체다.",
+      "evidence": "본문: \"...because a single author sees the world from only one narrow angle.\" / page3: { \"role\": \"M\", \"text\": \"from only one narrow angle.\", \"note\": \"이유 부사절\" }",
+      "suggestion": "note를 '방법·출처 전치사구' 등으로 수정하고, 이유절 표시는 CONJ \"because\" 쪽 note로 옮긴다.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 143행에서 { \"role\": \"M\", \"text\": \"from only one narrow angle.\", \"note\": \"이유 부사절\" }가 실제로 확인된다. 해당 텍스트는 sees를 수식하는 전치사구일 뿐 부사절이 아니다. 이유절은 because가 이끄는 절 전체이며, 이 파일은 이미 because를 별도 CONJ 세그먼트(139행)로, 그 절의 S/V/O를 140~142행으로 분해해 두었으므로 마지막 전치사구에 절(節) 라벨을 붙일 수 없다. 같은 파일의 관용을 보면 134행 \"we face a hard question,\"처럼 CONJ 뒤 절 전체가 M일 때만 \"때 부사절\" 같은 절 라벨을 쓰고, 214행 \"on solid evidence,\"는 무주석, 308행 \"far beyond any classroom or examination.\"은 \"부사구\"로 표기해 전치사구는 구(句)로 분류하는 것이 일관된 기준이다. 또한 145행 grammar_note \"when 부사절 + 주절 + because 이유절\"이 이유절을 because 절 층위로 이미 정확히 지목하고 있어, 세그먼트 층위의 \"이유 부사절\" 주석은 명백한 오라벨이다. 적절한 주석은 \"부사구\" 또는 \"전치사구(방식/관점)\"이다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page2.questions[3].hints (요약문 빈칸 완성)",
+      "issue": "hints 배열에 정답 두 개(judge, combine)가 그대로 들어 있고, 나머지 세 개(synthesis, critical, evidence)는 must 뒤 원형동사 자리라는 문법 제약상 애초에 들어갈 수 없다. 결과적으로 힌트만 보고 문법 자리로 소거하면 본문을 읽지 않아도 정답이 확정되어 서술형 문항의 변별력이 사실상 사라진다.",
+      "evidence": "hints: [\"judge\",\"combine\",\"synthesis\",\"critical\",\"evidence\"] / summary_template: \"A skilled reader must first <blank> (A) each source … She then must <blank> (B) the reliable ones …\" / model_answer: \"(A) judge  (B) combine\"",
+      "suggestion": "hints에서 정답어를 빼고 본문 표현 중 오답 가능한 동사(gather, compare, weave, repeat 등)를 섞어 넣거나, 조건을 \"본문에서 찾아 쓰시오\"로 두고 hints 자체를 제거한다.",
+      "lens": "answer",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "지적이 파일 근거로 정확히 확인됨. 반박을 시도했으나 실패.\n\n1) 인용 근거가 파일과 정확히 일치 (08.json L80-88): hints [\"judge\",\"combine\",\"synthesis\",\"critical\",\"evidence\"], summary_template의 두 빈칸이 모두 \"must <blank>\" 형태, model_answer \"(A) judge (B) combine\".\n\n2) 문법 소거 논증이 성립: 두 빈칸 모두 must 뒤 원형동사(bare infinitive) 자리인데, 5개 힌트 중 동사는 judge/combine 둘뿐. synthesis(명사), critical(형용사), evidence(명사)는 must 뒤에 올 수 없어 본문 독해 이전에 기계적으로 소거됨.\n\n3) 순서까지 고정됨: \"<blank>(A) each source for its evidence\" / \"<blank>(B) the reliable ones into a fresh idea\". judge X into Y는 비문이고 combine each source for its evidence는 비논리적이라 A/B 교차 배정조차 불가. 즉 본문 미독해 상태에서도 정답이 100% 확정.\n\n4) 추가 결함: 오답 후보 evidence가 (A) 절 안에 \"for its evidence\"로 이미 그대로 노출되어 교란지로서 자기무력화.\n\n5) 결정적으로, 같은 폴더 형제 파일과 비교 시 08만 이탈(outlier). 01~10 모두 \"힌트 5개 중 정답 2개\" 구조는 의도된 공통 규약이므로 그 자체는 결함이 아니나, 05(momentum/impulse/conservation/force/time), 09(consent/treaty/organizations/trust/order), 10(electrons/wire/redox/current/electrode)은 오답 후보가 전부 문법적으로 성립하는 동일 품사여서 반드시 본문 이해를 거쳐야 함. 08만 유일하게 두 빈칸이 동일한 원형동사 자리이고 오답 3개가 전부 품사 불일치로 사전 소거됨.\n\n따라서 서술형 문항의 변별력 상실은 실제 결함이며, 컬렉션 자체 규약 기준으로도 이탈 사례임. 다만 정답 자체는 본문(L192 \"must first be judged\", L341 \"gather, judge, and combine\")에 의해 정당하게 뒷받침되므로 오답 오류가 아닌 변별력 결함이며, error가 아닌 warn 등급 분류가 적절함."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page4.vocab[8] authorship / examples[1]",
+      "issue": "예문이 표제어 뜻(저술, 저작 행위)이 아닌 다른 의미(저작자 신원)를 보여준다. ko 대역이 그 불일치를 그대로 노출한다.",
+      "evidence": "meaning_ko: \"저술, 저작 행위\" / examples[1]: { en: \"The authorship of the poem is disputed.\", ko: \"그 시의 저작자는 논란이 된다.\" } — 본문 용례는 \"ordinary reading slowly becomes a kind of quiet authorship\"(저술 행위)인데, 예문은 '누가 썼는가(저자 신원)' 뜻이며 ko도 '저작자'로 옮겨 표제어 뜻과 어긋난다.",
+      "suggestion": "표제어 뜻에 맞는 예문으로 교체. 예: \"Careful note-taking is the first step toward real authorship.\" / \"꼼꼼한 필기는 진정한 저술로 가는 첫걸음이다.\" 또는 meaning_ko에 '저작자(누가 썼는지)' 뜻을 병기.",
+      "lens": "vocab",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "파일 확인 결과 지적 내용이 정확하다. page4.vocab[8] (512-522행) authorship 항목은 meaning_ko를 \"저술, 저작 행위\"로만 한정하고 synonyms도 [\"writing\"] 하나뿐이어서, 표제어가 '행위' 의미만 다룬다고 선언한다. 그런데 examples[1] \"The authorship of the poem is disputed.\"는 '누가 썼는가(저자 귀속·신원)'라는 별개 사전적 의미이고, ko 대역 \"그 시의 저작자는 논란이 된다\"가 이를 사람(저작자)으로 옮겨 불일치를 그대로 드러낸다. examples[0](\"일종의 조용한 저술이 된다\")은 선언된 뜻과 맞으므로 두 예문이 서로 다른 의미를 가리킨다. 본문(page1 body, page3 문장 13, tieback body_ko \"읽기는 정보 수용을 넘어 하나의 저술 행위가 된다\") 어디에도 '저자 신원' 의미는 없다. 또한 인접 항목들(distant, rival, contradict 등)은 모두 examples[1]이 선언된 meaning_ko와 일치해 vocab[8]만 예외적이다. 영어 문장 자체는 어법상 옳으므로 error가 아닌 warn 수준이 타당하지만, 학습자가 보는 뜻풀이와 예문 뜻이 어긋나는 내부 정합성 결함은 실재한다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page4.vocab[10] mislead / examples[0]",
+      "issue": "타동사 mislead가 목적어 없이 쓰여 단독 예문으로는 비문에 가깝다. ko 대역도 동명사 주어를 조건절로 느슨하게 옮겼다.",
+      "evidence": "examples[0]: { en: \"Leaning on a single source would badly mislead.\", ko: \"단 하나의 자료에 기대면 심하게 오도할 것이다.\" } — mislead는 목적어를 요구하는 타동사인데 목적어가 없다. 본문 문장 \"In each case leaning on a single source alone would badly mislead.\"를 그대로 잘라 온 결과다.",
+      "suggestion": "목적어를 넣어 정용법을 보이도록 수정. 예: \"Leaning on a single source would badly mislead the reader.\" / \"단 하나의 자료에만 기대는 것은 독자를 심하게 오도할 것이다.\"",
+      "lens": "vocab",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "File-verified. page4.vocab[10] \"mislead\" (pos \"v.\") has examples[0] = { en: \"Leaning on a single source would badly mislead.\", ko: \"단 하나의 자료에 기대면 심하게 오도할 것이다.\" } at line 541, and page1.body line 26 contains \"In each case leaning on a single source alone would badly mislead.\" — confirming the example is a truncated lift from the passage. mislead is transitive-only in standard dictionaries (mislead sb about/into sth); it has no established absolute use like deceive/distract. In the body the missing object is tolerable because context supplies an implicit \"you/the reader,\" but a vocab example is presented as a standalone model sentence, so it teaches a transitive headword through an objectless clause. The file contradicts itself twice on this point: examples[1] on line 542 (\"A biased headline can mislead readers.\") correctly supplies an object within the same entry, and page3 sentence 16 (lines 328-336) parses the clause as S / V \"would mislead\" / M \"badly\" with no O role at all. The ko sub-claim also holds: the en subject is a gerund phrase (\"leaning ... would mislead\"), but the ko renders it as a conditional \"…에 기대면\" (\"if you lean on\"), loosening the gerund subject and shifting the implied agent to a person, which masks the absent object. The project's own translation_ko [16] (line 350) uses the correct gerund-subject form \"단 하나의 자료에만 기대는 것은 심하게 오도할 것이다,\" so the vocab ko diverges from the file's own rendering of the identical sentence. Considered and rejected: verbatim-from-passage provenance is the defect mechanism rather than a defense; other entries lift from the body too (synthesis, contradict, conflicting) but all stay well-formed standalone, making mislead the only broken lift. Severity is warn-level polish with a trivial fix (restore an object such as \"would badly mislead the reader\"), consistent with the reported warn tag."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page1.body 3문단",
+      "issue": "every author + happened to의 의미 충돌 및 시제 부조화. 주변 문장이 모두 현재시제인 일반 서술인데 이 절만 과거(happened to leave)이며, '우연히 ~했다'는 happened to가 '모든 저자'라는 전칭 주어와 결합해 어색하다(우연이 전원에게 일어났다는 함의).",
+      "evidence": "\"she fills a gap that every author happened to leave wide open.\"",
+      "suggestion": "\"a gap that every author has left wide open\" 또는 \"a gap that no author has filled\"로 다듬을 것.",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "page1.body 2문단",
+      "issue": "등위 목적어절 사이의 불필요한 쉼표. asks의 목적어인 두 간접의문절을 and로 병렬한 구조인데 and 앞에 쉼표를 넣어 표준 문장부호 관례에서 벗어난다. 또한 아직 확인되지 않은 의도를 미리 hidden으로 단정해 논리적으로 앞서간다.",
+      "evidence": "\"A critical reader always asks who wrote a given text, and for what hidden purpose it was written.\"",
+      "suggestion": "쉼표를 삭제하고 \"...who wrote a given text and for what purpose it was written.\"으로 조정.",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "page1.body 4문단",
+      "issue": "문두 부사구 뒤 쉼표 누락으로 순간적 오독 유발(In each case leaning ~을 한 덩어리로 읽게 됨).",
+      "evidence": "\"In each case leaning on a single source alone would badly mislead.\"",
+      "suggestion": "\"In each case, leaning on a single source alone would ...\"로 쉼표 추가.",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.sentences[8].segments V의 note",
+      "issue": "'조동사 + 강조부사'라는 주석이 flatly를 강조부사로 오인하게 한다. flatly는 '정면으로/단호히'라는 양태부사이고(자체 번역도 '정면으로'), 강조 기능을 하는 것은 even이다.",
+      "evidence": "본문: \"Two careful reports on the very same event may even flatly contradict each other.\" / translation_ko: \"[8] ... 심지어 정면으로 서로 모순될 수도 있다.\" / page3: { \"role\": \"V\", \"text\": \"may even flatly contradict\", \"note\": \"조동사 + 강조부사\" }",
+      "suggestion": "note를 '조동사 may + 강조부사 even + 양태부사 flatly'로 세분한다.",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko 문장 [12]",
+      "issue": "\"happened to\"(공교롭게도/우연히)의 뉘앙스가 번역에서 누락되어, 원문의 '어느 저자든 (의도치 않게) 남겨 놓은' 우연성이 사라지고 단정적 진술이 되었다.",
+      "evidence": "영문: \"she fills a gap that every author happened to leave wide open.\" / 번역: \"모든 저자가 활짝 열어 둔 채 남긴 빈틈을 메운다.\"",
+      "suggestion": "\"어느 저자나 공교롭게도 활짝 열어 둔 채 남겨 놓은 빈틈을 메운다\" 정도로 우연성을 살릴 것.",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko 문장 [9]",
+      "issue": "부사 \"simply\"(그저 ~하지는 않는다)가 번역에서 반영되지 않아, 원문의 '단순히 아무 쪽이나 고르는 데 그치지 않는다'는 대비 구조가 약해졌다.",
+      "evidence": "영문: \"the thoughtful reader does not simply pick a side at random; instead she checks patiently...\" / 번역: \"사려 깊은 독자는 아무렇게나 편을 들지 않는다; 대신 그녀는 ... 참을성 있게 살핀다.\"",
+      "suggestion": "\"그저 아무렇게나 편을 들고 마는 것이 아니라\"처럼 simply를 살려 뒤의 instead와 대비를 명확히 할 것.",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko 문장 [11]",
+      "issue": "\"on its own\"은 '그 글 단독으로는/혼자 힘으로는'의 뜻인데 '스스로 말하지 않았던'으로 옮겨 재귀적 의미로 읽힐 여지가 있다.",
+      "evidence": "영문: \"a fresh idea that no single text had stated on its own.\" / 번역: \"어떤 단 하나의 글도 스스로 말하지 않았던 참신한 생각\"",
+      "suggestion": "\"어떤 글도 단독으로는 말한 적 없는 참신한 생각\"으로 다듬을 것. (참고: page2 요약문 번역 맥락의 'stated alone'과도 일관됨)",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko 문장 [3]",
+      "issue": "\"many separate voices\"의 separate(서로 별개의, 따로 떨어진)를 '서로 다른'으로 옮겨, '관점이 다르다'는 뜻으로 좁게 읽힐 수 있다. 원문은 '개별적으로 흩어져 있는' 쪽에 가깝다.",
+      "evidence": "영문: \"the art of weaving many separate voices into one larger understanding.\" / 번역: \"서로 다른 여러 목소리를 하나의 더 큰 이해로 엮어내는 기술\"",
+      "suggestion": "\"따로따로 흩어져 있는 여러 목소리를\" 또는 \"제각기 별개인 여러 목소리를\"로 수정 권장.",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page2.questions[2].stem (함의 추론)",
+      "issue": "stem 내부에서 지시 대상이 어긋난다. \"윗글의 밑줄 친 …\"으로 시작해 놓고 뒤에서 \"다음 글에서 의미하는 바\"라고 하여, 앞의 '윗글'과 뒤의 '다음 글'이 충돌한다. 실제 참조 대상은 앞쪽 본문이다.",
+      "evidence": "stem: \"윗글의 밑줄 친 flatly contradict 가 다음 글에서 의미하는 바로 가장 적절한 것은?\"",
+      "suggestion": "\"밑줄 친 flatly contradict가 윗글에서 의미하는 바로 가장 적절한 것은?\"으로 수정한다. (정답 4번 \"the two accounts make claims that cannot both be true\"는 본문 근거상 타당함)",
+      "lens": "answer"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[4] evidence, [11] combine, [7] distant, [1] critical",
+      "issue": "고3(sun-g3) 수준 대비 지나치게 기초적인 어휘가 12개 중 4개를 차지해 어휘 학습 효율이 낮다.",
+      "evidence": "evidence(근거), combine(결합하다), distant(멀리 떨어진), critical(비판적인)은 중학 수준 필수어다. 같은 세트의 다른 지문은 momentum·impulse(05), autonomy·bioethics(06), nuclei·fusion(07), sovereign·outlast(09) 등 고3 수준 주제어를 배치하고 있어 08만 난도가 낮다.",
+      "suggestion": "본문에 실제로 등장하는 상위 어휘로 일부 교체 검토. 예: demanding(까다로운, 많은 것을 요구하는), settled(확정된), weigh(저울질하다), weave(엮다), gap(빈틈) 중 고난도 항목 채택.",
+      "lens": "vocab"
+    }
+  ],
+  "blockers": [
+    {
+      "severity": "blocker",
+      "location": "page3.sentences[17].segments (index 17, C/O 분절)",
+      "issue": "빈칸 정답 'perspective.'를 목적어(O)로 오태깅했고, 보어(C) 분절이 명사구 중간에서 끊겼다. 본문은 'is therefore never trapped inside one narrow perspective.'로, be trapped는 수동태여서 목적어가 존재할 수 없으며 perspective는 전치사 inside의 목적어이자 'one narrow perspective' 명사구의 핵이다.",
+      "evidence": "본문: \"The reader who can gather, judge, and combine many texts is therefore never trapped inside one narrow <blank>.\" / page3: { \"role\": \"C\", \"text\": \"trapped inside one narrow\", \"note\": \"수동 보어\" }, { \"role\": \"O\", \"text\": \"perspective.\", \"note\": \"빈칸 정답 자리\" }",
+      "suggestion": "C를 \"trapped\"(수동 보어)로 두고 \"inside one narrow perspective.\"를 M(전치사구)으로 태깅하거나, C=\"trapped inside one narrow perspective.\" 한 덩어리로 묶고 빈칸 표시는 note로만 처리한다. O 역할은 삭제.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "지적이 파일 근거로 그대로 확인된다. 08.json 344-345행: { \"role\": \"C\", \"text\": \"trapped inside one narrow\", \"note\": \"수동 보어\" }, { \"role\": \"O\", \"text\": \"perspective.\", \"note\": \"빈칸 정답 자리\" } — 인용이 문자 그대로 일치한다.\n\n두 가지 결함이 모두 실재한다.\n\n(1) O 오태깅: 본문(26행)은 \"...is therefore never trapped inside one narrow <blank>.\"이고 빈칸 정답은 perspective(page2 answer_index 2, choices[2]). is ... trapped는 수동태이며, 파일 자신의 grammar_note(347행)도 \"be trapped 수동 보어\"로 수동임을 명시한다. 수동태는 목적격을 부여할 수 없으므로 이 절에 O는 구조적으로 존재할 수 없다. perspective는 전치사 inside의 목적어이자 'one narrow perspective' 명사구의 핵이다. O 태그는 존재하지 않는 통사 관계를 주장한다.\n\n(2) 명사구 중간 분절: C 세그먼트가 한정사+형용사 'one narrow'에서 끊겨 핵명사가 분리됐다. 같은 파일의 다른 모든 세그먼트는 NP를 온전히 유지한다 — 특히 143행은 동일한 NP 패턴 \"from only one narrow angle.\"을 하나의 M으로 온전히 유지한다(같은 지문 1번 문장). 262행 \"only the beginning of real synthesis.\", 299행 \"a kind of quiet authorship.\"도 마찬가지다.\n\n관례 대조로도 일탈이 확인된다: 동일 폴더 01.json 326행의 대응되는 빈칸 정답 문장은 { \"role\": \"C\", \"text\": \"an act of quiet balance.\", \"note\": \"빈칸 정답 자리\" }로, 보어를 쪼개지 않고 한 세그먼트로 유지하며 note만 붙인다.\n\n반증 가능성 검토: 20.json 348-349행에 동일 패턴(C \"to meet it with steady, active\" + O \"interpretation.\")이 존재한다. 그러나 그곳의 interpretation도 전치사 with의 목적어여서 절 차원의 O가 아니며, 이는 하우스 스타일 근거가 아니라 같은 버그의 2차 사례다. role enum을 정의하는 스키마 문서는 발견되지 않았고, 표준 문장분석 관례상 O는 동사의 목적어를 뜻하므로 수동 be trapped가 부여할 수 없다. 따라서 반박 근거를 찾지 못했고 지적은 실제 결함이다."
+      }
+    }
+  ],
+  "counts": {
+    "raw": 22,
+    "verified": 12,
+    "confirmed": 6,
+    "minor": 10
+  }
+}

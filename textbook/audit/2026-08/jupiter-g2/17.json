@@ -1,30 +1,157 @@
 {
   "grade": "jupiter-g2",
   "seq": 17,
-  "confirmed": [],
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page1.body, 3rd paragraph, sentence 17: \"The gap between them is added up at every height...\"",
+      "issue": "본문이 세운 '세로 띠(vertical strips)' 모델과 모순되는 표현. 세로 띠로 자르면 두 곡선의 차는 x축 방향(구간)을 따라 더해지지, '모든 높이(at every height)'에서 더해지지 않는다. '모든 높이에서 더한다'는 것은 y에 대해 적분하는 가로 슬라이스 모델을 가리키므로 개념이 뒤바뀐다. 게다가 바로 앞 문장이 \"integrate that single difference across the interval\"이라고 해 놓고 다음 문장에서 'at every height'라고 하여 같은 연산을 서로 다른 방향으로 서술한다.",
+      "evidence": "\"To measure it, mathematicians cut the region into many thin vertical strips.\" / \"Instead, we subtract the lower function from the upper one and integrate that single difference across the interval. The gap between them is added up at every height, and the awkward overlap simply disappears in the arithmetic.\"",
+      "suggestion": "\"at every height\" → \"at every point across the interval\" 또는 \"at every position along the axis\"로 수정. 국문 번역 [17]의 '모든 높이에서 더해지고'도 '구간의 모든 지점에서 더해지고'로 함께 수정 필요.",
+      "lens": "language",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "지적은 파일 근거로 확인된다. C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-08-J/17.json 의 page1.body 3문단과 page3 sentences[16]~[17]에 문제 문장이 그대로 존재한다.\n\n1) 본문은 세로 띠 모델을 명시적으로 확정한다: page1.body \"To measure it, mathematicians cut the region into many thin vertical strips.\", page3 sentence 5 동일 문장, illustration_caption \"곡선 아래 영역을 얇은 직사각형으로 잘게 나눠\", page2 visual_aid steps \"얇게 자르기 / 직사각형 근사\", \"➖ 두 곡선 / 위 − 아래 적분\".\n\n2) 세로 띠 모델에서 두 곡선의 차 f(x)−g(x)는 각 x에서의 띠 '높이'이며, 누적 방향은 x축(구간)이다. 따라서 합산의 인덱스는 x이지 높이(y)가 아니다. '모든 높이에서 더한다'는 y에 대해 적분하는 가로 슬라이스 모델의 서술이므로 본문이 세운 모델과 어긋난다.\n\n3) 바로 인접한 두 문장이 같은 연산을 직교하는 두 방향으로 서술한다. sentence 16: \"integrate that single difference across the interval\"(x 방향 누적) → sentence 17: \"The gap between them is added up at every height\"(y 방향 누적).\n\n4) 저자 의도가 느슨한 비유가 아니라 실제로 y 인덱스임은 번역이 확증한다. translation_ko [17] \"그것들 사이의 간격은 모든 높이에서 더해지고\" — 처소격 '~에서'로 옮겨져 동일한 y 방향 합산 오류가 그대로 전파된다.\n\n반박 시도 및 기각: 'height'를 '띠의 높이'로 읽는 관대한 해석은 성립하지 않는다. 띠의 높이가 곧 the gap이므로 \"the gap is added up at every gap\"라는 순환 문장이 되어 의미가 붕괴한다. \"added up at ~\"의 at은 합산이 일어나는 위치(인덱스)를 표시하므로 height는 독립 변수(y)로만 파싱된다. 만약 저자가 간격의 크기를 뜻했다면 영어는 \"added up across the interval\" 또는 \"every gap height is added up\"을 요구한다.\n\n경중 판단: meta.linked_unit \"미적분 III-2 정적분의 활용 (넓이)\", achievement_standard 12미적03-02로 연결된 수학 연계 지문이며, 대상 학생이 배우는 핵심이 정확히 ∫(위−아래)dx 와 y적분의 구분이므로 문체 트집이 아니라 실질적 개념 결함이다. 다만 어떤 문항도 sentence 17을 정답 근거로 삼지 않으므로(요지·빈칸·함의·요약 모두 다른 문장 기반) 문항 타당도는 훼손되지 않는다. 이는 warn 등급 지적으로 제기된 만큼 지적 성립을 저해하지 않으며, 수정 범위는 sentence 17과 translation_ko [17]의 국소 교체로 한정된다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page1.body, 3rd paragraph: \"...and the awkward overlap simply disappears in the arithmetic.\"",
+      "issue": "'overlap(겹침)'이라는 개념이 본문에 한 번도 정의·설명되지 않은 채 정관사 the와 함께 갑자기 등장한다. 또한 두 곡선 사이 넓이를 구할 때 상쇄되는 것은 '겹치는 부분'이 아니라 '아래쪽 함수 아래의 공통 영역(축까지의 부분)'이다. 두 곡선 사이 영역에는 원래 겹침이 존재하지 않으므로 수학적으로도 부정확한 명명이며, 학생이 '두 영역이 서로 포개진다'고 오해할 소지가 있다.",
+      "evidence": "\"We do not measure each area on its own and guess. Instead, we subtract the lower function from the upper one and integrate that single difference across the interval. The gap between them is added up at every height, and the awkward overlap simply disappears in the arithmetic.\"",
+      "suggestion": "\"the awkward overlap\" → \"the shared area beneath the lower curve\" 또는 \"the part below the lower curve\"처럼 상쇄되는 대상을 명시. 번역 [17]의 '성가신 겹침'과 page4 vocab의 overlap 예문(\"The awkward overlap disappears in the arithmetic.\")도 연동 수정 필요.",
+      "lens": "language",
+      "verdict": {
+        "isReal": true,
+        "confidence": "medium",
+        "reason": "파일 확인 결과 지적이 성립한다. page1.body 3단락 원문: \"We do not measure each area on its own and guess. Instead, we subtract the lower function from the upper one and integrate that single difference across the interval. The gap between them is added up at every height, and the awkward overlap simply disappears in the arithmetic.\"\n\n(1) 정의 부재 확인: 'overlap'은 본문 전체에서 이 한 곳에만 등장하며, 앞선 어디에도 겹침 개념을 도입하는 문장이 없다. page1.gloss_extra는 signed area / interval / boundary 세 항목뿐으로 'overlap'을 포함하지 않아, 독자가 처음 마주치는 지점에서 어떤 지원도 받지 못한다.\n\n(2) 수학적 부정확성 확인(핵심): 'overlap'이 수학적으로 옳게 읽히는 유일한 해석은 '두 곡선 각각의 아래 넓이를 따로 잴 때 중복 계산되는 아래쪽 함수 밑 축까지의 공통 영역'이다. 그런데 본문은 그 소박한 2단계 방법(두 개의 under-curve 넓이를 각각 적분해 중복이 생기는 상황)을 전혀 제시하지 않는다. 직전 문장 \"We do not measure each area on its own and guess\"는 '따로 재고 어림한다'는 부정확성만 말할 뿐 '중복 계산'을 말하지 않는다. 따라서 그 해석에 필요한 선행 정보가 본문에 없다.\n\n(3) 오독 유도 구조: 해당 문장은 \"The gap between them ... and the awkward overlap ...\"으로 등위 접속되어, 바로 앞 주어인 '두 곡선 사이 간격(the gap between them)'이 가장 두드러진 지시 대상이 된다. 그러나 두 곡선 사이 영역에는 애초에 겹침이 존재하지 않는다. 즉 정관사 the가 가리킬 수 있는 유일한 문맥상 후보가 수학적으로 겹침이 아닌 대상이다.\n\n(4) 보강 자료가 오히려 악화: page4.vocab의 'overlap' 항목은 \"겹침, 중첩\"으로 일반적 정의만 주고, 두 번째 예문 \"There is a small overlap between the two shapes.\"(두 도형 사이에 작은 겹침이 있다)는 '두 영역이 서로 포개진다'는 오해를 정확히 강화한다. page3 translation_ko도 \"성가신 겹침\"으로 직역할 뿐 해소하지 않는다.\n\n(5) 교육과정 근거 부재: textbook_tieback.body_ko는 \"위쪽 함수에서 아래쪽 함수를 뺀 차를 구간에서 적분하면 한 번에 얻는다\"로 올바르게 서술하며 겹침/중첩 개념을 전혀 언급하지 않는다. tags에도 없다. 즉 'overlap'은 단원 개념이 아니라 근거 없는 수사적 장식이다.\n\n반박 가능한 부분: 정관사의 연상적(associative) 용법 자체는 영어에서 흔하며, 이 항목만이라면 주관적 지적에 그친다. 그러나 (2)(3)(4)가 결합되어 '중2 미적분 학습자가 두 영역이 포개진다고 오해할 소지'라는 실질적 결함이 파일 근거로 확인되므로 isReal=true. 다만 warn 수준(치명적 오류가 아닌 표현 정밀도 문제)이고 정관사 부분은 논쟁 여지가 있어 confidence=medium."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.sentences[13] (index 13), segments — \"can quietly\" / \"cancel\"",
+      "issue": "조동사 can이 부사와 함께 M(수식어)으로 태깅되어 동사구에서 분리됨. can은 술어동사의 일부이므로 V에 포함되어야 함 (V=\"can cancel\" 또는 \"can quietly cancel\").",
+      "evidence": "본문: \"So a curve that dips below can quietly cancel the area above it.\" / 파일: { \"role\": \"M\", \"text\": \"can quietly\", \"note\": \"조동사+부사\" }, { \"role\": \"V\", \"text\": \"cancel\" }. 같은 배치의 다른 지문은 모두 조동사를 V에 넣음 — 01.json \"can seem\", 04.json \"can never step\", \"must then read\"(중간 부사까지 V에 흡수), 09.json \"must guide\", 05.json \"can burn\". 또한 17.json 자체가 다른 문장에서는 부사만 단독 M으로 처리함(문장 8 \"then\", 문장 17 \"simply\", 문장 20 \"quietly\"). grammar_note \"so 결과 + 관계절 + 조동사 can\"도 can이 V임을 바로잡지 못함.",
+      "suggestion": "segments를 { \"role\": \"M\", \"text\": \"quietly\" }, { \"role\": \"V\", \"text\": \"can cancel\" } 로 분리하거나 V=\"can quietly cancel\"로 병합하여 배치 내 조동사 처리 관례와 일치시킬 것.",
+      "lens": "explanation",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "파일 확인 결과 지적이 정확하다. 17.json line 250-251에 `{ \"role\": \"M\", \"text\": \"can quietly\", \"note\": \"조동사+부사\" }` + `{ \"role\": \"V\", \"text\": \"cancel\" }`이 실재하며, note 자체가 \"조동사\"라고 인정하면서도 role은 M(수식어)으로 두어 술어동사를 분리했다. AUTHORING-GUIDE.md(line 204-215)의 role 정의는 V=동사, M=수식어(부사·전치사구·시간·장소)로, 조동사는 술어의 일부이므로 V에 속한다. 동일 배치의 코퍼스 관행도 일관되게 반대다: 04.json:225 V=\"can never step\", 04.json:298 V=\"must then read\"(중간 부사까지 V에 흡수), 01.json:136 V=\"can seem\", 05.json:116 V=\"can burn\", 08.json/13.json/06.json/02.json/03.json/11.json/14.json 모두 조동사를 V에 포함. 또한 17.json 자체가 내부적으로 모순된다 — 문장 8 M=\"then\", 문장 17 M=\"simply\", 문장 20 M=\"quietly\"(동일 부사 quietly를 V=\"measures\"와 분리해 단독 M 처리). 따라서 올바른 태깅은 M=\"quietly\" + V=\"can cancel\" 또는 V=\"can quietly cancel\"이다. repo 전체에서 조동사가 M에 들어간 사례는 15.json:227 \"may now\" 단 하나뿐으로, 관행이 아니라 동일 유형의 결함이다. grammar_note \"so 결과 + 관계절 + 조동사 can\"도 can을 조동사로 인지하면서 role 오류를 교정하지 못한다. 이 유형(M vs V/C 오태깅)은 프로젝트 audit REPORT.md에서 이미 반복 추적 중인 결함 범주다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "textbook/content/passages/2026-08-J/17.json — page2.questions[1] (빈칸 추론), choices / answer_index 4",
+      "issue": "정답 'could'만 조동사이고 나머지 4개(invents/forbids/hides/wastes)는 모두 3인칭 단수 일반동사여서, 문맥을 이해하지 못해도 형태적 이질성만으로 정답을 고를 수 있다. 변별력이 크게 떨어진다.",
+      "evidence": "choices: [\"invents\", \"forbids\", \"hides\", \"wastes\", \"could\"] / 본문: \"a well-chosen integral quietly measures what a ruler never <blank>.\" 같은 폴더 동월 지문들은 선지 품사를 통일한다 — 07.json ['silence','mystery','landscape','record','accident'], 16.json ['warm','hidden','silent','still','cheap'], 11.json·19.json는 전부 동사구.",
+      "suggestion": "선지를 한 품사로 통일할 것. 대동사 could를 정답으로 유지하려면 'would','can','did','might' 등 조동사로 5개를 맞추거나, 반대로 정답을 'measured' 같은 일반동사 형태로 바꾸고 나머지도 일반동사로 통일하라.",
+      "lens": "answer",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일로 직접 확인됨. textbook/content/passages/2026-08-J/17.json의 page2.questions[1] (빈칸 추론) choices는 [\"invents\",\"forbids\",\"hides\",\"wastes\",\"could\"]이고 answer_index는 4로 정답이 'could'다. 오답 4개는 모두 3인칭 단수 현재형 일반동사인데 정답만 조동사여서, 본문 이해 없이 형태적 이질성만으로 정답을 특정할 수 있다. 파일 자체의 해설(answers.explanations[1])도 \"could는 앞의 measures를 대신받아\"라며 대동사 용법임을 인정하고, page3.sentences[20] 주석도 \"could=대동사 measure\"로 표기해 정답이 나머지와 구조적으로 다른 범주임을 스스로 드러낸다. 동월 폴더 20개 지문의 빈칸 추론 선지를 전수 확인한 결과 지적의 비교 근거도 성립한다: 01/04/07/09/10/12/18은 단일 명사, 03/05/16은 단일 형용사, 02/06/08/11/13/15/19/20은 동일한 동사구 형태로 모두 품사·형태가 통일돼 있다. 유일한 예외인 14.json(['are','hide','doubt','forget','perform'], 정답 index 0)조차 다섯 개 모두 정형 동사 형태라 'could'만큼 범주적으로 튀지 않는다. 게다가 오답 4개(invents/forbids/hides/wastes)는 \"what a ruler never ___\" 문맥에서 의미적으로도 전부 성립 불가라 매력도가 0에 가깝다 — 이는 지적을 반박하기보다 결함을 가중한다. 따라서 동월 편집 표준에서 이탈한 실제 변별력 결함이며, 선지 형태 통일(오답을 조동사/대동사 후보로 교체하거나 정답을 동사형으로 재구성)이 필요하다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page4.vocab[5] (\"axis\").synonyms[\"baseline\"]",
+      "issue": "\"axis\"의 동의어로 제시된 \"baseline\"이 본문 문맥의 뜻(좌표축)과 일치하지 않는다. baseline은 '기준선/기준값(출발 기준)'이라는 뜻으로, 좌표평면의 축(x축/수평축)을 가리키는 말이 아니다. 학생이 그대로 외우면 오개념이 생긴다.",
+      "evidence": "본문: \"The integral of a function from one boundary to another equals the signed area between the graph and the horizontal axis.\" / \"The curve crosses the horizontal axis twice.\" — 여기서 axis는 좌표축이며 baseline으로 치환 불가(*the horizontal baseline*은 다른 뜻).",
+      "suggestion": "synonyms를 [\"coordinate line\"] 또는 빈 배열로 하고, 대신 대비 표현으로 \"horizontal axis / x-axis\"를 안내한다. 굳이 동의어가 필요하면 \"reference line\" 수준으로 낮춘다.",
+      "lens": "vocab",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "지적이 파일 근거로 확인됨. page4.vocab[5] (line 469-478)는 word \"axis\", meaning_ko \"축\", synonyms [\"baseline\"] (line 472)로 지적 위치가 정확히 일치한다.\n\n본문에서 axis는 일관되게 좌표축(수평축/x축)을 가리킨다: page1 body(line 26) \"the signed area between the graph and the horizontal axis\", \"Area above the axis counts as positive, while area below counts as negative\"; page3 sentence 10(line 219) \"between the graph and the horizontal axis\"; 한국어 번역(line 339) \"그래프와 수평축 사이\"; textbook_tieback(line 93) \"그래프와 x축 사이의 부호 있는 넓이\". 해당 vocab 항목 자신의 예문(line 475-476)도 \"Area above the axis\", \"The curve crosses the horizontal axis twice\"로 모두 좌표축 용법이다.\n\n영어 baseline은 '기준선/기준값(비교의 출발 기준)'을 뜻하며 좌표평면의 축(coordinate axis)의 동의어가 아니다. 치환 시 \"the horizontal baseline\"은 좌표축이 아닌 기준 수준/임계선의 뜻으로 의미가 바뀐다. 차트에서 0선을 baseline이라 부르는 느슨한 용법이 있으나, 이는 도메인 전용 비유적 표현일 뿐 어휘적 동의어가 아니며, 본 지문은 성취기준 12미적03-02(미적분 정적분의 활용) 연계 수학 지문이라 축=좌표축 개념이 핵심이다.\n\n가중 근거: 같은 vocab 리스트의 다른 항목들은 모두 타당한 동의어를 제시한다(region→area/zone, interval→range/span, subtract→deduct, ragged→jagged/uneven, boundary→limit/border). axis→baseline만 예외적으로 부정확하며, 더욱이 axis 항목의 유일한 동의어여서 학생이 참고할 올바른 대안이 없다. 그대로 암기하면 좌표축과 기준선을 혼동하는 오개념이 생긴다.\n\n심각도는 지적대로 warn이 적절하다(본문·번역 자체는 정확하고 vocab 동의어만 결함). 수정 방향: \"baseline\"을 제거하고 \"coordinate axis\" 또는 \"x-axis\" 등으로 대체 권장."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page4.vocab[9] (\"overlap\").synonyms[\"overlapping\"]",
+      "issue": "명사 overlap(pos: n.)의 동의어로 같은 어근의 동명사/형용사형 \"overlapping\"을 제시했다. 품사 불일치이자 동어반복이라 동의어로서 학습 가치가 없다.",
+      "evidence": "vocab 항목: {\"word\": \"overlap\", \"pos\": \"n.\", \"synonyms\": [\"overlapping\"]} / 본문: \"the awkward overlap simply disappears in the arithmetic.\"",
+      "suggestion": "명사 동의어로 \"intersection\", \"common region\" 등 실제 의미가 통하는 표현으로 교체하거나 synonyms를 빈 배열로 둔다.",
+      "lens": "vocab",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일에서 지적 내용이 그대로 확인된다. page4.vocab의 10번째 항목(인덱스 9, 513-521행)은 {\"word\": \"overlap\", \"pos\": \"n.\", \"meaning_ko\": \"겹침, 중첩\", \"synonyms\": [\"overlapping\"]}이고, 본문 인용(\"the awkward overlap simply disappears in the arithmetic.\")도 26행 및 예문(519행)과 일치한다.\n\n실제 결함으로 인정하는 근거:\n\n1. 동어반복 — 동일 어근 재활용. synonyms 필드의 존재 목적은 학습자에게 '다른 어휘'를 제시해 어휘량을 늘리는 것인데, overlap → overlapping은 동일 lemma에 -ing 접미사를 붙인 형태일 뿐이다. 한국 고등학생 학습자가 이 쌍에서 얻는 새 어휘는 0이다. intersection, coincidence, convergence, common area 같은 실질적 대안이 충분히 존재한다.\n\n2. 해당 항목 자신의 예문에 대입 불가. \"There is a small overlapping between the two shapes\"는 비문에 가깝고, \"the awkward overlapping simply disappears in the arithmetic\"도 원문의 자연스러움을 잃는다. 동의어의 최소 요건인 치환 가능성을 충족하지 못한다.\n\n3. 같은 파일 내 자체 기준과의 불일치가 결정적. 동일 vocab 배열의 다른 모든 항목은 예외 없이 별개 lemma를 제시한다(region→area/zone, strip→band/slice, boundary→limit/border, interval→range/span, subtract→deduct, subtlety→nuance, ragged→jagged/uneven, arithmetic→calculation/computation). overlap만 유일하게 자기 어근을 재활용한 이례적 항목이며, 이는 의도된 편집 판단이 아니라 누락·실수임을 강하게 시사한다.\n\n다만 지적 문구 중 \"품사 불일치\"라는 표현은 과장이다. overlapping은 동명사로서 명사적으로 기능할 수 있으므로 절대적 품사 오류는 아니다. 그러나 지적의 핵심인 \"동어반복이라 동의어로서 학습 가치가 없다\"는 부분은 파일 근거로 명확히 성립한다.\n\n심각도는 warn이 적절하다. 사실 오류나 정답 키 손상은 없고 학생을 오답으로 유도하지도 않으며, 동의어 슬롯 하나가 낭비된 콘텐츠 품질 문제다. 지적이 그 이상을 주장하지 않는 점도 타당하다."
+      }
+    }
+  ],
   "minors": [
     {
       "severity": "minor",
-      "location": "page1.body, 3rd paragraph, sentence: \"We do not measure each area on its own and guess.\"",
-      "issue": "부정 범위(scope of negation)가 모호하다. 의도는 '각 넓이를 따로 재고 어림하는 방식을 쓰지 않는다'(즉 measure-then-guess 접근 전체를 부정)이지만, 문자 그대로는 'measure하지도 guess하지도 않는다'로도 읽혀 뒤 문장의 'Instead, we ... integrate'와 논리적으로 살짝 어긋나 보일 수 있다.",
-      "evidence": "\"We do not measure each area on its own and guess. Instead, we subtract the lower function from the upper one and integrate that single difference across the interval.\"",
-      "suggestion": "의도를 분명히 하려면 'We do not measure each area on its own and then guess (at the total).' 처럼 then을 넣거나, 'Rather than measuring each area on its own and guessing, we ...' 구조로 바꾸면 부정 범위가 명확해진다. 다만 뒤의 Instead로 맥락이 회복되어 실질 오독 위험은 낮다.",
+      "location": "page1.body, 3rd paragraph: \"We do not measure each area on its own and guess.\"",
+      "issue": "부정의 범위(scope)가 모호하고 guess가 목적어 없이 끝나 비문에 가깝다. 'do not (measure ... and guess)'인지 'do not measure ... and (we) guess'인지 읽기에 따라 갈리며, 무엇을 어림하지 않는다는 것인지 드러나지 않는다. 다음 문장의 Instead와 대비를 이루려면 부정 대상이 명확해야 한다.",
+      "evidence": "\"We do not measure each area on its own and guess. Instead, we subtract the lower function from the upper one...\"",
+      "suggestion": "\"We do not measure each area on its own and then guess at the result.\" 또는 \"We do not measure the two areas separately and guess how they combine.\"처럼 guess의 대상을 명시.",
       "lens": "language"
     },
     {
       "severity": "minor",
-      "location": "page3.sentences[2] (index 2), segments/grammar_note",
-      "issue": "의문사 what을 동사에 붙여 \"What is\"를 통째로 V로 태깅해, 보어(C)여야 할 의문사 what의 구문 역할이 사라졌다.",
-      "evidence": "본문 [2] \"What is the exact area of the odd shape between that curve and the axis below it?\" — 여기서 the exact area가 S로 태깅됐으므로 what은 주격보어(C)이고 is만 V다. 태그는 {\"role\":\"V\",\"text\":\"What is\"}로 what을 V에 흡수시켰다.",
-      "suggestion": "what을 C(보어), is를 V로 분리하거나 grammar_note에 what=보어임을 명시. 판매를 막을 오류는 아니며 구문 정밀도 차원의 미세 수정.",
-      "lens": "explanation"
+      "location": "page1.body, 4th paragraph: \"...the drift of a satellite...\"",
+      "issue": "volume of a dam(부피), load on a curved bridge(하중)와 병렬로 놓인 항목인데 'drift of a satellite'는 적분의 표준 응용 표현으로 어색하다. 적분으로 구하는 양은 보통 이동 거리(distance travelled)나 궤도 변화이며, drift는 '표류·편류'라는 모호한 어감이라 학생이 무엇을 적분하는지 파악하기 어렵다. 국문 번역도 '위성의 이동'으로 원문보다 넓게 옮겨 불일치가 생겼다.",
+      "evidence": "\"It is the tool engineers trust to find the volume of a dam, the drift of a satellite, or the load on a curved bridge.\" / 번역 [19] \"댐의 부피, 위성의 이동, 혹은 휘어진 다리에 걸리는 하중\"",
+      "suggestion": "\"the distance travelled by a satellite\" 또는 \"the path of a satellite\"로 바꾸고 번역을 그에 맞춰 정렬.",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko 문장 [20]",
+      "issue": "시제 오역: 'what a ruler never could'(현재까지 이어지는 일반 진술, could=대동사 measure)를 과거완료적 '재지 못했던 것'으로 옮겨, 앞의 현재시제 measures와 시제 축이 어긋난다.",
+      "evidence": "영문: \"a well-chosen integral quietly measures what a ruler never could.\" / 번역: \"잘 고른 적분이 자로는 결코 재지 못했던 것을 조용히 재어 낸다.\"",
+      "suggestion": "\"자로는 결코 잴 수 없는 것을 조용히 재어 낸다\"로 수정.",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko 문장 [18]",
+      "issue": "강조어 far 누락: 'far more than'의 비교급 강조(훨씬)가 번역에 반영되지 않았다. page3 sentences의 grammar_note에도 '비교급 강조 far'로 명시되어 있어 학습 포인트가 번역에서 사라진다.",
+      "evidence": "영문: \"the definite integral is far more than a neat trick for tidy textbook figures.\" (segment note: \"비교급 강조 far\") / 번역: \"정적분은 깔끔한 교과서 도형을 위한 산뜻한 요령 그 이상이다.\"",
+      "suggestion": "\"~ 산뜻한 요령 그 이상, 훨씬 그 이상이다\" 또는 \"단순한 요령을 훨씬 넘어선다\"로 far를 살릴 것.",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko 문장 [19]",
+      "issue": "어휘 오역: 'the drift of a satellite'의 drift(표류/궤도 이탈, 적분으로 누적 계산하는 대상)를 단순히 '이동'으로 옮겨 의미가 흐려진다.",
+      "evidence": "영문: \"to find the volume of a dam, the drift of a satellite, or the load on a curved bridge\" / 번역: \"댐의 부피, 위성의 이동, 혹은 휘어진 다리에 걸리는 하중\"",
+      "suggestion": "\"위성의 표류(궤도 이탈)\" 정도로 구체화.",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko 문장 [2]",
+      "issue": "어휘 오역: 'odd shape'의 odd는 '이상한/기묘한'인데 '낯선'으로 옮겨, 1문장의 'a strange question(이상한 질문)'과 이루는 어휘 호응이 약해진다.",
+      "evidence": "영문: \"What is the exact area of the odd shape between that curve and the axis below it?\" / 번역: \"그 곡선과 그 아래 축 사이에 있는 그 낯선 도형의 정확한 넓이는 얼마일까?\"",
+      "suggestion": "\"그 기묘한(이상한) 도형\"으로 수정.",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "textbook/content/passages/2026-08-J/17.json — page1.body 2단락 <u>definite integral</u>",
+      "issue": "본문에 밑줄이 2개(<u>melts smoothly onto the curve</u>, <u>definite integral</u>) 있으나 밑줄을 인용하는 문항은 함의 추론 1개뿐이다. 쓰이지 않는 밑줄이 남아 있어 학생이 '밑줄 친' 문항에서 어느 밑줄인지 혼동할 수 있다.",
+      "evidence": "body 밑줄 목록: ['melts smoothly onto the curve', 'definite integral'] / 밑줄 인용 문항은 questions[2] \"윗글의 밑줄 친 melts smoothly onto the curve 가 의미하는 바로…\" 하나뿐.",
+      "suggestion": "<u>definite integral</u>의 밑줄 태그를 제거하거나(용어 강조는 다른 서식 사용), 해당 밑줄을 활용하는 문항을 추가하라.",
+      "lens": "answer"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[10] (\"ragged\").examples[0].en",
+      "issue": "예문 \"The ragged staircase of tops melts onto the curve.\"에서 본문의 소유격 한정사 their를 삭제해 \"of tops\"가 무관사 복수로 남아 어색하다(무엇의 꼭대기인지 불명).",
+      "evidence": "본문 원문: \"the ragged staircase of their tops melts smoothly onto the curve\" → 예문에서는 their가 빠져 \"of tops\"가 됨.",
+      "suggestion": "\"The ragged staircase of the strips' tops melts onto the curve.\" 또는 \"The strips form a ragged staircase along the curve.\"로 수정.",
+      "lens": "vocab"
     }
   ],
   "blockers": [],
   "counts": {
-    "raw": 2,
-    "verified": 0,
-    "confirmed": 0,
-    "minor": 2
+    "raw": 16,
+    "verified": 8,
+    "confirmed": 6,
+    "minor": 8
   }
 }

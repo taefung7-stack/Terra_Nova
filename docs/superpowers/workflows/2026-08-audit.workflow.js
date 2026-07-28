@@ -11,7 +11,7 @@ export const meta = {
 const FINDING_SCHEMA = {
   type: 'object', additionalProperties: false, required: ['lens', 'findings'],
   properties: {
-    lens: { type: 'string', enum: ['language', 'explanation', 'translation', 'answer'] },
+    lens: { type: 'string', enum: ['language', 'explanation', 'translation', 'answer', 'vocab'] },
     findings: {
       type: 'array', items: {
         type: 'object', additionalProperties: false,
@@ -34,10 +34,11 @@ const VERDICT_SCHEMA = {
 }
 
 const LENSES = [
-  { key: 'language', focus: '영문 본문(page1.body)의 문법 오류, 비문, 어색한 표현, 학년 CEFR 수준 적합성. body만 본다. 단순 문체 취향은 minor 이하로.' },
+  { key: 'language', focus: '영문 본문(page1.body)의 문법 오류, 오타(철자), 비문, 어색한 표현, 학년 CEFR 수준 적합성, 단락 구분·논리 전개의 가독성, 내용의 사실적 정확성(과학·역사 등 개념 오류는 warn 이상). 단순 문체 취향은 minor 이하로.' },
   { key: 'explanation', focus: 'page3 구문분석(sentences)·grammar_note와 answers.explanations 해설이 본문 근거와 일치하는지, 비약/오류가 있는지. 구문 역할(S/V/O/C/M) 오태깅 포함.' },
   { key: 'translation', focus: 'page3.translation_ko가 영문 본문을 정확히 옮겼는지 — 오역·누락·과장. 문장 번호 단위로 대조.' },
-  { key: 'answer', focus: '각 문제(page2.questions)의 정답(answer_index/model_answer)이 본문 근거로 타당한지, 오답 선지의 변별력·함정이 적절한지. 정답 오류는 blocker.' },
+  { key: 'answer', focus: '각 문제(page2.questions)의 정답(answer_index/model_answer)이 본문 근거로 타당한지, 오답 선지의 변별력·함정이 적절한지. "밑줄 친 …" stem이 인용한 구가 본문 <u>밑줄</u>과 정확히 일치하는지. 정답 오류는 blocker.' },
+  { key: 'vocab', focus: 'page4.vocab 어휘 검수: ① word가 본문(page1.body)에 실제 등장하는지 ② meaning_ko가 본문 문맥의 뜻과 일치하는지 ③ synonyms/antonyms가 정확한지(품사·의미 불일치는 warn 이상) ④ examples 예문(en)이 문법적으로 옳고 단어 뜻을 잘 보여주는지, ko 대역이 정확한지 ⑤ page1.gloss_extra의 term·ko 정확성. 학년 대비 너무 쉬운 기초어는 warn.' },
 ]
 
 function reviewPrompt(t, lens) {

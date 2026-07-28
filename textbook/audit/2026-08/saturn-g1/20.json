@@ -1,22 +1,128 @@
 {
   "grade": "saturn-g1",
   "seq": 20,
-  "confirmed": [],
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-08/20.json — page1.body, 2문단 첫 문장 (page3 sentences[5], translation_ko [5])",
+      "issue": "\"a shared code together\"에서 'shared'와 'together'가 의미상 중복이며, 동사 'agree on'에도 이미 '합의/공동'의 뜻이 내포되어 있어 3중 중복이다. 원어민 기준 어색한 표현(비문은 아니나 redundant).",
+      "evidence": "\"To store a letter, we first agree on a shared code together.\" (page1.body 2문단 첫 문장) / page3 segments: { \"role\": \"M\", \"text\": \"on a shared code together.\" } / translation_ko: \"[5] 글자 하나를 저장하려면, 우리는 먼저 공유된 부호를 함께 정한다.\"",
+      "suggestion": "'together'를 삭제하여 \"To store a letter, we first agree on a shared code.\"로 수정. page3 sentences[5]의 M 세그먼트도 \"on a shared code.\"로, translation_ko [5]도 \"우리는 먼저 공유된 부호를 정한다.\"로 함께 수정해야 3면 정합성이 유지된다.",
+      "lens": "language",
+      "verdict": {
+        "isReal": true,
+        "confidence": "medium",
+        "reason": "파일 확인 결과 지적된 텍스트가 실제로 존재한다. page1.body 2문단 첫 문장은 \"To store a letter, we first agree on a shared code together.\"이며, page3 sentences[5]는 이를 그대로 분절해 { \"role\": \"M\", \"text\": \"on a shared code together.\" }로 담고, translation_ko [5]도 \"우리는 먼저 공유된 부호를 함께 정한다\"로 '함께'를 번역에 반영한다. 지적의 위치·인용은 모두 정확하다.\n\n언어적 타당성: 주어가 복수 'we'인 'agree on'은 이미 상호성을 내포하므로 'together'는 잉여이고, 'a shared code'의 'shared' 역시 공동 보유를 뜻해 'together'와 의미가 겹친다. 따라서 'together'는 명백히 군더더기다. 다만 'shared'는 ASCII 같은 '공통 약속 부호'라는 본문 주제상 의미를 담당하므로 정당하며, 지적이 말한 '3중 중복'은 다소 과장이다. 실질 결함은 'shared/together' 2중 중복(특히 'together' 불필요)이다.\n\n결정적 내부 근거: 같은 파일 page4 vocab의 \"store\" 예문은 동일 문장을 \"To store a letter, we first agree on a code.\"로 축약해 인용한다. 즉 파일 자체가 축약형을 자연스러운 형태로 취급하고 있어, page1/page3 버전에만 잉여어가 남아 있음을 뒷받침한다.\n\n또한 이 지문은 lexile 840L / ar_level 6.0의 수능형 모의 지문으로, 나머지 문장들(\"Eight bits form one byte\", \"a computer chops the signal into tiny pieces\")은 간결하게 다듬어져 있어 해당 문장만 문체적으로 튄다.\n\n등급이 error가 아닌 warn이고 지적 스스로 \"비문은 아니나 redundant\"라고 범위를 한정한 점에서, 문체 경고로서 정확하다. '3중'이라는 표현의 과장 때문에 confidence는 medium으로 둔다. 수정 시 'together' 삭제(또는 'shared' 유지 후 'together' 제거)만으로 충분하며, 수정하면 page3 segments와 translation_ko [5]도 함께 동기화해야 한다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.sentences[2] (index 3), lines 125, 127",
+      "issue": "\"write A as B\" 구문에서 as 전치사구가 목적어 안에 흡수되어 O로 태깅되었다. write의 목적어는 \"on\"/\"off\"이고 \"as 1\"/\"as 0\"은 M(전치사구)이다.",
+      "evidence": "태깅: { \"role\": \"O\", \"text\": \"on as 1\" }, { \"role\": \"O\", \"text\": \"off as 0,\" } — 반면 같은 파일 sentences[5](index 6)는 동일한 'V+O+as구' 구조를 { \"role\": \"O\", \"text\": \"that number\" }, { \"role\": \"M\", \"text\": \"as a neat row of eight bits.\" }로 올바르게 분리한다.",
+      "suggestion": "O=\"on\" / M=\"as 1\", O=\"off\" / M=\"as 0,\"로 분리해 index 6과 태깅 기준을 일치시킬 것.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 확인 결과 지적이 정확하다. page3.sentences[2](index 3)의 line 125는 { \"role\": \"O\", \"text\": \"on as 1\" }, line 127은 { \"role\": \"O\", \"text\": \"off as 0,\" }로 as 전치사구가 목적어 안에 흡수되어 있다. write의 실제 목적어는 스위치 상태를 가리키는 \"on\"/\"off\"이며, \"as 1\"/\"as 0\"은 표현 방식을 나타내는 as구(부가어/목적보어)로 O 밖에 분리되어야 한다. 결정적으로 동일 파일 sentences[5](index 6, lines 163-165)가 완전히 같은 'V+O+as구' 구조를 { \"role\": \"V\", \"text\": \"keeps\" }, { \"role\": \"O\", \"text\": \"that number\" }, { \"role\": \"M\", \"text\": \"as a neat row of eight bits.\" }로 올바르게 분리하고 있어, 파일 자체 태깅 관례와의 내부 불일치가 명확히 입증된다. (as구를 M으로 볼지 C(목적보어)로 볼지는 문법 체계에 따라 이견이 있을 수 있으나, 어느 쪽이든 O 세그먼트 내부에 포함시킨 현재 태깅은 결함이며 파일 자체 관례는 M이다.)"
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page4.vocab[5] (code) — line 430",
+      "issue": "synonyms의 \"cipher\"가 본문 문맥의 code 의미와 불일치한다. 본문의 code는 '문자↔숫자 대응을 약속한 부호 체계(ASCII 등)'인데, cipher는 '비밀을 감추기 위한 암호(암호화 방식)'를 뜻해 은닉·보안 함의가 핵심이다. meaning_ko가 스스로 '부호, 코드(약속된 표현 규칙)'라고 정의해 놓고 동의어로 cipher를 제시하면 학생이 '코드=암호'로 오해한다.",
+      "evidence": "본문: \"To store a letter, we first agree on a shared code together. In one common code, the letter A is the number 65\" / 해당 항목: \"meaning_ko\": \"부호, 코드(약속된 표현 규칙)\", \"synonyms\": [\"cipher\"]",
+      "suggestion": "cipher를 빼고 본문 의미에 맞는 \"encoding\" 또는 \"system of symbols\"(혹은 동의어를 비우고 examples로 대체)로 교체할 것.",
+      "lens": "vocab",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "파일 근거로 확인됨. 20.json line 427-435의 vocab 항목은 meaning_ko가 \"부호, 코드(약속된 표현 규칙)\"이고, 두 예문 모두 인코딩 의미(\"In one common code, A is the number 65\", \"The code links each letter to a number\")다. line 21 본문도 \"we first agree on a shared code together. In one common code, the letter A is the number 65\"로, ASCII식 공개 문자-숫자 대응 체계를 뜻하며 은닉·보안 함의가 전혀 없다.\n\n그런데 line 430의 synonyms는 [\"cipher\"] 단 하나다. cipher는 암호학에서 code(어휘 단위 치환)와 구분되는 용어이긴 하나, 두 갈래 모두 정의적 목적이 '의도치 않은 독자로부터 의미를 감추는 것'이다. ASCII나 UTF-8을 cipher라고 부르지 않는다. 본문 문장에 대입하면(\"we first agree on a shared cipher\") 비밀 통신 상황으로 의미가 바뀐다.\n\n같은 vocab 리스트의 인접 항목들이 이 파일의 자체 기준을 보여준다: store → keep/save, value → number, continuous → smooth/unbroken, sampling → measuring 모두 문맥 대체 가능한 평이한 동의어다. cipher만 이 기준에서 벗어난다.\n\n반박 여지: 일반 시소러스에서 code/cipher를 동의어로 싣기도 하므로 어휘적으로 날조된 짝은 아니다. 그러나 이 항목은 지문 연동 글로스이고, 파일 자체 관행이 문맥 적합 동의어이므로 사전적 동의성은 기준이 되지 못한다. 결정적 근거는 외부 판단 없이 같은 항목 내부에서 확인된다 — meaning_ko가 \"약속된 표현 규칙\"이라 스스로 정의해 놓고 유일한 동의어로 은닉 함의 단어를 제시하는 자기모순이다. 한국 학습자는 이미 암호 ↔ code/password를 느슨하게 대응시키므로 '코드=암호' 오해를 실제로 유발한다.\n\n심각도 warn 타당: 정의 자체는 정확하고 항목이 깨진 것은 아니다. encoding, system, scheme 등으로 교체 권장."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page1.gloss_extra[0..2] vs page4.vocab[1],[3],[4] — lines 25-27, 383-425",
+      "issue": "gloss_extra의 3개 항목(byte, continuous, signal)이 page4.vocab에 동일 표제어·동일 뜻으로 그대로 중복된다. gloss_extra는 본문 옆 즉석 주석, page4.vocab은 별도 어휘 학습란인데 3개 전부가 겹쳐 gloss_extra가 사실상 무의미해지고 지면이 낭비된다. 특히 byte/continuous의 ko는 문자열까지 완전히 동일하다.",
+      "evidence": "gloss_extra: { \"term\": \"byte\", \"ko\": \"바이트(8비트 묶음)\" }, { \"term\": \"continuous\", \"ko\": \"연속적인, 끊김 없는\" }, { \"term\": \"signal\", \"ko\": \"신호\" } / page4.vocab: \"word\": \"byte\", \"meaning_ko\": \"바이트(8비트 묶음)\" … \"word\": \"continuous\", \"meaning_ko\": \"연속적인, 끊김 없는\" … \"word\": \"signal\", \"meaning_ko\": \"신호\"",
+      "suggestion": "gloss_extra는 page4.vocab에 없는 본문 難語(예: digit, chop, mark, plain, row)로 교체하거나, 중복 항목을 gloss_extra에서 제거할 것.",
+      "lens": "vocab",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 확인 결과 지적이 사실로 확인됨. page1.gloss_extra(24-28행)는 byte/continuous/signal 3개 항목뿐인데, 이 3개 모두가 page4.vocab에 표제어로 재등장한다: vocab[1] byte(383-392행), vocab[3] continuous(404-414행), vocab[4] signal(415-425행). 한국어 뜻은 세 항목 전부 문자열까지 완전 동일하다 — \"바이트(8비트 묶음)\", \"연속적인, 끊김 없는\", \"신호\". (지적서는 byte/continuous 둘만 완전 일치라고 했으나 실제로는 signal의 \"신호\"도 정확히 일치하므로, 오차는 과장이 아니라 과소평가 방향이며 지적의 근거를 약화시키지 않는다.)\n\n반박 시도 및 기각 사유: gloss_extra(본문 옆 즉석 주석)와 page4.vocab(어휘 학습란)은 역할이 달라 일부 중복이 설계상 허용될 수 있고, 실제로 본문에서 <u>로 강조된 bit·sampling도 page4.vocab에 함께 실려 있어 \"중복 금지\" 규칙은 존재하지 않는다. 그러나 이는 지적의 실질을 무너뜨리지 못한다. gloss_extra 3개가 100% 중복이라 이 필드가 제공하는 고유 정보가 전무하며, page4에서 이미 pos·synonyms·antonyms·예문 2개까지 완비된 단어들을 반복할 뿐이다. 반면 본문에는 chain, chops, wave, dots, squeezed 등 주석 대상이 될 만한 미주석 어휘가 남아 있어, 지면 낭비이자 어휘 배치 기획의 실제 누락에 해당한다.\n\n심각도: error가 아닌 warn 등급이 적절하며 보고서 등급과 일치한다. 스키마 위반이나 렌더링 오류는 없고 순수한 중복/지면 낭비 문제다. 권고 조치는 gloss_extra 3개 항목을 page4.vocab에 없는 본문 어휘로 교체하는 것."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page4.vocab[2] (sampling) — line 397",
+      "issue": "synonyms의 \"measuring\"이 sampling의 동의어로 부정확하다. 본문에서 measure는 sampling의 하위 동작(쪼갠 뒤 각 조각을 '측정')일 뿐이며, sampling의 핵심인 '일정 간격으로 표본을 뽑는' 의미를 담지 못한다. 두 단어를 동의어로 제시하면 표본화 개념(핵심 개념어 '샘플링')을 흐린다.",
+      "evidence": "본문: \"a computer chops the signal into tiny pieces and measures each small piece. This step is called <u>sampling</u>\" — 즉 chopping+measuring 전체가 sampling이지 measuring=sampling이 아니다. 해당 항목: \"synonyms\": [\"measuring\"]",
+      "suggestion": "\"measuring\"을 제거하고 동의어를 비우거나, 굳이 넣는다면 \"digitizing\"처럼 상위 개념 대신 설명형 주석으로 처리할 것.",
+      "lens": "vocab",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "지적이 파일 근거로 확인된다.\n\n1) 인용 정확성: page1.body 실제 텍스트가 \"a computer chops the signal into tiny pieces and measures each small piece. This step is called <u>sampling</u>\"로 지적의 인용과 일치. 해당 항목도 20.json:397 \"synonyms\": [\"measuring\"]로 위치·내용 모두 정확.\n\n2) 의미 관계: \"This step\"이 가리키는 것은 chops+measures 전체다. page3 segments가 이를 뒷받침 — index 11(210-222행)이 CONJ \"and\"로 묶인 두 동사 chops/measures를 갖고, index 12(223-235행)의 주어가 \"This step\"으로 그 복합 동작을 받는다. 즉 measuring은 sampling의 하위 동작(한쪽 접속항)일 뿐이며, sampling의 정의적 요소인 '이산적 구간마다 표본을 취함'이 빠진다. 본문 스스로 \"the real world is smooth and continuous\"와 대비시키므로, 연속적 측정과 구별되는 이 discretization이 핵심이다.\n\n3) 프로젝트 규칙 위반: audit/2026-07/elementary-REPORT.md:89가 \"vocab synonyms 의미 정합: drop≠bit, member≠part 등 표제어와 동의관계 아닌 단어 금지\"로 명문화. 동일 유형 선례 2건 — MARS-11(67행) drop(방울)≠bit(조각), MARS-14(69행) member(구성원)≠part(부분/역할), 모두 \"의미 상이 — 교체/삭제 권장\". sampling(표본화)≠measuring(측정)은 같은 부류이며, measuring은 실제 과정의 일부라 전체로 오인되기 더 쉽다.\n\n4) 코퍼스 대조로 이례성 확인: 2026-08의 다른 -ing 계열 동의어는 전부 표제어 전체의 등가 대체어다(multiplication→multiplying, arrangement/permutation→ordering, flattening→leveling, persuasion→convincing, population aging→demographic aging). sampling→measuring만 유일하게 표제어의 부분 동작을 가리킨다.\n\n5) 실질 피해: sampling은 부수 카드가 아니라 Q3 정답 \"(B) sampling\"이자 key_terms {\"en\":\"sampling\",\"ko\":\"표본화\"}(356-364행), page2 hints(75행)에 등장하는 핵심 개념어다. 평가 대상 용어의 정의를 흐린다.\n\n반론 검토: synonyms가 느슨한 '관련어' 필드라는 반박을 검토했으나 기각. schemas/passage.schema.json:187은 타입 제약(0~4개, maxLength 30)뿐 의미 검증이 없고, render-mid.js:361은 \"≈\"로 렌더하지만 그건 mid 레벨 렌더러이고 본 파일 계열의 render.js:343은 명시적으로 \"동의어\" 라벨을 쓴다. 더 결정적으로, 스키마가 느슨하다고 해서 허용되지는 않는다 — 스키마가 비워둔 의미 기준을 audit 리포트가 \"다음 달 저작 시 예방\" 규칙으로 공급하고 있고(8월 파일이 정확히 그 대상), 코퍼스 실사용 패턴이 그 기준의 준수를 독립적으로 확인해 준다.\n\n심각도도 warn이 적절 — 선례 2건 모두 🟢 경미로 분류되었다. 조치는 measuring 삭제 또는 표본화 전체를 담는 어휘(예: discrete measurement)로 교체."
+      }
+    }
+  ],
   "minors": [
     {
       "severity": "minor",
-      "location": "page1.body, 2문단 첫 문장",
-      "issue": "'shared'와 'together'가 의미상 중복되는 군더더기(pleonasm) 표현이다. 부호를 '공유한다(shared)'는 것 자체가 이미 '함께(together)' 정한다는 뜻을 내포하므로 together가 불필요하다.",
-      "evidence": "To store a letter, we first agree on a shared code together.",
-      "suggestion": "'together'를 삭제하여 'we first agree on a shared code.'로 하거나 'shared'를 빼고 'agree on a code together'로 다듬는다.",
+      "location": "C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-08/20.json — page1.body, 4문단 (page3 sentences[17], translation_ko [17])",
+      "issue": "'any file'(전칭)과 'in just a few seconds'(절대적 시간)의 결합이 사실적으로 과장이다. 대용량 영상 파일은 전 세계로 몇 초 만에 전송되지 않는다. 수사적 표현으로 이해될 여지는 있으나, 이 문장이 빈칸 정답 'be copied and shared perfectly'의 직접 근거로 쓰이므로 과장 강도를 낮추는 편이 안전하다.",
+      "evidence": "\"Second, any file can be squeezed, sent, and shared across the whole world in just a few seconds.\" (page1.body 4문단)",
+      "suggestion": "'any file' → 'a file', 또는 'in just a few seconds' → 'in seconds or minutes' / 'very quickly' 등으로 완화. 예: \"Second, a file can be squeezed, sent, and shared across the whole world very quickly.\" 수정 시 translation_ko [17]도 동반 수정.",
       "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.sentences[17] (index 18), line 305",
+      "issue": "동사구 태그 안에 부사 \"perfectly\"가 포함되어 V/M 경계가 같은 파일 내 다른 문장과 어긋난다.",
+      "evidence": "태깅: { \"role\": \"V\", \"text\": \"can be copied and shared perfectly.\" } — 반면 sentences[16](index 17)은 { \"role\": \"V\", \"text\": \"can be squeezed, sent, and shared\" }, { \"role\": \"M\", \"text\": \"across the whole world\" }로 수식어를 분리한다.",
+      "suggestion": "V=\"can be copied and shared\" / M=\"perfectly.\"로 분리할 것.",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko 문장 [17]",
+      "issue": "'across the whole world'의 수식 범위가 어긋나 '압축'까지 걸리는 어색한 문장이 됨 (파일이 '전 세계로 압축된다'로 읽힘)",
+      "evidence": "영문: \"Second, any file can be squeezed, sent, and shared across the whole world in just a few seconds.\" / 번역: \"[17] 둘째, 어떤 파일이든 단 몇 초 만에 전 세계로 압축되고 전송되며 공유될 수 있다.\"",
+      "suggestion": "\"둘째, 어떤 파일이든 압축되어 단 몇 초 만에 전 세계로 전송되고 공유될 수 있다.\" 처럼 '전 세계로'가 전송·공유에만 걸리도록 어순을 조정",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page2.questions[0].choices[1] / answers.explanations[0].rationales[1]",
+      "issue": "요지 문제 2번 선지의 오답 근거가 본문과 미묘하게 어긋난다. 해설은 \"표본을 많이 취하면 원본에 가까워진다고 했지 복사본이 항상 더 나쁘다고 하지 않았다\"고 하나, 본문은 표본화 복사본이 원본과 '동일'하다고는 말하지 않고 오히려 \"the closer the copy sits to the original\"로 근사에 그침을 시사한다. 즉 선지 1은 '항상(always) 훨씬(far) 나쁘다'라는 과장 어구 때문에만 오답이 되며, 해설이 짚은 논거는 정확도가 떨어진다.",
+      "evidence": "본문: \"The more samples we take, the closer the copy sits to the original.\" / 해설: \"표본을 많이 취하면 원본에 가까워진다고 했지 복사본이 항상 더 나쁘다고 하지 않았다.\"",
+      "suggestion": "해당 rationale을 '본문은 표본을 늘릴수록 원본에 가까워진다고 하여 복제 품질을 긍정적으로 서술하므로, 복사본이 항상 훨씬 열등하다는 진술은 글의 요지와 반대다' 정도로 과장 어구(always/far)를 겨냥해 다듬으면 논리가 더 정확해진다.",
+      "lens": "answer"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[4] (signal) — line 419",
+      "issue": "synonyms의 \"wave\"가 엄밀한 동의어가 아니다. wave는 signal이 취하는 하나의 형태이며, signal은 '전달되는 정보/신호'라는 더 넓은 개념이다. 본문에서도 signal과 wave는 서로 다른 문장에서 다른 층위로 쓰인다.",
+      "evidence": "본문: \"a computer chops the <b>signal</b> into tiny pieces\" (11문장) vs \"it turns a smooth <b>wave</b> into a list of numbers\" (12문장) — 두 단어가 각각 별도 문장에서 별개 지시 대상으로 사용된다.",
+      "suggestion": "\"wave\"를 빼거나 관련어 표시로 낮추고, 동의어로는 \"transmission\" 정도 또는 공란 처리.",
+      "lens": "vocab"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[6] (store) — line 438",
+      "issue": "고1(saturn-g1, Lexile 840L / AR 6.0) 수준 대비 store(저장하다)는 중학 기초어로 지나치게 쉬워 12개 어휘 지면 중 한 칸을 소모할 가치가 낮다. 반면 본문의 digit, chop, plain, row, mark 등은 미수록이다.",
+      "evidence": "메타: \"lexile\": \"840L\", \"ar_level\": 6.0 / 해당 항목: \"word\": \"store\", \"meaning_ko\": \"저장하다\", \"synonyms\": [\"keep\", \"save\"] — 동의어 keep, save 역시 모두 기초어다.",
+      "suggestion": "store 대신 본문의 \"That is enough for every letter, <b>digit</b>, and mark on a keyboard\"의 digit(자릿수/숫자) 또는 \"chops the signal\"의 chop을 수록할 것.",
+      "lens": "vocab"
     }
   ],
   "blockers": [],
   "counts": {
-    "raw": 1,
-    "verified": 0,
-    "confirmed": 0,
-    "minor": 1
+    "raw": 13,
+    "verified": 7,
+    "confirmed": 5,
+    "minor": 6
   }
 }

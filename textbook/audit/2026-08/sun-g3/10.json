@@ -1,0 +1,73 @@
+{
+  "grade": "sun-g3",
+  "seq": 10,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page4.vocab[10] \"beaker\" → synonyms",
+      "issue": "synonyms에 \"flask\"를 넣었으나 beaker(비커)와 flask(플라스크)는 형태·용도가 다른 별개의 실험 기구로 동의어가 아니다. 과학 지문에서 기구 명칭을 동의어로 묶으면 개념 오류가 된다.",
+      "evidence": "page1.body: \"we must separate the two halves of the reaction into two beakers\" / page4.vocab: {\"word\":\"beaker\", \"meaning_ko\":\"비커(실험용 유리 용기)\", \"synonyms\":[\"flask\"]}",
+      "suggestion": "synonyms를 빈 배열로 두거나, 굳이 넣는다면 상위어 성격의 \"container\" 수준으로 바꾼다. flask는 제거 권장.",
+      "lens": "vocab",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 근거로 확인됨. 10.json:516-519 page4.vocab[10]에 {\"word\":\"beaker\",\"meaning_ko\":\"비커(실험용 유리 용기)\",\"synonyms\":[\"flask\"]}가 지적 그대로 존재하며, page1.body(line 26) \"separate the two halves of the reaction into two beakers\"도 인용대로 확인된다.\n\n지적 내용도 타당하다. beaker(직벽·넓은 입구 원통형)와 flask(좁은 목·삼각/둥근 몸통)는 형태와 용도가 다른 별개 기구다. 특히 이 지문은 갈바니 전지 맥락(line 240 \"In one beaker\", line 254 \"In the other beaker\", line 468 \"Each electrode dips into its own solution\")이라 전극과 염다리를 넣기 위해 입구가 넓은 비커가 요구되는 상황이므로, 두 용어를 동의어로 묶으면 개념 오류가 된다. 성취기준 12화반03-02(line 10)에 연결된 과학 지문이므로 기구 명칭 정확도가 요구된다.\n\n반박을 시도했으나 성립하지 않았다. (1) \"vocab의 synonyms는 느슨한 유의어\"라는 방어는 drift→[\"flow\"](line 508) 선례가 뒷받침하는 듯하나, drift/flow는 본문 문장에서 실제 치환 가능한 반면 beaker/flask는 치환 시 지시 대상 자체가 바뀐다. (2) 결정적으로 파일 자체 관행이 이를 배격한다. 12개 항목 중 8개가 synonyms:[]이며, 진짜 동의어가 없는 기술 용어(redox reaction, electron, ion, electrode, salt bridge, voltage, current)는 전부 빈 배열로 처리했다. beaker는 동급의 기술적 기구 용어인데 유일하게 근사어를 채운 항목으로, 외부 기준이 아니라 파일 내부 일관성 위반이다. 적정 수정은 synonyms를 []로 비우는 것이다. warn 등급도 적절하다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page4.vocab[2] \"reduce\" → meaning_ko",
+      "issue": "meaning_ko가 \"환원시키다(전자를 얻게 하다)\"로 타동사 의미만 제시되어 있으나, 본문과 두 예문 모두 수동형(is reduced=환원되다)으로만 쓰인다. 대응 항목 oxidize는 \"산화시키다, 산화되다\"로 양방향을 모두 제시해 일관성도 어긋난다.",
+      "evidence": "page1.body: \"one partner is oxidized while the other is reduced\" / page4.vocab[2] examples: \"The copper ion is reduced as it gains electrons.\"→\"구리 이온은 전자를 얻으면서 환원된다.\", \"A metal ion is reduced back to solid metal.\"→\"금속 이온은 고체 금속으로 환원된다.\" (ko는 모두 '환원된다'인데 표제 뜻은 '환원시키다')",
+      "suggestion": "meaning_ko를 \"환원시키다, 환원되다(전자를 얻다)\"로 수정해 oxidize 항목과 대칭을 맞춘다.",
+      "lens": "vocab",
+      "verdict": {
+        "reason": "파일 대조 결과 지적의 모든 사실 주장이 그대로 확인된다. (1) page4.vocab[2] \"reduce\"의 meaning_ko는 \"환원시키다(전자를 얻게 하다)\"로 타동/사동 의미만 제시한다. (2) 그러나 이 항목 자신의 두 예문은 모두 수동형이고 한국어 대역도 모두 자동사형이다: \"The copper ion is reduced as it gains electrons.\"→\"구리 이온은 전자를 얻으면서 환원된다.\", \"A metal ion is reduced back to solid metal.\"→\"금속 이온은 고체 금속으로 환원된다.\" (3) page1.body 역시 \"one partner is oxidized while the other is reduced\"로 수동형만 쓰고, page3.sentences[3]는 해당 동사를 { \"role\": \"V\", \"text\": \"is reduced.\" }로 분절하며 grammar_note에 \"수동태\"라고 명시한다. 즉 이 파일 안에서 reduce는 예외 없이 수동으로만 등장하는데, 학습자가 대역을 매핑할 표제 뜻에는 그 용법이 없다. (4) 일관성 문제도 실재한다. 바로 인접한 page4.vocab[1] \"oxidize\"는 meaning_ko가 \"산화시키다, 산화되다\"로 양방향을 모두 제시하고, 두 항목은 서로를 antonyms로 명시적으로 연결한 대응쌍이다(oxidize.antonyms=[\"reduce\"], reduce.antonyms=[\"oxidize\"]). 동일 대응쌍 내에서 한쪽만 수동/자동사 뜻을 누락한 비대칭이다. 반박 가능성을 검토했으나 유지되지 않는다: \"환원시키다\"가 사전 표제형이므로 수동은 유추 가능하다는 방어는 일반 사전에는 통하지만 여기서는 파일 자체의 내부 기준(대응어 oxidize의 양방향 표기)에 어긋난다. 괄호 주석 \"(전자를 얻게 하다)\"가 voice 표시가 아니라 화학적 정의라는 방어도 성립하지 않는데, \"전자를 얻게 하다\"는 사동/타동 표현이라 본 뜻과 괄호가 모두 예문이 실제 쓰는 수동에서 멀어지는 방향을 가리키기 때문이다. page1.gloss_extra의 oxidize가 \"산화시키다(전자를 잃게 하다)\"로 타동만 제시한 것이 하우스 스타일이라는 방어도, gloss_extra는 별도의 간이 주석 목록이고 지적이 문제 삼는 비교 대상은 antonyms로 직접 연결된 page4.vocab 내 병렬 항목이므로 해당되지 않는다. 다만 정답 키나 문항 풀이가 이 표제 뜻에 의존하지 않으므로 실질 오답을 유발하지는 않는 교수법상 경미한 결함이며, warn 등급이 적절하다.",
+        "isReal": true,
+        "confidence": "high"
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page1.body, 3문단 \"In the other beaker the copper ions keep gaining them, making that electrode the positive pole.\"",
+      "issue": "지시어 'that electrode'의 선행 명사가 절 안에 없어 참조가 헐겁다. 바로 앞 문장 \"In one beaker the zinc keeps losing electrons, so that electrode becomes the negative pole.\"에서는 주어 'the zinc'가 곧 전극이므로 'that electrode'가 자연스럽게 받아진다. 반면 구리 쪽은 주어가 'the copper ions'(용액 속 이온)이고 전극이 아니므로, 'that electrode'가 가리킬 명사가 문장 내에 존재하지 않는다. 독자는 'the other beaker'에서 구리 전극을 추론해야 한다. 병렬 구조가 표면상 대칭이라 오히려 이온=전극으로 오해할 여지가 있다.",
+      "evidence": "\"In one beaker the zinc keeps losing electrons, so that electrode becomes the negative pole. In the other beaker the copper ions keep gaining them, making that electrode the positive pole.\"",
+      "suggestion": "전극을 명시해 참조를 고정할 것. 예: \"In the other beaker the copper ions keep gaining them from the copper strip, making that electrode the positive pole.\" 또는 \"...the copper ions keep taking them from the other electrode, making it the positive pole.\"",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "page1.body, 2문단 \"The electrons simply jump across in the crowded solution and release their energy as scattered, useless heat.\"",
+      "issue": "'jump across in'에서 부사 across와 전치사구 in이 연달아 붙어 어색하다. across가 자동사적 부사로 쓰인 뒤 곧바로 장소 전치사구가 와서 리듬이 끊기고, across의 목적지(무엇을 건너는지)도 불명확하다.",
+      "evidence": "\"The electrons simply jump across in the crowded solution and release their energy as scattered, useless heat.\"",
+      "suggestion": "\"The electrons simply jump straight across inside the crowded solution...\" 또는 더 간결하게 \"The electrons simply jump across the crowded solution and release their energy as scattered, useless heat.\"로 다듬을 것.",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "page1.body, 1문단 \"When zinc metal sits in a copper solution\"",
+      "issue": "'a copper solution'은 화학적으로 부정확한 축약이다. 용액에 들어 있는 것은 구리 금속이 아니라 구리(II) 이온이므로, 엄밀히는 'a copper(II) salt solution' 또는 'a copper sulfate solution'이다. 뒤 문장에서 'A nearby copper ion'으로 이온임을 밝히고 있어 치명적 오개념은 아니지만, 산화·환원 심화 단원(12화반03-02) 지문에서는 첫 문장의 부정확한 표현이 개념 혼동을 부를 수 있다.",
+      "evidence": "\"When zinc metal sits in a copper solution, a slow and quiet exchange begins almost at once.\" (반면 다음 문장은 \"A nearby copper ion, meanwhile, grabs those very electrons\")",
+      "suggestion": "\"When zinc metal sits in a solution of copper ions,\" 또는 \"When zinc metal sits in a blue copper sulfate solution,\"로 바꾸면 어휘 난도를 올리지 않으면서 정확해진다.",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[11] \"humble\" → examples[1].ko",
+      "issue": "humble beginnings는 '미천한/가난한 집안 출신'을 뜻하는 관용 표현인데 \"보잘것없는 시작\"으로 직역해 관용적 의미가 사라지고 한국어가 어색하다.",
+      "evidence": "page4.vocab[11] examples[1]: {\"en\":\"She came from humble beginnings.\", \"ko\":\"그녀는 보잘것없는 시작에서 출발했다.\"}",
+      "suggestion": "\"그녀는 가난하고 변변찮은 집안 출신이었다.\" 정도로 관용 의미를 살려 수정한다.",
+      "lens": "vocab"
+    }
+  ],
+  "blockers": [],
+  "counts": {
+    "raw": 9,
+    "verified": 5,
+    "confirmed": 2,
+    "minor": 4
+  }
+}

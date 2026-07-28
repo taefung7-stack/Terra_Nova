@@ -1,30 +1,134 @@
 {
   "grade": "saturn-g1",
   "seq": 5,
-  "confirmed": [],
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page1.body, 3rd paragraph, sentence 12 (\"Oxygen earns its name from this very process.\")",
+      "issue": "과학적/어원적 사실 오류. 인과 방향이 거꾸로 서술되어 있다. 'oxygen'이라는 이름은 산화 반응에서 유래한 것이 아니라, 라부아지에가 산소를 모든 산(acid)의 구성 성분으로 잘못 추정하여 그리스어 oxys(신맛, 산) + genes(생성하는 것) = '산을 만드는 것'으로 명명한 데서 왔다. 오히려 'oxidation(산화)'이라는 용어가 'oxygen'에서 파생된 것이다. 본문은 이를 뒤집어 산소가 '바로 이 과정(전자를 주고받는 산화·환원)'에서 이름을 얻었다고 단정한다. 게다가 이 문장 뒤에 이어지는 두 문장(철의 녹, 통나무 연소)은 '이름의 유래'와 전혀 무관한 반응 사례여서, 주장 문장이 뒷받침되지도 않고 문단 내에서 붕 뜬다.",
+      "evidence": "\"Oxygen earns its name from this very process. When iron meets oxygen in damp air, the metal hands its electrons to the oxygen, and rust is slowly born.\"",
+      "suggestion": "어원 주장을 삭제하고 문단 도입을 사례 중심으로 바꾸는 것이 가장 안전하다. 예: \"Oxygen plays this role again and again.\" 또는 \"Oxygen is the most familiar electron taker of all.\" 어원을 꼭 살리려면 방향을 바로잡아 \"The word oxidation itself comes from oxygen, the element that so often takes the electrons.\" 정도로 수정할 것.",
+      "lens": "language",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "지적이 파일 근거로 확인되는 실제 결함이다.\\n\\n1) 문장 존재 확인: page1.body 3번째 문단 첫 문장 \"Oxygen earns its name from this very process.\"가 실재하고, page3 sentences[12] 세그먼트(S: Oxygen / V: earns / O: its name / M: from this very process)와 translation_ko \"[12] 산소는 바로 이 과정에서 자신의 이름을 얻는다.\"로 이중 확인된다.\\n\\n2) 지시어 \"this very process\"의 선행사가 전자 이동임이 확정적: 바로 앞 2문단(sentences 7~11)이 \"One side cannot occur without the other, because the electrons must go somewhere. So a single reaction is really two events in one, and one gives while the other takes.\"로 오직 전자 수수(授受)만을 정의한다. 산(acid) 언급은 본문 전체에 전무하므로 관대한 해석의 여지가 없다.\\n\\n3) 어원 사실 오류(인과 역전): oxygen은 라부아지에가 산소를 모든 산의 구성 성분으로 오판해 그리스어 oxys(신맛/산)+genes(생성)로 명명한 것이며, oxidation이 oxygen에서 파생됐다. 본문은 파생 방향을 정확히 뒤집었다. 더구나 산화·환원의 전자 이동 정의는 산소 명명(1770년대)보다 100년 이상 후대이므로 시간적으로도 성립 불가하다.\\n\\n4) 문단 응집성 붕괴(부차 근거): 후속 문장 13~15(철의 녹, 통나무 연소, 속도 대비)는 '이름의 유래'를 전혀 뒷받침하지 않아 주제문이 무근거로 붕 뜬다.\\n\\n5) 맥락상 중대성: meta.subject \"통합과학\", achievement_standard \"10통과2-01-05\"의 교과 연계 지문으로, 학생에게 거짓 어원을 사실로 가르치게 된다.\\n\\n수정 방향: 해당 문장을 삭제하거나, 문단이 실제로 전개하는 내용(같은 거래의 느린 판 vs 빠른 판)에 맞는 주제문으로 교체하면 사실 오류와 응집성 문제가 동시에 해소된다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.sentences[5].segments[12] (index 5, role \"REL\", text \"than we notice at first.\")",
+      "issue": "구문 역할 오태깅: 비교 종속절 \"than we notice at first\"를 REL(관계사절)로 태깅했다. 이는 comparative \"far more changes\"를 받는 접속사 than이 이끄는 비교절이며 관계사절이 아니다. 같은 달 파일들의 REL 사용 관례와도 어긋난다.",
+      "evidence": "본문: \"this hidden trade drives far more changes than we notice at first.\" / 해당 태깅: { \"role\": \"REL\", \"text\": \"than we notice at first.\" } / 동월 형제 파일의 REL 실제 용례는 전부 관계사절이다 — 01.json 'that', 02.json 'one in which', 03.json 'where several cultures share one society', 04.json 'who uses it', 07.json 'which is six.', 08.json 'that travels.'",
+      "suggestion": "REL 대신 M(부사적 수식어)으로 태깅하거나, 비교절 전용 역할이 스키마에 있다면 그것을 쓴다. 최소한 CONJ:than + S:we + V:notice + M:at first 로 분해하는 방식도 동월 파일의 절 분해 방식과 더 일관된다.",
+      "lens": "explanation",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "지적이 파일 근거로 명확히 확인된다. (1) 05.json:158에 { \"role\": \"REL\", \"text\": \"than we notice at first.\" }가 실제로 존재하며, 앞 세그먼트 O \"far more changes\"를 받는 비교급 종속절이다 — 선행사를 받는 관계사 요소가 없으므로 관계사절이 아니다. (2) 프로젝트 자체 스펙이 REL을 좁게 정의한다: templates/AUTHORING-GUIDE.md:214는 REL을 \"관계사 (that, which, who …)\"로 규정하고, scripts/render.js:285 및 render-mid.js:276은 REL을 배지 \"관\"으로, textbook.html:81 범례는 \"관계사\"로 렌더링한다. 즉 REL은 범용 종속절 버킷이 아니라 학생에게 잘못된 문법 라벨을 시각적으로 노출한다. (3) 관례 위반도 사실이다: 2026-08 폴더의 다른 REL은 전부 진짜 관계사절(01 that, 02 one in which, 03 where…, 04 who uses it, 07 which is six., 08 that travels., 09/10/11/12/13/14/16/19/20 등)인 반면, 형제 파일의 than 비교 구문은 모두 M으로 태깅되어 있다 — 11.json:231 \"than the starting materials,\", 14.json:140 \"than nature can handle.\"(정형 비교절인데도 M), 18.json:270 \"than a mixed one.\", 2026-08-J/13.json:241(note \"than 비교\"), 2026-08-Sun/18.json:190. 특히 14.json:140은 동일 구조의 정형 비교절을 M으로 처리하므로 \"정형절이라 REL\"이라는 반박이 성립하지 않는다. 올바른 역할은 M이다. 참고로 audit/2026-08/saturn-g1/05.json:8-11에 동일 지적이 이미 기록되어 있어(기존 감사 항목의 재보고) 결함 자체는 미수정 상태로 실재한다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page4.vocab[11] \"reaction\" > synonyms",
+      "issue": "synonyms의 \"response\"가 본문 문맥의 뜻(화학 반응)과 불일치한다. 본문에서 reaction은 산화·환원이 동시에 일어나는 '화학 반응'을 가리키는데, 영어 response는 자극에 대한 반응·응답만을 뜻하고 chemical reaction의 의미로는 쓰이지 않는다. 학생이 동의어로 치환하면 오용이 발생한다.",
+      "evidence": "본문: \"So a single reaction is really two events in one, and one gives while the other takes.\" / meaning_ko: \"반응\" / synonyms: [\"response\"]",
+      "suggestion": "\"response\"를 제거하고 문맥에 맞는 \"chemical change\" 또는 \"process\"로 교체한다. 한국어 '반응'의 다의성(화학 반응 vs 대응)이 그대로 영어에 성립하지 않음을 주의.",
+      "lens": "vocab",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "지적이 파일 근거로 확인된다. content/passages/2026-08/05.json:528-535의 page4.vocab[11]은 word \"reaction\", meaning_ko \"반응\", synonyms [\"response\"]로 지적 내용과 정확히 일치한다.\n\n1) 문맥이 명백히 화학 반응이다. meta.linked_unit \"통합과학2 산화·환원 반응\", key_concepts \"산화·환원 동시성\", 본문 \"So a single reaction is really two events in one, and one gives while the other takes.\"(page1.body), 그리고 해당 카드 자체의 예문 두 개가 모두 화학이다 — \"Oxidation and reduction are two sides of one reaction.\" 자극-반응 해석의 여지가 없다.\n\n2) 영어 response는 응답·자극에 대한 반응만을 뜻하며 chemical reaction 의미로 쓰이지 않는다. 카드 예문에 치환하면 \"two sides of one response\"처럼 해당 분야에서 성립하지 않는 문장이 된다.\n\n3) 프로젝트 자체 규약 위반이다. audit/2026-07/elementary-REPORT.md:89가 \"vocab synonyms 의미 정합: drop≠bit, member≠part 등 표제어와 동의관계 아닌 단어 금지\"를 명시하고, 같은 파일 67·69행이 동일 유형(drop/bit, member/part)을 '교체/삭제 권장'으로 이미 기록했다. 동일 실패 유형·동일 처방이다.\n\n4) 리포지토리 내 선례가 올바른 처리를 보여준다. 가장 가까운 형제인 화학 지문 content/passages/2026-07-J/06.json:821-825는 meaning_ko \"(화학) 반응\" + synonyms [] 로 한국어 뜻을 한정하고 동의어를 비웠다. 반면 2026-06/18.json:543-549(뉴턴 작용반작용)은 meaning_ko \"반작용; 반응\"이라는 넓은 뜻풀이와 함께 response를 넣어 정당화 여지가 있다. 05.json은 화학 사례인데 일반 사례처럼 작성되었고, 뜻풀이도 한정 없는 \"반응\"이다.\n\n반박 가능성(synonyms를 문맥 무관 일반 사전 뜻으로 보는 해석)도 검토했으나, templates/AUTHORING-GUIDE.md:245-255의 모범 예시(forge)가 실제 예문 의미에 맞는 동의어를 싣고 있고 감사 규칙이 예외를 두지 않아 성립하지 않는다.\n\n다만 사실오류는 아니고 다른 문맥에서는 진짜 동의어이므로 severity warn은 적정하다. 조치: synonyms를 []로 비우거나 meaning_ko를 \"(화학) 반응\"으로 한정(2026-07-J/06.json 방식)."
+      }
+    }
+  ],
   "minors": [
     {
       "severity": "minor",
-      "location": "page3.sentences[index=5].segments — { \"role\": \"REL\", \"text\": \"than we notice at first.\" }",
-      "issue": "구문 역할 오태깅: 'than we notice at first'를 REL(관계절)로 표기했으나, 이는 비교급 far more를 받는 비교절(comparative clause)이지 관계절이 아니다.",
-      "evidence": "본문: \"it hides inside far more changes than we notice at first.\" 앞에 비교급 'far more changes'가 있고 그에 대응하는 'than' 절이다. 관계대명사절이 아니라 비교 구문의 종속절이다.",
-      "suggestion": "REL 대신 M(부사적 수식/비교절) 또는 별도의 비교절 표기로 수정. 다른 문장에서 부사절 종속접속사는 CONJ로 처리한 것과의 일관성도 검토.",
+      "location": "page1.body, 2nd paragraph, 마지막 문장 (\"So a single reaction is really two events in one, and one gives while the other takes.\")",
+      "issue": "대명사 지시 대상 불일치. \"one ... the other\"는 의미상 '전자를 주는 물질'과 '받는 물질'을 가리켜야 하지만, 문장 내 가장 가까운 복수 선행사는 \"two events\"다. 문법적으로 걸리는 선행사대로 읽으면 '사건이 준다/받는다'가 되어 비문에 가까운 의미가 된다. 실제로 주고받는 주체는 substance이므로 지시가 어긋난다.",
+      "evidence": "\"So a single reaction is really two events in one, and one gives while the other takes.\"",
+      "suggestion": "주체를 명시할 것. 예: \"So a single reaction is really two events in one: one substance gives while the other takes.\"",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "page1.body, 4th paragraph, 첫 문장",
+      "issue": "불필요한 의미 중복(용장). \"right now\"와 \"at this very moment\"는 동일한 시점 의미를 두 번 반복한다. 강조 효과보다 군더더기로 읽히며, 같은 문단·인접 문장에서 이미 'very'가 다른 곳(this very process)에도 쓰여 강조어가 과잉이다.",
+      "evidence": "\"This silent swap even keeps you alive right now, at this very moment.\"",
+      "suggestion": "둘 중 하나만 남길 것. 예: \"This silent swap even keeps you alive at this very moment.\" 또는 \"This silent swap is even keeping you alive right now.\"",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "answers.explanations[2].evidence (q_index 2, 세부 내용 파악)",
+      "issue": "해설의 직접 인용문이 본문과 불일치. 큰따옴표로 원문 인용을 표시했으나 본문에 있는 주어 \"side\"를 누락해 실제 본문에 존재하지 않는 문장을 인용하고 있다.",
+      "evidence": "해설: \"본문은 \\\"One cannot occur without the other\\\"라며...\" / 실제 본문: \"One side cannot occur without the other, because the electrons must go somewhere.\" (문자열 'One cannot occur without the other'는 본문에 존재하지 않음 — 검색 결과 False)",
+      "suggestion": "인용을 본문 그대로 \"One side cannot occur without the other\"로 수정한다. 정답 판정(선택지 2가 불일치)은 옳으므로 인용 문구만 고치면 된다.",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "answers.explanations[1].rationales[2] (q_index 1, 빈칸 추론, 선택지 \"sugar that refuses to react\")",
+      "issue": "오답 근거의 주어 귀속이 부정확. 본문에서 전자를 내주는 주체는 sugar(포도당)인데, 해설은 '호흡이 전자를 내준다'고 서술해 행위 주체를 호흡으로 잘못 적었다.",
+      "evidence": "해설: \"반응하지 않는 설탕은 호흡이 전자를 내준다는 본문 설명과 모순된다.\" / 본문: \"Inside your cells, sugar slowly gives up its electrons to the oxygen you breathe\" (전자를 내주는 주어는 sugar, breathe는 산소를 수식하는 관계절 동사)",
+      "suggestion": "\"반응하지 않는 설탕은 세포 속 포도당이 산소에 전자를 내준다는 본문 설명과 모순된다.\"로 주체를 sugar로 바로잡는다.",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko [13]",
+      "issue": "번역에 본문에 없는 부사가 삽입됨. 본문 \"the metal hands its electrons to the oxygen\"에는 양태 부사가 없는데 번역은 '조용히 넘겨주고'로 옮겼다. 본문의 slowly는 뒤의 \"rust is slowly born\"에 걸리며 번역도 이를 '천천히 생겨난다'로 이미 따로 반영하고 있다.",
+      "evidence": "본문: \"When iron meets oxygen in damp air, the metal hands its electrons to the oxygen, and rust is slowly born.\" / 번역: \"[13] 철이 축축한 공기 속에서 산소와 만나면, 그 금속은 자신의 전자를 산소에 조용히 넘겨주고, 녹이 천천히 생겨난다.\"",
+      "suggestion": "'조용히'를 삭제하고 \"그 금속은 자신의 전자를 산소에 넘겨주고, 녹이 천천히 생겨난다.\"로 수정한다.",
       "lens": "explanation"
     },
     {
       "severity": "minor",
       "location": "page3.translation_ko 문장 [13]",
-      "issue": "원문에 없는 부사 '조용히'가 추가됨(과장/첨가)",
-      "evidence": "영문: \"the metal hands its electrons to the oxygen, and rust is slowly born.\" 번역: \"그 금속은 자신의 전자를 산소에 조용히 넘겨주고, 녹이 천천히 생겨난다.\" 원문의 'slowly'는 이미 '천천히 생겨난다'로 옮겨졌고, 'hands ... to the oxygen'에는 '조용히'에 해당하는 어구가 없다.",
-      "suggestion": "'조용히'를 삭제하여 '그 금속은 자신의 전자를 산소에 넘겨주고, 녹이 천천히 생겨난다'로 수정.",
+      "issue": "영문에 없는 부사 '조용히'가 추가됨(무근거 수식어 삽입)",
+      "evidence": "영문: \"the metal hands its electrons to the oxygen, and rust is slowly born.\" / 번역: \"그 금속은 자신의 전자를 산소에 조용히 넘겨주고, 녹이 천천히 생겨난다.\" — 영문 hands에는 어떤 부사도 붙어 있지 않으며, slowly는 이미 '천천히 생겨난다'로 옮겨져 있다.",
+      "suggestion": "\"그 금속은 자신의 전자를 산소에 넘겨주고, 녹이 천천히 생겨난다.\"로 '조용히'를 삭제한다.",
       "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko 문장 [17]",
+      "issue": "일반어 sugar를 '포도당(glucose)'으로 과도하게 특정함",
+      "evidence": "영문: \"Inside your cells, sugar slowly gives up its electrons to the oxygen you breathe\" / 번역: \"세포 안에서 포도당은 당신이 들이마시는 산소에 천천히 전자를 내주고\" — 본문은 sugar(당)이며 glucose를 명시하지 않는다.",
+      "suggestion": "'당(糖)은' 또는 '당분은'으로 옮기거나, 교과 연계를 유지하려면 '당(포도당)은'처럼 원어 범위를 넘지 않게 표기한다.",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page1.body (line 21) / page2.questions",
+      "issue": "본문에 <u>oxidation</u>, <u>reduced</u> 두 개의 밑줄이 삽입되어 있으나 어떤 문항도 이 밑줄을 인용하지 않는다. 사용되지 않는 밑줄은 '밑줄 친 …' 유형 문항이 있는 것처럼 오도하며, 위 warn 항목의 혼동을 가중시킨다.",
+      "evidence": "본문: \"we call that half <u>oxidation</u>\" / \"we say it is <u>reduced</u>\" — page2.questions 4문항 중 이 두 어구를 stem에서 인용하는 문항 없음(요지/빈칸/일치불일치/요약문).",
+      "suggestion": "밑줄을 제거하거나(어휘 강조 목적이면 다른 마크업 사용), 해당 밑줄을 근거로 하는 어휘·지칭 문항을 추가한다.",
+      "lens": "answer"
+    },
+    {
+      "severity": "minor",
+      "location": "page1.gloss_extra[1] 및 page4.vocab[3] \"substance\"",
+      "issue": "동일 단어 substance가 page1.gloss_extra와 page4.vocab에 중복 수록되어 있고 뜻풀이도 동일하다. gloss_extra는 본문 하단 즉시 주석, vocab은 별도 어휘 학습면이라는 역할 분리가 무너져 지면이 낭비된다.",
+      "evidence": "page1.gloss_extra: { \"term\": \"substance\", \"ko\": \"물질\" } / page4.vocab: { \"word\": \"substance\", \"meaning_ko\": \"물질\" }",
+      "suggestion": "둘 중 하나만 남긴다. substance는 본문에 4회 반복되는 핵심어이므로 page4.vocab에 두고 gloss_extra에서 삭제하는 편이 자연스럽다.",
+      "lens": "vocab"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[4] \"swap\" > examples[1]",
+      "issue": "표제어는 swap(n.)인데 두 번째 예문에는 표제어형이 없고 동명사 swapping만 등장해, 명사 swap의 용법을 보여주지 못한다. 첫 예문만이 실제로 표제어 형태를 예시한다.",
+      "evidence": "word: \"swap\", pos: \"n.\" / examples[1].en: \"The whole world quietly runs on the swapping of electrons.\"",
+      "suggestion": "예문을 \"They made a quick swap of seats.\" 같이 명사 swap이 직접 쓰인 문장으로 바꾸거나, 표제어를 swap (n./v.)로 확장해 파생형 노출을 의도적으로 명시한다.",
+      "lens": "vocab"
     }
   ],
   "blockers": [],
   "counts": {
-    "raw": 2,
-    "verified": 0,
-    "confirmed": 0,
-    "minor": 2
+    "raw": 17,
+    "verified": 7,
+    "confirmed": 3,
+    "minor": 10
   }
 }

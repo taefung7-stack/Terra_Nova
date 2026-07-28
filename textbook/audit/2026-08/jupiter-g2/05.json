@@ -4,37 +4,210 @@
   "confirmed": [
     {
       "severity": "warn",
-      "location": "answers.explanations[q_index=1].rationales[3] (빈칸 추론, 'unstable' 오답 근거)",
-      "issue": "오답 근거가 존재하지 않는 문장 번호를 인용한다. 'unstable'이 틀린 이유로 '반응이 잔잔한 중간에서 안정된다는 6번과 어긋난다'라고 하는데, 6번 문장은 '안정/중간'과 무관하다.",
-      "evidence": "page3 sentence 6 = 'A base does the reverse: it supplies hydroxide ions, written as OH-, that are hungry for exactly those hydrogen ions.' (염기가 수산화 이온을 공급한다는 내용일 뿐, '잔잔한 중간에서 안정'된다는 서술이 없음). 실제로 '중간에서 만난다'는 내용은 sentence 15('both surrender their extreme character and meet somewhere calm in the middle')에 있다.",
-      "suggestion": "근거 문장 번호를 '6번' → '15번'으로 정정한다 (settle 관련이면 17번도 가능).",
-      "lens": "explanation",
+      "location": "page1.body 3단락 (문장 15~17)",
+      "issue": "pH 변화 방향이 바로 앞 문장의 설정과 모순된다. 15번에서 '강한 염기에 강한 산을 떨어뜨린' 상황(출발 용액이 염기성, pH>7)을 제시해 놓고, 16번 'You can watch it happen'으로 그 장면을 그대로 이어받은 뒤, 17번에서는 pH가 '산성 범위를 벗어나 올라간다'고 서술한다. 산을 염기에 넣는 경우 pH는 염기성 범위에서 7로 '내려와야' 하므로 과학적으로 방향이 반대다.",
+      "evidence": "\"A strong acid dropped into a strong base does not win; instead both surrender their extreme character and meet somewhere calm in the middle. You can watch it happen with a pH meter. Its number climbs out of the acidic range and settles near a balanced seven as the last free ions disappear.\"",
+      "suggestion": "둘 중 하나로 통일할 것. (a) 15번을 'A strong base poured into a strong acid does not win...'으로 바꿔 산성 출발을 만들거나, (b) 17번을 'Its number falls out of the basic range and settles near a balanced seven...'로 바꿔 염기성 출발에 맞춘다. 번역문 [15]/[17]도 함께 수정 필요.",
+      "lens": "language",
       "verdict": {
         "isReal": true,
         "confidence": "high",
-        "reason": "파일 검증 결과 지적이 사실로 확인된다. answers.explanations[q_index=1].rationales[3](line 356)은 'unstable' 오답 근거로 \"반응이 잔잔한 중간에서 안정된다는 6번과 어긋난다\"라고 서술한다. 그러나 page3 sentence index 6(lines 155-165)은 \"A base does the reverse: it supplies hydroxide ions, written as OH-, that are hungry for exactly those hydrogen ions.\"로, 염기가 수산화 이온을 공급한다는 내용일 뿐 '잔잔한 중간에서 안정/만난다'는 서술이 전혀 없다. 실제로 '중간에서 만난다'(meet somewhere calm in the middle)는 내용은 sentence index 15(lines 248-262)에 있고, '균형 잡힌 7 근처에 자리 잡는다(settles)'는 안정 관련 서술은 sentence index 17에 있다. 따라서 rationale은 근거가 존재하지 않는 문장 번호(6번)를 인용하고 있어 결함이 맞다. 추가로 같은 explanations 블록의 q_index=2 rationales[2](line 372)도 pH 7 관련 내용을 잘못 '6번'으로 인용하여 동일한 오류 패턴을 보인다."
+        "reason": "파일에서 지적 내용이 그대로 확인된다. page1.body 3단락(및 page3 sentences 15~17)은 \"A strong acid dropped into a strong base does not win...\" → \"You can watch it happen with a pH meter.\" → \"Its number climbs out of the acidic range and settles near a balanced seven\"로 이어진다. 15번이 출발 용액을 강염기(pH>7)로 명시했고, 16번의 \"watch it happen\"과 17번의 \"Its number\"가 그 동일 장면·동일 용액을 직접 이어받으므로 일반론으로 빠져나갈 여지가 없다. 강염기에 강산을 떨어뜨리면 pH는 7 위에서 아래로 내려와야 하는데, 본문은 \"산성 범위를 벗어나 올라간다(climbs out of the acidic range)\"고 서술해 방향이 정반대다. 이는 번역 오류가 아니라 원문 자체의 결함이며, page3.translation_ko [15]/[17](\"강한 염기에 떨어뜨린 강한 산\" / \"산성 범위를 벗어나 올라가\")과 page4 vocab \"acidic\" 예문(\"The pH number climbs out of the acidic range.\"), answers 설명까지 동일 표현이 전파되어 있다. 다른 어느 부분도 이를 상쇄하지 않는다(tieback의 \"pH가 중성(약 7)에 가까워진다\"는 방향을 명시하지 않음). 수정 방향은 15번을 \"A strong base dropped into a strong acid\" 식으로 뒤집거나, 17번을 \"falls out of the basic range\"류로 바꾸는 것이며, 이때 번역·vocab 예문도 함께 맞춰야 한다."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "answers.explanations[3].evidence (q_index 3, 요약문 빈칸 완성)",
+      "issue": "해설의 본문 인용이 실제 본문과 다르게 개작되어 있다. 이 문항은 <조건>이 \"본문에서 제시된 단어를 그대로 활용할 것\"이므로 인용 정확성이 채점 근거와 직결된다.",
+      "evidence": "해설 인용: \"the ions that did not become water, join to form a salt\" / 실제 page1 본문: \"the leftover ions that did not become water join to form a salt\" — 'leftover'가 누락되고, 주어와 동사 사이에 없는 쉼표가 삽입되었다.",
+      "suggestion": "인용을 본문 그대로 \"the leftover ions that did not become water join to form a salt\"로 수정한다.",
+      "lens": "explanation",
+      "verdict": {
+        "reason": "파일로 확인된 실제 결함이다. page1 본문(line 21)은 \"and the leftover ions that did not become water join to form a salt\"인데, answers.explanations[3].evidence(line 386)는 이를 \"the ions that did not become water, join to form a salt\"로 인용한다. 지적된 두 가지가 모두 정확히 확인된다: (1) 'leftover' 누락, (2) 주어와 동사 사이에 원문에 없는 쉼표 삽입. 생략 표시(...)도 없이 큰따옴표로 '본문'을 직접 인용한 형식이므로 축약 표기로 볼 수 없다 — 같은 evidence 필드의 앞 인용은 \"it supplies hydroxide ions ... hungry for...\"처럼 생략 부호를 제대로 쓰고 있고, q_index 1·2의 인용은 본문과 완전 일치하므로 이 인용만 예외적으로 어긋난다. 중요도 근거: 해당 문항의 <조건>(line 74)이 \"본문에서 제시된 단어를 그대로 활용할 것\"이라 채점 근거가 원문 표기에 직결되며, 'leftover'는 page4 vocab 표제어(line 456)로 별도 등재된 학습 어휘이고, page3 문장 12(line 222)는 동일 구를 \"the leftover ions that did not become water\"로 쉼표 없이 올바르게 분절하고 있어 본문·문장분석과 해설 간 불일치가 발생한다. 삽입된 쉼표는 주어-동사 분리라는 문법적 오류이기도 하다. 다만 (B)의 정답 자체는 'salt'이므로 학생의 정답 도출은 방해받지 않아 blocker보다는 실질 영향이 제한적이나, 인용 부정확성이라는 결함 사실 자체는 명확히 성립한다.",
+        "confidence": "high",
+        "isReal": true
       }
     },
     {
       "severity": "warn",
-      "location": "answers.explanations[q_index=2].rationales[2] (함의 추론, 'pH 척도를 지운다' 오답 근거)",
-      "issue": "오답 근거가 잘못된 문장 번호를 인용한다. 'pH가 7 근처로 측정된다는 6번과 모순된다'라고 하지만, pH가 7 근처에 자리 잡는다는 내용은 6번이 아니라 17번 문장에 있다.",
-      "evidence": "page3 sentence 6 은 염기의 수산화 이온 공급에 관한 문장이고, pH 관련 서술은 sentence 17 = 'Its number climbs out of the acidic range and settles near a balanced seven as the last free ions disappear.'에 있음.",
-      "suggestion": "근거 문장 번호를 '6번' → '17번'으로 정정한다.",
+      "location": "answers.explanations[1].rationales[3] 및 answers.explanations[2].rationales[2]",
+      "issue": "오답 근거가 가리키는 문장 번호 '6번'이 실제 page3 문장 [6]의 내용과 전혀 무관하다. 학생이 지시된 문장을 찾아가면 근거를 확인할 수 없다.",
+      "evidence": "해설: \"'불안정한(unstable)'은 반응이 잔잔한 중간에서 안정된다는 6번과 어긋난다.\" / \"'pH 척도를 지운다'는 오히려 pH가 7 근처로 측정된다는 6번과 모순된다.\" 그러나 page3 문장 [6]은 \"A base does the reverse: it supplies hydroxide ions, written as OH-, that are hungry for exactly those hydrogen ions.\"로 안정·pH와 무관하다. 해당 근거는 각각 문장 [15](\"meet somewhere calm in the middle\")와 문장 [17](\"settles near a balanced seven\")에 있다.",
+      "suggestion": "'6번'을 각각 '15번', '17번'으로 정정한다.",
       "lens": "explanation",
       "verdict": {
         "isReal": true,
         "confidence": "high",
-        "reason": "파일 근거로 지적이 확인된다. answers.explanations[q_index=2].rationales[2] = \"'pH 척도를 지운다'는 오히려 pH가 7 근처로 측정된다는 6번과 모순된다.\" 그러나 page3.sentences의 6번 문장은 \"A base does the reverse: it supplies hydroxide ions ... hungry for exactly those hydrogen ions\"로, 염기의 수산화 이온 공급에 관한 내용이며 pH나 '7 근처'와 무관하다. pH가 산성 범위를 벗어나 균형 잡힌 7 근처에 자리 잡는다는 서술은 17번 문장(\"Its number climbs out of the acidic range and settles near a balanced seven as the last free ions disappear.\")에 있다. 따라서 오답 근거가 잘못된 문장 번호(6번)를 인용하고 있으며, 올바른 인용은 17번이다. 실제 결함이다."
+        "reason": "파일 확인 결과 지적이 정확하다. answers.explanations[1].rationales[3] (356행)은 \"반응이 잔잔한 중간에서 안정된다는 6번\", answers.explanations[2].rationales[2] (372행)은 \"pH가 7 근처로 측정된다는 6번\"이라고 각각 문장 6번을 지시한다. 그러나 page3 sentences[index=6] (154-166행)은 \"A base does the reverse: it supplies hydroxide ions, written as OH-, that are hungry for exactly those hydrogen ions.\"이며, translation_ko의 [6]도 \"염기는 그 반대를 한다: ... 수산화 이온(OH-)을 공급한다\"로 일치한다. 이 문장에는 '잔잔한 중간에서의 안정'도, 'pH/7'도 전혀 없다. 실제 근거는 문장 [15] \"meet somewhere calm in the middle\"(247-262행)과 문장 [17] \"settles near a balanced seven\"(274-286행), 그리고 pH 언급은 문장 [16] \"with a pH meter\"에 있다. 대안 해석도 배제된다: page2 선택지는 5개(1~5번)뿐이라 '6번'이 선택지일 수 없고, page1 본문은 4단락이라 단락일 수도 없으며, 같은 파일의 explanations[0].evidence(334행)는 단락을 \"1단락\", \"2~3단락\"으로 명시해 '번'과 '단락' 표기를 구분하고 있다. 파일 내에서 6까지 도달하는 유일한 번호 체계는 page3 문장 index(1~20)이므로 '6번'은 문장 6번을 가리킨다. 따라서 학생이 지시된 문장을 찾아가면 근거를 확인할 수 없는 실제 결함이며, 두 곳 모두 동일한 오지시 패턴을 보인다. 다만 근거 내용 자체(중화 시 중간에서 만남, pH 7 근처)는 지문과 부합하고 오답 판정도 옳으므로, 결함은 문장 번호 포인터에 한정되어 warn 등급이 적절하다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.sentences[19] (index 20) segments 마지막 M 세그먼트",
+      "issue": "구문 역할 오태깅. 구동사 leave behind의 불변화사(behind)와 그 목적어를 통째로 M(수식어)으로 묶어, 3형식 목적어가 M으로 잘못 분류되었다.",
+      "evidence": "{ \"role\": \"M\", \"text\": \"behind something far more harmless.\", \"note\": \"leave behind + 비교급\" } — 본문 \"opposites meet, trade their charges, and leave behind something far more <blank>\"에서 something far more ...는 leave의 목적어(O)다. 같은 문장 안 \"trade\" + \"their charges\"는 O로 정확히 태깅되어 있어 처리가 일관되지 않다.",
+      "suggestion": "V를 \"leave behind\"로 묶고 \"something far more ___\"를 O로 태깅하거나, V=\"leave\", M/PRT=\"behind\", O=\"something far more ___\"로 분리한다.",
+      "lens": "explanation",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "지적이 파일 근거로 정확히 확인된다. 05.json의 page3.sentences[19] (index 20) 마지막 세그먼트는 실제로 {\"role\": \"M\", \"text\": \"behind something far more harmless.\", \"note\": \"leave behind + 비교급\"} 로 되어 있다.\n\n1) 문법적으로 오류가 맞다. 본문(page1.body) 원문은 \"In every case, opposites meet, trade their charges, and leave behind something far more <blank>.\" 이다. 여기서 leave behind는 분리 가능 타동사구(구동사)이며 behind는 전치사가 아니라 불변화사다. 근거: (a) 어순 전환이 가능하다 — \"leave something far more harmless behind\"; (b) behind를 전치사로 읽으면 \"무해한 무언가의 뒤쪽에 남긴다\"는 무의미한 해석이 되는데, 문맥상 중화 반응이 무해한 물질(소금물)을 '생성해 남긴다'는 뜻이다. 실제로 answers.explanations[1].evidence도 중화 결과 무해한 물질이 남는다는 취지로 서술한다. 따라서 something far more harmless는 leave의 목적어(O)이고, M(수식어)이 아니다.\n\n2) 내부 일관성 위반도 사실이다. 동일 문장 내 병렬 접속된 동사 trade는 V, their charges는 O로 정확히 분리 태깅되어 있는데, 동일한 통사적 지위의 세 번째 병렬항 leave는 V로 태깅되었으나 그 목적어가 M으로 흡수되었다. grammar_note(\"동사 병렬 3개 + leave behind + 비교급 수식\") 역시 해당 구를 목적어가 아닌 '수식'으로 기술해 오분류를 그대로 반영한다.\n\n3) 정당한 M 태깅과 구별된다. 코퍼스 전반의 불변화사 시작 세그먼트를 조사한 결과 대다수(out of the acidic range, behind the word tradition, away from the tropics, down a busy street 등)는 진짜 전치사구여서 M이 옳다. 반면 구조적으로 유사한 사례에서는 다르게 처리되어 있다 — 2026-08/20.json index 3은 \"off as 0\"을 O로 태깅했고, 2026-08-J/16.json index 11은 \"up in one rule:\"에 \"sum up (구동사)\" 주석을 명시했다. 즉 구동사 인식 처리가 코퍼스에 존재하며 본 건은 이탈 사례다.\n\n올바른 태깅은 leave behind를 V(또는 V+불변화사)로, something far more harmless를 O로 분리하는 것이다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.sentences[19] (index 20) M 세그먼트 및 translation_ko [20]",
+      "issue": "page1 본문에서 <blank>로 비워 둔 자리(page2 빈칸 추론 문항의 정답)가 page3 구문분석 세그먼트와 국역에 정답 단어로 그대로 채워져 노출된다. 학생용 구문분석 페이지에서 정답이 사전 유출된다.",
+      "evidence": "page1 본문: \"leave behind something far more <blank>.\" / page2 questions[1] choices[1]=\"harmless\", answer_index: 1 / page3 세그먼트: \"behind something far more harmless.\" / translation_ko [20]: \"훨씬 더 해롭지 않은 무언가를 뒤에 남긴다.\"",
+      "suggestion": "page3 세그먼트와 국역에서도 해당 부분을 빈칸(___ / ____) 처리하거나, 정답 노출이 허용되는 해설 영역으로 옮긴다.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 근거로 지적의 모든 요소가 정확히 확인됨. (1) page1.body 마지막 문장(line 21)은 \"leave behind something far more <blank>.\"로 의도적으로 단어를 삭제함. (2) page2.questions[1] 빈칸 추론(lines 45-57)의 choices[1]=\"harmless\", answer_index=1 → 정답은 harmless. (3) page3.sentences index 20의 M 세그먼트(line 321)가 \"behind something far more harmless.\"로 삭제된 정답 단어를 그대로 복원해 노출. (4) page3.translation_ko [20](line 326)이 \"훨씬 더 해롭지 않은 무언가를 뒤에 남긴다\"로 한국어로도 재노출. 즉 독립적인 유출 지점이 2곳.\n\n반박 시도 및 기각: (a) \"page3는 교사용\"이라는 방어는 성립하지 않음 — 파일 어디에도 page3를 정답지/교사용으로 표시한 마커가 없고, 정답 공개가 정당한 위치는 별도의 answers 블록(lines 328-397, correct:1 및 harmless 해설)으로 이미 명확히 분리되어 있음. page3는 page2와 page4(vocab) 사이에 위치한 학생용 구문분석·국역 학습 지면임. (b) \"문맥상 추론 가능하므로 무해\"는 논점 이탈 — 추론 가능성이 문항의 목적이며, 축자적 정답 노출과는 별개 문제. (c) 다른 <blank>(line 76 요약문 hydroxide/salt)는 본문 삭제가 아닌 요약 템플릿이므로 비교 대상이 아니며, line 21의 본문 삭제어만이 정답지 외 지면에서 복원되고 있음.\n\n렌더링·스키마를 깨뜨리지 않으므로 error가 아닌 warn 등급은 타당하나, 학생용 지면에서의 사전 정답 유출이라는 실제 결함임. 수정 시 line 321(M 세그먼트)과 line 326(translation_ko [20]) 두 곳을 함께 처리해야 함."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "answers.explanations[1].rationales[3] (line 356) 및 answers.explanations[2].rationales[2] (line 372)",
+      "issue": "해설이 존재하지 않는 '6번' 문항을 근거로 인용한다. 이 지문의 page2.questions는 총 4문항(1~4번)뿐이므로 학생·교사가 확인할 수 없는 유령 참조다.",
+      "evidence": "\"'불안정한(unstable)'은 반응이 잔잔한 중간에서 안정된다는 6번과 어긋난다.\" / \"'pH 척도를 지운다'는 오히려 pH가 7 근처로 측정된다는 6번과 모순된다.\"",
+      "suggestion": "'6번'을 실제 근거인 본문 문장(15번 문장 \"both surrender their extreme character and meet somewhere calm in the middle\", 17번 문장 \"settles near a balanced seven\")으로 바꿔 쓴다.",
+      "lens": "answer",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "파일 근거로 지적이 전부 확인됨. (1) page2.questions(31~79행)는 정확히 4문항(요지/빈칸 추론/함의 추론/요약문 빈칸 완성)이며 answers.explanations도 q_index 0~3의 4개뿐이라 5번·6번 문항 자체가 존재하지 않음. (2) 356행 answers.explanations[1].rationales[3] = \"'불안정한(unstable)'은 반응이 잔잔한 중간에서 안정된다는 6번과 어긋난다.\", 372행 answers.explanations[2].rationales[2] = \"'pH 척도를 지운다'는 오히려 pH가 7 근처로 측정된다는 6번과 모순된다.\" — 인용 문구와 위치가 지적과 정확히 일치. (3) 반박 가능성 검토: 파일 내 다른 번호 체계는 page3.sentences 1~20뿐인데, 6번 문장은 \"A base does the reverse: it supplies hydroxide ions...\"로서 두 근거 주장('중간에서 안정' → 15번 문장, 'pH 7 근처' → 17번 문장) 어느 쪽과도 무관하고, 서로 다른 두 명제를 동일한 '6번'으로 지목하므로 문장 번호 해석도 성립 불가. 또한 같은 rationales 배열의 나머지 항목들은 모두 번호 없이 본문 서술을 서술적으로 인용하고 있어 이 두 건만 예외적인 유령 참조임. 학생·교사가 확인할 수 없는 참조이므로 실제 결함."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page4.vocab[5] (leftover), examples[0].en, line 462",
+      "issue": "예문이 본문 인용처럼 제시되었으나 본문의 핵심 명사 ions를 partners로 바꿔 써서 본문과 불일치하고, 화학적으로도 부정확하다(염을 이루는 것은 남은 '이온'이다). 'leftover partners'는 영어 연어로도 부자연스럽다.",
+      "evidence": "본문(page1.body): \"the leftover ions that did not become water join to form a salt\" / 예문: \"The leftover partners join to form a salt.\" — 'partners'는 본문 전체에서 이 예문 외에 한 번도 등장하지 않는다.",
+      "suggestion": "예문을 본문 그대로 \"The leftover ions that did not become water join to form a salt.\" (남은 이온들은 결합해 염을 이룬다)로 교체.",
+      "lens": "vocab",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일에서 직접 확인됨. line 462 (page4.vocab[5] \"leftover\", examples[0].en): \"The leftover partners join to form a salt.\" 이에 대응하는 본문 line 21 (page1.body): \"...the leftover ions that did not become water join to form a salt.\" 및 line 222 (page3 문장12 segment): \"the leftover ions that did not become water\".\n\n검증된 세부 사항:\n1) 본문 불일치 확인 — 예문은 표제어 leftover와 술부 \"join to form a salt\"를 본문과 그대로 공유하는 준-축자 인용 형태이면서 핵심 명사만 ions → partners로 치환했다. 즉 본문 인용처럼 보이지만 본문과 어긋난다.\n2) partners 미등장 확인 — 문자열 partner(s)는 본 파일 전체(본문/page3 세그먼트/translation_ko/answers/tieback)에서 이 예문 외에 단 한 번도 나오지 않는다. 유사어는 동사구 pair off(line 21, 207)와 pair(line 76, 334)뿐이다.\n3) 파일 자체 관례 대비 유일한 이탈 — 다른 모든 vocab의 examples[0]은 본문 축자/준축자 인용이다(line 407 neutralization 완전 일치, 451 harshness, 473 surrender, 495 settle, 506 antacid 완전 일치). 따라서 이 지적은 외부 취향이 아니라 파일 내부 일관성 기준으로 측정 가능한 이탈이다.\n4) 화학적 부정확성 확인 — 염을 이루는 것은 물이 되지 못한 잔여 '이온'이며, 본문뿐 아니라 tieback(line 82 \"남은 이온들은 짝을 이루어 염을 만든다\")과 visual_aid(line 91 \"남은 이온 결합\")도 모두 ions로 일관된다. partners는 화학종을 지시하지 못하는 모호한 관계 명사라 기술적 지시대상이 소실된다. 한국어 대역(\"남은 짝들은\")도 영어의 이탈을 그대로 따라가 의도적 패러프레이즈 전략이 아님을 보여준다.\n\n반박 시도했으나 기각: (a) 어휘 예문은 기계적 복사 회피를 위해 변형될 수 있다 → 파일 관례가 축자 인용이고 한국어 대역도 함께 이탈해 기각. (b) partners가 본문 pair off의 조응으로 읽힐 수 있다 → 예문은 page4에서 문맥 없이 단독 제시되므로 학습자에게 선행사가 없어 기각.\n\n다만 'leftover partners'가 영어 연어로 부자연스럽다는 부분은 지적 중 가장 약하다(어색하나 비문은 아님). 이 하위 주장 없이도 본문 불일치와 화학적 정확성 저하라는 핵심 근거만으로 결함이 성립한다. warn 등급과 위치 지정이 정확하며, partners → ions 치환이라는 명확한 수정안이 있다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page4.vocab[2] (dissolve), synonyms[0] \"melt\", line 426",
+      "issue": "dissolve(용해: 용매에 녹아 섞임)와 melt(용융: 열에 의해 고체가 액체로 상변화)는 서로 다른 현상이다. 본문 문맥은 엄밀히 용해이므로 학습자에게 개념 혼동을 유발한다.",
+      "evidence": "본문: \"An acid is a substance that releases hydrogen ions ... when it dissolves in water.\" / meaning_ko도 \"녹다, 용해되다\"로 용해를 지정하고 있는데 synonyms는 \"melt\".",
+      "suggestion": "synonyms를 [\"break down\", \"go into solution\"] 등으로 바꾸거나 melt 제거. 유지한다면 melt는 반의/구별어로 별도 표기.",
+      "lens": "vocab",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일에서 지적 내용이 그대로 확인됨. 05.json line 423-427의 page4.vocab[2] 항목: word \"dissolve\", meaning_ko \"녹다, 용해되다\", synonyms [\"melt\"], antonyms [\"solidify\"]. 본문(line 21, 150)은 \"An acid ... releases hydrogen ions ... when it dissolves in water\"로 수용액 내 용해(solvation)를 명확히 지시하며, 해당 vocab의 두 예문(line 429-430) 역시 \"dissolves in water\", \"Sugar dissolves quickly in hot tea\"로 모두 용해 의미로 고정되어 있다. melt는 열에 의한 고체→액체 상변화(용융)로 용매가 개입하지 않는 별개 현상이므로, synonym \"melt\"는 본문 문맥뿐 아니라 항목 자신의 meaning_ko/예문과도 모순된다. 더불어 antonyms \"solidify\" 역시 melt/freeze 축의 반의어여서 dissolve 축(precipitate/crystallize 등)과 어긋나며, 해당 필드가 잘못된 어의로 채워졌음을 방증한다. 산-염기 단원 학습자에게 용해/용융 개념 혼동을 유발하는 실제 결함이며, disperse/break down 등으로 교체 필요."
       }
     }
   ],
-  "minors": [],
-  "blockers": [],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page1.body 1단락 (문장 6)",
+      "issue": "제한적 관계절 that이 선행사 hydroxide ions에서 삽입구 'written as OH-,'로 분리되어 콤마 뒤에 that이 오는 어색한 구조가 되었다. 고2 학습자가 that의 선행사를 OH-로 오독할 소지가 있다.",
+      "evidence": "\"it supplies hydroxide ions, written as OH-, that are hungry for exactly those hydrogen ions.\"",
+      "suggestion": "'it supplies hydroxide ions (written as OH-) that are hungry for exactly those hydrogen ions.' 처럼 괄호로 처리하거나, 'it supplies hydroxide ions, written as OH-, which are hungry for...'로 계속적 용법 which를 쓴다.",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "page1.body 4단락 (문장 19)",
+      "issue": "석회 시비의 효과를 'soften(부드럽게 하다)'으로 표현한 것은 토양 산도 교정이라는 실제 작용과 어긋나는 비유다. 영어권 농업 표현에서는 산성 토양에 석회를 넣는 것을 'sweeten the soil'이라 하며, soften은 토양의 물리적 경도를 연상시킨다.",
+      "evidence": "\"gardeners spread lime to soften soil that has turned too acidic for roots.\"",
+      "suggestion": "'gardeners spread lime to sweeten soil that has turned too acidic for roots.' 또는 중화 맥락을 살려 'to calm soil that has turned too acidic for roots.'로 조정.",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.sentences[12] (index 13) segments[2].note 및 grammar_note",
+      "issue": "동일 문장 안에서 같은 구에 대한 문법 설명이 서로 모순된다. 세그먼트 note는 '보어구'라 하고 grammar_note는 '전치사구'라 하며, role 태그는 M이다.",
+      "evidence": "{ \"role\": \"M\", \"text\": \"as little more than salty water.\", \"note\": \"as 보어구\" } 와 \"grammar_note\": \"1형식 + as 전치사구\" — 보어(C)와 수식어(M)/전치사구가 혼용되어 있다.",
+      "suggestion": "end as ~를 '~로 끝나다'의 필수 보충어로 볼지 부사구로 볼지 한쪽으로 통일한다(예: 둘 다 'as 전치사구(필수 보충어)'로 기술).",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.sentences[10] (index 11) segments V",
+      "issue": "주어에 딸린 부유 수량사(floating quantifier) both가 동사구 안에 포함되어 V로 태깅되었다.",
+      "evidence": "{ \"role\": \"S\", \"text\": \"the sting of the acid and the harshness of the base\" }, { \"role\": \"V\", \"text\": \"both fade\" } — 본문 \"the sting of the acid and the harshness of the base both fade at once\"에서 both는 등위 주어를 받는 수량사이지 동사의 일부가 아니다.",
+      "suggestion": "both를 S에 포함시키거나 별도 태그로 분리하고 V는 \"fade\"만 남긴다.",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko 문장 [19]",
+      "issue": "\"soil that has turned too acidic for roots\"의 for roots를 '뿌리에'로 옮겨, 원문의 '뿌리가 자라기에 너무 산성인'이라는 정도(too ~ for) 의미가 흐려지고 '흙이 뿌리에 산성이 되었다'로 읽힐 소지가 있다.",
+      "evidence": "영문: \"gardeners spread lime to soften soil that has turned too acidic for roots\" / 번역: \"정원사들은 뿌리에 너무 산성이 되어버린 흙을 부드럽게 만들기 위해 석회를 뿌린다\"",
+      "suggestion": "\"뿌리가 자라기에 너무 산성이 되어버린 흙\"으로 수정",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko 문장 [20]",
+      "issue": "\"far more harmless\"를 '훨씬 더 해롭지 않은'으로 직역해 한국어 비교급 표현이 어색하다(부정어 + 비교급 직역). 의미 오류는 아니나 문체상 다듬는 것이 좋다.",
+      "evidence": "영문: \"leave behind something far more <blank>(harmless).\" / 번역: \"훨씬 더 해롭지 않은 무언가를 뒤에 남긴다\"",
+      "suggestion": "\"훨씬 더 무해한 무언가를 뒤에 남긴다\"로 수정",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "answers.explanations[3].evidence (line 386)",
+      "issue": "서술형(요약문 빈칸 완성) 해설의 본문 인용이 원문과 불일치한다. 'leftover'가 누락되고 원문에 없는 쉼표가 삽입되었다. 조건이 '본문에서 제시된 단어를 그대로 활용할 것'이므로 정확한 인용이 요구된다.",
+      "evidence": "해설 인용: \"the ions that did not become water, join to form a salt\" / 실제 본문: \"the leftover ions that did not become water join to form a salt\"",
+      "suggestion": "인용을 \"the leftover ions that did not become water join to form a salt\"로 정정한다.",
+      "lens": "answer"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[0] (neutralization), synonyms[0] \"balancing\", line 404",
+      "issue": "본문의 neutralization은 산·염기 반응을 가리키는 전문 용어인데, 'balancing'은 일반어로 화학적 중화의 동의어가 아니다(화학에서 balancing은 오히려 '화학 반응식 균형 맞추기'를 뜻해 오독 위험이 있다).",
+      "evidence": "본문: \"Chemists call this quiet trade a <u>neutralization</u> reaction\" — 화학 용어로 한정된 용법.",
+      "suggestion": "synonyms를 [] 로 두거나 [\"neutralizing\"] 정도로 한정.",
+      "lens": "vocab"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[10] (acidic), synonyms[0] \"sour\", line 514",
+      "issue": "본문의 acidic은 pH 수치 범위를 가리키는 화학적 서술어인데 'sour'는 미각 형용사여서 의미역이 어긋난다.",
+      "evidence": "본문: \"Its number climbs out of the acidic range\" / 예문2도 \"soil that has turned too acidic\"으로 토양 pH를 가리킨다 — 어느 쪽도 '신맛'이 아니다.",
+      "suggestion": "synonyms를 [\"low-pH\"] 로 하거나 비우고, sour는 별도 뉘앙스 주석으로 처리.",
+      "lens": "vocab"
+    },
+    {
+      "severity": "minor",
+      "location": "page1.gloss_extra[1]~[2] (antacid, harshness), lines 26-27 vs page4.vocab[4], [9]",
+      "issue": "gloss_extra의 antacid, harshness가 page4.vocab에 동일한 한국어 뜻으로 중복 수록되어 지면이 낭비된다(뜻 자체는 정확).",
+      "evidence": "gloss_extra: {\"term\":\"antacid\",\"ko\":\"제산제(위산 중화제)\"}, {\"term\":\"harshness\",\"ko\":\"가혹함, 자극성\"} / page4.vocab: {\"word\":\"antacid\",\"meaning_ko\":\"제산제, 위산 중화제\"}, {\"word\":\"harshness\",\"meaning_ko\":\"가혹함, 자극성\"}",
+      "suggestion": "gloss_extra에는 page4.vocab에 없는 어휘(예: lime, sting, pair off)만 남기고 중복 항목 제거.",
+      "lens": "vocab"
+    }
+  ],
+  "blockers": [
+    {
+      "severity": "blocker",
+      "location": "answers.explanations[3].evidence (q_index 3, 요약문 빈칸 완성)",
+      "issue": "해설의 본문 인용이 실제 본문과 다르게 개작되어 있다. 이 문항은 <조건>이 \"본문에서 제시된 단어를 그대로 활용할 것\"이므로 인용 정확성이 채점 근거와 직결된다.",
+      "evidence": "해설 인용: \"the ions that did not become water, join to form a salt\" / 실제 page1 본문: \"the leftover ions that did not become water join to form a salt\" — 'leftover'가 누락되고, 주어와 동사 사이에 없는 쉼표가 삽입되었다.",
+      "suggestion": "인용을 본문 그대로 \"the leftover ions that did not become water join to form a salt\"로 수정한다.",
+      "lens": "explanation",
+      "verdict": {
+        "reason": "파일로 확인된 실제 결함이다. page1 본문(line 21)은 \"and the leftover ions that did not become water join to form a salt\"인데, answers.explanations[3].evidence(line 386)는 이를 \"the ions that did not become water, join to form a salt\"로 인용한다. 지적된 두 가지가 모두 정확히 확인된다: (1) 'leftover' 누락, (2) 주어와 동사 사이에 원문에 없는 쉼표 삽입. 생략 표시(...)도 없이 큰따옴표로 '본문'을 직접 인용한 형식이므로 축약 표기로 볼 수 없다 — 같은 evidence 필드의 앞 인용은 \"it supplies hydroxide ions ... hungry for...\"처럼 생략 부호를 제대로 쓰고 있고, q_index 1·2의 인용은 본문과 완전 일치하므로 이 인용만 예외적으로 어긋난다. 중요도 근거: 해당 문항의 <조건>(line 74)이 \"본문에서 제시된 단어를 그대로 활용할 것\"이라 채점 근거가 원문 표기에 직결되며, 'leftover'는 page4 vocab 표제어(line 456)로 별도 등재된 학습 어휘이고, page3 문장 12(line 222)는 동일 구를 \"the leftover ions that did not become water\"로 쉼표 없이 올바르게 분절하고 있어 본문·문장분석과 해설 간 불일치가 발생한다. 삽입된 쉼표는 주어-동사 분리라는 문법적 오류이기도 하다. 다만 (B)의 정답 자체는 'salt'이므로 학생의 정답 도출은 방해받지 않아 blocker보다는 실질 영향이 제한적이나, 인용 부정확성이라는 결함 사실 자체는 명확히 성립한다.",
+        "confidence": "high",
+        "isReal": true
+      }
+    }
+  ],
   "counts": {
-    "raw": 3,
-    "verified": 3,
-    "confirmed": 2,
-    "minor": 0
+    "raw": 20,
+    "verified": 10,
+    "confirmed": 8,
+    "minor": 10
   }
 }

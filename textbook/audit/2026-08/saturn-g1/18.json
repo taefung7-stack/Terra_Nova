@@ -4,24 +4,193 @@
   "confirmed": [
     {
       "severity": "warn",
-      "location": "page3.sentences[13] (index 14), segment role \"S\" = \"the faster it\"",
-      "issue": "구문 역할 오태깅: 'the ~, the ~' 비교급 상관구문에서 부사적 요소인 'the faster'까지 주어(S)에 묶어 태깅했다. 실제 주어는 'it'뿐이고 'the faster'는 보어/부사(M) 성분이다.",
-      "evidence": "본문: \"The more kinds of living things a place holds, the faster it heals\" / 해당 세그먼트: { \"role\": \"S\", \"text\": \"the faster it\" }, { \"role\": \"V\", \"text\": \"heals,\" }",
-      "suggestion": "'the faster'는 M(또는 비교급 보어)으로 분리하고 'it'만 S로 태깅한다. 예: M \"the faster\" / S \"it\" / V \"heals\". 앞 절의 'The more kinds of living things a place holds' 도 전체를 M으로 처리한 것은 일관되므로, 뒤 절도 'the faster'를 S에서 떼어내는 편이 일관적이다.",
+      "location": "page1.body, 1문단 4번째 문장 (원문 line 21)",
+      "issue": "먹이 사슬(food chain)과 먹이 그물(food web)을 동일한 개념으로 정의하는 과학적 개념 오류. \"chain\"이라는 단수 연쇄를 곧바로 \"a food web\"으로 등치시켰는데, 먹이 그물은 여러 먹이 사슬이 얽힌 상위 구조이므로 정의가 성립하지 않는다.",
+      "evidence": "\"Plants catch the sunlight, deer eat the plants, and wolves hunt the deer. This chain of who eats whom is a food web, and it holds the whole community together.\" — 바로 앞 문장이 제시한 것은 식물→사슴→늑대의 단일 먹이 '사슬'인데, 이를 그대로 '먹이 그물'이라 명명한다. 실제로 translation_ko도 \"누가 누구를 먹는지에 관한 이 그물이 바로 먹이 그물이며\"로 chain을 '그물'로 바꿔 옮겨, 원문의 불일치를 번역이 덮고 있다. meta.key_concepts와 page2 tieback 모두 '먹이 그물'을 핵심 개념으로 삼고 있어 개념 정확도가 중요하다.",
+      "suggestion": "단일 사슬을 그물로 등치시키지 말고 다수의 사슬이 얽혀 그물이 된다는 관계를 드러낼 것. 예: \"Many such chains of who eats whom cross and connect, forming a food web that holds the whole community together.\" 또는 \"This chain of who eats whom is one strand of a larger food web, which holds the whole community together.\"",
+      "lens": "language",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 근거로 지적이 확인된다. line 21 page1.body 1문단: \"Plants catch the sunlight, deer eat the plants, and wolves hunt the deer. This chain of who eats whom is a food web\" — 바로 앞 문장이 제시한 것은 식물→사슴→늑대의 단일 선형 먹이 사슬(food chain)이고, 지시사 \"This\" + 단수 \"chain\"이 그 문장에 직접 결속되므로 \"여러 사슬 전체\"로 넓게 읽을 여지가 없다. 이를 계사 \"is\"로 \"a food web\"과 등치시킨 것은 정의 오류다. 먹이 그물은 여러 먹이 사슬이 얽힌 상위 네트워크이며, 이 구분은 본 파일이 스스로 채택한 교육과정 틀(meta.achievement_standard \"10통과2-02-08\", meta.key_concepts에 \"먹이 그물\" 포함, line 82 tieback \"먹이 그물로 연결된 여러 생물\")에서 명시적으로 가르치는 내용이다.\n\n가중 요인 3가지:\n1) page3 문장 4(line 136-138)가 이 오류를 S=\"This chain of who eats whom\" / V=\"is\" / C=\"a food web\"로 분해해, 학습자가 잘못된 정의를 계사 동일성 명제로 명시적으로 파싱하게 만든다. 즉 오류가 구문 분석 학습 자료로 고정된다.\n2) translation_ko(line 338) [4]가 \"누가 누구를 먹는지에 관한 이 그물이 바로 먹이 그물이며\"로 chain을 '그물'로 바꿔 옮겨 원문 불일치를 은폐한다. 번역 나머지 문장들은 원문에 충실하므로 이는 표적 이탈이며, 그 결과 한국어는 \"이 그물이 곧 먹이 그물\"이라는 동어반복이 되어 그 자체로 결함이다.\n3) food web은 page4 vocab 표제어(line 401, meaning_ko \"먹이 그물\")이자 line 23 캡션·line 83 태그의 핵심 개념이라 개념 정확도 요구가 높다.\n\n반박 가능성 검토 후 기각: 대중 과학 글에서 chain을 느슨하게 쓰는 관행이 있으나, 본 자료는 성취기준 연계 교과 텍스트로 food chain과 food web 구분 자체가 학습 목표에 해당하므로 문체적 허용 범위로 볼 수 없다. 다만 오류가 논지·문항 정답(요지/빈칸/세부내용)에는 영향을 주지 않으므로 error가 아닌 warn 등급이 타당하다. 수정 방향은 \"This chain is one strand of a food web\" 또는 \"Many such chains weave together into a food web\" 식으로 사슬→그물의 층위를 살리는 것."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.sentences[index 14].segments[1] (18.json line 256)",
+      "issue": "비교급 상관구문 'the 비교급 ~, the 비교급 ~'에서 'the faster'까지 주어(S)에 묶어 오태깅했다. 'the faster'는 비교급 부사(M)이고 실제 주어는 'it'뿐이다.",
+      "evidence": "본문: \"The more kinds of living things a place holds, the faster it heals\" / 파일 태깅: { \"role\": \"M\", \"text\": \"The more kinds of living things a place holds,\" }, { \"role\": \"S\", \"text\": \"the faster it\" }, { \"role\": \"V\", \"text\": \"heals,\" } — 같은 교재 20.json 14번 문장은 동일 구조를 { \"role\": \"M\", \"text\": \"the closer\" }, { \"role\": \"S\", \"text\": \"the copy\" }, { \"role\": \"V\", \"text\": \"sits\" }로 올바르게 분리한다.",
+      "suggestion": "{ M: \"the faster\" }, { S: \"it\" }, { V: \"heals,\" }로 분리한다. 앞 절도 20.json처럼 M: \"The more kinds of living things\" / S: \"a place\" / V: \"holds,\"로 쪼개면 상관구문 학습 효과가 살아난다.",
+      "lens": "explanation",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "파일 확인 결과 지적이 정확하다. 18.json(page3, index 14, line 255-257)은 { \"M\": \"The more kinds of living things a place holds,\" }, { \"S\": \"the faster it\" }, { \"V\": \"heals,\" }로 태깅되어 있어, 비교급 부사 'the faster'(원래 'it heals faster'에서 전치된 부사구)를 주어 세그먼트에 포함시켰다. 실제 주어는 대명사 'it'뿐이므로 문법적으로 오태깅이다. 또한 20.json(index 14, line 251-257)은 동일한 'the 비교급 ~, the 비교급 ~' 상관구문을 { \"M\": \"the closer\" }, { \"S\": \"the copy\" }, { \"V\": \"sits\" }로 M/S/V를 정확히 분리하고 있어, 같은 교재 내 태깅 규약과도 불일치한다. 근거주장의 인용 텍스트와 라인 위치가 모두 파일과 일치하므로 반박 근거를 찾을 수 없다. (부차적으로 18.json은 전반부 'The more kinds of living things a place holds,'도 20.json처럼 M/S/V로 분리하지 않고 통째로 M 처리해 동일한 일관성 문제가 있으나, 지적된 항목 자체가 독립적으로 성립한다.)"
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.sentences[index 18].segments[6] (18.json line 311)",
+      "issue": "'let + 목적어 + 동사원형' 구문에서 목적격보어로 등위접속된 원형부정사 'strip'을 정동사 V로 태깅했다. 학생이 'strip'을 'may let'과 병렬인 또 하나의 본동사로 오해하게 된다.",
+      "evidence": "본문: \"Removing a single key species, like a top predator, may let one prey grow wild and strip the land bare.\" — 'grow wild'와 'strip the land bare'는 둘 다 let의 목적격보어다. 파일은 { \"role\": \"C\", \"text\": \"grow wild\" }, { \"role\": \"CONJ\", \"text\": \"and\" }, { \"role\": \"V\", \"text\": \"strip\" }, { \"role\": \"O\", \"text\": \"the land\" }, { \"role\": \"C\", \"text\": \"bare.\" }로 처리. 같은 교재 13.json은 { \"role\": \"C\", \"text\": \"test any point.\", \"note\": \"let + 목적어 + 동사원형\" }, 01.json은 { \"role\": \"C\", \"text\": \"spin its blades\" }로 보어 전체를 한 덩어리 C로 묶는다.",
+      "suggestion": "01/13.json 관례에 맞춰 { C: \"grow wild\" } + { CONJ: \"and\" } + { C: \"strip the land bare.\" }로 통일하고, note에 'let + 목적어 + 동사원형(등위 병렬)'을 명시한다.",
+      "lens": "explanation",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "지적이 파일 근거로 정확히 확인된다. 18.json line 307-313은 주장 그대로 { \"role\": \"V\", \"text\": \"strip\" }로 태깅한다.\n\n1) 문법적으로 반박 불가: 주어가 동명사구 \"Removing a single key species\"(단수)이므로 정동사라면 \"strips\"여야 하고, 문장의 유일한 정동사는 \"may let\"이다. \"strip the land bare\"는 \"grow wild\"와 등위접속된 두 번째 원형부정사 목적격보어일 수밖에 없다. 같은 문장 안에서 진짜 정동사 \"may let\"에 붙은 것과 동일한 V 라벨을 쓰므로, 학생이 병렬 본동사로 오해한다는 지적이 성립한다.\n\n2) 코퍼스 관행이 일관되게 반대: 13.json:244 { \"role\": \"C\", \"text\": \"test any point.\", \"note\": \"let + 목적어 + 동사원형\" }, 01.json:236 { \"role\": \"C\", \"text\": \"spin its blades\" }, 2026-08-J/03.json:276 \"move far faster.\"(note: let O 원형부정사), 그리고 2026-08-J/12.json:220, 08.json:508, 05.json:269, 2026-06-Mars/20.json:101 모두 원형부정사 보어를 C로 묶는다. 원형부정사 보어를 V로 태깅한 반례는 전 코퍼스에서 발견되지 않았다.\n\n3) 프로젝트 자체 감사 이력이 동일 오류 유형을 결함으로 처리: audit/2026-07/jupiter-g2/14.json(make O 원형부정사 분할 오류), audit/2026-08/saturn-g1/04.json(목적격보어를 M으로 오태깅).\n\n4) 파일 자체 모순: 같은 파일 translation_ko는 \"한 먹이 종이 폭발적으로 늘어나 땅을 헐벗게 만들 수 있다\"로 두 술어를 모두 let의 보어로 옮긴다. 또한 index 17(line 289-299)은 진짜 정동사 등위접속을 올바르게 처리하고 있어, 이 문서에서 V 라벨이 정동사 자격을 실제로 지님을 확인해 준다.\n\n유일한 유보: 인용된 선례는 모두 단일 보어라서, 등위 쌍을 하나의 C로 묶을지 C/CONJ/C로 나눌지는 코퍼스가 직접 정하지 않는다. 그러나 어느 쪽으로 해결하든 \"strip\"이 role V인 현 상태는 잘못이므로 결함 판정은 유지된다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.sentences[index 7].segments[4] (18.json line 177)",
+      "issue": "조건절 If의 주절인 독립절 'more plants grow'를 S/V로 분해하지 않고 통째로 수식어(M)로 태깅했다. 절을 M으로 뭉뚱그려 조건절-주절 구조가 드러나지 않는다.",
+      "evidence": "본문: \"If rain is heavy one year, more plants grow, so more deer live through the winter.\" — 파일은 { \"role\": \"M\", \"text\": \"more plants grow,\" }로 처리했으나, 바로 뒤 so절은 { \"role\": \"S\", \"text\": \"more deer\" }, { \"role\": \"V\", \"text\": \"live\" }로 분해되어 있어 같은 문장 안에서 처리 기준이 어긋난다. 06.json·01.json·04.json 모두 so로 연결된 절을 예외 없이 S/V로 분해한다.",
+      "suggestion": "{ S: \"more plants\" }, { V: \"grow,\" }로 분리한다.",
       "lens": "explanation",
       "verdict": {
         "isReal": true,
         "confidence": "high",
-        "reason": "파일 page3.sentences[13] (index 14)에서 해당 세그먼트가 실제로 { \"role\": \"S\", \"text\": \"the faster it\" }, { \"role\": \"V\", \"text\": \"heals,\" }로 태깅되어 있음을 확인했다. 원문은 \"The more kinds of living things a place holds, the faster it heals\"이며, 이는 'the 비교급 ~, the 비교급 ~' 상관구문이다. 후행절 \"the faster it heals\"의 문법 구조에서 진짜 주어는 대명사 'it'뿐이고, 'the faster'는 앞으로 도치된 비교급 부사 요소로 동사 'heals'를 수식한다(it heals faster). 따라서 부사적 요소인 'the faster'를 주어(S)에 함께 묶어 \"the faster it\" 전체를 S로 태깅한 것은 명백한 구문 역할 오태깅이다. 지적은 파일 근거로 정확히 확인되며 타당하다."
+        "reason": "지적이 파일 근거로 명확히 확인된다.\n\n[1] 결함 사실 확인 — 18.json line 177: { \"role\": \"M\", \"text\": \"more plants grow,\" }. 이는 S(more plants) + V(grow, 완전자동사)로 이루어진 완전한 독립절(주절)인데 통째로 수식어 M으로 태깅됐다.\n\n[2] 동일 문장 내 자기모순 — 같은 sentences[index 7] 안에서 바로 뒤 so절은 line 178-180에서 { \"role\": \"CONJ\", \"text\": \"so\" }, { \"role\": \"S\", \"text\": \"more deer\" }, { \"role\": \"V\", \"text\": \"live\" }로 정상 분해됐다. 등위접속사 so로 대등하게 연결된 두 절을 한쪽은 M 덩어리, 한쪽은 S/V로 처리해 기준이 어긋난다.\n\n[3] 코퍼스 전역 규칙 위반 (2중) — 2026-08 전체를 검증한 결과 두 개의 일관된 규칙이 모두 이 태깅을 배제한다.\n  (a) so로 연결된 절은 예외 없이 S/V 분해: 01.json:280, 02.json:232·285, 04.json:240·322, 06.json:187·325, 08.json:344, 11.json:232, 12.json:200, 14.json:121·176, 16.json:188, 17.json:284, 19.json:161.\n  (b) 문두 종속접속사가 CONJ로 분리된 경우 뒤따르는 주절은 예외 없이 S/V 분해: 02.json:229·256·282, 03.json:167·246, 05.json:150·194·206·255·272, 06.json:232, 08.json:357. 특히 04.json:202-207은 구조적 쌍둥이 사례로 If + S/V/O 뒤 주절을 S(even a perfect argument)/V(will fail)로 분해한다.\n\n[4] 반박 가능성 검토 후 기각 — 절을 M으로 뭉치는 사례(04.json:123, 12.json:218, 14.json:222·303, 16.json:197, 19.json:127·252, 그리고 18.json 자신의 line 201 \"when wolves grow common,\")가 존재하나, 이는 별도 CONJ 세그먼트 없이 '종속절'을 통째로 M에 넣는 다른 컨벤션이며 주절에는 결코 적용되지 않는다. 문제의 sentence 7은 line 173에서 If를 CONJ로 분리하고 조건절을 rain/is/heavy one year로 분해한 첫 번째 컨벤션을 따르므로, 주절 역시 S/V로 분해돼야 한다. 두 컨벤션 어느 쪽도 line 177의 M 태깅을 정당화하지 못한다.\n\n결론: 조건절-주절 구조가 드러나지 않는 실제 태깅 결함이며, 수정안은 { \"role\": \"S\", \"text\": \"more plants\" }, { \"role\": \"V\", \"text\": \"grow,\" }이다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.translation_ko 문장 [4] (line 338) / 대응 영문 page1.body·page3.sentences[3]",
+      "issue": "\"This chain of who eats whom is a food web\"의 핵심어 chain(사슬/연쇄)을 '그물'로 오역해, 원문의 정의문(A는 B이다)이 '이 그물이 바로 먹이 그물이다'라는 동어반복이 되었다. 학생이 먹이 '사슬'→먹이 '그물'로 확장되는 개념 흐름을 파악할 수 없다.",
+      "evidence": "영문: \"This chain of who eats whom is a food web, and it holds the whole community together.\" / 번역: \"[4] 누가 누구를 먹는지에 관한 이 그물이 바로 먹이 그물이며, 그것이 군집 전체를 하나로 묶어 준다.\"",
+      "suggestion": "\"누가 누구를 먹는지에 관한 이 사슬(연쇄)이 바로 먹이 그물이며, 그것이 군집 전체를 하나로 묶어 준다.\"로 수정",
+      "lens": "translation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일에서 지적 내용이 정확히 확인됨. page1.body(line 21)와 page3.sentences[3](lines 136-138, S=\"This chain of who eats whom\" / V=\"is\" / C=\"a food web\")의 영문은 \"This chain ... is a food web\"로, 주어가 chain(사슬/연쇄), 보어가 food web(먹이 그물)인 정의문이다. 그러나 page3.translation_ko(line 338)의 [4]는 \"누가 누구를 먹는지에 관한 이 그물이 바로 먹이 그물이며\"로, 주어 chain을 '그물'로 옮겨 '이 그물이 바로 먹이 그물'이라는 동어반복이 되었다. 바로 앞 [3]이 식물→사슴→늑대의 선형 '사슬'을 제시한 뒤 이를 '그물'로 명명·확장하는 개념 전개가 번역에서 완전히 소실된다. 또한 같은 translation_ko의 [17]은 \"the web\"을 '먹이 그물'로 옮기고 있고, meta.key_concepts(line 16)와 page4.vocab의 \"food web\"(lines 401-403) 역시 '먹이 그물'을 고정 용어로 사용하므로, [4]의 '그물'은 용어 충돌이자 명백한 오역이며 문체적 변주로 볼 수 없다. translation_ko 전체에 chain에 대응하는 사슬/연쇄 등의 보상 어휘도 존재하지 않는다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.translation_ko 문장 [5] (line 338) / 대응 영문 page3.sentences[4]",
+      "issue": "원문에 없는 완화 부사 '대체로'를 임의로 추가했다(과장/첨가). 원문 \"When each part stays steady\"는 조건 없는 단정이며, 특히 이 문장은 balance의 정의문이자 page2 3번 문항 선택지 판정 근거이므로 뉘앙스 훼손이 발생한다.",
+      "evidence": "영문: \"When each part stays steady, we say the ecosystem is in <u>balance</u>.\" / 번역: \"[5] 각 부분이 대체로 안정되게 유지될 때, 우리는 그 생태계가 평형 상태에 있다고 말한다.\"",
+      "suggestion": "'대체로'를 삭제하고 \"각 부분이 안정되게 유지될 때, 우리는 그 생태계가 평형 상태에 있다고 말한다.\"로 수정",
+      "lens": "translation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일로 확인됨. 영문 원문(line 21 page1.body 및 line 146-157 page3.sentences index 5)은 \"When each part stays steady, we say the ecosystem is in <u>balance</u>.\"로, 완화/한정 부사가 전혀 없다. 세그먼트도 CONJ \"When\" / S \"each part\" / V \"stays\" / C \"steady,\"로 순수 단정이다. 반면 line 338 translation_ko [5]는 \"각 부분이 대체로 안정되게 유지될 때\"로 되어 있고, Grep 결과 '대체로'는 파일 전체에서 이 한 곳에만 등장한다. 즉 대응 원문 없는 임의 첨가가 맞다.\n\n단순 트집이 아닌 이유: (1) 이 문장은 <u>balance</u> 용어의 정의문이며, page2 4번 요약문 빈칸 정답 \"(A) balance\"(line 77, 386)의 근거 문장이다. (2) page2 3번 선택지 B \"Balance means numbers rise and fall around a steady middle.\"(line 64)를 '일치'로 판정하는 해설(line 375)이 이 \"steady\" 연결에 의존하는데, '대체로'가 정의의 단정성을 약화시킨다. (3) 같은 번역문 내 다른 문장들([15] far more fragile → 훨씬 더 취약하다, [16] no forest can absorb every shock → 어떤 숲도 모든 충격을 흡수하지는 못한다)은 충실하게 옮겨져 있어, 이 완화는 번역 스타일이 아닌 고립된 이탈이다.\n\n반론 검토 후 기각: 뒤 문장 [6](\"완전한 정지가 아니라\")·[10](\"안정된 중간값을 중심으로 오르내린다\")의 동적 평형 뉘앙스를 미리 반영한 것이라 볼 여지가 있으나, 원문은 정의를 먼저 단정하고 이후에 한정하는 구성을 의도적으로 취하고 있어 [5]에 선반영하면 전개가 뭉개진다. 또한 '각 부분이 안정되게 유지될 때'만으로도 국어 자연스러움에 문제가 없어 번역상 필요에 의한 추가도 아니다. 정답 도출 자체는 방해되지 않으므로 error가 아닌 warn 등급이 타당하다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page2.questions[1].stem (빈칸 추론) + page1.body",
+      "issue": "stem이 \"밑줄 친 빈칸\"이라 하지만 본문의 빈칸은 <blank>로만 표시되어 있고 밑줄 표시가 없다. 반대로 본문에 실제로 존재하는 두 개의 <u> 밑줄은 빈칸이 아닌 전혀 다른 단어(balance, resilience)에 걸려 있어, \"밑줄 친\"을 단서로 찾는 학생이 오답 지점을 보게 된다.",
+      "evidence": "stem: \"윗글의 밑줄 친 빈칸에 들어갈 말로 가장 적절한 것은?\" / body: \"we say the ecosystem is in <u>balance</u>\", \"scientists call this power <u>resilience</u>\", \"the surest way to keep an ecosystem <blank>.\" — <blank> 주위에 <u> 태그가 없음.",
+      "suggestion": "stem을 \"윗글의 빈칸에 들어갈 말로 가장 적절한 것은?\"으로 수정하거나(같은 폴더 2026-06/04.json, 05.json, 06.json 등이 이미 이 표현을 사용), 빈칸을 밑줄로 표기해 stem과 일치시킬 것.",
+      "lens": "answer",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 근거로 지적의 모든 사실 주장이 그대로 확인됨.\n\n1) page2.questions[1].stem (line 48) = \"윗글의 밑줄 친 빈칸에 들어갈 말로 가장 적절한 것은?\" — \"밑줄 친\"이 명시됨.\n2) page1.body (line 21)의 빈칸은 \"the surest way to keep an ecosystem <blank>.\" 로, <blank> 앞뒤에 <u> 태그가 전혀 없음.\n3) 반면 본문에 실재하는 <u> 태그는 정확히 두 개이며 빈칸이 아닌 다른 단어에 걸려 있음: \"the ecosystem is in <u>balance</u>\", \"scientists call this power <u>resilience</u>\".\n\n반박 시도 및 기각 사유:\n- \"밑줄 친 빈칸은 한국 시험 관용구\" 반박 → 실제 수능/모평 빈칸추론 관용 표현은 \"다음 빈칸에 들어갈 말로 가장 적절한 것은?\"이며 \"밑줄 친\"은 어휘·어법 문항 전용. 같은 파일의 요약문 문항(line 76)도 <blank>만 사용해 프로젝트 자체 규약상 <blank>가 독립 표지임을 뒷받침함.\n- \"렌더러가 <blank>를 밑줄로 그릴 수 있다\" 반박 → 설령 그렇더라도 본문에 별개의 진짜 <u> 두 개가 공존하므로 결함은 독립적으로 성립. 오히려 그 두 단어(balance, resilience)가 line 77의 요약문 정답 \"(A) balance (B) resilience\"와 동일해, \"밑줄 친\" 단서를 따라간 학생이 다른 문항의 정답 지점을 먼저 보게 되는 문항 간 간섭까지 발생.\n- \"정답에 영향 없으니 미관 문제\" 반박 → answer_index 0은 정답이 맞아 error가 아닌 warn 수준이 타당하나, stem은 학생에게 주는 지시문이며 잘못된 시각 지시 대상을 가리키므로 실제 결함.\n\n수정 방향은 \"밑줄 친\" 삭제(\"윗글의 빈칸에 들어갈 말로...\")뿐이며, 이는 해당 표현이 아무 정당한 기능도 하지 않음을 확인해 줌."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page1.body <u>balance</u>, <u>resilience</u> ↔ page2.questions[3].model_answer",
+      "evidence": "body: \"we say the ecosystem is in <u>balance</u>\" / \"scientists call this power <u>resilience</u>\" · questions[3].model_answer: \"(A) balance  (B) resilience\" · hints: [\"balance\",\"resilience\",\"variety\",\"predator\",\"shock\"]",
+      "issue": "본문의 두 밑줄이 어떤 문제에도 연결되지 않은 채(밑줄 어법·지칭 문항 없음) 남아 있는데, 하필 그 두 단어가 서술형 요약문 빈칸(A)(B)의 정답과 정확히 일치한다. 밑줄이 사실상 정답을 미리 강조해 주어 4번 문항의 변별력이 크게 떨어진다.",
+      "suggestion": "밑줄을 제거하거나(gloss_extra 방식으로 처리), 요약문 정답어를 밑줄이 걸리지 않은 다른 본문 어휘로 교체할 것.",
+      "lens": "answer",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 근거로 지적이 정확히 확인됨. (1) page1.body(21행)에 <u> 태그는 정확히 두 개뿐: \"we say the ecosystem is in <u>balance</u>\", \"scientists call this power <u>resilience</u>\". (2) page2.questions 4문항(요지/빈칸 추론/세부 내용 파악/요약문 빈칸 완성) 중 이 밑줄을 참조하는 어법·지칭 문항이 없음. q1의 \"윗글의 밑줄 친 빈칸\"은 본문 말미의 <blank> 토큰을 가리키며 정답도 \"healthy and able to recover\"라는 구(answer_index 0)이므로 두 <u> 단어와 무관 → 밑줄은 실제로 미연결 상태. (3) questions[3].model_answer(77행)는 \"(A) balance  (B) resilience\"로 밑줄 친 두 단어와 순서까지 완전 일치. (4) hints(75행)는 [\"balance\",\"resilience\",\"variety\",\"predator\",\"shock\"] 5개 중 2개를 골라 \"본문에서 제시된 단어를 그대로\" 쓰게 하는 과제인데, 밑줄이 정답 2개만 시각적으로 표시해 5지 선택 과제를 단순 시각 복사 과제로 무력화함. 반박 시도도 성립하지 않음: 용어 강조 목적이라면 이미 gloss_extra(24-28행: predator, fragile, tipping point)와 page4.vocab이라는 별도 장치가 있고 그 목록에 balance/resilience는 없으며, <u>는 본문 어디에도 다른 용도로 쓰이지 않음. 또한 answers.explanations[3].evidence(386행)가 하필 밑줄 친 그 두 문장을 정답 근거로 그대로 인용해, 밑줄=정답 위치임이 파일 내부적으로도 확증됨. 따라서 4번 서술형의 변별력 저하는 실제 결함."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page4.vocab[1] ecosystem.synonyms",
+      "issue": "synonyms에 \"biome\"을 제시했으나 biome(생물군계)은 기후대 단위의 대분류(툰드라·사바나 등)로, ecosystem(생물+무생물 요소가 상호작용하는 계)과 층위가 다른 상위 개념이다. 통합과학 교과에서도 두 용어를 구분해 가르치므로 동의어 제시는 개념 혼동을 유발한다.",
+      "evidence": "본문: \"When each part stays steady, we say the ecosystem is in balance.\" / vocab: \"word\": \"ecosystem\", \"meaning_ko\": \"생태계\", \"synonyms\": [\"biome\"]",
+      "suggestion": "synonyms를 [\"ecological system\"] 정도로 바꾸거나 비우고, biome은 필요하면 별도 관련어(관련 개념)로 표시한다.",
+      "lens": "vocab",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일에서 지적 내용이 그대로 확인됨. page4.vocab[1](415행)에 \"word\": \"ecosystem\", \"meaning_ko\": \"생태계\", \"synonyms\": [\"biome\"]가 실재한다. 지적은 타당하다.\n\n1) 개념 층위 오류가 실제로 존재: 통합과학 생태계 단원의 위계는 개체→개체군→군집→생태계이며, biome(생물군계)은 기후대로 묶인 생태계의 상위 대분류(툰드라·사바나·열대우림)다. 동의어가 아니라 상하위 관계다.\n\n2) 파일 내부에서 자기모순: 같은 vocab 리스트가 population을 \"개체군\"(480행), community를 \"군집, 생물 공동체\"(513행)로 정확히 층위 구분해 가르치고 있다. 그 옆에서 ecosystem=biome을 제시하면 이 파일이 스스로 세운 위계 교육과 충돌한다. 또한 meta.linked_unit \"통합과학2 생태계 평형과 회복\", achievement_standard 10통과2-02-08로 명시된 시험 출제 범위 개념이라 혼동 비용이 실제적이다.\n\n3) 대입 검증에서 즉시 깨짐: 같은 항목의 예문 \"A wetland is a rich ecosystem full of life.\"(419행)에서 ecosystem을 biome으로 치환하면 명백한 비문/오개념이 된다(습지는 biome이 아님). 본문 지문 역시 단일 숲 하나를 ecosystem으로 지칭한다(21행).\n\n4) 파일 관례에서 유일한 이탈: 나머지 12개 항목의 synonyms는 모두 문맥 치환 가능한 근접 동의어다(food network, toughness, hunter, quarry, delicate, disturbance, threshold, diversity, assemblage, soak up, number, emit 대응). \"biome\"만이 동의어가 아닌 다른 분류 층위의 어휘로, 리스트 내 유일한 예외다.\n\n반박 검토: 일반 영영 시소러스가 ecosystem 인접어로 biome을 나열하기도 하나, 본 파일은 위계 구분 자체가 평가 대상인 통합과학 교재이므로 느슨한 시소러스 인접성은 면책 사유가 되지 못한다. 심각도는 정답키·스키마 오류가 아닌 교육적 정확성 결함이므로 warn 등급이 적절하며, 제기된 등급과 일치한다."
       }
     }
   ],
-  "minors": [],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page1.body, 4문단 3번째 문장 (원문 line 21); 동일 표현이 page2 choices line 65, page4 vocab 예문 line 451에도 반복",
+      "issue": "prey는 통상 불가산 집합명사여서 \"one prey\"처럼 수사로 세는 용법이 부자연스럽다. 종 단위를 뜻하려면 one prey species가 표준 표현이다.",
+      "evidence": "\"Removing a single key species, like a top predator, may let one prey grow wild and strip the land bare.\" (본문) / \"Removing a top predator can let one prey explode in number.\" (선택지) / \"Losing a predator may let one prey explode.\" (어휘 예문). 한국어 번역은 세 곳 모두 '한 먹이 종'으로 옮겨 species 개념을 보충하고 있어, 영문 쪽에만 species가 빠져 있음이 드러난다.",
+      "suggestion": "세 곳 모두 \"one prey species\"로 통일. 예: \"...may let one prey species grow wild and strip the land bare.\"",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko 문장 [5] (18.json line 338)",
+      "issue": "원문에 없는 완화 표현 '대체로'를 번역에 추가했다. 'stays steady'는 조건 없는 단정이므로 의미가 약화된다.",
+      "evidence": "본문: \"When each part stays steady, we say the ecosystem is in balance.\" / 번역: \"[5] 각 부분이 대체로 안정되게 유지될 때, 우리는 그 생태계가 평형 상태에 있다고 말한다.\" — 'stays steady'에 대응하는 어휘가 '안정되게 유지될'이므로 '대체로'는 무근거 추가다.",
+      "suggestion": "\"각 부분이 안정되게 유지될 때\"로 수정한다.",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko 문장 [12] (line 338) / 대응 영문 page3.sentences[11]",
+      "issue": "\"can kill many creatures\"의 kill을 '쓸어버릴'로 옮겨 원문보다 강도가 과장되었다. 문맥상 '전멸시키다'에 가까운 어감이 되어, 뒤 문장 [13]의 '회복 가능하다'와 논리적으로 어긋난다.",
+      "evidence": "영문: \"A fire, a flood, or a new disease can kill many creatures at once.\" / 번역: \"[12] 화재, 홍수, 또는 새로운 질병이 많은 생물을 한꺼번에 쓸어버릴 수 있다.\"",
+      "suggestion": "\"많은 생물을 한꺼번에 죽일 수 있다\" 정도로 중립화",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko 문장 [19] (line 338) / 대응 영문 page3.sentences[18]",
+      "issue": "\"may never come back\"를 '결코 돌아오지 않을 수 있다'로 옮겨, 부정 극어 '결코'와 추측 '~을 수 있다'가 충돌하는 비문에 가까운 한국어가 되었다. 원문의 '영영 돌아오지 못할 수도 있다'는 가능성 진술이 흐려진다.",
+      "evidence": "영문: \"Once that tipping point is passed, the old balance may never come back, no matter how much time goes by.\" / 번역: \"[19] 일단 그 임계점을 넘어서면, 아무리 많은 시간이 흘러도 예전의 평형은 결코 돌아오지 않을 수 있다.\"",
+      "suggestion": "\"예전의 평형은 영영 돌아오지 못할 수도 있다\"로 수정",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[0] food web.synonyms",
+      "issue": "\"food network\"는 생태학에서 통용되는 용어가 아니다(표준 용어는 food web / food chain이며, Food Network는 미국 요리 채널 상표로 검색 시 혼동을 준다). 사전에 없는 조어를 동의어로 제시한 셈이다.",
+      "evidence": "본문: \"This chain of who eats whom is a food web, and it holds the whole community together.\" / vocab: \"word\": \"food web\", \"synonyms\": [\"food network\"]",
+      "suggestion": "synonyms를 [\"food chain\"](본문 chain 표현과도 연결) 또는 [\"trophic web\"]로 교체한다.",
+      "lens": "vocab"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[5] fragile.examples[0].en",
+      "issue": "예문이 본문 문장에서 than절을 잘라내 \"far more fragile\"이라는 비교급만 남아 비교 대상이 없는 불완전한 비교문이 되었다. 단독 예문으로 제시되면 어색하고, 학생이 비교급 구문을 학습하는 데도 나쁜 모델이다.",
+      "evidence": "본문: \"A forest with only one tree species is far more fragile than a mixed one.\" / 예문: \"A forest with one tree species is far more fragile.\"",
+      "suggestion": "\"A forest with only one tree species is far more fragile than a mixed one.\"처럼 than절을 살리거나, than을 뺄 거면 far more를 지우고 \"A forest with one tree species is very fragile.\"로 고친다.",
+      "lens": "vocab"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[4] prey.examples[0].en",
+      "issue": "prey는 집합·불가산 명사여서 \"one prey\"처럼 단수 가산 취급하는 것이 어색하다(정상 표현은 one prey species / one prey population). 본문의 \"one prey grow wild\"를 그대로 답습해 예문에서도 반복했다.",
+      "evidence": "예문: \"Losing a predator may let one prey explode.\" / ko: \"포식자를 잃으면 한 먹이 종이 폭발할 수 있다.\" — 대역은 '한 먹이 종'이라 species를 넣어 옮겼는데 영문에는 species가 없다.",
+      "suggestion": "\"Losing a predator may let one prey species explode in number.\"로 수정해 영문과 한국어 대역을 일치시킨다.",
+      "lens": "vocab"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[9] variety.examples[1].ko",
+      "issue": "\"a huge variety of fish\"는 '아주 다양한 물고기'라는 뜻인데 대역이 \"엄청난 다양성의 물고기\"로 직역되어 한국어로 부자연스럽다.",
+      "evidence": "예문: { \"en\": \"The reef holds a huge variety of fish.\", \"ko\": \"그 산호초는 엄청난 다양성의 물고기를 품고 있다.\" }",
+      "suggestion": "\"그 산호초에는 아주 다양한 물고기가 산다.\" 정도로 자연스럽게 다듬는다.",
+      "lens": "vocab"
+    }
+  ],
   "blockers": [],
   "counts": {
-    "raw": 1,
-    "verified": 1,
-    "confirmed": 1,
-    "minor": 0
+    "raw": 20,
+    "verified": 12,
+    "confirmed": 9,
+    "minor": 8
   }
 }

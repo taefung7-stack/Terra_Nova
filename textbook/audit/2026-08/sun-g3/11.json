@@ -1,0 +1,128 @@
+{
+  "grade": "sun-g3",
+  "seq": 11,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page3.sentences[index=13].segments[3] (11.json line 277)",
+      "issue": "be expected to V 구문의 to부정사 보어를 M(수식어)으로 오태깅. 수동 보고동사 뒤 남은 to부정사는 보어(C)이며, 같은 문장의 grammar_note가 \"be expected to V (수동)\"라고 패턴을 명시하고 있음에도 태그가 이와 모순된다.",
+      "evidence": "본문: \"A degree earned at twenty can no longer be expected to carry someone for forty years.\" / page3 태그: { \"role\": \"V\", \"text\": \"can no longer be expected\" }, { \"role\": \"M\", \"text\": \"to carry someone for forty years.\", \"note\": \"수동태 + to부정사\" } / 동일 구조의 사내 표기 관례(2026-06-Sun/10.json line 280-289): { \"role\": \"V\", \"text\": \"is said\" }, { \"role\": \"C\", \"text\": \"to be oxidized,\", \"note\": \"be said + to-V\" }",
+      "suggestion": "\"to carry someone for forty years.\" 의 role을 M → C 로 수정. (be said/expected/thought to-V 계열은 전 코퍼스에서 C로 통일되어 있음)",
+      "lens": "explanation",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "파일 근거로 지적이 그대로 확인됨. C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/content/passages/2026-08-Sun/11.json line 274-279에서 page3.sentences[index=13]은 { \"role\": \"V\", \"text\": \"can no longer be expected\" } 다음에 { \"role\": \"M\", \"text\": \"to carry someone for forty years.\", \"note\": \"수동태 + to부정사\" }로 태깅되어 있고, 같은 문장의 grammar_note는 \"과거분사 후치 수식 + be expected to V (수동)\"로 be expected to V 패턴임을 명시한다.\n\n문법적으로 be expected to V는 expect O to V의 수동(주어 상승) 구문이며, 남은 to부정사는 생략 불가한 필수 보어(C)다. \"A degree can no longer be expected.\"만으로는 원문 의미가 성립하지 않으므로 부가적 수식어(M)가 아니다.\n\n사내 표기 관례도 확인됨: (1) 2026-06-Sun/10.json line 280-289 — { \"role\": \"V\", \"text\": \"is said\" } + { \"role\": \"C\", \"text\": \"to be oxidized,\", \"note\": \"be said + to-V\" }; (2) 더 결정적으로 동일 교재 세트인 2026-08-Sun/04.json line 263-268 — { \"role\": \"V\", \"text\": \"are\" }, { \"role\": \"M\", \"text\": \"no longer\" }, { \"role\": \"C\", \"text\": \"asked to sit still and passively receive a finished tale.\", \"note\": \"수동태 + to부정사 병렬\" }로 'no longer + 수동 보고동사 + to부정사'라는 사실상 동일 구조를 C로 태깅하고 있다.\n\n반박 가능성 검토 결과 기각: 코퍼스 내 다른 \"수동태 + to부정사\" M 태그들(2026-08-J/14.json line 195 \"A play is written to be performed\" note \"부사적 to부정사 (수동)\", 2026-07-J/11.json line 437-442 \"was designed\" + \"partly to give poorer children a way to rise\")은 write/design의 진짜 목적 부사구로 M이 타당하다. 즉 코퍼스는 상승 보어와 목적 부사구를 이미 구분하고 있어, 11.json의 M은 대안적 표기 방침이 아니라 이탈 사례다. 또한 segment 태그(M)와 sentence grammar_note(be expected to V)가 서로 모순된다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.sentences[index=7].segments[9] (11.json line 211)",
+      "issue": "O 세그먼트에 목적어가 아닌 전치사구 수식어가 함께 묶여 있음. explain의 목적어는 \"it\" 뿐이고 \"to a frightened patient\"는 M이다. 3형식 목적어 경계를 잘못 가르치게 된다.",
+      "evidence": "본문: \"...yet still must judge the doubtful case and explain it to a frightened patient.\" / page3 태그: { \"role\": \"V\", \"text\": \"explain\" }, { \"role\": \"O\", \"text\": \"it to a frightened patient.\", \"note\": \"동사 병렬 (judge/explain)\" } / 바로 앞 병렬 동사는 { \"role\": \"O\", \"text\": \"the doubtful case\" } 로 목적어만 정확히 분리되어 있어 내부 일관성도 깨짐",
+      "suggestion": "세그먼트를 { \"role\": \"O\", \"text\": \"it\" } 와 { \"role\": \"M\", \"text\": \"to a frightened patient.\" } 로 분리. note(동사 병렬)는 유지.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 확인 결과 지적이 정확하다. 11.json line 210-211에서 { \"role\": \"V\", \"text\": \"explain\" } 뒤에 { \"role\": \"O\", \"text\": \"it to a frightened patient.\", \"note\": \"동사 병렬 (judge/explain)\" } 로 태깅되어 있다. explain은 영어에서 이중목적어(4형식)를 취하지 못하는 동사이므로(*explain me the answer 비문) \"to a frightened patient\"는 목적어의 일부가 아니라 부가어(M)이며, 목적어는 \"it\" 뿐이다.\n\n내부 일관성 붕괴도 두 지점에서 확인된다.\n1) 같은 문장(index=7) 안의 병렬 동사: line 207-208은 { \"role\": \"V\", \"text\": \"must judge\" } + { \"role\": \"O\", \"text\": \"the doubtful case\" } 로 목적어만 정확히 분리했다. 동일한 병렬 구조인데 explain 쪽만 PP를 O에 흡수시켰다.\n2) 결정적 선례 — line 266-267 (index=12): { \"role\": \"O\", \"text\": \"it\" }, { \"role\": \"M\", \"text\": \"as the core of a resilient working life.\" }. 동일한 대명사 목적어 \"it\" + 후행 전치사구 구조를 O + M 으로 올바르게 분리한 사례가 같은 파일 안에 존재한다.\n\n또한 파일 전반의 컨벤션이 전치사구를 M으로 분리한다: line 194 { \"role\": \"M\", \"text\": \"with the parts\" }, line 204 { \"role\": \"M\", \"text\": \"on an algorithm to flag a scan,\" }, line 150 { \"role\": \"M\", \"text\": \"until retirement.\" }.\n\n반박 가능성 검토: (a) 4형식 목적어로 보아 통째로 O라는 해석 — explain의 통사적 특성상 불가. (b) grammar_note(line 213)도 \"yet 대조 + 조동사 뒤 동사 병렬\"만 언급할 뿐 특수 보문 구조를 주장하지 않음. (c) 문말 마침표 때문에 병합했다는 변호 — line 208이 동일 문장 내에서 목적어만 분리한 반례.\n\n단, 심각도는 warn 수준이 타당하다. JSON 구조는 유효하고 세그먼트 텍스트를 이으면 원문이 정확히 복원되므로 렌더링 결함은 없다. 그러나 3형식 목적어 경계를 잘못 가르치는 학습 콘텐츠상의 실질 결함이며 파일 근거로 명확히 확인되므로 isReal=true."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page4.vocab[11] (demand) — antonyms",
+      "issue": "pos·의미 불일치 반의어. 표제어는 pos \"v.\", meaning_ko \"요구하다\"인데 반의어로 \"supply\"를 제시했다. supply가 demand의 반의어가 되는 것은 경제학 명사쌍(수요↔공급)일 때뿐이며, 동사 demand(요구하다)의 반의어는 supply(공급하다)가 아니다. 본문 용법도 동사다.",
+      "evidence": "page1.body: \"...a gap between the skills people hold and the skills the new economy demands.\" / page4.vocab: {\"word\":\"demand\",\"pos\":\"v.\",\"meaning_ko\":\"요구하다\",\"antonyms\":[\"supply\"]}",
+      "suggestion": "동사 반의어로 교체하거나 삭제. 예: antonyms: [\"offer\", \"provide\"] 또는 [] (빈 배열). 수요↔공급 대비를 살리려면 pos를 \"n.\"으로 바꾸고 meaning_ko를 \"수요\"로 두어야 하나, 본문 용법이 동사이므로 반의어 삭제를 권장.",
+      "lens": "vocab",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "파일에서 지적 내용이 그대로 확인된다. page4.vocab[11] = {\"word\":\"demand\",\"pos\":\"v.\",\"meaning_ko\":\"요구하다\",\"synonyms\":[\"require\"],\"antonyms\":[\"supply\"]}.\n\n지적이 타당한 근거:\n1. pos와 예문이 모두 동사로 일관된다. 본문(page1 4문단, page3 sentence 17)의 \"the skills the new economy demands\"는 정동사이고, vocab 예문 2개(\"...the new economy demands\", \"The job demands constant learning.\") 역시 모두 동사 용법이다. 따라서 pos \"v.\"는 올바르며, 틀린 쪽은 antonyms이다.\n2. supply가 demand의 반의어가 되는 것은 경제학 명사쌍(수요↔공급)에 한정된다. 동사 demand(요구하다)의 반의어는 supply(공급하다)가 아니다. 동사 supply는 \"제공하다\"이고 그 반의어는 withhold/deprive이지 demand가 아니다. 학습자는 \"요구하다 ↔ 공급하다\"라는 잘못된 대응을 학습하게 된다. 동사 층위의 적절한 반의어는 offer, grant, waive, relinquish 등이다.\n3. 스키마 강제가 아니다. 같은 파일 내 automation, reshape, algorithm, credential, renewal 항목이 모두 \"antonyms\": []로 비어 있으므로, 빈 배열이 허용된 선택지였다. 즉 supply 기입은 불가피한 결과가 아니라 실제 오기입이다.\n\n반박 시도 결과: \"pos가 오기이고 명사 뜻이 의도였을 것\"이라는 방어는 성립하지 않는다. 본문·예문이 전부 동사이므로 명사 해석 근거가 없다.\n\n다만 피해 범위는 구조적 결함이 아닌 어휘 학습상의 오개념 유발이므로 warn 등급이 적정하다. 수정 방향은 antonyms를 []로 비우거나 offer/grant 등 동사 반의어로 교체하는 것이다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page4.vocab[11] (demand) — examples[0].en",
+      "issue": "예문 영어가 비문법적/비관용적. \"a gap with the skills\"는 성립하지 않는 연어다. gap은 between A and B 또는 in/of 구조를 취한다. 본문에서 문장을 잘라 오면서 격차의 한쪽 항(the skills people hold)을 빼버려 'between ... and ...' 구조가 깨졌고, ko 대역 \"새 경제가 요구하는 기술과의 격차\"도 무엇과의 격차인지 드러나지 않는다.",
+      "evidence": "page4.vocab examples[0]: {\"en\":\"There is a gap with the skills the new economy demands.\",\"ko\":\"새 경제가 요구하는 기술과의 격차가 있다.\"} vs page1.body: \"...a gap between the skills people hold and the skills the new economy demands.\"",
+      "suggestion": "본문 구조를 살려 교체: en \"There is a gap between the skills people hold and the skills the new economy demands.\" / ko \"사람들이 가진 기술과 새 경제가 요구하는 기술 사이에 격차가 있다.\"",
+      "lens": "vocab",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일에서 지적 내용이 그대로 확인됨. page4.vocab[11] (demand) examples[0] (11.json:548)은 {\"en\":\"There is a gap with the skills the new economy demands.\",\"ko\":\"새 경제가 요구하는 기술과의 격차가 있다.\"}이다. 반면 page1.body(11.json:26)의 원문은 \"...a gap between the skills people hold and the skills the new economy demands.\"이며, page3.sentences[16] (11.json:321) 역시 \"in a gap between the skills people hold and the skills the new economy demands.\"로 \"not A but B\" 주석을 달고 있고, translation_ko(11.json:346)도 \"사람들이 가진 기술과 새 경제가 요구하는 기술 사이의 격차\"로 두 항을 모두 명시한다.\n\n(1) 연어 오류: 이 의미의 gap은 between A and B 구조(원문 그대로) 또는 in/of를 취한다. \"a gap with the skills X demands\"는 관용적으로 성립하지 않는다. with를 비교 대상 도입으로 선해하더라도 \"gap between A and B\" 또는 최소한 \"relative to\" 류가 필요하며, 현 문장의 with는 동반/수단으로 읽혀 의미가 성립하지 않는다.\n\n(2) 구조 파손: 예문은 원문에서 격차의 한쪽 항(the skills people hold)을 잘라내고 between을 with로 바꾸면서, gap이 요구하는 2항 비교 구조가 깨졌다. ko 대역 \"~과의 격차\"도 나머지 한 항이 드러나지 않아 무엇과 무엇의 격차인지 알 수 없으며, 같은 파일 translation_ko가 두 항을 모두 밝히는 것과 대비된다.\n\nheadword인 demands가 관계절에 등장해 어휘 예시 기능 자체는 일부 수행하나, 주절의 비문법성을 상쇄하지 못한다. 원문 절 전체(\"There is a gap between the skills people hold and the skills the new economy demands.\")를 그대로 쓰면 문법성 회복과 demands 노출을 동시에 만족한다. 실제 결함이다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page4.vocab[8] (renewal) — synonyms",
+      "issue": "품사 불일치 동의어. 표제어 pos는 \"n.\"인데 동의어 목록의 \"refresh\"는 동사다. 명사 renewal의 동의어로 쓰려면 refreshment/refreshing 형태여야 하는데 그마저 '기술의 갱신'이라는 본문 의미와는 거리가 있다. 같은 목록의 \"revival\"만 명사로 적절하다.",
+      "evidence": "page4.vocab: {\"word\":\"renewal\",\"pos\":\"n.\",\"meaning_ko\":\"갱신, 새롭게 함\",\"synonyms\":[\"refresh\",\"revival\"]} / page1.body: \"Economists call this steady renewal of skills reskilling...\"",
+      "suggestion": "\"refresh\"를 명사형 동의어로 교체. 예: synonyms: [\"revival\", \"updating\"] 또는 [\"revival\", \"regeneration\"].",
+      "lens": "vocab",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "파일 확인 결과 지적이 정확하다. page4.vocab 배열의 인덱스 8(dissolving, automation, reshape, routine, algorithm, empathy, scarce, credential, renewal 순)이 renewal이며, 파일 508~518행에 {\"word\":\"renewal\",\"pos\":\"n.\",\"synonyms\":[\"refresh\",\"revival\"]}로 근거주장과 문자 그대로 일치한다.\n\n실제 결함으로 판단한 근거:\n1) 품사 불일치: refresh는 표준 영어에서 압도적으로 동사이며, 명사 용법은 \"브라우저 새로고침\", \"제품 라인의 refresh\" 같은 기술적·구어적 용법에 국한된다. 주요 학습자 사전에서 renewal의 일반 명사 동의어로 제시되지 않는다. 표제어가 pos \"n.\"으로 명시된 이상 학습자에게 \"a refresh of skills\" 같은 오작문을 유도할 수 있다.\n2) 파일 내부 규약 위반(가장 강한 근거): 같은 vocab 배열의 나머지 11개 항목은 예외 없이 표제어-동의어 품사가 일치한다. automation(n.)→mechanization, credential(n.)→qualification, empathy(n.)→compassion, algorithm(n.)→procedure, labor(n.)→work, reshape(v.)→transform/remold, demand(v.)→require, scarce(adj.)→rare, routine(adj.)→standard, resilient(adj.)→adaptable/tough. renewal→refresh만 유일한 이탈이므로 의도적 편집이 아니라 오류로 보는 것이 타당하다.\n3) 문맥 적합성: page1.body의 \"this steady renewal of skills\"는 기술의 지속적 갱신을 뜻하며, revival만 명사로서 성립한다. refresh는 품사·의미역 양쪽에서 부적합하다.\n\n반박 시도 및 기각: (a) \"refresh도 IT 문맥에서 명사\"라는 항변은 성립하나, 본 파일은 pos 필드가 교육적 계약으로 기능하는 한국 고교 EFL 교재이므로 주변적 명사 용법을 \"n.\"으로 병기하는 것은 부적절하다. (b) \"동의어 목록에 어족(word family)을 의도적으로 포함했을 수 있다\"는 항변은 나머지 11개 항목이 그런 사례를 전혀 보이지 않고 동의어에 별도 pos 주석도 없어 기각된다. (c) 검수자가 제시한 대안(refreshment/refreshing)마저 본문 의미와 거리가 있다는 지적은, 단순 형태 교정으로 해결되지 않고 항목 자체의 재검토가 필요함을 보여주므로 지적을 약화시키지 않고 오히려 강화한다.\n\n심각도 warn은 적정하다. 렌더링·스키마 유효성·정답 키에는 영향이 없고 학습자 대면 콘텐츠의 정확성 문제에 국한된다. 권고 수정: synonyms에서 refresh를 제거하고 revival만 남기거나, renewal(갱신)에 부합하는 명사 동의어(예: revitalization, updating)로 교체."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page3.sentences[index=12].segments[8] (11.json line 267)",
+      "issue": "treat A as B의 as구를 M으로 태깅. 해당 as구는 목적격보어(C) 성격이며, 같은 코퍼스에서 \"treat/see/regard A as B\"의 as구는 C로 표기하고 부사적 as만 M으로 쓰고 있어 관례와 어긋난다.",
+      "evidence": "본문: \"...and they treat it as the core of a resilient working life.\" / page3 태그: { \"role\": \"O\", \"text\": \"it\" }, { \"role\": \"M\", \"text\": \"as the core of a resilient working life.\", \"note\": \"treat A as B\" } / 대비 사례: 2026-06-J/04.json { \"role\": \"C\", \"text\": \"as a strictly limited resource that should not be lost lightly.\" }, 2026-08-Sun/16.json { \"role\": \"C\", \"text\": \"as a smooth wave\" } (반면 부사적 as는 M: 2026-07/01.json \"as heat,\")",
+      "suggestion": "\"as the core of a resilient working life.\" 의 role을 M → C 로 통일 (note \"treat A as B\"는 유지).",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko [13]",
+      "issue": "직역투로 의미가 어색하게 전달됨 — 'carry someone for forty years'를 '실어 나르다'로 옮겨 '학위가 사십 년간 한 사람의 커리어를 지탱하다'라는 원문 의미가 흐려진다. 오역은 아니나 학습자 가독성이 떨어진다.",
+      "evidence": "영문: \"A degree earned at twenty can no longer be expected to carry someone for forty years.\" / 번역: \"스무 살에 딴 학위가 더 이상 어떤 사람을 사십 년 동안 실어 나르리라 기대될 수 없다.\"",
+      "suggestion": "\"스무 살에 딴 학위가 사십 년 동안 한 사람을 지탱해 주리라고는 더 이상 기대할 수 없다.\" 정도로 자연스럽게 다듬을 것.",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page2.questions[1].stem (빈칸 추론)",
+      "issue": "stem이 \"밑줄 친 빈칸\"이라고 지시하지만, 본문에서 해당 빈칸은 <u> 태그 없이 <blank>로만 표시되어 있다. 반면 본문의 유일한 <u> 밑줄은 3번 문항(함의 추론)이 인용한 구절에 붙어 있어, 학생이 \"밑줄 친\"을 3번 문항의 밑줄과 혼동할 여지가 있다.",
+      "evidence": "본문: \"...those who learn to <blank> it.\" (밑줄 마크업 없음) / 본문 유일 밑줄: \"In this way <u>automation hollows out the middle of many jobs</u> while raising...\" / 2번 stem: \"윗글의 밑줄 친 빈칸에 들어갈 말로 가장 적절한 것은?\"",
+      "suggestion": "stem을 \"윗글의 빈칸에 들어갈 말로 가장 적절한 것은?\"으로 수정하거나, 렌더링 시 빈칸에 밑줄 표기를 부여해 3번의 <u>와 시각적으로 구분한다. 정답(harness)과 오답 변별력 자체에는 문제가 없다.",
+      "lens": "answer"
+    },
+    {
+      "severity": "minor",
+      "location": "page2.questions[2].stem (함의 추론)",
+      "issue": "stem의 \"윗글의 밑줄 친 … 가 다음 글에서 의미하는 바로\"에서 \"윗글\"과 \"다음 글\"이 같은 지문을 이중으로 가리켜 지시어가 충돌한다. 수능 관용 표현은 \"밑줄 친 …이 다음 글에서 의미하는 바로\" 또는 \"윗글의 밑줄 친 …이 의미하는 바로\" 중 하나만 쓴다.",
+      "evidence": "stem: \"윗글의 밑줄 친 automation hollows out the middle of many jobs 가 다음 글에서 의미하는 바로 가장 적절한 것은?\" (인용구 자체는 본문 <u>automation hollows out the middle of many jobs</u>와 정확히 일치하며 정답 index 3도 타당함)",
+      "suggestion": "\"밑줄 친 automation hollows out the middle of many jobs가 다음 글에서 의미하는 바로 가장 적절한 것은?\"으로 통일하고, 인용구와 조사 사이의 불필요한 공백(\"jobs 가\")도 \"jobs가\"로 붙인다.",
+      "lens": "answer"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[3] (routine) — antonyms",
+      "issue": "반의어가 본문 문맥의 대립축과 어긋난다. 본문에서 routine의 대립항은 명시적으로 '공식으로 풀리지 않는(비정형) 부분'이며, 이에 대응하는 반의어는 non-routine/unusual/exceptional이다. \"novel(참신한)\"은 familiar/conventional의 반의어로, '판에 박힌 업무 ↔ 참신한 업무'라는 어색한 대비를 만든다.",
+      "evidence": "page1.body: \"When software handles the routine parts of a role, the human is left with the parts that resist a formula.\" / page4.vocab: {\"word\":\"routine\",\"pos\":\"adj.\",\"meaning_ko\":\"정형화된, 판에 박힌\",\"antonyms\":[\"novel\"]}",
+      "suggestion": "antonyms: [\"unusual\"] 또는 [\"exceptional\", \"non-routine\"]로 교체.",
+      "lens": "vocab"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[9] (resilient) — synonyms",
+      "issue": "동의어 \"tough\"가 본문 문맥의 뜻과 어긋난다. 본문 resilient는 'a resilient working life(회복력 있는 직업 생활)'로 회복탄력성의 의미인데, tough는 '거친, 힘든, 질긴'의 뜻이 우세해 'a tough working life'는 오히려 '고달픈 직업 생활'로 정반대 뉘앙스가 된다.",
+      "evidence": "page1.body: \"...they treat it as the core of a resilient working life.\" / page4.vocab: {\"word\":\"resilient\",\"pos\":\"adj.\",\"meaning_ko\":\"회복력 있는, 탄력적인\",\"synonyms\":[\"adaptable\",\"tough\"]}",
+      "suggestion": "synonyms: [\"adaptable\", \"flexible\"] 또는 [\"adaptable\", \"robust\"]로 교체.",
+      "lens": "vocab"
+    }
+  ],
+  "blockers": [],
+  "counts": {
+    "raw": 11,
+    "verified": 5,
+    "confirmed": 5,
+    "minor": 6
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "grade": "sun-g3",
+  "seq": 4,
+  "confirmed": [
+    {
+      "severity": "warn",
+      "location": "page3.sentences[13] (index 14), segments[4] — C: \"to read across the gaps.\"",
+      "issue": "`learn to V`의 to부정사를 보어(C)로 오태깅. learn은 완전타동사로 to부정사를 목적어(O)로 취하므로 3형식 목적어여야 한다. 같은 항목의 grammar_note가 \"learn + to부정사\"라고만 적어 역할 모순을 감추고 있다.",
+      "evidence": "본문: \"In this sense a transmedia audience gradually learns to read across the gaps.\" / 파일: { \"role\": \"V\", \"text\": \"learns\" }, { \"role\": \"C\", \"text\": \"to read across the gaps.\", \"note\": \"learn to V\" } — learns를 불완전자동사로 본 셈이 되어 2형식으로 오독된다.",
+      "suggestion": "role을 \"O\"로 수정하고 grammar_note를 \"3형식 + learn to V(to부정사 목적어)\"로 보완. 동일 코퍼스 19.json:277, 16.json:148은 같은 구조를 M으로 태깅해 역시 어긋나므로 O로 통일 권장.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "지적이 파일 근거로 명확히 확인됨. 반박을 시도했으나 모두 기각됨.\n\n1) 인용 정확성: 04.json 283-293행이 지적 내용과 축자적으로 일치. { \"role\": \"V\", \"text\": \"learns\" }, { \"role\": \"C\", \"text\": \"to read across the gaps.\", \"note\": \"learn to V\" }, grammar_note: \"learn + to부정사\".\n\n2) 스키마 근거: textbook/templates/AUTHORING-GUIDE.md 204-215행의 role 코드 표는 O=목적어, C=보어를 서로 다른 색상까지 지정된 배타적 태그로 정의함. C는 \"동사 뒤 아무거나\"를 담는 포괄 태그가 아니므로 \"느슨한 관례\" 반박은 성립하지 않음.\n\n3) 코퍼스 대조(결정적): 동일 배치의 형제 파일들은 단순타동사+to부정사를 O로 태깅함. 07.json:275 { \"role\": \"O\", \"text\": \"to fuse heavier elements,\", \"note\": \"begin to V\" }, 09.json:213 { \"role\": \"O\", \"text\": \"to honor certain terms,\", \"note\": \"promise to V\" }. 이 프로젝트에서 C는 (a) 선행 O 세그먼트가 있는 SVOC(06.json:327, 09.json:274, 10.json:223, 15.json:260 — 모두 force/ask O to V)와 (b) is/seem 등 연결동사 뒤 진짜 보어(13.json:286, 17.json:321, 20.json:144)에만 사용됨. index 14는 선행 O가 없고 learns가 연결동사도 아니어서 두 근거 어느 쪽에도 해당하지 않음.\n\n4) 문법 판단: learns to read의 to부정사는 단일타동사의 직접목적어(3형식)이며, C 태깅은 learns를 불완전자동사로 만들어 2형식으로 오독시킴. 같은 파일 index 15(become + an active place, grammar_note \"2형식...\")가 진짜 C의 대비 사례로 존재해 오류가 더 뚜렷함.\n\n5) 추가 확인(지적자 미인용): 20.json:314에 동일 오류가 반복되고(learns / C: \"to watch with gentle suspicion.\" / \"learn to V\"), 19.json:277과 16.json:148은 같은 구문을 M으로 태깅해 동일 구문에 O/C/M 세 가지 태그가 혼재. 배치 내부 불일치가 확인되며 의도된 정답은 O임.\n\n단, 부수 주장인 \"grammar_note가 모순을 감춘다\"는 과장. \"learn + to부정사\"는 그 자체로 거짓은 아니고, 형제 항목들처럼 \"3형식\"을 명시하지 않아 구체성이 부족한 것에 가까움. 다만 C 태그 자체가 결함이므로 핵심 판정에는 영향 없음."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page3.sentences[11] (index 12), segments[1]·segments[3]",
+      "issue": "수동태 `are asked`를 V(\"are\")와 C(\"asked to sit still...\")로 분리해, 자체 grammar_note(\"수동태 be asked to V\") 및 같은 폴더의 태깅 규약과 충돌한다. be동사를 2형식 연결동사로, 과거분사를 보어로 처리하면 수동태 분석이 아니게 된다.",
+      "evidence": "본문: \"Readers are no longer asked to sit still and passively receive a finished tale.\" / 파일: { \"role\": \"V\", \"text\": \"are\" }, { \"role\": \"M\", \"text\": \"no longer\" }, { \"role\": \"C\", \"text\": \"asked to sit still and passively receive a finished tale.\", \"note\": \"수동태 + to부정사 병렬\" }. 반면 동일 폴더 규약은 수동태를 한 덩어리 V로 태깅한다 — 10.json:175 { \"role\": \"V\", \"text\": \"is oxidized\", \"note\": \"수동태\" }, 12.json:339 { \"role\": \"V\", \"text\": \"has been tamed\" }, 09.json:145 { \"role\": \"V\", \"text\": \"can be arrested, judged in a court, and made to pay.\", \"note\": \"수동태 병렬\" }.",
+      "suggestion": "V=\"are ... asked\"(또는 M을 뒤로 빼고 V=\"are asked\") 한 덩어리로 묶고, 뒤따르는 \"to sit still and passively receive a finished tale.\"는 별도 세그먼트(C 또는 M, 5형식 수동태의 잔여 보어)로 분리.",
+      "lens": "explanation",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "파일 근거로 지적이 확인된다. (1) 자체 모순: 04.json page3.sentences[11](index 12)은 segments[1] { \"role\": \"V\", \"text\": \"are\" } / segments[3] { \"role\": \"C\", \"text\": \"asked to sit still and passively receive a finished tale.\", \"note\": \"수동태 + to부정사 병렬\" }로 be동사와 과거분사를 V/C로 분리해 놓고, 같은 문장의 grammar_note는 \"수동태 be asked to V (병렬)\"라고 선언한다. 태깅(2형식 연결동사 + 보어)과 문법 노트(수동태)가 서로 다른 분석이다. (2) 폴더 규약 위반: 같은 2026-08-Sun 폴더 15개 파일 24건의 수동태가 예외 없이 be+p.p.를 하나의 V로 태깅한다 — 10.json:175 \"is oxidized\", 12.json:339 \"has been tamed\", 09.json:145 \"can be arrested, judged in a court, and made to pay.\", 08.json:192 \"must first be judged\", 02.json:277 \"can be rebuilt\", 03.json:148/240/271, 13.json:253/267, 05.json:302, 06.json:242, 07.json:188. (3) 결정적 평행 사례: 11.json:276-277은 구조가 사실상 동일한 문장(be+p.p. + no longer + to부정사)인데 { \"role\": \"V\", \"text\": \"can no longer be expected\" }, { \"role\": \"M\", \"text\": \"to carry someone for forty years.\", \"note\": \"수동태 + to부정사\" }로 처리한다. 04.json도 동일하게 V=\"are (no longer) asked\", to부정사=M이어야 한다. (4) 반례 부재: 폴더 내 수동태 note가 붙은 C-role 세그먼트(03.json:158, 05.json:210, 17.json:189)는 모두 call O C의 목적격 보어이고 09.json:224 \"backed by a jail cell,\"는 별개 분사구여서, be+p.p.를 V/C로 쪼갠 사례는 04.json index 12가 유일한 예외다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page4.vocab[4] (\"weaving\"), 04.json line 471-473",
+      "issue": "pos가 \"n.\"으로 표기되어 있으나, 본문에서의 weaving은 목적어를 직접 취하는 동명사(gerund)여서 품사 표기가 본문 용법과 불일치한다. 게다가 두 예문이 서로 다른 품사 용법을 보여 주어 엔트리 내부에서도 일관되지 않는다.",
+      "evidence": "본문(page1.body): \"This modern craft of weaving one narrative across many channels is what scholars now call transmedia storytelling.\" — weaving 뒤에 목적어 one narrative가 바로 이어지므로 순수 명사가 아니라 동명사다. 반면 vocab 예문2는 \"The writer's weaving of several plots impressed critics.\"로 of를 동반한 진짜 명사 용법이고, 예문1은 \"The craft of weaving one narrative across channels is new.\"로 본문과 같은 동명사 용법이다.",
+      "suggestion": "pos를 \"n.(동명사)\" 또는 \"v.(weave의 동명사형)\"로 바로잡거나, 표제어를 원형 weave (v. 엮다, 짜다)로 바꾸고 본문 형태를 weaving으로 안내하는 편이 낫다. page3 index 5의 주어 분석과도 일관되게 맞출 것.",
+      "lens": "vocab",
+      "verdict": {
+        "isReal": true,
+        "confidence": "medium",
+        "reason": "지적이 파일 근거로 확인됨. 04.json line 471-473의 vocab[4] \"weaving\"은 pos가 \"n.\"이나, page1.body(및 page3.sentences[4]) 본문은 \"This modern craft of weaving one narrative across many channels\"로, weaving이 한정사 없는 목적어 NP \"one narrative\"를 직접 취하고 부사구 \"across many channels\"의 수식을 받는다. 이는 순수 명사(deverbal noun)가 아니라 동명사(verbal gerund)의 진단적 특징이며, 명사였다면 of-속격(\"the weaving OF one narrative\")이 필요하다.\n\n코퍼스 전수 조사로 이것이 관행 이탈임을 확인: passages 전체에서 pos=\"n.\"으로 태깅된 -ing 단어(imagining, stretching, screening, reasoning, proofreading, labeling, spelling, programming 등) 중 본문에서 직접목적어를 취하는 사례는 weaving이 유일함(정규식 스캔 결과 total 1). 다른 사례는 모두 본문에서 한정사/형용사 수식을 받는 진짜 명사 용법.\n\n내부 불일치 주장도 성립하며 더 결정적임. 두 예문이 동명사/명사 경계를 가로질러 갈림: 예문1 \"The craft of weaving one narrative across channels is new.\"는 직접목적어 → 동명사(본문과 일치, 태그와 불일치), 예문2 \"The writer's weaving of several plots impressed critics.\"는 of-속격 → 명사(태그와 일치, 본문과 불일치). 비교 대상 엔트리는 이런 분열이 없음 — stretching은 \"This stretching of time\"/\"Daily stretching\" 둘 다 명사, imagining은 \"The labor of imagining\"/\"steady imagining\" 둘 다 명사. 따라서 예문 쌍이 n. 태그가 어느 용법을 지시하는지 판별해 주지 못함.\n\nmeaning_ko \"(이야기를) 엮기, 짜기\"가 목적어 자리 \"(이야기를)\"를 명시해 본문의 동사적 용법을 이미 반영하고 있어, pos 필드만 어긋난 상태임. 학습용 자료에서 예문은 태깅된 품사를 예시하는 기능을 하므로 실질적 결함.\n\nconfidence를 medium으로 둔 이유: 사전 관행상 \"weaving\"을 명사 표제어로 싣는 것 자체는 정당하고, 코퍼스에 pos 검증 스키마 문서가 발견되지 않아 규칙 위반을 형식적으로 입증하지는 못함. 다만 코퍼스 내 일관된 실사용 관행과 예문 내부 분열이라는 파일 근거는 충분함. 수정은 경미: 코퍼스에 이미 존재하는 \"n./v.\"(6건) 또는 \"v./n.\"(8건) 형식으로 재태깅하거나, 두 예문을 같은 범주로 정렬."
+      }
+    }
+  ],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page1.body, 2단락 마지막 문장",
+      "issue": "부정어 작용역(scope) 모호. 'No single piece merely repeats another'는 표면적으로 부정이 'merely'에까지 미쳐 '어떤 조각도 다른 것을 *단지* 반복하기만 하지는 않는다'로도 읽힌다. 의도한 뜻('어떤 조각도 다른 것을 반복하지 않는다')과 결과적으로는 수렴하지만, 고3 수험생이 한 번에 파악하기에는 걸리는 구조다.",
+      "evidence": "\"No single piece merely repeats another, so each new form adds something the others simply cannot.\" (번역 [10] '어떤 조각도 다른 것을 단지 반복하지 않으므로'도 같은 모호성을 그대로 옮김)",
+      "suggestion": "'No single piece simply repeats another' 대신 'No piece merely echoes another' 또는 더 명확하게 'No single piece repeats another, so each new form adds something the others simply cannot.'처럼 merely를 빼거나 위치를 조정한다. 문두 부정 강조를 살리고 싶다면 'Each piece does more than repeat another'로 긍정문 전환도 가능하다.",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "page1.body, 1단락 4번째 문장",
+      "issue": "문두 접속부사 'Instead' 뒤 쉼표 누락. 같은 폴더 내 05·11·12번 지문은 'Instead,'로 쉼표를 찍고 있어 월간 코퍼스 내부에서 문장부호 스타일이 일관되지 않다.",
+      "evidence": "\"Instead they plan a whole fictional world that can breathe through several forms of media together.\" (cf. 2026-08-Sun/05.json, 11.json, 12.json: \"Instead,\")",
+      "suggestion": "'Instead, they plan a whole fictional world ...'로 쉼표를 추가해 같은 월 코퍼스의 다른 지문과 표기를 통일한다. 다만 06·15·17·20번 지문도 쉼표 없이 쓰고 있으므로, 개별 수정보다 월 단위 표기 규칙을 한쪽으로 정해 일괄 적용하는 편이 낫다.",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.sentences[1] (index 2), segments[3]·segments[6]",
+      "issue": "같은 파일 안에서 '동사+전치사구' 분절 기준이 일관되지 않다. 1번 문장은 V와 전치사구 M을 분리했는데, 2번 문장은 전치사구를 V 세그먼트 안에 포함시켜 학습자가 V의 범위를 혼동할 수 있다.",
+      "evidence": "sentence 1: { \"role\": \"V\", \"text\": \"travels\" }, { \"role\": \"M\", \"text\": \"across many different screens at once.\" } vs sentence 2: { \"role\": \"V\", \"text\": \"grow into a film,\" }, { \"role\": \"V\", \"text\": \"spill onto a phone\" } — 후자는 into a film / onto a phone이 V에 흡수되어 있다.",
+      "suggestion": "V는 \"grow\"·\"spill\"까지만 두고 \"into a film,\"·\"onto a phone\"은 M으로 분리해 1번 문장 및 17번 문장(V \"can splinter\" + M \"into confusing noise.\")의 기준과 통일.",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko [10]",
+      "issue": "\"simply cannot\"을 \"결코 할 수 없는\"으로 옮겨 원문보다 강도가 다소 과장됨. 원문의 simply는 '그야말로/도무지' 정도의 강조어이며 절대 부정(never)의 뉘앙스는 아님.",
+      "evidence": "영문: \"so each new form adds something the others simply cannot.\" / 번역: \"각 새로운 형식은 다른 것들이 결코 할 수 없는 무언가를 더한다.\"",
+      "suggestion": "\"다른 것들이 도저히 해낼 수 없는 무언가를 더한다\" 또는 \"다른 매체로는 도무지 담을 수 없는 무언가를 더한다\"로 완화.",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko [17]",
+      "issue": "\"drift too far apart\"를 \"너무 멀리 흩어지면\"으로 옮겨 '서로 간의 거리가 벌어진다'는 상호 이탈의 의미가 약해짐. 또한 뒤 문장의 splinter(쪼개지다)와 어휘가 겹쳐 인과 구조가 흐려짐.",
+      "evidence": "영문: \"If the separate pieces drift too far apart, the shared world can splinter into confusing noise.\" / 번역: \"만약 그 분리된 조각들이 너무 멀리 흩어지면, 공유된 세계는 혼란스러운 소음으로 산산이 쪼개질 수 있다.\"",
+      "suggestion": "\"그 개별 조각들이 서로 너무 멀리 벌어지면\"으로 수정.",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page2.questions[2].stem (04.json line 66)",
+      "issue": "함의 추론 stem에서 지시 대상이 \"윗글\"과 \"다음 글\"로 한 문장 안에서 엇갈린다. 밑줄 구절 인용 자체는 본문 <u> 표시와 정확히 일치하므로 정답 판정에는 영향이 없으나 발문이 비표준이다.",
+      "evidence": "Q3 stem: \"윗글의 밑줄 친 read across the gaps 가 다음 글에서 의미하는 바로 가장 적절한 것은?\" / 본문: \"<u>read across the gaps</u>\"",
+      "suggestion": "\"윗글의 밑줄 친 read across the gaps가 의미하는 바로 가장 적절한 것은?\"으로 통일한다.",
+      "lens": "answer"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[6] (\"scattered\"), synonyms",
+      "issue": "형용사 표제어의 동의어로 제시된 spread가 품사·의미 면에서 부정확하다. 형용사 spread는 '펼쳐진'에 가까워 '흩어진'이라는 본문 뜻과 어긋나고, 통상 동사/과거분사로 먼저 읽혀 adj. 항목 안에서 품사 혼동을 준다.",
+      "evidence": "본문(page1.body): \"They hop between platforms, gather scattered clues, and slowly assemble the meaning themselves.\" — 여기서 scattered는 '여기저기 흩어진'의 뜻이다. 해당 엔트리는 pos \"adj.\", meaning_ko \"흩어진, 산재한\", synonyms [\"dispersed\", \"spread\"]로 되어 있다.",
+      "suggestion": "spread를 빼고 strewn 또는 dotted 등 형용사로 안정적인 항목으로 교체한다. dispersed는 그대로 두어도 무방하다.",
+      "lens": "vocab"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[8] (\"audience\"), synonyms",
+      "issue": "단수 표제어 audience에 대해 동의어가 복수형 viewers/readers로 제시되어 형태가 어긋난다. 또한 readers는 본문이 '독자'와 '수용자'를 단계적으로 구분해 서술하는 흐름과 겹쳐 혼동 소지가 있다.",
+      "evidence": "본문(page1.body): \"This approach also demands a fresh way of thinking about the audience. Readers are no longer asked to sit still and passively receive a finished tale.\" — audience와 Readers가 인접 문장에서 각각 쓰인다. vocab 엔트리는 word \"audience\", pos \"n.\", synonyms [\"viewers\", \"readers\"]이다.",
+      "suggestion": "단수 형태 viewership 또는 the public, spectators 등으로 형태를 맞추거나, 최소한 viewer/reader 단수로 통일한다.",
+      "lens": "vocab"
+    }
+  ],
+  "blockers": [],
+  "counts": {
+    "raw": 13,
+    "verified": 5,
+    "confirmed": 3,
+    "minor": 8
+  }
+}

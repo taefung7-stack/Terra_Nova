@@ -4,128 +4,251 @@
   "confirmed": [
     {
       "severity": "warn",
-      "location": "answers.explanations[0] (q_index 0, 요지) evidence + rationales",
-      "issue": "해설이 인용하는 문장 번호가 page3.sentences의 실제 index와 전부 어긋난다. 근거로 든 'turn out to be the same idea' 문장은 index 11인데 해설은 '8번' 또는 '8~9번'이라 하고, 'two faces of one relationship'는 index 14인데 '11번', '+C가 뺄셈에서 소거'는 index 13인데 '10번'이라고 지목한다.",
-      "evidence": "evidence: \"8~9번에서 \\\"turn out to be the same idea\\\"이며\" / rationales: \"8번 '두 생각이 같은 아이디어'와 정면으로 모순된다.\", \"미분과 적분이 무관하다는 것은 11번 '한 관계의 두 얼굴'과 반대다.\", \"10번에서 \\\"+C\\\"는 뺄셈에서 소거되어\". 그러나 page3에서 'turn out to be the same idea wearing two masks'는 index 11, 'two faces of one relationship'는 index 14, '\"+C\" cancels itself in the subtraction'는 index 13이다.",
-      "suggestion": "인용 문장 번호를 실제 index로 교정: 같은 아이디어=11, 한 관계의 두 얼굴=14, +C 소거=13. (정답 index 2는 정확하므로 번호 표기만 수정)",
-      "lens": "explanation",
+      "location": "answers.explanations[*].evidence 및 rationales (q_index 0·1·2·3)",
+      "issue": "해설이 인용하는 문장 번호가 page3.sentences의 실제 인덱스와 전부 어긋난다. page3는 본문을 18문장으로 번호를 매겼는데, 해설은 12문장 기준(구 버전)으로 보이는 번호를 사용한다. 학생이 해설의 '8번', '9번'을 찾아가면 완전히 다른 문장이 나오므로 판매본에서 오답 안내가 된다.",
+      "evidence": "해설 q0: \"8~9번에서 \\\"turn out to be the same idea\\\"\" → 실제 page3 index 11. 해설 q0 rationale: \"11번 '한 관계의 두 얼굴'\" → 실제 index 14. 해설 q1: \"빈칸 앞 13번은 \\\"the derivative takes something apart...\\\"\" → 실제 index 18. 해설 q3: \"5번 \\\"it measures the area\\\"\" → 실제 index 7, \"9번 \\\"subtract its values at the two endpoints\\\"\" → 실제 index 12.",
+      "suggestion": "해설의 문장 번호를 page3.sentences 인덱스(각각 11, 14, 18, 7, 12 등)로 일괄 정정하거나, 번호 대신 인용문만 남길 것.",
+      "lens": "language",
       "verdict": {
-        "isReal": true,
         "confidence": "high",
-        "reason": "파일 근거로 지적이 정확히 확인된다. answers.explanations[0](q_index 0, 요지)의 evidence와 rationales가 인용하는 문장 번호가 page3.sentences의 실제 index와 어긋난다. (1) \"turn out to be the same idea wearing two masks\"는 실제 index 11(라인 411-429)인데, evidence(라인 632)는 \"8~9번\", rationales[0](라인 634)은 \"8번\"이라 지목한다. (2) \"two faces of one relationship\"은 실제 index 14(라인 483-505)인데 rationales[3](라인 637)은 \"11번\"이라 지목한다. (3) '\"+C\" cancels itself in the subtraction'은 실제 index 13(라인 449-482)인데 rationales[4](라인 638)은 \"10번\"이라 지목한다. 실제 index 8은 \"You approximate that region...\"(누적 과정 문장)이고 index 10은 \"Here integration means patient accumulation...\"으로, 인용 번호가 가리키는 문장이 근거로 든 내용과 일치하지 않는다. 세 건 모두 인용 번호가 실제보다 3 낮게 어긋나 학생이 근거 문장을 찾을 때 오도된다. 지적은 실제 결함이다."
+        "isReal": true,
+        "reason": "파일 대조 결과 지적이 전부 사실로 확인된다. page3.sentences는 index 1~18로 명시적으로 번호가 매겨져 있고(translation_ko의 [1]~[18] 대괄호 번호와 정확히 일치), answers.explanations의 인용 번호는 이와 전부 어긋난다. 구체적 검증: (1) q0 evidence \"8~9번에서 turn out to be the same idea\" → 해당 문장 \"these two ideas, reversing and accumulating, turn out to be the same idea wearing two masks\"는 실제 index 11 (line 424). index 8은 \"You approximate that region...\", index 9는 \"As the widths shrink toward zero...\"로 무관. (2) q0 rationale \"11번 '한 관계의 두 얼굴'\" → \"really two faces of one relationship\"은 실제 index 14 (line 501). (3) q0 rationale \"10번에서 +C는 뺄셈에서 소거\" → \"The elusive +C cancels itself in the subtraction\"은 실제 index 13 (lines 454-462); index 10은 \"Here integration means patient accumulation\". (4) q1 evidence \"빈칸 앞 13번은 the derivative takes something apart, while the integral patiently ___\" → 실제 index 18 (lines 576-619); index 13은 +C 문장. (5) q1 rationale \"복원한다는 12번(recover, rebuild)\" → recover는 index 16, rebuild는 index 17; index 12는 기본정리 문장. (6) q2 evidence \"8번은 ...wearing two masks\", \"9~11번이 기본정리로 연결\" → masks는 index 11, 기본정리는 index 12. (7) q3 evidence \"5번 it measures the area\" → 실제 index 7 (lines 320-328); \"9번 subtract its values at the two endpoints\" → 실제 index 12 (line 443). 반박 가능성도 검토했으나 기각된다: 오프셋이 일정하지 않아(11→8은 -3, 7→5는 -2, 18→13은 -5) 문단 상대번호나 다른 문장 분할 기준 같은 '대안적이지만 일관된 번호 체계'로 설명되지 않는다. 또한 파일 내에 12문장짜리 다른 번호 목록은 존재하지 않으며(page1.body는 번호 없는 연속 산문, translation_ko는 page3와 동일한 18번 체계), 학생이 참조할 수 있는 번호 출처는 page3/translation_ko뿐이다. 따라서 학생이 해설의 '8번', '9번'을 찾아가면 실제로 전혀 다른 문장이 나오며, 판매본에서 오답 안내가 된다는 지적은 실재 결함이다."
       }
     },
     {
-      "severity": "warn",
-      "location": "answers.explanations[1] (q_index 1, 빈칸 추론) evidence + rationales",
-      "issue": "빈칸이 들어있는 문장을 '13번'이라 지목하지만 실제로 'the derivative takes something apart, while the integral patiently ___'는 page3 index 18이다. 또 recover/rebuild 근거를 '12번'이라 하나 recover는 index 16, rebuild는 index 17이며 index 12는 FTC 문장이다.",
-      "evidence": "evidence: \"빈칸 앞 13번은 \\\"the derivative takes something apart, while the integral patiently ___\\\"\" / rationales: \"복원한다는 12번(recover, rebuild)과 정반대다.\", \"'총량을 영원히 숨긴다'는 적분이 총량을 복원한다는 흐름과 어긋난다.\" 실제 page3: 'the derivative ... puts it back together'는 index 18, 'can recover'는 index 16, 'can rebuild'는 index 17.",
-      "suggestion": "빈칸 문장 번호를 18로, recover/rebuild 근거를 16/17로 교정.",
+      "severity": "blocker",
+      "location": "answers.explanations[0].evidence / rationales (q_index 0, 요지)",
+      "issue": "해설이 인용하는 문장 번호가 page3.sentences의 실제 번호와 전부 불일치한다. 학생이 근거 문장을 찾아갈 수 없다.",
+      "evidence": "evidence: \"8~9번에서 \\\"turn out to be the same idea\\\"이며 미적분의 기본정리가 둘을 잇는다\" — 그러나 page3 sentences[11]이 \"that these two ideas, reversing and accumulating, turn out to be the same idea wearing two masks\"(11번), 기본정리는 sentences[12] \"The Fundamental Theorem of Calculus says...\"(12번)이다. rationales도 \"8번 '두 생각이 같은 아이디어'\"(→11번), \"11번 '한 관계의 두 얼굴'\"(→14번 \"Slope and area, ... are really two faces of one relationship.\"), \"10번에서 \\\"+C\\\"는 뺄셈에서 소거되어\"(→13번 \"The elusive \\\"+C\\\" cancels itself in the subtraction\")로 모두 틀렸다.",
+      "suggestion": "evidence를 \"11~12번\"으로, rationales를 각각 11번 / 14번 / 13번으로 수정한다.",
       "lens": "explanation",
       "verdict": {
         "isReal": true,
         "confidence": "high",
-        "reason": "파일 확인 결과 지적이 사실이다. answers.explanations[1](q_index 1, 빈칸 추론)의 evidence는 \"빈칸 앞 13번은 'the derivative takes something apart, while the integral patiently ___'\"라고 명시하지만(라인 655), 이 문장은 실제 page3 sentences에서 index 18이다(라인 576~621, \"In every case, the derivative quietly takes something apart, while the integral patiently puts it back together.\"). 게다가 translation_ko(라인 624)의 [13]은 '\"+C\"는 뺄셈에서 소거되어...' 문장으로, index 13은 실제로 +C 소거 문장(라인 450~482)이지 대조 문장이 아니다. 또 rationales(라인 656)는 recover·rebuild를 \"12번\"이라 하나, \"can recover\"는 index 16(라인 538), \"can rebuild\"는 index 17(라인 566)이며, index 12(라인 431~448)는 \"The Fundamental Theorem of Calculus says...\"(FTC) 문장이다. 따라서 evidence의 '13번'과 rationale의 '12번' 문장 번호가 모두 실제 page3 index와 어긋나며, 이는 명확한 결함이다."
+        "reason": "파일 확인 결과 지적이 정확하다. page3.sentences의 실제 index는 11번=\"these two ideas, reversing and accumulating, turn out to be the same idea wearing two masks\", 12번=\"The Fundamental Theorem of Calculus says...\", 13번=\"The elusive \\\"+C\\\" cancels itself in the subtraction...\", 14번=\"Slope and area, ... are really two faces of one relationship.\"이다. 그러나 answers.explanations[0](q_index 0, 요지)은 evidence에서 \"8~9번에서 turn out to be the same idea이며 미적분의 기본정리가 둘을 잇는다\"고 인용하고(→실제 11·12번), rationales[0] \"8번 '두 생각이 같은 아이디어'\"(→11번), rationales[3] \"11번 '한 관계의 두 얼굴'\"(→14번), rationales[4] \"10번에서 \\\"+C\\\"는 뺄셈에서 소거되어\"(→13번)로 인용 번호가 전부 3씩 어긋난다. 실제 8번은 \"You approximate that region...\", 9번은 \"As the widths shrink...\", 10번은 \"Here integration means patient accumulation...\"이라 인용된 문구가 존재하지 않으므로 학생이 근거 문장을 찾아갈 수 없다. 게다가 동일한 off-by-3 오류가 q_index 1(13번→실제 18번, 12번→16/17번), q_index 2(8번→11번, 9~11번→12~14번), q_index 3(5번→7번, 9번→12번)에도 반복되어 단순 오독이 아닌 체계적 번호 오류임이 확인된다."
       }
     },
     {
-      "severity": "warn",
-      "location": "answers.explanations[2] (q_index 2, 함의 추론) evidence",
-      "issue": "함의 대상 표현 'these two ideas ... turn out to be the same idea wearing two masks'를 '8번'이라 하고 기본정리 연결을 '9~11번'이라 하지만, 실제 page3에서 해당 문장은 index 11, 기본정리(FTC) 문장은 index 12다.",
-      "evidence": "evidence: \"8번은 \\\"these two ideas, reversing and accumulating, turn out to be the same idea wearing two masks\\\"이고, 9~11번이 기본정리로 둘이 연결됨을 설명한다.\" page3에서 이 문장은 index 11, 'The Fundamental Theorem of Calculus says...'는 index 12다.",
-      "suggestion": "함의 표현 문장을 11번, 기본정리 연결을 12번으로 교정.",
+      "severity": "blocker",
+      "location": "answers.explanations[1].evidence / rationales[0] (q_index 1, 빈칸 추론)",
+      "issue": "빈칸이 포함된 문장 번호와 근거 문장 번호가 모두 실제 번호와 다르다. 특히 '12번(recover, rebuild)'은 한 문장에 두 단어가 함께 있지도 않다.",
+      "evidence": "evidence: \"빈칸 앞 13번은 \\\"the derivative takes something apart, while the integral patiently ___\\\"\" — 실제로는 sentences[18] \"In every case, the derivative quietly takes something apart, while the integral patiently puts it back together.\"(18번)이다. rationales[0] \"복원한다는 12번(recover, rebuild)\" — recover는 16번 \"A physicist who knows an object's velocity can recover its exact displacement\", rebuild는 17번 \"An economist who knows a marginal cost can rebuild the total cost.\"로 12번이 아니며 한 문장에 함께 있지 않다.",
+      "suggestion": "\"빈칸 앞 18번\", \"16~17번(recover, rebuild)\"으로 수정한다.",
       "lens": "explanation",
       "verdict": {
         "isReal": true,
         "confidence": "high",
-        "reason": "파일 확인 결과 지적이 정확하다. answers.explanations[2] (q_index 2, 함의 추론)의 evidence(line 678)는 \"8번은 \\\"these two ideas, reversing and accumulating, turn out to be the same idea wearing two masks\\\"이고, 9~11번이 기본정리로 둘이 연결됨을 설명한다\"라고 기술한다. 그러나 page3 실제 인덱스를 보면 \"these two ideas... wearing two masks\" 문장은 index 11(line 411-428, C 세그먼트 line 424), \"The Fundamental Theorem of Calculus says...\" 문장은 index 12(line 430-448)다. 즉 masks 문장을 8번이라 한 것은 틀렸고(실제 11), 기본정리 연결을 9~11번이라 한 것도 틀렸다(FTC는 index 12). 인용 번호와 실제 page3 index가 명백히 불일치하므로 실제 결함이다."
+        "reason": "파일로 명확히 확인됨. (1) answers.explanations[1].evidence는 빈칸 문장을 '13번'이라 하지만, page3.sentences index 13은 \"The elusive +C cancels itself in the subtraction, so the final answer comes out clean.\"이고, 실제 빈칸 문장 \"In every case, the derivative quietly takes something apart, while the integral patiently puts it back together.\"는 index 18이다. (2) rationales[0]의 '12번(recover, rebuild)'도 틀렸다. index 12는 기본정리 문장(\"...subtract its values at the two endpoints\")으로 recover/rebuild가 없고, recover는 index 16(A physicist ... can recover its exact displacement), rebuild는 index 17(An economist ... can rebuild the total cost)로 서로 다른 문장에 분리되어 있다. 지적대로 '한 문장에 두 단어가 함께' 있지 않다. 또한 같은 파일의 translation_ko가 [16] 복원 / [17] 다시 세울 / [18] 다시 합친다로 sentences index와 일치하므로 번호 체계는 sentences index가 정본이며 오류는 answers 쪽이다. 동일한 오프셋 오류가 explanations[0](8/9/10/11 → 실제 11/12/13/14), explanations[2](8, 9~11), explanations[3](5번 → 실제 7번 \"it measures the area\", 9번 → 실제 12번 endpoints)에도 있어 체계적 결함이다. 학습자에게 근거 문장을 지목하는 해설의 핵심 기능이 무효화되므로 실제 결함이 맞다."
       }
     },
     {
-      "severity": "warn",
-      "location": "answers.explanations[3] (q_index 3, 요약문 빈칸) evidence",
-      "issue": "(A) area 근거를 '5번 it measures the area', (B) endpoints 근거를 '9번 subtract its values at the two endpoints'라 하지만, 실제 page3에서 'it measures the area...'는 index 7, 'subtract its values at the two endpoints'는 index 12다.",
-      "evidence": "evidence: \"(A)는 ... 5번 \\\"it measures the area\\\". (B)는 ... 9번 \\\"subtract its values at the two endpoints\\\".\" page3: 'Instead of undoing a slope, it measures the area...'는 index 7, 'that to find the area under a rate curve, you just find an antiderivative and subtract its values at the two endpoints.'는 index 12다.",
-      "suggestion": "(A) 근거를 7번, (B) 근거를 12번으로 교정.",
+      "severity": "blocker",
+      "location": "answers.explanations[2].evidence (q_index 2, 함의 추론)",
+      "issue": "함의 추론의 핵심 근거 문장 번호와 보조 근거 범위가 모두 실제 번호와 어긋난다.",
+      "evidence": "evidence: \"8번은 \\\"these two ideas, reversing and accumulating, turn out to be the same idea wearing two masks\\\"이고, 9~11번이 기본정리로 둘이 연결됨을 설명한다\" — 해당 표현은 sentences[11](11번)이고, 기본정리 설명은 sentences[12]~[14](12~14번)이다. 9번은 \"As the widths shrink toward zero, the jagged staircase of rectangles smooths into the exact area under the curve.\"로 기본정리와 무관하다.",
+      "suggestion": "\"11번은 ... 이고, 12~14번이 기본정리로 둘이 연결됨을 설명한다\"로 수정한다.",
       "lens": "explanation",
       "verdict": {
         "isReal": true,
         "confidence": "high",
-        "reason": "파일 line 702의 evidence는 (A) area 근거를 \"5번 \\\"it measures the area\\\"\", (B) endpoints 근거를 \"9번 \\\"subtract its values at the two endpoints\\\"\"라고 명시한다. 그러나 page3.sentences 실제 인덱스를 확인하면: \"it measures the area\"는 index 7(lines 310-337, role V \"measures\" + O \"the area\"), \"subtract its values at the two endpoints\"는 index 12(lines 430-448)에 있다. index 5(lines 265-287)는 \"That single symbol quietly admits that the starting value has been lost\"로 넓이와 무관하며, index 9(lines 361-383)는 \"As the widths shrink toward zero, the jagged staircase...\"로 끝점과 무관하다. 따라서 evidence의 \"5번\"·\"9번\" 인덱스 표기는 실제 page3 문장 인덱스(7, 12)와 불일치하며, 지적이 파일 근거로 명확히 확인된다. (다만 이 파일 explanations의 다른 evidence들도 page3 sentence index와 다른 자체 번호 체계를 쓰는 정황이 있으나, 본 지적은 특정 인용문의 번호 대응 오류를 정확히 짚었고 사실로 확인됨.)"
+        "reason": "파일 근거로 확인됨. answers.explanations[2].evidence(라인 678)는 \"8번\"이라며 \"these two ideas, reversing and accumulating, turn out to be the same idea wearing two masks\"를 인용하지만, page3.sentences에서 해당 문장은 index 11(라인 412-424)이다. index 8(라인 339-355)은 \"You approximate that region by slicing it into many thin rectangles...\"로 전혀 다른 문장이다. 또한 \"9~11번이 기본정리로 둘이 연결됨을 설명한다\"고 했으나, index 9(라인 362-379)는 \"As the widths shrink toward zero, the jagged staircase of rectangles smooths into the exact area under the curve.\"로 기본정리와 무관하며, 실제 기본정리 설명은 index 12(The Fundamental Theorem of Calculus says..., 라인 431-443)와 이어지는 13(+C 소거), 14(두 얼굴)이다. page3.translation_ko(라인 624)의 [11], [12] 번호 매김도 동일하게 확인되어 번호 체계에 모호함이 없다. 즉 핵심 근거 문장 번호와 보조 근거 범위가 모두 3만큼 어긋나 있어 지적이 정확하다. (참고: 같은 오프셋 오류가 explanations[0], [1], [3]에도 존재하는 파일 전반의 계통적 결함이나, 이는 지적의 타당성을 오히려 뒷받침한다.)"
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "answers.explanations[3].evidence (q_index 3, 요약문 빈칸 완성)",
+      "issue": "(A)·(B) 정답 근거로 제시한 문장 번호가 둘 다 실제 번호와 다르다.",
+      "evidence": "evidence: \"(A) ... → 5번 \\\"it measures the area\\\". (B) ... → 9번 \\\"subtract its values at the two endpoints\\\"\" — \"it measures the area\"는 sentences[7](7번 \"Instead of undoing a slope, it measures the area between a curve and the horizontal axis over a fixed interval.\"), \"subtract its values at the two endpoints\"는 sentences[12](12번)이다. 5번은 \"That single symbol quietly admits that the starting value has been lost.\"이고 9번은 넓이 극한 문장으로 인용문이 존재하지 않는다.",
+      "suggestion": "\"(A) → 7번\", \"(B) → 12번\"으로 수정한다.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일로 확인됨. answers.explanations[3].evidence(라인 702)는 (A) 근거를 '5번 \"it measures the area\"', (B) 근거를 '9번 \"subtract its values at the two endpoints\"'로 제시한다. 그러나 page3.sentences의 실제 index를 보면 index 7(라인 311-337)이 'Instead of undoing a slope, / it / measures / the area / between a curve and the horizontal axis over a fixed interval.'이고, index 12(라인 431-448)가 '...you just find an antiderivative and subtract its values at the two endpoints.'이다. 반면 index 5(라인 266-287)는 'That single symbol quietly admits that the starting value has been lost.'로 인용문과 무관하고, index 9(라인 362-383)는 'As the widths shrink toward zero, the jagged staircase of rectangles smooths into the exact area under the curve.'로 해당 인용문이 존재하지 않는다. (A)는 5→7(2 차이), (B)는 9→12(3 차이)로 오프셋조차 일정하지 않아 다른 일관된 번호 체계로도 설명되지 않는다. 파일 내 유일한 문장 번호 체계는 page3.sentences[].index이며 translation_ko의 [1]~[18] 표기도 이와 일치하므로 기준에 모호함이 없다. 학생이 근거 문장을 찾아가는 해설의 핵심 기능이 깨지므로 지적은 유효하다. 참고로 같은 파일의 q_index 0·1·2 해설도 동일하게 번호가 어긋나 있어(예: '8번 turn out to be the same idea'는 실제 index 11, '13번 the derivative takes something apart'는 실제 index 18) 결함 범위는 오히려 더 넓지만 이는 지적을 약화시키지 않는다."
       }
     },
     {
       "severity": "warn",
       "location": "page3.translation_ko 문장 [3]",
-      "issue": "영문은 '과정'인 antidifferentiation과 '답들의 집합'인 the indefinite integral을 서로 다른 두 용어로 구분하는데, 번역이 둘 다 '부정적분'으로 옮겨 구분이 뭉개졌고 near-tautology(순환 정의)가 됨. 앞의 antidifferentiation은 '역미분'으로 옮겨야 함.",
-      "evidence": "영문: \"Finding a function whose derivative matches a given one is called antidifferentiation, and the family of all such answers is the indefinite integral.\" / 번역: \"...함수를 찾는 것을 부정적분(역미분)이라 하고, 그런 모든 답의 집합이 부정적분이다.\" — 'antidifferentiation'과 'the indefinite integral'을 모두 '부정적분'으로 처리. (참고: 같은 파일 page4 vocab는 antidifferentiation='역미분, 부정적분 구하기', indefinite integral='부정적분'으로 구분함)",
-      "suggestion": "앞 절을 \"...함수를 찾는 것을 역미분(antidifferentiation)이라 하고, 그런 모든 답의 집합이 부정적분이다.\"처럼 고쳐 '역미분(과정)'과 '부정적분(답의 집합)'을 구분한다.",
+      "issue": "원문이 구분하는 두 용어 antidifferentiation(역미분·연산)과 the indefinite integral(부정적분·답의 집합)을 한 문장 안에서 모두 \"부정적분\"으로 옮겨, '~를 부정적분이라 하고 … 그것이 부정적분이다'라는 동어반복이 되었다. page4 vocab에서는 antidifferentiation을 \"역미분\", indefinite integral을 \"부정적분\"으로 분리해 두었으므로 번역만 불일치한다.",
+      "evidence": "영문: \"... is called antidifferentiation, and the family of all such answers is the indefinite integral.\" / 번역: \"... 부정적분(역미분)이라 하고, 그런 모든 답의 집합이 부정적분이다.\" (page4: {\"word\":\"antidifferentiation\",\"meaning_ko\":\"역미분, 부정적분 구하기\"}, {\"word\":\"indefinite integral\",\"meaning_ko\":\"부정적분\"})",
+      "suggestion": "앞은 \"역미분(부정적분 구하기)\", 뒤는 \"부정적분\"으로 용어를 분리해 원문의 대비를 살릴 것.",
       "lens": "translation",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "지적이 파일 근거로 확인된다. page1 영문(line 26)은 \"is called antidifferentiation, and the family of all such answers is the indefinite integral.\"로 '연산(antidifferentiation)'과 '답의 집합(the indefinite integral)'을 의도적으로 대비시킨다. 그러나 page3.translation_ko 문장 [3](line 624)은 \"…찾는 것을 부정적분(역미분)이라 하고, 그런 모든 답의 집합이 부정적분이다.\"로 두 절의 술어 핵심어가 모두 '부정적분'이 되어 동어반복이 발생한다. 앞 절의 핵심 명사는 '부정적분'이고 '역미분'은 괄호 보조 표기에 그치므로 원문의 대비 구조가 소실된다.\n\n내부 불일치도 확인된다. page4 vocab은 antidifferentiation을 \"역미분, 부정적분 구하기\"(line 725), indefinite integral을 \"부정적분\"(line 767)으로 분리해 두었고, 특히 antidifferentiation 항목의 예문 번역(line 735)은 동일 구문을 \"그런 함수를 찾는 것을 역미분이라 한다.\"로 '역미분' 단독 처리한다. 즉 파일 자체가 이미 분리 기준을 갖고 있으며 page3 번역만 이를 어긴다. 영문에서 antidifferentiation이 <u> 태그로 강조되고 page2 요약문 hints에도 독립 항목으로 실린 점(line 90)은 이 용어가 구분되어야 하는 핵심어임을 뒷받침한다.\n\n반박 가능성 검토: (1) 괄호에 '역미분'이 있으니 구분이 유지된다는 반론 — 독자가 파싱하는 주된 술어는 '부정적분'이고 뒤 절도 '부정적분'이므로 정의문이 순환된다. (2) 한국어 수학 관례상 '부정적분'이 연산까지 포괄한다는 반론 — 외부 관례와 무관하게 본 파일의 page4 기준을 스스로 위반하므로 내부 일관성 결함이다. 다만 의미 복원이 가능하고 괄호 보조 표기가 존재하므로 오역이 아닌 번역 품질·일관성 문제이며, 지적된 warn 등급이 적절하다. 수정 방향은 \"역미분(부정적분 구하기)이라 하고, 그런 모든 답의 집합이 부정적분이다\" 식의 어순 교정이다."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "page2.questions[2].stem (함의 추론) ↔ page1.body",
+      "issue": "\"밑줄 친 부분\"을 묻는 함의 추론 문제인데, 본문 page1.body에 존재하는 <u>밑줄</u>은 <u>antidifferentiation</u> 단 하나뿐이다. 정답 해설이 근거로 삼는 구절 \"the same idea wearing two masks\"에는 밑줄이 전혀 없어, 학생이 문제에서 지시한 밑줄을 찾으면 'antidifferentiation'을 보게 되고 그에 대한 정답 선지가 5개 중 하나도 없다. 출제 불능 상태다.",
+      "evidence": "본문 밑줄은 1문단의 \"...is called <u>antidifferentiation</u>, and the family of all such answers is the indefinite integral.\" 하나뿐. 반면 3문단은 밑줄 없이 \"these two ideas, reversing and accumulating, turn out to be the same idea wearing two masks.\" 이고, answers.explanations[2].evidence는 \"8번은 \\\"these two ideas, reversing and accumulating, turn out to be the same idea wearing two masks\\\"이고 ... 이 표현은 '되돌리기와 조각 더하기가 사실 다르게 보이는 같은 연산'임을 뜻한다\"라고 밝혀, 의도한 밑줄 대상과 실제 밑줄 위치가 불일치함이 확인된다.",
+      "suggestion": "본문에서 <u>antidifferentiation</u> 밑줄을 제거하고 3문단의 \"the same idea wearing two masks\"(또는 \"these two ideas ... wearing two masks\" 전체)에 <u></u>를 씌워, 문제·해설이 가리키는 구와 본문 밑줄을 일치시킬 것.",
+      "lens": "answer",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "파일 직접 확인 결과 지적이 정확하다. page1.body 전체에서 <u> 태그는 1문단의 \"is called <u>antidifferentiation</u>\" 단 하나뿐이며(그 외 인라인 마크업은 마지막 문단의 <blank> 하나), 3문단은 \"The astonishing part is that these two ideas, reversing and accumulating, turn out to be the same idea wearing two masks.\"로 밑줄이 전혀 없다. 그런데 page2.questions[2] (함의 추론)의 stem은 \"밑줄 친 부분이 다음 글에서 의미하는 바로 가장 적절한 것은?\"이고, answers.explanations[2].evidence는 \"8번은 \\\"these two ideas, reversing and accumulating, turn out to be the same idea wearing two masks\\\"이고...\"라고 명시해 의도한 밑줄 대상이 3문단 구절임을 자백한다. 즉 의도 대상과 실제 마크업 위치가 불일치한다. 정답 선지(answer_index 1, \"reversing a derivative and adding slices are secretly the same operation seen differently\")는 mask 비유의 해석이지 antidifferentiation의 정의가 아니며, 나머지 4개 선지 중에도 antidifferentiation에 대응하는 것이 없어 실제 밑줄을 따라간 학생은 정답을 고를 수 없다. 반박 가능성도 검토했으나 기각된다: (1) 렌더러가 밑줄을 주입한다는 가정은 성립하지 않는다 — 같은 body가 <blank>를 인라인으로 직접 담고 있고 questions[1](빈칸 추론)이 그 인라인 마커에 의존하므로, 밑줄 역시 본문 작성 시 마크업하는 방식이다. (2) JSON 어디에도 밑줄 대상을 별도로 지정하는 필드(underline_target 등)가 없어 보완 경로가 없다. (3) antidifferentiation을 의도된 대상으로 본다 해도 정답 인덱스와 해설 근거가 모두 틀린 것이 되어 어느 쪽으로 읽든 결함이다. 출제 불능 상태라는 blocker 등급도 타당하다."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "answers.explanations[*].evidence / rationales (문장 번호 인용 전반)",
+      "issue": "모든 해설이 인용하는 본문 문장 번호가 page3.sentences의 실제 index 및 translation_ko의 [n] 번호와 어긋난다. 학생이 해설의 번호를 따라 본문을 찾아가면 전혀 다른 문장을 보게 되어 근거 확인이 불가능하다.",
+      "evidence": "해설 q0: \"8~9번에서 \\\"turn out to be the same idea\\\"\" → 실제는 sentences[11] / 번역 [11]. q0 rationale: \"11번 '한 관계의 두 얼굴'\" → 실제 [14] \"Slope and area ... two faces of one relationship\". q0 rationale: \"10번에서 \\\"+C\\\"는 뺄셈에서 소거\" → 실제 [13] \"The elusive \\\"+C\\\" cancels itself in the subtraction\". q1: \"빈칸 앞 13번은 \\\"the derivative takes something apart...\\\"\" → 실제 [18]. q1 rationale: \"복원한다는 12번(recover, rebuild)\" → 실제 [16] recover, [17] rebuild. q3: \"5번 \\\"it measures the area\\\"\" → 실제 [7]; \"9번 \\\"subtract its values at the two endpoints\\\"\" → 실제 [12].",
+      "suggestion": "해설의 문장 번호를 page3.sentences.index / translation_ko의 [n]과 동일한 체계로 일괄 재매핑할 것(8→11, 9→12, 10→13, 11→14, 12→16·17, 13→18, 5→7).",
+      "lens": "answer",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "지적이 파일 근거로 전면 확인된다. page3.sentences의 index(1~18)와 translation_ko의 [1]~[18]은 서로 완전히 일치하지만, answers.explanations의 모든 문장 번호 인용은 이와 어긋난다.\n\n검증된 개별 사례(모두 확인됨):\n- q0 evidence \"8~9번 turn out to be the same idea\" → 실제 sentences[11] \"that these two ideas, reversing and accumulating, turn out to be the same idea wearing two masks\" / 번역 [11]. 8·9번은 \"You approximate that region...\" / \"As the widths shrink toward zero...\"로 무관.\n- q0 rationales[0] \"8번 두 생각이 같은 아이디어\" → 실제 11번.\n- q0 rationales[3] \"11번 한 관계의 두 얼굴\" → 실제 sentences[14] \"Slope and area ... really two faces of one relationship\" / 번역 [14].\n- q0 rationales[4] \"10번에서 +C는 뺄셈에서 소거\" → 실제 sentences[13] \"The elusive \\\"+C\\\" cancels itself in the subtraction\" / 번역 [13]. 10번은 \"Here integration means patient accumulation\".\n- q1 evidence \"빈칸 앞 13번 the derivative takes something apart, while the integral patiently ___\" → 실제 sentences[18] / 번역 [18].\n- q1 rationales[0] \"복원한다는 12번(recover, rebuild)\" → recover는 sentences[16], rebuild는 sentences[17]. 12번은 기본정리 문장.\n- q2 evidence \"8번 these two ideas ... wearing two masks\" → 실제 11번이며, \"9~11번이 기본정리로 연결\"도 오류(기본정리는 12번).\n- q3 evidence \"5번 it measures the area\" → 실제 sentences[7] / 번역 [7]. \"9번 subtract its values at the two endpoints\" → 실제 sentences[12] / 번역 [12].\n\n반박 가능성 검토 후 기각: (1) 대안 번호 체계 가설 — 오차가 -2~-5로 불규칙해 0-index 오프셋이나 일관된 다른 기준으로 설명 불가하며, 문단 번호는 1~4뿐이라 \"13번\"이 성립할 수 없음. page3에 sentences[].index와 translation_ko의 [n] 외에 다른 번호 구조가 존재하지 않음. (2) 경미성 항변 — 인용된 영어 원문 자체는 본문과 축자 일치하므로 영어 문구로는 추적 가능하나, q0 rationales[3](\"11번 '한 관계의 두 얼굴'\")처럼 영어 인용 없이 번호+한국어 요약만 제시된 항목은 번호를 따라가면 전혀 다른 문장에 도달해 근거 확인이 불가능함. 따라서 지적된 실패 시나리오가 실제로 성립한다.\n\n원인 추정: 해설이 이전의 더 적은 문장 분할본 기준으로 작성된 뒤 현재 18문장 분할과 재동기화되지 않음."
+      }
+    },
+    {
+      "severity": "warn",
+      "location": "page4.vocab[3] \"definite integral\" → synonyms[0]",
+      "issue": "synonyms에 \"signed area\"를 제시했으나, 본문은 정적분을 '곡선과 가로축 사이의 넓이'로만 규정하며 부호 있는 넓이(음수 넓이) 개념은 본문·해당 단원(미적분 III-1) 어디에도 없다. 또한 '정적분'은 연산/값이고 'signed area'는 그 기하학적 해석이라 동의어 관계가 성립하지 않는다.",
+      "evidence": "page1.body: \"Instead of undoing a slope, it measures the area between a curve and the horizontal axis over a fixed interval.\" / page4.vocab: {\"word\": \"definite integral\", \"synonyms\": [\"signed area\"]}",
+      "suggestion": "본문 문맥에 맞게 \"area under a curve\" 또는 \"area over an interval\" 등으로 교체. 부호 있는 넓이를 다루려면 본문에 근거가 필요하다.",
+      "lens": "vocab",
       "verdict": {
         "isReal": true,
         "confidence": "medium",
-        "reason": "파일 page3 translation_ko 문장 [3]을 확인함: \"...함수를 찾는 것을 부정적분(역미분)이라 하고, 그런 모든 답의 집합이 부정적분이다.\" 영문은 process인 antidifferentiation과 result set인 the indefinite integral을 명확히 구분하는데, 번역은 두 용어의 주 표기를 모두 '부정적분'으로 처리했다(antidifferentiation은 '부정적분(역미분)', indefinite integral은 '부정적분'). 그 결과 \"...을 부정적분이라 하고, ...이 부정적분이다\"라는 순환/동어반복적 문장이 되어 과정 대 결과 대비가 뭉개진다. 같은 파일 page4 vocab이 antidifferentiation='역미분, 부정적분 구하기', indefinite integral='부정적분'으로 구분하고 있어 의도된 구분이 존재함이 확인되며, 번역이 이와 불일치한다. 다만 '(역미분)' 괄호가 구분을 부분적으로 살려 완전 소실은 아니고, 한국 수학 교육에서 '부정적분'이 과정·결과 양쪽에 쓰이는 관용도 있어 결함 강도는 warn 수준. 그럼에도 앞 용어를 '역미분'으로 앞세워야 한다는 지적의 실질은 파일 근거로 확인되므로 실제 결함으로 인정."
-      }
-    },
-    {
-      "severity": "warn",
-      "location": "answers.explanations[0] (q_index 0, 요지), evidence 및 rationales",
-      "issue": "해설의 근거 문장 번호가 본문(page3) 실제 인덱스와 전부 어긋난다. 정답 자체는 옳으나(선지 2), 해설이 인용하는 문장 번호가 틀려 학생이 근거를 대조할 수 없다.",
-      "evidence": "해설: \"8~9번에서 'turn out to be the same idea'이며 ... 미적분의 기본정리가 둘을 잇는다\", rationale \"8번 '두 생각이 같은 아이디어'\", \"11번 '한 관계의 두 얼굴'\", \"10번에서 '+C'는 뺄셈에서 소거\". 그러나 본문에서 \"turn out to be the same idea wearing two masks\"는 sentence index 11, \"Fundamental Theorem\"은 12, \"two faces of one relationship\"은 14, \"+C ... cancels ... comes out clean\"은 13이다.",
-      "suggestion": "evidence의 '8~9번'을 '11~12번'으로, rationale의 '8번'→'11번', '11번'→'14번', '10번'→'13번'으로 교정.",
-      "lens": "answer",
-      "verdict": {
-        "isReal": true,
-        "confidence": "high",
-        "reason": "파일 확인 결과 지적이 정확하다. page3의 실제 sentence index는 \"turn out to be the same idea wearing two masks\"=11(라인 412·424), \"Fundamental Theorem of Calculus\"=12(라인 431), \"elusive +C ... cancels itself in the subtraction ... comes out clean\"=13(라인 450·454-478), \"two faces of one relationship\"=14(라인 484·501)이다. 그러나 answers.explanations[0](q_index 0, 요지)의 evidence는 \"8~9번에서 turn out to be the same idea\"라 인용하고(실제 11), rationales는 \"8번 '두 생각이 같은 아이디어'\"(실제 11), \"11번 '한 관계의 두 얼굴'\"(실제 14), \"10번에서 +C는 뺄셈에서 소거\"(실제 13)라고 적어, 인용한 문장 번호가 전부 실제 인덱스와 어긋난다. 정답 자체는 answer_index 2(선지 2, 라인 57)로 옳고 해설 논리도 타당하나, 근거 문장 번호가 틀려 학생이 본문과 대조할 수 없는 실제 결함이다."
-      }
-    },
-    {
-      "severity": "warn",
-      "location": "answers.explanations[1] (q_index 1, 빈칸 추론), evidence 및 rationale",
-      "issue": "해설이 빈칸 문장을 '13번'으로, 복원 근거를 '12번(recover, rebuild)'으로 지목하나 본문 인덱스와 불일치한다. 정답(선지 1 puts it back together)은 옳다.",
-      "evidence": "해설: \"빈칸 앞 13번은 'the derivative takes something apart, while the integral patiently ___'\", rationale \"복원한다는 12번(recover, rebuild)\". 실제로 해당 대조 문장은 sentence index 18이며, recover는 16번(A physicist ... can recover), rebuild는 17번(An economist ... can rebuild)이다.",
-      "suggestion": "'13번'→'18번', 'recover/rebuild ... 12번'→'16~17번'으로 교정.",
-      "lens": "answer",
-      "verdict": {
-        "isReal": true,
-        "confidence": "high",
-        "reason": "파일 근거로 지적이 확인된다. answers.explanations[1](q_index 1) evidence(line 655)는 빈칸 문장 \"the derivative takes something apart, while the integral patiently ___\"을 '13번'으로 지목하나, page3에서 이 대조 문장은 sentence index 18(lines 576-621)이다. index 13(lines 450-482)은 \"The elusive '+C' cancels itself...\"로 전혀 다른 문장이다. 또한 rationale(lines 656, 658)은 복원 근거를 '12번(recover, rebuild)'으로 지목하나, recover는 index 16(line 539 \"A physicist ... can recover\")이고 rebuild는 index 17(line 566 \"An economist ... can rebuild\")이며, index 12(lines 431-448)는 \"The Fundamental Theorem of Calculus says...\"이다. 따라서 해설이 인용한 문장 번호(12, 13)가 본문 sentence index와 불일치한다는 지적은 사실이다. 정답(선지 1 puts it back together)이 옳다는 점도 지적대로 맞다. 참고로 다른 해설(q_index 0)도 유사하게 본문 index와 다른 번호(8~11번)를 쓰고 있어 해설 전반이 별도 번호 체계를 쓰는 것으로 보이나, 그렇더라도 evidence가 실제 본문 위치와 어긋나 독자에게 혼동을 주는 결함은 실재한다."
-      }
-    },
-    {
-      "severity": "warn",
-      "location": "answers.explanations[2] (q_index 2, 함의 추론), evidence",
-      "issue": "해설이 밑줄 표현을 '8번', 연결 설명을 '9~11번'으로 인용하나 본문 인덱스와 불일치한다. 정답(선지 1)은 옳다.",
-      "evidence": "해설: \"8번은 'these two ideas, reversing and accumulating, turn out to be the same idea wearing two masks'이고, 9~11번이 기본정리로 둘이 연결됨을 설명한다.\" 실제로 이 문장은 sentence index 11이고, 기본정리 연결 설명은 12번이다.",
-      "suggestion": "'8번'→'11번', '9~11번'→'12번'으로 교정.",
-      "lens": "answer",
-      "verdict": {
-        "isReal": true,
-        "confidence": "high",
-        "reason": "파일 확인 결과 지적이 정확하다. answers.explanations[2] (q_index 2, 함의 추론)의 evidence(라인 678)는 \"8번은 'these two ideas, reversing and accumulating, turn out to be the same idea wearing two masks'이고, 9~11번이 기본정리로 둘이 연결됨을 설명한다\"라고 인용한다. 그러나 page3.sentences에서 해당 문장 \"these two ideas, reversing and accumulating, turn out to be the same idea wearing two masks\"는 실제로 index 11(라인 424)에 있고, index 8(라인 342-355)은 \"You approximate that region by slicing it...\"로 전혀 다른 내용이다. 또한 기본정리 연결 설명(\"The Fundamental Theorem of Calculus says...\")은 index 12(라인 443)에 있으며, \"9~11번\"이 아니다. translation_ko(라인 624)의 [11], [12]도 이를 뒷받침한다. 따라서 인용 인덱스가 본문 sentence index와 명백히 불일치한다. 정답(선지 1)이 옳다는 점도 지적과 일치한다(answer_index 1, 라인 83). warn 수준의 실제 결함이다."
-      }
-    },
-    {
-      "severity": "warn",
-      "location": "answers.explanations[3] (q_index 3, 요약문 빈칸 완성), evidence",
-      "issue": "(A)area와 (B)endpoints의 근거 문장 번호가 본문 인덱스와 어긋난다. 정답(A area / B endpoints)은 옳다.",
-      "evidence": "해설: \"(A)는 ... 5번 'it measures the area'. (B)는 ... 9번 'subtract its values at the two endpoints'.\" 실제로 \"it measures the area\"는 sentence index 7이고, \"subtract its values at the two endpoints\"는 12번이다.",
-      "suggestion": "'5번'→'7번', '9번'→'12번'으로 교정.",
-      "lens": "answer",
-      "verdict": {
-        "isReal": true,
-        "confidence": "high",
-        "reason": "파일 근거로 확인됨. answers.explanations[3](q_index 3)의 evidence는 \"(A)는 ... 5번 'it measures the area'. (B)는 ... 9번 'subtract its values at the two endpoints'.\"라고 명시(라인 702). 그러나 page3.sentences 실제 인덱스를 보면 \"it measures the area\"는 index 7(라인 310-337: \"Instead of undoing a slope, it measures the area...\")이고, \"subtract its values at the two endpoints\"는 index 12(라인 430-448: \"The Fundamental Theorem of Calculus says that ... subtract its values at the two endpoints.\")이다. 인용 번호(5, 9)가 본문 인덱스(7, 12)와 어긋나므로 지적이 정확하다. 참고로 이 파일의 answers 전체가 일관되게 시프트된 오번호 체계를 쓰고 있으나(q_index 0은 \"8~9번\", q_index 2는 \"8번\"으로 index 11을 지칭 등), 검증 대상 지적이 특정한 사실(area=7이지 5가 아님, endpoints=12지 9가 아님)은 파일로 확정된다. 정답 자체(A area / B endpoints)는 model_answer(라인 701) 및 요약문 문맥과 일치하여 옳다는 지적의 부가 판단도 정확하다."
+        "reason": "파일 확인 결과 지적의 사실관계가 정확하다. page4.vocab[3] = {\"word\": \"definite integral\", \"synonyms\": [\"signed area\"]} (786-791행)이고, page1.body는 정적분을 \"it measures the area between a curve and the horizontal axis over a fixed interval\"로만 규정한다(26행). 본문 어디에도 부호/음수 넓이 개념이 없다: 곡선 아래 넓이는 \"the exact area under the curve\"(379행), \"the area under a rate curve\"(443행)로만 등장하고, textbook_tieback(102행)도 \"곡선과 x축 사이의 넓이\"라고만 서술한다. 해당 vocab 항목 자체의 예문도 \"measures the area under a curve\"로 signed 개념을 전혀 예시하지 않는다. 또한 다른 vocab 항목의 synonyms는 모두 본문에서 도출 가능한 패러프레이즈(\"antidifferentiation\"→\"integration\", \"indefinite integral\"→\"antiderivative family\", \"antiderivative\"→\"primitive function\")인데, \"signed area\"만 본문에 근거 없고 미적분 III-1 수준(12미적03-01)을 벗어난 미설명 개념(음수 넓이)을 학습자에게 노출시킨다. 다만 지적의 부차 논거인 \"연산/값 vs 기하학적 해석이라 동의어 불가\"는 다소 과하다 — \"displacement\"→\"net movement\"처럼 해석적 근사어를 synonyms에 두는 사례가 같은 파일에 있어 그 논거만으로는 결함이 성립하지 않는다. 그러나 본문 미근거·단원 수준 초과라는 주 논거만으로 지적은 유효하다."
       }
     }
   ],
-  "minors": [],
-  "blockers": [],
+  "minors": [
+    {
+      "severity": "minor",
+      "location": "page1.body 2단락 / \"the jagged staircase of rectangles smooths into the exact area under the curve\"",
+      "issue": "어색한 표현. smooth into는 자동사 용법이 드물고, 특히 '계단(모양)'이 '넓이(수량)'로 매끄러워진다는 것은 형태→수치의 범주 혼동이라 비문에 가깝게 읽힌다. 비유로서도 대상이 어긋난다.",
+      "evidence": "\"As the widths shrink toward zero, the jagged staircase of rectangles smooths into the exact area under the curve.\"",
+      "suggestion": "\"...the jagged staircase of rectangles settles into the exact area under the curve.\" 또는 \"...the jagged staircase smooths out, and the sum approaches the exact area under the curve.\"",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "page1.body 1단락 / \"Finding a function whose derivative matches a given one is called antidifferentiation\"",
+      "issue": "지시 대상이 모호한 표현. a given one의 one이 가리키는 것이 앞의 a function인지 derivative인지 표면상 중의적이다(의미상 derivative가 맞지만, 최근접 명사 규칙상 function으로도 읽힌다). CEFR B2 수준 학습자에게 불필요한 해석 부담을 준다.",
+      "evidence": "\"Finding a function whose derivative matches a given one is called <u>antidifferentiation</u>\"",
+      "suggestion": "\"Finding a function whose derivative matches a given rate\" 또는 \"...matches a given derivative\"로 명시할 것.",
+      "lens": "language"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko [3]",
+      "issue": "한 문장 안에서 antidifferentiation과 indefinite integral을 모두 '부정적분'으로 옮겨, 본문이 구분하는 '과정(역미분)'과 '답들의 집합(부정적분)'의 대비가 번역에서 무너진다. page4 vocab의 용어 처리와도 어긋난다.",
+      "evidence": "translation_ko [3] \"...함수를 찾는 것을 부정적분(역미분)이라 하고, 그런 모든 답의 집합이 부정적분이다.\" 원문은 \"is called antidifferentiation, and the family of all such answers is the indefinite integral\"로 두 용어를 구분하며, page4 vocab에서도 antidifferentiation은 \"역미분, 부정적분 구하기\", indefinite integral은 \"부정적분\"으로 나눠 제시한다.",
+      "suggestion": "\"...찾는 것을 역미분(부정적분을 구하는 것)이라 하고, 그런 모든 답의 집합이 부정적분이다\"처럼 두 용어를 분리한다.",
+      "lens": "explanation"
+    },
+    {
+      "severity": "minor",
+      "location": "page3.translation_ko 문장 [8]",
+      "issue": "영문은 by 이하 세 동명사(slicing, adding, letting)가 모두 '근사하는 방법'으로 병렬되는데, 번역은 \"잘라 … 더하고, 그다음 … 만들어 근사한다\"로 앞 두 동작을 순차 서술처럼 풀어 by 병렬 구조의 '수단' 관계가 흐려졌다. page3 grammar_note가 명시한 구조와도 어긋난다.",
+      "evidence": "영문: \"You approximate that region by slicing it into many thin rectangles, adding their areas, and then letting the slices grow ever narrower.\" / grammar_note: \"by 동명사 3개 병렬 (letting O 원형)\"",
+      "suggestion": "\"우리는 그 영역을 여러 얇은 직사각형으로 자르고, 그 넓이를 더하고, 그다음 조각들을 점점 더 좁게 만듦으로써 근사한다.\"처럼 세 동작을 대등한 수단으로 배열할 것.",
+      "lens": "translation"
+    },
+    {
+      "severity": "minor",
+      "location": "page2.questions[0].choices[0] / choices[3] (요지)",
+      "issue": "1번과 4번 오답 선지가 '부정적분과 정적분이 서로 무관하다'는 동일한 오독을 거의 같은 방식으로 반복해 변별 기능이 중복된다. 오답 5지 중 2개가 같은 함정이라 실질 선택지 폭이 줄어든다.",
+      "evidence": "choices[0] \"The indefinite integral and the definite integral share nothing meaningful with each other at all.\" / choices[3] \"A derivative and an integral describe two totally unrelated and separate kinds of change.\" — 해설 rationales도 각각 \"8번 '두 생각이 같은 아이디어'와 정면으로 모순된다\", \"미분과 적분이 무관하다는 것은 ... 반대다\"로 사실상 동일한 논거를 든다.",
+      "suggestion": "둘 중 하나를 다른 유형의 함정(예: 정적분을 '근사값만 준다'는 부분 오독, 또는 4문단 사례를 전체 요지로 확대한 선지)으로 교체할 것.",
+      "lens": "answer"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[10] \"marginal\" → examples[0].ko",
+      "issue": "예문 en은 본문 문장을 \"...can rebuild the total.\"로 줄여 인용했는데, ko 대역이 \"총량을 다시 세울 수 있다\"로 되어 있다. 본문과 page3 번역은 모두 '총비용'으로 확정하고 있어 어휘 대역이 흔들린다. 한계비용→총비용 복원이라는 경제학 맥락이 '총량'으로 뭉개진다.",
+      "evidence": "page1.body: \"An economist who knows a marginal cost can rebuild the total cost.\" / page3.translation_ko: \"[17] 한계비용을 아는 경제학자는 총비용을 다시 세울 수 있다.\" / page4.vocab: {\"en\": \"An economist who knows a marginal cost can rebuild the total.\", \"ko\": \"한계비용을 아는 경제학자는 총량을 다시 세울 수 있다.\"}",
+      "suggestion": "en을 \"...can rebuild the total cost.\"로 되돌리고 ko를 \"총비용을 다시 세울 수 있다\"로 통일한다.",
+      "lens": "vocab"
+    },
+    {
+      "severity": "minor",
+      "location": "page4.vocab[5] \"accumulation\" → antonyms[0]",
+      "issue": "antonyms \"dissipation\"은 에너지 소산을 뜻하는 물리 전문어로, 본문의 '얇은 조각을 쌓아 올리는 누적'의 자연스러운 반의어가 아니다. 고2 학습자에게 accumulation보다 어려운 단어를 반의어로 제시해 학습 부담만 늘린다.",
+      "evidence": "page1.body: \"Here integration means patient accumulation, one thin slice stacked upon the next.\" / page4.vocab: {\"word\": \"accumulation\", \"meaning_ko\": \"쌓임, 누적\", \"antonyms\": [\"dissipation\"]}",
+      "suggestion": "\"depletion\" 또는 \"reduction\" 등 누적의 직접적 반대 개념으로 교체.",
+      "lens": "vocab"
+    }
+  ],
+  "blockers": [
+    {
+      "severity": "blocker",
+      "location": "answers.explanations[0].evidence / rationales (q_index 0, 요지)",
+      "issue": "해설이 인용하는 문장 번호가 page3.sentences의 실제 번호와 전부 불일치한다. 학생이 근거 문장을 찾아갈 수 없다.",
+      "evidence": "evidence: \"8~9번에서 \\\"turn out to be the same idea\\\"이며 미적분의 기본정리가 둘을 잇는다\" — 그러나 page3 sentences[11]이 \"that these two ideas, reversing and accumulating, turn out to be the same idea wearing two masks\"(11번), 기본정리는 sentences[12] \"The Fundamental Theorem of Calculus says...\"(12번)이다. rationales도 \"8번 '두 생각이 같은 아이디어'\"(→11번), \"11번 '한 관계의 두 얼굴'\"(→14번 \"Slope and area, ... are really two faces of one relationship.\"), \"10번에서 \\\"+C\\\"는 뺄셈에서 소거되어\"(→13번 \"The elusive \\\"+C\\\" cancels itself in the subtraction\")로 모두 틀렸다.",
+      "suggestion": "evidence를 \"11~12번\"으로, rationales를 각각 11번 / 14번 / 13번으로 수정한다.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 확인 결과 지적이 정확하다. page3.sentences의 실제 index는 11번=\"these two ideas, reversing and accumulating, turn out to be the same idea wearing two masks\", 12번=\"The Fundamental Theorem of Calculus says...\", 13번=\"The elusive \\\"+C\\\" cancels itself in the subtraction...\", 14번=\"Slope and area, ... are really two faces of one relationship.\"이다. 그러나 answers.explanations[0](q_index 0, 요지)은 evidence에서 \"8~9번에서 turn out to be the same idea이며 미적분의 기본정리가 둘을 잇는다\"고 인용하고(→실제 11·12번), rationales[0] \"8번 '두 생각이 같은 아이디어'\"(→11번), rationales[3] \"11번 '한 관계의 두 얼굴'\"(→14번), rationales[4] \"10번에서 \\\"+C\\\"는 뺄셈에서 소거되어\"(→13번)로 인용 번호가 전부 3씩 어긋난다. 실제 8번은 \"You approximate that region...\", 9번은 \"As the widths shrink...\", 10번은 \"Here integration means patient accumulation...\"이라 인용된 문구가 존재하지 않으므로 학생이 근거 문장을 찾아갈 수 없다. 게다가 동일한 off-by-3 오류가 q_index 1(13번→실제 18번, 12번→16/17번), q_index 2(8번→11번, 9~11번→12~14번), q_index 3(5번→7번, 9번→12번)에도 반복되어 단순 오독이 아닌 체계적 번호 오류임이 확인된다."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "answers.explanations[1].evidence / rationales[0] (q_index 1, 빈칸 추론)",
+      "issue": "빈칸이 포함된 문장 번호와 근거 문장 번호가 모두 실제 번호와 다르다. 특히 '12번(recover, rebuild)'은 한 문장에 두 단어가 함께 있지도 않다.",
+      "evidence": "evidence: \"빈칸 앞 13번은 \\\"the derivative takes something apart, while the integral patiently ___\\\"\" — 실제로는 sentences[18] \"In every case, the derivative quietly takes something apart, while the integral patiently puts it back together.\"(18번)이다. rationales[0] \"복원한다는 12번(recover, rebuild)\" — recover는 16번 \"A physicist who knows an object's velocity can recover its exact displacement\", rebuild는 17번 \"An economist who knows a marginal cost can rebuild the total cost.\"로 12번이 아니며 한 문장에 함께 있지 않다.",
+      "suggestion": "\"빈칸 앞 18번\", \"16~17번(recover, rebuild)\"으로 수정한다.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일로 명확히 확인됨. (1) answers.explanations[1].evidence는 빈칸 문장을 '13번'이라 하지만, page3.sentences index 13은 \"The elusive +C cancels itself in the subtraction, so the final answer comes out clean.\"이고, 실제 빈칸 문장 \"In every case, the derivative quietly takes something apart, while the integral patiently puts it back together.\"는 index 18이다. (2) rationales[0]의 '12번(recover, rebuild)'도 틀렸다. index 12는 기본정리 문장(\"...subtract its values at the two endpoints\")으로 recover/rebuild가 없고, recover는 index 16(A physicist ... can recover its exact displacement), rebuild는 index 17(An economist ... can rebuild the total cost)로 서로 다른 문장에 분리되어 있다. 지적대로 '한 문장에 두 단어가 함께' 있지 않다. 또한 같은 파일의 translation_ko가 [16] 복원 / [17] 다시 세울 / [18] 다시 합친다로 sentences index와 일치하므로 번호 체계는 sentences index가 정본이며 오류는 answers 쪽이다. 동일한 오프셋 오류가 explanations[0](8/9/10/11 → 실제 11/12/13/14), explanations[2](8, 9~11), explanations[3](5번 → 실제 7번 \"it measures the area\", 9번 → 실제 12번 endpoints)에도 있어 체계적 결함이다. 학습자에게 근거 문장을 지목하는 해설의 핵심 기능이 무효화되므로 실제 결함이 맞다."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "answers.explanations[2].evidence (q_index 2, 함의 추론)",
+      "issue": "함의 추론의 핵심 근거 문장 번호와 보조 근거 범위가 모두 실제 번호와 어긋난다.",
+      "evidence": "evidence: \"8번은 \\\"these two ideas, reversing and accumulating, turn out to be the same idea wearing two masks\\\"이고, 9~11번이 기본정리로 둘이 연결됨을 설명한다\" — 해당 표현은 sentences[11](11번)이고, 기본정리 설명은 sentences[12]~[14](12~14번)이다. 9번은 \"As the widths shrink toward zero, the jagged staircase of rectangles smooths into the exact area under the curve.\"로 기본정리와 무관하다.",
+      "suggestion": "\"11번은 ... 이고, 12~14번이 기본정리로 둘이 연결됨을 설명한다\"로 수정한다.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일 근거로 확인됨. answers.explanations[2].evidence(라인 678)는 \"8번\"이라며 \"these two ideas, reversing and accumulating, turn out to be the same idea wearing two masks\"를 인용하지만, page3.sentences에서 해당 문장은 index 11(라인 412-424)이다. index 8(라인 339-355)은 \"You approximate that region by slicing it into many thin rectangles...\"로 전혀 다른 문장이다. 또한 \"9~11번이 기본정리로 둘이 연결됨을 설명한다\"고 했으나, index 9(라인 362-379)는 \"As the widths shrink toward zero, the jagged staircase of rectangles smooths into the exact area under the curve.\"로 기본정리와 무관하며, 실제 기본정리 설명은 index 12(The Fundamental Theorem of Calculus says..., 라인 431-443)와 이어지는 13(+C 소거), 14(두 얼굴)이다. page3.translation_ko(라인 624)의 [11], [12] 번호 매김도 동일하게 확인되어 번호 체계에 모호함이 없다. 즉 핵심 근거 문장 번호와 보조 근거 범위가 모두 3만큼 어긋나 있어 지적이 정확하다. (참고: 같은 오프셋 오류가 explanations[0], [1], [3]에도 존재하는 파일 전반의 계통적 결함이나, 이는 지적의 타당성을 오히려 뒷받침한다.)"
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "answers.explanations[3].evidence (q_index 3, 요약문 빈칸 완성)",
+      "issue": "(A)·(B) 정답 근거로 제시한 문장 번호가 둘 다 실제 번호와 다르다.",
+      "evidence": "evidence: \"(A) ... → 5번 \\\"it measures the area\\\". (B) ... → 9번 \\\"subtract its values at the two endpoints\\\"\" — \"it measures the area\"는 sentences[7](7번 \"Instead of undoing a slope, it measures the area between a curve and the horizontal axis over a fixed interval.\"), \"subtract its values at the two endpoints\"는 sentences[12](12번)이다. 5번은 \"That single symbol quietly admits that the starting value has been lost.\"이고 9번은 넓이 극한 문장으로 인용문이 존재하지 않는다.",
+      "suggestion": "\"(A) → 7번\", \"(B) → 12번\"으로 수정한다.",
+      "lens": "explanation",
+      "verdict": {
+        "isReal": true,
+        "confidence": "high",
+        "reason": "파일로 확인됨. answers.explanations[3].evidence(라인 702)는 (A) 근거를 '5번 \"it measures the area\"', (B) 근거를 '9번 \"subtract its values at the two endpoints\"'로 제시한다. 그러나 page3.sentences의 실제 index를 보면 index 7(라인 311-337)이 'Instead of undoing a slope, / it / measures / the area / between a curve and the horizontal axis over a fixed interval.'이고, index 12(라인 431-448)가 '...you just find an antiderivative and subtract its values at the two endpoints.'이다. 반면 index 5(라인 266-287)는 'That single symbol quietly admits that the starting value has been lost.'로 인용문과 무관하고, index 9(라인 362-383)는 'As the widths shrink toward zero, the jagged staircase of rectangles smooths into the exact area under the curve.'로 해당 인용문이 존재하지 않는다. (A)는 5→7(2 차이), (B)는 9→12(3 차이)로 오프셋조차 일정하지 않아 다른 일관된 번호 체계로도 설명되지 않는다. 파일 내 유일한 문장 번호 체계는 page3.sentences[].index이며 translation_ko의 [1]~[18] 표기도 이와 일치하므로 기준에 모호함이 없다. 학생이 근거 문장을 찾아가는 해설의 핵심 기능이 깨지므로 지적은 유효하다. 참고로 같은 파일의 q_index 0·1·2 해설도 동일하게 번호가 어긋나 있어(예: '8번 turn out to be the same idea'는 실제 index 11, '13번 the derivative takes something apart'는 실제 index 18) 결함 범위는 오히려 더 넓지만 이는 지적을 약화시키지 않는다."
+      }
+    },
+    {
+      "severity": "blocker",
+      "location": "page2.questions[2].stem (함의 추론) ↔ page1.body",
+      "issue": "\"밑줄 친 부분\"을 묻는 함의 추론 문제인데, 본문 page1.body에 존재하는 <u>밑줄</u>은 <u>antidifferentiation</u> 단 하나뿐이다. 정답 해설이 근거로 삼는 구절 \"the same idea wearing two masks\"에는 밑줄이 전혀 없어, 학생이 문제에서 지시한 밑줄을 찾으면 'antidifferentiation'을 보게 되고 그에 대한 정답 선지가 5개 중 하나도 없다. 출제 불능 상태다.",
+      "evidence": "본문 밑줄은 1문단의 \"...is called <u>antidifferentiation</u>, and the family of all such answers is the indefinite integral.\" 하나뿐. 반면 3문단은 밑줄 없이 \"these two ideas, reversing and accumulating, turn out to be the same idea wearing two masks.\" 이고, answers.explanations[2].evidence는 \"8번은 \\\"these two ideas, reversing and accumulating, turn out to be the same idea wearing two masks\\\"이고 ... 이 표현은 '되돌리기와 조각 더하기가 사실 다르게 보이는 같은 연산'임을 뜻한다\"라고 밝혀, 의도한 밑줄 대상과 실제 밑줄 위치가 불일치함이 확인된다.",
+      "suggestion": "본문에서 <u>antidifferentiation</u> 밑줄을 제거하고 3문단의 \"the same idea wearing two masks\"(또는 \"these two ideas ... wearing two masks\" 전체)에 <u></u>를 씌워, 문제·해설이 가리키는 구와 본문 밑줄을 일치시킬 것.",
+      "lens": "answer",
+      "verdict": {
+        "confidence": "high",
+        "isReal": true,
+        "reason": "파일 직접 확인 결과 지적이 정확하다. page1.body 전체에서 <u> 태그는 1문단의 \"is called <u>antidifferentiation</u>\" 단 하나뿐이며(그 외 인라인 마크업은 마지막 문단의 <blank> 하나), 3문단은 \"The astonishing part is that these two ideas, reversing and accumulating, turn out to be the same idea wearing two masks.\"로 밑줄이 전혀 없다. 그런데 page2.questions[2] (함의 추론)의 stem은 \"밑줄 친 부분이 다음 글에서 의미하는 바로 가장 적절한 것은?\"이고, answers.explanations[2].evidence는 \"8번은 \\\"these two ideas, reversing and accumulating, turn out to be the same idea wearing two masks\\\"이고...\"라고 명시해 의도한 밑줄 대상이 3문단 구절임을 자백한다. 즉 의도 대상과 실제 마크업 위치가 불일치한다. 정답 선지(answer_index 1, \"reversing a derivative and adding slices are secretly the same operation seen differently\")는 mask 비유의 해석이지 antidifferentiation의 정의가 아니며, 나머지 4개 선지 중에도 antidifferentiation에 대응하는 것이 없어 실제 밑줄을 따라간 학생은 정답을 고를 수 없다. 반박 가능성도 검토했으나 기각된다: (1) 렌더러가 밑줄을 주입한다는 가정은 성립하지 않는다 — 같은 body가 <blank>를 인라인으로 직접 담고 있고 questions[1](빈칸 추론)이 그 인라인 마커에 의존하므로, 밑줄 역시 본문 작성 시 마크업하는 방식이다. (2) JSON 어디에도 밑줄 대상을 별도로 지정하는 필드(underline_target 등)가 없어 보완 경로가 없다. (3) antidifferentiation을 의도된 대상으로 본다 해도 정답 인덱스와 해설 근거가 모두 틀린 것이 되어 어느 쪽으로 읽든 결함이다. 출제 불능 상태라는 blocker 등급도 타당하다."
+      }
+    }
+  ],
   "counts": {
-    "raw": 9,
-    "verified": 9,
+    "raw": 22,
+    "verified": 15,
     "confirmed": 9,
-    "minor": 0
+    "minor": 7
   }
 }
