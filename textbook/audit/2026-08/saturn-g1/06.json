@@ -92,6 +92,14 @@
         "isReal": true,
         "reason": "파일에서 직접 확인됨. page1.body(21행)와 page3 sentence 16(292행)은 모두 \"how a city can grow without falling apart\"이고, translation_ko [16]도 \"무너지지 않고 성장할 수 있는지\"로 이에 대응한다. 반면 page4.vocab[7](planner) examples[0].en(490행)은 \"Planners now ask how a city can grow without breaking.\"로 핵심 어구가 \"falling apart\" → \"breaking\"으로 치환되어 있으며, 같은 항목의 ko(\"무너지지 않고 성장하는 법\")는 본문 번역과 동일해 본문 인용 의도임이 드러난다. 반박 가능성(의도적 패러프레이즈)도 검토했으나 성립하지 않는다: 동일 파일의 다른 examples[0]들은 본문 문장의 축약 인용(vocab[1] 424행은 본문 문장 그대로, vocab[3] 446행·vocab[8] 501행·vocab[10] 523행·vocab[11] 534행은 본문 부분 인용)으로 \"본문 인용\" 규약이 일관되게 지켜지고 있어 vocab[7]만 이탈한 것이다. 단순 어미 축약(trim)이 아니라 핵심 표현의 어휘 치환이므로 학생이 본문에서 해당 문장을 대조·검색하기 어렵다. 참고로 vocab[0] examples[0](413행)도 본문 \"This move to city life\"를 \"This shift toward city life\"로 바꾼 동일 유형의 결함이 있어(answers 392행 evidence에도 같은 오인용이 전파됨) 지적된 패턴의 실재성을 뒷받침한다. 수정 방향: 490행 en을 \"So planners now ask how a city can grow without falling apart.\"(또는 \"Planners now ask how a city can grow without falling apart.\")로 교정."
       }
+    },
+    {
+      "severity": "warn",
+      "lens": "codex",
+      "location": "answers/vocab 전반의 'This shift toward city life' 인용",
+      "issue": "본문은 'This move to city life is called urbanization'인데 해설·vocab 예문 등이 'This shift toward city life...'로 오인용한다(Codex 제보: 해설·어휘·시험 3곳).",
+      "evidence": "page1.body: 'This move to city life is called urbanization'",
+      "suggestion": "본문 인용을 표방하는 모든 곳(explanations evidence/rationales, vocab examples)을 실제 본문 문구로 통일한다."
     }
   ],
   "minors": [

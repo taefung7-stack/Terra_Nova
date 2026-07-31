@@ -13,18 +13,32 @@
     "cognitive_skill": "요지",
     "lexile": "810L",
     "ar_level": 5.8,
-    "key_concepts": ["합의 법칙", "곱의 법칙", "순열", "조합"]
+    "key_concepts": [
+      "합의 법칙",
+      "곱의 법칙",
+      "순열",
+      "조합"
+    ]
   },
   "page1": {
     "title": "The Art of Counting Without Counting",
     "subtitle": "Four simple rules tame every giant counting problem.",
-    "body": "Imagine you have three shirts and two pairs of pants, and you ask how many outfits you can make. You do not need to list them all, because each shirt can go with either pair of pants. So the answer is simply three times two, which is six. Mathematicians call this idea the multiplication principle, and it is the first great shortcut of counting. When one choice is followed by another, you multiply the number of options at each step.\n\nSometimes the choices do not connect; they simply sit side by side. Suppose a snack bar offers four kinds of juice and three kinds of tea, and you may order one drink. You add the options, because picking a juice and picking a tea can never happen together. This is the addition principle: when two events cannot occur at the same time, you add their cases. Deciding whether to add or multiply is the true heart of counting.\n\nOrder makes counting harder, since placing five runners on a podium is different from just choosing them. An ordered arrangement of objects is called a <u>permutation</u>. If four students line up for a photo, the first spot has four choices, the next has three, then two, then one. Multiply these numbers and you get twenty-four different lines. Mathematicians write this product as a factorial, and factorials grow very fast.\n\nNow suppose order does not matter. Choosing two club leaders is a <u>combination</u>, because picking Mina and then Juno gives the same pair as picking Juno first. To count combinations, you first count the ordered lists and then divide away the repeats. These simple rules reach far beyond the classroom, for they help engineers design passwords, biologists compare genes, and airlines plan routes. Every huge counting problem, in the end, breaks down into small steps where you simply <blank>.",
+    "body": "Imagine you have three shirts and two pairs of pants, and you ask how many outfits you can make. You do not need to list them all, because each shirt can go with either pair of pants. So the answer is simply three times two, which is six. Mathematicians call this idea the multiplication principle, and it is the first great shortcut of counting. When one choice is followed by another, you multiply the number of options at each step.\n\nSometimes the choices do not connect; they simply sit side by side. Suppose a snack bar offers four kinds of juice and three kinds of tea, and you may order only one drink. You add the options, because picking a juice and picking a tea can never happen together. This is the addition principle: when two events cannot occur at the same time, you add their cases. Deciding whether to add or multiply is the true heart of counting.\n\nOrder makes counting harder, since placing five runners on a podium is different from just choosing them. An ordered arrangement of objects is called a <u>permutation</u>. If four students line up for a photo, the first spot has four choices, the next has three, then two, then one. Multiply these numbers and you get twenty-four different lines. Mathematicians write this product as a factorial, and factorials grow very fast.\n\nNow suppose order does not matter. Choosing two club leaders is a <u>combination</u>, because picking Mina and then Juno gives the same pair as picking Juno and then Mina. To count combinations, you first count the ordered lists and then divide away the repeats. These simple rules reach far beyond the classroom, for they help engineers design passwords, biologists compare genes, and airlines plan routes. Every huge counting problem, in the end, breaks down into small steps where you simply <blank>.",
     "illustration": "../../assets/illustrations/2026-08/07.jpg",
     "illustration_caption": "옷 고르기부터 줄 세우기까지, 곱의 법칙과 합의 법칙, 순열과 조합은 복잡한 세기를 단순한 단계로 바꾼다.",
     "gloss_extra": [
-      { "term": "factorial", "ko": "계승, 팩토리얼(연속한 자연수의 곱)" },
-      { "term": "arrangement", "ko": "배열, 나열" },
-      { "term": "multiplication", "ko": "곱셈, 곱하기" }
+      {
+        "term": "factorial",
+        "ko": "계승, 팩토리얼(연속한 자연수의 곱)"
+      },
+      {
+        "term": "arrangement",
+        "ko": "배열, 나열"
+      },
+      {
+        "term": "multiplication",
+        "ko": "곱셈, 곱하기"
+      }
     ]
   },
   "page2": {
@@ -72,7 +86,13 @@
         "type": "school_descriptive",
         "style": "요약문 빈칸 완성",
         "prompt": "다음은 본문의 요약문이다. 본문의 내용을 바탕으로 빈칸 (A), (B)에 들어갈 말을 <조건>에 맞게 영어 한 단어로 각각 쓰시오. <조건> 본문에서 제시된 단어를 그대로 활용할 것.",
-        "hints": ["multiply", "add", "permutation", "combination", "factorial"],
+        "hints": [
+          "multiply",
+          "add",
+          "permutation",
+          "combination",
+          "factorial"
+        ],
         "summary_template": "When one choice follows another, you <blank> (A) the number of options at each step, and an ordered arrangement of objects is called a <blank> (B).",
         "model_answer": "(A) multiply  (B) permutation"
       }
@@ -80,15 +100,36 @@
     "textbook_tieback": {
       "unit_label": "공통수학1 ③ 경우의 수 · 순열과 조합",
       "body_ko": "고1 공통수학1의 '경우의 수' 단원에서는 빠짐없이, 겹치지 않게 세는 방법을 배운다. 동시에 일어날 수 없는 두 사건은 각 경우의 수를 더하는 합의 법칙으로 센다. 잇달아 일어나는 선택은 각 단계의 수를 곱하는 곱의 법칙으로 센다. 서로 다른 대상을 순서 있게 나열하는 것이 순열이고, 그 수는 계승으로 계산한다. 순서를 무시하고 뽑기만 하면 조합이며, 순열의 수를 겹치는 배열의 수로 나누어 구한다. 이 규칙들은 확률 단원의 기초가 된다.",
-      "tags": ["합의법칙", "곱의법칙", "순열", "조합"],
+      "tags": [
+        "합의법칙",
+        "곱의법칙",
+        "순열",
+        "조합"
+      ],
       "visual_aid": {
         "type": "emoji_flow",
         "title": "경우의 수를 세는 네 가지 길",
         "steps": [
-          { "emoji": "➕", "label": "합의 법칙", "note": "동시에 못 일어나면 더한다" },
-          { "emoji": "✖️", "label": "곱의 법칙", "note": "연달아 선택하면 곱한다" },
-          { "emoji": "🔢", "label": "순열", "note": "순서 있게 나열 → 계승" },
-          { "emoji": "🤝", "label": "조합", "note": "순서 무시 → 겹침을 나눈다" }
+          {
+            "emoji": "➕",
+            "label": "합의 법칙",
+            "note": "동시에 못 일어나면 더한다"
+          },
+          {
+            "emoji": "✖️",
+            "label": "곱의 법칙",
+            "note": "연달아 선택하면 곱한다"
+          },
+          {
+            "emoji": "🔢",
+            "label": "순열",
+            "note": "순서 있게 나열 → 계승"
+          },
+          {
+            "emoji": "🤝",
+            "label": "조합",
+            "note": "순서 무시 → 겹침을 나눈다"
+          }
         ]
       }
     }
@@ -98,246 +139,699 @@
       {
         "index": 1,
         "segments": [
-          { "role": "V", "text": "Imagine", "note": "명령문 동사" },
-          { "role": "O", "text": "you have three shirts and two pairs of pants,", "note": "that 생략 목적어절" },
-          { "role": "CONJ", "text": "and" },
-          { "role": "S", "text": "you" },
-          { "role": "V", "text": "ask" },
-          { "role": "O", "text": "how many outfits you can make.", "note": "간접의문문 목적어절" }
+          {
+            "role": "V",
+            "text": "Imagine",
+            "note": "명령문 동사"
+          },
+          {
+            "role": "O",
+            "text": "you have three shirts and two pairs of pants,",
+            "note": "that 생략 목적어절"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "S",
+            "text": "you"
+          },
+          {
+            "role": "V",
+            "text": "ask"
+          },
+          {
+            "role": "O",
+            "text": "how many outfits you can make.",
+            "note": "간접의문문 목적어절"
+          }
         ]
       },
       {
         "index": 2,
         "segments": [
-          { "role": "S", "text": "You" },
-          { "role": "V", "text": "do not need to list" },
-          { "role": "O", "text": "them all," },
-          { "role": "CONJ", "text": "because" },
-          { "role": "S", "text": "each shirt" },
-          { "role": "V", "text": "can go" },
-          { "role": "M", "text": "with either pair of pants." }
+          {
+            "role": "S",
+            "text": "You"
+          },
+          {
+            "role": "V",
+            "text": "do not need to list"
+          },
+          {
+            "role": "O",
+            "text": "them all,"
+          },
+          {
+            "role": "CONJ",
+            "text": "because"
+          },
+          {
+            "role": "S",
+            "text": "each shirt"
+          },
+          {
+            "role": "V",
+            "text": "can go"
+          },
+          {
+            "role": "M",
+            "text": "with either pair of pants."
+          }
         ]
       },
       {
         "index": 3,
         "segments": [
-          { "role": "CONJ", "text": "So" },
-          { "role": "S", "text": "the answer" },
-          { "role": "V", "text": "is" },
-          { "role": "C", "text": "simply three times two,", "note": "보어" },
-          { "role": "REL", "text": "which is six.", "note": "계속적 용법 관계사" }
+          {
+            "role": "CONJ",
+            "text": "So"
+          },
+          {
+            "role": "S",
+            "text": "the answer"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "simply three times two,",
+            "note": "보어"
+          },
+          {
+            "role": "REL",
+            "text": "which is six.",
+            "note": "계속적 용법 관계사"
+          }
         ]
       },
       {
         "index": 4,
         "segments": [
-          { "role": "S", "text": "Mathematicians" },
-          { "role": "V", "text": "call" },
-          { "role": "O", "text": "this idea" },
-          { "role": "C", "text": "the multiplication principle,", "note": "call + O + C" },
-          { "role": "CONJ", "text": "and" },
-          { "role": "S", "text": "it" },
-          { "role": "V", "text": "is" },
-          { "role": "C", "text": "the first great shortcut of counting." }
+          {
+            "role": "S",
+            "text": "Mathematicians"
+          },
+          {
+            "role": "V",
+            "text": "call"
+          },
+          {
+            "role": "O",
+            "text": "this idea"
+          },
+          {
+            "role": "C",
+            "text": "the multiplication principle,",
+            "note": "call + O + C"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "S",
+            "text": "it"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "the first great shortcut of counting."
+          }
         ]
       },
       {
         "index": 5,
         "segments": [
-          { "role": "CONJ", "text": "When" },
-          { "role": "S", "text": "one choice" },
-          { "role": "V", "text": "is followed", "note": "be + p.p. 수동태" },
-          { "role": "M", "text": "by another," },
-          { "role": "S", "text": "you" },
-          { "role": "V", "text": "multiply" },
-          { "role": "O", "text": "the number of options" },
-          { "role": "M", "text": "at each step." }
+          {
+            "role": "CONJ",
+            "text": "When"
+          },
+          {
+            "role": "S",
+            "text": "one choice"
+          },
+          {
+            "role": "V",
+            "text": "is followed",
+            "note": "be + p.p. 수동태"
+          },
+          {
+            "role": "M",
+            "text": "by another,"
+          },
+          {
+            "role": "S",
+            "text": "you"
+          },
+          {
+            "role": "V",
+            "text": "multiply"
+          },
+          {
+            "role": "O",
+            "text": "the number of options"
+          },
+          {
+            "role": "M",
+            "text": "at each step."
+          }
         ]
       },
       {
         "index": 6,
         "segments": [
-          { "role": "M", "text": "Sometimes" },
-          { "role": "S", "text": "the choices" },
-          { "role": "V", "text": "do not connect;" },
-          { "role": "S", "text": "they" },
-          { "role": "V", "text": "simply sit" },
-          { "role": "M", "text": "side by side." }
+          {
+            "role": "M",
+            "text": "Sometimes"
+          },
+          {
+            "role": "S",
+            "text": "the choices"
+          },
+          {
+            "role": "V",
+            "text": "do not connect;"
+          },
+          {
+            "role": "S",
+            "text": "they"
+          },
+          {
+            "role": "V",
+            "text": "simply sit"
+          },
+          {
+            "role": "M",
+            "text": "side by side."
+          }
         ]
       },
       {
         "index": 7,
         "segments": [
-          { "role": "V", "text": "Suppose", "note": "명령문 동사" },
-          { "role": "O", "text": "a snack bar offers four kinds of juice and three kinds of tea,", "note": "that 생략 목적어절" },
-          { "role": "CONJ", "text": "and" },
-          { "role": "S", "text": "you" },
-          { "role": "V", "text": "may order" },
-          { "role": "O", "text": "one drink." }
+          {
+            "role": "V",
+            "text": "Suppose",
+            "note": "명령문 동사"
+          },
+          {
+            "role": "O",
+            "text": "a snack bar offers four kinds of juice and three kinds of tea,",
+            "note": "that 생략 목적어절"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "S",
+            "text": "you"
+          },
+          {
+            "role": "V",
+            "text": "may order"
+          },
+          {
+            "role": "O",
+            "text": "only one drink."
+          }
         ]
       },
       {
         "index": 8,
         "segments": [
-          { "role": "S", "text": "You" },
-          { "role": "V", "text": "add" },
-          { "role": "O", "text": "the options," },
-          { "role": "CONJ", "text": "because" },
-          { "role": "S", "text": "picking a juice and picking a tea", "note": "동명사구 주어" },
-          { "role": "V", "text": "can never happen" },
-          { "role": "M", "text": "together." }
+          {
+            "role": "S",
+            "text": "You"
+          },
+          {
+            "role": "V",
+            "text": "add"
+          },
+          {
+            "role": "O",
+            "text": "the options,"
+          },
+          {
+            "role": "CONJ",
+            "text": "because"
+          },
+          {
+            "role": "S",
+            "text": "picking a juice and picking a tea",
+            "note": "동명사구 주어"
+          },
+          {
+            "role": "V",
+            "text": "can never happen"
+          },
+          {
+            "role": "M",
+            "text": "together."
+          }
         ]
       },
       {
         "index": 9,
         "segments": [
-          { "role": "S", "text": "This" },
-          { "role": "V", "text": "is" },
-          { "role": "C", "text": "the addition principle:" },
-          { "role": "CONJ", "text": "when" },
-          { "role": "S", "text": "two events" },
-          { "role": "V", "text": "cannot occur" },
-          { "role": "M", "text": "at the same time," },
-          { "role": "S", "text": "you" },
-          { "role": "V", "text": "add" },
-          { "role": "O", "text": "their cases." }
+          {
+            "role": "S",
+            "text": "This"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "the addition principle:"
+          },
+          {
+            "role": "CONJ",
+            "text": "when"
+          },
+          {
+            "role": "S",
+            "text": "two events"
+          },
+          {
+            "role": "V",
+            "text": "cannot occur"
+          },
+          {
+            "role": "M",
+            "text": "at the same time,"
+          },
+          {
+            "role": "S",
+            "text": "you"
+          },
+          {
+            "role": "V",
+            "text": "add"
+          },
+          {
+            "role": "O",
+            "text": "their cases."
+          }
         ]
       },
       {
         "index": 10,
         "segments": [
-          { "role": "S", "text": "Deciding whether to add or multiply", "note": "동명사구 주어" },
-          { "role": "V", "text": "is" },
-          { "role": "C", "text": "the true heart of counting." }
+          {
+            "role": "S",
+            "text": "Deciding whether to add or multiply",
+            "note": "동명사구 주어"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "the true heart of counting."
+          }
         ]
       },
       {
         "index": 11,
         "segments": [
-          { "role": "S", "text": "Order" },
-          { "role": "V", "text": "makes" },
-          { "role": "O", "text": "counting" },
-          { "role": "C", "text": "harder," },
-          { "role": "CONJ", "text": "since" },
-          { "role": "S", "text": "placing five runners on a podium", "note": "동명사구 주어" },
-          { "role": "V", "text": "is" },
-          { "role": "C", "text": "different" },
-          { "role": "M", "text": "from just choosing them." }
+          {
+            "role": "S",
+            "text": "Order"
+          },
+          {
+            "role": "V",
+            "text": "makes"
+          },
+          {
+            "role": "O",
+            "text": "counting"
+          },
+          {
+            "role": "C",
+            "text": "harder,"
+          },
+          {
+            "role": "CONJ",
+            "text": "since"
+          },
+          {
+            "role": "S",
+            "text": "placing five runners on a podium",
+            "note": "동명사구 주어"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "different from just choosing them.",
+            "note": "different from ~: ~와 다른"
+          }
         ]
       },
       {
         "index": 12,
         "segments": [
-          { "role": "S", "text": "An ordered arrangement of objects" },
-          { "role": "V", "text": "is called", "note": "be + p.p. 수동태" },
-          { "role": "C", "text": "a permutation." }
+          {
+            "role": "S",
+            "text": "An ordered arrangement of objects"
+          },
+          {
+            "role": "V",
+            "text": "is called",
+            "note": "be + p.p. 수동태"
+          },
+          {
+            "role": "C",
+            "text": "a permutation."
+          }
         ]
       },
       {
         "index": 13,
         "segments": [
-          { "role": "CONJ", "text": "If" },
-          { "role": "S", "text": "four students" },
-          { "role": "V", "text": "line up" },
-          { "role": "M", "text": "for a photo," },
-          { "role": "S", "text": "the first spot" },
-          { "role": "V", "text": "has" },
-          { "role": "O", "text": "four choices, the next has three, then two, then one." }
+          {
+            "role": "CONJ",
+            "text": "If"
+          },
+          {
+            "role": "S",
+            "text": "four students"
+          },
+          {
+            "role": "V",
+            "text": "line up"
+          },
+          {
+            "role": "M",
+            "text": "for a photo,"
+          },
+          {
+            "role": "S",
+            "text": "the first spot"
+          },
+          {
+            "role": "V",
+            "text": "has"
+          },
+          {
+            "role": "O",
+            "text": "four choices,"
+          },
+          {
+            "role": "S",
+            "text": "the next"
+          },
+          {
+            "role": "V",
+            "text": "has"
+          },
+          {
+            "role": "O",
+            "text": "three, then two, then one.",
+            "note": "then two, then one: 반복되는 주어+동사(the spot has) 생략"
+          }
         ]
       },
       {
         "index": 14,
         "segments": [
-          { "role": "V", "text": "Multiply" },
-          { "role": "O", "text": "these numbers" },
-          { "role": "CONJ", "text": "and" },
-          { "role": "S", "text": "you" },
-          { "role": "V", "text": "get" },
-          { "role": "O", "text": "twenty-four different lines." }
+          {
+            "role": "V",
+            "text": "Multiply"
+          },
+          {
+            "role": "O",
+            "text": "these numbers"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "S",
+            "text": "you"
+          },
+          {
+            "role": "V",
+            "text": "get"
+          },
+          {
+            "role": "O",
+            "text": "twenty-four different lines."
+          }
         ]
       },
       {
         "index": 15,
         "segments": [
-          { "role": "S", "text": "Mathematicians" },
-          { "role": "V", "text": "write" },
-          { "role": "O", "text": "this product" },
-          { "role": "M", "text": "as a factorial," },
-          { "role": "CONJ", "text": "and" },
-          { "role": "S", "text": "factorials" },
-          { "role": "V", "text": "grow" },
-          { "role": "M", "text": "very fast." }
+          {
+            "role": "S",
+            "text": "Mathematicians"
+          },
+          {
+            "role": "V",
+            "text": "write"
+          },
+          {
+            "role": "O",
+            "text": "this product"
+          },
+          {
+            "role": "M",
+            "text": "as a factorial,"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "S",
+            "text": "factorials"
+          },
+          {
+            "role": "V",
+            "text": "grow"
+          },
+          {
+            "role": "M",
+            "text": "very fast."
+          }
         ]
       },
       {
         "index": 16,
         "segments": [
-          { "role": "M", "text": "Now" },
-          { "role": "V", "text": "suppose", "note": "명령문 동사" },
-          { "role": "O", "text": "order does not matter.", "note": "that 생략 목적어절" }
+          {
+            "role": "M",
+            "text": "Now"
+          },
+          {
+            "role": "V",
+            "text": "suppose",
+            "note": "명령문 동사"
+          },
+          {
+            "role": "O",
+            "text": "order does not matter.",
+            "note": "that 생략 목적어절"
+          }
         ]
       },
       {
         "index": 17,
         "segments": [
-          { "role": "S", "text": "Choosing two club leaders", "note": "동명사구 주어" },
-          { "role": "V", "text": "is" },
-          { "role": "C", "text": "a combination," },
-          { "role": "CONJ", "text": "because" },
-          { "role": "S", "text": "picking Mina and then Juno", "note": "동명사구 주어" },
-          { "role": "V", "text": "gives" },
-          { "role": "O", "text": "the same pair" },
-          { "role": "M", "text": "as picking Juno first." }
+          {
+            "role": "S",
+            "text": "Choosing two club leaders",
+            "note": "동명사구 주어"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "a combination,"
+          },
+          {
+            "role": "CONJ",
+            "text": "because"
+          },
+          {
+            "role": "S",
+            "text": "picking Mina and then Juno",
+            "note": "동명사구 주어"
+          },
+          {
+            "role": "V",
+            "text": "gives"
+          },
+          {
+            "role": "O",
+            "text": "the same pair"
+          },
+          {
+            "role": "M",
+            "text": "as picking Juno and then Mina."
+          }
         ]
       },
       {
         "index": 18,
         "segments": [
-          { "role": "M", "text": "To count combinations,", "note": "목적의 to부정사" },
-          { "role": "S", "text": "you" },
-          { "role": "M", "text": "first" },
-          { "role": "V", "text": "count" },
-          { "role": "O", "text": "the ordered lists" },
-          { "role": "CONJ", "text": "and" },
-          { "role": "M", "text": "then" },
-          { "role": "V", "text": "divide away" },
-          { "role": "O", "text": "the repeats." }
+          {
+            "role": "M",
+            "text": "To count combinations,",
+            "note": "목적의 to부정사"
+          },
+          {
+            "role": "S",
+            "text": "you"
+          },
+          {
+            "role": "M",
+            "text": "first"
+          },
+          {
+            "role": "V",
+            "text": "count"
+          },
+          {
+            "role": "O",
+            "text": "the ordered lists"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "M",
+            "text": "then"
+          },
+          {
+            "role": "V",
+            "text": "divide away"
+          },
+          {
+            "role": "O",
+            "text": "the repeats."
+          }
         ]
       },
       {
         "index": 19,
         "segments": [
-          { "role": "S", "text": "These simple rules" },
-          { "role": "V", "text": "reach" },
-          { "role": "M", "text": "far beyond the classroom," },
-          { "role": "CONJ", "text": "for" },
-          { "role": "S", "text": "they" },
-          { "role": "V", "text": "help" },
-          { "role": "O", "text": "engineers" },
-          { "role": "C", "text": "design passwords,", "note": "help + O + 동사원형" },
-          { "role": "O", "text": "biologists" },
-          { "role": "C", "text": "compare genes," },
-          { "role": "CONJ", "text": "and" },
-          { "role": "O", "text": "airlines" },
-          { "role": "C", "text": "plan routes." }
+          {
+            "role": "S",
+            "text": "These simple rules"
+          },
+          {
+            "role": "V",
+            "text": "reach"
+          },
+          {
+            "role": "M",
+            "text": "far beyond the classroom,"
+          },
+          {
+            "role": "CONJ",
+            "text": "for"
+          },
+          {
+            "role": "S",
+            "text": "they"
+          },
+          {
+            "role": "V",
+            "text": "help"
+          },
+          {
+            "role": "O",
+            "text": "engineers"
+          },
+          {
+            "role": "C",
+            "text": "design passwords,",
+            "note": "help + O + 동사원형"
+          },
+          {
+            "role": "O",
+            "text": "biologists"
+          },
+          {
+            "role": "C",
+            "text": "compare genes,"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "O",
+            "text": "airlines"
+          },
+          {
+            "role": "C",
+            "text": "plan routes."
+          }
         ]
       },
       {
         "index": 20,
         "segments": [
-          { "role": "S", "text": "Every huge counting problem," },
-          { "role": "M", "text": "in the end," },
-          { "role": "V", "text": "breaks down" },
-          { "role": "M", "text": "into small steps" },
-          { "role": "REL", "text": "where", "note": "관계부사" },
-          { "role": "S", "text": "you" },
-          { "role": "M", "text": "simply" },
-          { "role": "V", "text": "add or multiply" },
-          { "role": "O", "text": "the cases." }
+          {
+            "role": "S",
+            "text": "Every huge counting problem,"
+          },
+          {
+            "role": "M",
+            "text": "in the end,"
+          },
+          {
+            "role": "V",
+            "text": "breaks down"
+          },
+          {
+            "role": "M",
+            "text": "into small steps"
+          },
+          {
+            "role": "REL",
+            "text": "where",
+            "note": "관계부사"
+          },
+          {
+            "role": "S",
+            "text": "you"
+          },
+          {
+            "role": "M",
+            "text": "simply"
+          },
+          {
+            "role": "V",
+            "text": "add or multiply"
+          },
+          {
+            "role": "O",
+            "text": "the cases."
+          }
         ]
       }
     ],
-    "translation_ko": "[1] 여러분에게 셔츠 세 벌과 바지 두 벌이 있다고 상상하고, 만들 수 있는 옷차림이 몇 가지인지 물어보라. [2] 그것들을 모두 나열할 필요는 없는데, 각 셔츠가 두 바지 중 어느 것과도 어울릴 수 있기 때문이다. [3] 그래서 답은 그저 3 곱하기 2, 즉 6이다. [4] 수학자들은 이 아이디어를 곱의 법칙이라 부르며, 그것은 세기의 첫 번째 위대한 지름길이다. [5] 하나의 선택 뒤에 또 다른 선택이 이어질 때는, 각 단계에서 선택지의 수를 곱한다. [6] 때로는 선택들이 서로 연결되지 않고, 그저 나란히 놓여 있다. [7] 어느 매점이 네 종류의 주스와 세 종류의 차를 팔고, 여러분이 음료 하나를 주문할 수 있다고 가정해 보라. [8] 여러분은 선택지들을 더하는데, 주스를 고르는 일과 차를 고르는 일은 결코 동시에 일어날 수 없기 때문이다. [9] 이것이 합의 법칙이다. 즉 두 사건이 동시에 일어날 수 없을 때는 각 경우를 더한다. [10] 더할지 곱할지를 정하는 것이 세기의 진정한 핵심이다. [11] 순서는 세기를 더 어렵게 만드는데, 다섯 명의 주자를 시상대에 세우는 것은 단순히 그들을 뽑는 것과는 다르기 때문이다. [12] 대상을 순서 있게 배열한 것을 순열이라 부른다. [13] 네 학생이 사진을 위해 줄을 서면, 첫 자리는 네 가지 선택지가 있고, 다음은 세 가지, 그다음은 둘, 그다음은 하나다. [14] 이 수들을 곱하면 스물네 가지의 서로 다른 줄이 나온다. [15] 수학자들은 이 곱을 계승으로 표기하는데, 계승은 매우 빠르게 커진다. [16] 이제 순서가 중요하지 않다고 가정해 보라. [17] 동아리 대표 두 명을 뽑는 것은 조합인데, 미나를 뽑고 나서 주노를 뽑는 것이 주노를 먼저 뽑는 것과 같은 쌍을 주기 때문이다. [18] 조합을 세려면, 먼저 순서가 있는 목록을 센 다음 겹치는 것들을 나누어 없앤다. [19] 이 단순한 규칙들은 교실을 훨씬 넘어서까지 미치는데, 엔지니어가 비밀번호를 설계하고, 생물학자가 유전자를 비교하고, 항공사가 노선을 계획하도록 돕기 때문이다. [20] 모든 거대한 세기 문제는 결국 여러분이 그저 경우를 더하거나 곱하는 작은 단계들로 쪼개진다."
+    "translation_ko": "[1] 여러분에게 셔츠 세 벌과 바지 두 벌이 있다고 상상하고, 만들 수 있는 옷차림이 몇 가지인지 물어보라. [2] 그것들을 모두 나열할 필요는 없는데, 각 셔츠가 두 바지 중 어느 것과도 어울릴 수 있기 때문이다. [3] 그래서 답은 그저 3 곱하기 2, 즉 6이다. [4] 수학자들은 이 아이디어를 곱의 법칙이라 부르며, 그것은 세기의 첫 번째 위대한 지름길이다. [5] 하나의 선택 뒤에 또 다른 선택이 이어질 때는, 각 단계에서 선택지의 수를 곱한다. [6] 때로는 선택들이 서로 연결되지 않고, 그저 나란히 놓여 있다. [7] 어느 매점이 네 종류의 주스와 세 종류의 차를 팔고, 여러분이 음료를 하나만 주문할 수 있다고 가정해 보라. [8] 여러분은 선택지들을 더하는데, 주스를 고르는 일과 차를 고르는 일은 결코 동시에 일어날 수 없기 때문이다. [9] 이것이 합의 법칙이다. 즉 두 사건이 동시에 일어날 수 없을 때는 각 경우를 더한다. [10] 더할지 곱할지를 정하는 것이 세기의 진정한 핵심이다. [11] 순서는 세기를 더 어렵게 만드는데, 다섯 명의 주자를 시상대에 세우는 것은 단순히 그들을 뽑는 것과는 다르기 때문이다. [12] 대상을 순서 있게 배열한 것을 순열이라 부른다. [13] 네 학생이 사진을 위해 줄을 서면, 첫 자리는 네 가지 선택지가 있고, 다음은 세 가지, 그다음은 둘, 그다음은 하나다. [14] 이 수들을 곱하면 스물네 가지의 서로 다른 줄이 나온다. [15] 수학자들은 이 곱을 계승으로 표기하는데, 계승은 매우 빠르게 커진다. [16] 이제 순서가 중요하지 않다고 가정해 보라. [17] 동아리 대표 두 명을 뽑는 것은 조합인데, 미나를 뽑고 나서 주노를 뽑는 것이 주노를 뽑고 나서 미나를 뽑는 것과 같은 쌍을 주기 때문이다. [18] 조합을 세려면, 먼저 순서가 있는 목록을 센 다음 겹치는 것들을 나누어 없앤다. [19] 이 단순한 규칙들은 교실을 훨씬 넘어서까지 미치는데, 엔지니어가 비밀번호를 설계하고, 생물학자가 유전자를 비교하고, 항공사가 노선을 계획하도록 돕기 때문이다. [20] 모든 거대한 세기 문제는 결국 여러분이 그저 ____ 하는 작은 단계들로 쪼개진다."
   },
   "answers": {
     "explanations": [
@@ -347,7 +841,7 @@
         "correct": 1,
         "evidence": "글은 곱의 법칙과 합의 법칙, 순열과 조합이라는 세는 규칙을 차례로 소개하고, 마지막에 \"Every huge counting problem, in the end, breaks down into small steps\"라며 큰 문제도 단순한 단계로 쪼개진다고 정리한다.",
         "rationales": [
-          "본문은 계승이 \"grow shockingly fast\"라고 했을 뿐, 계승이 쓸모없다고 말하지 않는다.",
+          "본문은 계승이 \"grow very fast\"라고 했을 뿐, 계승이 쓸모없다고 말하지 않는다.",
           "(정답) 더하기와 곱하기 같은 세는 규칙이 큰 문제를 작은 단계로 바꾼다는 글 전체의 흐름을 정확히 담는다.",
           "본문은 순열은 순서를 따지고 조합은 순서를 무시한다고 구분하므로 '완전히 같은 개념'은 틀렸다.",
           "첫 단락은 모든 경우를 나열할 필요가 없다고 강조하므로 '하나씩 다 적어야 한다'는 반대다.",
@@ -358,7 +852,7 @@
         "q_index": 1,
         "q_style": "빈칸 추론",
         "correct": 0,
-        "evidence": "둘째 단락은 \"Deciding whether to add or multiply is the true heart of counting\"이라며 더할지 곱할지 정하는 것이 세기의 핵심이라 했다. 따라서 큰 문제가 쪼개진 작은 단계에서 하는 일은 경우를 더하거나 곱하는 것이다.",
+        "evidence": "둘째 단락은 \"Deciding whether to add or multiply is the true heart of counting\"이라며 더할지 곱할지 정하는 것이 세기의 핵심이라 했고, 빈칸이 포함된 마지막 문장도 \"Every huge counting problem, in the end, breaks down into small steps\"라며 큰 문제가 작은 단계로 쪼개진다고 말한다. 따라서 그 작은 단계에서 하는 일은 경우를 더하거나 곱하는 것이다.",
         "rationales": [
           "(정답) 글 전체가 더하기(합의 법칙)와 곱하기(곱의 법칙)로 경우를 세는 방법을 설명하므로 문맥과 정확히 맞는다.",
           "본문은 규칙으로 정확하게 세는 방법을 다루므로 '빨리 추측한다'는 글의 취지와 어긋난다.",
@@ -391,8 +885,14 @@
           "(B) permutation — 순서 있는 배열을 순열이라 부른다는 본문 셋째 단락의 정의와 일치한다."
         ],
         "key_terms": [
-          { "en": "multiply", "ko": "곱하다" },
-          { "en": "permutation", "ko": "순열" }
+          {
+            "en": "multiply",
+            "ko": "곱하다"
+          },
+          {
+            "en": "permutation",
+            "ko": "순열"
+          }
         ]
       }
     ]
@@ -403,55 +903,98 @@
         "word": "multiplication",
         "pos": "n.",
         "meaning_ko": "곱셈, 곱하기",
-        "synonyms": ["multiplying"],
-        "antonyms": ["division"],
+        "synonyms": [
+          "product"
+        ],
+        "antonyms": [
+          "division"
+        ],
         "examples": [
-          { "en": "Mathematicians call this idea the multiplication principle.", "ko": "수학자들은 이 아이디어를 곱의 법칙이라 부른다." },
-          { "en": "Use multiplication when one choice follows another.", "ko": "한 선택이 다른 선택으로 이어질 때는 곱셈을 쓴다." }
+          {
+            "en": "Mathematicians call this idea the multiplication principle.",
+            "ko": "수학자들은 이 아이디어를 곱의 법칙이라 부른다."
+          },
+          {
+            "en": "Use multiplication when one choice follows another.",
+            "ko": "한 선택이 다른 선택으로 이어질 때는 곱셈을 쓴다."
+          }
         ]
       },
       {
         "word": "principle",
         "pos": "n.",
         "meaning_ko": "원리, 법칙",
-        "synonyms": ["rule", "law"],
+        "synonyms": [
+          "rule",
+          "law"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "This is the addition principle for separate events.", "ko": "이것이 별개의 사건에 대한 합의 법칙이다." },
-          { "en": "A good principle turns hard problems into easy steps.", "ko": "좋은 원리는 어려운 문제를 쉬운 단계로 바꾼다." }
+          {
+            "en": "This is the addition principle for separate events.",
+            "ko": "이것이 별개의 사건에 대한 합의 법칙이다."
+          },
+          {
+            "en": "A good principle turns hard problems into easy steps.",
+            "ko": "좋은 원리는 어려운 문제를 쉬운 단계로 바꾼다."
+          }
         ]
       },
       {
         "word": "arrangement",
         "pos": "n.",
         "meaning_ko": "배열, 배치",
-        "synonyms": ["ordering"],
+        "synonyms": [
+          "ordering"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "An ordered arrangement of objects is called a permutation.", "ko": "대상을 순서 있게 배열한 것을 순열이라 한다." },
-          { "en": "She changed the arrangement of the chairs in the room.", "ko": "그녀는 방 안 의자들의 배치를 바꾸었다." }
+          {
+            "en": "An ordered arrangement of objects is called a permutation.",
+            "ko": "대상을 순서 있게 배열한 것을 순열이라 한다."
+          },
+          {
+            "en": "She changed the arrangement of the chairs in the room.",
+            "ko": "그녀는 방 안 의자들의 배치를 바꾸었다."
+          }
         ]
       },
       {
         "word": "permutation",
         "pos": "n.",
         "meaning_ko": "순열",
-        "synonyms": ["ordering"],
+        "synonyms": [
+          "ordering"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "A permutation counts the ways objects can be ordered.", "ko": "순열은 대상을 순서대로 놓는 방법의 수를 센다." },
-          { "en": "Lining up four students is a simple permutation problem.", "ko": "네 학생을 줄 세우기는 간단한 순열 문제다." }
+          {
+            "en": "A permutation counts the ways objects can be ordered.",
+            "ko": "순열은 대상을 순서대로 놓는 방법의 수를 센다."
+          },
+          {
+            "en": "Lining up four students is a simple permutation problem.",
+            "ko": "네 학생을 줄 세우기는 간단한 순열 문제다."
+          }
         ]
       },
       {
         "word": "combination",
         "pos": "n.",
         "meaning_ko": "조합",
-        "synonyms": ["selection"],
+        "synonyms": [
+          "selection"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "Choosing two club leaders is a combination.", "ko": "동아리 대표 두 명을 뽑는 것은 조합이다." },
-          { "en": "In a combination, the order of picking does not matter.", "ko": "조합에서는 뽑는 순서가 중요하지 않다." }
+          {
+            "en": "Choosing two club leaders is a combination.",
+            "ko": "동아리 대표 두 명을 뽑는 것은 조합이다."
+          },
+          {
+            "en": "In a combination, the order of picking does not matter.",
+            "ko": "조합에서는 뽑는 순서가 중요하지 않다."
+          }
         ]
       },
       {
@@ -461,74 +1004,131 @@
         "synonyms": [],
         "antonyms": [],
         "examples": [
-          { "en": "Mathematicians write this product as a factorial.", "ko": "수학자들은 이 곱을 계승으로 표기한다." },
-          { "en": "The factorial of four is twenty-four.", "ko": "4의 계승은 24이다." }
+          {
+            "en": "Mathematicians write this product as a factorial.",
+            "ko": "수학자들은 이 곱을 계승으로 표기한다."
+          },
+          {
+            "en": "The factorial of four is twenty-four.",
+            "ko": "4의 계승은 24이다."
+          }
         ]
       },
       {
         "word": "podium",
         "pos": "n.",
         "meaning_ko": "시상대, 연단",
-        "synonyms": ["stand"],
+        "synonyms": [
+          "stand"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "Placing five runners on a podium is not just choosing them.", "ko": "다섯 주자를 시상대에 세우는 것은 단순히 뽑기가 아니다." },
-          { "en": "The winner stood proudly on the top of the podium.", "ko": "우승자는 시상대 맨 위에 당당히 섰다." }
+          {
+            "en": "Placing five runners on a podium is not just choosing them.",
+            "ko": "다섯 주자를 시상대에 세우는 것은 단순히 뽑기가 아니다."
+          },
+          {
+            "en": "The winner stood proudly on the top of the podium.",
+            "ko": "우승자는 시상대 맨 위에 당당히 섰다."
+          }
         ]
       },
       {
         "word": "occur",
         "pos": "v.",
         "meaning_ko": "일어나다, 발생하다",
-        "synonyms": ["happen"],
+        "synonyms": [
+          "happen"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "Two separate events cannot occur at the same time.", "ko": "별개의 두 사건은 동시에 일어날 수 없다." },
-          { "en": "Errors often occur when we count the same case twice.", "ko": "같은 경우를 두 번 세면 흔히 오류가 발생한다." }
+          {
+            "en": "Two separate events cannot occur at the same time.",
+            "ko": "별개의 두 사건은 동시에 일어날 수 없다."
+          },
+          {
+            "en": "Errors often occur when we count the same case twice.",
+            "ko": "같은 경우를 두 번 세면 흔히 오류가 발생한다."
+          }
         ]
       },
       {
         "word": "divide",
         "pos": "v.",
         "meaning_ko": "나누다, 나눗셈하다",
-        "synonyms": ["split"],
-        "antonyms": ["multiply"],
+        "synonyms": [
+          "split"
+        ],
+        "antonyms": [
+          "multiply"
+        ],
         "examples": [
-          { "en": "To count combinations, you divide away the repeats.", "ko": "조합을 세려면 겹치는 것들을 나누어 없앤다." },
-          { "en": "We divide the whole into equal parts to share it.", "ko": "우리는 전체를 똑같은 부분으로 나누어 나눠 갖는다." }
+          {
+            "en": "To count combinations, you divide away the repeats.",
+            "ko": "조합을 세려면 겹치는 것들을 나누어 없앤다."
+          },
+          {
+            "en": "We divide the whole into equal parts to share it.",
+            "ko": "우리는 전체를 똑같은 부분으로 나누어 나눠 갖는다."
+          }
         ]
       },
       {
         "word": "shortcut",
         "pos": "n.",
         "meaning_ko": "지름길, 손쉬운 방법",
-        "synonyms": ["quick way"],
+        "synonyms": [
+          "quick way"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "This principle is the first great shortcut of counting.", "ko": "이 법칙은 세기의 첫 번째 위대한 지름길이다." },
-          { "en": "We took a shortcut through the park to save time.", "ko": "우리는 시간을 아끼려 공원을 가로지르는 지름길로 갔다." }
+          {
+            "en": "This principle is the first great shortcut of counting.",
+            "ko": "이 법칙은 세기의 첫 번째 위대한 지름길이다."
+          },
+          {
+            "en": "We took a shortcut through the park to save time.",
+            "ko": "우리는 시간을 아끼려 공원을 가로지르는 지름길로 갔다."
+          }
         ]
       },
       {
         "word": "suppose",
         "pos": "v.",
         "meaning_ko": "가정하다, ~라고 생각하다",
-        "synonyms": ["assume", "imagine"],
+        "synonyms": [
+          "assume",
+          "imagine"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "Suppose a snack bar offers four kinds of juice.", "ko": "매점이 네 종류의 주스를 판다고 가정해 보자." },
-          { "en": "Suppose the order of the players does not matter.", "ko": "선수들의 순서가 중요하지 않다고 가정해 보자." }
+          {
+            "en": "Suppose a snack bar offers four kinds of juice.",
+            "ko": "매점이 네 종류의 주스를 판다고 가정해 보자."
+          },
+          {
+            "en": "Suppose the order of the players does not matter.",
+            "ko": "선수들의 순서가 중요하지 않다고 가정해 보자."
+          }
         ]
       },
       {
         "word": "gene",
         "pos": "n.",
         "meaning_ko": "유전자",
-        "synonyms": ["hereditary unit"],
+        "synonyms": [
+          "hereditary unit"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "Counting rules help biologists compare genes.", "ko": "세는 규칙은 생물학자가 유전자를 비교하도록 돕는다." },
-          { "en": "A single gene can shape the color of a flower.", "ko": "하나의 유전자가 꽃의 색깔을 결정할 수 있다." }
+          {
+            "en": "Counting rules help biologists compare genes.",
+            "ko": "세는 규칙은 생물학자가 유전자를 비교하도록 돕는다."
+          },
+          {
+            "en": "A single gene can shape the color of a flower.",
+            "ko": "하나의 유전자가 꽃의 색깔을 결정할 수 있다."
+          }
         ]
       }
     ]

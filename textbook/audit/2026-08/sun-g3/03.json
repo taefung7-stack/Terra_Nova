@@ -66,6 +66,14 @@
         "confidence": "high",
         "reason": "File evidence confirms the defect. Line 466 (page4.vocab[3], word \"molecule\") lists \"synonyms\": [\"particle\"] exactly as alleged. particle is a superordinate term covering atoms, ions, and subatomic entities, not a synonym of molecule, and substitution fails in both directions (\"split ordinary water particles apart\" is wrong; an atom is a particle but not a molecule). The error is aggravated by this specific passage: line 26 uses \"split ordinary water molecules apart\" (sentence 7) and \"Carbon atoms are joined, one by one, into the long backbone of a sugar\" (sentence 13), so the text deliberately contrasts atom-level and molecule-level entities; line 514 likewise glosses bond with \"A chemical bond holds two atoms together.\" Teaching molecule = particle primes students to collapse exactly the atom/molecule distinction the passage depends on, and meta.key_concepts includes 탄소 고정 (carbon fixation). The file's own convention refutes any necessity defense: sibling synonyms are true substitutes (release/emit, trap/capture, bond/link, carrier/transporter, stable/steady, pigment/dye), and technical terms with no true synonym are correctly left as empty arrays, as with photosynthesis (line 433) and carbon dioxide (line 455) — so the schema did not force a synonym here. particle also appears nowhere else in the file (not in the body, translation, or questions), so it is not drawn from the passage. Fix: set synonyms to [] per the existing convention."
       }
+    },
+    {
+      "severity": "minor",
+      "lens": "codex",
+      "location": "page1.body 'light, a form of energy that cannot be stored'",
+      "issue": "빛을 '저장할 수 없다'고 단정 — 과학적으로는 '직접 저장할 수 없다'가 안전한 서술.",
+      "evidence": "body: 'It takes light, a form of energy that cannot be stored, and rewrites it as stable chemical fuel'",
+      "suggestion": "'cannot be stored directly'로 수정하고 page3 해당 문장 세그먼트·translation_ko를 동기화한다."
     }
   ],
   "minors": [

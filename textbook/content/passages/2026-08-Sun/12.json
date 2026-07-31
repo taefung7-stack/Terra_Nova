@@ -23,7 +23,7 @@
   "page1": {
     "title": "How a Machine Adds Up Forever",
     "subtitle": "The quiet trick that turns an endless sum into a single number.",
-    "body": "A calculator has no secret table of answers hidden somewhere inside it. When you ask for the sine of an angle or the value of the number e, it does not simply look the answer up. Instead, it patiently adds together a long string of simple terms, one after another. This endless sum of terms is what mathematicians call an infinite <u>series</u>. The surprising part is that such an unending sum can settle on a single, exact value.\n\nAt first this sounds impossible, since adding numbers forever should grow without any limit. Yet many series quietly do the opposite and converge. Their terms shrink so quickly that the running total creeps toward a fixed number and stops moving in any meaningful way. Each new term you add is smaller than the last, so it nudges the total by an ever tinier amount.\n\nThe real power appears when we use a series to copy a curve. A Taylor series rebuilds a complicated function as a plain sum of simple powers of x. Near a chosen point, the first few terms already trace the curve with startling accuracy. Adding more terms sharpens the match, the way extra brushstrokes bring a rough sketch into focus. This is why <u>a machine can weigh infinity and hand back a finite answer</u>.\n\nBecause of this, hard functions become easy for a computer to handle. To find a stubborn value, the machine keeps only the leading terms and quietly discards the tiny remainder. The error is not ignored but bounded, small enough to trust yet never quite zero. So the smooth curve on your screen and the steady digits in a calculator both rest on the same quiet trick. An impossible infinity has been tamed into a practical <blank>.",
+    "body": "A calculator has no secret table of answers hidden somewhere inside it. When you ask for the sine of an angle or the value of the number e, it does not simply look the answer up. Instead, it patiently adds together a long string of simple terms, one after another. This endless sum of terms is what mathematicians call an infinite <u>series</u>. The surprising part is that such an unending sum can settle on a single, exact value.\n\nAt first this sounds impossible, since adding numbers forever should make the total grow without any limit. Yet many series quietly do the opposite and converge. Their terms shrink quickly enough that the running total creeps toward a fixed number and stops moving in any meaningful way. Each new term you add is soon smaller than the last, so it nudges the total by an ever tinier amount.\n\nThe real power appears when we use a series to copy a curve. A Taylor series rebuilds a complicated function as a plain sum of simple powers of x. Near a chosen point, the first few terms already trace the curve with startling accuracy. Adding more terms sharpens the match, the way extra brushstrokes bring a rough sketch into focus. This is why <u>a machine can weigh infinity and hand back a finite answer</u>.\n\nBecause of this, hard functions become easy for a computer to handle. To find a stubborn value, the machine keeps only the leading terms and quietly discards the tiny remainder. The error is not ignored but bounded, small enough to trust yet never quite zero. So the smooth curve on your screen and the steady digits in a calculator both rest on the same quiet trick. An impossible infinity has been tamed into a practical <blank>.",
     "illustration": "../../assets/illustrations/2026-08-Sun/12.jpg",
     "illustration_caption": "무한히 많은 항을 더해도 그 합이 하나의 값에 수렴하면, 기계는 유한한 답을 돌려줄 수 있다.",
     "gloss_extra": [
@@ -40,7 +40,7 @@
         "stem": "다음 글의 요지로 가장 적절한 것은?",
         "choices": [
           "A calculator stores every answer in a hidden table and just reads it back.",
-          "Adding numbers forever must always grow without any fixed limit.",
+          "Adding numbers forever must always make the total grow without limit.",
           "A Taylor series copies a curve but is far too rough to be useful.",
           "A converging series lets a machine turn an endless sum into a finite value.",
           "The error left by a truncated series can never be measured or trusted."
@@ -79,10 +79,10 @@
         "prompt": "다음은 본문의 요약문이다. 본문의 내용을 바탕으로 빈칸 (A), (B)에 들어갈 말을 <조건>에 맞게 영어 한 단어로 각각 쓰시오. <조건> 본문에서 제시된 단어를 그대로 활용할 것.",
         "hints": [
           "series",
-          "converge",
-          "terms",
+          "limit",
+          "error",
           "finite",
-          "remainder"
+          "bounded"
         ],
         "summary_template": "Because an infinite <blank> (A) can converge, its running total settles on one exact value. A machine keeps only the leading terms and discards the tiny remainder, so it can hand back a <blank> (B) answer.",
         "model_answer": "(A) series  (B) finite"
@@ -145,7 +145,7 @@
           { "role": "S", "text": "it" },
           { "role": "V", "text": "does not simply look" },
           { "role": "O", "text": "the answer" },
-          { "role": "M", "text": "up.", "note": "구동사 look up" }
+          { "role": "V", "text": "up.", "note": "구동사 look ~ up(분리형 타동사구)" }
         ],
         "grammar_note": "when 부사절 + 구동사(look up)"
       },
@@ -157,7 +157,7 @@
           { "role": "M", "text": "patiently" },
           { "role": "V", "text": "adds together" },
           { "role": "O", "text": "a long string of simple terms," },
-          { "role": "M", "text": "one after another.", "note": "동격 부사구" }
+          { "role": "M", "text": "one after another.", "note": "방식(순차) 부사구" }
         ],
         "grammar_note": "3형식 + 부사구"
       },
@@ -187,9 +187,9 @@
           { "role": "V", "text": "sounds" },
           { "role": "C", "text": "impossible," },
           { "role": "CONJ", "text": "since" },
-          { "role": "M", "text": "adding numbers forever should grow without any limit.", "note": "이유 부사절(동명사 주어)" }
+          { "role": "M", "text": "adding numbers forever should make the total grow without any limit.", "note": "이유 부사절(동명사 주어 + 사역동사 make)" }
         ],
-        "grammar_note": "2형식 + since 부사절(동명사 주어)"
+        "grammar_note": "2형식 + since 부사절(동명사 주어, make+O+동사원형)"
       },
       {
         "index": 7,
@@ -209,16 +209,16 @@
         "segments": [
           { "role": "S", "text": "Their terms" },
           { "role": "V", "text": "shrink" },
-          { "role": "M", "text": "so quickly", "note": "so ~ that 구문" },
-          { "role": "CONJ", "text": "that" },
+          { "role": "M", "text": "quickly enough", "note": "enough that 구문" },
+          { "role": "CONJ", "text": "that", "note": "결과 부사절" },
           { "role": "S", "text": "the running total" },
           { "role": "V", "text": "creeps" },
           { "role": "M", "text": "toward a fixed number" },
           { "role": "CONJ", "text": "and" },
           { "role": "V", "text": "stops moving" },
-          { "role": "M", "text": "in any meaningful way.", "note": "결과 부사절" }
+          { "role": "M", "text": "in any meaningful way.", "note": "방법 부사구" }
         ],
-        "grammar_note": "so ~ that 결과절 + 등위동사"
+        "grammar_note": "enough that 결과절 + 등위동사"
       },
       {
         "index": 9,
@@ -226,12 +226,13 @@
           { "role": "S", "text": "Each new term" },
           { "role": "REL", "text": "you add", "note": "관계대명사 목적격 생략" },
           { "role": "V", "text": "is" },
+          { "role": "M", "text": "soon" },
           { "role": "C", "text": "smaller than the last,", "note": "비교급" },
-          { "role": "CONJ", "text": "so" },
+          { "role": "CONJ", "text": "so", "note": "결과 등위절" },
           { "role": "S", "text": "it" },
           { "role": "V", "text": "nudges" },
           { "role": "O", "text": "the total" },
-          { "role": "M", "text": "by an ever tinier amount.", "note": "결과 등위절" }
+          { "role": "M", "text": "by an ever tinier amount.", "note": "정도 부사구(by + 차이)" }
         ],
         "grammar_note": "관계대명사 생략 + 비교급 + so 결과절"
       },
@@ -317,7 +318,7 @@
           { "role": "V", "text": "is not ignored" },
           { "role": "CONJ", "text": "but" },
           { "role": "V", "text": "bounded,", "note": "not A but B 수동태" },
-          { "role": "C", "text": "small enough to trust yet never quite zero.", "note": "enough to 용법" }
+          { "role": "M", "text": "small enough to trust yet never quite zero.", "note": "형용사구 후치 수식(부대 상황) + enough to 용법" }
         ],
         "grammar_note": "not A but B(수동태) + enough to"
       },
@@ -342,7 +343,7 @@
         "grammar_note": "현재완료 수동태 + into"
       }
     ],
-    "translation_ko": "[1] 계산기 안에는 답을 적어 둔 비밀 표 같은 것이 어딘가에 숨겨져 있지 않다. [2] 어떤 각의 사인 값이나 수 e의 값을 물으면, 그것은 그저 답을 찾아보는 것이 아니다. [3] 대신 그것은 단순한 항들을 하나하나 길게 이어 인내심 있게 더해 나간다. [4] 이 끝없는 항들의 합을 수학자들은 무한급수라고 부른다. [5] 놀라운 점은 그런 끝나지 않는 합이 하나의 정확한 값에 정착할 수 있다는 것이다. [6] 처음에는 이것이 불가능하게 들리는데, 숫자를 영원히 더하면 아무 한계 없이 커져야 하기 때문이다. [7] 그러나 많은 급수는 조용히 그 반대로 행동하며 수렴한다. [8] 그 항들이 너무나 빠르게 작아져서, 누적 합이 어떤 고정된 수를 향해 서서히 다가가다가 의미 있는 정도로는 더 이상 움직이지 않게 된다. [9] 당신이 더하는 각각의 새 항은 앞의 것보다 작아서, 총합을 점점 더 미미한 양만큼만 밀어 준다. [10] 진짜 위력은 우리가 급수를 이용해 곡선을 본뜰 때 나타난다. [11] 테일러 급수는 복잡한 함수를 x의 단순한 거듭제곱들의 순수한 합으로 다시 짜낸다. [12] 선택된 한 점 근처에서는, 앞쪽 몇 개의 항만으로도 이미 그 곡선을 놀랄 만큼 정확하게 그려 낸다. [13] 항을 더 더하면, 마치 덧칠한 붓질이 거친 밑그림을 또렷하게 만들 듯 그 일치도가 더 날카로워진다. [14] 이것이 기계가 무한을 저울에 달아 유한한 답을 돌려줄 수 있는 이유다. [15] 이 덕분에 어려운 함수도 컴퓨터가 다루기 쉬워진다. [16] 다루기 힘든 값을 구하려고, 기계는 앞쪽 항만 남기고 아주 작은 나머지는 조용히 버린다. [17] 그 오차는 무시되는 것이 아니라 한정되어, 믿을 만큼 충분히 작지만 결코 완전한 영은 아니다. [18] 그래서 화면 속 매끄러운 곡선과 계산기 속 안정된 숫자는 둘 다 같은 조용한 요령에 기대고 있다. [19] 불가능해 보이던 무한이 실용적인 답으로 길들여진 것이다."
+    "translation_ko": "[1] 계산기 안에는 답을 적어 둔 비밀 표 같은 것이 어딘가에 숨겨져 있지 않다. [2] 어떤 각의 사인 값이나 수 e의 값을 물으면, 그것은 그저 답을 찾아보는 것이 아니다. [3] 대신 그것은 단순한 항들을 하나하나 길게 이어 인내심 있게 더해 나간다. [4] 이 끝없는 항들의 합을 수학자들은 무한급수라고 부른다. [5] 놀라운 점은 그런 끝나지 않는 합이 하나의 정확한 값에 정착할 수 있다는 것이다. [6] 처음에는 이것이 불가능하게 들리는데, 숫자를 영원히 더하는 것은 총합을 아무 한계 없이 커지게 만들 것이기 때문이다. [7] 그러나 많은 급수는 조용히 그 반대로 행동하며 수렴한다. [8] 그 항들이 충분히 빠르게 작아져서, 누적 합이 어떤 고정된 수를 향해 서서히 다가가다가 의미 있는 정도로는 더 이상 움직이지 않게 된다. [9] 당신이 더하는 각각의 새 항은 이내 앞의 것보다 작아져서, 총합을 점점 더 미미한 양만큼만 밀어 준다. [10] 진짜 위력은 우리가 급수를 이용해 곡선을 본뜰 때 나타난다. [11] 테일러 급수는 복잡한 함수를 x의 간단한 거듭제곱들의 단순한 합으로 다시 구성한다. [12] 선택된 한 점 근처에서는, 앞쪽 몇 개의 항만으로도 이미 그 곡선을 놀랄 만큼 정확하게 그려 낸다. [13] 항을 더 더하면, 마치 덧칠한 붓질이 거친 밑그림을 또렷하게 만들 듯 그 일치도가 더 날카로워진다. [14] 이것이 기계가 무한을 저울에 달아 유한한 답을 돌려줄 수 있는 이유다. [15] 이 덕분에 어려운 함수도 컴퓨터가 다루기 쉬워진다. [16] 다루기 힘든 값을 구하려고, 기계는 앞쪽 항만 남기고 아주 작은 나머지는 조용히 버린다. [17] 그 오차는 무시되는 것이 아니라 한정되어, 믿을 만큼 충분히 작지만 결코 완전한 영은 아니다. [18] 그래서 화면 속 매끄러운 곡선과 계산기 속 안정된 숫자는 둘 다 같은 조용한 요령에 기대고 있다. [19] 불가능해 보이던 무한이 실용적인 답으로 길들여진 것이다."
   },
   "answers": {
     "explanations": [
@@ -353,7 +354,7 @@
         "evidence": "글은 끝없는 항의 합인 무한급수가 수렴해 하나의 정확한 값에 정착하며(4~5번), 테일러 급수로 곡선을 근사해(10~12번) 기계가 앞쪽 항만 남기고 나머지를 버려 유한한 답을 돌려준다(14, 16번)고 한다. 따라서 '수렴하는 급수가 기계로 하여금 끝없는 합을 유한한 값으로 바꾸게 한다'가 요지다.",
         "rationales": [
           "1번에서 계산기는 답을 적은 비밀 표가 없다고 했으므로 '숨겨진 표를 읽는다'는 정반대다.",
-          "많은 급수가 오히려 수렴한다고 했으므로 '항상 한계 없이 커진다'는 본문과 모순된다.",
+          "많은 급수가 오히려 수렴한다고 했으므로 '총합이 항상 한계 없이 커진다'는 본문과 모순된다.",
           "테일러 급수는 곡선을 놀랄 만큼 정확히 근사한다고 했으므로 '너무 거칠어 쓸모없다'는 틀렸다.",
           "(정답) 수렴하는 급수 → 테일러 근사 → 유한한 답이라는 글 전체 논지를 정확히 요약한다.",
           "오차는 무시되는 것이 아니라 한정되어 믿을 만하다고 했으므로 '측정도 신뢰도 불가'는 정반대다."
@@ -367,7 +368,7 @@
         "q_index": 1,
         "q_style": "빈칸 추론",
         "correct": 2,
-        "evidence": "빈칸은 \"An impossible infinity has been tamed into a practical ___\"의 자리다. 2번은 계산기가 answer를 찾는다고 하고, 14번은 기계가 \"a finite answer\"를 돌려준다고 한다. 즉 무한이 실용적인 '답(answer)'으로 바뀐다는 뜻이므로 answer가 적절하다.",
+        "evidence": "빈칸은 \"An impossible infinity has been tamed into a practical ___\"의 자리다. 2번의 the answer(계산기가 표에서 곧바로 찾아보지는 않는 '답')라는 어휘가 14번의 \"a finite answer\"로 이어지며, 기계는 결국 유한한 답을 돌려준다. 즉 무한이 실용적인 '답(answer)'으로 바뀐다는 뜻이므로 answer가 적절하다.",
         "rationales": [
           "'수수께끼(mystery)'는 값을 정확히 계산해 낸다는 흐름과 반대다.",
           "'우연(accident)'은 정확히 수렴한다는 본문 주장과 모순된다.",
@@ -384,7 +385,7 @@
         "q_index": 2,
         "q_style": "함의 추론",
         "correct": 1,
-        "evidence": "본문은 \"the first few terms already trace the curve with startling accuracy\"라 하고, 기계가 앞쪽 항만 남기고 나머지(오차)를 버리되 그 오차는 \"bounded ... never quite zero\"라 한다. 따라서 weigh infinity and hand back a finite answer는 '수렴하는 급수 덕에 몇 개의 항만으로 오차가 작은, 쓸 수 있는 근삿값을 얻는다'를 뜻한다. (무한합 자체의 극한값은 exact이나, 기계가 실제로 내놓는 값은 근삿값이다.)",
+        "evidence": "본문은 \"the first few terms already trace the curve with startling accuracy\"라 하고, 16번에서 기계는 \"only the leading terms\"만 남기고 \"the tiny remainder\"를 버리며, 17번에서 그 오차는 \"not ignored but bounded\", 즉 믿을 만큼 작게 한정된다고 한다. 따라서 weigh infinity and hand back a finite answer는 '수렴하는 급수 덕에 몇 개의 항만으로 오차가 작은, 쓸 수 있는 근삿값을 얻는다'를 뜻한다.",
         "rationales": [
           "'무한한 수의 목록을 실제로 저장해야 한다'는 앞쪽 항만 남긴다는 16번과 모순된다.",
           "(정답) 수렴하는 급수 덕분에 몇 개의 항만으로 오차가 충분히 작은, 정확도 높고 쓸 수 있는 근삿값을 얻는다는 본문 의미 그대로다.",
@@ -420,7 +421,7 @@
         "word": "series",
         "pos": "n.",
         "meaning_ko": "(수학) 급수, 연속",
-        "synonyms": ["sequence"],
+        "synonyms": ["succession"],
         "antonyms": [],
         "examples": [
           { "en": "An infinite series adds endless terms together.", "ko": "무한급수는 끝없는 항들을 함께 더한다." },
@@ -431,7 +432,7 @@
         "word": "converge",
         "pos": "v.",
         "meaning_ko": "수렴하다, 한 점으로 모이다",
-        "synonyms": ["approach"],
+        "synonyms": ["meet", "approach"],
         "antonyms": ["diverge"],
         "examples": [
           { "en": "Many series quietly converge to a fixed number.", "ko": "많은 급수는 조용히 어떤 고정된 수로 수렴한다." },
@@ -501,7 +502,7 @@
         "antonyms": [],
         "examples": [
           { "en": "An impossible infinity has been tamed into an answer.", "ko": "불가능해 보이던 무한이 하나의 답으로 길들여졌다." },
-          { "en": "New tools tamed the wild river.", "ko": "새 기술들이 사나운 강을 길들였다." }
+          { "en": "New tools tamed the wild river.", "ko": "새로운 도구들이 사나운 강을 길들였다." }
         ]
       },
       {
@@ -531,7 +532,7 @@
         "pos": "adj.",
         "meaning_ko": "끝없는, 무한한",
         "synonyms": ["ceaseless"],
-        "antonyms": ["brief"],
+        "antonyms": ["finite"],
         "examples": [
           { "en": "This endless sum of terms can still settle.", "ko": "이 끝없는 항의 합도 하나의 값에 정착할 수 있다." },
           { "en": "The desert stretched in an endless line.", "ko": "그 사막은 끝없는 선을 이루며 뻗어 있었다." }

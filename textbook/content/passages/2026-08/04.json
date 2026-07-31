@@ -18,7 +18,7 @@
   "page1": {
     "title": "The Art of Changing Minds",
     "subtitle": "Great speakers do not shout louder; they persuade smarter.",
-    "body": "Imagine a student who wants her school to start a recycling club. She stands before the principal and speaks for just three minutes. When she finishes, the principal nods and says yes. So what happened in those minutes? The student used <u>persuasion</u>, the art of moving people with words. More than two thousand years ago, the Greek thinker Aristotle studied this art, and he found that strong speakers rely on three basic appeals.\n\nThe first appeal is logic, which Aristotle called logos. A speaker who uses it gives clear reasons and solid facts and numbers. The second is character, or ethos, and listeners trust a speaker who seems honest, fair, and well prepared. If the audience doubts you, even a perfect argument will fail. The third appeal is emotion, or pathos, and a story about one crying child can move a crowd more than statistics. Skillful speakers blend all three appeals instead of using just one.\n\nYet the appeals alone are not enough, so a wise speaker also studies the <u>audience</u> before the speech begins. How old are the listeners, and what do they believe or fear? A talk that works for teenagers may bore a room of parents. This step is called audience analysis, and it decides which appeal should lead. For a doubtful crowd, start with evidence, but for a caring one, open with a story that touches the heart.\n\nPersuasion also carries a duty, since twisting facts or stirring fear may win today, but the trick soon breaks the speaker's credibility. Once trust is gone, no appeal can bring it back, so honest persuasion is not a weapon but a bridge between minds. So before your next speech, remember the recycling club: choose sound reasons, show real character, touch true feelings, and always <blank>.",
+    "body": "Imagine a student who wants her school to start a recycling club. She stands before the principal and speaks for just three minutes. When she finishes, the principal nods and says yes. So what happened in those minutes? The student used <u>persuasion</u>, the art of moving people with words. More than two thousand years ago, the Greek thinker Aristotle studied this art, and he found that strong speakers rely on three basic appeals.\n\nThe first appeal is logic, which Aristotle called logos. A speaker who uses it gives clear reasons, solid facts, and numbers. The second is character, or ethos, and listeners trust a speaker who seems honest, fair, and well prepared. If the audience doubts you, even a perfect argument will fail. The third appeal is emotion, or pathos, and a story about one crying child can move a crowd more than statistics. Skillful speakers blend all three appeals instead of using just one.\n\nYet the appeals alone are not enough, so a wise speaker also studies the <u>audience</u> before the speech begins. How old are the listeners, and what do they believe or fear? A talk that works for teenagers may bore a room of parents. This step is called audience analysis, and it decides which appeal should lead. For a doubtful crowd, start with evidence, but for a sympathetic one, open with a story that touches the heart.\n\nPersuasion also carries a duty, since twisting facts or stirring fear may win today, but the trick soon breaks the speaker's credibility. Once trust is gone, no appeal can bring it back, so honest persuasion is not a weapon but a bridge between minds. Before your next speech, then, remember the recycling club: choose sound reasons, show real character, touch true feelings, and always <blank>.",
     "illustration": "../../assets/illustrations/2026-08/04.jpg",
     "illustration_caption": "설득은 논리(로고스)·인성(에토스)·감성(파토스)의 세 호소를 청중에 맞게 엮는 기술이다.",
     "gloss_extra": [
@@ -72,7 +72,7 @@
         "type": "school_descriptive",
         "style": "요약문 빈칸 완성",
         "prompt": "다음은 본문의 요약문이다. 본문의 내용을 바탕으로 빈칸 (A), (B)에 들어갈 말을 <조건>에 맞게 영어 한 단어로 각각 쓰시오. <조건> 본문에서 제시된 단어를 그대로 활용할 것.",
-        "hints": ["logic", "emotion", "audience", "evidence", "trust"],
+        "hints": ["emotion", "audience", "credibility", "statistics", "evidence"],
         "summary_template": "Aristotle taught that speakers persuade through logic, character, and <blank> (A). A wise speaker also studies the <blank> (B) before the speech, deciding which appeal should lead.",
         "model_answer": "(A) emotion  (B) audience"
       }
@@ -103,7 +103,7 @@
           { "role": "REL", "text": "who", "note": "주격 관계대명사" },
           { "role": "V", "text": "wants" },
           { "role": "O", "text": "her school" },
-          { "role": "M", "text": "to start a recycling club." }
+          { "role": "C", "text": "to start a recycling club.", "note": "목적격보어(to부정사) — want O to V" }
         ]
       },
       {
@@ -132,7 +132,7 @@
         "index": 4,
         "segments": [
           { "role": "CONJ", "text": "So", "note": "결과·전환" },
-          { "role": "O", "text": "what" },
+          { "role": "S", "text": "what", "note": "의문사 주어 (happen은 자동사)" },
           { "role": "V", "text": "happened" },
           { "role": "M", "text": "in those minutes?" }
         ]
@@ -180,7 +180,7 @@
           { "role": "S", "text": "A speaker" },
           { "role": "REL", "text": "who uses it", "note": "주격 관계대명사 who" },
           { "role": "V", "text": "gives" },
-          { "role": "O", "text": "clear reasons and solid facts and numbers." }
+          { "role": "O", "text": "clear reasons, solid facts, and numbers." }
         ]
       },
       {
@@ -284,7 +284,7 @@
           { "role": "V", "text": "start" },
           { "role": "M", "text": "with evidence," },
           { "role": "CONJ", "text": "but" },
-          { "role": "M", "text": "for a caring one," },
+          { "role": "M", "text": "for a sympathetic one," },
           { "role": "V", "text": "open" },
           { "role": "M", "text": "with a story" },
           { "role": "REL", "text": "that touches the heart.", "note": "주격 관계대명사 that" }
@@ -328,8 +328,7 @@
       {
         "index": 20,
         "segments": [
-          { "role": "CONJ", "text": "So" },
-          { "role": "M", "text": "before your next speech," },
+          { "role": "M", "text": "Before your next speech, then,", "note": "then: 결과 표지" },
           { "role": "V", "text": "remember" },
           { "role": "O", "text": "the recycling club:" },
           { "role": "V", "text": "choose" },
@@ -345,7 +344,7 @@
         ]
       }
     ],
-    "translation_ko": "[1] 자신의 학교에 재활용 동아리를 만들고 싶어 하는 한 학생을 상상해 보라. [2] 그녀는 교장 선생님 앞에 서서 단 3분 동안 말한다. [3] 그녀가 말을 마치자 교장 선생님은 고개를 끄덕이며 그러라고 말한다. [4] 그렇다면 그 몇 분 동안 무슨 일이 일어난 것일까? [5] 그 학생은 말로 사람을 움직이는 기술인 설득을 사용했다. [6] 이천 년도 더 전에 그리스의 사상가 아리스토텔레스는 이 기술을 연구했고, 뛰어난 화자들이 세 가지 기본 호소에 기댄다는 것을 발견했다. [7] 첫 번째 호소는 논리인데, 아리스토텔레스는 이를 로고스라고 불렀다. [8] 이를 사용하는 화자는 명확한 이유와 탄탄한 사실과 수치를 제시한다. [9] 두 번째는 인성, 즉 에토스이며, 청중은 정직하고 공정하며 잘 준비된 것처럼 보이는 화자를 신뢰한다. [10] 만약 청중이 당신을 의심한다면, 완벽한 논증조차 실패하고 말 것이다. [11] 세 번째 호소는 감정, 즉 파토스이며, 우는 아이 한 명에 관한 이야기는 통계보다 군중을 더 움직일 수 있다. [12] 능숙한 화자는 한 가지만 사용하는 대신 세 가지 호소를 모두 섞는다. [13] 그러나 호소만으로는 충분하지 않으므로, 현명한 화자는 또한 연설이 시작되기 전에 청중을 살핀다. [14] 청중은 몇 살이며, 그들은 무엇을 믿거나 두려워하는가? [15] 십 대에게 잘 통하는 강연이 학부모들로 가득한 방을 지루하게 만들 수도 있다. [16] 이 단계는 청중 분석이라고 불리며, 어떤 호소를 앞세울지를 결정한다. [17] 의심 많은 청중에게는 근거로 시작하되, 배려심 많은 청중에게는 마음을 울리는 이야기로 시작하라. [18] 설득은 또한 책임을 동반하는데, 사실을 왜곡하거나 공포를 부추기는 것은 오늘은 이길 수 있지만 그 속임수는 곧 화자의 공신력을 무너뜨리기 때문이다. [19] 일단 신뢰가 사라지고 나면 그 어떤 호소도 그것을 되돌려 놓을 수 없으며, 그래서 정직한 설득은 무기가 아니라 마음과 마음을 잇는 다리다. [20] 그러니 다음 연설을 하기 전에 그 재활용 동아리를 기억하라. 타당한 이유를 고르고, 진실한 인성을 보이며, 참된 감정을 건드리고, 항상 청중을 먼저 살펴라."
+    "translation_ko": "[1] 자신의 학교가 재활용 동아리를 만들어 주기를 바라는 한 학생을 상상해 보라. [2] 그녀는 교장 선생님 앞에 서서 단 3분 동안 말한다. [3] 그녀가 말을 마치자 교장 선생님은 고개를 끄덕이며 그러라고 말한다. [4] 그렇다면 그 몇 분 동안 무슨 일이 일어난 것일까? [5] 그 학생은 말로 사람을 움직이는 기술인 설득을 사용했다. [6] 이천 년도 더 전에 그리스의 사상가 아리스토텔레스는 이 기술을 연구했고, 뛰어난 화자들이 세 가지 기본 호소에 기댄다는 것을 발견했다. [7] 첫 번째 호소는 논리인데, 아리스토텔레스는 이를 로고스라고 불렀다. [8] 이를 사용하는 화자는 명확한 이유, 탄탄한 사실, 그리고 수치를 제시한다. [9] 두 번째는 인성, 즉 에토스이며, 청중은 정직하고 공정하며 잘 준비된 것처럼 보이는 화자를 신뢰한다. [10] 만약 청중이 당신을 의심한다면, 완벽한 논증조차 실패하고 말 것이다. [11] 세 번째 호소는 감정, 즉 파토스이며, 우는 아이 한 명에 관한 이야기는 통계보다 군중을 더 움직일 수 있다. [12] 능숙한 화자는 한 가지만 사용하는 대신 세 가지 호소를 모두 섞는다. [13] 그러나 호소만으로는 충분하지 않으므로, 현명한 화자는 또한 연설이 시작되기 전에 청중을 살핀다. [14] 청중은 몇 살이며, 그들은 무엇을 믿거나 두려워하는가? [15] 십 대에게 잘 통하는 강연이 학부모들로 가득한 방을 지루하게 만들 수도 있다. [16] 이 단계는 청중 분석이라고 불리며, 어떤 호소를 앞세울지를 결정한다. [17] 의심 많은 청중에게는 근거로 시작하되, 공감하는 청중에게는 마음을 울리는 이야기로 시작하라. [18] 설득은 또한 책임을 동반하는데, 사실을 왜곡하거나 공포를 부추기는 것은 오늘은 이길 수 있지만 그 속임수는 곧 화자의 공신력을 무너뜨리기 때문이다. [19] 일단 신뢰가 사라지고 나면 그 어떤 호소도 그것을 되돌려 놓을 수 없으며, 그래서 정직한 설득은 무기가 아니라 마음과 마음을 잇는 다리다. [20] 그렇다면 다음 연설을 하기 전에 그 재활용 동아리를 기억하라. 타당한 이유를 고르고, 진실한 인성을 보이며, 참된 감정을 건드리고, 항상 청중을 먼저 살펴라."
   },
   "answers": {
     "explanations": [
@@ -383,7 +382,7 @@
         "rationales": [
           "아리스토텔레스가 뛰어난 화자는 세 가지 기본 호소에 기댄다는 것을 발견했다는 내용은 본문과 일치한다.",
           "(정답) 본문은 청중이 의심하면 완벽한 논증조차 실패한다고 했으므로 '의심받아도 성공한다'는 불일치다.",
-          "우는 아이 하나의 이야기가 통계 한 쪽보다 군중을 움직일 수 있다는 내용은 본문과 일치한다.",
+          "우는 아이 하나의 이야기가 통계보다 군중을 움직일 수 있다는 내용은 본문과 일치한다.",
           "십 대에게 통하는 강연이 학부모들에게는 지루할 수 있다는 내용은 본문과 일치한다.",
           "사실을 왜곡하면 당장은 이겨도 곧 화자의 공신력이 깨진다는 내용은 본문과 일치한다."
         ]
@@ -422,7 +421,7 @@
         "word": "appeal",
         "pos": "n.",
         "meaning_ko": "호소, 설득 전략",
-        "synonyms": ["plea"],
+        "synonyms": ["approach"],
         "antonyms": [],
         "examples": [
           { "en": "Strong speakers rely on three basic appeals.", "ko": "뛰어난 화자는 세 가지 기본 호소에 기댄다." },
@@ -513,7 +512,7 @@
         "synonyms": ["arouse"],
         "antonyms": ["calm"],
         "examples": [
-          { "en": "Stirring fear may win today, but trust soon breaks.", "ko": "공포를 자극하면 당장은 이겨도 신뢰가 곧 깨진다." },
+          { "en": "Stirring fear may win today, but trust is soon broken.", "ko": "공포를 자극하면 당장은 이겨도 신뢰는 곧 깨지고 만다." },
           { "en": "The photo stirred deep sympathy across the country.", "ko": "그 사진은 전국에 깊은 공감을 불러일으켰다." }
         ]
       },
@@ -531,7 +530,7 @@
       {
         "word": "audience",
         "pos": "n.",
-        "meaning_ko": "청중, 관중",
+        "meaning_ko": "청중, 청자",
         "synonyms": ["listeners"],
         "antonyms": [],
         "examples": [

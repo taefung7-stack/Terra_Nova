@@ -40,6 +40,14 @@
         "confidence": "high",
         "reason": "지적이 타당하다. 반박을 시도했으나 프로젝트 자체 규정으로 명확히 확인된다.\n\n1) 명문화된 규칙 위반: C:/Users/user/OneDrive/Desktop/Terra Nova/textbook/templates/AUTHORING-GUIDE.md 262-266행은 \"난이도 (필수)\"로 vocab을 \"본문에 실제 등장 + 해당 학년 이상 난이도\" 단어로 구성하라고 규정하며, \"element·column·bond·predict 같은 중학 기초어는 금지\", \"본문에서 가장 어렵거나 학술적·저빈도인 단어를 골라라\", \"단어장은 '본문에서 가장 어려운 단어 모음'이어야 한다\", \"고1<고2<고3 순으로 난이도 상향\"을 명시한다. borrow는 금지 예시(bond, predict)와 동급의 중학 기초 동사이므로 이 필수 규칙에 정면으로 위배된다.\n\n2) 근거주장 사실 확인: 13.json 456행 page4.vocab[1]이 word \"borrow\"로 지적 위치가 정확하다. 본문 26행에 \"Money seems free to borrow\"와 \"tempting firms and families to borrow more freely\"가 실재하므로 '본문 등장' 조건만 충족하고 '난이도' 조건은 미충족이다.\n\n3) 수준 편차 실재: 같은 목록에 nudge(500행), coax(511행), lever(489행), ripple(566행), steer(555행) 등 저빈도 고난도 어휘가 함께 실려 있어 편차가 크다. 메타데이터(14-15행 lexile 1070L, ar_level 8.2)와 sun(고3) 세트라는 점도 최상위 난도 기준 적용을 뒷받침한다.\n\n4) 도메인 용어 방어 논거는 성립하지 않음: interest rate/financial market/central bank/inflation은 경제 단원 전문용어로 정당하지만, borrow는 전문용어가 아닌 일반 일상 동사다. 더구나 이 파일 스스로 borrow 계열 어휘인 \"borrower\"를 30행 page1.gloss_extra에 gloss로 처리했으므로, 동일 문서 내에서 gloss 수준 어휘를 vocab 카드로 승격한 자체 모순이 된다. 또한 본문에는 bargaining, stall, drift 등 더 적합한 고난도 후보가 남아 있어 대체 가능하다.\n\n심각도는 warn 수준이 적절하며(스키마 오류나 정답 오류가 아닌 학습 가치 문제), 수정 방향은 borrow 카드를 본문 내 미등재 고난도 어휘로 교체하는 것이다."
       }
+    },
+    {
+      "severity": "warn",
+      "lens": "codex",
+      "location": "page1.subtitle",
+      "issue": "부제 'How one committee sets the cost of every loan in the land.'가 중앙은행이 모든 대출 금리를 직접 정한다는 인상을 준다. 본문은 key policy rate로 다른 금리를 '유도(nudges)'한다고 설명한다.",
+      "evidence": "body: 'By raising or lowering a key policy rate, it nudges every other rate in the economy to drift the same way'",
+      "suggestion": "'How one committee steers the cost of borrowing across the land.' 등 유도 의미로 완화(직접 결정 인상 제거)."
     }
   ],
   "minors": [

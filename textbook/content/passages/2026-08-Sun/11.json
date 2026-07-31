@@ -50,7 +50,7 @@
       {
         "type": "mock_objective",
         "style": "빈칸 추론",
-        "stem": "윗글의 밑줄 친 빈칸에 들어갈 말로 가장 적절한 것은?",
+        "stem": "윗글의 빈칸에 들어갈 말로 가장 적절한 것은?",
         "choices": [
           "ignore",
           "forbid",
@@ -63,7 +63,7 @@
       {
         "type": "mock_objective",
         "style": "함의 추론",
-        "stem": "윗글의 밑줄 친 automation hollows out the middle of many jobs 가 다음 글에서 의미하는 바로 가장 적절한 것은?",
+        "stem": "밑줄 친 automation hollows out the middle of many jobs가 다음 글에서 의미하는 바로 가장 적절한 것은?",
         "choices": [
           "every single task inside a job is quietly handed over to a machine at once",
           "workers now earn far more money only when they avoid using any software at all",
@@ -208,7 +208,8 @@
           { "role": "O", "text": "the doubtful case" },
           { "role": "CONJ", "text": "and" },
           { "role": "V", "text": "explain" },
-          { "role": "O", "text": "it to a frightened patient.", "note": "동사 병렬 (judge/explain)" }
+          { "role": "O", "text": "it" },
+          { "role": "M", "text": "to a frightened patient.", "note": "동사 병렬 (judge/explain)" }
         ],
         "grammar_note": "yet 대조 + 조동사 뒤 동사 병렬"
       },
@@ -264,7 +265,7 @@
           { "role": "S", "text": "they" },
           { "role": "V", "text": "treat" },
           { "role": "O", "text": "it" },
-          { "role": "M", "text": "as the core of a resilient working life.", "note": "treat A as B" }
+          { "role": "C", "text": "as the core of a resilient working life.", "note": "treat A as B" }
         ],
         "grammar_note": "call O C + and 등위절 (treat A as B)"
       },
@@ -274,7 +275,7 @@
           { "role": "S", "text": "A degree" },
           { "role": "M", "text": "earned at twenty", "note": "과거분사 후치 수식" },
           { "role": "V", "text": "can no longer be expected" },
-          { "role": "M", "text": "to carry someone for forty years.", "note": "수동태 + to부정사" }
+          { "role": "C", "text": "to carry someone for forty years.", "note": "be expected + to-V" }
         ],
         "grammar_note": "과거분사 후치 수식 + be expected to V (수동)"
       },
@@ -343,7 +344,7 @@
         "grammar_note": "belong to + less A than B + 주격 관계대명사"
       }
     ],
-    "translation_ko": "[1] 지난 세기 대부분 동안, 안정된 일자리는 단순한 패턴을 따랐다. [2] 노동자는 한 가지 기술을 배우고, 한 회사에 들어가, 은퇴할 때까지 머물렀다. [3] 그 오래된 약속은 이제 조용히 허물어지고 있다. [4] 읽고, 분류하고, 심지어 글까지 쓸 수 있는 기계들이 한때 안전하다고 여겨진 일들을 넘겨받고 있다. [5] 이 변화는 단순히 일자리를 없애는 것이 아니라, 그것을 다시 짠다. [6] 소프트웨어가 한 직무의 정형화된 부분을 처리하면, 사람에게는 공식으로 풀리지 않는 부분이 남는다. [7] 방사선 전문의는 스캔을 표시하는 데 알고리즘에 기댈 수는 있지만, 그래도 여전히 애매한 사례를 판단하고 겁에 질린 환자에게 그것을 설명해야 한다. [8] 이런 식으로 자동화는 많은 일자리의 가운데를 파내면서, 기계가 흉내 낼 수 없는 기술의 가치를 높인다. [9] 판단력, 공감, 그리고 새로운 문제를 규정하는 요령은 드물어지고 그래서 귀해진다. [10] 발밑의 땅이 계속 움직이기에, 가장 안전한 진로 전략은 더 이상 하나의 자격증이 아니다. [11] 그것은 거듭거듭 배우는 습관이다. [12] 경제학자들은 이 꾸준한 기술의 갱신을 재교육(reskilling)이라 부르며, 그것을 회복력 있는 직업 생활의 핵심으로 여긴다. [13] 스무 살에 딴 학위가 더 이상 어떤 사람을 사십 년 동안 실어 나르리라 기대될 수 없다. [14] 대신, 교육은 사람이 평생에 걸쳐 되돌아오는 무언가가 되어 가고 있다. [15] 이 어느 것도 인간의 노동이 종말을 향해 가고 있다는 뜻은 아니다. [16] 역사는 정반대를 시사한다: 기술의 물결은 저마다, 때가 되면, 그 누구도 이전에 이름 붙일 수 없었던 일을 만들어냈다. [17] 위험은 일자리가 없는 세상에 있는 것이 아니라, 사람들이 가진 기술과 새 경제가 요구하는 기술 사이의 격차에 있다. [18] 그 격차를 좁히는 일은 이제 학교, 기업, 정부가 다 함께 풀어야 할 과제다. [19] 일의 미래는 변화에 저항하는 이들보다는, 그것을 활용하는 법을 배우는 이들에게 속할 것이다."
+    "translation_ko": "[1] 지난 세기 대부분 동안, 안정된 일자리는 단순한 패턴을 따랐다. [2] 노동자는 한 가지 기술을 배우고, 한 회사에 들어가, 은퇴할 때까지 머물렀다. [3] 그 오래된 약속은 이제 조용히 허물어지고 있다. [4] 읽고, 분류하고, 심지어 글까지 쓸 수 있는 기계들이 한때 안전하다고 여겨진 일들을 넘겨받고 있다. [5] 이 변화는 단순히 일자리를 없애는 것이 아니라, 그것을 다시 짠다. [6] 소프트웨어가 한 직무의 정형화된 부분을 처리하면, 사람에게는 공식으로 풀리지 않는 부분이 남는다. [7] 방사선 전문의는 스캔을 표시하는 데 알고리즘에 기댈 수는 있지만, 그래도 여전히 애매한 사례를 판단하고 겁에 질린 환자에게 그것을 설명해야 한다. [8] 이런 식으로 자동화는 많은 일자리의 가운데를 파내면서, 기계가 흉내 낼 수 없는 기술의 가치를 높인다. [9] 판단력, 공감, 그리고 새로운 문제를 규정하는 요령은 드물어지고 그래서 귀해진다. [10] 발밑의 땅이 계속 움직이기에, 가장 안전한 진로 전략은 더 이상 하나의 자격증이 아니다. [11] 그것은 거듭거듭 배우는 습관이다. [12] 경제학자들은 이 꾸준한 기술의 갱신을 재교육(reskilling)이라 부르며, 그것을 회복력 있는 직업 생활의 핵심으로 여긴다. [13] 스무 살에 딴 학위가 사십 년 동안 한 사람을 지탱해 주리라고는 더 이상 기대할 수 없다. [14] 대신, 교육은 사람이 평생에 걸쳐 되돌아오는 무언가가 되어 가고 있다. [15] 이 어느 것도 인간의 노동이 종말을 향해 가고 있다는 뜻은 아니다. [16] 역사는 정반대를 시사한다: 기술의 물결은 저마다, 때가 되면, 그 누구도 이전에 이름 붙일 수 없었던 일을 만들어냈다. [17] 위험은 일자리가 없는 세상에 있는 것이 아니라, 사람들이 가진 기술과 새 경제가 요구하는 기술 사이의 격차에 있다. [18] 그 격차를 좁히는 일은 이제 학교, 기업, 정부가 다 함께 풀어야 할 과제다. [19] 일의 미래는 변화에 저항하는 이들보다는, 그것을 활용하는 법을 배우는 이들에게 속할 것이다."
   },
   "answers": {
     "explanations": [
@@ -455,7 +456,7 @@
         "pos": "adj.",
         "meaning_ko": "정형화된, 판에 박힌",
         "synonyms": ["standard"],
-        "antonyms": ["novel"],
+        "antonyms": ["unusual"],
         "examples": [
           { "en": "Software handles the routine parts of a role.", "ko": "소프트웨어가 한 직무의 정형화된 부분을 처리한다." },
           { "en": "Machines are best at routine work.", "ko": "기계는 정형화된 일에 가장 능하다." }
@@ -509,7 +510,7 @@
         "word": "renewal",
         "pos": "n.",
         "meaning_ko": "갱신, 새롭게 함",
-        "synonyms": ["refresh", "revival"],
+        "synonyms": ["revival", "updating"],
         "antonyms": [],
         "examples": [
           { "en": "Economists call this steady renewal of skills reskilling.", "ko": "경제학자들은 이 꾸준한 기술의 갱신을 재교육이라 부른다." },
@@ -520,7 +521,7 @@
         "word": "resilient",
         "pos": "adj.",
         "meaning_ko": "회복력 있는, 탄력적인",
-        "synonyms": ["adaptable", "tough"],
+        "synonyms": ["adaptable", "flexible"],
         "antonyms": ["fragile"],
         "examples": [
           { "en": "Reskilling is the core of a resilient working life.", "ko": "재교육은 회복력 있는 직업 생활의 핵심이다." },
@@ -543,9 +544,9 @@
         "pos": "v.",
         "meaning_ko": "요구하다",
         "synonyms": ["require"],
-        "antonyms": ["supply"],
+        "antonyms": [],
         "examples": [
-          { "en": "There is a gap with the skills the new economy demands.", "ko": "새 경제가 요구하는 기술과의 격차가 있다." },
+          { "en": "There is a gap between the skills people hold and the skills the new economy demands.", "ko": "사람들이 가진 기술과 새 경제가 요구하는 기술 사이에 격차가 있다." },
           { "en": "The job demands constant learning.", "ko": "그 일은 끊임없는 학습을 요구한다." }
         ]
       }

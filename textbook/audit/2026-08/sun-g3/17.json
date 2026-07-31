@@ -79,6 +79,14 @@
         "confidence": "high",
         "reason": "지적이 파일 근거로 명확히 확인됨. page1.body에서 정답 문자열 'expected value'가 최소 3회(문두 대문자 'Expected value does not promise'까지 포함하면 4회) 그대로 노출되며, 그중 1회는 '<u>expected value</u>'로 밑줄 강조까지 되어 있다. 결정적으로 빈칸이 있는 4문단은 'Because of this, expected value becomes a reliable guide...' 바로 두 문장 뒤에 '...choose the one with the higher <blank>.'가 오는 구조라, 정답이 빈칸 직전 동일 문단에 그대로 있다. page2.questions[1].choices[1]='expected value', answer_index=1로 문자열이 완전 일치한다. 반박 시도: (1) '수능 빈칸도 본문 어휘를 재사용한다' — 그러나 패러프레이즈가 아니라 문자 그대로 일치이고 밑줄까지 있어 해당 안 됨. (2) '오답 선택지 변별이 남아 있다' — 오답 4개(entry cost, prize amount, winning streak, gut feeling)는 본문에 전혀 등장하지 않으므로 '본문에 나오는 유일한 어구 고르기'로 풀이가 붕괴, 독해 없이 어휘 매칭만으로 정답 도달 가능. (3) '<u>는 용어 설명용' — 이 파일에서 <u>는 Q3(함의 추론)의 지시 대상 표시 용도로 쓰이는 강조 마커이고 용어 설명은 gloss_extra가 따로 담당하므로 성립하지 않음. 가중 근거로 answers.explanations[1].evidence가 '6번이 그 도구를 expected value로 명명했으므로'라며 밑줄 문장을 직접 지목하고, page3.translation_ko [18]은 '더 높은 기댓값을 가진 쪽을 고르는 것이다'로 정답을 그대로 노출한다. 따라서 추론 문항이 아닌 단순 어구 찾기가 되어 변별력이 사실상 없다는 지적은 실제 결함이다."
       }
+    },
+    {
+      "severity": "minor",
+      "lens": "codex",
+      "location": "page1.body 기댓값-합리적 선택 서술",
+      "issue": "기댓값이 합리적 선택을 안내한다는 서술에 위험 중립/반복 선택 조건이 없음(Codex 제보). 본문에 이미 'usually' 헤지가 있어 선택적 보강.",
+      "evidence": "body: 'the rational move is usually to choose the one with the higher <blank>'",
+      "suggestion": "자연스럽게 가능하면 반복 선택/비슷한 위험 조건을 암시하는 가벼운 헤지 추가. 문장 수·빈칸·Lexile을 해치면 생략 가능(skippedReason 기록)."
     }
   ],
   "minors": [

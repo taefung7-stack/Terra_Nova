@@ -13,18 +13,33 @@
     "cognitive_skill": "요지",
     "lexile": "840L",
     "ar_level": 6.0,
-    "key_concepts": ["디지털화", "비트", "이진법", "샘플링", "자료 표현"]
+    "key_concepts": [
+      "디지털화",
+      "비트",
+      "이진법",
+      "샘플링",
+      "자료 표현"
+    ]
   },
   "page1": {
     "title": "The World in Ones and Zeros",
     "subtitle": "Every song, photo, and letter is really just a string of switches.",
-    "body": "A computer cannot understand a word, a color, or a sound the way you do. Inside the machine there are only tiny switches, and each one is either on or off. We write on as 1 and off as 0, and a single switch is called a <u>bit</u>. From these two plain symbols, a computer builds every text, image, and song you have ever opened on a screen.\n\nTo store a letter, we first agree on a shared code together. In one common code, the letter A is the number 65, and the computer keeps that number as a neat row of eight bits. Eight bits form one byte, and a byte can hold 256 different values. That is enough for every letter, digit, and mark on a keyboard. So a whole page of text simply becomes a long chain of bytes, one after another.\n\nPictures and sounds are harder to store, because the real world is smooth and continuous. To handle this, a computer chops the signal into tiny pieces and measures each small piece. This step is called <u>sampling</u>, and it turns a smooth wave into a list of numbers. A single photo is split into millions of dots, and a sound is measured thousands of times each second. The more samples we take, the closer the copy sits to the original.\n\nThis quiet way of storing information brings us two great gifts. First, a digital copy never fades, because a number stays exactly the same no matter how often it is moved. Second, any file can be squeezed, sent, and shared across the whole world in just a few seconds. So the deeper lesson is really simple: once a thing becomes numbers, it can <blank>.",
+    "body": "A computer cannot understand a word, a color, or a sound the way you do. Inside the machine there are only tiny switches, and each one is either on or off. We write on as 1 and off as 0, and a single switch is called a <u>bit</u>. From these two plain symbols, a computer builds every text, image, and song you have ever opened on a screen.\n\nTo store a letter, we first agree on a shared code. In one common code, the letter A is the number 65, and the computer keeps that number as a neat row of eight bits. Eight bits form one byte, and a byte can hold 256 different values. That is enough for every letter, digit, and mark on a keyboard. So a whole page of text simply becomes a long chain of bytes, one after another.\n\nPictures and sounds are much harder to store, because the real world is smooth and continuous. To handle this, a computer chops the signal into tiny pieces and measures each small piece. This step is called <u>sampling</u>, and it turns a smooth wave into a list of numbers. A single photo is split into millions of dots, and a sound is measured thousands of times each second. The more samples we take, the closer the copy sits to the original.\n\nThis quiet way of storing information brings us two great gifts. First, a digital copy never fades, because a number stays exactly the same no matter how often it is moved. Second, any file can be squeezed, sent, and shared across the whole world over a network in seconds or minutes. So the deeper lesson is really simple: once a thing becomes numbers, it can <blank>.",
     "illustration": "../../assets/illustrations/2026-08/20.jpg",
     "illustration_caption": "글자·사진·소리는 모두 0과 1의 비트열로 바뀌어 컴퓨터 안에 저장된다.",
     "gloss_extra": [
-      { "term": "byte", "ko": "바이트(8비트 묶음)" },
-      { "term": "continuous", "ko": "연속적인, 끊김 없는" },
-      { "term": "signal", "ko": "신호" }
+      {
+        "term": "digit",
+        "ko": "숫자(0~9의 한 자리)"
+      },
+      {
+        "term": "plain",
+        "ko": "단순한, 평범한"
+      },
+      {
+        "term": "row",
+        "ko": "줄, 열"
+      }
     ]
   },
   "page2": {
@@ -72,7 +87,13 @@
         "type": "school_descriptive",
         "style": "요약문 빈칸 완성",
         "prompt": "다음은 본문의 요약문이다. 본문의 내용을 바탕으로 빈칸 (A), (B)에 들어갈 말을 <조건>에 맞게 영어 한 단어로 각각 쓰시오. <조건> 본문에서 제시된 단어를 그대로 활용할 것.",
-        "hints": ["bit", "byte", "sampling", "number", "signal"],
+        "hints": [
+          "bit",
+          "byte",
+          "sampling",
+          "number",
+          "signal"
+        ],
         "summary_template": "A computer stores everything with switches, and each switch is a <blank> (A). Smooth pictures and sounds are chopped into tiny pieces by <blank> (B), which turns a wave into a list of numbers.",
         "model_answer": "(A) bit  (B) sampling"
       }
@@ -80,15 +101,36 @@
     "textbook_tieback": {
       "unit_label": "정보 ② 자료와 정보 · 정보 자료의 표현과 디지털화",
       "body_ko": "고등학교 정보의 '자료와 정보' 영역에서는 문자, 그림, 소리 같은 다양한 자료가 컴퓨터 안에서 어떻게 표현되는지를 배운다. 컴퓨터는 켜짐과 꺼짐 두 상태만 다루므로 모든 자료를 0과 1의 비트로 나타낸다. 비트 여덟 개가 모여 한 바이트를 이루고, 한 바이트는 256가지 값을 담을 수 있어 문자와 기호를 표현한다. 그림과 소리처럼 연속적인 자료는 잘게 쪼개어 측정하는 표본화 과정을 거쳐 숫자의 나열로 바뀐다. 이렇게 디지털화된 자료는 값이 변하지 않아 복제해도 손상되지 않고, 빠르게 전송하고 공유할 수 있다.",
-      "tags": ["디지털화", "비트와바이트", "이진표현", "표본화"],
+      "tags": [
+        "디지털화",
+        "비트와바이트",
+        "이진표현",
+        "표본화"
+      ],
       "visual_aid": {
         "type": "emoji_flow",
         "title": "자료가 숫자가 되는 길",
         "steps": [
-          { "emoji": "🔘", "label": "비트", "note": "켜짐 1 / 꺼짐 0" },
-          { "emoji": "🔤", "label": "문자", "note": "코드 → 8비트(1바이트)" },
-          { "emoji": "🌊", "label": "그림·소리", "note": "표본화 → 숫자 목록" },
-          { "emoji": "📤", "label": "공유", "note": "손상 없이 복제·전송" }
+          {
+            "emoji": "🔘",
+            "label": "비트",
+            "note": "켜짐 1 / 꺼짐 0"
+          },
+          {
+            "emoji": "🔤",
+            "label": "문자",
+            "note": "코드 → 8비트(1바이트)"
+          },
+          {
+            "emoji": "🌊",
+            "label": "그림·소리",
+            "note": "표본화 → 숫자 목록"
+          },
+          {
+            "emoji": "📤",
+            "label": "공유",
+            "note": "손상 없이 복제·전송"
+          }
         ]
       }
     }
@@ -98,215 +140,591 @@
       {
         "index": 1,
         "segments": [
-          { "role": "S", "text": "A computer" },
-          { "role": "V", "text": "cannot understand" },
-          { "role": "O", "text": "a word, a color, or a sound" },
-          { "role": "M", "text": "the way you do." }
+          {
+            "role": "S",
+            "text": "A computer"
+          },
+          {
+            "role": "V",
+            "text": "cannot understand"
+          },
+          {
+            "role": "O",
+            "text": "a word, a color, or a sound"
+          },
+          {
+            "role": "M",
+            "text": "the way you do."
+          }
         ]
       },
       {
         "index": 2,
         "segments": [
-          { "role": "M", "text": "Inside the machine" },
-          { "role": "M", "text": "there" },
-          { "role": "V", "text": "are" },
-          { "role": "S", "text": "only tiny switches," },
-          { "role": "CONJ", "text": "and" },
-          { "role": "S", "text": "each one" },
-          { "role": "V", "text": "is" },
-          { "role": "C", "text": "either on or off." }
+          {
+            "role": "M",
+            "text": "Inside the machine"
+          },
+          {
+            "role": "M",
+            "text": "there"
+          },
+          {
+            "role": "V",
+            "text": "are"
+          },
+          {
+            "role": "S",
+            "text": "only tiny switches,"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "S",
+            "text": "each one"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "either on or off."
+          }
         ]
       },
       {
         "index": 3,
         "segments": [
-          { "role": "S", "text": "We" },
-          { "role": "V", "text": "write" },
-          { "role": "O", "text": "on as 1" },
-          { "role": "CONJ", "text": "and" },
-          { "role": "O", "text": "off as 0," },
-          { "role": "CONJ", "text": "and" },
-          { "role": "S", "text": "a single switch" },
-          { "role": "V", "text": "is called" },
-          { "role": "C", "text": "a bit." }
+          {
+            "role": "S",
+            "text": "We"
+          },
+          {
+            "role": "V",
+            "text": "write"
+          },
+          {
+            "role": "O",
+            "text": "on"
+          },
+          {
+            "role": "M",
+            "text": "as 1"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "O",
+            "text": "off"
+          },
+          {
+            "role": "M",
+            "text": "as 0,"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "S",
+            "text": "a single switch"
+          },
+          {
+            "role": "V",
+            "text": "is called"
+          },
+          {
+            "role": "C",
+            "text": "a bit."
+          }
         ]
       },
       {
         "index": 4,
         "segments": [
-          { "role": "M", "text": "From these two plain symbols," },
-          { "role": "S", "text": "a computer" },
-          { "role": "V", "text": "builds" },
-          { "role": "O", "text": "every text, image, and song" },
-          { "role": "REL", "text": "you have ever opened on a screen." }
+          {
+            "role": "M",
+            "text": "From these two plain symbols,"
+          },
+          {
+            "role": "S",
+            "text": "a computer"
+          },
+          {
+            "role": "V",
+            "text": "builds"
+          },
+          {
+            "role": "O",
+            "text": "every text, image, and song"
+          },
+          {
+            "role": "REL",
+            "text": "you have ever opened on a screen."
+          }
         ]
       },
       {
         "index": 5,
         "segments": [
-          { "role": "M", "text": "To store a letter," },
-          { "role": "S", "text": "we" },
-          { "role": "M", "text": "first" },
-          { "role": "V", "text": "agree" },
-          { "role": "M", "text": "on a shared code together." }
+          {
+            "role": "M",
+            "text": "To store a letter,"
+          },
+          {
+            "role": "S",
+            "text": "we"
+          },
+          {
+            "role": "M",
+            "text": "first"
+          },
+          {
+            "role": "V",
+            "text": "agree"
+          },
+          {
+            "role": "M",
+            "text": "on a shared code."
+          }
         ]
       },
       {
         "index": 6,
         "segments": [
-          { "role": "M", "text": "In one common code," },
-          { "role": "S", "text": "the letter A" },
-          { "role": "V", "text": "is" },
-          { "role": "C", "text": "the number 65," },
-          { "role": "CONJ", "text": "and" },
-          { "role": "S", "text": "the computer" },
-          { "role": "V", "text": "keeps" },
-          { "role": "O", "text": "that number" },
-          { "role": "M", "text": "as a neat row of eight bits." }
+          {
+            "role": "M",
+            "text": "In one common code,"
+          },
+          {
+            "role": "S",
+            "text": "the letter A"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "the number 65,"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "S",
+            "text": "the computer"
+          },
+          {
+            "role": "V",
+            "text": "keeps"
+          },
+          {
+            "role": "O",
+            "text": "that number"
+          },
+          {
+            "role": "M",
+            "text": "as a neat row of eight bits."
+          }
         ]
       },
       {
         "index": 7,
         "segments": [
-          { "role": "S", "text": "Eight bits" },
-          { "role": "V", "text": "form" },
-          { "role": "O", "text": "one byte," },
-          { "role": "CONJ", "text": "and" },
-          { "role": "S", "text": "a byte" },
-          { "role": "V", "text": "can hold" },
-          { "role": "O", "text": "256 different values." }
+          {
+            "role": "S",
+            "text": "Eight bits"
+          },
+          {
+            "role": "V",
+            "text": "form"
+          },
+          {
+            "role": "O",
+            "text": "one byte,"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "S",
+            "text": "a byte"
+          },
+          {
+            "role": "V",
+            "text": "can hold"
+          },
+          {
+            "role": "O",
+            "text": "256 different values."
+          }
         ]
       },
       {
         "index": 8,
         "segments": [
-          { "role": "S", "text": "That" },
-          { "role": "V", "text": "is" },
-          { "role": "C", "text": "enough for every letter, digit, and mark on a keyboard." }
+          {
+            "role": "S",
+            "text": "That"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "enough for every letter, digit, and mark on a keyboard."
+          }
         ]
       },
       {
         "index": 9,
         "segments": [
-          { "role": "CONJ", "text": "So" },
-          { "role": "S", "text": "a whole page of text" },
-          { "role": "M", "text": "simply" },
-          { "role": "V", "text": "becomes" },
-          { "role": "C", "text": "a long chain of bytes, one after another." }
+          {
+            "role": "CONJ",
+            "text": "So"
+          },
+          {
+            "role": "S",
+            "text": "a whole page of text"
+          },
+          {
+            "role": "M",
+            "text": "simply"
+          },
+          {
+            "role": "V",
+            "text": "becomes"
+          },
+          {
+            "role": "C",
+            "text": "a long chain of bytes, one after another."
+          }
         ]
       },
       {
         "index": 10,
         "segments": [
-          { "role": "S", "text": "Pictures and sounds" },
-          { "role": "V", "text": "are" },
-          { "role": "C", "text": "harder to store," },
-          { "role": "CONJ", "text": "because" },
-          { "role": "S", "text": "the real world" },
-          { "role": "V", "text": "is" },
-          { "role": "C", "text": "smooth and continuous." }
+          {
+            "role": "S",
+            "text": "Pictures and sounds"
+          },
+          {
+            "role": "V",
+            "text": "are"
+          },
+          {
+            "role": "C",
+            "text": "much harder to store,"
+          },
+          {
+            "role": "CONJ",
+            "text": "because"
+          },
+          {
+            "role": "S",
+            "text": "the real world"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "smooth and continuous."
+          }
         ]
       },
       {
         "index": 11,
         "segments": [
-          { "role": "M", "text": "To handle this," },
-          { "role": "S", "text": "a computer" },
-          { "role": "V", "text": "chops" },
-          { "role": "O", "text": "the signal" },
-          { "role": "M", "text": "into tiny pieces" },
-          { "role": "CONJ", "text": "and" },
-          { "role": "V", "text": "measures" },
-          { "role": "O", "text": "each small piece." }
+          {
+            "role": "M",
+            "text": "To handle this,"
+          },
+          {
+            "role": "S",
+            "text": "a computer"
+          },
+          {
+            "role": "V",
+            "text": "chops"
+          },
+          {
+            "role": "O",
+            "text": "the signal"
+          },
+          {
+            "role": "M",
+            "text": "into tiny pieces"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "V",
+            "text": "measures"
+          },
+          {
+            "role": "O",
+            "text": "each small piece."
+          }
         ]
       },
       {
         "index": 12,
         "segments": [
-          { "role": "S", "text": "This step" },
-          { "role": "V", "text": "is called" },
-          { "role": "C", "text": "sampling," },
-          { "role": "CONJ", "text": "and" },
-          { "role": "S", "text": "it" },
-          { "role": "V", "text": "turns" },
-          { "role": "O", "text": "a smooth wave" },
-          { "role": "M", "text": "into a list of numbers." }
+          {
+            "role": "S",
+            "text": "This step"
+          },
+          {
+            "role": "V",
+            "text": "is called"
+          },
+          {
+            "role": "C",
+            "text": "sampling,"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "S",
+            "text": "it"
+          },
+          {
+            "role": "V",
+            "text": "turns"
+          },
+          {
+            "role": "O",
+            "text": "a smooth wave"
+          },
+          {
+            "role": "M",
+            "text": "into a list of numbers."
+          }
         ]
       },
       {
         "index": 13,
         "segments": [
-          { "role": "S", "text": "A single photo" },
-          { "role": "V", "text": "is split" },
-          { "role": "M", "text": "into millions of dots," },
-          { "role": "CONJ", "text": "and" },
-          { "role": "S", "text": "a sound" },
-          { "role": "V", "text": "is measured" },
-          { "role": "M", "text": "thousands of times each second." }
+          {
+            "role": "S",
+            "text": "A single photo"
+          },
+          {
+            "role": "V",
+            "text": "is split"
+          },
+          {
+            "role": "M",
+            "text": "into millions of dots,"
+          },
+          {
+            "role": "CONJ",
+            "text": "and"
+          },
+          {
+            "role": "S",
+            "text": "a sound"
+          },
+          {
+            "role": "V",
+            "text": "is measured"
+          },
+          {
+            "role": "M",
+            "text": "thousands of times each second."
+          }
         ]
       },
       {
         "index": 14,
         "segments": [
-          { "role": "M", "text": "The more samples" },
-          { "role": "S", "text": "we" },
-          { "role": "V", "text": "take," },
-          { "role": "M", "text": "the closer" },
-          { "role": "S", "text": "the copy" },
-          { "role": "V", "text": "sits" },
-          { "role": "M", "text": "to the original." }
+          {
+            "role": "M",
+            "text": "The more samples"
+          },
+          {
+            "role": "S",
+            "text": "we"
+          },
+          {
+            "role": "V",
+            "text": "take,"
+          },
+          {
+            "role": "M",
+            "text": "the closer"
+          },
+          {
+            "role": "S",
+            "text": "the copy"
+          },
+          {
+            "role": "V",
+            "text": "sits"
+          },
+          {
+            "role": "M",
+            "text": "to the original."
+          }
         ]
       },
       {
         "index": 15,
         "segments": [
-          { "role": "S", "text": "This quiet way of storing information" },
-          { "role": "V", "text": "brings" },
-          { "role": "O", "text": "us" },
-          { "role": "O", "text": "two great gifts." }
+          {
+            "role": "S",
+            "text": "This quiet way of storing information"
+          },
+          {
+            "role": "V",
+            "text": "brings"
+          },
+          {
+            "role": "O",
+            "text": "us"
+          },
+          {
+            "role": "O",
+            "text": "two great gifts."
+          }
         ]
       },
       {
         "index": 16,
         "segments": [
-          { "role": "M", "text": "First," },
-          { "role": "S", "text": "a digital copy" },
-          { "role": "M", "text": "never" },
-          { "role": "V", "text": "fades," },
-          { "role": "CONJ", "text": "because" },
-          { "role": "S", "text": "a number" },
-          { "role": "V", "text": "stays" },
-          { "role": "C", "text": "exactly the same" },
-          { "role": "M", "text": "no matter how often it is moved." }
+          {
+            "role": "M",
+            "text": "First,"
+          },
+          {
+            "role": "S",
+            "text": "a digital copy"
+          },
+          {
+            "role": "M",
+            "text": "never"
+          },
+          {
+            "role": "V",
+            "text": "fades,"
+          },
+          {
+            "role": "CONJ",
+            "text": "because"
+          },
+          {
+            "role": "S",
+            "text": "a number"
+          },
+          {
+            "role": "V",
+            "text": "stays"
+          },
+          {
+            "role": "C",
+            "text": "exactly the same"
+          },
+          {
+            "role": "M",
+            "text": "no matter how often it is moved."
+          }
         ]
       },
       {
         "index": 17,
         "segments": [
-          { "role": "M", "text": "Second," },
-          { "role": "S", "text": "any file" },
-          { "role": "V", "text": "can be squeezed, sent, and shared" },
-          { "role": "M", "text": "across the whole world" },
-          { "role": "M", "text": "in just a few seconds." }
+          {
+            "role": "M",
+            "text": "Second,"
+          },
+          {
+            "role": "S",
+            "text": "any file"
+          },
+          {
+            "role": "V",
+            "text": "can be squeezed, sent, and shared"
+          },
+          {
+            "role": "M",
+            "text": "across the whole world"
+          },
+          {
+            "role": "M",
+            "text": "over a network"
+          },
+          {
+            "role": "M",
+            "text": "in seconds or minutes."
+          }
         ]
       },
       {
         "index": 18,
         "segments": [
-          { "role": "CONJ", "text": "So" },
-          { "role": "S", "text": "the deeper lesson" },
-          { "role": "V", "text": "is" },
-          { "role": "C", "text": "really simple:" },
-          { "role": "CONJ", "text": "once" },
-          { "role": "S", "text": "a thing" },
-          { "role": "V", "text": "becomes" },
-          { "role": "C", "text": "numbers," },
-          { "role": "S", "text": "it" },
-          { "role": "V", "text": "can be copied and shared perfectly." }
+          {
+            "role": "CONJ",
+            "text": "So"
+          },
+          {
+            "role": "S",
+            "text": "the deeper lesson"
+          },
+          {
+            "role": "V",
+            "text": "is"
+          },
+          {
+            "role": "C",
+            "text": "really simple:"
+          },
+          {
+            "role": "CONJ",
+            "text": "once"
+          },
+          {
+            "role": "S",
+            "text": "a thing"
+          },
+          {
+            "role": "V",
+            "text": "becomes"
+          },
+          {
+            "role": "C",
+            "text": "numbers,"
+          },
+          {
+            "role": "S",
+            "text": "it"
+          },
+          {
+            "role": "V",
+            "text": "can be copied and shared"
+          },
+          {
+            "role": "M",
+            "text": "perfectly."
+          }
         ]
       }
     ],
-    "translation_ko": "[1] 컴퓨터는 당신이 하는 방식대로 단어나 색깔, 소리를 이해하지 못한다. [2] 기계 안에는 아주 작은 스위치들만 있고, 그 각각은 켜져 있거나 꺼져 있다. [3] 우리는 켜짐을 1로, 꺼짐을 0으로 적으며, 스위치 하나를 비트라고 부른다. [4] 이 두 가지 단순한 기호로부터, 컴퓨터는 당신이 화면에서 열어 본 모든 글과 이미지, 노래를 만들어 낸다. [5] 글자 하나를 저장하려면, 우리는 먼저 공유된 부호를 함께 정한다. [6] 한 흔한 부호에서 글자 A는 숫자 65이고, 컴퓨터는 그 숫자를 여덟 비트의 가지런한 한 줄로 보관한다. [7] 비트 여덟 개가 한 바이트를 이루고, 한 바이트는 256가지 서로 다른 값을 담을 수 있다. [8] 그것이면 자판의 모든 글자와 숫자, 기호에 충분하다. [9] 그래서 글 한 페이지 전체는 그저 바이트가 하나씩 이어진 긴 사슬이 된다. [10] 그림과 소리는 저장하기가 더 까다로운데, 실제 세계는 매끄럽고 연속적이기 때문이다. [11] 이를 다루기 위해, 컴퓨터는 신호를 아주 작은 조각으로 쪼개어 각 작은 조각을 측정한다. [12] 이 단계는 표본화라고 불리며, 매끄러운 파동을 숫자의 목록으로 바꾼다. [13] 사진 한 장은 수백만 개의 점으로 나뉘고, 소리는 매초 수천 번 측정된다. [14] 우리가 표본을 더 많이 취할수록, 복사본은 원본에 더 가까워진다. [15] 정보를 저장하는 이 조용한 방식은 우리에게 두 가지 큰 선물을 준다. [16] 첫째, 디지털 복사본은 결코 바래지 않는데, 숫자는 아무리 자주 옮겨져도 정확히 똑같이 유지되기 때문이다. [17] 둘째, 어떤 파일이든 단 몇 초 만에 전 세계로 압축되고 전송되며 공유될 수 있다. [18] 그래서 더 깊은 교훈은 사실 단순하다. 어떤 것이 일단 숫자가 되면, 그것은 완벽하게 복제되고 공유될 수 있다."
+    "translation_ko": "[1] 컴퓨터는 당신이 하는 방식대로 단어나 색깔, 소리를 이해하지 못한다. [2] 기계 안에는 아주 작은 스위치들만 있고, 그 각각은 켜져 있거나 꺼져 있다. [3] 우리는 켜짐을 1로, 꺼짐을 0으로 적으며, 스위치 하나를 비트라고 부른다. [4] 이 두 가지 단순한 기호로부터, 컴퓨터는 당신이 화면에서 열어 본 모든 글과 이미지, 노래를 만들어 낸다. [5] 글자 하나를 저장하려면, 우리는 먼저 공유된 부호를 정한다. [6] 한 흔한 부호에서 글자 A는 숫자 65이고, 컴퓨터는 그 숫자를 여덟 비트의 가지런한 한 줄로 보관한다. [7] 비트 여덟 개가 한 바이트를 이루고, 한 바이트는 256가지 서로 다른 값을 담을 수 있다. [8] 그것이면 자판의 모든 글자와 숫자, 기호에 충분하다. [9] 그래서 글 한 페이지 전체는 그저 바이트가 하나씩 이어진 긴 사슬이 된다. [10] 그림과 소리는 저장하기가 훨씬 더 까다로운데, 실제 세계는 매끄럽고 연속적이기 때문이다. [11] 이를 다루기 위해, 컴퓨터는 신호를 아주 작은 조각으로 쪼개어 각 작은 조각을 측정한다. [12] 이 단계는 표본화라고 불리며, 매끄러운 파동을 숫자의 목록으로 바꾼다. [13] 사진 한 장은 수백만 개의 점으로 나뉘고, 소리는 매초 수천 번 측정된다. [14] 우리가 표본을 더 많이 취할수록, 복사본은 원본에 더 가까워진다. [15] 정보를 저장하는 이 조용한 방식은 우리에게 두 가지 큰 선물을 준다. [16] 첫째, 디지털 복사본은 결코 바래지 않는데, 숫자는 아무리 자주 옮겨져도 정확히 똑같이 유지되기 때문이다. [17] 둘째, 어떤 파일이든 압축되어 네트워크를 통해 몇 초에서 몇 분 만에 전 세계로 전송되고 공유될 수 있다. [18] 그래서 더 깊은 교훈은 사실 단순하다. 어떤 것이 일단 숫자가 되면, 그것은 ____할 수 있다."
   },
   "answers": {
     "explanations": [
@@ -317,7 +735,7 @@
         "evidence": "글은 컴퓨터가 문자·그림·소리를 0과 1의 숫자로 바꾼다고 설명하고, 마지막 단락에서 \"a digital copy never fades\"와 \"any file can be squeezed, sent, and shared\"로 디지털 자료의 두 이점을 든다. 따라서 '자료를 숫자로 바꾸어 바래지 않고 쉽게 옮긴다'가 요지다.",
         "rationales": [
           "본문은 그림과 소리도 표본화로 저장한다고 했으므로 '문자만 저장한다'는 틀렸다.",
-          "표본을 많이 취하면 원본에 가까워진다고 했지 복사본이 항상 더 나쁘다고 하지 않았다.",
+          "본문은 표본을 늘릴수록 복사본이 원본에 가까워진다고 하여 복제 품질을 긍정적으로 서술하므로, 복사본이 항상 훨씬 열등하다는 진술은 글의 요지와 반대다.",
           "(정답) 자료를 숫자로 바꾸어 값이 바래지 않고 쉽게 전송·공유된다는 글 전체 주장을 정확히 담는다.",
           "본문은 파일을 압축해 더 쉽게 공유한다고 했으므로 '더 커지고 공유가 어렵다'는 반대다.",
           "본문은 비트 하나가 아니라 바이트의 나열로 한 페이지 글이 저장된다고 했다."
@@ -360,8 +778,14 @@
           "(B) sampling — 매끄러운 파동을 잘게 쪼개 숫자 목록으로 바꾸는 과정은 본문의 sampling이다."
         ],
         "key_terms": [
-          { "en": "bit", "ko": "비트" },
-          { "en": "sampling", "ko": "표본화" }
+          {
+            "en": "bit",
+            "ko": "비트"
+          },
+          {
+            "en": "sampling",
+            "ko": "표본화"
+          }
         ]
       }
     ]
@@ -372,11 +796,19 @@
         "word": "bit",
         "pos": "n.",
         "meaning_ko": "비트(0 또는 1의 최소 단위)",
-        "synonyms": ["binary digit"],
+        "synonyms": [
+          "binary digit"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "A single switch is called a bit.", "ko": "스위치 하나를 비트라고 부른다." },
-          { "en": "Each bit is either a 1 or a 0.", "ko": "각 비트는 1이거나 0이다." }
+          {
+            "en": "A single switch is called a bit.",
+            "ko": "스위치 하나를 비트라고 부른다."
+          },
+          {
+            "en": "Each bit is either a 1 or a 0.",
+            "ko": "각 비트는 1이거나 0이다."
+          }
         ]
       },
       {
@@ -386,118 +818,210 @@
         "synonyms": [],
         "antonyms": [],
         "examples": [
-          { "en": "Eight bits form one byte.", "ko": "비트 여덟 개가 한 바이트를 이룬다." },
-          { "en": "A byte can hold 256 values.", "ko": "한 바이트는 256가지 값을 담을 수 있다." }
+          {
+            "en": "Eight bits form one byte.",
+            "ko": "비트 여덟 개가 한 바이트를 이룬다."
+          },
+          {
+            "en": "A byte can hold 256 values.",
+            "ko": "한 바이트는 256가지 값을 담을 수 있다."
+          }
         ]
       },
       {
         "word": "sampling",
         "pos": "n.",
         "meaning_ko": "표본화, 샘플링",
-        "synonyms": ["measuring"],
+        "synonyms": [],
         "antonyms": [],
         "examples": [
-          { "en": "Sampling turns a smooth wave into numbers.", "ko": "표본화는 매끄러운 파동을 숫자로 바꾼다." },
-          { "en": "Faster sampling gives a clearer sound.", "ko": "더 빠른 표본화는 더 또렷한 소리를 준다." }
+          {
+            "en": "Sampling turns a smooth wave into numbers.",
+            "ko": "표본화는 매끄러운 파동을 숫자로 바꾼다."
+          },
+          {
+            "en": "Faster sampling gives a clearer sound.",
+            "ko": "더 빠른 표본화는 더 또렷한 소리를 준다."
+          }
         ]
       },
       {
         "word": "continuous",
         "pos": "adj.",
         "meaning_ko": "연속적인, 끊김 없는",
-        "synonyms": ["smooth", "unbroken"],
-        "antonyms": ["discrete"],
+        "synonyms": [
+          "smooth",
+          "unbroken"
+        ],
+        "antonyms": [
+          "discrete"
+        ],
         "examples": [
-          { "en": "The real world is smooth and continuous.", "ko": "실제 세계는 매끄럽고 연속적이다." },
-          { "en": "A continuous line has no gaps in it.", "ko": "연속적인 선에는 끊긴 곳이 없다." }
+          {
+            "en": "The real world is smooth and continuous.",
+            "ko": "실제 세계는 매끄럽고 연속적이다."
+          },
+          {
+            "en": "A continuous line has no gaps in it.",
+            "ko": "연속적인 선에는 끊긴 곳이 없다."
+          }
         ]
       },
       {
         "word": "signal",
         "pos": "n.",
         "meaning_ko": "신호",
-        "synonyms": ["wave"],
+        "synonyms": [],
         "antonyms": [],
         "examples": [
-          { "en": "A computer chops the signal into tiny pieces.", "ko": "컴퓨터는 신호를 아주 작은 조각으로 쪼갠다." },
-          { "en": "A weak signal makes the sound unclear.", "ko": "약한 신호는 소리를 흐릿하게 만든다." }
+          {
+            "en": "A computer chops the signal into tiny pieces.",
+            "ko": "컴퓨터는 신호를 아주 작은 조각으로 쪼갠다."
+          },
+          {
+            "en": "A weak signal makes the sound unclear.",
+            "ko": "약한 신호는 소리를 흐릿하게 만든다."
+          }
         ]
       },
       {
         "word": "code",
         "pos": "n.",
         "meaning_ko": "부호, 코드(약속된 표현 규칙)",
-        "synonyms": ["cipher"],
+        "synonyms": [
+          "encoding"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "In one common code, A is the number 65.", "ko": "한 흔한 코드에서 A는 숫자 65다." },
-          { "en": "The code links each letter to a number.", "ko": "그 코드는 각 글자를 숫자에 연결한다." }
+          {
+            "en": "In one common code, A is the number 65.",
+            "ko": "한 흔한 코드에서 A는 숫자 65다."
+          },
+          {
+            "en": "The code links each letter to a number.",
+            "ko": "그 코드는 각 글자를 숫자에 연결한다."
+          }
         ]
       },
       {
-        "word": "store",
+        "word": "chop",
         "pos": "v.",
-        "meaning_ko": "저장하다",
-        "synonyms": ["keep", "save"],
-        "antonyms": ["erase"],
+        "meaning_ko": "잘게 자르다, 쪼개다",
+        "synonyms": [
+          "cut"
+        ],
+        "antonyms": [],
         "examples": [
-          { "en": "To store a letter, we first agree on a code.", "ko": "글자를 저장하려면 먼저 코드를 정한다." },
-          { "en": "We store each photo as millions of dots.", "ko": "우리는 각 사진을 수백만 개의 점으로 저장한다." }
+          {
+            "en": "A computer chops the signal into tiny pieces.",
+            "ko": "컴퓨터는 신호를 아주 작은 조각으로 쪼갠다."
+          },
+          {
+            "en": "The program chops a long song into short parts.",
+            "ko": "그 프로그램은 긴 노래를 짧은 부분들로 잘게 나눈다."
+          }
         ]
       },
       {
         "word": "value",
         "pos": "n.",
         "meaning_ko": "값, 수치",
-        "synonyms": ["number"],
+        "synonyms": [
+          "number"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "A byte can hold 256 different values.", "ko": "한 바이트는 256가지 서로 다른 값을 담는다." },
-          { "en": "Each dot is stored as a color value.", "ko": "각 점은 색깔 값으로 저장된다." }
+          {
+            "en": "A byte can hold 256 different values.",
+            "ko": "한 바이트는 256가지 서로 다른 값을 담는다."
+          },
+          {
+            "en": "Each dot is stored as a color value.",
+            "ko": "각 점은 색깔 값으로 저장된다."
+          }
         ]
       },
       {
         "word": "original",
         "pos": "n.",
         "meaning_ko": "원본",
-        "synonyms": ["source"],
-        "antonyms": ["copy"],
+        "synonyms": [
+          "source"
+        ],
+        "antonyms": [
+          "copy"
+        ],
         "examples": [
-          { "en": "The copy sits close to the original.", "ko": "복사본은 원본에 가깝게 자리한다." },
-          { "en": "A good scan looks like the original.", "ko": "좋은 스캔본은 원본처럼 보인다." }
+          {
+            "en": "The copy sits close to the original.",
+            "ko": "복사본은 원본에 가깝게 자리한다."
+          },
+          {
+            "en": "A good scan looks like the original.",
+            "ko": "좋은 스캔본은 원본처럼 보인다."
+          }
         ]
       },
       {
         "word": "squeeze",
         "pos": "v.",
         "meaning_ko": "압축하다, 짜내다",
-        "synonyms": ["compress"],
-        "antonyms": ["expand"],
+        "synonyms": [
+          "compress"
+        ],
+        "antonyms": [
+          "expand"
+        ],
         "examples": [
-          { "en": "Any file can be squeezed and sent quickly.", "ko": "어떤 파일이든 압축되어 빠르게 전송될 수 있다." },
-          { "en": "We squeeze the video to save space.", "ko": "우리는 공간을 아끼려고 영상을 압축한다." }
+          {
+            "en": "Any file can be squeezed and sent quickly.",
+            "ko": "어떤 파일이든 압축되어 빠르게 전송될 수 있다."
+          },
+          {
+            "en": "We squeeze the video to save space.",
+            "ko": "우리는 공간을 아끼려고 영상을 압축한다."
+          }
         ]
       },
       {
         "word": "fade",
         "pos": "v.",
         "meaning_ko": "바래다, 흐려지다",
-        "synonyms": ["decay"],
-        "antonyms": ["last"],
+        "synonyms": [
+          "decay"
+        ],
+        "antonyms": [
+          "last"
+        ],
         "examples": [
-          { "en": "A digital copy never fades.", "ko": "디지털 복사본은 결코 바래지 않는다." },
-          { "en": "Old photos slowly fade over the years.", "ko": "오래된 사진은 세월이 흐르며 서서히 바랜다." }
+          {
+            "en": "A digital copy never fades.",
+            "ko": "디지털 복사본은 결코 바래지 않는다."
+          },
+          {
+            "en": "Old photos slowly fade over the years.",
+            "ko": "오래된 사진은 세월이 흐르며 서서히 바랜다."
+          }
         ]
       },
       {
         "word": "symbol",
         "pos": "n.",
         "meaning_ko": "기호, 상징",
-        "synonyms": ["sign", "mark"],
+        "synonyms": [
+          "sign",
+          "mark"
+        ],
         "antonyms": [],
         "examples": [
-          { "en": "From these two plain symbols, a computer builds every song.", "ko": "이 두 단순한 기호로부터 컴퓨터는 모든 노래를 만들어 낸다." },
-          { "en": "The number 0 is a symbol for an off switch.", "ko": "숫자 0은 꺼진 스위치를 나타내는 기호다." }
+          {
+            "en": "From these two plain symbols, a computer builds every song.",
+            "ko": "이 두 단순한 기호로부터 컴퓨터는 모든 노래를 만들어 낸다."
+          },
+          {
+            "en": "The number 0 is a symbol for an off switch.",
+            "ko": "숫자 0은 꺼진 스위치를 나타내는 기호다."
+          }
         ]
       }
     ]
