@@ -193,6 +193,12 @@ ${lines}
 }
 
 function buildAnswerBlock(data) {
+  // hide_answer:true — 문제 없이 본문 분석만 제공하는 교재용 데이터는 ANSWER 블록 자체를
+  // 비운다. 렌더 경로와 실측 경로가 모두 이 함수를 거치므로 여기서 막으면 높이 0 으로
+  // 일관되게 반영된다(실측에서만 빠지면 유령 여백이 남음).
+  // 기본값(플래그 없음)은 기존 동작 그대로 — 정식 회차 회귀 없음.
+  if (data.hide_answer) return '';
+
   const ansNo = data.choices?.find(c => c.correct)?.no ?? '?';
   const ansCircled = ['①','②','③','④','⑤'][ansNo - 1] || ansNo;
 
@@ -256,7 +262,8 @@ function buildFulltextBlock(data, range = null, cont = false) {
   }).join('\n');
 
   const label = cont ? 'PASSAGE · 본문 전문 (이어서)' : 'PASSAGE · 본문 전문 (문장별 해석)';
-  const sub = cont ? '' : esc(data.question_text || '');
+  // hide_answer 데이터는 발문(question_text)이 없으므로 대신 챕터 소제목을 보여준다.
+  const sub = cont ? '' : esc(data.hide_answer ? (data.subtitle || '') : (data.question_text || ''));
 
   return `    <div class="section-bar alt">
       ${label}

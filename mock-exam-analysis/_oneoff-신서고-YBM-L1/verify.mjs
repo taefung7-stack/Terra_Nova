@@ -89,18 +89,37 @@ for (const ch of SOURCE) {
   if (ko.length !== pas.length) err(`passage_ko 길이 ${ko.length} ≠ passage ${pas.length}  ← 해석 누락`);
   ko.forEach((t, i) => { if (!String(t).trim()) err(`passage_ko[${i}] 비어 있음`); });
 
-  if (sents.length !== pas.length) err(`sentences 길이 ${sents.length} ≠ passage ${pas.length}  ← 문장분석 누락`);
-
   // 4) 문장분석 ↔ 본문 정합
+  //    ★ 짧은 문장은 한 카드에 여러 개를 묶으므로(2026-08-14 정책) 카드 수 = 문장 수가
+  //      아니다. 대신 "카드들의 영어를 순서대로 이어붙이면 원문 전체와 일치"를 검사한다.
+  //      → 병합은 허용하되 누락·순서 변경·문장 변형은 전부 잡힌다.
+  const cardTexts = sents.map(s => norm(s.en_html));
+  const joinedCards = cardTexts.join(' ').replace(/\s+/g, ' ').trim();
+  const joinedSrc = pas.map(norm).join(' ').replace(/\s+/g, ' ').trim();
+  if (joinedCards !== joinedSrc) {
+    err('분석 카드 전체가 본문 전체와 불일치 ← 문장 누락/변형 의심');
+    // 어디서 갈라지는지 첫 지점을 보고한다.
+    const a = joinedCards, b = joinedSrc;
+    let k = 0; while (k < a.length && k < b.length && a[k] === b[k]) k++;
+    err(`  최초 불일치 위치 ${k}자\n        카드: ...${a.slice(Math.max(0, k - 60), k + 60)}\n        원문: ...${b.slice(Math.max(0, k - 60), k + 60)}`);
+  }
+
+  // 카드가 커버하는 원문 문장 번호(covers)가 있으면 전수 커버를 검사한다.
+  const covered = new Set();
   sents.forEach((s, i) => {
-    if (norm(s.en_html) !== norm(pas[i] ?? '')) {
-      err(`sentences[${i}].en_html 이 passage[${i}] 와 불일치\n        본문: ${pas[i] ?? '(없음)'}\n        분석: ${plain(s.en_html)}`);
-    }
-    if (s.no !== i + 1) err(`sentences[${i}].no 가 ${s.no} (기대 ${i + 1})`);
+    const cov = s.covers || [s.no];
+    cov.forEach(n => covered.add(n));
     if (!String(s.ko_full ?? '').trim()) err(`sentences[${i}].ko_full 비어 있음`);
     if (!String(s.ko_chunks ?? '').trim()) err(`sentences[${i}].ko_chunks 비어 있음`);
     if (!(s.points || []).length) err(`sentences[${i}] points 없음 (분석 누락)`);
   });
+  for (let n = 1; n <= pas.length; n++) {
+    if (!covered.has(n)) err(`원문 ${n}번 문장을 어떤 분석 카드도 다루지 않음 ← 분석 누락`);
+  }
+  // 카드 번호는 오름차순이어야 한다(순서 뒤바뀜 방지).
+  for (let i = 1; i < sents.length; i++) {
+    if (!(sents[i].no > sents[i - 1].no)) err(`sentences[${i}].no(${sents[i].no}) 가 앞 카드(${sents[i - 1].no})보다 크지 않음`);
+  }
 
   // 5) 문제 블록
   const correct = (data.choices || []).filter(c => c.correct);

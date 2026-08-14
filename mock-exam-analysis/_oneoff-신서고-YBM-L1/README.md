@@ -18,19 +18,31 @@
 **각 챕터가 독립 분석지 1부**가 되어 **챕터마다 첫 페이지 상단에 삽화 1장**이 들어갑니다.
 → 결과적으로 **삽화 5장, 각 챕터 시작 지점에 배치**됩니다.
 
-| Ch | 교과서 소제목 | 문장 수 | 삽화 | 산출물 |
-|----|---------------|---------|------|--------|
-| 1 | The Story of Hip-Hop Music (도입) | 18 | `assets/illust-1.png` | `dist/1.pdf` |
-| 2 | DJing, Breakdancing, and MCing | 19 | `assets/illust-2.png` | `dist/2.pdf` |
-| 3 | The Origin of the Word Hip-Hop | 11 | `assets/illust-3.png` | `dist/3.pdf` |
-| 4 | The Messages of Hip-Hop | 16 | `assets/illust-4.png` | `dist/4.pdf` |
-| 5 | Hip-Hop in the 21st Century | 6 | `assets/illust-5.png` | `dist/5.pdf` |
-| | **합계** | **70** | 5장 | |
+| Ch | 교과서 소제목 | 원문 문장 | 분석 카드 | 페이지 | 삽화 | 산출물 |
+|----|---------------|-----------|-----------|--------|------|--------|
+| 1 | The Story of Hip-Hop Music (도입) | 18 | 10 | 7p | `assets/illust-1.png` | `dist/1.pdf` |
+| 2 | DJing, Breakdancing, and MCing | 19 | 13 | 7p | `assets/illust-2.png` | `dist/2.pdf` |
+| 3 | The Origin of the Word Hip-Hop | 11 | 8 | 6p | `assets/illust-3.png` | `dist/3.pdf` |
+| 4 | The Messages of Hip-Hop | 16 | 13 | 7p | `assets/illust-4.png` | `dist/4.pdf` |
+| 5 | Hip-Hop in the 21st Century | 6 | 6 | 5p | `assets/illust-5.png` | `dist/5.pdf` |
+| | **합계** | **70** | **50** | **32p** | 5장 | |
 
-각 챕터 분석지 구성 (분석지 v1.0 구조 그대로):
+각 챕터 분석지 구성:
 1. **INTRO** — 요약·요지·제목 + **삽화(16:5)** + 단어표
-2. **PASSAGE** — 본문 전문(문장별 해석) + 정답·오답 분석 + 4단 논리흐름
+2. **PASSAGE** — 본문 전문(문장별 해석) + 4단 논리흐름
 3. **SENTENCE ANALYSIS** — 전 문장 어법·어휘·리딩 분석 (+ 핵심 문장 패러프레이징 상/중/하)
+
+### 정식 회차 포맷과 다른 점 (2026-08-14 사용자 요청)
+
+- **ANSWER(정답·오답 분석) 블록 없음** — 문제를 푸는 교재가 아니라 순수 본문 분석이므로
+  제거했다. 데이터의 `hide_answer: true` 플래그로 제어하며, 플래그가 없는 정식 회차는
+  기존 동작 그대로(회귀 0, 2026-june-grade3 재빌드 diff 로 확인).
+  PASSAGE 헤더 우측에는 발문 대신 `subtitle`(챕터 소제목)이 표시된다.
+- **짧은 문장은 분석 카드를 병합** — 한 문장씩 카드를 만들면 분량이 과도해져,
+  인접한 짧은 문장(특히 Ch1 의 인용 대사 9~13번)을 한 카드로 묶었다.
+  카드의 `covers: [원문 문장번호...]` 가 어떤 문장을 묶었는지 기록한다.
+  **본문 전문(PASSAGE) 페이지는 원문 70문장을 그대로 1문장씩 보여준다** — 병합은
+  분석 카드에만 적용된다.
 
 ## 문장 누락 0 보장 장치
 
