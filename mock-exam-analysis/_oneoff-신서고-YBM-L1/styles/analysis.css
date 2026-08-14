@@ -500,6 +500,14 @@ html, body {
   padding: 1.5px 7px;
   border-radius: 3px;
   letter-spacing: 0.02em;
+  /* 칩 안 텍스트 가운데 정렬 (2026-08-14).
+     letter-spacing 은 마지막 글자 뒤에도 붙어 오른쪽에만 여백이 더 생기고,
+     선두 이모지(⭐/✍)의 실제 글리프 폭이 advance 보다 좁아 왼쪽 여백이 커 보였다.
+     → inline-block + text-align:center 로 중앙 정렬하고, 마지막 글자 뒤에 붙는
+       letter-spacing 만큼(0.02em) 왼쪽 padding 을 더해 좌우 균형을 맞춘다. */
+  display: inline-block;
+  text-align: center;
+  padding-left: calc(7px + 0.02em);
 }
 .sent .tag.title-q  { background: var(--c-butter-soft); color: var(--c-butter-deep); border: 1px solid var(--c-butter); }
 .sent .tag.write-q  { background: var(--c-coral-soft);  color: var(--c-coral-deep);  border: 1px solid var(--c-coral); }
