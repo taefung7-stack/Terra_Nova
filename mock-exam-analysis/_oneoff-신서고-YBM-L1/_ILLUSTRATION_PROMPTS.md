@@ -1,8 +1,11 @@
 # 신서고 YBM 영어II L1 — 챕터별 삽화 프롬프트
 
-> 규격: **`--ar 16:5 --v 8.1`** (테라노바 삽화 공통 규칙)
-> 톤: 밝고 선명한 시네마틱 에디토리얼 + 페인터리 3D
-> 생성한 이미지를 `dist/assets/illust-{N}.png` 로 저장하면 재빌드 시 자동 반영됩니다.
+> 규격: **`--ar 16:5 --v 8.1`**
+> 톤: **플랫 벡터 에디토리얼 일러스트** — 흰 배경 + high key + 그라데이션 없음.
+> (2026-08-14 변경: 기존 "시네마틱 + 페인터리 3D" 는 결과물이 어둡게 나와 폐기.
+>  `cinematic` `painterly` `sunlit` `glowing` `golden` 등 어둠 유발 키워드 사용 금지.)
+> 각 챕터는 **소재를 겹치지 않게** 분리 — 그래피티·벽돌벽·군중·무대를 한 챕터에만 쓴다.
+> 생성한 이미지를 `dist/assets/illust-{N}.png` 로 저장하면 PDF 재렌더 시 자동 반영됩니다.
 
 ---
 
@@ -12,7 +15,7 @@
 - 문장 수: 18
 
 ```
-Wide cinematic editorial banner of a 1970s South Bronx street in bright clear daylight, weathered brick tenements with boarded windows on one side opening toward a sunlit avenue on the other, a diverse group of young African American and Latino teenagers standing in a circle shaking hands over a signed paper document, vivid warm sunlight washing the pavement, colorful graffiti lettering glowing on a wall behind them, hopeful uplifting mood, painterly 3D blended with cinematic editorial illustration, vibrant saturated palette of amber, teal and coral, crisp clean highlights, --ar 16:5 --v 8.1
+Flat vector editorial illustration, wide banner. A quiet 1970s Bronx street corner rebuilding itself: two hands from opposite sides meeting to sign a single sheet of paper laid on a crate, a small paper peace dove folded on top, empty boarded row houses reduced to simple flat geometric shapes far behind. NO crowd, NO graffiti, NO stage. Bold flat color shapes, no gradients, no photographic shading, thin confident linework, generous white background, high key, evenly lit, pastel cream and soft coral palette with one deep teal accent, calm hopeful mood, clean poster design --ar 16:5 --v 8.1
 ```
 
 ---
@@ -23,7 +26,7 @@ Wide cinematic editorial banner of a 1970s South Bronx street in bright clear da
 - 문장 수: 19
 
 ```
-Wide cinematic banner of a 1970s Bronx block party on a bright summer afternoon, a DJ spinning two turntables on a folding table beside tall speaker stacks, b-boys spinning inside a wide circle of clapping teenagers, an MC leaning into a microphone, colorful graffiti murals on brick walls, vivid saturated colors, clear sunlight, editorial painterly 3D style, energetic joyful mood, --ar 16:5 --v 8.1
+Flat vector editorial illustration, wide banner. Extreme close-up of DJ equipment as the hero subject: two turntables side by side with a vinyl record on each, a hand on one record, a crossfader between them, a curved arrow showing the switch between the two decks, headphones resting beside. NO people faces, NO crowd, NO street, NO graffiti. Bold flat color shapes, no gradients, thick clean outlines, white background, high key, evenly lit, bright yellow and sky blue palette with black record discs, technical diagram feel, playful and crisp --ar 16:5 --v 8.1
 ```
 
 ---
@@ -34,7 +37,7 @@ Wide cinematic banner of a 1970s Bronx block party on a bright summer afternoon,
 - 문장 수: 11
 
 ```
-Wide cinematic banner of a 1970s New York block party in bright afternoon sunlight, an energetic MC marching across a low outdoor stage like a drill instructor, knees high, microphone raised, chanting to the beat, a delighted crowd of young dancers laughing and cheering around him, turntables and speaker stacks on the side, colorful street murals behind, vivid saturated colors, clean bright daylight, editorial painterly 3D blend, joyful vibrant energy --ar 16:5 --v 8.1
+Flat vector editorial illustration, wide banner. A single stylized MC silhouette figure mid-stride across an empty stage, knee lifted like a marching drill instructor, microphone in hand, with the chant rendered as large decorative hand-lettered typography floating in the air beside him reading HIP HOP HIP HOP, small musical note shapes scattered along the path. NO audience, NO turntables, NO brick wall. Bold flat color shapes, no gradients, minimal shading, white background, high key, mint green and warm orange palette, typographic poster design, light and witty --ar 16:5 --v 8.1
 ```
 
 ---
@@ -45,7 +48,7 @@ Wide cinematic banner of a 1970s New York block party in bright afternoon sunlig
 - 문장 수: 16
 
 ```
-Wide cinematic banner of a 1980s hip-hop group performing on an outdoor block-party stage in bright afternoon sunlight, a rapper holding a microphone high with a DJ scratching turntables beside him, a large diverse crowd below moving and dancing to the beat with raised hands, colorful graffiti murals and city brick walls glowing in vivid daylight, painterly 3D and cinematic editorial blend, saturated warm oranges, teals and clean bright highlights, energetic joyful atmosphere of solidarity and respect, --ar 16:5 --v 8.1
+Flat vector editorial illustration, wide banner. A large open vinyl record sleeve standing upright at center with a record half pulled out, and from the record grooves a ribbon of handwritten lyric lines flows outward across the frame, the ribbon passing over small simple icons of a city window, a school, and scales of justice. NO performers, NO stage, NO crowd, NO graffiti. Bold flat color shapes, no gradients, clean linework, white background, high key, evenly lit, deep indigo and soft red palette on cream, thoughtful editorial mood --ar 16:5 --v 8.1
 ```
 
 ---
@@ -56,6 +59,6 @@ Wide cinematic banner of a 1980s hip-hop group performing on an outdoor block-pa
 - 문장 수: 6
 
 ```
-Wide cinematic editorial banner in bright vivid daylight, a young hip-hop artist standing confidently on a sunlit world stage holding a golden award medal, a giant translucent globe glowing behind with colorful sound waves radiating across continents, flags of many nations and a modern glass assembly hall in the background, diverse cheering crowd raising hands, painterly 3D blend with crisp editorial lighting, saturated blues, warm golds and vibrant magenta accents, clean luminous atmosphere, --ar 16:5 --v 8.1
+Flat vector editorial illustration, wide banner. A simple flat globe at center made of clean geometric continents, encircled by a thin orbit ring, with a small gold medal and a rolled document with a ribbon placed neatly on either side, and evenly spaced sound-wave arcs radiating outward in flat concentric lines. NO people, NO stage, NO crowd, NO buildings. Bold flat color shapes, no gradients, no shading, white background, high key, bright turquoise and gold palette, symmetrical infographic poster style, calm and dignified --ar 16:5 --v 8.1
 ```
 
