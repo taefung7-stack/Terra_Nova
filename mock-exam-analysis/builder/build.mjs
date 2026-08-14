@@ -86,11 +86,24 @@ function buildHeader(headTitle, tagText, tagColor) {
   </header>`;
 }
 
+/* 교재용(비판매) 데이터가 켜는 표시 옵션. buildHtml 진입 시 데이터에서 세팅한다.
+ * buildFooter/buildHeader 는 data 를 받지 않는 자리가 많아 모듈 스코프로 둔다.
+ *  - hideBrand:   푸터 좌측 "Terra Nova · 모의고사 분석지" 숨김
+ *  - hideHeadNo:  헤더 제목의 "· N번" 접미사 숨김
+ * 플래그가 없으면 전부 false → 정식 회차는 기존 동작 그대로(회귀 0). */
+let OPT = { hideBrand: false, hideHeadNo: false };
+
 function buildFooter(pageNo) {
+  const brand = OPT.hideBrand ? '' : 'Terra Nova · 모의고사 분석지';
   return `  <footer class="page-foot">
-    <span class="brand">Terra Nova · 모의고사 분석지</span>
+    <span class="brand">${brand}</span>
     <span class="pageno">${pageNo}</span>
   </footer>`;
+}
+
+/** 헤더 제목: 교재용은 "· N번" 을 붙이지 않는다. */
+function headTitle(data) {
+  return OPT.hideHeadNo ? data.exam : `${data.exam} · ${data.question_no}번`;
 }
 
 function buildExerciseBlock(data) {
@@ -298,7 +311,7 @@ function buildPassagePages(data, blockGroups, startPageNo) {
   return blockGroups.map((group, i) => {
     const body = group.map(render).join('\n');
     return `<section class="page">
-${buildHeader(data.exam + ' · ' + data.question_no + '번', 'PASSAGE')}
+${buildHeader(headTitle(data), 'PASSAGE')}
   <div class="page-body passage-layout">
 ${body}
   </div>
@@ -409,7 +422,7 @@ function buildAnalysisPage(data, items, pageNo, label) {
   const cards = items.map(it => (it && it.s) ? buildSentenceCard(it.s, it.part || 'full') : buildSentenceCard(it)).join('\n\n');
 
   return `<section class="page">
-${buildHeader(data.exam + ' · ' + data.question_no + '번', label)}
+${buildHeader(headTitle(data), label)}
   <div class="page-body">
     <div class="section-bar">
       SENTENCE ANALYSIS · 문장별 분석
@@ -599,7 +612,7 @@ async function measurePassageBlocks(data, dataDir) {
   // 실제 .page 컨텍스트(헤더·푸터·패딩·flex)에서 측정 — check-overflow와 동일 조건.
   // page-body 가용 높이(bodyH)와, 각 후보 본문 청크/answer/flow의 콘텐츠 높이를
   // 같은 방식(realContentHeight)으로 잰다.
-  const header = buildHeader(data.exam + ' · ' + data.question_no + '번', 'PASSAGE');
+  const header = buildHeader(headTitle(data), 'PASSAGE');
   const footer = buildFooter(2);
   const wrap = (inner, id) => `<section class="page">${header}<div class="page-body passage-layout" data-m="${id}">${inner}</div>${footer}</section>`;
 
@@ -929,7 +942,7 @@ async function measureFlowMerge(data, dataDir, lastGroup, firstAnalysisGroup, la
   if (splitHead) leadItems.push({ s: sentOf(firstAnalysisGroup[n]), part: 'head' });
   const leadHtml = leadItems.map(renderItem).join('\n\n');
   const lastPassageHtml = `<section class="page">
-${buildHeader(data.exam + ' · ' + data.question_no + '번', 'PASSAGE')}
+${buildHeader(headTitle(data), 'PASSAGE')}
   <div class="page-body passage-layout">
 ${passageInner}
     <div class="section-bar">
@@ -951,6 +964,12 @@ ${buildFooter(lastPageNo)}
 // ─────────────────────────────────────────────────────────────
 async function buildHtml(data, opts = {}) {
   const stylesHref = opts.stylesHref || '../styles/analysis.css';
+
+  // 교재용 표시 옵션을 이 문서 기준으로 갱신 (플래그 없으면 기존 동작).
+  OPT = {
+    hideBrand:  !!data.hide_brand,
+    hideHeadNo: !!data.hide_head_no,
+  };
 
   // PAGE 1 — 삽화 자리 보호: 단어 행 자동 축소
   let vocabLimit;
