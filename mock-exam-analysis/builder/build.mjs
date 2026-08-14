@@ -93,6 +93,15 @@ function buildHeader(headTitle, tagText, tagColor) {
  * 플래그가 없으면 전부 false → 정식 회차는 기존 동작 그대로(회귀 0). */
 let OPT = { hideBrand: false, hideHeadNo: false };
 
+/* 실측용 CSS 절대경로. 기본은 <data-dir>/../styles/analysis.css 이고,
+ * main() 에서 --styles= 가 주어지면 그 값으로 덮어쓴다.
+ * 실측 경로와 렌더 경로가 서로 다른 CSS 를 보면 페이지 분배가 어긋나므로
+ * 반드시 한 곳에서 결정한다. */
+let CSS_OVERRIDE = null;
+function cssPathFor(dataDir) {
+  return CSS_OVERRIDE || path.resolve(path.dirname(dataDir), 'styles', 'analysis.css');
+}
+
 function buildFooter(pageNo) {
   const brand = OPT.hideBrand ? '' : 'Terra Nova · 모의고사 분석지';
   return `  <footer class="page-foot">
@@ -494,7 +503,7 @@ function chunkSentences(sentences) {
 async function measureAndChunk(stylesHref, data, dataDir, startIdx = 0, prefixRestIdx = -1) {
   const puppeteer = (await import('puppeteer')).default;
   // CSS 파일을 인라인으로 포함 (file:// 상대경로 문제 우회)
-  const cssAbsPath = path.resolve(path.dirname(dataDir), 'styles', 'analysis.css');
+  const cssAbsPath = cssPathFor(dataDir);
   const cssContent = await fs.readFile(cssAbsPath, 'utf8');
   const sents = data.sentences || [];
   // 각 문장의 5형태(full·top·head·rest·para) 실측 — 여백 채우기용 분할 후보
@@ -606,7 +615,7 @@ ${blocks.join('\n')}
 // 쪼갠 블록 그룹 배열을 반환. 짧은 단문은 항상 1페이지(기존 동작 유지).
 async function measurePassageBlocks(data, dataDir) {
   const puppeteer = (await import('puppeteer')).default;
-  const cssAbsPath = path.resolve(path.dirname(dataDir), 'styles', 'analysis.css');
+  const cssAbsPath = cssPathFor(dataDir);
   const cssContent = await fs.readFile(cssAbsPath, 'utf8');
 
   // 실제 .page 컨텍스트(헤더·푸터·패딩·flex)에서 측정 — check-overflow와 동일 조건.
@@ -794,7 +803,7 @@ async function measurePage1Vocab(data, dataDir) {
   const vocab = data.vocab || [];
   if (!vocab.length) return 0;
   const puppeteer = (await import('puppeteer')).default;
-  const cssAbsPath = path.resolve(path.dirname(dataDir), 'styles', 'analysis.css');
+  const cssAbsPath = cssPathFor(dataDir);
   const cssContent = await fs.readFile(cssAbsPath, 'utf8');
 
   const html = `<!doctype html><html><head><meta charset="utf-8"><style>${cssContent}</style></head><body>
@@ -864,7 +873,7 @@ ${buildPage1(data)}
 async function measureFlowMerge(data, dataDir, lastGroup, firstAnalysisGroup, lastPageNo) {
   if (!firstAnalysisGroup || !firstAnalysisGroup.length) return null;
   const puppeteer = (await import('puppeteer')).default;
-  const cssAbsPath = path.resolve(path.dirname(dataDir), 'styles', 'analysis.css');
+  const cssAbsPath = cssPathFor(dataDir);
   const cssContent = await fs.readFile(cssAbsPath, 'utf8');
 
   const renderBlk = (blk) => {
@@ -1073,11 +1082,18 @@ async function main() {
   }
 
   const cwd = process.cwd();
-  const dataDir = path.resolve(cwd, args[0]);
-  const distDir = path.resolve(cwd, args[1] || path.join(path.dirname(dataDir), 'dist'));
+  // --styles= 같은 옵션은 위치 인자에서 제외한다.
+  const pos = args.filter(a => !a.startsWith('--'));
+  const dataDir = path.resolve(cwd, pos[0]);
+  const distDir = path.resolve(cwd, pos[1] || path.join(path.dirname(dataDir), 'dist'));
 
   // 상대 경로 stylesHref 결정 (dist에서 styles까지)
-  const stylesAbs = path.resolve(path.dirname(dataDir), 'styles', 'analysis.css');
+  // styles 위치는 기본적으로 <data-dir>/../styles/analysis.css.
+  // data 를 L1/L2 처럼 한 단계 더 중첩한 경우를 위해 --styles 로 직접 지정할 수 있다.
+  // (플래그 미사용 시 기존 동작 그대로 — 정식 회차 회귀 없음)
+  const stylesArg = args.find(a => a.startsWith('--styles='));
+  if (stylesArg) CSS_OVERRIDE = path.resolve(cwd, stylesArg.slice('--styles='.length));
+  const stylesAbs = cssPathFor(dataDir);
   let stylesHref = path.relative(distDir, stylesAbs).replace(/\\/g, '/');
   if (!stylesHref.startsWith('.')) stylesHref = './' + stylesHref;
 

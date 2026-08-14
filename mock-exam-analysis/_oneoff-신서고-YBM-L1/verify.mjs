@@ -1,23 +1,39 @@
 #!/usr/bin/env node
 /* ===================================================================
- * 신서고 YBM 영어II L1 — 무결성 검증 (문장 누락 0 보장)
+ * 신서고 YBM 영어II — 무결성 검증 (문장 누락 0 보장)
  * ===================================================================
- * 원문 정본(_SOURCE.js)과 각 챕터 JSON을 대조해 다음을 강제한다.
+ * 원문 정본(_SOURCE*.js)과 각 챕터 JSON을 대조해 다음을 강제한다.
  *   1) passage 가 원문과 verbatim 일치 (문장 수·순서·구두점까지)
- *   2) passage_ko / sentences 길이가 passage 와 동일 (분석 누락 0)
- *   3) sentences[i].en_html 의 태그 제거 결과 === passage[i]
- *   4) choices 정답 정확히 1개, vocab/flow 존재
+ *   2) passage_ko 길이가 passage 와 동일 (해석 누락 0)
+ *   3) 분석 카드를 이어붙인 영어가 원문 전문과 일치 + covers 가 전 문장을
+ *      빠짐없이 1회씩 오름차순 커버 (짧은 문장 병합 허용, 누락은 차단)
+ *   4) vocab/flow 존재
  *
- * 사용법: node _oneoff-신서고-YBM-L1/verify.mjs
+ * 사용법:
+ *   node _oneoff-신서고-YBM-L1/verify.mjs        # L1·L2 전부
+ *   node _oneoff-신서고-YBM-L1/verify.mjs L2     # 특정 과만
  * =================================================================== */
 
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { SOURCE } from './_SOURCE.js';
+import { SOURCE as SOURCE_L1 } from './_SOURCE.js';
+import { SOURCE as SOURCE_L2 } from './_SOURCE-L2.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const DATA_DIR = path.join(__dirname, 'data');
+
+/** 과(lesson)별 정본 + 데이터 경로 */
+const LESSONS = [
+  { id: 'L1', label: 'Lesson 1 · The Story of Hip-Hop Music',            source: SOURCE_L1 },
+  { id: 'L2', label: 'Lesson 2 · The Subscription Economy',              source: SOURCE_L2 },
+];
+
+const only = (process.argv[2] || '').toUpperCase();
+const TARGETS = only ? LESSONS.filter(l => l.id === only) : LESSONS;
+if (!TARGETS.length) {
+  console.error(`알 수 없는 과: ${only} (L1 또는 L2)`);
+  process.exit(2);
+}
 
 /** en_html → 순수 텍스트. 태그 제거 + HTML 엔티티 복원 + 공백 정규화.
  *  ★ 끊어읽기 마커 <span class="slash">/</span> 는 태그를 벗기면 '/' 문자가 남으므로
@@ -50,7 +66,12 @@ let warns = 0;
 const err = (m) => { console.error(`   ❌ ${m}`); errors++; };
 const warn = (m) => { console.warn(`   ⚠️  ${m}`); warns++; };
 
-console.log('🔍 신서고 YBM 영어II Lesson 1 — 무결성 검증\n');
+console.log('🔍 신서고 YBM 영어II — 무결성 검증\n');
+
+for (const lesson of TARGETS) {
+console.log(`\n${'═'.repeat(60)}\n${lesson.id} — ${lesson.label}\n${'═'.repeat(60)}`);
+const DATA_DIR = path.join(__dirname, 'data', lesson.id);
+const SOURCE = lesson.source;
 
 for (const ch of SOURCE) {
   const file = `${ch.no}.json`;
@@ -139,8 +160,16 @@ for (const ch of SOURCE) {
   //    구동사(take away)·굴절형(tried out)을 감안해 어간 기준으로 느슨하게 본다.
   //    표제어의 토큰 중 '하나라도' 본문에 어간 일치하면 통과 — 오탐 방지.
   const bodyLower = pas.join(' ').toLowerCase();
-  /** 굴절 어미를 떼어 어간 후보를 만든다. */
-  const stem = (w) => w.replace(/(ing|ed|es|s)$/, '');
+  /** 굴절 어미를 떼어 어간 후보를 만든다.
+   *  explore → exploring 처럼 '-e 탈락 + ing' 형태도 잡도록 어간 후보를 여러 개 만든다.
+   *  (표제어는 사전형(원형)으로 두는 게 맞으므로, 검증기 쪽이 활용형을 흡수한다) */
+  const stems = (w) => {
+    const base = w.replace(/(ing|ed|es|s)$/, '');
+    const out = new Set([w, base]);
+    if (w.endsWith('e')) out.add(w.slice(0, -1));   // explore → explor (exploring/explored 매칭)
+    if (w.endsWith('y')) out.add(w.slice(0, -1) + 'i'); // apply → appli (applying/applied)
+    return [...out].filter(s => s.length > 2);
+  };
   /** 불규칙 동사 원형 → 본문에 나타날 수 있는 활용형(표제어는 원형으로 두는 게 맞으므로 예외 처리). */
   const IRREGULAR = {
     overcome: ['overcame', 'overcome'],
@@ -161,8 +190,7 @@ for (const ch of SOURCE) {
     const tokens = head.split(/[^a-z'-]+/).filter(t => t.length > 2);
     if (!tokens.length) continue;
     const hit = tokens.some(t =>
-      bodyLower.includes(t) ||
-      bodyLower.includes(stem(t)) ||
+      stems(t).some(s => bodyLower.includes(s)) ||
       (IRREGULAR[t] || []).some(f => bodyLower.includes(f)));
     if (!hit) warn(`vocab "${v.word}" 가 본문에 등장하지 않음`);
   }
@@ -172,8 +200,12 @@ for (const ch of SOURCE) {
 }
 
 console.log('─'.repeat(60));
-const total = SOURCE.reduce((a, c) => a + c.sentences.length, 0);
-console.log(`원문 총 문장: ${total}`);
+console.log(`${lesson.id} 원문 총 문장: ${SOURCE.reduce((a, c) => a + c.sentences.length, 0)}`);
+}
+
+console.log('\n' + '═'.repeat(60));
+const grand = TARGETS.reduce((a, l) => a + l.source.reduce((b, c) => b + c.sentences.length, 0), 0);
+console.log(`전체 원문 문장: ${grand}`);
 if (errors) {
   console.error(`\n❌ 검증 실패 — 오류 ${errors}건, 경고 ${warns}건`);
   process.exit(1);

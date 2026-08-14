@@ -11,22 +11,53 @@
  *   표지는 번호를 매기지 않는다(표지 다음 본문이 1페이지).
  *
  * 사용법:
- *   node _oneoff-신서고-YBM-L1/combine.mjs [출력파일명.pdf]
+ *   node _oneoff-신서고-YBM-L1/combine.mjs <L1|L2> [출력파일명.pdf]
  * =================================================================== */
 
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { SOURCE } from './_SOURCE.js';
+import { SOURCE as SOURCE_L1 } from './_SOURCE.js';
+import { SOURCE as SOURCE_L2 } from './_SOURCE-L2.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const DIST = path.join(__dirname, 'dist');
+
+const LESSONS = {
+  L1: {
+    source: SOURCE_L1,
+    lessonNo: 1,
+    titleEn: 'The Story of Hip-Hop Music',
+    out: '신서고2-2중간_YBM영어II_Lesson1_본문분석_합본.pdf',
+  },
+  L2: {
+    source: SOURCE_L2,
+    lessonNo: 2,
+    titleEn: 'The Subscription Economy',
+    out: '신서고2-2중간_YBM영어II_Lesson2_본문분석_합본.pdf',
+  },
+};
+
+const lessonId = (process.argv[2] || 'L1').toUpperCase();
+const LESSON = LESSONS[lessonId];
+if (!LESSON) {
+  console.error(`알 수 없는 과: ${lessonId} (L1 또는 L2)`);
+  process.exit(2);
+}
+const SOURCE = LESSON.source;
+const DIST = path.join(__dirname, 'dist', lessonId);
+
+/* combined.html 에서 styles/analysis.css 까지의 상대경로를 실제 위치로 계산한다.
+ * ★ 하드코딩('../styles/...') 금지 — dist/{L1,L2}/ 로 한 단계 깊어지면서 경로가 깨졌고,
+ *   CSS 가 없으면 .page 의 A4 고정 높이가 사라져 페이지가 재배치되며 장수가 줄어든다
+ *   (34섹션 → 28페이지로 유실된 사고). */
+const cssHref = (path.relative(DIST, path.join(__dirname, 'styles', 'analysis.css')) || '')
+  .replace(/\\/g, '/');
 
 function esc(s) {
   return String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
-const outName = process.argv[2] || '신서고2-2중간_YBM영어II_Lesson1_본문분석_합본.pdf';
+const outName = process.argv[3] || LESSON.out;
 
 // ── 1) 챕터별 .page 섹션 수집 ────────────────────────────────────
 const files = (await fs.readdir(DIST))
@@ -126,7 +157,7 @@ const combinedHtml = `<!doctype html>
 <head>
 <meta charset="utf-8">
 <title>신서고 2-2 중간 · YBM 영어II Lesson 1 본문분석 합본 — Terra Nova</title>
-<link rel="stylesheet" href="../styles/analysis.css">
+<link rel="stylesheet" href="${cssHref}">
 <style>${extraCss}</style>
 </head>
 <body>
