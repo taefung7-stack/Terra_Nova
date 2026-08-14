@@ -120,7 +120,7 @@ function buildIllustration(data) {
   const file = data.illustration?.file || `assets/illust-${data.question_no}.png`;
   return `    <figure class="illust">
       <img src="${esc(file)}" alt="${esc(data.title_en || '삽화')}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-      <div class="placeholder" style="display:none">[삽화 영역] ${esc(file)} · 미드저니 16:5 --v 7</div>
+      <div class="placeholder" style="display:none">[삽화 영역] ${esc(file)} · 미드저니 16:5 --v 8.1</div>
     </figure>`;
 }
 

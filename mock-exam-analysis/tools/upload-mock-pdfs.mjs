@@ -80,6 +80,11 @@ for (const t of targets) {
     console.error(`🚫 차단: '${t.file}' 는 Impact7/내부본으로 보입니다. 업로드 금지.`);
     process.exit(3);
   }
+  // 개인용/일회성 산출물(_oneoff-*) 은 판매본이 아니므로 업로드 금지.
+  if (t.file.replace(/\\/g, '/').includes('/_oneoff-') || t.file.startsWith('_oneoff-')) {
+    console.error(`🚫 차단: '${t.file}' 는 _oneoff(개인용 1회성) 산출물입니다. 업로드 금지.`);
+    process.exit(3);
+  }
 }
 
 const sb = createClient(SUPABASE_URL, SERVICE_KEY, { auth: { persistSession: false } });
