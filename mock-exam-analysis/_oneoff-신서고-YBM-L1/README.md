@@ -75,7 +75,32 @@ node builder/pdf.mjs "_oneoff-신서고-YBM-L1/dist"
 for n in 1 2 3 4 5; do
   node builder/check-overflow.mjs "_oneoff-신서고-YBM-L1/dist/$n.html"
 done
+
+# 4) 합본 — 5개 챕터를 1개 PDF 로, 페이지 번호 연속 재부여
+node "_oneoff-신서고-YBM-L1/combine.mjs"
 ```
+
+## 합본 (`combine.mjs`)
+
+5개 챕터 PDF 를 하나로 합치되, **페이지 번호를 합본 전체 기준 1~32 로 다시 매긴다.**
+(챕터별 PDF 는 각자 1부터 시작하므로 그대로 이으면 1-7, 1-7, 1-6… 이 되어 못 씀)
+
+- 각 `.page` 의 `<span class="pageno">` 를 누적 카운터로 치환
+- **표지 + 목차**를 앞에 붙임 (이 두 장은 번호를 매기지 않음 → 본문 첫 장이 1p)
+- 목차의 챕터 시작 페이지는 실제 누적값으로 자동 계산
+
+산출물: `dist/신서고2-2중간_YBM영어II_Lesson1_본문분석_합본.pdf` (표지1 + 목차1 + 본문32 = **34p**)
+
+| Ch | 소제목 | 합본 페이지 |
+|----|--------|-------------|
+| 1 | The Story of Hip-Hop Music (도입) | 1~7 |
+| 2 | DJing, Breakdancing, and MCing | 8~14 |
+| 3 | The Origin of the Word Hip-Hop | 15~20 |
+| 4 | The Messages of Hip-Hop | 21~27 |
+| 5 | Hip-Hop in the 21st Century | 28~32 |
+
+> 공용 `builder/combine.mjs` 는 모의고사 표지("18~45번" 등)가 하드코딩돼 있고 페이지
+> 번호를 재부여하지 않으므로, 이 폴더 전용 `combine.mjs` 를 따로 두었다.
 
 ## 삽화
 
