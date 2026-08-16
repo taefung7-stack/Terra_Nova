@@ -186,6 +186,83 @@ node "_oneoff-신서고-YBM-L1/render-variant-pdf.mjs" "_oneoff-신서고-YBM-L1
 > 지금은 `path.relative` 로 계산한다. 합본 후 **PDF 페이지 수 = .page 섹션 수**를
 > 반드시 대조할 것.
 
+## 워크북 (2026-08-16 추가)
+
+분석지와 같은 5개 챕터 구성으로 **워크북**을 함께 만들었다.
+디자인은 정식 회차 워크북 v1.0(9-STEP) 그대로이며, 데이터만 이 폴더 것을 쓴다.
+
+| 과 | 챕터별 | 합본 |
+|----|--------|------|
+| L1 | `dist/L1/workbook-{1..5}.{html,pdf}` (11·11·9·11·11p) | `신서고2-2중간_YBM영어II_Lesson1_워크북_합본.pdf` — 표지1+목차1+본문53 = **55p** |
+| L2 | `dist/L2/workbook-{1..5}.{html,pdf}` (9·11·11·10·11p) | `신서고2-2중간_YBM영어II_Lesson2_워크북_합본.pdf` — 표지1+목차1+본문52 = **54p** |
+
+9-STEP: 본문·해석 → 어법 양자택일 → 어휘 양자택일 → 빈칸 첫글자 → 한글 해석 →
+영문 배열 → 통문장 영작 → 종합 → 정답·해설.
+챕터 시작 페이지 — L1: 1 / 12 / 23 / 32 / 43 · L2: 1 / 10 / 21 / 32 / 42
+
+### 빌드 방법
+
+```bash
+cd mock-exam-analysis
+L=L1   # 또는 L2
+
+# 0) 워크북 무결성 검증 — 반드시 먼저 (실패 시 빌드 금지)
+node "_oneoff-신서고-YBM-L1/verify-workbook.mjs"        # 인자 없으면 L1·L2 전부
+
+# 1) HTML 빌드 (★ --styles 필수 — data 가 L1/L2 로 한 단계 깊다)
+node builder/build-workbook.mjs "_oneoff-신서고-YBM-L1/data/$L" "_oneoff-신서고-YBM-L1/dist/$L" \
+  --styles="_oneoff-신서고-YBM-L1/styles/workbook.css"
+
+# 2) 넘침 검사 — overflow 0 이 절대 조건
+for n in 1 2 3 4 5; do
+  node builder/check-overflow.mjs "_oneoff-신서고-YBM-L1/dist/$L/workbook-$n.html"
+done
+
+# 3) PDF — 글리프 안전한 이미지 합성 경로 사용(분석지 PDF 는 건드리지 않도록 --match)
+node builder/pdf-image.mjs "_oneoff-신서고-YBM-L1/dist/$L" --match='^workbook-\d+\.html$'
+
+# 4) 합본 (표지+목차, 페이지 번호 연속 재부여, 페이지 수 자동 대조)
+node "_oneoff-신서고-YBM-L1/combine-workbook.mjs" $L
+```
+
+### `verify-workbook.mjs` — 워크북 전용 무결성 검증
+
+워크북 문항은 본문을 **변형**해 만들기 때문에, 검증이 없으면 원문에 없는 문장·단어를
+지어낸 문항이 조용히 섞인다. 다음을 **강제**한다(위반 시 exit 1).
+
+1. `en_template` 의 `{{n:A/B}}` 에 **정답 A 를 넣어 복원한 문장 = 본문 원문**(구두점까지)
+2. `answers` 가 토큰 수와 일치 + 각 정답이 A 슬롯과 동일, 정답≠오답
+3. 빈칸 `answer` 가 **빌더가 쓰는 `\banswer\b` 정규식으로 실제 매칭** + `letter` 가 첫 글자
+4. `jumble.answer` = 본문 원문, `words` 의 단어 집합 = answer 의 단어 집합
+5. `mixed.ref` 가 실재하는 `no`, 모든 `no` 가 1..n 연속
+6. `voca_check` 정답이 본문에 등장 / 본문 문장 커버리지 리포트
+
+### ⚠️ 함정 — 빌더의 고유명사 오탐 (2026-08-16)
+
+`build-workbook.mjs` 의 `buildProperNounSet` 은 **"문두에만 등장하는 대문자 단어"를
+고유명사로 간주**한다. 그래서 `Although` `While` `Despite` `Related` `Whoever`
+`Imagine` `Unemployment` `Abandoned` `Despair` 같은 **평범한 접속사·부사·일반명사가
+고유명사로 오판**되고, 그 단어가 정답인 양자택일 문항은 `dropProperChoice` 로
+**조용히 삭제**된다(에러 없음 — 정답지 "N문항" 숫자만 줄어든다).
+
+- 실제로 초안에서 L2/5 어법이 9→5 로 잘리는 등 9문항이 유실됐다.
+- **대응: 문두 단어를 정답 슬롯으로 쓰지 말 것.** 문법 포인트는 유지하되 토큰을
+  문장 중반 요소로 옮긴다. (예: `{{1:Although/Despite}} ... offers` →
+  `Although ... {{1:offers/offer}}`)
+- 검증: 저작 문항 수와 렌더된 정답지 "N문항" 이 일치하는지 반드시 대조.
+  (`verify-workbook.mjs` 는 데이터 정합성만 보므로 이 유실은 잡지 못한다)
+
+> 빌더는 v1.0 LOCKED 이고 정식 회차가 이 휴리스틱에 의존하므로 **빌더를 고치지 않고**
+> 데이터 쪽에서 회피했다. 정식 회차 재빌드 diff 0 으로 회귀 없음 확인.
+
+### STEP 1 2페이지 여백 (알려진 한계)
+
+STEP 1 은 분할 단위가 `passage-grid` / `voca-block` / `voca-2col` 같은 큰 덩어리라,
+마지막 블록이 안 들어가면 통째로 다음 장으로 밀려 2페이지가 27~60% 만 차는 챕터가 있다.
+`SAFETY` 상향(0.995)과 `voca-2col` 반쪽 분할을 둘 다 시도했으나 전자는 효과가 거의 없고
+후자는 **넘침(104~117%)** 을 유발해 폐기했다. overflow 0 이 절대 조건이므로 현재 동작을
+유지한다. 고치려면 반쪽 높이를 puppeteer 로 실측해야 한다(빌더 주석에 기록).
+
 ## 삽화
 
 미드저니 프롬프트는 각 챕터 JSON 의 `illustration.prompt` 에 들어 있고,

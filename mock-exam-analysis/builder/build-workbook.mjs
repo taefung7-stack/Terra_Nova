@@ -168,14 +168,33 @@ const STEP_META = {
 // 공통 컴포넌트
 // ─────────────────────────────────────────────────────────────
 
+/* 교재용(비판매) 데이터가 켜는 표시 옵션 — 분석지 빌더와 동일한 규약.
+ *  - hideBrand:  푸터 좌측 "Terra Nova · Workbook" 숨김
+ *  - hideHeadNo: 헤더의 "N번" 칩 숨김 (학년 칩이 비면 그 구분자도 함께 정리)
+ * 플래그가 없으면 전부 false → 정식 회차는 기존 동작 그대로(회귀 0). */
+let WB_OPT = { hideBrand: false, hideHeadNo: false };
+
+/* workbook.css 절대경로. 기본은 <dist>/../styles/workbook.css 이고,
+ * --styles= 가 주어지면 그 값으로 덮어쓴다.
+ * ★ href 는 하드코딩하지 말고 distDir 기준 상대경로로 계산할 것 —
+ *   dist/{L1,L2} 처럼 한 단계 깊어지면 '../styles/...' 가 깨지고, CSS 가 없으면
+ *   A4 페이지 고정이 풀려 페이지가 재배치된다(합본 페이지 유실 사고와 동일 원인). */
+let WB_CSS_ABS = null;
+function wbCssAbs(distDir) {
+  return WB_CSS_ABS || path.resolve(distDir, '..', 'styles', 'workbook.css');
+}
+function wbCssHref(distDir) {
+  return path.relative(distDir, wbCssAbs(distDir)).replace(/\\/g, '/');
+}
+
 function pageHead({ exam, grade, qno, stepNum }) {
   const meta = STEP_META[stepNum];
+  // 빈 칩(학년 없음 / 번호 숨김)은 구분자까지 같이 빼야 "| |" 가 남지 않는다.
+  const parts = [`<span class="exam-tag">${esc(exam)}</span>`];
+  if (grade) parts.push(`<span class="grade-tag">${esc(grade)}</span>`);
+  if (!WB_OPT.hideHeadNo && qno !== '' && qno != null) parts.push(`<span class="qno">${esc(qno)}번</span>`);
   return `  <header class="page-head">
-    <span class="exam-tag">${esc(exam)}</span>
-    <span class="sep">|</span>
-    <span class="grade-tag">${esc(grade)}</span>
-    <span class="sep">|</span>
-    <span class="qno">${esc(qno)}번</span>
+    ${parts.join('\n    <span class="sep">|</span>\n    ')}
     <span class="sep">·</span>
     <span class="step-subtitle">${esc(meta.title)}</span>
     <span class="wb-chip">WORKBOOK</span>
@@ -205,8 +224,9 @@ function directive(label, text) {
 }
 
 function pageFoot(pageNum, brand = 'Terra Nova · Workbook') {
+  const label = WB_OPT.hideBrand ? '' : brand;
   return `  <footer class="page-foot">
-    <span class="brand">${esc(brand)}</span>
+    <span class="brand">${esc(label)}</span>
     <span class="pageno">${pageNum}</span>
   </footer>`;
 }
@@ -683,7 +703,7 @@ function stripChoiceMarkers(s) {
   return String(s ?? '').replace(/\(\s*[a-e]\s*\)/g, '');
 }
 
-function buildHtml({ data, wb }) {
+function buildHtml({ data, wb, cssHref = '../styles/workbook.css' }) {
   // 본문·해석에서 문제지 보기 표식 (a)~(e) 제거 (원본 객체는 보존, 얕은 복제)
   data = {
     ...data,
@@ -766,6 +786,12 @@ function buildHtml({ data, wb }) {
     wb.mixed.forEach((m, i) => { m.no = i + 1; });
   }
 
+  // 교재용 표시 옵션을 이 문서 기준으로 갱신 (플래그 없으면 기존 동작).
+  WB_OPT = {
+    hideBrand:  !!data.hide_brand,
+    hideHeadNo: !!data.hide_head_no,
+  };
+
   const exam = data.exam || '';
   // exam 형식: "[2026] 3월 모의고사 2학년" → 학년 분리
   const gradeMatch = exam.match(/(\d학년)/);
@@ -798,7 +824,7 @@ function buildHtml({ data, wb }) {
 <meta charset="utf-8">
 <title>${esc(exam)} · ${esc(data.question_no)}번 워크북 — Terra Nova</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="../styles/workbook.css">
+<link rel="stylesheet" href="${cssHref}">
 </head>
 <body>
 
@@ -827,7 +853,7 @@ ${pages.join('\n\n')}
 
 async function paginateOverflow(html, stylesHref, distDir) {
   const puppeteer = (await import('puppeteer')).default;
-  const cssAbsPath = path.resolve(distDir, '..', 'styles', 'workbook.css');
+  const cssAbsPath = wbCssAbs(distDir);
   let cssContent = '';
   try { cssContent = await fs.readFile(cssAbsPath, 'utf8'); } catch {}
 
@@ -897,6 +923,16 @@ async function paginateOverflow(html, stylesHref, distDir) {
   const GAP = 6;       // auto-fit 항목 간 최소 간격 추정(여유분)
   const COLS = 2;      // answer-2col 컬럼 수
   const SAFETY = 0.94; // 가용 높이 안전 계수 (auto-fit space-around 여백 흡수)
+  /* NOTE (2026-08-16): STEP 1 페이지는 2페이지째가 30~60% 만 차는 경우가 있다.
+   * 분할 단위가 passage-grid / voca-block / voca-2col 같은 '큰 덩어리'라
+   * 마지막 블록이 통째로 안 들어가면 그대로 다음 장으로 밀리기 때문이다.
+   * 두 가지를 시도했다가 모두 폐기했으니 다시 시도하지 말 것:
+   *   ① SAFETY 를 0.995 로 상향 → L1/2 만 개선, 나머지 동일(블록이 안 들어가는 게
+   *      원인이라 계수로는 해소 안 됨).
+   *   ② voca-2col 을 좌/우 반쪽으로 쪼개 끼워넣기 → 채움률은 올랐으나 반쪽 높이를
+   *      절반으로 근사한 탓에 L1/1·L1/5·L2/2 가 104~117% 로 **넘침**.
+   * overflow 0 이 절대 조건이므로 여백을 남기는 현재 동작을 유지한다.
+   * 정말 고치려면 반쪽 높이를 puppeteer 로 '실측'해야 한다(measureAndChunk 방식). */
   const newSections = [];
 
   // 항목 배열을 capacity 기준 그리디 분배
@@ -1060,14 +1096,20 @@ function hashStr(str) { let h = 0; for (let i = 0; i < str.length; i++) { h = (h
 // ─────────────────────────────────────────────────────────────
 
 async function main() {
-  const dataArg = process.argv[2];
-  const distArg = process.argv[3];
+  const argv = process.argv.slice(2);
+  // --styles= 옵션은 위치 인자에서 제외 (data 가 L1/L2 처럼 중첩된 경우용)
+  const stylesArg = argv.find(a => a.startsWith('--styles='));
+  const pos = argv.filter(a => !a.startsWith('--'));
+  const dataArg = pos[0];
+  const distArg = pos[1];
   if (!dataArg) {
-    console.error('Usage: node builder/build-workbook.mjs <data-dir> [<dist-dir>]');
+    console.error('Usage: node builder/build-workbook.mjs <data-dir> [<dist-dir>] [--styles=<css>]');
     process.exit(1);
   }
   const dataDir = path.resolve(process.cwd(), dataArg);
   const distDir = path.resolve(process.cwd(), distArg || path.join(dataArg, '..', 'dist'));
+  // 기본값은 기존 규칙(<dist>/../styles/workbook.css) — 플래그 없으면 회귀 0
+  if (stylesArg) WB_CSS_ABS = path.resolve(process.cwd(), stylesArg.slice('--styles='.length));
 
   await fs.mkdir(distDir, { recursive: true });
 
@@ -1089,10 +1131,10 @@ async function main() {
     const wb   = JSON.parse(await fs.readFile(path.join(dataDir, wbFile), 'utf8'));
     const data = JSON.parse(await fs.readFile(dataFile, 'utf8'));
 
-    let html = buildHtml({ data, wb });
+    let html = buildHtml({ data, wb, cssHref: wbCssHref(distDir) });
     // 긴 지문(STEP overflow)만 연속 페이지로 분할 — 짧은 워크북은 변화 없음
     try {
-      html = await paginateOverflow(html, '../styles/workbook.css', distDir);
+      html = await paginateOverflow(html, wbCssHref(distDir), distDir);
     } catch (err) {
       console.warn(`   ⚠️  paginate skipped for ${qno}: ${err.message}`);
     }

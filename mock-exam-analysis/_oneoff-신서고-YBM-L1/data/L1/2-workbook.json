@@ -1,0 +1,966 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "2.json",
+  "_note": "L1 Ch2 워크북 — 본문 19문장 풀커버.",
+  "voca_check": {
+    "en_to_ko": [
+      {
+        "word": "treaty",
+        "pos": "명"
+      },
+      {
+        "word": "abandoned",
+        "pos": "형"
+      },
+      {
+        "word": "eventually",
+        "pos": "부"
+      },
+      {
+        "word": "emerge",
+        "pos": "동"
+      },
+      {
+        "word": "vibrant",
+        "pos": "형"
+      },
+      {
+        "word": "movement",
+        "pos": "명"
+      },
+      {
+        "word": "extend",
+        "pos": "동"
+      },
+      {
+        "word": "influential",
+        "pos": "형"
+      },
+      {
+        "word": "instrumental",
+        "pos": "형"
+      },
+      {
+        "word": "separate",
+        "pos": "형"
+      }
+    ],
+    "ko_to_en": [
+      {
+        "meaning": "조약, 협정",
+        "pos": "명",
+        "answer": "treaty"
+      },
+      {
+        "meaning": "버려진, 방치된",
+        "pos": "형",
+        "answer": "abandoned"
+      },
+      {
+        "meaning": "결국, 마침내",
+        "pos": "부",
+        "answer": "eventually"
+      },
+      {
+        "meaning": "생겨나다, 나타나다",
+        "pos": "동",
+        "answer": "emerged"
+      },
+      {
+        "meaning": "활기 넘치는",
+        "pos": "형",
+        "answer": "vibrant"
+      },
+      {
+        "meaning": "주최하다, (행사를) 열다",
+        "pos": "동",
+        "answer": "hosted"
+      },
+      {
+        "meaning": "기법, 기술",
+        "pos": "명",
+        "answer": "technique"
+      },
+      {
+        "meaning": "늘리다, 연장하다",
+        "pos": "동",
+        "answer": "extend"
+      },
+      {
+        "meaning": "발상지, 출생지",
+        "pos": "명",
+        "answer": "birthplace"
+      },
+      {
+        "meaning": "관중, 청중",
+        "pos": "명",
+        "answer": "audience"
+      }
+    ],
+    "definitions": [
+      {
+        "def": "a formal written agreement between two countries or groups",
+        "answer": "treaty"
+      },
+      {
+        "def": "left empty and no longer used or cared for",
+        "answer": "abandoned"
+      },
+      {
+        "def": "to come out and become known or visible for the first time",
+        "answer": "emerged"
+      },
+      {
+        "def": "full of energy and life",
+        "answer": "vibrant"
+      },
+      {
+        "def": "a special way of doing something that needs skill",
+        "answer": "technique"
+      }
+    ],
+    "expressions": [
+      {
+        "ko": "~에 기반을 둔",
+        "answer": "based on"
+      },
+      {
+        "ko": "~로 여겨지다",
+        "answer": "is regarded as"
+      },
+      {
+        "ko": "더 이상 ~않다",
+        "answer": "No longer"
+      },
+      {
+        "ko": "뽐내다, 과시하다",
+        "answer": "show off"
+      },
+      {
+        "ko": "~의 줄임말인",
+        "answer": "short for"
+      }
+    ]
+  },
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "After the peace treaty, the gangs that {{1:had fought/have fought}} one another {{2:started/starting}} partying together.",
+      "ko_full": "평화 협정 이후, 서로 싸웠던 갱단들이 함께 파티를 하기 시작했다.",
+      "answers": [
+        "had fought",
+        "started"
+      ],
+      "explain": [
+        "주절 시제(started)보다 앞선 일 → 과거완료 had fought (현재완료는 과거 시점 문장과 어울리지 않음).",
+        "문장의 본동사 자리 → 과거형 started (starting은 준동사라 단독으로 본동사가 될 수 없음)."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "Abandoned buildings and parking lots {{1:were/was}} used for events {{2:called/calling}} block parties.",
+      "ko_full": "버려진 건물과 주차장이 블록 파티라고 불리는 행사에 사용되었다.",
+      "answers": [
+        "were",
+        "called"
+      ],
+      "explain": [
+        "주어가 buildings and parking lots(복수) → be동사 복수형 were.",
+        "events는 '불리는' 대상 → 과거분사 called의 후치수식 (calling은 능동이라 부적절)."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 4,
+      "en_template": "A vibrant youth movement {{1:called/calling}} hip-hop culture, {{2:based/basing}} on DJing, breakdancing, MCing, and graffiti.",
+      "ko_full": "DJ, 브레이크댄스, MC, 그리고 그래피티에 기반을 둔, 힙합 문화라고 불리는 활기 넘치는 청년 운동이었다.",
+      "answers": [
+        "called",
+        "based"
+      ],
+      "explain": [
+        "movement가 '~라고 불리는' 수동 관계 → 과거분사 called.",
+        "be based on(~에 기반을 두다)의 과거분사형 based가 movement를 뒤에서 수식한다."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 6,
+      "en_template": "The most popular block parties were those hosted by DJ Kool Herc, {{1:who/which}} {{2:is regarded as/is regarded to}} the founding father of hip-hop.",
+      "ko_full": "가장 인기 있는 블록 파티는 DJ Kool Herc가 주최한 것들이었는데, 그는 힙합의 창시자로 여겨진다.",
+      "answers": [
+        "who",
+        "is regarded as"
+      ],
+      "explain": [
+        "선행사가 사람(DJ Kool Herc) → 계속적 용법의 관계대명사 who.",
+        "'~로 여겨지다'는 be regarded as로 쓴다 (regarded to는 틀린 결합)."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 8,
+      "en_template": "At this party, {{1:using/used}} two turntables at the same time, Herc played two copies of the same record and then switched between them {{2:to extend/extending}} the drum section known as the break.",
+      "ko_full": "이 파티에서, 두 대의 턴테이블을 동시에 사용하면서, Herc는 같은 음반 두 장을 틀고 그 사이를 오가며 브레이크라고 알려진 드럼 구간을 늘렸다.",
+      "answers": [
+        "using",
+        "to extend"
+      ],
+      "explain": [
+        "의미상 주어 Herc가 턴테이블을 '사용하는' 능동 관계 → 현재분사 분사구문 using.",
+        "'~하기 위해'라는 목적을 나타내므로 부사적 용법의 to부정사 to extend."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 9,
+      "en_template": "No longer {{1:did people have/people had}} to stop dancing at the end of the record {{2:while/during}} the DJ changed the LP disc.",
+      "ko_full": "더 이상 사람들은 DJ가 LP판을 바꾸는 동안 음반이 끝나는 지점에서 춤을 멈출 필요가 없었다.",
+      "answers": [
+        "did people have",
+        "while"
+      ],
+      "explain": [
+        "부정어 No longer가 문두에 오면 의문문 어순으로 도치된다 → did + 주어 + 동사원형.",
+        "뒤에 '주어+동사'의 절이 오므로 접속사 while (during은 전치사라 명사만 취함)."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 12,
+      "en_template": "People {{1:would/will}} form dancer circles and use the break {{2:to show off/showing off}} their individual dancing skills.",
+      "ko_full": "사람들은 춤추는 사람들의 원을 만들고 브레이크를 이용해 각자의 춤 실력을 뽐내곤 했다.",
+      "answers": [
+        "would",
+        "to show off"
+      ],
+      "explain": [
+        "과거의 반복된 습관 '~하곤 했다' → would (will은 미래라 과거 서술과 충돌).",
+        "브레이크를 이용하는 '목적'을 나타내므로 to부정사 to show off."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 13,
+      "en_template": "Kool Herc named the people {{1:dancing/danced}} to his music B-Boys and B-Girls, {{2:short for/short of}} Break-Boys and Break-Girls.",
+      "ko_full": "Kool Herc는 자신의 음악에 맞춰 춤추는 사람들을 Break-Boys와 Break-Girls의 줄임말인 B-Boys와 B-Girls라고 이름 붙였다.",
+      "answers": [
+        "dancing",
+        "short for"
+      ],
+      "explain": [
+        "the people이 스스로 '춤추는' 능동 관계 → 현재분사 dancing의 후치수식.",
+        "'~의 줄임말인'은 short for (short of는 '~이 부족한')."
+      ]
+    },
+    {
+      "no": 9,
+      "ref_sentence": 18,
+      "en_template": "When DJs couldn't do {{1:both/either}} DJing and rhythmic shouting at the same time, they asked a friend {{2:to take/taking}} the role of addressing the audience, that is, of the Master of Ceremonies or MC, at their parties.",
+      "ko_full": "DJ들이 DJ 일과 리듬에 맞춘 외침을 동시에 할 수 없었을 때, 그들은 친구에게 자신들의 파티에서 관객에게 말을 거는 역할, 즉 사회자(Master of Ceremonies) 혹은 MC의 역할을 맡아 달라고 부탁했다.",
+      "answers": [
+        "both",
+        "to take"
+      ],
+      "explain": [
+        "and와 짝을 이루는 상관접속사는 both A and B (either는 or와 짝을 이룸).",
+        "ask + 목적어 + to부정사 구문이므로 to take."
+      ]
+    }
+  ],
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "After the peace {{1:treaty/threat}}, the gangs that had {{2:fought/forgotten}} one another started partying together.",
+      "ko_full": "평화 협정 이후, 서로 싸웠던 갱단들이 함께 파티를 하기 시작했다.",
+      "answers": [
+        "treaty",
+        "fought"
+      ],
+      "explain": [
+        "갱단들이 맺은 평화 '협정' → treaty. threat은 '위협'으로 peace와 모순된다.",
+        "이전에 서로 '싸웠던' 사이 → fought. forgotten(잊은)은 one another와 어울리지 않는다."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "Abandoned buildings and parking lots were {{1:used/refused}} for events {{2:called/calling}} block parties.",
+      "ko_full": "버려진 건물과 주차장이 블록 파티라고 불리는 행사에 사용되었다.",
+      "answers": [
+        "used",
+        "called"
+      ],
+      "explain": [
+        "버려진 건물이 행사에 '사용되었다'는 뜻이므로 used.",
+        "'블록 파티라고 불리는' 행사이므로 수동의 과거분사 called."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 4,
+      "en_template": "A {{1:vibrant/dull}} youth {{2:movement/monument}} called hip-hop culture, based on DJing, breakdancing, MCing, and graffiti.",
+      "ko_full": "DJ, 브레이크댄스, MC, 그리고 그래피티에 기반을 둔, 힙합 문화라고 불리는 활기 넘치는 청년 운동이었다.",
+      "answers": [
+        "vibrant",
+        "movement"
+      ],
+      "explain": [
+        "젊은이들의 활기찬 문화 → vibrant(활기 넘치는). dull은 '따분한'으로 정반대.",
+        "문화적 흐름을 뜻하는 (사회적) '운동' → movement. monument는 '기념물'."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 5,
+      "en_template": "It {{1:replaced/reflected}} gang {{2:violence/silence}} with music, dance, art, and style.",
+      "ko_full": "그것은 갱단의 폭력을 음악, 춤, 예술, 그리고 스타일로 대체했다.",
+      "answers": [
+        "replaced",
+        "violence"
+      ],
+      "explain": [
+        "뒤에 with가 이어지는 replace A with B(A를 B로 대체하다) 구문 → replaced.",
+        "음악·춤이 대신하게 된 것은 갱단의 '폭력' → violence. silence는 '침묵'."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 6,
+      "en_template": "The most popular block parties were those {{1:hosted/attacked}} by DJ Kool Herc, who is regarded as the {{2:founding father/distant relative}} of hip-hop.",
+      "ko_full": "가장 인기 있는 블록 파티는 DJ Kool Herc가 주최한 것들이었는데, 그는 힙합의 창시자로 여겨진다.",
+      "answers": [
+        "hosted",
+        "founding father"
+      ],
+      "explain": [
+        "파티를 '주최한' 사람이라는 뜻 → hosted. attacked(공격받은)는 문맥에 어긋난다.",
+        "힙합을 처음 만든 인물 → founding father(창시자). distant relative는 '먼 친척'."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 7,
+      "en_template": "Herc's party for his sister's birthday in August 1973 is now known as the {{1:birthplace/graveyard}} of hip-hop music because of his new DJ {{2:technique/tradition}}.",
+      "ko_full": "1973년 8월에 열린 여동생의 생일을 위한 Herc의 파티는 그의 새로운 DJ 기법 때문에 오늘날 힙합 음악의 발상지로 알려져 있다.",
+      "answers": [
+        "birthplace",
+        "technique"
+      ],
+      "explain": [
+        "힙합이 시작된 곳이라는 뜻 → birthplace(발상지). graveyard(무덤)는 정반대.",
+        "새롭게 고안한 '기법' → technique. tradition(전통)은 new와 의미가 충돌한다."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 8,
+      "en_template": "At this party, using two turntables at the same time, Herc played two copies of the same record and then {{1:switched/stopped}} between them to {{2:extend/shorten}} the drum section known as the break.",
+      "ko_full": "이 파티에서, 두 대의 턴테이블을 동시에 사용하면서, Herc는 같은 음반 두 장을 틀고 그 사이를 오가며 브레이크라고 알려진 드럼 구간을 늘렸다.",
+      "answers": [
+        "switched",
+        "extend"
+      ],
+      "explain": [
+        "두 음반 사이를 '오갔다' → switched between them. stopped는 between them과 결합하지 않는다.",
+        "드럼 구간을 '늘리려는' 것이 이 기법의 목적 → extend. shorten(줄이다)은 정반대."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 11,
+      "en_template": "The break section became the most {{1:anticipated/ignored}} {{2:part/period}} of a song.",
+      "ko_full": "브레이크 구간은 한 곡에서 가장 기대되는 부분이 되었다.",
+      "answers": [
+        "anticipated",
+        "part"
+      ],
+      "explain": [
+        "사람들이 가장 기다린 구간 → anticipated(기대되는). ignored(무시되는)는 정반대.",
+        "곡을 구성하는 '부분' → part. period는 '기간'이라 곡의 구성 요소를 가리키지 못한다."
+      ]
+    },
+    {
+      "no": 9,
+      "ref_sentence": 15,
+      "en_template": "DJs like Kool Herc would speak in rhythm and {{1:rhyme/rumor}} over {{2:instrumental/vocal}} parts of songs to excite the crowd.",
+      "ko_full": "Kool Herc 같은 DJ들은 관중을 열광시키기 위해 곡의 연주 부분 위에 리듬과 운을 맞춰 말하곤 했다.",
+      "answers": [
+        "rhyme",
+        "instrumental"
+      ],
+      "explain": [
+        "리듬과 짝을 이루는 랩의 요소는 '운' → rhyme. rumor는 '소문'.",
+        "노래 없이 연주만 흐르는 구간 위에 말을 얹는다 → instrumental. vocal이면 목소리가 겹쳐 모순된다."
+      ]
+    }
+  ],
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        {
+          "pos": 1,
+          "letter": "t",
+          "answer": "treaty",
+          "after": "the gangs"
+        },
+        {
+          "pos": 2,
+          "letter": "f",
+          "answer": "fought",
+          "after": "one another"
+        },
+        {
+          "pos": 3,
+          "letter": "s",
+          "answer": "started",
+          "after": "partying together"
+        }
+      ],
+      "ko_full": "평화 협정 이후, 서로 싸웠던 갱단들이 함께 파티를 하기 시작했다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        {
+          "pos": 1,
+          "letter": "A",
+          "answer": "Abandoned",
+          "after": "buildings"
+        },
+        {
+          "pos": 2,
+          "letter": "p",
+          "answer": "parking",
+          "after": "lots were used"
+        },
+        {
+          "pos": 3,
+          "letter": "c",
+          "answer": "called",
+          "after": "block parties"
+        }
+      ],
+      "ko_full": "버려진 건물과 주차장이 블록 파티라고 불리는 행사에 사용되었다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 4,
+      "hints": [
+        {
+          "pos": 1,
+          "letter": "v",
+          "answer": "vibrant",
+          "after": "youth movement"
+        },
+        {
+          "pos": 2,
+          "letter": "m",
+          "answer": "movement",
+          "after": "called hip-hop culture"
+        },
+        {
+          "pos": 3,
+          "letter": "b",
+          "answer": "based",
+          "after": "on DJing"
+        }
+      ],
+      "ko_full": "DJ, 브레이크댄스, MC, 그리고 그래피티에 기반을 둔, 힙합 문화라고 불리는 활기 넘치는 청년 운동이었다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 5,
+      "hints": [
+        {
+          "pos": 1,
+          "letter": "r",
+          "answer": "replaced",
+          "after": "gang violence"
+        },
+        {
+          "pos": 2,
+          "letter": "v",
+          "answer": "violence",
+          "after": "with music"
+        },
+        {
+          "pos": 3,
+          "letter": "s",
+          "answer": "style",
+          "after": ""
+        }
+      ],
+      "ko_full": "그것은 갱단의 폭력을 음악, 춤, 예술, 그리고 스타일로 대체했다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 6,
+      "hints": [
+        {
+          "pos": 1,
+          "letter": "p",
+          "answer": "popular",
+          "after": "block parties"
+        },
+        {
+          "pos": 2,
+          "letter": "h",
+          "answer": "hosted",
+          "after": "by DJ Kool Herc"
+        },
+        {
+          "pos": 3,
+          "letter": "r",
+          "answer": "regarded",
+          "after": "as the founding father"
+        }
+      ],
+      "ko_full": "가장 인기 있는 블록 파티는 DJ Kool Herc가 주최한 것들이었는데, 그는 힙합의 창시자로 여겨진다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 7,
+      "hints": [
+        {
+          "pos": 1,
+          "letter": "b",
+          "answer": "birthday",
+          "after": "in August 1973"
+        },
+        {
+          "pos": 2,
+          "letter": "b",
+          "answer": "birthplace",
+          "after": "of hip-hop music"
+        },
+        {
+          "pos": 3,
+          "letter": "t",
+          "answer": "technique",
+          "after": ""
+        }
+      ],
+      "ko_full": "1973년 8월에 열린 여동생의 생일을 위한 Herc의 파티는 그의 새로운 DJ 기법 때문에 오늘날 힙합 음악의 발상지로 알려져 있다."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 8,
+      "hints": [
+        {
+          "pos": 1,
+          "letter": "t",
+          "answer": "turntables",
+          "after": "at the same time"
+        },
+        {
+          "pos": 2,
+          "letter": "s",
+          "answer": "switched",
+          "after": "between them"
+        },
+        {
+          "pos": 3,
+          "letter": "e",
+          "answer": "extend",
+          "after": "the drum section"
+        }
+      ],
+      "ko_full": "이 파티에서, 두 대의 턴테이블을 동시에 사용하면서, Herc는 같은 음반 두 장을 틀고 그 사이를 오가며 브레이크라고 알려진 드럼 구간을 늘렸다."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 12,
+      "hints": [
+        {
+          "pos": 1,
+          "letter": "c",
+          "answer": "circles",
+          "after": "and use the break"
+        },
+        {
+          "pos": 2,
+          "letter": "i",
+          "answer": "individual",
+          "after": "dancing skills"
+        },
+        {
+          "pos": 3,
+          "letter": "d",
+          "answer": "dancing",
+          "after": "skills"
+        }
+      ],
+      "ko_full": "사람들은 춤추는 사람들의 원을 만들고 브레이크를 이용해 각자의 춤 실력을 뽐내곤 했다."
+    },
+    {
+      "no": 9,
+      "ref_sentence": 18,
+      "hints": [
+        {
+          "pos": 1,
+          "letter": "r",
+          "answer": "rhythmic",
+          "after": "shouting at the same time"
+        },
+        {
+          "pos": 2,
+          "letter": "a",
+          "answer": "addressing",
+          "after": "the audience"
+        },
+        {
+          "pos": 3,
+          "letter": "a",
+          "answer": "audience",
+          "after": "that is"
+        }
+      ],
+      "ko_full": "DJ들이 DJ 일과 리듬에 맞춘 외침을 동시에 할 수 없었을 때, 그들은 친구에게 자신들의 파티에서 관객에게 말을 거는 역할, 즉 사회자(Master of Ceremonies) 혹은 MC의 역할을 맡아 달라고 부탁했다."
+    }
+  ],
+  "ko_translation": [
+    {
+      "no": 1,
+      "ref_sentence": 1
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2
+    },
+    {
+      "no": 3,
+      "ref_sentence": 5
+    },
+    {
+      "no": 4,
+      "ref_sentence": 6
+    },
+    {
+      "no": 5,
+      "ref_sentence": 8
+    },
+    {
+      "no": 6,
+      "ref_sentence": 9
+    },
+    {
+      "no": 7,
+      "ref_sentence": 12
+    },
+    {
+      "no": 8,
+      "ref_sentence": 15
+    },
+    {
+      "no": 9,
+      "ref_sentence": 18
+    }
+  ],
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": [
+        "After",
+        "the",
+        "peace",
+        "treaty",
+        "the",
+        "gangs",
+        "that",
+        "had",
+        "fought",
+        "one",
+        "another",
+        "started",
+        "partying",
+        "together"
+      ],
+      "answer": "After the peace treaty, the gangs that had fought one another started partying together."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": [
+        "Abandoned",
+        "buildings",
+        "and",
+        "parking",
+        "lots",
+        "were",
+        "used",
+        "for",
+        "events",
+        "called",
+        "block",
+        "parties"
+      ],
+      "answer": "Abandoned buildings and parking lots were used for events called block parties."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 5,
+      "words": [
+        "It",
+        "replaced",
+        "gang",
+        "violence",
+        "with",
+        "music",
+        "dance",
+        "art",
+        "and",
+        "style"
+      ],
+      "answer": "It replaced gang violence with music, dance, art, and style."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 6,
+      "words": [
+        "The",
+        "most",
+        "popular",
+        "block",
+        "parties",
+        "were",
+        "those",
+        "hosted",
+        "by",
+        "DJ",
+        "Kool",
+        "Herc",
+        "who",
+        "is",
+        "regarded",
+        "as",
+        "the",
+        "founding",
+        "father",
+        "of",
+        "hip-hop"
+      ],
+      "answer": "The most popular block parties were those hosted by DJ Kool Herc, who is regarded as the founding father of hip-hop."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 9,
+      "words": [
+        "No",
+        "longer",
+        "did",
+        "people",
+        "have",
+        "to",
+        "stop",
+        "dancing",
+        "at",
+        "the",
+        "end",
+        "of",
+        "the",
+        "record",
+        "while",
+        "the",
+        "DJ",
+        "changed",
+        "the",
+        "LP",
+        "disc"
+      ],
+      "answer": "No longer did people have to stop dancing at the end of the record while the DJ changed the LP disc."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 10,
+      "words": [
+        "Kool",
+        "Herc's",
+        "style",
+        "of",
+        "DJing",
+        "quickly",
+        "became",
+        "influential",
+        "in",
+        "the",
+        "rise",
+        "of",
+        "hip-hop",
+        "music",
+        "and",
+        "breakdancing"
+      ],
+      "answer": "Kool Herc's style of DJing quickly became influential in the rise of hip-hop music and breakdancing."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 12,
+      "words": [
+        "People",
+        "would",
+        "form",
+        "dancer",
+        "circles",
+        "and",
+        "use",
+        "the",
+        "break",
+        "to",
+        "show",
+        "off",
+        "their",
+        "individual",
+        "dancing",
+        "skills"
+      ],
+      "answer": "People would form dancer circles and use the break to show off their individual dancing skills."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 14,
+      "words": [
+        "These",
+        "people",
+        "began",
+        "to",
+        "dance",
+        "in",
+        "groups",
+        "in",
+        "the",
+        "streets",
+        "and",
+        "build",
+        "a",
+        "street",
+        "dance",
+        "battle",
+        "culture"
+      ],
+      "answer": "These people began to dance in groups in the streets and build a street dance battle culture."
+    },
+    {
+      "no": 9,
+      "ref_sentence": 15,
+      "words": [
+        "DJs",
+        "like",
+        "Kool",
+        "Herc",
+        "would",
+        "speak",
+        "in",
+        "rhythm",
+        "and",
+        "rhyme",
+        "over",
+        "instrumental",
+        "parts",
+        "of",
+        "songs",
+        "to",
+        "excite",
+        "the",
+        "crowd"
+      ],
+      "answer": "DJs like Kool Herc would speak in rhythm and rhyme over instrumental parts of songs to excite the crowd."
+    }
+  ],
+  "sentence_translation": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "given": "ko"
+    },
+    {
+      "no": 2,
+      "ref_sentence": 4,
+      "given": "ko"
+    },
+    {
+      "no": 3,
+      "ref_sentence": 6,
+      "given": "ko"
+    },
+    {
+      "no": 4,
+      "ref_sentence": 7,
+      "given": "ko"
+    },
+    {
+      "no": 5,
+      "ref_sentence": 9,
+      "given": "ko"
+    },
+    {
+      "no": 6,
+      "ref_sentence": 11,
+      "given": "ko"
+    },
+    {
+      "no": 7,
+      "ref_sentence": 13,
+      "given": "ko"
+    },
+    {
+      "no": 8,
+      "ref_sentence": 15,
+      "given": "ko"
+    },
+    {
+      "no": 9,
+      "ref_sentence": 19,
+      "given": "ko"
+    }
+  ],
+  "mixed": [
+    {
+      "kind": "grammar",
+      "ref": 6,
+      "no": 1
+    },
+    {
+      "kind": "vocab",
+      "ref": 5,
+      "no": 2
+    },
+    {
+      "kind": "fill",
+      "ref": 7,
+      "no": 3
+    },
+    {
+      "kind": "ko",
+      "ref": 5,
+      "no": 4
+    },
+    {
+      "kind": "jumble",
+      "ref": 4,
+      "no": 5
+    },
+    {
+      "kind": "sent",
+      "ref": 7,
+      "no": 6
+    },
+    {
+      "kind": "grammar",
+      "ref": 9,
+      "no": 7
+    },
+    {
+      "kind": "vocab",
+      "ref": 9,
+      "no": 8
+    }
+  ]
+}
