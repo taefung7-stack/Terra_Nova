@@ -22,17 +22,22 @@ const only = (process.argv[2] || '').toUpperCase();
 const targets = only ? LESSONS.filter(l => l.id === only) : LESSONS;
 if (!targets.length) { console.error(`알 수 없는 과: ${only}`); process.exit(2); }
 
-/* 과별 톤 노트 — L1 은 2026-08-16 실사(포토리얼)로 전환, L2 는 플랫 벡터 유지. */
-const TONE_NOTE = {
-  L1: `> 톤: **실사 사진(포토리얼)** — 밝고 부드러운 자연광. (2026-08-16 전환)
-> 밝기는 \`bright\` 같은 형용사가 아니라 **조명 조건**으로 지정한다 —
+/* 과별 톤 노트 — 2026-08-16 L1·L2 둘 다 실사(포토리얼)로 전환.
+ * 공통 규칙은 같고, 시대 배경만 다르다(L1 1970~80년대 / L2 현대). */
+const TONE_COMMON = `> 밝기는 \`bright\` 같은 형용사가 아니라 **조명 조건**으로 지정한다 —
 > \`overcast daylight\` \`soft diffused light\` \`high-key\` \`airy\` \`low contrast\`.
 > \`cinematic\` \`golden hour\` \`sunlit\` \`dramatic lighting\` \`chiaroscuro\` \`moody\`
 > \`neon\` \`night\` 는 **금지**(미드저니가 어두운 고대비 저녁 장면으로 해석해 역효과).
-> 인물은 얼굴 클로즈업 대신 손·실루엣·뒷모습 위주로 — 교재 삽화이므로 특정인 초상 회피.`,
-  L2: `> 톤: **플랫 벡터 에디토리얼 일러스트** — 흰 배경 + high key + 그라데이션 없음.
-> (2026-08-14 변경: 기존 "시네마틱 + 페인터리 3D" 는 결과물이 어둡게 나와 폐기.
->  \`cinematic\` \`painterly\` \`sunlit\` \`glowing\` \`golden\` 등 어둠 유발 키워드 사용 금지.)`,
+> 단 \`NO ~\` 배제절 안에서는 오히려 명시해 밀어낸다.
+> 인물은 얼굴 클로즈업 대신 손·실루엣·뒷모습 위주로 — 교재 삽화이므로 특정인 초상 회피.`;
+
+const TONE_NOTE = {
+  L1: `> 톤: **실사 사진(포토리얼)** — 1970~80년대 브롱스, 밝고 부드러운 자연광. (2026-08-16 전환)
+${TONE_COMMON}`,
+  L2: `> 톤: **실사 사진(포토리얼)** — 현대 생활 장면, 큰 창의 실내 자연광. (2026-08-16 전환)
+${TONE_COMMON}
+> 화면·제품에 **브랜드 로고와 판독 가능한 텍스트를 넣지 않는다**
+> (\`NO brand logos, NO readable screen text\`) — 상표권 회피 + 교재 중립성.`,
 };
 
 const HEADER = (title, id) => `# 신서고 YBM 영어II ${title} — 챕터별 삽화 프롬프트

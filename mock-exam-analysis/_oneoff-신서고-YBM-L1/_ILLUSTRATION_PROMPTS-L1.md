@@ -1,11 +1,12 @@
 # 신서고 YBM 영어II Lesson 1 — The Story of Hip-Hop Music — 챕터별 삽화 프롬프트
 
 > 규격: **`--ar 16:5 --v 8.1`**
-> 톤: **실사 사진(포토리얼)** — 밝고 부드러운 자연광. (2026-08-16 전환)
+> 톤: **실사 사진(포토리얼)** — 1970~80년대 브롱스, 밝고 부드러운 자연광. (2026-08-16 전환)
 > 밝기는 `bright` 같은 형용사가 아니라 **조명 조건**으로 지정한다 —
 > `overcast daylight` `soft diffused light` `high-key` `airy` `low contrast`.
 > `cinematic` `golden hour` `sunlit` `dramatic lighting` `chiaroscuro` `moody`
 > `neon` `night` 는 **금지**(미드저니가 어두운 고대비 저녁 장면으로 해석해 역효과).
+> 단 `NO ~` 배제절 안에서는 오히려 명시해 밀어낸다.
 > 인물은 얼굴 클로즈업 대신 손·실루엣·뒷모습 위주로 — 교재 삽화이므로 특정인 초상 회피.
 > 각 챕터는 **소재를 겹치지 않게** 분리하고, 프롬프트에 `NO ...` 배제 조건을 넣는다.
 > 생성한 이미지를 `dist/{과}/assets/illust-{N}.png` 로 저장하면 PDF 재렌더 시 자동 반영됩니다.

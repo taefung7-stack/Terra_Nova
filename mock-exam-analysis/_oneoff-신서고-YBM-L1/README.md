@@ -270,31 +270,39 @@ STEP 1 은 분할 단위가 `passage-grid` / `voca-block` / `voca-2col` 같은 �
 (`node "_oneoff-신서고-YBM-L1/collect-prompts.mjs"` 로 재생성)
 
 - 규격: **`--ar 16:5 --v 8.1`** (두 과 공통)
-- **톤은 과별로 다르다** — L1 실사 / L2 플랫 벡터. `collect-prompts.mjs` 의
-  `TONE_NOTE` 가 과별 헤더를 따로 찍는다.
+- 톤: **L1·L2 모두 실사 사진(포토리얼)** — 2026-08-16 전환.
+  기존 플랫 벡터가 "별로"라는 피드백으로 두 과 다 다시 썼다.
+  `collect-prompts.mjs` 의 `TONE_COMMON`/`TONE_NOTE` 가 과별 헤더를 찍는다.
 
-### L1 — 실사 사진(포토리얼) · 2026-08-16 전환
-
-기존 플랫 벡터가 "별로"라는 피드백으로 **실사**로 전환.
+### 실사 프롬프트 공통 규칙 (두 과 동일)
 
 - `Photorealistic documentary photograph` + `Shot on 35mm full-frame` 로 사진 매체를 명시.
 - **밝기는 형용사가 아니라 조명 조건으로 지정한다** — `natural soft diffused daylight`
   `bright overcast sky` `high-key exposure` `low contrast` `airy`.
   `bright` 하나만 던지면 미드저니가 황금빛 저녁+강한 대비로 해석해 **오히려 어두워진다**
   (2026-08-14 벡터 때와 같은 함정). 흐린 날 확산광(overcast)이 가장 안정적으로 밝다.
+  맑은 날(`clear blue sky`)은 일러스트에선 밝지만 실사에선 그림자가 강해진다.
 - **금지어**: `cinematic` `golden hour` `sunlit` `dramatic lighting` `chiaroscuro`
   `moody` `neon` `night`. 단 **`NO ~` 배제절 안에서는 오히려 써야 한다**
   (`NO dramatic lighting, NO golden hour, ...` 로 명시적으로 밀어낸다).
-- **인물은 얼굴을 넣지 않는다** — 손·뒷모습·실루엣 위주(`only hands and forearms visible`,
-  `seen from behind`, `NO visible face`). 교재 삽화라 특정인 초상·유사인물 회피.
-- 소재 분리는 그대로 유지: Ch1 서명하는 손 / Ch2 턴테이블 장비 / Ch3 무대 위 인물 /
-  Ch4 창가 정물 / Ch5 공연장 로비. 챕터마다 `NO ...` 로 남의 소재를 배제한다.
+  → 검증 시 단순 grep 은 배제절까지 잡아 오탐하므로, `NO xxx,` 패턴을 먼저 제거한
+  **순수 지시부**에서 금지어 0건을 확인할 것.
+- **인물은 얼굴을 넣지 않는다** — 손·뒷모습·실루엣 위주(`NO visible face`).
+  교재 삽화라 특정인 초상·유사인물 회피.
+- 챕터마다 `NO ...` 로 남의 소재를 배제해 5장이 비슷해 보이지 않게 한다.
 
-### L2 — 플랫 벡터 에디토리얼 (유지)
+### 과별 장면 (소재 분리)
 
-- 흰 배경 + high key + 그라데이션 없음. `cinematic` `painterly` `3D` `sunlit`
-  `glowing` `golden` `saturated` 등 어둠 유발 키워드 금지, **그림 재질 자체**
-  (flat·no gradients)를 지정한다. 팔레트도 챕터별로 분리.
+| Ch | L1 (1970~80년대 브롱스) | L2 (현대 생활) |
+|----|------------------------|----------------|
+| 1 | 상자 위 평화협정에 서명하는 손들 | 아침 집안 — 폰·채소 배송상자·노트북·소파 |
+| 2 | 턴테이블 2대·크로스페이더 클로즈업 | 우유병·신문 → 구독 상자 확산 (탑다운 플랫레이) |
+| 3 | 무대를 가로지르는 MC(뒷모습) | 화장대 — 무라벨 스킨케어·추천 카드·옷걸이 |
+| 4 | 창가의 싱글판+가사지 | 카페 창가 — 폰 속 흐릿한 영화 타일 |
+| 5 | 공연장 로비의 상장·메달·피아노 | 책상 — 청구서·계산기·접힌 택배상자·에코백 |
+
+- L2 는 현대 소재라 **브랜드 로고·판독 가능한 화면 텍스트를 배제**한다
+  (`NO brand logos, NO readable screen text`) — 상표권 회피 + 교재 중립성.
 - 생성한 이미지를 `dist/{L1,L2}/assets/illust-{1..5}.png` 로 저장하면 PDF 재렌더 시 자동 반영.
 - 이미지가 없으면 해당 자리에 `[삽화 영역]` placeholder 가 표시됩니다(빌드는 정상 통과).
 
