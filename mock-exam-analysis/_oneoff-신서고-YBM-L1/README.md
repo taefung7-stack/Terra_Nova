@@ -17,9 +17,12 @@
 ## 폴더 구조 (과별 분리)
 
 ```
-data/L1/1~5.json      dist/L1/1~5.{html,pdf} + 합본     _SOURCE.js      (L1 원문 정본)
-data/L2/1~5.json      dist/L2/1~5.{html,pdf} + 합본     _SOURCE-L2.js   (L2 원문 정본)
-styles/analysis.css   ← 두 과 공용 (빌더에 --styles= 로 지정)
+data/L1/1~5.json              dist/L1/1~5.{html,pdf} + 합본     _SOURCE.js      (L1 원문 정본)
+data/L1/1~5-variant.json      dist/L1/variant-book.{html,pdf}   ← 변형문제
+data/L2/1~5.json              dist/L2/1~5.{html,pdf} + 합본     _SOURCE-L2.js   (L2 원문 정본)
+data/L2/1~5-variant.json      dist/L2/variant-book.{html,pdf}   ← 변형문제
+styles/analysis.css           ← 분석지용 (빌더에 --styles= 로 지정)
+styles/variant.css            ← 변형문제용
 ```
 
 ## 원본 포맷과의 차이 (요청 반영)
@@ -109,6 +112,54 @@ done
 # 4) 합본 — 5개 챕터를 1개 PDF 로, 페이지 번호 연속 재부여
 node "_oneoff-신서고-YBM-L1/combine.mjs" $L
 ```
+
+## 변형문제 (2026-08-16 추가)
+
+분석지와 별개로 **유형별 변형문제집**을 같은 폴더에 만든다. 공용 빌더
+`builder/build-variant.mjs` 를 쓰되, data 가 `L1/L2` 로 한 단계 깊어 **`--styles=` 필수**.
+
+| 과 | 산출물 | 구성 |
+|----|--------|------|
+| L1 | `dist/L1/variant-book.{html,pdf}` | 52p · 객관식 55 + 서술형 30 = **85문항** |
+| L2 | `dist/L2/variant-book.{html,pdf}` | 52p · 객관식 55 + 서술형 30 = **85문항** |
+
+챕터(5개)마다 **객관식 11유형**(주제·요지·제목·함축·어법·어휘·빈칸·무관문장·순서·삽입·요약)과
+**서술형 6개**(배열영작·조건영작·빈칸완성·해석·요약완성·주제문). 정답·해설은 책 뒤에 몰아 배치.
+
+```bash
+cd mock-exam-analysis
+L=L1   # 또는 L2
+
+# 0) 변형문제 무결성 검증 — 반드시 먼저 (실패 시 빌드 금지)
+node "_oneoff-신서고-YBM-L1/verify-variant.mjs"        # 인자 없으면 L1·L2 전부
+
+# 1) HTML 빌드 (★ --styles 필수)
+node builder/build-variant.mjs "_oneoff-신서고-YBM-L1/data/$L" "_oneoff-신서고-YBM-L1/dist/$L" \
+  --styles="_oneoff-신서고-YBM-L1/styles/variant.css"
+
+# 2) 넘침 검사 — overflow 0 이 절대 조건
+node builder/check-overflow.mjs "_oneoff-신서고-YBM-L1/dist/$L/variant-book.html"
+
+# 3) PDF 렌더 (변형문제 책만 — builder/pdf.mjs 는 dist 안 모든 html 을 다시 만든다)
+node "_oneoff-신서고-YBM-L1/render-variant-pdf.mjs" "_oneoff-신서고-YBM-L1/dist/$L/variant-book.html"
+```
+
+### ⚠️ 변형문제의 조용한 실패 (verify-variant.mjs 를 반드시 돌릴 것)
+
+빌더는 밑줄·빈칸을 **passage 안에서 문자열을 찾아 치환**하는 방식이다.
+`underlines[].text` / `blank_target` / `underlined` 가 그 유형의 `passage` 에 **문자 그대로
+없으면 에러 없이 조용히 밑줄·빈칸이 사라진 채** 빌드된다(문제가 성립하지 않는 사고).
+`verify-variant.mjs` 가 이걸 강제 검사한다 — 대상 문자열 존재, 어법·어휘 밑줄 5개 +
+오답 정확히 1개 + `answer` 일치, 삽입 슬롯 1~5, 요약 `__(A)__`/`__(B)__`, 원문 패러프레이즈 여부.
+
+> 실제로 이 검사가 사고를 잡았다: 패러프레이즈를 다듬다가 `that is fast becoming` 을
+> `that is fast turning` 으로 바꿔 밑줄 대상이 사라진 것을 빌드 전에 검출했다.
+
+### 공용 빌더에 추가한 옵트인 (회귀 0)
+
+`build-variant.mjs` 의 CSS 경로가 `../styles/variant.css` 로 하드코딩돼 있어
+`data/L1` 처럼 한 단계 깊은 구조에서 깨졌다. **`--styles=<경로>` 플래그를 옵트인으로 추가**하고,
+지정 시 `path.relative` 로 dist 기준 상대경로를 계산한다. 플래그가 없으면 기존 규칙 그대로.
 
 ## 합본 (`combine.mjs`)
 

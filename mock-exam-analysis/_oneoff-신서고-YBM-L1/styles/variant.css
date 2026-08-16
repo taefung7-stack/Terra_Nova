@@ -1,0 +1,448 @@
+/* ===================================================================
+ * Terra Nova 모의고사 변형문제 — 스타일 시트 v0.1 DRAFT (2026-05-29)
+ * ===================================================================
+ *
+ * ★ 포맷 확정 전 초안. 분석지/워크북과 동일한 파스텔 컬러 + Pretendard.
+ *   대치동시크릿류 학교내신 변형문제 포맷 참고.
+ *
+ * A4 (210×297mm), overflow:hidden, puppeteer 실측 기반 페이지 분배.
+ *
+ * 핵심 규칙:
+ *   - .vq (문제 카드) { break-inside: avoid } ← 카드 분할 금지
+ *   - .vq-list { display:flex; column; gap } ← 위에서부터 빼곡히
+ *   - 객관식 5지선다, 발문 한글 / 보기 영어
+ * =================================================================== */
+
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* Pretendard 구두점 글리프 깨짐 보정 — '[' ']' '~' '-' '·' 등이 Chromium PDF 에서
+   .notdef(☰)로 깨지는 것을 해당 코드포인트만 Arial 로 오버라이드. (analysis.css 와 동일) */
+@font-face {
+  font-family: 'PretendardTN';
+  src: local('Arial');
+  font-weight: 100 900;
+  font-style: normal;
+  unicode-range: U+0040, U+002D, U+005B, U+005D, U+007E, U+00A9, U+00B7, U+2010, U+2011, U+2012, U+2013, U+2014, U+2015;
+}
+
+:root {
+  --c-mint:        #b8d8d0;
+  --c-mint-soft:   #e6f1ee;
+  --c-mint-deep:   #6b9c92;
+  --c-sky:         #c4dde8;
+  --c-sky-soft:    #ecf4f8;
+  --c-sky-deep:    #6a9bb5;
+  --c-sage:        #d4e7d4;
+  --c-sage-soft:   #eef6ee;
+  --c-sage-deep:   #7ba87b;
+  --c-coral:       #f4c2b5;
+  --c-coral-soft:  #fbe9e3;
+  --c-coral-deep:  #c97a6a;
+  --c-butter:      #f8e5b8;
+  --c-butter-soft: #fdf6e3;
+  --c-butter-deep: #c69b4d;
+  --c-text:        #2d3a3c;
+  --c-text-soft:   #56676b;
+  --c-muted:       #97a5a8;
+  --c-line:        #e2eaec;
+  --c-bg-soft:     #f6f9f9;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'PretendardTN', 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--c-text);
+  background: #eef2f3;
+  font-size: 11.5pt;
+  line-height: 1.5;
+  letter-spacing: -0.015em;
+}
+
+/* === A4 페이지 (분석지와 동일) === */
+.page {
+  width: 210mm;
+  height: 297mm;
+  padding: 12mm 14mm 16mm 14mm;
+  margin: 12px auto;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 8px 24px rgba(0,0,0,0.05);
+  position: relative;
+  page-break-after: always;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.page:last-child { page-break-after: auto; }
+.page-body { flex: 1; min-height: 0; overflow: hidden; display: flex; flex-direction: column; }
+
+/* === 헤더 / 푸터 === */
+.page-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1.5px solid var(--c-mint-deep);
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+.page-head .head-title {
+  font-size: 11.5pt;
+  font-weight: 700;
+  color: var(--c-mint-deep);
+  letter-spacing: -0.02em;
+}
+.page-head .head-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10.5pt;
+  font-weight: 700;
+  color: var(--c-coral-deep);
+  background: var(--c-coral-soft);
+  border: 1px solid var(--c-coral);
+  padding: 3px 11px;
+  border-radius: 999px;
+  letter-spacing: 0.02em;
+}
+.page-foot {
+  position: absolute;
+  left: 14mm;
+  right: 14mm;
+  bottom: 6mm;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1.5px solid var(--c-mint-deep);
+  padding-top: 5px;
+}
+.page-foot .brand { font-size: 10pt; color: var(--c-muted); font-weight: 500; }
+.page-foot .pageno {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--c-mint-deep);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 9pt; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* === 2단 레이아웃 (대치동시크릿 스타일) ===
+ * 한 페이지 = 좌/우 2단, 가운데 세로 구분선, 한 단에 한 문제.
+ * .vq-cols 가 page-body 전체 높이를 채우고, 각 .vq-col 이 한 문제를 담는다. */
+.vq-cols {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+.vq-col {
+  min-width: 0;
+  padding: 0 14px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.vq-col:first-child { padding-left: 0; border-right: 1px solid var(--c-line); }
+.vq-col:last-child  { padding-right: 0; }
+
+/* 서술형 6-up: 한 단에 3문제가 위에서부터 쌓임 */
+.vq-cols-write .vq-col { gap: 10px; justify-content: flex-start; }
+.vq-cols-write .vq-write {
+  border: 1px solid var(--c-line);
+  border-radius: 7px;
+  padding: 8px 11px 9px;
+  background: #fff;
+}
+
+/* 본문포함 서술형(2-up): 일반 2단 컬럼에 들어가며 전문 박스를 가짐.
+ * 6-up 컴팩트 축소를 무효화하고 일반 크기로 되돌린다. */
+.vq-write-full .vq-writing-q { font-size: 10.5pt; line-height: 1.4; margin-bottom: 6px; }
+.vq-write-full .vq-passage { font-size: 10.4pt; line-height: 1.5; }
+.vq-write-full .vq-summary-box { font-size: 10.2pt; padding: 7px 11px; margin-bottom: 7px; }
+.vq-write-full .vq-writing-ko { font-size: 10pt; margin-bottom: 6px; padding-bottom: 4px; }
+.vq-write-full .vq-conditions { font-size: 9.2pt; padding: 5px 10px; margin-bottom: 6px; }
+.vq-write-full .vq-given { font-size: 10.2pt; padding: 6px 10px; margin-bottom: 6px; }
+.vq-write-full .vq-answer-box { height: 40px; background: repeating-linear-gradient(transparent, transparent 19px, var(--c-line) 19px, var(--c-line) 20px); }
+
+/* 단일 문제 카드 — 2단에서는 테두리 없이 단 전체를 채움 */
+.vq {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+/* (구) 1단 세로 스택 — 정답·해설 등에서 계속 사용 */
+.vq-list { display: flex; flex-direction: column; gap: 11px; }
+.vq-list > .vq {
+  border: 1px solid var(--c-line);
+  border-radius: 8px;
+  padding: 10px 13px 11px;
+  background: #fff;
+}
+
+/* 문제 헤더 — 번호 + 유형 칩 + 한글 발문 */
+.vq-head { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 7px; }
+.vq-no {
+  flex-shrink: 0;
+  background: var(--c-mint-deep);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 11pt; font-weight: 800;
+  min-width: 26px; height: 21px;
+  border-radius: 5px;
+  display: flex; align-items: center; justify-content: center;
+  padding: 0 6px;
+}
+.vq-type {
+  flex-shrink: 0;
+  font-size: 9.6pt; font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.02em;
+  align-self: center;
+  background: var(--c-sky-soft);
+  color: var(--c-sky-deep);
+  border: 1px solid var(--c-sky);
+}
+/* 출처 지문 번호 칩 (예: 31번) — 코랄 톤으로 유형 칩과 구분 */
+.vq-src {
+  flex-shrink: 0;
+  font-size: 9.6pt; font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.02em;
+  align-self: center;
+  background: var(--c-coral-soft);
+  color: var(--c-coral-deep);
+  border: 1px solid var(--c-coral);
+}
+.vq-q { font-size: 11.3pt; font-weight: 700; color: var(--c-text); line-height: 1.4; padding-top: 1px; }
+
+/* 지문 박스 */
+.vq-passage {
+  background: var(--c-bg-soft);
+  border-left: 3px solid var(--c-mint);
+  border-radius: 0 6px 6px 0;
+  padding: 7px 11px;
+  margin-bottom: 7px;
+  font-family: 'Inter', 'Pretendard', sans-serif;
+  font-size: 10.9pt;
+  line-height: 1.55;
+  color: var(--c-text);
+}
+/* 빈칸 밑줄 — vq-passage(빈칸추론) 외에 vq-given(빈칸완성)·vq-summary-box(요약)에서도 공용 */
+.blank-inline {
+  display: inline-block;
+  min-width: 86px;
+  border-bottom: 1.5px solid var(--c-coral-deep);
+  margin: 0 3px;
+  vertical-align: baseline;
+}
+/* 어법/어휘 밑줄 번호 */
+.vq-passage .ul {
+  border-bottom: 1.5px solid var(--c-sky-deep);
+  font-weight: 600;
+}
+.vq-passage .ul-no {
+  font-family: 'Inter', sans-serif;
+  font-size: 9.5pt; font-weight: 800;
+  color: var(--c-sky-deep);
+  vertical-align: super;
+  margin-right: 1px;
+}
+/* 문장삽입 슬롯 마커 */
+.vq-passage .slot {
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  color: var(--c-coral-deep);
+  padding: 0 2px;
+}
+/* 무관한문장/순서 번호 매김 */
+.vq-passage .sent-mk {
+  font-family: 'Inter', sans-serif;
+  font-size: 9.4pt; font-weight: 800;
+  color: var(--c-mint-deep);
+  margin-right: 2px;
+}
+
+/* 순서배열·삽입 주어진글 / 블록 */
+.vq-given {
+  background: #fff;
+  border: 1px dashed var(--c-mint);
+  border-radius: 6px;
+  padding: 7px 11px;
+  margin-bottom: 7px;
+  font-family: 'Inter', 'Pretendard', sans-serif;
+  font-size: 10.8pt; line-height: 1.5;
+}
+.vq-blocks { display: flex; flex-direction: column; gap: 5px; margin-bottom: 7px; }
+.vq-block {
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  gap: 7px;
+  font-family: 'Inter', 'Pretendard', sans-serif;
+  font-size: 10.7pt; line-height: 1.5;
+}
+.vq-block .blk-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  color: var(--c-sky-deep);
+  text-align: center;
+}
+
+/* 밑줄 함축 표시 */
+.vq-underline { font-weight: 700; border-bottom: 2px solid var(--c-coral); padding-bottom: 1px; }
+
+/* 5지선다 보기 */
+.vq-choices { display: flex; flex-direction: column; gap: 2.5px; }
+.vq-choice {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  gap: 6px;
+  font-size: 10.7pt;
+  line-height: 1.4;
+  align-items: start;
+}
+.vq-choice .ch-no {
+  font-family: 'Inter', sans-serif;
+  color: var(--c-text-soft);
+  font-weight: 700;
+  text-align: center;
+}
+.vq-choice .ch-txt { color: var(--c-text); }
+.vq-choice .ch-txt.en { font-family: 'Inter', 'Pretendard', sans-serif; }
+
+/* 요약문 (A)(B) 표 */
+.vq-summary-box {
+  background: var(--c-sky-soft);
+  border: 1px solid var(--c-sky);
+  border-radius: 6px;
+  padding: 7px 11px;
+  margin-bottom: 7px;
+  font-family: 'Inter', 'Pretendard', sans-serif;
+  font-size: 10.8pt; line-height: 1.6;
+}
+.summary-opts { width: 100%; border-collapse: collapse; font-size: 10.5pt; }
+.summary-opts th, .summary-opts td {
+  border: 1px solid var(--c-line);
+  padding: 3px 8px;
+  text-align: center;
+}
+.summary-opts thead th { background: var(--c-mint-soft); color: var(--c-mint-deep); font-weight: 700; }
+.summary-opts td.opt-no { font-family: 'Inter'; color: var(--c-muted); width: 26px; }
+.summary-opts td.opt-ab { font-family: 'Inter', sans-serif; }
+
+/* 서술형 — 보기 단어 + 답란 */
+.vq-writing-ko {
+  font-weight: 700;
+  color: var(--c-coral-deep);
+  border-bottom: 1px solid var(--c-coral);
+  padding-bottom: 4px;
+  margin-bottom: 6px;
+  font-size: 11pt;
+}
+.vq-words {
+  background: var(--c-bg-soft);
+  border: 1px solid var(--c-line);
+  border-radius: 5px;
+  padding: 6px 10px;
+  margin-bottom: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 10.4pt;
+  color: var(--c-text-soft);
+  line-height: 1.6;
+}
+.vq-words .wb-label { font-weight: 700; color: var(--c-sky-deep); margin-right: 4px; }
+.vq-words .sep { color: var(--c-muted); }
+.vq-answer-box {
+  border: 1px dashed var(--c-line);
+  border-radius: 5px;
+  height: 46px;
+  background: repeating-linear-gradient(transparent, transparent 22px, var(--c-line) 22px, var(--c-line) 23px);
+}
+/* 6-up 서술형용 컴팩트 답란 */
+.vq-answer-box.sm { height: 24px; background: none; }
+.vq-answer-box.xs { height: 20px; background: none; }
+
+/* 서술형 6-up 카드 내부 */
+.vq-write .vq-head { margin-bottom: 4px; }
+.vq-write .vq-no { min-width: 22px; height: 19px; font-size: 10pt; }
+.vq-wtype {
+  flex-shrink: 0;
+  font-size: 9pt; font-weight: 700;
+  padding: 1.5px 7px; border-radius: 4px; align-self: center;
+  background: var(--c-sage-soft); color: var(--c-sage-deep); border: 1px solid var(--c-sage);
+}
+.vq-writing-q { font-size: 9.8pt; font-weight: 700; color: var(--c-text); line-height: 1.35; margin-bottom: 5px; }
+.vq-conditions {
+  background: var(--c-bg-soft);
+  border: 1px solid var(--c-line);
+  border-radius: 5px;
+  padding: 4px 9px 4px;
+  margin-bottom: 5px;
+  font-size: 9.3pt; color: var(--c-text-soft); line-height: 1.4;
+}
+.vq-conditions .wb-label { font-weight: 700; color: var(--c-sky-deep); }
+.vq-conditions ul { margin: 2px 0 0; padding-left: 16px; }
+.vq-conditions li { margin-bottom: 1px; }
+/* 6-up 모드에서 ko 프롬프트·given·summary 컴팩트화 */
+.vq-write .vq-writing-ko { font-size: 9.9pt; margin-bottom: 5px; padding-bottom: 3px; }
+.vq-write .vq-given { font-size: 9.6pt; padding: 5px 9px; margin-bottom: 5px; }
+.vq-write .vq-words { font-size: 9.4pt; padding: 5px 9px; margin-bottom: 5px; }
+.vq-write .vq-summary-box { font-size: 9.6pt; padding: 5px 9px; margin-bottom: 5px; }
+
+/* === 정답 · 해설 (맨 뒤) === */
+.answer-head-banner {
+  background: var(--c-mint-soft);
+  border: 1px solid var(--c-mint);
+  border-radius: 8px;
+  padding: 8px 14px;
+  margin-bottom: 10px;
+  display: flex; align-items: center; gap: 10px;
+}
+.answer-head-banner .ah-title { font-size: 13pt; font-weight: 800; color: var(--c-mint-deep); }
+.answer-head-banner .ah-sub { font-size: 10.4pt; color: var(--c-text-soft); margin-left: auto; }
+
+.ans-list { display: flex; flex-direction: column; gap: 7px; }
+.ans-item {
+  border: 1px solid var(--c-line);
+  border-left: 3px solid var(--c-mint-deep);
+  border-radius: 6px;
+  padding: 7px 11px;
+  break-inside: avoid;
+}
+.ans-row-head { display: flex; align-items: center; gap: 7px; margin-bottom: 3px; }
+.ans-no {
+  font-family: 'Inter', sans-serif;
+  font-weight: 800; font-size: 10.6pt;
+  background: var(--c-mint-deep); color: #fff;
+  min-width: 22px; height: 18px;
+  border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+}
+.ans-src { font-size: 9.4pt; font-weight: 700; color: var(--c-coral-deep); background: var(--c-coral-soft); border: 1px solid var(--c-coral); padding: 1.5px 7px; border-radius: 3px; }
+.ans-type { font-size: 9.4pt; font-weight: 700; color: var(--c-sky-deep); background: var(--c-sky-soft); border: 1px solid var(--c-sky); padding: 1.5px 7px; border-radius: 3px; }
+.ans-correct {
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  color: var(--c-coral-deep);
+  font-size: 11pt;
+  margin-left: auto;
+}
+.ans-exp { font-size: 10.2pt; color: var(--c-text); line-height: 1.45; }
+.ans-exp .label { font-weight: 700; color: var(--c-mint-deep); }
+.ans-distractor { font-size: 9.8pt; color: var(--c-text-soft); line-height: 1.4; margin-top: 2px; }
+.ans-writing-en { font-family: 'Inter', sans-serif; font-style: italic; color: var(--c-mint-deep); font-weight: 600; }
+
+/* 2단 정답 배치 */
+.ans-2col { column-count: 1; }
+
+/* === 인쇄 === */
+@media print {
+  html, body { background: #fff; }
+  .page { margin: 0; box-shadow: none; }
+  @page { size: A4; margin: 0; }
+}

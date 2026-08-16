@@ -441,7 +441,7 @@ function paginateWriting8up(cards, headOptsFor, startPage) {
   return { pages, nextPage: pageNum };
 }
 
-async function buildHtml({ variants, examMeta, cssContent }) {
+async function buildHtml({ variants, examMeta, cssContent, cssHref = '../styles/variant.css' }) {
   const { examShort, grade } = examMeta;
   let no = 1; // 문항 일련번호 (유형 묶음 전체에 걸쳐 증가)
 
@@ -547,7 +547,7 @@ async function buildHtml({ variants, examMeta, cssContent }) {
 <meta charset="utf-8">
 <title>${esc(examShort)} ${esc(grade)} 변형문제 — Terra Nova</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="../styles/variant.css">
+<link rel="stylesheet" href="${esc(cssHref)}">
 </head>
 <body>
 
@@ -563,18 +563,28 @@ ${pages.join('\n\n')}
 // ─────────────────────────────────────────────────────────────
 
 async function main() {
-  const dataArg = process.argv[2];
-  const distArg = process.argv[3];
+  // --styles=<경로> 는 옵트인. 지정하지 않으면 기존 규칙(<data 의 부모>/styles/variant.css)
+  // 그대로라 정식 회차 동작은 바뀌지 않는다.
+  const argv = process.argv.slice(2);
+  const stylesArg = (argv.find(a => a.startsWith('--styles=')) || '').replace('--styles=', '');
+  const positional = argv.filter(a => !a.startsWith('--'));
+  const dataArg = positional[0];
+  const distArg = positional[1];
   if (!dataArg) {
-    console.error('Usage: node builder/build-variant.mjs <data-dir> [<dist-dir>]');
+    console.error('Usage: node builder/build-variant.mjs <data-dir> [<dist-dir>] [--styles=<variant.css>]');
     process.exit(1);
   }
   const dataDir = path.resolve(process.cwd(), dataArg);
   const distDir = path.resolve(process.cwd(), distArg || path.join(dataArg, '..', 'dist'));
   await fs.mkdir(distDir, { recursive: true });
 
-  const cssAbsPath = path.resolve(path.dirname(dataDir), 'styles', 'variant.css');
+  const cssAbsPath = stylesArg
+    ? path.resolve(process.cwd(), stylesArg)
+    : path.resolve(path.dirname(dataDir), 'styles', 'variant.css');
   const cssContent = await fs.readFile(cssAbsPath, 'utf8');
+  // dist 가 한 단계 깊어져도(dist/L1) 링크가 깨지지 않도록 실제 상대경로를 계산한다.
+  // (하드코딩 '../styles/...' 로 CSS 가 유실되면 A4 고정 높이가 사라져 페이지가 재배치된다)
+  const cssHref = (path.relative(distDir, cssAbsPath) || '').replace(/\\/g, '/');
 
   const all = await fs.readdir(dataDir);
   const vFiles = all.filter(f => /-variant\.json$/.test(f)).sort((a, b) =>
@@ -607,7 +617,7 @@ async function main() {
 
   console.log(`🧩 Building type-grouped variant book from ${variants.length} passage(s): ${variants.map(v => v.passage_id).join(', ')}`);
 
-  const html = await buildHtml({ variants, examMeta, cssContent });
+  const html = await buildHtml({ variants, examMeta, cssContent, cssHref });
   const outName = 'variant-book.html';
   await fs.writeFile(path.join(distDir, outName), html, 'utf8');
   const pageCount = (html.match(/class="page"/g) || []).length;
@@ -626,7 +636,7 @@ async function main() {
   } else if (existing) {
     existing = existing.replace(/<\/body>/, `\n${vSection}\n</body>`);
   } else {
-    existing = `<!doctype html><html lang="ko"><head><meta charset="utf-8"><title>Terra Nova 변형문제</title><link rel="stylesheet" href="../styles/variant.css"></head><body>\n${vSection}\n</body></html>`;
+    existing = `<!doctype html><html lang="ko"><head><meta charset="utf-8"><title>Terra Nova 변형문제</title><link rel="stylesheet" href="${esc(cssHref)}"></head><body>\n${vSection}\n</body></html>`;
   }
   await fs.writeFile(indexPath, existing, 'utf8');
 
