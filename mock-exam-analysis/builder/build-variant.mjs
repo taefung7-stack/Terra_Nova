@@ -282,9 +282,14 @@ function renderWriting(p) {
     body = `    <div class="vq-given">${esc(p.en_prompt)}</div>
     <div class="vq-answer-box sm"></div>`;
   } else if (p.subtype === 'summary_word') {
+    // 두 표기 모두 지원: "(A)___" (기존) 와 "__(A)__" (요약문 유형 스펙 표기).
+    // 지원하지 않으면 밑줄이 빈칸 박스로 바뀌지 않고 언더스코어가 그대로 인쇄된다.
+    const blankFor = (L) => `<span class="blank-inline" style="min-width:54px"></span>(${L})`;
     const ctx = esc(p.summary)
-      .replace(/\(A\)_{3,}/, '<span class="blank-inline" style="min-width:54px"></span>(A)')
-      .replace(/\(B\)_{3,}/, '<span class="blank-inline" style="min-width:54px"></span>(B)');
+      .replace(/_{2,}\(A\)_{2,}/, blankFor('A'))
+      .replace(/_{2,}\(B\)_{2,}/, blankFor('B'))
+      .replace(/\(A\)_{3,}/, blankFor('A'))
+      .replace(/\(B\)_{3,}/, blankFor('B'));
     body = `    <div class="vq-summary-box">${ctx}</div>
     <div class="vq-answer-box xs"></div>`;
   } else if (p.subtype === 'topic_write') {
@@ -406,6 +411,65 @@ ${cards.join('\n')}
 // 문서 빌드
 // ─────────────────────────────────────────────────────────────
 
+/* 좌/우 2단 페이지를 **실측 기반**으로 분배한다.
+ *
+ * paginate2col 은 높이를 보지 않고 무조건 2장씩 넣으므로, 본문 전문을 포함한
+ * 서술형처럼 카드가 길면 카드 아래쪽(발문·답란)이 페이지 밖으로 밀려
+ * **PDF 에서 잘린 채** 렌더된다(HTML 에는 있는데 PDF 에 없는 사고).
+ * 여기서는 카드를 실제 단 너비로 렌더해 높이를 잰 뒤,
+ *   - 한 단에 들어가는 카드 → 좌·우 2장
+ *   - 한 단을 넘는 큰 카드   → 그 카드만 단독 페이지(1장)
+ * 로 배치한다. AVAIL 은 page-body 의 사용 가능 높이(px).
+ */
+async function measure2col(cards, cssContent, { AVAIL = 940, COL_W = 353 } = {}) {
+  const puppeteer = (await import('puppeteer')).default;
+  const html = `<!doctype html><html><head><meta charset="utf-8"><style>${cssContent}
+    .__m{width:${COL_W}px}</style></head><body>
+${cards.map(c => `<div class="__m">${c}</div>`).join('\n')}
+</body></html>`;
+  const tmpPath = path.join(process.cwd(), '.tmp-variant-2col.html');
+  await fs.writeFile(tmpPath, html, 'utf8');
+  const browser = await puppeteer.launch({ headless: 'new' });
+  const page = await browser.newPage();
+  await page.setViewport({ width: 794, height: 1123 });
+  await page.goto('file://' + tmpPath.replace(/\\/g, '/'), { waitUntil: 'networkidle0' });
+  const heights = await page.evaluate(() =>
+    [...document.querySelectorAll('.__m > .vq')].map(c => c.getBoundingClientRect().height));
+  await browser.close();
+  try { await fs.unlink(tmpPath); } catch {}
+
+  // 한 페이지에 [좌, 우] 또는 [단독] 로 묶는다.
+  const groups = [];
+  let pend = null;                       // 좌측에 대기 중인 카드
+  for (let i = 0; i < cards.length; i++) {
+    const tall = (heights[i] || 0) > AVAIL;
+    if (tall) {                          // 큰 카드는 단독 페이지
+      if (pend !== null) { groups.push([pend]); pend = null; }
+      groups.push([cards[i]]);
+    } else if (pend === null) {
+      pend = cards[i];
+    } else {
+      groups.push([pend, cards[i]]); pend = null;
+    }
+  }
+  if (pend !== null) groups.push([pend]);
+  return groups;
+}
+
+function paginateGroups(groups, headOptsFor, startPage) {
+  const pages = [];
+  let pageNum = startPage;
+  for (const g of groups) {
+    const bodyInner = `    <div class="vq-cols">
+      <div class="vq-col">${g[0]}</div>
+      <div class="vq-col">${g[1] || ''}</div>
+    </div>`;
+    pages.push(pageWrap({ headOpts: headOptsFor(), pageNum, bodyInner }));
+    pageNum++;
+  }
+  return { pages, nextPage: pageNum };
+}
+
 // 좌/우 2단 페이지(객관식: 한 단 1문제). cards 를 2개씩 묶어 페이지 생성.
 function paginate2col(cards, headOptsFor, startPage) {
   const pages = [];
@@ -441,7 +505,7 @@ function paginateWriting8up(cards, headOptsFor, startPage) {
   return { pages, nextPage: pageNum };
 }
 
-async function buildHtml({ variants, examMeta, cssContent, cssHref = '../styles/variant.css' }) {
+async function buildHtml({ variants, examMeta, cssContent, cssHref = '../styles/variant.css', sharedWritingPassage = false }) {
   const { examShort, grade } = examMeta;
   let no = 1; // 문항 일련번호 (유형 묶음 전체에 걸쳐 증가)
 
@@ -476,7 +540,8 @@ async function buildHtml({ variants, examMeta, cssContent, cssHref = '../styles/
   }
 
   // 2) 서술형: 본문포함(2-up 큰 카드) / 짧은(6-up) 두 그룹으로 분리
-  const writingFullCards = []; // show_passage:true → 2-up
+  const writingFullCards = []; // show_passage:true → 2-up (기존 동작)
+  const sharedWritingGroups = []; // --shared-writing-passage 일 때: 지문당 1페이지
   const writingShortCards = []; // 짧은 → 6-up
   const writingAnswerCards = [];
   for (const v of variants) {
@@ -484,14 +549,28 @@ async function buildHtml({ variants, examMeta, cssContent, cssHref = '../styles/
     // 본문포함 서술형은 원본 전문을 주입하되, 원본이 어법 문항용 오류를 포함하는 경우
     // variant JSON의 writing_passage로 교정 지문을 별도 지정할 수 있다.
     const origPassage = v.writing_passage || v._orig_passage || (v.by_type.theme && v.by_type.theme.passage) || [];
+    const fullOfThisPassage = [];   // 이 지문의 '본문 제시' 서술형들
     for (const w of list) {
       const p = { ...w, kind: 'writing', no: no, source_no: v.passage_id, type_label: w.subtype_label || '서술형',
         full_passage: w.show_passage ? origPassage : null };
-      const card = renderWriting(p);
-      if (w.show_passage) writingFullCards.push(card);
-      else writingShortCards.push(card);
+      if (w.show_passage && sharedWritingPassage) {
+        // 카드별로 전문을 반복 출력하면 카드 하나가 A4 한 장을 넘겨 PDF 에서 잘린다.
+        // → 전문은 페이지 상단에 한 번만 두고, 문항은 그 아래에 나란히 배치한다.
+        fullOfThisPassage.push({ p, card: renderWriting({ ...p, full_passage: null }) });
+      } else if (w.show_passage) {
+        writingFullCards.push(renderWriting(p));   // 기존 동작(카드마다 전문)
+      } else {
+        writingShortCards.push(renderWriting(p));
+      }
       writingAnswerCards.push(renderAnswerCard(p));
       no++;
+    }
+    if (fullOfThisPassage.length) {
+      sharedWritingGroups.push({
+        passage: origPassage,
+        source_no: v.passage_id,
+        cards: fullOfThisPassage.map(x => x.card),
+      });
     }
   }
 
@@ -513,6 +592,23 @@ async function buildHtml({ variants, examMeta, cssContent, cssHref = '../styles/
     const r = paginate2col(writingFullCards, headOptsFor, pageNum);
     pages.push(...r.pages);
     pageNum = r.nextPage;
+  }
+
+  // 서술형(본문 제시) — 공유 지문 모드: 지문 1개당 페이지 1장.
+  // 상단에 본문 전문을 한 번만 두고, 하단 2단에 그 지문의 문항들을 배치한다.
+  if (sharedWritingGroups.length) {
+    for (const grp of sharedWritingGroups) {
+      const bodyInner = `    <div class="vq-passage vq-passage-shared">${grp.passage.map(esc).join(' ')}</div>
+    <div class="vq-cols vq-cols-underpassage">
+      <div class="vq-col">${grp.cards[0] || ''}</div>
+      <div class="vq-col">${grp.cards[1] || ''}</div>
+    </div>`;
+      pages.push(pageWrap({
+        headOpts: { examShort, grade, kindTag: `서술형 (본문 제시) · ${grp.source_no}번` },
+        pageNum, bodyInner,
+      }));
+      pageNum++;
+    }
   }
 
   // 서술형(짧은) — 8-up 페이지(좌4·우4)
@@ -567,6 +663,9 @@ async function main() {
   // 그대로라 정식 회차 동작은 바뀌지 않는다.
   const argv = process.argv.slice(2);
   const stylesArg = (argv.find(a => a.startsWith('--styles=')) || '').replace('--styles=', '');
+  // 본문 제시 서술형을 '지문 1회 + 문항 2단' 으로 배치(옵트인).
+  // 기본값 false — 기존 회차는 카드마다 전문을 반복하는 종전 레이아웃 그대로.
+  const sharedWritingPassage = argv.includes('--shared-writing-passage');
   const positional = argv.filter(a => !a.startsWith('--'));
   const dataArg = positional[0];
   const distArg = positional[1];
@@ -617,7 +716,7 @@ async function main() {
 
   console.log(`🧩 Building type-grouped variant book from ${variants.length} passage(s): ${variants.map(v => v.passage_id).join(', ')}`);
 
-  const html = await buildHtml({ variants, examMeta, cssContent, cssHref });
+  const html = await buildHtml({ variants, examMeta, cssContent, cssHref, sharedWritingPassage });
   const outName = 'variant-book.html';
   await fs.writeFile(path.join(distDir, outName), html, 'utf8');
   const pageCount = (html.match(/class="page"/g) || []).length;

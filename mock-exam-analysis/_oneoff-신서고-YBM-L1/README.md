@@ -133,12 +133,15 @@ L=L1   # 또는 L2
 # 0) 변형문제 무결성 검증 — 반드시 먼저 (실패 시 빌드 금지)
 node "_oneoff-신서고-YBM-L1/verify-variant.mjs"        # 인자 없으면 L1·L2 전부
 
-# 1) HTML 빌드 (★ --styles 필수)
+# 1) HTML 빌드 (★ --styles + --shared-writing-passage 필수)
 node builder/build-variant.mjs "_oneoff-신서고-YBM-L1/data/$L" "_oneoff-신서고-YBM-L1/dist/$L" \
-  --styles="_oneoff-신서고-YBM-L1/styles/variant.css"
+  --styles="_oneoff-신서고-YBM-L1/styles/variant.css" --shared-writing-passage
 
 # 2) 넘침 검사 — overflow 0 이 절대 조건
-node builder/check-overflow.mjs "_oneoff-신서고-YBM-L1/dist/$L/variant-book.html"
+#    ★ check-overflow.mjs 는 .page-body 만 보므로 '카드가 푸터를 넘는' 잘림을 못 잡는다.
+#      아래 두 스크립트를 반드시 함께 돌릴 것(0건이어야 함).
+node "_oneoff-신서고-YBM-L1/_measure-clip.mjs"  "_oneoff-신서고-YBM-L1/dist/$L/variant-book.html"
+node "_oneoff-신서고-YBM-L1/_measure-pages.mjs" "_oneoff-신서고-YBM-L1/dist/$L/variant-book.html"
 
 # 3) PDF 렌더 (변형문제 책만 — builder/pdf.mjs 는 dist 안 모든 html 을 다시 만든다)
 node "_oneoff-신서고-YBM-L1/render-variant-pdf.mjs" "_oneoff-신서고-YBM-L1/dist/$L/variant-book.html"
@@ -154,6 +157,27 @@ node "_oneoff-신서고-YBM-L1/render-variant-pdf.mjs" "_oneoff-신서고-YBM-L1
 
 > 실제로 이 검사가 사고를 잡았다: 패러프레이즈를 다듬다가 `that is fast becoming` 을
 > `that is fast turning` 으로 바꿔 밑줄 대상이 사라진 것을 빌드 전에 검출했다.
+
+### ⚠️ 두 번째 조용한 실패 — PDF 에서만 내용이 잘림 (2026-08-16 수정)
+
+**증상**: HTML 에는 문항이 다 있는데 **PDF 에만 없다.** L1 p35·p37, L2 p36·p38 의
+서술형 하단(발문·답란)이 통째로 사라졌다. 빌드는 성공하고 문항 수(85)도 맞는다.
+
+**원인**: `.page-body { overflow: hidden }` + 고정 2단 배치.
+본문 제시 서술형은 카드마다 본문 전문을 반복 출력하는데, 전문이 긴 지문
+(L2 3과 19문장 = 본문박스만 1053px)에서는 **카드 1장이 A4 한 장(972px)을 넘겼다.**
+넘친 부분은 `overflow:hidden` 에 잘려 조용히 사라진다.
+
+**놓친 이유**: `check-overflow.mjs` 는 `.page-body` 의 scrollHeight 만 본다.
+자식이 `overflow:hidden` 으로 이미 잘린 뒤라 부모는 항상 "972/972 100% 정상"으로 보고한다.
+→ **`_measure-clip.mjs`**(모든 컨테이너의 scroll vs client)와
+**`_measure-pages.mjs`**(카드 bottom 이 푸터 top 을 넘는지)를 새로 만들어 잡았다.
+
+**수정**: `--shared-writing-passage` 옵트인 —
+본문 전문을 **페이지 상단에 한 번만** 두고 그 아래 2단에 문항을 배치한다(지문당 1페이지).
+카드 높이가 반으로 줄어 잘림이 사라지고, 같은 지문을 두 번 읽지 않아도 된다.
+덤으로 `summary_word` 의 `__(A)__` 표기가 빈칸 박스로 변환되지 않던 버그도 고쳤다
+(빌더가 `(A)___` 형태만 처리해 언더스코어가 그대로 인쇄됐다).
 
 ### 공용 빌더에 추가한 옵트인 (회귀 0)
 

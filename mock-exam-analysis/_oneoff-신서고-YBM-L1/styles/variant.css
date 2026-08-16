@@ -149,6 +149,24 @@ html, body {
 .vq-col:first-child { padding-left: 0; border-right: 1px solid var(--c-line); }
 .vq-col:last-child  { padding-right: 0; }
 
+/* 서술형(본문 제시): 본문 전문을 페이지 상단에 한 번만 두고, 그 아래 2단으로 문항 배치.
+   카드마다 전문을 반복하면 카드 하나가 A4 한 장을 넘겨 page-body 의 overflow:hidden 에
+   잘린 채 PDF 가 렌더된다(HTML 에는 있는데 PDF 에 없는 사고). 전문 공유로 높이를 반감시킨다. */
+.vq-passage-shared {
+  flex: 0 1 auto;
+  min-height: 0;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+.vq-cols-underpassage { flex: 0 0 auto; }
+.vq-cols-underpassage .vq-col { justify-content: flex-start; gap: 8px; }
+.vq-cols-underpassage .vq-write {
+  border: 1px solid var(--c-line);
+  border-radius: 7px;
+  padding: 8px 11px 9px;
+  background: #fff;
+}
+
 /* 서술형 6-up: 한 단에 3문제가 위에서부터 쌓임 */
 .vq-cols-write .vq-col { gap: 10px; justify-content: flex-start; }
 .vq-cols-write .vq-write {
