@@ -22,19 +22,30 @@ const only = (process.argv[2] || '').toUpperCase();
 const targets = only ? LESSONS.filter(l => l.id === only) : LESSONS;
 if (!targets.length) { console.error(`알 수 없는 과: ${only}`); process.exit(2); }
 
-const HEADER = (title) => `# 신서고 YBM 영어II ${title} — 챕터별 삽화 프롬프트
+/* 과별 톤 노트 — L1 은 2026-08-16 실사(포토리얼)로 전환, L2 는 플랫 벡터 유지. */
+const TONE_NOTE = {
+  L1: `> 톤: **실사 사진(포토리얼)** — 밝고 부드러운 자연광. (2026-08-16 전환)
+> 밝기는 \`bright\` 같은 형용사가 아니라 **조명 조건**으로 지정한다 —
+> \`overcast daylight\` \`soft diffused light\` \`high-key\` \`airy\` \`low contrast\`.
+> \`cinematic\` \`golden hour\` \`sunlit\` \`dramatic lighting\` \`chiaroscuro\` \`moody\`
+> \`neon\` \`night\` 는 **금지**(미드저니가 어두운 고대비 저녁 장면으로 해석해 역효과).
+> 인물은 얼굴 클로즈업 대신 손·실루엣·뒷모습 위주로 — 교재 삽화이므로 특정인 초상 회피.`,
+  L2: `> 톤: **플랫 벡터 에디토리얼 일러스트** — 흰 배경 + high key + 그라데이션 없음.
+> (2026-08-14 변경: 기존 "시네마틱 + 페인터리 3D" 는 결과물이 어둡게 나와 폐기.
+>  \`cinematic\` \`painterly\` \`sunlit\` \`glowing\` \`golden\` 등 어둠 유발 키워드 사용 금지.)`,
+};
+
+const HEADER = (title, id) => `# 신서고 YBM 영어II ${title} — 챕터별 삽화 프롬프트
 
 > 규격: **\`--ar 16:5 --v 8.1\`**
-> 톤: **플랫 벡터 에디토리얼 일러스트** — 흰 배경 + high key + 그라데이션 없음.
-> (2026-08-14 변경: 기존 "시네마틱 + 페인터리 3D" 는 결과물이 어둡게 나와 폐기.
->  \`cinematic\` \`painterly\` \`sunlit\` \`glowing\` \`golden\` 등 어둠 유발 키워드 사용 금지.)
+${TONE_NOTE[id] ?? TONE_NOTE.L2}
 > 각 챕터는 **소재를 겹치지 않게** 분리하고, 프롬프트에 \`NO ...\` 배제 조건을 넣는다.
 > 생성한 이미지를 \`dist/{과}/assets/illust-{N}.png\` 로 저장하면 PDF 재렌더 시 자동 반영됩니다.
 
 `;
 
 for (const lesson of targets) {
-  let md = HEADER(lesson.title);
+  let md = HEADER(lesson.title, lesson.id);
   let found = 0;
 
   for (const ch of lesson.source) {

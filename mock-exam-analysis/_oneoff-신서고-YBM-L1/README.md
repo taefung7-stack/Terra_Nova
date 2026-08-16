@@ -269,14 +269,32 @@ STEP 1 은 분할 단위가 `passage-grid` / `voca-block` / `voca-2col` 같은 �
 `_ILLUSTRATION_PROMPTS-L1.md` / `-L2.md` 에 과별로 모아 두었습니다.
 (`node "_oneoff-신서고-YBM-L1/collect-prompts.mjs"` 로 재생성)
 
-- 규격: **`--ar 16:5 --v 8.1`**
-- 톤: **플랫 벡터 에디토리얼** — 흰 배경 + high key + 그라데이션 없음
-  - 2026-08-14 변경: 기존 "시네마틱 + 페인터리 3D" 는 결과물이 **어둡게** 나와 폐기.
-    `cinematic` `painterly` `3D` `sunlit` `glowing` `golden` `saturated` 등 **어둠 유발
-    키워드 금지**. 밝기를 조명(`bright`)으로 요청하면 미드저니가 황금빛 저녁+강한 대비로
-    해석해 오히려 어두워지므로, **그림 재질 자체**(flat·no gradients)를 지정한다.
-  - 5장이 다 비슷해 보이던 문제는 **소재 분리**로 해결. 프롬프트마다 `NO ...` 배제 조건을
-    넣어 군중·벽돌벽 같은 공통 소재가 여러 챕터에 겹치지 않게 한다. 팔레트도 챕터별로 분리.
+- 규격: **`--ar 16:5 --v 8.1`** (두 과 공통)
+- **톤은 과별로 다르다** — L1 실사 / L2 플랫 벡터. `collect-prompts.mjs` 의
+  `TONE_NOTE` 가 과별 헤더를 따로 찍는다.
+
+### L1 — 실사 사진(포토리얼) · 2026-08-16 전환
+
+기존 플랫 벡터가 "별로"라는 피드백으로 **실사**로 전환.
+
+- `Photorealistic documentary photograph` + `Shot on 35mm full-frame` 로 사진 매체를 명시.
+- **밝기는 형용사가 아니라 조명 조건으로 지정한다** — `natural soft diffused daylight`
+  `bright overcast sky` `high-key exposure` `low contrast` `airy`.
+  `bright` 하나만 던지면 미드저니가 황금빛 저녁+강한 대비로 해석해 **오히려 어두워진다**
+  (2026-08-14 벡터 때와 같은 함정). 흐린 날 확산광(overcast)이 가장 안정적으로 밝다.
+- **금지어**: `cinematic` `golden hour` `sunlit` `dramatic lighting` `chiaroscuro`
+  `moody` `neon` `night`. 단 **`NO ~` 배제절 안에서는 오히려 써야 한다**
+  (`NO dramatic lighting, NO golden hour, ...` 로 명시적으로 밀어낸다).
+- **인물은 얼굴을 넣지 않는다** — 손·뒷모습·실루엣 위주(`only hands and forearms visible`,
+  `seen from behind`, `NO visible face`). 교재 삽화라 특정인 초상·유사인물 회피.
+- 소재 분리는 그대로 유지: Ch1 서명하는 손 / Ch2 턴테이블 장비 / Ch3 무대 위 인물 /
+  Ch4 창가 정물 / Ch5 공연장 로비. 챕터마다 `NO ...` 로 남의 소재를 배제한다.
+
+### L2 — 플랫 벡터 에디토리얼 (유지)
+
+- 흰 배경 + high key + 그라데이션 없음. `cinematic` `painterly` `3D` `sunlit`
+  `glowing` `golden` `saturated` 등 어둠 유발 키워드 금지, **그림 재질 자체**
+  (flat·no gradients)를 지정한다. 팔레트도 챕터별로 분리.
 - 생성한 이미지를 `dist/{L1,L2}/assets/illust-{1..5}.png` 로 저장하면 PDF 재렌더 시 자동 반영.
 - 이미지가 없으면 해당 자리에 `[삽화 영역]` placeholder 가 표시됩니다(빌드는 정상 통과).
 
