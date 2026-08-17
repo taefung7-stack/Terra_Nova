@@ -486,15 +486,19 @@ function paginate2col(cards, headOptsFor, startPage) {
 }
 
 // 서술형 8-up: 좌4·우4. cards 를 8개씩 묶어 페이지 생성(세로 여백 최소화).
-// 좌측 열에 짝수 인덱스(0,2,4,6), 우측 열에 홀수 인덱스(1,3,5,7)를 배치.
+// ★ 좌측 열에 0~3, 우측 열에 4~7 (2026-08-17 수정).
+//   예전에는 짝수(0,2,4,6)/홀수(1,3,5,7)로 갈랐는데, 그러면 좌측을 세로로 읽을 때
+//   번호가 66 → 68 → 70 → 72 로 건너뛴다. 학생은 단을 세로로 읽으므로
+//   각 단이 연속 번호가 되도록 앞 절반/뒤 절반으로 나눈다.
 function paginateWriting8up(cards, headOptsFor, startPage) {
   const pages = [];
   let pageNum = startPage;
   const PER = 8;
   for (let i = 0; i < cards.length; i += PER) {
     const slice = cards.slice(i, i + PER);
-    const leftCol = [slice[0], slice[2], slice[4], slice[6]].filter(Boolean).join('\n');
-    const rightCol = [slice[1], slice[3], slice[5], slice[7]].filter(Boolean).join('\n');
+    const half = Math.ceil(slice.length / 2);
+    const leftCol = slice.slice(0, half).filter(Boolean).join('\n');
+    const rightCol = slice.slice(half).filter(Boolean).join('\n');
     const bodyInner = `    <div class="vq-cols vq-cols-write">
       <div class="vq-col">${leftCol}</div>
       <div class="vq-col">${rightCol}</div>
@@ -540,38 +544,68 @@ async function buildHtml({ variants, examMeta, cssContent, cssHref = '../styles/
   }
 
   // 2) 서술형: 본문포함(2-up 큰 카드) / 짧은(6-up) 두 그룹으로 분리
+  //
+  // ★ 번호는 "인쇄되는 순서"대로 매긴다 (2026-08-17 수정).
+  //   예전에는 지문 순회 중 만나는 대로 no 를 증가시켰는데, 실제 인쇄는
+  //   본문제시 그룹을 전부 찍고 그 다음 짧은 그룹을 찍으므로 번호가
+  //   55 → 58 → 60 → 64 … 처럼 튀었다(짧은 문항 번호가 뒤로 밀림).
+  //   → 먼저 그룹별로 항목만 모으고(1단계), 인쇄 순서대로 번호를 부여한 뒤
+  //     카드를 렌더한다(2단계).
   const writingFullCards = []; // show_passage:true → 2-up (기존 동작)
   const sharedWritingGroups = []; // --shared-writing-passage 일 때: 지문당 1페이지
   const writingShortCards = []; // 짧은 → 6-up
   const writingAnswerCards = [];
+
+  // ── 1단계: 렌더 없이 그룹별로 항목만 수집 ──
+  const pendingFull = [];    // {w, origPassage, source_no}
+  const pendingShared = [];  // {passage, source_no, items:[{w, origPassage, source_no}]}
+  const pendingShort = [];
   for (const v of variants) {
     const list = (v.by_type && v.by_type.writing) || [];
     // 본문포함 서술형은 원본 전문을 주입하되, 원본이 어법 문항용 오류를 포함하는 경우
     // variant JSON의 writing_passage로 교정 지문을 별도 지정할 수 있다.
     const origPassage = v.writing_passage || v._orig_passage || (v.by_type.theme && v.by_type.theme.passage) || [];
-    const fullOfThisPassage = [];   // 이 지문의 '본문 제시' 서술형들
+    const sharedItems = [];
     for (const w of list) {
-      const p = { ...w, kind: 'writing', no: no, source_no: v.passage_id, type_label: w.subtype_label || '서술형',
-        full_passage: w.show_passage ? origPassage : null };
-      if (w.show_passage && sharedWritingPassage) {
-        // 카드별로 전문을 반복 출력하면 카드 하나가 A4 한 장을 넘겨 PDF 에서 잘린다.
-        // → 전문은 페이지 상단에 한 번만 두고, 문항은 그 아래에 나란히 배치한다.
-        fullOfThisPassage.push({ p, card: renderWriting({ ...p, full_passage: null }) });
-      } else if (w.show_passage) {
-        writingFullCards.push(renderWriting(p));   // 기존 동작(카드마다 전문)
-      } else {
-        writingShortCards.push(renderWriting(p));
-      }
+      const item = { w, origPassage, source_no: v.passage_id };
+      if (w.show_passage && sharedWritingPassage) sharedItems.push(item);
+      else if (w.show_passage) pendingFull.push(item);
+      else pendingShort.push(item);
+    }
+    if (sharedItems.length) {
+      pendingShared.push({ passage: origPassage, source_no: v.passage_id, items: sharedItems });
+    }
+  }
+
+  // ── 2단계: 인쇄 순서(본문포함 → 공유지문 → 짧은)대로 번호 부여 + 렌더 ──
+  const mkP = (item) => ({
+    ...item.w, kind: 'writing', no: no, source_no: item.source_no,
+    type_label: item.w.subtype_label || '서술형',
+    full_passage: item.w.show_passage ? item.origPassage : null,
+  });
+  for (const item of pendingFull) {
+    const p = mkP(item);
+    writingFullCards.push(renderWriting(p));   // 기존 동작(카드마다 전문)
+    writingAnswerCards.push(renderAnswerCard(p));
+    no++;
+  }
+  for (const grp of pendingShared) {
+    const cards = [];
+    for (const item of grp.items) {
+      const p = mkP(item);
+      // 카드별로 전문을 반복 출력하면 카드 하나가 A4 한 장을 넘겨 PDF 에서 잘린다.
+      // → 전문은 페이지 상단에 한 번만 두고, 문항은 그 아래에 나란히 배치한다.
+      cards.push(renderWriting({ ...p, full_passage: null }));
       writingAnswerCards.push(renderAnswerCard(p));
       no++;
     }
-    if (fullOfThisPassage.length) {
-      sharedWritingGroups.push({
-        passage: origPassage,
-        source_no: v.passage_id,
-        cards: fullOfThisPassage.map(x => x.card),
-      });
-    }
+    sharedWritingGroups.push({ passage: grp.passage, source_no: grp.source_no, cards });
+  }
+  for (const item of pendingShort) {
+    const p = mkP(item);
+    writingShortCards.push(renderWriting(p));
+    writingAnswerCards.push(renderAnswerCard(p));
+    no++;
   }
 
   // 페이지 조립
