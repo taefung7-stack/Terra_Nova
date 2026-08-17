@@ -37,6 +37,81 @@ node builder/pdf.mjs "_oneoff-천재영어2-L3/dist"
 node builder/check-overflow.mjs "_oneoff-천재영어2-L3/dist/workbook-1.html"
 ```
 
+---
+
+# 본문분석 + 변형문제 (2026-08-17 추가)
+
+같은 55문장으로 **본문 분석지**와 **변형문제 책**을 추가 제작했다.
+디자인은 모의고사 분석지/변형문제 포맷 그대로이고, 데이터만 이 폴더 것을 쓴다.
+
+| 산출물 | 파일 | 분량 |
+|--------|------|------|
+| 본문 분석지 | `dist/{1..5}.{html,pdf}` | 6·7·6·6·6p (총 31p) |
+| 변형문제 책 | `dist/variant-book.{html,pdf}` | **52p · 85문항** |
+| 워크북(기존) | `dist/workbook-{1..5}.{html,pdf}` | 10p × 5 |
+
+변형문제 구성 — 객관식 11유형(주제/요지/제목/함축/어법/어휘/빈칸/무관/순서/삽입/요약)
+× 5개 지문 = 55문항 + 서술형 6 × 5 = 30문항 → **총 85문항**, 문항 번호 1~85 연속.
+
+## 빌드 방법
+
+```bash
+cd mock-exam-analysis
+
+# 0) 검증 — 반드시 먼저 (실패 시 빌드 금지)
+node "_oneoff-천재영어2-L3/verify.mjs"          # 분석지: 문장 누락 0 강제
+node "_oneoff-천재영어2-L3/verify-variant.mjs"  # 변형문제: 유형·정답 정합
+
+# 1) 본문 분석지 (★ --styles 필수)
+node builder/build.mjs "_oneoff-천재영어2-L3/data" "_oneoff-천재영어2-L3/dist" \
+  --styles="_oneoff-천재영어2-L3/styles/analysis.css"
+for n in 1 2 3 4 5; do node builder/check-overflow.mjs "_oneoff-천재영어2-L3/dist/$n.html"; done
+node builder/pdf-image.mjs "_oneoff-천재영어2-L3/dist" --match='^[1-5]\.html$'
+
+# 2) 변형문제 (★ --styles + --shared-writing-passage 필수)
+node builder/build-variant.mjs "_oneoff-천재영어2-L3/data" "_oneoff-천재영어2-L3/dist" \
+  --styles="_oneoff-천재영어2-L3/styles/variant.css" --shared-writing-passage
+node "_oneoff-천재영어2-L3/_measure-clip.mjs"  "_oneoff-천재영어2-L3/dist/variant-book.html"
+node "_oneoff-천재영어2-L3/_measure-pages.mjs" "_oneoff-천재영어2-L3/dist/variant-book.html"
+node "_oneoff-천재영어2-L3/render-variant-pdf.mjs" "_oneoff-천재영어2-L3/dist/variant-book.html"
+```
+
+> ⚠️ PDF 는 `pdf-image.mjs`(스크린샷 합성)로 뽑는다. `page.pdf()` 인쇄 경로는
+> Pretendard 한글런 안의 `[ ] ' -` 를 `☰` 로 깨뜨린다.
+> 분석지만 뽑도록 `--match` 를 반드시 지정할 것(안 그러면 워크북 PDF 까지 다시 만든다).
+
+## 데이터 구조
+
+- `_SOURCE.js` — 원문 PDF verbatim 전사 **정본**(55문장). 임의 수정 금지.
+- `data/{N}.json` — 분석지. `passage`/`passage_ko`/`vocab` 는 워크북 제작 때부터
+  있던 것을 그대로 쓰고, 이번에 `flow`(4단계 논리 흐름)·`sentences`(분석 카드)·
+  `choices`(제목 5지선다)·`illustration` 을 채웠다.
+- `data/{N}-variant.json` — 변형문제. `by_type` 에 11유형 + `writing` 6문항.
+
+### 함정 — paraphrasing.level 은 `high/mid/low`
+
+`analysis.css` 는 `.lv-high` `.lv-mid` `.lv-low` 만 스타일링한다.
+`"상"/"중"/"하"` 로 쓰면 `class="lv-상"` 이 되어 **색 배지가 통째로 빠진다**
+(빌드는 정상 통과하므로 눈으로만 잡힌다). 저작 시 반드시 영문 키를 쓸 것.
+
+### 함정 — 변형문제 서술형 필드명
+
+`writing` 항목은 `subtype`(머신 키)이 있어야 렌더 분기가 걸린다.
+`subtype_label` 만 있으면 verifier 가 막고, 통과하더라도 카드가 빈칸으로 나온다.
+서브타입별 필드: `word_order`→`ko_prompt`+`words` / `conditioned_write`·`topic_write`
+→`ko_prompt`+`conditions` / `fill_blank`→`context` / `translate_ko`→`en_prompt` /
+`summary_word`→`summary`+`answer_a`+`answer_b`.
+
+## 검수 결과 (2026-08-17)
+
+- `verify.mjs` **오류 0 · 경고 0** — 55문장 전수 커버, 분석 카드 en_html 이
+  원문과 verbatim 일치(태그 제거 후 대조)
+- `verify-variant.mjs` **오류 0** — 5파일 전부 "객관식 11유형 · 서술형 6"
+- 분석지 overflow **5/5 전부 0**
+- 변형문제 잘림 **0건** · 카드가 푸터를 넘는 페이지 **0개**
+- 문항 번호 **1~85 연속**(문항·정답지 양쪽)
+- 시각 QC: 청크 구분선·하이라이트·PARAPHRASING 배지 정상 렌더
+
 ## 이 폴더만의 특이사항
 
 - **`styles/workbook.css` 는 로컬 사본**입니다. 원본(`2026-june-grade2/styles/workbook.css`)을
