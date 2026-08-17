@@ -46,6 +46,11 @@ if (!LESSON) {
 const SOURCE = LESSON.source;
 const DIST = path.join(__dirname, 'dist', lessonId);
 
+/* 표지에 찍을 원문 문장 수 — 정본(_SOURCE*.js)에서 계산한다.
+ * ★ 하드코딩 금지: 예전에 "Lesson 1 / 70문장" 이 표지에 박혀 있어 L2 합본에도
+ *   L1 제목·문장수가 찍히는 사고가 있었다(2026-08-17 발견). */
+const SENTENCE_TOTAL = SOURCE.reduce((a, c) => a + (c.sentences?.length ?? 0), 0);
+
 /* combined.html 에서 styles/analysis.css 까지의 상대경로를 실제 위치로 계산한다.
  * ★ 하드코딩('../styles/...') 금지 — dist/{L1,L2}/ 로 한 단계 깊어지면서 경로가 깨졌고,
  *   CSS 가 없으면 .page 의 A4 고정 높이가 사라져 페이지가 재배치되며 장수가 줄어든다
@@ -113,8 +118,8 @@ const cover = `<section class="page cover-page">
   <div class="cover-wrap">
     <div class="cover-brand">Terra Nova</div>
     <div class="cover-title">신서고 2학년 2학기<br>중간고사 대비</div>
-    <div class="cover-sub">YBM(박준언) 영어II · Lesson 1<br>The Story of Hip-Hop Music</div>
-    <div class="cover-meta">본문 분석 합본 · 전 ${pageNo}페이지 · 원문 70문장 전수 분석</div>
+    <div class="cover-sub">YBM(박준언) 영어II · Lesson ${LESSON.lessonNo}<br>${esc(LESSON.titleEn)}</div>
+    <div class="cover-meta">본문 분석 합본 · 전 ${pageNo}페이지 · 원문 ${SENTENCE_TOTAL}문장 전수 분석</div>
   </div>
 </section>
 
@@ -156,7 +161,7 @@ const combinedHtml = `<!doctype html>
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<title>신서고 2-2 중간 · YBM 영어II Lesson 1 본문분석 합본 — Terra Nova</title>
+<title>신서고 2-2 중간 · YBM 영어II Lesson ${LESSON.lessonNo} 본문분석 합본 — Terra Nova</title>
 <link rel="stylesheet" href="${cssHref}">
 <style>${extraCss}</style>
 </head>
