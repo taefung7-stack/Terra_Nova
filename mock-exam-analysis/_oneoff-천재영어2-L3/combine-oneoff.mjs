@@ -85,15 +85,27 @@ async function main() {
         /(<span class="pageno">)\d+(<\/span>)/,
         `$1${pageNo}$2`,
       );
-      // 2) 헤더 "N번" → 섹션 라벨 (합본에서는 문항번호가 의미 없음)
+      // 1-b) 개별 워크북이 hide_brand 옵션으로 푸터 브랜드를 비워 둔 경우 복원.
+      //      합본은 한 권의 교재이므로 푸터가 비어 있으면 미완성처럼 보인다.
       out = out.replace(
-        /(<span class="qno">)[^<]*(<\/span>)/,
-        `$1${esc(label)}$2`,
+        /(<span class="brand">)\s*(<\/span>)/,
+        `$1Terra Nova · Workbook$2`,
       );
-      // 3) 머리표에서 섹션명 제거 — qno 자리의 섹션 라벨과 중복되지 않게
+      // 2) 머리표를 "교과서 · Lesson 3" 까지로 정리하고 섹션 라벨을 붙인다.
+      //    개별 워크북이 hide_head_no 옵션이면 <span class="qno"> 자체가 없으므로
+      //    qno 치환에 의존하지 않고 exam-tag 뒤에 라벨 span 을 새로 삽입한다.
+      //    (라벨이 없으면 합본에서 어느 섹션 페이지인지 구분할 수 없음)
       out = out.replace(
-        /(<span class="exam-tag">)([^<]+)(<\/span>)/,
-        (_m, a, tag, b) => `${a}${esc(trimExamTag(tag))}${b}`,
+        /(<span class="exam-tag">)([^<]*)(<\/span>)/,
+        (_m, a, tag, b) =>
+          `${a}${esc(trimExamTag(tag))}${b}`
+          + `\n    <span class="sep">|</span>`
+          + `\n    <span class="qno">${esc(label)}</span>`,
+      );
+      // 3) 기존 qno(문항번호)가 남아 있으면 제거 — 라벨과 중복되므로.
+      out = out.replace(
+        /\s*<span class="sep">\|<\/span>\s*<span class="qno">\d+번<\/span>/,
+        '',
       );
       return out;
     });
