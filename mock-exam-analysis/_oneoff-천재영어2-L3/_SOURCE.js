@@ -3,8 +3,7 @@
  * ===================================================================
  * 원문 PDF(영어2 천재(조) 본문 해석.pdf)에서 verbatim 전사.
  * 문장 누락 검증의 기준. ★ 임의 수정 금지.
- * 교과서 소제목 5개 기준 5개 챕터 · 총 55문장.
- * (READ MORE 'The Tallest Tree on Earth' 는 본문 외 부록이라 제외)
+ * 본문 5챕터(55문장) + READ MORE 1챕터(15문장) = 총 70문장.
  * =================================================================== */
 
 export const SOURCE = [
@@ -91,6 +90,27 @@ export const SOURCE = [
       "The fallen seeds are conveniently concealed in the soft ash left over after the fire, which protects them from the harsh environment.",
       "Wildfire, often started by the parent tree, also burns practically everything on the ground, destroying other plants that would compete with the seeds for the water and sunlight needed for growth.",
       "As you can see, eucalyptus is only able to reproduce provided that there is fire.",
+    ],
+  },
+  {
+    no: 6,
+    subtitle: "READ MORE · The Tallest Tree on Earth",
+    sentences: [
+      "Where would you find the tallest tree in the world?",
+      "You will have to visit Redwood National Park in the United States to find it.",
+      "Redwoods are known as the tallest plants in the world.",
+      "Typically, redwoods grow over 60 m, and it is easy to find them exceeding 90 m.",
+      "Among them, a redwood named Hyperion stands enormously tall, reaching over 115 m.",
+      "It holds the record as the world's tallest tree.",
+      "Before it was discovered, Helios, which was 114 m, was considered to be the tallest tree.",
+      "However, in 2006, two naturalists found a tree taller than Helios.",
+      "They were so overwhelmed by its height that they named it after one of the Titans from Greek myths, Hyperion.",
+      "Hyperion was the name of the Titan of the Sun, meaning \"the highest one.\"",
+      "However, the odds of you seeing Hyperion at the park are slim to none.",
+      "The park keeps its precise location a secret to protect it from potential harm caused by visitors.",
+      "You may assume you can easily find it among the redwoods, but it is harder than you think.",
+      "The height difference between Hyperion and its neighboring redwoods is merely a few meters, making it nearly impossible to identify from the ground.",
+      "Every redwood in the park will look like a giant from the bottom.",
     ],
   },
 ];
