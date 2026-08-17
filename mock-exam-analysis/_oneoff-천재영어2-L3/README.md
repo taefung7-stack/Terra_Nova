@@ -53,6 +53,7 @@ node builder/check-overflow.mjs "_oneoff-천재영어2-L3/dist/workbook-1.html"
 | 산출물 | 파일 | 분량 |
 |--------|------|------|
 | 본문 분석지 | `dist/{1..6}.{html,pdf}` | 6·7·6·6·6·7p (총 38p) |
+| **본문분석 합본** | `dist/천재영어2_Lesson3_본문분석_합본.pdf` | **40p** (표지1+목차1+본문38) · 8.8MB |
 | 변형문제 책 | `dist/variant-book.{html,pdf}` | **56p · 102문항** |
 | 워크북(기존) | `dist/workbook-{1..5}.{html,pdf}` | 10p × 5 (READ MORE 미포함) |
 
@@ -107,6 +108,48 @@ node "_oneoff-천재영어2-L3/render-variant-pdf.mjs" "_oneoff-천재영어2-L3
 서브타입별 필드: `word_order`→`ko_prompt`+`words` / `conditioned_write`·`topic_write`
 →`ko_prompt`+`conditions` / `fill_blank`→`context` / `translate_ko`→`en_prompt` /
 `summary_word`→`summary`+`answer_a`+`answer_b`.
+
+## 삽화 반영 + 본문분석 합본 (2026-08-17)
+
+미드저니로 뽑은 삽화 6장을 넣고 분석지를 재렌더한 뒤 단일 PDF 로 합쳤다.
+
+```bash
+cd mock-exam-analysis
+
+# 1) 이미지 배치 — 빌더는 assets/illust-{N}.png 를 찾는다
+#    (dist 루트에 01~06.png 로 받았다면 이름을 바꿔 복사)
+cd _oneoff-천재영어2-L3/dist && mkdir -p assets
+for n in 1 2 3 4 5 6; do cp "0$n.png" "assets/illust-$n.png"; done && cd ../..
+
+# 2) 분석지 PDF 재렌더 (--match 로 분석지만; 없으면 워크북까지 다시 만든다)
+node builder/pdf-image.mjs "_oneoff-천재영어2-L3/dist" --match='^[1-6]\.html$'
+
+# 3) 합본 — 표지+목차 붙이고 페이지 번호를 1..38 로 연속 재부여
+node "_oneoff-천재영어2-L3/combine-analysis.mjs"
+```
+
+`combine-analysis.mjs` 는 합본 후 **`.page` 섹션 수 = PDF 페이지 수**를 자동 대조한다
+(CSS 경로가 깨지면 A4 고정이 풀려 페이지가 조용히 유실되는 사고 방지).
+
+- 챕터 시작 페이지 — 1 / 7 / 14 / 20 / 26 / 32
+- 표지·목차는 번호를 매기지 않는다 → 본문 첫 장이 1p
+
+### 합본 용량 — gs 압축 필수
+
+원본 PNG 가 장당 5~8MB 라 합본이 **17.1MB** 까지 불어난다. 300dpi 다운샘플로
+**8.8MB** 로 줄였다(180mm 폭 인쇄에 2126px 이면 충분한데 원본이 3952px).
+
+```bash
+gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.5 -dNOPAUSE -dBATCH -dQUIET \
+  -sColorConversionStrategy=LeaveColorUnchanged \
+  -dDownsampleColorImages=true -dColorImageResolution=300 \
+  -dColorImageDownsampleThreshold=1.0 -dAutoFilterColorImages=false \
+  -sColorImageFilter=DCTEncode -o out.pdf in.pdf
+```
+
+> ℹ️ `pdf-image.mjs` 산출물은 **페이지를 통째로 스크린샷**하므로 PDF 에
+> 텍스트 레이어가 없다. `gs -sDEVICE=txtwrite` 로 본문이 안 뽑히는 게 정상이고
+> 압축 손상이 아니다. 검수는 **페이지를 PNG 로 렌더해 눈으로** 봐야 한다.
 
 ## 삽화 프롬프트
 
