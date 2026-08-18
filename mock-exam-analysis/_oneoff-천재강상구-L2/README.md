@@ -34,6 +34,7 @@
 | 종류 | 파일 | 분량 |
 |------|------|------|
 | 본문 분석지 | `dist/{1..6}.{html,pdf}` | 6·7·7·7·5·6p (총 38p) |
+| **본문분석 합본** | `dist/천재강상구-L2-본문분석-합본.pdf` | **39p** (표지1+본문38) · 9.1MB · 삽화 6장 반영 |
 | 워크북 | `dist/workbook-{1..6}.{html,pdf}` | 10·11·11·11·10·11p (총 64p) |
 | 변형문제 | `dist/variant-book.{html,pdf}` | **56p · 102문항** |
 
@@ -99,6 +100,38 @@ substring 대조하는 일회성 스크립트로 검증했다.
   판독 가능한 화면 텍스트도 배제(`NO brand logos, NO readable screen text`).
   프롬프트는 `_ILLUSTRATION_PROMPTS.md`(생성: `collect-prompts.mjs`).
   이미지를 `dist/assets/illust-{N}.png` 로 넣으면 재렌더 시 자동 반영된다.
+
+## 삽화 반영 + 합본 (2026-08-18)
+
+미드저니 삽화 6장을 넣고 분석지를 재렌더한 뒤 합본을 다시 만들었다.
+
+```bash
+cd mock-exam-analysis
+
+# 1) 이미지 배치 — 빌더는 assets/illust-{N}.png 를 찾는다
+#    (dist 루트에 01~06.png 로 받았다면 이름을 바꿔 복사)
+cd _oneoff-천재강상구-L2/dist && mkdir -p assets
+for n in 1 2 3 4 5 6; do cp "0$n.png" "assets/illust-$n.png"; done && cd ../..
+
+# 2) 분석지 PDF 재렌더 (--match 로 분석지만)
+node builder/pdf-image.mjs "_oneoff-천재강상구-L2/dist" --match='^[1-6]\.html$'
+
+# 3) 합본 HTML 재생성 → PDF (스크립트가 마지막 줄에 PDF 명령을 출력한다)
+node "_oneoff-천재강상구-L2/combine-oneoff.mjs" analysis
+node builder/pdf-image.mjs   "_oneoff-천재강상구-L2/dist/천재강상구-L2-본문분석-합본.html"   "_oneoff-천재강상구-L2/dist/천재강상구-L2-본문분석-합본.pdf"   --footer="Terra Nova · 본문분석"
+```
+
+- 챕터 시작 페이지 — 1 / 7 / 14 / 21 / 28 / 33 (표지는 번호 없음 → 본문 첫 장이 1p)
+- **용량**: 원본 PNG 가 장당 5~7MB 라 합본이 **17.7MB** 까지 불어난다.
+  gs 300dpi 다운샘플로 **9.1MB** 로 압축했다(180mm 폭 인쇄엔 2126px 면 충분한데 원본이 3952px).
+
+```bash
+gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.5 -dNOPAUSE -dBATCH -dQUIET   -sColorConversionStrategy=LeaveColorUnchanged   -dDownsampleColorImages=true -dColorImageResolution=300   -dColorImageDownsampleThreshold=1.0 -dAutoFilterColorImages=false   -sColorImageFilter=DCTEncode -o out.pdf in.pdf
+```
+
+> ℹ️ `pdf-image.mjs` 산출물은 페이지를 통째로 스크린샷하므로 **텍스트 레이어가 없다.**
+> `gs -sDEVICE=txtwrite` 로 본문이 안 뽑히는 게 정상이며 압축 손상이 아니다.
+> 검수는 페이지를 PNG 로 렌더해 **눈으로** 확인해야 한다.
 
 ## 이번에 새로 확인된 함정 (2026-08-18)
 
