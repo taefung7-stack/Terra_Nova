@@ -1,0 +1,264 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "1.json",
+  "_note": "천재(조수경) L4 Ch1 워크북 — 본문 5문장 풀커버.",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "satellite",   "pos": "명" },
+      { "word": "initially",   "pos": "부" },
+      { "word": "wondered",    "pos": "동" },
+      { "word": "discovered",  "pos": "동" },
+      { "word": "currently",   "pos": "부" },
+      { "word": "producing",   "pos": "동" },
+      { "word": "relatively",  "pos": "부" },
+      { "word": "frequently",  "pos": "부" },
+      { "word": "various",     "pos": "형" },
+      { "word": "expensive",   "pos": "형" }
+    ],
+    "ko_to_en": [
+      { "meaning": "지역, 구역",         "pos": "명", "answer": "area" },
+      { "meaning": "영상, 이미지",       "pos": "명", "answer": "image" },
+      { "meaning": "양식장, 농장",       "pos": "명", "answer": "farms" },
+      { "meaning": "재배하다, 기르다",   "pos": "동", "answer": "grow" },
+      { "meaning": "짐작하다, 추측하다", "pos": "동", "answer": "guess" },
+      { "meaning": "값싼",               "pos": "형", "answer": "cheap" },
+      { "meaning": "요리, 음식",         "pos": "명", "answer": "dishes" },
+      { "meaning": "해조류, 김",         "pos": "명", "answer": "seaweed" },
+      { "meaning": "바삭바삭한",         "pos": "형", "answer": "crispy" },
+      { "meaning": "즐기다, 누리다",     "pos": "동", "answer": "enjoy" }
+    ],
+    "expressions": [
+      { "ko": "우주에서 촬영된",     "answer": "taken from space" },
+      { "ko": "많은",                "answer": "a lot of" },
+      { "ko": "~와 같은, 예를 들어", "answer": "such as" },
+      { "ko": "예전에는 ~였다",      "answer": "used to" },
+      { "ko": "구운 해조류",         "answer": "roasted seaweed" }
+    ],
+    "definitions": [
+      { "def": "a machine sent into space to circle the earth and send back information", "answer": "satellite" },
+      { "def": "at the beginning; at first",                                              "answer": "initially" },
+      { "def": "to find out something for the first time",                                "answer": "discovered" },
+      { "def": "costing a lot of money",                                                  "answer": "expensive" },
+      { "def": "of many different kinds",                                                 "answer": "various" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "This is a NASA satellite image of the area near Wando, {{1:taken/taking}} from {{2:space/a space}}.",
+      "ko_full": "이것은 우주에서 촬영한 완도 인근 지역의 NASA 위성사진이다.",
+      "answers": ["taken", "space"],
+      "explain": [
+        "image가 촬영되는 대상이므로 수동의 과거분사 → taken.",
+        "space는 우주의 뜻일 때 관사 없이 쓴다 → space."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "NASA initially wondered {{1:what the black lines were/what were the black lines}} and later discovered they are farms {{2:that/what}} grow gim.",
+      "ko_full": "NASA는 처음에 그 검은 줄들이 무엇인지 궁금해했고, 나중에 그것이 김을 기르는 양식장이라는 것을 알아냈다.",
+      "answers": ["what the black lines were", "that"],
+      "explain": [
+        "wondered의 목적어인 간접의문문은 의문사+주어+동사 어순 → what the black lines were.",
+        "선행사 farms를 수식하는 주격 관계대명사 → that (what은 선행사를 취할 수 없음)."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "From this picture, you can guess {{1:that/what}} Korea is currently {{2:producing/produced}} a lot of gim.",
+      "ko_full": "이 사진을 보면 한국이 현재 김을 많이 생산하고 있다는 것을 짐작할 수 있다.",
+      "answers": ["that", "producing"],
+      "explain": [
+        "뒤에 완전한 절이 이어지는 목적어절 접속사 → that.",
+        "is와 짝을 이루는 현재진행형이고 목적어를 취하므로 능동 → producing."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "It is relatively cheap and {{1:is frequently used/frequently uses}} in {{2:various/variety}} Korean dishes, such as gimbap (a type of seaweed rice roll), gimjaban (roasted seaweed), and gimbugak (a type of crispy seaweed and rice chip).",
+      "ko_full": "김은 비교적 값이 싸고 김밥(해조류로 만 밥의 일종), 김자반(구운 해조류), 김부각(바삭한 해조류와 쌀로 만든 과자의 일종)과 같은 다양한 한국 음식에 자주 쓰인다.",
+      "answers": ["is frequently used", "various"],
+      "explain": [
+        "주어 It(김)은 쓰이는 대상이므로 수동태 → is frequently used.",
+        "명사 dishes를 수식하는 자리이므로 형용사 → various (variety는 명사)."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "However, it {{1:used to be/was used to be}} very expensive in the past, so not everyone could enjoy it as much {{2:as/than}} people can today.",
+      "ko_full": "그러나 김은 과거에는 매우 비쌌기 때문에, 모든 사람이 오늘날 사람들만큼 그것을 마음껏 즐길 수 있었던 것은 아니다.",
+      "answers": ["used to be", "as"],
+      "explain": [
+        "예전에는 ~였다는 뜻의 used to + 동사원형 → used to be.",
+        "as much ~ as의 원급 비교이므로 뒤쪽도 as → as."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "This is a NASA {{1:satellite/underwater}} image of the {{2:area/volume}} near Wando, taken from space.",
+      "ko_full": "이것은 우주에서 촬영한 완도 인근 지역의 NASA 위성사진이다.",
+      "answers": ["satellite", "area"],
+      "explain": [
+        "우주에서 찍은 사진이므로 위성사진 → satellite.",
+        "완도 인근의 지역을 가리키므로 → area."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "NASA {{1:initially/finally}} wondered what the black lines were and later {{2:discovered/overlooked}} they are farms that grow gim.",
+      "ko_full": "NASA는 처음에 그 검은 줄들이 무엇인지 궁금해했고, 나중에 그것이 김을 기르는 양식장이라는 것을 알아냈다.",
+      "answers": ["initially", "discovered"],
+      "explain": [
+        "뒤의 later와 대비되는 처음에는 → initially.",
+        "궁금해하다가 나중에 알아냈다 → discovered."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "From this picture, you can {{1:guess/prove}} that Korea is {{2:currently/formerly}} producing a lot of gim.",
+      "ko_full": "이 사진을 보면 한국이 현재 김을 많이 생산하고 있다는 것을 짐작할 수 있다.",
+      "answers": ["guess", "currently"],
+      "explain": [
+        "사진만 보고 미루어 짐작하는 것이므로 → guess.",
+        "현재진행형과 어울리는 지금, 현재 → currently."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "It is relatively {{1:cheap/costly}} and is {{2:frequently/rarely}} used in various Korean dishes, such as gimbap (a type of seaweed rice roll), gimjaban (roasted seaweed), and gimbugak (a type of crispy seaweed and rice chip).",
+      "ko_full": "김은 비교적 값이 싸고 김밥(해조류로 만 밥의 일종), 김자반(구운 해조류), 김부각(바삭한 해조류와 쌀로 만든 과자의 일종)과 같은 다양한 한국 음식에 자주 쓰인다.",
+      "answers": ["cheap", "frequently"],
+      "explain": [
+        "대량 생산되어 값이 싸다는 문맥 → cheap.",
+        "여러 요리에 두루 쓰이므로 자주 → frequently."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "However, it used to be very {{1:expensive/affordable}} in the past, so not {{2:everyone/nobody}} could enjoy it as much as people can today.",
+      "ko_full": "그러나 김은 과거에는 매우 비쌌기 때문에, 모든 사람이 오늘날 사람들만큼 그것을 마음껏 즐길 수 있었던 것은 아니다.",
+      "answers": ["expensive", "everyone"],
+      "explain": [
+        "지금은 싸지만 과거에는 비쌌다는 대조 → expensive.",
+        "not everyone은 모두가 ~한 것은 아니다라는 부분부정 → everyone."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "s", "answer": "satellite", "after": "image of the area" },
+        { "pos": 2, "letter": "t", "answer": "taken",     "after": "from space" }
+      ],
+      "ko_full": "이것은 우주에서 촬영한 완도 인근 지역의 NASA 위성사진이다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "i", "answer": "initially",  "after": "wondered what" },
+        { "pos": 2, "letter": "w", "answer": "wondered",   "after": "what the black lines were" },
+        { "pos": 3, "letter": "d", "answer": "discovered", "after": "they are farms" }
+      ],
+      "ko_full": "NASA는 처음에 그 검은 줄들이 무엇인지 궁금해했고, 나중에 그것이 김을 기르는 양식장이라는 것을 알아냈다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "p", "answer": "picture",   "after": ", you can guess" },
+        { "pos": 2, "letter": "c", "answer": "currently", "after": "producing a lot of gim" },
+        { "pos": 3, "letter": "p", "answer": "producing", "after": "a lot of gim" }
+      ],
+      "ko_full": "이 사진을 보면 한국이 현재 김을 많이 생산하고 있다는 것을 짐작할 수 있다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "r", "answer": "relatively", "after": "cheap and is" },
+        { "pos": 2, "letter": "f", "answer": "frequently", "after": "used in various dishes" },
+        { "pos": 3, "letter": "v", "answer": "various",    "after": "Korean dishes" }
+      ],
+      "ko_full": "김은 비교적 값이 싸고 김밥(해조류로 만 밥의 일종), 김자반(구운 해조류), 김부각(바삭한 해조류와 쌀로 만든 과자의 일종)과 같은 다양한 한국 음식에 자주 쓰인다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "e", "answer": "expensive", "after": "in the past" },
+        { "pos": 2, "letter": "e", "answer": "everyone",  "after": "could enjoy it" }
+      ],
+      "ko_full": "그러나 김은 과거에는 매우 비쌌기 때문에, 모든 사람이 오늘날 사람들만큼 그것을 마음껏 즐길 수 있었던 것은 아니다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["This", "is", "a", "NASA", "satellite", "image", "of", "the", "area", "near", "Wando", "taken", "from", "space"],
+      "answer": "This is a NASA satellite image of the area near Wando, taken from space."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["NASA", "initially", "wondered", "what", "the", "black", "lines", "were", "and", "later", "discovered", "they", "are", "farms", "that", "grow", "gim"],
+      "answer": "NASA initially wondered what the black lines were and later discovered they are farms that grow gim."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["From", "this", "picture", "you", "can", "guess", "that", "Korea", "is", "currently", "producing", "a", "lot", "of", "gim"],
+      "answer": "From this picture, you can guess that Korea is currently producing a lot of gim."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 5,
+      "words": ["However", "it", "used", "to", "be", "very", "expensive", "in", "the", "past", "so", "not", "everyone", "could", "enjoy", "it", "as", "much", "as", "people", "can", "today"],
+      "answer": "However, it used to be very expensive in the past, so not everyone could enjoy it as much as people can today."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 5, "no": 1 },
+    { "kind": "vocab",   "ref": 5, "no": 2 },
+    { "kind": "fill",    "ref": 2, "no": 3 },
+    { "kind": "ko",      "ref": 4, "no": 4 },
+    { "kind": "sent",    "ref": 3, "no": 5 }
+  ]
+}
