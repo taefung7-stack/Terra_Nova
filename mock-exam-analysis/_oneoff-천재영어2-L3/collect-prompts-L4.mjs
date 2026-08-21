@@ -18,7 +18,7 @@ const HEADER = `# 천재(조수경) 영어II Lesson 4 — Flavors Without Border
 > \`cinematic\` \`golden hour\` \`sunlit\` \`sunbeams\` \`dramatic lighting\` \`moody\`
 > \`neon\` \`night\` 은 **금지**(미드저니가 어두운 고대비 저녁 장면으로 해석해 역효과).
 > 단 \`NO ~\` 배제절 안에서는 오히려 명시해 밀어낸다.
-> 교재 삽화이므로 **사람은 넣지 않는다**(\`NO people\`) — 식물·씨앗 자체가 주인공.
+> 교재 삽화이므로 브랜드 로고·판독 가능한 텍스트를 배제한다(\`NO brand logos, NO readable text\`).
 > 각 챕터는 **소재를 겹치지 않게** 분리하고, 프롬프트에 \`NO ...\` 배제 조건을 넣는다.
 > 생성한 이미지를 \`dist/L4/assets/illust-{N}.png\` 로 저장하면 PDF 재렌더 시 자동 반영됩니다.
 
