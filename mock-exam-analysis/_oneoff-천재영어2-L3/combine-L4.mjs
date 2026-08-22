@@ -6,6 +6,10 @@
  * 페이지 번호는 개별 산출물의 번호를 버리고 **합본 전체 통번호**로 재부여.
  *
  * 종류별 차이:
+ *   analysis — dist/L4/{1..6}.html 6부를 이어 붙인다. 헤더 라벨은 손대지 않는다
+ *              (분석지 헤더는 이미 챕터 소제목을 달고 있다).
+ *              삽화는 dist/L4/assets/illust-{N}.png 를 상대경로로 참조하므로
+ *              합본 HTML 이 같은 dist/L4 에 있어야 이미지가 붙는다.
  *   workbook — dist/L4/workbook-{1..6}.html 6부를 이어 붙인다.
  *              각 워크북 헤더의 "N번" 자리에 섹션명(교과서 소제목)을 넣어
  *              합본 문맥에 맞춘다(개별본은 hide_head_no 라 qno 가 없을 수 있음).
@@ -20,6 +24,7 @@
  * Pretendard 한글런 안의 [ ] ' - 를 tofu(☰)로 깨뜨린다.
  *
  * 사용법:
+ *   node _oneoff-천재영어2-L3/combine-L4.mjs analysis
  *   node _oneoff-천재영어2-L3/combine-L4.mjs workbook
  *   node _oneoff-천재영어2-L3/combine-L4.mjs variant
  *   node _oneoff-천재영어2-L3/combine-L4.mjs both
@@ -37,6 +42,16 @@ const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').
 const rel = (cssName) => (path.relative(DIST, path.join(HERE, 'styles', cssName)) || '').replace(/\\/g, '/');
 
 const KINDS = {
+  analysis: {
+    css: 'analysis.css',
+    match: /^\d+\.html$/,
+    out: '천재영어2_Lesson4_본문분석_합본.pdf',
+    htmlOut: 'analysis-combined.html',
+    title: '본문 분석',
+    chip: 'ANALYSIS',
+    footer: 'Terra Nova · 본문분석',
+    sub: '전문 해석 → 단어 → 구문 분석 → 내용 확인 · 61문장 전수 분석',
+  },
   workbook: {
     css: 'workbook.css',
     match: /^workbook-\d+\.html$/,
@@ -211,5 +226,5 @@ ${allPages}
 }
 
 const kind = process.argv[2] || 'both';
-if (kind === 'both') { await build('workbook'); await build('variant'); }
+if (kind === 'both') { await build('analysis'); await build('workbook'); await build('variant'); }
 else await build(kind);
