@@ -171,12 +171,14 @@ ${tocRows}
   @page { size: A4; margin: 0; }
   html, body { margin: 0; padding: 0; }
   .page { box-sizing: border-box; margin: 0 auto; box-shadow: none; }
-  .cover-page { display:flex; align-items:center; justify-content:center; text-align:center; padding:14mm; }
-  .cover-page .page-body { display:flex; align-items:center; justify-content:center; }
-  .cover-wrap { max-width: 82%; margin: auto; }
+  /* .page 는 flex-direction:column — 여기서 row 로 덮으면 .page-body(flex:1) 가
+     세로로 늘지 않아 표지 블록이 아래로 쏠린다. column 을 유지할 것. */
+  .cover-page { display:flex; flex-direction:column; text-align:center; padding:14mm; }
+  .cover-page .page-body { display:flex; align-items:center; justify-content:center; flex:1; min-height:0; }
+  .cover-wrap { max-width: 94%; margin: auto; }
   .cover-brand { font-size:17pt; font-weight:800; letter-spacing:.08em; color:var(--c-mint-deep); margin-bottom:10px; }
   .cover-chip { display:inline-block; border:1px solid var(--c-line); color:var(--c-text-soft); font-size:9pt; font-weight:700; padding:3px 14px; border-radius:999px; letter-spacing:.06em; margin-bottom:22px; }
-  .cover-title { font-size:26pt; font-weight:800; color:var(--c-text); line-height:1.3; margin-bottom:14px; }
+  .cover-title { font-size:24pt; font-weight:800; color:var(--c-text); line-height:1.35; margin-bottom:14px; word-break:keep-all; text-wrap:balance; }
   .cover-sub { font-size:13pt; font-weight:700; color:var(--c-text-soft); font-style:italic; margin-bottom:22px; }
   .cover-steps { font-size:9.5pt; color:var(--c-text-soft); line-height:1.7; margin-bottom:24px; }
   .cover-meta { font-size:10.5pt; color:var(--c-muted); letter-spacing:.02em; }

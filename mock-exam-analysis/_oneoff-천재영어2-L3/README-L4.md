@@ -46,6 +46,10 @@ node builder/build.mjs "_oneoff-천재영어2-L3/data/L4" "_oneoff-천재영어2
 for n in 1 2 3 4 5 6; do node builder/check-overflow.mjs "_oneoff-천재영어2-L3/dist/L4/$n.html"; done
 node builder/pdf-image.mjs "_oneoff-천재영어2-L3/dist/L4" --match='^[1-6]\.html$'
 
+# 1-b) 삽화 — 미드저니 산출물을 dist/L4/assets/illust-{1..6}.png 로 넣는다.
+#      분석지 HTML 이 이미 상대경로로 참조하므로 파일만 놓으면 합본에 자동 반영된다.
+#      (없으면 onerror 로 "[삽화 영역]" placeholder 가 대신 렌더된다)
+
 # 2) 워크북
 node builder/build-workbook.mjs "_oneoff-천재영어2-L3/data/L4" "_oneoff-천재영어2-L3/dist/L4" \
   --styles="_oneoff-천재영어2-L3/styles/workbook.css"
@@ -126,11 +130,15 @@ node "_oneoff-천재영어2-L3/render-variant-pdf.mjs" "_oneoff-천재영어2-L3
 
 ```bash
 cd mock-exam-analysis
-node "_oneoff-천재영어2-L3/combine-L4.mjs" workbook   # 또는 variant / both
+node "_oneoff-천재영어2-L3/combine-L4.mjs" analysis   # 또는 workbook / variant / both
 ```
 
-`combine-L4.mjs` 는 두 종을 한 스크립트로 처리한다.
+`combine-L4.mjs` 는 세 종을 한 스크립트로 처리한다.
 
+- **본문분석** — `{1..6}.html` 6부를 이어 붙이고 페이지번호를 1..35 로 재부여.
+  분석지 헤더는 이미 챕터 소제목을 달고 있어 라벨을 손대지 않는다.
+  챕터 시작 페이지 — 1 / 5 / 10 / 16 / 23 / 29
+  (합본 PDF 기준으로는 표지·목차 2장이 앞에 붙어 3 / 7 / 12 / 18 / 25 / 31 쪽)
 - **워크북** — `workbook-{1..6}.html` 6부를 이어 붙이고 페이지번호를 1..61 로 재부여.
   개별본 헤더의 `"N번"` 자리에 **섹션명(교과서 소제목)** 을 끼워 넣는다.
   개별본이 `hide_head_no` 라 `<span class="qno">` 자체가 없을 수 있으므로
