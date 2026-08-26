@@ -62,9 +62,15 @@ function pageHead({ examShort, grade, kindTag }) {
   </header>`;
 }
 
+/* 교재용(비판매) 데이터가 켜는 표시 옵션 — 분석지·워크북 빌더와 동일한 규약.
+ *  - hideBrand: 푸터 좌측 "Terra Nova · 변형문제" 숨김
+ * 플래그가 없으면 false → 정식 회차는 기존 동작 그대로(회귀 0). */
+let VB_OPT = { hideBrand: false };
+
 function pageFoot(pageNum) {
+  const label = VB_OPT.hideBrand ? '' : 'Terra Nova · 변형문제';
   return `  <footer class="page-foot">
-    <span class="brand">Terra Nova · 변형문제</span>
+    <span class="brand">${esc(label)}</span>
     <span class="pageno">${pageNum}</span>
   </footer>`;
 }
@@ -744,6 +750,9 @@ async function main() {
         const gm = exam.match(/(\d학년)/);
         examMeta = { examShort: exam.replace(/\s*\d학년\s*$/, '').trim(), grade: gm ? gm[1] : '' };
       }
+      // 교재용 표시 옵션 — 한 지문이라도 hide_brand 면 책 전체에서 브랜드를 숨긴다
+      // (합본 성격상 페이지마다 다르면 오히려 어색하다). 플래그 없으면 기존 동작.
+      if (data.hide_brand) VB_OPT.hideBrand = true;
     } catch {}
     variants.push(variant);
   }
