@@ -10,12 +10,16 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { SOURCE as SOURCE_L1 } from './_SOURCE.js';
 import { SOURCE as SOURCE_L2 } from './_SOURCE-L2.js';
+import { SOURCE as SOURCE_EX } from './_SOURCE-EX.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const LESSONS = [
   { id: 'L1', title: 'Lesson 1 — The Story of Hip-Hop Music', source: SOURCE_L1 },
   { id: 'L2', title: 'Lesson 2 — The Subscription Economy',   source: SOURCE_L2 },
+  /* EX — 부교재 어법 유닛. Lesson 이 아니므로 heading 을 따로 준다. */
+  { id: 'EX', title: '부교재 · 05 수식어는 괄호로 묶어라', source: SOURCE_EX,
+    heading: '신서고 부교재 05 수식어는 괄호로 묶어라 — 지문별 삽화 프롬프트' },
 ];
 
 const only = (process.argv[2] || '').toUpperCase();
@@ -38,9 +42,13 @@ ${TONE_COMMON}`,
 ${TONE_COMMON}
 > 화면·제품에 **브랜드 로고와 판독 가능한 텍스트를 넣지 않는다**
 > (\`NO brand logos, NO readable screen text\`) — 상표권 회피 + 교재 중립성.`,
+  EX: `> 톤: **실사 사진(포토리얼)** — 과학·자연 다큐멘터리 톤, 흐린 날 확산광.
+${TONE_COMMON}
+> 네 지문의 소재가 완전히 다르므로(식충식물 / 배관·수도 / 달력·계절 / 펭귄과 바다)
+> 챕터마다 \`NO ~\` 로 나머지 셋의 소재를 배제해 4장이 서로 닮지 않게 한다.`,
 };
 
-const HEADER = (title, id) => `# 신서고 YBM 영어II ${title} — 챕터별 삽화 프롬프트
+const HEADER = (title, id, heading) => `# ${heading ?? `신서고 YBM 영어II ${title} — 챕터별 삽화 프롬프트`}
 
 > 규격: **\`--ar 16:5 --v 8.1\`**
 ${TONE_NOTE[id] ?? TONE_NOTE.L2}
@@ -50,7 +58,7 @@ ${TONE_NOTE[id] ?? TONE_NOTE.L2}
 `;
 
 for (const lesson of targets) {
-  let md = HEADER(lesson.title, lesson.id);
+  let md = HEADER(lesson.title, lesson.id, lesson.heading);
   let found = 0;
 
   for (const ch of lesson.source) {

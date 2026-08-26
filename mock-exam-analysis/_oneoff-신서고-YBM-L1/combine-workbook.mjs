@@ -41,12 +41,21 @@ const LESSONS = {
     sentences: 58,
     out: '신서고2-2중간_YBM영어II_Lesson2_워크북_합본.pdf',
   },
+  /* EX — 부교재(문법 유닛). coverSub 로 'Lesson N' 표기를 대체(L1·L2 회귀 0). */
+  EX: {
+    lessonNo: null,
+    titleEn: '05 수식어는 괄호로 묶어라',
+    sentences: 27,
+    coverSub: '신서고 부교재 · 어법 유닛<br>05 수식어는 괄호로 묶어라',
+    docTitle: '신서고 부교재 · 05 수식어는 괄호로 묶어라 워크북 합본 — Terra Nova',
+    out: '신서고2-2중간_부교재_05수식어는괄호로묶어라_워크북_합본.pdf',
+  },
 };
 
 const lessonId = (process.argv[2] || 'L1').toUpperCase();
 const LESSON = LESSONS[lessonId];
 if (!LESSON) {
-  console.error(`알 수 없는 과: ${lessonId} (L1 또는 L2)`);
+  console.error(`알 수 없는 과: ${lessonId} (L1 / L2 / EX)`);
   process.exit(2);
 }
 const DIST = path.join(__dirname, 'dist', lessonId);
@@ -121,7 +130,7 @@ const cover = `<section class="page cover-page">
   <div class="cover-wrap">
     <div class="cover-brand">Terra Nova</div>
     <div class="cover-title">신서고 2학년 2학기<br>중간고사 대비</div>
-    <div class="cover-sub">YBM(박준언) 영어II · Lesson ${LESSON.lessonNo}<br>${esc(LESSON.titleEn)}</div>
+    <div class="cover-sub">${LESSON.coverSub ?? `YBM(박준언) 영어II · Lesson ${LESSON.lessonNo}<br>${esc(LESSON.titleEn)}`}</div>
     <div class="cover-meta">워크북 합본 · 전 ${pageNo}페이지 · 원문 ${LESSON.sentences}문장 · 9-STEP</div>
   </div>
 </section>
@@ -135,7 +144,7 @@ const cover = `<section class="page cover-page">
       </div>
       <div class="step-right">
         <div class="step-title">목차</div>
-        <div class="step-desc">5개 챕터 · 챕터마다 9-STEP 구성</div>
+        <div class="step-desc">${toc.length}개 챕터 · 챕터마다 9-STEP 구성</div>
       </div>
     </div>
     <div class="toc-list">
@@ -169,7 +178,7 @@ const combinedHtml = `<!doctype html>
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<title>신서고 2-2 중간 · YBM 영어II Lesson ${LESSON.lessonNo} 워크북 합본 — Terra Nova</title>
+<title>${LESSON.docTitle ?? `신서고 2-2 중간 · YBM 영어II Lesson ${LESSON.lessonNo} 워크북 합본 — Terra Nova`}</title>
 <link rel="stylesheet" href="${cssHref}">
 <style>${extraCss}</style>
 </head>

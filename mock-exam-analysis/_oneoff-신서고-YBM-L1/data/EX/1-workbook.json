@@ -1,0 +1,354 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "1.json",
+  "_note": "신서고 부교재 EX1 워크북 — 본문 7문장 풀커버.",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "meat-eating", "pos": "형" },
+      { "word": "trigger",     "pos": "명" },
+      { "word": "surface",     "pos": "명" },
+      { "word": "stimuli",     "pos": "명" },
+      { "word": "sensed",      "pos": "동" },
+      { "word": "experiment",  "pos": "명" },
+      { "word": "required",    "pos": "동" },
+      { "word": "producing",   "pos": "동" },
+      { "word": "enzymes",     "pos": "명" },
+      { "word": "meaningful",  "pos": "형" }
+    ],
+    "ko_to_en": [
+      { "meaning": "고기를 먹는, 육식성의",    "pos": "형", "answer": "meat-eating" },
+      { "meaning": "턱, 아가리 (복수형)",      "pos": "명", "answer": "jaws" },
+      { "meaning": "위, 배",                   "pos": "명", "answer": "stomach" },
+      { "meaning": "곤충, 벌레",               "pos": "명", "answer": "insect" },
+      { "meaning": "표면, 겉면",               "pos": "명", "answer": "surface" },
+      { "meaning": "자극들 (단수형 stimulus)", "pos": "명", "answer": "stimuli" },
+      { "meaning": "감지했다, 느꼈다",         "pos": "동", "answer": "sensed" },
+      { "meaning": "효소 (복수형)",            "pos": "명", "answer": "enzymes" },
+      { "meaning": "소화하다",                 "pos": "동", "answer": "digest" },
+      { "meaning": "초기화하다, 다시 맞추다",  "pos": "동", "answer": "reset" }
+    ],
+    "expressions": [
+      { "ko": "한 쌍의 ~",       "answer": "a pair of" },
+      { "ko": "~의 역할을 하다", "answer": "act as" },
+      { "ko": "~ 이내에",        "answer": "within" },
+      { "ko": "게다가, 덧붙여",  "answer": "In addition" },
+      { "ko": "~ 덕분에",        "answer": "Thanks to" }
+    ],
+    "definitions": [
+      { "def": "a small animal with six legs and a hard outer shell",             "answer": "insect" },
+      { "def": "a scientific test done to find out whether an idea is true",      "answer": "experiment" },
+      { "def": "the outer or top layer of something",                            "answer": "surface" },
+      { "def": "substances made by living cells that speed up chemical change",   "answer": "enzymes" },
+      { "def": "to break down food inside the body so it can be used",           "answer": "digest" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "The Venus flytrap, a meat-eating plant, {{1:has/have}} a pair of leaves that {{2:act/acts}} as jaws and a stomach.",
+      "ko_full": "육식 식물인 파리지옥풀은 턱과 위 역할을 하는 한 쌍의 잎을 가지고 있다.",
+      "answers": ["has", "act"],
+      "explain": [
+        "주어는 단수 The Venus flytrap이고 뒤의 a meat-eating plant는 삽입된 동격어구이므로 단수 동사 has가 맞다.",
+        "주격 관계대명사 that의 선행사가 복수 leaves이므로 수를 맞춰 복수 동사 act를 쓴다."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "If an insect {{1:touches/touch}} the trigger hairs on the surface of these leaves, the leaves close, {{2:trapping/trapped}} the insect.",
+      "ko_full": "곤충이 이 잎들의 표면에 있는 감각모를 건드리면, 잎이 닫히면서 그 곤충을 가둔다.",
+      "answers": ["touches", "trapping"],
+      "explain": [
+        "조건 부사절의 주어가 3인칭 단수 an insect이므로 현재시제 단수형 touches를 쓴다.",
+        "the insect를 목적어로 취해 능동으로 이어지는 분사구문이므로 현재분사 trapping이 맞다."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "Amazingly, a recent experiment showed that the Venus flytrap knew {{1:how many times its trigger hairs were touched/how many times were its trigger hairs touched}} and could even {{2:count/counting}} the time between these stimuli.",
+      "ko_full": "놀랍게도, 최근의 한 실험은 파리지옥풀이 자신의 감각모가 몇 번 건드려졌는지를 알고 있었으며 이 자극들 사이의 시간까지도 셀 수 있었음을 보여 주었다.",
+      "answers": ["how many times its trigger hairs were touched", "count"],
+      "explain": [
+        "knew의 목적어인 간접의문문이므로 「의문사+주어+동사」 어순을 지켜 주어 뒤에 were touched가 온다.",
+        "조동사 could 뒤에는 동사원형이 오므로 count가 맞다."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "The trap {{1:closed/was closed}} only if the plant sensed two stimuli {{2:within/during}} a 20 second time span.",
+      "ko_full": "그 덫은 식물이 20초라는 시간 안에 두 번의 자극을 감지했을 때만 닫혔다.",
+      "answers": ["closed", "within"],
+      "explain": [
+        "여기서 close는 '닫히다'라는 자동사로 쓰였으므로 수동태가 아닌 능동형 closed가 맞다.",
+        "정해진 시간 폭 '안에'라는 한계를 나타내므로 within을 쓰며 during은 기간 전체를 뜻한다."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "Once 20 seconds {{1:passed/passing}}, the process {{2:was/were}} reset.",
+      "ko_full": "일단 20초가 지나면, 그 과정은 초기화되었다.",
+      "answers": ["passed", "was"],
+      "explain": [
+        "Once는 접속사이므로 뒤에 「주어+동사」가 와야 하며 과거시제 passed가 맞다.",
+        "주어 the process가 단수이므로 be동사 단수 과거형 was를 쓴다."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "In addition, more than three stimuli were required {{1:for the plant/of the plant}} to begin producing the enzymes {{2:that digest/that digests}} the trapped insect.",
+      "ko_full": "게다가, 그 식물이 갇힌 곤충을 소화시키는 효소를 만들어 내기 시작하려면 세 번을 넘는 자극이 필요했다.",
+      "answers": ["for the plant", "that digest"],
+      "explain": [
+        "to부정사의 의미상 주어는 「for+명사」로 나타내므로 for the plant가 맞다.",
+        "주격 관계대명사 that의 선행사가 복수 the enzymes이므로 복수 동사 digest를 쓴다."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "Thanks to this process, the Venus flytrap {{1:doesn't/don't}} make meaningful efforts {{2:trying/tried}} to trap and digest raindrops or fallen leaves.",
+      "ko_full": "이 과정 덕분에, 파리지옥풀은 빗방울이나 떨어진 나뭇잎을 가두고 소화하려 애쓰며 의미 있는 노력을 낭비하지 않는다.",
+      "answers": ["doesn't", "trying"],
+      "explain": [
+        "주어 the Venus flytrap이 3인칭 단수이므로 부정 조동사 doesn't를 쓴다.",
+        "주어의 동작을 능동으로 덧붙이는 분사구문이므로 현재분사 trying이 맞다."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "The Venus flytrap, a {{1:meat-eating/plant-eating}} plant, has a pair of leaves that act as jaws and a {{2:stomach/lung}}.",
+      "ko_full": "육식 식물인 파리지옥풀은 턱과 위 역할을 하는 한 쌍의 잎을 가지고 있다.",
+      "answers": ["meat-eating", "stomach"],
+      "explain": [
+        "곤충을 잡아먹는 식물이므로 meat-eating(육식성의)이며 plant-eating은 정반대 개념이다.",
+        "먹이를 소화하는 기관에 비유했으므로 stomach(위)이고 lung(폐)은 호흡 기관이다."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "If an insect touches the {{1:trigger/decorative}} hairs on the surface of these leaves, the leaves close, {{2:trapping/releasing}} the insect.",
+      "ko_full": "곤충이 이 잎들의 표면에 있는 감각모를 건드리면, 잎이 닫히면서 그 곤충을 가둔다.",
+      "answers": ["trigger", "trapping"],
+      "explain": [
+        "반응을 촉발하는 털이므로 trigger hairs(감각모)이며 decorative는 '장식용의'라는 뜻이다.",
+        "잎이 닫혀 곤충을 가두는 것이므로 trapping이고 releasing은 놓아주는 반대 동작이다."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "Amazingly, a {{1:recent/ancient}} experiment showed that the Venus flytrap knew how many times its trigger hairs were touched and could even {{2:count/ignore}} the time between these stimuli.",
+      "ko_full": "놀랍게도, 최근의 한 실험은 파리지옥풀이 자신의 감각모가 몇 번 건드려졌는지를 알고 있었으며 이 자극들 사이의 시간까지도 셀 수 있었음을 보여 주었다.",
+      "answers": ["recent", "count"],
+      "explain": [
+        "최근에 이루어진 실험 결과를 소개하므로 recent이며 ancient는 '고대의'라는 뜻이다.",
+        "자극 사이의 시간을 헤아린다는 내용이므로 count이고 ignore는 무시한다는 반대 의미이다."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "The trap closed only if the plant {{1:sensed/imagined}} two stimuli within a 20 second time {{2:span/waste}}.",
+      "ko_full": "그 덫은 식물이 20초라는 시간 안에 두 번의 자극을 감지했을 때만 닫혔다.",
+      "answers": ["sensed", "span"],
+      "explain": [
+        "실제 자극을 감지했을 때만 닫히므로 sensed이고 imagined는 '상상했다'는 뜻이다.",
+        "time span은 '시간의 폭'을 뜻하는 짝 표현이며 waste는 낭비를 뜻한다."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "Once 20 seconds {{1:passed/remained}}, the process was {{2:reset/completed}}.",
+      "ko_full": "일단 20초가 지나면, 그 과정은 초기화되었다.",
+      "answers": ["passed", "reset"],
+      "explain": [
+        "정해진 시간이 흘러갔다는 뜻이므로 passed이고 remained는 남아 있다는 반대 상황이다.",
+        "세었던 횟수가 처음으로 되돌아간다는 뜻이므로 reset이고 completed는 완료되었다는 의미이다."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "In addition, more than three stimuli were {{1:required/forbidden}} for the plant to begin producing the enzymes that {{2:digest/create}} the trapped insect.",
+      "ko_full": "게다가, 그 식물이 갇힌 곤충을 소화시키는 효소를 만들어 내기 시작하려면 세 번을 넘는 자극이 필요했다.",
+      "answers": ["required", "digest"],
+      "explain": [
+        "효소 생성에 필요한 조건을 말하므로 required이고 forbidden은 '금지된'이라는 뜻이다.",
+        "효소는 갇힌 곤충을 분해해 소화시키므로 digest이고 create는 만들어 낸다는 반대 방향이다."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "Thanks to this process, the Venus flytrap doesn't make {{1:meaningful/careless}} efforts trying to trap and digest raindrops or {{2:fallen/growing}} leaves.",
+      "ko_full": "이 과정 덕분에, 파리지옥풀은 빗방울이나 떨어진 나뭇잎을 가두고 소화하려 애쓰며 의미 있는 노력을 낭비하지 않는다.",
+      "answers": ["meaningful", "fallen"],
+      "explain": [
+        "헛되이 쓰지 않는 값진 노력을 가리키므로 meaningful이며 careless는 '부주의한'이라는 뜻이다.",
+        "떨어져 덫에 들어온 잎이므로 fallen leaves이고 growing은 자라고 있는 상태를 뜻한다."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "f", "answer": "flytrap", "after": "a meat-eating plant" },
+        { "pos": 2, "letter": "l", "answer": "leaves",  "after": "that act as jaws" },
+        { "pos": 3, "letter": "s", "answer": "stomach", "after": "" }
+      ],
+      "ko_full": "육식 식물인 파리지옥풀은 턱과 위 역할을 하는 한 쌍의 잎을 가지고 있다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "t", "answer": "touches",  "after": "the trigger hairs" },
+        { "pos": 2, "letter": "s", "answer": "surface",  "after": "of these leaves" },
+        { "pos": 3, "letter": "t", "answer": "trapping", "after": "the insect" }
+      ],
+      "ko_full": "곤충이 이 잎들의 표면에 있는 감각모를 건드리면, 잎이 닫히면서 그 곤충을 가둔다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "e", "answer": "experiment", "after": "showed that" },
+        { "pos": 2, "letter": "t", "answer": "touched",    "after": "and could even count" },
+        { "pos": 3, "letter": "s", "answer": "stimuli",    "after": "" }
+      ],
+      "ko_full": "놀랍게도, 최근의 한 실험은 파리지옥풀이 자신의 감각모가 몇 번 건드려졌는지를 알고 있었으며 이 자극들 사이의 시간까지도 셀 수 있었음을 보여 주었다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "s", "answer": "sensed", "after": "two stimuli" },
+        { "pos": 2, "letter": "w", "answer": "within", "after": "a 20 second time span" },
+        { "pos": 3, "letter": "s", "answer": "second", "after": "time span" }
+      ],
+      "ko_full": "그 덫은 식물이 20초라는 시간 안에 두 번의 자극을 감지했을 때만 닫혔다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "s", "answer": "seconds", "after": "passed" },
+        { "pos": 2, "letter": "p", "answer": "passed",  "after": "the process was reset" },
+        { "pos": 3, "letter": "p", "answer": "process", "after": "was reset" }
+      ],
+      "ko_full": "일단 20초가 지나면, 그 과정은 초기화되었다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "r", "answer": "required",  "after": "for the plant to begin" },
+        { "pos": 2, "letter": "p", "answer": "producing", "after": "the enzymes" },
+        { "pos": 3, "letter": "e", "answer": "enzymes",   "after": "that digest" }
+      ],
+      "ko_full": "게다가, 그 식물이 갇힌 곤충을 소화시키는 효소를 만들어 내기 시작하려면 세 번을 넘는 자극이 필요했다."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "hints": [
+        { "pos": 1, "letter": "p", "answer": "process",    "after": "the Venus flytrap" },
+        { "pos": 2, "letter": "m", "answer": "meaningful", "after": "efforts trying to trap" },
+        { "pos": 3, "letter": "r", "answer": "raindrops",  "after": "or fallen leaves" }
+      ],
+      "ko_full": "이 과정 덕분에, 파리지옥풀은 빗방울이나 떨어진 나뭇잎을 가두고 소화하려 애쓰며 의미 있는 노력을 낭비하지 않는다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 },
+    { "no": 7, "ref_sentence": 7 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["The", "Venus", "flytrap", "a", "meat-eating", "plant", "has", "a", "pair", "of", "leaves", "that", "act", "as", "jaws", "and", "a", "stomach"],
+      "answer": "The Venus flytrap, a meat-eating plant, has a pair of leaves that act as jaws and a stomach."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["If", "an", "insect", "touches", "the", "trigger", "hairs", "on", "the", "surface", "of", "these", "leaves", "the", "leaves", "close", "trapping", "the", "insect"],
+      "answer": "If an insect touches the trigger hairs on the surface of these leaves, the leaves close, trapping the insect."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["Amazingly", "a", "recent", "experiment", "showed", "that", "the", "Venus", "flytrap", "knew", "how", "many", "times", "its", "trigger", "hairs", "were", "touched", "and", "could", "even", "count", "the", "time", "between", "these", "stimuli"],
+      "answer": "Amazingly, a recent experiment showed that the Venus flytrap knew how many times its trigger hairs were touched and could even count the time between these stimuli."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["The", "trap", "closed", "only", "if", "the", "plant", "sensed", "two", "stimuli", "within", "a", "20", "second", "time", "span"],
+      "answer": "The trap closed only if the plant sensed two stimuli within a 20 second time span."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["Once", "20", "seconds", "passed", "the", "process", "was", "reset"],
+      "answer": "Once 20 seconds passed, the process was reset."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["In", "addition", "more", "than", "three", "stimuli", "were", "required", "for", "the", "plant", "to", "begin", "producing", "the", "enzymes", "that", "digest", "the", "trapped", "insect"],
+      "answer": "In addition, more than three stimuli were required for the plant to begin producing the enzymes that digest the trapped insect."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "words": ["Thanks", "to", "this", "process", "the", "Venus", "flytrap", "doesn't", "make", "meaningful", "efforts", "trying", "to", "trap", "and", "digest", "raindrops", "or", "fallen", "leaves"],
+      "answer": "Thanks to this process, the Venus flytrap doesn't make meaningful efforts trying to trap and digest raindrops or fallen leaves."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" },
+    { "no": 7, "ref_sentence": 7, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 1, "no": 1 },
+    { "kind": "vocab",   "ref": 2, "no": 2 },
+    { "kind": "fill",    "ref": 3, "no": 3 },
+    { "kind": "ko",      "ref": 4, "no": 4 },
+    { "kind": "jumble",  "ref": 5, "no": 5 },
+    { "kind": "sent",    "ref": 6, "no": 6 },
+    { "kind": "grammar", "ref": 7, "no": 7 }
+  ]
+}

@@ -340,3 +340,88 @@ STEP 1 은 분할 단위가 `passage-grid` / `voca-block` / `voca-2col` 같은 �
     `hide_head_no`(헤더 "· N번" 숨김)
   - CLI 옵션: `--styles=<경로>` (data 가 L1/L2 로 중첩돼 기본 경로 규칙이 안 맞을 때)
 - `exam` 필드는 `"신서고 2-2 중간 · YBM(박준언)"` — 페이지 헤더에 표기됩니다.
+
+---
+
+## EX — 부교재 「05 수식어는 괄호로 묶어라」 (2026-08-26 추가)
+
+L1·L2(교과서 본문)와 **별개로**, 신서고 부교재의 어법 유닛 **"05 수식어는 괄호로 묶어라"**
+4지문을 같은 파이프라인으로 제작했다. 교과서 과가 아니라 **문제집 유닛**이라
+챕터=지문이며, 각 지문의 **원문 문제 유형을 그대로 유지**한다.
+
+| 지문 | 원문 문항 | 유형 | 소재 | 문장 |
+|------|-----------|------|------|------|
+| 1 | 2번 | 어휘 | 파리지옥풀의 자극 계수 | 7 |
+| 2 | 4번 | 문장삽입 | 음압(negative pressure)의 두 얼굴 | 6 |
+| 3 | 6번 | 요지 | 윤일(Leap Day)이 필요한 이유 | 7 |
+| 4 | 8번 | 순서배열 | 펭귄 딘딤과 노인의 우정 | 7 |
+| | | | **합계** | **27** |
+
+### 산출물
+
+| 종류 | 파일 | 구성 |
+|------|------|------|
+| 분석지 | `dist/EX/{1..4}.{html,pdf}` (각 5p) | 본문 20p |
+| 분석지 합본 | `dist/EX/신서고2-2중간_부교재_05수식어는괄호로묶어라_본문분석_합본.pdf` | 표지1+목차1+본문20 = **22p** |
+| 워크북 | `dist/EX/workbook-{1..4}.{html,pdf}` (9·9·10·9p) | 본문 37p |
+| 워크북 합본 | `dist/EX/신서고2-2중간_부교재_05수식어는괄호로묶어라_워크북_합본.pdf` | 표지1+목차1+본문37 = **39p** |
+| 변형문제 | `dist/EX/variant-book.{html,pdf}` | **37p** · 객관식 44(11유형×4) + 서술형 24 = **68문항** |
+
+지문 시작 페이지 — 분석지: 1 / 6 / 11 / 16 · 워크북: 1 / 10 / 19 / 29
+
+### 빌드 방법
+
+```bash
+cd mock-exam-analysis
+
+# 0) 무결성 검증 3종 — 반드시 먼저 (실패 시 빌드 금지)
+node "_oneoff-신서고-YBM-L1/verify-EX.mjs"
+node "_oneoff-신서고-YBM-L1/verify-workbook-EX.mjs"
+node "_oneoff-신서고-YBM-L1/verify-variant-EX.mjs"
+
+# 1) 분석지
+node builder/build.mjs "_oneoff-신서고-YBM-L1/data/EX" "_oneoff-신서고-YBM-L1/dist/EX" \
+  --styles="_oneoff-신서고-YBM-L1/styles/analysis.css"
+for n in 1 2 3 4; do node builder/check-overflow.mjs "_oneoff-신서고-YBM-L1/dist/EX/$n.html"; done
+node builder/pdf.mjs "_oneoff-신서고-YBM-L1/dist/EX"
+node "_oneoff-신서고-YBM-L1/combine.mjs" EX
+
+# 2) 워크북 (★ PDF 는 반드시 pdf-image.mjs — 글리프 안전 경로)
+node builder/build-workbook.mjs "_oneoff-신서고-YBM-L1/data/EX" "_oneoff-신서고-YBM-L1/dist/EX" \
+  --styles="_oneoff-신서고-YBM-L1/styles/workbook.css"
+for n in 1 2 3 4; do node builder/check-overflow.mjs "_oneoff-신서고-YBM-L1/dist/EX/workbook-$n.html"; done
+node builder/pdf-image.mjs "_oneoff-신서고-YBM-L1/dist/EX" --match='^workbook-\d+\.html$'
+node "_oneoff-신서고-YBM-L1/combine-workbook.mjs" EX
+
+# 3) 변형문제
+node builder/build-variant.mjs "_oneoff-신서고-YBM-L1/data/EX" "_oneoff-신서고-YBM-L1/dist/EX" \
+  --styles="_oneoff-신서고-YBM-L1/styles/variant.css" --shared-writing-passage
+node "_oneoff-신서고-YBM-L1/_measure-clip.mjs"  "_oneoff-신서고-YBM-L1/dist/EX/variant-book.html"
+node "_oneoff-신서고-YBM-L1/_measure-pages.mjs" "_oneoff-신서고-YBM-L1/dist/EX/variant-book.html"
+node "_oneoff-신서고-YBM-L1/render-variant-pdf.mjs" "_oneoff-신서고-YBM-L1/dist/EX/variant-book.html"
+```
+
+> ⚠️ `builder/pdf.mjs` 는 dist 안 **모든** html 을 PDF 로 만들기 때문에 워크북까지
+> 텍스트 경로로 덮어쓴다. 분석지 PDF 를 만든 **뒤에** 반드시 `pdf-image.mjs` 로
+> 워크북을 다시 렌더할 것(순서 중요).
+
+### 합본 스크립트에 EX 등록 (회귀 0)
+
+`combine.mjs` / `combine-workbook.mjs` / `collect-prompts.mjs` 는 L1·L2 만 알고 있었고
+표지에 `Lesson N` 이 하드코딩돼 있었다. EX 는 과가 아니라 유닛이므로 **옵트인 필드**를 추가했다.
+
+- `coverSub` — 있으면 표지 부제를 덮어쓴다(없으면 기존 `Lesson N + titleEn` 그대로)
+- `docTitle` — `<title>` 덮어쓰기
+- `heading`(collect-prompts) — 프롬프트 문서 제목 덮어쓰기
+- 목차의 "5개 챕터" 하드코딩 → `toc.length` 로 산출(EX 는 4개 챕터)
+
+**회귀 검증**: L1·L2 재실행 후 `combined.html` 과 `_ILLUSTRATION_PROMPTS-{L1,L2}.md` 가
+diff 0 임을 확인했다.
+
+### 삽화
+
+`_ILLUSTRATION_PROMPTS-EX.md` (`node _oneoff-신서고-YBM-L1/collect-prompts.mjs EX` 로 재생성).
+톤은 **실사 과학·자연 다큐멘터리 + 흐린 날 확산광**. 네 지문의 소재가 완전히 달라
+(식충식물 / 배관·수도 / 달력·계절 / 펭귄과 바다) 챕터마다 `NO ~` 로 나머지 셋을 배제한다.
+`dist/EX/assets/illust-{1..4}.png` 로 저장하면 PDF 재렌더 시 자동 반영.
+**현재 이미지 미생성 상태** — 해당 자리에 `[삽화 영역]` placeholder 가 나온다(빌드 정상).

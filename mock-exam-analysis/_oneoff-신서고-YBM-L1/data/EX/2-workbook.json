@@ -1,0 +1,313 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "2.json",
+  "_note": "신서고 부교재 EX2 워크북 — 본문 6문장 풀커버.",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "pressure",     "pos": "명" },
+      { "word": "enclosed",     "pos": "형" },
+      { "word": "surrounding",  "pos": "형" },
+      { "word": "barrier",      "pos": "명" },
+      { "word": "substances",   "pos": "명" },
+      { "word": "immediately",  "pos": "부" },
+      { "word": "undersea",     "pos": "형" },
+      { "word": "municipal",    "pos": "형" },
+      { "word": "contaminated", "pos": "형" },
+      { "word": "potentially",  "pos": "부" }
+    ],
+    "ko_to_en": [
+      { "meaning": "음(陰)의, 부정적인",       "pos": "형", "answer": "negative" },
+      { "meaning": "밀폐된, 둘러싸인",         "pos": "형", "answer": "enclosed" },
+      { "meaning": "장벽, 차단벽",             "pos": "명", "answer": "barrier" },
+      { "meaning": "물질 (복수형)",            "pos": "명", "answer": "substances" },
+      { "meaning": "수송하다, 운반하다",       "pos": "동", "answer": "transport" },
+      { "meaning": "송유관, 수송관",           "pos": "명", "answer": "pipeline" },
+      { "meaning": "방출되다 (수동형)",        "pos": "동", "answer": "released" },
+      { "meaning": "오염된",                   "pos": "형", "answer": "contaminated" },
+      { "meaning": "지하수",                   "pos": "명", "answer": "groundwater" },
+      { "meaning": "조정하다, 맞추다",         "pos": "동", "answer": "adjust" }
+    ],
+    "expressions": [
+      { "ko": "~을 가리키다",     "answer": "refers to" },
+      { "ko": "~한 상태에 있다",  "answer": "in a state of" },
+      { "ko": "예를 들어",        "answer": "For example" },
+      { "ko": "빨아들이다",       "answer": "suck in" },
+      { "ko": "이러한 이유로",    "answer": "For this reason" }
+    ],
+    "definitions": [
+      { "def": "a wall or object that stops things from passing through",           "answer": "barrier" },
+      { "def": "a long tube that carries oil or gas over a great distance",         "answer": "pipeline" },
+      { "def": "made dirty or unsafe by a harmful substance",                       "answer": "contaminated" },
+      { "def": "water that is found under the ground",                              "answer": "groundwater" },
+      { "def": "a device that measures the amount or level of something",           "answer": "gauges" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "\"Negative pressure\" refers to a situation {{1:in which/which}} the pressure of an enclosed area is lower than {{2:that/those}} of the surrounding area.",
+      "ko_full": "'음압'은 밀폐된 공간의 압력이 주변 공간의 압력보다 더 낮은 상황을 가리킨다.",
+      "answers": ["in which", "that"],
+      "explain": [
+        "뒤 절이 완전한 문장이므로 「전치사+관계대명사」 in which를 써서 a situation을 수식한다.",
+        "앞의 단수명사 the pressure를 대신 받으므로 단수 대명사 that을 쓴다."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "If the barrier between these two areas {{1:breaks/break}}, any substances in the high-pressure area {{2:will/would}} immediately flow into the low-pressure area.",
+      "ko_full": "이 두 공간 사이의 장벽이 깨지면, 고압 공간에 있는 어떤 물질이든 즉시 저압 공간으로 흘러 들어갈 것이다.",
+      "answers": ["breaks", "will"],
+      "explain": [
+        "조건절의 주어가 단수 the barrier이므로 현재시제 단수형 breaks를 쓴다.",
+        "실제로 일어날 수 있는 일을 말하는 단순 조건문이므로 주절에 will을 쓴다."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "For example, undersea pipes {{1:used/using}} to transport oil are in a state of negative pressure; therefore, any break in the pipeline will cause it {{2:to fill/filling}} with ocean water.",
+      "ko_full": "예를 들어, 석유를 수송하는 데 쓰이는 해저 배관은 음압 상태에 있으며, 그래서 그 송유관에 생긴 어떤 파손이든 그 관이 바닷물로 채워지게 만들 것이다.",
+      "answers": ["used", "to fill"],
+      "explain": [
+        "pipes가 '쓰이는' 대상이므로 과거분사 used가 뒤에서 명사를 수식한다.",
+        "cause는 「cause+목적어+to부정사」 형태를 취하므로 to fill이 맞다."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "This is much {{1:better/more better}} than the opposite scenario, {{2:in which/in that}} oil would be released into the ocean.",
+      "ko_full": "이는 기름이 바다로 방출되는 반대의 상황보다 훨씬 더 낫다.",
+      "answers": ["better", "in which"],
+      "explain": [
+        "better는 이미 비교급이므로 more를 겹쳐 쓰지 않고, much가 비교급을 강조한다.",
+        "선행사 the opposite scenario를 받는 「전치사+관계대명사」이므로 in which를 쓴다."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "If these municipal waterlines are damaged, they can potentially suck in contaminated groundwater, {{1:which/that}} would then {{2:enter/entering}} the water supply.",
+      "ko_full": "만약 이 상수도관들이 손상되면, 그것들은 오염된 지하수를 빨아들일 수도 있고, 그러면 그 물이 상수도로 흘러 들어가게 될 것이다.",
+      "answers": ["which", "enter"],
+      "explain": [
+        "콤마 뒤 계속적 용법의 관계대명사 자리이므로 that이 아닌 which를 쓴다.",
+        "조동사 would 뒤에는 동사원형이 오므로 enter가 맞다."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "For this reason, a system of gauges and valves {{1:is/are}} used {{2:to adjust/adjusting}} and control their pressure.",
+      "ko_full": "이러한 이유로, 계량기와 밸브로 이루어진 시스템이 그것들의 압력을 조정하고 통제하는 데 사용된다.",
+      "answers": ["is", "to adjust"],
+      "explain": [
+        "주어의 핵은 단수 a system이고 of gauges and valves는 수식어이므로 단수 동사 is를 쓴다.",
+        "「be used+to부정사」는 '~하는 데 사용되다'라는 뜻이므로 to adjust가 맞다."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "\"Negative pressure\" refers to a situation in which the pressure of an {{1:enclosed/exposed}} area is {{2:lower/higher}} than that of the surrounding area.",
+      "ko_full": "'음압'은 밀폐된 공간의 압력이 주변 공간의 압력보다 더 낮은 상황을 가리킨다.",
+      "answers": ["enclosed", "lower"],
+      "explain": [
+        "안팎이 막힌 공간을 뜻하므로 enclosed(밀폐된)이며 exposed는 노출된 상태를 뜻한다.",
+        "음압의 정의는 주변보다 압력이 낮은 것이므로 lower이며 higher는 정반대이다."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "If the {{1:barrier/passage}} between these two areas breaks, any substances in the high-pressure area will {{2:immediately/gradually}} flow into the low-pressure area.",
+      "ko_full": "이 두 공간 사이의 장벽이 깨지면, 고압 공간에 있는 어떤 물질이든 즉시 저압 공간으로 흘러 들어갈 것이다.",
+      "answers": ["barrier", "immediately"],
+      "explain": [
+        "두 공간을 갈라놓다가 깨지는 것이므로 barrier(장벽)이며 passage는 오히려 통로를 뜻한다.",
+        "압력 차로 곧바로 이동하므로 immediately이고 gradually는 서서히라는 반대 속도이다."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "For example, {{1:undersea/overland}} pipes used to transport oil are in a state of negative pressure; therefore, any {{2:break/repair}} in the pipeline will cause it to fill with ocean water.",
+      "ko_full": "예를 들어, 석유를 수송하는 데 쓰이는 해저 배관은 음압 상태에 있으며, 그래서 그 송유관에 생긴 어떤 파손이든 그 관이 바닷물로 채워지게 만들 것이다.",
+      "answers": ["undersea", "break"],
+      "explain": [
+        "바닷물이 들어온다는 결과로 보아 바닷속 배관이므로 undersea이며 overland는 육상의라는 뜻이다.",
+        "관이 터져 물이 들어오는 상황이므로 break(파손)이고 repair는 수리를 뜻한다."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "This is much {{1:better/worse}} than the {{2:opposite/identical}} scenario, in which oil would be released into the ocean.",
+      "ko_full": "이는 기름이 바다로 방출되는 반대의 상황보다 훨씬 더 낫다.",
+      "answers": ["better", "opposite"],
+      "explain": [
+        "기름 유출보다 바닷물 유입이 낫다는 평가이므로 better이고 worse는 정반대 평가이다.",
+        "기름이 밖으로 나가는 정반대 상황을 가리키므로 opposite이며 identical은 동일하다는 뜻이다."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "If these municipal waterlines are {{1:damaged/reinforced}}, they can potentially suck in {{2:contaminated/purified}} groundwater, which would then enter the water supply.",
+      "ko_full": "만약 이 상수도관들이 손상되면, 그것들은 오염된 지하수를 빨아들일 수도 있고, 그러면 그 물이 상수도로 흘러 들어가게 될 것이다.",
+      "answers": ["damaged", "contaminated"],
+      "explain": [
+        "관이 깨져야 외부 물이 들어오므로 damaged이고 reinforced는 오히려 보강되었다는 뜻이다.",
+        "상수도를 위협하는 물이므로 contaminated(오염된)이며 purified는 정화된 상태를 뜻한다."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "For this reason, a system of {{1:gauges/mirrors}} and valves is used to adjust and {{2:control/ignore}} their pressure.",
+      "ko_full": "이러한 이유로, 계량기와 밸브로 이루어진 시스템이 그것들의 압력을 조정하고 통제하는 데 사용된다.",
+      "answers": ["gauges", "control"],
+      "explain": [
+        "압력을 재는 장치이므로 gauges(계량기)이며 mirrors는 거울로 문맥과 무관하다.",
+        "압력을 관리한다는 흐름이므로 control이고 ignore는 방치한다는 반대 태도이다."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "p", "answer": "pressure",    "after": "refers to a situation" },
+        { "pos": 2, "letter": "e", "answer": "enclosed",    "after": "area is lower" },
+        { "pos": 3, "letter": "s", "answer": "surrounding", "after": "area" }
+      ],
+      "ko_full": "'음압'은 밀폐된 공간의 압력이 주변 공간의 압력보다 더 낮은 상황을 가리킨다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "b", "answer": "barrier",     "after": "between these two areas" },
+        { "pos": 2, "letter": "s", "answer": "substances",  "after": "in the high-pressure area" },
+        { "pos": 3, "letter": "i", "answer": "immediately", "after": "flow into" }
+      ],
+      "ko_full": "이 두 공간 사이의 장벽이 깨지면, 고압 공간에 있는 어떤 물질이든 즉시 저압 공간으로 흘러 들어갈 것이다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "u", "answer": "undersea",  "after": "pipes used to transport" },
+        { "pos": 2, "letter": "t", "answer": "transport", "after": "oil" },
+        { "pos": 3, "letter": "p", "answer": "pipeline",  "after": "will cause it to fill" }
+      ],
+      "ko_full": "예를 들어, 석유를 수송하는 데 쓰이는 해저 배관은 음압 상태에 있으며, 그래서 그 송유관에 생긴 어떤 파손이든 그 관이 바닷물로 채워지게 만들 것이다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "o", "answer": "opposite", "after": "scenario" },
+        { "pos": 2, "letter": "s", "answer": "scenario", "after": "in which oil" },
+        { "pos": 3, "letter": "r", "answer": "released", "after": "into the ocean" }
+      ],
+      "ko_full": "이는 기름이 바다로 방출되는 반대의 상황보다 훨씬 더 낫다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "m", "answer": "municipal",    "after": "waterlines are damaged" },
+        { "pos": 2, "letter": "c", "answer": "contaminated", "after": "groundwater" },
+        { "pos": 3, "letter": "g", "answer": "groundwater",  "after": "which would then enter" }
+      ],
+      "ko_full": "만약 이 상수도관들이 손상되면, 그것들은 오염된 지하수를 빨아들일 수도 있고, 그러면 그 물이 상수도로 흘러 들어가게 될 것이다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "r", "answer": "reason", "after": "a system of gauges" },
+        { "pos": 2, "letter": "g", "answer": "gauges", "after": "and valves" },
+        { "pos": 3, "letter": "a", "answer": "adjust", "after": "and control their pressure" }
+      ],
+      "ko_full": "이러한 이유로, 계량기와 밸브로 이루어진 시스템이 그것들의 압력을 조정하고 통제하는 데 사용된다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["Negative", "pressure", "refers", "to", "a", "situation", "in", "which", "the", "pressure", "of", "an", "enclosed", "area", "is", "lower", "than", "that", "of", "the", "surrounding", "area"],
+      "answer": "\"Negative pressure\" refers to a situation in which the pressure of an enclosed area is lower than that of the surrounding area."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["If", "the", "barrier", "between", "these", "two", "areas", "breaks", "any", "substances", "in", "the", "high-pressure", "area", "will", "immediately", "flow", "into", "the", "low-pressure", "area"],
+      "answer": "If the barrier between these two areas breaks, any substances in the high-pressure area will immediately flow into the low-pressure area."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["For", "example", "undersea", "pipes", "used", "to", "transport", "oil", "are", "in", "a", "state", "of", "negative", "pressure", "therefore", "any", "break", "in", "the", "pipeline", "will", "cause", "it", "to", "fill", "with", "ocean", "water"],
+      "answer": "For example, undersea pipes used to transport oil are in a state of negative pressure; therefore, any break in the pipeline will cause it to fill with ocean water."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["This", "is", "much", "better", "than", "the", "opposite", "scenario", "in", "which", "oil", "would", "be", "released", "into", "the", "ocean"],
+      "answer": "This is much better than the opposite scenario, in which oil would be released into the ocean."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["If", "these", "municipal", "waterlines", "are", "damaged", "they", "can", "potentially", "suck", "in", "contaminated", "groundwater", "which", "would", "then", "enter", "the", "water", "supply"],
+      "answer": "If these municipal waterlines are damaged, they can potentially suck in contaminated groundwater, which would then enter the water supply."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["For", "this", "reason", "a", "system", "of", "gauges", "and", "valves", "is", "used", "to", "adjust", "and", "control", "their", "pressure"],
+      "answer": "For this reason, a system of gauges and valves is used to adjust and control their pressure."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 1, "no": 1 },
+    { "kind": "vocab",   "ref": 2, "no": 2 },
+    { "kind": "fill",    "ref": 3, "no": 3 },
+    { "kind": "ko",      "ref": 4, "no": 4 },
+    { "kind": "jumble",  "ref": 5, "no": 5 },
+    { "kind": "sent",    "ref": 6, "no": 6 }
+  ]
+}

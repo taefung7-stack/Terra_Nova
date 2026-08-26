@@ -1,0 +1,354 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "3.json",
+  "_note": "신서고 부교재 EX3 워크북 — 본문 7문장 풀커버.",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "ensure",       "pos": "동" },
+      { "word": "calendar",     "pos": "명" },
+      { "word": "consists",     "pos": "동" },
+      { "word": "actually",     "pos": "부" },
+      { "word": "orbit",        "pos": "동" },
+      { "word": "necessary",    "pos": "형" },
+      { "word": "agricultural", "pos": "형" },
+      { "word": "celebrations", "pos": "명" },
+      { "word": "gradually",    "pos": "부" },
+      { "word": "intended",     "pos": "형" }
+    ],
+    "ko_to_en": [
+      { "meaning": "달력, 역법",                 "pos": "명", "answer": "calendar" },
+      { "meaning": "반드시 ~하게 하다, 보장하다","pos": "동", "answer": "ensure" },
+      { "meaning": "궤도를 돌다",                "pos": "동", "answer": "orbit" },
+      { "meaning": "추가의, 여분의",             "pos": "형", "answer": "extra" },
+      { "meaning": "추가, 덧붙임",               "pos": "명", "answer": "addition" },
+      { "meaning": "일어나다, 발생하다",         "pos": "동", "answer": "occur" },
+      { "meaning": "농업의",                     "pos": "형", "answer": "agricultural" },
+      { "meaning": "기념 행사 (복수형)",         "pos": "명", "answer": "celebrations" },
+      { "meaning": "점차, 서서히",               "pos": "부", "answer": "gradually" },
+      { "meaning": "의도된, 계획된",             "pos": "형", "answer": "intended" }
+    ],
+    "expressions": [
+      { "ko": "~와 발맞추어 있다",   "answer": "stay in line with" },
+      { "ko": "~으로 이루어지다",    "answer": "consists of" },
+      { "ko": "~을 메우다",          "answer": "account for" },
+      { "ko": "~로 이어지다",        "answer": "leading to" },
+      { "ko": "~와 연관되어 있다",   "answer": "are linked to" }
+    ],
+    "definitions": [
+      { "def": "the path one object takes as it moves around another in space",       "answer": "orbit" },
+      { "def": "connected with farming and growing crops",                            "answer": "agricultural" },
+      { "def": "a time when people do something special to mark an event",            "answer": "celebrations" },
+      { "def": "slowly, over a long period of time",                                  "answer": "gradually" },
+      { "def": "planned or meant to be a certain way",                                "answer": "intended" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Every four years, a twenty-ninth day {{1:is added/is adding}} to the month {{2:of/in}} February.",
+      "ko_full": "4년마다, 2월이라는 달에 29번째 날이 더해진다.",
+      "answers": ["is added", "of"],
+      "explain": [
+        "주어 a twenty-ninth day가 더해지는 대상이므로 수동태 is added를 쓴다.",
+        "「the month of+달 이름」이 '~이라는 달'을 뜻하는 동격 표현이므로 of가 맞다."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "This day, also {{1:known/knowing}} as Leap Day, was created to ensure {{2:that/what}} our calendar and our seasons stay in line with each other.",
+      "ko_full": "윤일이라고도 알려진 이날은 우리의 달력과 계절이 서로 발맞추어 유지되도록 확실히 하기 위해 만들어졌다.",
+      "answers": ["known", "that"],
+      "explain": [
+        "be known as의 수동 의미를 이어받은 삽입구이므로 과거분사 known이 맞다.",
+        "뒤에 완전한 절이 오므로 접속사 that을 쓰며, what은 불완전한 절을 이끈다."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "While we think that a normal year {{1:consists/consist}} of 365 days, {{2:it/there}} actually takes Earth about 365.2421 days to orbit the sun.",
+      "ko_full": "우리는 보통의 한 해가 365일로 이루어져 있다고 생각하지만, 실제로 지구가 태양의 궤도를 도는 데는 약 365.2421일이 걸린다.",
+      "answers": ["consists", "it"],
+      "explain": [
+        "that절의 주어가 단수 a normal year이므로 현재시제 단수형 consists를 쓴다.",
+        "「It takes+대상+시간+to부정사」 구문의 가주어 자리이므로 it이 맞다."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "Every four years, it is necessary {{1:to add/adding}} an extra day {{2:to account for/accounting for}} the lost time.",
+      "ko_full": "4년마다 그 잃어버린 시간을 메우기 위해 하루를 더 더하는 것이 필요하다.",
+      "answers": ["to add", "to account for"],
+      "explain": [
+        "「It is+형용사+to부정사」 구문의 진주어 자리이므로 to add를 쓴다.",
+        "'~하기 위해'라는 목적을 나타내는 부사적 용법이므로 to account for가 맞다."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "Without the addition of a leap day, winter {{1:would occur/will occur}} earlier in the calendar year, {{2:causing/caused}} problems for agricultural schedules and potentially leading to crop failures.",
+      "ko_full": "윤일의 추가가 없다면, 겨울이 달력상의 한 해에서 더 일찍 찾아와 농업 일정에 문제를 일으키고 잠재적으로 흉작으로 이어질 것이다.",
+      "answers": ["would occur", "causing"],
+      "explain": [
+        "Without이 이끄는 가정법 표현이므로 주절에 「would+동사원형」을 써서 would occur가 된다.",
+        "problems를 목적어로 취해 능동으로 이어지는 분사구문이므로 현재분사 causing이 맞다."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "Additionally, many holidays and cultural celebrations {{1:are/is}} linked {{2:to/with}} specific seasons or dates.",
+      "ko_full": "게다가, 많은 명절과 문화 행사들이 특정한 계절이나 날짜와 연관되어 있다.",
+      "answers": ["are", "to"],
+      "explain": [
+        "주어가 many holidays and cultural celebrations로 복수이므로 be동사 복수형 are를 쓴다.",
+        "be linked to가 '~와 연결되다'를 뜻하는 짝 표현이므로 전치사 to가 맞다."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "Without leap years {{1:to keep/keeping}} the calendar in check, these events {{2:would/will}} gradually drift away from their intended time of celebration.",
+      "ko_full": "달력을 감독해 줄 윤년이 없다면, 이러한 행사들은 본래 의도된 기념 시기로부터 점차 멀어져 갈 것이다.",
+      "answers": ["to keep", "would"],
+      "explain": [
+        "앞의 명사 leap years를 수식하는 형용사적 용법이므로 to부정사 to keep을 쓴다.",
+        "Without이 이끄는 가정의 결과이므로 주절에 would를 써야 한다."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Every four years, a twenty-ninth day is {{1:added/removed}} to the {{2:month/decade}} of February.",
+      "ko_full": "4년마다, 2월이라는 달에 29번째 날이 더해진다.",
+      "answers": ["added", "month"],
+      "explain": [
+        "하루를 덧붙인다는 내용이므로 added이고 removed는 빼낸다는 반대 동작이다.",
+        "February는 한 달의 이름이므로 month이며 decade는 10년을 뜻한다."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "This day, also known as Leap Day, was created to {{1:ensure/doubt}} that our calendar and our seasons {{2:stay in line with/drift away from}} each other.",
+      "ko_full": "윤일이라고도 알려진 이날은 우리의 달력과 계절이 서로 발맞추어 유지되도록 확실히 하기 위해 만들어졌다.",
+      "answers": ["ensure", "stay in line with"],
+      "explain": [
+        "확실히 보장한다는 목적이므로 ensure이고 doubt은 의심한다는 뜻으로 맞지 않는다.",
+        "달력과 계절을 맞추는 것이 목적이므로 stay in line with이며 drift away from은 정반대이다."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "While we think that a {{1:normal/abnormal}} year consists of 365 days, it {{2:actually/rarely}} takes Earth about 365.2421 days to orbit the sun.",
+      "ko_full": "우리는 보통의 한 해가 365일로 이루어져 있다고 생각하지만, 실제로 지구가 태양의 궤도를 도는 데는 약 365.2421일이 걸린다.",
+      "answers": ["normal", "actually"],
+      "explain": [
+        "우리가 흔히 생각하는 평범한 한 해이므로 normal이며 abnormal은 비정상적이라는 뜻이다.",
+        "통념과 다른 사실을 밝히는 문맥이므로 actually이고 rarely는 빈도를 부정한다."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "Every four years, it is {{1:necessary/optional}} to add an {{2:extra/missing}} day to account for the lost time.",
+      "ko_full": "4년마다 그 잃어버린 시간을 메우기 위해 하루를 더 더하는 것이 필요하다.",
+      "answers": ["necessary", "extra"],
+      "explain": [
+        "달력을 맞추려면 반드시 해야 하는 일이므로 necessary이고 optional은 선택적이라는 뜻이다.",
+        "원래 없던 하루를 더 넣는 것이므로 extra이며 missing은 빠져 있다는 상태를 뜻한다."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "Without the addition of a leap day, winter would occur {{1:earlier/later}} in the calendar year, causing problems for {{2:agricultural/industrial}} schedules and potentially leading to crop failures.",
+      "ko_full": "윤일의 추가가 없다면, 겨울이 달력상의 한 해에서 더 일찍 찾아와 농업 일정에 문제를 일으키고 잠재적으로 흉작으로 이어질 것이다.",
+      "answers": ["earlier", "agricultural"],
+      "explain": [
+        "달력이 실제보다 뒤처져 계절이 앞당겨지므로 earlier이고 later는 반대 방향이다.",
+        "흉작으로 이어진다는 결과로 보아 agricultural(농업의)이며 industrial은 공업의라는 뜻이다."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "Additionally, many {{1:holidays/workdays}} and cultural celebrations are linked to {{2:specific/random}} seasons or dates.",
+      "ko_full": "게다가, 많은 명절과 문화 행사들이 특정한 계절이나 날짜와 연관되어 있다.",
+      "answers": ["holidays", "specific"],
+      "explain": [
+        "문화 행사와 나란히 놓인 기념일이므로 holidays이고 workdays는 평일을 뜻한다.",
+        "정해진 계절이나 날짜에 묶여 있다는 뜻이므로 specific이며 random은 무작위를 뜻한다."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "Without leap years to keep the calendar {{1:in check/at risk}}, these events would {{2:gradually/suddenly}} drift away from their intended time of celebration.",
+      "ko_full": "달력을 감독해 줄 윤년이 없다면, 이러한 행사들은 본래 의도된 기념 시기로부터 점차 멀어져 갈 것이다.",
+      "answers": ["in check", "gradually"],
+      "explain": [
+        "keep ... in check는 '~을 제자리에 붙들다'라는 짝 표현이며 at risk는 위험에 처한다는 뜻이다.",
+        "해마다 조금씩 어긋나는 변화이므로 gradually이고 suddenly는 급작스러움을 뜻한다."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "y", "answer": "years",        "after": "a twenty-ninth day" },
+        { "pos": 2, "letter": "t", "answer": "twenty-ninth", "after": "day is added" },
+        { "pos": 3, "letter": "m", "answer": "month",        "after": "of February" }
+      ],
+      "ko_full": "4년마다, 2월이라는 달에 29번째 날이 더해진다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "c", "answer": "created",  "after": "to ensure that" },
+        { "pos": 2, "letter": "e", "answer": "ensure",   "after": "that our calendar" },
+        { "pos": 3, "letter": "s", "answer": "seasons",  "after": "stay in line with each other" }
+      ],
+      "ko_full": "윤일이라고도 알려진 이날은 우리의 달력과 계절이 서로 발맞추어 유지되도록 확실히 하기 위해 만들어졌다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "n", "answer": "normal",   "after": "year consists of 365 days" },
+        { "pos": 2, "letter": "c", "answer": "consists", "after": "of 365 days" },
+        { "pos": 3, "letter": "a", "answer": "actually", "after": "takes Earth about" }
+      ],
+      "ko_full": "우리는 보통의 한 해가 365일로 이루어져 있다고 생각하지만, 실제로 지구가 태양의 궤도를 도는 데는 약 365.2421일이 걸린다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "n", "answer": "necessary", "after": "to add an extra day" },
+        { "pos": 2, "letter": "e", "answer": "extra",     "after": "day to account for" },
+        { "pos": 3, "letter": "a", "answer": "account",   "after": "for the lost time" }
+      ],
+      "ko_full": "4년마다 그 잃어버린 시간을 메우기 위해 하루를 더 더하는 것이 필요하다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "a", "answer": "addition",     "after": "of a leap day" },
+        { "pos": 2, "letter": "a", "answer": "agricultural", "after": "schedules" },
+        { "pos": 3, "letter": "f", "answer": "failures",     "after": "" }
+      ],
+      "ko_full": "윤일의 추가가 없다면, 겨울이 달력상의 한 해에서 더 일찍 찾아와 농업 일정에 문제를 일으키고 잠재적으로 흉작으로 이어질 것이다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "h", "answer": "holidays",     "after": "and cultural celebrations" },
+        { "pos": 2, "letter": "c", "answer": "celebrations", "after": "are linked to" },
+        { "pos": 3, "letter": "s", "answer": "specific",     "after": "seasons or dates" }
+      ],
+      "ko_full": "게다가, 많은 명절과 문화 행사들이 특정한 계절이나 날짜와 연관되어 있다."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "hints": [
+        { "pos": 1, "letter": "c", "answer": "calendar",  "after": "in check" },
+        { "pos": 2, "letter": "g", "answer": "gradually", "after": "drift away from" },
+        { "pos": 3, "letter": "i", "answer": "intended",  "after": "time of celebration" }
+      ],
+      "ko_full": "달력을 감독해 줄 윤년이 없다면, 이러한 행사들은 본래 의도된 기념 시기로부터 점차 멀어져 갈 것이다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 },
+    { "no": 7, "ref_sentence": 7 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["Every", "four", "years", "a", "twenty-ninth", "day", "is", "added", "to", "the", "month", "of", "February"],
+      "answer": "Every four years, a twenty-ninth day is added to the month of February."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["This", "day", "also", "known", "as", "Leap", "Day", "was", "created", "to", "ensure", "that", "our", "calendar", "and", "our", "seasons", "stay", "in", "line", "with", "each", "other"],
+      "answer": "This day, also known as Leap Day, was created to ensure that our calendar and our seasons stay in line with each other."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["While", "we", "think", "that", "a", "normal", "year", "consists", "of", "365", "days", "it", "actually", "takes", "Earth", "about", "365.2421", "days", "to", "orbit", "the", "sun"],
+      "answer": "While we think that a normal year consists of 365 days, it actually takes Earth about 365.2421 days to orbit the sun."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["Every", "four", "years", "it", "is", "necessary", "to", "add", "an", "extra", "day", "to", "account", "for", "the", "lost", "time"],
+      "answer": "Every four years, it is necessary to add an extra day to account for the lost time."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["Without", "the", "addition", "of", "a", "leap", "day", "winter", "would", "occur", "earlier", "in", "the", "calendar", "year", "causing", "problems", "for", "agricultural", "schedules", "and", "potentially", "leading", "to", "crop", "failures"],
+      "answer": "Without the addition of a leap day, winter would occur earlier in the calendar year, causing problems for agricultural schedules and potentially leading to crop failures."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["Additionally", "many", "holidays", "and", "cultural", "celebrations", "are", "linked", "to", "specific", "seasons", "or", "dates"],
+      "answer": "Additionally, many holidays and cultural celebrations are linked to specific seasons or dates."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "words": ["Without", "leap", "years", "to", "keep", "the", "calendar", "in", "check", "these", "events", "would", "gradually", "drift", "away", "from", "their", "intended", "time", "of", "celebration"],
+      "answer": "Without leap years to keep the calendar in check, these events would gradually drift away from their intended time of celebration."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" },
+    { "no": 7, "ref_sentence": 7, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 1, "no": 1 },
+    { "kind": "vocab",   "ref": 2, "no": 2 },
+    { "kind": "fill",    "ref": 3, "no": 3 },
+    { "kind": "ko",      "ref": 4, "no": 4 },
+    { "kind": "jumble",  "ref": 5, "no": 5 },
+    { "kind": "sent",    "ref": 6, "no": 6 },
+    { "kind": "grammar", "ref": 7, "no": 7 }
+  ]
+}

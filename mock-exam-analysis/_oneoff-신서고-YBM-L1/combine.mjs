@@ -19,6 +19,7 @@ import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { SOURCE as SOURCE_L1 } from './_SOURCE.js';
 import { SOURCE as SOURCE_L2 } from './_SOURCE-L2.js';
+import { SOURCE as SOURCE_EX } from './_SOURCE-EX.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -35,12 +36,22 @@ const LESSONS = {
     titleEn: 'The Subscription Economy',
     out: '신서고2-2중간_YBM영어II_Lesson2_본문분석_합본.pdf',
   },
+  /* EX — 부교재(문법 유닛). Lesson 이 아니라 유닛이므로 coverSub 로 표지 문구를 덮어쓴다.
+     coverSub 가 없는 L1·L2 는 기존 'Lesson N + titleEn' 문구 그대로(회귀 0). */
+  EX: {
+    source: SOURCE_EX,
+    lessonNo: null,
+    titleEn: '05 수식어는 괄호로 묶어라',
+    coverSub: '신서고 부교재 · 어법 유닛<br>05 수식어는 괄호로 묶어라',
+    docTitle: '신서고 부교재 · 05 수식어는 괄호로 묶어라 본문분석 합본 — Terra Nova',
+    out: '신서고2-2중간_부교재_05수식어는괄호로묶어라_본문분석_합본.pdf',
+  },
 };
 
 const lessonId = (process.argv[2] || 'L1').toUpperCase();
 const LESSON = LESSONS[lessonId];
 if (!LESSON) {
-  console.error(`알 수 없는 과: ${lessonId} (L1 또는 L2)`);
+  console.error(`알 수 없는 과: ${lessonId} (L1 / L2 / EX)`);
   process.exit(2);
 }
 const SOURCE = LESSON.source;
@@ -118,14 +129,14 @@ const cover = `<section class="page cover-page">
   <div class="cover-wrap">
     <div class="cover-brand">Terra Nova</div>
     <div class="cover-title">신서고 2학년 2학기<br>중간고사 대비</div>
-    <div class="cover-sub">YBM(박준언) 영어II · Lesson ${LESSON.lessonNo}<br>${esc(LESSON.titleEn)}</div>
+    <div class="cover-sub">${LESSON.coverSub ?? `YBM(박준언) 영어II · Lesson ${LESSON.lessonNo}<br>${esc(LESSON.titleEn)}`}</div>
     <div class="cover-meta">본문 분석 합본 · 전 ${pageNo}페이지 · 원문 ${SENTENCE_TOTAL}문장 전수 분석</div>
   </div>
 </section>
 
 <section class="page toc-page-sec">
   <div class="page-body">
-    <div class="section-bar">CONTENTS · 목차<span class="bar-sub">5개 챕터</span></div>
+    <div class="section-bar">CONTENTS · 목차<span class="bar-sub">${toc.length}개 챕터</span></div>
     <div class="toc-list">
 ${tocRows}
     </div>
@@ -161,7 +172,7 @@ const combinedHtml = `<!doctype html>
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<title>신서고 2-2 중간 · YBM 영어II Lesson ${LESSON.lessonNo} 본문분석 합본 — Terra Nova</title>
+<title>${LESSON.docTitle ?? `신서고 2-2 중간 · YBM 영어II Lesson ${LESSON.lessonNo} 본문분석 합본 — Terra Nova`}</title>
 <link rel="stylesheet" href="${cssHref}">
 <style>${extraCss}</style>
 </head>
