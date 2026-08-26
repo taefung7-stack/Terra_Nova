@@ -1,0 +1,538 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "2.json",
+  "_note": "EX2 2번 워크북 — 본문 6문장 풀커버.",
+  "voca_check": {
+    "en_to_ko": [
+      {
+        "word": "benefit",
+        "pos": "명"
+      },
+      {
+        "word": "vulnerable",
+        "pos": "형"
+      },
+      {
+        "word": "demonstration",
+        "pos": "명"
+      },
+      {
+        "word": "transmission",
+        "pos": "명"
+      },
+      {
+        "word": "automotive",
+        "pos": "형"
+      },
+      {
+        "word": "cybersecurity",
+        "pos": "명"
+      },
+      {
+        "word": "adjust",
+        "pos": "동"
+      },
+      {
+        "word": "expert",
+        "pos": "명"
+      }
+    ],
+    "ko_to_en": [
+      {
+        "meaning": "취약한, 연약한",
+        "pos": "형",
+        "answer": "vulnerable"
+      },
+      {
+        "meaning": "경고하다",
+        "pos": "동",
+        "answer": "warn"
+      },
+      {
+        "meaning": "증명하다, 입증하다",
+        "pos": "동",
+        "answer": "proved"
+      },
+      {
+        "meaning": "조절하다, 조정하다",
+        "pos": "동",
+        "answer": "adjust"
+      },
+      {
+        "meaning": "고속도로",
+        "pos": "명",
+        "answer": "highway"
+      },
+      {
+        "meaning": "정부",
+        "pos": "명",
+        "answer": "government"
+      }
+    ],
+    "definitions": [
+      {
+        "def": "easily harmed or attacked",
+        "answer": "vulnerable"
+      },
+      {
+        "def": "a person with special knowledge or skill",
+        "answer": "experts"
+      },
+      {
+        "def": "a public showing of how something works",
+        "answer": "demonstration"
+      },
+      {
+        "def": "an advantage or good result",
+        "answer": "benefits"
+      }
+    ],
+    "expressions": [
+      {
+        "ko": "…을 장악하다, 제어하다",
+        "answer": "take control of"
+      },
+      {
+        "ko": "인터넷 접속",
+        "answer": "internet access"
+      },
+      {
+        "ko": "분명한 메시지",
+        "answer": "a clear message"
+      },
+      {
+        "ko": "진지하게 다뤄지다",
+        "answer": "taken seriously"
+      }
+    ]
+  },
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "There will soon {{1:be/being}} many self-driving cars with internet access on the road.",
+      "ko_full": "머지않아 인터넷에 접속되는 자율주행차가 도로에 많아질 것이다.",
+      "answers": [
+        "be"
+      ],
+      "explain": [
+        "조동사 will 뒤에는 반드시 동사원형이 온다. There will be ~ = ~이 있을 것이다."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "Although these cars have many benefits, experts warn that {{1:having/have}} more self-driving cars also means having ________________.",
+      "ko_full": "이 차들이 많은 이점을 갖고 있기는 하지만, 전문가들은 자율주행차가 늘어난다는 것이 곧 ________________ 이 늘어난다는 뜻이기도 하다고 경고한다.",
+      "answers": [
+        "having"
+      ],
+      "explain": [
+        "that 절의 주어 자리이므로 동명사 having. 동명사 주어는 단수 취급이라 뒤의 동사가 means 이다."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 2,
+      "en_template": "Although these cars have many benefits, experts warn that having more self-driving cars also {{1:means/mean}} having ________________.",
+      "ko_full": "이 차들이 많은 이점을 갖고 있기는 하지만, 전문가들은 자율주행차가 늘어난다는 것이 곧 ________________ 이 늘어난다는 뜻이기도 하다고 경고한다.",
+      "answers": [
+        "means"
+      ],
+      "explain": [
+        "주어가 동명사구 having more self-driving cars 이므로 단수 취급 → means."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 3,
+      "en_template": "Researchers recently proved through a demonstration that even today’s “smart” cars {{1:are/is}} vulnerable.",
+      "ko_full": "연구진은 최근 한 시연을 통해 오늘날의 \"스마트\" 자동차조차 취약하다는 것을 증명했다.",
+      "answers": [
+        "are"
+      ],
+      "explain": [
+        "that 절의 주어가 복수 cars 이므로 are. 사이에 낀 수식어에 수를 맞추지 않는다."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 4,
+      "en_template": "They used a computer {{1:to take/taking}} control of a car while someone else was driving it.",
+      "ko_full": "그들은 다른 사람이 운전하고 있는 차를 컴퓨터를 사용해 장악했다.",
+      "answers": [
+        "to take"
+      ],
+      "explain": [
+        "“장악하기 위해” 라는 목적을 나타내므로 부사적 용법의 to부정사."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 4,
+      "en_template": "They used a computer to take control of a car while someone else {{1:was driving/drove}} it.",
+      "ko_full": "그들은 다른 사람이 운전하고 있는 차를 컴퓨터를 사용해 장악했다.",
+      "answers": [
+        "was driving"
+      ],
+      "explain": [
+        "장악한 그 시점에 “운전하고 있는 중” 이라는 동시 진행을 나타내므로 과거진행형."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 5,
+      "en_template": "They were not only able to change the radio’s volume, {{1:adjust/adjusting}} the air conditioner, and switch the windshield wipers on, but they were also able to take control of the transmission and stop the car as it was driving down the highway.",
+      "ko_full": "그들은 라디오 음량을 바꾸고, 에어컨을 조절하고, 앞유리 와이퍼를 켤 수 있었을 뿐만 아니라, 고속도로를 달리고 있는 차의 변속기까지 제어해 차를 멈춰 세울 수도 있었다.",
+      "answers": [
+        "adjust"
+      ],
+      "explain": [
+        "to change 의 to 가 뒤에도 걸리는 병렬이므로 동사원형 adjust. 앞의 change, 뒤의 switch 와 형태가 같아야 한다."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 5,
+      "en_template": "They were not only able to change the radio’s volume, adjust the air conditioner, and switch the windshield wipers on, {{1:but/and}} they were also able to take control of the transmission and stop the car as it was driving down the highway.",
+      "ko_full": "그들은 라디오 음량을 바꾸고, 에어컨을 조절하고, 앞유리 와이퍼를 켤 수 있었을 뿐만 아니라, 고속도로를 달리고 있는 차의 변속기까지 제어해 차를 멈춰 세울 수도 있었다.",
+      "answers": [
+        "but"
+      ],
+      "explain": [
+        "상관접속사 not only A but also B — not only 는 but also 와 짝을 이룬다."
+      ]
+    },
+    {
+      "no": 9,
+      "ref_sentence": 6,
+      "en_template": "Fortunately, it was just a demonstration, but it sends a clear message to both the auto industry and the government: automotive cybersecurity is a real issue that must {{1:be taken/take}} seriously.",
+      "ko_full": "다행히 그것은 시연에 불과했지만, 자동차 업계와 정부 양쪽 모두에게 분명한 메시지를 던진다 — 자동차 사이버 보안은 진지하게 다뤄져야 할 실제 문제라는 것이다.",
+      "answers": [
+        "be taken"
+      ],
+      "explain": [
+        "issue 는 “다뤄지는” 대상이므로 조동사 + 수동태 must be taken."
+      ]
+    }
+  ],
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 2,
+      "en_template": "Although these cars have many {{1:benefits/burdens}}, experts warn that having more self-driving cars also means having ________________.",
+      "ko_full": "이 차들이 많은 이점을 갖고 있기는 하지만, 전문가들은 자율주행차가 늘어난다는 것이 곧 ________________ 이 늘어난다는 뜻이기도 하다고 경고한다.",
+      "answers": [
+        "benefits"
+      ],
+      "explain": [
+        "Although 로 이점을 인정한 뒤 경고로 뒤집는 흐름이므로 benefits(이점). burden 은 부담으로 양보 구조가 성립하지 않는다."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "Although these cars have many benefits, experts {{1:warn/promise}} that having more self-driving cars also means having ________________.",
+      "ko_full": "이 차들이 많은 이점을 갖고 있기는 하지만, 전문가들은 자율주행차가 늘어난다는 것이 곧 ________________ 이 늘어난다는 뜻이기도 하다고 경고한다.",
+      "answers": [
+        "warn"
+      ],
+      "explain": [
+        "위험을 알리는 맥락이므로 warn(경고하다). promise(약속하다)는 문맥에 맞지 않는다."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "Researchers recently {{1:proved/denied}} through a demonstration that even today’s “smart” cars are vulnerable.",
+      "ko_full": "연구진은 최근 한 시연을 통해 오늘날의 \"스마트\" 자동차조차 취약하다는 것을 증명했다.",
+      "answers": [
+        "proved"
+      ],
+      "explain": [
+        "시연으로 실제 보여 준 것이므로 prove(증명하다). deny(부인하다)는 반대다."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 3,
+      "en_template": "Researchers recently proved through a demonstration that even today’s “smart” cars are {{1:vulnerable/invincible}}.",
+      "ko_full": "연구진은 최근 한 시연을 통해 오늘날의 \"스마트\" 자동차조차 취약하다는 것을 증명했다.",
+      "answers": [
+        "vulnerable"
+      ],
+      "explain": [
+        "외부 침입에 뚫렸다는 내용이므로 vulnerable(취약한). invincible(무적의)은 정반대다."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "They were not only able to change the radio’s volume, {{1:adjust/reject}} the air conditioner, and switch the windshield wipers on, but they were also able to take control of the transmission and stop the car as it was driving down the highway.",
+      "ko_full": "그들은 라디오 음량을 바꾸고, 에어컨을 조절하고, 앞유리 와이퍼를 켤 수 있었을 뿐만 아니라, 고속도로를 달리고 있는 차의 변속기까지 제어해 차를 멈춰 세울 수도 있었다.",
+      "answers": [
+        "adjust"
+      ],
+      "explain": [
+        "에어컨을 “조절했다” 는 뜻이므로 adjust. reject(거부하다)는 어울리지 않는다."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 5,
+      "en_template": "They were not only able to change the radio’s volume, adjust the air conditioner, and switch the windshield wipers on, but they were also able to take {{1:control/comfort}} of the transmission and stop the car as it was driving down the highway.",
+      "ko_full": "그들은 라디오 음량을 바꾸고, 에어컨을 조절하고, 앞유리 와이퍼를 켤 수 있었을 뿐만 아니라, 고속도로를 달리고 있는 차의 변속기까지 제어해 차를 멈춰 세울 수도 있었다.",
+      "answers": [
+        "control"
+      ],
+      "explain": [
+        "take control of = ~을 장악하다. comfort 는 관용 표현을 이루지 않는다."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 6,
+      "en_template": "Fortunately, it was just a demonstration, but it sends a {{1:clear/vague}} message to both the auto industry and the government: automotive cybersecurity is a real issue that must be taken seriously.",
+      "ko_full": "다행히 그것은 시연에 불과했지만, 자동차 업계와 정부 양쪽 모두에게 분명한 메시지를 던진다 — 자동차 사이버 보안은 진지하게 다뤄져야 할 실제 문제라는 것이다.",
+      "answers": [
+        "clear"
+      ],
+      "explain": [
+        "경고가 분명하다는 뜻이므로 clear. vague(모호한)는 경고의 강도를 약화시켜 문맥에 맞지 않는다."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 6,
+      "en_template": "Fortunately, it was just a demonstration, but it sends a clear message to both the auto industry and the government: automotive cybersecurity is a {{1:real/imaginary}} issue that must be taken seriously.",
+      "ko_full": "다행히 그것은 시연에 불과했지만, 자동차 업계와 정부 양쪽 모두에게 분명한 메시지를 던진다 — 자동차 사이버 보안은 진지하게 다뤄져야 할 실제 문제라는 것이다.",
+      "answers": [
+        "real"
+      ],
+      "explain": [
+        "시연으로 입증된 실제 위협이므로 real. imaginary(상상의)는 글의 논지와 반대다."
+      ]
+    }
+  ],
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        {
+          "answer": "access",
+          "letter": "a"
+        }
+      ],
+      "ko_full": "머지않아 인터넷에 접속되는 자율주행차가 도로에 많아질 것이다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        {
+          "answer": "benefits",
+          "letter": "b"
+        },
+        {
+          "answer": "experts",
+          "letter": "e"
+        }
+      ],
+      "ko_full": "이 차들이 많은 이점을 갖고 있기는 하지만, 전문가들은 자율주행차가 늘어난다는 것이 곧 ________________ 이 늘어난다는 뜻이기도 하다고 경고한다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        {
+          "answer": "vulnerable",
+          "letter": "v"
+        }
+      ],
+      "ko_full": "연구진은 최근 한 시연을 통해 오늘날의 \"스마트\" 자동차조차 취약하다는 것을 증명했다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 5,
+      "hints": [
+        {
+          "answer": "transmission",
+          "letter": "t"
+        }
+      ],
+      "ko_full": "그들은 라디오 음량을 바꾸고, 에어컨을 조절하고, 앞유리 와이퍼를 켤 수 있었을 뿐만 아니라, 고속도로를 달리고 있는 차의 변속기까지 제어해 차를 멈춰 세울 수도 있었다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 6,
+      "hints": [
+        {
+          "answer": "government",
+          "letter": "g"
+        },
+        {
+          "answer": "cybersecurity",
+          "letter": "c"
+        }
+      ],
+      "ko_full": "다행히 그것은 시연에 불과했지만, 자동차 업계와 정부 양쪽 모두에게 분명한 메시지를 던진다 — 자동차 사이버 보안은 진지하게 다뤄져야 할 실제 문제라는 것이다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 3,
+      "hints": [
+        {
+          "answer": "demonstration",
+          "letter": "d"
+        }
+      ],
+      "ko_full": "연구진은 최근 한 시연을 통해 오늘날의 \"스마트\" 자동차조차 취약하다는 것을 증명했다."
+    }
+  ],
+  "ko_translation": [
+    {
+      "no": 1,
+      "ref_sentence": 1
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6
+    }
+  ],
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": [
+        "There",
+        "will",
+        "soon",
+        "be",
+        "many",
+        "self-driving",
+        "cars",
+        "with",
+        "internet",
+        "access",
+        "on",
+        "the",
+        "road."
+      ],
+      "answer": "There will soon be many self-driving cars with internet access on the road."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 3,
+      "words": [
+        "Researchers",
+        "recently",
+        "proved",
+        "through",
+        "a",
+        "demonstration",
+        "that",
+        "even",
+        "today’s",
+        "“smart”",
+        "cars",
+        "are",
+        "vulnerable."
+      ],
+      "answer": "Researchers recently proved through a demonstration that even today’s “smart” cars are vulnerable."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 4,
+      "words": [
+        "They",
+        "used",
+        "a",
+        "computer",
+        "to",
+        "take",
+        "control",
+        "of",
+        "a",
+        "car",
+        "while",
+        "someone",
+        "else",
+        "was",
+        "driving",
+        "it."
+      ],
+      "answer": "They used a computer to take control of a car while someone else was driving it."
+    }
+  ],
+  "sentence_translation": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "given": ""
+    },
+    {
+      "no": 2,
+      "ref_sentence": 3,
+      "given": ""
+    },
+    {
+      "no": 3,
+      "ref_sentence": 4,
+      "given": ""
+    },
+    {
+      "no": 4,
+      "ref_sentence": 6,
+      "given": ""
+    }
+  ],
+  "mixed": [
+    {
+      "kind": "grammar",
+      "ref": 8,
+      "no": 1
+    },
+    {
+      "kind": "vocab",
+      "ref": 4,
+      "no": 2
+    },
+    {
+      "kind": "grammar",
+      "ref": 7,
+      "no": 3
+    },
+    {
+      "kind": "vocab",
+      "ref": 8,
+      "no": 4
+    },
+    {
+      "kind": "grammar",
+      "ref": 9,
+      "no": 5
+    },
+    {
+      "kind": "vocab",
+      "ref": 7,
+      "no": 6
+    }
+  ]
+}

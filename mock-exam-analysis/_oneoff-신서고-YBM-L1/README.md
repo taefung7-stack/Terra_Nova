@@ -425,3 +425,123 @@ diff 0 임을 확인했다.
 (식충식물 / 배관·수도 / 달력·계절 / 펭귄과 바다) 챕터마다 `NO ~` 로 나머지 셋을 배제한다.
 `dist/EX/assets/illust-{1..4}.png` 로 저장하면 PDF 재렌더 시 자동 반영.
 **현재 이미지 미생성 상태** — 해당 자리에 `[삽화 영역]` placeholder 가 나온다(빌드 정상).
+
+---
+
+## EX2 — 부교재 「상관접속사와 병렬」 (2026-08-26 추가)
+
+원문 문제집의 **1·3·5·7번 4지문**. 네 지문 모두 상관접속사(`either A or B`,
+`both A and B`, `not just A but also B`, `not only A but also B`)와 **병렬 구조**가
+굵게 표시돼 있는 것이 공통 문법 포인트다. EX 와 파일·폴더를 완전히 분리했다.
+
+```
+_SOURCE-EX2.js                 원문 정본(32문장)
+data/EX2/{1..4}.json           분석지
+data/EX2/{1..4}-workbook.json  워크북
+data/EX2/{1..4}-variant.json   변형문제
+dist/EX2/                      산출물
+verify-EX2.mjs / verify-workbook-EX2.mjs / verify-variant-EX2.mjs
+```
+
+| # | 소재 | 유형 | 문장 |
+|---|------|------|------|
+| 1 | 웃음이 농담을 더 웃기게 만든다 | 빈칸추론 | 11 |
+| 2 | 자율주행차와 사이버 보안 | 빈칸추론 | 6 |
+| 3 | NASA의 무중력 훈련 비행 | 어법 | 7 |
+| 4 | 이메일 보내는 시금치 | 어휘 | 8 |
+| | **합계** | | **32** |
+
+### ★ 브랜드(Terra Nova) 표기 제거 — 사용자 요청
+
+네 지문 전부 `hide_brand: true` 로 두어 **좌측 하단 푸터의 "Terra Nova" 글씨를 없앴다.**
+빌더가 이미 지원하는 옵트인이라 빌더 수정은 없다(`build.mjs` / `build-workbook.mjs` /
+`build-variant.mjs` 모두 `data.hide_brand` 를 읽는다).
+`<title>` 태그에는 남지만 **인쇄면에는 나오지 않는다.**
+
+### ★ 지문의 '일부러 틀린 낱말' 처리 (`passage_corrected`)
+
+3번(어법)·4번(어휘)은 **문제의 정답 대상이 되는 틀린 낱말**이 본문에 들어 있다.
+
+| 지문 | 본문(문제용) | 올바른 형태 |
+|------|--------------|-------------|
+| 3번 ③ | `you feel yourself **pushing** down` | `pushed` — 중력에 눌리는 대상이므로 과거분사 |
+| 4번 ③ | `if spinach could **hide** explosives` | `detect` — 앞의 `sense`·뒤의 `detecting pollution` 과 호응 |
+
+- **분석지**는 문제가 성립해야 하므로 **틀린 낱말을 그대로** 둔다(`passage`).
+- **워크북·변형문제는 올바른 영어로 훈련**해야 하므로, 분석지 JSON 에 `passage_corrected`
+  배열을 두고 **`verify-workbook-EX2.mjs` 가 그것을 우선 사용**하도록 했다.
+  (`passage_corrected` 가 없으면 기존대로 `passage` 를 쓴다 — L1·L2·EX 회귀 0)
+
+### 빌드 방법
+
+```bash
+cd mock-exam-analysis
+
+# 0) 검증 — 반드시 먼저 (실패 시 빌드 금지)
+node "_oneoff-신서고-YBM-L1/verify-EX2.mjs"
+node "_oneoff-신서고-YBM-L1/verify-workbook-EX2.mjs"
+node "_oneoff-신서고-YBM-L1/verify-variant-EX2.mjs"
+
+# 1) 분석지
+node builder/build.mjs "_oneoff-신서고-YBM-L1/data/EX2" "_oneoff-신서고-YBM-L1/dist/EX2" \
+  --styles="_oneoff-신서고-YBM-L1/styles/analysis.css"
+for n in 1 2 3 4; do node builder/check-overflow.mjs "_oneoff-신서고-YBM-L1/dist/EX2/$n.html"; done
+node builder/pdf-image.mjs "_oneoff-신서고-YBM-L1/dist/EX2" --match='^[1-4]\.html$'
+
+# 2) 워크북
+node builder/build-workbook.mjs "_oneoff-신서고-YBM-L1/data/EX2" "_oneoff-신서고-YBM-L1/dist/EX2" \
+  --styles="_oneoff-신서고-YBM-L1/styles/workbook.css"
+node builder/pdf-image.mjs "_oneoff-신서고-YBM-L1/dist/EX2" --match='^workbook-\d+\.html$'
+
+# 3) 변형문제 (★ --styles + --shared-writing-passage 필수)
+node builder/build-variant.mjs "_oneoff-신서고-YBM-L1/data/EX2" "_oneoff-신서고-YBM-L1/dist/EX2" \
+  --styles="_oneoff-신서고-YBM-L1/styles/variant.css" --shared-writing-passage
+node "_oneoff-신서고-YBM-L1/_measure-clip.mjs"  "_oneoff-신서고-YBM-L1/dist/EX2/variant-book.html"
+node "_oneoff-신서고-YBM-L1/_measure-pages.mjs" "_oneoff-신서고-YBM-L1/dist/EX2/variant-book.html"
+node "_oneoff-신서고-YBM-L1/render-variant-pdf.mjs" "_oneoff-신서고-YBM-L1/dist/EX2/variant-book.html"
+```
+
+### 산출물
+
+| 종류 | 파일 | 분량 |
+|------|------|------|
+| 본문 분석지 | `dist/EX2/{1..4}.{html,pdf}` | 5·4·5·5p (총 19p) |
+| 워크북 | `dist/EX2/workbook-{1..4}.{html,pdf}` | 10·9·9·9p (총 37p) |
+| 변형문제 | `dist/EX2/variant-book.{html,pdf}` | **36p · 68문항** |
+
+변형문제 — 객관식 11유형 × 4지문 = 44문항 + 서술형 6 × 4 = 24문항 → **총 68문항**,
+문항 번호 1~68 연속(문항·정답지 양쪽 대조 완료).
+
+### 검수 결과 (2026-08-26)
+
+- `verify-EX2.mjs` **오류 0 · 경고 0** — 32문장 전수 커버, 분석 카드 영어가 본문과 verbatim 일치
+- `verify-workbook-EX2.mjs` **오류 0 · 경고 0** — 4부 전부 본문 전 문장 커버
+- `verify-variant-EX2.mjs` **오류 0 · 경고 0** — 4파일 전부 "객관식 11유형 · 서술형 6"
+- 분석지 overflow **4/4 전부 0** · 워크북 overflow **4/4 전부 0**
+- 변형문제 잘림 **0건** · 카드가 푸터를 넘는 페이지 **0개**
+- 워크북 **문항 유실 0** — 저작 문항 수 = 렌더 정답지 "N문항" 전수 대조
+- PDF 페이지 수 = `.page` 섹션 수 (9개 산출물 전부 일치)
+- 글리프 깨짐(☰) **0건** · PDF 본문 내 "Terra Nova" 문자열 **9개 전부 0건**
+
+### 이번에 재현된 함정
+
+- **고유명사 오탐** — 빌더의 `buildProperNounSet` 이 이번에도 평범한 단어를 고유명사로
+  오판했다. 지문별 차단어를 **미리 재현해 뽑아 두고** 그 토큰을 정답으로 쓰지 않았다.
+  1번 `after/essentially/this` · 2번 `although/fortunately/researchers/there` ·
+  3번 `earth's/however/nasa/these/using` · 4번 `these/while`
+- **어휘 표제어는 본문 등장이 원칙** — 보기(선택지)에만 있는 단어(`contagious`,
+  `potential` 등)를 `vocab` 에 넣었더니 검증기가 경고했다. 본문 단어로 교체했다.
+- **`voca_check.expressions` 는 본문에 문자 그대로** 있어야 한다.
+  `pay attention to` → 본문이 `pay close attention not just to ...` 라 불일치 →
+  `pay close attention` 으로 잘라 맞췄다.
+- **변형문제 필드명** — `summary.summary_template`(❌`summary_sentence`),
+  `writing.summary_word` 는 `summary` + `answer_a`/`answer_b`(❌`context`/`answer`),
+  `implication.underlined` 는 passage 안에 **문자 그대로** 존재해야 한다.
+
+### 삽화
+
+`_ILLUSTRATION_PROMPTS-EX2.md` (`node _oneoff-신서고-YBM-L1/collect-prompts.mjs EX2` 로 재생성).
+네 지문 소재가 완전히 달라(웃는 사람들 / 자동차 실내 / 항공기 기내 / 시금치밭)
+챕터마다 `NO ~` 로 나머지 셋을 배제한다.
+`dist/EX2/assets/illust-{1..4}.png` 로 저장하면 PDF 재렌더 시 자동 반영.
+**현재 이미지 미생성 상태** — 해당 자리에 `[삽화 영역]` placeholder 가 나온다(빌드 정상).

@@ -11,6 +11,7 @@ import { fileURLToPath } from 'node:url';
 import { SOURCE as SOURCE_L1 } from './_SOURCE.js';
 import { SOURCE as SOURCE_L2 } from './_SOURCE-L2.js';
 import { SOURCE as SOURCE_EX } from './_SOURCE-EX.js';
+import { SOURCE as SOURCE_EX2 } from './_SOURCE-EX2.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -20,6 +21,9 @@ const LESSONS = [
   /* EX — 부교재 어법 유닛. Lesson 이 아니므로 heading 을 따로 준다. */
   { id: 'EX', title: '부교재 · 05 수식어는 괄호로 묶어라', source: SOURCE_EX,
     heading: '신서고 부교재 05 수식어는 괄호로 묶어라 — 지문별 삽화 프롬프트' },
+  /* EX2 — 부교재 상관접속사·병렬 유닛(빈칸2·어법·어휘 4지문). */
+  { id: 'EX2', title: '부교재 · 상관접속사와 병렬', source: SOURCE_EX2,
+    heading: '신서고 부교재 상관접속사와 병렬 — 지문별 삽화 프롬프트' },
 ];
 
 const only = (process.argv[2] || '').toUpperCase();
@@ -45,6 +49,10 @@ ${TONE_COMMON}
   EX: `> 톤: **실사 사진(포토리얼)** — 과학·자연 다큐멘터리 톤, 흐린 날 확산광.
 ${TONE_COMMON}
 > 네 지문의 소재가 완전히 다르므로(식충식물 / 배관·수도 / 달력·계절 / 펭귄과 바다)
+> 챕터마다 \`NO ~\` 로 나머지 셋의 소재를 배제해 4장이 서로 닮지 않게 한다.`,
+  EX2: `> 톤: **실사 사진(포토리얼)** — 다큐멘터리 톤, 흐린 날 확산광.
+${TONE_COMMON}
+> 네 지문의 소재가 완전히 다르므로(웃는 사람들 / 자동차 실내 / 항공기 기내 / 시금치밭)
 > 챕터마다 \`NO ~\` 로 나머지 셋의 소재를 배제해 4장이 서로 닮지 않게 한다.`,
 };
 
