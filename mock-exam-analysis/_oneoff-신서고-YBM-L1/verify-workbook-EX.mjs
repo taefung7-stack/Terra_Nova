@@ -230,6 +230,26 @@ function verifyOne(lesson, n) {
     }
   }
 
+  /* ── 8-b. 템플릿 정합 — en_template 에 answers 를 대입한 결과가 기준 본문과
+   *    완전히 일치해야 한다. 고정 텍스트를 임의 개서하거나(원문 오류를 몰래 고침),
+   *    ref_sentence 가 어긋나면 여기서 잡힌다. 기준 본문은 위 passage 와 동일
+   *    (어법·어휘 지문은 passage_corrected). */
+  for (const [key, label] of [['grammar_choice', '어법'], ['vocab_choice', '어휘']]) {
+    for (const it of (wb[key] || [])) {
+      if (!inRange(it.ref_sentence)) continue;
+      let i = 0;
+      const filled = String(it.en_template || '')
+        .replace(/\{\{\d+:[^}]*\}\}/g, () => (it.answers || [])[i++] ?? '');
+      if (norm(filled) !== passage[it.ref_sentence - 1]) {
+        fail(where, `${label} #${it.no} 템플릿 대입 결과가 본문과 불일치
+` +
+          `        대입: ${norm(filled).slice(0, 100)}
+` +
+          `        본문: ${passage[it.ref_sentence - 1].slice(0, 100)}`);
+      }
+    }
+  }
+
   // ── 9. 커버리지 리포트 (본문 문장이 어떤 유형에도 안 걸리면 경고) ──
   {
     const covered = new Set();

@@ -34,6 +34,7 @@ export const SOURCE = [
       "If the barrier between these two areas breaks, any substances in the high-pressure area will immediately flow into the low-pressure area.",
       "For example, undersea pipes used to transport oil are in a state of negative pressure; therefore, any break in the pipeline will cause it to fill with ocean water.",
       "This is much better than the opposite scenario, in which oil would be released into the ocean.",
+      "However, negative pressure is not always beneficial, such as in the case of pipes carrying drinking water to a city.",
       "If these municipal waterlines are damaged, they can potentially suck in contaminated groundwater, which would then enter the water supply.",
       "For this reason, a system of gauges and valves is used to adjust and control their pressure.",
     ],
