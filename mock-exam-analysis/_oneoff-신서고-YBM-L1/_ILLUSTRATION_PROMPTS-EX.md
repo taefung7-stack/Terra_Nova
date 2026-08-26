@@ -29,10 +29,10 @@ Photorealistic documentary photograph, wide banner composition. Extreme macro cl
 ## Chapter 2 — 음압(negative pressure)의 두 얼굴 — 문장삽입
 
 - 저장 경로: `assets/illust-2.png`
-- 문장 수: 6
+- 문장 수: 7
 
 ```
-Photorealistic documentary photograph, wide banner composition. A cutaway view of large industrial steel pipes running side by side through a utility corridor, one joint fitted with round pressure gauges and a hand valve, faint condensation on the metal surface. Clean engineered geometry receding into soft focus. Technical, orderly. NO plants, NO insects, NO calendar, NO penguin, NO beach. Shot on a 35mm lens, natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, airy and open feel, clean bright background, true-to-life color, sharp focus, fine natural detail. NO dramatic lighting, NO golden hour, NO neon, NO night scene, NO heavy shadows, NO dark moody grading, NO people, NO text overlay, NO watermark --ar 16:5 --v 8.1
+Photorealistic documentary photograph, wide banner composition. A large steel oil pipeline resting on a pale sandy seabed in shallow clear water, one flanged joint fitted with round pressure gauges and a hand valve, a thin stream of clear seawater drawn inward through a small gap in the seam. Cool blue-green water, bright surface light filtering down, clean engineered geometry receding into soft focus. Technical, orderly, quietly under pressure. NO plants, NO insects, NO calendar, NO penguin, NO oil spill, NO black plume. Shot on a 35mm lens underwater housing, natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, airy and open feel, clean bright background, true-to-life color, sharp focus, fine natural detail. NO dramatic lighting, NO golden hour, NO neon, NO night scene, NO heavy shadows, NO dark moody grading, NO people, NO text overlay, NO watermark --ar 16:5 --v 8.1
 ```
 
 ---
@@ -54,6 +54,6 @@ Photorealistic documentary photograph, wide banner composition. A close-up of a 
 - 문장 수: 7
 
 ```
-Photorealistic documentary photograph, wide banner composition. A single Magellanic penguin standing on a wet sandy beach at the waterline, facing inland, its feathers clean and glossy, gentle surf and a long empty shoreline stretching out of focus behind. A sense of arrival after a long journey. NO plants, NO insects, NO pipes, NO calendar, NO crowds, NO boats. Shot on a 35mm lens, natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, airy and open feel, clean bright background, true-to-life color, sharp focus, fine natural detail. NO dramatic lighting, NO golden hour, NO neon, NO night scene, NO heavy shadows, NO dark moody grading, NO people, NO text overlay, NO watermark --ar 16:5 --v 8.1
+Photorealistic documentary photograph, wide banner composition. A single small Magellanic penguin standing on wet packed sand at the waterline of a quiet village beach, facing inland toward a low shoreline of simple houses far out of focus, its feathers clean and glossy, a thin line of gentle surf behind it. The stillness of a long journey just ended. NO plants, NO insects, NO pipes, NO calendar, NO crowds, NO boats, NO zoo enclosure. Shot on a 35mm lens, natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, airy and open feel, clean bright background, true-to-life color, sharp focus, fine natural detail. NO dramatic lighting, NO golden hour, NO neon, NO night scene, NO heavy shadows, NO dark moody grading, NO people, NO text overlay, NO watermark --ar 16:5 --v 8.1
 ```
 
