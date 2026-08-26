@@ -20,6 +20,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { SOURCE as SOURCE_L1 } from './_SOURCE.js';
 import { SOURCE as SOURCE_L2 } from './_SOURCE-L2.js';
 import { SOURCE as SOURCE_EX } from './_SOURCE-EX.js';
+import { SOURCE as SOURCE_EX2 } from './_SOURCE-EX2.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -46,12 +47,21 @@ const LESSONS = {
     docTitle: '신서고 부교재 · 05 수식어는 괄호로 묶어라 본문분석 합본 — Terra Nova',
     out: '신서고2-2중간_부교재_05수식어는괄호로묶어라_본문분석_합본.pdf',
   },
+  /* EX2 — 부교재(상관접속사와 병렬). EX 와 동일한 유닛 형식. */
+  EX2: {
+    source: SOURCE_EX2,
+    lessonNo: null,
+    titleEn: '상관접속사와 병렬',
+    coverSub: '신서고 부교재 · 어법 유닛<br>상관접속사와 병렬',
+    docTitle: '신서고 부교재 · 상관접속사와 병렬 본문분석 합본 — Terra Nova',
+    out: '신서고2-2중간_부교재_상관접속사와병렬_본문분석_합본.pdf',
+  },
 };
 
 const lessonId = (process.argv[2] || 'L1').toUpperCase();
 const LESSON = LESSONS[lessonId];
 if (!LESSON) {
-  console.error(`알 수 없는 과: ${lessonId} (L1 / L2 / EX)`);
+  console.error(`알 수 없는 과: ${lessonId} (L1 / L2 / EX / EX2)`);
   process.exit(2);
 }
 const SOURCE = LESSON.source;

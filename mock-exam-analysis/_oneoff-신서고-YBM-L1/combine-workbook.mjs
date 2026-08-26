@@ -45,17 +45,26 @@ const LESSONS = {
   EX: {
     lessonNo: null,
     titleEn: '05 수식어는 괄호로 묶어라',
-    sentences: 27,
+    sentences: 28,
     coverSub: '신서고 부교재 · 어법 유닛<br>05 수식어는 괄호로 묶어라',
     docTitle: '신서고 부교재 · 05 수식어는 괄호로 묶어라 워크북 합본 — Terra Nova',
     out: '신서고2-2중간_부교재_05수식어는괄호로묶어라_워크북_합본.pdf',
+  },
+  /* EX2 — 부교재(상관접속사와 병렬). */
+  EX2: {
+    lessonNo: null,
+    titleEn: '상관접속사와 병렬',
+    sentences: 32,
+    coverSub: '신서고 부교재 · 어법 유닛<br>상관접속사와 병렬',
+    docTitle: '신서고 부교재 · 상관접속사와 병렬 워크북 합본 — Terra Nova',
+    out: '신서고2-2중간_부교재_상관접속사와병렬_워크북_합본.pdf',
   },
 };
 
 const lessonId = (process.argv[2] || 'L1').toUpperCase();
 const LESSON = LESSONS[lessonId];
 if (!LESSON) {
-  console.error(`알 수 없는 과: ${lessonId} (L1 / L2 / EX)`);
+  console.error(`알 수 없는 과: ${lessonId} (L1 / L2 / EX / EX2)`);
   process.exit(2);
 }
 const DIST = path.join(__dirname, 'dist', lessonId);
