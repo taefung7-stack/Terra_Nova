@@ -227,4 +227,27 @@ flow 4단 / 보기 5개·정답 1개·번호 연속 / 제목유형 정답 = `tit
 > ```
 
 생성한 이미지를 `dist/{L5,L6}/assets/illust-{N}.png` 로 저장하고 분석지를 재빌드하면
-반영된다. **현재 산출물은 삽화 자리가 placeholder 상태**다.
+반영된다.
+
+### 삽화 반영 현황 (2026-08-29)
+
+| 과 | 상태 |
+|----|------|
+| **L5** | ✅ **3장 반영 완료** (`dist/L5/assets/illust-{1,2,3}.png`) |
+| L6 | ⬜ placeholder — 4장 미생성 |
+
+L5 삽화는 각 챕터 INTRO 면(합본 p.3 / p.7 / p.11)에 본문 폭 전면으로 들어간다.
+챕터 내용과 1:1 대응한다 — ① 호수·산·도로의 춘천 전경 ② 기념관 내부(1층 사진 벽 +
+2층 문화 전시품) ③ **둥근 지붕 세 개**의 기념관 외관(`It has three round roofs.`).
+
+> ⚠️ **원본 8MB PNG 를 그대로 넣지 말 것.** 미드저니 원본은 3952×1232(장당 ~8MB)라
+> 그대로 넣으면 합본 PDF 가 **35MB** 로 부푼다. 인쇄 폭이 180mm 이므로
+> **가로 2000px 로 축소**하면 ~280dpi 로 육안 차이가 없으면서 합본이 **10.3MB** 가 된다.
+>
+> ```bash
+> python -c "from PIL import Image; im=Image.open('illust-1.png'); > im.resize((2000,int(2000*im.size[1]/im.size[0])), Image.LANCZOS).save('illust-1.png', optimize=True)"
+> ```
+
+> ⚠️ **삽화 반영은 눈으로 확인해야 한다.** placeholder 인 채로도 빌드는 성공한다.
+> `pypdf` 로 페이지별 임베드 이미지를 세고, 텍스트에 `Illustration` 이 0건인지 볼 것
+> (교재 파이프라인에서 얻은 교훈 — 삽화 누락은 스키마·overflow 검사로 안 잡힌다).
