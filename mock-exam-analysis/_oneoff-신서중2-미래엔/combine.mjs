@@ -170,16 +170,30 @@ const extraCss = `
   .cover-meta  { font-size:10.5pt; color:var(--c-muted); letter-spacing:.02em; }
 
   /* 본문 전문 한 장 — 원문 전 문장이 A4 한 장에 들어가야 한다.
-     .fulltext 기본값(gap:4px, line-height:1.45)으로는 31문장이 1375px 가 되어
-     본문 영역(1017px)을 넘겼다. gap 을 없애고 행간·폰트를 줄여 맞춘다.
-     ★ .page-body 는 overflow:hidden 이라 넘쳐도 에러 없이 '잘린 채' 인쇄되므로
-       문장 수를 늘릴 때는 반드시 실측(_tmp-fit 류)으로 재확인할 것. */
+     크기를 고정하면 문장 수가 적은 과(L5 24문장)는 아래에 큰 여백이 남고,
+     많은 과(L6 31문장)는 잘린다. 그래서 --ft 배율 하나로 폰트·행간·여백을
+     함께 묶고, 아래 '자동 맞춤' 루프가 페이지에 꽉 차는 최대 배율을 실측으로 찾는다.
+     ★ .page-body 는 overflow:hidden 이라 넘쳐도 에러 없이 '잘린 채' 인쇄된다 —
+       크기를 손으로 바꾸지 말고 반드시 이 루프를 통과시킬 것. */
   .toc-page-sec .page-body { overflow: hidden; }
-  .fulltext-all { margin-top: 8px; gap: 0; padding: 7px 12px; }
-  .fulltext-all .line { padding: 1.2px 0 1.2px 21px; }
-  .fulltext-all .num { width: 16px; height: 14px; line-height: 14px; font-size: 7pt; top: 2px; }
-  .fulltext-all .ft-en { font-size: 8.45pt; line-height: 1.24; }
-  .fulltext-all .ft-ko { font-size: 7.6pt; line-height: 1.22; margin-top: 0; }
+  .fulltext-all {
+    --ft: 1;
+    margin-top: calc(9px * var(--ft));
+    gap: 0;
+    padding: calc(8px * var(--ft)) calc(13px * var(--ft));
+  }
+  .fulltext-all .line {
+    padding: calc(2.6px * var(--ft)) 0 calc(2.6px * var(--ft)) calc(23px * var(--ft));
+  }
+  .fulltext-all .num {
+    width: calc(17px * var(--ft));
+    height: calc(15px * var(--ft));
+    line-height: calc(15px * var(--ft));
+    font-size: calc(7.4pt * var(--ft));
+    top: calc(2px * var(--ft));
+  }
+  .fulltext-all .ft-en { font-size: calc(9.1pt * var(--ft)); line-height: 1.4; }
+  .fulltext-all .ft-ko { font-size: calc(8.2pt * var(--ft)); line-height: 1.38; margin-top: calc(1px * var(--ft)); }
 `;
 
 const combinedHtml = `<!doctype html>
@@ -205,6 +219,42 @@ const puppeteer = (await import('puppeteer')).default;
 const browser = await puppeteer.launch({ headless: 'new' });
 const page = await browser.newPage();
 await page.goto(pathToFileURL(combinedHtmlPath).href, { waitUntil: 'networkidle0' });
+
+/* ── 본문 전문 페이지 자동 맞춤 ─────────────────────────────────
+   --ft 배율을 이분 탐색해 '넘치지 않는 최대값'을 찾는다.
+   .page-body 가 overflow:hidden 이라 넘침은 눈에 안 보이므로 실측이 유일한 안전장치다.
+   찾은 배율을 combined.html 에 다시 써 넣어 HTML 과 PDF 가 같은 모습이 되게 한다. */
+const fitScale = await page.evaluate(() => {
+  const list = document.querySelector('.fulltext-all');
+  if (!list) return null;
+  const body = list.closest('.page-body');
+  const fits = (v) => {
+    list.style.setProperty('--ft', String(v));
+    void body.offsetHeight;                       // 강제 리플로우
+    return body.scrollHeight <= body.clientHeight;
+  };
+  let lo = 0.6, hi = 2.0;
+  if (!fits(lo)) { list.style.setProperty('--ft', String(lo)); return lo; }
+  for (let i = 0; i < 22; i++) {                  // 0.6~2.0 을 22회 이분 → 오차 ~0.0001
+    const mid = (lo + hi) / 2;
+    if (fits(mid)) lo = mid; else hi = mid;
+  }
+  const v = Math.floor(lo * 1000) / 1000;         // 안전하게 내림
+  list.style.setProperty('--ft', String(v));
+  return v;
+});
+
+if (fitScale != null) {
+  const m = await page.evaluate(() => {
+    const b = document.querySelector('.fulltext-all').closest('.page-body');
+    return { used: b.scrollHeight, avail: b.clientHeight };
+  });
+  console.log(`   ↔ 본문 전문 자동 맞춤: 배율 ${fitScale}  (${m.used}/${m.avail}px, ${(m.used / m.avail * 100).toFixed(1)}% 사용)`);
+  // HTML 산출물에도 동일 배율을 박아 둔다(브라우저로 열어도 PDF 와 같게).
+  const fixed = combinedHtml.replace('.fulltext-all {\n    --ft: 1;', `.fulltext-all {\n    --ft: ${fitScale};`);
+  await fs.writeFile(combinedHtmlPath, fixed, 'utf8');
+}
+
 const outPath = path.join(DIST, outName);
 await page.pdf({
   path: outPath, format: 'A4', printBackground: true,
