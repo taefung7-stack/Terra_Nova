@@ -26,6 +26,7 @@ const LESSONS = {
   L5: {
     source: SOURCE_L5,
     lessonNo: 5,
+    coverTitle: '신서중 2학년<br>미래엔 영어 2',
     titleEn: 'My Hometown, Chuncheon',
     coverSub: '미래엔(문영인) 중학교 영어 2<br>Lesson 5 · My Hometown, Chuncheon',
     docTitle: '신서중 2학년 · 미래엔 Lesson 5 본문분석 합본 — Terra Nova',
@@ -34,6 +35,7 @@ const LESSONS = {
   L6: {
     source: SOURCE_L6,
     lessonNo: 6,
+    coverTitle: '신서중 2학년<br>미래엔 영어 2',
     titleEn: 'My First Skateboarding Lesson',
     coverSub: '미래엔(문영인) 중학교 영어 2<br>Lesson 6 · My First Skateboarding Lesson',
     docTitle: '신서중 2학년 · 미래엔 Lesson 6 본문분석 합본 — Terra Nova',
@@ -111,17 +113,31 @@ for (const f of files) {
 }
 
 // ── 2) 표지 + 목차 (번호 없음) ──────────────────────────────────
-const tocRows = toc.map(t => `      <div class="toc-row">
-        <span class="toc-no">${t.no}</span>
-        <span class="toc-title">${esc(t.subtitle)}</span>
-        <span class="toc-dots"></span>
-        <span class="toc-page">${t.start}</span>
-      </div>`).join('\n');
+/* 목차 대신 '본문 전문' 한 장 — 원문 전 문장을 번호·해석과 함께 한 페이지에 싣는다.
+   정본(_SOURCE-*.js)의 영어 문장과 챕터 JSON 의 passage_ko 를 짝지어 만든다.
+   (사용자 요청 2026-08-29: 목차 페이지를 본문 문장 나열 페이지로 교체) */
+const fullLines = [];
+let gIdx = 0;
+for (const ch of SOURCE) {
+  let ko = [];
+  try {
+    ko = JSON.parse(await fs.readFile(path.join(__dirname, 'data', lessonId, `${ch.no}.json`), 'utf8')).passage_ko || [];
+  } catch { /* 해석이 없으면 영어만 싣는다 */ }
+  ch.sentences.forEach((en, i) => {
+    gIdx += 1;
+    fullLines.push(`      <div class="line">
+        <span class="num">${gIdx}</span>
+        <div class="ft-en">${esc(en)}</div>
+        <div class="ft-ko">${esc(ko[i] ?? '')}</div>
+      </div>`);
+  });
+}
+const tocRows = fullLines.join('\n');
 
 const cover = `<section class="page cover-page">
   <div class="cover-wrap">
     <div class="cover-brand">Terra Nova</div>
-    <div class="cover-title">신서고 2학년 2학기<br>중간고사 대비</div>
+    <div class="cover-title">${LESSON.coverTitle ?? '신서고 2학년 2학기<br>중간고사 대비'}</div>
     <div class="cover-sub">${LESSON.coverSub ?? `YBM(박준언) 영어II · Lesson ${LESSON.lessonNo}<br>${esc(LESSON.titleEn)}`}</div>
     <div class="cover-meta">본문 분석 합본 · 전 ${pageNo}페이지 · 원문 ${SENTENCE_TOTAL}문장 전수 분석</div>
   </div>
@@ -129,8 +145,8 @@ const cover = `<section class="page cover-page">
 
 <section class="page toc-page-sec">
   <div class="page-body">
-    <div class="section-bar">CONTENTS · 목차<span class="bar-sub">${toc.length}개 챕터</span></div>
-    <div class="toc-list">
+    <div class="section-bar alt">FULL TEXT · 본문 전문<span class="bar-sub">원문 ${SENTENCE_TOTAL}문장</span></div>
+    <div class="fulltext fulltext-all">
 ${tocRows}
     </div>
   </div>
@@ -153,12 +169,17 @@ const extraCss = `
   .cover-sub   { font-size:14pt; font-weight:700; color:var(--c-text-soft); line-height:1.6; margin-bottom:26px; }
   .cover-meta  { font-size:10.5pt; color:var(--c-muted); letter-spacing:.02em; }
 
-  .toc-page-sec .toc-list { margin-top: 14px; display: flex; flex-direction: column; gap: 10px; }
-  .toc-row { display:flex; align-items:baseline; gap:10px; padding:10px 12px; border:1px solid var(--c-line); border-radius:6px; background:#fff; }
-  .toc-no { font-family:'Inter'; font-size:13pt; font-weight:800; color:var(--c-mint-deep); min-width:24px; }
-  .toc-title { font-family:'Inter'; font-size:11pt; font-weight:600; color:var(--c-text); }
-  .toc-dots { flex:1; border-bottom:1px dotted var(--c-line); transform:translateY(-3px); }
-  .toc-page { font-family:'Inter'; font-size:11pt; font-weight:700; color:var(--c-text-soft); }
+  /* 본문 전문 한 장 — 원문 전 문장이 A4 한 장에 들어가야 한다.
+     .fulltext 기본값(gap:4px, line-height:1.45)으로는 31문장이 1375px 가 되어
+     본문 영역(1017px)을 넘겼다. gap 을 없애고 행간·폰트를 줄여 맞춘다.
+     ★ .page-body 는 overflow:hidden 이라 넘쳐도 에러 없이 '잘린 채' 인쇄되므로
+       문장 수를 늘릴 때는 반드시 실측(_tmp-fit 류)으로 재확인할 것. */
+  .toc-page-sec .page-body { overflow: hidden; }
+  .fulltext-all { margin-top: 8px; gap: 0; padding: 7px 12px; }
+  .fulltext-all .line { padding: 1.2px 0 1.2px 21px; }
+  .fulltext-all .num { width: 16px; height: 14px; line-height: 14px; font-size: 7pt; top: 2px; }
+  .fulltext-all .ft-en { font-size: 8.45pt; line-height: 1.24; }
+  .fulltext-all .ft-ko { font-size: 7.6pt; line-height: 1.22; margin-top: 0; }
 `;
 
 const combinedHtml = `<!doctype html>
@@ -177,7 +198,7 @@ ${allPages}
 
 const combinedHtmlPath = path.join(DIST, 'combined.html');
 await fs.writeFile(combinedHtmlPath, combinedHtml, 'utf8');
-console.log(`\n📄 combined.html — 표지1 + 목차1 + 본문 ${pageNo}p (총 ${pageNo + 2}p)`);
+console.log(`\n📄 combined.html — 표지1 + 본문전문1 + 본문 ${pageNo}p (총 ${pageNo + 2}p)`);
 
 // ── 3) PDF 렌더 ────────────────────────────────────────────────
 const puppeteer = (await import('puppeteer')).default;
