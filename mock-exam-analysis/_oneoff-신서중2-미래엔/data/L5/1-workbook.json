@@ -1,0 +1,249 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "1.json",
+  "_note": "L5 Ch1 워크북 — 본문 7문장 풀커버.",
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "hometown", "pos": "명" },
+      { "word": "introduce", "pos": "동" },
+      { "word": "famous", "pos": "형" },
+      { "word": "nowadays", "pos": "부" },
+      { "word": "foreign", "pos": "형" },
+      { "word": "tourist", "pos": "명" },
+      { "word": "growing", "pos": "형" },
+      { "word": "share", "pos": "동" }
+    ],
+    "ko_to_en": [
+      { "meaning": "고향", "pos": "명", "answer": "hometown" },
+      { "meaning": "소개하다", "pos": "동", "answer": "introduce" },
+      { "meaning": "유명한", "pos": "형", "answer": "famous" },
+      { "meaning": "호수", "pos": "명", "answer": "lakes" },
+      { "meaning": "관광객", "pos": "명", "answer": "tourists" },
+      { "meaning": "역사", "pos": "명", "answer": "history" }
+    ],
+    "definitions": [
+      { "def": "the town or city where you were born or grew up", "answer": "hometown" },
+      { "def": "known about by many people", "answer": "famous" },
+      { "def": "a person who travels to visit a place for pleasure", "answer": "tourists" },
+      { "def": "a large area of water surrounded by land", "answer": "lakes" }
+    ],
+    "expressions": [
+      { "ko": "~로 유명하다", "answer": "famous for" },
+      { "ko": "~에 가 본 적이 있다", "answer": "ever visited" },
+      { "ko": "~의 수", "answer": "the number of" },
+      { "ko": "전 세계에서", "answer": "around the world" }
+    ]
+  },
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Hi, my name is Yujin, and I'm writing a blog {{1:to introduce/introducing}} my hometown, Chuncheon.",
+      "ko_full": "안녕하세요, 제 이름은 유진이고, 저는 제 고향인 춘천을 소개하려고 블로그를 쓰고 있어요.",
+      "answers": ["to introduce"],
+      "explain": ["'소개하기 위해'라는 목적을 나타내므로 to부정사의 부사적 용법 to introduce 가 알맞다."]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "Have you ever {{1:visited/visit}} Chuncheon?",
+      "ko_full": "여러분은 춘천에 가 본 적이 있나요?",
+      "answers": ["visited"],
+      "explain": ["현재완료(have + p.p.) 경험 용법이므로 과거분사 visited 가 와야 한다."]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "It's famous {{1:for/as}} its beautiful mountains and lakes.",
+      "ko_full": "춘천은 아름다운 산과 호수로 유명해요.",
+      "answers": ["for"],
+      "explain": ["'~로 유명하다'는 be famous for + 명사. be famous as 는 '~로서 유명하다'로 자격을 나타낸다."]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "There {{1:are/is}} so many things to do and so many things to see.",
+      "ko_full": "할 것도 아주 많고 볼 것도 아주 많답니다.",
+      "answers": ["are"],
+      "explain": ["주어가 복수(things)이므로 There are 를 쓴다."]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "Nowadays, the number of foreign tourists who visit Chuncheon {{1:is/are}} growing.",
+      "ko_full": "요즘은 춘천을 방문하는 외국인 관광객의 수가 늘어나고 있어요.",
+      "answers": ["is"],
+      "explain": ["주어가 the number of ~('~의 수')이므로 단수 취급하여 is 를 쓴다. a number of(많은 ~)는 복수 취급이라 구별해야 한다."]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 5,
+      "en_template": "Nowadays, the number of foreign tourists {{1:who/which}} visit Chuncheon is growing.",
+      "ko_full": "요즘은 춘천을 방문하는 외국인 관광객의 수가 늘어나고 있어요.",
+      "answers": ["who"],
+      "explain": ["선행사가 사람(foreign tourists)이고 관계사절에 주어가 없으므로 주격 관계대명사 who 를 쓴다."]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 6,
+      "en_template": "I want {{1:to share/sharing}} the history of Chuncheon and tips for visitors from around the world.",
+      "ko_full": "저는 춘천의 역사와 전 세계에서 오는 방문객들을 위한 팁을 나누고 싶어요.",
+      "answers": ["to share"],
+      "explain": ["want 는 to부정사를 목적어로 취하는 동사이므로 to share 가 알맞다."]
+    }
+  ],
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Hi, my name is Yujin, and I'm writing a blog to introduce my {{1:hometown/hospital}}, Chuncheon.",
+      "ko_full": "안녕하세요, 제 이름은 유진이고, 저는 제 고향인 춘천을 소개하려고 블로그를 쓰고 있어요.",
+      "answers": ["hometown"],
+      "explain": ["춘천은 글쓴이가 나고 자란 '고향'이므로 hometown. hospital 은 병원으로 문맥에 맞지 않는다."]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 3,
+      "en_template": "It's {{1:famous/strange}} for its beautiful mountains and lakes.",
+      "ko_full": "춘천은 아름다운 산과 호수로 유명해요.",
+      "answers": ["famous"],
+      "explain": ["아름다운 산과 호수로 '유명하다'는 맥락이므로 famous. strange 는 '이상한'으로 부적절하다."]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 4,
+      "en_template": "There are so many things to do and so many things {{1:to see/to hide}}.",
+      "ko_full": "할 것도 아주 많고 볼 것도 아주 많답니다.",
+      "answers": ["to see"],
+      "explain": ["관광지 소개이므로 '볼 것'이 자연스럽다. to hide(숨길 것)는 문맥에 어긋난다."]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 5,
+      "en_template": "Nowadays, the number of {{1:foreign/local}} tourists who visit Chuncheon is growing.",
+      "ko_full": "요즘은 춘천을 방문하는 외국인 관광객의 수가 늘어나고 있어요.",
+      "answers": ["foreign"],
+      "explain": ["뒤에서 '전 세계 방문객'을 언급하므로 외국인 관광객, 즉 foreign 이 알맞다."]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "Nowadays, the number of foreign tourists who visit Chuncheon is {{1:growing/falling}}.",
+      "ko_full": "요즘은 춘천을 방문하는 외국인 관광객의 수가 늘어나고 있어요.",
+      "answers": ["growing"],
+      "explain": ["블로그를 시작한 배경이 관광객 증가이므로 growing(늘어나는). falling 은 정반대다."]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "I want to {{1:share/hide}} the history of Chuncheon and tips for visitors from around the world.",
+      "ko_full": "저는 춘천의 역사와 전 세계에서 오는 방문객들을 위한 팁을 나누고 싶어요.",
+      "answers": ["share"],
+      "explain": ["블로그의 목적은 정보를 '나누는' 것이므로 share. hide 는 감추다로 정반대다."]
+    }
+  ],
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "i", "answer": "introduce", "after": "my hometown" },
+        { "pos": 2, "letter": "h", "answer": "hometown", "after": "" }
+      ],
+      "ko_full": "안녕하세요, 제 이름은 유진이고, 저는 제 고향인 춘천을 소개하려고 블로그를 쓰고 있어요."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "f", "answer": "famous", "after": "for its" },
+        { "pos": 2, "letter": "l", "answer": "lakes", "after": "" }
+      ],
+      "ko_full": "춘천은 아름다운 산과 호수로 유명해요."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "n", "answer": "number", "after": "of foreign" },
+        { "pos": 2, "letter": "t", "answer": "tourists", "after": "who visit" },
+        { "pos": 3, "letter": "g", "answer": "growing", "after": "" }
+      ],
+      "ko_full": "요즘은 춘천을 방문하는 외국인 관광객의 수가 늘어나고 있어요."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "s", "answer": "share", "after": "the history" },
+        { "pos": 2, "letter": "h", "answer": "history", "after": "of Chuncheon" },
+        { "pos": 3, "letter": "v", "answer": "visitors", "after": "" }
+      ],
+      "ko_full": "저는 춘천의 역사와 전 세계에서 오는 방문객들을 위한 팁을 나누고 싶어요."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "v", "answer": "visited", "after": "Chuncheon" }
+      ],
+      "ko_full": "여러분은 춘천에 가 본 적이 있나요?"
+    }
+  ],
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 },
+    { "no": 7, "ref_sentence": 7 }
+  ],
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 2,
+      "words": ["Have", "you", "ever", "visited", "Chuncheon?"],
+      "answer": "Have you ever visited Chuncheon?"
+    },
+    {
+      "no": 2,
+      "ref_sentence": 3,
+      "words": ["It's", "famous", "for", "its", "beautiful", "mountains", "and", "lakes."],
+      "answer": "It's famous for its beautiful mountains and lakes."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 4,
+      "words": ["There", "are", "so", "many", "things", "to", "do", "and", "so", "many", "things", "to", "see."],
+      "answer": "There are so many things to do and so many things to see."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 5,
+      "words": ["Nowadays,", "the", "number", "of", "foreign", "tourists", "who", "visit", "Chuncheon", "is", "growing."],
+      "answer": "Nowadays, the number of foreign tourists who visit Chuncheon is growing."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 7,
+      "words": ["So,", "I", "started", "this", "blog."],
+      "answer": "So, I started this blog."
+    }
+  ],
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 3, "given": "ko" },
+    { "no": 3, "ref_sentence": 4, "given": "ko" },
+    { "no": 4, "ref_sentence": 5, "given": "ko" },
+    { "no": 5, "ref_sentence": 6, "given": "ko" }
+  ],
+  "mixed": [
+    { "kind": "grammar", "ref": 5, "no": 1 },
+    { "kind": "vocab", "ref": 5, "no": 2 },
+    { "kind": "grammar", "ref": 6, "no": 3 },
+    { "kind": "vocab", "ref": 2, "no": 4 },
+    { "kind": "grammar", "ref": 3, "no": 5 },
+    { "kind": "vocab", "ref": 6, "no": 6 }
+  ]
+}

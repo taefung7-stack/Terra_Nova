@@ -1,0 +1,209 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "1.json",
+  "_note": "L6 Ch1 워크북 — 본문 4문장 풀커버.",
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "skateboarding", "pos": "명" },
+      { "word": "toward", "pos": "전" },
+      { "word": "becoming", "pos": "동" },
+      { "word": "joined", "pos": "동" },
+      { "word": "step", "pos": "명" },
+      { "word": "class", "pos": "명" }
+    ],
+    "ko_to_en": [
+      { "meaning": "스케이트보드 타기", "pos": "명", "answer": "skateboarding" },
+      { "meaning": "~을 향하여", "pos": "전", "answer": "toward" },
+      { "meaning": "참여했다", "pos": "동", "answer": "joined" },
+      { "meaning": "걸음, 단계", "pos": "명", "answer": "step" },
+      { "meaning": "수업, 강습", "pos": "명", "answer": "class" },
+      { "meaning": "멋진", "pos": "형", "answer": "cool" }
+    ],
+    "definitions": [
+      { "def": "the sport of riding on a board with wheels", "answer": "skateboarding" },
+      { "def": "in the direction of something", "answer": "toward" },
+      { "def": "to become a member of a group or activity", "answer": "joined" },
+      { "def": "a group of students learning together", "answer": "class" }
+    ],
+    "expressions": [
+      { "ko": "새로운 것", "answer": "something new" },
+      { "ko": "항상 ~하고 싶었다", "answer": "have always wanted" },
+      { "ko": "첫걸음을 내딛다", "answer": "took the first step" },
+      { "ko": "하루짜리 수업", "answer": "one-day skateboarding class" }
+    ]
+  },
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "When did you last {{1:try/tried}} something new?",
+      "ko_full": "여러분은 마지막으로 새로운 것을 시도해 본 게 언제인가요?",
+      "answers": ["try"],
+      "explain": ["did 가 이미 과거를 나타내므로 본동사는 원형 try 여야 한다."]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 1,
+      "en_template": "When did you last try {{1:something new/new something}}?",
+      "ko_full": "여러분은 마지막으로 새로운 것을 시도해 본 게 언제인가요?",
+      "answers": ["something new"],
+      "explain": ["-thing 으로 끝나는 대명사는 형용사가 뒤에서 꾸민다."]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 2,
+      "en_template": "I have always {{1:wanted/want}} to learn skateboarding.",
+      "ko_full": "저는 항상 스케이트보드 타는 법을 배우고 싶었어요.",
+      "answers": ["wanted"],
+      "explain": ["현재완료(have + p.p.)이므로 과거분사 wanted 를 쓴다."]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 2,
+      "en_template": "I have always wanted {{1:to learn/learning}} skateboarding.",
+      "ko_full": "저는 항상 스케이트보드 타는 법을 배우고 싶었어요.",
+      "answers": ["to learn"],
+      "explain": ["want 는 to부정사를 목적어로 취하는 동사다."]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 3,
+      "en_template": "Today, I took the first step toward {{1:becoming/become}} a cool skater boy.",
+      "ko_full": "오늘, 저는 멋진 스케이터 소년이 되기 위한 첫걸음을 내디뎠어요.",
+      "answers": ["becoming"],
+      "explain": ["전치사 toward 뒤에는 동명사가 와야 하므로 becoming 이 알맞다."]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 4,
+      "en_template": "I joined a {{1:one-day/one-days}} skateboarding class.",
+      "ko_full": "저는 하루짜리 스케이트보드 수업에 참여했어요.",
+      "answers": ["one-day"],
+      "explain": ["하이픈으로 묶여 명사를 꾸미는 복합형용사에서는 day 에 -s 를 붙이지 않는다."]
+    }
+  ],
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "When did you {{1:last/never}} try something new?",
+      "ko_full": "여러분은 마지막으로 새로운 것을 시도해 본 게 언제인가요?",
+      "answers": ["last"],
+      "explain": ["'마지막으로 언제'를 묻는 맥락이므로 last 가 알맞다."]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "I have {{1:always/never}} wanted to learn skateboarding.",
+      "ko_full": "저는 항상 스케이트보드 타는 법을 배우고 싶었어요.",
+      "answers": ["always"],
+      "explain": ["오래 바라 왔다는 맥락이므로 always. never 는 정반대의 뜻이다."]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "Today, I took the {{1:first/last}} step toward becoming a cool skater boy.",
+      "ko_full": "오늘, 저는 멋진 스케이터 소년이 되기 위한 첫걸음을 내디뎠어요.",
+      "answers": ["first"],
+      "explain": ["이제 막 시작했다는 맥락이므로 first step(첫걸음)이 맞다."]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 3,
+      "en_template": "Today, I took the first step toward becoming a {{1:cool/boring}} skater boy.",
+      "ko_full": "오늘, 저는 멋진 스케이터 소년이 되기 위한 첫걸음을 내디뎠어요.",
+      "answers": ["cool"],
+      "explain": ["동경의 대상을 나타내므로 cool(멋진)이 알맞다."]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 4,
+      "en_template": "I {{1:joined/left}} a one-day skateboarding class.",
+      "ko_full": "저는 하루짜리 스케이트보드 수업에 참여했어요.",
+      "answers": ["joined"],
+      "explain": ["수업에 '참여했다'는 맥락이므로 joined. left(떠났다)는 정반대다."]
+    }
+  ],
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "a", "answer": "always", "after": "wanted" },
+        { "pos": 2, "letter": "l", "answer": "learn", "after": "skateboarding" }
+      ],
+      "ko_full": "저는 항상 스케이트보드 타는 법을 배우고 싶었어요."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "s", "answer": "step", "after": "toward" },
+        { "pos": 2, "letter": "b", "answer": "becoming", "after": "a cool skater boy" }
+      ],
+      "ko_full": "오늘, 저는 멋진 스케이터 소년이 되기 위한 첫걸음을 내디뎠어요."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "j", "answer": "joined", "after": "a one-day" },
+        { "pos": 2, "letter": "c", "answer": "class", "after": "" }
+      ],
+      "ko_full": "저는 하루짜리 스케이트보드 수업에 참여했어요."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "t", "answer": "try", "after": "something new" }
+      ],
+      "ko_full": "여러분은 마지막으로 새로운 것을 시도해 본 게 언제인가요?"
+    }
+  ],
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 }
+  ],
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["When", "did", "you", "last", "try", "something", "new?"],
+      "answer": "When did you last try something new?"
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["I", "have", "always", "wanted", "to", "learn", "skateboarding."],
+      "answer": "I have always wanted to learn skateboarding."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["Today,", "I", "took", "the", "first", "step", "toward", "becoming", "a", "cool", "skater", "boy."],
+      "answer": "Today, I took the first step toward becoming a cool skater boy."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["I", "joined", "a", "one-day", "skateboarding", "class."],
+      "answer": "I joined a one-day skateboarding class."
+    }
+  ],
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" }
+  ],
+  "mixed": [
+    { "kind": "grammar", "ref": 5, "no": 1 },
+    { "kind": "vocab", "ref": 3, "no": 2 },
+    { "kind": "grammar", "ref": 3, "no": 3 },
+    { "kind": "vocab", "ref": 5, "no": 4 },
+    { "kind": "grammar", "ref": 6, "no": 5 }
+  ]
+}
