@@ -42,6 +42,9 @@ const LESSONS = {
     lessonNo: 6,
     titleEn: 'Dr. Schofield, a Foreigner Who Loved Korea',
     out: '중2_동아윤정미_Lesson6_본문암기.pdf',
+    /* 26문항을 13/13 두 장에 담는다(사용자 요청 2026-08-31).
+       기본 12 로 두면 9/9/8 세 장이 된다. */
+    maxPerPage: 13,
   },
 };
 
