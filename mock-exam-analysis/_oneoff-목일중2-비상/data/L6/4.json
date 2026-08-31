@@ -14,7 +14,8 @@
   "title_en": "Science Is Everywhere: From Firewood to the Stars",
   "illustration": {
     "file": "assets/illust-4.png",
-    "prompt": "Photorealistic outdoor photograph, wide banner composition. A neat criss-cross stack of split firewood logs arranged in an open lattice pattern on the ground at a campsite, clearly showing the gaps between the logs. Grass and simple camping surroundings behind. Clean, instructive, satisfying structure. NO flames, NO burning fire, NO tent, NO lake, NO skipping stones, NO people. Shot on a 50mm lens, natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, airy and open feel, clean bright background, true-to-life color, sharp focus. NO dramatic lighting, NO golden hour, NO sunset, NO night scene, NO heavy shadows, NO dark moody grading, NO text overlay, NO watermark --ar 16:5 --v 8.1"
+    "prompt": "Photorealistic outdoor photograph, wide banner composition, soft blurred background. An empty circular stone fire ring on bare ground at a quiet campsite in the early evening, surrounded by soft grass, blurred trees far behind, wide pale sky with the first faint stars barely visible high above. Empty center with nothing in the middle of the frame, plenty of clean open space. Shallow depth of field, gentle bokeh, very soft low-detail background. NO stacked firewood, NO logs, NO flames, NO burning fire, NO smoke, NO people, NO tent, NO lake. Natural soft diffused evening daylight, overcast sky, high-key exposure, low contrast, airy and open feel, muted desaturated color. NO dramatic lighting, NO golden hour, NO orange sunset, NO fire glow, NO heavy shadows, NO dark moody grading, NO text overlay, NO watermark --ar 16:5 --v 8.1",
+    "note": "AI 배경 + 교과서 Q3 도해 합성. 위 prompt 는 배경용이며, 최종 파일은 _ILLUSTRATION_PROMPTS.md 의 합성 스크립트로 만든다."
   },
   "passage": [
     "“Look, Minho. If you make enough space for air, you will get a good fire.",
@@ -78,23 +79,142 @@
     }
   ],
   "vocab": [
-    { "word": "enough", "pos": "형", "meaning": "충분한", "syn": "sufficient, ample", "ant": "insufficient 불충분한", "deriv": "enough 충분히(부사)" },
-    { "word": "space", "pos": "명", "meaning": "공간", "syn": "room, gap", "ant": "—", "deriv": "spacious 널찍한" },
-    { "word": "fire", "pos": "명", "meaning": "불", "syn": "flame, blaze", "ant": "—", "deriv": "fiery 불타는" },
-    { "word": "way", "pos": "명", "meaning": "방법, 방식", "syn": "method, manner", "ant": "—", "deriv": "ways 방법들" },
-    { "word": "pile up", "pos": "숙", "meaning": "쌓아 올리다", "syn": "stack, heap", "ant": "scatter 흩뜨리다", "deriv": "pile 더미" },
-    { "word": "wood", "pos": "명", "meaning": "장작, 나무", "syn": "firewood, timber", "ant": "—", "deriv": "wooden 나무로 된" },
-    { "word": "try", "pos": "동", "meaning": "시도하다, 해 보다", "syn": "attempt, test", "ant": "give up 포기하다", "deriv": "tried 과거형 / trial 시도" },
-    { "word": "pattern", "pos": "명", "meaning": "방식, 형태", "syn": "arrangement, design", "ant": "—", "deriv": "patterned 무늬가 있는" },
-    { "word": "criss-cross", "pos": "형", "meaning": "엇갈린, 십자로 교차하는", "syn": "interlocking, crossed", "ant": "parallel 평행한", "deriv": "cross 가로지르다" },
-    { "word": "room", "pos": "명", "meaning": "공간, 여지", "syn": "space", "ant": "—", "deriv": "roomy 널찍한" },
-    { "word": "Well done", "pos": "숙", "meaning": "잘했어", "syn": "Good job", "ant": "—", "deriv": "well 잘 / done 끝낸" },
-    { "word": "hundreds of", "pos": "숙", "meaning": "수백 개의", "syn": "a great many", "ant": "a few 몇몇의", "deriv": "hundred 백" },
-    { "word": "shine", "pos": "동", "meaning": "빛나다", "syn": "glow, sparkle", "ant": "dim 어두워지다", "deriv": "shining 빛나는 / shone 과거형" },
-    { "word": "be full of", "pos": "숙", "meaning": "~으로 가득하다", "syn": "be filled with", "ant": "be empty of ~이 없다", "deriv": "full 가득한" },
-    { "word": "surprise", "pos": "명", "meaning": "놀라움, 뜻밖의 일", "syn": "wonder, shock", "ant": "routine 일상", "deriv": "surprising 놀라운" },
-    { "word": "help", "pos": "동", "meaning": "돕다", "syn": "assist, aid", "ant": "hinder 방해하다", "deriv": "helpful 도움이 되는" },
-    { "word": "everywhere", "pos": "부", "meaning": "어디에나", "syn": "all around", "ant": "nowhere 어디에도 없는", "deriv": "every 모든 / where 어디" }
+    {
+      "word": "enough",
+      "pos": "형",
+      "meaning": "충분한",
+      "syn": "sufficient, ample",
+      "ant": "insufficient 불충분한",
+      "deriv": "enough 충분히(부사)"
+    },
+    {
+      "word": "space",
+      "pos": "명",
+      "meaning": "공간",
+      "syn": "room, gap",
+      "ant": "—",
+      "deriv": "spacious 널찍한"
+    },
+    {
+      "word": "fire",
+      "pos": "명",
+      "meaning": "불",
+      "syn": "flame, blaze",
+      "ant": "—",
+      "deriv": "fiery 불타는"
+    },
+    {
+      "word": "way",
+      "pos": "명",
+      "meaning": "방법, 방식",
+      "syn": "method, manner",
+      "ant": "—",
+      "deriv": "ways 방법들"
+    },
+    {
+      "word": "pile up",
+      "pos": "숙",
+      "meaning": "쌓아 올리다",
+      "syn": "stack, heap",
+      "ant": "scatter 흩뜨리다",
+      "deriv": "pile 더미"
+    },
+    {
+      "word": "wood",
+      "pos": "명",
+      "meaning": "장작, 나무",
+      "syn": "firewood, timber",
+      "ant": "—",
+      "deriv": "wooden 나무로 된"
+    },
+    {
+      "word": "try",
+      "pos": "동",
+      "meaning": "시도하다, 해 보다",
+      "syn": "attempt, test",
+      "ant": "give up 포기하다",
+      "deriv": "tried 과거형 / trial 시도"
+    },
+    {
+      "word": "pattern",
+      "pos": "명",
+      "meaning": "방식, 형태",
+      "syn": "arrangement, design",
+      "ant": "—",
+      "deriv": "patterned 무늬가 있는"
+    },
+    {
+      "word": "criss-cross",
+      "pos": "형",
+      "meaning": "엇갈린, 십자로 교차하는",
+      "syn": "interlocking, crossed",
+      "ant": "parallel 평행한",
+      "deriv": "cross 가로지르다"
+    },
+    {
+      "word": "room",
+      "pos": "명",
+      "meaning": "공간, 여지",
+      "syn": "space",
+      "ant": "—",
+      "deriv": "roomy 널찍한"
+    },
+    {
+      "word": "Well done",
+      "pos": "숙",
+      "meaning": "잘했어",
+      "syn": "Good job",
+      "ant": "—",
+      "deriv": "well 잘 / done 끝낸"
+    },
+    {
+      "word": "hundreds of",
+      "pos": "숙",
+      "meaning": "수백 개의",
+      "syn": "a great many",
+      "ant": "a few 몇몇의",
+      "deriv": "hundred 백"
+    },
+    {
+      "word": "shine",
+      "pos": "동",
+      "meaning": "빛나다",
+      "syn": "glow, sparkle",
+      "ant": "dim 어두워지다",
+      "deriv": "shining 빛나는 / shone 과거형"
+    },
+    {
+      "word": "be full of",
+      "pos": "숙",
+      "meaning": "~으로 가득하다",
+      "syn": "be filled with",
+      "ant": "be empty of ~이 없다",
+      "deriv": "full 가득한"
+    },
+    {
+      "word": "surprise",
+      "pos": "명",
+      "meaning": "놀라움, 뜻밖의 일",
+      "syn": "wonder, shock",
+      "ant": "routine 일상",
+      "deriv": "surprising 놀라운"
+    },
+    {
+      "word": "help",
+      "pos": "동",
+      "meaning": "돕다",
+      "syn": "assist, aid",
+      "ant": "hinder 방해하다",
+      "deriv": "helpful 도움이 되는"
+    },
+    {
+      "word": "everywhere",
+      "pos": "부",
+      "meaning": "어디에나",
+      "syn": "all around",
+      "ant": "nowhere 어디에도 없는",
+      "deriv": "every 모든 / where 어디"
+    }
   ],
   "flow": [
     {
@@ -121,8 +241,13 @@
   "sentences": [
     {
       "no": 1,
-      "covers": [1, 2],
-      "tags": ["grammar"],
+      "covers": [
+        1,
+        2
+      ],
+      "tags": [
+        "grammar"
+      ],
       "en_html": "“Look, Minho. <span class=\"hl-r\">If you make</span> enough space for air, you <span class=\"hl-r\">will get</span> a good fire. <span class=\"slash\">/</span> What is <span class=\"hl-g\">the best way</span> <span class=\"hl\">to pile up</span> the wood?”",
       "ko_chunks": "“보렴, 민호야. 네가 공기를 위한 충분한 공간을 만들면, 너는 좋은 불을 얻게 될 거야. <span class=\"slash\">/</span> 장작을 쌓는 가장 좋은 방법은 무엇일까?”",
       "ko_full": "“보렴, 민호야. 네가 공기를 위한 충분한 공간을 만들면, 너는 좋은 불을 얻게 될 거야. 장작을 쌓는 가장 좋은 방법은 무엇일까?”",
@@ -145,8 +270,14 @@
     },
     {
       "no": 2,
-      "covers": [3, 4, 5],
-      "tags": ["grammar"],
+      "covers": [
+        3,
+        4,
+        5
+      ],
+      "tags": [
+        "grammar"
+      ],
       "en_html": "I <span class=\"hl-g\">tried</span> many patterns <span class=\"slash\">/</span> and <span class=\"hl\">finally</span> made <span class=\"hl-r\">the best pattern</span>. <span class=\"slash\">/</span> “Dad, <span class=\"hl\">how about</span> this?” <span class=\"slash\">/</span> Q3. What is the best way to pile up the wood?",
       "ko_chunks": "나는 여러 가지 방식을 시도했어요 <span class=\"slash\">/</span> 그리고 마침내 가장 좋은 방식을 만들어 냈어요. <span class=\"slash\">/</span> “아빠, 이건 어때요?” <span class=\"slash\">/</span> Q3. 장작을 쌓는 가장 좋은 방법은 무엇일까요?",
       "ko_full": "나는 여러 가지 방식을 시도했고 마침내 가장 좋은 방식을 만들어 냈어요. “아빠, 이건 어때요?” Q3. 장작을 쌓는 가장 좋은 방법은 무엇일까요?",
@@ -169,8 +300,13 @@
     },
     {
       "no": 3,
-      "covers": [6, 7],
-      "tags": ["grammar"],
+      "covers": [
+        6,
+        7
+      ],
+      "tags": [
+        "grammar"
+      ],
       "en_html": "“Yes, the <span class=\"hl-r\">criss-cross</span> pattern makes <span class=\"hl\">more room for air</span>. Well done.” <span class=\"slash\">/</span> At night, we watched <span class=\"hl-g\">hundreds of stars shining</span> in the sky.",
       "ko_chunks": "“그래, 엇갈려 쌓는 방식이 공기가 통할 공간을 더 많이 만들지. 잘했어.” <span class=\"slash\">/</span> 밤에, 우리는 하늘에서 빛나고 있는 수백 개의 별을 바라보았어요.",
       "ko_full": "“그래, 엇갈려 쌓는 방식이 공기가 통할 공간을 더 많이 만들지. 잘했어.” 밤에, 우리는 하늘에서 빛나고 있는 수백 개의 별을 바라보았어요.",
@@ -193,8 +329,14 @@
     },
     {
       "no": 4,
-      "covers": [8, 9, 10],
-      "tags": ["grammar"],
+      "covers": [
+        8,
+        9,
+        10
+      ],
+      "tags": [
+        "grammar"
+      ],
       "en_html": "Nature was <span class=\"hl\">full of surprises</span> and science <span class=\"hl-g\">helped me understand</span> them. <span class=\"slash\">/</span> “Dad, science is <span class=\"hl-r\">everywhere</span>.” <span class=\"slash\">/</span> Dad looked at me with a big smile.",
       "ko_chunks": "자연은 놀라움으로 가득했고 과학은 내가 그것들을 이해하도록 도와주었어요. <span class=\"slash\">/</span> “아빠, 과학은 어디에나 있네요.” <span class=\"slash\">/</span> 아빠는 활짝 웃으며 나를 바라보았어요.",
       "ko_full": "자연은 놀라움으로 가득했고 과학은 내가 그것들을 이해하도록 도와주었어요. “아빠, 과학은 어디에나 있네요.” 아빠는 활짝 웃으며 나를 바라보았어요.",

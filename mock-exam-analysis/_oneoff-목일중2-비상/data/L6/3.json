@@ -14,7 +14,8 @@
   "title_en": "Speed, Angle, and Shape: The Science of Skipping Stones",
   "illustration": {
     "file": "assets/illust-3.png",
-    "prompt": "Photorealistic outdoor photograph, wide banner composition. A smooth flat gray stone skimming low across a calm lake surface, leaving a line of small circular ripples behind it on the water. Distant green shoreline and open sky. Crisp water detail, dynamic but clean and instructive. NO tent, NO tree shadow on grass, NO firewood, NO campfire, NO stars, NO night. Shot on a telephoto lens, natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, airy and open feel, clean bright background, true-to-life color, sharp focus. NO dramatic lighting, NO golden hour, NO sunset, NO heavy shadows, NO dark moody grading, NO text overlay, NO watermark --ar 16:5 --v 8.1"
+    "prompt": "Photorealistic outdoor photograph, wide banner composition, soft blurred background. A calm wide lake surface with very gentle ripples catching soft light, a far shoreline of blurred green trees along the top edge, open pale sky. Empty center with nothing in the middle of the frame, plenty of clean open water. Shallow depth of field, gentle bokeh, very soft low-detail background. NO stones, NO splashing, NO people, NO arms throwing, NO angle lines, NO tent, NO firewood, NO campfire, NO stars, NO night. Natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, airy and open feel, muted desaturated color. NO dramatic lighting, NO golden hour, NO sunset, NO heavy shadows, NO dark moody grading, NO text overlay, NO watermark --ar 16:5 --v 8.1",
+    "note": "AI 배경 + 교과서 Q2 도해 합성. 위 prompt 는 배경용이며, 최종 파일은 _ILLUSTRATION_PROMPTS.md 의 합성 스크립트로 만든다."
   },
   "passage": [
     "“How did you do that, Dad?”",
@@ -80,24 +81,150 @@
     }
   ],
   "vocab": [
-    { "word": "most", "pos": "형", "meaning": "대부분의", "syn": "the majority of", "ant": "few 거의 없는", "deriv": "mostly 대부분" },
-    { "word": "stone", "pos": "명", "meaning": "돌", "syn": "rock, pebble", "ant": "—", "deriv": "stony 돌투성이의" },
-    { "word": "sink", "pos": "동", "meaning": "가라앉다", "syn": "go under, submerge", "ant": "float 뜨다", "deriv": "sank 과거형 / sunk 과거분사" },
-    { "word": "throw", "pos": "동", "meaning": "던지다", "syn": "toss, hurl", "ant": "catch 잡다", "deriv": "threw 과거형 / thrown 과거분사" },
-    { "word": "right", "pos": "형", "meaning": "알맞은, 적절한", "syn": "proper, suitable", "ant": "wrong 틀린", "deriv": "rightly 올바르게" },
-    { "word": "speed", "pos": "명", "meaning": "속도", "syn": "pace, velocity", "ant": "—", "deriv": "speedy 빠른" },
-    { "word": "angle", "pos": "명", "meaning": "각도", "syn": "slant, tilt", "ant": "—", "deriv": "angular 각진" },
-    { "word": "skip", "pos": "동", "meaning": "튀다, 물수제비뜨다", "syn": "bounce, skim", "ant": "sink 가라앉다", "deriv": "skipping 튀기" },
-    { "word": "far", "pos": "부", "meaning": "멀리", "syn": "a long way", "ant": "near 가까이", "deriv": "farther 더 멀리" },
-    { "word": "shape", "pos": "명", "meaning": "모양, 형태", "syn": "form, figure", "ant": "—", "deriv": "shapely 맵시 있는" },
-    { "word": "important", "pos": "형", "meaning": "중요한", "syn": "crucial, key", "ant": "trivial 사소한", "deriv": "importance 중요성" },
-    { "word": "choose", "pos": "동", "meaning": "고르다, 선택하다", "syn": "pick, select", "ant": "reject 거절하다", "deriv": "chose 과거형 / choice 선택" },
-    { "word": "flat", "pos": "형", "meaning": "납작한, 평평한", "syn": "level, even", "ant": "round 둥근", "deriv": "flatten 평평하게 하다" },
-    { "word": "degree", "pos": "명", "meaning": "(각도의) 도", "syn": "unit of angle", "ant": "—", "deriv": "degrees 복수형" },
-    { "word": "enjoy", "pos": "동", "meaning": "즐기다", "syn": "have fun with", "ant": "dislike 싫어하다", "deriv": "enjoyable 즐거운" },
-    { "word": "campsite", "pos": "명", "meaning": "야영장", "syn": "camping ground", "ant": "—", "deriv": "camp 야영하다" },
-    { "word": "get ready for", "pos": "숙", "meaning": "~을 준비하다", "syn": "prepare for", "ant": "put off 미루다", "deriv": "ready 준비된" },
-    { "word": "excited", "pos": "형", "meaning": "신이 난, 들뜬", "syn": "thrilled, eager", "ant": "bored 지루한", "deriv": "excite 흥분시키다 / exciting 흥미진진한" }
+    {
+      "word": "most",
+      "pos": "형",
+      "meaning": "대부분의",
+      "syn": "the majority of",
+      "ant": "few 거의 없는",
+      "deriv": "mostly 대부분"
+    },
+    {
+      "word": "stone",
+      "pos": "명",
+      "meaning": "돌",
+      "syn": "rock, pebble",
+      "ant": "—",
+      "deriv": "stony 돌투성이의"
+    },
+    {
+      "word": "sink",
+      "pos": "동",
+      "meaning": "가라앉다",
+      "syn": "go under, submerge",
+      "ant": "float 뜨다",
+      "deriv": "sank 과거형 / sunk 과거분사"
+    },
+    {
+      "word": "throw",
+      "pos": "동",
+      "meaning": "던지다",
+      "syn": "toss, hurl",
+      "ant": "catch 잡다",
+      "deriv": "threw 과거형 / thrown 과거분사"
+    },
+    {
+      "word": "right",
+      "pos": "형",
+      "meaning": "알맞은, 적절한",
+      "syn": "proper, suitable",
+      "ant": "wrong 틀린",
+      "deriv": "rightly 올바르게"
+    },
+    {
+      "word": "speed",
+      "pos": "명",
+      "meaning": "속도",
+      "syn": "pace, velocity",
+      "ant": "—",
+      "deriv": "speedy 빠른"
+    },
+    {
+      "word": "angle",
+      "pos": "명",
+      "meaning": "각도",
+      "syn": "slant, tilt",
+      "ant": "—",
+      "deriv": "angular 각진"
+    },
+    {
+      "word": "skip",
+      "pos": "동",
+      "meaning": "튀다, 물수제비뜨다",
+      "syn": "bounce, skim",
+      "ant": "sink 가라앉다",
+      "deriv": "skipping 튀기"
+    },
+    {
+      "word": "far",
+      "pos": "부",
+      "meaning": "멀리",
+      "syn": "a long way",
+      "ant": "near 가까이",
+      "deriv": "farther 더 멀리"
+    },
+    {
+      "word": "shape",
+      "pos": "명",
+      "meaning": "모양, 형태",
+      "syn": "form, figure",
+      "ant": "—",
+      "deriv": "shapely 맵시 있는"
+    },
+    {
+      "word": "important",
+      "pos": "형",
+      "meaning": "중요한",
+      "syn": "crucial, key",
+      "ant": "trivial 사소한",
+      "deriv": "importance 중요성"
+    },
+    {
+      "word": "choose",
+      "pos": "동",
+      "meaning": "고르다, 선택하다",
+      "syn": "pick, select",
+      "ant": "reject 거절하다",
+      "deriv": "chose 과거형 / choice 선택"
+    },
+    {
+      "word": "flat",
+      "pos": "형",
+      "meaning": "납작한, 평평한",
+      "syn": "level, even",
+      "ant": "round 둥근",
+      "deriv": "flatten 평평하게 하다"
+    },
+    {
+      "word": "degree",
+      "pos": "명",
+      "meaning": "(각도의) 도",
+      "syn": "unit of angle",
+      "ant": "—",
+      "deriv": "degrees 복수형"
+    },
+    {
+      "word": "enjoy",
+      "pos": "동",
+      "meaning": "즐기다",
+      "syn": "have fun with",
+      "ant": "dislike 싫어하다",
+      "deriv": "enjoyable 즐거운"
+    },
+    {
+      "word": "campsite",
+      "pos": "명",
+      "meaning": "야영장",
+      "syn": "camping ground",
+      "ant": "—",
+      "deriv": "camp 야영하다"
+    },
+    {
+      "word": "get ready for",
+      "pos": "숙",
+      "meaning": "~을 준비하다",
+      "syn": "prepare for",
+      "ant": "put off 미루다",
+      "deriv": "ready 준비된"
+    },
+    {
+      "word": "excited",
+      "pos": "형",
+      "meaning": "신이 난, 들뜬",
+      "syn": "thrilled, eager",
+      "ant": "bored 지루한",
+      "deriv": "excite 흥분시키다 / exciting 흥미진진한"
+    }
   ],
   "flow": [
     {
@@ -124,8 +251,14 @@
   "sentences": [
     {
       "no": 1,
-      "covers": [1, 2, 3],
-      "tags": ["grammar"],
+      "covers": [
+        1,
+        2,
+        3
+      ],
+      "tags": [
+        "grammar"
+      ],
       "en_html": "“<span class=\"hl-g\">How did you do that</span>, Dad?” <span class=\"slash\">/</span> “Most stones <span class=\"hl-r\">sink</span> in water. <span class=\"slash\">/</span> <span class=\"hl\">But if you throw</span> a stone <span class=\"hl\">with the right speed and at the right angle</span>, it <span class=\"hl-g\">can skip</span> and go far.",
       "ko_chunks": "“아빠, 그거 어떻게 하신 거예요?” <span class=\"slash\">/</span> “대부분의 돌은 물에 가라앉는단다. <span class=\"slash\">/</span> 하지만 네가 알맞은 속도로 그리고 알맞은 각도로 돌을 던지면, 그것은 튀면서 멀리 갈 수 있어.",
       "ko_full": "“아빠, 그거 어떻게 하신 거예요?” “대부분의 돌은 물에 가라앉는단다. 하지만 네가 알맞은 속도로 그리고 알맞은 각도로 돌을 던지면, 그것은 튀면서 멀리 갈 수 있어.",
@@ -148,8 +281,14 @@
     },
     {
       "no": 2,
-      "covers": [4, 5, 6],
-      "tags": ["grammar"],
+      "covers": [
+        4,
+        5,
+        6
+      ],
+      "tags": [
+        "grammar"
+      ],
       "en_html": "The shape of the stone is important, <span class=\"hl-r\">too</span>. <span class=\"slash\">/</span> <span class=\"hl-g\">Can you choose</span> a better stone and find <span class=\"hl\">a better angle</span>?” <span class=\"slash\">/</span> Q2. Which is the better angle to skip stones?",
       "ko_chunks": "돌의 모양도 중요하단다. <span class=\"slash\">/</span> 더 나은 돌을 고르고 더 나은 각도를 찾아볼 수 있겠니?” <span class=\"slash\">/</span> Q2. 물수제비를 뜨기에 더 나은 각도는 어느 쪽일까요?",
       "ko_full": "돌의 모양도 중요하단다. 더 나은 돌을 고르고 더 나은 각도를 찾아볼 수 있겠니?” Q2. 물수제비를 뜨기에 더 나은 각도는 어느 쪽일까요?",
@@ -172,8 +311,13 @@
     },
     {
       "no": 3,
-      "covers": [7, 8],
-      "tags": ["grammar"],
+      "covers": [
+        7,
+        8
+      ],
+      "tags": [
+        "grammar"
+      ],
       "en_html": "I said, “I <span class=\"hl-g\">will choose</span> this <span class=\"hl-r\">flat</span> stone <span class=\"slash\">/</span> and throw it <span class=\"hl\">at about an angle of 20 degrees</span>.” <span class=\"slash\">/</span> “Great choice!” Dad answered.",
       "ko_chunks": "내가 말했어요, “저는 이 납작한 돌을 고를 거예요 <span class=\"slash\">/</span> 그리고 약 20도의 각도로 그것을 던질 거예요.” <span class=\"slash\">/</span> “훌륭한 선택이야!” 하고 아빠가 답했어요.",
       "ko_full": "내가 말했어요, “저는 이 납작한 돌을 골라서 약 20도의 각도로 던질 거예요.” “훌륭한 선택이야!” 하고 아빠가 답했어요.",
@@ -196,8 +340,14 @@
     },
     {
       "no": 4,
-      "covers": [9, 10, 11],
-      "tags": ["grammar"],
+      "covers": [
+        9,
+        10,
+        11
+      ],
+      "tags": [
+        "grammar"
+      ],
       "en_html": "We <span class=\"hl-g\">enjoyed skipping</span> stones and <span class=\"hl-g\">swimming</span> all afternoon. <span class=\"slash\">/</span> <span class=\"hl\">Back at the campsite</span>, we <span class=\"hl-r\">got ready for</span> a barbecue. <span class=\"slash\">/</span> I was very <span class=\"hl-r\">excited</span>.",
       "ko_chunks": "우리는 오후 내내 물수제비를 뜨고 수영을 즐겼어요. <span class=\"slash\">/</span> 야영장으로 돌아와서, 우리는 바비큐를 준비했어요. <span class=\"slash\">/</span> 나는 무척 신이 났어요.",
       "ko_full": "우리는 오후 내내 물수제비를 뜨고 수영을 즐겼어요. 야영장으로 돌아와서, 우리는 바비큐를 준비했어요. 나는 무척 신이 났어요.",
