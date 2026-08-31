@@ -34,6 +34,9 @@ const LESSONS = {
     lessonNo: 5,
     titleEn: 'Street Art in London',
     out: '중2_동아윤정미_Lesson5_본문암기.pdf',
+    /* 28문항을 14/14 두 장에 담는다(사용자 요청 2026-08-31).
+       기본 12 로 두면 12/12/4 가 되어 셋째 장이 거의 빈다. */
+    maxPerPage: 14,
   },
   L6: {
     lessonNo: 6,
@@ -207,9 +210,33 @@ ${pagesHtml}
      ★ '들어가는 최대'로 채우면 답란이 손글씨를 쓰기엔 너무 좁아진다(중2 대상).
        한 장당 문항 수에 상한(MAX_PER_PAGE)을 두고, 남는 세로 공간은
        .trans-list 의 space-between 이 답란 간격으로 고르게 분배하게 한다. */
-  const MAX_PER_PAGE = 12;
+  const MAX_PER_PAGE = LESSON.maxPerPage ?? 12;
+
+  /* ★ 그리디로 '상한까지 꽉' 채우면 마지막 장에 자투리가 남는다
+     (28문항·상한12 → 12/12/4, 셋째 장이 거의 빈 채로 인쇄된다).
+     상한을 지키면서 필요한 최소 장수를 구하고, 그 장수로 문항을
+     **고르게** 나눈다: 28문항·상한14 → 2장 → 14/14. */
+  const nPages = Math.ceil(items.length / MAX_PER_PAGE);
+  const base = Math.floor(items.length / nPages);
+  const extra = items.length % nPages;          // 앞쪽 장에 1문항씩 더
+  const quota = Array.from({ length: nPages }, (_, i) => base + (i < extra ? 1 : 0));
+
   const qPages = [];
   let rest = [...items], firstQ = true;
+  for (const want of quota) {
+    const take = rest.slice(0, want);
+    /* 넘치면 조용히 잘리므로(.page-body overflow:hidden) 실측으로 확인한다.
+       들어가지 않으면 한 문항씩 줄여 가며 맞춘다. */
+    let n = take.length;
+    while (n > 1 && !(await fits(qPage(rest.slice(0, n), firstQ)))) n--;
+    if (n < take.length) {
+      console.warn(`  ⚠️  ${lessonId}: 목표 ${take.length}문항이 한 장에 안 들어가 ${n}문항으로 줄임`);
+    }
+    qPages.push(qPage(rest.slice(0, n), firstQ));
+    rest = rest.slice(n);
+    firstQ = false;
+  }
+  /* 실측으로 줄어들어 남은 문항이 있으면 뒤에 장을 더 붙인다(누락 방지) */
   while (rest.length) {
     let lo = 1, hi = Math.min(rest.length, MAX_PER_PAGE);
     while (lo < hi) {
