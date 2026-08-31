@@ -36,28 +36,28 @@
 교과서 소재: 런던 거리 예술 투어 → STIK(선과 점) → Banksy(초록 나무) → Ben Wilson(껌 그림).
 세 장이 **거리 벽화 / 공원 벽면 / 보도 바닥 접사**로 확실히 갈리게 구성했다.
 
-### Ch1 · Street Art in London & STIK — Shoreditch 와 STIK
+### Ch1 · Street Art in London & STIK — 벽화로 뒤덮인 이스트런던 거리 + 선·점 인물 벽화
 
 - 저장 경로: `dist/L5/assets/illust-1.png`
-- 원문 10문장 · 키워드: modern, form, colorful, lively
+- 원문 10문장 · 대응 본문: only lines and dots / three figures
 
 ```
 Photorealistic urban documentary photograph, wide banner composition. A lively East-London street-art district: a narrow city street lined with old brick warehouse walls completely covered in large colorful abstract murals, one prominent wall painting of simple stick-like human figures drawn with bold black outlines and small dot eyes, standing side by side. A few bicycles and a lamppost along the pavement, distant pedestrians seen only from behind at small scale. Fresh, open, welcoming city-guide feel. NO green spray-painted tree, NO leafless tree, NO person holding a spray can, NO stencil graffiti of Banksy style, NO chewing gum on the pavement, NO tiny miniature paintings on the ground, NO close-up faces, NO identifiable real people, NO real existing artwork reproduction. Shot on a wide-angle lens, natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, airy and open feel, clean bright background, true-to-life color, sharp focus. NO dramatic lighting, NO golden hour, NO sunset, NO neon, NO night scene, NO heavy shadows, NO dark moody grading, NO text overlay, NO watermark --ar 16:5 --v 8.1
 ```
 
-### Ch2 · Banksy in Finsbury Park — 전개
+### Ch2 · Banksy in Finsbury Park — 잎 없는 나무 뒤 벽에 뿌린 초록 잎 + 분무기
 
 - 저장 경로: `dist/L5/assets/illust-2.png`
-- 원문 9문장 · 키워드: closely, figure, dot, clue
+- 원문 9문장 · 대응 본문: green tree by spraying green paint / leafless tree
 
 ```
 Photorealistic documentary photograph, wide banner composition. A quiet city park corner: a bare leafless tree with thin dark branches stands close in front of a plain flat brick wall, and a large soft green leafy shape is spray-painted on the wall directly above and behind the branches so the painted green reads as the tree's missing foliage. A single metal spray can and a small hand sprayer rest on the pavement beside the trunk. Simple environmental-message street-art feel, plain wall, ordinary park pavement. NO stick figure murals, NO outlined human figures with dot eyes, NO cartoon line-and-dot characters, NO tiny miniature paintings on chewing gum, NO close-up pavement gum, NO recognizable existing artwork, NO close-up human faces. Shot on a wide-angle lens, natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, airy and open feel, clean bright background, true-to-life color, sharp focus. NO dramatic lighting, NO golden hour, NO sunset, NO neon, NO night scene, NO heavy shadows, NO dark moody grading, NO text overlay, NO watermark --ar 16:5 --v 8.1
 ```
 
-### Ch3 · Ben Wilson's Gum Paintings — 마무리
+### Ch3 · Ben Wilson's Gum Paintings — 보도 위 껌에 그린 작은 그림들(접사)
 
 - 저장 경로: `dist/L5/assets/illust-3.png`
-- 원문 9문장 · 키워드: final, stop, tour, artwork
+- 원문 9문장 · 대응 본문: little chewing gum paintings / look down and look closely
 
 ```
 Photorealistic close-up street photograph, wide banner composition, low camera angle just above a grey city pavement. Several small flattened dots of chewing gum stuck on the concrete slabs have been painted with tiny colorful miniature pictures — simple bright shapes and patterns the size of a coin. Shallow depth of field on the painted gum dots, one or two walking shoes softly blurred far in the background. Charming, delicate, look-down-and-look-closely feeling, fine surface texture of the pavement. NO large wall murals, NO stick-figure murals, NO dot-eye cartoon figures, NO green spray-painted tree, NO leafless tree, NO Banksy-style stencil, NO spray can, NO close-up human faces, NO identifiable existing artwork. Shot on a macro lens, natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, airy clean bright look, true-to-life color, sharp focus on the foreground. NO dramatic lighting, NO golden hour, NO sunset, NO neon, NO night scene, NO heavy shadows, NO dark moody grading, NO text overlay, NO watermark --ar 16:5 --v 8.1
@@ -71,37 +71,37 @@ Photorealistic close-up street photograph, wide banner composition, low camera a
 실존 인물이므로 **인물 묘사 대신 사물·장소 중심 정물/풍경**으로 구성했다.
 네 장이 **창밖 군중 / 의학 강의실 / 타자기 책상 / 현충원 풍경**으로 갈린다.
 
-### Ch1 · A Special Favor — 도입(극본)
+### Ch1 · A Special Favor — 창밖으로 내려다본 1919년 거리의 군중 + 창턱의 사진기
 
 - 저장 경로: `dist/L6/assets/illust-1.png`
-- 원문 11문장 · 키워드: favor, special, ask, gather
+- 원문 11문장 · 대응 본문: hiding in a building / a large group of people gathering
 
 ```
 Photorealistic historical documentary photograph, wide banner composition. The view from inside a dim upper-floor room of an early-20th-century building, looking out through a plain wooden-framed window onto a Korean street in 1919: a vintage folding bellows camera rests on the wide windowsill in the foreground, and far below and beyond the glass a very large crowd of people fills a broad street, all seen from behind and above as small distant figures in period-accurate white Korean hanbok. Quiet, observational, archival feel, strong sense of watching from a hidden window. NO close-up faces, NO identifiable persons, NO flags with legible markings, NO hospital, NO medical classroom, NO lecture hall, NO newspaper printing press, NO printing machinery, NO cemetery, NO gravestone, NO memorial monument. Shot on a wide-angle lens, natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, airy and open feel, clean bright background, true-to-life color, sharp focus. NO dramatic lighting, NO golden hour, NO sunset, NO neon, NO night scene, NO heavy shadows, NO dark moody grading, NO text overlay, NO watermark --ar 16:5 --v 8.1
 ```
 
-### Ch2 · Seok Hopil, the Man Who Loved Korea — 전개
+### Ch2 · Seok Hopil, the Man Who Loved Korea — 20세기 초 의학 강의실(빈 책상·칠판·해부 모형)
 
 - 저장 경로: `dist/L6/assets/illust-2.png`
-- 원문 7문장 · 키워드: English, sound, similar, real
+- 원문 7문장 · 대응 본문: a Canadian doctor / came to Korea in 1916 to teach medicine
 
 ```
 Photorealistic interior photograph, wide banner composition. A bright early-twentieth-century medical lecture room: rows of empty wooden desks and benches receding toward a large dark green blackboard that is completely blank, tall windows along one wall letting in plain even daylight. On a side table an antique varnished wooden anatomical model stands beside a row of clear glass laboratory bottles. On the front desk an open notebook lies with a fountain pen resting across it. Worn wooden floorboards, chalk dust in the still air, quiet scholarly period atmosphere. NO street crowd, NO protest scene, NO view of a crowd through a window, NO newspaper printing press, NO printing machinery, NO cemetery, NO gravestone, NO memorial monument. Shot on a wide-angle lens, natural soft diffused daylight, bright overcast sky outside the windows, high-key exposure, low contrast, airy and open feel, clean bright background, true-to-life color, sharp focus. NO people, NO close-up faces, NO legible writing on the blackboard, NO dramatic lighting, NO golden hour, NO sunset, NO neon, NO night scene, NO heavy shadows, NO dark moody grading, NO text overlay, NO watermark --ar 16:5 --v 8.1
 ```
 
-### Ch3 · Telling the World About March 1st — 절정
+### Ch3 · Telling the World About March 1st — 1919년 특파원의 책상(타자기·사진·봉투)
 
 - 저장 경로: `dist/L6/assets/illust-3.png`
-- 원문 5문장 · 키워드: take a picture, event, camera, article
+- 원문 5문장 · 대응 본문: wrote an article / sent it to foreign newspapers
 
 ```
 Photorealistic documentary still-life photograph, wide banner composition. A period 1919 foreign correspondent's wooden desk beside a window: an antique black typewriter with a sheet of blank paper in the carriage, a loose scattering of developed black-and-white photographs spread across the desktop, a fountain pen resting on a blank writing pad, and a sealed paper envelope ready for mailing placed at the edge of the desk. Worn wood grain, a plain glass window pane behind the desk showing only soft pale sky, quiet archival reporting mood. NO people, NO close-up faces, NO hands, NO legible text on the papers or photographs, NO street crowd seen from a window, NO protest march, NO medical lecture room, NO classroom, NO anatomy chart, NO cemetery, NO gravestone, NO memorial monument. Shot on a normal lens at desk height, natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, airy and open feel, clean bright background, true-to-life color, sharp focus, fine material detail. NO dramatic lighting, NO golden hour, NO sunset, NO neon, NO night scene, NO heavy shadows, NO dark moody grading, NO text overlay, NO watermark --ar 16:5 --v 8.1
 ```
 
-### Ch4 · He Never Left Again — 마무리
+### Ch4 · He Never Left Again — 국립현충원의 낮은 묘비 행렬과 소나무
 
 - 저장 경로: `dist/L6/assets/illust-4.png`
-- 원문 3문장 · 키워드: return, invitation, at the invitation of, government
+- 원문 3문장 · 대응 본문: buried in Seoul National Cemetery
 
 ```
 Photorealistic landscape photograph, wide banner composition. A peaceful, well-kept Korean national cemetery on a calm bright day: neat orderly rows of low simple memorial stones set on a wide green lawn, tall straight pine trees standing along the far edge, a broad clean walking path curving gently through the grounds. In the foreground, a single small bunch of white chrysanthemums lies on the grass beside the nearest row. Respectful, serene, quiet and dignified, generous open space, NOT gloomy. NO street crowd seen from a window, NO view looking down from a building, NO medical lecture room, NO classroom, NO desk with a typewriter, NO newspapers or printed articles, NO camera, NO people, NO close-up faces, NO legible inscriptions, NO readable letters or numbers on the stones, NO flags, NO gravestone crosses. Shot on a wide-angle lens at eye level, natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, airy and open feel, clean bright background, true-to-life color, sharp focus. NO dramatic lighting, NO golden hour, NO sunset, NO neon, NO night scene, NO heavy shadows, NO dark moody grading, NO text overlay, NO watermark --ar 16:5 --v 8.1

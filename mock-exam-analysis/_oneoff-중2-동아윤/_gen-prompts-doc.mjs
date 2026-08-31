@@ -7,6 +7,22 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 
+/* 각 삽화가 '무엇을 그린 그림인지' + 대응 본문 근거 — 문서 소제목/키워드용.
+   챕터 부제(전개/마무리)만 쓰면 그림 내용을 알 수 없어 따로 둔다. */
+const SCENE = {
+  L5: {
+    1: ['벽화로 뒤덮인 이스트런던 거리 + 선·점 인물 벽화', 'only lines and dots / three figures'],
+    2: ['잎 없는 나무 뒤 벽에 뿌린 초록 잎 + 분무기', 'green tree by spraying green paint / leafless tree'],
+    3: ['보도 위 껌에 그린 작은 그림들(접사)', 'little chewing gum paintings / look down and look closely'],
+  },
+  L6: {
+    1: ['창밖으로 내려다본 1919년 거리의 군중 + 창턱의 사진기', 'hiding in a building / a large group of people gathering'],
+    2: ['20세기 초 의학 강의실(빈 책상·칠판·해부 모형)', 'a Canadian doctor / came to Korea in 1916 to teach medicine'],
+    3: ['1919년 특파원의 책상(타자기·사진·봉투)', 'wrote an article / sent it to foreign newspapers'],
+    4: ['국립현충원의 낮은 묘비 행렬과 소나무', 'buried in Seoul National Cemetery'],
+  },
+};
+
 const LESSONS = [
   { id: 'L5', title: 'Street Art in London',
     desc: '교과서 소재: 런던 거리 예술 투어 → STIK(선과 점) → Banksy(초록 나무) → Ben Wilson(껌 그림).\n세 장이 **거리 벽화 / 공원 벽면 / 보도 바닥 접사**로 확실히 갈리게 구성했다.' },
@@ -55,9 +71,15 @@ for (const L of LESSONS) {
     if (!fs.existsSync(p)) { console.error(`  (건너뜀) ${L.id}/${ch.no} 없음`); continue; }
     const d = JSON.parse(fs.readFileSync(p, 'utf8'));
     const kw = (d.vocab || []).slice(0, 4).map(v => v.word).join(', ');
-    out += `\n### Ch${ch.no} · ${ch.title} — ${ch.subtitle.split('—').pop().trim()}\n\n`;
+    const sc = SCENE[L.id]?.[ch.no];
+    out += `
+### Ch${ch.no} · ${ch.title} — ${sc ? sc[0] : ch.subtitle.split('—').pop().trim()}
+
+`;
     out += `- 저장 경로: \`dist/${L.id}/${d.illustration.file}\`\n`;
-    out += `- 원문 ${ch.sentences.length}문장 · 키워드: ${kw}\n\n`;
+    out += `- 원문 ${ch.sentences.length}문장 · 대응 본문: ${sc ? sc[1] : kw}
+
+`;
     out += '```\n' + d.illustration.prompt + '\n```\n';
   }
 }
