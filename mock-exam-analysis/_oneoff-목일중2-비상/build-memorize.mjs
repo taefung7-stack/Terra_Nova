@@ -29,16 +29,21 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+/* qSplit — 문제면의 페이지별 문항 수를 손으로 지정한다(사용자 요청).
+   합이 원문 문장 수와 다르면 빌드를 중단한다(문항 유실 방지).
+   지정하지 않으면 기존대로 MAX_PER_PAGE 그리디 분배를 쓴다. */
 const LESSONS = {
   L5: {
     lessonNo: 5,
     titleEn: 'The Pea Blossom',
     out: '목일중2_비상_Lesson5_본문암기.pdf',
+    qSplit: [14, 13],          // 27문장 → 2페이지
   },
   L6: {
     lessonNo: 6,
     titleEn: 'Science Is the Key',
     out: '목일중2_비상_Lesson6_본문암기.pdf',
+    qSplit: [12, 12, 13],      // 37문장 → 3페이지
   },
 };
 
@@ -210,15 +215,40 @@ ${pagesHtml}
   const MAX_PER_PAGE = 12;
   const qPages = [];
   let rest = [...items], firstQ = true;
-  while (rest.length) {
-    let lo = 1, hi = Math.min(rest.length, MAX_PER_PAGE);
-    while (lo < hi) {
-      const mid = Math.ceil((lo + hi) / 2);
-      if (await fits(qPage(rest.slice(0, mid), firstQ))) lo = mid; else hi = mid - 1;
+
+  if (LESSON.qSplit) {
+    /* ── 손으로 지정한 분배 ──────────────────────────────────────
+       합계가 문항 수와 다르면 즉시 중단한다(조용한 유실 방지). */
+    const sum = LESSON.qSplit.reduce((a, b) => a + b, 0);
+    if (sum !== items.length) {
+      console.error(`✗ ${lessonId}: qSplit 합계 ${sum} ≠ 문항 ${items.length} — 중단`);
+      await browser.close();
+      process.exit(1);
     }
-    qPages.push(qPage(rest.slice(0, lo), firstQ));
-    rest = rest.slice(lo);
-    firstQ = false;
+    for (const n of LESSON.qSplit) {
+      const chunk = rest.slice(0, n);
+      const sec = qPage(chunk, firstQ);
+      /* 지정 분배도 반드시 실측한다 — 넘치면 잘린 채 인쇄되므로 차단. */
+      if (!(await fits(sec))) {
+        console.error(`✗ ${lessonId}: ${n}문항이 한 페이지에 넘침 — 중단(qSplit 조정 필요)`);
+        await browser.close();
+        process.exit(1);
+      }
+      qPages.push(sec);
+      rest = rest.slice(n);
+      firstQ = false;
+    }
+  } else {
+    while (rest.length) {
+      let lo = 1, hi = Math.min(rest.length, MAX_PER_PAGE);
+      while (lo < hi) {
+        const mid = Math.ceil((lo + hi) / 2);
+        if (await fits(qPage(rest.slice(0, mid), firstQ))) lo = mid; else hi = mid - 1;
+      }
+      qPages.push(qPage(rest.slice(0, lo), firstQ));
+      rest = rest.slice(lo);
+      firstQ = false;
+    }
   }
 
   /* 정답 페이지 그리디 분배 */
