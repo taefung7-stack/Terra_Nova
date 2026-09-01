@@ -131,26 +131,32 @@ export const SOURCE = [
       "Most basically, make sure you take off your shoes at the entrance to someone's place.",
       "Also, Koreans hate it if someone writes their name in red because the color is often related to death and very bad luck.",
       "Moreover, it is never a good thing to stick your spoon or chopsticks vertically into your rice bowl since Koreans do that only for the rice for the deceased.",
-      "Here are some more.",
-      "Elevators often have an \"F\" in place of the fourth-floor button in Korea.",
-      "It is because the number 4 is considered unlucky as it sounds a lot like the word for \"death.\"",
     ],
     comments: [
       {
         user: 'Luvpanda',
+        sentences: [
+          "Here are some more.",
+          "Elevators often have an \"F\" in place of the fourth-floor button in Korea.",
+          "It is because the number 4 is considered unlucky as it sounds a lot like the word for \"death.\"",
+        ],
+      },
+      {
+        user: 'Samba',
         sentences: [
           "In some areas of Brazil, making a circle with your thumb and index finger is offensive.",
           "The ring gesture looks like an \"OK\" sign, but not necessarily in Brazil.",
           "A good way to remember: OK in Brazil may result in a KO, that is, a knock-out punch!",
         ],
       },
-      {
-        user: 'Samba',
-        sentences: [],
-      },
     ],
   },
 ];
 
-/* Samba 댓글은 원본 사진에서 Luvpanda 와 같은 칸에 묶여 있어 문장 경계가 불명확하다.
- * 현재는 Luvpanda 쪽에 전문을 두고 Samba 는 비워 둔다. 교과서 재확인 후 분리할 것. */
+/* 2026-09-01 확인 완료 — 원본 p.38 하단 한글 주석이 두 댓글을 명확히 구분한다.
+ *   Luvpanda: 엘리베이터 4층 'F' 표기(= 게시글 본문 6~7번 문장에 해당하는 보충 설명)
+ *   Samba:    브라질 OK 제스처 = KO
+ * 즉 Ch4 는 게시글 4문장 + Luvpanda 3문장 + Samba 3문장 = 10문장이다.
+ * 초판은 Luvpanda 몫(엘리베이터 3문장)을 게시글 본문으로, Samba 몫(브라질 3문장)을
+ * Luvpanda 로 각각 밀려 귀속했다. 두 번 다 바로잡았다.
+ * ★ passage 배열의 문장 순서·내용은 이 수정 전후가 동일하다(귀속 메타데이터만 변경). */
