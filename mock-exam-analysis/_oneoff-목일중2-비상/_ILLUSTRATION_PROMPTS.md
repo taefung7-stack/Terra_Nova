@@ -10,6 +10,11 @@
 > `golden hour` `dramatic lighting` `moody` `neon` `night` 은 **지시부에서 금지**.
 > 단 `NO ~` 배제절 안에서는 오히려 명시해 밀어낸다.
 >
+> **예외 — L6 Ch4 는 밤 장면이다.** 본문이 `At night, we watched hundreds of stars`
+> 라서 밤하늘이 없으면 본문과 어긋난다. 대신 어두워지지 않도록
+> `even ambient light` · `low contrast` · `muted` 로 누르고,
+> `dramatic lighting` · `fire glow` · `heavy vignette` 를 `NO` 로 배제했다.
+>
 > 인물은 **얼굴 클로즈업을 피하고** 손·뒷모습·소품 위주로 — 교재 삽화이므로
 > 특정인 초상을 만들지 않는다.
 
@@ -121,47 +126,60 @@ Soft watercolor storybook illustration, wide banner composition. Interior of a s
 
 ## Lesson 6 — Science Is the Key (체험 수기 · 실사 포토리얼)
 
-Ch1 은 **AI 단독**, Ch2·3·4 는 **AI 배경 위에 교과서 도해를 얹는 합성**이다.
-네 장이 **접힌 텐트 → 그늘진 잔디밭 → 호수 수면 → 모닥불 자리** 로
-캠핑 하루의 시간 순서를 따라가도록 구성했다.
+**본문은 거의 전부 민호와 아빠의 대화다.** 초판 프롬프트는 네 장 모두
+`NO people` 이라 **두 주인공이 한 번도 안 나왔다.** 본문 장면에 맞게 재작성한다.
 
-> Ch2·3·4 의 배경은 **가운데를 비우고 흐리게** 만든다. 도해가 그 위에 얹히기 때문이다.
-> `soft blurred background` `shallow depth of field` `empty center` 를 반드시 유지할 것.
+| Ch | 본문 핵심 | 화면 |
+|----|-----------|------|
+| 1 | 첫 캠핑, 가방에서 텐트를 꺼내고 아빠가 **주위를 둘러봄** | 접힌 텐트 + 둘러보는 아빠와 아이 |
+| 2 | 태양·그림자를 따져 **텐트 자리를 정함** (+ Q1 도해) | 나무 그늘 진 잔디밭 (도해가 주인공) |
+| 3 | **아빠가 물수제비를 뜨고** 민호가 지켜봄 (+ Q2 도해) | 호숫가에서 던지는 아빠의 뒷모습 |
+| 4 | 장작 쌓기 → **밤에 함께 수백 개의 별을 봄** (+ Q3 도해) | 밤하늘의 별과 올려다보는 두 사람 |
+
+> **Ch2·3·4 는 위에 도해가 얹히므로 가운데를 비운다.** 인물은 **좌우 가장자리**에
+> 배치하고 `soft blurred background` `shallow depth of field` 를 유지한다.
+> 인물이 가운데 있으면 도해에 가려 무의미해진다.
+>
+> 얼굴은 그리지 않는다 — **뒷모습·실루엣**으로 처리(교재 삽화 원칙).
 
 ### L6 Ch1 — Science Is the Key (`illust-1.png`) · AI 단독
 
-> 아빠와의 첫 캠핑 도입. 아직 텐트를 치기 **전** — 가방에서 막 꺼낸 상태.
-> Q1 도해(텐트가 세워진 그림)와 겹치지 않게 **접힌 텐트**로 간다.
+> 본문: 아빠와의 **첫 캠핑**. 가방에서 텐트를 꺼냈고, 아빠는 자리를 찾아 **둘러본다**.
+> → Q1 도해(세워진 텐트)와 겹치지 않게 **아직 접힌 텐트**. 두 사람이 함께 있어야 한다.
 
 ```
-Photorealistic outdoor photograph, wide banner composition. A folded camping tent still half inside its carry bag lying on green grass at a riverside campsite, with tent poles and a rolled groundsheet beside it, tall leafy trees and open sky behind. Fresh, inviting, start-of-an-adventure feel. NO pitched tent, NO tent standing up, NO tree shadow diagram, NO compass directions, NO firewood stack, NO campfire, NO lake stones skipping, NO stars, NO night sky, NO faces. Shot on a 35mm lens, natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, airy and open feel, clean bright background, true-to-life color, sharp focus. NO dramatic lighting, NO golden hour, NO sunset, NO night scene, NO heavy shadows, NO dark moody grading, NO illustration, NO cartoon, NO text overlay, NO watermark --ar 16:5 --v 8.1
+Photorealistic outdoor photograph, wide banner composition. A riverside campsite on a green lawn: a folded camping tent still half inside its carry bag on the grass with tent poles beside it, an adult man standing near it looking away toward the trees as if searching for a spot, and a boy crouching beside the tent bag. Both figures seen from behind, faces not visible, small in the frame. Tall leafy trees and open sky behind. Fresh, inviting, start-of-an-adventure feel. NO pitched tent, NO tent standing up, NO compass letters, NO diagram arrows, NO firewood stack, NO campfire, NO skipping stones, NO stars, NO night sky, NO visible face, NO facial features. Shot on a 35mm lens, natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, airy and open feel, true-to-life color, sharp focus. NO dramatic lighting, NO golden hour, NO sunset, NO heavy shadows, NO dark moody grading, NO illustration, NO cartoon, NO text overlay, NO watermark --ar 16:5 --v 8.1
 ```
 
 ### L6 Ch2 — The Sun, the Shadow, and the Tent (`illust-2.png`) · 배경
 
-> 위에 **Q1 텐트 위치 도해**를 얹는다. 배경은 **나무 그늘이 드리운 잔디밭**.
-> 도해가 놓일 **가운데를 비우고**, 그늘/햇빛의 대비만 은은하게 남긴다.
+> 위에 **Q1 텐트 위치 도해**를 얹는다. 본문 핵심은 **나무 그림자의 이동**이므로
+> 배경도 **그늘이 드리운 잔디밭**이어야 한다. 도해가 정답을 담고 있으므로
+> 배경은 **가운데를 완전히 비우고** 인물도 넣지 않는다(이 장은 도해가 주인공).
 
 ```
-Photorealistic outdoor photograph, wide banner composition, soft blurred background. A wide empty green campsite lawn with the soft shadow of a large tree stretching across the grass on one side, open sky above, distant trees far out of focus. Empty center with nothing in the middle of the frame, plenty of clean open space. Shallow depth of field, gentle bokeh, very soft low-detail background. NO tent, NO people, NO compass letters, NO arrows, NO firewood, NO campfire, NO lake, NO stars, NO night. Natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, airy and open feel, muted desaturated color. NO dramatic lighting, NO golden hour, NO sunset, NO heavy shadows, NO dark moody grading, NO text overlay, NO watermark --ar 16:5 --v 8.1
+Photorealistic outdoor photograph, wide banner composition, soft blurred background. A wide empty green campsite lawn with the long soft shadow of a large leafy tree stretching across the grass from the left edge, bright open sky above, distant trees far out of focus along the horizon. Completely empty center with nothing in the middle of the frame, plenty of clean open grass. Shallow depth of field, gentle bokeh, very soft low-detail background. NO tent, NO people, NO compass letters, NO diagram arrows, NO firewood, NO campfire, NO lake, NO stars, NO night. Natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, airy and open feel, muted desaturated color. NO dramatic lighting, NO golden hour, NO sunset, NO heavy shadows, NO dark moody grading, NO text overlay, NO watermark --ar 16:5 --v 8.1
 ```
 
 ### L6 Ch3 — Skipping Stones (`illust-3.png`) · 배경
 
-> 위에 **Q2 물수제비 각도 도해**를 얹는다. 배경은 **잔잔한 호수 수면**.
-> 물결만 은은하게 — 돌이나 사람이 있으면 도해와 충돌한다.
+> 위에 **Q2 각도 도해**를 얹는다. 본문에서 민호는 **아빠가 물수제비를 뜨는 것을 본다**
+> (`I saw Dad skipping stones ~ He was very good at it`).
+> → **왼쪽 가장자리에 던지는 아빠의 뒷모습**을 넣고, 가운데 물 위는 비운다.
 
 ```
-Photorealistic outdoor photograph, wide banner composition, soft blurred background. A calm wide lake surface with very gentle ripples catching soft light, a far shoreline of blurred green trees along the top edge, open pale sky. Empty center with nothing in the middle of the frame, plenty of clean open water. Shallow depth of field, gentle bokeh, very soft low-detail background. NO stones, NO splashing, NO people, NO arms throwing, NO angle lines, NO tent, NO firewood, NO campfire, NO stars, NO night. Natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, airy and open feel, muted desaturated color. NO dramatic lighting, NO golden hour, NO sunset, NO heavy shadows, NO dark moody grading, NO text overlay, NO watermark --ar 16:5 --v 8.1
+Photorealistic outdoor photograph, wide banner composition, soft blurred background. A calm wide lake seen from the shore: at the far left edge the back silhouette of an adult man in mid-throw, arm swept low across his body having just released a stone toward the water, standing on a pebbly bank; the rest of the frame is open calm water with very gentle ripples spreading out, a far shoreline of blurred green trees along the top edge. Empty center with nothing in the middle of the frame. The man is small, at the edge, seen from behind, face not visible, softly out of focus. Shallow depth of field, gentle bokeh. NO angle lines, NO degree marks, NO diagram, NO tent, NO firewood, NO campfire, NO stars, NO night, NO visible face, NO facial features. Natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, airy and open feel, muted desaturated color. NO dramatic lighting, NO golden hour, NO sunset, NO heavy shadows, NO dark moody grading, NO text overlay, NO watermark --ar 16:5 --v 8.1
 ```
 
 ### L6 Ch4 — Room for Air and a Sky Full of Stars (`illust-4.png`) · 배경
 
-> 위에 **Q3 장작 쌓기 도해**를 얹는다. 배경은 **저녁 무렵 야영장의 빈 모닥불 자리**.
-> 실제 장작더미가 배경에 있으면 도해와 겹치므로 **돌 화덕만** 남긴다.
+> 위에 **Q3 장작 쌓기 도해**를 얹는다. 본문 마지막은 **밤에 수백 개의 별을 함께 보는**
+> 장면이고 여기서 "과학은 어디에나 있다"는 결론이 나온다.
+> → 초판은 `NO stars` 였는데 **정반대**다. **별이 보이는 밤하늘**이 이 장의 핵심.
+> 좌우 가장자리에 **올려다보는 두 사람의 실루엣**을 작게 넣는다.
 
 ```
-Photorealistic outdoor photograph, wide banner composition, soft blurred background. An empty circular stone fire ring on bare ground at a quiet campsite in the early evening, surrounded by soft grass, blurred trees far behind, wide pale sky with the first faint stars barely visible high above. Empty center with nothing in the middle of the frame, plenty of clean open space. Shallow depth of field, gentle bokeh, very soft low-detail background. NO stacked firewood, NO logs, NO flames, NO burning fire, NO smoke, NO people, NO tent, NO lake. Natural soft diffused evening daylight, overcast sky, high-key exposure, low contrast, airy and open feel, muted desaturated color. NO dramatic lighting, NO golden hour, NO orange sunset, NO fire glow, NO heavy shadows, NO dark moody grading, NO text overlay, NO watermark --ar 16:5 --v 8.1
+Photorealistic outdoor photograph, wide banner composition, soft blurred background. A quiet campsite under a wide deep blue evening sky filled with many small stars, a low stone fire ring resting on the grass at the far left edge, and at the far right edge the small back silhouettes of an adult and a child standing close together looking up at the sky. Dark treeline low along the bottom, softly out of focus. Empty center with nothing in the middle of the frame, wide open starry sky across the upper half. Shallow depth of field, gentle bokeh, very soft low-detail foreground. NO stacked firewood, NO logs, NO flames, NO burning fire, NO smoke, NO tent, NO lake, NO visible face, NO facial features. Clear calm starlit sky, even ambient light, low contrast, muted desaturated color, gentle blue tones, nothing harsh. NO dramatic lighting, NO golden hour, NO orange sunset, NO fire glow, NO light beams, NO heavy vignette, NO text overlay, NO watermark --ar 16:5 --v 8.1
 ```
 
 ### 합성 방법 (Ch2·3·4)
