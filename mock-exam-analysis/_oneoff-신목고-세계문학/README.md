@@ -114,11 +114,48 @@ node "_oneoff-신목고-세계문학/combine-variant.mjs" $U
 
 ## 삽화
 
-`illustration.prompt` — `--ar 16:5 --v 8.1` 고정, **실사 포토리얼**.
-밝기는 형용사가 아니라 조명 조건(`bright overcast sky`, `high-key exposure`)으로 지정한다.
-`sunlit` `golden hour` 를 지시부에 쓰면 미드저니가 황금빛 저녁+강한 대비로 해석해
-**오히려 어두워진다** — 단 `NO ~` 배제절 안에서는 써야 한다.
-인물은 `NO visible face`(손·뒷모습·실루엣).
+프롬프트 원본은 **`data/U1/{N}.json` 의 `illustration.prompt`**(single source of truth)이고,
+복붙용 문서 **`_ILLUSTRATION_PROMPTS-U1.md`** 는 아래 스크립트로 생성되는 파생물이다.
+
+```bash
+node "_oneoff-신목고-세계문학/collect-prompts.mjs"
+```
+
+이 스크립트는 문서를 만들면서 **하우스 룰을 검증**한다(위반 시 exit 1):
+`--ar 16:5 --v 8.1` 고정 / 지시부 금지어 0 / 얼굴 차단 문구 / 소재 배제절 존재.
+
+- 규격: `--ar 16:5 --v 8.1` 고정, **실사 포토리얼**.
+- 밝기는 형용사가 아니라 조명 조건(`bright overcast sky`, `high-key exposure`)으로 지정한다.
+  `sunlit` `golden hour` 를 **지시부**에 쓰면 미드저니가 황금빛 저녁+강한 대비로 해석해
+  **오히려 어두워진다** — 단 `NO ~` 배제절 안에서는 써야 한다.
+  → 그래서 검증기는 `NO ...` 절을 **먼저 걷어낸 뒤** 금지어를 본다(단순 grep 은 오탐).
+- 인물은 `NO visible face`(손·뒷모습·실루엣) — 특정인 초상 회피.
+- 4개 챕터 소재: 강의실 존댓말 / 지하철 배려석 / 식당 반찬 / 현관 신발·밥그릇.
+  챕터마다 나머지 셋을 `NO ~` 로 배제해 4장이 서로 닮지 않게 한다.
+
+### 이미지 반영 방법
+
+생성한 이미지를 `dist/U1/assets/illust-{1..4}.png` 로 저장한 뒤 PDF 를 다시 렌더하면
+placeholder 자리에 자동으로 들어간다.
+
+```bash
+node builder/pdf.mjs "_oneoff-신목고-세계문학/dist/U1"
+node "_oneoff-신목고-세계문학/combine.mjs" U1
+```
+
+⚠️ 반영 후 **삽화 누락 회귀 검사**를 반드시 할 것 — 빌더가 이미지 디코드 전에 캡처해
+placeholder 로 굳는 사고가 있었다(`project_terra_nova_fullbook_illustration_race`).
+
+**⚠️ `gs txtwrite | grep "삽화 영역"` 은 이 교재에서 쓸 수 없다** — placeholder 한글이
+자간 분해되어 추출돼 항상 0건으로 나온다(= 거짓 안심). 대신 **임베드된 이미지 개수**를 센다.
+
+```bash
+# 합본 PDF 안의 이미지 XObject 개수 — 삽화 반영 후 4개여야 한다(반영 전 0개)
+python -c "import re,sys; d=open(sys.argv[1],'rb').read();   print(len(re.findall(rb'/Subtype\s*/Image', d)))"   "dist/U1/신목고2-2중간_세계문학_Unit1_본문분석_합본.pdf"
+
+# HTML 쪽에서도 placeholder 문구가 사라졌는지 확인 (4개 챕터 전부 0이어야 한다)
+grep -c "삽화 영역" dist/U1/[1-4].html
+```
 
 ## 2026-09-01 원본 대조 전수 검수
 
