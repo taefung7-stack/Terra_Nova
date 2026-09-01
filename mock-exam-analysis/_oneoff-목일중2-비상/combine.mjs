@@ -121,6 +121,20 @@ for (const f of files) {
   /* 교과서 도해를 LOGIC FLOW 블록 바로 아래에 붙인다.
      .flow-h 이후 page-body 가 닫히는 지점 앞에 끼워 넣는다.
      미드저니 삽화(.illust)는 INTRO 면, 이 도해는 flow 가 있는 면에 들어간다. */
+  /* 도해가 있는 챕터는 상단 미드저니 삽화를 빼낸다.
+     현재 assets/illust-{2,3,4}.png 는 교과서 도해가 사진 위에 합성된 파일이라
+     그대로 두면 같은 도해가 INTRO 와 LOGIC FLOW 아래에 두 번 나온다.
+     (합성본만 남아 원본 사진 복원 불가 — 새 사진을 받으면 이 블록을 지우면 된다.)
+     사용자 요청 2026-09-01: "미드저니 삽화 자리에는 미드저니 삽화만". */
+  if (LESSON.figures?.[chNo]) {
+    let dropped = 0;
+    const RE_ILL = new RegExp('[ \t]*<figure class=\"illust\">[\\s\\S]*?<\\/figure>\\n?', 'g');
+    for (let i = 0; i < renumbered.length; i++) {
+      renumbered[i] = renumbered[i].replace(RE_ILL, () => { dropped += 1; return ''; });
+    }
+    if (dropped) console.log(`   [삽화] Ch${chNo} 상단 합성 삽화 ${dropped}개 제거 (도해는 flow 아래)`);
+  }
+
   const fig = LESSON.figures?.[chNo];
   if (fig) {
     let placed = false;
