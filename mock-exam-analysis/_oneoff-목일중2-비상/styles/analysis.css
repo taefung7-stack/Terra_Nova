@@ -685,3 +685,17 @@ html, body {
   .page { margin: 0; box-shadow: none; }
   @page { size: A4; margin: 0; }
 }
+
+/* ── 교과서 도해(textbook_figure) — 2026-09-01 ────────────────────────
+   비상 6과의 Q1·Q2·Q3 처럼 "정답 근거를 담은 교과서 원본 도해"를
+   PASSAGE 면의 LOGIC FLOW 아래에 싣는다. INTRO 면의 미드저니 삽화(.illust)
+   와는 별개 슬롯이다.
+   본문 폭 전면(100%)은 페이지를 잡아먹으므로 68% 로 줄이고 가운데 정렬. */
+.tb-figure { margin: 9px 0 0; text-align: center; }
+.tb-figure img {
+  width: 68%; max-width: 68%; height: auto; display: block; margin: 0 auto;
+  border: 1px solid var(--c-line); border-radius: 6px;
+}
+.tb-figure figcaption {
+  margin-top: 5px; font-size: 8.4pt; color: var(--c-muted); letter-spacing: .01em;
+}

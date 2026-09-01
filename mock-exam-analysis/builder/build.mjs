@@ -248,7 +248,20 @@ ${items}
     </div>`;
 }
 
-function buildFlow(flow) {
+/** 교과서 도해(선택). data.textbook_figure = { file, caption } 가 있을 때만 렌더한다.
+ *  INTRO 면의 미드저니 삽화(.illust)와 별개 슬롯으로, LOGIC FLOW 바로 아래에 붙는다.
+ *  ★ 필드가 없으면 빈 문자열이라 기존 회차(march/june 등)에는 아무 영향이 없다. */
+function buildTextbookFigure(fig) {
+  if (!fig || !fig.file) return '';
+  const cap = fig.caption ? `
+      <figcaption>${esc(fig.caption)}</figcaption>` : '';
+  return `
+    <figure class="tb-figure">
+      <img src="${esc(fig.file)}" alt="${esc(fig.caption || '교과서 도해')}">${cap}
+    </figure>`;
+}
+
+function buildFlow(flow, figure) {
   const steps = (flow || []).map((s, i) => `      <div class="step">
         <span class="emoji">${esc(s.emoji)}</span>
         <div class="num">STEP ${i + 1}</div>
@@ -263,7 +276,7 @@ function buildFlow(flow) {
 
     <div class="flow-h">
 ${steps}
-    </div>`;
+    </div>${buildTextbookFigure(figure)}`;
 }
 
 /**
@@ -313,7 +326,7 @@ ${lines}
 function buildPassagePages(data, blockGroups, startPageNo) {
   const render = (blk) => {
     if (blk === 'answer') return buildAnswerBlock(data);
-    if (blk === 'flow') return buildFlow(data.flow || []);
+    if (blk === 'flow') return buildFlow(data.flow || [], data.textbook_figure);
     if (blk && blk.type === 'fulltext') return buildFulltextBlock(data, blk.range, blk.cont);
     return '';
   };
@@ -631,12 +644,12 @@ async function measurePassageBlocks(data, dataDir) {
   // 본문 전체를 한 번 렌더해 .line 들의 실측 높이 + section-bar 높이를 직접 읽는다.
   // 'all' = 3블록을 한 page-body에 함께 렌더 → 결합 실측 높이(check-overflow와 동일).
   // 개별 블록(fulltext/answer/flow)은 청크 분할용 라인 높이 측정에만 사용.
-  const allInner = buildFulltextBlock(data) + buildAnswerBlock(data) + buildFlow(data.flow || []);
+  const allInner = buildFulltextBlock(data) + buildAnswerBlock(data) + buildFlow(data.flow || [], data.textbook_figure);
   const candidates = [
     wrap(allInner, 'all'),
     wrap(buildFulltextBlock(data), 'fulltext'),
     wrap(buildAnswerBlock(data), 'answer'),
-    wrap(buildFlow(data.flow || []), 'flow'),
+    wrap(buildFlow(data.flow || [], data.textbook_figure), 'flow'),
   ];
   const html = `<!doctype html><html><head><meta charset="utf-8"><style>${cssContent}</style></head><body>
 ${candidates.join('\n')}
@@ -758,7 +771,7 @@ ${candidates.join('\n')}
   try {
     const renderGroup = (g) => g.map(b => {
       if (b === 'answer') return buildAnswerBlock(data);
-      if (b === 'flow') return buildFlow(data.flow || []);
+      if (b === 'flow') return buildFlow(data.flow || [], data.textbook_figure);
       if (b && b.type === 'fulltext') return buildFulltextBlock(data, b.range, b.cont);
       return '';
     }).join('\n');
@@ -872,13 +885,16 @@ ${buildPage1(data)}
 //           끌어올린 카드 수(분석 그룹에서 제거할 개수). 끌어올림 불가 시 null.
 async function measureFlowMerge(data, dataDir, lastGroup, firstAnalysisGroup, lastPageNo) {
   if (!firstAnalysisGroup || !firstAnalysisGroup.length) return null;
+  // data.no_flow_merge === true 면 PASSAGE 면에 분석 카드를 끌어올리지 않는다.
+  // (SENTENCE ANALYSIS 는 항상 새 페이지에서 시작 — 2026-09-01 요청)
+  if (data.no_flow_merge) return null;
   const puppeteer = (await import('puppeteer')).default;
   const cssAbsPath = cssPathFor(dataDir);
   const cssContent = await fs.readFile(cssAbsPath, 'utf8');
 
   const renderBlk = (blk) => {
     if (blk === 'answer') return buildAnswerBlock(data);
-    if (blk === 'flow') return buildFlow(data.flow || []);
+    if (blk === 'flow') return buildFlow(data.flow || [], data.textbook_figure);
     if (blk && blk.type === 'fulltext') return buildFulltextBlock(data, blk.range, blk.cont);
     return '';
   };
@@ -940,8 +956,10 @@ async function measureFlowMerge(data, dataDir, lastGroup, firstAnalysisGroup, la
   // 통짜 n개 끌어올린 뒤, 남는 공간에 (n)번째 문장의 head 조각(어법P 윗부분)이
   // 들어가면 head 만 추가로 끌어올린다. 그 문장의 rest(포인트+para)는 분석 첫 카드로.
   // (요구: "어법 P. 윗부분만 잘라서 앞페이지 여백에 넣기")
+  // data.no_head_split === true 면 head 조각(어법 P 윗부분)만 끌어올리지 않는다.
+  // 카드 없이 'SENT N' 머리만 남아 잘린 것처럼 보이는 것을 막는다.
   let splitHead = false;
-  const headH = m.headHs[String(n)];
+  const headH = data.no_head_split ? null : m.headHs[String(n)];
   if (headH != null) {
     const remain = avail - used - (n > 0 ? GAP : 0);
     if (headH <= remain) { used += (n > 0 ? GAP : 0) + headH; splitHead = true; }
