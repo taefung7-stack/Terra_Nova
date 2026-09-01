@@ -24,6 +24,12 @@ L5 를 실사로 뽑으면 "완두콩 접사 사진"이 되어 **동화의 정�
 반대로 L6 를 일러스트로 뽑으면 교과서 원본 도해(Q1·Q2·Q3)와 **톤이 충돌한다**.
 그래서 **두 과의 프롬프트 계열을 다르게** 간다.
 
+> ⚠️ **L5 는 정물이 아니라 '장면'으로 간다(2026-08-31 개정).** 초판은 네 장이
+> 전부 꼬투리·창틀·줄기·꽃 **사물 접사**였는데, 본문은 **완두와 소녀 두 인물의
+> 이야기**다. 소녀가 빠지면 "아픈 아이가 완두를 보며 회복한다"는 **줄거리가
+> 그림에 전혀 안 담긴다.** 그래서 Ch2~4 에는 **소녀를 반드시 넣고**,
+> 자세로 회복을 보여 준다(누움 → 앉음 → 일어섬).
+
 ## 필요한 장수 — 8장
 
 | 과 | Ch | 파일 | 구성 |
@@ -56,44 +62,59 @@ L6 이 **눈에 띄게 빈약해 보인다.**
 
 ## Lesson 5 — The Pea Blossom (동화 · 스토리북 일러스트)
 
-네 장이 **꼬투리 속 → 창가의 흙 → 자란 줄기 → 핀 꽃** 으로
-**한 식물의 성장 단계**를 순서대로 보여 주도록 구성했다.
-서로 닮지 않게 각 프롬프트에 앞뒤 단계를 `NO ~` 로 배제했다.
+**본문은 완두 이야기가 아니라 '완두 + 소녀' 두 인물의 이야기다.**
+그래서 네 장을 **정물 접사**가 아니라 **장면(scene)** 으로 간다 —
+Ch1 만 완두 단독이고, **Ch2~4 는 소녀가 반드시 함께 나온다.**
+
+| Ch | 본문 핵심 | 화면 |
+|----|-----------|------|
+| 1 | 꼬투리 속 다섯 완두의 대화 | 완두 다섯 알 (인물 없음) |
+| 2 | 창가에 앉은 완두 + **침대에 누운 아픈 소녀**가 발견 | 방 안 — 침대의 소녀와 창가 |
+| 3 | **날마다 창가로 와 햇볕에 앉는** 소녀, 쑥 자란 줄기 | 창가에 앉은 소녀 + 큰 줄기 |
+| 4 | 분홍 꽃이 피고 소녀가 **엄마를 부르며 외침** | 꽃 + 소녀와 엄마 |
+
+> **얼굴은 그리지 않는다.** 뒷모습·옆모습·손·실루엣으로 처리한다(교재 삽화 원칙).
+> 아프던 소녀가 **점점 건강해지는 변화**가 자세로 드러나야 한다 —
+> Ch2 누워 있음 → Ch3 앉아 있음 → Ch4 일어서서 창가로 달려감.
 
 ### L5 Ch1 — Five Little Peas in a Pod (`illust-1.png`)
 
-> 완두콩 다섯 알이 한 꼬투리 안에서 각자의 꿈을 이야기하는 도입.
-> **다섯 알이 또렷이 세어지는 것**이 핵심. 맨 끝 하나만 눈에 띄게 작게.
+> 본문: 완두 다섯 알이 한 꼬투리 안에서 산다. 가장 큰 완두는 세상에 나가고 싶어 하고,
+> **가장 작은 완두**는 "나는 너무 작아"라며 풀이 죽는다.
+> → **다섯 알이 세어지고, 맨 끝 하나가 눈에 띄게 작아야** 본문과 맞는다.
 
 ```
-Soft watercolor storybook illustration, wide banner composition. Five round green peas resting in a row inside an open pea pod, the pod split lengthwise to reveal them, one pea at the far end noticeably smaller than the other four. Delicate ink outlines with gentle watercolor washes, visible paper grain, generous white space around the pod. Warm gentle fairy-tale mood, children's picture book art. NO window sill, NO soil, NO tall stem, NO pink blossom, NO house, NO people, NO faces on the peas. Natural soft diffused daylight, high-key exposure, low contrast, airy pastel palette, clean bright background. NO dramatic lighting, NO golden hour, NO sunset, NO night scene, NO heavy shadows, NO dark moody grading, NO photorealism, NO 3D render, NO text overlay, NO watermark --ar 16:5 --v 8.1
+Soft watercolor storybook illustration, wide banner composition. Five round green peas resting in a row inside a long open pea pod that lies across the frame, the pod split lengthwise to reveal all five clearly countable, the pea at the far right noticeably smaller than the other four and sitting slightly apart from them. Thin curling vine and a few pea leaves at the edges. Delicate ink outlines with gentle watercolor washes, visible paper grain, generous white space. Warm gentle fairy-tale mood, children's picture book art. NO window, NO windowsill, NO soil, NO tall stem, NO pink blossom, NO house interior, NO bed, NO people, NO faces on the peas. Natural soft diffused daylight, high-key exposure, low contrast, airy pastel palette of soft greens and cream, clean bright background. NO dramatic lighting, NO golden hour, NO sunset, NO night scene, NO heavy shadows, NO dark moody grading, NO photorealism, NO 3D render, NO text overlay, NO watermark --ar 16:5 --v 8.1
 ```
 
 ### L5 Ch2 — A Tiny Space by the Window (`illust-2.png`)
 
-> 바람에 날려 창가 틈에 내려앉아 흙 속으로 가라앉는 장면.
-> **아직 싹이 거의 안 보이는 단계** — 3과의 큰 줄기와 확실히 구분한다.
+> 본문: 바람에 날린 완두가 창가 틈에 내려앉는다. 그 집에는 **하루 종일 침대에 누워 있는
+> 아픈 소녀**가 살고, 소녀가 "창가의 저 초록색 건 뭐예요?"라고 **묻는다**.
+> → 소녀가 빠지면 챕터의 절반이 사라진다. **누워서 창가를 바라보는 구도**가 핵심.
 
 ```
-Soft watercolor storybook illustration, wide banner composition. A weathered wooden window sill of a small modest house seen from outside, with a narrow crack where dark soil has gathered, and one tiny pea half-buried in the soil with the faintest green shoot just breaking through. A few loose petals of wind drifting past. Delicate ink outlines with gentle watercolor washes, visible paper grain. Quiet, tender, hopeful fairy-tale mood, children's picture book art. NO open pea pod, NO row of five peas, NO tall climbing stem, NO pink blossom, NO people, NO faces. Natural soft diffused daylight, high-key exposure, low contrast, airy pastel palette, clean bright background. NO dramatic lighting, NO golden hour, NO sunset, NO night scene, NO heavy shadows, NO dark moody grading, NO photorealism, NO 3D render, NO text overlay, NO watermark --ar 16:5 --v 8.1
+Soft watercolor storybook illustration, wide banner composition. Interior of a small modest bedroom seen from the side: on the left a child lying in a simple bed under a blanket, head turned away toward the right, one small hand resting on the blanket; on the right a bright window with a weathered sill where a tiny green pea sprout has just broken through a patch of dark soil in a crack. Soft empty floor between them. The child is seen from behind and in profile shadow only, face not visible. Delicate ink outlines with gentle watercolor washes, visible paper grain. Quiet, tender, hopeful fairy-tale mood, children's picture book art. NO open pea pod, NO row of five peas, NO tall climbing stem, NO pink blossom, NO visible face, NO facial features, NO close-up portrait. Natural soft diffused daylight, high-key exposure, low contrast, airy pastel palette, clean bright background. NO dramatic lighting, NO golden hour, NO sunset, NO night scene, NO heavy shadows, NO dark moody grading, NO photorealism, NO 3D render, NO text overlay, NO watermark --ar 16:5 --v 8.1
 ```
 
 ### L5 Ch3 — Growing Taller, Growing Stronger (`illust-3.png`)
 
-> 몇 주 만에 작은 나무만큼 자란 완두. 소녀가 날마다 보러 오는 창가.
-> **키가 크게 자란 줄기**가 주인공 — 아직 **꽃은 피지 않은 상태**여야 4과와 갈린다.
+> 본문: 소녀가 **날마다 창가로 가서** 식물을 보고, 완두는 **작은 나무만큼** 자란다.
+> "**햇볕에 앉아** 너를 볼 때면 나도 더 건강해지는 기분이야" → 소녀가 **앉아 있어야** 한다.
+> 앞 장의 '누워 있음'과 대비되는 **회복의 자세**가 이 장의 의미다.
 
 ```
-Soft watercolor storybook illustration, wide banner composition. A tall healthy pea plant with a climbing stem and curling tendrils growing from a small pot of dark soil beside a bright window, seen from inside a simple modest room, the stem reaching well above the window latch with many green leaves. An empty wooden chair beside the window. Delicate ink outlines with gentle watercolor washes, visible paper grain. Calm, warm, quietly triumphant fairy-tale mood, children's picture book art. NO pea pod, NO loose peas, NO pink blossom, NO open flower, NO people, NO faces. Natural soft diffused daylight, high-key exposure, low contrast, airy pastel palette, clean bright background. NO dramatic lighting, NO golden hour, NO sunset, NO night scene, NO heavy shadows, NO dark moody grading, NO photorealism, NO 3D render, NO text overlay, NO watermark --ar 16:5 --v 8.1
+Soft watercolor storybook illustration, wide banner composition. Interior of a small modest room: a child sitting upright on a low wooden stool close to a bright window, seen from behind over the shoulder, looking up at a tall pea plant whose climbing stem and curling tendrils rise high above the window latch with many green leaves, growing from a small pot of dark soil on the sill. Soft pool of daylight on the floor around the child. The child is seen from behind only, face not visible. Delicate ink outlines with gentle watercolor washes, visible paper grain. Calm, warm, quietly hopeful fairy-tale mood, children's picture book art. NO bed, NO lying down, NO pea pod, NO loose peas, NO pink blossom, NO open flower, NO visible face, NO facial features. Natural soft diffused daylight, high-key exposure, low contrast, airy pastel palette, clean bright background. NO dramatic lighting, NO golden hour, NO sunset, NO night scene, NO heavy shadows, NO dark moody grading, NO photorealism, NO 3D render, NO text overlay, NO watermark --ar 16:5 --v 8.1
 ```
 
 ### L5 Ch4 — The Blossom and the Thing It Could Do (`illust-4.png`)
 
-> 분홍 꽃이 피고 가장 작은 완두가 마침내 할 일을 찾는 결말.
-> **활짝 핀 분홍 꽃 한 송이**가 화면의 주인공. 가장 밝고 화사하게.
+> 본문: **어느 저녁** 소녀가 "엄마, 이것 좀 보세요!"라고 **외치고**, 분홍 꽃이 피어 있다.
+> 소녀는 완두를 "**내가 기다려 온 친구**"라고 부른다.
+> → **활짝 핀 분홍 꽃 + 일어서서 창가에 있는 소녀 + 다가오는 엄마**. 가장 밝고 화사하게.
 
 ```
-Soft watercolor storybook illustration, wide banner composition. A single delicate pink pea blossom fully opened on a slender green stem beside a bright window, surrounded by soft green leaves and curling tendrils, petals catching the light. A few more buds waiting to open. Delicate ink outlines with gentle watercolor washes, visible paper grain, generous white space. Joyful, tender, celebratory fairy-tale mood, children's picture book art. NO pea pod, NO loose peas, NO bare soil, NO empty window sill, NO people, NO faces. Natural soft diffused daylight, high-key exposure, low contrast, airy pastel palette with warm pink accents, clean bright background. NO dramatic lighting, NO golden hour, NO sunset, NO night scene, NO heavy shadows, NO dark moody grading, NO photorealism, NO 3D render, NO text overlay, NO watermark --ar 16:5 --v 8.1
+Soft watercolor storybook illustration, wide banner composition. Interior of a small modest room: on the right a single delicate pink pea blossom fully opened on a tall green stem at a bright window, surrounded by soft leaves and curling tendrils; a child standing on tiptoe at the window with one arm raised pointing at the flower, seen from behind; on the left an adult woman stepping into the room toward them, also seen from behind. Warm cheerful atmosphere, the brightest and most colorful of the set. Both figures seen from behind only, faces not visible. Delicate ink outlines with gentle watercolor washes, visible paper grain. Joyful, tender, celebratory fairy-tale mood, children's picture book art. NO bed, NO lying down, NO pea pod, NO loose peas, NO bare soil, NO visible face, NO facial features. Natural soft diffused daylight, high-key exposure, low contrast, airy pastel palette with warm pink accents, clean bright background. NO dramatic lighting, NO golden hour, NO sunset, NO night scene, NO heavy shadows, NO dark moody grading, NO photorealism, NO 3D render, NO text overlay, NO watermark --ar 16:5 --v 8.1
 ```
 
 ---
