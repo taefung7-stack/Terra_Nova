@@ -43,10 +43,10 @@ L5 를 실사로 뽑으면 "완두콩 접사 사진"이 되어 **동화의 정�
 | L5 | 2 | `dist/L5/assets/illust-2.png` | AI 단독 |
 | L5 | 3 | `dist/L5/assets/illust-3.png` | AI 단독 |
 | L5 | 4 | `dist/L5/assets/illust-4.png` | AI 단독 |
-| L6 | 1 | `dist/L6/assets/illust-1.png` | AI 단독 |
-| L6 | 2 | `dist/L6/assets/illust-2.png` | **AI 배경 + 교과서 Q1 도해 합성** |
-| L6 | 3 | `dist/L6/assets/illust-3.png` | **AI 배경 + 교과서 Q2 도해 합성** |
-| L6 | 4 | `dist/L6/assets/illust-4.png` | **AI 배경 + 교과서 Q3 도해 합성** |
+| L6 | 1 | `dist/L6/assets/illust-1.png` | AI 단독 ✅ **반영 완료** |
+| L6 | 2 | `dist/L6/assets/illust-2.png` | **AI 배경 + 교과서 Q1 도해 합성** ✅ **반영 완료** |
+| L6 | 3 | `dist/L6/assets/illust-3.png` | **AI 배경 + 교과서 Q2 도해 합성** ✅ **반영 완료** |
+| L6 | 4 | `dist/L6/assets/illust-4.png` | **AI 배경 + 교과서 Q3 도해 합성** ✅ **반영 완료** |
 
 ### 왜 L6 2·3·4 를 합성하는가 (2026-08-31 변경)
 
@@ -191,17 +191,18 @@ Photorealistic outdoor photograph, wide banner composition, soft blurred backgro
 python - <<'EOF'
 from PIL import Image
 TW,TH=2000,625
+pad=16
 jobs=[('_bg-2.png','q1-tent.jpg','illust-2.png'),
       ('_bg-3.png','q2-angle.jpg','illust-3.png'),
       ('_bg-4.png','q3-wood.jpg','illust-4.png')]
 for bgf,dgf,out in jobs:
     bg=Image.open(bgf).convert('RGB').resize((TW,TH), Image.LANCZOS)
     dg=Image.open(dgf).convert('RGB')
-    # 도해를 배너 높이의 96% 로 키우되 가로는 92% 를 넘지 않게(둘 중 작은 배율)
-    r=min((TH*0.96)/dg.height, (TW*0.92)/dg.width)
+    # 도해를 키우되, ★ 카드(도해+흰 여백 pad*2)가 배너를 넘지 않게 pad 를 먼저 뺀다.
+    # (pad 를 안 빼면 카드 높이가 632 > 배너 625 가 되어 도해 위아래가 잘린다)
+    r=min((TH*0.96-pad*2)/dg.height, (TW*0.92-pad*2)/dg.width)
     dg=dg.resize((int(dg.width*r), int(dg.height*r)), Image.LANCZOS)
     # 도해 뒤에 흰 카드 + 여백을 깔아 배경 위에서 또렷하게
-    pad=16
     card=Image.new('RGB',(dg.width+pad*2, dg.height+pad*2),(255,255,255))
     card.paste(dg,(pad,pad))
     bg.paste(card, ((TW-card.width)//2, (TH-card.height)//2))
