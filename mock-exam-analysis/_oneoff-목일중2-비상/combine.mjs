@@ -40,6 +40,16 @@ const LESSONS = {
     coverSub: '비상(황종배) 중학교 영어 2<br>Lesson 6 · Science Is the Key',
     docTitle: '목일중 2학년 · 비상 Lesson 6 본문분석 합본 — Terra Nova',
     out: '목일중2_비상_Lesson6_본문분석_합본.pdf',
+    /* 본문 전문을 몇 장에 나눠 실을지(사용자 요청 2026-09-01).
+       37문장을 한 장에 몰면 자동 맞춤 배율이 내려가 글씨가 너무 작아진다. */
+    fulltextPages: 2,
+    /* 교과서 원문에 실린 도해(미드저니 삽화가 아니다).
+       예전에는 삽화 이미지 위에 합성돼 사진이 가려졌다 → LOGIC FLOW 아래로 분리. */
+    figures: {
+      2: { file: 'assets/figure-2.png', caption: 'Q1. 텐트 치기에 더 나은 자리는? — 태양의 이동과 그림자' },
+      3: { file: 'assets/figure-3.png', caption: 'Q2. 물수제비 뜨기에 더 나은 각도는? — 20도 vs 50도' },
+      4: { file: 'assets/figure-4.png', caption: 'Q3. 장작을 쌓는 가장 좋은 방법은? — 공기가 통하는 엇갈리기' },
+    },
   },
 };
 
@@ -108,6 +118,40 @@ for (const f of files) {
     });
   });
 
+  /* 교과서 도해를 LOGIC FLOW 블록 바로 아래에 붙인다.
+     .flow-h 이후 page-body 가 닫히는 지점 앞에 끼워 넣는다.
+     미드저니 삽화(.illust)는 INTRO 면, 이 도해는 flow 가 있는 면에 들어간다. */
+  const fig = LESSON.figures?.[chNo];
+  if (fig) {
+    let placed = false;
+    for (let i = 0; i < renumbered.length && !placed; i++) {
+      const sec = renumbered[i];
+      const k = sec.indexOf('<div class="flow-h"');
+      if (k < 0) continue;
+      /* .flow-h 의 짝이 맞는 닫는 </div> 를 직접 찾는다.
+         '그 다음 </div>' 로 잡으면 섹션마다 중첩 깊이가 달라 엉뚱한 위치에 붙는다
+         (Ch4 도해가 SENTENCE ANALYSIS 뒤로 밀려난 사고). */
+      let depth = 0, p = k, endIdx = -1;
+      const RE = /<\/div>|<div/g;
+      RE.lastIndex = k;
+      let m;
+      while ((m = RE.exec(sec))) {
+        if (m[0] === '</div>') { depth -= 1; if (depth === 0) { endIdx = m.index + 6; break; } }
+        else depth += 1;
+      }
+      if (endIdx < 0) continue;
+      const figHtml = '\n    <figure class="tb-figure">\n'
+        + `      <img src="${fig.file}" alt="${esc(fig.caption)}">\n`
+        + `      <figcaption>${esc(fig.caption)}</figcaption>\n`
+        + '    </figure>';
+      renumbered[i] = sec.slice(0, endIdx) + figHtml + sec.slice(endIdx);
+      placed = true;
+    }
+    console.log(placed
+      ? `   [도해] Ch${chNo} 교과서 도해 -> LOGIC FLOW 아래`
+      : `   [경고] Ch${chNo}: flow 블록을 찾지 못해 도해를 넣지 못했다`);
+  }
+
   allPages += `\n<!-- ===== Chapter ${chNo} · ${ch?.subtitle ?? ''} ===== -->\n` + renumbered.join('\n');
   console.log(`   ✓ Ch${chNo} ${String(sections.length).padStart(2)}p  → 합본 ${toc[toc.length - 1].start}~${pageNo}p`);
 }
@@ -132,7 +176,15 @@ for (const ch of SOURCE) {
       </div>`);
   });
 }
-const tocRows = fullLines.join('\n');
+/* 본문 전문을 fulltextPages 장으로 나눈다(기본 1장).
+   한 장에 몰아 넣으면 문장이 많은 과는 자동 맞춤 배율이 내려가 글씨가 작아진다.
+   장수를 늘리면 각 장이 독립적으로 배율을 다시 잡아 글씨가 커진다. */
+const FT_PAGES = Math.max(1, LESSON.fulltextPages ?? 1);
+const ftChunks = [];
+{
+  const per = Math.ceil(fullLines.length / FT_PAGES);
+  for (let i = 0; i < fullLines.length; i += per) ftChunks.push(fullLines.slice(i, i + per));
+}
 
 const cover = `<section class="page cover-page">
   <div class="cover-wrap">
@@ -143,16 +195,26 @@ const cover = `<section class="page cover-page">
   </div>
 </section>
 
-<section class="page toc-page-sec">
+${ftChunks.map((rows, i) => `<section class="page toc-page-sec">
   <div class="page-body">
-    <div class="section-bar alt">FULL TEXT · 본문 전문<span class="bar-sub">원문 ${SENTENCE_TOTAL}문장</span></div>
+    <div class="section-bar alt">FULL TEXT · 본문 전문<span class="bar-sub">원문 ${SENTENCE_TOTAL}문장${ftChunks.length > 1 ? ` · ${i + 1}/${ftChunks.length}` : ''}</span></div>
     <div class="fulltext fulltext-all">
-${tocRows}
+${rows.join('\n')}
     </div>
   </div>
-</section>`;
+</section>`).join('\n\n')}`;
 
 const extraCss = `
+  /* 교과서 도해 — LOGIC FLOW 아래. 본문 폭 전면, 잘라내지 않는다. */
+  .tb-figure { margin: 10px 0 0; text-align: center; }
+  .tb-figure img {
+    width: 100%; height: auto; display: block;
+    border: 1px solid var(--c-line); border-radius: 6px;
+  }
+  .tb-figure figcaption {
+    margin-top: 5px; font-size: 8.4pt; color: var(--c-muted); letter-spacing: .01em;
+  }
+
   /* 합본 N페이지 누적 시 Chromium PDF 페이지 경계 드리프트 방지 — A4 박스 고정.
      .page 의 화면용 margin(12px)·그림자는 PDF 에서 누적 오차를 만들므로 제거한다. */
   @page { size: A4; margin: 0; }
@@ -212,7 +274,7 @@ ${allPages}
 
 const combinedHtmlPath = path.join(DIST, 'combined.html');
 await fs.writeFile(combinedHtmlPath, combinedHtml, 'utf8');
-console.log(`\n📄 combined.html — 표지1 + 본문전문1 + 본문 ${pageNo}p (총 ${pageNo + 2}p)`);
+console.log(`\n📄 combined.html — 표지1 + 본문전문${ftChunks.length} + 본문 ${pageNo}p (총 ${pageNo + 1 + ftChunks.length}p)`);
 
 // ── 3) PDF 렌더 ────────────────────────────────────────────────
 const puppeteer = (await import('puppeteer')).default;
@@ -224,35 +286,44 @@ await page.goto(pathToFileURL(combinedHtmlPath).href, { waitUntil: 'networkidle0
    --ft 배율을 이분 탐색해 '넘치지 않는 최대값'을 찾는다.
    .page-body 가 overflow:hidden 이라 넘침은 눈에 안 보이므로 실측이 유일한 안전장치다.
    찾은 배율을 combined.html 에 다시 써 넣어 HTML 과 PDF 가 같은 모습이 되게 한다. */
-const fitScale = await page.evaluate(() => {
-  const list = document.querySelector('.fulltext-all');
-  if (!list) return null;
-  const body = list.closest('.page-body');
-  const fits = (v) => {
+/* 본문 전문이 여러 장이면 **각 장을 따로** 맞춘다.
+   한 배율을 공유하면 가장 빡빡한 장에 맞춰져 나머지 장 글씨까지 작아진다. */
+const fitScales = await page.evaluate(() => {
+  return [...document.querySelectorAll('.fulltext-all')].map((list) => {
+    const body = list.closest('.page-body');
+    const fits = (v) => {
+      list.style.setProperty('--ft', String(v));
+      void body.offsetHeight;                     // 강제 리플로우
+      return body.scrollHeight <= body.clientHeight;
+    };
+    let lo = 0.6, hi = 2.0;
+    if (!fits(lo)) { list.style.setProperty('--ft', String(lo)); return lo; }
+    for (let i = 0; i < 22; i++) {
+      const mid = (lo + hi) / 2;
+      if (fits(mid)) lo = mid; else hi = mid;
+    }
+    const v = Math.floor(lo * 1000) / 1000;       // 안전하게 내림
     list.style.setProperty('--ft', String(v));
-    void body.offsetHeight;                       // 강제 리플로우
-    return body.scrollHeight <= body.clientHeight;
-  };
-  let lo = 0.6, hi = 2.0;
-  if (!fits(lo)) { list.style.setProperty('--ft', String(lo)); return lo; }
-  for (let i = 0; i < 22; i++) {                  // 0.6~2.0 을 22회 이분 → 오차 ~0.0001
-    const mid = (lo + hi) / 2;
-    if (fits(mid)) lo = mid; else hi = mid;
-  }
-  const v = Math.floor(lo * 1000) / 1000;         // 안전하게 내림
-  list.style.setProperty('--ft', String(v));
-  return v;
+    return v;
+  });
 });
 
-if (fitScale != null) {
-  const m = await page.evaluate(() => {
-    const b = document.querySelector('.fulltext-all').closest('.page-body');
-    return { used: b.scrollHeight, avail: b.clientHeight };
+if (fitScales && fitScales.length) {
+  const used = await page.evaluate(() =>
+    [...document.querySelectorAll('.fulltext-all')].map((l) => {
+      const b = l.closest('.page-body');
+      return { used: b.scrollHeight, avail: b.clientHeight };
+    }));
+  fitScales.forEach((v, i) => {
+    const m = used[i];
+    console.log(`   본문 전문 ${i + 1}/${fitScales.length} 자동 맞춤: 배율 ${v}  (${m.used}/${m.avail}px, ${(m.used / m.avail * 100).toFixed(1)}% 사용)`);
   });
-  console.log(`   ↔ 본문 전문 자동 맞춤: 배율 ${fitScale}  (${m.used}/${m.avail}px, ${(m.used / m.avail * 100).toFixed(1)}% 사용)`);
-  // HTML 산출물에도 동일 배율을 박아 둔다(브라우저로 열어도 PDF 와 같게).
-  const fixed = combinedHtml.replace('.fulltext-all {\n    --ft: 1;', `.fulltext-all {\n    --ft: ${fitScale};`);
+  /* HTML 산출물에도 장별 배율을 박아 둔다(브라우저로 열어도 PDF 와 같게). */
+  let k = 0;
+  const fixed = combinedHtml.replace(/<div class="fulltext fulltext-all">/g,
+    () => `<div class="fulltext fulltext-all" style="--ft:${fitScales[k++] ?? 1}">`);
   await fs.writeFile(combinedHtmlPath, fixed, 'utf8');
+  await page.goto(pathToFileURL(combinedHtmlPath).href, { waitUntil: 'networkidle0' });
 }
 
 const outPath = path.join(DIST, outName);
