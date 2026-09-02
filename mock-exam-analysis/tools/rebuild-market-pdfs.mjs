@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /* market 판매본 4종 재생성:
  *   [벡터 표지 1p] + [본문 합본 전체]  →  ghostscript 병합
- *   + PDF 1.4 호환(ObjStm 제거 → GoodNotes 백지 방지)
+ *   + 투명 소프트마스크 평탄화(CompatibilityLevel 1.5 → GoodNotes 백지 방지)
  *   + 50MB 이하 유지(이미지 150dpi, 표지는 벡터라 선명)
  *
  * 한글 파일명 gs 접근 문제 회피: 각 입력을 ASCII 임시파일로 복사 후 병합.
@@ -61,10 +61,16 @@ for (const j of JOBS) {
   copyFileSync(coverAbs, tCover);
   copyFileSync(bodyAbs, tBody);
 
-  // 표지+본문 병합 + PDF 1.4(ObjStm 제거, GoodNotes 호환) + 150dpi 이미지 압축
+  // 표지+본문 병합 + 소프트마스크 평탄화(GoodNotes 호환) + 150dpi 이미지 압축
   execFileSync(GS, [
     '-sDEVICE=pdfwrite',
-    '-dCompatibilityLevel=1.4',            // ★ ObjStm 미사용 → GoodNotes 백지 방지
+    // ★ 1.5 필수 — GoodNotes 백지의 진짜 원인은 ObjStm 이 아니라
+    //   Chrome 이 형광펜(linear-gradient)·box-shadow 를 뽑은 투명 소프트마스크
+    //   (/SMask <</S /Luminosity>>) 다. 굿노트 PDFKit 은 한 페이지에 이게 수십 개
+    //   쌓이면 합성에 실패해 페이지를 통째로 비운다(에러 없음).
+    //   gs 는 1.5 에서만 이 마스크를 평탄화한다. 1.4 로 되돌리면 마스크가 그대로
+    //   남아(고1 506·고2 530·고3 590개 실측) 다시 백지가 된다. 낮추지 말 것.
+    '-dCompatibilityLevel=1.5',
     '-dColorConversionStrategy=/LeaveColorUnchanged',
     '-dAutoRotatePages=/None',
     '-dDownsampleColorImages=true', '-dColorImageResolution=150', '-dColorImageDownsampleType=/Bicubic',

@@ -42,10 +42,12 @@ for (const j of JOBS) {
   const tOut  = join(tmp, 'out.pdf');
   copyFileSync(bodyAbs, tBody);
 
-  // PDF 1.4(ObjStm 제거, GoodNotes 호환) + 150dpi 이미지 압축. 텍스트/벡터는 보존.
+  // 소프트마스크 평탄화(GoodNotes 호환) + 150dpi 이미지 압축. 텍스트/벡터는 보존.
   execFileSync(GS, [
     '-sDEVICE=pdfwrite',
-    '-dCompatibilityLevel=1.4',
+    // ★ 1.5 필수 — 굿노트 백지의 원인인 투명 소프트마스크(/S /Luminosity)는
+    //   gs 가 1.5 에서만 평탄화한다. 1.4 는 그대로 통과시켜 백지가 재발한다.
+    '-dCompatibilityLevel=1.5',
     '-dColorConversionStrategy=/LeaveColorUnchanged',
     '-dAutoRotatePages=/None',
     '-dDownsampleColorImages=true', '-dColorImageResolution=150', '-dColorImageDownsampleType=/Bicubic',
