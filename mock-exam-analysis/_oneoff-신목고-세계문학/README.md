@@ -152,9 +152,44 @@ node "_oneoff-신목고-세계문학/collect-prompts.mjs"
 - 4개 챕터 소재: 노트·연필 / 지하철 배려석 / 한식 한 상 / 현관 신발.
   소재 자체가 겹치지 않으므로 **서로를 배제하는 절은 넣지 않는다**(넣으면 1번 함정 재발).
 
-### 이미지 반영 방법
+### 이미지 반영 방법 (2026-09-02 반영 완료)
 
-생성한 이미지를 `dist/U1/assets/illust-{1..4}.png` 로 저장한 뒤 PDF 를 다시 렌더하면
+미드저니 원본(3952×1232 PNG, 장당 6~7MB)은 **인쇄에 필요한 해상도의 약 2배**다
+(180mm 폭 기준 558dpi). 그대로 쓰면 합본이 16MB 가 된다. 다음 순서로 줄인다.
+
+```bash
+# 1) 원본을 dist/U1/ 에 01~04.png 로 두고 → 300dpi JPEG 로 변환
+python -c "
+from PIL import Image
+for n in [1,2,3,4]:
+    im=Image.open(f'dist/U1/0{n}.png').convert('RGB')
+    w=2200; h=round(im.height*w/im.width)          # 180mm@300dpi=2126px, 여유 2200
+    im.resize((w,h), Image.LANCZOS).save(
+        f'dist/U1/assets/illust-{n}.jpg','JPEG',quality=88,optimize=True,progressive=True)
+"
+# 2) JSON 의 illustration.file 을 .jpg 로 맞춘 뒤 재빌드·합본
+```
+
+> 원본 PNG 는 `.gitignore` 로 추적하지 않는다(장당 6~7MB). 빌드가 쓰는 것은
+> `assets/illust-*.jpg` 뿐이다.
+
+### 합본 PDF 압축 (필수)
+
+렌더러가 JPEG 를 **재인코딩해 부풀린다** — 1.1MB 원본이 PDF 안에서 11.9MB 가 됐다.
+ghostscript 로 다시 줄인다(**본문 텍스트 보존 확인 완료**, 15.9MB → 2.5MB).
+
+```bash
+MSYS_NO_PATHCONV=1 gs -q -dNOPAUSE -dBATCH -dSAFER -sDEVICE=pdfwrite   -dColorConversionStrategy=/LeaveColorUnchanged   -dAutoFilterColorImages=false -dEncodeColorImages=true   -dColorImageFilter=/DCTEncode -dColorImageResolution=300   -dDownsampleColorImages=true -dCompatibilityLevel=1.5   -sOutputFile=<출력>.pdf "<합본>.pdf"
+```
+
+⚠️ `-dPDFSETTINGS=/ebook` `/printer` 같은 **프리셋은 쓰지 말 것** — 본문 텍스트를 뭉갠다
+(`project_terra_nova_elementary_pdf_compress`). 위 옵션 조합만 검증됐다.
+⚠️ Git Bash 에서는 `MSYS_NO_PATHCONV=1` 이 없으면 `/LeaveColorUnchanged` 가
+경로로 변환돼 실패한다.
+
+### (참고) 최초 반영 절차
+
+생성한 이미지를 `dist/U1/assets/illust-{1..4}.jpg` 로 저장한 뒤 PDF 를 다시 렌더하면
 placeholder 자리에 자동으로 들어간다.
 
 ```bash
