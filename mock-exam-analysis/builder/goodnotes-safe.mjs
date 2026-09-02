@@ -28,10 +28,13 @@ import { execFileSync, spawnSync } from 'node:child_process';
 
 const GS = process.platform === 'win32' ? 'gswin64c' : 'gs';
 
-/** PDF 안의 luminosity 소프트마스크 개수. 0 이어야 굿노트 안전. */
+/** 굿노트 백지를 일으키는 **루미노시티** 소프트마스크 개수. 0 이어야 안전.
+ *  ※ `/SMask` 총개수를 세면 안 된다 — PNG 알파 채널도 같은 키를 쓰므로 오탐한다.
+ *     (변형문제 판매본의 /SMask 16~21개는 전부 이미지 알파라 백지와 무관하고,
+ *      gs 어떤 모드로도 사라지지 않는다.) 백지의 원인은 /S /Luminosity 뿐이다. */
 export function countSMasks(file) {
-  const buf = fs.readFileSync(file);
-  return (buf.toString('latin1').match(/\/SMask/g) || []).length;
+  const buf = fs.readFileSync(file).toString('latin1');
+  return (buf.match(/\/S\s*\/Luminosity/g) || []).length;
 }
 
 /** ghostscript 로 소프트마스크를 평탄화한다. 한글 경로를 피해 임시 ASCII 명 사용. */
@@ -41,6 +44,8 @@ export function flatten(file) {
   const out = path.join(tmp, 'out.pdf');
   fs.copyFileSync(file, inp);
   execFileSync(GS, [
+    // ★ 1.5 필수 — gs 는 루미노시티 마스크를 1.5 에서만 평탄화한다.
+    //   1.4 로 낮추면 마스크가 그대로 남아 굿노트 백지가 재발한다(실측 확인).
     '-sDEVICE=pdfwrite', '-dCompatibilityLevel=1.5',
     '-dColorConversionStrategy=/LeaveColorUnchanged',
     '-dDownsampleColorImages=true', '-dColorImageResolution=150',
@@ -88,7 +93,7 @@ for (const f of files) {
   const name = path.basename(f);
   if (before === 0) { console.log(`  OK    ${name}`); continue; }
   risky++;
-  if (checkOnly) { console.log(`  위험  ${name}  (/SMask ${before}개 — 굿노트 백지 가능)`); continue; }
+  if (checkOnly) { console.log(`  위험  ${name}  (루미노시티 마스크 ${before}개 — 굿노트 백지)`); continue; }
 
   const pagesBefore = pageCount(f);
   const kbBefore = Math.round(fs.statSync(f).size / 1024);
@@ -101,7 +106,7 @@ for (const f of files) {
     process.exitCode = 1;
     continue;
   }
-  console.log(`  변환  ${name}  /SMask ${before}→${after}  ${kbBefore}KB→${kbAfter}KB  ${pagesAfter}p`);
+  console.log(`  변환  ${name}  마스크 ${before}→${after}  ${kbBefore}KB→${kbAfter}KB  ${pagesAfter}p`);
 }
 if (checkOnly && risky) {
   console.log(`\n위험 파일 ${risky}개. 변환: node builder/goodnotes-safe.mjs <파일...>`);
