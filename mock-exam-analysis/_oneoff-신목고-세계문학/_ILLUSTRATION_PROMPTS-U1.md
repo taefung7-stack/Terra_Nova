@@ -29,7 +29,7 @@
 >   주제를 **화면 중앙**에 두고, 위아래가 잘려도 살아남는 구도로 잡는다.
 >
 > **이 문서는 파생물입니다.** 프롬프트 원본은 `data/U1/{N}.json` 의
-> `illustration.prompt` 이며, 수정 후 `node _oneoff-신목고-세계문학/collect-prompts.mjs`
+> `illustration.prompt` 이며, 수정 후 `node _oneoff-신목고-세계문학/collect-prompts.mjs U1`
 > 로 이 문서를 다시 만듭니다.
 >
 > 생성한 이미지는 `dist/U1/assets/illust-{N}.png` 로 저장한 뒤 PDF 를 다시 렌더하면
@@ -40,7 +40,7 @@
 ## Chapter 1 — Korean Honorifics: When Being Polite Gets Tricky
 
 - 작성자: **Talia** · 교과서 p.34~35 · 본문 19문장
-- 저장 경로: `dist/U1/assets/illust-1.png`
+- 저장 경로: `dist/U1/assets/illust-1.jpg`
 - 장면: 위에서 내려다본 강의실 책상 위 펼친 노트와 연필 — 조용한 학습 분위기
 
 ```
@@ -52,7 +52,7 @@ Photorealistic photograph of a single open notebook on a wooden university desk,
 ## Chapter 2 — Subway in Seoul: It Is the Best
 
 - 작성자: **Brian** · 교과서 p.36 · 본문 15문장
-- 저장 경로: `dist/U1/assets/illust-2.png`
+- 저장 경로: `dist/U1/assets/illust-2.jpg`
 - 장면: 텅 빈 지하철 객실을 통로 정면에서 — 왼쪽 분홍 배려석, 오른쪽 회색 일반석
 
 ```
@@ -64,7 +64,7 @@ Photorealistic photograph of the interior of a clean modern subway train car, em
 ## Chapter 3 — The "Ppalli-Ppalli" Culture: Korea's Unstoppable Taste for Haste
 
 - 작성자: **Aussie** · 교과서 p.37 · 본문 12문장
-- 저장 경로: `dist/U1/assets/illust-3.png`
+- 저장 경로: `dist/U1/assets/illust-3.jpg`
 - 장면: 위에서 내려다본 한식 한 상 — 가운데 찌개, 둘러싼 반찬 종지들
 
 ```
@@ -76,7 +76,7 @@ Photorealistic overhead photograph of a Korean restaurant meal on a table: one h
 ## Chapter 4 — Cultural Taboos to Avoid in Korea: Make the Smart Move
 
 - 작성자: **turkish_delight** · 교과서 p.38 · 본문 10문장
-- 저장 경로: `dist/U1/assets/illust-4.png`
+- 저장 경로: `dist/U1/assets/illust-4.jpg`
 - 장면: 한국 가정 현관에 가지런히 놓인 신발 — 안쪽으로 이어지는 나무 마루
 
 ```

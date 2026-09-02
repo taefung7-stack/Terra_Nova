@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /* ===================================================================
- * 신목고 세계문학 Unit 1 — 무결성 검증 (문장 누락 0 보장)
+ * 신목고 세계문학 — 무결성 검증 (문장 누락 0 보장)
  * ===================================================================
  * 원문 정본(_SOURCE-U1.js)과 각 챕터 JSON을 대조해 다음을 강제한다.
  *   1) passage 가 원문과 verbatim 일치 (문장 수·순서·구두점까지)
@@ -18,6 +18,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { SOURCE as SOURCE_RAW } from './_SOURCE-U1.js';
+import { SOURCE as SOURCE_U2_RAW } from './_SOURCE-U2.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -37,14 +38,30 @@ function flatten(src) {
   }));
 }
 
+/** U2 정본 → 검증용 평탄화.
+ *  U2 는 U1 과 구조가 다르다. 게시글+댓글이 아니라 'PART 본문 + Delphine's Blog'
+ *  한 쌍이 한 챕터를 이룬다. 분석지 JSON 의 passage 는 PART 본문 문장 다음에
+ *  블로그 문장을 이어붙인 하나의 배열이므로, 검증도 같은 순서로 펼쳐 대조한다.
+ *  (블로그를 빠뜨리는 누락 사고를 막기 위해 블로그도 원문 대조 대상에 포함한다) */
+function flattenBlog(src) {
+  return src.map(ch => ({
+    ...ch,
+    sentences: [
+      ...ch.sentences,
+      ...(ch.blog?.sentences ?? []),
+    ],
+  }));
+}
+
 const LESSONS = [
-  { id: 'U1', label: 'Unit 1 · Cross-Cultural Encounters', source: flatten(SOURCE_RAW) },
+  { id: 'U1', label: 'Unit 1 · Korean Culture from Different Angles', source: flatten(SOURCE_RAW) },
+  { id: 'U2', label: 'Unit 2 · A French Student in Dublin', source: flattenBlog(SOURCE_U2_RAW) },
 ];
 
 const only = (process.argv[2] || '').toUpperCase();
 const TARGETS = only ? LESSONS.filter(l => l.id === only) : LESSONS;
 if (!TARGETS.length) {
-  console.error(`알 수 없는 유닛: ${only} (U1)`);
+  console.error(`알 수 없는 유닛: ${only} (${LESSONS.map(l => l.id).join(', ')})`);
   process.exit(2);
 }
 
@@ -79,7 +96,7 @@ let warns = 0;
 const err = (m) => { console.error(`   ❌ ${m}`); errors++; };
 const warn = (m) => { console.warn(`   ⚠️  ${m}`); warns++; };
 
-console.log('🔍 신목고 세계문학 Unit 1 — 무결성 검증\n');
+console.log('🔍 신목고 세계문학 — 무결성 검증\n');
 
 for (const lesson of TARGETS) {
 console.log(`\n${'═'.repeat(60)}\n${lesson.id} — ${lesson.label}\n${'═'.repeat(60)}`);

@@ -22,10 +22,32 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { SOURCE } from './_SOURCE-U1.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const UNIT = 'U1';
+
+/** 유닛 등록 — 새 유닛을 만들면 여기에 한 줄 추가한다.
+ *  label : 문서 제목에 쓰는 유닛 이름
+ *  byline: 챕터 머리 한 줄 (U1 은 게시글 작성자, U2 는 PART 이름) */
+const UNITS = {
+  U1: {
+    file: './_SOURCE-U1.js',
+    label: 'Unit 1',
+    byline: (ch) => `작성자: **${ch.author}**`,
+  },
+  U2: {
+    file: './_SOURCE-U2.js',
+    label: 'Unit 2 — A French Student in Dublin',
+    byline: (ch) => `**${ch.part}**`,
+  },
+};
+
+const UNIT = (process.argv[2] || 'U1').toUpperCase();
+if (!UNITS[UNIT]) {
+  console.error(`알 수 없는 유닛: ${UNIT} (${Object.keys(UNITS).join(', ')})`);
+  process.exit(2);
+}
+const { file: SOURCE_FILE, label: UNIT_LABEL, byline: BYLINE } = UNITS[UNIT];
+const { SOURCE } = await import(SOURCE_FILE);
 
 const BANNED = [
   'cinematic', 'golden hour', 'sunlit', 'dramatic lighting',
@@ -68,16 +90,16 @@ const TONE_NOTE = `> 톤: **실사 사진(포토리얼)** — 현대 한국의 �
 > - 삽화 슬롯은 **16:5 레터박스 + \`object-fit: cover\`(중앙 크롭)** 이다.
 >   주제를 **화면 중앙**에 두고, 위아래가 잘려도 살아남는 구도로 잡는다.`;
 
-const HEADER = `# 신목고 2-2 중간 · 세계문학 Unit 1 — 챕터별 삽화 프롬프트
+const HEADER = `# 신목고 2-2 중간 · 세계문학 ${UNIT_LABEL} — 챕터별 삽화 프롬프트
 
 > 규격: **\`--ar 16:5 --v 8.1\`** (와이드 배너, 본문 180mm 폭 전면)
 ${TONE_NOTE}
 >
-> **이 문서는 파생물입니다.** 프롬프트 원본은 \`data/U1/{N}.json\` 의
-> \`illustration.prompt\` 이며, 수정 후 \`node _oneoff-신목고-세계문학/collect-prompts.mjs\`
+> **이 문서는 파생물입니다.** 프롬프트 원본은 \`data/${UNIT}/{N}.json\` 의
+> \`illustration.prompt\` 이며, 수정 후 \`node _oneoff-신목고-세계문학/collect-prompts.mjs ${UNIT}\`
 > 로 이 문서를 다시 만듭니다.
 >
-> 생성한 이미지는 \`dist/U1/assets/illust-{N}.png\` 로 저장한 뒤 PDF 를 다시 렌더하면
+> 생성한 이미지는 \`dist/${UNIT}/assets/illust-{N}.png\` 로 저장한 뒤 PDF 를 다시 렌더하면
 > placeholder 자리에 자동으로 들어갑니다(빌드 방법은 README 참조).
 
 `;
@@ -115,7 +137,7 @@ for (const ch of SOURCE) {
 
   const sentences = (data.passage || []).length;
   md += `---\n\n## Chapter ${ch.no} — ${ch.subtitle}\n\n`;
-  md += `- 작성자: **${ch.author}** · 교과서 ${ch.page} · 본문 ${sentences}문장\n`;
+  md += `- ${BYLINE(ch)} · 교과서 ${ch.page} · 본문 ${sentences}문장\n`;
   md += `- 저장 경로: \`dist/${UNIT}/${dest}\`\n`;
   md += `- 장면: ${data.illustration?.scene_ko ?? '(아래 프롬프트 참조)'}\n\n`;
   md += '```\n' + prompt + '\n```\n\n';
