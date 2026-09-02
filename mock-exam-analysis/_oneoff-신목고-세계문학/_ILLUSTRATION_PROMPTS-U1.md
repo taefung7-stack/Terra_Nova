@@ -1,17 +1,32 @@
 # 신목고 2-2 중간 · 세계문학 Unit 1 — 챕터별 삽화 프롬프트
 
 > 규격: **`--ar 16:5 --v 8.1`** (와이드 배너, 본문 180mm 폭 전면)
-> 톤: **실사 사진(포토리얼)** — 현대 한국의 일상 장면, 흐린 날 확산광.
-> 밝기는 `bright` 같은 형용사가 아니라 **조명 조건**으로 지정한다 —
-> `natural soft diffused daylight` `bright overcast sky` `high-key exposure`
-> `low contrast` `airy`.
-> `cinematic` `golden hour` `sunlit` `dramatic lighting` `chiaroscuro` `moody`
-> `neon` `night` 는 **지시부에서 금지** — 미드저니가 황금빛 저녁 + 강한 대비로 해석해
-> 오히려 어두워진다. 단 `NO ~` 배제절 안에서는 오히려 명시해 밀어낸다.
-> 인물은 얼굴 대신 **손·뒷모습·실루엣** 위주(`NO visible face`) — 교재 삽화이므로
-> 특정인 초상·유사인물을 피한다.
-> 네 지문의 소재가 완전히 다르므로(강의실 존댓말 / 지하철 배려석 / 식당 반찬 /
-> 현관 신발·밥그릇) 챕터마다 `NO ~` 로 나머지 셋의 소재를 배제해 4장이 서로 닮지 않게 한다.
+> 톤: **실사 사진(포토리얼)** — 현대 한국의 일상, 흐린 날 확산광.
+>
+> ### 2026-09-02 전면 재작성 — 왜 바꿨나
+> 이전 프롬프트는 **인라인 `NO xxx` 를 16개**씩 달고 1000자에 육박했다. 결과가 이상했다.
+> 원인 두 가지:
+> 1. **미드저니는 문장 속 `NO xxx` 를 부정으로 신뢰성 있게 처리하지 못한다.**
+>    오히려 그 명사를 *요청*으로 읽어 끌어온다 — "NO chopsticks" 가 젓가락을 부른다.
+>    특히 배제 대상이 그 장면에 **자연스럽게 어울리는 물건**일 때(한식 상 + 젓가락)
+>    모순이 생겨 기괴한 결과가 나온다.
+>    → 진짜 네거티브 파라미터 **`--no a, b, c`** 로 옮겼다.
+> 2. **지시부가 길수록 주제가 희석된다.** 인물·소품·감정·배경을 한 문장에 욱여넣으면
+>    어느 것도 선명하지 않다. → **주어 하나, 장면 하나**로 줄였다(지시부 800자 상한, 검증기 강제).
+>
+> ### 규칙
+> - 밝기는 형용사가 아니라 **조명 조건**으로: `natural soft diffused daylight`
+>   `bright overcast sky` `high-key exposure` `low contrast`.
+>   `golden hour` `sunlit` 등은 지시부 금지(황금빛 저녁 + 고대비로 해석돼 되레 어두워진다).
+>   단 **`--no` 뒤에는 반드시 넣어** 밀어낸다.
+> - **사람을 등장시키지 않는다.** 손·뒷모습도 쓰지 않는다 — 미드저니가 손가락을 뭉개
+>   기괴한 결과를 만드는 주범이었다. `--no face, portrait, distorted hands, extra fingers`.
+>   사물·공간만으로 장면을 세운다.
+> - **글자를 넣지 않는다.** `--no text, letters, words, signage, logo` — 미드저니가 만드는
+>   가짜 한글/영문은 교재에 그대로 인쇄되면 치명적이다.
+> - `--style raw` 로 과장된 연출을 억제한다.
+> - 삽화 슬롯은 **16:5 레터박스 + `object-fit: cover`(중앙 크롭)** 이다.
+>   주제를 **화면 중앙**에 두고, 위아래가 잘려도 살아남는 구도로 잡는다.
 >
 > **이 문서는 파생물입니다.** 프롬프트 원본은 `data/U1/{N}.json` 의
 > `illustration.prompt` 이며, 수정 후 `node _oneoff-신목고-세계문학/collect-prompts.mjs`
@@ -26,10 +41,10 @@
 
 - 작성자: **Talia** · 교과서 p.34~35 · 본문 19문장
 - 저장 경로: `dist/U1/assets/illust-1.png`
-- 장면: 강의실 뒤에서 본 교환학생의 손과 노트 — 한글 음절을 썼다 지웠다 한 흔적. 말하기 전의 망설임
+- 장면: 위에서 내려다본 강의실 책상 위 펼친 노트와 연필 — 조용한 학습 분위기
 
 ```
-Photorealistic documentary photograph, wide banner composition. A university lecture room in Seoul seen from behind: a foreign exchange student's hands resting on an open notebook where a few Korean syllable blocks have been written and hesitantly crossed out and rewritten, a pencil held mid-air, rows of empty wooden desks stretching away and softening out of focus toward a pale whiteboard. A quiet moment of hesitation and self-consciousness before speaking. NO visible face, NO subway train, NO restaurant table, NO side dishes, NO elevator buttons, NO chopsticks, NO hand gestures. Shot on 35mm full-frame, natural soft diffused daylight through tall windows, bright overcast sky, high-key exposure, low contrast, airy and open feel, clean bright background, true-to-life color, sharp focus, fine natural detail. NO dramatic lighting, NO golden hour, NO sunlit rim light, NO neon, NO night scene, NO moody grading, NO heavy shadows, NO text overlay, NO watermark --ar 16:5 --v 8.1
+Photorealistic photograph of a single open notebook on a wooden university desk, seen from directly above. A pencil rests on the page. Soft empty desk surface fills the rest of the frame. Calm, quiet, studious mood. Shot on 35mm, natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, true-to-life color, sharp focus, wide horizontal banner crop with the subject centered --ar 16:5 --v 8.1 --style raw --no text, letters, words, signage, logo, watermark, caption, face, portrait, dramatic lighting, golden hour, sunset, neon, night, heavy shadows, dark moody grading, collage, split screen, multiple panels, distorted hands, extra fingers
 ```
 
 ---
@@ -38,10 +53,10 @@ Photorealistic documentary photograph, wide banner composition. A university lec
 
 - 작성자: **Brian** · 교과서 p.36 · 본문 15문장
 - 저장 경로: `dist/U1/assets/illust-2.png`
-- 장면: 한가한 시간대의 서울 지하철 객실 — 비어 있는 분홍 배려석 줄과 손잡이를 잡은 손
+- 장면: 텅 빈 지하철 객실을 통로 정면에서 — 왼쪽 분홍 배려석, 오른쪽 회색 일반석
 
 ```
-Photorealistic documentary photograph, wide banner composition. Interior of a modern Seoul subway car during a quiet daytime hour: a clean empty row of pink-marked priority seats beside a normal row, a hand resting on a stainless steel grab bar in the foreground, only hands and a shoulder visible from behind. Clear signage panels and a spotless floor, a platform screen door softly out of focus through the window. A calm, orderly, well-kept public space. NO honorific speech scene, NO restaurant table, NO food, NO elevator buttons, NO hand gestures. Shot on 35mm full-frame, natural soft diffused daylight through the car windows, bright overcast sky outside, high-key exposure, low contrast, airy and open feel, clean bright background, true-to-life color, sharp focus, fine natural detail. NO visible face, NO crowd, NO dramatic lighting, NO golden hour, NO sunlit rim light, NO neon, NO night scene, NO heavy shadows, NO dark moody grading, NO text overlay, NO watermark --ar 16:5 --v 8.1
+Photorealistic photograph of the interior of a clean modern subway train car, empty, seen straight down the aisle. A row of pale pink priority seats on the left, grey seats on the right, stainless steel poles and handrails. Bright, spotless, orderly public transport interior. Shot on 35mm, natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, true-to-life color, sharp focus, wide horizontal banner crop with the subject centered --ar 16:5 --v 8.1 --style raw --no text, letters, words, signage, logo, watermark, caption, face, portrait, dramatic lighting, golden hour, sunset, neon, night, heavy shadows, dark moody grading, collage, split screen, multiple panels, distorted hands, extra fingers
 ```
 
 ---
@@ -50,10 +65,10 @@ Photorealistic documentary photograph, wide banner composition. Interior of a mo
 
 - 작성자: **Aussie** · 교과서 p.37 · 본문 12문장
 - 저장 경로: `dist/U1/assets/illust-3.png`
-- 장면: 점심시간 한식당 식탁을 위에서 — 반찬 종지들이 둘러싼 메인 요리, 리필 반찬을 놓는 종업원의 손
+- 장면: 위에서 내려다본 한식 한 상 — 가운데 찌개, 둘러싼 반찬 종지들
 
 ```
-Photorealistic documentary photograph, wide banner composition. A Korean restaurant table seen from above at lunchtime: a wide spread of many small stainless-steel side-dish bowls surrounding one steaming main dish, with two hands reaching in with metal chopsticks and a spoon, only hands and forearms visible. A server's hand at the edge of the frame setting down one more refilled side dish. Everyday, generous, busy-but-warm mood. NO subway car, NO train platform, NO classroom, NO elevator buttons, NO shoes at a doorway, NO chopsticks standing upright in rice. Shot on 35mm full-frame, natural soft diffused daylight through a window, bright overcast sky outside, high-key exposure, low contrast, airy open feel, clean bright background, true-to-life color, sharp focus, fine natural detail on food textures. NO visible face, NO dramatic lighting, NO golden hour, NO sunlit warm grading, NO neon, NO night scene, NO moody dark grading, NO heavy shadows, NO text overlay, NO watermark --ar 16:5 --v 8.1
+Photorealistic overhead photograph of a Korean restaurant meal on a table: one hot stew bowl in the center surrounded by many small white and steel bowls of colorful side dishes. Fresh, abundant, appetizing home-style spread. Shot on 35mm, natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, true-to-life color, sharp focus, wide horizontal banner crop with the subject centered --ar 16:5 --v 8.1 --style raw --no text, letters, words, signage, logo, watermark, caption, face, portrait, dramatic lighting, golden hour, sunset, neon, night, heavy shadows, dark moody grading, collage, split screen, multiple panels, distorted hands, extra fingers
 ```
 
 ---
@@ -62,9 +77,9 @@ Photorealistic documentary photograph, wide banner composition. A Korean restaur
 
 - 작성자: **turkish_delight** · 교과서 p.38 · 본문 10문장
 - 저장 경로: `dist/U1/assets/illust-4.png`
-- 장면: 한국 가정 현관에 가지런히 놓인 신발과, 밥그릇 위에 바르게 걸쳐 둔 숟가락(꽂지 않은 상태)
+- 장면: 한국 가정 현관에 가지런히 놓인 신발 — 안쪽으로 이어지는 나무 마루
 
 ```
-Photorealistic still-life photograph, wide banner composition. A neat row of shoes left side by side on the stone threshold just inside the doorway of a Korean home, with a raised wooden floor beyond, and on the right side of the frame a small stainless steel rice bowl with a spoon resting flat and properly across its rim on a low table. Quiet, tidy, respectful domestic detail. NO people, NO visible face, NO subway train, NO food delivery scooter, NO honorific text, NO restaurant side dishes, NO Korean or English lettering. Shot on 50mm full-frame, natural soft diffused daylight through a paper-screen window, bright overcast sky, high-key exposure, low contrast, airy clean background, true-to-life color, sharp focus, fine natural texture. NO dramatic lighting, NO golden hour, NO sunlit rim light, NO neon, NO night scene, NO moody grading, NO heavy shadows, NO text overlay, NO watermark --ar 16:5 --v 8.1
+Photorealistic photograph of a neat row of shoes placed side by side on the floor at the entrance of a Korean home, warm wooden floor beyond, plain wall. Tidy, quiet, respectful domestic entryway. Shot on 35mm, natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, true-to-life color, sharp focus, wide horizontal banner crop with the subject centered --ar 16:5 --v 8.1 --style raw --no text, letters, words, signage, logo, watermark, caption, face, portrait, dramatic lighting, golden hour, sunset, neon, night, heavy shadows, dark moody grading, collage, split screen, multiple panels, distorted hands, extra fingers
 ```
 
