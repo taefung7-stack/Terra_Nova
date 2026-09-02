@@ -19,6 +19,7 @@ import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { SOURCE as SOURCE_L5 } from './_SOURCE-L5.js';
 import { SOURCE as SOURCE_L6 } from './_SOURCE-L6.js';
+import { countSMasks, flatten } from '../builder/goodnotes-safe.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -263,3 +264,15 @@ await page.pdf({
 });
 await browser.close();
 console.log(`✅ 합본 PDF → ${path.relative(process.cwd(), outPath)}`);
+
+/* 굿노트 안전화 — 아이패드 GoodNotes 백지 현상 방지.
+ * Chrome 은 box-shadow / 형광펜 linear-gradient 를 투명 소프트마스크로 뽑는데,
+ * 굿노트 PDFKit 은 한 페이지에 이게 수십 개 쌓이면 합성에 실패해 페이지를 통째로
+ * 백지로 그린다(에러 없음). ghostscript 로 다시 쓰면 평탄화되어 사라진다.
+ * 겉모습 동일, 용량은 오히려 크게 줄어든다(10.5MB→1.0MB 실측).
+ * ※ 이 처리를 빼면 굿노트에서 백지로 열리므로 제거 금지. */
+const smBefore = countSMasks(outPath);
+if (smBefore > 0) {
+  flatten(outPath);
+  console.log(`✅ 굿노트 안전화 → 소프트마스크 ${smBefore}개 제거 (/SMask 0)`);
+}
