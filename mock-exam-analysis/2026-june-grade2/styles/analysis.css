@@ -27,6 +27,31 @@
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
+/* ===== Pretendard 글리프 결함 보정 (PretendardTN) — 2026-09-04 추가 =====
+   CDN Pretendard(v1.3.9) 웹폰트는 Chromium PDF 렌더 시 일부 구두점·기호 글리프가
+   .notdef(Type3 비트맵)로 떨어져 ☰ 박스가 되거나 아예 공백으로 사라진다.
+     ☰ 로 깨짐 : '[' ']' '(' ')' '<' '>' 작은/큰따옴표
+     흔적없이 소실: '≈' '↔' '→' '+'  ← 동의어/반의어·어법 Point 표기가 통째로 사라져
+                    "annual 연례의 ≈ yearly" 가 "annual 연례의  yearly" 로 보임(오타처럼 인식)
+   → 합성 패밀리 'PretendardTN': 문제 코드포인트만 Arial 로, 나머지(영문·숫자·한글)는
+     Pretendard 로 렌더. 한글·본문 미관 변화 없음(깨지던 기호만 정상화).
+   검증: 표지 '[2026]', p4 '≈/↔/→/+', 43번 답지 '(B) - (D) - (C)' 육안 확인. */
+@font-face {
+  font-family: 'PretendardTN';
+  src: local('Arial');
+  font-weight: 100 900;
+  font-style: normal;
+  unicode-range: U+0022, U+0027, U+0028, U+0029, U+002B, U+003C, U+003E, U+005B, U+005D,
+                 U+00D7, U+2018, U+2019, U+201C, U+201D, U+2026,
+                 U+2190-U+2195, U+2248, U+2260;
+}
+@font-face {
+  font-family: 'PretendardTN';
+  src: local('Pretendard');
+  font-weight: 100 900;
+  font-style: normal;
+}
+
 :root {
   /* === 메인 (파스텔) === */
   --c-mint:        #b8d8d0;
@@ -60,7 +85,7 @@
 html, body {
   margin: 0;
   padding: 0;
-  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'PretendardTN', 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
   color: var(--c-text);
   background: #eef2f3;
   font-size: 9.5pt;
@@ -208,7 +233,7 @@ html, body {
   border: 1px solid var(--c-sky);
 }
 .ex-meta .meta-row .v { color: var(--c-text); line-height: 1.45; font-weight: 500; }
-.ex-meta .meta-row .v.en { font-family: 'Inter', 'Pretendard', sans-serif; }
+.ex-meta .meta-row .v.en { font-family: 'Inter', 'PretendardTN', 'Pretendard', sans-serif; }
 
 /* === 섹션 타이틀 === */
 .section-bar {
@@ -324,7 +349,7 @@ html, body {
   line-height: 16px;
 }
 .fulltext .ft-en {
-  font-family: 'Inter', 'Pretendard', sans-serif;
+  font-family: 'Inter', 'PretendardTN', 'Pretendard', sans-serif;
   font-size: 9.1pt;
   color: var(--c-text);
   line-height: 1.45;
@@ -368,7 +393,7 @@ html, body {
   gap: 0;
 }
 .wrong-box .wb-item .wb-en {
-  font-family: 'Inter', 'Pretendard', sans-serif;
+  font-family: 'Inter', 'PretendardTN', 'Pretendard', sans-serif;
   font-size: 8.3pt;
   color: var(--c-text);
   line-height: 1.35;
@@ -493,7 +518,7 @@ html, body {
 .sent .tag.insert-q { background: var(--c-sky-soft);    color: var(--c-sky-deep);    border: 1px solid var(--c-sky); }
 
 .sent .en {
-  font-family: 'Inter', 'Pretendard', sans-serif;
+  font-family: 'Inter', 'PretendardTN', 'Pretendard', sans-serif;
   font-size: 9.6pt;
   line-height: 1.65;
   color: var(--c-text);
