@@ -10,9 +10,14 @@
  *
  * 표지는 기본적으로 붙이지 않는다(--cover 로 켤 수 있음).
  *
+ * 발췌본은 지문별 HTML 을 이어 붙이므로 푸터 쪽수가 지문마다 1 로 되돌아간다.
+ * 기본 동작으로 전체 통산(1..N)으로 다시 매긴다(--keep-pageno 로 끌 수 있음).
+ * 푸터 좌측 "Terra Nova · 모의고사 분석지" 브랜드는 --no-brand 로 지운다.
+ *
  * 사용법:
- *   node builder/combine-subset.mjs <dist-dir> <out.pdf> <번호,콤마구분> [--cover]
- *   node builder/combine-subset.mjs 2026-june-grade2/dist 발췌.pdf 30,31,34,36,37,38,39,40
+ *   node builder/combine-subset.mjs <dist-dir> <out.pdf> <번호,콤마구분> [옵션]
+ *   옵션: --cover | --no-brand | --keep-pageno
+ *   node builder/combine-subset.mjs 2026-june-grade2/dist 발췌.pdf 30,31,34,36,37,38,39,40 --no-brand
  * =================================================================== */
 import fs from 'node:fs/promises';
 import path from 'node:path';
@@ -22,7 +27,9 @@ function esc(s){return String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').
 
 async function main(){
   const [distArg, outArg, numsArg] = process.argv.slice(2);
-  const withCover = process.argv.includes('--cover');
+  const withCover   = process.argv.includes('--cover');
+  const noBrand     = process.argv.includes('--no-brand');
+  const keepPageNo  = process.argv.includes('--keep-pageno');
   if(!distArg || !outArg || !numsArg){
     console.error('Usage: node builder/combine-subset.mjs <dist-dir> <out.pdf> <30,31,34> [--cover]');
     process.exit(1);
@@ -61,6 +68,27 @@ async function main(){
     pageCount += sections.length;
     allPages += `\n<!-- ===== ${no}번 (${sections.length}p) ===== -->\n` + sections.join('\n');
     console.log(`   ${String(no).padStart(2)}번 · ${sections.length}p`);
+  }
+
+  // ── 푸터 후처리 ────────────────────────────────────────────────
+  // 브랜드 제거: <span class="brand">…</span> 안을 비운다(span 은 남겨야
+  // flex 양끝정렬이 유지돼 쪽수가 우측 하단에 그대로 있는다).
+  if(noBrand){
+    const before = (allPages.match(/<span class="brand">[\s\S]*?<\/span>/g) || []).length;
+    allPages = allPages.replace(/<span class="brand">[\s\S]*?<\/span>/g, '<span class="brand"></span>');
+    console.log(`   · 브랜드 문구 제거: ${before}곳`);
+  }
+  // 쪽수 통산 재부여: 지문별로 1 부터 다시 시작하던 것을 1..N 으로.
+  if(!keepPageNo){
+    let seq = 0;
+    const seen = [];
+    allPages = allPages.replace(/(<span class="pageno">)(\d+)(<\/span>)/g,
+      (_m, a, old, c) => { seq += 1; seen.push(old); return `${a}${seq}${c}`; });
+    if(seq !== pageCount){
+      console.error(`❌ 쪽수 재부여 개수(${seq})가 실제 페이지 수(${pageCount})와 다릅니다. 중단.`);
+      process.exit(1);
+    }
+    console.log(`   · 쪽수 통산 재부여: 1~${seq} (표지 제외)`);
   }
 
   const lbl = (examLabel || '모의고사').trim();
