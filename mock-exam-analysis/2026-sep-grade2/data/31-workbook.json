@@ -1,0 +1,314 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "31.json",
+  "_note": "31번 워크북 — 본문 6문장 풀커버.",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "geography", "pos": "명" },
+      { "word": "unclear", "pos": "형" },
+      { "word": "transition", "pos": "동" },
+      { "word": "molecule", "pos": "명" },
+      { "word": "loosen", "pos": "동" },
+      { "word": "velocity", "pos": "명" },
+      { "word": "flux", "pos": "명" },
+      { "word": "complexity", "pos": "명" },
+      { "word": "migratory", "pos": "형" },
+      { "word": "demographic", "pos": "명" }
+    ],
+    "ko_to_en": [
+      { "meaning": "정기적으로, 일상적으로", "pos": "부", "answer": "regularly" },
+      { "meaning": "물질", "pos": "명", "answer": "matter" },
+      { "meaning": "고체", "pos": "명", "answer": "solid" },
+      { "meaning": "진동하다", "pos": "동", "answer": "vibrate" },
+      { "meaning": "입자", "pos": "명", "answer": "particle" },
+      { "meaning": "안정, 안정성", "pos": "명", "answer": "stability" },
+      { "meaning": "점점 더", "pos": "부", "answer": "increasingly" },
+      { "meaning": "정착하다", "pos": "동", "answer": "settle" },
+      { "meaning": "영구히", "pos": "부", "answer": "permanently" },
+      { "meaning": "다양한", "pos": "형", "answer": "diverse" }
+    ],
+    "expressions": [
+      { "ko": "이동 중인", "answer": "on the move" },
+      { "ko": "상변화, 국면 전환", "answer": "phase shift" },
+      { "ko": "끊임없이 변하는", "answer": "in flux" },
+      { "ko": "~뿐만 아니라", "answer": "as well as" },
+      { "ko": "서로에게서 느슨해지다", "answer": "loosen from one another" }
+    ],
+    "definitions": [
+      { "def": "the study of where people live and how they are spread over the earth", "answer": "geography" },
+      { "def": "a change of state, as when a solid becomes a liquid or a gas", "answer": "phase shift" },
+      { "def": "the speed at which something moves in a particular direction", "answer": "velocity" },
+      { "def": "to make a place your permanent home and stay there", "answer": "settle" },
+      { "def": "a group of people who share certain characteristics, such as age or income", "answer": "demographic" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Human geography {{1:is/are}} becoming unclear.",
+      "ko_full": "인간 지리는 불분명해지고 있다.",
+      "answers": ["is"],
+      "explain": [
+        "주어 Human geography는 불가산 단수 개념 → is."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "As people find {{1:themselves/them}} regularly on the move, we are experiencing a phase shift like when matter transitions from solid to liquid to gas: molecules heat up and loosen from one another, {{2:vibrating/vibrated}} more rapidly.",
+      "ko_full": "사람들이 정기적으로 이동하게 되면서, 우리는 물질이 고체에서 액체로, 다시 기체로 전이될 때와 같은 상변화를 겪고 있다. 즉 분자들이 뜨거워져 서로에게서 느슨해지며 더 빠르게 진동한다.",
+      "answers": ["themselves", "vibrating"],
+      "explain": [
+        "주어 people과 목적어가 같은 대상 → 재귀대명사 themselves.",
+        "molecules가 스스로 진동하므로 능동 관계 → 현재분사 vibrating."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "One might even say that humans are becoming like particles in quantum physics, {{1:their/theirs}} velocity and location always in flux.",
+      "ko_full": "심지어 인간이 양자 물리학의 입자처럼 되어 가고 있어서, 그들의 속도와 위치가 늘 끊임없이 변한다고 말할 수도 있을 것이다.",
+      "answers": ["their"],
+      "explain": [
+        "뒤에 명사 velocity and location이 이어지므로 소유격 their. theirs는 뒤에 명사를 두지 않는다."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "It would be nice {{1:to return/returning}} to some form of stability, but that's not {{2:how/what}} things work in a quantum world.",
+      "ko_full": "어떤 형태의 안정으로든 되돌아가면 좋겠지만, 양자 세계에서는 일이 그런 식으로 돌아가지 않는다.",
+      "answers": ["to return", "how"],
+      "explain": [
+        "가주어 It에 대응하는 진주어는 to부정사 → to return.",
+        "'~하는 방식'을 뜻하고 뒤 절이 완전 → 관계부사 how."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "Instead, the complexity of today's world makes {{1:it/that}} increasingly difficult to settle permanently anywhere.",
+      "ko_full": "오히려 오늘날 세계의 복잡성은 어디든 영구히 정착하는 것을 점점 더 어렵게 만든다.",
+      "answers": ["it"],
+      "explain": [
+        "make + 가목적어 it + 형용사 + 진목적어 to V 구문 → it."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "Highly paid digital nomads and billionaires with multiple passports as well as migratory workers {{1:are/is}} all part of the diverse and {{2:growing/grown}} global demographic of quantum people.",
+      "ko_full": "고소득 디지털 노마드와 여러 개의 여권을 가진 억만장자뿐 아니라 이주 노동자까지 모두가 다양하고 계속 늘어나는 '양자 인간'이라는 전 세계적 인구 집단의 일부이다.",
+      "answers": ["are", "growing"],
+      "explain": [
+        "A as well as B 구문은 앞의 A(복수 nomads and billionaires)에 수를 맞춘다 → are.",
+        "집단이 스스로 커지는 능동 의미 → 현재분사 growing."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Human {{1:geography/chemistry}} is becoming {{2:unclear/precise}}.",
+      "ko_full": "인간 지리는 불분명해지고 있다.",
+      "answers": ["geography", "unclear"],
+      "explain": [
+        "사람들이 어디에 사는지를 뜻하는 '인간 지리' — geography.",
+        "경계가 '불분명해진다' — unclear (precise는 정반대)."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "As people find themselves regularly on the {{1:move/couch}}, we are experiencing a phase shift like when matter transitions from solid to liquid to gas: molecules heat up and {{2:loosen/tighten}} from one another, vibrating more rapidly.",
+      "ko_full": "사람들이 정기적으로 이동하게 되면서, 우리는 물질이 고체에서 액체로, 다시 기체로 전이될 때와 같은 상변화를 겪고 있다. 즉 분자들이 뜨거워져 서로에게서 느슨해지며 더 빠르게 진동한다.",
+      "answers": ["move", "loosen"],
+      "explain": [
+        "on the move(이동 중인)가 관용 표현.",
+        "가열되면 분자 결합이 '느슨해진다' — loosen (tighten은 정반대)."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "One might even say that humans are becoming like {{1:particles/planets}} in quantum physics, their {{2:velocity/silence}} and location always in flux.",
+      "ko_full": "심지어 인간이 양자 물리학의 입자처럼 되어 가고 있어서, 그들의 속도와 위치가 늘 끊임없이 변한다고 말할 수도 있을 것이다.",
+      "answers": ["particles", "velocity"],
+      "explain": [
+        "양자 물리학의 '입자' — particles.",
+        "위치와 짝을 이루는 물리량은 '속도' — velocity."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "It would be nice to return to some form of {{1:stability/chaos}}, but that's not how things {{2:work/end}} in a quantum world.",
+      "ko_full": "어떤 형태의 안정으로든 되돌아가면 좋겠지만, 양자 세계에서는 일이 그런 식으로 돌아가지 않는다.",
+      "answers": ["stability", "work"],
+      "explain": [
+        "유동(flux)과 대비되는 '안정' — stability (chaos는 정반대).",
+        "how things work(일이 돌아가는 방식)가 자연스러운 연어."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "Instead, the {{1:complexity/simplicity}} of today's world makes it increasingly difficult to {{2:settle/travel}} permanently anywhere.",
+      "ko_full": "오히려 오늘날 세계의 복잡성은 어디든 영구히 정착하는 것을 점점 더 어렵게 만든다.",
+      "answers": ["complexity", "settle"],
+      "explain": [
+        "오늘날 세계의 '복잡성' — complexity (simplicity는 정반대).",
+        "어려워진 것은 영구히 '정착'하는 일 — settle (여행은 오히려 쉬워졌다)."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "Highly paid digital nomads and billionaires with multiple passports as well as {{1:migratory/sedentary}} workers are all part of the {{2:diverse/identical}} and growing global demographic of quantum people.",
+      "ko_full": "고소득 디지털 노마드와 여러 개의 여권을 가진 억만장자뿐 아니라 이주 노동자까지 모두가 다양하고 계속 늘어나는 '양자 인간'이라는 전 세계적 인구 집단의 일부이다.",
+      "answers": ["migratory", "diverse"],
+      "explain": [
+        "이동하며 일하는 '이주' 노동자 — migratory (sedentary는 정착형).",
+        "구성이 '다양한' 집단 — diverse (identical은 정반대)."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "g", "answer": "geography", "after": "is becoming unclear" },
+        { "pos": 2, "letter": "b", "answer": "becoming", "after": "unclear" },
+        { "pos": 3, "letter": "u", "answer": "unclear", "after": "" }
+      ],
+      "ko_full": "인간 지리는 불분명해지고 있다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "m", "answer": "move", "after": ", we are experiencing" },
+        { "pos": 2, "letter": "p", "answer": "phase", "after": "shift like when matter" },
+        { "pos": 3, "letter": "t", "answer": "transitions", "after": "from solid to liquid" },
+        { "pos": 4, "letter": "l", "answer": "loosen", "after": "from one another" }
+      ],
+      "ko_full": "사람들이 정기적으로 이동하게 되면서, 우리는 물질이 고체에서 액체로, 다시 기체로 전이될 때와 같은 상변화를 겪고 있다. 즉 분자들이 뜨거워져 서로에게서 느슨해지며 더 빠르게 진동한다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "p", "answer": "particles", "after": "in quantum physics" },
+        { "pos": 2, "letter": "v", "answer": "velocity", "after": "and location" },
+        { "pos": 3, "letter": "f", "answer": "flux", "after": "" }
+      ],
+      "ko_full": "심지어 인간이 양자 물리학의 입자처럼 되어 가고 있어서, 그들의 속도와 위치가 늘 끊임없이 변한다고 말할 수도 있을 것이다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "r", "answer": "return", "after": "to some form of stability" },
+        { "pos": 2, "letter": "s", "answer": "stability", "after": ", but that's not how" },
+        { "pos": 3, "letter": "q", "answer": "quantum", "after": "world" }
+      ],
+      "ko_full": "어떤 형태의 안정으로든 되돌아가면 좋겠지만, 양자 세계에서는 일이 그런 식으로 돌아가지 않는다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "c", "answer": "complexity", "after": "of today's world" },
+        { "pos": 2, "letter": "d", "answer": "difficult", "after": "to settle permanently" },
+        { "pos": 3, "letter": "s", "answer": "settle", "after": "permanently anywhere" }
+      ],
+      "ko_full": "오히려 오늘날 세계의 복잡성은 어디든 영구히 정착하는 것을 점점 더 어렵게 만든다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "n", "answer": "nomads", "after": "and billionaires" },
+        { "pos": 2, "letter": "p", "answer": "passports", "after": "as well as migratory workers" },
+        { "pos": 3, "letter": "m", "answer": "migratory", "after": "workers are all part" },
+        { "pos": 4, "letter": "d", "answer": "demographic", "after": "of quantum people" }
+      ],
+      "ko_full": "고소득 디지털 노마드와 여러 개의 여권을 가진 억만장자뿐 아니라 이주 노동자까지 모두가 다양하고 계속 늘어나는 '양자 인간'이라는 전 세계적 인구 집단의 일부이다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["Human", "geography", "is", "becoming", "unclear"],
+      "answer": "Human geography is becoming unclear."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 3,
+      "words": ["One", "might", "even", "say", "that", "humans", "are", "becoming", "like", "particles", "in", "quantum", "physics"],
+      "answer": "One might even say that humans are becoming like particles in quantum physics."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 4,
+      "words": ["It", "would", "be", "nice", "to", "return", "to", "some", "form", "of", "stability"],
+      "answer": "It would be nice to return to some form of stability."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 5,
+      "words": ["the", "complexity", "of", "today's", "world", "makes", "it", "increasingly", "difficult", "to", "settle", "permanently", "anywhere"],
+      "answer": "Instead, the complexity of today's world makes it increasingly difficult to settle permanently anywhere."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 2,
+      "words": ["molecules", "heat", "up", "and", "loosen", "from", "one", "another", "vibrating", "more", "rapidly"],
+      "answer": "molecules heat up and loosen from one another, vibrating more rapidly."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["migratory", "workers", "are", "all", "part", "of", "the", "diverse", "and", "growing", "global", "demographic", "of", "quantum", "people"],
+      "answer": "migratory workers are all part of the diverse and growing global demographic of quantum people."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 2, "no": 1 },
+    { "kind": "vocab", "ref": 5, "no": 2 },
+    { "kind": "fill", "ref": 3, "no": 3 },
+    { "kind": "ko", "ref": 6, "no": 4 },
+    { "kind": "jumble", "ref": 1, "no": 5 },
+    { "kind": "sent", "ref": 4, "no": 6 },
+    { "kind": "grammar", "ref": 6, "no": 7 },
+    { "kind": "vocab", "ref": 3, "no": 8 }
+  ]
+}

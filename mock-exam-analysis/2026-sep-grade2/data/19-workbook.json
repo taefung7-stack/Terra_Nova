@@ -1,0 +1,593 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "19.json",
+  "_note": "19번(심경 변화) 워크북 — 본문 14문장 풀커버. 정답 토큰이 고유명사·문두 대문자어(Immy/Since/So/They/We/Wait/A Happy Accident)와 겹치지 않도록 배치함.",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "flawless",   "pos": "형" },
+      { "word": "audition",   "pos": "명" },
+      { "word": "calmly",     "pos": "부" },
+      { "word": "spread",     "pos": "동" },
+      { "word": "cheer",      "pos": "동" },
+      { "word": "excitement", "pos": "명" },
+      { "word": "sink",       "pos": "동" },
+      { "word": "hug",        "pos": "동" },
+      { "word": "truly",      "pos": "부" },
+      { "word": "heavily",    "pos": "부" }
+    ],
+    "ko_to_en": [
+      { "meaning": "흠잡을 데 없는, 완벽한",  "pos": "형", "answer": "flawless" },
+      { "meaning": "오디션, 실기 심사",       "pos": "명", "answer": "audition" },
+      { "meaning": "침착하게, 담담하게",      "pos": "부", "answer": "calmly" },
+      { "meaning": "번지다, 퍼지다",          "pos": "동", "answer": "spread" },
+      { "meaning": "환호하다",                "pos": "동", "answer": "cheer" },
+      { "meaning": "흥분, 신남",              "pos": "명", "answer": "excitement" },
+      { "meaning": "기쁨, 환희",              "pos": "명", "answer": "joy" },
+      { "meaning": "가슴, 흉부",              "pos": "명", "answer": "chest" },
+      { "meaning": "진심으로, 정말로",        "pos": "부", "answer": "truly" },
+      { "meaning": "심하게, 가쁘게",          "pos": "부", "answer": "heavily" }
+    ],
+    "expressions": [
+      { "ko": "시무룩한 얼굴, 우울한 표정",  "answer": "long face" },
+      { "ko": "고개를 젓다",                  "answer": "shake one's head" },
+      { "ko": "해내다, 성공하다",             "answer": "make it" },
+      { "ko": "(감정을) 참다, 억누르다",      "answer": "hold back" },
+      { "ko": "~에게 장난을 치다",            "answer": "play a joke on" }
+    ],
+    "definitions": [
+      { "def": "having no faults or mistakes at all",                    "answer": "flawless" },
+      { "def": "a short performance to test a singer or actor",          "answer": "audition" },
+      { "def": "in a quiet and relaxed way, without strong feeling",     "answer": "calmly" },
+      { "def": "to shout loudly to show approval or happiness",          "answer": "cheer" },
+      { "def": "a strong feeling of eagerness and energy",               "answer": "excitement" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "I ran into the music room, {{1:breathing/breathed}} {{2:heavily/heavy}}.",
+      "ko_full": "나는 숨을 가쁘게 쉬며 음악실로 뛰어 들어갔다.",
+      "answers": ["breathing", "heavily"],
+      "explain": [
+        "주어 I 가 능동으로 숨 쉬는 동시동작 분사구문 → breathing.",
+        "동사 breathing 을 수식하는 부사 → heavily."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "The rest of the band {{1:were/was}} sitting {{2:with/by}} long faces.",
+      "ko_full": "나머지 밴드 멤버들은 시무룩한 얼굴로 앉아 있었다.",
+      "answers": ["were", "with"],
+      "explain": [
+        "the rest of + 구성원 집합(band)이라 복수 취급 → were.",
+        "부대상황 '~한 채로'를 나타내는 전치사 → with."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "Immy looked up at me and {{1:shook/shaken}} {{2:her/hers}} head.",
+      "ko_full": "Immy가 나를 올려다보더니 고개를 저었다.",
+      "answers": ["shook", "her"],
+      "explain": [
+        "looked 와 병렬인 과거시제 동사 → shook(shake-shook-shaken).",
+        "명사 head 앞의 소유격 → her(소유대명사 hers 는 뒤에 명사가 올 수 없음)."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "I {{1:sank/sunk}} into a {{2:chair/chairs}}.",
+      "ko_full": "나는 의자에 털썩 주저앉았다.",
+      "answers": ["sank", "chair"],
+      "explain": [
+        "sink 의 과거형 → sank(sunk 는 과거분사).",
+        "부정관사 a 뒤에는 단수 가산명사 → chair."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "I had truly {{1:believed/believing}} we would make it; our audition had {{2:been/being}} flawless.",
+      "ko_full": "나는 우리가 해낼 것이라고 진심으로 믿었었다. 우리의 오디션은 흠잡을 데가 없었으니까.",
+      "answers": ["believed", "been"],
+      "explain": [
+        "과거완료 had + 과거분사 → believed.",
+        "과거완료 had + 과거분사 → been."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "My chest {{1:felt/feeling}} heavy {{2:as/during}} I asked, \"So, who won?\"",
+      "ko_full": "나는 가슴이 무거워진 채 \"그래서, 누가 이겼어?\"라고 물었다.",
+      "answers": ["felt", "as"],
+      "explain": [
+        "주절의 술어 동사 자리이며 과거 시제 → felt.",
+        "뒤에 절(I asked)이 오므로 접속사 → as(during 은 전치사)."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "I was {{1:holding/held}} back my {{2:tears/tear}}.",
+      "ko_full": "나는 눈물을 참고 있었다.",
+      "answers": ["holding", "tears"],
+      "explain": [
+        "과거진행 was + -ing → holding.",
+        "눈물은 관용적으로 복수형 → tears."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "\"A band {{1:called/calling}} A Happy Accident. They were quite good,\" she said {{2:calmly/calm}}.",
+      "ko_full": "\"A Happy Accident라는 밴드야. 걔들 꽤 잘하더라.\"라고 그녀가 담담하게 말했다.",
+      "answers": ["called", "calmly"],
+      "explain": [
+        "'~라고 불리는'의 수동 의미로 명사를 뒤에서 수식 → called.",
+        "동사 said 를 수식하는 부사 → calmly."
+      ]
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "en_template": "A moment later, a big smile {{1:spread/spreading}} across Immy's face, and the others began {{2:to cheer/cheered}}.",
+      "ko_full": "잠시 후, Immy의 얼굴에 환한 미소가 번졌고, 다른 아이들은 환호하기 시작했다.",
+      "answers": ["spread", "to cheer"],
+      "explain": [
+        "절의 술어 동사 자리 → spread(현재형·과거형 동일).",
+        "begin + to부정사 → to cheer."
+      ]
+    },
+    {
+      "no": 10,
+      "ref_sentence": 10,
+      "en_template": "\"Wait, what? That's {{1:us/we}}!\" I {{2:said/say}}.",
+      "ko_full": "\"잠깐, 뭐라고? 그거 우리잖아!\"라고 나는 말했다.",
+      "answers": ["us", "said"],
+      "explain": [
+        "구어에서 be동사 보어로 목적격을 씀 → us.",
+        "이야기 전체가 과거 시제 → said."
+      ]
+    },
+    {
+      "no": 11,
+      "ref_sentence": 11,
+      "en_template": "Immy laughed and said, \"Since you were late, we decided {{1:to play/playing}} a joke {{2:on/to}} you! We made it!\"",
+      "ko_full": "Immy는 웃으며 \"네가 늦게 와서, 우리가 너한테 장난을 치기로 했지! 우리가 해냈어!\"라고 말했다.",
+      "answers": ["to play", "on"],
+      "explain": [
+        "decide 는 to부정사를 목적어로 취함 → to play.",
+        "play a joke on + 사람(~에게 장난치다)의 고정 전치사 → on."
+      ]
+    },
+    {
+      "no": 12,
+      "ref_sentence": 12,
+      "en_template": "I was {{1:filled/filling}} {{2:with/by}} joy.",
+      "ko_full": "나는 기쁨으로 가득 찼다.",
+      "answers": ["filled", "with"],
+      "explain": [
+        "수동태 be + 과거분사 → filled.",
+        "be filled with 의 관용 전치사 → with."
+      ]
+    },
+    {
+      "no": 13,
+      "ref_sentence": 13,
+      "en_template": "We jumped {{1:up/upon}} and hugged {{2:each other/one another's}}.",
+      "ko_full": "우리는 펄쩍 뛰어올라 서로를 껴안았다.",
+      "answers": ["up", "each other"],
+      "explain": [
+        "jump up(벌떡 뛰어오르다)의 부사 → up.",
+        "동사의 목적어인 상호대명사 → each other(소유격 형태는 불가)."
+      ]
+    },
+    {
+      "no": 14,
+      "ref_sentence": 14,
+      "en_template": "My heart was {{1:racing/raced}} {{2:with/for}} excitement.",
+      "ko_full": "내 심장은 흥분으로 두근거리고 있었다.",
+      "answers": ["racing", "with"],
+      "explain": [
+        "과거진행 was + -ing 의 능동 의미 → racing.",
+        "원인·이유를 나타내는 전치사 → with(~로 인해)."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "I ran into the music room, breathing {{1:heavily/lightly}}.",
+      "ko_full": "나는 숨을 가쁘게 쉬며 음악실로 뛰어 들어갔다.",
+      "answers": ["heavily"],
+      "explain": ["뛰어왔으므로 숨이 '가쁘게' heavily(↔lightly 가볍게)."]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "The rest of the band were sitting with {{1:long/bright}} faces.",
+      "ko_full": "나머지 밴드 멤버들은 시무룩한 얼굴로 앉아 있었다.",
+      "answers": ["long"],
+      "explain": ["침울한 분위기 — long faces(시무룩한 얼굴)(↔bright 환한)."]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "Immy looked up at me and {{1:shook/nodded}} her head.",
+      "ko_full": "Immy가 나를 올려다보더니 고개를 저었다.",
+      "answers": ["shook"],
+      "explain": ["나쁜 소식을 전하는 몸짓 — shook(고개를 젓다)(↔nodded 끄덕였다)."]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "I {{1:sank/leaped}} into a chair.",
+      "ko_full": "나는 의자에 털썩 주저앉았다.",
+      "answers": ["sank"],
+      "explain": ["기운이 빠져 '주저앉다' sank(↔leaped 뛰어올랐다)."]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "I had {{1:truly/barely}} believed we would make it; our audition had been {{2:flawless/careless}}.",
+      "ko_full": "나는 우리가 해낼 것이라고 진심으로 믿었었다. 우리의 오디션은 흠잡을 데가 없었으니까.",
+      "answers": ["truly", "flawless"],
+      "explain": [
+        "'진심으로' 믿었다 truly(↔barely 거의 ~않게).",
+        "그래서 실망이 큰 것 — '흠 없는' flawless(↔careless 부주의한)."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "My chest felt {{1:heavy/light}} as I asked, \"So, who won?\"",
+      "ko_full": "나는 가슴이 무거워진 채 \"그래서, 누가 이겼어?\"라고 물었다.",
+      "answers": ["heavy"],
+      "explain": ["낙담의 신체 반응 — 가슴이 '무거운' heavy(↔light 가벼운)."]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "I was {{1:holding/letting}} back my tears.",
+      "ko_full": "나는 눈물을 참고 있었다.",
+      "answers": ["holding"],
+      "explain": ["눈물을 '참다' hold back(↔letting out 터뜨리다)."]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "\"A band called A Happy Accident. They were quite good,\" she said {{1:calmly/frantically}}.",
+      "ko_full": "\"A Happy Accident라는 밴드야. 걔들 꽤 잘하더라.\"라고 그녀가 담담하게 말했다.",
+      "answers": ["calmly"],
+      "explain": ["장난을 감춘 '담담한' 말투 calmly(↔frantically 다급하게)."]
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "en_template": "A moment later, a big smile {{1:spread/faded}} across Immy's face, and the others began to {{2:cheer/complain}}.",
+      "ko_full": "잠시 후, Immy의 얼굴에 환한 미소가 번졌고, 다른 아이들은 환호하기 시작했다.",
+      "answers": ["spread", "cheer"],
+      "explain": [
+        "미소가 '번지다' spread(↔faded 사라지다).",
+        "분위기 반전의 '환호' cheer(↔complain 불평하다)."
+      ]
+    },
+    {
+      "no": 10,
+      "ref_sentence": 10,
+      "en_template": "\"Wait, what? That's {{1:us/them}}!\" I said.",
+      "ko_full": "\"잠깐, 뭐라고? 그거 우리잖아!\"라고 나는 말했다.",
+      "answers": ["us"],
+      "explain": ["우승 밴드가 곧 자기 밴드임을 깨닫는 대사 — us(↔them 그들)."]
+    },
+    {
+      "no": 11,
+      "ref_sentence": 11,
+      "en_template": "Immy laughed and said, \"Since you were late, we decided to play a {{1:joke/trick}} on you! We {{2:made/missed}} it!\"",
+      "ko_full": "Immy는 웃으며 \"네가 늦게 와서, 우리가 너한테 장난을 치기로 했지! 우리가 해냈어!\"라고 말했다.",
+      "answers": ["joke", "made"],
+      "explain": [
+        "play a joke on(~에게 장난치다)이 본문 표현 — joke.",
+        "합격했다는 뜻의 make it — made(↔missed 놓쳤다)."
+      ]
+    },
+    {
+      "no": 12,
+      "ref_sentence": 12,
+      "en_template": "I was filled with {{1:joy/sorrow}}.",
+      "ko_full": "나는 기쁨으로 가득 찼다.",
+      "answers": ["joy"],
+      "explain": ["반전 후의 감정은 '기쁨' joy(↔sorrow 슬픔)."]
+    },
+    {
+      "no": 13,
+      "ref_sentence": 13,
+      "en_template": "We jumped up and {{1:hugged/pushed}} each other.",
+      "ko_full": "우리는 펄쩍 뛰어올라 서로를 껴안았다.",
+      "answers": ["hugged"],
+      "explain": ["기쁨의 표현으로 '껴안다' hugged(↔pushed 밀쳤다)."]
+    },
+    {
+      "no": 14,
+      "ref_sentence": 14,
+      "en_template": "My heart was {{1:racing/slowing}} with {{2:excitement/boredom}}.",
+      "ko_full": "내 심장은 흥분으로 두근거리고 있었다.",
+      "answers": ["racing", "excitement"],
+      "explain": [
+        "심장이 '마구 뛰다' racing(↔slowing 느려지다).",
+        "결말 감정은 '흥분' excitement(↔boredom 지루함)."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "b", "answer": "breathing", "after": "heavily" },
+        { "pos": 2, "letter": "h", "answer": "heavily",   "after": "" }
+      ],
+      "ko_full": "나는 숨을 가쁘게 쉬며 음악실로 뛰어 들어갔다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "r", "answer": "rest",  "after": "of the band" },
+        { "pos": 2, "letter": "s", "answer": "sitting", "after": "with long faces" },
+        { "pos": 3, "letter": "f", "answer": "faces", "after": "" }
+      ],
+      "ko_full": "나머지 밴드 멤버들은 시무룩한 얼굴로 앉아 있었다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "s", "answer": "shook", "after": "her head" },
+        { "pos": 2, "letter": "h", "answer": "head",  "after": "" }
+      ],
+      "ko_full": "Immy가 나를 올려다보더니 고개를 저었다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "s", "answer": "sank",  "after": "into a chair" },
+        { "pos": 2, "letter": "c", "answer": "chair", "after": "" }
+      ],
+      "ko_full": "나는 의자에 털썩 주저앉았다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "t", "answer": "truly",    "after": "believed" },
+        { "pos": 2, "letter": "a", "answer": "audition", "after": "had been flawless" },
+        { "pos": 3, "letter": "f", "answer": "flawless", "after": "" }
+      ],
+      "ko_full": "나는 우리가 해낼 것이라고 진심으로 믿었었다. 우리의 오디션은 흠잡을 데가 없었으니까."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "c", "answer": "chest", "after": "felt heavy" },
+        { "pos": 2, "letter": "h", "answer": "heavy", "after": "as I asked" }
+      ],
+      "ko_full": "나는 가슴이 무거워진 채 \"그래서, 누가 이겼어?\"라고 물었다."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "hints": [
+        { "pos": 1, "letter": "h", "answer": "holding", "after": "back my tears" },
+        { "pos": 2, "letter": "t", "answer": "tears",   "after": "" }
+      ],
+      "ko_full": "나는 눈물을 참고 있었다."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "hints": [
+        { "pos": 1, "letter": "c", "answer": "called", "after": "A Happy Accident" },
+        { "pos": 2, "letter": "c", "answer": "calmly", "after": "" }
+      ],
+      "ko_full": "\"A Happy Accident라는 밴드야. 걔들 꽤 잘하더라.\"라고 그녀가 담담하게 말했다."
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "hints": [
+        { "pos": 1, "letter": "s", "answer": "spread", "after": "across Immy's face" },
+        { "pos": 2, "letter": "c", "answer": "cheer",  "after": "" }
+      ],
+      "ko_full": "잠시 후, Immy의 얼굴에 환한 미소가 번졌고, 다른 아이들은 환호하기 시작했다."
+    },
+    {
+      "no": 10,
+      "ref_sentence": 10,
+      "hints": [
+        { "pos": 1, "letter": "s", "answer": "said", "after": "" }
+      ],
+      "ko_full": "\"잠깐, 뭐라고? 그거 우리잖아!\"라고 나는 말했다."
+    },
+    {
+      "no": 11,
+      "ref_sentence": 11,
+      "hints": [
+        { "pos": 1, "letter": "l", "answer": "laughed",  "after": "and said" },
+        { "pos": 2, "letter": "d", "answer": "decided",  "after": "to play a joke" },
+        { "pos": 3, "letter": "j", "answer": "joke",     "after": "on you" }
+      ],
+      "ko_full": "Immy는 웃으며 \"네가 늦게 와서, 우리가 너한테 장난을 치기로 했지! 우리가 해냈어!\"라고 말했다."
+    },
+    {
+      "no": 12,
+      "ref_sentence": 12,
+      "hints": [
+        { "pos": 1, "letter": "f", "answer": "filled", "after": "with joy" },
+        { "pos": 2, "letter": "j", "answer": "joy",    "after": "" }
+      ],
+      "ko_full": "나는 기쁨으로 가득 찼다."
+    },
+    {
+      "no": 13,
+      "ref_sentence": 13,
+      "hints": [
+        { "pos": 1, "letter": "j", "answer": "jumped", "after": "up and hugged" },
+        { "pos": 2, "letter": "h", "answer": "hugged", "after": "each other" }
+      ],
+      "ko_full": "우리는 펄쩍 뛰어올라 서로를 껴안았다."
+    },
+    {
+      "no": 14,
+      "ref_sentence": 14,
+      "hints": [
+        { "pos": 1, "letter": "r", "answer": "racing",     "after": "with excitement" },
+        { "pos": 2, "letter": "e", "answer": "excitement", "after": "" }
+      ],
+      "ko_full": "내 심장은 흥분으로 두근거리고 있었다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 },
+    { "no": 7, "ref_sentence": 7 },
+    { "no": 8, "ref_sentence": 8 },
+    { "no": 9, "ref_sentence": 9 },
+    { "no": 10, "ref_sentence": 10 },
+    { "no": 11, "ref_sentence": 11 },
+    { "no": 12, "ref_sentence": 12 },
+    { "no": 13, "ref_sentence": 13 },
+    { "no": 14, "ref_sentence": 14 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["I", "ran", "into", "the", "music", "room", "breathing", "heavily"],
+      "answer": "I ran into the music room, breathing heavily."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["The", "rest", "of", "the", "band", "were", "sitting", "with", "long", "faces"],
+      "answer": "The rest of the band were sitting with long faces."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["Immy", "looked", "up", "at", "me", "and", "shook", "her", "head"],
+      "answer": "Immy looked up at me and shook her head."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["I", "sank", "into", "a", "chair"],
+      "answer": "I sank into a chair."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["I", "had", "truly", "believed", "we", "would", "make", "it", "our", "audition", "had", "been", "flawless"],
+      "answer": "I had truly believed we would make it; our audition had been flawless."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["My", "chest", "felt", "heavy", "as", "I", "asked", "So", "who", "won"],
+      "answer": "My chest felt heavy as I asked, \"So, who won?\""
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "words": ["I", "was", "holding", "back", "my", "tears"],
+      "answer": "I was holding back my tears."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "words": ["A", "band", "called", "A", "Happy", "Accident", "They", "were", "quite", "good", "she", "said", "calmly"],
+      "answer": "\"A band called A Happy Accident. They were quite good,\" she said calmly."
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "words": ["A", "moment", "later", "a", "big", "smile", "spread", "across", "Immy's", "face", "and", "the", "others", "began", "to", "cheer"],
+      "answer": "A moment later, a big smile spread across Immy's face, and the others began to cheer."
+    },
+    {
+      "no": 10,
+      "ref_sentence": 10,
+      "words": ["Wait", "what", "That's", "us", "I", "said"],
+      "answer": "\"Wait, what? That's us!\" I said."
+    },
+    {
+      "no": 11,
+      "ref_sentence": 11,
+      "words": ["Immy", "laughed", "and", "said", "Since", "you", "were", "late", "we", "decided", "to", "play", "a", "joke", "on", "you", "We", "made", "it"],
+      "answer": "Immy laughed and said, \"Since you were late, we decided to play a joke on you! We made it!\""
+    },
+    {
+      "no": 12,
+      "ref_sentence": 12,
+      "words": ["I", "was", "filled", "with", "joy"],
+      "answer": "I was filled with joy."
+    },
+    {
+      "no": 13,
+      "ref_sentence": 13,
+      "words": ["We", "jumped", "up", "and", "hugged", "each", "other"],
+      "answer": "We jumped up and hugged each other."
+    },
+    {
+      "no": 14,
+      "ref_sentence": 14,
+      "words": ["My", "heart", "was", "racing", "with", "excitement"],
+      "answer": "My heart was racing with excitement."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" },
+    { "no": 7, "ref_sentence": 7, "given": "ko" },
+    { "no": 8, "ref_sentence": 8, "given": "ko" },
+    { "no": 9, "ref_sentence": 9, "given": "ko" },
+    { "no": 10, "ref_sentence": 10, "given": "ko" },
+    { "no": 11, "ref_sentence": 11, "given": "ko" },
+    { "no": 12, "ref_sentence": 12, "given": "ko" },
+    { "no": 13, "ref_sentence": 13, "given": "ko" },
+    { "no": 14, "ref_sentence": 14, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 5, "no": 1 },
+    { "kind": "vocab",   "ref": 9, "no": 2 },
+    { "kind": "fill",    "ref": 2, "no": 3 },
+    { "kind": "ko",      "ref": 11, "no": 4 },
+    { "kind": "jumble",  "ref": 6, "no": 5 },
+    { "kind": "sent",    "ref": 14, "no": 6 },
+    { "kind": "grammar", "ref": 11, "no": 7 },
+    { "kind": "vocab",   "ref": 5, "no": 8 }
+  ]
+}

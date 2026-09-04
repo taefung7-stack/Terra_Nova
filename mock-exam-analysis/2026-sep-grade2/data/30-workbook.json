@@ -1,0 +1,359 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "30.json",
+  "_note": "30번 워크북 — 도덕적 면허와 에코 죄책감, 본문 7문장 풀커버.",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "purchase",      "pos": "동" },
+      { "word": "licensed",      "pos": "형" },
+      { "word": "deed",          "pos": "명" },
+      { "word": "observe",       "pos": "동" },
+      { "word": "cooperation",   "pos": "명" },
+      { "word": "compensate",    "pos": "동" },
+      { "word": "restore",       "pos": "동" },
+      { "word": "reluctant",     "pos": "형" },
+      { "word": "inconsistency", "pos": "명" },
+      { "word": "petition",      "pos": "명" }
+    ],
+    "ko_to_en": [
+      { "meaning": "친환경적인",        "pos": "형", "answer": "eco-friendly" },
+      { "meaning": "맥락, 상황",        "pos": "명", "answer": "context" },
+      { "meaning": "상기시키다",        "pos": "동", "answer": "remind" },
+      { "meaning": "해로운",            "pos": "형", "answer": "harmful" },
+      { "meaning": "죄책감",            "pos": "명", "answer": "guilt" },
+      { "meaning": "태도, 사고방식",    "pos": "명", "answer": "attitude" },
+      { "meaning": "평가",              "pos": "명", "answer": "evaluation" },
+      { "meaning": "다루다, 대처하다",  "pos": "동", "answer": "address" },
+      { "meaning": "증거",              "pos": "명", "answer": "evidence" },
+      { "meaning": "보상하다, 만회하다","pos": "동", "answer": "compensate" }
+    ],
+    "expressions": [
+      { "ko": "~할 가능성이 더 높다",   "answer": "more likely to" },
+      { "ko": "A를 B로 여기다",         "answer": "account A as B" },
+      { "ko": "~의 이익을 위하여",      "answer": "for the good of" },
+      { "ko": "~을 보상하다",           "answer": "compensate for" },
+      { "ko": "가능한 한 빨리",         "answer": "as quickly as possible" }
+    ],
+    "definitions": [
+      { "def": "unwilling to do something and hesitating about it",        "answer": "reluctant" },
+      { "def": "to give something in return to make up for a loss",       "answer": "compensate" },
+      { "def": "a formal written request signed by many people",          "answer": "petition" },
+      { "def": "an action that someone does, especially a notable one",   "answer": "deed" },
+      { "def": "a lack of agreement between two things",                  "answer": "inconsistency" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Some people are more likely {{1:to cheat/cheating}} and steal after {{2:purchasing/purchase}} \"eco-friendly\" products, probably because they feel licensed to do so.",
+      "ko_full": "어떤 사람들은 \"친환경\" 제품을 구매한 뒤 속이거나 훔칠 가능성이 더 높은데, 아마도 그렇게 해도 된다는 허가를 받았다고 느끼기 때문이다.",
+      "answers": ["to cheat", "purchasing"],
+      "explain": [
+        "be likely to V 구문 → to cheat.",
+        "전치사 after 뒤이므로 동명사 purchasing."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "Moral licensing has also {{1:been/being}} observed in the {{2:context/contexts}} of cooperation for the good of the environment.",
+      "ko_full": "도덕적 면허 효과는 환경을 위한 협력의 맥락에서도 관찰되어 왔다.",
+      "answers": ["been", "context"],
+      "explain": [
+        "현재완료 수동태 has been observed → been.",
+        "in the context of ~ 는 단수 형태로 굳어진 표현."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "When people are {{1:reminded/reminding}} of deeds they have done that they know {{2:were/being}} harmful to the environment, they might be left with a feeling of \"eco-guilt.\"",
+      "ko_full": "사람들이 환경에 해로웠다고 스스로 알고 있는 자신의 행동들을 상기하게 되면, \"환경적 죄책감\"이라는 감정이 남을 수 있다.",
+      "answers": ["reminded", "were"],
+      "explain": [
+        "사람들이 '상기되는' 대상 → 수동태 are reminded of.",
+        "관계절의 정동사가 필요 → were (they know는 삽입절)."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "People who {{1:experience/experiences}} eco-guilt seek pro-environmental actions to compensate for this guilt and {{2:restore/restoring}} balance.",
+      "ko_full": "환경적 죄책감을 경험하는 사람들은 이 죄책감을 보상하고 균형을 회복하기 위해 친환경적 행동을 찾는다.",
+      "answers": ["experience", "restore"],
+      "explain": [
+        "선행사 People이 복수 → experience.",
+        "to compensate와 and로 병렬되는 to부정사 → (to) restore."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "In their search for such a balance, people are eager to believe in \"quick-fixes,\" {{1:because/because of}} they want to escape the guilt as quickly and {{2:easily/easy}} as possible.",
+      "ko_full": "그러한 균형을 찾는 과정에서 사람들은 \"손쉬운 해결책\"을 믿고 싶어 하는데, 가능한 한 빠르고 쉽게 죄책감에서 벗어나고 싶어 하기 때문이다.",
+      "answers": ["because", "easily"],
+      "explain": [
+        "뒤에 절(they want ~)이 오므로 접속사 because.",
+        "동사 escape를 수식하는 부사 → quickly와 병렬되는 easily."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "In the same way that people may change their attitudes to {{1:reduce/reducing}} inconsistencies between attitudes and behavior, people may also change their {{2:evaluation/evaluate}} of past behaviors.",
+      "ko_full": "사람들이 태도와 행동 사이의 불일치를 줄이려 태도를 바꿀 수 있는 것과 마찬가지로, 과거 행동에 대한 평가도 바꿀 수 있다.",
+      "answers": ["reduce", "evaluation"],
+      "explain": [
+        "'~하기 위해'라는 목적의 to부정사 → to reduce.",
+        "change의 목적어 자리이므로 명사 evaluation."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "For instance, people are more likely to sign a petition {{1:addressing/addressed}} environmental damage after {{2:viewing/viewed}} evidence of human-caused environmental damage.",
+      "ko_full": "예를 들어, 사람들은 인간이 초래한 환경 훼손의 증거를 본 뒤에 환경 훼손을 다루는 청원서에 서명할 가능성이 더 높다.",
+      "answers": ["addressing", "viewing"],
+      "explain": [
+        "petition이 environmental damage를 '다루는' 능동 관계 → 현재분사 addressing.",
+        "전치사 after 뒤이므로 동명사 viewing."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Some people are more likely to {{1:cheat/donate}} and steal after purchasing \"eco-friendly\" products, probably because they feel {{2:licensed/forbidden}} to do so since they morally account the choice as a \"{{3:good/bad}}\" deed.",
+      "ko_full": "어떤 사람들은 \"친환경\" 제품을 구매한 뒤 속이거나 훔칠 가능성이 더 높은데, 그 선택을 도덕적으로 \"선한\" 행위로 여기기에 그렇게 해도 된다고 느끼기 때문이다.",
+      "answers": ["cheat", "licensed", "good"],
+      "explain": [
+        "steal과 짝을 이루는 일탈 행위 — cheat.",
+        "'허가받았다고' 느끼다 — licensed.",
+        "친환경 선택은 '선한' 행위로 계산됨 — good."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "Moral licensing has also been {{1:observed/denied}} in the context of {{2:cooperation/competition}} for the good of the environment.",
+      "ko_full": "도덕적 면허 효과는 환경을 위한 협력의 맥락에서도 관찰되어 왔다.",
+      "answers": ["observed", "cooperation"],
+      "explain": [
+        "연구에서 '관찰되어' 왔다 — observed.",
+        "환경을 위한 '협력' — cooperation."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "When people are reminded of deeds they know were {{1:harmful/beneficial}} to the environment, they might be left with a feeling of \"eco-{{2:guilt/pride}}.\"",
+      "ko_full": "사람들이 환경에 해로웠다고 알고 있는 행동들을 상기하게 되면, \"환경적 죄책감\"이 남을 수 있다.",
+      "answers": ["harmful", "guilt"],
+      "explain": [
+        "죄책감을 낳는 행동은 환경에 '해로운' — harmful.",
+        "남는 감정은 '죄책감' — guilt."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "People who experience eco-guilt {{1:seek/avoid}} pro-environmental actions to {{2:compensate/exchange}} for this guilt and {{3:restore/upset}} balance.",
+      "ko_full": "환경적 죄책감을 경험하는 사람들은 이 죄책감을 보상하고 균형을 회복하기 위해 친환경적 행동을 찾는다.",
+      "answers": ["seek", "compensate", "restore"],
+      "explain": [
+        "보상하려고 행동을 '찾는다' — seek.",
+        "죄책감을 '보상하다' — compensate for.",
+        "균형을 '회복하다' — restore."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "In their search for such a balance, people are {{1:eager/reluctant}} to believe in \"quick-fixes,\" because they want to escape the guilt as {{2:quickly/slowly}} and easily as possible.",
+      "ko_full": "그러한 균형을 찾는 과정에서 사람들은 \"손쉬운 해결책\"을 믿고 싶어 하는데, 가능한 한 빠르고 쉽게 죄책감에서 벗어나고 싶어 하기 때문이다.",
+      "answers": ["eager", "quickly"],
+      "explain": [
+        "빨리 벗어나고 싶으므로 손쉬운 해결책을 '간절히 믿고 싶어' 함 — eager (reluctant는 정반대).",
+        "'가능한 한 빠르게' — quickly."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "People may change their attitudes to {{1:reduce/widen}} {{2:inconsistencies/agreements}} between attitudes and behavior, and they may also change their {{3:evaluation/memory}} of past environmentally burdening behaviors.",
+      "ko_full": "사람들은 태도와 행동 사이의 불일치를 줄이려 태도를 바꿀 수 있고, 과거의 환경 부담 행동에 대한 평가도 바꿀 수 있다.",
+      "answers": ["reduce", "inconsistencies", "evaluation"],
+      "explain": [
+        "불일치를 '줄이다' — reduce.",
+        "태도와 행동 사이의 '불일치' — inconsistencies.",
+        "바꾸는 것은 행동에 대한 '평가' — evaluation."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "For instance, people are more likely to {{1:sign/ignore}} a petition {{2:addressing/causing}} environmental damage after viewing {{3:evidence/rumors}} of human-caused environmental damage.",
+      "ko_full": "예를 들어, 사람들은 인간이 초래한 환경 훼손의 증거를 본 뒤에 환경 훼손을 다루는 청원서에 서명할 가능성이 더 높다.",
+      "answers": ["sign", "addressing", "evidence"],
+      "explain": [
+        "청원서에 '서명하다' — sign.",
+        "환경 훼손을 '다루는' 청원서 — addressing.",
+        "본 것은 훼손의 '증거' — evidence."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "p", "answer": "purchasing",  "after": "eco-friendly products" },
+        { "pos": 2, "letter": "l", "answer": "licensed",    "after": "to do so" },
+        { "pos": 3, "letter": "d", "answer": "deed",        "after": "(문장 끝)" }
+      ],
+      "ko_full": "어떤 사람들은 \"친환경\" 제품을 구매한 뒤 속이거나 훔칠 가능성이 더 높은데, 그 선택을 도덕적으로 \"선한\" 행위로 여기기에 그렇게 해도 된다고 느끼기 때문이다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "l", "answer": "licensing",   "after": "has also been observed" },
+        { "pos": 2, "letter": "o", "answer": "observed",    "after": "in the context" },
+        { "pos": 3, "letter": "c", "answer": "cooperation", "after": "for the good of the environment" }
+      ],
+      "ko_full": "도덕적 면허 효과는 환경을 위한 협력의 맥락에서도 관찰되어 왔다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "r", "answer": "reminded",    "after": "of deeds they have done" },
+        { "pos": 2, "letter": "h", "answer": "harmful",     "after": "to the environment" },
+        { "pos": 3, "letter": "g", "answer": "guilt",       "after": "(문장 끝)" }
+      ],
+      "ko_full": "사람들이 환경에 해로웠다고 스스로 알고 있는 자신의 행동들을 상기하게 되면, \"환경적 죄책감\"이라는 감정이 남을 수 있다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "s", "answer": "seek",        "after": "pro-environmental actions" },
+        { "pos": 2, "letter": "c", "answer": "compensate",  "after": "for this guilt" },
+        { "pos": 3, "letter": "r", "answer": "restore",     "after": "balance" }
+      ],
+      "ko_full": "환경적 죄책감을 경험하는 사람들은 이 죄책감을 보상하고 균형을 회복하기 위해 친환경적 행동을 찾는다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "b", "answer": "balance",     "after": "people are reluctant" },
+        { "pos": 2, "letter": "e", "answer": "escape",      "after": "the guilt" },
+        { "pos": 3, "letter": "p", "answer": "possible",    "after": "(문장 끝)" }
+      ],
+      "ko_full": "그러한 균형을 찾는 과정에서 사람들은 \"손쉬운 해결책\"을 믿기를 꺼리는데, 도덕적 균형을 되찾고 가능한 한 빠르고 쉽게 죄책감에서 벗어나고 싶어 하기 때문이다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "a", "answer": "attitudes",   "after": "to reduce inconsistencies" },
+        { "pos": 2, "letter": "i", "answer": "inconsistencies", "after": "between attitudes and behavior" },
+        { "pos": 3, "letter": "e", "answer": "evaluation",  "after": "of past environmentally burdening behaviors" }
+      ],
+      "ko_full": "사람들이 태도와 행동 사이의 불일치를 줄이려 태도를 바꿀 수 있는 것과 마찬가지로, 과거의 환경 부담 행동과 미래의 친환경 행동에 대한 평가도 바꿀 수 있다."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "hints": [
+        { "pos": 1, "letter": "p", "answer": "petition",    "after": "addressing environmental damage" },
+        { "pos": 2, "letter": "v", "answer": "viewing",     "after": "evidence" },
+        { "pos": 3, "letter": "e", "answer": "evidence",    "after": "of human-caused environmental damage" }
+      ],
+      "ko_full": "예를 들어, 사람들은 인간이 초래한 환경 훼손의 증거를 본 뒤에 환경 훼손을 다루는 청원서에 서명할 가능성이 더 높다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 },
+    { "no": 7, "ref_sentence": 7 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["Some", "people", "are", "more", "likely", "to", "cheat", "and", "steal", "after", "purchasing", "eco-friendly", "products", "probably", "because", "they", "feel", "licensed", "to", "do", "so"],
+      "answer": "Some people are more likely to cheat and steal after purchasing \"eco-friendly\" products, probably because they feel licensed to do so."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["Moral", "licensing", "has", "also", "been", "observed", "in", "the", "context", "of", "cooperation", "for", "the", "good", "of", "the", "environment"],
+      "answer": "Moral licensing has also been observed in the context of cooperation for the good of the environment."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["When", "people", "are", "reminded", "of", "deeds", "they", "have", "done", "that", "they", "know", "were", "harmful", "to", "the", "environment", "they", "might", "be", "left", "with", "a", "feeling", "of", "eco-guilt"],
+      "answer": "When people are reminded of deeds they have done that they know were harmful to the environment, they might be left with a feeling of \"eco-guilt.\""
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["People", "who", "experience", "eco-guilt", "seek", "pro-environmental", "actions", "to", "compensate", "for", "this", "guilt", "and", "restore", "balance"],
+      "answer": "People who experience eco-guilt seek pro-environmental actions to compensate for this guilt and restore balance."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["In", "their", "search", "for", "such", "a", "balance", "people", "are", "reluctant", "to", "believe", "in", "quick-fixes", "because", "they", "want", "to", "escape", "the", "guilt", "as", "quickly", "and", "easily", "as", "possible"],
+      "answer": "In their search for such a balance, people are reluctant to believe in \"quick-fixes,\" because they want to escape the guilt as quickly and easily as possible."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["In", "the", "same", "way", "that", "people", "may", "change", "their", "attitudes", "to", "reduce", "inconsistencies", "between", "attitudes", "and", "behavior", "people", "may", "also", "change", "their", "evaluation", "of", "past", "behaviors"],
+      "answer": "In the same way that people may change their attitudes to reduce inconsistencies between attitudes and behavior, people may also change their evaluation of past behaviors."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "words": ["For", "instance", "people", "are", "more", "likely", "to", "sign", "a", "petition", "addressing", "environmental", "damage", "after", "viewing", "evidence", "of", "human-caused", "environmental", "damage"],
+      "answer": "For instance, people are more likely to sign a petition addressing environmental damage after viewing evidence of human-caused environmental damage."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" },
+    { "no": 7, "ref_sentence": 7, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 3, "no": 1 },
+    { "kind": "vocab",   "ref": 5, "no": 2 },
+    { "kind": "fill",    "ref": 4, "no": 3 },
+    { "kind": "ko",      "ref": 1, "no": 4 },
+    { "kind": "jumble",  "ref": 2, "no": 5 },
+    { "kind": "sent",    "ref": 6, "no": 6 },
+    { "kind": "grammar", "ref": 7, "no": 7 },
+    { "kind": "vocab",   "ref": 4, "no": 8 }
+  ]
+}

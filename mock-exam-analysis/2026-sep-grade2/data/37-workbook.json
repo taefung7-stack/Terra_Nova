@@ -1,0 +1,433 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "37.json",
+  "_note": "37번 워크북 — 본문 9문장 풀커버. 문두 대문자어(By contrast, This, There, Different, Examples, They, Language, At)는 정답 토큰으로 쓰지 않음.",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "manifestation",  "pos": "명" },
+      { "word": "acquisition",    "pos": "명" },
+      { "word": "competent",      "pos": "형" },
+      { "word": "explicit",       "pos": "형" },
+      { "word": "implicit",       "pos": "형" },
+      { "word": "categorical",    "pos": "형" },
+      { "word": "interdependence","pos": "명" },
+      { "word": "ambiguous",      "pos": "형" },
+      { "word": "phenomenon",     "pos": "명" },
+      { "word": "equivalent",     "pos": "명" }
+    ],
+    "ko_to_en": [
+      { "meaning": "상호작용",          "pos": "명", "answer": "interaction" },
+      { "meaning": "상황의",            "pos": "형", "answer": "situational" },
+      { "meaning": "개인주의적인",      "pos": "형", "answer": "individualistic" },
+      { "meaning": "집단주의적인",      "pos": "형", "answer": "collectivistic" },
+      { "meaning": "전제, 가정",        "pos": "명", "answer": "assumption" },
+      { "meaning": "조화",              "pos": "명", "answer": "harmony" },
+      { "meaning": "반영하다",          "pos": "동", "answer": "reflect" },
+      { "meaning": "속성, 특성",        "pos": "명", "answer": "attribute" },
+      { "meaning": "대문자",            "pos": "명구", "answer": "capital letter" },
+      { "meaning": "그 자체로",         "pos": "부", "answer": "per se" }
+    ],
+    "expressions": [
+      { "ko": "~에 자신을 국한하다",   "answer": "limit oneself to" },
+      { "ko": "~을 가리키다",          "answer": "refer to" },
+      { "ko": "~에 따라",              "answer": "depending on" },
+      { "ko": "그와 대조적으로",       "answer": "by contrast" },
+      { "ko": "~와 연결된",            "answer": "linked with" }
+    ],
+    "definitions": [
+      { "def": "a clear sign that something exists or is happening",        "answer": "manifestation" },
+      { "def": "stated clearly and in detail, leaving no room for doubt",    "answer": "explicit" },
+      { "def": "having more than one possible meaning",                     "answer": "ambiguous" },
+      { "def": "a word or thing that has the same meaning as another",      "answer": "equivalent" },
+      { "def": "the state of two or more things relying on each other",     "answer": "interdependence" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Language {{1:is/are}} a {{2:manifestation/manifest}} of culture.",
+      "ko_full": "언어는 문화의 발현이다.",
+      "answers": ["is", "manifestation"],
+      "explain": [
+        "주어 Language(불가산 단수) → is.",
+        "관사 a 뒤 of구의 수식을 받는 자리 = 명사 — manifestation."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "At different language acquisition stages, children do not learn language per se; rather they learn the various patterns and styles of language interaction {{1:that/what}} enable them {{2:to function/functioning}} as competent communicators in different situational contexts.",
+      "ko_full": "서로 다른 언어 습득 단계에서, 아이들은 언어 그 자체를 배우는 것이 아니라, 오히려 서로 다른 상황 맥락에서 유능한 의사소통자로 기능할 수 있게 해 주는 다양한 언어 상호작용의 양식과 방식을 배운다.",
+      "answers": ["that", "to function"],
+      "explain": [
+        "선행사 patterns and styles가 있으므로 관계대명사 that(what은 선행사를 취하지 않음).",
+        "enable + 목적어 + to부정사 — to function."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "They develop a culture-specific communication style {{1:that is/being}}, for example, direct and explicit in individualistic cultures {{2:or/nor}} indirect and implicit in collectivistic cultures.",
+      "ko_full": "그들은 문화 특유의 의사소통 방식을 발달시키는데, 예를 들어 개인주의 문화에서는 직접적이고 명시적이며 집단주의 문화에서는 간접적이고 암시적인 방식이다.",
+      "answers": ["that is", "or"],
+      "explain": [
+        "style을 수식하는 주격 관계대명사절 — that is.",
+        "두 문화 유형을 선택적으로 병렬하는 접속사 — or."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "Examples of words {{1:linked/linking}} with the direct style {{2:are/is}} categorical words like absolutely, certainly, or positively.",
+      "ko_full": "직접적인 방식과 연결된 단어의 예로는 absolutely, certainly, positively 같은 단정적인 말들이 있다.",
+      "answers": ["linked", "are"],
+      "explain": [
+        "words가 '연결된' 수동 관계 — 과거분사 linked.",
+        "주어 핵 = Examples(복수) → are. (of words에 일치시키지 않도록 주의.)"
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "By contrast, the cultural assumptions of interdependence and harmony require that collectivists {{1:limit/limits}} themselves to implicit and even ambiguous use of words, {{2:using/used}} terms like maybe, perhaps, or probably.",
+      "ko_full": "그와 대조적으로, 상호의존과 조화라는 문화적 전제는 집단주의자들이 maybe, perhaps, probably 같은 표현을 사용하면서 암시적이고 심지어 모호하기까지 한 어휘 사용에 자신을 국한하도록 요구한다.",
+      "answers": ["limit", "using"],
+      "explain": [
+        "require that + 주어 + (should) 동사원형 — limit.",
+        "주어가 표현을 '사용하는' 능동 분사구문 — using."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "The English language is the only language in the world {{1:that/what}} {{2:spells/spell}} I with a capital letter.",
+      "ko_full": "영어는 I를 대문자로 표기하는 세계 유일의 언어이다.",
+      "answers": ["that", "spells"],
+      "explain": [
+        "the only 뒤 선행사를 받는 관계대명사는 that을 선호.",
+        "선행사 the only language(단수) → spells."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "This phenomenon {{1:may reflect/may reflects}} the fact {{2:that/which}} the roots of individualism are in England.",
+      "ko_full": "이 현상은 개인주의의 뿌리가 영국에 있다는 사실을 반영하는 것일지도 모른다.",
+      "answers": ["may reflect", "that"],
+      "explain": [
+        "조동사 may 뒤에는 동사원형 — may reflect.",
+        "the fact의 내용을 설명하는 동격의 that(뒤 문장이 완전)."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "There {{1:is/are}} no Japanese equivalent {{2:for/of}} the English I.",
+      "ko_full": "영어의 I에 해당하는 일본어 등가어는 없다.",
+      "answers": ["is", "for"],
+      "explain": [
+        "There 구문의 실주어 equivalent(단수) → is.",
+        "equivalent for ~: ~에 해당하는 등가어."
+      ]
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "en_template": "Different words {{1:are used/are using}} to refer to the self, {{2:depending on/depended on}} the social situation, the speaker's gender, age, and the other social attributes relative to the listener.",
+      "ko_full": "자기 자신을 가리키는 데는 사회적 상황, 화자의 성별과 나이, 그리고 청자와 관련된 그 밖의 사회적 속성에 따라 서로 다른 단어들이 사용된다.",
+      "answers": ["are used", "depending on"],
+      "explain": [
+        "단어들은 '사용되는' 대상 — 수동태 are used.",
+        "'~에 따라'라는 뜻의 관용 표현 — depending on."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Language is a {{1:manifestation/concealment}} of {{2:culture/geography}}.",
+      "ko_full": "언어는 문화의 발현이다.",
+      "answers": ["manifestation", "culture"],
+      "explain": [
+        "'발현, 드러남' — manifestation.",
+        "언어가 드러내는 것은 '문화' — culture."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "At different language acquisition stages, children learn the patterns of language interaction that enable them to function as {{1:competent/careless}} communicators in different {{2:situational/imaginary}} contexts.",
+      "ko_full": "서로 다른 언어 습득 단계에서, 아이들은 서로 다른 상황 맥락에서 유능한 의사소통자로 기능할 수 있게 해 주는 언어 상호작용의 양식을 배운다.",
+      "answers": ["competent", "situational"],
+      "explain": [
+        "'유능한' 의사소통자 — competent.",
+        "'상황의' 맥락 — situational."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "They develop a culture-specific communication style that is direct and {{1:explicit/implicit}} in individualistic cultures or indirect and {{2:implicit/explicit}} in collectivistic cultures.",
+      "ko_full": "그들은 개인주의 문화에서는 직접적이고 명시적이며 집단주의 문화에서는 간접적이고 암시적인, 문화 특유의 의사소통 방식을 발달시킨다.",
+      "answers": ["explicit", "implicit"],
+      "explain": [
+        "직접적인 방식과 짝을 이루는 것은 '명시적인' — explicit.",
+        "간접적인 방식과 짝을 이루는 것은 '암시적인' — implicit."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "Examples of words linked with the {{1:direct/vague}} style are {{2:categorical/tentative}} words like absolutely, certainly, or positively.",
+      "ko_full": "직접적인 방식과 연결된 단어의 예로는 absolutely, certainly, positively 같은 단정적인 말들이 있다.",
+      "answers": ["direct", "categorical"],
+      "explain": [
+        "absolutely 등은 '직접적인' 방식의 예 — direct.",
+        "여지를 두지 않는 '단정적인' 말 — categorical."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "By contrast, the cultural assumptions of {{1:interdependence/independence}} and harmony require that collectivists limit themselves to implicit and even {{2:ambiguous/precise}} use of words.",
+      "ko_full": "그와 대조적으로, 상호의존과 조화라는 문화적 전제는 집단주의자들이 암시적이고 심지어 모호하기까지 한 어휘 사용에 자신을 국한하도록 요구한다.",
+      "answers": ["interdependence", "ambiguous"],
+      "explain": [
+        "집단주의의 전제는 '상호의존' — interdependence.",
+        "암시적이고 심지어 '모호한' — ambiguous."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "The English language is the {{1:only/latest}} language in the world that spells I with a {{2:capital/silent}} letter.",
+      "ko_full": "영어는 I를 대문자로 표기하는 세계 유일의 언어이다.",
+      "answers": ["only", "capital"],
+      "explain": [
+        "세계에서 '유일한' 언어 — only.",
+        "'대문자' — capital letter."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "This phenomenon may {{1:reflect/conceal}} the fact that the {{2:roots/branches}} of individualism are in England.",
+      "ko_full": "이 현상은 개인주의의 뿌리가 영국에 있다는 사실을 반영하는 것일지도 모른다.",
+      "answers": ["reflect", "roots"],
+      "explain": [
+        "사실을 '반영하다' — reflect.",
+        "개인주의의 '뿌리' — roots."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "There is no Japanese {{1:equivalent/translation}} for the English I, so the pronoun has no single {{2:counterpart/synonym}} in that language.",
+      "ko_full": "영어의 I에 해당하는 일본어 등가어는 없어서, 그 대명사는 일본어에 하나의 대응물이 없다.",
+      "answers": ["equivalent", "counterpart"],
+      "explain": [
+        "'등가어, 대응하는 말' — equivalent.",
+        "하나의 '대응물' — counterpart."
+      ]
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "en_template": "Different words are used to {{1:refer/object}} to the self, depending on the social situation and the other social {{2:attributes/accidents}} relative to the listener.",
+      "ko_full": "자기 자신을 가리키는 데는 사회적 상황과 청자와 관련된 그 밖의 사회적 속성에 따라 서로 다른 단어들이 사용된다.",
+      "answers": ["refer", "attributes"],
+      "explain": [
+        "refer to ~: ~을 가리키다.",
+        "사회적 '속성' — attributes."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "m", "answer": "manifestation", "after": "of culture" },
+        { "pos": 2, "letter": "c", "answer": "culture",       "after": "" }
+      ],
+      "ko_full": "언어는 문화의 발현이다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "a", "answer": "acquisition",   "after": "stages" },
+        { "pos": 2, "letter": "i", "answer": "interaction",   "after": "that enable them" },
+        { "pos": 3, "letter": "c", "answer": "competent",     "after": "communicators" }
+      ],
+      "ko_full": "서로 다른 언어 습득 단계에서, 아이들은 언어 그 자체를 배우는 것이 아니라, 오히려 서로 다른 상황 맥락에서 유능한 의사소통자로 기능할 수 있게 해 주는 다양한 언어 상호작용의 양식과 방식을 배운다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "e", "answer": "explicit",        "after": "in individualistic" },
+        { "pos": 2, "letter": "i", "answer": "implicit",        "after": "in collectivistic" },
+        { "pos": 3, "letter": "c", "answer": "collectivistic",  "after": "cultures" }
+      ],
+      "ko_full": "그들은 문화 특유의 의사소통 방식을 발달시키는데, 예를 들어 개인주의 문화에서는 직접적이고 명시적이며 집단주의 문화에서는 간접적이고 암시적인 방식이다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "l", "answer": "linked",       "after": "with the direct style" },
+        { "pos": 2, "letter": "c", "answer": "categorical",  "after": "words like" },
+        { "pos": 3, "letter": "p", "answer": "positively",   "after": "" }
+      ],
+      "ko_full": "직접적인 방식과 연결된 단어의 예로는 absolutely, certainly, positively 같은 단정적인 말들이 있다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "i", "answer": "interdependence", "after": "and harmony" },
+        { "pos": 2, "letter": "h", "answer": "harmony",         "after": "require that" },
+        { "pos": 3, "letter": "a", "answer": "ambiguous",       "after": "use of words" }
+      ],
+      "ko_full": "그와 대조적으로, 상호의존과 조화라는 문화적 전제는 집단주의자들이 maybe, perhaps, probably 같은 표현을 사용하면서 암시적이고 심지어 모호하기까지 한 어휘 사용에 자신을 국한하도록 요구한다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "o", "answer": "only",    "after": "language in the world" },
+        { "pos": 2, "letter": "s", "answer": "spells",  "after": "I with" },
+        { "pos": 3, "letter": "c", "answer": "capital", "after": "letter" }
+      ],
+      "ko_full": "영어는 I를 대문자로 표기하는 세계 유일의 언어이다."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "hints": [
+        { "pos": 1, "letter": "p", "answer": "phenomenon",    "after": "may reflect" },
+        { "pos": 2, "letter": "r", "answer": "roots",         "after": "of individualism" },
+        { "pos": 3, "letter": "i", "answer": "individualism", "after": "are in England" }
+      ],
+      "ko_full": "이 현상은 개인주의의 뿌리가 영국에 있다는 사실을 반영하는 것일지도 모른다."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "hints": [
+        { "pos": 1, "letter": "J", "answer": "Japanese",   "after": "equivalent" },
+        { "pos": 2, "letter": "e", "answer": "equivalent", "after": "for the English I" }
+      ],
+      "ko_full": "영어의 I에 해당하는 일본어 등가어는 없다."
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "hints": [
+        { "pos": 1, "letter": "r", "answer": "refer",      "after": "to the self" },
+        { "pos": 2, "letter": "g", "answer": "gender",     "after": ", age" },
+        { "pos": 3, "letter": "a", "answer": "attributes", "after": "relative to the listener" }
+      ],
+      "ko_full": "자기 자신을 가리키는 데는 사회적 상황, 화자의 성별과 나이, 그리고 청자와 관련된 그 밖의 사회적 속성에 따라 서로 다른 단어들이 사용된다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 },
+    { "no": 7, "ref_sentence": 7 },
+    { "no": 8, "ref_sentence": 8 },
+    { "no": 9, "ref_sentence": 9 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["Language", "is", "a", "manifestation", "of", "culture"],
+      "answer": "Language is a manifestation of culture."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["children", "learn", "the", "various", "patterns", "and", "styles", "of", "language", "interaction", "that", "enable", "them", "to", "function", "as", "competent", "communicators"],
+      "answer": "Children learn the various patterns and styles of language interaction that enable them to function as competent communicators."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["They", "develop", "a", "culture-specific", "communication", "style", "that", "is", "direct", "and", "explicit", "in", "individualistic", "cultures"],
+      "answer": "They develop a culture-specific communication style that is direct and explicit in individualistic cultures."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["Examples", "of", "words", "linked", "with", "the", "direct", "style", "are", "categorical", "words", "like", "absolutely", "certainly", "or", "positively"],
+      "answer": "Examples of words linked with the direct style are categorical words like absolutely, certainly, or positively."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["the", "cultural", "assumptions", "of", "interdependence", "and", "harmony", "require", "that", "collectivists", "limit", "themselves", "to", "implicit", "use", "of", "words"],
+      "answer": "The cultural assumptions of interdependence and harmony require that collectivists limit themselves to implicit use of words."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["The", "English", "language", "is", "the", "only", "language", "in", "the", "world", "that", "spells", "I", "with", "a", "capital", "letter"],
+      "answer": "The English language is the only language in the world that spells I with a capital letter."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "words": ["This", "phenomenon", "may", "reflect", "the", "fact", "that", "the", "roots", "of", "individualism", "are", "in", "England"],
+      "answer": "This phenomenon may reflect the fact that the roots of individualism are in England."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "words": ["There", "is", "no", "Japanese", "equivalent", "for", "the", "English", "I"],
+      "answer": "There is no Japanese equivalent for the English I."
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "words": ["Different", "words", "are", "used", "to", "refer", "to", "the", "self", "depending", "on", "the", "social", "situation", "the", "speaker's", "gender", "and", "age"],
+      "answer": "Different words are used to refer to the self, depending on the social situation, the speaker's gender, and age."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" },
+    { "no": 7, "ref_sentence": 7, "given": "ko" },
+    { "no": 8, "ref_sentence": 8, "given": "ko" },
+    { "no": 9, "ref_sentence": 9, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 5, "no": 1 },
+    { "kind": "vocab",   "ref": 3, "no": 2 },
+    { "kind": "fill",    "ref": 6, "no": 3 },
+    { "kind": "ko",      "ref": 2, "no": 4 },
+    { "kind": "jumble",  "ref": 7, "no": 5 },
+    { "kind": "sent",    "ref": 9, "no": 6 },
+    { "kind": "grammar", "ref": 4, "no": 7 },
+    { "kind": "vocab",   "ref": 8, "no": 8 }
+  ]
+}

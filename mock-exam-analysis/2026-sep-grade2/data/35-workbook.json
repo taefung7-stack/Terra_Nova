@@ -1,0 +1,354 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "35.json",
+  "_note": "35번 워크북 — 본문 7문장 풀커버.",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "replica",        "pos": "명" },
+      { "word": "asset",          "pos": "명" },
+      { "word": "representation", "pos": "명" },
+      { "word": "simulation",     "pos": "명" },
+      { "word": "availability",   "pos": "명" },
+      { "word": "dynamic",        "pos": "형" },
+      { "word": "continuously",   "pos": "부" },
+      { "word": "property",       "pos": "명" },
+      { "word": "downtime",       "pos": "명" },
+      { "word": "costly",         "pos": "형" }
+    ],
+    "ko_to_en": [
+      { "meaning": "센서, 감지기",        "pos": "명", "answer": "sensor" },
+      { "meaning": "모델링, 모형화",      "pos": "명", "answer": "modeling" },
+      { "meaning": "무선의",              "pos": "형", "answer": "wireless" },
+      { "meaning": "그 결과로 생긴",      "pos": "형", "answer": "resulting" },
+      { "meaning": "가능하게 하다",       "pos": "동", "answer": "enable" },
+      { "meaning": "갱신하다",            "pos": "동", "answer": "update" },
+      { "meaning": "상태",                "pos": "명", "answer": "state" },
+      { "meaning": "포착하다",            "pos": "동", "answer": "capture" },
+      { "meaning": "엄격히, 오로지",      "pos": "부", "answer": "strictly" },
+      { "meaning": "산업, 업계",          "pos": "명", "answer": "industry" }
+    ],
+    "expressions": [
+      { "ko": "~하는 데 사용되다",     "answer": "be used to" },
+      { "ko": "~와 같은",              "answer": "such as" },
+      { "ko": "예를 들어",             "answer": "for instance" },
+      { "ko": "~하지 못하다",          "answer": "fail to" },
+      { "ko": "실시간 데이터",         "answer": "real-time data" }
+    ],
+    "definitions": [
+      { "def": "an exact copy of something",                                    "answer": "replica" },
+      { "def": "something valuable that a company owns",                        "answer": "asset" },
+      { "def": "a device that detects changes and sends the information",       "answer": "sensor" },
+      { "def": "constantly changing or full of activity",                       "answer": "dynamic" },
+      { "def": "a period when a machine is not working or in use",              "answer": "downtime" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Digital twins are digital replicas of assets or activities {{1:using/used}} modeling and sensors {{2:to create/creating}} digital representations.",
+      "ko_full": "디지털 트윈은 디지털 표현물을 만들기 위해 모델링과 센서를 사용하는, 자산이나 활동의 디지털 복제본이다.",
+      "answers": ["using", "to create"],
+      "explain": [
+        "replicas가 모델링·센서를 '사용하는' 능동 관계 — 현재분사 using.",
+        "'~하기 위해'라는 목적의 부사적 to부정사 — to create."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "Digital twins {{1:are/is}} not new; engineering teams in various industries {{2:have used/have been used}} 3D renderings of computer-aided design models for years.",
+      "ko_full": "디지털 트윈은 새로운 것이 아니다. 여러 산업의 엔지니어링 팀은 컴퓨터 지원 설계 모델의 3D 렌더링을 수년간 사용해 왔다.",
+      "answers": ["are", "have used"],
+      "explain": [
+        "주어 Digital twins(복수) → are.",
+        "팀이 렌더링을 '사용해 온' 능동 — 현재완료 능동 have used."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "However, faster wireless networks and the {{1:resulting/resulted}} availability of real-time data enable {{2:much/very}} more detailed and dynamic digital representations.",
+      "ko_full": "그러나 더 빨라진 무선 네트워크와 그로 인한 실시간 데이터의 이용 가능성은 훨씬 더 상세하고 역동적인 디지털 표현물을 가능하게 한다.",
+      "answers": ["resulting", "much"],
+      "explain": [
+        "'그 결과로 생긴'이라는 능동 의미 — 현재분사형 형용사 resulting.",
+        "비교급(more detailed)을 강조하는 부사는 much — very는 불가."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "When sensors {{1:collect/collects}} data from a connected device, the sensor data can be used {{2:to continuously update/to continuously updating}} the digital twin.",
+      "ko_full": "센서가 연결된 장치로부터 데이터를 수집할 때, 그 센서 데이터는 디지털 트윈을 지속적으로 갱신하는 데 사용될 수 있다.",
+      "answers": ["collect", "to continuously update"],
+      "explain": [
+        "주어 sensors(복수) → collect.",
+        "be used to + 동사원형(~하는 데 쓰이다) — to (continuously) update."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "The digital twin {{1:becomes/become}} a real-time accurate copy of a physical {{2:object's/objects}} properties and states.",
+      "ko_full": "디지털 트윈은 물리적 대상의 속성과 상태를 실시간으로 정확하게 복제한 것이 된다.",
+      "answers": ["becomes", "object's"],
+      "explain": [
+        "주어 The digital twin(단수) → becomes.",
+        "뒤의 properties를 수식하는 소유격 — object's."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "Similarly, the twin fails {{1:to capture/capturing}} emotional or cultural factors, {{2:limiting/limited}} discussions beyond strictly technical contexts.",
+      "ko_full": "마찬가지로, 그 트윈은 감정적이거나 문화적인 요인을 포착하지 못하여, 엄격히 기술적인 맥락을 넘어서는 논의를 제한한다.",
+      "answers": ["to capture", "limiting"],
+      "explain": [
+        "fail은 to부정사를 목적어로 취한다 — to capture.",
+        "주어가 논의를 '제한하는' 능동 분사구문 — limiting."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "For instance, digital twins of physical assets such as power-generation turbines and jet engines {{1:are/is}} becoming common when the assets are very valuable and when downtime {{2:would be/would been}} very costly.",
+      "ko_full": "예를 들어, 발전용 터빈과 제트 엔진 같은 물리적 자산의 디지털 트윈은, 그 자산이 매우 가치가 크고 비가동 시간이 매우 큰 비용을 초래할 때 흔해지고 있다.",
+      "answers": ["are", "would be"],
+      "explain": [
+        "주어 핵 = digital twins(복수) → are. (of 뒤 assets에 일치시키지 않도록 주의.)",
+        "조동사 would 뒤에는 동사원형 — would be."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Digital twins are digital {{1:replicas/opposites}} of assets or activities using modeling and {{2:sensors/rumors}} to create digital representations.",
+      "ko_full": "디지털 트윈은 디지털 표현물을 만들기 위해 모델링과 센서를 사용하는, 자산이나 활동의 디지털 복제본이다.",
+      "answers": ["replicas", "sensors"],
+      "explain": [
+        "'복제본' — replicas.",
+        "데이터를 감지하는 장치는 '센서' — sensors."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "Digital twins are not {{1:new/rare}}; engineering teams have used 3D renderings and process {{2:simulations/celebrations}} for years.",
+      "ko_full": "디지털 트윈은 새로운 것이 아니다. 엔지니어링 팀은 3D 렌더링과 공정 시뮬레이션을 수년간 사용해 왔다.",
+      "answers": ["new", "simulations"],
+      "explain": [
+        "수년간 써 왔으므로 '새롭지' 않다 — new.",
+        "공정 '시뮬레이션' — simulations."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "However, faster wireless networks and the availability of real-time data {{1:enable/prevent}} much more detailed and {{2:dynamic/static}} digital representations.",
+      "ko_full": "그러나 더 빨라진 무선 네트워크와 실시간 데이터의 이용 가능성은 훨씬 더 상세하고 역동적인 디지털 표현물을 가능하게 한다.",
+      "answers": ["enable", "dynamic"],
+      "explain": [
+        "빠른 망은 정교한 표현을 '가능하게' 한다 — enable.",
+        "실시간으로 변하는 '역동적인' — dynamic."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "When sensors {{1:collect/discard}} data from a connected device, the sensor data can be used to {{2:continuously/rarely}} update the digital twin.",
+      "ko_full": "센서가 연결된 장치로부터 데이터를 수집할 때, 그 센서 데이터는 디지털 트윈을 지속적으로 갱신하는 데 사용될 수 있다.",
+      "answers": ["collect", "continuously"],
+      "explain": [
+        "센서는 데이터를 '수집한다' — collect.",
+        "'지속적으로' 갱신 — continuously."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "The digital twin becomes a real-time {{1:accurate/misleading}} copy of a physical object's properties and {{2:states/prices}}.",
+      "ko_full": "디지털 트윈은 물리적 대상의 속성과 상태를 실시간으로 정확하게 복제한 것이 된다.",
+      "answers": ["accurate", "states"],
+      "explain": [
+        "실시간으로 '정확한' 복제본 — accurate.",
+        "속성과 '상태' — states."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "Similarly, the twin {{1:fails/manages}} to capture emotional or cultural factors, {{2:limiting/widening}} discussions beyond strictly technical contexts.",
+      "ko_full": "마찬가지로, 그 트윈은 감정적이거나 문화적인 요인을 포착하지 못하여, 엄격히 기술적인 맥락을 넘어서는 논의를 제한한다.",
+      "answers": ["fails", "limiting"],
+      "explain": [
+        "포착하지 '못한다' — fails to capture.",
+        "논의를 '제한한다' — limiting."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "For instance, digital twins of turbines and jet engines are becoming {{1:common/obsolete}} when the assets are very valuable and when downtime would be very {{2:costly/cheap}}.",
+      "ko_full": "예를 들어, 터빈과 제트 엔진의 디지털 트윈은, 그 자산이 매우 가치가 크고 비가동 시간이 매우 큰 비용을 초래할 때 흔해지고 있다.",
+      "answers": ["common", "costly"],
+      "explain": [
+        "점점 '흔해지고' 있다 — common.",
+        "비가동 시간이 '비용이 크다' — costly."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "r", "answer": "replicas",        "after": "of assets" },
+        { "pos": 2, "letter": "s", "answer": "sensors",         "after": "to create" },
+        { "pos": 3, "letter": "r", "answer": "representations", "after": "" }
+      ],
+      "ko_full": "디지털 트윈은 디지털 표현물을 만들기 위해 모델링과 센서를 사용하는, 자산이나 활동의 디지털 복제본이다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "n", "answer": "new",         "after": "; engineering teams" },
+        { "pos": 2, "letter": "i", "answer": "industries",  "after": "have used" },
+        { "pos": 3, "letter": "s", "answer": "simulations", "after": "for years" }
+      ],
+      "ko_full": "디지털 트윈은 새로운 것이 아니다. 여러 산업의 엔지니어링 팀은 컴퓨터 지원 설계 모델, 자산 모델, 공정 시뮬레이션의 3D 렌더링을 수년간 사용해 왔다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "w", "answer": "wireless",  "after": "networks" },
+        { "pos": 2, "letter": "e", "answer": "enable",    "after": "much more" },
+        { "pos": 3, "letter": "d", "answer": "dynamic",   "after": "digital representations" }
+      ],
+      "ko_full": "그러나 더 빨라진 무선 네트워크와 그로 인한 실시간 데이터의 이용 가능성은 훨씬 더 상세하고 역동적인 디지털 표현물을 가능하게 한다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "c", "answer": "collect",      "after": "data from" },
+        { "pos": 2, "letter": "c", "answer": "connected",    "after": "device" },
+        { "pos": 3, "letter": "u", "answer": "update",       "after": "the digital twin" }
+      ],
+      "ko_full": "센서가 연결된 장치로부터 데이터를 수집할 때, 그 센서 데이터는 디지털 트윈을 지속적으로 갱신하는 데 사용될 수 있다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "a", "answer": "accurate",   "after": "copy" },
+        { "pos": 2, "letter": "p", "answer": "properties", "after": "and states" },
+        { "pos": 3, "letter": "s", "answer": "states",     "after": "" }
+      ],
+      "ko_full": "디지털 트윈은 물리적 대상의 속성과 상태를 실시간으로 정확하게 복제한 것이 된다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "c", "answer": "capture",     "after": "emotional or cultural" },
+        { "pos": 2, "letter": "l", "answer": "limiting",    "after": "discussions" },
+        { "pos": 3, "letter": "t", "answer": "technical",   "after": "contexts" }
+      ],
+      "ko_full": "마찬가지로, 그 트윈은 감정적이거나 문화적인 요인을 포착하지 못하여, 엄격히 기술적인 맥락을 넘어서는 논의를 제한한다."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "hints": [
+        { "pos": 1, "letter": "t", "answer": "turbines",  "after": ", jet engines" },
+        { "pos": 2, "letter": "v", "answer": "valuable",  "after": "and when" },
+        { "pos": 3, "letter": "c", "answer": "costly",    "after": "" }
+      ],
+      "ko_full": "예를 들어, 발전용 터빈, 제트 엔진, 기차 엔진과 같은 물리적 자산의 디지털 트윈은, 그 자산이 매우 가치가 크고 비가동 시간이 매우 큰 비용을 초래할 때 흔해지고 있다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 },
+    { "no": 7, "ref_sentence": 7 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["Digital", "twins", "are", "digital", "replicas", "of", "assets", "or", "activities", "using", "modeling", "and", "sensors", "to", "create", "digital", "representations"],
+      "answer": "Digital twins are digital replicas of assets or activities using modeling and sensors to create digital representations."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["Digital", "twins", "are", "not", "new", "engineering", "teams", "in", "various", "industries", "have", "used", "3D", "renderings", "of", "computer-aided", "design", "models", "asset", "models", "and", "process", "simulations", "for", "years"],
+      "answer": "Digital twins are not new; engineering teams in various industries have used 3D renderings of computer-aided design models, asset models, and process simulations for years."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["However", "faster", "wireless", "networks", "and", "the", "resulting", "availability", "of", "real-time", "data", "enable", "much", "more", "detailed", "and", "dynamic", "digital", "representations"],
+      "answer": "However, faster wireless networks and the resulting availability of real-time data enable much more detailed and dynamic digital representations."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["When", "sensors", "collect", "data", "from", "a", "connected", "device", "the", "sensor", "data", "can", "be", "used", "to", "continuously", "update", "the", "digital", "twin"],
+      "answer": "When sensors collect data from a connected device, the sensor data can be used to continuously update the digital twin."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["The", "digital", "twin", "becomes", "a", "real-time", "accurate", "copy", "of", "a", "physical", "object's", "properties", "and", "states"],
+      "answer": "The digital twin becomes a real-time accurate copy of a physical object's properties and states."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["Similarly", "the", "twin", "fails", "to", "capture", "emotional", "or", "cultural", "factors", "limiting", "discussions", "beyond", "strictly", "technical", "contexts"],
+      "answer": "Similarly, the twin fails to capture emotional or cultural factors, limiting discussions beyond strictly technical contexts."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "words": ["For", "instance", "digital", "twins", "of", "physical", "assets", "such", "as", "power-generation", "turbines", "jet", "engines", "and", "train", "engines", "are", "becoming", "common", "when", "the", "assets", "are", "very", "valuable", "and", "when", "downtime", "would", "be", "very", "costly"],
+      "answer": "For instance, digital twins of physical assets such as power-generation turbines, jet engines, and train engines are becoming common when the assets are very valuable and when downtime would be very costly."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" },
+    { "no": 7, "ref_sentence": 7, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 1, "no": 1 },
+    { "kind": "vocab",   "ref": 3, "no": 2 },
+    { "kind": "fill",    "ref": 5, "no": 3 },
+    { "kind": "ko",      "ref": 2, "no": 4 },
+    { "kind": "jumble",  "ref": 4, "no": 5 },
+    { "kind": "sent",    "ref": 7, "no": 6 },
+    { "kind": "grammar", "ref": 6, "no": 7 }
+  ]
+}

@@ -1,0 +1,267 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "20.json",
+  "_note": "20번(주장) 워크북 — 본문 5문장 풀커버. 정답 토큰이 문두 대문자어(Only/Fellow)와 겹치지 않도록 배치함.",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "valuable",  "pos": "형" },
+      { "word": "feedback",  "pos": "명" },
+      { "word": "source",    "pos": "명" },
+      { "word": "critical",  "pos": "형" },
+      { "word": "insight",   "pos": "명" },
+      { "word": "closeness", "pos": "명" },
+      { "word": "ideal",     "pos": "형" },
+      { "word": "admire",    "pos": "동" },
+      { "word": "benefit",   "pos": "명" },
+      { "word": "opinion",   "pos": "명" }
+    ],
+    "ko_to_en": [
+      { "meaning": "값진, 소중한",         "pos": "형", "answer": "valuable" },
+      { "meaning": "피드백, 의견",         "pos": "명", "answer": "feedback" },
+      { "meaning": "원천, 출처",           "pos": "명", "answer": "source" },
+      { "meaning": "비판적인, 비평의",     "pos": "형", "answer": "critical" },
+      { "meaning": "통찰(력), 안목",       "pos": "명", "answer": "insight" },
+      { "meaning": "친밀함, 가까움",       "pos": "명", "answer": "closeness" },
+      { "meaning": "이상적인",             "pos": "형", "answer": "ideal" },
+      { "meaning": "존경하다",             "pos": "동", "answer": "admire" },
+      { "meaning": "이익, 도움",           "pos": "명", "answer": "benefit" },
+      { "meaning": "도움이 되는, 유익한",  "pos": "형", "answer": "helpful" }
+    ],
+    "expressions": [
+      { "ko": "가장 가깝고 소중한 사람들",   "answer": "nearest and dearest" },
+      { "ko": "아마 ~일 것이다",             "answer": "may well" },
+      { "ko": "A에게서 B를 기대하다",        "answer": "look to A for B" },
+      { "ko": "~할 가능성이 크다",           "answer": "be likely to" },
+      { "ko": "괜찮다, 충분하다",            "answer": "will do" }
+    ],
+    "definitions": [
+      { "def": "the ability to understand something deeply and clearly",  "answer": "insight" },
+      { "def": "comments about how well or badly someone has done",       "answer": "feedback" },
+      { "def": "judging the good and bad qualities of something",         "answer": "critical" },
+      { "def": "the best possible for a particular purpose",              "answer": "ideal" },
+      { "def": "to respect and approve of someone or their work",         "answer": "admire" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Only when you're happy that you've done the best you can for your story {{1:should you show/you should show}} it to {{2:someone/anyone}} else.",
+      "ko_full": "당신의 이야기를 위해 할 수 있는 최선을 다했다고 만족할 때에만 그것을 다른 사람에게 보여 주어야 한다.",
+      "answers": ["should you show", "someone"],
+      "explain": [
+        "Only + 부사절이 문두에 오면 주절이 도치됨 → should you show.",
+        "권유·지시의 긍정문에서 쓰는 부정대명사 → someone else."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "You may well {{1:want/wanting}} to show it to your nearest and dearest, and that's fine, but in most cases you shouldn't {{2:look/looking}} to their reading for any great benefit to your work.",
+      "ko_full": "당신은 가장 가깝고 소중한 사람들에게 그것을 보여 주고 싶을 수도 있고 그것도 괜찮지만, 대부분의 경우 그들의 읽기에서 당신의 작품에 큰 도움이 될 만한 것을 기대해서는 안 된다.",
+      "answers": ["want", "look"],
+      "explain": [
+        "조동사 may 뒤에는 동사원형 → want.",
+        "조동사 should(n't) 뒤에는 동사원형 → look."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "The most valuable feedback is {{1:likely/like}} to come from other sources: you should choose readers {{2:for/from}} their critical insight, not their closeness to you.",
+      "ko_full": "가장 값진 피드백은 다른 원천에서 나올 가능성이 크다. 즉, 당신은 독자를 당신과의 친밀함이 아니라 그들의 비판적 통찰을 기준으로 골라야 한다.",
+      "answers": ["likely", "for"],
+      "explain": [
+        "be likely to V(~할 가능성이 크다) 구문 → likely.",
+        "choose A for B(B를 이유·기준으로 A를 고르다) → for."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "Fellow writers are ideal, but {{1:don't/doesn't}} imagine that {{2:any/no}} writer will do.",
+      "ko_full": "동료 작가들이 이상적이지만, 아무 작가나 괜찮을 것이라고 생각하지는 말라.",
+      "answers": ["don't", "any"],
+      "explain": [
+        "부정 명령문은 Don't + 동사원형 → don't.",
+        "긍정문에서 '어떤 ~라도'를 뜻하는 한정사 → any writer."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "If you are part of a writers' circle or class, you'll know {{1:whose/who's}} writing you admire, and if you've had feedback in the past you'll know whose opinions {{2:have/has}} been helpful ― and whose have not.",
+      "ko_full": "당신이 작가 모임이나 수업의 일원이라면 누구의 글을 당신이 존경하는지 알게 될 것이고, 과거에 피드백을 받아 본 적이 있다면 누구의 의견이 도움이 되었는지 ― 그리고 누구의 의견이 그렇지 않았는지 ― 알게 될 것이다.",
+      "answers": ["whose", "have"],
+      "explain": [
+        "뒤에 명사 writing 이 오는 소유의문사 → whose(who's = who is).",
+        "주어가 복수 opinions 이므로 → have been."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Only when you're happy that you've done the {{1:best/least}} you can for your story should you show it to someone else.",
+      "ko_full": "당신의 이야기를 위해 할 수 있는 최선을 다했다고 만족할 때에만 그것을 다른 사람에게 보여 주어야 한다.",
+      "answers": ["best"],
+      "explain": ["할 수 있는 '최선'을 다한 뒤에 보여 주라는 조건 — best(↔least 최소)."]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "You may well want to show it to your nearest and {{1:dearest/harshest}}, and that's fine, but in most cases you shouldn't look to their reading for any great {{2:benefit/harm}} to your work.",
+      "ko_full": "당신은 가장 가깝고 소중한 사람들에게 그것을 보여 주고 싶을 수도 있고 그것도 괜찮지만, 대부분의 경우 그들의 읽기에서 당신의 작품에 큰 도움이 될 만한 것을 기대해서는 안 된다.",
+      "answers": ["dearest", "benefit"],
+      "explain": [
+        "가족·절친을 뜻하는 관용구 nearest and dearest(↔harshest 가장 가혹한).",
+        "기대하지 말라는 대상은 '도움' benefit(↔harm 해)."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "The most valuable feedback is likely to come from other sources: you should choose readers for their {{1:critical/uncritical}} insight, not their {{2:closeness/distance}} to you.",
+      "ko_full": "가장 값진 피드백은 다른 원천에서 나올 가능성이 크다. 즉, 당신은 독자를 당신과의 친밀함이 아니라 그들의 비판적 통찰을 기준으로 골라야 한다.",
+      "answers": ["critical", "closeness"],
+      "explain": [
+        "골라야 할 기준은 '비판적' 통찰 critical(↔uncritical 무비판적인).",
+        "기준으로 삼지 말아야 할 것은 '친밀함' closeness(↔distance 거리감)."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "Fellow writers are {{1:ideal/unsuitable}}, but don't imagine that any writer will do.",
+      "ko_full": "동료 작가들이 이상적이지만, 아무 작가나 괜찮을 것이라고 생각하지는 말라.",
+      "answers": ["ideal"],
+      "explain": ["동료 작가가 '이상적인' 독자 ideal(↔unsuitable 부적합한)."]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "If you are part of a writers' circle or class, you'll know whose writing you {{1:admire/despise}}, and if you've had feedback in the past you'll know whose opinions have been {{2:helpful/useless}} ― and whose have not.",
+      "ko_full": "당신이 작가 모임이나 수업의 일원이라면 누구의 글을 당신이 존경하는지 알게 될 것이고, 과거에 피드백을 받아 본 적이 있다면 누구의 의견이 도움이 되었는지 ― 그리고 누구의 의견이 그렇지 않았는지 ― 알게 될 것이다.",
+      "answers": ["admire", "helpful"],
+      "explain": [
+        "믿을 만한 독자를 고르는 기준 — 글을 '존경하다' admire(↔despise 경멸하다).",
+        "뒤의 and whose have not 과 대조되므로 '도움이 되는' helpful(↔useless 쓸모없는)."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "h", "answer": "happy", "after": "that you've done" },
+        { "pos": 2, "letter": "b", "answer": "best",  "after": "you can" },
+        { "pos": 3, "letter": "s", "answer": "story", "after": "should you show it" }
+      ],
+      "ko_full": "당신의 이야기를 위해 할 수 있는 최선을 다했다고 만족할 때에만 그것을 다른 사람에게 보여 주어야 한다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "d", "answer": "dearest", "after": ", and that's fine" },
+        { "pos": 2, "letter": "r", "answer": "reading", "after": "for any great benefit" },
+        { "pos": 3, "letter": "b", "answer": "benefit", "after": "to your work" }
+      ],
+      "ko_full": "당신은 가장 가깝고 소중한 사람들에게 그것을 보여 주고 싶을 수도 있고 그것도 괜찮지만, 대부분의 경우 그들의 읽기에서 당신의 작품에 큰 도움이 될 만한 것을 기대해서는 안 된다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "v", "answer": "valuable",  "after": "feedback" },
+        { "pos": 2, "letter": "c", "answer": "critical",  "after": "insight" },
+        { "pos": 3, "letter": "c", "answer": "closeness", "after": "to you" }
+      ],
+      "ko_full": "가장 값진 피드백은 다른 원천에서 나올 가능성이 크다. 즉, 당신은 독자를 당신과의 친밀함이 아니라 그들의 비판적 통찰을 기준으로 골라야 한다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "i", "answer": "ideal",   "after": ", but don't imagine" },
+        { "pos": 2, "letter": "i", "answer": "imagine", "after": "that any writer will do" }
+      ],
+      "ko_full": "동료 작가들이 이상적이지만, 아무 작가나 괜찮을 것이라고 생각하지는 말라."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "c", "answer": "circle",   "after": "or class" },
+        { "pos": 2, "letter": "a", "answer": "admire",   "after": ", and if you've had feedback" },
+        { "pos": 3, "letter": "o", "answer": "opinions", "after": "have been helpful" }
+      ],
+      "ko_full": "당신이 작가 모임이나 수업의 일원이라면 누구의 글을 당신이 존경하는지 알게 될 것이고, 과거에 피드백을 받아 본 적이 있다면 누구의 의견이 도움이 되었는지 ― 그리고 누구의 의견이 그렇지 않았는지 ― 알게 될 것이다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["Only", "when", "you're", "happy", "that", "you've", "done", "the", "best", "you", "can", "for", "your", "story", "should", "you", "show", "it", "to", "someone", "else"],
+      "answer": "Only when you're happy that you've done the best you can for your story should you show it to someone else."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["You", "may", "well", "want", "to", "show", "it", "to", "your", "nearest", "and", "dearest", "and", "that's", "fine", "but", "in", "most", "cases", "you", "shouldn't", "look", "to", "their", "reading", "for", "any", "great", "benefit", "to", "your", "work"],
+      "answer": "You may well want to show it to your nearest and dearest, and that's fine, but in most cases you shouldn't look to their reading for any great benefit to your work."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["The", "most", "valuable", "feedback", "is", "likely", "to", "come", "from", "other", "sources", "you", "should", "choose", "readers", "for", "their", "critical", "insight", "not", "their", "closeness", "to", "you"],
+      "answer": "The most valuable feedback is likely to come from other sources: you should choose readers for their critical insight, not their closeness to you."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["Fellow", "writers", "are", "ideal", "but", "don't", "imagine", "that", "any", "writer", "will", "do"],
+      "answer": "Fellow writers are ideal, but don't imagine that any writer will do."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["If", "you", "are", "part", "of", "a", "writers'", "circle", "or", "class", "you'll", "know", "whose", "writing", "you", "admire", "and", "if", "you've", "had", "feedback", "in", "the", "past", "you'll", "know", "whose", "opinions", "have", "been", "helpful", "and", "whose", "have", "not"],
+      "answer": "If you are part of a writers' circle or class, you'll know whose writing you admire, and if you've had feedback in the past you'll know whose opinions have been helpful ― and whose have not."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 1, "no": 1 },
+    { "kind": "vocab",   "ref": 3, "no": 2 },
+    { "kind": "fill",    "ref": 2, "no": 3 },
+    { "kind": "ko",      "ref": 5, "no": 4 },
+    { "kind": "jumble",  "ref": 4, "no": 5 },
+    { "kind": "sent",    "ref": 3, "no": 6 },
+    { "kind": "grammar", "ref": 5, "no": 7 }
+  ]
+}

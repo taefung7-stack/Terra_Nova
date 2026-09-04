@@ -1,0 +1,273 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "36.json",
+  "_note": "36번 워크북 — 본문 5문장 풀커버. 문두 대문자어(For example, Later, Somehow, Many)는 정답 토큰으로 쓰지 않음.",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "surroundings",  "pos": "명" },
+      { "word": "determinant",   "pos": "명" },
+      { "word": "offspring",     "pos": "명" },
+      { "word": "remarkable",    "pos": "형" },
+      { "word": "anticipate",    "pos": "동" },
+      { "word": "territory",     "pos": "명" },
+      { "word": "preferentially","pos": "부" },
+      { "word": "neighboring",   "pos": "형" },
+      { "word": "nourishment",   "pos": "명" },
+      { "word": "settle",        "pos": "동" }
+    ],
+    "ko_to_en": [
+      { "meaning": "적합한",              "pos": "형", "answer": "suitable" },
+      { "meaning": "먹이를 찾아다니다",   "pos": "동", "answer": "forage" },
+      { "meaning": "포식자",              "pos": "명", "answer": "predator" },
+      { "meaning": "짝, 배우자",          "pos": "명", "answer": "mate" },
+      { "meaning": "번식의, 생식의",      "pos": "형", "answer": "reproductive" },
+      { "meaning": "필수품, 필요",        "pos": "명", "answer": "necessity" },
+      { "meaning": "환경, 장소",          "pos": "명", "answer": "setting" },
+      { "meaning": "명금(우는 새)",       "pos": "명", "answer": "songbird" },
+      { "meaning": "확립하다",            "pos": "동", "answer": "establish" },
+      { "meaning": "(구하기 쉬운) 먹이",  "pos": "명", "answer": "pickings" }
+    ],
+    "expressions": [
+      { "ko": "~을 찾아내다",          "answer": "seek out" },
+      { "ko": "~로부터의 은신처",      "answer": "shelter from" },
+      { "ko": "~에 적합한",            "answer": "suitable for" },
+      { "ko": "가장 ~한 것 중 하나",   "answer": "one of the most" },
+      { "ko": "비록 ~일지라도",        "answer": "even though" }
+    ],
+    "definitions": [
+      { "def": "an animal that hunts and eats other animals",                    "answer": "predator" },
+      { "def": "the children or young of a person or animal",                    "answer": "offspring" },
+      { "def": "to expect that something will happen and prepare for it",        "answer": "anticipate" },
+      { "def": "an area that an animal defends against others of its kind",      "answer": "territory" },
+      { "def": "the food that living things need in order to grow and be healthy","answer": "nourishment" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "The ability to select a set of surroundings {{1:suitable/suitably}} for foraging, shelter from predators, and the availability of mates {{2:is/are}} one of the most important determinants of biological success ― measured as survival to reproductive age and the production of offspring.",
+      "ko_full": "먹이 찾기, 포식자로부터의 은신, 짝의 이용 가능성에 적합한 환경을 선택하는 능력은, 번식 연령까지의 생존과 자손 생산으로 측정되는 생물학적 성공의 가장 중요한 결정 요인 중 하나이다.",
+      "answers": ["suitable", "is"],
+      "explain": [
+        "명사 surroundings를 뒤에서 수식하는 형용사 — suitable.",
+        "주어 핵 = The ability(단수) → is. (of mates에 일치시키지 않도록 주의.)"
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "Many studies have shown that not only {{1:do animals have/animals have}} a remarkable ability to seek out the best available locations for the necessities of life, but that they are able {{2:to anticipate/anticipating}} how a setting will serve their future needs.",
+      "ko_full": "많은 연구는 동물이 생활에 필요한 것을 위해 최적의 장소를 찾아내는 놀라운 능력을 지녔을 뿐 아니라, 어떤 환경이 미래의 필요를 어떻게 충족할지 예측할 수 있음도 보여 주었다.",
+      "answers": ["do animals have", "to anticipate"],
+      "explain": [
+        "부정어 not only가 앞에 나오면 조동사 + 주어 + 동사원형으로 도치 — do animals have.",
+        "be able to + 동사원형 — to anticipate."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "For example, the black-throated green warbler, a small songbird that {{1:nests/nest}} in spruce forests of eastern North America, establishes territories preferentially among the red spruce trees early in the summer months, even though these trees offer {{2:less/fewer}} food than the neighboring white spruce trees.",
+      "ko_full": "예를 들어, 북아메리카 동부의 가문비나무 숲에 둥지를 트는 작은 명금인 검은목녹색솔새는, 붉은가문비나무가 이웃한 흰가문비나무보다 먹이를 덜 제공하는데도 여름철 초기에 붉은가문비나무들 사이에 우선적으로 세력권을 확립한다.",
+      "answers": ["nests", "less"],
+      "explain": [
+        "관계대명사 that의 선행사 = a small songbird(단수) → nests.",
+        "food는 셀 수 없는 명사이므로 less(fewer는 가산명사에 사용)."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "Later, though, when nests {{1:are built/build}} and hungry baby birds need nourishment, it is the red spruce forest {{2:that/what}} offers the easier pickings.",
+      "ko_full": "그러나 나중에, 둥지가 지어지고 배고픈 새끼 새들이 영양분을 필요로 할 때, 더 손쉬운 먹이를 제공하는 것은 바로 그 붉은가문비나무 숲이다.",
+      "answers": ["are built", "that"],
+      "explain": [
+        "둥지는 '지어지는' 대상 — 수동태 are built.",
+        "it is ~ that 강조구문 — what은 쓸 수 없다."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "Somehow, the warbler {{1:has been guided/has guided}} to settle in locations that will suit its future parenting needs better than its present {{2:ones/one}}.",
+      "ko_full": "어떻게 해서인지, 그 솔새는 현재의 필요보다 미래의 육아 필요에 더 잘 맞을 장소에 자리 잡도록 인도되어 왔다.",
+      "answers": ["has been guided", "ones"],
+      "explain": [
+        "솔새는 '인도되는' 대상 — 현재완료 수동태 has been guided.",
+        "복수 needs를 대신하는 부정대명사 — ones."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "The ability to select a set of surroundings {{1:suitable/harmful}} for foraging and shelter from predators is one of the most important {{2:determinants/obstacles}} of biological success.",
+      "ko_full": "먹이 찾기와 포식자로부터의 은신에 적합한 환경을 선택하는 능력은 생물학적 성공의 가장 중요한 결정 요인 중 하나이다.",
+      "answers": ["suitable", "determinants"],
+      "explain": [
+        "환경이 '적합한' — suitable.",
+        "성공의 '결정 요인' — determinants."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "Many studies have shown that animals have a {{1:remarkable/negligible}} ability to seek out the best locations, and that they can {{2:anticipate/ignore}} how a setting will serve their future needs.",
+      "ko_full": "많은 연구는 동물이 최적의 장소를 찾아내는 놀라운 능력을 지녔고, 어떤 환경이 미래의 필요를 어떻게 충족할지 예측할 수 있음을 보여 주었다.",
+      "answers": ["remarkable", "anticipate"],
+      "explain": [
+        "'놀라운' 능력 — remarkable.",
+        "미래의 필요를 '예측하다' — anticipate."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "For example, the warbler establishes territories {{1:preferentially/reluctantly}} among the red spruce trees, even though these trees offer {{2:less/more}} food than the neighboring white spruce trees.",
+      "ko_full": "예를 들어, 그 솔새는 붉은가문비나무가 이웃한 흰가문비나무보다 먹이를 덜 제공하는데도 그 나무들 사이에 우선적으로 세력권을 확립한다.",
+      "answers": ["preferentially", "less"],
+      "explain": [
+        "'우선적으로' 자리를 잡음 — preferentially.",
+        "붉은가문비나무는 먹이를 '더 적게' 준다 — less."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "Later, though, when hungry baby birds need {{1:nourishment/isolation}}, it is the red spruce forest that offers the {{2:easier/harder}} pickings.",
+      "ko_full": "그러나 나중에, 배고픈 새끼 새들이 영양분을 필요로 할 때, 더 손쉬운 먹이를 제공하는 것은 바로 붉은가문비나무 숲이다.",
+      "answers": ["nourishment", "easier"],
+      "explain": [
+        "배고픈 새끼에게 필요한 것은 '영양분' — nourishment.",
+        "'더 손쉬운' 먹이 — easier."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "Somehow, the warbler has been guided to {{1:settle/abandon}} in locations that will suit its {{2:future/past}} parenting needs better than its present ones.",
+      "ko_full": "어떻게 해서인지, 그 솔새는 현재의 필요보다 미래의 육아 필요에 더 잘 맞을 장소에 자리 잡도록 인도되어 왔다.",
+      "answers": ["settle", "future"],
+      "explain": [
+        "장소에 '자리 잡다' — settle.",
+        "'미래의' 육아 필요 — future."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "s", "answer": "surroundings", "after": "suitable for foraging" },
+        { "pos": 2, "letter": "d", "answer": "determinants", "after": "of biological success" },
+        { "pos": 3, "letter": "o", "answer": "offspring",    "after": "" }
+      ],
+      "ko_full": "먹이 찾기, 포식자로부터의 은신, 짝의 이용 가능성에 적합한 환경을 선택하는 능력은, 번식 연령까지의 생존과 자손 생산으로 측정되는 생물학적 성공의 가장 중요한 결정 요인 중 하나이다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "r", "answer": "remarkable",  "after": "ability to seek out" },
+        { "pos": 2, "letter": "n", "answer": "necessities", "after": "of life" },
+        { "pos": 3, "letter": "a", "answer": "anticipate",  "after": "how a setting" }
+      ],
+      "ko_full": "많은 연구는 동물이 생활에 필요한 것을 위해 최적의 장소를 찾아내는 놀라운 능력을 지녔을 뿐 아니라, 어떤 환경이 미래의 필요를 어떻게 충족할지 예측할 수 있음도 보여 주었다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "s", "answer": "songbird",       "after": "that nests" },
+        { "pos": 2, "letter": "t", "answer": "territories",    "after": "preferentially" },
+        { "pos": 3, "letter": "n", "answer": "neighboring",    "after": "white spruce trees" }
+      ],
+      "ko_full": "예를 들어, 북아메리카 동부의 가문비나무 숲에 둥지를 트는 작은 명금인 검은목녹색솔새는, 붉은가문비나무가 이웃한 흰가문비나무보다 먹이를 덜 제공하는데도 여름철 초기에 붉은가문비나무들 사이에 우선적으로 세력권을 확립한다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "n", "answer": "nests",       "after": "are built" },
+        { "pos": 2, "letter": "n", "answer": "nourishment", "after": ", it is" },
+        { "pos": 3, "letter": "p", "answer": "pickings",    "after": "" }
+      ],
+      "ko_full": "그러나 나중에, 둥지가 지어지고 배고픈 새끼 새들이 영양분을 필요로 할 때, 더 손쉬운 먹이를 제공하는 것은 바로 그 붉은가문비나무 숲이다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "g", "answer": "guided",    "after": "to settle" },
+        { "pos": 2, "letter": "s", "answer": "settle",    "after": "in locations" },
+        { "pos": 3, "letter": "p", "answer": "parenting", "after": "needs" }
+      ],
+      "ko_full": "어떻게 해서인지, 그 솔새는 현재의 필요보다 미래의 육아 필요에 더 잘 맞을 장소에 자리 잡도록 인도되어 왔다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["The", "ability", "to", "select", "a", "set", "of", "surroundings", "suitable", "for", "foraging", "shelter", "from", "predators", "and", "the", "availability", "of", "mates", "is", "one", "of", "the", "most", "important", "determinants", "of", "biological", "success"],
+      "answer": "The ability to select a set of surroundings suitable for foraging, shelter from predators, and the availability of mates is one of the most important determinants of biological success."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["Many", "studies", "have", "shown", "that", "not", "only", "do", "animals", "have", "a", "remarkable", "ability", "to", "seek", "out", "the", "best", "available", "locations", "for", "the", "necessities", "of", "life"],
+      "answer": "Many studies have shown that not only do animals have a remarkable ability to seek out the best available locations for the necessities of life."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["the", "warbler", "establishes", "territories", "preferentially", "among", "the", "red", "spruce", "trees", "early", "in", "the", "summer", "months"],
+      "answer": "The warbler establishes territories preferentially among the red spruce trees early in the summer months."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["it", "is", "the", "red", "spruce", "forest", "that", "offers", "the", "easier", "pickings"],
+      "answer": "It is the red spruce forest that offers the easier pickings."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["the", "warbler", "has", "been", "guided", "to", "settle", "in", "locations", "that", "will", "suit", "its", "future", "parenting", "needs"],
+      "answer": "The warbler has been guided to settle in locations that will suit its future parenting needs."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 2, "no": 1 },
+    { "kind": "vocab",   "ref": 3, "no": 2 },
+    { "kind": "fill",    "ref": 4, "no": 3 },
+    { "kind": "ko",      "ref": 1, "no": 4 },
+    { "kind": "jumble",  "ref": 5, "no": 5 },
+    { "kind": "sent",    "ref": 2, "no": 6 }
+  ]
+}

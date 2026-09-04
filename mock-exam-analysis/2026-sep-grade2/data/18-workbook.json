@@ -1,0 +1,386 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "18.json",
+  "_note": "18번(글의 목적) 워크북 — 본문 9문장 풀커버. 정답 토큰이 문두 대문자어(As/While/Before/This/Thank/Sincerely)와 겹치지 않도록 배치함.",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "currently",   "pos": "부" },
+      { "word": "promotional", "pos": "형" },
+      { "word": "brochure",    "pos": "명" },
+      { "word": "overall",     "pos": "형" },
+      { "word": "consider",    "pos": "동" },
+      { "word": "option",      "pos": "명" },
+      { "word": "format",      "pos": "명" },
+      { "word": "proceed",     "pos": "동" },
+      { "word": "budget",      "pos": "명" },
+      { "word": "assistance",  "pos": "명" }
+    ],
+    "ko_to_en": [
+      { "meaning": "현재, 지금",           "pos": "부", "answer": "currently" },
+      { "meaning": "홍보용의, 판촉의",     "pos": "형", "answer": "promotional" },
+      { "meaning": "책자, 소책자",         "pos": "명", "answer": "brochure" },
+      { "meaning": "전반적인, 전체의",     "pos": "형", "answer": "overall" },
+      { "meaning": "고려하다",             "pos": "동", "answer": "consider" },
+      { "meaning": "선택지, 선택 사항",    "pos": "명", "answer": "option" },
+      { "meaning": "~에 맞다, 적합하다",   "pos": "동", "answer": "suit" },
+      { "meaning": "진행하다, 계속하다",   "pos": "동", "answer": "proceed" },
+      { "meaning": "예산",                 "pos": "명", "answer": "budget" },
+      { "meaning": "도움, 지원",           "pos": "명", "answer": "assistance" }
+    ],
+    "expressions": [
+      { "ko": "관계자분께",              "answer": "to whom it may concern" },
+      { "ko": "~하고자 하다",            "answer": "wish to" },
+      { "ko": "~할 계획이다, 의도하다",  "answer": "intend to" },
+      { "ko": "전면 컬러로",             "answer": "in full color" },
+      { "ko": "~을 기다리다, 고대하다",  "answer": "look forward to" }
+    ],
+    "definitions": [
+      { "def": "a small book or magazine that advertises something",     "answer": "brochure" },
+      { "def": "to think carefully about something before deciding",     "answer": "consider" },
+      { "def": "to continue with an action that has been planned",       "answer": "proceed" },
+      { "def": "a plan of how much money can be spent",                  "answer": "budget" },
+      { "def": "the help or support that someone gives you",             "answer": "assistance" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "To whom it may concern, I am a teacher at Pendington High School, and we are currently {{1:preparing/prepared}} a new school {{2:promotional/promotion}} brochure.",
+      "ko_full": "관계자분께, 저는 Pendington 고등학교의 교사이며, 저희는 현재 새로운 학교 홍보 책자를 준비하고 있습니다.",
+      "answers": ["preparing", "promotional"],
+      "explain": [
+        "we are + -ing 의 현재진행형 → preparing.",
+        "명사 brochure 를 앞에서 수식하는 형용사 자리 → promotional."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "As we wish {{1:to update/updating}} the overall design of our brochure, we are considering {{2:working/to work}} with a new printing company.",
+      "ko_full": "저희 책자의 전반적인 디자인을 새롭게 하고자 하므로, 저희는 새로운 인쇄 업체와 협업하는 것을 고려하고 있습니다.",
+      "answers": ["to update", "working"],
+      "explain": [
+        "wish 는 to부정사를 목적어로 취함 → to update.",
+        "consider 는 동명사를 목적어로 취함 → working."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "While {{1:reviewing/reviewed}} several options, we felt that your design style and printing formats {{2:seemed/seeming}} to suit our needs well.",
+      "ko_full": "여러 선택지를 검토하던 중, 저희는 귀사의 디자인 방식과 인쇄 형식이 저희의 필요에 잘 맞는 것 같다고 느꼈습니다.",
+      "answers": ["reviewing", "seemed"],
+      "explain": [
+        "we were 가 생략된 능동 의미의 분사구문 → reviewing.",
+        "that절의 술어 동사 자리이며 주절 시제에 일치 → seemed."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "We intend {{1:to make/making}} a four-paged brochure and {{2:print/printing}} 500 copies in full color.",
+      "ko_full": "저희는 4쪽짜리 책자를 만들어 전면 컬러로 500부를 인쇄할 계획입니다.",
+      "answers": ["to make", "print"],
+      "explain": [
+        "intend 는 to부정사를 목적어로 취함 → to make.",
+        "to make 와 병렬을 이루는 to부정사에서 to 생략 → print."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "Before {{1:proceeding/proceed}}, we would like to ask you {{2:how much/what much}} it would cost.",
+      "ko_full": "진행하기에 앞서, 비용이 얼마나 들지 여쭤보고 싶습니다.",
+      "answers": ["proceeding", "how much"],
+      "explain": [
+        "전치사 Before 뒤에는 동명사 → proceeding.",
+        "정도·양을 묻는 의문사절 → how much."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "This will greatly {{1:help/helps}} us in {{2:setting/set}} our budget and schedule more effectively.",
+      "ko_full": "이는 저희가 예산과 일정을 더 효과적으로 세우는 데 크게 도움이 될 것입니다.",
+      "answers": ["help", "setting"],
+      "explain": [
+        "조동사 will 뒤에는 동사원형 → help.",
+        "전치사 in 뒤에는 동명사 → setting."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "Thank you very much {{1:for/to}} your time and {{2:assistance/assist}}.",
+      "ko_full": "귀하의 시간과 도움에 대단히 감사드립니다.",
+      "answers": ["for", "assistance"],
+      "explain": [
+        "thank A for B 구문의 전치사 → for.",
+        "your time 과 병렬을 이루는 명사 자리 → assistance."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "I look forward {{1:to/for}} your {{2:response/respond}}.",
+      "ko_full": "답변을 기다리겠습니다.",
+      "answers": ["to", "response"],
+      "explain": [
+        "look forward to (~을 고대하다)의 고정 전치사 → to.",
+        "소유격 your 뒤 명사 자리 → response."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "To whom it may concern, I am a teacher at Pendington High School, and we are {{1:currently/formerly}} preparing a new school {{2:promotional/financial}} brochure.",
+      "ko_full": "관계자분께, 저는 Pendington 고등학교의 교사이며, 저희는 현재 새로운 학교 홍보 책자를 준비하고 있습니다.",
+      "answers": ["currently", "promotional"],
+      "explain": [
+        "지금 준비 중이므로 '현재' currently(↔formerly 예전에).",
+        "학교를 알리는 '홍보용' 책자 — promotional(↔financial 재정의)."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "As we wish to {{1:update/preserve}} the overall design of our brochure, we are considering working with a {{2:new/existing}} printing company.",
+      "ko_full": "저희 책자의 전반적인 디자인을 새롭게 하고자 하므로, 저희는 새로운 인쇄 업체와 협업하는 것을 고려하고 있습니다.",
+      "answers": ["update", "new"],
+      "explain": [
+        "디자인을 '새롭게 하다' update(↔preserve 그대로 보존하다).",
+        "그래서 '새로운' 업체를 찾는 흐름 — new(↔existing 기존의)."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "While reviewing several {{1:options/obligations}}, we felt that your design style and printing formats seemed to {{2:suit/violate}} our needs well.",
+      "ko_full": "여러 선택지를 검토하던 중, 저희는 귀사의 디자인 방식과 인쇄 형식이 저희의 필요에 잘 맞는 것 같다고 느꼈습니다.",
+      "answers": ["options", "suit"],
+      "explain": [
+        "업체 후보들 = '선택지' options(↔obligations 의무).",
+        "필요에 '맞다' suit(↔violate 어기다)."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "We {{1:intend/refuse}} to make a four-paged brochure and print 500 {{2:copies/originals}} in full color.",
+      "ko_full": "저희는 4쪽짜리 책자를 만들어 전면 컬러로 500부를 인쇄할 계획입니다.",
+      "answers": ["intend", "copies"],
+      "explain": [
+        "인쇄를 '계획하다' intend(↔refuse 거부하다).",
+        "인쇄물을 세는 단위 '부' copies(↔originals 원본)."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "Before {{1:proceeding/halting}}, we would like to ask you how much it would {{2:cost/earn}}.",
+      "ko_full": "진행하기에 앞서, 비용이 얼마나 들지 여쭤보고 싶습니다.",
+      "answers": ["proceeding", "cost"],
+      "explain": [
+        "일을 '진행하기' 전에 묻는 것 — proceeding(↔halting 중단하기).",
+        "비용이 '들다' cost(↔earn 벌다)."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "This will greatly {{1:help/hinder}} us in setting our {{2:budget/profit}} and schedule more effectively.",
+      "ko_full": "이는 저희가 예산과 일정을 더 효과적으로 세우는 데 크게 도움이 될 것입니다.",
+      "answers": ["help", "budget"],
+      "explain": [
+        "비용 정보가 '도움이 되다' help(↔hinder 방해하다).",
+        "지출 계획인 '예산' budget(↔profit 이익)."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "Thank you very much for your time and {{1:assistance/hindrance}}.",
+      "ko_full": "귀하의 시간과 도움에 대단히 감사드립니다.",
+      "answers": ["assistance"],
+      "explain": ["감사의 대상은 '도움' assistance(↔hindrance 방해)."]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "I look forward to your {{1:response/silence}}.",
+      "ko_full": "답변을 기다리겠습니다.",
+      "answers": ["response"],
+      "explain": ["회신을 기대하므로 '답변' response(↔silence 무응답)."]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "c", "answer": "currently",   "after": "preparing" },
+        { "pos": 2, "letter": "p", "answer": "promotional", "after": "brochure" },
+        { "pos": 3, "letter": "b", "answer": "brochure",    "after": "" }
+      ],
+      "ko_full": "관계자분께, 저는 Pendington 고등학교의 교사이며, 저희는 현재 새로운 학교 홍보 책자를 준비하고 있습니다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "u", "answer": "update",    "after": "the overall design" },
+        { "pos": 2, "letter": "o", "answer": "overall",   "after": "design" },
+        { "pos": 3, "letter": "c", "answer": "considering", "after": "working with" }
+      ],
+      "ko_full": "저희 책자의 전반적인 디자인을 새롭게 하고자 하므로, 저희는 새로운 인쇄 업체와 협업하는 것을 고려하고 있습니다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "r", "answer": "reviewing", "after": "several options" },
+        { "pos": 2, "letter": "o", "answer": "options",   "after": ", we felt" },
+        { "pos": 3, "letter": "s", "answer": "suit",      "after": "our needs well" }
+      ],
+      "ko_full": "여러 선택지를 검토하던 중, 저희는 귀사의 디자인 방식과 인쇄 형식이 저희의 필요에 잘 맞는 것 같다고 느꼈습니다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "i", "answer": "intend",   "after": "to make" },
+        { "pos": 2, "letter": "b", "answer": "brochure", "after": "and print" },
+        { "pos": 3, "letter": "c", "answer": "copies",   "after": "in full color" }
+      ],
+      "ko_full": "저희는 4쪽짜리 책자를 만들어 전면 컬러로 500부를 인쇄할 계획입니다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "p", "answer": "proceeding", "after": ", we would like" },
+        { "pos": 2, "letter": "a", "answer": "ask",        "after": "you how much" },
+        { "pos": 3, "letter": "c", "answer": "cost",       "after": "" }
+      ],
+      "ko_full": "진행하기에 앞서, 비용이 얼마나 들지 여쭤보고 싶습니다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "g", "answer": "greatly",     "after": "help us" },
+        { "pos": 2, "letter": "b", "answer": "budget",      "after": "and schedule" },
+        { "pos": 3, "letter": "e", "answer": "effectively", "after": "" }
+      ],
+      "ko_full": "이는 저희가 예산과 일정을 더 효과적으로 세우는 데 크게 도움이 될 것입니다."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "hints": [
+        { "pos": 1, "letter": "a", "answer": "assistance", "after": "" }
+      ],
+      "ko_full": "귀하의 시간과 도움에 대단히 감사드립니다."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "hints": [
+        { "pos": 1, "letter": "f", "answer": "forward",  "after": "to your response" },
+        { "pos": 2, "letter": "r", "answer": "response", "after": "" }
+      ],
+      "ko_full": "답변을 기다리겠습니다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 },
+    { "no": 7, "ref_sentence": 7 },
+    { "no": 8, "ref_sentence": 8 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["I", "am", "a", "teacher", "at", "Pendington", "High", "School", "and", "we", "are", "currently", "preparing", "a", "new", "school", "promotional", "brochure"],
+      "answer": "To whom it may concern, I am a teacher at Pendington High School, and we are currently preparing a new school promotional brochure."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["As", "we", "wish", "to", "update", "the", "overall", "design", "of", "our", "brochure", "we", "are", "considering", "working", "with", "a", "new", "printing", "company"],
+      "answer": "As we wish to update the overall design of our brochure, we are considering working with a new printing company."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["While", "reviewing", "several", "options", "we", "felt", "that", "your", "design", "style", "and", "printing", "formats", "seemed", "to", "suit", "our", "needs", "well"],
+      "answer": "While reviewing several options, we felt that your design style and printing formats seemed to suit our needs well."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["We", "intend", "to", "make", "a", "four-paged", "brochure", "and", "print", "500", "copies", "in", "full", "color"],
+      "answer": "We intend to make a four-paged brochure and print 500 copies in full color."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["Before", "proceeding", "we", "would", "like", "to", "ask", "you", "how", "much", "it", "would", "cost"],
+      "answer": "Before proceeding, we would like to ask you how much it would cost."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["This", "will", "greatly", "help", "us", "in", "setting", "our", "budget", "and", "schedule", "more", "effectively"],
+      "answer": "This will greatly help us in setting our budget and schedule more effectively."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "words": ["Thank", "you", "very", "much", "for", "your", "time", "and", "assistance"],
+      "answer": "Thank you very much for your time and assistance."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "words": ["I", "look", "forward", "to", "your", "response"],
+      "answer": "I look forward to your response."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" },
+    { "no": 7, "ref_sentence": 7, "given": "ko" },
+    { "no": 8, "ref_sentence": 8, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 2, "no": 1 },
+    { "kind": "vocab",   "ref": 5, "no": 2 },
+    { "kind": "fill",    "ref": 3, "no": 3 },
+    { "kind": "ko",      "ref": 6, "no": 4 },
+    { "kind": "jumble",  "ref": 4, "no": 5 },
+    { "kind": "sent",    "ref": 1, "no": 6 },
+    { "kind": "grammar", "ref": 5, "no": 7 },
+    { "kind": "vocab",   "ref": 2, "no": 8 }
+  ]
+}

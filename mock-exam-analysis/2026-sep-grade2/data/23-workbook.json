@@ -1,0 +1,395 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "23.json",
+  "_note": "23번 워크북 — 본문 8문장 풀커버.",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "tension",      "pos": "명" },
+      { "word": "measureless",  "pos": "형" },
+      { "word": "prelude",      "pos": "명" },
+      { "word": "ambiguity",    "pos": "명" },
+      { "word": "fluid",        "pos": "형" },
+      { "word": "subsequent",   "pos": "형" },
+      { "word": "unambiguous",  "pos": "형" },
+      { "word": "predictable",  "pos": "형" },
+      { "word": "chord",        "pos": "명" },
+      { "word": "excitement",   "pos": "명" }
+    ],
+    "ko_to_en": [
+      { "meaning": "편안한, 안락한",       "pos": "형", "answer": "comfortable" },
+      { "meaning": "과정, 절차",           "pos": "명", "answer": "process" },
+      { "meaning": "이끌다, 몰아가다",     "pos": "동", "answer": "drive" },
+      { "meaning": "진행, (음악의) 악장",  "pos": "명", "answer": "movement" },
+      { "meaning": "생겨나다, 발생하다",   "pos": "동", "answer": "arise" },
+      { "meaning": "만족(감)",             "pos": "명", "answer": "satisfaction" },
+      { "meaning": "즐거움, 기쁨",         "pos": "명", "answer": "pleasure" },
+      { "meaning": "해소하다, 풀어 주다",  "pos": "동", "answer": "release" },
+      { "meaning": "정해진, 고정된",       "pos": "형", "answer": "set" },
+      { "meaning": "전개, 발전",           "pos": "명", "answer": "development" }
+    ],
+    "expressions": [
+      { "ko": "그 자체로",           "answer": "in and of itself" },
+      { "ko": "특정한, 특히",        "answer": "in particular" },
+      { "ko": "결과적으로, 차례로",  "answer": "in turn" },
+      { "ko": "~도 역시",            "answer": "as well" },
+      { "ko": "~에 의해 야기되다",   "answer": "be caused by" }
+    ],
+    "definitions": [
+      { "def": "a feeling of strain that seeks to be resolved",            "answer": "tension" },
+      { "def": "a short piece of music that comes before a larger work",   "answer": "prelude" },
+      { "def": "the state of having more than one possible meaning",       "answer": "ambiguity" },
+      { "def": "coming after something else in order",                     "answer": "subsequent" },
+      { "def": "able to be known or expected in advance",                  "answer": "predictable" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Music can {{1:bring/brings}} us into a very comfortable rhythm, and it can be {{2:satisfying/satisfied}} in and of itself.",
+      "ko_full": "음악은 우리를 매우 편안한 리듬 속으로 데려갈 수 있으며, 그것은 그 자체로 만족스러울 수 있다.",
+      "answers": ["bring", "satisfying"],
+      "explain": [
+        "조동사 can 뒤에는 동사원형 → bring.",
+        "음악이 '만족감을 주는' 능동 의미 → satisfying."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "Most of the time, however, we want {{1:something more/more something}} {{2:to happen/happening}}.",
+      "ko_full": "그러나 대부분의 경우 우리는 무언가 더 일어나기를 원한다.",
+      "answers": ["something more", "to happen"],
+      "explain": [
+        "-thing 으로 끝나는 대명사는 수식어를 뒤에 둠 → something more.",
+        "want + 목적어 + to부정사 → to happen."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "There needs {{1:to be/being}} a process {{2:that/what}} creates tension and drives the movement towards something in particular.",
+      "ko_full": "긴장을 만들어 내고 특정한 무언가를 향해 그 진행을 이끄는 과정이 있어야 한다.",
+      "answers": ["to be", "that"],
+      "explain": [
+        "need 뒤에는 to부정사 → to be.",
+        "선행사 a process 를 수식하는 주격 관계대명사 → that."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "The excitement that {{1:arises/arise}} in this process {{2:creates/create}} satisfaction and pleasure.",
+      "ko_full": "이 과정에서 생겨나는 흥분이 만족과 즐거움을 만들어 낸다.",
+      "answers": ["arises", "creates"],
+      "explain": [
+        "선행사 The excitement(단수)에 수를 일치 → arises.",
+        "주어 The excitement(단수) → creates."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "This {{1:is seen/sees}} in the measureless prelude as {{2:well/good}}.",
+      "ko_full": "이것은 박자가 없는 전주곡에서도 확인된다.",
+      "answers": ["is seen", "well"],
+      "explain": [
+        "This 가 '보이는' 대상 → 수동태 is seen.",
+        "'~도 역시'는 as well."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "But there the tension might {{1:be caused/cause}} by the {{2:ambiguity/ambiguous}} of the rhythm.",
+      "ko_full": "그러나 그곳에서는 긴장이 리듬의 모호함에 의해 야기될 수도 있다.",
+      "answers": ["be caused", "ambiguity"],
+      "explain": [
+        "긴장이 '야기되는' 대상 → 수동태 be caused.",
+        "정관사 the 뒤 + of 앞이므로 명사 → ambiguity."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "Therefore, the fluid movement in the prelude usually {{1:creates/create}} a tension that can {{2:be released/release}} in the subsequent movement with a set rhythm.",
+      "ko_full": "그러므로 전주곡에서의 유동적인 진행은 대개 정해진 리듬을 가진 뒤이은 악장에서 해소될 수 있는 긴장을 만들어 낸다.",
+      "answers": ["creates", "be released"],
+      "explain": [
+        "주어 the fluid movement(단수) → creates.",
+        "긴장이 '해소되는' 대상 → 수동태 be released."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "This, in turn, creates new and other types of tensions, {{1:where/which}} the rhythm is unambiguous and predictable, but where unexpected chords and modulations {{2:create/creates}} drama and an experience of development in the piece.",
+      "ko_full": "이것은 결과적으로 새롭고 다른 유형의 긴장을 만들어 내는데, 그곳에서는 리듬이 모호하지 않고 예측 가능하지만, 예상치 못한 화음과 전조가 그 곡에서 극적 요소와 전개의 경험을 만들어 낸다.",
+      "answers": ["where", "create"],
+      "explain": [
+        "뒤에 완전한 절이 오므로 관계부사 → where.",
+        "주어 chords and modulations(복수) → create."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Music can bring us into a very {{1:comfortable/painful}} rhythm, and it can be {{2:satisfying/annoying}} in and of itself.",
+      "ko_full": "음악은 우리를 매우 편안한 리듬 속으로 데려갈 수 있으며, 그것은 그 자체로 만족스러울 수 있다.",
+      "answers": ["comfortable", "satisfying"],
+      "explain": [
+        "'편안한' 리듬 — comfortable.",
+        "그 자체로 '만족스러운' — satisfying."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "Most of the time, however, we {{1:want/refuse}} something {{2:more/less}} to happen.",
+      "ko_full": "그러나 대부분의 경우 우리는 무언가 더 일어나기를 원한다.",
+      "answers": ["want", "more"],
+      "explain": [
+        "무언가 더 일어나기를 '원하다' — want.",
+        "'더' 많은 것 — more."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "There needs to be a {{1:process/pause}} that creates {{2:tension/silence}} and drives the movement towards something in particular.",
+      "ko_full": "긴장을 만들어 내고 특정한 무언가를 향해 그 진행을 이끄는 과정이 있어야 한다.",
+      "answers": ["process", "tension"],
+      "explain": [
+        "진행을 이끄는 '과정' — process.",
+        "만들어 내야 할 '긴장' — tension."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "The {{1:excitement/boredom}} that arises in this process creates satisfaction and {{2:pleasure/pain}}.",
+      "ko_full": "이 과정에서 생겨나는 흥분이 만족과 즐거움을 만들어 낸다.",
+      "answers": ["excitement", "pleasure"],
+      "explain": [
+        "과정에서 생겨나는 '흥분' — excitement.",
+        "만족과 '즐거움' — pleasure."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "This is seen in the {{1:measureless/measured}} {{2:prelude/finale}} as well.",
+      "ko_full": "이것은 박자가 없는 전주곡에서도 확인된다.",
+      "answers": ["measureless", "prelude"],
+      "explain": [
+        "박자가 '없는' — measureless.",
+        "곡 앞에 놓이는 '전주곡' — prelude."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "But there the {{1:tension/harmony}} might be caused by the {{2:ambiguity/clarity}} of the rhythm.",
+      "ko_full": "그러나 그곳에서는 긴장이 리듬의 모호함에 의해 야기될 수도 있다.",
+      "answers": ["tension", "ambiguity"],
+      "explain": [
+        "야기되는 것은 '긴장' — tension.",
+        "리듬의 '모호함' — ambiguity."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "Therefore, the {{1:fluid/frozen}} movement in the prelude usually creates a tension that can be {{2:released/tightened}} in the subsequent movement with a set rhythm.",
+      "ko_full": "그러므로 전주곡에서의 유동적인 진행은 대개 정해진 리듬을 가진 뒤이은 악장에서 해소될 수 있는 긴장을 만들어 낸다.",
+      "answers": ["fluid", "released"],
+      "explain": [
+        "전주곡의 '유동적인' 진행 — fluid.",
+        "다음 악장에서 '해소되는' — released."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "This, in turn, creates new types of tensions, where the rhythm is {{1:unambiguous/confusing}} and predictable, but where {{2:unexpected/routine}} chords and modulations create drama in the piece.",
+      "ko_full": "이것은 결과적으로 새롭고 다른 유형의 긴장을 만들어 내는데, 그곳에서는 리듬이 모호하지 않고 예측 가능하지만, 예상치 못한 화음과 전조가 그 곡에서 극적 요소를 만들어 낸다.",
+      "answers": ["unambiguous", "unexpected"],
+      "explain": [
+        "리듬이 '모호하지 않은' — unambiguous.",
+        "'예상치 못한' 화음 — unexpected."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "c", "answer": "comfortable", "after": "rhythm" },
+        { "pos": 2, "letter": "r", "answer": "rhythm",      "after": ", and it can be" },
+        { "pos": 3, "letter": "s", "answer": "satisfying",  "after": "in and of itself" }
+      ],
+      "ko_full": "음악은 우리를 매우 편안한 리듬 속으로 데려갈 수 있으며, 그것은 그 자체로 만족스러울 수 있다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "h", "answer": "however", "after": ", we want" },
+        { "pos": 2, "letter": "m", "answer": "more",    "after": "to happen" },
+        { "pos": 3, "letter": "h", "answer": "happen",  "after": "" }
+      ],
+      "ko_full": "그러나 대부분의 경우 우리는 무언가 더 일어나기를 원한다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "p", "answer": "process",  "after": "that creates tension" },
+        { "pos": 2, "letter": "t", "answer": "tension",  "after": "and drives" },
+        { "pos": 3, "letter": "m", "answer": "movement", "after": "towards something" }
+      ],
+      "ko_full": "긴장을 만들어 내고 특정한 무언가를 향해 그 진행을 이끄는 과정이 있어야 한다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "e", "answer": "excitement",   "after": "that arises" },
+        { "pos": 2, "letter": "s", "answer": "satisfaction", "after": "and pleasure" },
+        { "pos": 3, "letter": "p", "answer": "pleasure",     "after": "" }
+      ],
+      "ko_full": "이 과정에서 생겨나는 흥분이 만족과 즐거움을 만들어 낸다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "m", "answer": "measureless", "after": "prelude" },
+        { "pos": 2, "letter": "p", "answer": "prelude",     "after": "as well" }
+      ],
+      "ko_full": "이것은 박자가 없는 전주곡에서도 확인된다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "t", "answer": "tension",   "after": "might be caused" },
+        { "pos": 2, "letter": "a", "answer": "ambiguity", "after": "of the rhythm" },
+        { "pos": 3, "letter": "r", "answer": "rhythm",    "after": "" }
+      ],
+      "ko_full": "그러나 그곳에서는 긴장이 리듬의 모호함에 의해 야기될 수도 있다."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "hints": [
+        { "pos": 1, "letter": "f", "answer": "fluid",      "after": "movement in the prelude" },
+        { "pos": 2, "letter": "r", "answer": "released",   "after": "in the subsequent movement" },
+        { "pos": 3, "letter": "s", "answer": "subsequent", "after": "movement with a set rhythm" }
+      ],
+      "ko_full": "그러므로 전주곡에서의 유동적인 진행은 대개 정해진 리듬을 가진 뒤이은 악장에서 해소될 수 있는 긴장을 만들어 낸다."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "hints": [
+        { "pos": 1, "letter": "u", "answer": "unambiguous", "after": "and predictable" },
+        { "pos": 2, "letter": "p", "answer": "predictable", "after": ", but where" },
+        { "pos": 3, "letter": "c", "answer": "chords",      "after": "and modulations" },
+        { "pos": 4, "letter": "d", "answer": "development", "after": "in the piece" }
+      ],
+      "ko_full": "이것은 결과적으로 새롭고 다른 유형의 긴장을 만들어 내는데, 그곳에서는 리듬이 모호하지 않고 예측 가능하지만, 예상치 못한 화음과 전조가 그 곡에서 극적 요소와 전개의 경험을 만들어 낸다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 },
+    { "no": 7, "ref_sentence": 7 },
+    { "no": 8, "ref_sentence": 8 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["Music", "can", "bring", "us", "into", "a", "very", "comfortable", "rhythm", "and", "it", "can", "be", "satisfying", "in", "and", "of", "itself"],
+      "answer": "Music can bring us into a very comfortable rhythm, and it can be satisfying in and of itself."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["Most", "of", "the", "time", "however", "we", "want", "something", "more", "to", "happen"],
+      "answer": "Most of the time, however, we want something more to happen."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["There", "needs", "to", "be", "a", "process", "that", "creates", "tension", "and", "drives", "the", "movement", "towards", "something", "in", "particular"],
+      "answer": "There needs to be a process that creates tension and drives the movement towards something in particular."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["The", "excitement", "that", "arises", "in", "this", "process", "creates", "satisfaction", "and", "pleasure"],
+      "answer": "The excitement that arises in this process creates satisfaction and pleasure."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["This", "is", "seen", "in", "the", "measureless", "prelude", "as", "well"],
+      "answer": "This is seen in the measureless prelude as well."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["But", "there", "the", "tension", "might", "be", "caused", "by", "the", "ambiguity", "of", "the", "rhythm"],
+      "answer": "But there the tension might be caused by the ambiguity of the rhythm."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "words": ["Therefore", "the", "fluid", "movement", "in", "the", "prelude", "usually", "creates", "a", "tension", "that", "can", "be", "released", "in", "the", "subsequent", "movement", "with", "a", "set", "rhythm"],
+      "answer": "Therefore, the fluid movement in the prelude usually creates a tension that can be released in the subsequent movement with a set rhythm."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "words": ["This", "in", "turn", "creates", "new", "and", "other", "types", "of", "tensions", "where", "the", "rhythm", "is", "unambiguous", "and", "predictable", "but", "where", "unexpected", "chords", "and", "modulations", "create", "drama", "and", "an", "experience", "of", "development", "in", "the", "piece"],
+      "answer": "This, in turn, creates new and other types of tensions, where the rhythm is unambiguous and predictable, but where unexpected chords and modulations create drama and an experience of development in the piece."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" },
+    { "no": 7, "ref_sentence": 7, "given": "ko" },
+    { "no": 8, "ref_sentence": 8, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 8, "no": 1 },
+    { "kind": "vocab",   "ref": 3, "no": 2 },
+    { "kind": "fill",    "ref": 7, "no": 3 },
+    { "kind": "ko",      "ref": 4, "no": 4 },
+    { "kind": "jumble",  "ref": 2, "no": 5 },
+    { "kind": "sent",    "ref": 6, "no": 6 },
+    { "kind": "grammar", "ref": 5, "no": 7 },
+    { "kind": "vocab",   "ref": 1, "no": 8 }
+  ]
+}

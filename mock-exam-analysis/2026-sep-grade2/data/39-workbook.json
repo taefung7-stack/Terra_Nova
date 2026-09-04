@@ -1,0 +1,435 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "39.json",
+  "_note": "39번 워크북 — 본문 9문장 풀커버. 문두 대문자어(However, When, Therefore, Positive, Precautions, Exclusion, Individuals, The)는 정답 토큰으로 쓰지 않음.",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "exclusion",    "pos": "명" },
+      { "word": "precaution",   "pos": "명" },
+      { "word": "threaten",     "pos": "동" },
+      { "word": "belonging",    "pos": "명" },
+      { "word": "self-respect", "pos": "명" },
+      { "word": "likelihood",   "pos": "명" },
+      { "word": "contribution", "pos": "명" },
+      { "word": "employee",     "pos": "명" },
+      { "word": "performance",  "pos": "명" },
+      { "word": "strengthen",   "pos": "동" }
+    ],
+    "ko_to_en": [
+      { "meaning": "간과하다, 무시하다", "pos": "동", "answer": "ignore" },
+      { "meaning": "조직",               "pos": "명", "answer": "organization" },
+      { "meaning": "~에 관하여",         "pos": "전", "answer": "regarding" },
+      { "meaning": "기본적 욕구",        "pos": "명구", "answer": "basic needs" },
+      { "meaning": "감소하다",           "pos": "동", "answer": "decrease" },
+      { "meaning": "의사소통",           "pos": "명", "answer": "communication" },
+      { "meaning": "회피하다, 막다",     "pos": "동", "answer": "avoid" },
+      { "meaning": "영향을 미치다",      "pos": "동", "answer": "affect" },
+      { "meaning": "부정적인",           "pos": "형", "answer": "negative" },
+      { "meaning": "상태",               "pos": "명", "answer": "state" }
+    ],
+    "expressions": [
+      { "ko": "~에 반응하다",        "answer": "react to" },
+      { "ko": "~에 적응하다",        "answer": "adapt to" },
+      { "ko": "~에 직면하다",        "answer": "be faced with" },
+      { "ko": "~에서 멀어지다",      "answer": "grow away from" },
+      { "ko": "예방 조치를 취하다",  "answer": "take precautions" }
+    ],
+    "definitions": [
+      { "def": "the act of keeping someone out of a group or activity",       "answer": "exclusion" },
+      { "def": "something done in advance to prevent harm",                   "answer": "precaution" },
+      { "def": "the feeling of being accepted as part of a group",            "answer": "belonging" },
+      { "def": "the chance that something will happen",                       "answer": "likelihood" },
+      { "def": "how well a person does a job or task",                        "answer": "performance" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Exclusion is a state {{1:that/what}} {{2:is ignored/is ignoring}} by the organization psychologists.",
+      "ko_full": "배제는 조직 심리학자들에 의해 간과되는 상태이다.",
+      "answers": ["that", "is ignored"],
+      "explain": [
+        "선행사 a state가 있으므로 관계대명사 that(what은 선행사를 취하지 않음).",
+        "상태가 '간과되는' 대상 — 수동태 is ignored."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "Therefore, {{1:it/that}} is possible that precautions regarding organizational exclusion {{2:are not taken/do not take}}.",
+      "ko_full": "그러므로 조직 내 배제에 관한 예방책이 취해지지 않을 가능성이 있다.",
+      "answers": ["it", "are not taken"],
+      "explain": [
+        "뒤의 that절이 진주어이므로 가주어 — it.",
+        "예방책은 '취해지는' 대상 — 수동태 are not taken."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "Individuals react to organizational exclusion by {{1:trying/try}} to strengthen their basic needs, {{2:which/what}} are threatened.",
+      "ko_full": "개인은 위협받는 자신의 기본적 욕구를 강화하려고 노력함으로써 조직 내 배제에 반응한다.",
+      "answers": ["trying", "which"],
+      "explain": [
+        "전치사 by 뒤에는 동명사 — trying.",
+        "their basic needs를 부연하는 계속적 용법의 관계대명사 — which."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "Positive social behaviors {{1:develop/develops}} {{2:belonging/belong}} and self-respect.",
+      "ko_full": "긍정적인 사회적 행동은 소속감과 자존감을 발달시킨다.",
+      "answers": ["develop", "belonging"],
+      "explain": [
+        "주어 behaviors(복수) → develop.",
+        "self-respect와 병렬을 이루는 명사 — belonging(소속감)."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "The likelihood {{1:that/what}} individuals who try to adapt to positive social behaviors will experience organizational exclusion {{2:decreases/decrease}}.",
+      "ko_full": "긍정적인 사회적 행동에 적응하려고 노력하는 개인이 조직 내 배제를 경험할 가능성은 감소한다.",
+      "answers": ["that", "decreases"],
+      "explain": [
+        "The likelihood의 내용을 설명하는 동격의 that.",
+        "주어 핵 = The likelihood(단수) → decreases. (individuals에 일치시키지 않도록 주의.)"
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "However, individuals may {{1:be faced with/face with}} more exclusion when they {{2:cannot adapt/cannot adapting}} to a group.",
+      "ko_full": "그러나 개인은 집단에 적응할 수 없을 때 더 많은 배제에 직면할 수도 있다.",
+      "answers": ["be faced with", "cannot adapt"],
+      "explain": [
+        "'~에 직면하다'는 be faced with 또는 face(전치사 없이) — 여기서는 be faced with.",
+        "조동사 cannot 뒤에는 동사원형 — adapt."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "When {{1:excluded/excluding}} individuals grow away from communication and social activities, their contribution to the organization they are in {{2:may decrease/may decreases}}.",
+      "ko_full": "배제된 개인이 의사소통과 사회적 활동에서 멀어질 때, 자신이 속한 조직에 대한 그들의 기여는 감소할 수 있다.",
+      "answers": ["excluded", "may decrease"],
+      "explain": [
+        "개인이 '배제된' 수동 관계 — 과거분사 excluded.",
+        "조동사 may 뒤에는 동사원형 — decrease."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "When this situation {{1:is not avoided/does not avoid}}, exclusion increases {{2:even/very}} more and strongly affects the performance of the employee in a negative way.",
+      "ko_full": "이 상황이 회피되지 않을 때, 배제는 더욱더 증가하고 그 직원의 성과에 부정적인 방식으로 강하게 영향을 미친다.",
+      "answers": ["is not avoided", "even"],
+      "explain": [
+        "상황은 '회피되는' 대상 — 수동태 is not avoided.",
+        "비교급 more를 강조하는 부사는 even — very는 불가."
+      ]
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "en_template": "Precautions need {{1:to be taken/to take}} regarding organizational exclusion, {{2:which/what}} is very important for business.",
+      "ko_full": "조직 내 배제에 관한 예방책이 취해질 필요가 있으며, 이는 사업에 매우 중요하다.",
+      "answers": ["to be taken", "which"],
+      "explain": [
+        "예방책은 '취해지는' 대상 — need to be taken(수동 부정사).",
+        "앞 내용을 받아 부연하는 계속적 용법의 관계대명사 — which."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Exclusion is a {{1:state/reward}} that is {{2:ignored/celebrated}} by the organization psychologists.",
+      "ko_full": "배제는 조직 심리학자들에 의해 간과되는 상태이다.",
+      "answers": ["state", "ignored"],
+      "explain": [
+        "배제는 하나의 '상태' — state.",
+        "심리학자들에게 '간과되는' — ignored."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "Therefore, it is possible that {{1:precautions/rewards}} regarding organizational exclusion are {{2:not taken/always taken}}.",
+      "ko_full": "그러므로 조직 내 배제에 관한 예방책이 취해지지 않을 가능성이 있다.",
+      "answers": ["precautions", "not taken"],
+      "explain": [
+        "배제에 관한 '예방책' — precautions.",
+        "간과되므로 예방책이 '취해지지 않는다' — not taken."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "Individuals react to organizational exclusion by trying to {{1:strengthen/abandon}} their basic needs, which are {{2:threatened/satisfied}}.",
+      "ko_full": "개인은 위협받는 자신의 기본적 욕구를 강화하려고 노력함으로써 조직 내 배제에 반응한다.",
+      "answers": ["strengthen", "threatened"],
+      "explain": [
+        "욕구를 '강화하려' 노력 — strengthen.",
+        "그 욕구는 '위협받고' 있다 — threatened."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "Positive social behaviors develop {{1:belonging/isolation}} and {{2:self-respect/self-doubt}}.",
+      "ko_full": "긍정적인 사회적 행동은 소속감과 자존감을 발달시킨다.",
+      "answers": ["belonging", "self-respect"],
+      "explain": [
+        "'소속감'을 키운다 — belonging.",
+        "'자존감'을 키운다 — self-respect."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "The {{1:likelihood/certainty}} that individuals who try to adapt to positive social behaviors will experience organizational exclusion {{2:decreases/soars}}.",
+      "ko_full": "긍정적인 사회적 행동에 적응하려고 노력하는 개인이 조직 내 배제를 경험할 가능성은 감소한다.",
+      "answers": ["likelihood", "decreases"],
+      "explain": [
+        "'가능성' — likelihood.",
+        "적응하려 하면 배제 가능성은 '감소한다' — decreases."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "However, individuals may be faced with {{1:more/less}} exclusion when they cannot {{2:adapt/object}} to a group.",
+      "ko_full": "그러나 개인은 집단에 적응할 수 없을 때 더 많은 배제에 직면할 수도 있다.",
+      "answers": ["more", "adapt"],
+      "explain": [
+        "적응 실패 시 배제는 '더 많아진다' — more.",
+        "집단에 '적응하다' — adapt to."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "When excluded individuals grow {{1:away/closer}} from communication and social activities, their {{2:contribution/reputation}} to the organization may decrease.",
+      "ko_full": "배제된 개인이 의사소통과 사회적 활동에서 멀어질 때, 조직에 대한 그들의 기여는 감소할 수 있다.",
+      "answers": ["away", "contribution"],
+      "explain": [
+        "grow away from ~: ~에서 멀어지다.",
+        "조직에 대한 '기여' — contribution."
+      ]
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "en_template": "When this situation is not {{1:avoided/created}}, exclusion increases even more and strongly affects the performance of the employee in a {{2:negative/positive}} way.",
+      "ko_full": "이 상황이 회피되지 않을 때, 배제는 더욱더 증가하고 그 직원의 성과에 부정적인 방식으로 강하게 영향을 미친다.",
+      "answers": ["avoided", "negative"],
+      "explain": [
+        "상황이 '회피되지' 않을 때 — avoided.",
+        "성과에 '부정적인' 영향 — negative."
+      ]
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "en_template": "Precautions need to be taken regarding organizational {{1:exclusion/promotion}}, which is very {{2:important/trivial}} for business.",
+      "ko_full": "조직 내 배제에 관한 예방책이 취해질 필요가 있으며, 이는 사업에 매우 중요하다.",
+      "answers": ["exclusion", "important"],
+      "explain": [
+        "예방책의 대상은 '배제' — exclusion.",
+        "사업에 매우 '중요한' — important."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "s", "answer": "state",          "after": "that is ignored" },
+        { "pos": 2, "letter": "i", "answer": "ignored",        "after": "by the organization" },
+        { "pos": 3, "letter": "p", "answer": "psychologists",  "after": "" }
+      ],
+      "ko_full": "배제는 조직 심리학자들에 의해 간과되는 상태이다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "p", "answer": "possible",   "after": "that precautions" },
+        { "pos": 2, "letter": "p", "answer": "precautions","after": "regarding" },
+        { "pos": 3, "letter": "t", "answer": "taken",      "after": "" }
+      ],
+      "ko_full": "그러므로 조직 내 배제에 관한 예방책이 취해지지 않을 가능성이 있다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "r", "answer": "react",      "after": "to organizational exclusion" },
+        { "pos": 2, "letter": "s", "answer": "strengthen", "after": "their basic needs" },
+        { "pos": 3, "letter": "t", "answer": "threatened", "after": "" }
+      ],
+      "ko_full": "개인은 위협받는 자신의 기본적 욕구를 강화하려고 노력함으로써 조직 내 배제에 반응한다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "b", "answer": "behaviors",    "after": "develop" },
+        { "pos": 2, "letter": "b", "answer": "belonging",    "after": "and" },
+        { "pos": 3, "letter": "s", "answer": "self-respect", "after": "" }
+      ],
+      "ko_full": "긍정적인 사회적 행동은 소속감과 자존감을 발달시킨다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "l", "answer": "likelihood", "after": "that individuals" },
+        { "pos": 2, "letter": "a", "answer": "adapt",      "after": "to positive social behaviors" },
+        { "pos": 3, "letter": "d", "answer": "decreases",  "after": "" }
+      ],
+      "ko_full": "긍정적인 사회적 행동에 적응하려고 노력하는 개인이 조직 내 배제를 경험할 가능성은 감소한다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "f", "answer": "faced",     "after": "with more exclusion" },
+        { "pos": 2, "letter": "e", "answer": "exclusion", "after": "when they cannot" },
+        { "pos": 3, "letter": "a", "answer": "adapt",     "after": "to a group" }
+      ],
+      "ko_full": "그러나 개인은 집단에 적응할 수 없을 때 더 많은 배제에 직면할 수도 있다."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "hints": [
+        { "pos": 1, "letter": "e", "answer": "excluded",     "after": "individuals grow away" },
+        { "pos": 2, "letter": "c", "answer": "communication","after": "and social activities" },
+        { "pos": 3, "letter": "c", "answer": "contribution", "after": "to the organization" }
+      ],
+      "ko_full": "배제된 개인이 의사소통과 사회적 활동에서 멀어질 때, 자신이 속한 조직에 대한 그들의 기여는 감소할 수 있다."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "hints": [
+        { "pos": 1, "letter": "a", "answer": "avoided",     "after": ", exclusion increases" },
+        { "pos": 2, "letter": "p", "answer": "performance", "after": "of the employee" },
+        { "pos": 3, "letter": "n", "answer": "negative",    "after": "way" }
+      ],
+      "ko_full": "이 상황이 회피되지 않을 때, 배제는 더욱더 증가하고 그 직원의 성과에 부정적인 방식으로 강하게 영향을 미친다."
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "hints": [
+        { "pos": 1, "letter": "t", "answer": "taken",     "after": "regarding organizational" },
+        { "pos": 2, "letter": "e", "answer": "exclusion", "after": ", which is" },
+        { "pos": 3, "letter": "b", "answer": "business",  "after": "" }
+      ],
+      "ko_full": "조직 내 배제에 관한 예방책이 취해질 필요가 있으며, 이는 사업에 매우 중요하다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 },
+    { "no": 7, "ref_sentence": 7 },
+    { "no": 8, "ref_sentence": 8 },
+    { "no": 9, "ref_sentence": 9 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["Exclusion", "is", "a", "state", "that", "is", "ignored", "by", "the", "organization", "psychologists"],
+      "answer": "Exclusion is a state that is ignored by the organization psychologists."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["it", "is", "possible", "that", "precautions", "regarding", "organizational", "exclusion", "are", "not", "taken"],
+      "answer": "It is possible that precautions regarding organizational exclusion are not taken."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["Individuals", "react", "to", "organizational", "exclusion", "by", "trying", "to", "strengthen", "their", "basic", "needs"],
+      "answer": "Individuals react to organizational exclusion by trying to strengthen their basic needs."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["Positive", "social", "behaviors", "develop", "belonging", "and", "self-respect"],
+      "answer": "Positive social behaviors develop belonging and self-respect."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["The", "likelihood", "that", "individuals", "will", "experience", "organizational", "exclusion", "decreases"],
+      "answer": "The likelihood that individuals will experience organizational exclusion decreases."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["individuals", "may", "be", "faced", "with", "more", "exclusion", "when", "they", "cannot", "adapt", "to", "a", "group"],
+      "answer": "Individuals may be faced with more exclusion when they cannot adapt to a group."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "words": ["their", "contribution", "to", "the", "organization", "they", "are", "in", "may", "decrease"],
+      "answer": "Their contribution to the organization they are in may decrease."
+    },
+    {
+      "no": 8,
+      "ref_sentence": 8,
+      "words": ["exclusion", "increases", "even", "more", "and", "strongly", "affects", "the", "performance", "of", "the", "employee"],
+      "answer": "Exclusion increases even more and strongly affects the performance of the employee."
+    },
+    {
+      "no": 9,
+      "ref_sentence": 9,
+      "words": ["Precautions", "need", "to", "be", "taken", "regarding", "organizational", "exclusion"],
+      "answer": "Precautions need to be taken regarding organizational exclusion."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" },
+    { "no": 7, "ref_sentence": 7, "given": "ko" },
+    { "no": 8, "ref_sentence": 8, "given": "ko" },
+    { "no": 9, "ref_sentence": 9, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 5, "no": 1 },
+    { "kind": "vocab",   "ref": 6, "no": 2 },
+    { "kind": "fill",    "ref": 7, "no": 3 },
+    { "kind": "ko",      "ref": 3, "no": 4 },
+    { "kind": "jumble",  "ref": 8, "no": 5 },
+    { "kind": "sent",    "ref": 9, "no": 6 },
+    { "kind": "grammar", "ref": 2, "no": 7 },
+    { "kind": "vocab",   "ref": 4, "no": 8 }
+  ]
+}

@@ -1,0 +1,354 @@
+{
+  "$schema_version": "1.0",
+  "$ref_source": "38.json",
+  "_note": "38번 워크북 — 본문 7문장 풀커버. 문두 대문자어(However, So, But, Put, Conversely, Usually)는 정답 토큰으로 쓰지 않음.",
+
+  "voca_check": {
+    "en_to_ko": [
+      { "word": "density",     "pos": "명" },
+      { "word": "crowding",    "pos": "명" },
+      { "word": "phenomenon",  "pos": "명" },
+      { "word": "anxiety",     "pos": "명" },
+      { "word": "neutral",     "pos": "형" },
+      { "word": "invariably",  "pos": "부" },
+      { "word": "intensify",   "pos": "동" },
+      { "word": "dread",       "pos": "동" },
+      { "word": "accentuate",  "pos": "동" },
+      { "word": "defuse",      "pos": "동" }
+    ],
+    "ko_to_en": [
+      { "meaning": "측정, 측정치",     "pos": "명", "answer": "measurement" },
+      { "meaning": "심리적인",         "pos": "형", "answer": "psychological" },
+      { "meaning": "감각 과부하",      "pos": "명구", "answer": "sensory overload" },
+      { "meaning": "높이다, 향상시키다","pos": "동", "answer": "enhance" },
+      { "meaning": "공연, 연주",       "pos": "명", "answer": "performance" },
+      { "meaning": "지배적인",         "pos": "형", "answer": "dominant" },
+      { "meaning": "공격적인",         "pos": "형", "answer": "aggressive" },
+      { "meaning": "반대로",           "pos": "부", "answer": "conversely" },
+      { "meaning": "보행자 구역",      "pos": "명구", "answer": "pedestrian area" },
+      { "meaning": "긴장",             "pos": "명", "answer": "tension" }
+    ],
+    "expressions": [
+      { "ko": "~을 구분하다",      "answer": "make a distinction" },
+      { "ko": "~을 고대하다",      "answer": "look forward to" },
+      { "ko": "A를 B로 여기다",    "answer": "see A as B" },
+      { "ko": "C가 아니라 B",      "answer": "rather than" },
+      { "ko": "~하는 데 도움이 되다","answer": "help to" }
+    ],
+    "definitions": [
+      { "def": "the number of people or things in a particular area",           "answer": "density" },
+      { "def": "a feeling of worry or nervousness about what may happen",       "answer": "anxiety" },
+      { "def": "not supporting either side in an argument",                     "answer": "neutral" },
+      { "def": "to make something more noticeable",                             "answer": "accentuate" },
+      { "def": "to make a difficult or dangerous situation calmer",             "answer": "defuse" }
+    ]
+  },
+
+  "grammar_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Environmental psychologists make a distinction {{1:between/among}} the physical measurement of density and crowding, the psychological feeling of {{2:not having/having not}} enough space.",
+      "ko_full": "환경 심리학자들은 밀도의 물리적 측정치와, 공간이 충분하지 않다는 심리적 느낌인 밀집감을 구분한다.",
+      "answers": ["between", "not having"],
+      "explain": [
+        "두 대상을 구분하므로 between A and B — between.",
+        "동명사의 부정은 not을 동명사 앞에 둔다 — not having."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "Usually, high density is needed for the phenomenon of crowding, {{1:which/what}} makes people {{2:experience/to experience}} sensory overload, a lack of control, and rising stress and anxiety.",
+      "ko_full": "보통 밀집감이라는 현상이 나타나려면 높은 밀도가 필요한데, 이는 사람들이 감각 과부하, 통제력 상실, 커지는 스트레스와 불안을 경험하게 만든다.",
+      "answers": ["which", "experience"],
+      "explain": [
+        "앞 절 전체를 받는 계속적 용법의 관계대명사 — which(what은 불가).",
+        "사역동사 make + 목적어 + 원형부정사 — experience."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "However, some psychologists see crowding {{1:as/for}} neutral rather than invariably negative, and believe that people's moods and behaviors {{2:intensify/intensifies}} as density increases.",
+      "ko_full": "그러나 일부 심리학자들은 밀집감을 언제나 부정적인 것이 아니라 중립적인 것으로 보며, 밀도가 높아짐에 따라 사람들의 기분과 행동이 증폭된다고 믿는다.",
+      "answers": ["as", "intensify"],
+      "explain": [
+        "see A as B(A를 B로 여기다) — as.",
+        "주어 moods and behaviors(복수) → intensify."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "So if an individual {{1:is looking/is looked}} forward to a concert, say, the feeling of crowding {{2:enhances/enhance}} their enjoyment of the performance.",
+      "ko_full": "그래서 예컨대 어떤 사람이 콘서트를 고대하고 있다면, 밀집감은 그 공연에 대한 그의 즐거움을 더 높여 준다.",
+      "answers": ["is looking", "enhances"],
+      "explain": [
+        "look forward to는 능동으로 쓰는 표현 — is looking forward to.",
+        "주어 핵 = the feeling(단수) → enhances."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "But if they are {{1:dreading/dreaded}} an event, crowding will make the person's experience of it {{2:even/very}} worse.",
+      "ko_full": "그러나 그들이 어떤 행사를 두려워하고 있다면, 밀집감은 그것에 대한 그 사람의 경험을 더욱더 나쁘게 만들 것이다.",
+      "answers": ["dreading", "even"],
+      "explain": [
+        "그들이 '두려워하는' 능동 진행 — are dreading.",
+        "비교급 worse를 강조하는 부사는 even — very는 불가."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "Put into a community setting, crowding may accentuate the {{1:dominant/dominance}} behavior ― an aggressive group may {{2:turn/turn to}} violent as density rises.",
+      "ko_full": "공동체 환경에 적용하면, 밀집감은 지배적인 행동을 두드러지게 할 수 있다 — 공격적인 집단은 밀도가 높아짐에 따라 폭력적으로 변할 수 있다.",
+      "answers": ["dominant", "turn"],
+      "explain": [
+        "명사 behavior를 수식하는 형용사 — dominant.",
+        "turn + 형용사(=~하게 변하다) — turn violent."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "Conversely, {{1:creating/create}} positive social spaces such as parks and pedestrian areas in high-density urban environments may {{2:help/helps}} to lift the general mood and defuse tension.",
+      "ko_full": "반대로, 고밀도 도시 환경에 공원이나 보행자 구역 같은 긍정적인 사회적 공간을 만드는 것은 전반적인 분위기를 끌어올리고 긴장을 완화하는 데 도움이 될 수 있다.",
+      "answers": ["creating", "help"],
+      "explain": [
+        "문장의 주어 자리이므로 동명사 — creating.",
+        "조동사 may 뒤에는 동사원형 — help."
+      ]
+    }
+  ],
+
+  "vocab_choice": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "en_template": "Environmental psychologists make a distinction between the {{1:physical/emotional}} measurement of density and crowding, the {{2:psychological/financial}} feeling of not having enough space.",
+      "ko_full": "환경 심리학자들은 밀도의 물리적 측정치와, 공간이 충분하지 않다는 심리적 느낌인 밀집감을 구분한다.",
+      "answers": ["physical", "psychological"],
+      "explain": [
+        "밀도는 '물리적' 측정치 — physical.",
+        "밀집감은 '심리적' 느낌 — psychological."
+      ]
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "en_template": "Usually, high density is needed for the phenomenon of crowding, which makes people experience sensory {{1:overload/deprivation}} and rising stress and {{2:anxiety/relief}}.",
+      "ko_full": "보통 밀집감이라는 현상이 나타나려면 높은 밀도가 필요한데, 이는 사람들이 감각 과부하와 커지는 스트레스·불안을 경험하게 만든다.",
+      "answers": ["overload", "anxiety"],
+      "explain": [
+        "감각이 넘치는 '과부하' — overload.",
+        "스트레스와 함께 커지는 것은 '불안' — anxiety."
+      ]
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "en_template": "However, some psychologists see crowding as {{1:neutral/harmful}} rather than invariably negative, and believe that people's moods and behaviors {{2:intensify/fade}} as density increases.",
+      "ko_full": "그러나 일부 심리학자들은 밀집감을 언제나 부정적인 것이 아니라 중립적인 것으로 보며, 밀도가 높아짐에 따라 기분과 행동이 증폭된다고 믿는다.",
+      "answers": ["neutral", "intensify"],
+      "explain": [
+        "부정적이 아니라 '중립적' — neutral.",
+        "밀도가 오르면 감정이 '증폭된다' — intensify."
+      ]
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "en_template": "So if an individual is looking forward to a concert, the feeling of crowding {{1:enhances/spoils}} their {{2:enjoyment/boredom}} of the performance.",
+      "ko_full": "그래서 어떤 사람이 콘서트를 고대하고 있다면, 밀집감은 그 공연에 대한 즐거움을 더 높여 준다.",
+      "answers": ["enhances", "enjoyment"],
+      "explain": [
+        "즐거움을 '높인다' — enhances.",
+        "공연에 대한 '즐거움' — enjoyment."
+      ]
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "en_template": "But if they are {{1:dreading/awaiting}} an event, crowding will make the person's experience of it even {{2:worse/better}}.",
+      "ko_full": "그러나 그들이 어떤 행사를 두려워하고 있다면, 밀집감은 그 경험을 더욱더 나쁘게 만들 것이다.",
+      "answers": ["dreading", "worse"],
+      "explain": [
+        "행사를 '두려워하는' — dreading.",
+        "경험이 '더 나빠진다' — worse."
+      ]
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "en_template": "Put into a community setting, crowding may {{1:accentuate/suppress}} the dominant behavior ― an {{2:aggressive/peaceful}} group may turn violent as density rises.",
+      "ko_full": "공동체 환경에 적용하면, 밀집감은 지배적인 행동을 두드러지게 할 수 있다 — 공격적인 집단은 밀도가 높아짐에 따라 폭력적으로 변할 수 있다.",
+      "answers": ["accentuate", "aggressive"],
+      "explain": [
+        "지배적 행동을 '두드러지게 한다' — accentuate.",
+        "폭력으로 변하는 것은 '공격적인' 집단 — aggressive."
+      ]
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "en_template": "Conversely, creating {{1:positive/hostile}} social spaces such as parks and pedestrian areas may help to lift the general mood and {{2:defuse/heighten}} tension.",
+      "ko_full": "반대로, 공원이나 보행자 구역 같은 긍정적인 사회적 공간을 만드는 것은 전반적인 분위기를 끌어올리고 긴장을 완화하는 데 도움이 될 수 있다.",
+      "answers": ["positive", "defuse"],
+      "explain": [
+        "'긍정적인' 사회적 공간 — positive.",
+        "긴장을 '완화하다' — defuse."
+      ]
+    }
+  ],
+
+  "fill_first_letter": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "hints": [
+        { "pos": 1, "letter": "d", "answer": "distinction",   "after": "between the physical" },
+        { "pos": 2, "letter": "d", "answer": "density",       "after": "(how many people" },
+        { "pos": 3, "letter": "p", "answer": "psychological", "after": "feeling of" }
+      ],
+      "ko_full": "환경 심리학자들은 밀도의 물리적 측정치(특정 공간 안에 몇 명이 있는가)와 밀집감(공간이 충분하지 않다는 심리적 느낌)을 구분한다."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "hints": [
+        { "pos": 1, "letter": "p", "answer": "phenomenon", "after": "of crowding" },
+        { "pos": 2, "letter": "o", "answer": "overload",   "after": ", a lack of control" },
+        { "pos": 3, "letter": "a", "answer": "anxiety",    "after": "" }
+      ],
+      "ko_full": "보통 밀집감이라는 현상이 나타나려면 높은 밀도가 필요한데, 이는 사람들이 감각 과부하, 통제력 상실, 그리고 커지는 스트레스와 불안을 경험하게 만든다."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "hints": [
+        { "pos": 1, "letter": "n", "answer": "neutral",    "after": "rather than" },
+        { "pos": 2, "letter": "i", "answer": "invariably", "after": "negative" },
+        { "pos": 3, "letter": "i", "answer": "intensify",  "after": "as density increases" }
+      ],
+      "ko_full": "그러나 일부 심리학자들은 밀집감을 언제나 부정적인 것이 아니라 중립적인 것으로 보며, 밀도가 높아짐에 따라 사람들의 기분과 행동이 증폭된다고 믿는다."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "hints": [
+        { "pos": 1, "letter": "f", "answer": "forward",     "after": "to a concert" },
+        { "pos": 2, "letter": "e", "answer": "enhances",    "after": "their enjoyment" },
+        { "pos": 3, "letter": "p", "answer": "performance", "after": "" }
+      ],
+      "ko_full": "그래서 예컨대 어떤 사람이 콘서트를 고대하고 있다면, 밀집감은 그 공연에 대한 그의 즐거움을 더 높여 준다."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "hints": [
+        { "pos": 1, "letter": "d", "answer": "dreading",   "after": "an event" },
+        { "pos": 2, "letter": "e", "answer": "experience", "after": "of it even worse" },
+        { "pos": 3, "letter": "w", "answer": "worse",      "after": "" }
+      ],
+      "ko_full": "그러나 그들이 어떤 행사를 두려워하고 있다면, 밀집감은 그것에 대한 그 사람의 경험을 더욱더 나쁘게 만들 것이다."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "hints": [
+        { "pos": 1, "letter": "a", "answer": "accentuate", "after": "the dominant behavior" },
+        { "pos": 2, "letter": "d", "answer": "dominant",   "after": "behavior" },
+        { "pos": 3, "letter": "v", "answer": "violent",    "after": "as density rises" }
+      ],
+      "ko_full": "공동체 환경에 적용하면, 밀집감은 지배적인 행동을 두드러지게 할 수 있다 — 공격적인 집단은 밀도가 높아짐에 따라 폭력적으로 변할 수 있다."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "hints": [
+        { "pos": 1, "letter": "p", "answer": "pedestrian", "after": "areas" },
+        { "pos": 2, "letter": "m", "answer": "mood",       "after": "and defuse" },
+        { "pos": 3, "letter": "t", "answer": "tension",    "after": "" }
+      ],
+      "ko_full": "반대로, 고밀도 도시 환경에 공원이나 보행자 구역 같은 긍정적인 사회적 공간을 만드는 것은 전반적인 분위기를 끌어올리고 긴장을 완화하는 데 도움이 될 수 있다."
+    }
+  ],
+
+  "ko_translation": [
+    { "no": 1, "ref_sentence": 1 },
+    { "no": 2, "ref_sentence": 2 },
+    { "no": 3, "ref_sentence": 3 },
+    { "no": 4, "ref_sentence": 4 },
+    { "no": 5, "ref_sentence": 5 },
+    { "no": 6, "ref_sentence": 6 },
+    { "no": 7, "ref_sentence": 7 }
+  ],
+
+  "jumble": [
+    {
+      "no": 1,
+      "ref_sentence": 1,
+      "words": ["Environmental", "psychologists", "make", "a", "distinction", "between", "the", "physical", "measurement", "of", "density", "and", "crowding"],
+      "answer": "Environmental psychologists make a distinction between the physical measurement of density and crowding."
+    },
+    {
+      "no": 2,
+      "ref_sentence": 2,
+      "words": ["high", "density", "is", "needed", "for", "the", "phenomenon", "of", "crowding", "which", "makes", "people", "experience", "sensory", "overload"],
+      "answer": "High density is needed for the phenomenon of crowding, which makes people experience sensory overload."
+    },
+    {
+      "no": 3,
+      "ref_sentence": 3,
+      "words": ["some", "psychologists", "see", "crowding", "as", "neutral", "rather", "than", "invariably", "negative"],
+      "answer": "Some psychologists see crowding as neutral rather than invariably negative."
+    },
+    {
+      "no": 4,
+      "ref_sentence": 4,
+      "words": ["the", "feeling", "of", "crowding", "enhances", "their", "enjoyment", "of", "the", "performance"],
+      "answer": "The feeling of crowding enhances their enjoyment of the performance."
+    },
+    {
+      "no": 5,
+      "ref_sentence": 5,
+      "words": ["crowding", "will", "make", "the", "person's", "experience", "of", "it", "even", "worse"],
+      "answer": "Crowding will make the person's experience of it even worse."
+    },
+    {
+      "no": 6,
+      "ref_sentence": 6,
+      "words": ["an", "aggressive", "group", "may", "turn", "violent", "as", "density", "rises"],
+      "answer": "An aggressive group may turn violent as density rises."
+    },
+    {
+      "no": 7,
+      "ref_sentence": 7,
+      "words": ["creating", "positive", "social", "spaces", "such", "as", "parks", "and", "pedestrian", "areas", "may", "help", "to", "lift", "the", "general", "mood"],
+      "answer": "Creating positive social spaces such as parks and pedestrian areas may help to lift the general mood."
+    }
+  ],
+
+  "sentence_translation": [
+    { "no": 1, "ref_sentence": 1, "given": "ko" },
+    { "no": 2, "ref_sentence": 2, "given": "ko" },
+    { "no": 3, "ref_sentence": 3, "given": "ko" },
+    { "no": 4, "ref_sentence": 4, "given": "ko" },
+    { "no": 5, "ref_sentence": 5, "given": "ko" },
+    { "no": 6, "ref_sentence": 6, "given": "ko" },
+    { "no": 7, "ref_sentence": 7, "given": "ko" }
+  ],
+
+  "mixed": [
+    { "kind": "grammar", "ref": 2, "no": 1 },
+    { "kind": "vocab",   "ref": 3, "no": 2 },
+    { "kind": "fill",    "ref": 5, "no": 3 },
+    { "kind": "ko",      "ref": 1, "no": 4 },
+    { "kind": "jumble",  "ref": 6, "no": 5 },
+    { "kind": "sent",    "ref": 7, "no": 6 },
+    { "kind": "grammar", "ref": 4, "no": 7 }
+  ]
+}

@@ -1,0 +1,167 @@
+{
+  "$schema_version": "variant-v0.3-type-grouped",
+  "$ref_source": "19.json",
+  "passage_id": 19,
+  "topic_ko": "탈락한 줄 알았던 오디션이 사실은 합격이었던 반전",
+  "_note": "narrative(심경 변화) — 주제/주장/빈칸 등 학술유형은 제외하고 어법·어휘·순서·삽입·요약·서술형만 작성. grammar/vocab 의 밑줄 어구는 해당 passage 문장에 글자 그대로 존재.",
+
+  "by_type": {
+    "grammar": {
+      "passage": [
+        "I rushed into the music room, breathing heavily after running all the way there.",
+        "The rest of the band were sitting silently with long faces, and Immy shook her head at me.",
+        "I sank into a chair, unable to speak.",
+        "I had truly believed we would make it, because our audition had been flawless.",
+        "My chest felt heavy as I asked them who had won the contest.",
+        "Holding back my tears, I waited for the answer that I dreaded.",
+        "A moment later, a big smile spread across Immy's face, and the others began cheer loudly.",
+        "It turned out that the winning band was ours, and my heart was racing with excitement."
+      ],
+      "underlines": [
+        { "no": 1, "sent_index": 0, "text": "breathing", "correct": true },
+        { "no": 2, "sent_index": 1, "text": "were sitting", "correct": true },
+        { "no": 3, "sent_index": 6, "text": "began cheer", "correct": false, "fix": "began to cheer" },
+        { "no": 4, "sent_index": 5, "text": "Holding", "correct": true },
+        { "no": 5, "sent_index": 7, "text": "was racing", "correct": true }
+      ],
+      "choices": ["①", "②", "③", "④", "⑤"],
+      "answer": 3,
+      "explanation_ko": "③ begin 은 목적어로 to부정사나 동명사를 취하므로 동사원형 cheer 를 바로 쓸 수 없다. began to cheer(또는 began cheering)로 고쳐야 한다. 정답 ③.",
+      "distractor_ko": "①동시동작을 나타내는 분사구문 breathing, ②the rest of the band 를 복수로 본 were sitting, ④분사구문 Holding back my tears, ⑤과거진행형 was racing 은 모두 어법상 옳다."
+    },
+
+    "vocab": {
+      "passage": [
+        "I ran into the music room, breathing heavily after hurrying all the way there.",
+        "The rest of the band were sitting with long faces, and Immy looked up at me and shook her head.",
+        "I sank into a chair, certain that we had lost.",
+        "I had truly believed we would make it, for our audition had been flawless.",
+        "My chest felt heavy as I asked who had won, and I was holding back my tears.",
+        "She answered calmly that a band called A Happy Accident had taken the prize.",
+        "A moment later, a big smile spread across Immy's face and the others began to cheer.",
+        "Learning that the winning band was in fact ours, I was filled with sorrow and hugged them all.",
+        "My heart was racing with excitement."
+      ],
+      "underlines": [
+        { "no": 1, "sent_index": 1, "text": "long faces", "correct": true },
+        { "no": 2, "sent_index": 3, "text": "flawless", "correct": true },
+        { "no": 3, "sent_index": 4, "text": "holding back", "correct": true },
+        { "no": 4, "sent_index": 5, "text": "calmly", "correct": true },
+        { "no": 5, "sent_index": 7, "text": "sorrow", "correct": false, "fix": "joy" }
+      ],
+      "choices": ["①", "②", "③", "④", "⑤"],
+      "answer": 5,
+      "explanation_ko": "⑤ 우승 밴드가 자기들이었음을 알고 서로 껴안으며 심장이 두근거렸다고 했으므로 감정은 '기쁨(joy)'이어야 한다. sorrow(슬픔)는 정반대라 문맥상 틀리다 → joy 로 고쳐야 한다.",
+      "distractor_ko": "①long faces(시무룩한 얼굴), ②flawless(흠 없는), ③holding back(참다), ④calmly(담담하게)는 모두 문맥에 적절하다."
+    },
+
+    "order": {
+      "given": "I ran into the music room, breathing heavily, and the rest of the band were sitting with long faces.",
+      "blocks": {
+        "A": "\"A band called A Happy Accident. They were quite good,\" she said calmly, and for a moment the room stayed silent.",
+        "B": "A moment later, a big smile spread across Immy's face, and the others began to cheer. \"Wait, what? That's us!\" I said.",
+        "C": "Immy looked up at me and shook her head, so I sank into a chair. My chest felt heavy as I asked who had won, holding back my tears."
+      },
+      "choices": ["(A) - (C) - (B)", "(B) - (A) - (C)", "(B) - (C) - (A)", "(C) - (A) - (B)", "(C) - (B) - (A)"],
+      "answer": 4,
+      "explanation_ko": "시무룩한 분위기(주어진 글) 다음에 (C)에서 고개를 젓는 Immy를 보고 주저앉아 우승자를 묻고, (A)에서 그 대답으로 다른 밴드 이름이 나오며, (B)에서 미소와 환호로 그 밴드가 사실 자신들임이 드러난다. (C)-(A)-(B).",
+      "distractor_ko": "(A)의 대답은 '누가 이겼냐'는 질문(C)이 있어야 성립하고, (B)의 반전은 밴드 이름(A)이 먼저 언급되어야 \"That's us!\"가 의미를 갖는다."
+    },
+
+    "insert": {
+      "insert_sentence": "I was holding back my tears.",
+      "passage_marked": [
+        { "text": "I ran into the music room, breathing heavily, and the rest of the band were sitting with long faces.", "slot_after": 1 },
+        { "text": "Immy looked up at me and shook her head, so I sank into a chair.", "slot_after": 2 },
+        { "text": "My chest felt heavy as I asked, \"So, who won?\"", "slot_after": 3 },
+        { "text": "\"A band called A Happy Accident. They were quite good,\" she said calmly.", "slot_after": 4 },
+        { "text": "A moment later, a big smile spread across Immy's face, and the others began to cheer.", "slot_after": 5 }
+      ],
+      "choices": ["①", "②", "③", "④", "⑤"],
+      "answer": 3,
+      "explanation_ko": "주어진 문장은 '가슴이 무거워진 채 우승자를 물었다'는 ③앞 문장의 감정을 이어받아 실망이 가장 짙은 순간을 보여 준다. 곧이어 담담한 대답(④앞)이 이어지므로 ③이 자연스럽다.",
+      "distractor_ko": "①·②는 아직 결과를 묻기 전이라 눈물을 참을 이유가 약하고, ④ 이후는 이미 반전이 시작되어 실망의 묘사가 어울리지 않는다."
+    },
+
+    "summary": {
+      "passage": [
+        "I ran into the music room, breathing heavily.",
+        "The rest of the band were sitting with long faces, and Immy shook her head at me.",
+        "I sank into a chair, sure that our audition had failed.",
+        "My chest felt heavy as I asked who had won, holding back my tears.",
+        "She calmly named a band called A Happy Accident as the winner.",
+        "A moment later, a big smile spread across Immy's face and the others began to cheer.",
+        "The winning band was in fact our own, and the gloomy faces had been a joke because I was late.",
+        "Filled with joy, we jumped up and hugged each other while my heart raced with excitement."
+      ],
+      "summary_template": "Believing that the band had __(A)__ the contest, the narrator was crushed, until the members revealed that their gloomy faces were only a __(B)__ and that the band had actually won.",
+      "options": [
+        { "no": 1, "A": "lost", "B": "prank" },
+        { "no": 2, "A": "won", "B": "prank" },
+        { "no": 3, "A": "lost", "B": "mistake" },
+        { "no": 4, "A": "entered", "B": "warning" },
+        { "no": 5, "A": "won", "B": "mistake" }
+      ],
+      "answer": 1,
+      "explanation_ko": "화자는 밴드가 대회에서 (A)졌다고(lost) 믿어 낙담했지만, 시무룩한 얼굴이 늦게 온 자신을 놀리려는 (B)장난(prank)이었고 실제로는 우승했음이 밝혀진다. ①이 정답.",
+      "distractor_ko": "(A) 처음에는 이겼다고 믿은 것이 아니라 졌다고 믿었으므로 won/entered 는 틀리고, (B) 착오(mistake)나 경고(warning)가 아니라 의도적인 장난(prank)이었다."
+    },
+
+    "writing": [
+      {
+        "subtype": "word_order",
+        "subtype_label": "배열 영작",
+        "question": "다음 우리말과 같은 뜻이 되도록 <보기>의 단어를 모두 배열하여 영작하시오.",
+        "ko_prompt": "잠시 후, Immy의 얼굴에 환한 미소가 번졌고, 다른 아이들은 환호하기 시작했다.",
+        "words": ["a", "moment", "later", "a", "big", "smile", "spread", "across", "Immy's", "face", "and", "the", "others", "began", "to", "cheer"],
+        "answer": "A moment later, a big smile spread across Immy's face, and the others began to cheer.",
+        "explanation_ko": "시간 부사구 A moment later 로 시작하고, spread across(~에 번지다), begin + to부정사(to cheer)의 어순을 지킨다."
+      },
+      {
+        "subtype": "word_order",
+        "subtype_label": "배열 영작",
+        "question": "다음 우리말과 같은 뜻이 되도록 <보기>의 단어를 모두 배열하여 영작하시오.",
+        "ko_prompt": "나는 우리가 해낼 것이라고 진심으로 믿었었다.",
+        "words": ["I", "had", "truly", "believed", "we", "would", "make", "it"],
+        "answer": "I had truly believed we would make it.",
+        "explanation_ko": "과거완료 had + 과거분사(believed), 시제일치로 will → would, make it 은 '해내다'."
+      },
+      {
+        "subtype": "conditioned_write",
+        "subtype_label": "조건 영작",
+        "question": "다음 우리말을 <조건>에 맞게 영작하시오.",
+        "ko_prompt": "나는 가슴이 무거워진 채 \"그래서, 누가 이겼어?\"라고 물었다.",
+        "conditions": ["My chest 로 시작할 것", "감각동사 felt 와 형용사 heavy 를 사용할 것", "접속사 as 를 사용할 것"],
+        "answer": "My chest felt heavy as I asked, \"So, who won?\"",
+        "explanation_ko": "feel 은 2형식 감각동사로 보어에 형용사(heavy)를 취하고, as 는 동시성을 나타내는 접속사이다."
+      },
+      {
+        "subtype": "fill_blank",
+        "subtype_label": "빈칸 채우기",
+        "show_passage": true,
+        "question": "다음 빈칸에 들어갈 알맞은 한 단어를 본문에서 찾아 쓰시오.",
+        "context": "My heart was racing with ___________.",
+        "answer": "excitement",
+        "explanation_ko": "합격 사실을 알고 난 뒤의 감정이므로 '흥분(excitement)'이며, 본문 마지막 문장에 그대로 등장한다."
+      },
+      {
+        "subtype": "translate_ko",
+        "subtype_label": "우리말 해석",
+        "question": "다음 밑줄 친 문장을 우리말로 해석하시오.",
+        "en_prompt": "Immy laughed and said, \"Since you were late, we decided to play a joke on you! We made it!\"",
+        "answer": "Immy는 웃으며 \"네가 늦게 와서, 우리가 너한테 장난을 치기로 했지! 우리가 해냈어!\"라고 말했다.",
+        "explanation_ko": "Since 는 이유를 나타내는 접속사(= Because), play a joke on + 사람은 '~에게 장난을 치다', make it 은 '해내다·성공하다'."
+      },
+      {
+        "subtype": "summary_word",
+        "subtype_label": "요약 단어",
+        "show_passage": true,
+        "question": "다음 글을 읽고, 요약문의 빈칸 (A), (B)에 들어갈 단어를 본문에 근거하여 쓰시오.",
+        "summary": "At first the narrator was holding back his (A)___________, but after the truth came out he was filled with (B)___________.",
+        "answer_a": "tears",
+        "answer_b": "joy",
+        "explanation_ko": "(A) 처음에는 눈물(tears)을 참고 있었고, (B) 진실이 밝혀진 뒤에는 기쁨(joy)으로 가득 찼다."
+      }
+    ]
+  }
+}
