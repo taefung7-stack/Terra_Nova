@@ -18,6 +18,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { SOURCE as SOURCE_RAW } from './_SOURCE-U1.js';
+import { SOURCE as SOURCE_U2_RAW } from './_SOURCE-U2.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -26,6 +27,13 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const SOURCE_U1 = SOURCE_RAW.map(ch => ({
   ...ch,
   sentences: [...ch.sentences, ...ch.comments.flatMap(c => c.sentences)],
+}));
+
+/** U2 평탄화 — 구조가 다르다(게시글+댓글이 아니라 PART 본문 + 블로그 1개).
+ *  verify.mjs 의 flattenBlog() 와 같은 규칙이어야 표지 문장 수가 어긋나지 않는다. */
+const SOURCE_U2 = SOURCE_U2_RAW.map(ch => ({
+  ...ch,
+  sentences: [...ch.sentences, ...(ch.blog?.sentences ?? [])],
 }));
 
 const LESSONS = {
@@ -37,12 +45,20 @@ const LESSONS = {
     docTitle: '신목고 2-2 중간 · 세계문학 Unit 1 본문분석 합본 — Terra Nova',
     out: '신목고2-2중간_세계문학_Unit1_본문분석_합본.pdf',
   },
+  U2: {
+    source: SOURCE_U2,
+    lessonNo: null,
+    titleEn: 'A French Student in Dublin',
+    coverSub: '신목고 2-2 중간 · 세계문학<br>Unit 2 A French Student in Dublin',
+    docTitle: '신목고 2-2 중간 · 세계문학 Unit 2 본문분석 합본 — Terra Nova',
+    out: '신목고2-2중간_세계문학_Unit2_본문분석_합본.pdf',
+  },
 };
 
 const lessonId = (process.argv[2] || 'U1').toUpperCase();
 const LESSON = LESSONS[lessonId];
 if (!LESSON) {
-  console.error(`알 수 없는 유닛: ${lessonId} (U1)`);
+  console.error(`알 수 없는 유닛: ${lessonId} (${Object.keys(LESSONS).join(', ')})`);
   process.exit(2);
 }
 const SOURCE = LESSON.source;
