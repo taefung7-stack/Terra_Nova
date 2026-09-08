@@ -23,6 +23,12 @@ const LESSONS = {
     docTitle: '신목고 2-2 중간 · 세계문학 Unit 1 변형문제 합본 — Terra Nova',
     out: '신목고2-2중간_세계문학_Unit1_변형문제_합본.pdf',
   },
+  U2: {
+    titleEn: 'A French Student in Dublin',
+    coverSub: '신목고 2-2 중간 · 세계문학<br>Unit 2 A French Student in Dublin',
+    docTitle: '신목고 2-2 중간 · 세계문학 Unit 2 변형문제 합본 — Terra Nova',
+    out: '신목고2-2중간_세계문학_Unit2_변형문제_합본.pdf',
+  },
 };
 
 const lessonId = (process.argv[2] || 'U1').toUpperCase();
