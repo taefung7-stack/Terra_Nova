@@ -28,6 +28,9 @@ import { spawn } from 'node:child_process';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+/* ⚠️ sentences 는 정본(_SOURCE-U*.js)의 문장 수와 반드시 일치해야 한다.
+ *    표지에 찍히는 값이라 어긋나면 다른 유닛의 수치가 인쇄된다.
+ *    U1 = 게시글 34 + 댓글 22 = 56 / U2 = PART 본문 59 + Blog 24 = 83 */
 const LESSONS = {
   U1: {
     lessonNo: null,
@@ -37,12 +40,20 @@ const LESSONS = {
     docTitle: '신목고 2-2 중간 · 세계문학 Unit 1 워크북 합본 — Terra Nova',
     out: '신목고2-2중간_세계문학_Unit1_워크북_합본.pdf',
   },
+  U2: {
+    lessonNo: null,
+    titleEn: 'A French Student in Dublin',
+    sentences: 83,
+    coverSub: '신목고 2-2 중간 · 세계문학<br>Unit 2 A French Student in Dublin',
+    docTitle: '신목고 2-2 중간 · 세계문학 Unit 2 워크북 합본 — Terra Nova',
+    out: '신목고2-2중간_세계문학_Unit2_워크북_합본.pdf',
+  },
 };
 
 const lessonId = (process.argv[2] || 'U1').toUpperCase();
 const LESSON = LESSONS[lessonId];
 if (!LESSON) {
-  console.error(`알 수 없는 유닛: ${lessonId} (U1)`);
+  console.error(`알 수 없는 유닛: ${lessonId} (${Object.keys(LESSONS).join(', ')})`);
   process.exit(2);
 }
 const DIST = path.join(__dirname, 'dist', lessonId);
