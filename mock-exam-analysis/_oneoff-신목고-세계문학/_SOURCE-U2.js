@@ -45,17 +45,40 @@ export const SOURCE = [
     part: 'PART 1',
     page: 'p.24~25',
     /* 도입부(p.24 상단, Meeting people from different cultures ~ 로 시작하는
-     * 4문장)를 이 챕터 맨 앞에 이어서 넣는다. 그 다음에 PART 1 본문이 온다.
-     * → sentences = [도입 4문장, PART 1 본문] 순서. */
+     * 문단)를 이 챕터 맨 앞에 이어서 넣었다. 그 다음에 PART 1 본문이 온다. */
     sentences: [
-      // 도입부 (p.24) — 4문장
+      // 도입부 (p.24)
+      "Meeting people from different cultures helps us develop understanding of other cultures and cultural awareness.",
+      "We can discover similarities and differences between cultures and have more meaningful interactions with people around us.",
+      "We can also build our respect and empathy for other people, and celebrate our differences as well as our similarities.",
+      "In March, Delphine Froissart travelled from Lyon, France, to Dublin, Ireland, to spend two weeks with the O'Briens.",
+      "She wanted to practise her English, but she also wanted to broaden her horizons by living abroad.",
       // PART 1 본문 (p.25)
+      "Ms. O'Brien and her eldest son Dara met Delphine at Dublin Airport.",
+      "On their drive home, it drizzled, cleared, and suddenly rained heavily.",
+      "It was like having all four seasons in just an hour.",
+      "Although quite new to Delphine, the changeable weather did not bother her as a cheerful Irish folk song “The Irish Rover” was playing on the radio.",
+      "The car stopped at a cosy terraced house.",
+      "Inside, Delphine met two younger boys and two younger girls.",
+      "They looked shy and a little nervous.",
+      "“Dia duit! (= Hello!) Is mise Delphine. (= I am Delphine.),” the guest said in Irish.",
+      "They smiled shyly and replied awkwardly, “Deas bualadh leat! (= Nice to meet you.).”",
+      "After greeting each other in Irish, they felt closer.",
+      "Delphine unpacked her luggage and gave presents to Ms. O'Brien and the children.",
     ],
     blog: {
       title: 'Delphine\'s Blog 1',
       handle: '@Del_phine',
       sentences: [
-        // Delphine's Blog 1 (p.25 하단)
+        "Finally arrived in Ireland.",
+        "Somehow everything is different and new here!",
+        "Ireland has fairly mild weather all year round for the most part.",
+        "However, dressing for a day trip here can be a little tricky.",
+        "You might wake up to glorious sunshine but end up facing a dramatic downpour by lunchtime, so the key is to be ready for anything.",
+        "Wear plenty of thin layers so you can add or remove clothes as necessary, and carry an umbrella.",
+        "One more thing: English is the primary language in Ireland.",
+        "The nation also has its own language, Irish.",
+        "Road signs are generally in both English and Irish languages.",
       ],
     },
   },
@@ -65,13 +88,34 @@ export const SOURCE = [
     part: 'PART 2',
     page: 'p.26',
     sentences: [
-      // PART 2 본문 (p.26)
+      "Delphine woke up with a shock to a beeping sound.",
+      "She was excited because this was her first day at school in Dublin.",
+      "She was in Dara's class because they were both 16.",
+      "The whole house was very hectic in the morning.",
+      "All the kids rushed to get ready for school, with Ms. O'Brien checking that they had not gone back to sleep.",
+      "Ms. O'Brien had a school uniform for Delphine.",
+      "It suited her well although Dara had to help her with the school tie.",
+      "Delphine was both delighted and nervous on the way to school.",
+      "When they arrived, some of Dara's friends looked at Delphine and smiled.",
+      "“Is this your girlfriend, Dara?” one of them asked.",
+      "“I'm not his girlfriend!” Delphine quickly replied, feeling a bit embarrassed.",
+      "Dara looked embarrassed, too.",
+      "After that, the rest of the school day went smoothly except during the lunch break.",
+      "Delphine was surprised to find students eat at their desks.",
+      "Many kids asked Delphine about life in France.",
+      "She didn't understand everything, but it was fun.",
     ],
     blog: {
       title: 'Delphine\'s Blog 2',
       handle: '@Del_phine',
       sentences: [
-        // Delphine's Blog 2 (p.26 하단)
+        "Today I was at school.",
+        "Dara's friends thought I was his girlfriend. :)",
+        "I learned a few things.",
+        "Uniforms are normal in Irish schools—with ties worn by both male and female pupils.",
+        "Also, unlike in my school back home, students in most schools here bring their lunch and eat in the classroom, at their desks.",
+        "The lunch break lasts an hour, just half of the two-hour break I have for lunch at school in France!",
+        "It was a fun day.",
       ],
     },
   },
@@ -81,13 +125,35 @@ export const SOURCE = [
     part: 'PART 3',
     page: 'p.27',
     sentences: [
-      // PART 3 본문 (p.27)
+      "It was a long day at school.",
+      "Lessons finished at 4 p.m., and they got home at 5 p.m.",
+      "“Hi, Delphine,” called Ms. O'Brien.",
+      "“It's tea time.”",
+      "“Tea time?” Delphine asked Dara.",
+      "“But I'm starving, not thirsty!”",
+      "Dara smiled.",
+      "“Don't worry.",
+      "'Tea' means dinner in Ireland.”",
+      "“Guess what's for tea,” Ms. O'Brien said to Delphine with a smile.",
+      "“We're having potato gratin with saucisson sec and cheese.",
+      "I thought the dish with French saucisson sec and Irish potatoes would be great.”",
+      "Ms. O'Brien had cooked a gratin with layers of potato-saucisson mixture topped with cheese slices, breadcrumbs, and a large spoonful of butter.",
+      "“Good appetite,” Delphine said—Dara's brothers chuckled.",
+      "“Did I say something wrong?” Delphine asked.",
+      "“No,” Dara answered.",
+      "“We understood, but we don't say, 'Good appetite.'",
+      "We say, 'Enjoy your meal.'”",
+      "“Oh! Enjoy your meal,” Delphine said.",
+      "After the meal, Dara discussed some things they could do over the weekend.",
+      "Delphine was looking forward to seeing some of the sights of Dublin.",
     ],
     blog: {
       title: 'Delphine\'s Blog 3',
       handle: '@Del_phine',
       sentences: [
-        // Delphine's Blog 3 (p.27 하단)
+        "Wednesday evening Ms. O'Brien cooked potato gratin with saucisson sec and cheese.",
+        "I enjoyed the simple meal, and the potatoes were delicious.",
+        "I'm glad Ms. O'Brien did not serve snails or frogs' legs as I'm French—it's a stereotype about the French, and young people like me dislike both foods. :)",
       ],
     },
   },
@@ -97,28 +163,47 @@ export const SOURCE = [
     part: 'PART 4',
     page: 'p.28~29',
     sentences: [
-      // PART 4 본문 (p.29)
+      "The day before Delphine left, the O'Briens and Delphine visited Dublin's city centre to enjoy St. Patrick's Day.",
+      "Ms. O'Brien explained that St. Patrick was the patron saint of Ireland who brought Christianity to the country in the 5th century, and that the Irish people celebrate their heritage and culture on March 17th, the anniversary of the saint's death.",
+      "In the city centre, people wore green clothes with four-leaf clover-shaped pins and glasses.",
+      "There were green rubber statues of St. Patrick, and streets were decorated with green banners.",
+      "Dara said that green symbolises St. Patrick, and that green is one of the three colours in the Irish flag.",
+      "When the St. Patrick's Day parade started at noon, many bands including traditional bagpipers marched along the winding streets of the Irish capital, entertaining Dubliners and tourists lining the parade route.",
     ],
     blog: {
       title: 'Delphine\'s Blog 4',
       handle: '@Del_phine',
       sentences: [
-        // Delphine's Blog 4 (p.29 하단)
+        "Today, there was a sea of green everywhere.",
+        "No wonder that Ireland is called the Emerald Island!",
+        "After the parade, Ms. O'Brien and Dara took me to St. Patrick's Cathedral across the river.",
+        "At the cathedral, Dara took a picture of me standing by the monument of Jonathan Swift, the famous author of Gulliver's Travels.",
+        "With four Nobel Prize winners, numerous book festivals, and a world-class city library, it isn't surprising that Dublin is a UNESCO City of Literature.",
       ],
     },
   },
 ];
 
-/* ── 전사 완료 후 체크리스트 ────────────────────────────────────
- *  1) node _oneoff-신목고-세계문학/verify-source.mjs U2   ← 빈 슬롯 0 확인
- *  2) 챕터별 문장 수를 아래 표에 적어 둘 것 (다음 사람이 대조할 기준)
+/* ── 전사 완료 체크리스트 (2026-09-08 전사 완료) ──────────────────
+ *  1) node _oneoff-신목고-세계문학/verify-source.mjs U2
+ *     → ✅ 오류 0 · 경고 0 (총 83문장)
+ *  2) 챕터별 문장 수 — 다음 사람이 대조할 기준
  *
  *     | Ch | PART 본문 | Blog | 계 |
  *     |----|-----------|------|----|
- *     | 1  |           |      |    |   ← 도입 4문장 포함
- *     | 2  |           |      |    |
- *     | 3  |           |      |    |
- *     | 4  |           |      |    |
+ *     | 1  |    16     |  9   | 25 |   ← 도입 5문장 포함 (PART 1 본문만 11)
+ *     | 2  |    16     |  7   | 23 |
+ *     | 3  |    21     |  3   | 24 |
+ *     | 4  |     6     |  5   | 11 |
+ *     |합계|    59     | 24   | 83 |
+ *
+ *  ※ 폴더 README 초안은 도입부를 4문장으로 적었으나 실제 원문은 5문장이다
+ *    (Meeting people… / We can discover… / We can also build… /
+ *     In March, Delphine Froissart… / She wanted to practise…).
+ *
+ *  ※ Ch3 PART 3 은 대화문이 많아 문장 수가 21로 가장 많다. 따옴표로
+ *    닫히는 문장(”)과 4 p.m. 같은 약어 마침표가 몰려 있는 구간이므로
+ *    수정 시 verify-source.mjs 를 반드시 다시 돌릴 것.
  *
  *  3) 그 다음에야 분석지 JSON 의 passage 를 채운다(verify.mjs 가 대조).
  * ─────────────────────────────────────────────────────────────── */
