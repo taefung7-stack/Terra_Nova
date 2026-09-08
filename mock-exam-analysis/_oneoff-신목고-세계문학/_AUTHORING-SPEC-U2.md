@@ -18,8 +18,12 @@
 
 ### 도입부 처리
 
-교과서 p.24 상단의 도입 문단(`Meeting people from different cultures ~`, 4문장)은
-**Ch1 의 `sentences` 맨 앞**에 넣는다. 즉 Ch1 = 도입 4문장 + PART 1 본문 + Blog 1.
+교과서 p.24 상단의 도입 문단(`Meeting people from different cultures ~`, **5문장**)은
+**Ch1 의 `sentences` 맨 앞**에 넣는다. 즉 Ch1 = 도입 5문장 + PART 1 본문 11 + Blog 1 9 = 25.
+
+> ⚠️ 이 스펙 초안은 도입부를 4문장으로 적었으나 **실제 원문은 5문장**이다
+> (Meeting people… / We can discover… / We can also build… /
+> In March, Delphine Froissart… / She wanted to practise…). 2026-09-08 전사에서 확인.
 
 ## 챕터 구성
 
