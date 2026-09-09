@@ -31,7 +31,7 @@ const issues = [];
 const warn = [];
 const note = (arr, sev, where, msg) => arr.push({ sev, where, msg });
 
-for (const L of ['L5', 'L6']) {
+for (const L of ['L5', 'L6', 'L7']) {
   const { SOURCE } = await import(`./_SOURCE-${L}.js`);
   const nCh = SOURCE.length;
   const combined = fs.readFileSync(path.join(HERE, `dist/_audit/${L}-combined.txt`), 'utf8');

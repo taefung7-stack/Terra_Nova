@@ -19,6 +19,7 @@ import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { SOURCE as SOURCE_L5 } from './_SOURCE-L5.js';
 import { SOURCE as SOURCE_L6 } from './_SOURCE-L6.js';
+import { SOURCE as SOURCE_L7 } from './_SOURCE-L7.js';
 import { countSMasks, flatten } from '../builder/goodnotes-safe.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -42,12 +43,21 @@ const LESSONS = {
     docTitle: '중2 · 동아(윤정미) Lesson 6 본문분석 합본 — Terra Nova',
     out: '중2_동아윤정미_Lesson6_본문분석_합본.pdf',
   },
+  L7: {
+    source: SOURCE_L7,
+    lessonNo: 7,
+    coverTitle: '중학교 2학년<br>동아 영어 2',
+    titleEn: 'Seasonal Festivals Around the World',
+    coverSub: '동아(윤정미) 중학교 영어 2<br>Lesson 7 · Seasonal Festivals Around the World',
+    docTitle: '중2 · 동아(윤정미) Lesson 7 본문분석 합본 — Terra Nova',
+    out: '중2_동아윤정미_Lesson7_본문분석_합본.pdf',
+  },
 };
 
 const lessonId = (process.argv[2] || 'L5').toUpperCase();
 const LESSON = LESSONS[lessonId];
 if (!LESSON) {
-  console.error(`알 수 없는 과: ${lessonId} (L5 / L6)`);
+  console.error(`알 수 없는 과: ${lessonId} (L5 / L6 / L7)`);
   process.exit(2);
 }
 const SOURCE = LESSON.source;

@@ -46,6 +46,13 @@ const LESSONS = {
        기본 12 로 두면 9/9/8 세 장이 된다. */
     maxPerPage: 13,
   },
+  L7: {
+    lessonNo: 7,
+    titleEn: 'Seasonal Festivals Around the World',
+    out: '중2_동아윤정미_Lesson7_본문암기.pdf',
+    /* 26문항을 13/13 두 장에 담는다(L6 와 동일 규칙). */
+    maxPerPage: 13,
+  },
 };
 
 const esc = (s) => String(s ?? '')
@@ -54,7 +61,7 @@ const esc = (s) => String(s ?? '')
 /* ── 한 과 빌드 ───────────────────────────────────────────────── */
 async function buildOne(lessonId) {
   const LESSON = LESSONS[lessonId];
-  if (!LESSON) { console.error(`알 수 없는 과: ${lessonId} (L5 / L6)`); process.exit(2); }
+  if (!LESSON) { console.error(`알 수 없는 과: ${lessonId} (L5 / L6 / L7)`); process.exit(2); }
 
   const { SOURCE } = await import(`./_SOURCE-${lessonId}.js`);
   const DIST = path.join(__dirname, 'dist', lessonId);
@@ -302,6 +309,6 @@ ${pagesHtml}
 }
 
 const arg = (process.argv[2] || '').toUpperCase();
-const targets = arg ? [arg] : ['L5', 'L6'];
+const targets = arg ? [arg] : ['L5', 'L6', 'L7'];
 console.log('📝 본문암기 워크북 빌드\n');
 for (const t of targets) await buildOne(t);

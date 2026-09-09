@@ -1,4 +1,4 @@
-# 중2 — 2022 개정 동아(윤정미) 중학교 영어 2 본문분석 + 본문암기 (Lesson 5·6)
+# 중2 — 2022 개정 동아(윤정미) 중학교 영어 2 본문분석 + 본문암기 (Lesson 5·6·7)
 
 > ⚠️ **개인 용도 1회성 산출물입니다. 테라노바 판매용이 아닙니다.**
 > 판매·구독 파이프라인(Supabase Storage 업로드, dispatch-order-pdf, market)에
@@ -12,6 +12,7 @@
 
 - **Lesson 5** — Street Art in London (런던 거리 예술 투어: STIK · Banksy · Ben Wilson)
 - **Lesson 6** — Dr. Schofield, a Foreigner Who Loved Korea (석호필, 한국을 사랑한 이방인)
+- **Lesson 7** — Seasonal Festivals Around the World (전 세계의 계절 축제들)
 
 > 요청 범위는 **본문분석 + 본문암기 2종**입니다. 9-STEP 워크북·변형문제는 만들지 않았습니다.
 
@@ -46,12 +47,27 @@ Lesson 6 앞부분은 **극본(대화) 형식**입니다. 화자 라벨(`A man:`
 `Dr. Schofield:`)은 문장이 아니므로 `_SOURCE-L6.js` 의 `speakers` 배열에
 따로 싣고, `passage` 에는 발화 내용만 담습니다.
 
+### Lesson 7 (원문 26문장 → 4챕터)
+
+| Ch | 제목 | 원문 문장 | 문제 유형 |
+|----|------|-----------|-----------|
+| 1 | Fallas Festival in Valencia, Spain | 7 | 제목 |
+| 2 | Midsummer Festival in Sweden | 6 | 주제 |
+| 3 | Day of the Dead Festival in Mexico | 6 | 내용일치 |
+| 4 | Fur Rondy Festival in Alaska, USA | 7 | 요지 |
+| | **합계** | **26** | |
+
+Lesson 7 은 교과서가 축제 4곳을 **소제목으로 이미 나눠** 두었고 문장 수도
+7/6/6/7 로 고르다. 그래서 L5·L6 와 달리 **문단 재조정 없이 교과서 구획을
+그대로 4챕터**로 썼다.
+
 ## 산출물
 
 | 과 | 본문분석 합본 | 본문암기 |
 |----|---------------|----------|
 | L5 | `중2_동아윤정미_Lesson5_본문분석_합본.pdf` 14p | `중2_동아윤정미_Lesson5_본문암기.pdf` 4p(28문항) |
 | L6 | `중2_동아윤정미_Lesson6_본문분석_합본.pdf` 16p | `중2_동아윤정미_Lesson6_본문암기.pdf` 4p(26문항) |
+| L7 | `중2_동아윤정미_Lesson7_본문분석_합본.pdf` 18p | `중2_동아윤정미_Lesson7_본문암기.pdf` 4p(26문항) |
 
 ### 본문분석
 
@@ -70,6 +86,7 @@ Lesson 6 앞부분은 **극본(대화) 형식**입니다. 화자 라벨(`A man:`
 - 한 장당 문항 수 상한은 **과별로 지정**한다(`LESSONS[].maxPerPage`, 기본 12).
   - **L5 = 14** → 문제면 **14/14 두 장**(사용자 요청 2026-08-31)
   - **L6 = 13** → 문제면 **13/13 두 장**(사용자 요청 2026-08-31)
+  - **L7 = 13** → 문제면 **13/13 두 장**(26문항, L6 와 동일 규칙)
 - **장수를 정한 뒤 고르게 나눈다.** 예전에는 상한까지 그리디로 꽉 채워
   28문항·상한12 가 **12/12/4** 가 되면서 셋째 장이 거의 빈 채로 인쇄됐다.
   지금은 `ceil(문항/상한)` 으로 최소 장수를 구하고 그 장수로 균등 분배한다.
@@ -78,7 +95,7 @@ Lesson 6 앞부분은 **극본(대화) 형식**입니다. 화자 라벨(`A man:`
 
 ```bash
 cd mock-exam-analysis
-node "_oneoff-중2-동아윤/build-memorize.mjs"        # L5·L6 전부
+node "_oneoff-중2-동아윤/build-memorize.mjs"        # L5·L6·L7 전부
 node "_oneoff-중2-동아윤/build-memorize.mjs" L5     # 한 과만
 ```
 
@@ -98,23 +115,24 @@ node "_oneoff-중2-동아윤/build-memorize.mjs" L5     # 한 과만
 ## 폴더 구조
 
 ```
-_SOURCE-L5.js / _SOURCE-L6.js   ← 원문 정본(기계 판독용). 임의 수정 금지
+_SOURCE-L5.js / -L6.js / -L7.js ← 원문 정본(기계 판독용). 임의 수정 금지
 data/L5/{1..3}.json             분석지 데이터
 data/L6/{1..4}.json
-dist/L5, dist/L6                빌드 산출물(html/pdf/합본)
+data/L7/{1..4}.json
+dist/L5, dist/L6, dist/L7       빌드 산출물(html/pdf/합본)
 styles/analysis.css, workbook.css
 verify.mjs                      데이터 무결성 검증
 _audit.mjs / _memaudit.mjs      산출물(PDF) 전수 검수
 combine.mjs                     분석지 합본
 build-memorize.mjs              본문암기 빌더
-_ILLUSTRATION_PROMPTS.md        삽화 프롬프트 7장(16:5, v8.1)
+_ILLUSTRATION_PROMPTS.md        삽화 프롬프트 11장(16:5, v8.1)
 ```
 
 ## 빌드 방법
 
 ```bash
 cd mock-exam-analysis
-L=L5   # 또는 L6
+L=L5   # 또는 L6 / L7
 
 # 0) 무결성 검증 — 반드시 먼저 (실패 시 빌드 금지)
 node "_oneoff-중2-동아윤/verify.mjs"
@@ -134,12 +152,25 @@ node "_oneoff-중2-동아윤/combine.mjs" $L
 
 # 5) 본문암기
 node "_oneoff-중2-동아윤/build-memorize.mjs" $L
+
+# 6) 산출물 전수 검수 — 텍스트 덤프를 먼저 만들어야 한다
+cd _oneoff-중2-동아윤
+python _memaudit-extract.py $L
+node _audit.mjs        # 분석지(데이터↔PDF)
+node _memaudit.mjs     # 암기장(교과서 원문 기준)
 ```
 
 ## 문장 누락 0 보장
 
 - `verify.mjs` — 정본과 챕터 JSON 대조: passage verbatim 일치, `passage_ko` 길이 일치,
   분석 카드 `covers` 가 원문 전 문장을 빠짐없이 1회씩 오름차순 커버, 어휘 본문 등장
+- `_memaudit-extract.py` — **검수 스크립트의 입력(텍스트 덤프)을 만든다.**
+  `_audit.mjs` · `_memaudit.mjs` 는 `dist/_audit/*.txt` · `dist/_memaudit/*.txt` 를
+  읽기만 하는데 그 파일을 만드는 단계가 그동안 없어서 재실행하면 ENOENT 로 죽었다.
+  검수 전에 **반드시 먼저** 돌릴 것.
+  ```bash
+  python _memaudit-extract.py        # L5·L6·L7 (암기장 + 분석 합본/챕터)
+  ```
 - `_memaudit.mjs` — 비교 기준을 `_SOURCE` 가 아니라 **교과서 원문 문자열**로 둔다.
   `_SOURCE` 기준으로 삼으면 전사 단계에서 이미 빠진 문장은 영원히 못 잡는다.
 
@@ -161,8 +192,25 @@ L5 초안 전사에서 마지막 2문장(`For example, the one over here …` /
 ### ⚠️ 함정 3 — 정답이 한쪽 번호로 몰리는 문제
 
 정답을 먼저 쓰는 습관 때문에 ① 로 몰리기 쉽다. 이번에는 저작 단계에서
-챕터별 정답 위치를 지정해 분산했다 — **L5 2/4/5 · L6 1/3/2/5**.
+챕터별 정답 위치를 지정해 분산했다 — **L5 2/4/5 · L6 1/3/2/5 · L7 2/4/1/5**.
 새 챕터를 추가하면 분포를 반드시 확인할 것(`_audit.mjs` 가 보고한다).
+
+### ⚠️ 함정 5 — 암기장 정답면은 2단이라 한 줄씩 번갈아 추출된다 (2026-09-09)
+
+암기장 정답면은 **2단 조판**이다. ghostscript `txtwrite` 로 뽑으면 좌우 단을
+**한 줄씩 번갈아** 읽어서, 줄바꿈된 문장 뒤에 반대쪽 단의 문장이 끼어든다.
+그 상태로 `_memaudit.mjs` 를 돌리면 **26문장 중 14건이 "정답면에 없음"** 으로
+잡히는데 **PDF 내용은 멀쩡하다**(L5·L6 도 똑같이 오탐). 그래서
+`_memaudit-extract.py` 는 PyMuPDF 블록의 x좌표로 단을 갈라
+**좌단 전체 → 우단 전체** 순으로 잇는다.
+
+### ⚠️ 함정 6 — goodnotes-safe.mjs 를 import 하면 호출자가 죽었다 (2026-09-09)
+
+`builder/goodnotes-safe.mjs` 는 CLI 블록에 **직접 실행 가드가 없었다.** 그래서
+`combine.mjs` 가 `countSMasks`/`flatten` 을 import 하는 순간 "인자 없이 실행"으로
+취급돼 usage 를 찍고 `process.exit(2)` 로 죽었다 — **합본 PDF 가 만들어지지 않고
+exit 0 으로 조용히 끝난다.** `import.meta.url === pathToFileURL(process.argv[1]).href`
+가드를 넣어 고쳤다(L5·L6·L7 공통 영향).
 
 ### ⚠️ 함정 4 — PDF 텍스트 추출 시 영문 자간 분리
 
@@ -170,9 +218,24 @@ L5 초안 전사에서 마지막 2문장(`For example, the one over here …` /
 추출된다. **단어 단위 대조는 전부 실패**하므로, 원문 대조 시 **공백을 모두 제거하고**
 비교해야 한다.
 
+## 새 과(Lesson) 추가 절차
+
+과를 하나 늘리면 **레지스트리 5곳**을 모두 손봐야 한다. 하나라도 빠뜨리면
+"알 수 없는 과" 로 죽거나, 조용히 그 과만 건너뛴다.
+
+1. `_SOURCE-L{N}.js` — 원문 정본 작성(문단 구획·문장 수 주석 포함)
+2. `verify.mjs` — import + `LESSONS` 배열
+3. `combine.mjs` — import + `LESSONS` (coverSub·docTitle·out)
+4. `build-memorize.mjs` — `LESSONS` (maxPerPage) + 하단 `targets` 기본값
+5. `_memaudit.mjs` — **`TEXTBOOK` 블록**(교과서 원문 전사) + 순회 배열
+6. `_audit.mjs` — 순회 배열
+
+`TEXTBOOK` 은 `_SOURCE` 와 **독립된 전사본**이어야 한다(함정 2). 복사해 오면
+전사 누락을 영원히 못 잡는다.
+
 ## 삽화
 
-`_ILLUSTRATION_PROMPTS.md` 에 **7장**(L5 3장 + L6 4장)의 미드저니 프롬프트가 있다.
+`_ILLUSTRATION_PROMPTS.md` 에 **11장**(L5 3장 + L6 4장 + L7 4장)의 미드저니 프롬프트가 있다.
 
 - 규격 `--ar 16:5 --v 8.1`, **실사 포토리얼** 톤
 - **밝기는 형용사가 아니라 조명 조건으로 지정** — `sunlit`·`luminous` 는 실사에서
@@ -190,7 +253,7 @@ L5 초안 전사에서 마지막 2문장(`For example, the one over here …` /
 > node _sync-prompts.mjs   # 문서 → JSON 동기화 + 규격·금지어 검사(위반 시 exit 1)
 > ```
 
-생성한 이미지를 `dist/{L5,L6}/assets/illust-{N}.png` 로 저장하고 분석지를 재빌드하면
+생성한 이미지를 `dist/{L5,L6,L7}/assets/illust-{N}.png` 로 저장하고 분석지를 재빌드하면
 반영된다.
 
 > ⚠️ **원본 8MB PNG 를 그대로 넣지 말 것.** 미드저니 원본은 3952×1232(장당 ~8MB)라

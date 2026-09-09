@@ -41,6 +41,12 @@ const TEXTBOOK = {
     `Dr. Schofield's fight for Korean independence didn't stop even after the March 1st Movement. He continued to write about the terrible situation in Korea for foreign newspapers. He was under the watchful eye of the Japanese police, so he had to go back to Canada in 1920.`,
     `In 1958, he returned to Korea at the invitation of the Korean government and never left again. For the rest of his life, he worked hard to help Koreans, especially poor students. Dr. Schofield died in April 1970, and he was buried in Seoul National Cemetery.`,
   ],
+  L7: [
+    `People in Valencia celebrate the coming of spring with the Fallas festival. This festival takes place from March 15 to 19. During the festival, people enjoy parades and fireworks. The stars of the festival are fallas, giant wooden statues. You can find hundreds of them all over the city. Surprisingly, the fallas are burned on the last day of the festival. Burning them symbolizes saying goodbye to old things and hello to a new start.`,
+    `Winter in Sweden is long and dark, so the people there especially welcome summer. To celebrate the longest day of the year, they have a special festival. They call it the Midsummer festival. The festival starts on the Friday evening between June 19 and 25 and ends on the Sunday. During the festival, people decorate a tall pole with flowers and green leaves and enjoy traditional dances around it. Because the sun hardly sets at this time of year in Sweden, people can enjoy the festival all night long.`,
+    `Many Mexicans believe that once a year dead people come back home to meet their family and friends. They call this day the Day of the Dead. To welcome dead people, Mexicans hold a festival on November 1 and 2. They believe it is important to remember dead people. So, people set up altars in their homes and have big parties in cemeteries. In some areas, people dress up like skeletons and hold big parades.`,
+    `At the end of February, people in Alaska hold the Fur Rondy festival, one of the biggest winter festivals in the world. During this festival, visitors can enjoy various winter sports and Alaskan traditional games. They can also enjoy many special events such as the Running of the Reindeer. People who participate in this race wear fun costumes and try to run faster than reindeer. Is it possible to do so? Not really, but it doesn't matter. Everyone is just having fun!`,
+  ],
 };
 
 /* 문단 → 문장 분리.
@@ -79,7 +85,7 @@ const sq = (s) => String(s ?? '')
 const sqk = (s) => String(s ?? '').replace(/\s+/g, '').replace(/[.,!?"'“”‘’()·…]/g, '');
 
 let block = 0;
-for (const L of ['L5', 'L6']) {
+for (const L of ['L5', 'L6', 'L7']) {
   console.log(`\n${'='.repeat(66)}\n${L} — 교과서 원문 기준 검수\n${'='.repeat(66)}`);
 
   /* 1) 교과서에서 기준 문장 집합 생성 */

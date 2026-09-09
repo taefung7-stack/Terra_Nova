@@ -25,6 +25,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import os from 'node:os';
 import { execFileSync, spawnSync } from 'node:child_process';
+import { pathToFileURL } from 'node:url';
 
 const GS = process.platform === 'win32' ? 'gswin64c' : 'gs';
 
@@ -79,6 +80,12 @@ function pageCount(file) {
   }
 }
 
+/* ── CLI ──────────────────────────────────────────────────────────
+ * ★ 이 블록은 '직접 실행'일 때만 돈다. 가드가 없으면 이 모듈을
+ *   import 하는 쪽(combine.mjs 의 countSMasks/flatten)이 '인자 없이
+ *   실행'한 것으로 취급돼 usage 를 찍고 process.exit(2) 로 죽는다.
+ *   실제로 combine.mjs 가 합본을 만들지 못하고 조용히 끝났다. */
+if (import.meta.url === pathToFileURL(process.argv[1] ?? '').href) {
 const args = process.argv.slice(2);
 const checkOnly = args[0] === '--check';
 const files = (checkOnly ? args.slice(1) : args).filter(f => f.toLowerCase().endsWith('.pdf'));
@@ -111,4 +118,5 @@ for (const f of files) {
 if (checkOnly && risky) {
   console.log(`\n위험 파일 ${risky}개. 변환: node builder/goodnotes-safe.mjs <파일...>`);
   process.exitCode = 1;
+}
 }

@@ -1,4 +1,4 @@
-# 중2 동아(윤정미) Lesson 5·6 — 삽화 프롬프트 (전 7장)
+# 중2 동아(윤정미) Lesson 5·6·7 — 삽화 프롬프트 (전 11장)
 
 > 규격: **`--ar 16:5 --v 8.1 --style raw`** (와이드 배너)
 > 톤: **실사 사진(포토리얼)** — 여행·다큐멘터리 톤, 흐린 날 확산광.
@@ -140,6 +140,60 @@ Photorealistic landscape photograph, subject centered, wide banner composition. 
 
 ---
 
+## Lesson 7 — Seasonal Festivals Around the World
+
+교과서 소재: 세계의 계절 축제 4곳 — 파야스(봄·스페인) → 한여름 축제(여름·스웨덴)
+→ 망자의 날(가을·멕시코) → 퍼 론디(겨울·알래스카).
+네 장이 **계절과 색으로 저절로 갈린다** — 봄 광장 / 초여름 초원 / 실내 제단 정물 / 설원 거리.
+서로 닮지 않도록 각 프롬프트의 `--no` 에 다른 챕터의 핵심 소재를 넣어 배제했다.
+
+### Ch1 · Fallas Festival in Valencia, Spain — 광장에 선 거대 조각상
+
+- 저장 경로: `dist/L7/assets/illust-1.png`
+- 본문 근거: *"The stars of the festival are fallas, giant wooden statues"* /
+  *"You can find hundreds of them all over the city"*
+- 장면 의도: 봄의 스페인 도시 광장. **거대한 조각상의 크기감**이 한눈에 들어와야 한다.
+
+```
+Photorealistic travel documentary photograph, subject centered, wide banner composition. A large public plaza in a Spanish Mediterranean city in spring: a towering multi-story festival sculpture built of painted wood and papier-mache, brightly colored in red, orange and turquoise, standing above pale stone pavement. Historic cream-colored buildings with iron balconies frame the square, palm trees at the edges. Festive spring city atmosphere, wide establishing view. Shot on a wide-angle lens from a low angle, natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, true-to-life color, sharp focus. --no people, face, hands, text, letters, words, numbers, signage, logo, watermark, fire, flames, burning, smoke, fireworks, maypole, flower garland, green meadow, snow, ice, reindeer, skeleton, skull, candles, cemetery, altar, golden hour, sunset, dramatic lighting, neon, night, heavy shadows, dark moody grading --ar 16:5 --v 8.1 --style raw
+```
+
+### Ch2 · Midsummer Festival in Sweden — 꽃으로 장식한 장대와 초원
+
+- 저장 경로: `dist/L7/assets/illust-2.png`
+- 본문 근거: *"people decorate a tall pole with flowers and green leaves"* /
+  *"the sun hardly sets at this time of year"*
+- 장면 의도: 한여름의 스웨덴 시골. **꽃·초록 잎으로 감은 장대**가 주인공.
+
+```
+Photorealistic travel documentary photograph, subject centered, wide banner composition. A tall Scandinavian midsummer pole standing in an open green summer meadow: the wooden pole is wrapped in fresh green leaves and wildflowers, with two round floral wreaths hanging from its crossbar. Wild grasses and yellow and white summer flowers spread across the field, a red wooden Swedish farmhouse and birch trees far in the background. Calm rural northern summer atmosphere. Shot on a wide-angle lens at eye level, natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, true-to-life color, sharp focus. --no people, face, hands, text, letters, words, numbers, signage, logo, watermark, wooden statues, sculpture, fire, flames, fireworks, snow, ice, reindeer, skeleton, skull, candles, cemetery, altar, city plaza, palm trees, golden hour, sunset, dramatic lighting, neon, night, heavy shadows, dark moody grading --ar 16:5 --v 8.1 --style raw
+```
+
+### Ch3 · Day of the Dead Festival in Mexico — 집 안에 차린 제단
+
+- 저장 경로: `dist/L7/assets/illust-3.png`
+- 본문 근거: *"people set up altars in their homes"* /
+  *"people dress up like skeletons"*
+- 장면 의도: 멕시코 가정의 **제단(ofrenda) 정물**. 교재용이므로 **문화적·따뜻한 톤**으로,
+  공포·유혈 요소는 `--no` 로 전면 차단한다. 사람은 넣지 않는다.
+
+```
+Photorealistic still life documentary photograph, subject centered, wide banner composition. A traditional Mexican home altar arranged on tiered tables covered with an embroidered cloth: bright orange marigold flowers in clay pots, colorful decorated ceramic sugar skulls, small unlit candles, round bread loaves and fresh fruit in woven baskets. Strings of cut paper banners in pink, purple and yellow hang above, a warm painted plaster wall behind. Respectful, festive and welcoming family atmosphere. Shot on a wide-angle lens at eye level, natural soft diffused daylight, high-key exposure, low contrast, true-to-life color, sharp focus. --no people, face, hands, text, letters, words, numbers, signage, logo, watermark, gore, blood, horror, scary, corpse, real human bones, wooden statues, fire, flames, fireworks, maypole, green meadow, snow, ice, reindeer, city plaza, golden hour, sunset, dramatic lighting, neon, night, heavy shadows, dark moody grading --ar 16:5 --v 8.1 --style raw
+```
+
+### Ch4 · Fur Rondy Festival in Alaska, USA — 눈 덮인 겨울 축제 거리
+
+- 저장 경로: `dist/L7/assets/illust-4.png`
+- 본문 근거: *"one of the biggest winter festivals in the world"* /
+  *"various winter sports"* / *"the Running of the Reindeer"*
+- 장면 의도: 알래스카의 **설원 도시 축제 거리**. 눈은 흐린 날 확산광이라야 하얗게 나온다.
+
+```
+Photorealistic winter documentary photograph, subject centered, wide banner composition. A snow-covered northern city street prepared for a winter carnival: fresh packed snow along the road, colorful festival banners and bunting strung between lampposts, wooden barriers lining the route, sleds and snowshoes leaning against a rail, distant low mountains beyond the rooftops. Two reindeer stand calmly far down the empty street. Crisp cold festive winter air, wide establishing view. Shot on a wide-angle lens at eye level, natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, true-to-life color, sharp focus. --no people, face, hands, text, letters, words, numbers, signage, logo, watermark, wooden statues, sculpture, fire, flames, fireworks, maypole, flowers, green meadow, skeleton, skull, candles, cemetery, altar, palm trees, golden hour, sunset, dramatic lighting, neon, night, heavy shadows, dark moody grading --ar 16:5 --v 8.1 --style raw
+```
+
+---
+
 ## 검증
 
 ```bash
@@ -149,6 +203,6 @@ node _sync-prompts.mjs          # data/*.json 의 illustration.prompt 동기화
 
 체크리스트:
 - [ ] 지시부(`--no` 앞) 800자 이하 · 인라인 `NO ` 0개
-- [ ] 전 7장 `--ar 16:5 --v 8.1 --style raw`
+- [ ] 전 11장 `--ar 16:5 --v 8.1 --style raw`
 - [ ] 지시부에 다크 키워드(`golden hour`·`dramatic`·`sunset`) 0건 — `--no` 뒤에만 존재
-- [ ] 전 7장 `--no` 에 `text, letters, words` + `people, face` 포함
+- [ ] 전 11장 `--no` 에 `text, letters, words` + `people, face` 포함
