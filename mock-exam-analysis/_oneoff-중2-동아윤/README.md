@@ -13,6 +13,7 @@
 - **Lesson 5** — Street Art in London (런던 거리 예술 투어: STIK · Banksy · Ben Wilson)
 - **Lesson 6** — Dr. Schofield, a Foreigner Who Loved Korea (석호필, 한국을 사랑한 이방인)
 - **Lesson 7** — Seasonal Festivals Around the World (전 세계의 계절 축제들)
+- **BY** — 봉영여중 2학년 영어B 추가지문 03·04·05·06 (교과서 과가 아닌 **별도 추가지문 묶음**)
 
 > 요청 범위는 **본문분석 + 본문암기 2종**입니다. 9-STEP 워크북·변형문제는 만들지 않았습니다.
 
@@ -61,6 +62,29 @@ Lesson 7 은 교과서가 축제 4곳을 **소제목으로 이미 나눠** 두�
 7/6/6/7 로 고르다. 그래서 L5·L6 와 달리 **문단 재조정 없이 교과서 구획을
 그대로 4챕터**로 썼다.
 
+### BY — 봉영여중 2학년 영어B 추가지문 (원문 63문장 → 4챕터)
+
+| Ch | 제목 | 원문 문장 | 문제 유형 |
+|----|------|-----------|-----------|
+| 1 | Gene-editing and Its Ethical Questions (지문 03) | 15 | 제목 |
+| 2 | Basking in Reflected Glory (지문 04) | 14 | 주제 |
+| 3 | Antibiotics and Superbugs (지문 05) | 21 | 내용일치 |
+| 4 | Paul Bunyan and American Tall Tales (지문 06) | 13 | 요지 |
+| | **합계** | **63** | |
+
+네 지문은 서로 주제가 무관한 **독립 지문**이라 교과서처럼 한 이야기로 이어지지
+않는다. 그래도 산출물을 하나로 묶기 위해 **한 세트의 4챕터**로 구성했다
+(사용자 확인 2026-09-12).
+
+> ⚠️ **원본 캡쳐의 손글씨는 전사하지 않는다.** 지문 03·05 캡쳐에는 특정 학생
+> (이정윤, 학번 20614)의 필기 — 밑줄·동그라미·한글 뜻·문법 노트 — 가 있으나
+> **인쇄된 본문만** 정본으로 삼는다. 04·06 은 필기가 없는 깨끗한 인쇄본이다.
+
+> ⚠️ **BY 는 Lesson 번호가 없다.** `lessonNo: 0` 이므로 그대로 두면 표지·머리글에
+> "Lesson 0" 이 찍힌다. `build-memorize.mjs` 의 `lessonLabel` · `examTag` ·
+> `coverTitle` · `coverSub` · `docTitle` 오버라이드로 막아 두었다.
+> 새로 비슷한 묶음을 추가하면 이 5개를 반드시 함께 지정할 것.
+
 ## 산출물
 
 | 과 | 본문분석 합본 | 본문암기 |
@@ -68,6 +92,7 @@ Lesson 7 은 교과서가 축제 4곳을 **소제목으로 이미 나눠** 두�
 | L5 | `중2_동아윤정미_Lesson5_본문분석_합본.pdf` 14p | `중2_동아윤정미_Lesson5_본문암기.pdf` 4p(28문항) |
 | L6 | `중2_동아윤정미_Lesson6_본문분석_합본.pdf` 16p | `중2_동아윤정미_Lesson6_본문암기.pdf` 4p(26문항) |
 | L7 | `중2_동아윤정미_Lesson7_본문분석_합본.pdf` 18p | `중2_동아윤정미_Lesson7_본문암기.pdf` 4p(26문항) |
+| BY | `봉영여중_2학년_영어B_추가지문_본문분석_합본.pdf` | `봉영여중_2학년_영어B_추가지문_본문암기.pdf` (63문항) |
 
 ### 본문분석
 
@@ -96,7 +121,7 @@ Lesson 7 은 교과서가 축제 4곳을 **소제목으로 이미 나눠** 두�
 ```bash
 cd mock-exam-analysis
 node "_oneoff-중2-동아윤/build-memorize.mjs"        # L5·L6·L7 전부
-node "_oneoff-중2-동아윤/build-memorize.mjs" L5     # 한 과만
+node "_oneoff-중2-동아윤/build-memorize.mjs" L5     # 한 과만 (BY 도 동일)
 ```
 
 ### 본문 전문 페이지
@@ -132,7 +157,7 @@ _ILLUSTRATION_PROMPTS.md        삽화 프롬프트 11장(16:5, v8.1)
 
 ```bash
 cd mock-exam-analysis
-L=L5   # 또는 L6 / L7
+L=L5   # 또는 L6 / L7 / BY
 
 # 0) 무결성 검증 — 반드시 먼저 (실패 시 빌드 금지)
 node "_oneoff-중2-동아윤/verify.mjs"

@@ -53,6 +53,18 @@ const LESSONS = {
     /* 26문항을 13/13 두 장에 담는다(L6 와 동일 규칙). */
     maxPerPage: 13,
   },
+  BY: {
+    lessonNo: 0,
+    lessonLabel: '추가지문',
+    examTag: '봉영여중 2학년 영어B',
+    coverTitle: '봉영여중 2학년<br>영어B 추가지문',
+    coverSub: '추가지문 03 · 04 · 05 · 06',
+    docTitle: '봉영여중 2학년 영어B 추가지문 본문암기 — Terra Nova',
+    titleEn: 'Additional Reading Passages 03-06',
+    out: '봉영여중_2학년_영어B_추가지문_본문암기.pdf',
+    /* 63문항. 상한 16 이면 ceil(63/16)=4장 → 16/16/16/15 로 고르게 나뉜다. */
+    maxPerPage: 16,
+  },
 };
 
 const esc = (s) => String(s ?? '')
@@ -61,7 +73,7 @@ const esc = (s) => String(s ?? '')
 /* ── 한 과 빌드 ───────────────────────────────────────────────── */
 async function buildOne(lessonId) {
   const LESSON = LESSONS[lessonId];
-  if (!LESSON) { console.error(`알 수 없는 과: ${lessonId} (L5 / L6 / L7)`); process.exit(2); }
+  if (!LESSON) { console.error(`알 수 없는 과: ${lessonId} (L5 / L6 / L7 / BY)`); process.exit(2); }
 
   const { SOURCE } = await import(`./_SOURCE-${lessonId}.js`);
   const DIST = path.join(__dirname, 'dist', lessonId);
@@ -90,9 +102,9 @@ async function buildOne(lessonId) {
 
   /* ── 페이지 조립 헬퍼 ── */
   const pageHead = (subtitle) => `  <header class="page-head">
-    <span class="exam-tag">중2 · 동아(윤정미)</span>
+    <span class="exam-tag">${LESSON.examTag ?? '중2 · 동아(윤정미)'}</span>
     <span class="sep">|</span>
-    <span class="grade-tag">Lesson ${LESSON.lessonNo}</span>
+    <span class="grade-tag">${LESSON.lessonLabel ?? `Lesson ${LESSON.lessonNo}`}</span>
     <span class="sep">·</span>
     <span class="step-subtitle">${esc(subtitle)}</span>
     <span class="wb-chip">본문암기</span>
@@ -142,8 +154,8 @@ ${chunk.map(aRow).join('\n')}
   const cover = `<section class="page cover-page">
   <div class="cover-wrap">
     <div class="cover-brand">Terra Nova</div>
-    <div class="cover-title">중학교 2학년<br>동아 영어 2</div>
-    <div class="cover-sub">Lesson ${LESSON.lessonNo} · ${esc(LESSON.titleEn)}</div>
+    <div class="cover-title">${LESSON.coverTitle ?? '중학교 2학년<br>동아 영어 2'}</div>
+    <div class="cover-sub">${LESSON.coverSub ?? `Lesson ${LESSON.lessonNo} · ${esc(LESSON.titleEn)}`}</div>
     <div class="cover-meta">본문 암기 · 원문 ${items.length}문장 전수</div>
   </div>
 </section>`;
@@ -189,7 +201,7 @@ ${chunk.map(aRow).join('\n')}
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<title>중2 · 동아(윤정미) Lesson ${LESSON.lessonNo} 본문암기 — Terra Nova</title>
+<title>${LESSON.docTitle ?? `중2 · 동아(윤정미) Lesson ${LESSON.lessonNo} 본문암기 — Terra Nova`}</title>
 <link rel="stylesheet" href="${cssHref}">
 <style>${extraCss}</style>
 </head>
@@ -309,6 +321,6 @@ ${pagesHtml}
 }
 
 const arg = (process.argv[2] || '').toUpperCase();
-const targets = arg ? [arg] : ['L5', 'L6', 'L7'];
+const targets = arg ? [arg] : ['L5', 'L6', 'L7', 'BY'];
 console.log('📝 본문암기 워크북 빌드\n');
 for (const t of targets) await buildOne(t);

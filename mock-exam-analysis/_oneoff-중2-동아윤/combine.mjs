@@ -20,6 +20,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { SOURCE as SOURCE_L5 } from './_SOURCE-L5.js';
 import { SOURCE as SOURCE_L6 } from './_SOURCE-L6.js';
 import { SOURCE as SOURCE_L7 } from './_SOURCE-L7.js';
+import { SOURCE as SOURCE_BY } from './_SOURCE-BY.js';
 import { countSMasks, flatten } from '../builder/goodnotes-safe.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -52,12 +53,23 @@ const LESSONS = {
     docTitle: '중2 · 동아(윤정미) Lesson 7 본문분석 합본 — Terra Nova',
     out: '중2_동아윤정미_Lesson7_본문분석_합본.pdf',
   },
+  BY: {
+    source: SOURCE_BY,
+    lessonNo: 0,
+    coverTitle: '봉영여중 2학년<br>영어B 추가지문',
+    titleEn: 'Additional Reading Passages 03-06',
+    coverSub: '봉영여중 2학년 영어B<br>추가지문 03 · 04 · 05 · 06',
+    /* 63문장은 A4 한 장에 못 들어간다(실측 148.2%). 32문장씩 2장으로 나눈다. */
+    fulltextMaxPerPage: 32,
+    docTitle: '봉영여중 2학년 영어B 추가지문 본문분석 합본 — Terra Nova',
+    out: '봉영여중_2학년_영어B_추가지문_본문분석_합본.pdf',
+  },
 };
 
 const lessonId = (process.argv[2] || 'L5').toUpperCase();
 const LESSON = LESSONS[lessonId];
 if (!LESSON) {
-  console.error(`알 수 없는 과: ${lessonId} (L5 / L6 / L7)`);
+  console.error(`알 수 없는 과: ${lessonId} (L5 / L6 / L7 / BY)`);
   process.exit(2);
 }
 const SOURCE = LESSON.source;
@@ -143,7 +155,16 @@ for (const ch of SOURCE) {
       </div>`);
   });
 }
-const tocRows = fullLines.join('\n');
+/* 본문 전문은 A4 한 장을 기준으로 설계됐다(L5~L7 은 24~31문장).
+   BY(63문장)처럼 문장이 많으면 자동 맞춤 하한(0.6)으로도 안 들어가
+   .page-body 의 overflow:hidden 때문에 '에러 없이 잘린 채' 인쇄된다.
+   (2026-09-12 실측: 148.2% 사용 → Ch3·Ch4 통째로 유실)
+   그래서 과별 상한을 두고 넘치면 여러 장으로 나눈다. */
+const FULLTEXT_MAX_PER_PAGE = LESSON.fulltextMaxPerPage ?? 40;
+const fullChunks = [];
+for (let i = 0; i < fullLines.length; i += FULLTEXT_MAX_PER_PAGE) {
+  fullChunks.push(fullLines.slice(i, i + FULLTEXT_MAX_PER_PAGE));
+}
 
 const cover = `<section class="page cover-page">
   <div class="cover-wrap">
@@ -154,14 +175,14 @@ const cover = `<section class="page cover-page">
   </div>
 </section>
 
-<section class="page toc-page-sec">
+${fullChunks.map((chunk, ci) => `<section class="page toc-page-sec">
   <div class="page-body">
-    <div class="section-bar alt">FULL TEXT · 본문 전문<span class="bar-sub">원문 ${SENTENCE_TOTAL}문장</span></div>
+    <div class="section-bar alt">FULL TEXT · 본문 전문<span class="bar-sub">원문 ${SENTENCE_TOTAL}문장${fullChunks.length > 1 ? ` (${ci + 1}/${fullChunks.length})` : ''}</span></div>
     <div class="fulltext fulltext-all">
-${tocRows}
+${chunk.join('\n')}
     </div>
   </div>
-</section>`;
+</section>`).join('\n')}`;
 
 const extraCss = `
   /* 합본 N페이지 누적 시 Chromium PDF 페이지 경계 드리프트 방지 — A4 박스 고정.
@@ -235,34 +256,52 @@ await page.goto(pathToFileURL(combinedHtmlPath).href, { waitUntil: 'networkidle0
    --ft 배율을 이분 탐색해 '넘치지 않는 최대값'을 찾는다.
    .page-body 가 overflow:hidden 이라 넘침은 눈에 안 보이므로 실측이 유일한 안전장치다.
    찾은 배율을 combined.html 에 다시 써 넣어 HTML 과 PDF 가 같은 모습이 되게 한다. */
-const fitScale = await page.evaluate(() => {
-  const list = document.querySelector('.fulltext-all');
-  if (!list) return null;
-  const body = list.closest('.page-body');
-  const fits = (v) => {
-    list.style.setProperty('--ft', String(v));
-    void body.offsetHeight;                       // 강제 리플로우
-    return body.scrollHeight <= body.clientHeight;
-  };
-  let lo = 0.6, hi = 2.0;
-  if (!fits(lo)) { list.style.setProperty('--ft', String(lo)); return lo; }
-  for (let i = 0; i < 22; i++) {                  // 0.6~2.0 을 22회 이분 → 오차 ~0.0001
-    const mid = (lo + hi) / 2;
-    if (fits(mid)) lo = mid; else hi = mid;
-  }
-  const v = Math.floor(lo * 1000) / 1000;         // 안전하게 내림
-  list.style.setProperty('--ft', String(v));
-  return v;
+/* 본문 전문이 여러 장으로 나뉠 수 있으므로 '각 장'을 따로 맞춘다.
+   (예전엔 querySelector 로 첫 장만 맞춰, 둘째 장부터는 넘쳐도 모르고 지나갔다.) */
+const fitResults = await page.evaluate(() => {
+  const lists = [...document.querySelectorAll('.fulltext-all')];
+  if (!lists.length) return null;
+  return lists.map((list) => {
+    const body = list.closest('.page-body');
+    const fits = (v) => {
+      list.style.setProperty('--ft', String(v));
+      void body.offsetHeight;                       // 강제 리플로우
+      return body.scrollHeight <= body.clientHeight;
+    };
+    let lo = 0.6, hi = 2.0, overflow = false;
+    if (!fits(lo)) { list.style.setProperty('--ft', String(lo)); overflow = true; }
+    else {
+      for (let i = 0; i < 22; i++) {
+        const mid = (lo + hi) / 2;
+        if (fits(mid)) lo = mid; else hi = mid;
+      }
+      lo = Math.floor(lo * 1000) / 1000;            // 안전하게 내림
+      list.style.setProperty('--ft', String(lo));
+    }
+    return { scale: lo, overflow, used: body.scrollHeight, avail: body.clientHeight };
+  });
 });
 
-if (fitScale != null) {
-  const m = await page.evaluate(() => {
-    const b = document.querySelector('.fulltext-all').closest('.page-body');
-    return { used: b.scrollHeight, avail: b.clientHeight };
+if (fitResults != null) {
+  fitResults.forEach((r, i) => {
+    const tag = fitResults.length > 1 ? ` (${i + 1}/${fitResults.length})` : '';
+    const pct = (r.used / r.avail * 100).toFixed(1);
+    console.log(`   ↔ 본문 전문 자동 맞춤${tag}: 배율 ${r.scale}  (${r.used}/${r.avail}px, ${pct}% 사용)`);
   });
-  console.log(`   ↔ 본문 전문 자동 맞춤: 배율 ${fitScale}  (${m.used}/${m.avail}px, ${(m.used / m.avail * 100).toFixed(1)}% 사용)`);
+  /* ★ 하한(0.6)으로도 안 들어가면 overflow:hidden 때문에 '잘린 채' 인쇄된다.
+     조용히 넘어가면 문장이 통째로 사라지므로 빌드를 실패시킨다. */
+  const bad = fitResults.filter(r => r.overflow);
+  if (bad.length) {
+    console.error(`
+❌ 본문 전문 ${bad.length}개 장이 하한 배율로도 넘칩니다 — 잘린 채 인쇄됩니다.`);
+    console.error(`   LESSONS.${lessonId}.fulltextMaxPerPage 를 줄여 장수를 늘리세요.`);
+    process.exit(1);
+  }
   // HTML 산출물에도 동일 배율을 박아 둔다(브라우저로 열어도 PDF 와 같게).
-  const fixed = combinedHtml.replace('.fulltext-all {\n    --ft: 1;', `.fulltext-all {\n    --ft: ${fitScale};`);
+  const fixed = combinedHtml.replace(
+    new RegExp('\.fulltext-all \{\n    --ft: 1;', 'g'),
+    `.fulltext-all {
+    --ft: ${fitResults[0].scale};`);
   await fs.writeFile(combinedHtmlPath, fixed, 'utf8');
 }
 

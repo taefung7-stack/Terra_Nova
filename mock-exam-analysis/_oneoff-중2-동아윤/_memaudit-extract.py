@@ -10,7 +10,7 @@ _memaudit.mjs 는 dist/_memaudit/{L}.txt 를 읽는데 그 파일을 만드는 �
    "정답면에 없음" 오탐이 26문장 중 14건씩 난다(내용은 멀쩡하다).
    그래서 x좌표로 단을 갈라 좌단 전체 → 우단 전체 순으로 잇는다.
 
-  python _memaudit-extract.py        # L5·L6·L7
+  python _memaudit-extract.py        # L5·L6·L7·BY
   python _memaudit-extract.py L7     # 한 과만
 """
 import sys, os, io
@@ -21,12 +21,14 @@ COMBINED_PDF = {
     'L5': '중2_동아윤정미_Lesson5_본문분석_합본.pdf',
     'L6': '중2_동아윤정미_Lesson6_본문분석_합본.pdf',
     'L7': '중2_동아윤정미_Lesson7_본문분석_합본.pdf',
+    'BY': '봉영여중_2학년_영어B_추가지문_본문분석_합본.pdf',
 }
 
 OUT_PDF = {
     'L5': '중2_동아윤정미_Lesson5_본문암기.pdf',
     'L6': '중2_동아윤정미_Lesson6_본문암기.pdf',
     'L7': '중2_동아윤정미_Lesson7_본문암기.pdf',
+    'BY': '봉영여중_2학년_영어B_추가지문_본문암기.pdf',
 }
 
 
@@ -46,7 +48,7 @@ def page_text(page):
 
 def main():
     arg = (sys.argv[1] if len(sys.argv) > 1 else '').upper()
-    targets = [arg] if arg else ['L5', 'L6', 'L7']
+    targets = [arg] if arg else ['L5', 'L6', 'L7', 'BY']
     out_dir = os.path.join(HERE, 'dist', '_memaudit')
     os.makedirs(out_dir, exist_ok=True)
     rc = 0
