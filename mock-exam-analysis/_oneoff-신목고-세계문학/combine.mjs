@@ -19,6 +19,7 @@ import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { SOURCE as SOURCE_RAW } from './_SOURCE-U1.js';
 import { SOURCE as SOURCE_U2_RAW } from './_SOURCE-U2.js';
+import { SOURCE as SOURCE_U3_RAW } from './_SOURCE-U3.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -36,6 +37,10 @@ const SOURCE_U2 = SOURCE_U2_RAW.map(ch => ({
   sentences: [...ch.sentences, ...(ch.blog?.sentences ?? [])],
 }));
 
+/** U3 평탄화 — 댓글도 블로그도 없는 단순 산문이라 본문 문장이 곧 passage 다.
+ *  verify.mjs 의 flattenPlain() 과 같은 규칙. */
+const SOURCE_U3 = SOURCE_U3_RAW.map(ch => ({ ...ch, sentences: [...ch.sentences] }));
+
 const LESSONS = {
   U1: {
     source: SOURCE_U1,
@@ -52,6 +57,14 @@ const LESSONS = {
     coverSub: '신목고 2-2 중간 · 세계문학<br>Unit 2 A French Student in Dublin',
     docTitle: '신목고 2-2 중간 · 세계문학 Unit 2 본문분석 합본 — Terra Nova',
     out: '신목고2-2중간_세계문학_Unit2_본문분석_합본.pdf',
+  },
+  U3: {
+    source: SOURCE_U3,
+    lessonNo: null,
+    titleEn: 'Noodle Dishes from Around the World',
+    coverSub: '신목고 2-2 중간 · 세계문학<br>Unit 3 Noodle Dishes from Around the World',
+    docTitle: '신목고 2-2 중간 · 세계문학 Unit 3 본문분석 합본 — Terra Nova',
+    out: '신목고2-2중간_세계문학_Unit3_본문분석_합본.pdf',
   },
 };
 

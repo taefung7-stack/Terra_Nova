@@ -39,6 +39,11 @@ const UNITS = {
     label: 'Unit 2 — A French Student in Dublin',
     byline: (ch) => `**${ch.part}**`,
   },
+  U3: {
+    file: './_SOURCE-U3.js',
+    label: 'Unit 3 — Noodle Dishes from Around the World',
+    byline: (ch) => `**${ch.part}**`,
+  },
 };
 
 const UNIT = (process.argv[2] || 'U1').toUpperCase();

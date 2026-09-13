@@ -29,6 +29,12 @@ const LESSONS = {
     docTitle: '신목고 2-2 중간 · 세계문학 Unit 2 변형문제 합본 — Terra Nova',
     out: '신목고2-2중간_세계문학_Unit2_변형문제_합본.pdf',
   },
+  U3: {
+    titleEn: 'Noodle Dishes from Around the World',
+    coverSub: '신목고 2-2 중간 · 세계문학<br>Unit 3 Noodle Dishes from Around the World',
+    docTitle: '신목고 2-2 중간 · 세계문학 Unit 3 변형문제 합본 — Terra Nova',
+    out: '신목고2-2중간_세계문학_Unit3_변형문제_합본.pdf',
+  },
 };
 
 const lessonId = (process.argv[2] || 'U1').toUpperCase();

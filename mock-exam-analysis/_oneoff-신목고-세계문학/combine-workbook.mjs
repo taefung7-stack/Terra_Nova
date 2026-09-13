@@ -48,6 +48,14 @@ const LESSONS = {
     docTitle: '신목고 2-2 중간 · 세계문학 Unit 2 워크북 합본 — Terra Nova',
     out: '신목고2-2중간_세계문학_Unit2_워크북_합본.pdf',
   },
+  U3: {
+    lessonNo: null,
+    titleEn: 'Noodle Dishes from Around the World',
+    sentences: 36,
+    coverSub: '신목고 2-2 중간 · 세계문학<br>Unit 3 Noodle Dishes from Around the World',
+    docTitle: '신목고 2-2 중간 · 세계문학 Unit 3 워크북 합본 — Terra Nova',
+    out: '신목고2-2중간_세계문학_Unit3_워크북_합본.pdf',
+  },
 };
 
 const lessonId = (process.argv[2] || 'U1').toUpperCase();

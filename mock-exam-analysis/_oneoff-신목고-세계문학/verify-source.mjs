@@ -27,6 +27,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const UNITS = [
   { id: 'U1', file: './_SOURCE-U1.js', label: 'Unit 1 · Korean Culture from Different Angles', shape: 'comments' },
   { id: 'U2', file: './_SOURCE-U2.js', label: 'Unit 2 · A French Student in Dublin', shape: 'blog' },
+  { id: 'U3', file: './_SOURCE-U3.js', label: 'Unit 3 · Noodle Dishes from Around the World', shape: 'plain' },
 ];
 
 const only = (process.argv[2] || '').toUpperCase();
@@ -45,6 +46,10 @@ const warn = (m) => { console.warn(`   ⚠️  ${m}`); warns++; };
  *  comments 형(U1): 게시글 + 댓글 N개
  *  blog 형(U2)    : PART 본문 + 블로그 1개 */
 function groupsOf(ch, shape) {
+  if (shape === 'plain') {
+    // U3: 댓글도 블로그도 없는 단순 산문. 본문 한 덩어리가 전부다.
+    return [{ name: ch.part || '본문', sentences: ch.sentences || [] }];
+  }
   if (shape === 'blog') {
     return [
       { name: ch.part || '본문', sentences: ch.sentences || [] },
