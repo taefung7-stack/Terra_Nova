@@ -28,13 +28,13 @@ const TYPES = ['theme','gist','title','implication','blank','order','summary'];
  * 각 유형이 5개 번호를 고르게 돌도록 배치하고,
  * 동시에 지문(세로)별로도 같은 번호가 몰리지 않게 라틴방진에 가깝게 구성. */
 const TARGET = {
-  theme:       [2, 4, 1, 5],
-  gist:        [5, 1, 3, 2],
-  title:       [3, 5, 4, 1],
-  implication: [1, 3, 5, 4],
-  blank:       [4, 2, 5, 3],
-  order:       [3, 2, 1, 4],
-  summary:     [5, 4, 2, 1],
+  theme:       [2, 4, 1, 5, 3, 1],
+  gist:        [5, 1, 3, 2, 4, 3],
+  title:       [3, 5, 4, 1, 2, 5],
+  implication: [1, 3, 5, 4, 5, 2],
+  blank:       [4, 2, 5, 3, 1, 4],
+  order:       [3, 2, 1, 4, 5, 2],
+  summary:     [5, 4, 2, 1, 3, 5],
 };
 
 /* ①~⑤ 표기를 옛번호→새번호 매핑으로 치환 */
@@ -85,8 +85,24 @@ const before = {1:0,2:0,3:0,4:0,5:0};
 const after  = {1:0,2:0,3:0,4:0,5:0};
 const changed = [];
 
+/* 대상 유닛과 챕터 수를 인자로 받는다.
+ *   node _rebalance-variant.mjs            → U1 4지문 (기존 동작 그대로)
+ *   node _rebalance-variant.mjs U3 6       → U3 6지문
+ * ★ 인자 없이 돌리면 U1 을 덮어쓰므로, 새 유닛에는 반드시 인자를 준다. */
+const SET = (process.argv[2] || 'U1').toUpperCase();
+const COUNT = Number(process.argv[3] || 4);
+if (!Number.isInteger(COUNT) || COUNT < 1 || COUNT > 6) {
+  console.error(`지원 범위를 벗어난 챕터 수: ${process.argv[3]}`);
+  process.exit(2);
+}
+for (const t of Object.keys(TARGET)) {
+  if (TARGET[t].length < COUNT) {
+    console.error(`TARGET.${t} 가 ${COUNT}지문을 못 채운다 (${TARGET[t].length}개)`);
+    process.exit(2);
+  }
+}
 const files = [];
-for (let i = 1; i <= 4; i++) files.push({ set: 'U1', i });
+for (let i = 1; i <= COUNT; i++) files.push({ set: SET, i });
 
 files.forEach((f, passIdx) => {
   const file = path.join(HERE, 'data', f.set, `${f.i}-variant.json`);
@@ -108,6 +124,6 @@ files.forEach((f, passIdx) => {
   fs.writeFileSync(file, JSON.stringify(d, null, 2) + '\n', 'utf8');
 });
 
-console.log('변경 문항:', changed.length, '/ 28 (순열 가능 유형)  · 고정 유형 16문항은 원본 유지');
+console.log(`변경 문항: ${changed.length} / ${TYPES.length * COUNT} (순열 가능 유형) · 고정 4유형 ${4 * COUNT}문항은 원본 유지`);
 console.log('BEFORE', JSON.stringify(before));
 console.log('AFTER ', JSON.stringify(after));
