@@ -1,0 +1,920 @@
+{
+ "$schema_version": "1.0",
+ "$ref_source": "2.json",
+ "_note": "U3 Ch2 워크북 — PASTA(Italy) 본문 7문장 풀커버. 문장이 7개라 ref_sentence 를 반복해 9문항을 채웠고, 반복할 때마다 어법 포인트·빈칸 위치·배열 문장을 달리했다. 나라·민족명(Italy/Italian/Italians/Sicily)과 문두 대문자어(Although/Usually/Regardless/Spaghetti/It), 그리고 이탈리아어 속담의 첫 낱말 A 까지 buildProperNounSet 오탐 대상이라 양자택일 정답 슬롯에서 전부 제외했다. 정답 토큰은 문장 중반의 동사·전치사·형용사로만 잡았다.",
+ "voca_check": {
+  "en_to_ko": [
+   {
+    "word": "typically",
+    "pos": "부"
+   },
+   {
+    "word": "staple",
+    "pos": "명"
+   },
+   {
+    "word": "cuisine",
+    "pos": "명"
+   },
+   {
+    "word": "certain",
+    "pos": "형"
+   },
+   {
+    "word": "originated",
+    "pos": "동"
+   },
+   {
+    "word": "variety",
+    "pos": "명"
+   },
+   {
+    "word": "ingredients",
+    "pos": "명"
+   },
+   {
+    "word": "chopped",
+    "pos": "형"
+   },
+   {
+    "word": "sliced",
+    "pos": "형"
+   },
+   {
+    "word": "cherish",
+    "pos": "동"
+   }
+  ],
+  "ko_to_en": [
+   {
+    "meaning": "일반적으로, 전형적으로",
+    "pos": "부",
+    "answer": "typically"
+   },
+   {
+    "meaning": "주식, 주요 식품",
+    "pos": "명",
+    "answer": "staple"
+   },
+   {
+    "meaning": "요리, 요리법",
+    "pos": "명",
+    "answer": "cuisine"
+   },
+   {
+    "meaning": "확실한, 분명한",
+    "pos": "형",
+    "answer": "certain"
+   },
+   {
+    "meaning": "기원하다, 비롯되다",
+    "pos": "동",
+    "answer": "originated"
+   },
+   {
+    "meaning": "퍼지다, 확산되다",
+    "pos": "동",
+    "answer": "spread"
+   },
+   {
+    "meaning": "다양성, 여러 가지",
+    "pos": "명",
+    "answer": "variety"
+   },
+   {
+    "meaning": "재료, 성분",
+    "pos": "명",
+    "answer": "ingredients"
+   },
+   {
+    "meaning": "잘게 썬, 다진",
+    "pos": "형",
+    "answer": "chopped"
+   },
+   {
+    "meaning": "소중히 여기다, 간직하다",
+    "pos": "동",
+    "answer": "cherish"
+   }
+  ],
+  "definitions": [
+   {
+    "def": "a basic food that people eat very often and in large amounts",
+    "answer": "staple"
+   },
+   {
+    "def": "a style of cooking that belongs to a country or region",
+    "answer": "cuisine"
+   },
+   {
+    "def": "to begin to exist or to first come from a place",
+    "answer": "originated"
+   },
+   {
+    "def": "cut into small pieces with a knife",
+    "answer": "chopped"
+   },
+   {
+    "def": "to value something highly and keep it with care",
+    "answer": "cherish"
+   }
+  ],
+  "expressions": [
+   {
+    "ko": "~로 만들어지다(재료가 그대로 보임)",
+    "answer": "made of"
+   },
+   {
+    "ko": "~라고 여겨지다",
+    "answer": "is believed"
+   },
+   {
+    "ko": "다양한, 여러 가지의",
+    "answer": "a variety of"
+   },
+   {
+    "ko": "~와 같은",
+    "answer": "such as"
+   },
+   {
+    "ko": "~와 상관없이",
+    "answer": "Regardless of"
+   }
+  ]
+ },
+ "grammar_choice": [
+  {
+   "no": 1,
+   "ref_sentence": 1,
+   "en_template": "Pasta, typically {{1:made/making}} {{2:of/from}} wheat flour, is a staple food in Italian cuisine.",
+   "ko_full": "파스타는 보통 밀가루로 만들어지며, 이탈리아 요리의 주식이다.",
+   "answers": [
+    "made",
+    "of"
+   ],
+   "explain": [
+    "주어 Pasta 를 콤마로 삽입해 꾸미는 자리이고 파스타는 만들어지는 대상이므로 과거분사 made 가 맞다. 현재분사 making 은 능동이라 성립하지 않는다.",
+    "밀가루라는 재료의 성질이 그대로 남아 있으므로 be made of 계열의 of 를 쓴다."
+   ]
+  },
+  {
+   "no": 2,
+   "ref_sentence": 1,
+   "en_template": "Pasta, {{1:typically/typical}} made of wheat flour, {{2:is/are}} a staple food in Italian cuisine.",
+   "ko_full": "파스타는 보통 밀가루로 만들어지며, 이탈리아 요리의 주식이다.",
+   "answers": [
+    "typically",
+    "is"
+   ],
+   "explain": [
+    "뒤의 과거분사 made 를 꾸미는 자리이므로 부사 typically 가 맞다. 형용사 typical 은 분사를 수식할 수 없다.",
+    "삽입구를 걷어 내면 주어는 단수 Pasta 이므로 is 가 맞다. 바로 앞의 flour 에 이끌려 수를 잘못 맞추지 않도록 주의한다."
+   ]
+  },
+  {
+   "no": 3,
+   "ref_sentence": 2,
+   "en_template": "Although {{1:it/that}} is not certain {{2:when people started/when did people start}} eating pasta, it is believed that the food originated in Sicily and spread to other parts of Italy in the 17th century.",
+   "ko_full": "사람들이 언제부터 파스타를 먹기 시작했는지는 확실하지 않지만, 그 음식은 시칠리아에서 기원해 17세기에 이탈리아의 다른 지역으로 퍼진 것으로 여겨진다.",
+   "answers": [
+    "it",
+    "when people started"
+   ],
+   "explain": [
+    "뒤의 when 절을 대신하는 가주어 자리이므로 it 을 쓴다. that 은 가주어로 쓸 수 없다.",
+    "is not certain 의 진주어로 쓰인 간접의문문이므로 의문사 뒤에 평서문 어순이 온다. 조동사 did 를 쓴 의문문 어순은 맞지 않는다."
+   ]
+  },
+  {
+   "no": 4,
+   "ref_sentence": 2,
+   "en_template": "Although it is not certain when people started eating pasta, it {{1:is believed/is believing}} that the food {{2:originated/was originated}} in Sicily and spread to other parts of Italy in the 17th century.",
+   "ko_full": "사람들이 언제부터 파스타를 먹기 시작했는지는 확실하지 않지만, 그 음식은 시칠리아에서 기원해 17세기에 이탈리아의 다른 지역으로 퍼진 것으로 여겨진다.",
+   "answers": [
+    "is believed",
+    "originated"
+   ],
+   "explain": [
+    "\"~라고 여겨진다\" 는 뜻이므로 수동태 is believed that 구조를 쓴다. 진행형 is believing 은 이런 뜻으로 쓰지 않는다.",
+    "originate 는 목적어를 취하지 않는 자동사이므로 수동태로 쓸 수 없다. 능동형 originated 가 맞다."
+   ]
+  },
+  {
+   "no": 5,
+   "ref_sentence": 3,
+   "en_template": "It {{1:comes/come}} in a variety of shapes and sizes, {{2:each/every}} with its own name, such as macaroni, lasagna, and spaghetti.",
+   "ko_full": "그것은 마카로니, 라자냐, 스파게티처럼 저마다 고유한 이름을 지닌 다양한 모양과 크기로 나온다.",
+   "answers": [
+    "comes",
+    "each"
+   ],
+   "explain": [
+    "주어 It 이 3인칭 단수이므로 comes 가 맞다.",
+    "뒤에 with 구가 이어지는 독립분사구문 형태의 명사 자리이므로 대명사로 쓸 수 있는 each 가 맞다. every 는 뒤에 명사가 반드시 따라와야 한다."
+   ]
+  },
+  {
+   "no": 6,
+   "ref_sentence": 4,
+   "en_template": "Spaghetti, one of the most popular {{1:types/type}} of pasta, {{2:is/are}} long, thin noodles.",
+   "ko_full": "스파게티는 가장 인기 있는 파스타 종류 중 하나로, 길고 가느다란 국수이다.",
+   "answers": [
+    "types",
+    "is"
+   ],
+   "explain": [
+    "one of the + 최상급 뒤에는 반드시 복수명사가 오므로 types 가 맞다.",
+    "삽입된 동격구를 걷어 내면 주어는 단수 Spaghetti 이므로 is 를 쓴다. 보어 noodles 의 복수형에 이끌리지 않도록 주의한다."
+   ]
+  },
+  {
+   "no": 7,
+   "ref_sentence": 5,
+   "en_template": "Italians {{1:love/loves}} {{2:to cook/cooking to}} pasta with their favorite recipes.",
+   "ko_full": "이탈리아 사람들은 자신이 좋아하는 조리법으로 파스타를 요리하기를 즐긴다.",
+   "answers": [
+    "love",
+    "to cook"
+   ],
+   "explain": [
+    "주어 Italians 가 복수이므로 동사원형 형태의 love 를 쓴다.",
+    "love 는 to부정사와 동명사를 모두 목적어로 취하지만 여기서는 to cook 형태가 쓰였다. cooking to 는 어순이 성립하지 않는다."
+   ]
+  },
+  {
+   "no": 8,
+   "ref_sentence": 6,
+   "en_template": "Usually, they {{1:boil/boils}} the noodles in a pot, and then {{2:prepare/preparing}} a sauce with various ingredients such as olive oil, garlic, chopped vegetables, sliced meat, herbs, and tomatoes.",
+   "ko_full": "보통 그들은 냄비에 국수를 삶은 다음, 올리브유, 마늘, 다진 채소, 얇게 썬 고기, 허브, 토마토 같은 여러 재료로 소스를 만든다.",
+   "answers": [
+    "boil",
+    "prepare"
+   ],
+   "explain": [
+    "주어 they 가 복수이므로 동사원형 형태의 boil 을 쓴다.",
+    "and then 으로 앞의 boil 과 병렬을 이루는 자리이므로 같은 형태의 prepare 가 맞다. 분사 preparing 은 병렬이 깨진다."
+   ]
+  },
+  {
+   "no": 9,
+   "ref_sentence": 7,
+   "en_template": "Regardless of the ingredients {{1:used/using}}, Italians cherish the saying, \"A tavola non si invecchia,\" {{2:which/what}} means \"At the table with good friends and family, one does not age.\"",
+   "ko_full": "어떤 재료를 쓰든 상관없이, 이탈리아 사람들은 \"A tavola non si invecchia\" 라는 말을 소중히 여기는데, 그것은 \"좋은 친구, 가족과 함께하는 식탁에서는 나이를 먹지 않는다\" 라는 뜻이다.",
+   "answers": [
+    "used",
+    "which"
+   ],
+   "explain": [
+    "ingredients 는 쓰이는 대상이므로 과거분사 used 가 뒤에서 수식한다. 현재분사 using 은 능동이라 맞지 않는다.",
+    "앞의 the saying 을 콤마로 받아 부연하는 계속적 용법이므로 관계대명사 which 를 쓴다. what 은 선행사를 취하지 않는다."
+   ]
+  }
+ ],
+ "vocab_choice": [
+  {
+   "no": 1,
+   "ref_sentence": 1,
+   "en_template": "Pasta, {{1:typically/rarely}} made of wheat flour, is a {{2:staple/rare}} food in Italian cuisine.",
+   "ko_full": "파스타는 보통 밀가루로 만들어지며, 이탈리아 요리의 주식이다.",
+   "answers": [
+    "typically",
+    "staple"
+   ],
+   "explain": [
+    "파스타의 일반적인 재료를 밝히는 흐름이므로 typically(보통)가 맞다. rarely 는 드물다는 뜻으로 정반대이다.",
+    "이탈리아 사람들이 늘 먹는 주식이므로 staple 이 맞다. rare 는 흔치 않다는 뜻으로 흐름과 어긋난다."
+   ]
+  },
+  {
+   "no": 2,
+   "ref_sentence": 2,
+   "en_template": "Although it is not {{1:certain/curious}} when people started eating pasta, it is believed that the food {{2:originated/vanished}} in Sicily and spread to other parts of Italy in the 17th century.",
+   "ko_full": "사람들이 언제부터 파스타를 먹기 시작했는지는 확실하지 않지만, 그 음식은 시칠리아에서 기원해 17세기에 이탈리아의 다른 지역으로 퍼진 것으로 여겨진다.",
+   "answers": [
+    "certain",
+    "originated"
+   ],
+   "explain": [
+    "시작 시점을 알 수 없다는 뜻이므로 certain(확실한)이 맞다. curious 는 궁금하다는 뜻으로 문맥이 다르다.",
+    "기원지를 밝히는 흐름이므로 originated(기원했다)가 맞다. vanished 는 사라졌다는 뜻으로 정반대이다."
+   ]
+  },
+  {
+   "no": 3,
+   "ref_sentence": 2,
+   "en_template": "Although it is not certain when people started eating pasta, it is {{1:believed/doubted}} that the food originated in Sicily and {{2:spread/shrank}} to other parts of Italy in the 17th century.",
+   "ko_full": "사람들이 언제부터 파스타를 먹기 시작했는지는 확실하지 않지만, 그 음식은 시칠리아에서 기원해 17세기에 이탈리아의 다른 지역으로 퍼진 것으로 여겨진다.",
+   "answers": [
+    "believed",
+    "spread"
+   ],
+   "explain": [
+    "널리 받아들여지는 통설을 소개하므로 believed(여겨진다)가 맞다. doubted 는 의심된다는 뜻으로 정반대이다.",
+    "다른 지역으로 퍼져 나갔다는 뜻이므로 spread 가 맞다. shrank 는 줄어들었다는 뜻이다."
+   ]
+  },
+  {
+   "no": 4,
+   "ref_sentence": 3,
+   "en_template": "It comes in a {{1:variety/shortage}} of shapes and sizes, each with its {{2:own/borrowed}} name, such as macaroni, lasagna, and spaghetti.",
+   "ko_full": "그것은 마카로니, 라자냐, 스파게티처럼 저마다 고유한 이름을 지닌 다양한 모양과 크기로 나온다.",
+   "answers": [
+    "variety",
+    "own"
+   ],
+   "explain": [
+    "여러 모양과 크기가 있다는 뜻이므로 a variety of(다양한)가 맞다. shortage 는 부족을 뜻해 정반대이다.",
+    "종류마다 고유한 이름이 있다는 뜻이므로 own 이 맞다. borrowed 는 빌려 온 것이라는 뜻으로 문맥과 다르다."
+   ]
+  },
+  {
+   "no": 5,
+   "ref_sentence": 4,
+   "en_template": "Spaghetti, one of the most {{1:popular/unknown}} types of pasta, is long, {{2:thin/thick}} noodles.",
+   "ko_full": "스파게티는 가장 인기 있는 파스타 종류 중 하나로, 길고 가느다란 국수이다.",
+   "answers": [
+    "popular",
+    "thin"
+   ],
+   "explain": [
+    "대표적인 파스타로 소개하는 흐름이므로 popular(인기 있는)가 맞다. unknown 은 알려지지 않았다는 뜻으로 정반대이다.",
+    "스파게티는 가느다란 면이므로 thin 이 맞다. thick 은 두껍다는 뜻으로 반대이다."
+   ]
+  },
+  {
+   "no": 6,
+   "ref_sentence": 5,
+   "en_template": "Italians {{1:love/refuse}} to cook pasta with their {{2:favorite/forbidden}} recipes.",
+   "ko_full": "이탈리아 사람들은 자신이 좋아하는 조리법으로 파스타를 요리하기를 즐긴다.",
+   "answers": [
+    "love",
+    "favorite"
+   ],
+   "explain": [
+    "즐겨 요리한다는 뜻이므로 love 가 맞다. refuse 는 거부한다는 뜻으로 정반대이다.",
+    "저마다 아끼는 조리법을 뜻하므로 favorite 이 맞다. forbidden 은 금지되었다는 뜻으로 문맥과 무관하다."
+   ]
+  },
+  {
+   "no": 7,
+   "ref_sentence": 6,
+   "en_template": "Usually, they {{1:boil/freeze}} the noodles in a pot, and then prepare a sauce with {{2:various/identical}} ingredients such as olive oil, garlic, chopped vegetables, sliced meat, herbs, and tomatoes.",
+   "ko_full": "보통 그들은 냄비에 국수를 삶은 다음, 올리브유, 마늘, 다진 채소, 얇게 썬 고기, 허브, 토마토 같은 여러 재료로 소스를 만든다.",
+   "answers": [
+    "boil",
+    "various"
+   ],
+   "explain": [
+    "냄비에 넣어 익히는 조리이므로 boil(삶다)이 맞다. freeze 는 얼린다는 뜻으로 조리 순서와 어긋난다.",
+    "여섯 가지 재료를 열거하므로 various(여러 가지의)가 맞다. identical 은 똑같다는 뜻으로 반대이다."
+   ]
+  },
+  {
+   "no": 8,
+   "ref_sentence": 6,
+   "en_template": "Usually, they boil the noodles in a pot, and then prepare a sauce with various ingredients such as olive oil, garlic, {{1:chopped/whole}} vegetables, {{2:sliced/melted}} meat, herbs, and tomatoes.",
+   "ko_full": "보통 그들은 냄비에 국수를 삶은 다음, 올리브유, 마늘, 다진 채소, 얇게 썬 고기, 허브, 토마토 같은 여러 재료로 소스를 만든다.",
+   "answers": [
+    "chopped",
+    "sliced"
+   ],
+   "explain": [
+    "소스에 넣기 위해 잘게 썬 채소이므로 chopped 가 맞다. whole 은 통째라는 뜻으로 소스 재료와 어울리지 않는다.",
+    "얇게 저민 고기이므로 sliced 가 맞다. melted 는 녹였다는 뜻으로 고기에 쓰지 않는다."
+   ]
+  },
+  {
+   "no": 9,
+   "ref_sentence": 7,
+   "en_template": "Regardless of the ingredients used, Italians {{1:cherish/discard}} the saying, \"A tavola non si invecchia,\" which means \"At the table with good friends and family, one does not {{2:age/eat}}.\"",
+   "ko_full": "어떤 재료를 쓰든 상관없이, 이탈리아 사람들은 \"A tavola non si invecchia\" 라는 말을 소중히 여기는데, 그것은 \"좋은 친구, 가족과 함께하는 식탁에서는 나이를 먹지 않는다\" 라는 뜻이다.",
+   "answers": [
+    "cherish",
+    "age"
+   ],
+   "explain": [
+    "대대로 아끼는 속담이라는 뜻이므로 cherish(소중히 여기다)가 맞다. discard 는 버린다는 뜻으로 정반대이다.",
+    "식탁에서는 나이를 먹지 않는다는 속담이므로 age(나이를 먹다)가 맞다. eat 을 넣으면 식탁 이야기와 앞뒤가 맞지 않는다."
+   ]
+  }
+ ],
+ "fill_first_letter": [
+  {
+   "no": 1,
+   "ref_sentence": 1,
+   "hints": [
+    {
+     "pos": 1,
+     "letter": "t",
+     "answer": "typically",
+     "after": "made of wheat flour"
+    },
+    {
+     "pos": 2,
+     "letter": "c",
+     "answer": "cuisine",
+     "after": ""
+    }
+   ],
+   "ko_full": "파스타는 보통 밀가루로 만들어지며, 이탈리아 요리의 주식이다."
+  },
+  {
+   "no": 2,
+   "ref_sentence": 1,
+   "hints": [
+    {
+     "pos": 1,
+     "letter": "s",
+     "answer": "staple",
+     "after": "food in Italian cuisine"
+    },
+    {
+     "pos": 2,
+     "letter": "f",
+     "answer": "flour",
+     "after": "is a staple food"
+    }
+   ],
+   "ko_full": "파스타는 보통 밀가루로 만들어지며, 이탈리아 요리의 주식이다."
+  },
+  {
+   "no": 3,
+   "ref_sentence": 2,
+   "hints": [
+    {
+     "pos": 1,
+     "letter": "c",
+     "answer": "certain",
+     "after": "when people started eating pasta"
+    },
+    {
+     "pos": 2,
+     "letter": "o",
+     "answer": "originated",
+     "after": "in Sicily"
+    }
+   ],
+   "ko_full": "사람들이 언제부터 파스타를 먹기 시작했는지는 확실하지 않지만, 그 음식은 시칠리아에서 기원해 17세기에 이탈리아의 다른 지역으로 퍼진 것으로 여겨진다."
+  },
+  {
+   "no": 4,
+   "ref_sentence": 2,
+   "hints": [
+    {
+     "pos": 1,
+     "letter": "b",
+     "answer": "believed",
+     "after": "that the food originated"
+    },
+    {
+     "pos": 2,
+     "letter": "s",
+     "answer": "spread",
+     "after": "to other parts of Italy"
+    }
+   ],
+   "ko_full": "사람들이 언제부터 파스타를 먹기 시작했는지는 확실하지 않지만, 그 음식은 시칠리아에서 기원해 17세기에 이탈리아의 다른 지역으로 퍼진 것으로 여겨진다."
+  },
+  {
+   "no": 5,
+   "ref_sentence": 3,
+   "hints": [
+    {
+     "pos": 1,
+     "letter": "v",
+     "answer": "variety",
+     "after": "of shapes and sizes"
+    },
+    {
+     "pos": 2,
+     "letter": "s",
+     "answer": "shapes",
+     "after": "and sizes"
+    }
+   ],
+   "ko_full": "그것은 마카로니, 라자냐, 스파게티처럼 저마다 고유한 이름을 지닌 다양한 모양과 크기로 나온다."
+  },
+  {
+   "no": 6,
+   "ref_sentence": 4,
+   "hints": [
+    {
+     "pos": 1,
+     "letter": "p",
+     "answer": "popular",
+     "after": "types of pasta"
+    },
+    {
+     "pos": 2,
+     "letter": "n",
+     "answer": "noodles",
+     "after": ""
+    }
+   ],
+   "ko_full": "스파게티는 가장 인기 있는 파스타 종류 중 하나로, 길고 가느다란 국수이다."
+  },
+  {
+   "no": 7,
+   "ref_sentence": 5,
+   "hints": [
+    {
+     "pos": 1,
+     "letter": "f",
+     "answer": "favorite",
+     "after": "recipes"
+    },
+    {
+     "pos": 2,
+     "letter": "r",
+     "answer": "recipes",
+     "after": ""
+    }
+   ],
+   "ko_full": "이탈리아 사람들은 자신이 좋아하는 조리법으로 파스타를 요리하기를 즐긴다."
+  },
+  {
+   "no": 8,
+   "ref_sentence": 6,
+   "hints": [
+    {
+     "pos": 1,
+     "letter": "i",
+     "answer": "ingredients",
+     "after": "such as olive oil"
+    },
+    {
+     "pos": 2,
+     "letter": "c",
+     "answer": "chopped",
+     "after": "vegetables"
+    },
+    {
+     "pos": 3,
+     "letter": "s",
+     "answer": "sliced",
+     "after": "meat, herbs, and tomatoes"
+    }
+   ],
+   "ko_full": "보통 그들은 냄비에 국수를 삶은 다음, 올리브유, 마늘, 다진 채소, 얇게 썬 고기, 허브, 토마토 같은 여러 재료로 소스를 만든다."
+  },
+  {
+   "no": 9,
+   "ref_sentence": 7,
+   "hints": [
+    {
+     "pos": 1,
+     "letter": "c",
+     "answer": "cherish",
+     "after": "the saying"
+    },
+    {
+     "pos": 2,
+     "letter": "s",
+     "answer": "saying",
+     "after": "A tavola non si invecchia"
+    }
+   ],
+   "ko_full": "어떤 재료를 쓰든 상관없이, 이탈리아 사람들은 \"A tavola non si invecchia\" 라는 말을 소중히 여기는데, 그것은 \"좋은 친구, 가족과 함께하는 식탁에서는 나이를 먹지 않는다\" 라는 뜻이다."
+  }
+ ],
+ "ko_translation": [
+  {
+   "no": 1,
+   "ref_sentence": 1
+  },
+  {
+   "no": 2,
+   "ref_sentence": 2
+  },
+  {
+   "no": 3,
+   "ref_sentence": 3
+  },
+  {
+   "no": 4,
+   "ref_sentence": 4
+  },
+  {
+   "no": 5,
+   "ref_sentence": 5
+  },
+  {
+   "no": 6,
+   "ref_sentence": 6
+  },
+  {
+   "no": 7,
+   "ref_sentence": 7
+  },
+  {
+   "no": 8,
+   "ref_sentence": 2
+  },
+  {
+   "no": 9,
+   "ref_sentence": 6
+  }
+ ],
+ "jumble": [
+  {
+   "no": 1,
+   "ref_sentence": 1,
+   "words": [
+    "Pasta,",
+    "typically",
+    "made",
+    "of",
+    "wheat",
+    "flour,",
+    "is",
+    "a",
+    "staple",
+    "food",
+    "in",
+    "Italian",
+    "cuisine"
+   ],
+   "answer": "Pasta, typically made of wheat flour, is a staple food in Italian cuisine."
+  },
+  {
+   "no": 2,
+   "ref_sentence": 4,
+   "words": [
+    "Spaghetti,",
+    "one",
+    "of",
+    "the",
+    "most",
+    "popular",
+    "types",
+    "of",
+    "pasta,",
+    "is",
+    "long,",
+    "thin",
+    "noodles"
+   ],
+   "answer": "Spaghetti, one of the most popular types of pasta, is long, thin noodles."
+  },
+  {
+   "no": 3,
+   "ref_sentence": 5,
+   "words": [
+    "Italians",
+    "love",
+    "to",
+    "cook",
+    "pasta",
+    "with",
+    "their",
+    "favorite",
+    "recipes"
+   ],
+   "answer": "Italians love to cook pasta with their favorite recipes."
+  },
+  {
+   "no": 4,
+   "ref_sentence": 3,
+   "words": [
+    "It",
+    "comes",
+    "in",
+    "a",
+    "variety",
+    "of",
+    "shapes",
+    "and",
+    "sizes,",
+    "each",
+    "with",
+    "its",
+    "own",
+    "name,",
+    "such",
+    "as",
+    "macaroni,",
+    "lasagna,",
+    "and",
+    "spaghetti"
+   ],
+   "answer": "It comes in a variety of shapes and sizes, each with its own name, such as macaroni, lasagna, and spaghetti."
+  },
+  {
+   "no": 5,
+   "ref_sentence": 2,
+   "words": [
+    "Although",
+    "it",
+    "is",
+    "not",
+    "certain",
+    "when",
+    "people",
+    "started",
+    "eating",
+    "pasta,",
+    "it",
+    "is",
+    "believed",
+    "that",
+    "the",
+    "food",
+    "originated",
+    "in",
+    "Sicily",
+    "and",
+    "spread",
+    "to",
+    "other",
+    "parts",
+    "of",
+    "Italy",
+    "in",
+    "the",
+    "17th",
+    "century"
+   ],
+   "answer": "Although it is not certain when people started eating pasta, it is believed that the food originated in Sicily and spread to other parts of Italy in the 17th century."
+  },
+  {
+   "no": 6,
+   "ref_sentence": 1,
+   "words": [
+    "Pasta,",
+    "typically",
+    "made",
+    "of",
+    "wheat",
+    "flour,",
+    "is",
+    "a",
+    "staple",
+    "food",
+    "in",
+    "Italian",
+    "cuisine"
+   ],
+   "answer": "Pasta, typically made of wheat flour, is a staple food in Italian cuisine."
+  },
+  {
+   "no": 7,
+   "ref_sentence": 6,
+   "words": [
+    "Usually,",
+    "they",
+    "boil",
+    "the",
+    "noodles",
+    "in",
+    "a",
+    "pot,",
+    "and",
+    "then",
+    "prepare",
+    "a",
+    "sauce",
+    "with",
+    "various",
+    "ingredients",
+    "such",
+    "as",
+    "olive",
+    "oil,",
+    "garlic,",
+    "chopped",
+    "vegetables,",
+    "sliced",
+    "meat,",
+    "herbs,",
+    "and",
+    "tomatoes"
+   ],
+   "answer": "Usually, they boil the noodles in a pot, and then prepare a sauce with various ingredients such as olive oil, garlic, chopped vegetables, sliced meat, herbs, and tomatoes."
+  },
+  {
+   "no": 8,
+   "ref_sentence": 4,
+   "words": [
+    "Spaghetti,",
+    "one",
+    "of",
+    "the",
+    "most",
+    "popular",
+    "types",
+    "of",
+    "pasta,",
+    "is",
+    "long,",
+    "thin",
+    "noodles"
+   ],
+   "answer": "Spaghetti, one of the most popular types of pasta, is long, thin noodles."
+  },
+  {
+   "no": 9,
+   "ref_sentence": 5,
+   "words": [
+    "Italians",
+    "love",
+    "to",
+    "cook",
+    "pasta",
+    "with",
+    "their",
+    "favorite",
+    "recipes"
+   ],
+   "answer": "Italians love to cook pasta with their favorite recipes."
+  }
+ ],
+ "sentence_translation": [
+  {
+   "no": 1,
+   "ref_sentence": 1,
+   "given": "ko"
+  },
+  {
+   "no": 2,
+   "ref_sentence": 2,
+   "given": "ko"
+  },
+  {
+   "no": 3,
+   "ref_sentence": 3,
+   "given": "ko"
+  },
+  {
+   "no": 4,
+   "ref_sentence": 4,
+   "given": "ko"
+  },
+  {
+   "no": 5,
+   "ref_sentence": 5,
+   "given": "ko"
+  },
+  {
+   "no": 6,
+   "ref_sentence": 6,
+   "given": "ko"
+  },
+  {
+   "no": 7,
+   "ref_sentence": 7,
+   "given": "ko"
+  },
+  {
+   "no": 8,
+   "ref_sentence": 3,
+   "given": "ko"
+  },
+  {
+   "no": 9,
+   "ref_sentence": 7,
+   "given": "ko"
+  }
+ ],
+ "mixed": [
+  {
+   "kind": "grammar",
+   "ref": 1,
+   "no": 1
+  },
+  {
+   "kind": "vocab",
+   "ref": 5,
+   "no": 2
+  },
+  {
+   "kind": "fill",
+   "ref": 8,
+   "no": 3
+  },
+  {
+   "kind": "ko",
+   "ref": 4,
+   "no": 4
+  },
+  {
+   "kind": "jumble",
+   "ref": 3,
+   "no": 5
+  },
+  {
+   "kind": "sent",
+   "ref": 7,
+   "no": 6
+  },
+  {
+   "kind": "grammar",
+   "ref": 9,
+   "no": 7
+  },
+  {
+   "kind": "vocab",
+   "ref": 8,
+   "no": 8
+  }
+ ]
+}

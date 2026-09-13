@@ -1,0 +1,915 @@
+{
+ "$schema_version": "1.0",
+ "$ref_source": "6.json",
+ "_note": "U3 Ch6 워크북 — CLOSING(Noodles Bring Us Together) 본문 3문장 풀커버. 문장이 3개뿐이라 유형별 9문항을 채우려면 각 문장을 세 번씩 쓰게 되는데, 같은 문장이라도 겨냥하는 포인트를 매번 다르게 잡았다(1번: 동등비교 as~as / 전치사+관계대명사 in which / 수동태 are enjoyed, 2번: 관계부사 생략 The next time / 명령문 병렬 try~and learn / 전치사 behind, 3번: 시간 부사절의 현재시제가 미래 대신 / have something in common / 등위접속사 yet). buildProperNounSet 실측 결과 이 챕터의 금지 토큰은 why 하나뿐이라 as·The·Noodle 은 소문자 용례가 본문에 있어 안전하지만, 문두 대문자어는 원칙대로 정답 슬롯에서 뺐다.",
+ "voca_check": {
+  "en_to_ko": [
+   {
+    "word": "diverse",
+    "pos": "형"
+   },
+   {
+    "word": "cultures",
+    "pos": "명"
+   },
+   {
+    "word": "enjoyed",
+    "pos": "동"
+   },
+   {
+    "word": "visit",
+    "pos": "동"
+   },
+   {
+    "word": "another",
+    "pos": "형"
+   },
+   {
+    "word": "behind",
+    "pos": "전"
+   },
+   {
+    "word": "humans",
+    "pos": "명"
+   },
+   {
+    "word": "common",
+    "pos": "명"
+   },
+   {
+    "word": "wonder",
+    "pos": "동"
+   },
+   {
+    "word": "popular",
+    "pos": "형"
+   }
+  ],
+  "ko_to_en": [
+   {
+    "meaning": "다양한, 여러 가지의",
+    "pos": "형",
+    "answer": "diverse"
+   },
+   {
+    "meaning": "문화",
+    "pos": "명",
+    "answer": "cultures"
+   },
+   {
+    "meaning": "즐기다, 즐겨 먹다",
+    "pos": "동",
+    "answer": "enjoyed"
+   },
+   {
+    "meaning": "방문하다, 찾아가다",
+    "pos": "동",
+    "answer": "visit"
+   },
+   {
+    "meaning": "또 다른, 다른 하나의",
+    "pos": "형",
+    "answer": "another"
+   },
+   {
+    "meaning": "배우다, 알게 되다",
+    "pos": "동",
+    "answer": "learn"
+   },
+   {
+    "meaning": "~ 뒤에 있는, ~에 담긴",
+    "pos": "전",
+    "answer": "behind"
+   },
+   {
+    "meaning": "인간, 사람",
+    "pos": "명",
+    "answer": "humans"
+   },
+   {
+    "meaning": "궁금해하다, 의아해하다",
+    "pos": "동",
+    "answer": "wonder"
+   },
+   {
+    "meaning": "인기 있는, 대중적인",
+    "pos": "형",
+    "answer": "popular"
+   }
+  ],
+  "definitions": [
+   {
+    "def": "very different from each other and of many kinds",
+    "answer": "diverse"
+   },
+   {
+    "def": "to go to see a place or a person for a period of time",
+    "answer": "visit"
+   },
+   {
+    "def": "to gain knowledge or a skill by studying or experiencing",
+    "answer": "learn"
+   },
+   {
+    "def": "to want to know something or feel curious about it",
+    "answer": "wonder"
+   },
+   {
+    "def": "liked or enjoyed by a large number of people",
+    "answer": "popular"
+   }
+  ],
+  "expressions": [
+   {
+    "ko": "~만큼 …한",
+    "answer": "as diverse as"
+   },
+   {
+    "ko": "다음에 ~할 때",
+    "answer": "The next time"
+   },
+   {
+    "ko": "~에 담긴 문화",
+    "answer": "the culture behind"
+   },
+   {
+    "ko": "~을 시도해 보다",
+    "answer": "try out"
+   },
+   {
+    "ko": "공통점이 있다",
+    "answer": "have something in common"
+   }
+  ]
+ },
+ "grammar_choice": [
+  {
+   "no": 1,
+   "ref_sentence": 1,
+   "en_template": "Noodle dishes {{1:look/look like}} as {{2:diverse/diversely}} as the cultures in which they are enjoyed.",
+   "ko_full": "면 요리는 그것이 즐겨지는 문화만큼이나 다양해 보인다.",
+   "answers": [
+    "look",
+    "diverse"
+   ],
+   "explain": [
+    "\"~해 보이다\" 라는 2형식이므로 형용사 보어를 바로 취하는 look 이 맞다. look like 뒤에는 명사가 와야 한다.",
+    "as ~ as 사이에는 보어가 되는 형용사가 들어가므로 diverse 가 맞다. 부사 diversely 는 보어가 될 수 없다."
+   ]
+  },
+  {
+   "no": 2,
+   "ref_sentence": 1,
+   "en_template": "Noodle dishes look as diverse as the cultures {{1:in which/in what}} they {{2:are enjoyed/are enjoying}}.",
+   "ko_full": "면 요리는 그것이 즐겨지는 문화만큼이나 다양해 보인다.",
+   "answers": [
+    "in which",
+    "are enjoyed"
+   ],
+   "explain": [
+    "선행사 the cultures 를 받아 \"그 문화 안에서\" 를 뜻하는 전치사+관계대명사이므로 in which 가 맞다(= where). what 은 선행사를 취하지 못한다.",
+    "면 요리는 즐겨지는 대상이므로 수동태 are enjoyed 가 맞다. are enjoying 은 능동이라 주어 they 가 즐기는 주체가 되어 버린다."
+   ]
+  },
+  {
+   "no": 3,
+   "ref_sentence": 1,
+   "en_template": "Noodle dishes look {{1:as/so}} diverse {{2:as/than}} the cultures in which they are enjoyed.",
+   "ko_full": "면 요리는 그것이 즐겨지는 문화만큼이나 다양해 보인다.",
+   "answers": [
+    "as",
+    "as"
+   ],
+   "explain": [
+    "\"~만큼 …한\" 이라는 동등비교의 앞짝은 as 이다. so 는 부정문에서 제한적으로만 쓰인다.",
+    "동등비교 as ~ as 의 뒷짝도 as 이다. than 은 비교급과 함께 쓰는 말이라 원급 diverse 와 짝이 되지 않는다."
+   ]
+  },
+  {
+   "no": 4,
+   "ref_sentence": 2,
+   "en_template": "The next time you {{1:visit/will visit}} another country, {{2:try/trying}} a noodle dish there and learn about the culture behind it.",
+   "ko_full": "다음에 다른 나라를 방문할 때, 그곳의 면 요리를 먹어 보고 그것에 담긴 문화에 대해 배워 보라.",
+   "answers": [
+    "visit",
+    "try"
+   ],
+   "explain": [
+    "The next time 은 시간의 부사절을 이끄는 접속사 역할을 하므로 미래의 일이라도 현재시제 visit 로 쓴다.",
+    "주어 없이 상대에게 권하는 명령문이므로 동사원형 try 가 맞다."
+   ]
+  },
+  {
+   "no": 5,
+   "ref_sentence": 2,
+   "en_template": "The next time you visit {{1:another/other}} country, try a noodle dish there and {{2:learn/learning}} about the culture behind it.",
+   "ko_full": "다음에 다른 나라를 방문할 때, 그곳의 면 요리를 먹어 보고 그것에 담긴 문화에 대해 배워 보라.",
+   "answers": [
+    "another",
+    "learn"
+   ],
+   "explain": [
+    "뒤에 단수명사 country 가 오므로 another 가 맞다. other 는 단독으로 단수명사를 수식하지 못한다.",
+    "앞의 명령문 try 와 and 로 병렬을 이루므로 동사원형 learn 이 맞다."
+   ]
+  },
+  {
+   "no": 6,
+   "ref_sentence": 2,
+   "en_template": "The next time you visit another country, try a noodle dish {{1:there/their}} and learn about the culture {{2:behind/behinds}} it.",
+   "ko_full": "다음에 다른 나라를 방문할 때, 그곳의 면 요리를 먹어 보고 그것에 담긴 문화에 대해 배워 보라.",
+   "answers": [
+    "there",
+    "behind"
+   ],
+   "explain": [
+    "앞에 나온 another country 를 받아 \"그곳에서\" 를 뜻하는 부사이므로 there 가 맞다. their 는 소유격이다.",
+    "\"~ 뒤에 있는, ~에 담긴\" 을 뜻하는 전치사는 behind 이며 전치사는 형태가 변하지 않는다."
+   ]
+  },
+  {
+   "no": 7,
+   "ref_sentence": 3,
+   "en_template": "As you {{1:try/will try}} out the dish, you {{2:will see/see}} that all humans have something in common and yet may wonder, \"Why are noodles popular around the world?\"",
+   "ko_full": "그 요리를 먹어 보면서, 여러분은 모든 인간에게 공통점이 있다는 것을 알게 되면서도 \"왜 국수는 전 세계에서 인기가 있을까?\" 하고 궁금해할지도 모른다.",
+   "answers": [
+    "try",
+    "will see"
+   ],
+   "explain": [
+    "As 가 이끄는 시간의 부사절에서는 미래의 일도 현재시제로 나타내므로 try 가 맞다.",
+    "주절은 시제 제약을 받지 않으므로 미래를 그대로 미래시제 will see 로 쓴다."
+   ]
+  },
+  {
+   "no": 8,
+   "ref_sentence": 3,
+   "en_template": "As you try out the dish, you will see {{1:that/what}} all humans {{2:have/has}} something in common and yet may wonder, \"Why are noodles popular around the world?\"",
+   "ko_full": "그 요리를 먹어 보면서, 여러분은 모든 인간에게 공통점이 있다는 것을 알게 되면서도 \"왜 국수는 전 세계에서 인기가 있을까?\" 하고 궁금해할지도 모른다.",
+   "answers": [
+    "that",
+    "have"
+   ],
+   "explain": [
+    "see 의 목적어로 주어와 동사를 갖춘 완전한 절이 이어지므로 접속사 that 이 맞다. what 은 불완전한 절을 이끈다.",
+    "주어 all humans 가 복수이므로 have 가 맞다."
+   ]
+  },
+  {
+   "no": 9,
+   "ref_sentence": 3,
+   "en_template": "As you try out the dish, you will see that all humans have something {{1:in common/in commons}} and {{2:yet/still}} may wonder, \"Why are noodles popular around the world?\"",
+   "ko_full": "그 요리를 먹어 보면서, 여러분은 모든 인간에게 공통점이 있다는 것을 알게 되면서도 \"왜 국수는 전 세계에서 인기가 있을까?\" 하고 궁금해할지도 모른다.",
+   "answers": [
+    "in common",
+    "yet"
+   ],
+   "explain": [
+    "\"공통점이 있다\" 는 have something in common 으로 굳어진 표현이며 common 은 이 구에서 복수형을 쓰지 않는다.",
+    "and 와 함께 앞 내용과 상반되는 내용을 이어 주는 등위접속사는 yet(그럼에도)이다. 여기서는 \"아직\" 이라는 뜻이 아니며 still 은 등위접속사로 쓰이지 않는다."
+   ]
+  }
+ ],
+ "vocab_choice": [
+  {
+   "no": 1,
+   "ref_sentence": 1,
+   "en_template": "Noodle dishes look as {{1:diverse/identical}} as the cultures in which they are enjoyed.",
+   "ko_full": "면 요리는 그것이 즐겨지는 문화만큼이나 다양해 보인다.",
+   "answers": [
+    "diverse"
+   ],
+   "explain": [
+    "나라마다 면 요리가 제각각이라는 글 전체의 결론이므로 diverse(다양한)가 맞다. identical 은 똑같다는 뜻으로 정반대이다."
+   ]
+  },
+  {
+   "no": 2,
+   "ref_sentence": 1,
+   "en_template": "Noodle dishes look as diverse as the {{1:cultures/creatures}} in which they are {{2:enjoyed/ignored}}.",
+   "ko_full": "면 요리는 그것이 즐겨지는 문화만큼이나 다양해 보인다.",
+   "answers": [
+    "cultures",
+    "enjoyed"
+   ],
+   "explain": [
+    "음식과 문화를 견주는 맺음말이므로 cultures 가 맞다. creatures 는 생물이라는 뜻이다.",
+    "사람들이 즐겨 먹는다는 뜻이므로 enjoyed 가 맞다. ignored 는 외면당한다는 뜻으로 정반대이다."
+   ]
+  },
+  {
+   "no": 3,
+   "ref_sentence": 1,
+   "en_template": "Noodle {{1:dishes/dishes of}} look as diverse as the cultures in which they are enjoyed.",
+   "ko_full": "면 요리는 그것이 즐겨지는 문화만큼이나 다양해 보인다.",
+   "answers": [
+    "dishes"
+   ],
+   "explain": [
+    "문장의 주어 자리이므로 명사 dishes 만 와야 한다. dishes of 는 뒤에 목적어가 없어 문장이 성립하지 않는다."
+   ]
+  },
+  {
+   "no": 4,
+   "ref_sentence": 2,
+   "en_template": "The next time you {{1:visit/avoid}} another country, try a noodle dish there and {{2:learn/forget}} about the culture behind it.",
+   "ko_full": "다음에 다른 나라를 방문할 때, 그곳의 면 요리를 먹어 보고 그것에 담긴 문화에 대해 배워 보라.",
+   "answers": [
+    "visit",
+    "learn"
+   ],
+   "explain": [
+    "다른 나라에 가 보라고 권하는 흐름이므로 visit(방문하다)가 맞다. avoid 는 피하라는 뜻으로 정반대이다.",
+    "문화를 알아 가라고 권하므로 learn 이 맞다. forget 은 잊으라는 뜻으로 글의 취지와 어긋난다."
+   ]
+  },
+  {
+   "no": 5,
+   "ref_sentence": 2,
+   "en_template": "The next time you visit another country, {{1:try/throw}} a noodle dish there and learn about the {{2:culture/agriculture}} behind it.",
+   "ko_full": "다음에 다른 나라를 방문할 때, 그곳의 면 요리를 먹어 보고 그것에 담긴 문화에 대해 배워 보라.",
+   "answers": [
+    "try",
+    "culture"
+   ],
+   "explain": [
+    "음식을 먹어 보라는 뜻이므로 try 가 맞다. throw 는 던진다는 뜻이다.",
+    "요리에 담긴 생활 방식을 가리키므로 culture 가 맞다. agriculture 는 농업으로 뜻이 좁아진다."
+   ]
+  },
+  {
+   "no": 6,
+   "ref_sentence": 2,
+   "en_template": "The {{1:next/last}} time you visit another country, try a noodle dish there and learn about the culture {{2:behind/beyond}} it.",
+   "ko_full": "다음에 다른 나라를 방문할 때, 그곳의 면 요리를 먹어 보고 그것에 담긴 문화에 대해 배워 보라.",
+   "answers": [
+    "next",
+    "behind"
+   ],
+   "explain": [
+    "앞으로 다가올 기회를 가리키므로 next 가 맞다. last 는 지난번을 뜻해 권유와 어울리지 않는다.",
+    "요리 \"뒤에 담긴\" 문화를 뜻하므로 behind 가 맞다. beyond 는 \"~을 넘어서\" 라는 뜻으로 의미가 달라진다."
+   ]
+  },
+  {
+   "no": 7,
+   "ref_sentence": 3,
+   "en_template": "As you try {{1:out/off}} the dish, you will see that all {{2:humans/harvests}} have something in common and yet may wonder, \"Why are noodles popular around the world?\"",
+   "ko_full": "그 요리를 먹어 보면서, 여러분은 모든 인간에게 공통점이 있다는 것을 알게 되면서도 \"왜 국수는 전 세계에서 인기가 있을까?\" 하고 궁금해할지도 모른다.",
+   "answers": [
+    "out",
+    "humans"
+   ],
+   "explain": [
+    "\"~을 시험 삼아 해 보다\" 는 try out 이다. try off 는 쓰이지 않는 표현이다.",
+    "인류의 공통점을 말하는 문장이므로 humans 가 맞다. harvests 는 수확물이다."
+   ]
+  },
+  {
+   "no": 8,
+   "ref_sentence": 3,
+   "en_template": "As you try out the dish, you will see that all humans have something in {{1:common/contrast}} and yet may {{2:wonder/wander}}, \"Why are noodles popular around the world?\"",
+   "ko_full": "그 요리를 먹어 보면서, 여러분은 모든 인간에게 공통점이 있다는 것을 알게 되면서도 \"왜 국수는 전 세계에서 인기가 있을까?\" 하고 궁금해할지도 모른다.",
+   "answers": [
+    "common",
+    "wonder"
+   ],
+   "explain": [
+    "\"공통점이 있다\" 는 have something in common 이다. in contrast 는 \"대조적으로\" 라는 뜻의 다른 표현이다.",
+    "의문을 품는다는 뜻이므로 wonder 가 맞다. wander 는 돌아다니다로 철자가 비슷한 다른 단어이다."
+   ]
+  },
+  {
+   "no": 9,
+   "ref_sentence": 3,
+   "en_template": "As you try out the dish, you will see that all humans have something in common and yet may wonder, \"Why are noodles {{1:popular/private}} {{2:around/among}} the world?\"",
+   "ko_full": "그 요리를 먹어 보면서, 여러분은 모든 인간에게 공통점이 있다는 것을 알게 되면서도 \"왜 국수는 전 세계에서 인기가 있을까?\" 하고 궁금해할지도 모른다.",
+   "answers": [
+    "popular",
+    "around"
+   ],
+   "explain": [
+    "전 세계가 국수를 즐긴다는 글의 주제이므로 popular(인기 있는)가 맞다. private 는 사적이라는 뜻으로 문맥과 무관하다.",
+    "\"전 세계에서\" 는 around the world 로 굳어진 표현이다. among the world 는 쓰지 않는다."
+   ]
+  }
+ ],
+ "fill_first_letter": [
+  {
+   "no": 1,
+   "ref_sentence": 1,
+   "hints": [
+    {
+     "pos": 1,
+     "letter": "d",
+     "answer": "diverse",
+     "after": "as the cultures"
+    }
+   ],
+   "ko_full": "면 요리는 그것이 즐겨지는 문화만큼이나 다양해 보인다."
+  },
+  {
+   "no": 2,
+   "ref_sentence": 1,
+   "hints": [
+    {
+     "pos": 1,
+     "letter": "c",
+     "answer": "cultures",
+     "after": "in which they are enjoyed"
+    }
+   ],
+   "ko_full": "면 요리는 그것이 즐겨지는 문화만큼이나 다양해 보인다."
+  },
+  {
+   "no": 3,
+   "ref_sentence": 1,
+   "hints": [
+    {
+     "pos": 1,
+     "letter": "e",
+     "answer": "enjoyed",
+     "after": ""
+    }
+   ],
+   "ko_full": "면 요리는 그것이 즐겨지는 문화만큼이나 다양해 보인다."
+  },
+  {
+   "no": 4,
+   "ref_sentence": 2,
+   "hints": [
+    {
+     "pos": 1,
+     "letter": "v",
+     "answer": "visit",
+     "after": "another country"
+    },
+    {
+     "pos": 2,
+     "letter": "a",
+     "answer": "another",
+     "after": "country"
+    }
+   ],
+   "ko_full": "다음에 다른 나라를 방문할 때, 그곳의 면 요리를 먹어 보고 그것에 담긴 문화에 대해 배워 보라."
+  },
+  {
+   "no": 5,
+   "ref_sentence": 2,
+   "hints": [
+    {
+     "pos": 1,
+     "letter": "c",
+     "answer": "country",
+     "after": "try a noodle dish there"
+    },
+    {
+     "pos": 2,
+     "letter": "l",
+     "answer": "learn",
+     "after": "about the culture"
+    }
+   ],
+   "ko_full": "다음에 다른 나라를 방문할 때, 그곳의 면 요리를 먹어 보고 그것에 담긴 문화에 대해 배워 보라."
+  },
+  {
+   "no": 6,
+   "ref_sentence": 2,
+   "hints": [
+    {
+     "pos": 1,
+     "letter": "c",
+     "answer": "culture",
+     "after": "behind it"
+    },
+    {
+     "pos": 2,
+     "letter": "b",
+     "answer": "behind",
+     "after": "it"
+    }
+   ],
+   "ko_full": "다음에 다른 나라를 방문할 때, 그곳의 면 요리를 먹어 보고 그것에 담긴 문화에 대해 배워 보라."
+  },
+  {
+   "no": 7,
+   "ref_sentence": 3,
+   "hints": [
+    {
+     "pos": 1,
+     "letter": "h",
+     "answer": "humans",
+     "after": "have something in common"
+    }
+   ],
+   "ko_full": "그 요리를 먹어 보면서, 여러분은 모든 인간에게 공통점이 있다는 것을 알게 되면서도 \"왜 국수는 전 세계에서 인기가 있을까?\" 하고 궁금해할지도 모른다."
+  },
+  {
+   "no": 8,
+   "ref_sentence": 3,
+   "hints": [
+    {
+     "pos": 1,
+     "letter": "s",
+     "answer": "something",
+     "after": "in common"
+    },
+    {
+     "pos": 2,
+     "letter": "c",
+     "answer": "common",
+     "after": "and yet may wonder"
+    }
+   ],
+   "ko_full": "그 요리를 먹어 보면서, 여러분은 모든 인간에게 공통점이 있다는 것을 알게 되면서도 \"왜 국수는 전 세계에서 인기가 있을까?\" 하고 궁금해할지도 모른다."
+  },
+  {
+   "no": 9,
+   "ref_sentence": 3,
+   "hints": [
+    {
+     "pos": 1,
+     "letter": "w",
+     "answer": "wonder",
+     "after": "Why are noodles popular"
+    },
+    {
+     "pos": 2,
+     "letter": "p",
+     "answer": "popular",
+     "after": "around the world"
+    }
+   ],
+   "ko_full": "그 요리를 먹어 보면서, 여러분은 모든 인간에게 공통점이 있다는 것을 알게 되면서도 \"왜 국수는 전 세계에서 인기가 있을까?\" 하고 궁금해할지도 모른다."
+  }
+ ],
+ "ko_translation": [
+  {
+   "no": 1,
+   "ref_sentence": 1
+  },
+  {
+   "no": 2,
+   "ref_sentence": 2
+  },
+  {
+   "no": 3,
+   "ref_sentence": 3
+  },
+  {
+   "no": 4,
+   "ref_sentence": 1
+  },
+  {
+   "no": 5,
+   "ref_sentence": 2
+  },
+  {
+   "no": 6,
+   "ref_sentence": 3
+  },
+  {
+   "no": 7,
+   "ref_sentence": 1
+  },
+  {
+   "no": 8,
+   "ref_sentence": 2
+  },
+  {
+   "no": 9,
+   "ref_sentence": 3
+  }
+ ],
+ "jumble": [
+  {
+   "no": 1,
+   "ref_sentence": 1,
+   "words": [
+    "Noodle",
+    "dishes",
+    "look",
+    "as",
+    "diverse",
+    "as",
+    "the",
+    "cultures",
+    "in",
+    "which",
+    "they",
+    "are",
+    "enjoyed"
+   ],
+   "answer": "Noodle dishes look as diverse as the cultures in which they are enjoyed."
+  },
+  {
+   "no": 2,
+   "ref_sentence": 2,
+   "words": [
+    "The",
+    "next",
+    "time",
+    "you",
+    "visit",
+    "another",
+    "country,",
+    "try",
+    "a",
+    "noodle",
+    "dish",
+    "there",
+    "and",
+    "learn",
+    "about",
+    "the",
+    "culture",
+    "behind",
+    "it"
+   ],
+   "answer": "The next time you visit another country, try a noodle dish there and learn about the culture behind it."
+  },
+  {
+   "no": 3,
+   "ref_sentence": 3,
+   "words": [
+    "As",
+    "you",
+    "try",
+    "out",
+    "the",
+    "dish,",
+    "you",
+    "will",
+    "see",
+    "that",
+    "all",
+    "humans",
+    "have",
+    "something",
+    "in",
+    "common",
+    "and",
+    "yet",
+    "may",
+    "wonder,",
+    "\"Why",
+    "are",
+    "noodles",
+    "popular",
+    "around",
+    "the",
+    "world?\""
+   ],
+   "answer": "As you try out the dish, you will see that all humans have something in common and yet may wonder, \"Why are noodles popular around the world?\""
+  },
+  {
+   "no": 4,
+   "ref_sentence": 1,
+   "words": [
+    "Noodle",
+    "dishes",
+    "look",
+    "as",
+    "diverse",
+    "as",
+    "the",
+    "cultures",
+    "in",
+    "which",
+    "they",
+    "are",
+    "enjoyed"
+   ],
+   "answer": "Noodle dishes look as diverse as the cultures in which they are enjoyed."
+  },
+  {
+   "no": 5,
+   "ref_sentence": 2,
+   "words": [
+    "The",
+    "next",
+    "time",
+    "you",
+    "visit",
+    "another",
+    "country,",
+    "try",
+    "a",
+    "noodle",
+    "dish",
+    "there",
+    "and",
+    "learn",
+    "about",
+    "the",
+    "culture",
+    "behind",
+    "it"
+   ],
+   "answer": "The next time you visit another country, try a noodle dish there and learn about the culture behind it."
+  },
+  {
+   "no": 6,
+   "ref_sentence": 3,
+   "words": [
+    "As",
+    "you",
+    "try",
+    "out",
+    "the",
+    "dish,",
+    "you",
+    "will",
+    "see",
+    "that",
+    "all",
+    "humans",
+    "have",
+    "something",
+    "in",
+    "common",
+    "and",
+    "yet",
+    "may",
+    "wonder,",
+    "\"Why",
+    "are",
+    "noodles",
+    "popular",
+    "around",
+    "the",
+    "world?\""
+   ],
+   "answer": "As you try out the dish, you will see that all humans have something in common and yet may wonder, \"Why are noodles popular around the world?\""
+  },
+  {
+   "no": 7,
+   "ref_sentence": 1,
+   "words": [
+    "Noodle",
+    "dishes",
+    "look",
+    "as",
+    "diverse",
+    "as",
+    "the",
+    "cultures",
+    "in",
+    "which",
+    "they",
+    "are",
+    "enjoyed"
+   ],
+   "answer": "Noodle dishes look as diverse as the cultures in which they are enjoyed."
+  },
+  {
+   "no": 8,
+   "ref_sentence": 2,
+   "words": [
+    "The",
+    "next",
+    "time",
+    "you",
+    "visit",
+    "another",
+    "country,",
+    "try",
+    "a",
+    "noodle",
+    "dish",
+    "there",
+    "and",
+    "learn",
+    "about",
+    "the",
+    "culture",
+    "behind",
+    "it"
+   ],
+   "answer": "The next time you visit another country, try a noodle dish there and learn about the culture behind it."
+  },
+  {
+   "no": 9,
+   "ref_sentence": 3,
+   "words": [
+    "As",
+    "you",
+    "try",
+    "out",
+    "the",
+    "dish,",
+    "you",
+    "will",
+    "see",
+    "that",
+    "all",
+    "humans",
+    "have",
+    "something",
+    "in",
+    "common",
+    "and",
+    "yet",
+    "may",
+    "wonder,",
+    "\"Why",
+    "are",
+    "noodles",
+    "popular",
+    "around",
+    "the",
+    "world?\""
+   ],
+   "answer": "As you try out the dish, you will see that all humans have something in common and yet may wonder, \"Why are noodles popular around the world?\""
+  }
+ ],
+ "sentence_translation": [
+  {
+   "no": 1,
+   "ref_sentence": 1,
+   "given": "ko"
+  },
+  {
+   "no": 2,
+   "ref_sentence": 2,
+   "given": "ko"
+  },
+  {
+   "no": 3,
+   "ref_sentence": 3,
+   "given": "ko"
+  },
+  {
+   "no": 4,
+   "ref_sentence": 1,
+   "given": "ko"
+  },
+  {
+   "no": 5,
+   "ref_sentence": 2,
+   "given": "ko"
+  },
+  {
+   "no": 6,
+   "ref_sentence": 3,
+   "given": "ko"
+  },
+  {
+   "no": 7,
+   "ref_sentence": 1,
+   "given": "ko"
+  },
+  {
+   "no": 8,
+   "ref_sentence": 2,
+   "given": "ko"
+  },
+  {
+   "no": 9,
+   "ref_sentence": 3,
+   "given": "ko"
+  }
+ ],
+ "mixed": [
+  {
+   "kind": "grammar",
+   "ref": 2,
+   "no": 1
+  },
+  {
+   "kind": "vocab",
+   "ref": 4,
+   "no": 2
+  },
+  {
+   "kind": "fill",
+   "ref": 6,
+   "no": 3
+  },
+  {
+   "kind": "ko",
+   "ref": 3,
+   "no": 4
+  },
+  {
+   "kind": "jumble",
+   "ref": 2,
+   "no": 5
+  },
+  {
+   "kind": "sent",
+   "ref": 3,
+   "no": 6
+  },
+  {
+   "kind": "grammar",
+   "ref": 7,
+   "no": 7
+  },
+  {
+   "kind": "vocab",
+   "ref": 9,
+   "no": 8
+  }
+ ]
+}

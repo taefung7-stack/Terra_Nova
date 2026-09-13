@@ -1,0 +1,885 @@
+{
+ "$schema_version": "1.0",
+ "$ref_source": "4.json",
+ "_note": "U3 Ch4 워크북 — RECHTA(Algeria) 본문 7문장 풀커버. 나라·민족·요리명(Rechta/Algerian/Algerians/Persian/Islamic/Ramadan/Eid)과 이탤릭 외국어(rishta/ghee/haram/halal), 문두 대문자어(However/The/Algerians)는 buildProperNounSet 오탐 대상이라 양자택일 정답 슬롯에서 전부 제외했다. 정답 토큰은 문장 중반의 동사·전치사·형용사로만 잡았다.",
+ "voca_check": {
+  "en_to_ko": [
+   {
+    "word": "originates",
+    "pos": "동"
+   },
+   {
+    "word": "generally",
+    "pos": "부"
+   },
+   {
+    "word": "clarified",
+    "pos": "형"
+   },
+   {
+    "word": "contains",
+    "pos": "동"
+   },
+   {
+    "word": "festive",
+    "pos": "형"
+   },
+   {
+    "word": "occasions",
+    "pos": "명"
+   },
+   {
+    "word": "uniquely",
+    "pos": "부"
+   },
+   {
+    "word": "considered",
+    "pos": "동"
+   },
+   {
+    "word": "forbidden",
+    "pos": "형"
+   },
+   {
+    "word": "dietary",
+    "pos": "형"
+   }
+  ],
+  "ko_to_en": [
+   {
+    "meaning": "유래하다, 비롯되다",
+    "pos": "동",
+    "answer": "originates"
+   },
+   {
+    "meaning": "가리키다, 지칭하다",
+    "pos": "동",
+    "answer": "refers"
+   },
+   {
+    "meaning": "일반적으로, 대체로",
+    "pos": "부",
+    "answer": "generally"
+   },
+   {
+    "meaning": "정제된, 맑게 거른",
+    "pos": "형",
+    "answer": "clarified"
+   },
+   {
+    "meaning": "포함하다, 들어 있다",
+    "pos": "동",
+    "answer": "contains"
+   },
+   {
+    "meaning": "축제의, 명절의",
+    "pos": "형",
+    "answer": "festive"
+   },
+   {
+    "meaning": "때, 행사, 경우",
+    "pos": "명",
+    "answer": "occasions"
+   },
+   {
+    "meaning": "독특하게, 유일하게",
+    "pos": "부",
+    "answer": "uniquely"
+   },
+   {
+    "meaning": "금지된, 허용되지 않는",
+    "pos": "형",
+    "answer": "forbidden"
+   },
+   {
+    "meaning": "식사의, 음식과 관련된",
+    "pos": "형",
+    "answer": "dietary"
+   }
+  ],
+  "definitions": [
+   {
+    "def": "to begin or come from a particular place or source",
+    "answer": "originates"
+   },
+   {
+    "def": "butter that has been heated so that the solids are removed",
+    "answer": "clarified"
+   },
+   {
+    "def": "cheerful and lively because of a celebration",
+    "answer": "festive"
+   },
+   {
+    "def": "not allowed by a rule or a law",
+    "answer": "forbidden"
+   },
+   {
+    "def": "allowed under the rules of Islam",
+    "answer": "permissible"
+   }
+  ],
+  "expressions": [
+   {
+    "ko": "~ 중 하나",
+    "answer": "one of the"
+   },
+   {
+    "ko": "~로 만들어지다(재료가 그대로 보임)",
+    "answer": "made of"
+   },
+   {
+    "ko": "~을 가리키다",
+    "answer": "refers to"
+   },
+   {
+    "ko": "~와 같은",
+    "answer": "such as"
+   },
+   {
+    "ko": "~은 주목할 만하다",
+    "answer": "worth noting"
+   }
+  ]
+ },
+ "grammar_choice": [
+  {
+   "no": 1,
+   "ref_sentence": 1,
+   "en_template": "Rechta is one of the {{1:most popular/more popular}} Algerian {{2:dishes/dish}}.",
+   "ko_full": "레츠타는 알제리에서 가장 인기 있는 요리 중 하나이다.",
+   "answers": [
+    "most popular",
+    "dishes"
+   ],
+   "explain": [
+    "one of the 뒤에는 최상급이 오므로 most popular 가 맞다. 비교급 more popular 는 the 와 함께 이 구조에 쓸 수 없다.",
+    "one of the + 최상급 뒤에는 반드시 복수명사가 오므로 dishes 가 맞다."
+   ]
+  },
+  {
+   "no": 2,
+   "ref_sentence": 2,
+   "en_template": "The name originates from the Persian word rishta, {{1:which/what}} means \"thread\" and generally {{2:refers/refer}} to noodles made of wheat flour.",
+   "ko_full": "그 이름은 페르시아어 단어 rishta에서 유래했는데, 그것은 \"실\"을 뜻하며 일반적으로 밀가루로 만든 국수를 가리킨다.",
+   "answers": [
+    "which",
+    "refers"
+   ],
+   "explain": [
+    "앞의 명사 word 를 콤마로 받아 부연하는 계속적 용법이므로 관계대명사 which 를 쓴다. what 은 선행사를 취하지 않는다.",
+    "means 와 병렬로 걸리며 선행사가 단수 word 이므로 3인칭 단수형 refers 가 맞다."
+   ]
+  },
+  {
+   "no": 3,
+   "ref_sentence": 2,
+   "en_template": "The name originates from the Persian word rishta, which means \"thread\" and generally refers to noodles {{1:made/making}} {{2:of/from}} wheat flour.",
+   "ko_full": "그 이름은 페르시아어 단어 rishta에서 유래했는데, 그것은 \"실\"을 뜻하며 일반적으로 밀가루로 만든 국수를 가리킨다.",
+   "answers": [
+    "made",
+    "of"
+   ],
+   "explain": [
+    "noodles 는 만들어지는 대상이므로 과거분사 made 가 뒤에서 수식한다. 현재분사 making 은 능동이라 맞지 않는다.",
+    "밀가루라는 재료가 성질을 유지한 채 보이므로 be made of 계열의 of 를 쓴다."
+   ]
+  },
+  {
+   "no": 4,
+   "ref_sentence": 3,
+   "en_template": "Rechta {{1:is made/is making}} {{2:with/of}} thin and flat noodles.",
+   "ko_full": "레츠타는 얇고 납작한 국수로 만들어진다.",
+   "answers": [
+    "is made",
+    "with"
+   ],
+   "explain": [
+    "요리는 만들어지는 대상이므로 수동태 is made 가 맞다. 진행형 is making 은 능동이라 성립하지 않는다.",
+    "여러 재료 중 하나를 곁들여 만든다는 뜻이므로 be made with 를 쓴다. be made of 는 주재료가 그대로 보일 때 쓴다."
+   ]
+  },
+  {
+   "no": 5,
+   "ref_sentence": 4,
+   "en_template": "Algerians make the noodles {{1:by/for}} {{2:mixing/mix}} wheat flour, salt, water, and ghee (clarified butter) together.",
+   "ko_full": "알제리 사람들은 밀가루, 소금, 물, 그리고 정제 버터를 함께 섞어서 그 국수를 만든다.",
+   "answers": [
+    "by",
+    "mixing"
+   ],
+   "explain": [
+    "\"~함으로써\" 라는 수단을 나타내므로 전치사 by 가 맞다.",
+    "by 는 전치사이므로 뒤에 동명사 mixing 이 온다. 동사원형 mix 는 올 수 없다."
+   ]
+  },
+  {
+   "no": 6,
+   "ref_sentence": 5,
+   "en_template": "The dish also {{1:contains/contain}} ingredients {{2:such as/such}} chopped meat, onions, garlic, turnips, potatoes, zucchini, and uniquely Algerian spices.",
+   "ko_full": "그 요리는 또한 다진 고기, 양파, 마늘, 순무, 감자, 애호박, 그리고 알제리 특유의 향신료 같은 재료들을 담고 있다.",
+   "answers": [
+    "contains",
+    "such as"
+   ],
+   "explain": [
+    "주어 The dish 가 단수이므로 3인칭 단수형 contains 가 맞다.",
+    "명사 나열 앞에서 예시를 드는 표현은 such as 이다. such 단독으로는 전치사 역할을 못 한다."
+   ]
+  },
+  {
+   "no": 7,
+   "ref_sentence": 6,
+   "en_template": "Algerians typically {{1:enjoy/enjoys}} rechta on festive occasions, {{2:including/included}} weddings and Eid al-Fitr (the end of Ramadan).",
+   "ko_full": "알제리 사람들은 보통 결혼식과 이드 알피트르(라마단의 끝)를 포함한 축제의 자리에서 레츠타를 즐긴다.",
+   "answers": [
+    "enjoy",
+    "including"
+   ],
+   "explain": [
+    "주어 Algerians 가 복수이므로 동사원형 형태의 enjoy 를 쓴다.",
+    "\"~을 포함하여\" 라는 뜻으로 뒤의 명사를 이끄는 전치사는 including 이다. included 는 명사 뒤에 놓일 때만 쓴다."
+   ]
+  },
+  {
+   "no": 8,
+   "ref_sentence": 7,
+   "en_template": "However, {{1:it/that}} is worth {{2:noting/to note}} that rechta does not contain pork, as it is considered haram (forbidden), not halal (permissible), under Islamic dietary laws.",
+   "ko_full": "하지만 레츠타에 돼지고기가 들어가지 않는다는 점은 주목할 만한데, 이슬람 식사법에서 돼지고기는 허용된(할랄) 것이 아니라 금지된(하람) 것으로 여겨지기 때문이다.",
+   "answers": [
+    "it",
+    "noting"
+   ],
+   "explain": [
+    "뒤의 that 절을 대신하는 가주어 자리이므로 it 을 쓴다. that 은 가주어로 쓸 수 없다.",
+    "worth 는 전치사처럼 쓰여 뒤에 동명사를 취하므로 noting 이 맞다. to부정사는 올 수 없다."
+   ]
+  },
+  {
+   "no": 9,
+   "ref_sentence": 7,
+   "en_template": "However, it is worth noting that rechta does not contain pork, {{1:as/despite}} it is {{2:considered/considering}} haram (forbidden), not halal (permissible), under Islamic dietary laws.",
+   "ko_full": "하지만 레츠타에 돼지고기가 들어가지 않는다는 점은 주목할 만한데, 이슬람 식사법에서 돼지고기는 허용된(할랄) 것이 아니라 금지된(하람) 것으로 여겨지기 때문이다.",
+   "answers": [
+    "as",
+    "considered"
+   ],
+   "explain": [
+    "뒤에 주어와 동사를 갖춘 절이 오고 이유를 나타내므로 접속사 as(=because) 가 맞다. despite 는 전치사이다.",
+    "돼지고기는 여겨지는 대상이므로 수동태를 이루는 과거분사 considered 가 맞다."
+   ]
+  }
+ ],
+ "vocab_choice": [
+  {
+   "no": 1,
+   "ref_sentence": 1,
+   "en_template": "Rechta is one of the most {{1:popular/rare}} Algerian dishes.",
+   "ko_full": "레츠타는 알제리에서 가장 인기 있는 요리 중 하나이다.",
+   "answers": [
+    "popular"
+   ],
+   "explain": [
+    "대표 요리로 소개하는 흐름이므로 popular(인기 있는)가 맞다. rare 는 드물다는 뜻으로 정반대이다."
+   ]
+  },
+  {
+   "no": 2,
+   "ref_sentence": 2,
+   "en_template": "The name {{1:originates/separates}} from the Persian word rishta, which {{2:means/measures}} \"thread\" and generally refers to noodles made of wheat flour.",
+   "ko_full": "그 이름은 페르시아어 단어 rishta에서 유래했는데, 그것은 \"실\"을 뜻하며 일반적으로 밀가루로 만든 국수를 가리킨다.",
+   "answers": [
+    "originates",
+    "means"
+   ],
+   "explain": [
+    "어원을 밝히는 문장이므로 \"유래하다\" 인 originates 가 맞다. separates 는 분리한다는 뜻이다.",
+    "단어의 뜻을 설명하므로 means 가 맞다. measures 는 치수를 재다이다."
+   ]
+  },
+  {
+   "no": 3,
+   "ref_sentence": 2,
+   "en_template": "The name originates from the Persian word rishta, which means \"thread\" and {{1:generally/rarely}} {{2:refers/reduces}} to noodles made of wheat flour.",
+   "ko_full": "그 이름은 페르시아어 단어 rishta에서 유래했는데, 그것은 \"실\"을 뜻하며 일반적으로 밀가루로 만든 국수를 가리킨다.",
+   "answers": [
+    "generally",
+    "refers"
+   ],
+   "explain": [
+    "널리 통용되는 뜻을 말하므로 generally(일반적으로)가 맞다. rarely 는 드물게라는 뜻으로 반대이다.",
+    "\"~을 가리키다\" 는 refer to 이다. reduce to 는 줄인다는 뜻으로 문맥과 맞지 않는다."
+   ]
+  },
+  {
+   "no": 4,
+   "ref_sentence": 3,
+   "en_template": "Rechta is made with {{1:thin/thick}} and {{2:flat/round}} noodles.",
+   "ko_full": "레츠타는 얇고 납작한 국수로 만들어진다.",
+   "answers": [
+    "thin",
+    "flat"
+   ],
+   "explain": [
+    "가늘게 뽑은 면을 가리키므로 thin(얇은)이 맞다. thick 은 두껍다는 뜻으로 반대이다.",
+    "밀어서 눌러 만든 면이므로 flat(납작한)이 맞다. round 는 둥근 단면을 뜻해 원문과 다르다."
+   ]
+  },
+  {
+   "no": 5,
+   "ref_sentence": 4,
+   "en_template": "Algerians make the noodles by {{1:mixing/melting}} wheat flour, salt, water, and ghee ({{2:clarified/cloudy}} butter) together.",
+   "ko_full": "알제리 사람들은 밀가루, 소금, 물, 그리고 정제 버터를 함께 섞어서 그 국수를 만든다.",
+   "answers": [
+    "mixing",
+    "clarified"
+   ],
+   "explain": [
+    "여러 재료를 together 로 합치는 동작이므로 mixing(섞는 것)이 맞다. melting 은 녹인다는 뜻이다.",
+    "ghee 는 불순물을 걷어 낸 정제 버터이므로 clarified 가 맞다. cloudy 는 탁하다는 뜻으로 정반대이다."
+   ]
+  },
+  {
+   "no": 6,
+   "ref_sentence": 5,
+   "en_template": "The dish also {{1:contains/conceals}} ingredients such as {{2:chopped/frozen}} meat, onions, garlic, turnips, potatoes, zucchini, and uniquely Algerian spices.",
+   "ko_full": "그 요리는 또한 다진 고기, 양파, 마늘, 순무, 감자, 애호박, 그리고 알제리 특유의 향신료 같은 재료들을 담고 있다.",
+   "answers": [
+    "contains",
+    "chopped"
+   ],
+   "explain": [
+    "재료가 들어 있다는 뜻이므로 contains 가 맞다. conceals 는 숨긴다는 뜻이다.",
+    "잘게 썰어 넣은 고기이므로 chopped 가 맞다. frozen 은 얼린 상태로 조리 설명과 맞지 않는다."
+   ]
+  },
+  {
+   "no": 7,
+   "ref_sentence": 6,
+   "en_template": "Algerians typically enjoy rechta on {{1:festive/ordinary}} {{2:occasions/obstacles}}, including weddings and Eid al-Fitr (the end of Ramadan).",
+   "ko_full": "알제리 사람들은 보통 결혼식과 이드 알피트르(라마단의 끝)를 포함한 축제의 자리에서 레츠타를 즐긴다.",
+   "answers": [
+    "festive",
+    "occasions"
+   ],
+   "explain": [
+    "결혼식과 명절을 예로 들고 있으므로 festive(축제의)가 맞다. ordinary 는 평범한 날을 뜻해 반대이다.",
+    "\"~한 자리, 행사\" 를 뜻하는 말은 occasions 이다. obstacles 는 장애물이다."
+   ]
+  },
+  {
+   "no": 8,
+   "ref_sentence": 7,
+   "en_template": "However, it is {{1:worth/worthless}} noting that rechta does not contain {{2:pork/beef}}, as it is considered haram (forbidden), not halal (permissible), under Islamic dietary laws.",
+   "ko_full": "하지만 레츠타에 돼지고기가 들어가지 않는다는 점은 주목할 만한데, 이슬람 식사법에서 돼지고기는 허용된(할랄) 것이 아니라 금지된(하람) 것으로 여겨지기 때문이다.",
+   "answers": [
+    "worth",
+    "pork"
+   ],
+   "explain": [
+    "주목할 만하다는 긍정적 평가이므로 worth 가 맞다. worthless 는 가치 없다는 뜻으로 정반대이다.",
+    "이슬람 식사법에서 금지되는 고기는 돼지고기이므로 pork 가 맞다. beef 는 금지 대상이 아니다."
+   ]
+  },
+  {
+   "no": 9,
+   "ref_sentence": 7,
+   "en_template": "However, it is worth noting that rechta does not contain pork, as it is considered haram ({{1:forbidden/favored}}), not halal ({{2:permissible/impossible}}), under Islamic dietary laws.",
+   "ko_full": "하지만 레츠타에 돼지고기가 들어가지 않는다는 점은 주목할 만한데, 이슬람 식사법에서 돼지고기는 허용된(할랄) 것이 아니라 금지된(하람) 것으로 여겨지기 때문이다.",
+   "answers": [
+    "forbidden",
+    "permissible"
+   ],
+   "explain": [
+    "haram 은 금지된 것을 뜻하므로 forbidden 이 맞다. favored 는 선호된다는 뜻으로 정반대이다.",
+    "halal 은 허용된 것을 뜻하므로 permissible 이 맞다. impossible 은 불가능하다는 뜻으로 개념이 다르다."
+   ]
+  }
+ ],
+ "fill_first_letter": [
+  {
+   "no": 1,
+   "ref_sentence": 1,
+   "hints": [
+    {
+     "pos": 1,
+     "letter": "p",
+     "answer": "popular",
+     "after": "Algerian dishes"
+    }
+   ],
+   "ko_full": "레츠타는 알제리에서 가장 인기 있는 요리 중 하나이다."
+  },
+  {
+   "no": 2,
+   "ref_sentence": 2,
+   "hints": [
+    {
+     "pos": 1,
+     "letter": "o",
+     "answer": "originates",
+     "after": "from the Persian word"
+    },
+    {
+     "pos": 2,
+     "letter": "t",
+     "answer": "thread",
+     "after": "and generally refers to noodles"
+    }
+   ],
+   "ko_full": "그 이름은 페르시아어 단어 rishta에서 유래했는데, 그것은 \"실\"을 뜻하며 일반적으로 밀가루로 만든 국수를 가리킨다."
+  },
+  {
+   "no": 3,
+   "ref_sentence": 2,
+   "hints": [
+    {
+     "pos": 1,
+     "letter": "g",
+     "answer": "generally",
+     "after": "refers to noodles"
+    },
+    {
+     "pos": 2,
+     "letter": "w",
+     "answer": "wheat",
+     "after": "flour"
+    }
+   ],
+   "ko_full": "그 이름은 페르시아어 단어 rishta에서 유래했는데, 그것은 \"실\"을 뜻하며 일반적으로 밀가루로 만든 국수를 가리킨다."
+  },
+  {
+   "no": 4,
+   "ref_sentence": 3,
+   "hints": [
+    {
+     "pos": 1,
+     "letter": "n",
+     "answer": "noodles",
+     "after": ""
+    }
+   ],
+   "ko_full": "레츠타는 얇고 납작한 국수로 만들어진다."
+  },
+  {
+   "no": 5,
+   "ref_sentence": 4,
+   "hints": [
+    {
+     "pos": 1,
+     "letter": "m",
+     "answer": "mixing",
+     "after": "wheat flour, salt, water"
+    },
+    {
+     "pos": 2,
+     "letter": "c",
+     "answer": "clarified",
+     "after": "butter"
+    }
+   ],
+   "ko_full": "알제리 사람들은 밀가루, 소금, 물, 그리고 정제 버터를 함께 섞어서 그 국수를 만든다."
+  },
+  {
+   "no": 6,
+   "ref_sentence": 5,
+   "hints": [
+    {
+     "pos": 1,
+     "letter": "c",
+     "answer": "contains",
+     "after": "ingredients such as"
+    },
+    {
+     "pos": 2,
+     "letter": "i",
+     "answer": "ingredients",
+     "after": "such as chopped meat"
+    },
+    {
+     "pos": 3,
+     "letter": "u",
+     "answer": "uniquely",
+     "after": "Algerian spices"
+    }
+   ],
+   "ko_full": "그 요리는 또한 다진 고기, 양파, 마늘, 순무, 감자, 애호박, 그리고 알제리 특유의 향신료 같은 재료들을 담고 있다."
+  },
+  {
+   "no": 7,
+   "ref_sentence": 6,
+   "hints": [
+    {
+     "pos": 1,
+     "letter": "f",
+     "answer": "festive",
+     "after": "occasions"
+    },
+    {
+     "pos": 2,
+     "letter": "o",
+     "answer": "occasions",
+     "after": "including weddings"
+    }
+   ],
+   "ko_full": "알제리 사람들은 보통 결혼식과 이드 알피트르(라마단의 끝)를 포함한 축제의 자리에서 레츠타를 즐긴다."
+  },
+  {
+   "no": 8,
+   "ref_sentence": 7,
+   "hints": [
+    {
+     "pos": 1,
+     "letter": "n",
+     "answer": "noting",
+     "after": "that rechta does not contain pork"
+    },
+    {
+     "pos": 2,
+     "letter": "f",
+     "answer": "forbidden",
+     "after": "not halal"
+    }
+   ],
+   "ko_full": "하지만 레츠타에 돼지고기가 들어가지 않는다는 점은 주목할 만한데, 이슬람 식사법에서 돼지고기는 허용된(할랄) 것이 아니라 금지된(하람) 것으로 여겨지기 때문이다."
+  },
+  {
+   "no": 9,
+   "ref_sentence": 7,
+   "hints": [
+    {
+     "pos": 1,
+     "letter": "p",
+     "answer": "permissible",
+     "after": "under Islamic dietary laws"
+    },
+    {
+     "pos": 2,
+     "letter": "d",
+     "answer": "dietary",
+     "after": "laws"
+    }
+   ],
+   "ko_full": "하지만 레츠타에 돼지고기가 들어가지 않는다는 점은 주목할 만한데, 이슬람 식사법에서 돼지고기는 허용된(할랄) 것이 아니라 금지된(하람) 것으로 여겨지기 때문이다."
+  }
+ ],
+ "ko_translation": [
+  {
+   "no": 1,
+   "ref_sentence": 1
+  },
+  {
+   "no": 2,
+   "ref_sentence": 2
+  },
+  {
+   "no": 3,
+   "ref_sentence": 3
+  },
+  {
+   "no": 4,
+   "ref_sentence": 4
+  },
+  {
+   "no": 5,
+   "ref_sentence": 5
+  },
+  {
+   "no": 6,
+   "ref_sentence": 6
+  },
+  {
+   "no": 7,
+   "ref_sentence": 7
+  },
+  {
+   "no": 8,
+   "ref_sentence": 2
+  },
+  {
+   "no": 9,
+   "ref_sentence": 7
+  }
+ ],
+ "jumble": [
+  {
+   "no": 1,
+   "ref_sentence": 1,
+   "words": [
+    "Rechta",
+    "is",
+    "one",
+    "of",
+    "the",
+    "most",
+    "popular",
+    "Algerian",
+    "dishes"
+   ],
+   "answer": "Rechta is one of the most popular Algerian dishes."
+  },
+  {
+   "no": 2,
+   "ref_sentence": 3,
+   "words": [
+    "Rechta",
+    "is",
+    "made",
+    "with",
+    "thin",
+    "and",
+    "flat",
+    "noodles"
+   ],
+   "answer": "Rechta is made with thin and flat noodles."
+  },
+  {
+   "no": 3,
+   "ref_sentence": 4,
+   "words": [
+    "Algerians",
+    "make",
+    "the",
+    "noodles",
+    "by",
+    "mixing",
+    "wheat",
+    "flour,",
+    "salt,",
+    "water,",
+    "and",
+    "ghee",
+    "(clarified",
+    "butter)",
+    "together"
+   ],
+   "answer": "Algerians make the noodles by mixing wheat flour, salt, water, and ghee (clarified butter) together."
+  },
+  {
+   "no": 4,
+   "ref_sentence": 6,
+   "words": [
+    "Algerians",
+    "typically",
+    "enjoy",
+    "rechta",
+    "on",
+    "festive",
+    "occasions,",
+    "including",
+    "weddings",
+    "and",
+    "Eid",
+    "al-Fitr",
+    "(the",
+    "end",
+    "of",
+    "Ramadan)"
+   ],
+   "answer": "Algerians typically enjoy rechta on festive occasions, including weddings and Eid al-Fitr (the end of Ramadan)."
+  },
+  {
+   "no": 5,
+   "ref_sentence": 5,
+   "words": [
+    "The",
+    "dish",
+    "also",
+    "contains",
+    "ingredients",
+    "such",
+    "as",
+    "chopped",
+    "meat,",
+    "onions,",
+    "garlic,",
+    "turnips,",
+    "potatoes,",
+    "zucchini,",
+    "and",
+    "uniquely",
+    "Algerian",
+    "spices"
+   ],
+   "answer": "The dish also contains ingredients such as chopped meat, onions, garlic, turnips, potatoes, zucchini, and uniquely Algerian spices."
+  },
+  {
+   "no": 6,
+   "ref_sentence": 2,
+   "words": [
+    "The",
+    "name",
+    "originates",
+    "from",
+    "the",
+    "Persian",
+    "word",
+    "rishta,",
+    "which",
+    "means",
+    "\"thread\"",
+    "and",
+    "generally",
+    "refers",
+    "to",
+    "noodles",
+    "made",
+    "of",
+    "wheat",
+    "flour"
+   ],
+   "answer": "The name originates from the Persian word rishta, which means \"thread\" and generally refers to noodles made of wheat flour."
+  },
+  {
+   "no": 7,
+   "ref_sentence": 7,
+   "words": [
+    "However,",
+    "it",
+    "is",
+    "worth",
+    "noting",
+    "that",
+    "rechta",
+    "does",
+    "not",
+    "contain",
+    "pork,",
+    "as",
+    "it",
+    "is",
+    "considered",
+    "haram",
+    "(forbidden),",
+    "not",
+    "halal",
+    "(permissible),",
+    "under",
+    "Islamic",
+    "dietary",
+    "laws"
+   ],
+   "answer": "However, it is worth noting that rechta does not contain pork, as it is considered haram (forbidden), not halal (permissible), under Islamic dietary laws."
+  },
+  {
+   "no": 8,
+   "ref_sentence": 1,
+   "words": [
+    "Rechta",
+    "is",
+    "one",
+    "of",
+    "the",
+    "most",
+    "popular",
+    "Algerian",
+    "dishes"
+   ],
+   "answer": "Rechta is one of the most popular Algerian dishes."
+  },
+  {
+   "no": 9,
+   "ref_sentence": 3,
+   "words": [
+    "Rechta",
+    "is",
+    "made",
+    "with",
+    "thin",
+    "and",
+    "flat",
+    "noodles"
+   ],
+   "answer": "Rechta is made with thin and flat noodles."
+  }
+ ],
+ "sentence_translation": [
+  {
+   "no": 1,
+   "ref_sentence": 1,
+   "given": "ko"
+  },
+  {
+   "no": 2,
+   "ref_sentence": 2,
+   "given": "ko"
+  },
+  {
+   "no": 3,
+   "ref_sentence": 3,
+   "given": "ko"
+  },
+  {
+   "no": 4,
+   "ref_sentence": 4,
+   "given": "ko"
+  },
+  {
+   "no": 5,
+   "ref_sentence": 5,
+   "given": "ko"
+  },
+  {
+   "no": 6,
+   "ref_sentence": 6,
+   "given": "ko"
+  },
+  {
+   "no": 7,
+   "ref_sentence": 7,
+   "given": "ko"
+  },
+  {
+   "no": 8,
+   "ref_sentence": 4,
+   "given": "ko"
+  },
+  {
+   "no": 9,
+   "ref_sentence": 6,
+   "given": "ko"
+  }
+ ],
+ "mixed": [
+  {
+   "kind": "grammar",
+   "ref": 1,
+   "no": 1
+  },
+  {
+   "kind": "vocab",
+   "ref": 2,
+   "no": 2
+  },
+  {
+   "kind": "fill",
+   "ref": 5,
+   "no": 3
+  },
+  {
+   "kind": "ko",
+   "ref": 3,
+   "no": 4
+  },
+  {
+   "kind": "jumble",
+   "ref": 2,
+   "no": 5
+  },
+  {
+   "kind": "sent",
+   "ref": 6,
+   "no": 6
+  },
+  {
+   "kind": "grammar",
+   "ref": 8,
+   "no": 7
+  },
+  {
+   "kind": "vocab",
+   "ref": 9,
+   "no": 8
+  }
+ ]
+}

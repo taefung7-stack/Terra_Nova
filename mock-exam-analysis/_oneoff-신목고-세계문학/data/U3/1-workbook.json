@@ -1,0 +1,887 @@
+{
+ "$schema_version": "1.0",
+ "$ref_source": "1.json",
+ "_note": "U3 Ch1 워크북 — INTRO(Noodle Dishes from Around the World) 본문 5문장 풀커버. 문장이 5개뿐이라 ref_sentence 를 반복해 9문항을 채웠고, 반복할 때마다 어법 포인트·빈칸 위치·배열 문장을 달리해 중복 문항이 되지 않게 했다. 지명(Italy/Peru)과 문두 대문자어(Though/Like/Thus/Now)는 buildProperNounSet 오탐 대상이라 양자택일 정답 슬롯에서 전부 제외했다. 정답 토큰은 문장 중반의 동사·전치사·형용사로만 잡았다.",
+ "voca_check": {
+  "en_to_ko": [
+   {
+    "word": "oldest",
+    "pos": "형"
+   },
+   {
+    "word": "cultures",
+    "pos": "명"
+   },
+   {
+    "word": "invented",
+    "pos": "동"
+   },
+   {
+    "word": "human",
+    "pos": "형"
+   },
+   {
+    "word": "thousands",
+    "pos": "명"
+   },
+   {
+    "word": "enjoyed",
+    "pos": "동"
+   },
+   {
+    "word": "different",
+    "pos": "형"
+   },
+   {
+    "word": "exploring",
+    "pos": "동"
+   },
+   {
+    "word": "experience",
+    "pos": "명"
+   },
+   {
+    "word": "culinary",
+    "pos": "형"
+   }
+  ],
+  "ko_to_en": [
+   {
+    "meaning": "가장 오래된",
+    "pos": "형",
+    "answer": "oldest"
+   },
+   {
+    "meaning": "문화, 문화권",
+    "pos": "명",
+    "answer": "cultures"
+   },
+   {
+    "meaning": "발명하다, 처음 만들어 내다",
+    "pos": "동",
+    "answer": "invented"
+   },
+   {
+    "meaning": "식단, 평소의 음식",
+    "pos": "명",
+    "answer": "diet"
+   },
+   {
+    "meaning": "수천의, 수천 개의",
+    "pos": "명",
+    "answer": "thousands"
+   },
+   {
+    "meaning": "조리되다, 요리되다",
+    "pos": "동",
+    "answer": "cooked"
+   },
+   {
+    "meaning": "즐기다, 맛있게 먹다",
+    "pos": "동",
+    "answer": "enjoyed"
+   },
+   {
+    "meaning": "탐색하다, 살펴보다",
+    "pos": "동",
+    "answer": "exploring"
+   },
+   {
+    "meaning": "경험, 체험",
+    "pos": "명",
+    "answer": "experience"
+   },
+   {
+    "meaning": "요리의, 음식의",
+    "pos": "형",
+    "answer": "culinary"
+   }
+  ],
+  "definitions": [
+   {
+    "def": "existing for a longer time than anything else of its kind",
+    "answer": "oldest"
+   },
+   {
+    "def": "to create or design something that has never existed before",
+    "answer": "invented"
+   },
+   {
+    "def": "the kind of food that a person or group usually eats",
+    "answer": "diet"
+   },
+   {
+    "def": "to travel through or look into something in order to learn about it",
+    "answer": "exploring"
+   },
+   {
+    "def": "connected with cooking or with food and its preparation",
+    "answer": "culinary"
+   }
+  ],
+  "expressions": [
+   {
+    "ko": "~ 중 하나",
+    "answer": "one of the"
+   },
+   {
+    "ko": "여러 문화권에 걸쳐, 문화를 가로질러",
+    "answer": "across cultures"
+   },
+   {
+    "ko": "확실히, 틀림없이",
+    "answer": "for sure"
+   },
+   {
+    "ko": "~의 일부",
+    "answer": "part of"
+   },
+   {
+    "ko": "전 세계로부터",
+    "answer": "from around the world"
+   }
+  ]
+ },
+ "grammar_choice": [
+  {
+   "no": 1,
+   "ref_sentence": 1,
+   "en_template": "Noodles are one of the {{1:oldest/older}} {{2:foods/food}} that can be found across cultures.",
+   "ko_full": "국수는 여러 문화권에서 발견될 수 있는 가장 오래된 음식 중 하나이다.",
+   "answers": [
+    "oldest",
+    "foods"
+   ],
+   "explain": [
+    "one of the 뒤에는 최상급이 오므로 oldest 가 맞다. 비교급 older 는 the 와 함께 이 구조에 쓸 수 없다.",
+    "one of the + 최상급 뒤에는 반드시 복수명사가 오므로 foods 가 맞다."
+   ]
+  },
+  {
+   "no": 2,
+   "ref_sentence": 1,
+   "en_template": "Noodles are one of the oldest foods {{1:that/what}} can {{2:be found/find}} across cultures.",
+   "ko_full": "국수는 여러 문화권에서 발견될 수 있는 가장 오래된 음식 중 하나이다.",
+   "answers": [
+    "that",
+    "be found"
+   ],
+   "explain": [
+    "선행사 foods 를 받아 뒤 절의 주어 역할을 하는 주격 관계대명사이므로 that 이 맞다. what 은 선행사를 취하지 않는다.",
+    "foods 는 발견되는 대상이므로 조동사 can 뒤에 수동태 be found 를 쓴다. 능동형 find 는 목적어가 없어 성립하지 않는다."
+   ]
+  },
+  {
+   "no": 3,
+   "ref_sentence": 2,
+   "en_template": "Though nobody knows for sure {{1:who first invented/who did first invent}} noodles, or even {{2:when they were invented/when were they invented}}, they have been part of the human diet for thousands of years.",
+   "ko_full": "누가 처음 국수를 발명했는지, 심지어 언제 발명되었는지조차 아무도 확실히 알지 못하지만, 국수는 수천 년 동안 인간 식단의 일부였다.",
+   "answers": [
+    "who first invented",
+    "when they were invented"
+   ],
+   "explain": [
+    "knows 의 목적어로 쓰인 간접의문문이므로 의문사 뒤에 평서문 어순이 온다. 조동사 did 를 쓴 의문문 어순은 맞지 않는다.",
+    "앞의 간접의문문과 or 로 병렬을 이루므로 역시 의문사 + 주어 + 동사 어순인 when they were invented 가 맞다."
+   ]
+  },
+  {
+   "no": 4,
+   "ref_sentence": 2,
+   "en_template": "Though nobody knows for sure who first invented noodles, or even when they were invented, they {{1:have been/have being}} part of the human diet {{2:for/during}} thousands of years.",
+   "ko_full": "누가 처음 국수를 발명했는지, 심지어 언제 발명되었는지조차 아무도 확실히 알지 못하지만, 국수는 수천 년 동안 인간 식단의 일부였다.",
+   "answers": [
+    "have been",
+    "for"
+   ],
+   "explain": [
+    "과거부터 지금까지 이어지는 상태를 나타내는 현재완료이므로 have been 이 맞다. have being 은 성립하지 않는 형태이다.",
+    "thousands of years 처럼 기간의 길이를 나타내는 말 앞에는 for 를 쓴다. during 은 특정 기간을 가리키는 명사와 함께 쓴다."
+   ]
+  },
+  {
+   "no": 5,
+   "ref_sentence": 3,
+   "en_template": "Like any other food item, noodles {{1:are cooked/are cooking}} and {{2:enjoyed/enjoying}} in different ways in different cultures.",
+   "ko_full": "다른 여느 식품과 마찬가지로, 국수는 문화권마다 서로 다른 방식으로 조리되고 즐겨진다.",
+   "answers": [
+    "are cooked",
+    "enjoyed"
+   ],
+   "explain": [
+    "noodles 는 조리되는 대상이므로 수동태 are cooked 가 맞다. 진행형 are cooking 은 능동이라 뜻이 반대가 된다.",
+    "앞의 are cooked 와 and 로 병렬을 이루는 수동태이므로 과거분사 enjoyed 를 쓴다. 현재분사 enjoying 은 능동이라 병렬이 깨진다."
+   ]
+  },
+  {
+   "no": 6,
+   "ref_sentence": 3,
+   "en_template": "Like any other food {{1:item/items}}, noodles are cooked and enjoyed in {{2:different/difference}} ways in different cultures.",
+   "ko_full": "다른 여느 식품과 마찬가지로, 국수는 문화권마다 서로 다른 방식으로 조리되고 즐겨진다.",
+   "answers": [
+    "item",
+    "different"
+   ],
+   "explain": [
+    "any other 뒤에는 단수명사가 오므로 item 이 맞다. 복수형 items 는 이 구조에 쓸 수 없다.",
+    "뒤의 명사 ways 를 꾸미는 자리이므로 형용사 different 가 맞다. difference 는 명사이다."
+   ]
+  },
+  {
+   "no": 7,
+   "ref_sentence": 4,
+   "en_template": "Thus, {{1:exploring/explore}} different noodle dishes from around the world {{2:will be/will being}} a truly learning experience.",
+   "ko_full": "따라서 전 세계의 다양한 국수 요리를 탐색해 보는 것은 참으로 배움이 되는 경험이 될 것이다.",
+   "answers": [
+    "exploring",
+    "will be"
+   ],
+   "explain": [
+    "문장의 주어 자리이므로 동사원형이 아니라 동명사 exploring 을 쓴다.",
+    "조동사 will 뒤에는 동사원형이 오므로 will be 가 맞다. will being 은 성립하지 않는 형태이다."
+   ]
+  },
+  {
+   "no": 8,
+   "ref_sentence": 4,
+   "en_template": "Thus, exploring different noodle dishes {{1:from/of}} around the world will be {{2:a/an}} truly learning experience.",
+   "ko_full": "따라서 전 세계의 다양한 국수 요리를 탐색해 보는 것은 참으로 배움이 되는 경험이 될 것이다.",
+   "answers": [
+    "from",
+    "a"
+   ],
+   "explain": [
+    "\"전 세계로부터\" 라는 출처를 나타내는 관용 표현은 from around the world 이다.",
+    "뒤에 이어지는 truly 의 첫소리가 자음이므로 부정관사는 a 를 쓴다. an 은 모음 소리 앞에 쓴다."
+   ]
+  },
+  {
+   "no": 9,
+   "ref_sentence": 5,
+   "en_template": "Now, {{1:shall we begin/shall we to begin}} a short culinary tour {{2:from/since}} Italy to Peru?",
+   "ko_full": "자, 이탈리아에서 페루까지 짧은 요리 여행을 시작해 볼까요?",
+   "answers": [
+    "shall we begin",
+    "from"
+   ],
+   "explain": [
+    "제안을 나타내는 Shall we 뒤에는 동사원형이 오므로 shall we begin 이 맞다. to부정사는 올 수 없다.",
+    "뒤의 to Peru 와 짝을 이루어 출발점을 나타내므로 from ~ to ~ 구조의 from 이 맞다. since 는 시점의 기준을 나타낸다."
+   ]
+  }
+ ],
+ "vocab_choice": [
+  {
+   "no": 1,
+   "ref_sentence": 1,
+   "en_template": "Noodles are one of the {{1:oldest/newest}} foods that can be {{2:found/hidden}} across cultures.",
+   "ko_full": "국수는 여러 문화권에서 발견될 수 있는 가장 오래된 음식 중 하나이다.",
+   "answers": [
+    "oldest",
+    "found"
+   ],
+   "explain": [
+    "뒤에 수천 년 동안 먹어 왔다는 설명이 이어지므로 oldest(가장 오래된)가 맞다. newest 는 정반대이다.",
+    "여러 문화권에서 두루 찾아볼 수 있다는 뜻이므로 found 가 맞다. hidden 은 숨겨져 있다는 뜻으로 정반대이다."
+   ]
+  },
+  {
+   "no": 2,
+   "ref_sentence": 2,
+   "en_template": "Though nobody knows for {{1:sure/doubt}} who first {{2:invented/imitated}} noodles, or even when they were invented, they have been part of the human diet for thousands of years.",
+   "ko_full": "누가 처음 국수를 발명했는지, 심지어 언제 발명되었는지조차 아무도 확실히 알지 못하지만, 국수는 수천 년 동안 인간 식단의 일부였다.",
+   "answers": [
+    "sure",
+    "invented"
+   ],
+   "explain": [
+    "\"확실히 알다\" 라는 뜻의 굳어진 표현은 know for sure 이다. for doubt 는 이런 뜻으로 쓰이지 않는다.",
+    "기원을 말하는 흐름이므로 처음 만들어 냈다는 invented 가 맞다. imitated 는 모방했다는 뜻이다."
+   ]
+  },
+  {
+   "no": 3,
+   "ref_sentence": 2,
+   "en_template": "Though nobody knows for sure who first invented noodles, or even when they were invented, they have been part of the human {{1:diet/design}} for {{2:thousands/handfuls}} of years.",
+   "ko_full": "누가 처음 국수를 발명했는지, 심지어 언제 발명되었는지조차 아무도 확실히 알지 못하지만, 국수는 수천 년 동안 인간 식단의 일부였다.",
+   "answers": [
+    "diet",
+    "thousands"
+   ],
+   "explain": [
+    "먹는 음식 전반을 가리키므로 diet(식단)가 맞다. design 은 설계라는 뜻으로 문맥과 무관하다.",
+    "아주 오랜 세월을 강조하므로 thousands(수천)가 맞다. handfuls 는 소량을 뜻해 흐름과 어긋난다."
+   ]
+  },
+  {
+   "no": 4,
+   "ref_sentence": 3,
+   "en_template": "Like any other food item, noodles are {{1:cooked/frozen}} and enjoyed in {{2:different/identical}} ways in different cultures.",
+   "ko_full": "다른 여느 식품과 마찬가지로, 국수는 문화권마다 서로 다른 방식으로 조리되고 즐겨진다.",
+   "answers": [
+    "cooked",
+    "different"
+   ],
+   "explain": [
+    "조리 방식을 말하는 흐름이므로 cooked(조리되는)가 맞다. frozen 은 얼린다는 뜻으로 조리와 다르다.",
+    "문화권마다 방식이 갈린다는 뜻이므로 different 가 맞다. identical 은 똑같다는 뜻으로 정반대이다."
+   ]
+  },
+  {
+   "no": 5,
+   "ref_sentence": 3,
+   "en_template": "Like any {{1:other/single}} food item, noodles are cooked and {{2:enjoyed/refused}} in different ways in different cultures.",
+   "ko_full": "다른 여느 식품과 마찬가지로, 국수는 문화권마다 서로 다른 방식으로 조리되고 즐겨진다.",
+   "answers": [
+    "other",
+    "enjoyed"
+   ],
+   "explain": [
+    "\"다른 여느 ~와 마찬가지로\" 를 뜻하는 표현은 like any other 이다. single 은 하나뿐이라는 뜻으로 비교가 성립하지 않는다.",
+    "즐겨 먹는다는 긍정적 서술이므로 enjoyed 가 맞다. refused 는 거부한다는 뜻으로 정반대이다."
+   ]
+  },
+  {
+   "no": 6,
+   "ref_sentence": 4,
+   "en_template": "Thus, {{1:exploring/ignoring}} different noodle dishes from around the world will be a truly {{2:learning/boring}} experience.",
+   "ko_full": "따라서 전 세계의 다양한 국수 요리를 탐색해 보는 것은 참으로 배움이 되는 경험이 될 것이다.",
+   "answers": [
+    "exploring",
+    "learning"
+   ],
+   "explain": [
+    "여러 나라의 요리를 살펴보자고 권하는 흐름이므로 exploring(탐색하는 것)이 맞다. ignoring 은 무시한다는 뜻으로 정반대이다.",
+    "배움이 되는 값진 경험이라는 긍정적 평가이므로 learning 이 맞다. boring 은 지루하다는 뜻으로 흐름에 어긋난다."
+   ]
+  },
+  {
+   "no": 7,
+   "ref_sentence": 4,
+   "en_template": "Thus, exploring {{1:different/similar}} noodle dishes from around the world will be a {{2:truly/rarely}} learning experience.",
+   "ko_full": "따라서 전 세계의 다양한 국수 요리를 탐색해 보는 것은 참으로 배움이 되는 경험이 될 것이다.",
+   "answers": [
+    "different",
+    "truly"
+   ],
+   "explain": [
+    "나라마다 다른 요리를 둘러본다는 뜻이므로 different 가 맞다. similar 는 비슷하다는 뜻으로 다양성을 말하는 흐름과 반대이다.",
+    "배움이 된다는 점을 강조하는 부사이므로 truly(참으로)가 맞다. rarely 는 드물다는 뜻으로 부정의 의미가 된다."
+   ]
+  },
+  {
+   "no": 8,
+   "ref_sentence": 5,
+   "en_template": "Now, shall we {{1:begin/finish}} a {{2:short/endless}} culinary tour from Italy to Peru?",
+   "ko_full": "자, 이탈리아에서 페루까지 짧은 요리 여행을 시작해 볼까요?",
+   "answers": [
+    "begin",
+    "short"
+   ],
+   "explain": [
+    "글을 여는 도입부에서 여행을 제안하는 말이므로 begin(시작하다)이 맞다. finish 는 끝낸다는 뜻으로 정반대이다.",
+    "네 나라를 훑는 짧은 여정이므로 short 가 맞다. endless 는 끝없다는 뜻으로 과장이다."
+   ]
+  },
+  {
+   "no": 9,
+   "ref_sentence": 5,
+   "en_template": "Now, shall we begin a short {{1:culinary/military}} {{2:tour/tower}} from Italy to Peru?",
+   "ko_full": "자, 이탈리아에서 페루까지 짧은 요리 여행을 시작해 볼까요?",
+   "answers": [
+    "culinary",
+    "tour"
+   ],
+   "explain": [
+    "음식을 주제로 한 여정이므로 culinary(요리의)가 맞다. military 는 군사의라는 뜻으로 무관하다.",
+    "나라를 옮겨 다니며 둘러보는 여행이므로 tour 가 맞다. tower 는 탑을 뜻한다."
+   ]
+  }
+ ],
+ "fill_first_letter": [
+  {
+   "no": 1,
+   "ref_sentence": 1,
+   "hints": [
+    {
+     "pos": 1,
+     "letter": "o",
+     "answer": "oldest",
+     "after": "foods that can be found"
+    },
+    {
+     "pos": 2,
+     "letter": "c",
+     "answer": "cultures",
+     "after": ""
+    }
+   ],
+   "ko_full": "국수는 여러 문화권에서 발견될 수 있는 가장 오래된 음식 중 하나이다."
+  },
+  {
+   "no": 2,
+   "ref_sentence": 1,
+   "hints": [
+    {
+     "pos": 1,
+     "letter": "n",
+     "answer": "Noodles",
+     "after": "are one of the oldest foods"
+    },
+    {
+     "pos": 2,
+     "letter": "a",
+     "answer": "across",
+     "after": "cultures"
+    }
+   ],
+   "ko_full": "국수는 여러 문화권에서 발견될 수 있는 가장 오래된 음식 중 하나이다."
+  },
+  {
+   "no": 3,
+   "ref_sentence": 2,
+   "hints": [
+    {
+     "pos": 1,
+     "letter": "n",
+     "answer": "nobody",
+     "after": "knows for sure"
+    },
+    {
+     "pos": 2,
+     "letter": "i",
+     "answer": "invented",
+     "after": "noodles, or even when"
+    }
+   ],
+   "ko_full": "누가 처음 국수를 발명했는지, 심지어 언제 발명되었는지조차 아무도 확실히 알지 못하지만, 국수는 수천 년 동안 인간 식단의 일부였다."
+  },
+  {
+   "no": 4,
+   "ref_sentence": 2,
+   "hints": [
+    {
+     "pos": 1,
+     "letter": "t",
+     "answer": "thousands",
+     "after": "of years"
+    }
+   ],
+   "ko_full": "누가 처음 국수를 발명했는지, 심지어 언제 발명되었는지조차 아무도 확실히 알지 못하지만, 국수는 수천 년 동안 인간 식단의 일부였다."
+  },
+  {
+   "no": 5,
+   "ref_sentence": 3,
+   "hints": [
+    {
+     "pos": 1,
+     "letter": "c",
+     "answer": "cooked",
+     "after": "and enjoyed in different ways"
+    },
+    {
+     "pos": 2,
+     "letter": "e",
+     "answer": "enjoyed",
+     "after": "in different ways"
+    }
+   ],
+   "ko_full": "다른 여느 식품과 마찬가지로, 국수는 문화권마다 서로 다른 방식으로 조리되고 즐겨진다."
+  },
+  {
+   "no": 6,
+   "ref_sentence": 3,
+   "hints": [
+    {
+     "pos": 1,
+     "letter": "d",
+     "answer": "different",
+     "after": "ways in different cultures"
+    }
+   ],
+   "ko_full": "다른 여느 식품과 마찬가지로, 국수는 문화권마다 서로 다른 방식으로 조리되고 즐겨진다."
+  },
+  {
+   "no": 7,
+   "ref_sentence": 4,
+   "hints": [
+    {
+     "pos": 1,
+     "letter": "e",
+     "answer": "exploring",
+     "after": "different noodle dishes"
+    },
+    {
+     "pos": 2,
+     "letter": "e",
+     "answer": "experience",
+     "after": ""
+    }
+   ],
+   "ko_full": "따라서 전 세계의 다양한 국수 요리를 탐색해 보는 것은 참으로 배움이 되는 경험이 될 것이다."
+  },
+  {
+   "no": 8,
+   "ref_sentence": 4,
+   "hints": [
+    {
+     "pos": 1,
+     "letter": "d",
+     "answer": "dishes",
+     "after": "from around the world"
+    },
+    {
+     "pos": 2,
+     "letter": "t",
+     "answer": "truly",
+     "after": "learning experience"
+    }
+   ],
+   "ko_full": "따라서 전 세계의 다양한 국수 요리를 탐색해 보는 것은 참으로 배움이 되는 경험이 될 것이다."
+  },
+  {
+   "no": 9,
+   "ref_sentence": 5,
+   "hints": [
+    {
+     "pos": 1,
+     "letter": "c",
+     "answer": "culinary",
+     "after": "tour from Italy to Peru"
+    }
+   ],
+   "ko_full": "자, 이탈리아에서 페루까지 짧은 요리 여행을 시작해 볼까요?"
+  }
+ ],
+ "ko_translation": [
+  {
+   "no": 1,
+   "ref_sentence": 1
+  },
+  {
+   "no": 2,
+   "ref_sentence": 2
+  },
+  {
+   "no": 3,
+   "ref_sentence": 3
+  },
+  {
+   "no": 4,
+   "ref_sentence": 4
+  },
+  {
+   "no": 5,
+   "ref_sentence": 5
+  },
+  {
+   "no": 6,
+   "ref_sentence": 2
+  },
+  {
+   "no": 7,
+   "ref_sentence": 3
+  },
+  {
+   "no": 8,
+   "ref_sentence": 1
+  },
+  {
+   "no": 9,
+   "ref_sentence": 4
+  }
+ ],
+ "jumble": [
+  {
+   "no": 1,
+   "ref_sentence": 1,
+   "words": [
+    "Noodles",
+    "are",
+    "one",
+    "of",
+    "the",
+    "oldest",
+    "foods",
+    "that",
+    "can",
+    "be",
+    "found",
+    "across",
+    "cultures"
+   ],
+   "answer": "Noodles are one of the oldest foods that can be found across cultures."
+  },
+  {
+   "no": 2,
+   "ref_sentence": 3,
+   "words": [
+    "Like",
+    "any",
+    "other",
+    "food",
+    "item,",
+    "noodles",
+    "are",
+    "cooked",
+    "and",
+    "enjoyed",
+    "in",
+    "different",
+    "ways",
+    "in",
+    "different",
+    "cultures"
+   ],
+   "answer": "Like any other food item, noodles are cooked and enjoyed in different ways in different cultures."
+  },
+  {
+   "no": 3,
+   "ref_sentence": 4,
+   "words": [
+    "Thus,",
+    "exploring",
+    "different",
+    "noodle",
+    "dishes",
+    "from",
+    "around",
+    "the",
+    "world",
+    "will",
+    "be",
+    "a",
+    "truly",
+    "learning",
+    "experience"
+   ],
+   "answer": "Thus, exploring different noodle dishes from around the world will be a truly learning experience."
+  },
+  {
+   "no": 4,
+   "ref_sentence": 5,
+   "words": [
+    "Now,",
+    "shall",
+    "we",
+    "begin",
+    "a",
+    "short",
+    "culinary",
+    "tour",
+    "from",
+    "Italy",
+    "to",
+    "Peru"
+   ],
+   "answer": "Now, shall we begin a short culinary tour from Italy to Peru?"
+  },
+  {
+   "no": 5,
+   "ref_sentence": 2,
+   "words": [
+    "Though",
+    "nobody",
+    "knows",
+    "for",
+    "sure",
+    "who",
+    "first",
+    "invented",
+    "noodles,",
+    "or",
+    "even",
+    "when",
+    "they",
+    "were",
+    "invented,",
+    "they",
+    "have",
+    "been",
+    "part",
+    "of",
+    "the",
+    "human",
+    "diet",
+    "for",
+    "thousands",
+    "of",
+    "years"
+   ],
+   "answer": "Though nobody knows for sure who first invented noodles, or even when they were invented, they have been part of the human diet for thousands of years."
+  },
+  {
+   "no": 6,
+   "ref_sentence": 1,
+   "words": [
+    "Noodles",
+    "are",
+    "one",
+    "of",
+    "the",
+    "oldest",
+    "foods",
+    "that",
+    "can",
+    "be",
+    "found",
+    "across",
+    "cultures"
+   ],
+   "answer": "Noodles are one of the oldest foods that can be found across cultures."
+  },
+  {
+   "no": 7,
+   "ref_sentence": 4,
+   "words": [
+    "Thus,",
+    "exploring",
+    "different",
+    "noodle",
+    "dishes",
+    "from",
+    "around",
+    "the",
+    "world",
+    "will",
+    "be",
+    "a",
+    "truly",
+    "learning",
+    "experience"
+   ],
+   "answer": "Thus, exploring different noodle dishes from around the world will be a truly learning experience."
+  },
+  {
+   "no": 8,
+   "ref_sentence": 5,
+   "words": [
+    "Now,",
+    "shall",
+    "we",
+    "begin",
+    "a",
+    "short",
+    "culinary",
+    "tour",
+    "from",
+    "Italy",
+    "to",
+    "Peru"
+   ],
+   "answer": "Now, shall we begin a short culinary tour from Italy to Peru?"
+  },
+  {
+   "no": 9,
+   "ref_sentence": 3,
+   "words": [
+    "Like",
+    "any",
+    "other",
+    "food",
+    "item,",
+    "noodles",
+    "are",
+    "cooked",
+    "and",
+    "enjoyed",
+    "in",
+    "different",
+    "ways",
+    "in",
+    "different",
+    "cultures"
+   ],
+   "answer": "Like any other food item, noodles are cooked and enjoyed in different ways in different cultures."
+  }
+ ],
+ "sentence_translation": [
+  {
+   "no": 1,
+   "ref_sentence": 1,
+   "given": "ko"
+  },
+  {
+   "no": 2,
+   "ref_sentence": 2,
+   "given": "ko"
+  },
+  {
+   "no": 3,
+   "ref_sentence": 3,
+   "given": "ko"
+  },
+  {
+   "no": 4,
+   "ref_sentence": 4,
+   "given": "ko"
+  },
+  {
+   "no": 5,
+   "ref_sentence": 5,
+   "given": "ko"
+  },
+  {
+   "no": 6,
+   "ref_sentence": 1,
+   "given": "ko"
+  },
+  {
+   "no": 7,
+   "ref_sentence": 4,
+   "given": "ko"
+  },
+  {
+   "no": 8,
+   "ref_sentence": 2,
+   "given": "ko"
+  },
+  {
+   "no": 9,
+   "ref_sentence": 5,
+   "given": "ko"
+  }
+ ],
+ "mixed": [
+  {
+   "kind": "grammar",
+   "ref": 1,
+   "no": 1
+  },
+  {
+   "kind": "vocab",
+   "ref": 3,
+   "no": 2
+  },
+  {
+   "kind": "fill",
+   "ref": 5,
+   "no": 3
+  },
+  {
+   "kind": "ko",
+   "ref": 4,
+   "no": 4
+  },
+  {
+   "kind": "jumble",
+   "ref": 2,
+   "no": 5
+  },
+  {
+   "kind": "sent",
+   "ref": 3,
+   "no": 6
+  },
+  {
+   "kind": "grammar",
+   "ref": 7,
+   "no": 7
+  },
+  {
+   "kind": "vocab",
+   "ref": 8,
+   "no": 8
+  }
+ ]
+}
