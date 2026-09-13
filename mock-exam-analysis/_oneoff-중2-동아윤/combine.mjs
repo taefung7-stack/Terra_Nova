@@ -59,7 +59,10 @@ const LESSONS = {
     coverTitle: '봉영여중 2학년<br>영어B 추가지문',
     titleEn: 'Additional Reading Passages 03-06',
     coverSub: '봉영여중 2학년 영어B<br>추가지문 03 · 04 · 05 · 06',
-    /* 63문장은 A4 한 장에 못 들어간다(실측 148.2%). 32문장씩 2장으로 나눈다. */
+    /* 네 지문이 서로 무관한 글이라 본문 전문을 지문별로 나누고
+       번호도 지문마다 1번부터 다시 센다(사용자 요청 2026-09-12). */
+    splitFulltextByChapter: true,
+    /* 한 지문이 A4 한 장을 넘치면 그 지문 안에서만 더 쪼갠다. */
     fulltextMaxPerPage: 32,
     docTitle: '봉영여중 2학년 영어B 추가지문 본문분석 합본 — Terra Nova',
     out: '봉영여중_2학년_영어B_추가지문_본문분석_합본.pdf',
@@ -139,31 +142,51 @@ for (const f of files) {
 /* 목차 대신 '본문 전문' 한 장 — 원문 전 문장을 번호·해석과 함께 한 페이지에 싣는다.
    정본(_SOURCE-*.js)의 영어 문장과 챕터 JSON 의 passage_ko 를 짝지어 만든다.
    (사용자 요청 2026-08-29: 목차 페이지를 본문 문장 나열 페이지로 교체) */
-const fullLines = [];
-let gIdx = 0;
+/* 지문이 서로 무관한 묶음(BY)은 전 지문을 이어서 번호 매기면 한 편의 글처럼 보인다.
+   그래서 splitFulltextByChapter 를 켠 과만 '챕터별 + 챕터마다 1번부터'로 낸다.
+   교과서 한 과(L5~L7)는 한 편의 글이므로 기존대로 연속 번호 한 덩어리를 유지한다.
+   (사용자 요청 2026-09-12) */
+const SPLIT_BY_CH = LESSON.splitFulltextByChapter === true;
+const chapterBlocks = [];
+let gIdx = 0;                       // 연속 모드용 누적 번호
 for (const ch of SOURCE) {
   let ko = [];
   try {
     ko = JSON.parse(await fs.readFile(path.join(__dirname, 'data', lessonId, `${ch.no}.json`), 'utf8')).passage_ko || [];
   } catch { /* 해석이 없으면 영어만 싣는다 */ }
-  ch.sentences.forEach((en, i) => {
-    gIdx += 1;
-    fullLines.push(`      <div class="line">
-        <span class="num">${gIdx}</span>
+  const rows = ch.sentences.map((en, i) => {
+    const num = SPLIT_BY_CH ? i + 1 : ++gIdx;
+    return `      <div class="line">
+        <span class="num">${num}</span>
         <div class="ft-en">${esc(en)}</div>
         <div class="ft-ko">${esc(ko[i] ?? '')}</div>
-      </div>`);
+      </div>`;
   });
+  chapterBlocks.push({ no: ch.no, title: ch.title, subtitle: ch.subtitle, rows });
 }
-/* 본문 전문은 A4 한 장을 기준으로 설계됐다(L5~L7 은 24~31문장).
-   BY(63문장)처럼 문장이 많으면 자동 맞춤 하한(0.6)으로도 안 들어가
-   .page-body 의 overflow:hidden 때문에 '에러 없이 잘린 채' 인쇄된다.
-   (2026-09-12 실측: 148.2% 사용 → Ch3·Ch4 통째로 유실)
-   그래서 과별 상한을 두고 넘치면 여러 장으로 나눈다. */
+
+/* 챕터별로 페이지를 만들되, 한 챕터가 A4 한 장을 넘치면 그 챕터 안에서만 더 쪼갠다.
+   .page-body 는 overflow:hidden 이라 넘쳐도 에러 없이 잘리므로 상한이 필요하다. */
+/* 한 장을 넘치면 더 쪼갠다. .page-body 는 overflow:hidden 이라 넘쳐도 에러 없이 잘린다. */
 const FULLTEXT_MAX_PER_PAGE = LESSON.fulltextMaxPerPage ?? 40;
-const fullChunks = [];
-for (let i = 0; i < fullLines.length; i += FULLTEXT_MAX_PER_PAGE) {
-  fullChunks.push(fullLines.slice(i, i + FULLTEXT_MAX_PER_PAGE));
+const fullPages = [];
+if (SPLIT_BY_CH) {
+  // 챕터별 페이지 — 제목도 챕터 제목을 쓴다
+  for (const blk of chapterBlocks) {
+    const parts = [];
+    for (let i = 0; i < blk.rows.length; i += FULLTEXT_MAX_PER_PAGE) {
+      parts.push(blk.rows.slice(i, i + FULLTEXT_MAX_PER_PAGE));
+    }
+    parts.forEach((rows, pi) => {
+      fullPages.push({ label: blk.title, rows, part: pi + 1, parts: parts.length, total: blk.rows.length });
+    });
+  }
+} else {
+  // 기존 동작 — 전 챕터를 한 덩어리로 이어 붙인 뒤 필요하면 쪼갠다
+  const allRows = chapterBlocks.flatMap(b => b.rows);
+  for (let i = 0; i < allRows.length; i += FULLTEXT_MAX_PER_PAGE) {
+    fullPages.push({ label: '본문 전문', rows: allRows.slice(i, i + FULLTEXT_MAX_PER_PAGE), part: 0, parts: 0, total: SENTENCE_TOTAL });
+  }
 }
 
 const cover = `<section class="page cover-page">
@@ -175,11 +198,11 @@ const cover = `<section class="page cover-page">
   </div>
 </section>
 
-${fullChunks.map((chunk, ci) => `<section class="page toc-page-sec">
+${fullPages.map((pg) => `<section class="page toc-page-sec">
   <div class="page-body">
-    <div class="section-bar alt">FULL TEXT · 본문 전문<span class="bar-sub">원문 ${SENTENCE_TOTAL}문장${fullChunks.length > 1 ? ` (${ci + 1}/${fullChunks.length})` : ''}</span></div>
+    <div class="section-bar alt">FULL TEXT · ${esc(pg.label)}<span class="bar-sub">${pg.parts > 1 ? `원문 ${pg.total}문장 (${pg.part}/${pg.parts})` : `원문 ${pg.total}문장`}</span></div>
     <div class="fulltext fulltext-all">
-${chunk.join('\n')}
+${pg.rows.join('\n')}
     </div>
   </div>
 </section>`).join('\n')}`;
@@ -244,7 +267,7 @@ ${allPages}
 
 const combinedHtmlPath = path.join(DIST, 'combined.html');
 await fs.writeFile(combinedHtmlPath, combinedHtml, 'utf8');
-console.log(`\n📄 combined.html — 표지1 + 본문전문1 + 본문 ${pageNo}p (총 ${pageNo + 2}p)`);
+console.log(`\n📄 combined.html — 표지1 + 본문전문${fullPages.length}p + 본문 ${pageNo}p (총 ${pageNo + 1 + fullPages.length}p)`);
 
 // ── 3) PDF 렌더 ────────────────────────────────────────────────
 const puppeteer = (await import('puppeteer')).default;
