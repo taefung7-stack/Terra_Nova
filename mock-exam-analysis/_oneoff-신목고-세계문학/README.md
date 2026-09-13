@@ -1,6 +1,7 @@
 # 신목고 2학년 2학기 중간고사 — 세계문학 (본문분석 · 워크북 · 변형문제)
 
 > 유닛: **U1**(완료) · **U2**(완료 — 삽화 4장 반영까지 끝, 아래 「Unit 2」 절 참조)
+> · **U3**(완료 — 삽화 미반영, 아래 「Unit 3」 절 참조)
 
 > ⚠️ **개인 용도 1회성 산출물입니다. 테라노바 판매용이 아닙니다.**
 > 판매·구독 파이프라인(Supabase Storage 업로드, dispatch-order-pdf, 합본, market)에
@@ -378,3 +379,132 @@ node "_oneoff-신목고-세계문학/verify-tags.mjs"        # 태그 균형(유
 규격·금지어는 U1 「삽화」 절과 동일(`--ar 16:5 --v 8.1 --style raw`, 실사 포토리얼,
 사람·글자 배제, 밝기는 조명 조건으로, **인라인 `NO` 금지 → `--no` 파라미터**).
 소재가 서로 겹치지 않으므로 **서로를 배제하는 절은 넣지 않는다**(U1 1번 함정 재발 방지).
+
+---
+
+# Unit 3 — Noodle Dishes from Around the World (교과서 pp.58~63)
+
+**상태: 3종 완료 (2026-09-13).** 정본 전사 → 분석지 → 워크북 → 변형문제까지
+끝났고 검증기 5종이 전부 오류 0 · 경고 0 이다. **삽화는 아직 반영 전**이라
+`illustration.file` 자리가 placeholder 로 남아 있다(프롬프트는 생성 완료).
+
+| 산출물 | 페이지 | 파일 |
+|--------|--------|------|
+| 본문분석 합본 | 37p | `신목고2-2중간_세계문학_Unit3_본문분석_합본.pdf` |
+| 워크북 합본 | 62p | `신목고2-2중간_세계문학_Unit3_워크북_합본.pdf` |
+| 변형문제 합본 | 58p | `신목고2-2중간_세계문학_Unit3_변형문제_합본.pdf` |
+
+원문 정본은 **36문장**이고 단원은 Flavors of the World 다.
+
+| Ch | 소재 | 나라 | 교과서 p | 문장 | 분석카드 | 대표문제 |
+|----|------|------|----------|------|----------|----------|
+| 1 | INTRO | — | p.58 | 5 | 5 | 주제 |
+| 2 | Pasta | Italy | p.59 | 7 | 7 | 내용 일치 |
+| 3 | Pho | Vietnam | p.60 | 7 | 6 | 빈칸 추론 |
+| 4 | Rechta | Algeria | p.61 | 7 | 7 | 내용 일치 |
+| 5 | Sopa Criolla | Peru | p.62 | 7 | 7 | 내용 일치 |
+| 6 | CLOSING | — | p.63 | 3 | 3 | 요지 |
+
+## U1·U2 와 구조가 다르다 — 반드시 읽을 것
+
+U1 은 게시글+댓글, U2 는 PART 본문+블로그였지만 **U3 는 댓글도 블로그도 없는
+단순 산문**이다. 그래서 `passage` = 그 챕터의 `sentences` 그대로다.
+
+- `verify-source.mjs` 의 shape: **`plain`**
+- `verify.mjs` / `combine.mjs` 의 평탄화: **`flattenPlain()`**
+- **챕터가 4개가 아니라 6개다.** 빌더·검증기는 디스크에서 챕터를 탐지하므로
+  스크립트 수정이 필요 없지만, README 의 `for n in 1 2 3 4` 루프는
+  **`1 2 3 4 5 6`** 으로 바꿔야 한다.
+
+## 저작 중 실제로 터진 함정
+
+1. **`_rebalance-variant.mjs` 가 U1 4지문 전용으로 하드코딩돼 있었다.**
+   `for (let i=1; i<=4; i++) files.push({ set: 'U1', i })` — 인자 없이 U3 에
+   돌리면 **U1 변형문제를 덮어쓴다.** 대상 유닛·챕터 수를 인자로 받게 고쳤다.
+   ```bash
+   node _oneoff-신목고-세계문학/_rebalance-variant.mjs U3 6
+   ```
+   TARGET 표도 4열 → 6열로 늘렸다(앞 4열 값 보존 — U1 회귀 없음).
+
+2. **분석지 대표문제 정답이 ② 로 쏠렸다** — {②:4, ③:2} 라 ②만 찍어도 6문제 중
+   4개를 맞았다. 변형문제 ① 쏠림과 같은 결함이 ②에서 재발한 것이다.
+   보기 순서만 순열 재배치해 {①:2, ②:1, ③:1, ④:1, ⑤:1} 로 폈다.
+   분석지 JSON 은 변형문제와 달리 comment 에 ①~⑤ 표기가 없어 번호 재매핑이
+   필요 없는 **순수 순열**이다(0건 확인).
+
+3. **중단된 세션이 JSON 을 반쯤 쓰고 끊겼다.** `1-workbook.json` 이 문자열
+   리터럴 한복판에서 잘려 **문법상 깨진 JSON**(raw newline)이 됐고, 이 파일
+   하나가 `verify-tags.mjs` 와 **워크북 빌드 전체를 죽였다.** 부분 수정이
+   불가능해 통째로 재작성했다. 저작 에이전트에게 **파일은 한 번에 원자적으로
+   쓰라**고 지시할 것.
+
+4. **워크북 고유명사 오탐 — 금지어는 챕터마다 다르다.**
+   `buildProperNounSet` 은 *그 지문 안에서* 소문자로 한 번도 안 나오는 대문자
+   토큰을 전부 고유명사로 본다. 그래서 Ch2 는 이탈리아 속담 "*A tavola*" 때문에
+   **관사 `A` 까지 금지어**가 되고, Ch5 는 문두 `As` 뿐이라 **전치사 `as` 를
+   정답 슬롯으로 못 쓴다.** 또 `isEasyWord` 가 **4글자 이하 fill 정답을 조용히
+   삭제**한다(`thin` `look` `try` `yet` 사용 불가).
+   → 저작 문항수 = 렌더 문항수 대조 필수(전 챕터 9/9/9/9/9/9/8 확인).
+
+5. **`builder/pdf.mjs` 는 `--match` 를 무시하고 dist 안 모든 HTML 을 렌더한다.**
+   분석지 PDF 를 만들면 **워크북까지 벡터로 덮여** 글리프 안전성이 사라진다.
+   U2 에서 두 번 터진 그대로 U3 에서도 재현됐다.
+   → 분석지 렌더 뒤에는 **반드시** 아래로 워크북을 되돌린다.
+   ```bash
+   node builder/pdf-image.mjs "_oneoff-신목고-세계문학/dist/U3" --match='^workbook-\d+\.html$'
+   node "_oneoff-신목고-세계문학/combine-workbook.mjs" U3
+   ```
+   확인법: 워크북 합본 62p 가 **전부 이미지**여야 한다(`pypdf` 로 page.images 계수).
+
+## 빌드
+
+U1·U2 절차와 동일하되 `$U=U3`, 챕터 루프는 **1..6**.
+
+```bash
+cd mock-exam-analysis
+U=U3
+
+node "_oneoff-신목고-세계문학/verify-source.mjs" U3
+node "_oneoff-신목고-세계문학/verify.mjs" U3
+node "_oneoff-신목고-세계문학/verify-tags.mjs"
+
+# 분석지
+node builder/build.mjs "_oneoff-신목고-세계문학/data/$U" "_oneoff-신목고-세계문학/dist/$U"   --styles="_oneoff-신목고-세계문학/styles/analysis.css"
+node builder/pdf.mjs "_oneoff-신목고-세계문학/dist/$U"
+for n in 1 2 3 4 5 6; do
+  node builder/check-overflow.mjs "_oneoff-신목고-세계문학/dist/$U/$n.html"
+done
+node "_oneoff-신목고-세계문학/combine.mjs" $U
+
+# 워크북 (★ pdf.mjs 뒤에는 반드시 이미지로 되돌린다)
+node "_oneoff-신목고-세계문학/verify-workbook.mjs" U3
+node builder/build-workbook.mjs "_oneoff-신목고-세계문학/data/$U" "_oneoff-신목고-세계문학/dist/$U"   --styles="_oneoff-신목고-세계문학/styles/workbook.css"
+node builder/pdf-image.mjs "_oneoff-신목고-세계문학/dist/$U" --match='^workbook-\d+\.html$'
+node "_oneoff-신목고-세계문학/combine-workbook.mjs" $U
+
+# 변형문제
+node "_oneoff-신목고-세계문학/verify-variant.mjs" U3
+node builder/build-variant.mjs "_oneoff-신목고-세계문학/data/$U" "_oneoff-신목고-세계문학/dist/$U"   --styles="_oneoff-신목고-세계문학/styles/variant.css" --shared-writing-passage
+node "_oneoff-신목고-세계문학/_measure-clip.mjs"  "_oneoff-신목고-세계문학/dist/$U/variant-book.html"
+node "_oneoff-신목고-세계문학/_measure-pages.mjs" "_oneoff-신목고-세계문학/dist/$U/variant-book.html"
+node "_oneoff-신목고-세계문학/render-variant-pdf.mjs" "_oneoff-신목고-세계문학/dist/$U/variant-book.html"
+node "_oneoff-신목고-세계문학/combine-variant.mjs" $U
+```
+
+검수 결과: overflow 0 · 잘림 0건 · 변형문제 57p 중 푸터 넘침 0개.
+
+## 삽화 소재 (6장, 서로 겹치지 않게)
+
+프롬프트는 `_ILLUSTRATION_PROMPTS-U3.md`(파생물, `collect-prompts.mjs U3` 로 재생성).
+
+| Ch | 소재 | 겹침 방지 |
+|----|------|-----------|
+| 1 | 삼베천 위 마른 국수 다발 정물 | 국물 없음 |
+| 2 | 스파게티·바질·토마토의 이탈리아 식탁 | 아시아 소품 없음 |
+| 3 | 쌀국수 그릇과 고수·라임·숙주 | 파스타 소품 없음 |
+| 4 | 납작한 밀가루 면과 병아리콩·향신료의 북아프리카 놋그릇 | 젓가락 없음 |
+| 5 | 달걀프라이를 얹은 페루식 수프 그릇 | 바질 없음 |
+| 6 | 여러 나라 면 요리 그릇이 나란히 놓인 나무 식탁 | 국기 없음 |
+
+⚠️ 요리 사진은 젓가락·포크가 자연스럽게 어울리는 장면이라 인라인 `NO` 배제가
+오히려 그 물건을 부른다. 배제는 `--no` 파라미터에만 최소로 적는다.
