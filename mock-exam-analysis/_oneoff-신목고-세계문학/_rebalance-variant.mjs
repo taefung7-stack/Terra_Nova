@@ -53,6 +53,14 @@ function applyPerm(item, perm) {
 
   item[listKey] = perm.map(oi => old[oi]);
 
+  /* ★ options 형(summary)은 렌더러가 배열 위치가 아니라 o.no 로 ①~⑤ 를 찍는다
+   *   (build-variant.mjs: CIRCLED[o.no - 1]). 재배치 후 no 를 그대로 두면
+   *   정답 번호가 저자가 의도한 쌍이 아닌 다른 쌍을 가리키고, 보기 번호까지
+   *   ③④⑤①② 처럼 뒤죽박죽 찍힌다. 배열 위치에 맞춰 no 를 다시 매긴다. */
+  if (listKey === 'options') {
+    item[listKey].forEach((o, i) => { if (o && typeof o === 'object' && 'no' in o) o.no = i + 1; });
+  }
+
   // oldIdx -> newIdx 역매핑
   const oldToNew = new Array(5);
   perm.forEach((oi, ni) => { oldToNew[oi] = ni; });
