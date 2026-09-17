@@ -162,9 +162,44 @@ node _memaudit.mjs $L            # 암기장에 원문 전 문장이 실제로 �
 > ⚠️ **문장 속 `NO xxx` 는 오히려 그 물건을 불러온다**(미드저니 인라인 NO 함정).
 > 확실히 빼야 하는 요소는 `--no` 파라미터를 쓰는 편이 안전하다.
 
+### 반영 상태 (2026-09-17)
+
+**12장 전부 생성·반영 완료.** 합본 PDF 각 12~14MB.
+
+원본은 `dist/{L}/{N}.png`(3952×1232, 장당 ~6MB)로 받아 두었고, 빌드가 읽는
+위치인 `dist/{L}/assets/illust-{N}.png` 로 **가로 2000px 축소본**을 만들어 넣었다
+(75MB → 21MB). 둘 다 `.gitignore` 대상이라 **저장소에는 없다** — 다른 PC 에서
+빌드하려면 원본을 다시 받아 아래 축소 절차를 거칠 것.
+
+```bash
+# 원본 dist/{L}/{N}.png → 축소본 dist/{L}/assets/illust-{N}.png
+python -c "
+from PIL import Image; import os
+for L in ['L6','L7','L8']:
+    os.makedirs(f'dist/{L}/assets', exist_ok=True)
+    for n in range(1,5):
+        im = Image.open(f'dist/{L}/{n}.png')
+        w = 2000; h = int(round(w*im.size[1]/im.size[0]))
+        im.resize((w,h), Image.LANCZOS).save(f'dist/{L}/assets/illust-{n}.png', optimize=True)
+"
+```
+
 생성한 이미지를 `dist/{L6,L7,L8}/assets/illust-{N}.png` 로 저장하고 분석지를 재빌드하면
 반영된다. **이미지가 없어도 빌드는 성공**하므로(placeholder), 삽화 반영 여부는
-눈으로 확인할 것.
+반드시 확인할 것 — 아래가 전수 QC 한 줄이다.
+
+```bash
+python -c "
+import fitz
+for L,f in [('L6','목일중3_동아이병민_Lesson6_본문분석_합본.pdf'),
+            ('L7','목일중3_동아이병민_Lesson7_본문분석_합본.pdf'),
+            ('L8','목일중3_동아이병민_Lesson8_본문분석_합본.pdf')]:
+    d = fitz.open(f'dist/{L}/{f}')
+    ph = sum('삽화 영역' in p.get_text() for p in d)
+    im = sum(len(p.get_images(full=True)) for p in d)
+    print(L, 'placeholder', ph, '(0이어야)', '| 이미지', im, '(4여야)')
+"
+```
 
 > ⚠️ **원본 8MB PNG 를 그대로 넣지 말 것.** 인쇄 폭이 180mm 이므로
 > **가로 2000px 로 축소**하면 ~280dpi 로 육안 차이가 없다.
