@@ -57,10 +57,11 @@ const LESSONS = {
     source: SOURCE_BY,
     lessonNo: 0,
     coverTitle: '봉영여중 2학년<br>영어B 추가지문',
-    titleEn: 'Additional Reading Passages 03-06',
-    coverSub: '봉영여중 2학년 영어B<br>추가지문 03 · 04 · 05 · 06',
-    /* 네 지문이 서로 무관한 글이라 본문 전문을 지문별로 나누고
-       번호도 지문마다 1번부터 다시 센다(사용자 요청 2026-09-12). */
+    titleEn: 'Additional Reading Passages',
+    coverSub: '봉영여중 2학년 영어B<br>추가지문 03 · 04 · 05 · 06 + 5 · 6',
+    /* 지문들이 서로 무관한 글이라 본문 전문을 지문별로 나누고
+       번호도 지문마다 1번부터 다시 센다(사용자 요청 2026-09-12).
+       2026-09-19 지문 5·6 추가 — 6지문 체제. */
     splitFulltextByChapter: true,
     /* 한 지문이 A4 한 장을 넘치면 그 지문 안에서만 더 쪼갠다. */
     fulltextMaxPerPage: 32,

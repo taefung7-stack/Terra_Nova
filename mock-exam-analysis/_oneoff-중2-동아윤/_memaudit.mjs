@@ -47,7 +47,18 @@ const TEXTBOOK = {
     `Many Mexicans believe that once a year dead people come back home to meet their family and friends. They call this day the Day of the Dead. To welcome dead people, Mexicans hold a festival on November 1 and 2. They believe it is important to remember dead people. So, people set up altars in their homes and have big parties in cemeteries. In some areas, people dress up like skeletons and hold big parades.`,
     `At the end of February, people in Alaska hold the Fur Rondy festival, one of the biggest winter festivals in the world. During this festival, visitors can enjoy various winter sports and Alaskan traditional games. They can also enjoy many special events such as the Running of the Reindeer. People who participate in this race wear fun costumes and try to run faster than reindeer. Is it possible to do so? Not really, but it doesn't matter. Everyone is just having fun!`,
   ],
+  /* BY — 봉영여중 추가지문. 2026-09-19 추가분(지문 5·6)만 싣는다.
+     앞의 03·04·05·06 은 전사 당시 이 블록이 없었고, 지금 _SOURCE 에서
+     옮겨 오면 '독립 전사본'이 아니게 되어(함정 2) 검수 의미가 사라진다.
+     그래서 BY 는 **새로 추가한 두 지문만** 교과서 기준으로 대조한다. */
+  BY: [
+    `Americans often choose soft words to avoid saying something that sounds too strong or rude. For example, instead of saying "toilet," they say "restroom." Instead of calling something "ugly," they might say it is "plain." This way of speaking uses polite or indirect expressions to replace unpleasant words. These kinds of expressions are called euphemisms. They appear in many areas of life. In schools, teachers refer to less intelligent students as "students needing extra support" or "students with special learning needs." In offices, companies may say a worker was "let go" instead of "fired." At funerals, people often say someone "passed away" instead of "died" to comfort the family. Some people think these expressions are too careful or even silly. But they help us speak kindly and show respect. Without them, people might speak more directly, but their words could sound too harsh or hurtful.`,
+    `Have you ever asked AI and gotten a really cool answer? The secret is the prompt — the words you use to ask. A good prompt is like a recipe. It tells you what things you need and what steps to follow. If the recipe is clear, the food turns out great. AI is like a robot chef, and the prompt tells it what to "cook." If your directions are clear and detailed, AI can give you something amazing. For example, if you say, "Make some food," AI gets confused. But if you say, "Make cookies with chocolate chips and marshmallows," AI understands. It's the same with stories. If you say, "Tell me a story," AI doesn't know what kind of story you want. But if you say, "Tell me an adventure story about a lost treasure," the result will be much better. So, remember: A good prompt gives clear, detailed steps. That's how you get the best answers from AI.`,
+  ],
 };
+
+/* BY 는 신규 2지문만 기준이 있으므로, 정본의 해당 챕터만 잘라 대조한다. */
+const TEXTBOOK_CHAPTER_RANGE = { BY: [5, 6] };
 
 /* 문단 → 문장 분리.
    "Ian!" / "push-off." 처럼 닫는 따옴표가 뒤따르는 경우, Tada! I moved forward!
@@ -85,15 +96,21 @@ const sq = (s) => String(s ?? '')
 const sqk = (s) => String(s ?? '').replace(/\s+/g, '').replace(/[.,!?"'“”‘’()·…]/g, '');
 
 let block = 0;
-for (const L of ['L5', 'L6', 'L7']) {
+const AUDIT_TARGETS = (process.argv[2] ? [process.argv[2].toUpperCase()] : ['L5', 'L6', 'L7', 'BY']);
+for (const L of AUDIT_TARGETS) {
+  if (!TEXTBOOK[L]) { console.log(`\n(${L} — 교과서 기준 없음, 건너뜀)`); continue; }
   console.log(`\n${'='.repeat(66)}\n${L} — 교과서 원문 기준 검수\n${'='.repeat(66)}`);
 
   /* 1) 교과서에서 기준 문장 집합 생성 */
   const truth = TEXTBOOK[L].flatMap(splitSentences);
 
-  /* 2) 정본(_SOURCE)과 교차 확인 — 전사 단계 누락 탐지 */
+  /* 2) 정본(_SOURCE)과 교차 확인 — 전사 단계 누락 탐지
+        BY 는 신규 지문(5·6)만 교과서 기준이 있으므로 그 챕터 범위만 잘라 본다. */
   const { SOURCE } = await import(`./_SOURCE-${L}.js`);
-  const srcSents = SOURCE.flatMap(c => c.sentences);
+  const range = TEXTBOOK_CHAPTER_RANGE[L];
+  const scoped = range ? SOURCE.filter(c => c.no >= range[0] && c.no <= range[1]) : SOURCE;
+  if (range) console.log(`  (교과서 기준이 있는 Ch${range[0]}~Ch${range[1]} 만 대조)`);
+  const srcSents = scoped.flatMap(c => c.sentences);
   console.log(`  교과서 문장 ${truth.length} · 정본(_SOURCE) 문장 ${srcSents.length}`);
   if (truth.length !== srcSents.length) {
     console.log(`  ❌ 문장 수 불일치 — 전사 단계에서 누락/추가 발생`);

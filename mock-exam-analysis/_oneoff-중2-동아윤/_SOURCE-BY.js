@@ -1,8 +1,12 @@
 /* ===================================================================
- * 봉영여중 2학년 영어B — 추가지문 03·04·05·06 원문 정본
+ * 봉영여중 2학년 영어B — 추가지문 03·04·05·06 + 5·6 원문 정본
  * ===================================================================
- * 사용자 제공 시험지 캡쳐(03·04·05·06)에서 verbatim 전사. ★ 임의 수정 금지.
- * 원문 총 63문장.
+ * 사용자 제공 시험지 캡쳐에서 verbatim 전사. ★ 임의 수정 금지.
+ * 원문 총 89문장.
+ *
+ * 2026-09-19 추가: 「2학년 2학기 중간고사 추가 독해 자료」 1·2번을
+ * 지문 5·6(Ch5·Ch6)으로 덧붙였다. 앞의 03~06 과 마찬가지로
+ * 서로 무관한 독립 지문이다.
  *
  * 03·05 캡쳐에는 학생 손글씨 주석(밑줄·동그라미·한글 뜻·문법 노트)이 있으나
  * 특정 학생의 필기이므로 전사하지 않는다. 인쇄된 본문만 정본으로 삼는다.
@@ -15,7 +19,9 @@
  *   Ch2  Basking in Reflected Glory               14문장 (지문 04)
  *   Ch3  Antibiotics and Superbugs                21문장 (지문 05)
  *   Ch4  Paul Bunyan and American Tall Tales      13문장 (지문 06)
- *                                          합계 63문장
+ *   Ch5  Euphemisms: Softening What We Say        12문장 (중간고사 추가 1)
+ *   Ch6  A Good Prompt Is Like a Recipe           14문장 (중간고사 추가 2)
+ *                                          합계 89문장
  * =================================================================== */
 
 export const SOURCE = [
@@ -108,6 +114,46 @@ export const SOURCE = [
       "Tall tales were first told by early American settlers.",
       "Back then, people had no TV and few books, so storytelling was their main entertainment.",
       "After a hard day's work, they would gather around a fire and share unbelievable tales to relax and have fun.",
+    ],
+  },
+  {
+    no: 5,
+    title: 'Euphemisms: Softening What We Say',
+    subtitle: '완곡어법 — 모난 말을 부드럽게 바꾸는 표현들',
+    sentences: [
+      "Americans often choose soft words to avoid saying something that sounds too strong or rude.",
+      "For example, instead of saying “toilet,” they say “restroom.”",
+      "Instead of calling something “ugly,” they might say it is “plain.”",
+      "This way of speaking uses polite or indirect expressions to replace unpleasant words.",
+      "These kinds of expressions are called euphemisms.",
+      "They appear in many areas of life.",
+      "In schools, teachers refer to less intelligent students as “students needing extra support” or “students with special learning needs.”",
+      "In offices, companies may say a worker was “let go” instead of “fired.”",
+      "At funerals, people often say someone “passed away” instead of “died” to comfort the family.",
+      "Some people think these expressions are too careful or even silly.",
+      "But they help us speak kindly and show respect.",
+      "Without them, people might speak more directly, but their words could sound too harsh or hurtful.",
+    ],
+  },
+  {
+    no: 6,
+    title: 'A Good Prompt Is Like a Recipe',
+    subtitle: 'AI 프롬프트 — 좋은 질문이 좋은 답을 만든다',
+    sentences: [
+      "Have you ever asked AI and gotten a really cool answer?",
+      "The secret is the prompt — the words you use to ask.",
+      "A good prompt is like a recipe.",
+      "It tells you what things you need and what steps to follow.",
+      "If the recipe is clear, the food turns out great.",
+      "AI is like a robot chef, and the prompt tells it what to “cook.”",
+      "If your directions are clear and detailed, AI can give you something amazing.",
+      "For example, if you say, “Make some food,” AI gets confused.",
+      "But if you say, “Make cookies with chocolate chips and marshmallows,” AI understands.",
+      "It’s the same with stories.",
+      "If you say, “Tell me a story,” AI doesn’t know what kind of story you want.",
+      "But if you say, “Tell me an adventure story about a lost treasure,” the result will be much better.",
+      "So, remember: A good prompt gives clear, detailed steps.",
+      "That’s how you get the best answers from AI.",
     ],
   },
 ];

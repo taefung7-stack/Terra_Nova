@@ -56,14 +56,19 @@ const LESSONS = {
   BY: {
     lessonNo: 0,
     lessonLabel: '추가지문',
+    /* 네 지문이 서로 무관한 글이라 암기장도 지문별로 끊고
+       번호도 지문마다 1번부터 다시 센다(사용자 요청 2026-09-13). */
+    splitByChapter: true,
     examTag: '봉영여중 2학년 영어B',
     coverTitle: '봉영여중 2학년<br>영어B 추가지문',
-    coverSub: '추가지문 03 · 04 · 05 · 06',
+    coverSub: '추가지문 03 · 04 · 05 · 06 + 5 · 6',
     docTitle: '봉영여중 2학년 영어B 추가지문 본문암기 — Terra Nova',
-    titleEn: 'Additional Reading Passages 03-06',
+    titleEn: 'Additional Reading Passages',
     out: '봉영여중_2학년_영어B_추가지문_본문암기.pdf',
-    /* 63문항. 상한 16 이면 ceil(63/16)=4장 → 16/16/16/15 로 고르게 나뉜다. */
-    maxPerPage: 16,
+    /* 89문항. splitByChapter 로 지문별로 끊으므로 상한은 지문 안에서만 쓰인다.
+       가장 긴 지문이 21문장(Ch3)이라 상한 16 이면 16/5 로 갈린다 → 상한을 올려
+       21문장짜리도 한 장에 담는다(실측으로 넘치면 빌드가 중단된다). */
+    maxPerPage: 21,
   },
 };
 
@@ -80,6 +85,11 @@ async function buildOne(lessonId) {
 
   /* 정본의 영어 + 챕터 JSON 의 해석을 짝지어 전 문장을 모은다.
      해석이 하나라도 비면 암기장이 성립하지 않으므로 즉시 중단한다. */
+  /* 지문이 서로 무관한 묶음(BY)은 1~63 으로 이어 번호 매기면 한 편의 글처럼 보인다.
+     플래그를 켠 과만 '지문별 + 지문마다 1번부터'로 낸다.
+     교과서 한 과(L5~L7)는 한 편의 글이므로 기존 연속 번호를 유지한다. */
+  const SPLIT_BY_CH = LESSON.splitByChapter === true;
+
   const items = [];
   for (const ch of SOURCE) {
     const d = JSON.parse(await fs.readFile(path.join(__dirname, 'data', lessonId, `${ch.no}.json`), 'utf8'));
@@ -93,7 +103,10 @@ async function buildOne(lessonId) {
         console.error(`✗ ${lessonId}/Ch${ch.no}: ${i + 1}번 해석이 비어 있다`);
         process.exit(1);
       }
-      items.push({ no: items.length + 1, en, ko: ko[i], ch: ch.no });
+      items.push({
+        no: SPLIT_BY_CH ? i + 1 : items.length + 1,
+        en, ko: ko[i], ch: ch.no, chTitle: ch.title,
+      });
     });
   }
 
@@ -118,8 +131,8 @@ async function buildOne(lessonId) {
         </div>
       </div>`;
 
-  const qPage = (chunk, banner) => `<section class="page" data-mem="q">
-${pageHead('본문 암기 — 영작')}
+  const qPage = (chunk, banner, chTitle) => `<section class="page" data-mem="q">
+${pageHead(chTitle ? `본문 암기 — 영작 · ${chTitle}` : '본문 암기 — 영작')}
   <div class="page-body">
 ${banner ? `    <div class="step-banner">
       <div class="step-left">
@@ -128,7 +141,7 @@ ${banner ? `    <div class="step-banner">
       </div>
       <div class="step-right">
         <div class="step-title">본문 암기</div>
-        <div class="step-desc">주어진 한글을 보고 본문 영어 문장을 그대로 써 보세요.</div>
+        <div class="step-desc">${chTitle ? esc(chTitle) + ' — 주어진 한글을 보고 본문 영어 문장을 그대로 써 보세요.' : '주어진 한글을 보고 본문 영어 문장을 그대로 써 보세요.'}</div>
       </div>
     </div>
 ` : ''}    <div class="trans-list auto-fit">
@@ -140,10 +153,10 @@ ${chunk.map(qItem).join('\n')}
 
   const aRow = (it) => `        <div class="al-row"><div class="al-no">${it.no}</div><div class="al-body"><span class="en">${esc(it.en)}</span></div></div>`;
 
-  const aPage = (chunk, first) => `<section class="page" data-mem="a">
-${pageHead('본문 암기 — 정답')}
+  const aPage = (chunk, first, chTitle) => `<section class="page" data-mem="a">
+${pageHead(chTitle ? `본문 암기 — 정답 · ${chTitle}` : '본문 암기 — 정답')}
   <div class="page-body">
-${first ? `    <div class="section-bar">ANSWER · 본문 암기 정답<span class="bar-sub">원문 ${items.length}문장</span></div>
+${first ? `    <div class="section-bar">ANSWER · 본문 암기 정답${chTitle ? ` · ${esc(chTitle)}` : ''}<span class="bar-sub">원문 ${chTitle ? chunk.length + '문장 (지문별)' : items.length + '문장'}</span></div>
 ` : ''}    <div class="answer-list mem-answer">
 ${chunk.map(aRow).join('\n')}
     </div>
@@ -234,55 +247,66 @@ ${pagesHtml}
        .trans-list 의 space-between 이 답란 간격으로 고르게 분배하게 한다. */
   const MAX_PER_PAGE = LESSON.maxPerPage ?? 12;
 
-  /* ★ 그리디로 '상한까지 꽉' 채우면 마지막 장에 자투리가 남는다
-     (28문항·상한12 → 12/12/4, 셋째 장이 거의 빈 채로 인쇄된다).
-     상한을 지키면서 필요한 최소 장수를 구하고, 그 장수로 문항을
-     **고르게** 나눈다: 28문항·상한14 → 2장 → 14/14. */
-  const nPages = Math.ceil(items.length / MAX_PER_PAGE);
-  const base = Math.floor(items.length / nPages);
-  const extra = items.length % nPages;          // 앞쪽 장에 1문항씩 더
-  const quota = Array.from({ length: nPages }, (_, i) => base + (i < extra ? 1 : 0));
+  /* 지문 묶음(그룹) 단위로 페이지를 만든다.
+     - SPLIT_BY_CH: 지문마다 따로 끊어 새 장에서 시작(지문이 섞이지 않는다)
+     - 아니면 기존대로 전 문항을 한 덩어리로 흘린다 */
+  const groups = SPLIT_BY_CH
+    ? [...new Map(items.map(it => [it.ch, it.chTitle])).keys()]
+        .map(ch => ({ title: items.find(it => it.ch === ch).chTitle, list: items.filter(it => it.ch === ch) }))
+    : [{ title: null, list: items }];
 
   const qPages = [];
-  let rest = [...items], firstQ = true;
-  for (const want of quota) {
-    const take = rest.slice(0, want);
-    /* 넘치면 조용히 잘리므로(.page-body overflow:hidden) 실측으로 확인한다.
-       들어가지 않으면 한 문항씩 줄여 가며 맞춘다. */
-    let n = take.length;
-    while (n > 1 && !(await fits(qPage(rest.slice(0, n), firstQ)))) n--;
-    if (n < take.length) {
-      console.warn(`  ⚠️  ${lessonId}: 목표 ${take.length}문항이 한 장에 안 들어가 ${n}문항으로 줄임`);
+  let firstQ = true;
+  for (const g of groups) {
+    /* ★ 그리디로 '상한까지 꽉' 채우면 마지막 장에 자투리가 남는다.
+       상한을 지키면서 필요한 최소 장수를 구하고 그 장수로 고르게 나눈다. */
+    const nPages = Math.ceil(g.list.length / MAX_PER_PAGE);
+    const base = Math.floor(g.list.length / nPages);
+    const extra = g.list.length % nPages;
+    const quota = Array.from({ length: nPages }, (_, i) => base + (i < extra ? 1 : 0));
+
+    let rest = [...g.list];
+    for (const want of quota) {
+      const take = rest.slice(0, want);
+      /* 넘치면 조용히 잘리므로(.page-body overflow:hidden) 실측으로 확인한다. */
+      let n = take.length;
+      while (n > 1 && !(await fits(qPage(rest.slice(0, n), firstQ, g.title)))) n--;
+      if (n < take.length) {
+        console.warn(`  ⚠️  ${lessonId}: 목표 ${take.length}문항이 한 장에 안 들어가 ${n}문항으로 줄임`);
+      }
+      qPages.push(qPage(rest.slice(0, n), firstQ, g.title));
+      rest = rest.slice(n);
+      firstQ = false;
     }
-    qPages.push(qPage(rest.slice(0, n), firstQ));
-    rest = rest.slice(n);
-    firstQ = false;
-  }
-  /* 실측으로 줄어들어 남은 문항이 있으면 뒤에 장을 더 붙인다(누락 방지) */
-  while (rest.length) {
-    let lo = 1, hi = Math.min(rest.length, MAX_PER_PAGE);
-    while (lo < hi) {
-      const mid = Math.ceil((lo + hi) / 2);
-      if (await fits(qPage(rest.slice(0, mid), firstQ))) lo = mid; else hi = mid - 1;
+    /* 실측으로 줄어들어 남은 문항이 있으면 뒤에 장을 더 붙인다(누락 방지) */
+    while (rest.length) {
+      let lo = 1, hi = Math.min(rest.length, MAX_PER_PAGE);
+      while (lo < hi) {
+        const mid = Math.ceil((lo + hi) / 2);
+        if (await fits(qPage(rest.slice(0, mid), firstQ, g.title))) lo = mid; else hi = mid - 1;
+      }
+      qPages.push(qPage(rest.slice(0, lo), firstQ, g.title));
+      rest = rest.slice(lo);
+      firstQ = false;
     }
-    qPages.push(qPage(rest.slice(0, lo), firstQ));
-    rest = rest.slice(lo);
-    firstQ = false;
   }
 
-  /* 정답 페이지 그리디 분배 */
+  /* 정답 페이지 — 같은 그룹 단위로 그리디 분배 */
   const aPages = [];
-  rest = [...items];
   let firstA = true;
-  while (rest.length) {
-    let lo = 1, hi = rest.length;
-    while (lo < hi) {
-      const mid = Math.ceil((lo + hi) / 2);
-      if (await fits(aPage(rest.slice(0, mid), firstA))) lo = mid; else hi = mid - 1;
+  for (const g of groups) {
+    let rest = [...g.list];
+    let firstOfGroup = true;
+    while (rest.length) {
+      let lo = 1, hi = rest.length;
+      while (lo < hi) {
+        const mid = Math.ceil((lo + hi) / 2);
+        if (await fits(aPage(rest.slice(0, mid), firstA || firstOfGroup, g.title))) lo = mid; else hi = mid - 1;
+      }
+      aPages.push(aPage(rest.slice(0, lo), firstA || firstOfGroup, g.title));
+      rest = rest.slice(lo);
+      firstA = false; firstOfGroup = false;
     }
-    aPages.push(aPage(rest.slice(0, lo), firstA));
-    rest = rest.slice(lo);
-    firstA = false;
   }
 
   /* 페이지 번호 부여(표지 제외, 본문 1부터) */
