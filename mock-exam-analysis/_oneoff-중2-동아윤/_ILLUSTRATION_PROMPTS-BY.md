@@ -1,6 +1,7 @@
-# 봉영여중 2학년 영어B 추가지문 — 삽화 프롬프트 (4장)
+# 봉영여중 2학년 영어B 추가지문 — 삽화 프롬프트 (6장)
 
-> 생성일 2026-09-12. 규격 `--ar 16:5 --v 8.1`, **실사 포토리얼** 톤.
+> 생성일 2026-09-12(Ch1~4) · 2026-09-19(Ch5~6 추가).
+> 규격 `--ar 16:5 --v 8.1`, **실사 포토리얼** 톤.
 
 
 ## 규칙 (기존 L5~L7 과 동일)
@@ -11,7 +12,7 @@
 - **부정은 `--no` 파라미터로만.** 문장 속 `NO chopsticks` 같은 인라인 부정은
   오히려 그 물건을 불러온다(미드저니 인라인 NO 함정).
 - **얼굴 클로즈업 회피** — 교재 삽화이므로 특정인 초상을 만들지 않는다.
-- 네 장이 서로 닮지 않도록 각 프롬프트에서 다른 챕터의 소재를 `--no` 로 배제했다.
+- 여섯 장이 서로 닮지 않도록 각 프롬프트에서 다른 챕터의 소재를 `--no` 로 배제했다.
 
 ## 사용법
 
@@ -68,4 +69,31 @@ Photorealistic scientific documentary photograph, subject centered, wide banner 
 
 ```
 Photorealistic documentary photograph, subject centered, wide banner composition. A clearing in a tall North American pine forest at an old logging camp: freshly cut timber and stacked logs on damp earth, a heavy steel axe left standing in a wide tree stump, coiled rope and a tin kettle beside a low ring of stones holding cold grey ashes, rough log benches arranged in a circle. Dense evergreen trunks rise into thin mist behind the clearing. Quiet rustic frontier atmosphere, wide establishing view. Shot on a wide-angle lens at eye level, natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, true-to-life color, sharp focus. --no people, face, hands, portrait, text, letters, words, numbers, signage, logo, watermark, fire, flames, smoke, sparks, cartoon, illustration, painting, giant statue, ox, animals, snow, golden hour, sunset, dramatic lighting, neon, night, heavy shadows, dark moody grading --ar 16:5 --v 8.1 --style raw
+```
+
+## Ch5 · Euphemisms: Softening What We Say — 모난 말을 부드럽게 바꾸는 표현들
+
+- **저장 경로**: `dist/BY/assets/illust-5.png`
+- **지문 주제**: Euphemisms: Polite Words That Soften What We Say
+- **소재 선정 이유**: 본문 예시 중 `toilet → restroom` 만이 **사진으로 안전하게**
+  담을 수 있다. 나머지 예시는 장례식(유족)·해고 통보·"학습이 더딘 학생" 이라
+  실사로 그리면 특정인을 특정 처지에 놓는 그림이 된다. 그래서 **공공 안내 표지**
+  라는 완곡어법의 일상적 얼굴만 정물로 잡았다.
+
+```
+Photorealistic architectural documentary photograph, wide banner composition, subject centered. A clean modern public building corridor with pale grey walls and a polished light concrete floor: a simple brushed-metal wall plate beside a doorway showing only a small universal restroom pictogram and a directional arrow, a second plain arrow plate further down the empty hallway, a low wooden bench and a potted green plant against the wall, tall frosted glass panels along one side letting soft light wash across the floor. Calm, orderly, quiet public-space atmosphere, nobody present. Shot on a wide-angle lens at eye level, natural soft diffused daylight, bright overcast sky outside, high-key exposure, low contrast, true-to-life color, sharp focus. --no people, person, face, hands, portrait, crowd, paragraphs of text, letters, words, sentences, numbers, readable writing, logo, watermark, funeral, coffin, flowers wreath, candles, crying, office desk, laboratory, DNA, microscope, pills, medicine, bacteria, stadium, sports fans, jersey, forest, axe, logs, lumberjack, cartoon, illustration, painting, golden hour, sunset, sunlit beams, dramatic lighting, neon, night, heavy shadows, dark moody grading --ar 16:5 --v 8.1 --style raw
+```
+
+## Ch6 · A Good Prompt Is Like a Recipe — 좋은 질문이 좋은 답을 만든다
+
+- **저장 경로**: `dist/BY/assets/illust-6.png`
+- **지문 주제**: A Good Prompt Is Like a Recipe: Clear, Detailed Steps Get the Best Answers
+- **소재 선정 이유**: 본문의 핵심 비유가 **프롬프트 = 요리법**이고, 본문이 든
+  구체적 예시가 하필 `cookies with chocolate chips and marshmallows` 다.
+  그래서 **레시피 카드 + 계량된 재료**를 플랫레이로 잡아 '분명하고 상세한 단계'를
+  눈으로 보여 준다. AI 쪽은 로봇을 그리면 유치해지고 손가락·화면 글자가 뭉개지므로
+  **덮은 노트북**으로만 암시한다.
+
+```
+Photorealistic documentary flat-lay photograph, top-down overhead view, wide banner composition. A bright white marble kitchen counter: an open handwritten recipe card lying flat with blurred illegible handwriting, beside it small white ceramic bowls of neatly measured ingredients in a tidy row — flour, brown sugar, dark chocolate chips, small round white marshmallows — plus a wooden spoon, a metal measuring cup and a folded grey linen cloth. A slim silver laptop rests closed on the right, lid down. Clean minimal composition, generous empty counter space, tidy step-by-step arrangement. Shot directly from above, natural soft diffused daylight from a large window, bright overcast sky, high-key exposure, low contrast, true-to-life color, sharp focus. --no readable text, legible handwriting, letters, words, numbers, labels, packaging, brand, logo, watermark, signage, screen, display, monitor, user interface, glowing screen, robot, robot toy, android, face, people, hands, portrait, laboratory, test tube, DNA, microscope, pills, capsules, medicine, bacteria, petri dish, stadium, crowd, sports, pennant, axe, logs, timber, forest, restroom sign, toilet, cartoon, illustration, painting, golden hour, sunset, candlelight, dramatic lighting, neon, night, heavy shadows, dark moody grading --ar 16:5 --v 8.1 --style raw
 ```
