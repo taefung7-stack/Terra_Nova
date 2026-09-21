@@ -40,6 +40,21 @@ const LESSONS = {
     titleEn: 'My First Skateboarding Lesson',
     out: '신서중2_미래엔_Lesson6_본문암기.pdf',
   },
+  // ── More Reading(추가지문) — 2026-09-21 신규 ──────────────────
+  // 정식 Lesson 본문이 아니라 각 과의 "More Reading" 부록 지문이므로
+  // 표지 부제를 "Lesson N-Nʼth More Reading" 형태로 별도 지정한다.
+  MR5: {
+    lessonNo: 5,
+    coverSub: 'Lesson 5-⑦ More Reading',
+    titleEn: 'Maemiseong: A Special Place with an Interesting Story',
+    out: '신서중2_미래엔_Lesson5-More Reading_본문암기.pdf',
+  },
+  MR6: {
+    lessonNo: 6,
+    coverSub: 'Lesson 6-⑥ More Reading',
+    titleEn: 'A New Challenge on the Climbing Wall',
+    out: '신서중2_미래엔_Lesson6-More Reading_본문암기.pdf',
+  },
 };
 
 const esc = (s) => String(s ?? '')
@@ -126,11 +141,12 @@ ${chunk.map(aRow).join('\n')}
   <footer class="page-foot"><span class="brand"></span><span class="pageno">0</span></footer>
 </section>`;
 
+  const coverSub = LESSON.coverSub ?? `Lesson ${LESSON.lessonNo}`;
   const cover = `<section class="page cover-page">
   <div class="cover-wrap">
     <div class="cover-brand">Terra Nova</div>
     <div class="cover-title">신서중 2학년<br>미래엔 영어 2</div>
-    <div class="cover-sub">Lesson ${LESSON.lessonNo} · ${esc(LESSON.titleEn)}</div>
+    <div class="cover-sub">${esc(coverSub)} · ${esc(LESSON.titleEn)}</div>
     <div class="cover-meta">본문 암기 · 원문 ${items.length}문장 전수</div>
   </div>
 </section>`;

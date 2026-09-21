@@ -1,4 +1,4 @@
-# 신서중 2학년 — 2022 개정 미래엔(문영인) 중2 본문분석 + 워크북 (Lesson 5·6)
+# 신서중 2학년 — 2022 개정 미래엔(문영인) 중2 본문분석 + 워크북 (Lesson 5·6 + More Reading)
 
 > ⚠️ **개인 용도 1회성 산출물입니다. 테라노바 판매용이 아닙니다.**
 > 판매·구독 파이프라인(Supabase Storage 업로드, dispatch-order-pdf, market)에
@@ -12,8 +12,11 @@
 
 - **Lesson 5** — My Hometown, Chuncheon (춘천 소개 블로그 / 에티오피아 참전 기념관)
 - **Lesson 6** — My First Skateboarding Lesson (첫 스케이트보드 수업)
+- **Lesson 5-⑦ More Reading (MR5)** — Maemiseong: A Special Place with an Interesting Story (거제 메미성, 16문장·2026-09-21 추가)
+- **Lesson 6-⑥ More Reading (MR6)** — A New Challenge on the Climbing Wall (실내 클라이밍 수업, 22문장·2026-09-21 추가)
 
 > 요청 범위는 **본문분석 + 워크북 2종**입니다. 변형문제는 만들지 않았습니다.
+> More Reading(MR5·MR6)은 **본문분석 + 본문암기**만 요청받아 제작했습니다(9-STEP 워크북 없음).
 
 ## 챕터 분할
 
@@ -51,6 +54,37 @@
 |----|---------------|-------------|----------|
 | L5 | `…Lesson5_본문분석_합본.pdf` — 표지1+**본문전문1**+본문12 = **14p** | `…Lesson5_워크북_합본.pdf` — **29p** | `…Lesson5_본문암기.pdf` — **4p** |
 | L6 | `…Lesson6_본문분석_합본.pdf` — 표지1+**본문전문1**+본문14 = **16p** | `…Lesson6_워크북_합본.pdf` — **38p** | `…Lesson6_본문암기.pdf` — **5p** |
+| MR5 | `…Lesson5-More Reading_본문분석.pdf` — 표지1+**본문전문1**+본문5 = **7p** | (없음 — 요청 범위 아님) | `…Lesson5-More Reading_본문암기.pdf` — **4p** |
+| MR6 | `…Lesson6-More Reading_본문분석.pdf` — 표지1+**본문전문1**+본문5 = **7p** | (없음 — 요청 범위 아님) | `…Lesson6-More Reading_본문암기.pdf` — **4p** |
+
+### More Reading 추가지문 MR5·MR6 (2026-09-21 신규)
+
+사용자가 촬영한 학교 워크시트 사진(Lesson 5-⑦ / Lesson 6-⑥ More Reading) 2장을
+같은 패턴으로 추가했다. 정식 Lesson처럼 여러 챕터로 나누기엔 분량이 짧아
+(각 16·22문장) **1개 챕터로만** 구성했고, 9-STEP 워크북은 요청받지 않아 만들지 않았다.
+
+- `_SOURCE-MR5.js` / `_SOURCE-MR6.js` — 워크시트 사진에서 verbatim 전사한 원문 정본
+- `data/MR5/1.json` / `data/MR6/1.json` — 분석지 데이터 (L5/L6와 동일 필드 구조)
+- `combine-more.mjs` — MR5/MR6 전용 합본 스크립트(1챕터 고정, `combine.mjs` 축소판)
+- `build-memorize.mjs` 에 `MR5`/`MR6` 항목 추가 — `coverSub` 필드로 "Lesson N-Nʼth More Reading"
+  표지 부제를 별도 지정(기존 L5/L6는 `coverSub` 없이 `Lesson N` 그대로 사용, 영향 없음)
+- MR6 원문에 학교 시험 원본 그대로 **"NOT 적절한 제목" 4지선다**가 있어(`type: "제목(부적절)"`)
+  정답 comment를 "부적절한 이유"로 작성 — 다른 챕터(제목 고르기)와 반대 논리이니 재사용 시 주의
+
+```bash
+cd mock-exam-analysis
+node builder/build.mjs "_oneoff-신서중2-미래엔/data/MR5" "_oneoff-신서중2-미래엔/dist/MR5" \
+  --styles="_oneoff-신서중2-미래엔/styles/analysis.css"
+node builder/check-overflow.mjs "_oneoff-신서중2-미래엔/dist/MR5/1.html"
+node builder/pdf.mjs "_oneoff-신서중2-미래엔/dist/MR5"
+node "_oneoff-신서중2-미래엔/combine-more.mjs" MR5
+node "_oneoff-신서중2-미래엔/build-memorize.mjs" MR5
+# MR6도 동일(경로만 MR5→MR6)
+```
+
+> ⚠️ **`builder/pdf.mjs` 는 dist 안의 모든 html 을 렌더**하므로(L5/L6와 동일 함정)
+> `combined.html`/`memorize.html` 까지 텍스트 PDF 로 임시 덮어쓴다. 반드시
+> `combine-more.mjs` → `build-memorize.mjs` 를 **pdf.mjs 다음에** 실행해 최종본으로 재생성할 것.
 
 ### 본문암기 워크북 (2026-08-29 신규)
 
