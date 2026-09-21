@@ -34,6 +34,12 @@
 >
 > 생성한 이미지는 `dist/U3/assets/illust-{N}.png` 로 저장한 뒤 PDF 를 다시 렌더하면
 > placeholder 자리에 자동으로 들어갑니다(빌드 방법은 README 참조).
+>
+> ⚠️ **Ch7 은 이 문서의 자동 파생 대상에서 빠집니다.** `collect-prompts.mjs` 는
+> `_SOURCE-U3.js`(면 요리 6챕터)만 순회하는데, Ch7(The Hundred-Foot Journey)은
+> 의도적으로 그 정본에 등록하지 않았습니다(README 「Ch7」 절 참조). 그래서 아래
+> Ch7 섹션은 **손으로 추가**했습니다 — `collect-prompts.mjs U3` 를 다시 돌리면
+> Ch7 섹션이 사라지니, 돌린 뒤에는 이 섹션을 다시 붙여 넣으세요.
 
 ---
 
@@ -105,5 +111,18 @@ Photorealistic overhead photograph of a single Peruvian soup bowl on a plain ear
 
 ```
 Photorealistic overhead photograph of several noodle bowls from different countries arranged side by side on a plain wooden table. A pasta plate, a clear rice-noodle soup, a flat wheat-noodle dish in a brass bowl, and a broth bowl topped with a fried egg, each in its own vessel, evenly spaced on bare pale wood. Studio still life, no hands reaching in. Shot on 50mm, natural soft diffused daylight, bright overcast sky through a window, high-key exposure, low contrast, true-to-life color, sharp focus, wide horizontal banner crop with the bowls centered --ar 16:5 --v 8.1 --style raw --no text, letters, words, signage, logo, watermark, caption, flag, face, portrait, people, hands, distorted hands, extra fingers, dramatic lighting, golden hour, sunset, neon, night, heavy shadows, dark moody grading, collage, split screen, multiple panels
+```
+
+---
+
+## Chapter 7 — The Hundred-Foot Journey (Reconciliation) — 손추가, 자동생성 아님
+
+- 추가 지문 · 교과서 pp.68~72 · 본문 38개 passage entry(리처드 C. 모라이스 소설 발췌)
+- 저장 경로: `dist/U3/assets/illust-7.jpg`
+- 장면: 병실 트레이 위에 놓인 아몬드·살구 페이스트리 — 화해의 순간
+- 겹침 방지: 면 요리(Ch1~6)와 소재가 완전히 다름(페이스트리·병실) — 겹침 위험 없음
+
+```
+Photorealistic close-up photograph of a small open paper package of almond and apricot pastries on a white portable hospital tray, beside a woven wicker basket and a folded white cloth napkin, set on a pale blue hospital blanket. Pastries with visible pale almond glaze and light golden-brown crust, soft crumbs, a thin sheet of wax paper beneath them. Shot on 50mm macro, natural soft diffused daylight from a side window, bright overcast sky, high-key exposure, low contrast, true-to-life color, shallow depth of field, sharp focus on the pastries, wide horizontal banner composition with the tray centered --ar 16:5 --v 8.1 --style raw --no text, letters, words, signage, logo, watermark, caption, flag, face, portrait, people, hands, distorted hands, extra fingers, dramatic lighting, golden hour, sunset, sunlit, neon, night, heavy shadows, dark moody grading, collage, split screen, multiple panels
 ```
 
