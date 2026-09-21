@@ -48,6 +48,10 @@ const LESSONS = {
     coverSub: 'Lesson 5-⑦ More Reading',
     titleEn: 'Maemiseong: A Special Place with an Interesting Story',
     out: '신서중2_미래엔_Lesson5-More Reading_본문암기.pdf',
+    // 요청(2026-09-21): 문제면 페이지를 문장 수 기준 고정 8개씩 균등 분배
+    // (기본 그리디는 실측 최대치까지 채워 12+4처럼 불균형해짐 — 총 16문장이라
+    //  8개 고정이면 정확히 8+8로 나뉜다).
+    qPerPage: 8,
   },
   MR6: {
     lessonNo: 6,
@@ -226,15 +230,33 @@ ${pagesHtml}
   const MAX_PER_PAGE = 12;
   const qPages = [];
   let rest = [...items], firstQ = true;
-  while (rest.length) {
-    let lo = 1, hi = Math.min(rest.length, MAX_PER_PAGE);
-    while (lo < hi) {
-      const mid = Math.ceil((lo + hi) / 2);
-      if (await fits(qPage(rest.slice(0, mid), firstQ))) lo = mid; else hi = mid - 1;
+  if (LESSON.qPerPage) {
+    /* 고정 개수 균등 분배 — 마지막 페이지만 남는 개수를 받고,
+       그 앞의 모든 페이지는 항상 정확히 qPerPage 개씩 (예: 16문장/8개 → 8+8). */
+    const n = LESSON.qPerPage;
+    while (rest.length) {
+      const take = Math.min(n, rest.length);
+      const chunk = rest.slice(0, take);
+      if (!(await fits(qPage(chunk, firstQ)))) {
+        console.error(`✗ ${lessonId}: qPerPage=${n} 로는 페이지에 안 들어감(문항 ${take}) — 중단`);
+        await browser.close();
+        process.exit(1);
+      }
+      qPages.push(qPage(chunk, firstQ));
+      rest = rest.slice(take);
+      firstQ = false;
     }
-    qPages.push(qPage(rest.slice(0, lo), firstQ));
-    rest = rest.slice(lo);
-    firstQ = false;
+  } else {
+    while (rest.length) {
+      let lo = 1, hi = Math.min(rest.length, MAX_PER_PAGE);
+      while (lo < hi) {
+        const mid = Math.ceil((lo + hi) / 2);
+        if (await fits(qPage(rest.slice(0, mid), firstQ))) lo = mid; else hi = mid - 1;
+      }
+      qPages.push(qPage(rest.slice(0, lo), firstQ));
+      rest = rest.slice(lo);
+      firstQ = false;
+    }
   }
 
   /* 정답 페이지 그리디 분배 */

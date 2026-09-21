@@ -76,10 +76,21 @@ for (const f of files) {
   const ch = SOURCE.find(c => c.no === chNo);
   const html = await fs.readFile(path.join(DIST, f), 'utf8');
   const body = (html.match(/<body>([\s\S]*?)<\/body>/i) || [, html])[1];
-  const sections = body.match(/<section class="page">[\s\S]*?<\/section>/g) || [];
+  let sections = body.match(/<section class="page">[\s\S]*?<\/section>/g) || [];
   if (!sections.length) {
     console.warn(`   ⚠️  ${f}: .page 섹션을 찾지 못함 — 건너뜀`);
     continue;
+  }
+
+  /* MR5/MR6는 항상 1챕터라 표지 다음 "FULL TEXT · 본문 전문" 페이지가 이미
+     원문 전 문장 + 해석을 담는다. 챕터 HTML 안의 "PASSAGE · 본문 전문 (문장별 해석)"
+     페이지는 정확히 같은 내용을 중복 렌더하므로 합본에서는 제외한다.
+     (정식 L5/L6처럼 여러 챕터면 각 PASSAGE가 그 챕터 분량만 보여줘 안 겹치지만,
+      1챕터짜리 More Reading은 두 페이지가 완전히 동일해진다 — 2026-09-21 발견) */
+  const before = sections.length;
+  sections = sections.filter(sec => !/본문\s*전문\s*\(문장별\s*해석\)/.test(sec));
+  if (sections.length < before) {
+    console.log(`   ↔ ${lessonId}: PASSAGE 본문전문 중복 페이지 ${before - sections.length}개 제외`);
   }
 
   const renumbered = sections.map(sec => {
