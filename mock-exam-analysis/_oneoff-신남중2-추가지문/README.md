@@ -20,7 +20,7 @@
 - 제목 5지선다 정답 ④(① 쏠림 방지). 워크시트 원본 문제(NOT correct / those things 서술형)의
   포인트는 문장분석 카드 2·5·6 에 반영(social↔personal, stands for, those things = innocence, dreams, and hope)
 - 삽화: `illustration.prompt` 에 미드저니 프롬프트(16:5, v8.1) 저장. 이미지를
-  `dist/MR5/assets/illust-1.png`(가로 2000px 축소) 로 넣고 재빌드하면 반영된다. 현재 placeholder.
+  `dist/MR5/assets/illust-1.png`(가로 2000px 축소) 로 넣고 재빌드하면 반영된다. **2026-09-23 삽화 반영 완료**(원본 dist/MR5/1.png 3952px → 2000×623).
 
 ## MR6 — Worksheet 6-9 (호머 헐버트, 2026-09-23 추가)
 
