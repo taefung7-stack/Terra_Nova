@@ -19,6 +19,7 @@ import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { SOURCE as SOURCE_L5 } from './_SOURCE-L5.js';
 import { SOURCE as SOURCE_L6 } from './_SOURCE-L6.js';
+import { SOURCE as SOURCE_L6X } from './_SOURCE-L6X.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -51,12 +52,22 @@ const LESSONS = {
       4: { file: 'assets/figure-4.png', caption: 'Q3. 장작을 쌓는 가장 좋은 방법은? — 공기가 통하는 엇갈리기' },
     },
   },
+  /* 6과 추가 지문(학교 배부 프린트 Lesson 6 Extra Reading, 2026-09-23 추가) */
+  L6X: {
+    source: SOURCE_L6X,
+    lessonNo: 6,
+    coverTitle: '목일중 2학년<br>비상 영어 2',
+    titleEn: 'Day of Silence',
+    coverSub: '비상(황종배) 중학교 영어 2<br>Lesson 6 Extra Reading · Day of Silence',
+    docTitle: '목일중 2학년 · 비상 Lesson 6 Extra Reading 본문분석 합본 — Terra Nova',
+    out: '목일중2_비상_Lesson6_ExtraReading_본문분석_합본.pdf',
+  },
 };
 
 const lessonId = (process.argv[2] || 'L5').toUpperCase();
 const LESSON = LESSONS[lessonId];
 if (!LESSON) {
-  console.error(`알 수 없는 과: ${lessonId} (L5 / L6)`);
+  console.error(`알 수 없는 과: ${lessonId} (L5 / L6 / L6X)`);
   process.exit(2);
 }
 const SOURCE = LESSON.source;

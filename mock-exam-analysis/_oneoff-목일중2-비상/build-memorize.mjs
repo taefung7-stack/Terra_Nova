@@ -45,6 +45,14 @@ const LESSONS = {
     out: '목일중2_비상_Lesson6_본문암기.pdf',
     qSplit: [12, 12, 13],      // 37문장 → 3페이지
   },
+  /* 6과 추가 지문(Extra Reading) — 22문장 → 2페이지 */
+  L6X: {
+    lessonNo: 6,
+    lessonLabel: 'Lesson 6 Extra Reading',
+    titleEn: 'Day of Silence',
+    out: '목일중2_비상_Lesson6_ExtraReading_본문암기.pdf',
+    qSplit: [11, 11],
+  },
 };
 
 const esc = (s) => String(s ?? '')
@@ -53,7 +61,7 @@ const esc = (s) => String(s ?? '')
 /* ── 한 과 빌드 ───────────────────────────────────────────────── */
 async function buildOne(lessonId) {
   const LESSON = LESSONS[lessonId];
-  if (!LESSON) { console.error(`알 수 없는 과: ${lessonId} (L5 / L6)`); process.exit(2); }
+  if (!LESSON) { console.error(`알 수 없는 과: ${lessonId} (L5 / L6 / L6X)`); process.exit(2); }
 
   const { SOURCE } = await import(`./_SOURCE-${lessonId}.js`);
   const DIST = path.join(__dirname, 'dist', lessonId);
@@ -135,7 +143,7 @@ ${chunk.map(aRow).join('\n')}
   <div class="cover-wrap">
     <div class="cover-brand">Terra Nova</div>
     <div class="cover-title">목일중 2학년<br>비상 영어 2</div>
-    <div class="cover-sub">Lesson ${LESSON.lessonNo} · ${esc(LESSON.titleEn)}</div>
+    <div class="cover-sub">${esc(LESSON.lessonLabel ?? `Lesson ${LESSON.lessonNo}`)} · ${esc(LESSON.titleEn)}</div>
     <div class="cover-meta">본문 암기 · 원문 ${items.length}문장 전수</div>
   </div>
 </section>`;
@@ -181,7 +189,7 @@ ${chunk.map(aRow).join('\n')}
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<title>목일중 2학년 · 비상 Lesson ${LESSON.lessonNo} 본문암기 — Terra Nova</title>
+<title>목일중 2학년 · 비상 ${esc(LESSON.lessonLabel ?? `Lesson ${LESSON.lessonNo}`)} 본문암기 — Terra Nova</title>
 <link rel="stylesheet" href="${cssHref}">
 <style>${extraCss}</style>
 </head>

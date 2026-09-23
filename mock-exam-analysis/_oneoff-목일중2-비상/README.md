@@ -50,11 +50,39 @@ L6 는 대화체라 화자 전환을 문장 단위로 살렸고, **Q1/Q2/Q3 발�
     (`.page-body` 가 `overflow:hidden` 이라 넘치면 조용히 잘리므로 실측을 유지했다).
 - **ANSWER(정답·오답 분석) 블록 없음** — `hide_answer: true`
 
+## 추가 지문 — Lesson 6 Extra Reading · Day of Silence (`L6X`, 2026-09-23)
+
+학교 배부 프린트(Lesson 6 Extra Reading, 2-2)의 뉴스 기사 지문. 교과서 본문이 아니므로
+별도 과 ID **`L6X`** 로 분리했다(정본 `_SOURCE-L6X.js`, 데이터 `data/L6X/`, 산출물 `dist/L6X/`).
+
+| Ch | 제목 | 원문 문장 | 분석 카드 |
+|----|------|-----------|-----------|
+| 1 | A Tourist Who Broke the Silence (1문단) | 12 | 8 |
+| 2 | Rules of the Day of Silence (2문단) | 10 | 8 |
+| | **합계** | **22** | **16** |
+
+- `목일중2_비상_Lesson6_ExtraReading_본문분석_합본.pdf` — 표지1+본문전문1+본문10 = **12p**
+- `목일중2_비상_Lesson6_ExtraReading_본문암기.pdf` — 표지1+문제2(11+11)+정답1 = **4p**
+- 프린트의 직선따옴표(`"crazy"`, `Bali's`)는 곱슬따옴표로 옮겼다(직선따옴표 PDF 빈칸 렌더 함정).
+- 분석 포인트는 학생 필기(현재완료 수동태·by+동명사·filmed himself walking·목적격 관계대명사
+  생략·5형식 make·to make sure·간접의문문·관계대명사 what)를 전부 반영했다.
+- **삽화 2장은 아직 없음**(placeholder 상태). 미드저니 프롬프트는 `data/L6X/{1,2}.json` 의
+  `illustration.prompt` — 실존 인물 사건이라 **사람을 넣지 않고** 빈 해변/빈 마을 거리로 잡았다.
+  이미지 받으면 `dist/L6X/assets/illust-{1,2}.png`(가로 2000px) 로 넣고 3)·4) 재실행.
+
+### ⚠️ 함정 6 — `+` `=` `|` `↔` 가 PDF 에서 빈칸으로 렌더 (2026-09-23 수정)
+
+PretendardTN 보정 범위에 `U+002B U+003D U+007C U+2194` 가 없어서 문법 설명의
+`have + been + p.p.`, `They = 보안 요원들`, `↔ outdoors` 가 **공백으로 인쇄**됐다
+(verify·overflow 통과, 육안으로만 발견). `styles/analysis.css`·`workbook.css` 둘 다 범위에 추가했다.
+**L5·L6 기존 PDF 도 같은 기호가 빈칸일 수 있으니 재빌드하면 고쳐진다.**
+`✗`(U+2717)는 Arial 에도 없으므로 데이터에서 `(X)` 로 쓸 것.
+
 ## 빌드 방법
 
 ```bash
 cd mock-exam-analysis
-L=L5   # 또는 L6
+L=L5   # 또는 L6 / L6X
 
 # 0) 무결성 검증 — 반드시 먼저 (실패 시 빌드 금지)
 node "_oneoff-목일중2-비상/verify.mjs"
