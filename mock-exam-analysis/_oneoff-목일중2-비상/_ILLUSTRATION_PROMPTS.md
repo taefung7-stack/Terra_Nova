@@ -259,3 +259,30 @@ for i,p in enumerate(r.pages,1):
 
 > `illustration.prompt` 는 각 `data/{L}/{N}.json` 에도 들어 있다.
 > 이 문서를 고쳤다면 **JSON 쪽도 같이 고쳐야** 실제 빌드에 반영된다.
+
+
+---
+
+# L6X — Lesson 6 Extra Reading · Day of Silence (2장, 2026-09-23)
+
+> **실사 포토리얼**(L6 과 같은 계열), `--ar 16:5 --v 8.1 --style raw`.
+> - **사람을 넣지 않는다.** 실제 인물(스위스 관광객) 뉴스라 특정인처럼 보이는 인물을 만들지 않고, 녜피의 핵심인 **"모두 집에 있어 텅 빈 섬"**을 빈 공간으로 보여 준다.
+> - 배제는 전부 `--no` 뒤로(문장 속 `NO xxx` 는 그 물건을 불러온다). 글자·간판 차단 포함.
+> - 밝기는 조명 조건(overcast·diffused·high-key)으로 지정. 지시부 800자 이하·금지어 0 검사 통과.
+
+| Ch | 파일 | 장면 |
+|----|------|------|
+| 1 | `dist/L6X/assets/illust-1.png` | 관광객이 걸어간 **텅 빈 해변** + 해변가 작은 사원 제단·꽃 공물 |
+| 2 | `dist/L6X/assets/illust-2.png` | 차도 사람도 없는 **발리 마을 거리** + 사원 문(candi bentar)·공물·닫힌 가게 |
+
+### L6X Ch1 — A Tourist Who Broke the Silence (`illust-1.png`)
+
+```
+Editorial travel photograph, subject centered: a completely deserted tropical beach in Bali on the Day of Silence, smooth untouched pale sand, calm turquoise sea, a row of tall coconut palms, a small carved stone Balinese shrine with a woven palm-leaf flower offering at the edge of the sand, total stillness, wide open quiet space. Natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, airy fresh colors, clean bright background --ar 16:5 --v 8.1 --style raw --no people, person, human, figure, crowd, face, portrait, hands, text, letters, words, signage, logo, watermark, golden hour, sunset, night, dramatic lighting, heavy shadows, dark moody grading, footprints, boat, surfboard, umbrella, sunbed
+```
+
+### L6X Ch2 — Rules of the Day of Silence (`illust-2.png`)
+
+```
+Editorial travel photograph, subject centered: an empty traditional Balinese village street on the Day of Silence, a tall carved stone temple split gate in the middle, small woven palm-leaf baskets of bright flower offerings on the stone steps, closed wooden shop shutters on both sides, frangipani trees in bloom, quiet deserted road, complete stillness. Natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, airy fresh colors, clean bright background --ar 16:5 --v 8.1 --style raw --no people, person, human, figure, crowd, face, portrait, hands, text, letters, words, signage, logo, watermark, golden hour, sunset, night, dramatic lighting, heavy shadows, dark moody grading, car, motorbike, scooter, vehicle, traffic
+```
