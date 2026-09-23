@@ -67,7 +67,7 @@ L6 는 대화체라 화자 전환을 문장 단위로 살렸고, **Q1/Q2/Q3 발�
 - **원본 재대조(2026-09-23)**: 프린트 사진을 독립 재전사 → 정본과 문자 단위 완전 일치(1393자·22문장·문단 경계 일치). 합본 본문전문·분석카드·암기 정답면 모두 22/22 수록.
 - 분석 포인트는 학생 필기(현재완료 수동태·by+동명사·filmed himself walking·목적격 관계대명사
   생략·5형식 make·to make sure·간접의문문·관계대명사 what)를 전부 반영했다.
-- **삽화 2장은 아직 없음**(placeholder 상태). 미드저니 프롬프트는 `_ILLUSTRATION_PROMPTS.md` L6X 절(= `data/L6X/{1,2}.json` 의
+- **삽화 2장 반영 완료(2026-09-23)** — 미드저니 원본(3952px)을 가로 2000px 로 줄여 `dist/L6X/assets/illust-{1,2}.png` 에 넣음. 합본 12p · 7.5MB. 미드저니 프롬프트는 `_ILLUSTRATION_PROMPTS.md` L6X 절(= `data/L6X/{1,2}.json` 의
   `illustration.prompt`) — 실존 인물 사건이라 **사람을 넣지 않고** 빈 해변/빈 마을 거리로 잡았다.
   이미지 받으면 `dist/L6X/assets/illust-{1,2}.png`(가로 2000px) 로 넣고 3)·4) 재실행.
 
