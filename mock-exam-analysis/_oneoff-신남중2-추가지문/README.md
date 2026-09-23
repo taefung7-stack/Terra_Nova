@@ -29,6 +29,8 @@
 - 워크시트 문제 반영: 1번 오답 ⓓ(died in the U.S. ✗ → Seoul) = 카드 5 note,
   ⓒ spoke out = keep quiet 부정(카드 3), 2-(1) promoting Hangeul and Korean culture(카드 2),
   2-(2) true friendship and love can go beyond countries(카드 5)
+- 삽화 ✅ 반영(2026-09-23) — `dist/MR6/assets/illust-1.png`(원본 3952px → 2000px), 합본 p.3 INTRO.
+  합본의 굿노트 안전화(gs)가 150dpi로 재압축해 PDF 속 이미지는 1071px(정상 — 신서중2와 동일)
 
 ## 빌드 (MR5 → MR6 으로 바꿔 동일)
 
