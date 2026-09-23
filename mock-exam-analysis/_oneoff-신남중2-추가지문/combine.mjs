@@ -14,6 +14,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { SOURCE as SOURCE_MR5 } from './_SOURCE-MR5.js';
+import { SOURCE as SOURCE_MR6 } from './_SOURCE-MR6.js';
 import { countSMasks, flatten } from '../builder/goodnotes-safe.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -27,12 +28,20 @@ const LESSONS = {
     docTitle: '신남중 2학년 · Worksheet 5-9 More Reading 본문분석 — Terra Nova',
     out: '신남중2_추가지문_Worksheet5-9_본문분석.pdf',
   },
+  MR6: {
+    source: SOURCE_MR6,
+    coverTitle: '신남중 2학년<br>추가지문',
+    titleEn: 'Homer B. Hulbert, a True Friend of Korea',
+    coverSub: 'Worksheet 6-9 · More Reading',
+    docTitle: '신남중 2학년 · Worksheet 6-9 More Reading 본문분석 — Terra Nova',
+    out: '신남중2_추가지문_Worksheet6-9_본문분석.pdf',
+  },
 };
 
 const lessonId = (process.argv[2] || 'MR5').toUpperCase();
 const LESSON = LESSONS[lessonId];
 if (!LESSON) {
-  console.error(`알 수 없는 지문: ${lessonId} (MR5)`);
+  console.error(`알 수 없는 지문: ${lessonId} (MR5 / MR6)`);
   process.exit(2);
 }
 const SOURCE = LESSON.source;

@@ -1,4 +1,4 @@
-# 신남중2 추가지문 Worksheet 5-9 (More Reading) — 삽화 프롬프트
+# 신남중2 추가지문 Worksheet 5-9 · 6-9 (More Reading) — 삽화 프롬프트
 
 > 규격 **`--ar 16:5 --v 8.1 --style raw`** · 실사(포토리얼) · 흐린 날 확산광(high-key)
 > 부정은 전부 `--no` 파라미터로(문장 속 `NO xxx` 는 오히려 그 물건을 불러옴) · 글자 차단 필수
@@ -25,4 +25,17 @@ Photorealistic documentary photograph, wide banner, subject centered. A weathere
 
 ```
 Photorealistic fine-art photograph, wide banner, subject centered. A single glossy red heart-shaped balloon drifting upward beside a plain weathered gray concrete wall under a riverside bridge, its thin string trailing loose, slightly out of reach. Minimal composition, the red balloon the only color accent, vast calm empty space. Poetic, quietly wistful mood about childhood and hope slipping away. Wide-angle lens, natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, airy, true-to-life color, sharp focus --no people, child, face, hands, crowd, text, letters, words, graffiti, logo, signage, multiple balloons, golden hour, sunset, night, neon, dramatic lighting, heavy shadows, dark moody grading --ar 16:5 --v 8.1 --style raw
+```
+
+---
+
+## MR6 — Worksheet 6-9 (호머 헐버트) · 한옥 창가의 옛 책상 정물
+
+저장: `dist/MR6/assets/illust-1.png`. 인물 초상 대신 **사물로 이야기**한다 — 닫힌 옛 책(한글 연구),
+잉크병·펜(국제 신문 기고), 편지 봉투, 동아시아를 향한 지구본(국경을 넘는 우정), 한옥 창호.
+책·신문의 가짜 글자가 찍히지 않도록 `text, handwriting, calligraphy, newspaper print` 를 막고,
+형태가 뭉개지기 쉬운 국기도 `flag` 로 뺐다.
+
+```
+Photorealistic still-life photograph, wide banner, subject centered. An antique wooden writing desk beside a traditional Korean hanok lattice window with soft white paper panes. On the desk, a small stack of closed old leather-bound books, a brass inkwell with a vintage fountain pen, a folded plain envelope, and a small vintage world globe turned toward East Asia. Calm historic early-1900s atmosphere, quiet respect and friendship across countries, plenty of empty space. Natural soft diffused daylight through the paper window, bright overcast, high-key exposure, low contrast, airy, true-to-life color, sharp focus --no people, face, portrait, hands, text, letters, words, handwriting, calligraphy, newspaper print, logo, signage, flag, golden hour, sunset, night, neon, dramatic lighting, heavy shadows, dark moody grading --ar 16:5 --v 8.1 --style raw
 ```

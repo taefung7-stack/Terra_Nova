@@ -37,6 +37,14 @@ const LESSONS = {
     out: '신남중2_추가지문_Worksheet5-9_본문암기.pdf',
     qPerPage: 7,
   },
+  // 신남중2 Worksheet 6-9 (More Reading) — 2026-09-23 신규. 13문장 → 7+6.
+  MR6: {
+    lessonNo: 6,
+    coverSub: 'Worksheet 6-9 · More Reading',
+    titleEn: 'Homer B. Hulbert, a True Friend of Korea',
+    out: '신남중2_추가지문_Worksheet6-9_본문암기.pdf',
+    qPerPage: 7,
+  },
 };
 
 const esc = (s) => String(s ?? '')
@@ -45,7 +53,7 @@ const esc = (s) => String(s ?? '')
 /* ── 한 과 빌드 ───────────────────────────────────────────────── */
 async function buildOne(lessonId) {
   const LESSON = LESSONS[lessonId];
-  if (!LESSON) { console.error(`알 수 없는 과: ${lessonId} (MR5)`); process.exit(2); }
+  if (!LESSON) { console.error(`알 수 없는 과: ${lessonId} (MR5 / MR6)`); process.exit(2); }
 
   const { SOURCE } = await import(`./_SOURCE-${lessonId}.js`);
   const DIST = path.join(__dirname, 'dist', lessonId);
@@ -174,7 +182,7 @@ ${chunk.map(aRow).join('\n')}
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<title>신남중 2학년 · Worksheet 5-9 More Reading 본문암기 — Terra Nova</title>
+<title>신남중 2학년 · ${esc(coverSub)} 본문암기 — Terra Nova</title>
 <link rel="stylesheet" href="${cssHref}">
 <style>${extraCss}</style>
 </head>

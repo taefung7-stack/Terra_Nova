@@ -1,4 +1,4 @@
-# 신남중 2학년 — 추가지문 본문분석 + 본문암기 (Worksheet 5-9 More Reading)
+# 신남중 2학년 — 추가지문 본문분석 + 본문암기 (Worksheet 5-9 · 6-9 More Reading)
 
 > ⚠️ **개인 용도 1회성 산출물입니다. 테라노바 판매용이 아닙니다.**
 > Supabase Storage 업로드·dispatch·market 에 **절대 연결하지 마세요.**
@@ -13,6 +13,8 @@
 |--------|------|
 | `dist/MR5/신남중2_추가지문_Worksheet5-9_본문분석.pdf` | 표지1 + 본문전문1 + INTRO1 + 문장분석3 = **6p** |
 | `dist/MR5/신남중2_추가지문_Worksheet5-9_본문암기.pdf` | 표지1 + 문제2(7+7) + 정답1 = **4p** |
+| `dist/MR6/신남중2_추가지문_Worksheet6-9_본문분석.pdf` | 표지1 + 본문전문1 + INTRO1 + 문장분석3 = **6p** |
+| `dist/MR6/신남중2_추가지문_Worksheet6-9_본문암기.pdf` | 표지1 + 문제2(7+6) + 정답1 = **4p** |
 
 - 원문 **14문장** 1챕터, 분석 카드 6개(covers 전수), 어휘 17개, 4단 논리흐름
 - 제목 5지선다 정답 ④(① 쏠림 방지). 워크시트 원본 문제(NOT correct / those things 서술형)의
@@ -20,7 +22,15 @@
 - 삽화: `illustration.prompt` 에 미드저니 프롬프트(16:5, v8.1) 저장. 이미지를
   `dist/MR5/assets/illust-1.png`(가로 2000px 축소) 로 넣고 재빌드하면 반영된다. 현재 placeholder.
 
-## 빌드
+## MR6 — Worksheet 6-9 (호머 헐버트, 2026-09-23 추가)
+
+- 원문 **13문장**(4문단) 1챕터, 분석 카드 5개, 어휘 17개, EXERCISE 2(question_no 2), 제목 정답 ②
+- 8번 문장의 **U.S.** 는 약어 — 문장 분할 시 마침표 오분할 주의(정본 주석에 명시)
+- 워크시트 문제 반영: 1번 오답 ⓓ(died in the U.S. ✗ → Seoul) = 카드 5 note,
+  ⓒ spoke out = keep quiet 부정(카드 3), 2-(1) promoting Hangeul and Korean culture(카드 2),
+  2-(2) true friendship and love can go beyond countries(카드 5)
+
+## 빌드 (MR5 → MR6 으로 바꿔 동일)
 
 ```bash
 cd mock-exam-analysis

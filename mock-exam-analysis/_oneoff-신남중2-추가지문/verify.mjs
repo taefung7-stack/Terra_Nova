@@ -17,12 +17,14 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { SOURCE as SOURCE_MR5 } from './_SOURCE-MR5.js';
+import { SOURCE as SOURCE_MR6 } from './_SOURCE-MR6.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 /** 과(lesson)별 정본 + 데이터 경로 */
 const LESSONS = [
   { id: 'MR5', label: 'Worksheet 5-9 · Banksy and Girl with Balloon', source: SOURCE_MR5 },
+  { id: 'MR6', label: 'Worksheet 6-9 · Homer B. Hulbert, a True Friend of Korea', source: SOURCE_MR6 },
 ];
 
 const only = (process.argv[2] || '').toUpperCase();
