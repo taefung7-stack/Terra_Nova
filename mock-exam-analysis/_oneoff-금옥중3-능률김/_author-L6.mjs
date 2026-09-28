@@ -1,0 +1,485 @@
+/* 금옥중3 능률(김성곤) Lesson 6 — Take Part in the Economy 챕터 저작 데이터
+ * 실행: node _author-L6.mjs  → data/L6/{1..4}.json
+ *
+ * ★ 후기(review) 단락은 작성자/날짜 줄이 본문 문장이 아니라 정본에서 뺐다.
+ *   대신 해석(passage_ko) 첫 문장 앞에 (Jasmine의 후기)처럼 화자를 밝혀
+ *   암기장에서도 누가 한 말인지 알 수 있게 했다. */
+import { writeChapter } from './_author.mjs';
+import { SOURCE } from './_SOURCE-L6.js';
+
+const LIGHT = 'natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, clean bright palette';
+const NO = '--no text, letters, words, logo, watermark, screen interface, people, person, hands, faces, sunset, golden hour, night, dark moody grading, heavy shadows';
+
+const chapters = [
+  /* ── Ch1 ─────────────────────────────────────────── */
+  {
+    no: 1, type: '내용일치', answer: 3,
+    question: '다음 대화의 내용과 일치하는 것은?',
+    summary: '아들이 이번 주말에 무엇을 할지 묻자, 아빠는 캠핑을 가자고 제안해요. 아들은 텐트가 없어서 하나 사야 하는지, 그리고 강아지는 누가 돌봐야 하는지 걱정해요. 아빠는 걱정하지 말라며, 도움이 될 수 있는 앱들을 알고 있다고 말해요.',
+    mainIdea: 'A son worries about having no tent and no one to look after the dog on a camping trip, but his dad knows some apps that can help.',
+    titleEn: 'A Camping Plan with Two Problems',
+    ko: [
+      '아들: 아빠, 우리 이번 주말에 뭐 할까요?',
+      '아빠: 우리 캠핑 가는 게 어떨까?',
+      '아들: 그런데 우리는 텐트가 없잖아요.',
+      '하나 사야 할까요?',
+      '또 우리 강아지는 누가 돌봐요?',
+      '아빠: 걱정하지 마.',
+      '내가 우리를 도와줄 수 있는 몇 가지 앱들을 알고 있지.',
+    ],
+    choices: [
+      ['아들이 먼저 캠핑을 가자고 제안했다.', '{Why don’t we go camping?} 은 **아빠**의 말이다. 아들은 주말에 **무엇을 할지 물었을** 뿐이다.'],
+      ['가족은 이미 텐트를 가지고 있다.', '{But we don’t have a tent.} — 텐트가 **없다**. 그래서 하나 **사야 하는지** 묻는다.'],
+      ['아들은 캠핑 동안 강아지를 누가 돌볼지 걱정한다.', '{Also, who will take care of our dog?} 와 **일치**한다. **정답**.'],
+      ['아빠는 텐트를 새로 사자고 말했다.', '아빠는 **텐트를 사자고 하지 않고**, 도움이 될 **앱**을 알고 있다고 했다.'],
+      ['아빠는 캠핑 계획을 취소하자고 했다.', '{Don’t worry.} — 아빠는 **걱정 말라**며 앱으로 문제를 해결하려 한다. 취소 이야기는 없다.'],
+    ],
+    vocab: [
+      'weekend|명|주말|—|weekday 평일|—',
+      'Why don’t we ~?|숙|~하는 게 어때?|Let’s ~, How about -ing?|—|—',
+      'go camping|숙|캠핑하러 가다|—|—|camp 야영하다',
+      'tent|명|텐트, 천막|—|—|—',
+      'buy|동|사다|purchase|sell 팔다|buyer 구매자',
+      'take care of|숙|~을 돌보다|look after, care for|neglect 방치하다|—',
+      'worry|동|걱정하다|be anxious|relax 안심하다|worried 걱정하는',
+      'app|명|앱, 애플리케이션|application|—|—',
+      'help|동|돕다|assist, aid|—|helpful 도움이 되는',
+    ],
+    flow: [
+      ['❓', '질문 — 주말에 뭐 할까?', '아들이 주말 계획을 묻고, 아빠가 {Why don’t we ~?} 로 **캠핑을 제안**한다.'],
+      ['⛺', '문제 ① — 텐트가 없다', '{But} 으로 아들이 **문제**를 제기한다. 텐트가 **없어서** 하나 **사야 하는지** 묻는다.'],
+      ['🐶', '문제 ② — 강아지는 누가?', '{Also} 로 **두 번째 문제**를 덧붙인다. 캠핑 동안 **강아지를 돌볼 사람**이 필요하다.'],
+      ['📱', '해결 예고 — 도움이 되는 앱', '아빠는 {Don’t worry} 라며 **도움이 될 앱들**을 안다고 말한다. 다음 단락부터 그 **앱들**이 소개된다.'],
+    ],
+    cards: [
+      {
+        covers: [1, 2],
+        en: 'Son: [g:What should we do] this weekend, Dad? | Dad: [r:Why don’t we] go camping?',
+        note: '**해석 도움** — {Why don’t we ~?} 는 "왜 ~하지 않니?"가 아니라 "**~하는 게 어때?**"라는 **제안** 표현이다. {go camping} 은 "캠핑하러 가다".',
+        points: [
+          ['grammar', '**조동사 should 의문문** — {What should we do?} "우리 **뭘 해야 할까**?" 의견·조언을 구하는 표현이다.'],
+          ['grammar', '**제안 표현 Why don’t we + 동사원형?** — {= Let’s go camping. / How about going camping?} 뒤에 **동사원형**이 온다.'],
+          ['vocab', '**go + -ing** — {go camping, go fishing, go shopping}. 주로 **여가 활동**을 하러 간다는 뜻이다.'],
+        ],
+      },
+      {
+        covers: [3, 4, 5],
+        en: 'Son: [r:But] we don’t have a tent. | [g:Should we buy one]? | [r:Also], who will [h:take care of] our dog?',
+        note: '**해석 도움** — {one} 은 앞에 나온 **a tent** 를 다시 가리키는 **부정대명사**다. 같은 종류의 **아무 텐트 하나**를 뜻한다. {take care of} 는 "~을 돌보다".',
+        points: [
+          ['grammar', '**부정대명사 one vs. it** — {one} 은 **같은 종류의 불특정한 것**(a + 명사), {it} 은 **바로 그것**(the + 명사)을 가리킨다. 아직 없는 텐트이므로 {one}.'],
+          ['vocab', '**take care of = look after** — "~을 돌보다". 3과 뒤쪽 **Pet Sitter Finder** 소개에 {look after} 로 다시 나온다.'],
+          ['reading', '**두 가지 문제 제기** — {But}(텐트), {Also}(강아지)로 **문제 두 개**를 제시한다. 이 두 문제가 뒤에 나오는 **두 앱**과 짝을 이룬다.'],
+        ],
+      },
+      {
+        covers: [6, 7],
+        en: 'Dad: [r:Don’t worry]. | I know some apps | [g:that can help us].',
+        ko: '아빠: 걱정하지 마. | 내가 몇 가지 앱들을 알고 있지 | 우리를 도와줄 수 있는',
+        note: '**해석 도움** — {that can help us} 는 {some apps} 를 꾸미는 **주격 관계대명사절**이다. "우리를 **도와줄 수 있는** 앱들".',
+        points: [
+          ['grammar', '**부정 명령문 Don’t + 동사원형** — "~하지 마". {Don’t worry.} 는 상대를 **안심시키는** 대표 표현이다.'],
+          ['grammar', '**주격 관계대명사 that** — {apps that can help us}. 선행사가 **사물**이므로 {which} 로 바꿔 쓸 수 있다.'],
+        ],
+      },
+    ],
+    prompt: `Photorealistic lifestyle photograph, wide banner composition. A cozy bright living room on a weekend morning: a friendly golden retriever sitting on a wooden floor next to an empty camping backpack, a folded map and a smartphone lying face-down, a big window showing green trees outside. The scene suggests a camping trip is being planned. ${LIGHT}, warm neutral whites and soft greens. ${NO}, tent --ar 16:5 --v 8.1`,
+  },
+
+  /* ── Ch2 ─────────────────────────────────────────── */
+  {
+    no: 2, type: '내용불일치', answer: 5,
+    question: '다음 글의 내용과 일치하지 않는 것은?',
+    summary: 'Ask Your Neighbors는 다른 사람에게서 빌릴 수 있는 물건을 쉽게 찾도록 돕는 앱이에요. 사용자는 앱을 내려받아 필요한 물건을 가진 사람을 찾고, 물건을 가져왔다가 나중에 돌려줘요. Jasmine은 30분도 안 되어 보드게임을 빌렸고, 자주 쓰지 않는 물건을 빌려 돈을 아끼는 것이 좋으며 환경에도 좋다고 했어요. 반면 Cassandra는 빌린 자전거 헬멧이 망가져 있어 속상했다고 했고, 앱 측은 사과하며 빌려주는 사람들에게 물건 사진을 정기적으로 업데이트하도록 요청하고 있다고 답했어요.',
+    mainIdea: 'Ask Your Neighbors lets people borrow items from others, saving money and resources, and it is fixing problems like broken items by asking lenders to update photos.',
+    titleEn: 'Ask Your Neighbors: Borrowing Instead of Buying',
+    ko: [
+      '당신의 이웃들로부터 빌려라!',
+      'Ask Your Neighbors는 사람들이 다른 사람들로부터 빌릴 수 있는 물건을 쉽게 찾도록 돕는다.',
+      '우선, 사용자들은 그 앱을 내려받고 그들이 필요로 하는 물건을 가지고 있는 또 다른 사용자를 찾는다.',
+      '그런 다음 그들은 그 물건을 찾아오고 나중에 그것을 반납한다.',
+      '(Jasmine의 후기) 저는 보드게임을 요청했고 30분도 안 되어 하나를 구했어요.',
+      '저는 제가 자주 필요로 하지 않는 것들을 빌림으로써 돈을 아낄 수 있다는 것이 정말 마음에 들어요.',
+      '게다가 저는 이것이 환경친화적이라고 생각해요.',
+      '우리가 더 적은 제품을 구매할수록, 우리는 더 많은 자원을 절약하게 되는 거예요.',
+      '(Cassandra의 후기) 많은 긍정적인 후기들을 보고 나서, 저는 자전거 헬멧을 빌리기로 결정했어요.',
+      '그러나 제가 그것을 받았을 때, 그것은 망가져 있었어요.',
+      '저는 몹시 기분이 상했어요!',
+      '(Ask Your Neighbors의 답변) 고객님이 그렇게 부정적인 경험을 겪게 해 드려 죄송합니다.',
+      '이 문제를 바로잡기 위해서, 저희는 빌려주는 분들에게 물건의 사진을 정기적으로 업데이트할 것을 요청하고 있습니다.',
+      '이것은 다른 사용자분들로 하여금 그 제품의 정확한 상태를 알 수 있도록 해 줄 것입니다.',
+    ],
+    choices: [
+      ['사용자는 앱에서 필요한 물건을 가진 다른 사용자를 찾는다.', '{search for another user that has the item they need} 와 일치한다.'],
+      ['Jasmine은 30분도 안 되어 보드게임을 빌렸다.', '{got one in less than 30 minutes} 와 일치한다.'],
+      ['Jasmine은 물건을 빌리는 것이 환경에도 좋다고 생각한다.', '{I think it’s environmentally friendly} 와 일치한다.'],
+      ['Cassandra가 빌린 자전거 헬멧은 망가져 있었다.', '{When I got it, however, it was broken.} 과 일치한다.'],
+      ['앱 측은 빌리는 사람들에게 물건 사진을 올리도록 요청했다.', '사진 업데이트를 요청받는 사람은 **빌리는 사람**이 아니라 **빌려주는 사람**({lenders})이다. **불일치 → 정답**.'],
+    ],
+    vocab: [
+      'borrow|동|빌리다|—|lend 빌려주다|borrower 빌리는 사람',
+      'neighbor|명|이웃|—|stranger 낯선 사람|neighborhood 이웃, 동네',
+      'item|명|물건, 품목|thing, object|—|—',
+      'download|동|내려받다|—|upload 올리다|—',
+      'search for|숙|~을 찾다|look for|—|search 검색',
+      'pick up|숙|~을 찾아오다, 가져오다|collect, get|drop off 갖다 놓다|—',
+      'return|동|돌려주다, 반납하다|give back|keep 보관하다|return 반납(명사)',
+      'save|동|아끼다, 절약하다|keep, conserve|waste 낭비하다|savings 저축',
+      'environmentally friendly|형|환경친화적인|eco-friendly, green|harmful 해로운|environment 환경',
+      'product|명|제품|goods, item|—|produce 생산하다 / production 생산',
+      'resource|명|자원|material, supply|—|resourceful 자원이 풍부한',
+      'positive|형|긍정적인|good, favorable|negative 부정적인|positively 긍정적으로',
+      'review|명|후기, 평가|comment, opinion|—|reviewer 평가자',
+      'decide|동|결정하다|choose|hesitate 망설이다|decision 결정',
+      'broken|형|망가진, 고장 난|damaged|fixed 고쳐진|break 깨다',
+      'upset|형|속상한, 화가 난|angry, sad|pleased 기쁜|—',
+      'negative|형|부정적인|bad, unpleasant|positive 긍정적인|—',
+      'experience|명|경험|—|—|experienced 경험 많은',
+      'fix|동|바로잡다, 고치다|repair, solve|break 망가뜨리다|—',
+      'issue|명|문제, 쟁점|problem, matter|—|—',
+      'lender|명|빌려주는 사람|—|borrower 빌리는 사람|lend 빌려주다',
+      'regularly|부|정기적으로|often, routinely|rarely 드물게|regular 정기적인',
+      'exact|형|정확한|precise, correct|rough 대략적인|exactly 정확히',
+      'condition|명|상태|state, shape|—|—',
+    ],
+    flow: [
+      ['📦', '앱 소개 — 이웃에게 빌리세요', '**Ask Your Neighbors** 는 **빌릴 수 있는 물건**을 쉽게 찾게 해 준다. 사용 순서: **내려받기 → 사용자 찾기 → 가져오기 → 반납**.'],
+      ['👍', '긍정적 후기 — Jasmine', '30분도 안 되어 보드게임을 빌렸다. **돈 절약** + **환경친화적**이라는 두 장점을 말하며, {The fewer ~, the more ~} 로 **자원 절약** 원리를 정리한다.'],
+      ['👎', '부정적 후기 — Cassandra', '긍정적 후기를 보고 헬멧을 빌렸지만 **망가져 있었다**. 공유 경제의 **약점**(물건 상태를 알 수 없음)이 드러난다.'],
+      ['🔧', '앱의 답변 — 문제 해결책', '앱 측은 사과하고 **빌려주는 사람들**에게 **사진을 정기적으로 업데이트**하게 해, 사용자가 **정확한 상태**를 알도록 하겠다고 답한다.'],
+    ],
+    cards: [
+      {
+        covers: [1, 2],
+        en: '[r:Borrow] from your neighbors! | Ask Your Neighbors [g:helps people easily find] items | [h:that they can borrow from others].',
+        ko: '당신의 이웃들로부터 빌려라! | Ask Your Neighbors는 사람들이 물건을 쉽게 찾도록 돕는다 | 다른 사람들로부터 빌릴 수 있는',
+        note: '**해석 도움** — 첫 문장은 **명령문** 형태의 **광고 문구**다. {helps people (to) find} 는 "사람들이 **찾도록 돕다**". {that they can borrow from others} 는 {items} 를 꾸미는 **목적격 관계대명사절**이다.',
+        points: [
+          ['grammar', '**help + 목적어 + (to) 동사원형** — {helps people easily find}. {help} 는 목적격보어로 **동사원형**과 **to부정사** 둘 다 쓸 수 있다.'],
+          ['grammar', '**목적격 관계대명사 that** — {items that they can borrow ___ from others}. {borrow} 의 목적어가 빠져 있으므로 **목적격**이며, **생략할 수 있다**.'],
+          ['vocab', '**borrow vs. lend** — {borrow} 는 **빌리다**(받는 쪽), {lend} 는 **빌려주다**(주는 쪽). 뒤에 나오는 {lenders} 는 **빌려주는 사람들**이다.'],
+        ],
+      },
+      {
+        covers: [3, 4],
+        en: '[r:First], users [g:download] the app [g:and search for] another user | [h:that has the item] [h:they need]. | [r:Then] they [g:pick up] the item [g:and return] it later.',
+        ko: '우선, 사용자들은 그 앱을 내려받고 또 다른 사용자를 찾는다 | 그들이 필요로 하는 물건을 가지고 있는 | 그런 다음 그들은 그 물건을 찾아오고 나중에 그것을 반납한다.',
+        note: '**해석 도움** — {another user that has the item they need} 에는 관계절이 **두 개** 겹쳐 있다. {that has ~} 는 {another user} 를, {(that) they need} 는 {the item} 을 꾸민다(목적격 관계대명사 생략).',
+        points: [
+          ['grammar', '**관계절 안의 관계절** — {user [that has the item [(that) they need]]}. 안쪽 관계대명사는 **목적격이라 생략**되었다.'],
+          ['grammar', '**another + 단수명사** — {another user} "**또 다른** 한 명의 사용자". {another} 뒤에는 **단수 명사**가 온다.'],
+          ['reading', '**순서의 연결어 First → Then** — 앱을 쓰는 **절차**를 차례대로 설명한다. 내용일치 문제에서 **순서**를 바꿔 내기 쉽다.'],
+        ],
+      },
+      {
+        covers: [5, 6],
+        en: 'I [g:asked for] a board game and got one [h:in less than 30 minutes]. | I love [g:saving] money [r:by borrowing things] [h:that I don’t often need].',
+        note: '**해석 도움** — Jasmine의 **긍정적 후기**다. {one} 은 **a board game** 을 가리키는 부정대명사다. {by + -ing} 는 "**~함으로써**"라는 **수단**을 나타낸다.',
+        points: [
+          ['grammar', '**love + 동명사** — {love saving money}. {love, like, hate} 는 **동명사**와 **to부정사**를 모두 목적어로 쓴다.'],
+          ['grammar', '**by + 동명사 (수단)** — {by borrowing things} "물건을 **빌림으로써**". 전치사 뒤이므로 **-ing** 형이다.'],
+          ['vocab', '**in less than 30 minutes** — "30분도 **안 되어**". {less than} 은 "~보다 적은, ~ 미만"이다.'],
+        ],
+      },
+      {
+        covers: [7, 8],
+        en: '[r:Also], I think [h:it’s environmentally friendly]. | [g:The fewer products] we buy, | [g:the more resources] we save.',
+        ko: '게다가 저는 이것이 환경친화적이라고 생각해요. | 우리가 더 적은 제품을 구매할수록, | 우리는 더 많은 자원을 절약하게 되는 거예요.',
+        note: '**해석 도움** — {it} 은 **물건을 빌려 쓰는 것**을 가리킨다. {The + 비교급 ~, the + 비교급 ~} 은 "**~할수록 더 ~하다**"라는 뜻이다.',
+        points: [
+          ['grammar', '**the + 비교급, the + 비교급** — {The fewer products we buy, the more resources we save.} 원래 어순 {we buy few products} 에서 **비교급 + 명사가 앞으로** 나왔다.'],
+          ['grammar', '**fewer vs. less** — {fewer} 는 **셀 수 있는 명사**(products), {less} 는 **셀 수 없는 명사** 앞에 쓴다.'],
+          ['reading', '**공유 경제의 두 번째 장점** — 앞 문장의 **돈 절약**에 이어 **자원 절약(환경 보호)** 을 추가한다. {Also} 가 **첨가**의 신호다.'],
+        ],
+      },
+      {
+        covers: [9],
+        en: '[g:Seeing a lot of positive reviews], | I [r:decided to borrow] a bike helmet.',
+        ko: '많은 긍정적인 후기들을 보고 나서, | 저는 자전거 헬멧을 빌리기로 결정했어요.',
+        note: '**해석 도움** — Cassandra의 후기다. {Seeing ~} 는 **분사구문**으로 {After I saw ~}(또는 {Because I saw ~})를 줄인 것이다. "**~을 보고 나서**"로 해석한다.',
+        points: [
+          ['grammar', '**분사구문** — {Seeing a lot of positive reviews,} = {After(Because) I saw a lot of positive reviews,}. **접속사와 주어를 생략**하고 동사를 **-ing** 로 바꾼다.'],
+          ['grammar', '**decide + to부정사** — {decided to borrow}. {decide, plan, want, hope, promise} 는 **to부정사**를 목적어로 쓴다.'],
+        ],
+      },
+      {
+        covers: [10, 11],
+        en: '[g:When I got it], [r:however], it [h:was broken]. | I was [h:so upset]!',
+        note: '**해석 도움** — {however} 가 문장 **중간**에 콤마와 함께 끼어 있다. 위치와 상관없이 "**그러나**"로 해석한다. 기대(긍정 후기)와 **다른 결과**를 보여 준다.',
+        points: [
+          ['grammar', '**삽입된 however** — {When I got it, however, it was broken.} {however} 는 문장 **앞·중간·끝** 어디에나 올 수 있고, **콤마**로 구분한다.'],
+          ['vocab', '**broken / upset** — {broken} 은 {break} 의 과거분사로 "**망가진**", {upset} 은 "**속상한, 화가 난**"이라는 **형용사**다.'],
+          ['reading', '**반전** — 많은 **긍정적 후기** → 실제로는 **망가진 헬멧**. 공유 서비스의 **약점**을 보여 주는 사례다.'],
+        ],
+      },
+      {
+        covers: [12],
+        en: 'We’re sorry | [g:that] you had [h:such a negative experience].',
+        ko: '(Ask Your Neighbors의 답변) 죄송합니다 | 고객님이 그렇게 부정적인 경험을 겪게 해 드려',
+        note: '**해석 도움** — 앱 운영 측의 **답변**이다. {sorry that ~} 의 {that} 절은 미안한 **이유**를 나타낸다. {such a + 형용사 + 명사} 는 "**그렇게 ~한 …**".',
+        points: [
+          ['grammar', '**감정 형용사 + that절** — {We’re sorry that ~} "~해서 미안하다". {glad, sorry, sure, afraid} 뒤의 {that} 절은 **감정의 원인**이다.'],
+          ['grammar', '**such a + 형용사 + 명사** — {such a negative experience}. 어순에 주의: {so negative an experience} 와 같은 뜻이다. {a such} ✗.'],
+        ],
+      },
+      {
+        covers: [13, 14],
+        en: '[r:To fix this issue], we are [g:asking lenders to update] the pictures of their items [h:regularly]. | This will [g:let other users know] the exact condition of the product.',
+        note: '**해석 도움** — {ask + 목적어 + to부정사} 는 "(목적어)에게 ~하라고 **요청하다**". {let + 목적어 + 동사원형} 은 "(목적어)가 ~하게 **해 주다**". 사진을 올리는 사람은 **lenders(빌려주는 사람들)** 이다.',
+        points: [
+          ['grammar', '**ask + 목적어 + to부정사** — {asking lenders to update}. 목적격보어로 **to부정사**를 쓴다. 누가 업데이트하는지(lenders)를 정확히 봐야 한다.'],
+          ['grammar', '**사역동사 let + 목적어 + 동사원형** — {let other users know}. 사역동사 {let, make, have} 뒤에는 **동사원형**이 온다({to know} ✗).'],
+          ['reading', '**문제 → 해결** — 물건 상태를 **몰라서** 생긴 문제를 **사진 업데이트**로 해결한다. {This} 는 **정기적인 사진 업데이트**를 가리킨다.'],
+        ],
+      },
+    ],
+    prompt: `Photorealistic still-life photograph, wide banner composition. A bright clean apartment hallway doorstep where neighbors share things: a board game box with a plain blank lid and a slightly cracked bicycle helmet resting side by side on a small wooden bench next to a neighbor's front door, a smartphone lying face-down beside them. Simple, tidy, everyday feeling. ${LIGHT}, soft white walls and light wood. ${NO}, dog, tent --ar 16:5 --v 8.1`,
+  },
+
+  /* ── Ch3 ─────────────────────────────────────────── */
+  {
+    no: 3, type: '내용일치', answer: 2,
+    question: '다음 글의 내용과 일치하는 것은?',
+    summary: 'Pet Sitter Finder는 반려동물 주인이 반려동물을 돌봐 줄 믿을 만한 사람을 찾도록 돕는 앱이에요. 주인이 게시물을 올리면 펫시터나 강아지 산책 도우미가 메시지를 보내고, 주인은 후기를 확인해 가장 좋은 사람을 골라요. George는 개인 정보, 특히 전화번호가 다른 목적으로 쓰일까 걱정했고, 앱 측은 개인 정보를 보여 주지 않고 소통할 수 있는 시스템을 개발 중이라고 답했어요. Samantha는 아파트에서 동물을 키울 수 없지만, 이 앱 덕분에 강아지를 산책시키는 즐거움을 경험할 수 있다고 했어요.',
+    mainIdea: 'Pet Sitter Finder connects pet owners with reliable pet sitters, and it is working on privacy concerns while also letting people without pets enjoy animals.',
+    titleEn: 'Pet Sitter Finder: Sharing the Care of Pets',
+    ko: [
+      '제가 당신의 반려동물을 돌볼 수 있어요!',
+      'Pet Sitter Finder는 반려동물 애호가들과 반려동물 주인들을 위한 완벽한 앱이다.',
+      '그것은 반려동물 주인들이 그들의 반려동물을 돌봐 줄 믿을 만한 사람들을 찾도록 돕는다.',
+      '반려동물 주인이 반려동물을 돌보는 사람들을 구할 때, 그 또는 그녀는 게시물을 올린다.',
+      '그러면 반려동물을 돌보는 사람들이나 강아지를 산책시키는 사람들이 주인에게 메시지를 보낼 수 있다.',
+      '주인은 그들의 후기를 확인하고 가장 마음에 드는 사람을 선택한다.',
+      '(George의 후기) 저는 교외로 나갈 때마다 이 앱을 사용해요.',
+      '하지만 저는 제 개인 정보에 대한 몇 가지 걱정이 있어요.',
+      '만약 사람들이 제 전화번호를 다른 목적으로 사용하면 어쩌죠?',
+      '(Pet Sitter Finder의 답변) 저희는 이 문제를 인지하고 있습니다.',
+      '현재 저희는 사용자분들이 자신의 개인 정보를 보여 주지 않으면서 자유롭게 소통할 수 있게 해 주는 시스템을 개발하는 중입니다.',
+      '(Samantha의 후기) 제 아파트에서는 동물이 허용되지 않아서, 저는 반려동물을 한 마리도 키우지 않아요.',
+      '하지만 Pet Sitter Finder를 이용함으로써 저는 강아지를 산책시키는 즐거움을 경험할 수 있어요.',
+    ],
+    choices: [
+      ['펫시터가 먼저 게시물을 올리면 주인이 메시지를 보낸다.', '순서가 반대다. **주인**이 게시물을 올리고({he or she uploads a post}), **펫시터**가 메시지를 보낸다.'],
+      ['주인은 지원자들의 후기를 확인한 뒤 돌봐 줄 사람을 고른다.', '{The owner checks their reviews and chooses the best person.} 과 **일치**한다. **정답**.'],
+      ['George는 앱에서 반려동물을 찾기 어렵다고 불평했다.', 'George의 걱정은 **개인 정보**(전화번호)다. 반려동물을 찾기 어렵다는 말은 없다.'],
+      ['앱은 이미 개인 정보 보호 시스템을 완성했다.', '{We’re now developing a system} — 아직 **개발 중**이다. 완성했다는 것은 틀리다.'],
+      ['Samantha는 자신의 강아지를 맡기려고 앱을 사용한다.', 'Samantha는 아파트에서 동물이 허용되지 않아 **반려동물이 없다**. 다른 사람의 강아지를 **산책시키는** 쪽이다.'],
+    ],
+    vocab: [
+      'look after|숙|~을 돌보다|take care of, care for|neglect 방치하다|—',
+      'perfect|형|완벽한|ideal, flawless|imperfect 불완전한|perfectly 완벽하게',
+      'owner|명|주인|keeper|—|own 소유하다',
+      'reliable|형|믿을 만한|trustworthy, dependable|unreliable 믿을 수 없는|rely 의지하다',
+      'look for|숙|~을 찾다|search for|—|—',
+      'upload|동|(게시물을) 올리다|post|download 내려받다|—',
+      'post|명|게시물|posting|—|post 게시하다(동사)',
+      'walker|명|걷는 사람, 산책시키는 사람|—|—|walk 걷다, 산책시키다',
+      'whenever|접|~할 때마다|every time|—|when ~할 때',
+      'concern|명|걱정, 우려|worry, anxiety|—|concerned 걱정하는',
+      'personal information|명|개인 정보|private information|—|person 사람',
+      'purpose|명|목적|goal, aim|—|purposeful 목적이 있는',
+      'aware|형|알고 있는, 인지하는|conscious|unaware 모르는|awareness 인식',
+      'develop|동|개발하다|create, build|—|development 개발',
+      'allow|동|허락하다, 허용하다|let, permit|forbid 금지하다|allowance 허용',
+      'communicate|동|소통하다|talk, contact|—|communication 의사소통',
+      'freely|부|자유롭게|without limits|—|free 자유로운 / freedom 자유',
+      'apartment|명|아파트|flat|—|—',
+      'experience|동|경험하다|go through|—|experience 경험(명사)',
+      'joy|명|기쁨, 즐거움|pleasure, delight|sorrow 슬픔|joyful 기쁜',
+    ],
+    flow: [
+      ['🐾', '앱 소개 — Pet Sitter Finder', '반려동물 주인이 **믿을 만한 돌보미**를 찾게 해 주는 앱이다. 절차: **주인 게시물 → 돌보미 메시지 → 후기 확인 → 선택**.'],
+      ['🔒', '우려 — George의 개인 정보 걱정', '자주 쓰지만 **개인 정보**가 걱정이다. {What if ~?} 로 **전화번호가 다른 목적으로 쓰일까** 불안을 드러낸다.'],
+      ['🛠️', '답변 — 시스템 개발 중', '앱 측은 문제를 **인지**하고, **개인 정보를 보여 주지 않고 소통하는 시스템**을 **개발 중**이라고 답한다.'],
+      ['😊', '새로운 기쁨 — Samantha', '아파트에서 동물을 **못 키우지만**, 앱 덕분에 **강아지 산책의 즐거움**을 누린다. 공유가 **소유하지 않아도 경험**하게 해 준다는 점을 보여 준다.'],
+    ],
+    cards: [
+      {
+        covers: [1, 2],
+        en: 'I can [r:look after] your pet! | Pet Sitter Finder is [h:the perfect app] [g:for pet lovers and pet owners].',
+        note: '**해석 도움** — 첫 문장은 펫시터의 입장에서 쓴 **광고 문구**다. {look after} 는 "~을 돌보다"로 {take care of} 와 같은 뜻이다.',
+        points: [
+          ['vocab', '**look after = take care of** — 1단락 아들의 걱정 {who will take care of our dog?} 에 대한 **답**이 이 앱이다.'],
+          ['grammar', '**전치사 for (대상)** — {for pet lovers and pet owners} "반려동물 애호가와 주인을 **위한**". 두 명사가 {and} 로 병렬된다.'],
+        ],
+      },
+      {
+        covers: [3],
+        en: 'It [g:helps pet owners find] [h:reliable people] [r:to look after their pets].',
+        ko: '그것은 반려동물 주인들이 찾도록 돕는다 | 그들의 반려동물을 돌봐 줄 믿을 만한 사람들을',
+        note: '**해석 도움** — {help + 목적어 + 동사원형} 구문이다. {to look after their pets} 는 {reliable people} 을 꾸미는 **형용사적 용법**의 to부정사로 "**돌봐 줄** 사람들".',
+        points: [
+          ['grammar', '**help + 목적어 + (to) 동사원형** — {helps pet owners find}. 앞 단락 {helps people easily find} 와 **같은 구문**이다.'],
+          ['grammar', '**to부정사의 형용사적 용법** — {people to look after their pets}. 명사를 **뒤에서 꾸민다**.'],
+          ['vocab', '**reliable** — "**믿을 만한**". {rely}(의지하다)의 형용사형. 반의어는 {unreliable}.'],
+        ],
+      },
+      {
+        covers: [4],
+        en: '[g:When a pet owner is looking for] pet sitters, | [h:he or she] uploads a post.',
+        ko: '반려동물 주인이 반려동물을 돌보는 사람들을 구할 때, | 그 또는 그녀는 게시물을 올린다.',
+        note: '**해석 도움** — {he or she} 는 성별을 모르는 **한 사람**({a pet owner})을 가리킨다. 그래서 동사도 **단수형 uploads** 다.',
+        points: [
+          ['grammar', '**시간 접속사 when + 진행형** — {When a pet owner is looking for ~} "~을 **구하고 있을 때**".'],
+          ['grammar', '**he or she + 단수동사** — 선행 명사 {a pet owner} 가 단수이므로 {uploads}. 성별을 특정하지 않는 표현이다.'],
+        ],
+      },
+      {
+        covers: [5, 6],
+        en: 'Pet sitters or dog walkers can [r:then] [g:send messages to] the owner. | The owner [g:checks] their reviews [g:and chooses] [h:the best person].',
+        note: '**해석 도움** — {then} 은 "**그러면**"으로 앞 단계(게시물 올리기) 다음에 일어나는 일이다. {send A to B} 는 "B에게 A를 보내다". {their} 는 **펫시터와 산책 도우미들**을 가리킨다.',
+        points: [
+          ['grammar', '**send A to B = send B A** — {send messages to the owner} = {send the owner messages}. 3형식으로 바꿀 때 전치사 **to** 를 쓴다.'],
+          ['grammar', '**동사 병렬** — {checks ~ and chooses ~}. 주어 {The owner} 가 3인칭 단수라 두 동사 모두 **-s** 가 붙는다.'],
+          ['reading', '**절차 순서** — **주인 게시물 → 돌보미 메시지 → 후기 확인 → 선택**. 이 순서를 뒤바꾼 선택지가 오답으로 잘 나온다.'],
+        ],
+      },
+      {
+        covers: [7, 8],
+        en: 'I use this app | [g:whenever] I’m [h:going out of town]. | I have some concerns about my personal information, [r:though].',
+        ko: '(George의 후기) 저는 이 앱을 사용해요 | 교외로 나갈 때마다 | 하지만 저는 제 개인 정보에 대한 몇 가지 걱정이 있어요.',
+        note: '**해석 도움** — {whenever} 는 "**~할 때마다**"(= every time). 문장 끝의 {though} 는 부사로 "**그렇지만, 하지만**"이라는 뜻이다.',
+        points: [
+          ['grammar', '**복합관계부사 whenever** — {whenever I’m going out of town} = {every time I’m going out of town}.'],
+          ['grammar', '**문장 끝 though (부사)** — "하지만, 그래도". 접속사 {though}(비록 ~이지만)와 달리 **문장 끝에서 콤마 뒤**에 온다.'],
+          ['vocab', '**concern about ~** — "~에 대한 **걱정**". {concerns} 처럼 **복수형**으로 여러 걱정을 나타낼 수 있다.'],
+        ],
+      },
+      {
+        covers: [9],
+        en: '[r:What if] people use my phone number [h:for other purposes]?',
+        ko: '만약 사람들이 제 전화번호를 다른 목적으로 사용하면 어쩌죠?',
+        note: '**해석 도움** — {What if + 주어 + 동사?} 는 "**만약 ~하면 어쩌지?**"라는 **걱정·불안**을 나타내는 표현이다.',
+        points: [
+          ['grammar', '**What if ~?** — {What (will happen) if ~?} 를 줄인 표현. **걱정**이나 **가정**을 말할 때 쓴다.'],
+          ['vocab', '**for other purposes** — "**다른 목적으로**". {purpose} 는 "목적". {on purpose} 는 "일부러".'],
+        ],
+      },
+      {
+        covers: [10, 11],
+        en: 'We’re [h:aware of] this issue. | We’re now [g:developing] a system | [g:that allows users to communicate] freely | [r:without showing] their personal information.',
+        ko: '(Pet Sitter Finder의 답변) 저희는 이 문제를 인지하고 있습니다. | 현재 저희는 시스템을 개발하는 중입니다 | 사용자분들이 자유롭게 소통할 수 있게 해 주는 | 자신의 개인 정보를 보여 주지 않으면서',
+        note: '**해석 도움** — {be aware of} 는 "~을 **알고 있다**". {allow + 목적어 + to부정사} 는 "(목적어)가 ~하도록 **허락하다, 가능하게 하다**". {without -ing} 는 "~하지 **않고**".',
+        points: [
+          ['grammar', '**allow + 목적어 + to부정사** — {allows users to communicate}. {let} 과 뜻은 비슷하지만 {let} 뒤에는 **동사원형**, {allow} 뒤에는 **to부정사**.'],
+          ['grammar', '**without + 동명사** — {without showing ~} "~을 **보여 주지 않고**". 전치사 뒤라서 **-ing**.'],
+          ['reading', '**현재진행형 are developing** — 시스템이 **아직 완성되지 않았음**을 뜻한다. "이미 완성했다"는 선택지는 **오답**.'],
+        ],
+      },
+      {
+        covers: [12, 13],
+        en: 'Animals [g:aren’t allowed] in my apartment, | [r:so] I don’t have any pets. | [r:However], [g:by using] Pet Sitter Finder, | I can experience [h:the joy of walking a dog].',
+        ko: '(Samantha의 후기) 제 아파트에서는 동물이 허용되지 않아서, | 저는 반려동물을 한 마리도 키우지 않아요. | 하지만 Pet Sitter Finder를 이용함으로써 | 저는 강아지를 산책시키는 즐거움을 경험할 수 있어요.',
+        note: '**해석 도움** — {aren’t allowed} 는 **수동태 부정**으로 "**허용되지 않는다**". {walk a dog} 의 {walk} 는 "**산책시키다**"라는 타동사다.',
+        points: [
+          ['grammar', '**수동태 be allowed** — {Animals aren’t allowed} "동물이 **허용되지 않는다**". 능동태는 {My apartment doesn’t allow animals.}'],
+          ['grammar', '**by + 동명사 (수단)** — {by using Pet Sitter Finder} "Pet Sitter Finder를 **이용함으로써**".'],
+          ['reading', '**공유 경제의 또 다른 가치** — 반려동물을 **소유하지 않아도** 그 **즐거움을 경험**할 수 있다. 주인뿐 아니라 **돌보는 쪽**에게도 이익이다.'],
+        ],
+      },
+    ],
+    prompt: `Photorealistic outdoor photograph, wide banner composition. A happy beagle trotting along a clean paved path in a leafy city park, a red leash trailing from its collar out of the frame to the right, green lawns and trees on both sides, apartment buildings softly visible in the distance. Joyful, light, everyday mood. ${LIGHT}, fresh greens and soft blue sky. ${NO}, tent, helmet --ar 16:5 --v 8.1`,
+  },
+
+  /* ── Ch4 ─────────────────────────────────────────── */
+  {
+    no: 4, type: '요지', answer: 4,
+    question: '다음 대화에서 아빠가 말하고자 하는 요지로 가장 적절한 것은?',
+    summary: '아들은 앱들 덕분에 텐트를 빌리고 강아지를 돌봐 줄 사람도 찾을 수 있다며 좋아해요. 아빠는 이런 서비스가 사람들이 적은 비용이나 무료로 물건을 공유하고 서비스를 제공하는 "공유 경제"의 일부라고 설명해요. 아들이 부정적인 후기처럼 약점도 있다고 말하자, 아빠는 더 많은 사람들이 이용할수록 서비스가 더 나아질 것이라고 답해요.',
+    mainIdea: 'Sharing-economy services let people share items and services cheaply or for free, and although they have weaknesses, they will improve as more people use them.',
+    titleEn: 'The Sharing Economy: The More We Use It, the Better It Gets',
+    ko: [
+      '아들: 정말 좋은 앱들이네요!',
+      '우리는 텐트를 빌리고 우리 강아지를 돌봐 줄 사람을 찾을 수 있어요.',
+      '아빠: 그렇지.',
+      '이런 종류의 서비스가 ‘공유 경제’의 일부란다.',
+      '사람들은 적은 비용이나 무료로 자신의 물건을 다른 사람들과 공유할 수 있고 그들에게 서비스를 제공할 수 있어.',
+      '아들: 하지만 이런 서비스들은 몇 가지 약점들을 가지고 있긴 해요.',
+      '몇몇 사람들이 서비스에 대해 부정적인 후기들을 남겼잖아요.',
+      '아빠: 글쎄, 나는 더 많은 사람들이 그 서비스들을 사용할수록, 그것들이 더 개선될 것이라고 생각해.',
+    ],
+    choices: [
+      ['공유 서비스는 약점이 많으므로 이용하지 않는 것이 좋다.', '아빠는 약점을 인정하되 **이용할수록 나아진다**고 본다. 이용하지 말자는 것은 **반대**다.'],
+      ['물건은 빌리는 것보다 직접 사는 것이 더 안전하다.', '대화는 **빌리기(공유)** 의 장점을 말한다. 사는 것이 낫다는 주장은 없다.'],
+      ['공유 경제의 서비스는 모두 무료로 제공되어야 한다.', '{at a small fee or for free} — **적은 비용 또는 무료**다. **모두 무료여야** 한다는 말은 없다.'],
+      ['공유 서비스는 더 많은 사람들이 이용할수록 더 좋아질 것이다.', '마지막 말 {the more people use the services, the more they will improve} 가 아빠의 **핵심 주장**이다. **정답**.'],
+      ['부정적인 후기를 남기는 사람들은 서비스를 이해하지 못한다.', '부정적 후기는 서비스의 **약점**을 보여 주는 근거일 뿐, 후기 작성자를 **비판하는 내용은 없다**.'],
+    ],
+    vocab: [
+      'borrow|동|빌리다|—|lend 빌려주다|borrower 빌리는 사람',
+      'take care of|숙|~을 돌보다|look after|neglect 방치하다|—',
+      'kind|명|종류|type, sort|—|kinds of 여러 종류의',
+      'service|명|서비스, 봉사|—|—|serve 제공하다',
+      'sharing economy|명|공유 경제|—|—|share 공유하다',
+      'share A with B|숙|A를 B와 공유하다|—|keep to oneself 독차지하다|sharing 공유',
+      'provide|동|제공하다|give, offer|—|provider 제공자',
+      'fee|명|요금, 수수료|charge, cost|—|—',
+      'for free|숙|무료로|free of charge, at no cost|—|free 무료의',
+      'weakness|명|약점|fault, drawback|strength 강점|weak 약한',
+      'negative|형|부정적인|bad|positive 긍정적인|—',
+      'improve|동|개선되다, 나아지다|get better|get worse 나빠지다|improvement 개선',
+    ],
+    flow: [
+      ['🙌', '만족 — 두 문제가 해결됨', '아들은 앱으로 **텐트를 빌리고** **강아지 돌보미**도 찾을 수 있게 되어 기뻐한다. 1단락의 **두 문제**가 모두 풀린다.'],
+      ['🔄', '개념 정리 — 공유 경제', '아빠가 이런 서비스를 **‘공유 경제’** 라고 부르며, **적은 비용 또는 무료로 물건·서비스를 나누는 것**이라고 정의한다.'],
+      ['⚖️', '반론 — 약점도 있다', '아들이 {But ~ do have some weaknesses} 로 **약점**을 강조한다. 근거는 앞에서 본 **부정적 후기들**이다.'],
+      ['📈', '결론 — 쓸수록 나아진다', '아빠는 {the more ~, the more ~} 로 **이용자가 많아질수록 서비스가 개선된다**는 **낙관적 결론**을 내린다.'],
+    ],
+    cards: [
+      {
+        covers: [1, 2],
+        en: 'Son: [r:What great apps]! | We can [g:borrow] a tent [g:and find] someone [h:to take care of our dog].',
+        note: '**해석 도움** — {What + (a/an) + 형용사 + 명사!} 는 "**정말 ~하구나!**"라는 **감탄문**이다. {apps} 가 복수라서 {a} 가 없다. {someone to take care of our dog} 는 "강아지를 **돌봐 줄** 누군가".',
+        points: [
+          ['grammar', '**What 감탄문** — {What great apps (they are)!} 뒤의 **주어 + 동사**가 생략되었다. 단수면 {What a great app!}'],
+          ['grammar', '**-one + to부정사** — {someone to take care of ~}. to부정사가 {someone} 을 **뒤에서 꾸민다**(형용사적 용법).'],
+        ],
+      },
+      {
+        covers: [3, 4],
+        en: 'Dad: [r:That’s right]. | These kinds of services [g:are part of] [h:the “sharing economy.”]',
+        note: '**해석 도움** — {These kinds of services} 는 "**이런 종류의** 서비스들". 주어가 복수이므로 동사도 **are** 다. **sharing economy** 는 물건·서비스를 **나누어 쓰는 경제 방식**이다.',
+        points: [
+          ['grammar', '**these kinds of + 복수명사** — {These kinds of services are ~}. 단수는 {this kind of service is ~}. 지시어·명사·동사의 **수를 일치**시킨다.'],
+          ['vocab', '**sharing economy** — **공유 경제**. 앞에서 본 **Ask Your Neighbors**(물건 공유)와 **Pet Sitter Finder**(서비스 공유)가 그 예다.'],
+        ],
+      },
+      {
+        covers: [5],
+        en: 'People can [g:share] their items [g:with others] | [r:and provide] services to them | [h:at a small fee or for free].',
+        ko: '사람들은 자신의 물건을 다른 사람들과 공유할 수 있고 | 그들에게 서비스를 제공할 수 있어 | 적은 비용이나 무료로',
+        note: '**해석 도움** — 조동사 {can} 뒤에 동사원형 {share} 와 {provide} 가 {and} 로 병렬된다. {them} 은 {others}(다른 사람들)다.',
+        points: [
+          ['grammar', '**share A with B** — "A를 B와 **공유하다**". {share their items with others}.'],
+          ['grammar', '**provide A to B = provide B with A** — {provide services to them} = {provide them with services}.'],
+          ['vocab', '**at a small fee / for free** — "**적은 요금으로 / 무료로**". 요금을 나타낼 때 전치사 **at** 을 쓴다.'],
+        ],
+      },
+      {
+        covers: [6, 7],
+        en: 'Son: [r:But] these services [g:do have] some weaknesses. | Some people [h:left negative reviews] about the services.',
+        note: '**해석 도움** — {do have} 의 {do} 는 동사를 **강조**하는 조동사로 "**정말(분명히) ~을 가지고 있다**". {left} 는 {leave}(남기다)의 과거형이다.',
+        points: [
+          ['grammar', '**강조의 do** — {do + 동사원형} "**정말 ~하다**". 주어·시제에 따라 {does / did} 로 바뀐다. {do has} ✗.'],
+          ['vocab', '**leave a review** — "후기를 **남기다**". {leave - left - left}. 여기서 {left} 는 "왼쪽"이 아니다.'],
+          ['reading', '**부정적 후기의 근거** — 앞 단락의 **Cassandra**(망가진 헬멧)와 **George**(개인 정보 걱정)가 이 **약점**의 예다.'],
+        ],
+      },
+      {
+        covers: [8],
+        en: 'Dad: Well, I think | [g:the more] people use the services, | [g:the more] they will improve.',
+        ko: '아빠: 글쎄, 나는 생각해 | 더 많은 사람들이 그 서비스들을 사용할수록, | 그것들이 더 개선될 것이라고',
+        note: '**해석 도움** — {the + 비교급 ~, the + 비교급 ~} 은 "**~할수록 더 ~하다**". 뒤의 {the more} 는 부사로 "**더 많이**" 개선된다는 뜻이다. {they} 는 **the services** 다.',
+        points: [
+          ['grammar', '**the + 비교급, the + 비교급** — 2단락 {The fewer products we buy, the more resources we save} 와 **같은 구문**이다. 이 과의 **핵심 문법**.'],
+          ['grammar', '**think (that) + 절** — {I think (that) the more ~}. 접속사 {that} 이 **생략**되었다.'],
+          ['reading', '**대화의 결론** — 약점을 인정하면서도 **이용자가 늘수록 개선된다**는 **낙관적 전망**이 아빠의 요지다.'],
+        ],
+      },
+    ],
+    prompt: `Photorealistic outdoor photograph, wide banner composition. A peaceful lakeside campsite in the morning: a small green dome tent pitched on grass near calm water, a golden retriever lying relaxed in front of the tent, two folding camping chairs and a small table beside it, forested hills across the lake. Calm, satisfied, happy mood. ${LIGHT}, fresh greens and soft lake blue. ${NO}, campfire smoke, bicycle helmet --ar 16:5 --v 8.1`,
+  },
+];
+
+console.log('✍️  L6 저작');
+for (const c of chapters) writeChapter('L6', SOURCE, c);
