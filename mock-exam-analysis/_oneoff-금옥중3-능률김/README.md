@@ -119,3 +119,20 @@ cd $D && python _memaudit-extract.py && node _memaudit.mjs && node _audit.mjs
 가로 2000px 축소본을 `dist/{L}/assets/illust-{N}.png` 로 넣고 3·4단계(pdf·combine)를 다시 돌린다.
 축소 스크립트는 `_oneoff-목일중3-동아이/README.md` 의 것을 `L5/L6/L7` 로 바꿔 쓰면 된다.
 assets 는 `.gitignore` 대상이다.
+
+## 원본 PDF 재대조 (2026-09-28)
+
+`_TEXTBOOK.js` 와 `_SOURCE` 는 같은 전사에서 나와 서로 대조해도 전사 누락을 못 잡는다.
+그래서 PDF 추출 텍스트를 **줄바꿈 그대로 다시 옮긴 `_PDF-RAW.txt`**(소제목·작성자·캡션은 `#H` 표시)를
+기준으로 `_xcheck.py` 가 글자 단위로 대조한다.
+
+- 원본 ↔ 정본 ↔ JSON passage ↔ 분석 카드 영어: 12챕터 전부 완전 일치(100문장 6,657자)
+- 합본 PDF(전문+본문 ≥2회)·암기장 PDF(정답 ≥1회)에 전 문장 수록, 암기장 한글 제시문 전수 수록
+- 제외된 비문장 요소 23개(소제목·인물·후기 작성자/날짜·사진 캡션)는 의도된 제외
+
+```bash
+cd _oneoff-금옥중3-능률김 && PYTHONIOENCODING=utf-8 python _xcheck.py   # 오류 0 이어야
+```
+
+> 암기장 한글이 어절 중간(“있/다.”)에서 끊겨 텍스트 대조가 오탐했다 → `workbook.css` 에
+> `.ti-given.ko { word-break: keep-all }` 추가(표시 개선, 내용 누락은 아니었음).
