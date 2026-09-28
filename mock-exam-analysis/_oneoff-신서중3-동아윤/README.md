@@ -86,6 +86,21 @@ cd $N && python _memaudit-extract.py && node _memaudit.mjs && node _audit.mjs
 node _gen-prompts-doc.mjs          # 원고의 삽화 프롬프트 → _ILLUSTRATION_PROMPTS.md
 ```
 
+### 원본 PDF 기준 문자 단위 재검수 — `_rawdiff.mjs` (2026-09-28, 42건 오류 0)
+
+`_TEXTBOOK.js` 도 사람이 문장을 나눠 적은 것이라 전사 판단이 개입한다. 그래서 사용자 PDF 의
+영어 단을 **줄바꿈 그대로, 문장 분할 없이** `_RAW_PDF.txt` 로 다시 옮기고 기계로 대조한다.
+
+- [1] 정본 · [2] 데이터 passage · [3] 분석 카드 → 본문(1~4)마다 **문자 단위 diff** (12본문 × 3층)
+- [4] 합본 본문 전문 페이지 · [5] 암기장 정답면 → **영어 단어 빈도 완전 일치**(한 단어 누락도 검출)
+- 정규화는 두 가지뿐: 연속 공백 1칸, **닫는 따옴표 앞 공백 제거**(PDF 조판의 `car! ”`, `idea! ”`).
+- ⚠️ PDF 텍스트를 파이썬으로 뽑을 때 `PYTHONIOENCODING=utf-8` 필수 — cp949 로 나오면 `’` 가
+  깨져 `don’t` 가 `don`+`t` 로 쪼개져 가짜 누락이 뜬다.
+
+```bash
+node _rawdiff.mjs
+```
+
 `_audit.mjs` 는 독립 전사본 `_TEXTBOOK.js` ↔ 정본 ↔ 데이터 ↔ 합본 PDF ↔ 암기장 PDF 를
 전부 대조한다. 2026-09-28 기준 **통과 27 · 오류 0**(경고 3 = 삽화 placeholder).
 
