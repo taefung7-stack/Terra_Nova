@@ -1,0 +1,395 @@
+/* 신서중3 동아(윤정미) Lesson 7 — Technology in Our Lives · Living with Big Data · 저작 원고
+ * 문법은 _gen-data.mjs 머리말 참고. 정답 위치 1/3/4/2 (사전 분산). */
+
+const NEG = 'people, person, faces, hands, players, crowd, text, letters, numbers, digits, logo, user interface, screen text, watermark, dramatic lighting, sunset, golden hour, night, neon, dark background, heavy shadows';
+
+export const CHAPTERS = [
+  /* ─────────────────────────── Ch1 ─────────────────────────── */
+  {
+    no: 1, type: '제목', answer: 1,
+    summary: '온라인 서점에 들어갔다가 서점이 추천한 책들을 보고 놀란 적이 있나요? 서점이 여러분의 취향을 알 수 있는 건 빅데이터 덕분이에요. 빅데이터는 매우 크고 복잡한 데이터의 집합이에요. 정보 통신 기술이 발달하면서 데이터의 양은 이전보다 훨씬 많아지고 있는데, 우리가 온라인에서 하는 거의 모든 일이 흔적을 남기기 때문이에요. 하지만 데이터를 모으기만 해서는 충분하지 않아요. 빅데이터 전문가들이 다양한 방법으로 분석해 의미 있는 결과를 끌어내야 하고, 그 결과는 의사 결정이나 미래 예측에 쓰일 수 있어요.',
+    main_idea_en: 'Big data is huge, complex data left by our online activities, and it becomes useful only when experts analyze it to make decisions and predict the future.',
+    title_en: 'What Is Big Data and How Is It Used?',
+    illust: `Wide banner photograph of a bright minimalist study desk by a large window: a closed silver laptop, neat
+      stacks of colorful hardcover books with blank spines, a cup of tea, and rising from the laptop a soft
+      translucent stream of tiny glowing dots and thin light lines that flows upward and branches out like a
+      constellation network into the airy room. Natural soft diffused daylight, bright overcast sky, high-key
+      exposure, low contrast, clean white, pale blue and warm pastel palette. Photorealistic editorial technology
+      photography with a subtle light-trail effect, shallow depth of field. --ar 16:5 --v 8.1 --no soccer ball,
+      stadium, city map, thermometer, medicine, pills, ${NEG}`,
+    ko: [
+      '여러분은 온라인 서점을 방문해서 그 서점이 여러분에게 추천한 책들에 놀란 적이 있나요?',
+      '그 책들 중 다수가 여러분에게 흥미로워 보였습니다.',
+      '그러면 그 서점은 여러분이 무엇을 좋아하는지 어떻게 알았을까요?',
+      '이것은 모두 빅데이터 덕분에 가능합니다.',
+      '빅데이터는 매우 크고 복잡한 데이터의 집합입니다.',
+      '정보 통신 기술이 발달함에 따라, 우리가 가진 데이터의 양이 이전보다 훨씬 더 많아지고 있습니다.',
+      '이것은 주로 우리가 온라인에서 하는 거의 모든 것이 흔적을 남기기 때문입니다.',
+      '예를 들어, 여러분이 블로그에 올리는 사진들과 온라인 상점에서의 구매 기록들은 모두 빅데이터의 일부입니다.',
+      '하지만 단순히 데이터를 수집하는 것은 충분하지 않습니다.',
+      '빅데이터는 분석되어야 하는데, 이것은 빅데이터 전문가들에 의해 이루어집니다.',
+      '다양한 방법을 사용하여, 전문가들은 빅데이터를 분석하고 그것으로부터 의미 있는 결과를 끌어냅니다.',
+      '그런 다음 이 결과들은 결정을 내리거나 미래를 예측하는 데 사용될 수 있습니다.',
+    ],
+    choices: [
+      ['What Is Big Data and How Is It Used?', '빅데이터의 **정의**(크고 복잡한 데이터 집합), **생기는 이유**(온라인 흔적), **쓰이는 방식**(분석 → 결정·예측)을 모두 아우른다.'],
+      ['How to Run an Online Bookstore', '온라인 서점은 빅데이터를 소개하려는 **도입 예시**일 뿐이다.'],
+      ['Why We Should Stop Using Blogs', '블로그 사진은 빅데이터의 **예**로 나올 뿐, 그만 쓰라는 주장은 없다.'],
+      ['Collecting Data Is All We Need', '`Simply collecting data, however, is not enough.` — 수집**만으로는 부족하다**는 본문과 정반대다.'],
+      ['The Dangers of Online Shopping', '온라인 구매 기록은 빅데이터의 **예시**다. **위험성**은 다루지 않는다.'],
+    ],
+    vocab: [
+      ['online', '형·부', '온라인의, 온라인으로', '—', 'offline 오프라인의', '—'],
+      ['recommend', '동', '추천하다', 'suggest', '—', 'recommendation 추천'],
+      ['possible', '형', '가능한', 'feasible', 'impossible 불가능한', 'possibility 가능성'],
+      ['data', '명', '데이터, 자료', 'information', '—', 'datum (단수형)'],
+      ['complex', '형', '복잡한', 'complicated', 'simple 단순한', 'complexity 복잡성'],
+      ['communication', '명', '통신, 의사소통', '—', '—', 'communicate 의사소통하다'],
+      ['technology', '명', '기술', '—', '—', 'technological 기술적인'],
+      ['develop', '동', '발달하다, 개발하다', 'grow, advance', '—', 'development 발달'],
+      ['amount', '명', '양', 'quantity', '—', 'the amount of ~의 양'],
+      ['trace', '명', '흔적, 자취', 'mark, track', '—', '—'],
+      ['upload', '동', '업로드하다, 올리다', 'post', 'download 내려받다', '—'],
+      ['purchase', '명·동', '구매(하다)', 'buy', 'sale 판매', 'purchaser 구매자'],
+      ['analyze', '동', '분석하다', 'examine', '—', 'analysis 분석'],
+      ['expert', '명', '전문가', 'specialist', 'beginner 초보자', 'expertise 전문 지식'],
+      ['various', '형', '다양한', 'diverse, different', 'same 같은', 'variety 다양성'],
+      ['meaningful', '형', '의미 있는', 'significant', 'meaningless 무의미한', 'meaning 의미'],
+      ['predict', '동', '예측하다', 'forecast', '—', 'prediction 예측'],
+    ],
+    flow: [
+      ['📚', '경험으로 끌어들이기 — 서점의 추천', '**Have you ever ~?** 로 독자의 경험을 묻는다. 서점이 내 취향을 **어떻게 알았을까?** 라는 질문의 답이 **big data** 다.'],
+      ['🧩', '정의 — 매우 크고 복잡한 데이터 집합', '**Big data is data sets that are very big and complex.** 정의 다음 **As ~** 로 데이터 양이 **급증하는 흐름**을 보여 준다.'],
+      ['👣', '이유 — 온라인의 모든 것은 흔적을 남긴다', '**This is mainly because ~** 로 급증 이유를 댄다. 블로그 사진, 온라인 **구매 기록**이 모두 빅데이터의 일부라는 **예시**가 따른다.'],
+      ['🔍', '핵심 — 수집이 아니라 분석', '**however** 로 방향을 틀어 **모으기만 해서는 부족하다**고 말한다. 전문가의 **분석 → 의미 있는 결과 → 결정·예측**이 빅데이터의 진짜 가치다.'],
+    ],
+    cards: [
+      { c: [1], en: '[[Have you ever visited]] an online bookstore and {{been surprised by}} the books / ((that the store recommended for you))?',
+        ko: '여러분은 온라인 서점을 방문해서 / 책들에 놀란 적이 있는가 / 그 서점이 여러분에게 추천한?',
+        note: '**해석 도움** — `been surprised` 앞에 `have` 가 **생략**되어 있다. `Have you ever visited ~ and (have you ever) been surprised ~?` 의 **병렬**이다.',
+        pts: [
+          ['grammar', '**현재완료(경험) + 병렬** — `have visited` 와 `(have) been surprised` 가 `and` 로 이어진다. 두 번째 `have` 는 반복을 피해 생략.'],
+          ['grammar', '**목적격 관계대명사 that** — `the books that the store recommended` 에서 `that` 은 `recommended` 의 **목적어** 역할. **생략 가능**하다.'],
+          ['vocab', '**be surprised by(at)** — ‘~에 놀라다’. 감정 동사는 사람이 주어일 때 **수동형(-ed)**: `I was surprised.`'],
+        ] },
+      { c: [2, 3, 4], en: 'Many of them [[looked interesting]] to you. / So how did the bookstore know ((what you liked))? / This is all possible {{because of}} big data.',
+        ko: '그 책들 중 다수가 여러분에게 흥미로워 보였다. / 그러면 그 서점은 어떻게 알았을까 / 여러분이 무엇을 좋아하는지? / 이것은 모두 빅데이터 덕분에 가능하다.',
+        note: '**해석 도움** — `what you liked` 는 **간접의문문**(‘여러분이 **무엇을** 좋아하는지’). 관계대명사 what(‘~하는 것’)으로 읽어도 뜻이 통한다.',
+        pts: [
+          ['grammar', '**감각동사 + 형용사** — `looked interesting`. 감각동사(look, sound, smell, taste, feel) 뒤에는 **형용사** 보어. `interestingly` ×.'],
+          ['grammar', '**because of + 명사 / because + 절** — `because of big data` 는 **명사구**라 `of` 가 필요하다.'],
+          ['reading', '**질문 → 답** — `how did the bookstore know ~?` 라는 질문에 `because of big data` 로 답하며 **글의 주제어**를 등장시킨다.'],
+        ] },
+      { c: [5, 6], en: 'Big data is data sets {{that are very big and complex}}. / ((As)) information and communication technology develops, / the amount of data we have [[is getting much greater]] than before.',
+        ko: '빅데이터는 데이터 집합이다 / 매우 크고 복잡한. / 정보 통신 기술이 발달함에 따라, / 우리가 가진 데이터의 양이 / 이전보다 훨씬 더 많아지고 있다.',
+        note: '**해석 도움** — 주어는 `the amount of data we have`. 핵심은 `the amount`(단수)라 동사가 `is getting`. `we have` 는 `data` 를 꾸미는 **관계절(목적격 생략)**.',
+        pts: [
+          ['grammar', '**접속사 as(~함에 따라)** — **변화의 비례**를 나타낸다. 주절에 `getting greater` 같은 **변화 표현**이 오면 ‘~함에 따라’로 읽는다.'],
+          ['grammar', '**비교급 강조 much** — `much greater`. `much, even, still, far, a lot` 은 비교급을 강조하고, `very` 는 **쓸 수 없다**(`very greater` ×).'],
+          ['grammar', '**get + 비교급(점점 ~해지다)** — `is getting greater` 는 현재진행형으로 **변화가 진행 중**임을 보여 준다.'],
+        ] },
+      { c: [7, 8], en: 'This is mainly because [[almost everything that we do online]] leaves a trace. / For example, {{the photos you upload on your blog}} and {{the records of your purchases at online stores}} ((are)) all part of big data.',
+        ko: '이것은 주로 / 우리가 온라인에서 하는 거의 모든 것이 / 흔적을 남기기 때문이다. / 예를 들어, 여러분이 블로그에 올리는 사진들과 / 온라인 상점에서의 구매 기록들은 / 모두 빅데이터의 일부이다.',
+        note: '**해석 도움** — 둘째 문장의 주어는 `the photos ~ and the records ~` 두 덩어리다. 주어가 **길어도** 동사 `are` 를 찾으면 구조가 보인다.',
+        pts: [
+          ['grammar', '**everything + 단수동사** — `everything that we do online leaves ~`. `-thing` 대명사는 **단수** 취급이라 `leaves`.'],
+          ['grammar', '**A and B 주어 + 복수동사** — 두 명사구가 `and` 로 묶여 주어가 **복수** → `are`.'],
+          ['reading', '**This is because ~ = 앞 문장의 이유** — 데이터가 늘어나는 이유 = **모든 온라인 활동이 흔적을 남겨서**. 이어서 `For example` 로 **구체화**.'],
+        ] },
+      { c: [9, 10], en: '[[Simply collecting data]], ((however)), is not enough. / Big data {{has to be analyzed}}, and this [[is done by]] big data experts.',
+        ko: '단순히 데이터를 수집하는 것은, / 하지만, 충분하지 않다. / 빅데이터는 분석되어야 한다, / 그리고 이것은 빅데이터 전문가들에 의해 이루어진다.',
+        note: '**해석 도움** — `however` 가 **문장 중간**에 삽입되었다. 해석할 때는 맨 앞으로 옮겨 ‘**하지만**, 단순히 데이터를 수집하는 것은 …’.',
+        pts: [
+          ['grammar', '**동명사 주어 + 단수동사** — `Simply collecting data is not enough.` `data` 에 끌려 `are` 로 쓰면 **오답**.'],
+          ['grammar', '**조동사 수동태 has to be + p.p.** — ‘~되어야 한다’. 빅데이터는 **분석되는 대상**이므로 수동. `can be used`, `must be done` 도 같은 틀.'],
+          ['reading', '**however = 논점 전환** — 앞까지는 데이터가 **많아진다**, 여기부터는 **분석이 필요하다**. 제목 문제의 **핵심 전환점**이다.'],
+        ] },
+      { c: [11, 12], en: '{{Using various methods}}, experts analyze big data and [[draw meaningful results]] from it. / These results then {{can be used}} ((to make decisions or to predict the future)).',
+        ko: '다양한 방법을 사용하여, / 전문가들은 빅데이터를 분석하고 / 그것으로부터 의미 있는 결과를 끌어낸다. / 그런 다음 이 결과들은 사용될 수 있다 / 결정을 내리거나 미래를 예측하는 데.',
+        note: '**해석 도움** — `Using various methods` 는 **분사구문**. ‘다양한 방법을 **사용하여**’. 주절의 주어 `experts` 가 분사의 의미상 주어다.',
+        pts: [
+          ['grammar', '**분사구문(수단·동시동작)** — `Using ~, experts analyze ~` = `As they use ~` / `By using ~`. 주어가 같아서 접속사·주어를 **생략**하고 -ing 로 시작했다.'],
+          ['grammar', '**to부정사의 목적 + 병렬** — `to make decisions or to predict the future`. 두 to부정사가 `or` 로 **병렬**되어 ‘~하는 데(하기 위해)’.'],
+          ['vocab', '**draw results from** — ‘~에서 결과를 **끌어내다(도출하다)**’. `draw` 는 ‘그리다’ 외에 **끌어내다, 당기다**의 뜻이 있다.'],
+        ] },
+    ],
+  },
+
+  /* ─────────────────────────── Ch2 ─────────────────────────── */
+  {
+    no: 2, type: '요지', answer: 3,
+    summary: '빅데이터는 우리 삶의 거의 모든 부분에 영향을 미치고 있어요. 회사들이 고객의 요구를 더 잘 이해하고 상품을 더 많이 팔도록 돕고, 사람들이 교통 체증을 피하도록 도와요. 그 쓰임은 끝이 없지요. 그 첫 예가 질병 예보예요. 기상 전문가들이 날씨를 예보하듯 이제 보건 전문가들도 질병을 예측할 수 있는데, 빅데이터 덕분이에요. 독감철이 오면 사람들은 독감 약을 더 사고 온라인에서 독감 증상을 더 많이 검색하겠지요. 이런 데이터를 현명하게 분석하면 독감의 확산을 예측할 수 있어요.',
+    main_idea_en: 'Big data influences almost every part of life; for example, analyzing medicine sales and online searches lets experts forecast the spread of the flu.',
+    title_en: 'Forecasting Disease with Big Data',
+    illust: `Wide banner photograph of a bright clean home table by a window on a cool day: a classic glass
+      thermometer, a mug of hot lemon tea with rising steam, a box of plain white tissues, a small unlabeled amber
+      medicine bottle, and a smartphone lying face down; behind them on the pale wall a soft projected pastel weather
+      style map glow of blue and orange blobs without borders or labels, like a forecast of spreading warmth. Natural
+      soft diffused daylight, bright overcast sky, high-key exposure, low contrast, calm white, lemon and sky-blue
+      palette. Photorealistic editorial still life, shallow depth of field. --ar 16:5 --v 8.1 --no soccer ball,
+      stadium, bookstore, laptop, police, city aerial, ${NEG}`,
+    ko: [
+      '빅데이터는 우리 삶의 거의 모든 부분에 영향을 미치고 있습니다.',
+      '그것은 회사들이 고객들의 요구를 더 잘 이해하도록 돕고 그들이 더 많은 상품을 팔도록 돕습니다.',
+      '그것은 사람들이 교통 체증을 피하도록 돕습니다.',
+      '그것의 쓰임은 끝이 없는데, 여기 몇 가지 흥미로운 예가 있습니다.',
+      '여러분은 기상 전문가들이 날씨를 예보하는 것과 마찬가지로 보건 전문가들이 이제 질병을 예보할 수 있다는 것을 알았나요?',
+      '이것은 빅데이터 덕분에 가능합니다.',
+      '예를 들어, 독감철이 오면, 사람들은 독감 약을 더 많이 살 것입니다.',
+      '그들은 또한 온라인에서 독감 증상에 대해 더 많이 검색할 것입니다.',
+      '이런 종류의 데이터가 현명하게 분석된다면, 독감의 확산이 예측될 수 있습니다.',
+    ],
+    choices: [
+      ['Weather experts are better at forecasting than doctors.', '날씨 예보는 질병 예보를 설명하려는 **비유**다. 누가 **더 잘하는지** 비교하지 않는다.'],
+      ['People should not search online for flu symptoms.', '온라인 검색은 오히려 질병 예측에 쓰이는 **유용한 데이터**로 소개된다.'],
+      ['Analyzing big data can help predict the spread of disease.', '`health professionals can now forecast a disease ~ thanks to big data` 와 마지막 문장의 **독감 확산 예측**을 한 줄로 묶은 **요지**다.'],
+      ['Buying more flu medicine stops the flu from spreading.', '약 구매는 **데이터**일 뿐, 확산을 **막는다**는 말은 없다.'],
+      ['Companies use big data only to avoid heavy traffic.', '교통 체증을 피하는 것은 **사람들**을 돕는 예다. 회사는 **고객 이해·판매**에 쓴다. `only` 도 틀렸다.'],
+    ],
+    vocab: [
+      ['influence', '동·명', '영향을 미치다; 영향', 'affect, impact', '—', 'influential 영향력 있는'],
+      ['customer', '명', '고객', 'client, buyer', 'seller 판매자', '—'],
+      ['need', '명', '요구, 필요', 'want, demand', '—', 'needy 가난한'],
+      ['product', '명', '상품, 제품', 'goods, item', '—', 'produce 생산하다'],
+      ['avoid', '동', '피하다', 'escape, stay away from', 'face 마주하다', 'avoidance 회피'],
+      ['heavy traffic', '숙', '교통 체증', 'traffic jam', 'light traffic 원활한 교통', '—'],
+      ['endless', '형', '끝이 없는', 'limitless, infinite', 'limited 제한된', 'end 끝 + -less'],
+      ['professional', '명·형', '전문가; 전문적인', 'expert', 'amateur 아마추어', 'profession 직업'],
+      ['forecast', '동·명', '예보(하다), 예측(하다)', 'predict', '—', 'weather forecast 일기 예보'],
+      ['disease', '명', '질병', 'illness, sickness', 'health 건강', '—'],
+      ['thanks to', '숙', '~ 덕분에', 'because of', '—', '—'],
+      ['flu', '명', '독감 (= influenza)', 'influenza', '—', '—'],
+      ['symptom', '명', '증상', 'sign', '—', '—'],
+      ['wisely', '부', '현명하게', 'sensibly', 'foolishly 어리석게', 'wise 현명한 / wisdom 지혜'],
+      ['spread', '명·동', '확산; 퍼지다 (spread-spread-spread)', 'expansion', '—', '—'],
+    ],
+    flow: [
+      ['🌐', '빅데이터는 삶의 거의 모든 부분에', '**Big data is influencing almost all parts of our lives.** — 이 단락부터 과의 두 번째 질문(**어떻게 영향을 미치는가?**)에 답한다.'],
+      ['🛒', '짧은 예시 두 가지', '**회사**: 고객 요구 이해·판매 증가 / **사람들**: 교통 체증 회피. **Its uses are endless** 로 본격적인 사례 소개를 예고한다.'],
+      ['🌡️', '사례 ① — 질병 예보', '**just as weather experts forecast the weather** — 날씨 예보에 **빗대어** 질병 예보라는 낯선 개념을 쉽게 설명한다.'],
+      ['📈', '원리 — 약 구매 + 검색 데이터 → 확산 예측', '독감철에 **약 구매가 늘고 증상 검색이 늘어난다** → 이 데이터를 **현명하게 분석하면** 독감 확산을 **예측**할 수 있다. **If** 절이 **조건**을 분명히 한다.'],
+    ],
+    cards: [
+      { c: [1, 2, 3], en: 'Big data [[is influencing]] almost all parts of our lives. / It {{helps companies understand}} their customers’ needs better and {{helps them sell}} more products. / It {{helps people avoid}} heavy traffic.',
+        ko: '빅데이터는 우리 삶의 거의 모든 부분에 영향을 미치고 있다. / 그것은 회사들이 고객들의 요구를 더 잘 이해하도록 돕고 / 그들이 더 많은 상품을 팔도록 돕는다. / 그것은 사람들이 교통 체증을 피하도록 돕는다.',
+        note: '**해석 도움** — `help + 목적어 + 동사원형` 이 **세 번** 반복된다. ‘(목적어)가 ~하도록 돕다’의 틀로 일정하게 해석하자.',
+        pts: [
+          ['grammar', '**help + 목적어 + (to) 동사원형** — `helps companies understand`, `helps them sell`, `helps people avoid`. 동사원형 대신 `to understand` 도 가능.'],
+          ['grammar', '**현재진행형(진행 중인 변화)** — `is influencing` 은 영향이 **지금도 계속 커지고 있음**을 보여 준다.'],
+          ['vocab', '**almost all** — ‘거의 모든’. `almost` 는 부사라 명사를 직접 꾸밀 수 없다(`almost parts` ×) → `almost all parts` ○.'],
+        ] },
+      { c: [4], en: 'Its uses are [[endless]], and ((here are)) some interesting examples.',
+        ko: '그것의 쓰임은 끝이 없다, / 그리고 여기 몇 가지 흥미로운 예가 있다.',
+        note: '**해석 도움** — `Its` 는 **소유격**(그것의)이고 `It’s`(it is)와 다르다. `Its uses` = **빅데이터의 쓰임**.',
+        pts: [
+          ['grammar', '**Its vs. It’s** — `its`(그것의, 소유격) / `it’s`(= it is / it has). 철자 시험 단골.'],
+          ['grammar', '**Here + be동사 + 주어(도치)** — 주어가 복수(`some interesting examples`)라 `are`. 5과의 `Here are some examples.` 와 같은 구조.'],
+          ['vocab', '**endless** — ‘끝이 없는’. **명사 + -less** = ‘~이 없는’(`end` → `endless`, `use` → `useless`).'],
+        ] },
+      { c: [5, 6], en: 'Did you know {{that health professionals can now forecast a disease}} / ((just as)) weather experts forecast the weather? / This is possible [[thanks to]] big data.',
+        ko: '여러분은 알았는가 / 보건 전문가들이 이제 질병을 예보할 수 있다는 것을 / 기상 전문가들이 날씨를 예보하는 것과 꼭 마찬가지로? / 이것은 빅데이터 덕분에 가능하다.',
+        note: '**해석 도움** — `just as` 는 ‘**꼭 ~하듯이**’. 질병 예보를 **날씨 예보에 빗대는** 비교다. `as` 뒤에 **절**(주어+동사)이 온다.',
+        pts: [
+          ['grammar', '**접속사 that(명사절, 목적어)** — `know that ~` ‘~라는 것을 알다’. 이 `that` 은 생략할 수 있다.'],
+          ['grammar', '**just as + 절** — ‘꼭 ~하듯이’. `as` 는 전치사로 쓰면 ‘~로서’, 접속사로 쓰면 ‘~하듯이, ~함에 따라, ~ 때문에’. **뒤에 절**이면 접속사다.'],
+          ['vocab', '**thanks to** — ‘~ 덕분에’(긍정적 원인). `because of` 와 비슷하지만 **좋은 결과**에 주로 쓴다.'],
+        ] },
+      { c: [7, 8], en: 'For example, ((when the flu season comes)), people [[will buy]] more flu medicine. / They will also {{search online about}} flu symptoms more.',
+        ko: '예를 들어, 독감철이 오면, / 사람들은 독감 약을 더 많이 살 것이다. / 그들은 또한 온라인에서 독감 증상에 대해 / 더 많이 검색할 것이다.',
+        note: '**해석 도움** — `when the flu season comes` 는 **미래** 상황이지만 **현재형** `comes`. 시간의 부사절에서는 현재가 미래를 대신한다.',
+        pts: [
+          ['grammar', '**시간·조건 부사절의 현재시제** — `when ~ comes`, `if ~ is analyzed`. 주절만 `will buy` 로 미래. `when ~ will come` ×.'],
+          ['grammar', '**much의 비교급 more** — `more flu medicine`(셀 수 없는 명사 앞 ‘더 많은’), `search ~ more`(부사 ‘더 많이’). 같은 `more` 가 **품사**만 다르다.'],
+          ['reading', '**데이터의 두 종류** — ① **약 구매 기록** ② **온라인 검색 기록**. 1단락에서 말한 **‘온라인 흔적’**이 실제 예측의 재료가 된다.'],
+        ] },
+      { c: [9], en: '((If)) this kind of data [[is analyzed]] wisely, / the spread of the flu {{can be predicted}}.',
+        ko: '이런 종류의 데이터가 현명하게 분석된다면, / 독감의 확산이 예측될 수 있다.',
+        note: '**해석 도움** — 두 절 모두 **수동태**다. 데이터는 **분석되고**, 확산은 **예측된다**. 우리말로는 ‘분석하면 … 예측할 수 있다’로 **능동처럼** 옮겨도 자연스럽다.',
+        pts: [
+          ['grammar', '**현재 수동태 / 조동사 수동태** — `is analyzed`(be + p.p.), `can be predicted`(조동사 + be + p.p.). 1단락의 `has to be analyzed`, `can be used` 와 같은 계열.'],
+          ['grammar', '**this kind of + 단수명사** — `this kind of data`. 복수는 `these kinds of ~`.'],
+          ['reading', '**요지 문장** — ‘빅데이터를 분석하면 **질병 확산을 예측**할 수 있다’. 요지 문제의 **정답 근거**다.'],
+        ] },
+    ],
+  },
+
+  /* ─────────────────────────── Ch3 ─────────────────────────── */
+  {
+    no: 3, type: '내용일치', answer: 4,
+    summary: '스포츠 팬인가요? 빅데이터는 선수들의 경기력을 높여 스포츠를 더 흥미진진하게 만들고 있어요. 유명한 예가 독일 축구 국가대표팀이에요. 이 팀은 선수들에 관한 엄청난 양의 데이터를 모으고 분석해서 데이터베이스를 만들었어요. 그 데이터에는 선수 한 명 한 명이 얼마나 많이 뛰었는지, 얼마나 오래 공을 가지고 있었는지 같은 정보가 들어 있었지요. 이 데이터베이스의 도움으로 독일 대표팀은 경기력을 끌어올려 2014년 월드컵에서 우승할 수 있었어요.',
+    main_idea_en: 'By building and analyzing a huge database on its players, Germany’s national soccer team improved its performance and won the 2014 World Cup.',
+    title_en: 'How Big Data Helped Win a World Cup',
+    illust: `Wide banner photograph of an empty modern soccer stadium on a bright day seen from a high angle: a vivid
+      green freshly striped pitch with crisp white lines, a single white soccer ball resting on the center spot, and
+      faint translucent glowing light trails and small dots arcing across the grass like tracked running paths and
+      pass lines, a subtle data overlay effect. Empty stands in soft grey. Natural soft diffused daylight, bright
+      overcast sky, high-key exposure, low contrast, fresh green, white and pale cyan palette. Photorealistic sports
+      editorial photography with a light-trail effect. --ar 16:5 --v 8.1 --no scoreboard, flags, trophy, bookstore,
+      laptop, thermometer, medicine, police, ${NEG}`,
+    ko: [
+      '여러분은 스포츠 팬인가요?',
+      '음, 빅데이터는 선수들의 경기력을 향상시켜, 스포츠를 더 흥미진진하게 만들고 있습니다.',
+      '한 유명한 예는 독일의 국가 대표 축구팀입니다.',
+      '그 팀은 선수들에 관한 엄청난 양의 데이터를 수집하고 분석함으로써 데이터베이스를 구축했습니다.',
+      '예를 들어, 그 데이터는 각 선수가 얼마나 많이 달렸는지와 얼마나 오래 공을 가지고 있었는지에 관한 정보를 포함했습니다.',
+      '이 데이터베이스의 도움으로, 독일의 국가 대표 축구팀은 경기력을 향상시키고 2014년 월드컵에서 우승할 수 있었습니다.',
+    ],
+    choices: [
+      ['빅데이터는 스포츠를 더 지루하게 만들고 있다.', '`making sports more exciting` — **더 흥미진진하게** 만든다.'],
+      ['독일 대표팀은 관중에 관한 데이터를 모았다.', '데이터는 `data on players`, **선수들**에 관한 것이다.'],
+      ['데이터에는 선수들의 식단 정보가 포함되었다.', '예로 든 정보는 **달린 거리**와 **공을 가진 시간**이다. **식단**은 언급되지 않는다.'],
+      ['독일 대표팀은 데이터베이스의 도움으로 2014년 월드컵에서 우승했다.', '마지막 문장 `With the help of this database, ~ win the 2014 World Cup` 과 일치한다.'],
+      ['독일 대표팀은 데이터베이스 없이 경기력을 높였다.', '경기력 향상은 바로 `With the help of this database`, **데이터베이스의 도움**이었다.'],
+    ],
+    vocab: [
+      ['fan', '명', '팬, 애호가', 'supporter', '—', '—'],
+      ['improve', '동', '향상시키다', 'enhance, better', 'worsen 악화시키다', 'improvement 향상'],
+      ['performance', '명', '경기력, 성과, 공연', 'play, achievement', '—', 'perform 수행하다'],
+      ['exciting', '형', '흥미진진한, 신나는', 'thrilling', 'boring 지루한', 'excite 흥분시키다 / excited 흥분한'],
+      ['famous', '형', '유명한', 'well-known', 'unknown 알려지지 않은', 'fame 명성'],
+      ['national', '형', '국가의, 국립의', '—', 'local 지역의', 'nation 국가'],
+      ['database', '명', '데이터베이스', '—', '—', '—'],
+      ['collect', '동', '모으다, 수집하다', 'gather', 'scatter 흩뜨리다', 'collection 수집'],
+      ['a huge amount of', '숙', '엄청난 양의', 'a large quantity of', 'a small amount of 소량의', 'huge 거대한'],
+      ['include', '동', '포함하다', 'contain', 'exclude 제외하다', 'including ~을 포함하여'],
+      ['information', '명', '정보 (셀 수 없음)', 'data', '—', 'inform 알리다'],
+      ['with the help of', '숙', '~의 도움으로', 'thanks to', '—', '—'],
+    ],
+    flow: [
+      ['⚽', '질문으로 여는 두 번째 사례', '**Are you a sports fan?** — 독자에게 말을 걸며 **사례 ②** 로 넘어간다.'],
+      ['📊', '빅데이터가 스포츠를 바꾼다', '**improving the performance of players, making sports more exciting** — 선수의 **경기력 향상**, 그 결과 스포츠가 **더 흥미진진**해진다.'],
+      ['🇩🇪', '유명한 예 — 독일 대표팀의 데이터베이스', '선수 데이터를 **모으고 분석해** 데이터베이스를 **구축**했다. **For example** 로 데이터 내용(**달린 거리, 공 소유 시간**)을 구체화한다.'],
+      ['🏆', '결과 — 2014 월드컵 우승', '**With the help of this database** → **경기력 향상 + 월드컵 우승**. 1단락의 ‘분석해야 가치가 생긴다’는 원리가 **실제 성과**로 증명된다.'],
+    ],
+    cards: [
+      { c: [1, 2], en: 'Are you a sports fan? / Well, big data [[is improving]] the performance of players, / {{making sports more exciting}}.',
+        ko: '여러분은 스포츠 팬인가? / 음, 빅데이터는 선수들의 경기력을 향상시키고 있다, / 스포츠를 더 흥미진진하게 만들면서.',
+        note: '**해석 도움** — `making sports more exciting` 은 **분사구문**. 앞 절의 **결과**를 덧붙여 ‘…해서 스포츠를 더 흥미진진하게 **만든다**’로도 읽을 수 있다.',
+        pts: [
+          ['grammar', '**분사구문(동시동작·결과)** — `, making ~` = `, and it makes ~`. 콤마 뒤 -ing 가 앞 내용의 **결과**를 보탠다.'],
+          ['grammar', '**make + 목적어 + 형용사(비교급)** — `make sports more exciting` 5형식. 목적격 보어로 **형용사**가 온다(`excitingly` ×).'],
+          ['vocab', '**exciting vs. excited** — `exciting`(흥미진진하게 **하는**: 사물) / `excited`(흥분**한**: 사람). 6과 `He was so excited` 와 비교.'],
+        ] },
+      { c: [3, 4], en: 'A famous example is [[Germany’s national soccer team]]. / The team built a database {{by collecting and analyzing}} a huge amount of data on players.',
+        ko: '한 유명한 예는 독일의 국가 대표 축구팀이다. / 그 팀은 데이터베이스를 구축했다 / 선수들에 관한 엄청난 양의 데이터를 / 수집하고 분석함으로써.',
+        note: '**해석 도움** — `by collecting and analyzing ~` 은 **방법**. ‘~을 수집하고 분석**함으로써**’. 두 동명사가 목적어 `a huge amount of data` 를 **공유**한다.',
+        pts: [
+          ['grammar', '**by + 동명사(방법)** — ‘~함으로써’. 전치사 `by` 뒤라 `collecting and analyzing` 모두 **-ing**.'],
+          ['grammar', '**build-built-built** — 불규칙 동사. `built a database` = 데이터베이스를 **구축했다**.'],
+          ['vocab', '**data on ~** — ‘~에 관한 데이터’. 여기서 `on` 은 **about** 의 뜻이다(`a book on history`).'],
+        ] },
+      { c: [5], en: 'For example, the data included information about / [[how much each player ran]] and [[how long he had the ball]].',
+        ko: '예를 들어, 그 데이터는 정보를 포함했다 / 각 선수가 얼마나 많이 달렸는지 / 그리고 얼마나 오래 공을 가지고 있었는지에 관한.',
+        note: '**해석 도움** — `about` 의 목적어로 **간접의문문 두 개**가 `and` 로 이어졌다. ‘**얼마나 많이** 달렸는지’ + ‘**얼마나 오래** 공을 가졌는지’.',
+        pts: [
+          ['grammar', '**간접의문문 how much / how long + 주어 + 동사** — `how much did each player run` × → `how much each player ran` ○. 평서문 어순.'],
+          ['grammar', '**each + 단수명사, 대명사 he** — `each player` 는 **단수**라 뒤에서 `he` 로 받는다.'],
+          ['vocab', '**information** — **셀 수 없는** 명사. `informations`, `an information` × → `a piece of information`.'],
+        ] },
+      { c: [6], en: '{{With the help of}} this database, Germany’s national soccer team [[was able to improve]] its performance and ((win)) the 2014 World Cup.',
+        ko: '이 데이터베이스의 도움으로, / 독일의 국가 대표 축구팀은 경기력을 향상시키고 / 2014년 월드컵에서 우승할 수 있었다.',
+        note: '**해석 도움** — `was able to` 뒤 **동사원형 두 개**(`improve ~ and win ~`)가 병렬이다. `win` 앞에 `to` 가 생략된 것이 아니라 `was able to` 를 **공유**한다.',
+        pts: [
+          ['grammar', '**was able to + 동사원형(병렬)** — ‘~할 수 있었다’. 과거의 **실제로 해낸 일**에는 `could` 보다 `was able to` 가 자연스럽다.'],
+          ['grammar', '**its (소유격)** — 주어 `team` 은 **하나의 집단**이라 `its performance`. `their` 도 쓰이지만 교과서는 단수로 받았다.'],
+          ['reading', '**내용일치 정답 근거** — **데이터베이스의 도움**, **2014년**, **월드컵 우승**. 연도·대회명이 오답 선지로 자주 **바뀌어** 나온다.'],
+        ] },
+    ],
+  },
+
+  /* ─────────────────────────── Ch4 ─────────────────────────── */
+  {
+    no: 4, type: '주제', answer: 2,
+    summary: '빅데이터 덕분에 경찰은 이제 범죄가 일어나기 전에 예측할 수 있어요. 범죄의 유형·시간·장소에 관한 빅데이터를 분석해 범죄 다발 지역 지도를 만들 수 있는데, 이 지도는 범죄가 언제 어디서 가장 일어날 것 같은지 알려 줘요. 경찰은 지도가 예측하는 지역과 시간대에 집중해 추가 범죄를 막을 수 있지요. 빅데이터는 이미 세상을 크게 바꾸었어요. 빅데이터 산업이 앞으로 어디로 갈지는 아무도 확실히 모르지만, 전문가들은 빅데이터가 우리 삶에서 점점 더 중요한 역할을 할 것이라는 데 동의해요.',
+    main_idea_en: 'Big data helps police predict and prevent crime, and experts agree it will play an ever more important role in our lives.',
+    title_en: 'Preventing Crime and Shaping the Future with Big Data',
+    illust: `Wide banner aerial photograph of a clean modern city district in bright daylight seen from high above: a grid
+      of streets, rooftops, small parks and a river, with several soft translucent glowing circles in warm coral red
+      and amber floating over a few neighborhoods like hot spots on a heat map, fading gently at their edges. Natural
+      soft diffused daylight, bright overcast sky, high-key exposure, low contrast, pale grey city tones with warm
+      coral highlights. Photorealistic drone photography with a subtle data-overlay effect, sharp detail. --ar 16:5
+      --v 8.1 --no police cars, sirens, handcuffs, soccer, stadium, bookstore, thermometer, medicine, map labels,
+      street names, ${NEG}`,
+    ko: [
+      '빅데이터 덕분에, 경찰은 이제 범죄가 일어나기 전에 그것을 예측할 수 있습니다.',
+      '범죄의 유형, 시간, 장소에 관한 빅데이터의 분석을 통해, 경찰은 범죄 다발 지역의 지도를 만들 수 있습니다.',
+      '이 지도는 범죄가 언제 어디에서 가장 일어날 것 같은지를 알려 줍니다.',
+      '경찰은 이 지도가 예측하는 지역과 시간대에 집중함으로써 추가 범죄를 예방할 수 있습니다.',
+      '빅데이터는 이미 세상을 크게 바꾸었습니다.',
+      '그러면 빅데이터 산업은 여기서부터 어디로 가게 될까요?',
+      '아무도 확실히 알지는 못하지만, 전문가들은 빅데이터가 우리 삶에서 점점 더 중요한 역할을 할 것이라는 데 동의합니다.',
+    ],
+    choices: [
+      ['the high cost of building crime hot spot maps', '지도를 만드는 **비용**은 언급되지 않는다.'],
+      ['big data’s role in preventing crime and in our future', '앞부분의 **범죄 예방**과 뒷부분의 **빅데이터의 커지는 역할**을 함께 담은 주제다.'],
+      ['why police do not trust the results of big data', '경찰은 빅데이터로 **범죄를 예측·예방**한다. 불신은 정반대다.'],
+      ['the long history of the big data industry', '글은 산업의 **과거(역사)**가 아니라 **미래**를 묻는다.'],
+      ['ways to protect your personal data online', '**개인정보 보호**는 이 글의 화제가 아니다.'],
+    ],
+    vocab: [
+      ['police', '명', '경찰 (복수 취급)', '—', '—', 'police officer 경찰관'],
+      ['crime', '명', '범죄', 'offense', '—', 'criminal 범죄자; 범죄의'],
+      ['analysis', '명', '분석 (복수 analyses)', 'examination', '—', 'analyze 분석하다'],
+      ['type', '명', '유형, 종류', 'kind, sort', '—', 'typical 전형적인'],
+      ['hot spot', '명', '다발 지역, 분쟁 지역', '—', '—', '—'],
+      ['identify', '동', '확인하다, 알아보다', 'recognize, find', '—', 'identity 정체성'],
+      ['be likely to', '숙', '~할 것 같다', 'be apt to', 'be unlikely to ~할 것 같지 않다', 'likely 그럴 듯한'],
+      ['prevent', '동', '예방하다, 막다', 'stop', 'allow 허락하다', 'prevention 예방'],
+      ['further', '형', '추가의, 더 이상의', 'additional, more', '—', 'far의 비교급'],
+      ['focus on', '숙', '~에 집중하다', 'concentrate on', '—', 'focus 초점'],
+      ['greatly', '부', '크게, 대단히', 'very much', 'slightly 약간', 'great 큰'],
+      ['industry', '명', '산업', 'business', '—', 'industrial 산업의'],
+      ['for sure', '숙', '확실히', 'certainly', '—', 'sure 확실한'],
+      ['agree', '동', '동의하다', 'accept, consent', 'disagree 동의하지 않다', 'agreement 동의'],
+      ['play a role', '숙', '역할을 하다', 'play a part', '—', 'role 역할'],
+    ],
+    flow: [
+      ['🚓', '사례 ③ — 범죄를 미리 예측한다', '**Thanks to big data, police can now predict crime before it happens.** 마지막 사례가 가장 **놀라운 효과**로 제시된다.'],
+      ['🗺️', '원리 — 범죄 다발 지역 지도', '범죄의 **유형·시간·장소** 데이터를 분석 → **hot spots 지도** → **언제·어디서** 가장 일어날지 알려 준다.'],
+      ['🛡️', '결과 — 집중을 통한 예방', '예측된 **지역과 시간대에 집중**해 **추가 범죄**를 막는다. 1단락의 ‘결정·예측에 쓰인다’가 **예방**으로 이어진다.'],
+      ['🔮', '마무리 — 빅데이터의 미래', '이미 **세상을 크게 바꾸었다**. 앞날은 **아무도 확실히 모르지만** 전문가들은 **점점 더 중요한 역할**에 동의한다 — 글 전체의 **결론**.'],
+    ],
+    cards: [
+      { c: [1], en: '{{Thanks to}} big data, police can now predict crime / ((before it happens)).',
+        ko: '빅데이터 덕분에, / 경찰은 이제 범죄를 예측할 수 있다 / 그것이 일어나기 전에.',
+        note: '**해석 도움** — `before it happens` 는 **미래**의 일이지만 **현재형**. 시간 부사절(before, when, after, until)에서는 현재가 미래를 대신한다.',
+        pts: [
+          ['grammar', '**시간 부사절의 현재시제** — `before it will happen` × → `before it happens` ○.'],
+          ['vocab', '**police** — 항상 **복수** 취급한다(`The police are ~`). 한 명은 `a police officer`.'],
+          ['reading', '**세 번째 사례의 도입** — 질병 → 스포츠 → **범죄**. `Thanks to big data` 가 앞 사례들과 **같은 틀**로 새 사례를 연다.'],
+        ] },
+      { c: [2], en: '{{Through the analysis of big data}} about the type, time and place of crime, / police can make [[a map of crime hot spots]].',
+        ko: '범죄의 유형, 시간, 장소에 관한 / 빅데이터의 분석을 통해, / 경찰은 범죄 다발 지역의 지도를 만들 수 있다.',
+        note: '**해석 도움** — 앞의 전치사구가 매우 길다. **콤마 뒤** `police can make` 에서 **주어·동사**를 찾고, 앞부분은 ‘~을 통해’로 묶어 해석하자.',
+        pts: [
+          ['grammar', '**긴 전치사구 + 주절** — `Through ~ crime,` 까지가 **수단**을 나타내는 부사구. 문장의 뼈대는 `police can make a map`.'],
+          ['grammar', '**A, B and C 나열** — `the type, time and place of crime`. 세 명사가 `of crime` 을 **공유**한다.'],
+          ['vocab', '**analysis ↔ analyze** — 명사 `analysis`(복수 `analyses`), 동사 `analyze`. 품사를 바꿔 쓰는 **어형 변화** 문제로 나온다.'],
+        ] },
+      { c: [3, 4], en: 'This map identifies [[when and where crime is most likely to happen]]. / Police can prevent further crime {{by focusing on}} the areas and the times ((this map predicts)).',
+        ko: '이 지도는 알려 준다 / 범죄가 언제 어디에서 가장 일어날 것 같은지를. / 경찰은 추가 범죄를 예방할 수 있다 / 지역과 시간대에 집중함으로써 / 이 지도가 예측하는.',
+        note: '**해석 도움** — `the areas and the times this map predicts` 는 `(that) this map predicts` 의 **목적격 관계대명사 생략**. ‘이 지도가 **예측하는** 지역과 시간대’.',
+        pts: [
+          ['grammar', '**간접의문문 when and where + 주어 + 동사** — 의문사 두 개를 `and` 로 묶어 `identifies` 의 **목적어**로 썼다.'],
+          ['grammar', '**be likely to + 동사원형** — ‘~할 것 같다’. `most` 가 붙어 ‘**가장** ~할 것 같은’.'],
+          ['grammar', '**by + 동명사 / 목적격 관계대명사 생략** — `by focusing on`(집중함으로써), `the times (that) this map predicts`.'],
+        ] },
+      { c: [5, 6], en: 'Big data [[has already changed]] the world greatly. / So {{where will the big data industry go}} from here?',
+        ko: '빅데이터는 이미 세상을 크게 바꾸었다. / 그러면 빅데이터 산업은 여기서부터 어디로 가게 될까?',
+        note: '**해석 도움** — `from here` 는 ‘여기서부터’, 즉 **지금부터 앞으로**. 장소가 아니라 **시점**을 뜻한다.',
+        pts: [
+          ['grammar', '**현재완료(완료) + already** — `has already changed` ‘이미 바꾸었다’. **과거의 변화가 지금까지 영향**을 준다. `already` 는 have와 p.p. 사이에 둔다.'],
+          ['grammar', '**의문사 + will + 주어 + 동사원형** — 직접의문문이므로 **도치**(`where will ~ go?`). 간접의문문이면 `I wonder where the industry will go.`'],
+          ['reading', '**결론부로의 전환** — 사례 소개를 마치고 **과거(already) → 미래(will)** 로 시선을 옮긴다.'],
+        ] },
+      { c: [7], en: '((Nobody)) knows {{for sure}}, but experts agree / that big data will [[play a more and more important role]] in our lives.',
+        ko: '아무도 확실히 알지는 못한다, / 하지만 전문가들은 동의한다 / 빅데이터가 우리 삶에서 / 점점 더 중요한 역할을 할 것이라는 데.',
+        note: '**해석 도움** — `Nobody knows` 는 부정어 `nobody` 가 **주어**로, ‘아무도 **모른다**’. 뒤에 `not` 을 또 쓰지 않는다.',
+        pts: [
+          ['grammar', '**비교급 and 비교급(점점 더 ~한)** — `more and more important`. 짧은 형용사는 `bigger and bigger`, 긴 형용사는 `more and more + 원급`.'],
+          ['grammar', '**부정 주어 nobody + 단수동사** — `Nobody knows`(○), `Nobody don’t know`(×, 이중부정).'],
+          ['vocab', '**play a role in** — ‘~에서 역할을 하다’. 형용사를 넣어 `play an important role` 로 자주 쓴다. **주제 문제의 핵심 표현**.'],
+        ] },
+    ],
+  },
+];
