@@ -33,9 +33,18 @@
   src: local('Arial');
   font-weight: 100 900;
   font-style: normal;
-  unicode-range: U+0027, U+0028, U+0029, U+002B, U+0040, U+002D, U+00D7, U+25CB, U+003C, U+003E, U+005B, U+005D, U+005F,
+  unicode-range: U+0025, U+0027, U+0028, U+0029, U+002B, U+003D, U+007C, U+2190, U+0040, U+002D, U+00D7, U+25CB, U+003C, U+003E, U+005B, U+005D, U+005F,
                  U+007E, U+00A9, U+00B7, U+2010, U+2011, U+2012, U+2013, U+2014, U+2015,
                  U+2018, U+2019, U+201C, U+201D, U+2192;
+}
+/* Arial 에도 없는 기호(▶ U+25B6 — build.mjs 의 "분석 다음 페이지에서 계속", ✗ U+2717)는 Segoe UI Symbol 로.
+   같은 패밀리명 + 다른 unicode-range 라 위 Arial 오버라이드와 합쳐진다. (2026-09-29 봉영여중3 육안 QC) */
+@font-face {
+  font-family: 'PretendardTN';
+  src: local('Segoe UI Symbol');
+  font-weight: 100 900;
+  font-style: normal;
+  unicode-range: U+25B6, U+2717;
 }
 
 :root {

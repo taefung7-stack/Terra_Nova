@@ -1,9 +1,10 @@
 /* ===================================================================
- * 신서중3 동아(윤정미) — PDF 원문(_RAW_PDF.txt) 기준 문자 단위 전수 대조
+ * 봉영여중3 비상(김진완) — PDF 원문(_RAW_RECHECK.txt) 기준 문자 단위 전수 대조
  * ===================================================================
  * _RAW_PDF.txt 는 사용자 제공 PDF 의 영어 단을 줄바꿈 그대로 옮긴 것(문장 분할 없음).
  * 사람이 문장 경계를 판단한 _TEXTBOOK.js 와 달리 전사 판단이 개입하지 않는다.
  *
+ *   [0] 새 재전사 ↔ 기존 _PDF-RAW.txt  문단 단위 문자 diff(기존 기준 자체 검증)
  *   [1] 원문 ↔ 정본(_SOURCE)          문단 단위 문자 diff
  *   [2] 원문 ↔ 데이터 passage          문단 단위 문자 diff
  *   [3] 원문 ↔ 분석 카드(en_html)      문단 단위 문자 diff
@@ -20,19 +21,26 @@ import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUT = {
-  L5: ['신서중3_동아윤정미_Lesson5_본문분석_합본.pdf', '신서중3_동아윤정미_Lesson5_본문암기.pdf', 1],
-  L6: ['신서중3_동아윤정미_Lesson6_본문분석_합본.pdf', '신서중3_동아윤정미_Lesson6_본문암기.pdf', 2],
-  L7: ['신서중3_동아윤정미_Lesson7_본문분석_합본.pdf', '신서중3_동아윤정미_Lesson7_본문암기.pdf', 1],
+  L5: ['봉영여중3_비상김진완_Lesson5_본문분석_합본.pdf', '봉영여중3_비상김진완_Lesson5_본문암기.pdf', 2],
+  L6: ['봉영여중3_비상김진완_Lesson6_본문분석_합본.pdf', '봉영여중3_비상김진완_Lesson6_본문암기.pdf', 2],
+  L7: ['봉영여중3_비상김진완_Lesson7_본문분석_합본.pdf', '봉영여중3_비상김진완_Lesson7_본문암기.pdf', 2],
 };
 
 /* ── 원문 파싱 ── */
 const raw = {};
 let cur = null;
-for (const line of (await fs.readFile(path.join(__dirname, '_RAW_PDF.txt'), 'utf8')).split(/\r?\n/)) {
+for (const line of (await fs.readFile(path.join(__dirname, '_RAW_RECHECK.txt'), 'utf8')).split(/\r?\n/)) {
   if (line.startsWith('@@ ')) { const [, L, n] = line.split(' '); cur = (raw[L] ??= {})[n] = []; continue; }
   if (!cur || line.startsWith('#') || !line.trim()) continue;
   cur.push(line.trim());
 }
+const old = {};
+{ let c = null;
+  for (const line of (await fs.readFile(path.join(__dirname, '_PDF-RAW.txt'), 'utf8')).split(/\r?\n/)) {
+    if (line.startsWith('@')) { const [L, n] = line.slice(1).trim().split(/\s+/); c = (old[L] ??= {})[n] = []; continue; }
+    if (!c || line.startsWith('#') || !line.trim()) continue;
+    c.push(line.trim());
+  } }
 const norm = (s) => String(s).replace(/\s+/g, ' ').replace(/ ([”’])/g, '$1').trim();
 const plain = (h) => h.replace(/<span class="slash">\s*\/\s*<\/span>/g, ' ').replace(/<[^>]+>/g, '')
   .replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#39;/g, "'");
@@ -81,6 +89,7 @@ for (const L of ['L5', 'L6', 'L7']) {
     allRaw += ' ' + want;
     const data = JSON.parse(await fs.readFile(path.join(__dirname, 'data', L, `${ch.no}.json`), 'utf8'));
     console.log(` 본문 ${ch.no}`);
+    diff('[0] 기존 _PDF-RAW', want, norm((old[L]?.[ch.no] ?? []).join(' ')));
     diff('[1] 정본', want, norm(ch.sentences.join(' ')));
     diff('[2] 데이터 passage', want, norm(data.passage.join(' ')));
     diff('[3] 분석 카드', want, norm(data.sentences.map(s => plain(s.en_html)).join(' ')));

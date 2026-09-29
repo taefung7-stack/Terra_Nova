@@ -128,3 +128,30 @@ node _gen-prompts-doc.mjs
 `_ILLUSTRATION_PROMPTS.md` 에 15장. **아직 생성 전**이라 합본에는 placeholder 가 들어가 있다.
 원본을 `dist/{L}/{N}.png` 로 받은 뒤 가로 2000px 축소본을 `dist/{L}/assets/illust-{N}.png` 로 넣고
 pdf·combine 단계를 다시 돌린다. 축소 스크립트는 `_oneoff-목일중3-동아이/README.md` 의 것을 쓰면 된다.
+
+## 원본 대조 재검수 (2026-09-29) — 텍스트 오류 0 · 글리프 결함 수정
+
+**1) 원문 대조 — 66건 오류 0** (`node _rawdiff.mjs`)
+
+기존 `_PDF-RAW.txt` 는 정본과 같은 시기에 만든 것이라, 사용자 PDF 에서 영어 단을
+**줄바꿈 그대로 새로** 옮긴 `_RAW_RECHECK.txt` 를 독립 기준으로 두었다.
+
+- [0] 새 재전사 ↔ 기존 `_PDF-RAW.txt` · [1] 정본 · [2] 데이터 passage · [3] 분석 카드
+  → 15본문 × 4층 **문자 단위 diff** 전부 일치
+- [4] 합본 본문 전문 · [5] 암기장 정답면 → **영어 단어 빈도 완전 일치** (L5 473 · L6 439 · L7 502)
+- 기존 `verify` / `_xcheck.py`(117문장 7,745자) / `_memaudit` / `_audit` 도 전부 통과
+
+> ⚠️ `_rawdiff` 의 암기장 문항 번호 제거는 **번호 뒤가 대문자·따옴표일 때만**.
+> 줄바꿈으로 `20 percent` 가 줄 머리에 오면 `20` 을 문항 번호로 오인해 가짜 누락이 뜬다(실제 발생).
+
+**2) 글리프 결함 — 텍스트 검사로는 못 잡는 '보이는 누락'**
+
+PDF 텍스트 레이어에는 있는데 **화면·인쇄에서 빈칸**으로 찍히던 기호:
+`+`(149) `×` `○` `=` `%` `|` `←` `▶`. 예: `when it comes to + (동)명사` → `when it comes to   (동)명사`,
+`20% 할인` → `20 할인`, `▶ 분석 다음 페이지에서 계속` 의 화살표 누락.
+
+- `styles/analysis.css`·`workbook.css` 의 PretendardTN `unicode-range` 에
+  `U+0025 U+002B U+003D U+007C U+00D7 U+2190 U+25CB` 추가(Arial 대체)
+- Arial 에도 없는 `▶`(U+25B6, 잠긴 `build.mjs` 가 넣는 문자)·`✗` 는 같은 패밀리명의
+  두 번째 `@font-face`(Segoe UI Symbol)로 대체 — 빌더는 건드리지 않았다
+- 3과 전부 재빌드, overflow 0, 기호 8종 PNG 렌더로 육안 확인
