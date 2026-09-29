@@ -120,12 +120,12 @@ node _gen-prompts-doc.mjs
 - `_xcheck.py`: 원본 RAW ↔ 정본 ↔ JSON passage ↔ 분석 카드 15챕터 완전 일치(7,745자),
   합본 PDF 전 문장 ≥2회·암기장 ≥1회 수록, 암기장 한글 제시문 전수 수록 — 오류 0
 - `_memaudit.mjs`: 3과 본문암기 문장 누락 0
-- `_audit.mjs`: 정답 분포 과마다 ①~⑤ 각 1 · 경고는 삽화 placeholder(과별 5건)뿐
+- `_audit.mjs`: 정답 분포 과마다 ①~⑤ 각 1 · 삽화 반영 후 **통과 27 · 경고 0 · 오류 0**
 - 육안 QC: 따옴표·말줄임표(`man... .”`)·$ 기호 정상 렌더 확인
 
 ## 삽화
 
-`_ILLUSTRATION_PROMPTS.md` 에 15장. **아직 생성 전**이라 합본에는 placeholder 가 들어가 있다.
+`_ILLUSTRATION_PROMPTS.md` 에 15장.
 원본을 `dist/{L}/{N}.png` 로 받은 뒤 가로 2000px 축소본을 `dist/{L}/assets/illust-{N}.png` 로 넣고
 pdf·combine 단계를 다시 돌린다. 축소 스크립트는 `_oneoff-목일중3-동아이/README.md` 의 것을 쓰면 된다.
 
@@ -155,3 +155,8 @@ PDF 텍스트 레이어에는 있는데 **화면·인쇄에서 빈칸**으로 �
 - Arial 에도 없는 `▶`(U+25B6, 잠긴 `build.mjs` 가 넣는 문자)·`✗` 는 같은 패밀리명의
   두 번째 `@font-face`(Segoe UI Symbol)로 대체 — 빌더는 건드리지 않았다
 - 3과 전부 재빌드, overflow 0, 기호 8종 PNG 렌더로 육안 확인
+
+**2026-09-29 반영 완료** — 15장(3952×1232 원본 `dist/{L}/{N}.png`)을 2000px 로 축소해
+`assets/illust-{N}.png` 에 넣고 L5·L6·L7 재빌드. 챕터 대응은 콘택트시트로 육안 확인.
+overflow 15챕터 0, `verify` 오류 0, `_xcheck` 117문장 오류 0, `_audit` 경고 0(placeholder 해소).
+합본 PDF 가 과마다 ~16–17MB. ⚠️ `_audit.mjs` 전에 `_memaudit-extract.py` 로 덤프를 먼저 갱신할 것.
