@@ -114,10 +114,27 @@ cd $D && python _memaudit-extract.py && node _memaudit.mjs && node _audit.mjs
 
 ## 삽화
 
-`_ILLUSTRATION_PROMPTS.md` 에 12장. **아직 생성 전**이라 합본에는 placeholder 가 들어가 있다
-(`_audit.mjs` 경고 3건 = 과별 placeholder 4건). 원본을 `dist/{L}/{N}.png` 로 받은 뒤
-가로 2000px 축소본을 `dist/{L}/assets/illust-{N}.png` 로 넣고 3·4단계(pdf·combine)를 다시 돌린다.
-축소 스크립트는 `_oneoff-목일중3-동아이/README.md` 의 것을 `L5/L6/L7` 로 바꿔 쓰면 된다.
+`_ILLUSTRATION_PROMPTS.md` 에 12장. **2026-09-29 반영 완료** — 원본 `dist/{L}/{N}.png`
+(3952×1232, 장당 5~9MB)를 가로 2000px 로 축소해 `dist/{L}/assets/illust-{N}.png` 에 넣고
+재빌드했다. 합본 placeholder 0 · 이미지 과별 4장 · `_audit.mjs` 경고 0.
+다른 PC 에서 재빌드하려면 원본을 다시 받아 아래 축소 후 빌드할 것
+(이미지가 없어도 빌드는 성공하고 placeholder 가 들어간다 — 반드시 QC).
+
+```bash
+python -c "
+from PIL import Image; import os
+for L in ['L5','L6','L7']:
+    os.makedirs(f'dist/{L}/assets', exist_ok=True)
+    for n in range(1,5):
+        im = Image.open(f'dist/{L}/{n}.png')
+        w = 2000; h = int(round(w*im.size[1]/im.size[0]))
+        im.resize((w,h), Image.LANCZOS).save(f'dist/{L}/assets/illust-{n}.png', optimize=True)
+"
+```
+
+> `_audit.mjs` 는 `dist/_audit/*.txt` 덤프를 읽는다 — 재빌드 후 `python _memaudit-extract.py`
+> 를 먼저 돌리지 않으면 옛 PDF 기준 결과(placeholder 경고)가 그대로 나온다.
+
 assets 는 `.gitignore` 대상이다.
 
 ## 원본 PDF 재대조 (2026-09-28)
