@@ -1,0 +1,223 @@
+/* ===================================================================
+ * 봉영여중3 비상(김진완) — 교과서 원문 전사본 (검수 기준)
+ * ===================================================================
+ * ⚠️ _gen-textbook.mjs 가 _PDF-RAW.txt 에서 **기계 분할**로 생성한다. 직접 고치지 말 것.
+ * 정본 _SOURCE-L{5,6,7}.js(손 분할)와 독립이다 → _audit.mjs [A] 가 서로 대조한다.
+ * =================================================================== */
+
+export const TEXTBOOK = {
+  "L5": {
+    "title": "Lesson 5 · Critical Minds — Can You Spot Fake News?",
+    "headings": [
+      "AWFUL DISASTER",
+      "SLAV SHOOTS A FRIEND IN ARGUMENT",
+      "How to spot fake news!"
+    ],
+    "paragraphs": [
+      {
+        "no": 1,
+        "sentences": [
+          "Every day we watch, hear, or read interesting news.",
+          "However, have you ever seriously considered whether an article is really true?",
+          "Everyone likes an interesting news story but what if it is completely made up?",
+          "Fake news can be very harmful in that it can make people less informed or even misled.",
+          "Nevertheless, there have been various fake news reports throughout history.",
+          "Why have some people written such false information?",
+          "Let’s look into some articles thinking about the hidden motives behind them."
+        ]
+      },
+      {
+        "no": 2,
+        "sentences": [
+          "Last night, an angry group of rhinoceroses broke down the walls of the cage at the zoo and escaped.",
+          "They also broke down the walls of the other wild animals’ cages.",
+          "These animals ran down the streets and injured hundreds of people.",
+          "Twelve of the animals are still on the loose.",
+          "Citizens should stay indoors until further notice.",
+          "Not a single act or incident described above has taken place.",
+          "At that time, those who read the article carefully laughed out loud.",
+          "Those who didn’t read it to the end got really worried.",
+          "Not knowing the news was false, many people panicked.",
+          "Some tried to escape the city while others went into the parks with guns to hunt the animals.",
+          "So why did The Herald make up such news?",
+          "Later, they confessed that they made it up so that they could draw the readers’ attention to the unsafe conditions at the zoo."
+        ]
+      },
+      {
+        "no": 3,
+        "sentences": [
+          "Mejk Swenekafew, a Slav worker at the Columbia Coal Mine, was shot and seriously wounded by John Pecitello near the mining camp Thursday evening.",
+          "The two men had an argument during a meeting.",
+          "The argument led to a fight, and Pecitello shot Swenekafew twice, in the chest and leg.",
+          "He is now at the hospital in critical condition.",
+          "Pecitello ran away after the shooting.",
+          "The police are searching for him now and are warning citizens that he is extremely dangerous."
+        ]
+      },
+      {
+        "no": 4,
+        "sentences": [
+          "Is there anything strange about the article?",
+          "Read the Slav’s name backwards; it spells “we-fake-news.”",
+          "Who wrote this and why?",
+          "The Daily Telegram published this fake article so that they could prove if The Daily News, their competitor, was stealing their articles.",
+          "The Daily News published the same article about “Swenekafew” the next day and thus got caught stealing.",
+          "The people at The Daily News had to admit their act and were harshly criticized by the public."
+        ]
+      },
+      {
+        "no": 5,
+        "sentences": [
+          "The two articles were special cases, but there are many “fake” news articles published every day.",
+          "As readers, we need to read critically and judge whether the news is real or fake.",
+          "CONSIDER the Source",
+          "Is it from a reliable source?",
+          "Can we trust the writer?",
+          "CHECK the Date",
+          "Is it a new or an old story?",
+          "Is it related to current events?",
+          "READ BEYOND the Headlines",
+          "Does the headline match the content?",
+          "FIND Supporting Sources",
+          "Do other related stories provide similar content?"
+        ]
+      }
+    ]
+  },
+  "L6": {
+    "title": "Lesson 6 · Words of Wisdom — A Father’s Wisdom",
+    "headings": [],
+    "paragraphs": [
+      {
+        "no": 1,
+        "sentences": [
+          "A rich and wise father had two sons, Puru and Puneet.",
+          "Before he passed away, he called his two sons to give them some last words of advice.",
+          "“Listen carefully, my dear sons.",
+          "Live by these words throughout your life, and you will be happy,” he said.",
+          "“Build a house in every city.",
+          "Sleep comfortably.",
+          "Enjoy your food.",
+          "Lastly, spend money like a rich man... .”",
+          "Before he could explain himself, he passed away."
+        ]
+      },
+      {
+        "no": 2,
+        "sentences": [
+          "After his death, the two sons took their share of the father’s wealth and settled in different cities.",
+          "Five years passed.",
+          "Puru, who had been following his father’s words carefully, had no money left.",
+          "But his brother was richer than ever.",
+          "Puru was puzzled about where he had gone wrong, so he visited Puneet to find out."
+        ]
+      },
+      {
+        "no": 3,
+        "sentences": [
+          "Puneet welcomed Puru with open arms.",
+          "That night, when the brothers sat down to chat after dinner, Puru asked the question that had been on his mind for days.",
+          "“It was our father’s advice that I followed, but I am not happy.",
+          "I built a house in every city.",
+          "But because I could not always stay there, I hired people and had the house looked after.",
+          "Father said we should sleep comfortably and enjoy our food, so I had my bed designed by experts and my meals prepared by a great chef.",
+          "He told us to spend like a rich man, so I bought what I wanted without worrying about money.",
+          "But look at me now!",
+          "I am empty-handed.",
+          "Did you not follow our father’s wisdom?",
+          "Tell me, brother, how did you get so rich?”"
+        ]
+      },
+      {
+        "no": 4,
+        "sentences": [
+          "Puneet smiled and said, “My dear brother, I also followed our father’s wisdom.",
+          "But I understood it a bit differently.",
+          "When he said ‘build a house in every city,’ I took it as having a place to stay all around the world.",
+          "So I made friends in every city and I stayed at their houses when I visited those cities.",
+          "Also, I slept comfortably each night because I would be tired after a hard day’s work, and it did not matter if I was sleeping on a bed or on the hard floor.",
+          "I ate only when I was hungry, so even a simple meal tasted great.”"
+        ]
+      },
+      {
+        "no": 5,
+        "sentences": [
+          "“Spend money like a rich man?” continued Puneet.",
+          "“A rich man knows how to make money grow.",
+          "So, I tried to spend money on something that would bring me back more money rather than on luxurious things.",
+          "For me, it was this wisdom that our father tried to explain.”",
+          "Now Puru realized how foolish he had been.",
+          "With this wisdom in mind, Puru started a new life."
+        ]
+      }
+    ]
+  },
+  "L7": {
+    "title": "Lesson 7 · Spend Wisely — Why We Buy What We Buy",
+    "headings": [],
+    "paragraphs": [
+      {
+        "no": 1,
+        "sentences": [
+          "Have you ever wondered why you’ve bought things that you don’t even want or need?",
+          "Let’s consider what affects us when it comes to buying things."
+        ]
+      },
+      {
+        "no": 2,
+        "sentences": [
+          "Why do I want to buy what my friends bought?",
+          "Jeff goes to the shopping center and sees a pair of soccer shoes on display.",
+          "He recognizes the shoes at a glance because more than half of the boys on his soccer team wear them.",
+          "Although he already has many pairs of soccer shoes, he ends up buying another new pair.",
+          "We can use the “bandwagon effect” to explain Jeff’s behavior.",
+          "A bandwagon is a wagon in a parade that encourages people to jump aboard and enjoy the music.",
+          "As more and more people get on the bandwagon, others are more likely to get on or follow it.",
+          "In this way, people tend to buy something just because other people have bought it."
+        ]
+      },
+      {
+        "no": 3,
+        "sentences": [
+          "Why do I buy a pair of pants and a bag after I have bought a new coat?",
+          "Lisa buys a coat that she really loves.",
+          "Immediately, she realizes that her pants do not match her new coat.",
+          "So, she buys new pants that go perfectly with her new coat.",
+          "But she sees that none of her bags match her new clothes.",
+          "So, she buys a new bag.",
+          "Most of her money is spent on buying the new items to complete her new look.",
+          "What made Lisa search for new items immediately after buying a new coat?",
+          "The “Diderot effect” may explain it.",
+          "Denis Diderot, a French writer, received a new gown as a gift.",
+          "Soon after receiving the gift, he noticed that all of his furniture did not go well with his new gown.",
+          "So, he ended up replacing most of it.",
+          "The Diderot effect, therefore, is the concept that purchasing a new item often leads to more unplanned purchases."
+        ]
+      },
+      {
+        "no": 4,
+        "sentences": [
+          "Why do I buy things just because they are on sale?",
+          "Nathan goes window shopping and sees a pair of headphones.",
+          "He checks the price and finds out that they are $200.",
+          "He thinks that the headphones are too expensive.",
+          "The sales person approaches him and says, “You can get a 20 percent discount on those headphones.”",
+          "Even though the discounted price is still not very low, Nathan decides to buy the headphones.",
+          "The situation described above is an example of the “anchoring effect.”",
+          "The price mentioned first affects our opinion of prices mentioned afterwards.",
+          "For example, if we start with $200, then $160 will seem cheap in comparison.",
+          "Furthermore, as the difference of the two prices becomes bigger, the effect will be more powerful.",
+          "As such, the price mentioned first acts as an “anchor” that fixes our thoughts about the price of an item."
+        ]
+      },
+      {
+        "no": 5,
+        "sentences": [
+          "Just like Jeff and his friends, we tend to buy things without seriously considering why we are buying them.",
+          "As these effects have shown, many things influence our purchases.",
+          "The next time you decide to buy something, think for a moment about why you are buying it."
+        ]
+      }
+    ]
+  }
+};
