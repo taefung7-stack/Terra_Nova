@@ -102,7 +102,7 @@ node _rawdiff.mjs
 ```
 
 `_audit.mjs` 는 독립 전사본 `_TEXTBOOK.js` ↔ 정본 ↔ 데이터 ↔ 합본 PDF ↔ 암기장 PDF 를
-전부 대조한다. 2026-09-28 기준 **통과 27 · 오류 0**(경고 3 = 삽화 placeholder).
+전부 대조한다. 2026-09-29 삽화 반영 후 **통과 27 · 경고 0 · 오류 0**.
 
 ## 이번에 고친 함정 2가지
 
@@ -119,3 +119,9 @@ node _rawdiff.mjs
 생성 이미지를 `dist/{L}/assets/illust-{N}.png` 로 **가로 2000px 축소**해 넣고 해당 과를 재빌드
 (방법은 `_oneoff-목일중3-동아이/README.md` 의 축소 스크립트 참고). 이미지가 없어도 빌드는 성공하므로
 반영 후 `_audit.mjs` 의 placeholder 경고가 0 이 되는지 확인할 것.
+
+**2026-09-29 반영 완료** — 12장(3952×1232 원본 `dist/{L}/{N}.png`)을 2000px 로 축소해
+`assets/illust-{N}.png` 에 넣고 L5·L6·L7 재빌드. overflow 0, `_rawdiff` 42건 오류 0,
+`_audit` 경고 0. 합본 PDF 가 과마다 ~13MB 로 커졌다.
+⚠️ `_audit.mjs` 는 `dist/_audit/*.txt` 덤프를 읽으므로 **재빌드 후 `_memaudit-extract.py` 를 먼저**
+돌려야 한다 — 안 그러면 옛 덤프를 읽고 placeholder 경고가 그대로 남는다.
