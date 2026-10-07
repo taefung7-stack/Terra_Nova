@@ -20,6 +20,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { SOURCE as SOURCE_L6 } from './_SOURCE-L6.js';
 import { SOURCE as SOURCE_L7 } from './_SOURCE-L7.js';
 import { SOURCE as SOURCE_L8 } from './_SOURCE-L8.js';
+import { SOURCE as SOURCE_EX } from './_SOURCE-EX.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -51,13 +52,22 @@ const LESSONS = {
     docTitle: '목일중 3학년 · 동아 Lesson 8 본문분석 합본 — Terra Nova',
     out: '목일중3_동아이병민_Lesson8_본문분석_합본.pdf',
   },
+  EX: {
+    source: SOURCE_EX,
+    lessonNo: 0,
+    coverTitle: '목일중 3학년<br>추가지문',
+    titleEn: 'Supplementary Reading',
+    coverSub: '7 Supplementary Reading<br>Lee Suji’s Comedy · 동조 편향과 사회적 비교',
+    docTitle: '목일중 3학년 추가지문 본문분석 — Terra Nova',
+    out: '목일중3_추가지문_7_SupplementaryReading_본문분석.pdf',
+  },
 };
 
 
 const lessonId = (process.argv[2] || 'L6').toUpperCase();
 const LESSON = LESSONS[lessonId];
 if (!LESSON) {
-  console.error(`알 수 없는 과: ${lessonId} (L6 / L7 / L8)`);
+  console.error(`알 수 없는 과: ${lessonId} (L6 / L7 / L8 / EX)`);
   process.exit(2);
 }
 const SOURCE = LESSON.source;

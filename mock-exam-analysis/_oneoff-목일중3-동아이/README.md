@@ -203,3 +203,38 @@ for L,f in [('L6','목일중3_동아이병민_Lesson6_본문분석_합본.pdf'),
 
 > ⚠️ **원본 8MB PNG 를 그대로 넣지 말 것.** 인쇄 폭이 180mm 이므로
 > **가로 2000px 로 축소**하면 ~280dpi 로 육안 차이가 없다.
+
+## 추가지문 EX — 7 Supplementary Reading 본문분석 (2026-10-07)
+
+사용자가 촬영한 프린트 사진 2장(필기 포함)으로 만든 **본문분석 1권**.
+`dist/EX/목일중3_추가지문_7_SupplementaryReading_본문분석.pdf` — 표지 1 + 본문 전문 1 + 분석 9 = **11p**.
+
+| Ch | 지문 | 유형(원본 1번 문제) | 정답 | 문장 |
+|----|------|--------------------|------|------|
+| 1 | Lee Suji’s Comedy (동조 편향 · 사회적 비교 이론) | 문단 삽입 (A)~(D) 4지선다 | ③ (C) | 18 |
+
+- **모의고사 분석지 규칙**: 1번 문제의 주어진 문단(Although these ideas …, 3문장)을 정답 위치 **(C)** 에 복원 →
+  원문 13~15번. (A)~(D) 표시는 뺐다. 보기가 4개라 `verify.mjs` 의 EX 는 `nChoices: 4`.
+- **필기 반영**: 밑줄·V/O/O.C 표시·화살표·괄호·여백 노트 → `[수업 필기]`, 2쪽 단어표 13개의 손글씨 뜻과
+  영영 풀이 빈칸 → `[수업 단어표]`, 2쪽 문제 2~4 → `[프린트 문제 N]`(정답 ②·③·③ 근거 포함).
+  필기 "help 목적어 to V" 는 본문이 동사원형(think)이라 **help + 목적어 + (to) V** 로 바로잡았다.
+- **인쇄본 표기 그대로**: 16번 `carefuliy`(인쇄 오타 — 카드 해석 도움에 바른 철자 carefully 명시).
+  직선따옴표는 곱슬따옴표로, 띄어 쓴 대시(everything – even / behaviors – wasting)는 en dash 로 실었다.
+- `styles/analysis.css` 에 봉영여중3 의 확장 글리프 보정(`% + = | ← × ○`, ▶ ✗)을 이식했다. ★ △ 는 쓰지 않는다(빈칸 렌더).
+
+### 검수
+- 전사 경로 2개: `_PDF-RAW-EX.txt`(인쇄 줄 그대로) → `_gen-textbook-EX.mjs` 기계 분할 vs `_SOURCE-EX.js` 손 분할.
+  `_xcheck-EX.mjs` 문자 단위 대조 18문장 1,773자 오류 0, `--pdf` 로 합본에 전 문장 ≥2회 수록 확인.
+- `verify.mjs EX` 오류 0(경고 2 = 단어표의 parody·consumer 가 본문에 없음 — 의도) · overflow 0.
+- 삽화는 미생성(placeholder) — `_ILLUSTRATION_PROMPTS-EX.md` 프롬프트로 생성 후 반영.
+
+### 빌드
+```bash
+cd mock-exam-analysis
+D=_oneoff-목일중3-동아이
+(cd $D && node _gen-textbook-EX.mjs && node _author-EX.mjs && node verify.mjs EX && node _xcheck-EX.mjs)
+node builder/build.mjs "$D/data/EX" "$D/dist/EX" --styles="$D/styles/analysis.css"
+node builder/check-overflow.mjs "$D/dist/EX/1.html"   # overflow 0
+node builder/pdf.mjs "$D/dist/EX"
+node $D/combine.mjs EX
+```
