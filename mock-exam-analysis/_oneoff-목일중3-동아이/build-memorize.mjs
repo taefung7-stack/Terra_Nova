@@ -51,6 +51,16 @@ const LESSONS = {
     out: '목일중3_동아이병민_Lesson8_본문암기.pdf',
     qSplit: [10, 10, 10],      // 30문장 → 3페이지 균등
   },
+  /* 추가지문 — 사진 프린트(7 Supplementary Reading). 표지·머리말 문구를 과 대신 덮어쓴다. */
+  EX: {
+    titleEn: 'Supplementary Reading',
+    examTag: '목일중 3학년 · 추가지문',
+    coverTitle: '목일중 3학년<br>추가지문',
+    coverSub: '7 Supplementary Reading<br>Lee Suji’s Comedy',
+    docTitle: '목일중 3학년 추가지문 본문암기 — Terra Nova',
+    out: '목일중3_추가지문_7_SupplementaryReading_본문암기.pdf',
+    qSplit: [9, 9],            // 18문장(주어진 문단 3문장 포함) → 2페이지 균등
+  },
 };
 
 
@@ -60,7 +70,7 @@ const esc = (s) => String(s ?? '')
 /* ── 한 과 빌드 ───────────────────────────────────────────────── */
 async function buildOne(lessonId) {
   const LESSON = LESSONS[lessonId];
-  if (!LESSON) { console.error(`알 수 없는 과: ${lessonId} (L6 / L7 / L8)`); process.exit(2); }
+  if (!LESSON) { console.error(`알 수 없는 과: ${lessonId} (L6 / L7 / L8 / EX)`); process.exit(2); }
 
   const { SOURCE } = await import(`./_SOURCE-${lessonId}.js`);
   const DIST = path.join(__dirname, 'dist', lessonId);
@@ -89,7 +99,7 @@ async function buildOne(lessonId) {
 
   /* ── 페이지 조립 헬퍼 ── */
   const pageHead = (subtitle) => `  <header class="page-head">
-    <span class="exam-tag">목일중 3학년 · 동아(이병민)</span>
+    <span class="exam-tag">${LESSON.examTag ?? '목일중 3학년 · 동아(이병민)'}</span>
     <span class="sep">|</span>
     <span class="grade-tag">3학년</span>
     <span class="sep">·</span>
@@ -141,8 +151,8 @@ ${chunk.map(aRow).join('\n')}
   const cover = `<section class="page cover-page">
   <div class="cover-wrap">
     <div class="cover-brand">Terra Nova</div>
-    <div class="cover-title">목일중 3학년<br>동아 영어 3</div>
-    <div class="cover-sub">Lesson ${LESSON.lessonNo} · ${esc(LESSON.titleEn)}</div>
+    <div class="cover-title">${LESSON.coverTitle ?? '목일중 3학년<br>동아 영어 3'}</div>
+    <div class="cover-sub">${LESSON.coverSub ?? `Lesson ${LESSON.lessonNo} · ${esc(LESSON.titleEn)}`}</div>
     <div class="cover-meta">본문 암기 · 원문 ${items.length}문장 전수</div>
   </div>
 </section>`;
@@ -188,7 +198,7 @@ ${chunk.map(aRow).join('\n')}
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<title>목일중 3학년 · 동아 Lesson ${LESSON.lessonNo} 본문암기 — Terra Nova</title>
+<title>${LESSON.docTitle ?? `목일중 3학년 · 동아 Lesson ${LESSON.lessonNo} 본문암기 — Terra Nova`}</title>
 <link rel="stylesheet" href="${cssHref}">
 <style>${extraCss}</style>
 </head>

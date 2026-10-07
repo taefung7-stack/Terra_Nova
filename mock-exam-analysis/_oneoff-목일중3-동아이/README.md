@@ -228,6 +228,11 @@ for L,f in [('L6','목일중3_동아이병민_Lesson6_본문분석_합본.pdf'),
 - `verify.mjs EX` 오류 0(경고 2 = 단어표의 parody·consumer 가 본문에 없음 — 의도) · overflow 0.
 - 삽화는 미생성(placeholder) — `_ILLUSTRATION_PROMPTS-EX.md` 프롬프트로 생성 후 반영.
 
+### 본문암기 (2026-10-07)
+`dist/EX/목일중3_추가지문_7_SupplementaryReading_본문암기.pdf` — 표지 1 + 문제 2(`qSplit [9, 9]`) + 정답 1 = **4p**, 18문항(주어진 문단 3문장 포함).
+`build-memorize.mjs` 의 EX 는 표지·머리말 문구를 `examTag/coverTitle/coverSub/docTitle` 로 덮어쓴다.
+검수: `python _memaudit-extract.py EX && node _memaudit.mjs EX` — 18문장 전수 수록(공백 외 정규화 없이도 18/18 일치).
+
 ### 빌드
 ```bash
 cd mock-exam-analysis
@@ -237,4 +242,6 @@ node builder/build.mjs "$D/data/EX" "$D/dist/EX" --styles="$D/styles/analysis.cs
 node builder/check-overflow.mjs "$D/dist/EX/1.html"   # overflow 0
 node builder/pdf.mjs "$D/dist/EX"
 node $D/combine.mjs EX
+node $D/build-memorize.mjs EX
+(cd $D && python _memaudit-extract.py EX && node _memaudit.mjs EX)
 ```

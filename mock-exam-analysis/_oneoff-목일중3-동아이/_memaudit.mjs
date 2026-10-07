@@ -20,6 +20,7 @@ import { fileURLToPath } from 'node:url';
 import { SOURCE as SOURCE_L6 } from './_SOURCE-L6.js';
 import { SOURCE as SOURCE_L7 } from './_SOURCE-L7.js';
 import { SOURCE as SOURCE_L8 } from './_SOURCE-L8.js';
+import { SOURCE as SOURCE_EX } from './_SOURCE-EX.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -27,6 +28,7 @@ const LESSONS = {
   L6: { source: SOURCE_L6, label: 'Lesson 6 · Make the World Beautiful' },
   L7: { source: SOURCE_L7, label: 'Lesson 7 · Feel the Wonder' },
   L8: { source: SOURCE_L8, label: 'Lesson 8 · Up to You' },
+  EX: { source: SOURCE_EX, label: '추가지문 · 7 Supplementary Reading' },
 };
 
 /* 대조용 정규화.
@@ -45,7 +47,7 @@ function squash(s) {
 const only = (process.argv[2] || '').toUpperCase();
 const targets = only ? [only] : Object.keys(LESSONS);
 if (only && !LESSONS[only]) {
-  console.error(`알 수 없는 과: ${only} (L6 / L7 / L8)`);
+  console.error(`알 수 없는 과: ${only} (L6 / L7 / L8 / EX)`);
   process.exit(2);
 }
 
