@@ -49,10 +49,10 @@ Photorealistic interior photograph, wide banner composition. A bright modern acc
 
 ## 5. 05 빈칸 내용 추론 · Salieri and Original Ideas
 
-`dist/EX/assets/illust-5.png` — 18세기풍 음악실 — 하프시코드와 그랜드피아노, 빈 오선지, 깃펜(작곡가와 독창성)
+`dist/EX/assets/illust-5.png` — 18세기풍 음악실 — 하프 한 대와 그랜드피아노 한 대, 빈 종이, 깃펜(작곡가와 독창성)
 
 ```
-Photorealistic interior photograph, wide banner composition. A bright eighteenth-century style music room: a polished harpsichord beside a grand piano, loose sheets of music with blank staff lines scattered on a small table, a feather quill in an inkpot, tall windows with pale curtains. Elegant, thoughtful classical mood. natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, clean bright palette, ivory, soft gold and pale blue. --no text, letters, words, numbers, signage, logo, brand, watermark, people, person, hands, faces, sunset, golden hour, night, dark moody grading, heavy shadows, musical notation, portraits, stage audience, monkeys, office --ar 16:5 --v 8.1
+Photorealistic interior photograph, wide banner composition. A bright eighteenth-century style music room with only two instruments: one tall golden concert harp with long vertical strings standing on the left, and one single black grand piano with its lid open on the right, plenty of empty floor between them. A few loose sheets of blank paper and a feather quill in an inkpot on a small side table, tall windows with pale curtains. Elegant, thoughtful classical mood. natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, clean bright palette, ivory, soft gold and pale blue. --no text, letters, words, numbers, signage, logo, brand, watermark, people, person, hands, faces, sunset, golden hour, night, dark moody grading, heavy shadows, harpsichord, clavichord, pipe organ, musical notation, portraits, stage audience, monkeys, office --ar 16:5 --v 8.1
 ```
 
 ## 6. 06 요약문 완성 · Capuchins and Unfair Rewards

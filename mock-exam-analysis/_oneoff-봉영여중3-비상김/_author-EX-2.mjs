@@ -123,7 +123,7 @@ export const chapters = [
         ],
       },
     ],
-    prompt: `Photorealistic interior photograph, wide banner composition. A bright eighteenth-century style music room: a polished harpsichord beside a grand piano, loose sheets of music with blank staff lines scattered on a small table, a feather quill in an inkpot, tall windows with pale curtains. Elegant, thoughtful classical mood. ${LIGHT}, ivory, soft gold and pale blue. ${NO}, musical notation, portraits, stage audience, monkeys, office --ar 16:5 --v 8.1`,
+    prompt: `Photorealistic interior photograph, wide banner composition. A bright eighteenth-century style music room with only two instruments: one tall golden concert harp with long vertical strings standing on the left, and one single black grand piano with its lid open on the right, plenty of empty floor between them. A few loose sheets of blank paper and a feather quill in an inkpot on a small side table, tall windows with pale curtains. Elegant, thoughtful classical mood. ${LIGHT}, ivory, soft gold and pale blue. ${NO}, harpsichord, clavichord, pipe organ, musical notation, portraits, stage audience, monkeys, office --ar 16:5 --v 8.1`,
   },
 
   /* ── 06 요약문 완성 ──────────────────────────────── */
