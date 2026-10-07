@@ -160,3 +160,63 @@ PDF 텍스트 레이어에는 있는데 **화면·인쇄에서 빈칸**으로 �
 `assets/illust-{N}.png` 에 넣고 L5·L6·L7 재빌드. 챕터 대응은 콘택트시트로 육안 확인.
 overflow 15챕터 0, `verify` 오류 0, `_xcheck` 117문장 오류 0, `_audit` 경고 0(placeholder 해소).
 합본 PDF 가 과마다 ~16–17MB. ⚠️ `_audit.mjs` 전에 `_memaudit-extract.py` 로 덤프를 먼저 갱신할 것.
+
+---
+
+## 추가지문 EX — 11편 본문분석 (2026-10-07)
+
+사용자가 촬영한 프린트 사진 11장(필기 포함)으로 만든 **본문분석 합본 1권**.
+`dist/EX/봉영여중3_추가지문_본문분석_합본.pdf` — 표지 1 + 본문 전문 11(지문별 1장, 번호는 지문마다 1부터) + 분석 55 = **67p**.
+본문암기는 요청이 없어 만들지 않았다.
+
+| Ch | 지문 | 유형(원본 문제) | 정답 | 문장 |
+|----|------|----------------|------|------|
+| 1 | 01 Reopening the Ticket Offices (Sarah Roberts 편지) | 목적 | ⑤ | 8 |
+| 2 | 02 Bringing Arthur Back (Jeevan 심폐소생술) | 심경 변화 | ⑤ | 16 |
+| 3 | 03 Why Our Emotions Exist | 요지 | ③ | 6 |
+| 4 | 04 AI and an Inclusive Workplace | 주제 | ④ | 6 |
+| 5 | 05 Salieri and Original Ideas | 빈칸 | ② original | 11 |
+| 6 | 06 Capuchins and Unfair Rewards | 요약문 | ④ inequality … reject | 6 |
+| 7 | 07 The Illusion of Cramming | 무관한 문장 | ④ | 8 |
+| 8 | 08 Analogy and Homology | 문장 삽입 | ③ | 7 |
+| 9 | L7 추가지문 · The snob effect | (문제 없음 → 주제) | — | 15 |
+| 10 | L7 추가지문 2 · The Veblen effect | (문제 없음 → 요지) | — | 9 |
+| 11 | L7 추가지문 · Romeo and Juliet effect | (문제 없음 → 제목) | — | 16 |
+| | **합계** | | | **108** |
+
+- 01~08 은 원본 문제의 보기·정답을 그대로 `choices` 에 기록했다(`hide_answer` 라 인쇄되지 않고,
+  정답 근거는 LOGIC FLOW 4단계·문장 카드에 실었다). 09~11 은 원본에 문제가 없어 형식상 새로 붙였다.
+- **모의고사 분석지 규칙**: 05 빈칸은 정답 `original` 로 채움 / 08 주어진 문장은 정답 위치 ③ 에 복원 /
+  07·08 보기 번호 ①~⑤ 제거(07 무관 문장 ④ 는 본문에 그대로) / 01 머리말은 첫 문장에, 맺음말은 마지막 줄.
+- **필기 반영**: 밑줄·S/V 표시·화살표(지칭)·여백 문법 노트·손글씨 단어표를 문장 카드에 `[수업 필기]`,
+  인쇄된 문법 노트는 `[프린트 노트]`, 11번 하단 「간접의문문」 빈칸 프린트는 `[수업 프린트]` 로 채워 넣었다.
+  필기 뜻이 틀린 곳(02 silently, revive 등)은 바른 뜻으로 고쳐 실었다.
+- **인쇄본 표기 그대로**: 04 둘째 `For example AI’s`(쉼표 없음) · 11 `somethings` · 06 `changed;`.
+  인쇄가 뭉개진 05 `wer-`·`Antonic` 은 문맥대로 `were`·`Antonio`.
+
+### 검수
+
+- 전사 경로 2개: `_PDF-RAW-EX.txt`(인쇄 줄 그대로) → `_gen-textbook-EX.mjs` 기계 분할 vs `_SOURCE-EX.js` 손 분할.
+  `_xcheck-EX.mjs` 가 **정규화 없이 문자 단위**로 대조 — 108문장 10,729자 오류 0. `--pdf` 로 합본 텍스트에
+  전 문장 ≥2회 수록 확인.
+- `verify.mjs EX` 오류 0(경고 20 = 단어표의 선택지·원형 어휘가 본문에 없음 — 의도된 것) · overflow 11챕터 0.
+- INTRO 단어표가 삽화 자리 보호로 잘린 단어(04 2개·06 8개·07 1개·08 2개)는 문장 카드 어휘 Point 에 모두 있다.
+- ⚠️ **★(U+2605)가 PDF 에서 빈칸으로 렌더** — 필기 별표는 `(중요)` 로 표기했다(★ 를 다시 쓰지 말 것).
+
+### 빌드
+
+```bash
+cd mock-exam-analysis
+D=_oneoff-봉영여중3-비상김
+(cd $D && node _gen-textbook-EX.mjs && node _author-EX.mjs && node verify.mjs EX && node _xcheck-EX.mjs)
+node builder/build.mjs "$D/data/EX" "$D/dist/EX" --styles="$D/styles/analysis.css"
+for n in $(seq 1 11); do node builder/check-overflow.mjs "$D/dist/EX/$n.html"; done   # overflow 0
+node builder/pdf.mjs "$D/dist/EX"
+node $D/combine.mjs EX
+(cd $D && node _gen-prompts-doc-EX.mjs)
+```
+
+### 삽화
+
+`_ILLUSTRATION_PROMPTS-EX.md` 에 11장(16:5, v8.1). **아직 생성 전**이라 INTRO 면에 placeholder 가 있다.
+원본을 `dist/EX/{N}.png` 로 받아 가로 2000px 로 줄여 `dist/EX/assets/illust-{N}.png` 에 넣고 pdf·combine 을 다시 돌린다.

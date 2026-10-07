@@ -20,6 +20,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { SOURCE as SOURCE_L5 } from './_SOURCE-L5.js';
 import { SOURCE as SOURCE_L6 } from './_SOURCE-L6.js';
 import { SOURCE as SOURCE_L7 } from './_SOURCE-L7.js';
+import { SOURCE as SOURCE_EX } from './_SOURCE-EX.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -54,13 +55,25 @@ const LESSONS = {
     docTitle: '봉영여중 3학년 · 비상 Lesson 7 본문분석 합본 — Terra Nova',
     out: '봉영여중3_비상김진완_Lesson7_본문분석_합본.pdf',
   },
+  EX: {
+    source: SOURCE_EX,
+    lessonNo: 0,
+    /* 11편이 서로 무관한 독립 지문이라 본문 전문을 지문별로 한 장씩 내고
+       번호도 지문마다 1번부터 다시 센다(_oneoff-중2-동아윤 BY 와 같은 방식). */
+    splitFulltextByChapter: true,
+    coverTitle: '봉영여중 3학년<br>추가지문',
+    titleEn: 'Additional Reading Passages',
+    coverSub: '독해 유형 추가지문 01 ~ 08<br>Lesson 07 Spend Wisely 추가지문 3편',
+    docTitle: '봉영여중 3학년 추가지문 본문분석 합본 — Terra Nova',
+    out: '봉영여중3_추가지문_본문분석_합본.pdf',
+  },
 };
 
 
 const lessonId = (process.argv[2] || 'L5').toUpperCase();
 const LESSON = LESSONS[lessonId];
 if (!LESSON) {
-  console.error(`알 수 없는 과: ${lessonId} (L5 / L6 / L7)`);
+  console.error(`알 수 없는 과: ${lessonId} (L5 / L6 / L7 / EX)`);
   process.exit(2);
 }
 const SOURCE = LESSON.source;
@@ -173,8 +186,11 @@ for (const f of files) {
    정본(_SOURCE-*.js)의 영어 문장과 챕터 JSON 의 passage_ko 를 짝지어 만든다.
    (사용자 요청 2026-08-29: 목차 페이지를 본문 문장 나열 페이지로 교체) */
 const fullLines = [];
+const SPLIT_BY_CH = LESSON.splitFulltextByChapter === true;
+const chapterPages = [];             // SPLIT_BY_CH 일 때 지문별 본문 전문
 let gIdx = 0;
 for (const ch of SOURCE) {
+  const chStart = fullLines.length;
   let ko = [];
   try {
     ko = JSON.parse(await fs.readFile(path.join(__dirname, 'data', lessonId, `${ch.no}.json`), 'utf8')).passage_ko || [];
@@ -182,18 +198,21 @@ for (const ch of SOURCE) {
   ch.sentences.forEach((en, i) => {
     gIdx += 1;
     fullLines.push(`      <div class="line">
-        <span class="num">${gIdx}</span>
+        <span class="num">${SPLIT_BY_CH ? i + 1 : gIdx}</span>
         <div class="ft-en">${esc(en)}</div>
         <div class="ft-ko">${esc(ko[i] ?? '')}</div>
       </div>`);
   });
+  if (SPLIT_BY_CH) chapterPages.push({ label: ch.title, rows: fullLines.slice(chStart), total: ch.sentences.length });
 }
 /* 본문 전문을 fulltextPages 장으로 나눈다(기본 1장).
    한 장에 몰아 넣으면 문장이 많은 과는 자동 맞춤 배율이 내려가 글씨가 작아진다.
    장수를 늘리면 각 장이 독립적으로 배율을 다시 잡아 글씨가 커진다. */
 const FT_PAGES = Math.max(1, LESSON.fulltextPages ?? 1);
 const ftChunks = [];
-{
+if (SPLIT_BY_CH) {
+  for (const cp of chapterPages) ftChunks.push(Object.assign(cp.rows, { label: cp.label, total: cp.total }));
+} else {
   const per = Math.ceil(fullLines.length / FT_PAGES);
   for (let i = 0; i < fullLines.length; i += per) ftChunks.push(fullLines.slice(i, i + per));
 }
@@ -209,7 +228,9 @@ const cover = `<section class="page cover-page">
 
 ${ftChunks.map((rows, i) => `<section class="page toc-page-sec">
   <div class="page-body">
-    <div class="section-bar alt">FULL TEXT · 본문 전문<span class="bar-sub">원문 ${SENTENCE_TOTAL}문장${ftChunks.length > 1 ? ` · ${i + 1}/${ftChunks.length}` : ''}</span></div>
+    <div class="section-bar alt">${rows.label
+      ? `FULL TEXT · ${esc(rows.label)}<span class="bar-sub">원문 ${rows.total}문장</span>`
+      : `FULL TEXT · 본문 전문<span class="bar-sub">원문 ${SENTENCE_TOTAL}문장${ftChunks.length > 1 ? ` · ${i + 1}/${ftChunks.length}` : ''}</span>`}</div>
     <div class="fulltext fulltext-all">
 ${rows.join('\n')}
     </div>

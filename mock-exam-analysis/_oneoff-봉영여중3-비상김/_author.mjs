@@ -72,7 +72,7 @@ export function writeChapter(lesson, source, raw) {
   });
   const data = {
     $schema_version: '1.0',
-    exam: '봉영여중 3학년 · 비상(김진완)',
+    exam: c.exam ?? '봉영여중 3학년 · 비상(김진완)',   // 추가지문(EX)은 c.exam 으로 덮어쓴다
     question_no: c.no,
     subtitle: ch.subtitle,
     hide_answer: true,

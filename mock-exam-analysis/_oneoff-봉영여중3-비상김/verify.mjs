@@ -20,6 +20,7 @@ import { fileURLToPath } from 'node:url';
 import { SOURCE as SOURCE_L5 } from './_SOURCE-L5.js';
 import { SOURCE as SOURCE_L6 } from './_SOURCE-L6.js';
 import { SOURCE as SOURCE_L7 } from './_SOURCE-L7.js';
+import { SOURCE as SOURCE_EX } from './_SOURCE-EX.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -28,12 +29,13 @@ const LESSONS = [
   { id: 'L5', label: 'Lesson 5 · Critical Minds', source: SOURCE_L5 },
   { id: 'L6', label: 'Lesson 6 · Words of Wisdom', source: SOURCE_L6 },
   { id: 'L7', label: 'Lesson 7 · Spend Wisely', source: SOURCE_L7 },
+  { id: 'EX', label: '추가지문 11편 (01~08 + L7 추가지문 3)', source: SOURCE_EX },
 ];
 
 const only = (process.argv[2] || '').toUpperCase();
 const TARGETS = only ? LESSONS.filter(l => l.id === only) : LESSONS;
 if (!TARGETS.length) {
-  console.error(`알 수 없는 과: ${only} (L5 / L6 / L7)`);
+  console.error(`알 수 없는 과: ${only} (L5 / L6 / L7 / EX)`);
   process.exit(2);
 }
 
