@@ -150,7 +150,7 @@ export const chapters = [
         ],
       },
     ],
-    prompt: `Photorealistic interior photograph, wide banner composition. A bright minimalist sneaker boutique: one pair of clean white limited-edition sneakers displayed alone on a tall white pedestal under a soft spotlight, while the long shelves behind are packed with many identical plain shoe boxes. Calm contrast between the rare and the common. ${LIGHT}, white, soft grey and pale mint. ${NO}, wagon, parade, monkeys, stage --ar 16:5 --v 8.1`,
+    prompt: `Photorealistic interior photograph, wide banner composition. A bright minimalist sneaker boutique: one pair of clean white limited-edition sneakers displayed alone on a tall white pedestal under a soft spotlight, while the long shelves behind are packed with many identical plain shoe boxes. Calm contrast between the rare and the common. ${LIGHT}, white, soft grey and pale mint. ${NO}, wagon, parade, handbags, watches, marble, monkeys, stage --ar 16:5 --v 8.1`,
   },
 
   /* ── 10 The Veblen effect ────────────────────────── */
@@ -279,7 +279,7 @@ export const chapters = [
         ],
       },
     ],
-    prompt: `Photorealistic interior photograph, wide banner composition. A bright upscale boutique display: an elegant luxury wristwatch resting on a white marble stand beside a structured designer handbag on a velvet tray, glass shelves and soft reflections behind, no price tags. Refined, aspirational, clean mood. ${LIGHT}, white marble, champagne gold and soft taupe. ${NO}, sneakers, crowd, monkeys, stage --ar 16:5 --v 8.1`,
+    prompt: `Photorealistic interior photograph, wide banner composition. A bright upscale boutique display: an elegant luxury wristwatch resting on a white marble stand beside a structured designer handbag on a velvet tray, glass shelves and soft reflections behind. Refined, aspirational, clean mood. ${LIGHT}, white marble, champagne gold and soft taupe. ${NO}, price tags, sneakers, shoe boxes, crowd, monkeys, stage --ar 16:5 --v 8.1`,
   },
 
   /* ── 11 Romeo and Juliet effect ──────────────────── */
@@ -437,6 +437,6 @@ export const chapters = [
         ],
       },
     ],
-    prompt: `Photorealistic exterior photograph, wide banner composition. An old stone balcony of a Verona-style house covered with climbing red roses, a small brass hourglass with falling sand standing on the balcony ledge, warm stone walls and a pale sky behind. Romantic but gently ticking-clock mood that hints at time running out. ${LIGHT}, soft rose red, warm stone beige and pale sky blue. ${NO}, shop signs, price tags, monkeys, stage --ar 16:5 --v 8.1`,
+    prompt: `Photorealistic exterior photograph, wide banner composition. An old stone balcony of a Verona-style house covered with climbing red roses, a small brass hourglass with falling sand standing on the balcony ledge, warm stone walls and a pale sky behind. Romantic, wistful mood with a quiet sense of time running out. ${LIGHT}, soft rose red, warm stone beige and pale sky blue. ${NO}, clock, shop signs, price tags, books, desk, sneakers, monkeys, stage --ar 16:5 --v 8.1`,
   },
 ];

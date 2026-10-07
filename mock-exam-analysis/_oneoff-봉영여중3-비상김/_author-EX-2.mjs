@@ -123,7 +123,7 @@ export const chapters = [
         ],
       },
     ],
-    prompt: `Photorealistic interior photograph, wide banner composition. A bright eighteenth-century style music room: a polished harpsichord beside a grand piano, loose sheets of music with blank staff lines scattered on a small table, a feather quill in an inkpot, tall windows with pale curtains. Elegant, thoughtful classical mood. ${LIGHT}, ivory, soft gold and pale blue. ${NO}, notes on paper, stage audience, monkeys, office --ar 16:5 --v 8.1`,
+    prompt: `Photorealistic interior photograph, wide banner composition. A bright eighteenth-century style music room: a polished harpsichord beside a grand piano, loose sheets of music with blank staff lines scattered on a small table, a feather quill in an inkpot, tall windows with pale curtains. Elegant, thoughtful classical mood. ${LIGHT}, ivory, soft gold and pale blue. ${NO}, musical notation, portraits, stage audience, monkeys, office --ar 16:5 --v 8.1`,
   },
 
   /* ── 06 요약문 완성 ──────────────────────────────── */
@@ -242,7 +242,7 @@ export const chapters = [
         ],
       },
     ],
-    prompt: `Photorealistic wildlife photograph, wide banner composition. Two small capuchin monkeys sitting in neighbouring clean enclosures at a bright animal research center, separated by a clear panel: one monkey holding a small bunch of purple grapes, the other looking at a slice of green cucumber in its hand, a few smooth grey pebbles on the floor. Curious, gently humorous mood. ${LIGHT}, soft green, warm beige and pale grey. ${NO}, cages with bars, zoo visitors, stage, office --ar 16:5 --v 8.1`,
+    prompt: `Photorealistic wildlife photograph, wide banner composition. Two small capuchin monkeys sitting in neighbouring clean enclosures at a bright animal research center, separated by a clear panel: one monkey happily eating from a small bunch of purple grapes, the other staring at a slice of green cucumber lying untouched on the floor in front of it, a few smooth grey pebbles nearby. Curious, gently humorous mood. ${LIGHT}, soft green, warm beige and pale grey. ${NO}, cages with bars, zoo visitors, stage, office --ar 16:5 --v 8.1`,
   },
 
   /* ── 07 무관한 문장 찾기 ─────────────────────────── */
@@ -365,7 +365,7 @@ export const chapters = [
         ],
       },
     ],
-    prompt: `Photorealistic interior photograph, wide banner composition. A bright study desk late in the morning: an open textbook with plain pages, a stack of blank index cards, a small sand hourglass, several highlighter pens and a half-finished cup of tea, a window with soft daylight behind. Focused, calm study mood that hints at memory and time. ${LIGHT}, white, soft yellow and light blue. ${NO}, writing on pages, laptop, monkeys, stage --ar 16:5 --v 8.1`,
+    prompt: `Photorealistic interior photograph, wide banner composition. A bright study desk late in the morning: an open textbook with plain pages, a tall messy stack of blank index cards beside a neat small pile of flipped cards, several highlighter pens and a half-finished cup of tea, a window with soft daylight behind. Focused, calm study mood that hints at reviewing and self-testing. ${LIGHT}, white, soft yellow and light blue. ${NO}, writing on pages, hourglass, clock, laptop, monkeys, stage --ar 16:5 --v 8.1`,
   },
 
   /* ── 08 문장의 위치 파악 ─────────────────────────── */

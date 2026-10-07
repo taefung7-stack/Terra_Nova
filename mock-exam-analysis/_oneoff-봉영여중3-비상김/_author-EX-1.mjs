@@ -536,6 +536,6 @@ export const chapters = [
         ],
       },
     ],
-    prompt: `Photorealistic interior photograph, wide banner composition. A bright modern accessible office desk: an open laptop with a plain screen, a small hearing aid in its case, a lightweight microphone headset, a tactile braille keyboard and a smartphone on a stand, a potted plant and a large window behind. Inclusive, hopeful, clean workplace mood. ${LIGHT}, white, soft teal and light grey. ${NO}, screens with writing, robots, stage, monkeys --ar 16:5 --v 8.1`,
+    prompt: `Photorealistic interior photograph, wide banner composition. A bright modern accessible office desk: an open laptop with a plain screen, a small hearing aid in its case, a lightweight microphone headset, a tactile braille keyboard and a smartphone on a stand, a potted plant and a large window behind. Inclusive, hopeful, clean workplace mood. ${LIGHT}, white, soft teal and light grey. ${NO}, screens with writing, robots, textbooks, index cards, stage, monkeys --ar 16:5 --v 8.1`,
   },
 ];

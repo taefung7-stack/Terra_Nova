@@ -201,6 +201,10 @@ overflow 15챕터 0, `verify` 오류 0, `_xcheck` 117문장 오류 0, `_audit` �
   전 문장 ≥2회 수록 확인.
 - `verify.mjs EX` 오류 0(경고 20 = 단어표의 선택지·원형 어휘가 본문에 없음 — 의도된 것) · overflow 11챕터 0.
 - INTRO 단어표가 삽화 자리 보호로 잘린 단어(04 2개·06 8개·07 1개·08 2개)는 문장 카드 어휘 Point 에 모두 있다.
+- **2026-10-07 재검수(원본 사진 ↔ 합본 PDF)**: PDF 본문 전문 11장에서 영어를 뽑아 사진 11장과 단어·구두점 단위로
+  육안 재대조 — 누락·오류 0(필기 동그라미 밑 쉼표·마침표, 03 `that, when triggered` 쉼표 없음 등 재확인).
+  자동 대조: 108문장 전부 합본에 ≥3회(본문 전문·PASSAGE·분석 카드, 카드의 끊어읽기 `/` 제거 후), 해석 전수 ≥2회.
+  서식 차이만 있음: 05 *Amadeus*·06 `I give you … to eat.` 의 이탤릭, 09 `people's` 직선 아포스트로피(→ ’).
 - ⚠️ **★(U+2605)가 PDF 에서 빈칸으로 렌더** — 필기 별표는 `(중요)` 로 표기했다(★ 를 다시 쓰지 말 것).
 
 ### 빌드
@@ -218,5 +222,6 @@ node $D/combine.mjs EX
 
 ### 삽화
 
-`_ILLUSTRATION_PROMPTS-EX.md` 에 11장(16:5, v8.1). **아직 생성 전**이라 INTRO 면에 placeholder 가 있다.
+`_ILLUSTRATION_PROMPTS-EX.md` 에 11장(16:5, v8.1, 지문별 장면 설명 포함). 2026-10-07 점검: 인라인 `no`·`hands` 충돌·모래시계 중복(07↔11) 수정.
+**아직 생성 전**이라 INTRO 면에 placeholder 가 있다.
 원본을 `dist/EX/{N}.png` 로 받아 가로 2000px 로 줄여 `dist/EX/assets/illust-{N}.png` 에 넣고 pdf·combine 을 다시 돌린다.
