@@ -223,5 +223,8 @@ node $D/combine.mjs EX
 ### 삽화
 
 `_ILLUSTRATION_PROMPTS-EX.md` 에 11장(16:5, v8.1, 지문별 장면 설명 포함). 2026-10-07 점검: 인라인 `no`·`hands` 충돌·모래시계 중복(07↔11) 수정.
-**아직 생성 전**이라 INTRO 면에 placeholder 가 있다.
+**2026-10-07 반영 완료** — 11장(3952×1232 원본 `dist/EX/{N}.png`)을 2000px 로 줄여 `dist/EX/assets/illust-{N}.png` 에 넣고 재빌드.
+콘택트시트로 지문 대응 확인, 05 는 하프 1·피아노 1 확인. overflow 0, placeholder 0, `_xcheck-EX --pdf` 오류 0. 합본 67p · 약 36MB.
+⚠️ 11번 원본 좌하단에 미드저니가 만든 **깨진 글자**("Bws oooli b. aivl …")가 있어, 축소본에서만 바로 위 어두운 질감을 복사해 덮었다
+(원본 `11.png` 는 그대로). 다시 축소할 때 이 보정을 반복하거나 글자 없는 이미지로 교체할 것.
 원본을 `dist/EX/{N}.png` 로 받아 가로 2000px 로 줄여 `dist/EX/assets/illust-{N}.png` 에 넣고 pdf·combine 을 다시 돌린다.
