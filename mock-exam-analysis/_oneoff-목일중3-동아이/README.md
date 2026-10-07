@@ -226,7 +226,10 @@ for L,f in [('L6','목일중3_동아이병민_Lesson6_본문분석_합본.pdf'),
 - 전사 경로 2개: `_PDF-RAW-EX.txt`(인쇄 줄 그대로) → `_gen-textbook-EX.mjs` 기계 분할 vs `_SOURCE-EX.js` 손 분할.
   `_xcheck-EX.mjs` 문자 단위 대조 18문장 1,773자 오류 0, `--pdf` 로 합본에 전 문장 ≥2회 수록 확인.
 - `verify.mjs EX` 오류 0(경고 2 = 단어표의 parody·consumer 가 본문에 없음 — 의도) · overflow 0.
-- 삽화는 미생성(placeholder) — `_ILLUSTRATION_PROMPTS-EX.md` 프롬프트로 생성 후 반영.
+- **삽화 반영(2026-10-07)** — 원본 `dist/EX/1.png`(3952×1232)를 가로 2000px 로 줄여 `dist/EX/assets/illust-1.png` 에 넣고 재빌드.
+  placeholder 0 · 이미지 1 · overflow 0 · 합본 4.1MB. 원본·축소본 모두 gitignore(저장소에 없음).
+- **원본 사진 재검수(2026-10-07)** — 사진을 구역별로 확대해 인쇄 30줄을 합본 본문과 단어·구두점 단위로 육안 재대조 — 누락·오류 0.
+  자동 대조: 18문장 전부 합본에 3회(본문 전문·PASSAGE·분석 카드), 해석 전수 ≥4회.
 
 ### 본문암기 (2026-10-07)
 `dist/EX/목일중3_추가지문_7_SupplementaryReading_본문암기.pdf` — 표지 1 + 문제 2(`qSplit [9, 9]`) + 정답 1 = **4p**, 18문항(주어진 문단 3문장 포함).
