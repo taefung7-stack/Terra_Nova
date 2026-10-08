@@ -248,3 +248,39 @@ node $D/combine.mjs EX
 node $D/build-memorize.mjs EX
 (cd $D && python _memaudit-extract.py EX && node _memaudit.mjs EX)
 ```
+
+## 추가지문 EX2 — Unit 8 Supplementary Reading 본문분석 + 본문암기 (2026-10-08)
+
+사용자가 촬영한 프린트 사진 2장(필기 포함, 1쪽 지문·문제 1~2 / 2쪽 문제 3·단어표 14개)으로 만들었다.
+
+| 산출물 | 구성 |
+|--------|------|
+| `dist/EX2/목일중3_추가지문2_Unit8_SupplementaryReading_본문분석.pdf` | 표지 1 + 본문 전문 1 + 분석 9 = **11p** |
+| `dist/EX2/목일중3_추가지문2_Unit8_SupplementaryReading_본문암기.pdf` | 표지 1 + 문제 2(`qSplit [11, 10]`) + 정답 1 = **4p**, 21문항 |
+
+- 원문 **21문장**(5문단 4·4·5·5·3), 분석 카드 15개, 어휘 30개(INTRO 표에는 삽화 자리 보호로 18개 —
+  **선생님 단어표 14개를 맨 앞에** 두어 전부 노출, 나머지는 카드 어휘 Point 에 있음).
+- 문제: 1번 제목 **A**(choices 에 기록, hide_answer 라 미인쇄) · 2번 **B** · 3번 요약문 빈칸 **③ challenges** →
+  각각 `[프린트 문제 N]` 으로 근거 문장 카드에 실었다.
+- **필기 반영**: 1쪽 형광펜·밑줄·괄호·①② 병렬 표시·여백 뜻(be woven into, engage in, free from, Consequently 등) → `[수업 필기]`,
+  2쪽 단어표 손글씨 뜻·영영 풀이 빈칸 → `[수업 단어표]`. 필기 "free from: ~로부터 해방되다" 는 형용사구 뜻(~이 없는)을 함께 적었다.
+- 띄어 쓴 대시(experiences – including / relationships – with)는 EX 와 같이 en dash. 인쇄 오탈자 없음.
+- `_gen-textbook-EX.mjs` · `_xcheck-EX.mjs` 는 이제 **과 id 인자**를 받는다(`EX` 기본, `EX2`). EX 산출물은 변화 없음(재생성 diff 0).
+
+### 검수
+- `_xcheck-EX.mjs EX2 --pdf`: RAW 기계 분할 ↔ 손 분할 정본 문자 단위 21문장 2,212자 오류 0, 합본 전 문장 ≥2회.
+- `verify.mjs EX2` 오류 0 · 경고 0 · overflow 0 · `_memaudit EX2` 21문장 전수 수록.
+- 삽화: `_ILLUSTRATION_PROMPTS-EX2.md` 1장 — **아직 생성 전**(INTRO 에 placeholder).
+
+### 빌드
+```bash
+cd mock-exam-analysis
+D=_oneoff-목일중3-동아이
+(cd $D && node _gen-textbook-EX.mjs EX2 && node _author-EX2.mjs && node verify.mjs EX2 && node _xcheck-EX.mjs EX2)
+node builder/build.mjs "$D/data/EX2" "$D/dist/EX2" --styles="$D/styles/analysis.css"
+node builder/check-overflow.mjs "$D/dist/EX2/1.html"
+node builder/pdf.mjs "$D/dist/EX2"
+node $D/combine.mjs EX2
+node $D/build-memorize.mjs EX2
+(cd $D && python _memaudit-extract.py EX2 && node _memaudit.mjs EX2)
+```

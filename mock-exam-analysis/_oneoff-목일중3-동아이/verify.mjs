@@ -21,6 +21,7 @@ import { SOURCE as SOURCE_L6 } from './_SOURCE-L6.js';
 import { SOURCE as SOURCE_L7 } from './_SOURCE-L7.js';
 import { SOURCE as SOURCE_L8 } from './_SOURCE-L8.js';
 import { SOURCE as SOURCE_EX } from './_SOURCE-EX.js';
+import { SOURCE as SOURCE_EX2 } from './_SOURCE-EX2.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -31,12 +32,13 @@ const LESSONS = [
   { id: 'L8', label: 'Lesson 8 · Up to You', source: SOURCE_L8 },
   /* 추가지문 — 원본 1번 문제(문단 삽입)가 (A)~(D) 4지선다라 보기 수가 4개다. */
   { id: 'EX', label: '추가지문 · 7 Supplementary Reading', source: SOURCE_EX, nChoices: 4 },
+  { id: 'EX2', label: '추가지문 2 · Unit 8 Supplementary Reading', source: SOURCE_EX2 },
 ];
 
 const only = (process.argv[2] || '').toUpperCase();
 const TARGETS = only ? LESSONS.filter(l => l.id === only) : LESSONS;
 if (!TARGETS.length) {
-  console.error(`알 수 없는 과: ${only} (L6 / L7 / L8 / EX)`);
+  console.error(`알 수 없는 과: ${only} (L6 / L7 / L8 / EX / EX2)`);
   process.exit(2);
 }
 

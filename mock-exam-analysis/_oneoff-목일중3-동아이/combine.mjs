@@ -21,6 +21,7 @@ import { SOURCE as SOURCE_L6 } from './_SOURCE-L6.js';
 import { SOURCE as SOURCE_L7 } from './_SOURCE-L7.js';
 import { SOURCE as SOURCE_L8 } from './_SOURCE-L8.js';
 import { SOURCE as SOURCE_EX } from './_SOURCE-EX.js';
+import { SOURCE as SOURCE_EX2 } from './_SOURCE-EX2.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -61,13 +62,22 @@ const LESSONS = {
     docTitle: '목일중 3학년 추가지문 본문분석 — Terra Nova',
     out: '목일중3_추가지문_7_SupplementaryReading_본문분석.pdf',
   },
+  EX2: {
+    source: SOURCE_EX2,
+    lessonNo: 0,
+    coverTitle: '목일중 3학년<br>추가지문 2',
+    titleEn: 'Supplementary Reading',
+    coverSub: 'Unit 8 Supplementary Reading<br>AI as a Companion · 도구일 뿐, 대체물은 아니다',
+    docTitle: '목일중 3학년 추가지문 2 본문분석 — Terra Nova',
+    out: '목일중3_추가지문2_Unit8_SupplementaryReading_본문분석.pdf',
+  },
 };
 
 
 const lessonId = (process.argv[2] || 'L6').toUpperCase();
 const LESSON = LESSONS[lessonId];
 if (!LESSON) {
-  console.error(`알 수 없는 과: ${lessonId} (L6 / L7 / L8 / EX)`);
+  console.error(`알 수 없는 과: ${lessonId} (L6 / L7 / L8 / EX / EX2)`);
   process.exit(2);
 }
 const SOURCE = LESSON.source;

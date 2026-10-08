@@ -61,6 +61,16 @@ const LESSONS = {
     out: '목일중3_추가지문_7_SupplementaryReading_본문암기.pdf',
     qSplit: [9, 9],            // 18문장(주어진 문단 3문장 포함) → 2페이지 균등
   },
+  /* 추가지문 2 — 사진 프린트(Unit 8 Supplementary Reading). */
+  EX2: {
+    titleEn: 'Supplementary Reading',
+    examTag: '목일중 3학년 · 추가지문 2',
+    coverTitle: '목일중 3학년<br>추가지문 2',
+    coverSub: 'Unit 8 Supplementary Reading<br>AI as a Companion',
+    docTitle: '목일중 3학년 추가지문 2 본문암기 — Terra Nova',
+    out: '목일중3_추가지문2_Unit8_SupplementaryReading_본문암기.pdf',
+    qSplit: [11, 10],          // 21문장 → 2페이지
+  },
 };
 
 
@@ -70,7 +80,7 @@ const esc = (s) => String(s ?? '')
 /* ── 한 과 빌드 ───────────────────────────────────────────────── */
 async function buildOne(lessonId) {
   const LESSON = LESSONS[lessonId];
-  if (!LESSON) { console.error(`알 수 없는 과: ${lessonId} (L6 / L7 / L8 / EX)`); process.exit(2); }
+  if (!LESSON) { console.error(`알 수 없는 과: ${lessonId} (L6 / L7 / L8 / EX / EX2)`); process.exit(2); }
 
   const { SOURCE } = await import(`./_SOURCE-${lessonId}.js`);
   const DIST = path.join(__dirname, 'dist', lessonId);

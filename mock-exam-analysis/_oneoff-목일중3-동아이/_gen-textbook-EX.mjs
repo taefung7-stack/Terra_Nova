@@ -9,13 +9,15 @@
  *   (A)~(D)   문단 삽입 자리 표시(줄 단독) — 문제 장치라 지운다
  *   @INS X    주어진 문단이 들어갈 자리 — 모의고사 분석지 규칙대로 정답 위치 (X) 에 복원
  * 분할 규칙: 문장부호(. ? !, 닫는 따옴표 포함) 뒤 공백 + 대문자/여는 따옴표에서 끊는다.
- * 사용법: node _gen-textbook-EX.mjs */
+ * 사용법: node _gen-textbook-EX.mjs [EX|EX2] */
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const raw = fs.readFileSync(path.join(__dirname, '_PDF-RAW-EX.txt'), 'utf8').split(/\r?\n/);
+/* 과 id(EX / EX2 …)를 인자로 받는다: _PDF-RAW-{L}.txt → _TEXTBOOK-{L}.js */
+const L = (process.argv[2] || 'EX').toUpperCase();
+const raw = fs.readFileSync(path.join(__dirname, `_PDF-RAW-${L}.txt`), 'utf8').split(/\r?\n/);
 const TB = {};
 let cur = null;
 for (const ln of raw) {
@@ -43,5 +45,5 @@ const out = `/* ================================================================
 
 export const TEXTBOOK_EX = ${JSON.stringify(TB, null, 2)};
 `;
-fs.writeFileSync(path.join(__dirname, '_TEXTBOOK-EX.js'), out, 'utf8');
+fs.writeFileSync(path.join(__dirname, `_TEXTBOOK-${L}.js`), out, 'utf8');
 console.log(Object.entries(TB).map(([n, p]) => `${n}:${p.sentences.length}`).join(' '));

@@ -23,6 +23,7 @@ COMBINED_PDF = {
     'L7': '목일중3_동아이병민_Lesson7_본문분석_합본.pdf',
     'L8': '목일중3_동아이병민_Lesson8_본문분석_합본.pdf',
     'EX': '목일중3_추가지문_7_SupplementaryReading_본문분석.pdf',
+    'EX2': '목일중3_추가지문2_Unit8_SupplementaryReading_본문분석.pdf',
 }
 
 OUT_PDF = {
@@ -30,9 +31,10 @@ OUT_PDF = {
     'L7': '목일중3_동아이병민_Lesson7_본문암기.pdf',
     'L8': '목일중3_동아이병민_Lesson8_본문암기.pdf',
     'EX': '목일중3_추가지문_7_SupplementaryReading_본문암기.pdf',
+    'EX2': '목일중3_추가지문2_Unit8_SupplementaryReading_본문암기.pdf',
 }
 
-ALL = ['L6', 'L7', 'L8', 'EX']
+ALL = ['L6', 'L7', 'L8', 'EX', 'EX2']
 
 
 def page_text(page):
@@ -82,7 +84,7 @@ def main():
     targets = [arg] if arg else ALL
     unknown = [t for t in targets if t not in ALL]
     if unknown:
-        print(f'알 수 없는 과: {", ".join(unknown)} (L6 / L7 / L8 / EX)')
+        print(f'알 수 없는 과: {", ".join(unknown)} (L6 / L7 / L8 / EX / EX2)')
         sys.exit(2)
 
     out_dir = os.path.join(HERE, 'dist', '_memaudit')
