@@ -228,3 +228,45 @@ node $D/combine.mjs EX
 ⚠️ 11번 원본 좌하단에 미드저니가 만든 **깨진 글자**("Bws oooli b. aivl …")가 있어, 축소본에서만 바로 위 어두운 질감을 복사해 덮었다
 (원본 `11.png` 는 그대로). 다시 축소할 때 이 보정을 반복하거나 글자 없는 이미지로 교체할 것.
 원본을 `dist/EX/{N}.png` 로 받아 가로 2000px 로 줄여 `dist/EX/assets/illust-{N}.png` 에 넣고 pdf·combine 을 다시 돌린다.
+
+---
+
+## 추가지문 9·10·11 — 워크북 + 변형문제 (EXV, 2026-10-17)
+
+추가지문 합본의 마지막 세 지문(**9 The snob effect · 10 The Veblen effect · 11 Romeo and Juliet effect**)으로
+워크북과 변형문제를 만들었다. 공용 빌더(`build-workbook.mjs` / `build-variant.mjs`)는 건드리지 않았고,
+도구는 `_oneoff-신서고-YBM-L1` 의 EX2 방식(검증 → 빌드 → 잘림 검사 → PDF)을 복제했다.
+
+| 산출물 | 파일 | 구성 |
+|--------|------|------|
+| 워크북 합본 | `dist/EXV/봉영여중3_추가지문_9-11_워크북_합본.pdf` | 표지1+목차1+본문31 = **33p** (9번 11p · 10번 10p · 11번 10p, 9-STEP) |
+| 변형문제 | `dist/EXV/봉영여중3_추가지문_9-11_변형문제.pdf` (= `variant-book.pdf`) | **33p · 51문항** — 객관식 11유형×3 = 33 + 서술형 6×3 = 18, 정답·해설 포함 |
+
+- 변형 객관식 정답 분포 ①6 ②7 ③7 ④7 ⑤6 (유형마다 지문별로 다르게). 요약문 `options[].no` = 배열 위치.
+- `data/EXV/{9,10,11}.json` 은 `data/EX` 분석지의 사본이며 **`exam` 만** `봉영여중 추가지문 3학년` 으로 바꿨다
+  (빌더가 `exam` 끝의 학년을 떼어 머리글에 다시 붙이므로 원래 값이면 "3학년" 이 두 번 찍힌다).
+- 11번 10문장의 인쇄본 표기 `somethings` 는 정본대로 두었고, 워크북 어법 해설에 "문법상 something" 을 밝혔다.
+- 고유명사 오탐 차단어(단독 정답 금지): 9 `why this as however companies researchers` ·
+  10 `veblen american thorstein unlike consumers according` · 11 `juliet romeo only do i can buyers`.
+  저작 문항 수 = 렌더 정답지 "N문항" 전수 일치(유실 0).
+- `styles/variant.css` 는 신서고 것을 복제하고 글리프 보정 `@font-face` 를 이 폴더 `workbook.css` 것(확장 범위 + Segoe UI Symbol)으로 교체했다.
+
+```bash
+cd mock-exam-analysis
+D=_oneoff-봉영여중3-비상김
+(cd $D && node _author-EXV-workbook.mjs && node _author-EXV-variant.mjs \
+       && node verify-workbook-EXV.mjs && node verify-variant-EXV.mjs)      # 오류 0 이어야 빌드
+# 워크북
+node builder/build-workbook.mjs "$D/data/EXV" "$D/dist/EXV" --styles="$D/styles/workbook.css"
+for n in 9 10 11; do node builder/check-overflow.mjs "$D/dist/EXV/workbook-$n.html"; done
+node builder/pdf-image.mjs "$D/dist/EXV" --match='^workbook-\d+\.html$'
+node $D/combine-workbook.mjs EXV
+# 변형문제
+node builder/build-variant.mjs "$D/data/EXV" "$D/dist/EXV" --styles="$D/styles/variant.css" --shared-writing-passage
+node $D/_measure-clip.mjs "$D/dist/EXV/variant-book.html"; node $D/_measure-pages.mjs "$D/dist/EXV/variant-book.html"
+node $D/render-variant-pdf.mjs "$D/dist/EXV/variant-book.html"
+cp "$D/dist/EXV/variant-book.pdf" "$D/dist/EXV/봉영여중3_추가지문_9-11_변형문제.pdf"
+```
+
+검수(2026-10-17): `verify-workbook-EXV` 오류 0·경고 0(40문장 전수 커버) · `verify-variant-EXV` 오류 0 ·
+워크북 overflow 3/3 0 · 변형 잘림 0·푸터 침범 0 · 합본 PDF 33p = .page 33 · PNG 렌더 육안 확인(머리글·밑줄·요약표·정답지).
