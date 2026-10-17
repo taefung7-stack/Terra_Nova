@@ -270,3 +270,16 @@ cp "$D/dist/EXV/variant-book.pdf" "$D/dist/EXV/봉영여중3_추가지문_9-11_�
 
 검수(2026-10-17): `verify-workbook-EXV` 오류 0·경고 0(40문장 전수 커버) · `verify-variant-EXV` 오류 0 ·
 워크북 overflow 3/3 0 · 변형 잘림 0·푸터 침범 0 · 합본 PDF 33p = .page 33 · PNG 렌더 육안 확인(머리글·밑줄·요약표·정답지).
+
+### 전체 재검수 (2026-10-17) — `node _audit-EXV.mjs` 799건 오류 0
+
+- **기계 대조**(`_audit-EXV.mjs`, PyMuPDF 필요): 원문 3중 일치(`_SOURCE-EX.js` ↔ `data/EX` ↔ `data/EXV`, 차이는 `exam` 뿐) ·
+  워크북 렌더 HTML 의 STEP1 본문·해석 전 문장, 양자택일 슬롯, 첫글자 빈칸 75/75, 해석·영작 제시문, 배열 단어 집합, STEP9 정답 전수 ·
+  변형 PDF 의 유형별 지문·보기·블록·삽입문 인쇄, 문항 번호 1~51, 정답지 ①~⑤ 33개가 데이터와 순서까지 일치, 서술형 정답 인쇄.
+  밑줄 30+3 · 빈칸 3 · 삽입 슬롯 15 · 무관문장 번호 15 렌더 확인.
+- **내용 대조**(원문과 문항별 수작업 검토) — 수정 3건:
+  1. 변형 서술형 9번 요약문 (B) — `a sense of ___` 에 rarity·exclusivity 둘 다 들어갈 수 있어 정답이 둘이었음 →
+     `a sense of __(B)__ and exclusivity` 로 바꿔 rarity 하나로 고정.
+  2. 변형 서술형 요약문 3문항 발문에 "각각 한 단어로" 추가 — 11번 (B) 에 9번 문장의 `go away`(두 단어)가 들어갈 여지 차단.
+  3. 워크북 어법 9번 #1 `stop wanting / to want` — `stop to want`(원하려고 멈추다)도 문법상 성립 → 오답을 `want` 로 교체.
+- 재빌드 후 overflow 0 · 잘림 0 · 푸터 침범 0 · 합본 33p = .page 33 · 문항 유실 0.

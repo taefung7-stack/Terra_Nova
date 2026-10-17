@@ -94,8 +94,8 @@ build(9, {
     ],
   },
   G: [
-    [1, 'Why do some people stop {{1:wanting/to want}} a product after it {{2:becomes/become}} popular?',
-      ['stop -ing 는 ‘~하는 것을 그만두다’, stop to-v 는 ‘~하기 위해 멈추다’이다. 원하는 것을 그만두는 것이므로 wanting.',
+    [1, 'Why do some people stop {{1:wanting/want}} a product after it {{2:becomes/become}} popular?',
+      ['stop 이 ‘~하는 것을 그만두다’의 뜻일 때 목적어로 동명사를 쓰므로 wanting. 동사원형 want 는 올 수 없다.',
        '시간 부사절의 주어 it(= a product)이 3인칭 단수이므로 becomes.']],
     [3, 'The snob effect {{1:refers/refer}} to people’s tendency {{2:to value/valuing}} a product because it is rare or exclusive.',
       ['주어 The snob effect 가 단수이므로 refers.',

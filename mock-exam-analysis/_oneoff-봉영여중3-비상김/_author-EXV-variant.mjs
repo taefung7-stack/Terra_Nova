@@ -292,10 +292,10 @@ write(9, '스놉 효과 — 제품이 희귀할수록 가치 있게 여기고, �
     },
     {
       subtype: 'summary_word', subtype_label: '요약문 완성', show_passage: true,
-      question: '본문을 한 문장으로 요약할 때 빈칸 (A), (B)에 들어갈 단어를 본문에서 찾아 쓰시오.',
-      summary: 'People influenced by the snob effect value products that are rare or __(A)__, so companies create a sense of __(B)__ through limited-edition products.',
+      question: '본문을 한 문장으로 요약할 때 빈칸 (A), (B)에 들어갈 단어를 본문에서 각각 한 단어로 찾아 쓰시오.',
+      summary: 'People influenced by the snob effect value products that are rare or __(A)__, so companies release limited-edition products to create a sense of __(B)__ and exclusivity.',
       answer_a: 'exclusive', answer_b: 'rarity',
-      explanation_ko: '본문 3번 문장의 rare or exclusive, 13번 문장의 a sense of rarity and exclusivity 에서 찾는다.',
+      explanation_ko: '본문 3번 문장의 rare or exclusive, 13번 문장의 a sense of rarity and exclusivity 에서 찾는다(뒤에 and exclusivity 가 이미 있으므로 (B)는 rarity).',
     },
     {
       subtype: 'topic_write', subtype_label: '주제문 쓰기',
@@ -540,7 +540,7 @@ write(10, '베블런 효과 — 부와 지위를 과시하려는 소비 때문�
     },
     {
       subtype: 'summary_word', subtype_label: '요약문 완성', show_passage: true,
-      question: '본문을 한 문장으로 요약할 때 빈칸 (A), (B)에 들어갈 단어를 본문에서 찾아 쓰시오.',
+      question: '본문을 한 문장으로 요약할 때 빈칸 (A), (B)에 들어갈 단어를 본문에서 각각 한 단어로 찾아 쓰시오.',
       summary: 'Demand for Veblen goods may __(A)__ as their prices rise, because the products symbolize wealth, __(B)__, or social status.',
       answer_a: 'increase', answer_b: 'prestige',
       explanation_ko: '본문 2번 문장의 may increase, 9번 문장의 wealth, prestige, or social status 에서 찾는다.',
@@ -791,10 +791,10 @@ write(11, '로미오와 줄리엣 효과 — 사라질지 모른다고 느끼면
     },
     {
       subtype: 'summary_word', subtype_label: '요약문 완성', show_passage: true,
-      question: '본문을 한 문장으로 요약할 때 빈칸 (A), (B)에 들어갈 단어를 본문에서 찾아 쓰시오.',
+      question: '본문을 한 문장으로 요약할 때 빈칸 (A), (B)에 들어갈 단어를 본문에서 각각 한 단어로 찾아 쓰시오.',
       summary: 'Romeo and Juliet wanted each other more because their parents tried to __(A)__ them, and shoppers want items more when they think the items might __(B)__.',
       answer_a: 'stop', answer_b: 'disappear',
-      explanation_ko: '본문 7번 문장의 tried to stop them, 10번 문장의 they might disappear 에서 찾는다.',
+      explanation_ko: '본문 7번 문장의 tried to stop them, 10번 문장의 they might disappear 에서 찾는다(9번의 go away 는 두 단어라 답이 아니다).',
     },
     {
       subtype: 'topic_write', subtype_label: '주제문 쓰기',
