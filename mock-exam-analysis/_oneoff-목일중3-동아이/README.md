@@ -15,6 +15,7 @@
 - **Lesson 8** — Up to You (How Will You Be Remembered? / Alfred Nobel 과 노벨상)
 
 > 요청 범위는 **본문분석 + 본문암기 2종**입니다. 9-STEP 워크북·변형문제는 만들지 않았습니다.
+> (예외: 추가지문 EX·EX2 는 2026-10-17 워크북·변형문제도 만들었다 — 맨 아래 절 참조.)
 
 ## 챕터 분할
 
@@ -289,3 +290,63 @@ node $D/combine.mjs EX2
 node $D/build-memorize.mjs EX2
 (cd $D && python _memaudit-extract.py EX2 && node _memaudit.mjs EX2)
 ```
+
+## 추가지문 EX·EX2 — 워크북 + 변형문제 (EXV · EX2V, 2026-10-17)
+
+추가지문 두 편 **각각** 워크북과 변형문제를 만들었다. 도구는 `_oneoff-봉영여중3-비상김` 의 EXV 방식
+(저작 스크립트 → 검증 → 빌드 → 넘침·잘림 검사 → PDF)을 복제했고, 공용 빌더는 건드리지 않았다.
+
+| 지문 | 워크북 | 변형문제 |
+|------|--------|----------|
+| EX (7 Supplementary Reading · 이수지의 코미디, 18문장) | `dist/EXV/목일중3_추가지문_7_SupplementaryReading_워크북.pdf` — 표지1+본문14 = **15p** | `dist/EXV/목일중3_추가지문_7_SupplementaryReading_변형문제.pdf` — **11p · 17문항** |
+| EX2 (Unit 8 Supplementary Reading · AI 와 인간관계, 21문장) | `dist/EX2V/목일중3_추가지문2_Unit8_SupplementaryReading_워크북.pdf` — 표지1+본문14 = **15p** | `dist/EX2V/목일중3_추가지문2_Unit8_SupplementaryReading_변형문제.pdf` — **11p · 17문항** |
+
+- **워크북 9-STEP**: EX 어법 12·어휘 12·빈칸 12·해석 10·배열 10·영작 10·종합 8 / EX2 어법 13·어휘 13·빈칸 13·해석 10·배열 10·영작 10·종합 8.
+  전 문장 커버(EX 18/18, EX2 21/21). 지문이 1개라 목차 페이지는 생략했다.
+- **변형문제**: 객관식 11유형(주제·요지·제목·함축의미·어법·어휘·빈칸·무관한 문장·순서·삽입·요약문) + 서술형 6.
+  객관식 지문은 전부 패러프레이즈. 정답 분포 EX ①2 ②2 ③3 ④2 ⑤2 · EX2 ①2 ②2 ③2 ④2 ⑤3 (합계 ①4 ②4 ③5 ④4 ⑤5).
+  요약문 `options[].no` = 배열 위치.
+- `data/EXV/1.json` · `data/EX2V/1.json` 은 분석지(`data/EX`, `data/EX2`) 사본이며 `exam` 만 `목일중 추가지문(2) 3학년` 으로 바꿨다
+  (빌더가 `exam` 끝의 학년을 떼어 머리글에 다시 붙이므로 원래 값이면 "3학년" 이 두 번 찍힌다).
+  **EXV 사본만 16번 인쇄 오타 `carefuliy` → `carefully` 로 고쳤다** — 워크북은 학생이 문장을 그대로 쓰고 배열하므로 오타를 외우게 하면 안 된다.
+  분석지·암기장(`data/EX`)은 인쇄본 표기 그대로다.
+- 고유명사 오탐 차단어(단독 정답 금지): EX `lee suji korean daechi-dong this although` ·
+  EX2 `ai many these consequently there building by nevertheless if yet ultimately while using`.
+  `verify-workbook-EXV.mjs` 가 이 목록과 4글자 이하 빈칸 정답을 **오류로 차단**한다(빌더가 조용히 지우는 문항을 빌드 전에 잡음).
+  저작 문항 수 = 렌더 문항 수 전수 일치.
+
+### ⚠️ 함정 두 가지 (이 폴더에서 처음 손본 것)
+
+1. **워크북 양자택일 정답이 항상 앞에 온다.** 저작 규약이 `{{n:정답/오답}}` 이고 빌더는 적힌 순서 그대로 찍으므로,
+   그대로 두면 STEP 2·3 의 답이 전부 앞쪽이다(순서만 보고 찍으면 만점). `_author-EXV-workbook.mjs` 가 출력 템플릿에서
+   슬롯마다 결정적 해시로 약 절반을 `오답/정답` 으로 뒤집는다 — EX 앞 23·뒤 21, EX2 앞 24·뒤 23.
+   정답지는 `answers` 배열을 쓰므로 영향 없음. 검증기도 "정답이 두 보기 중 하나 + answers 대입 시 본문 복원" 으로 바꿨다.
+2. **지문 1개짜리 변형문제는 반쪽 페이지가 된다.** `build-variant.mjs` 는 유형마다 새 페이지를 열고 지문별로 좌·우 단을 채우므로
+   지문이 1개면 객관식 11쪽이 전부 오른쪽 단이 빈다(16p). `_pack-variant.mjs` 가 연속된 반쪽 페이지 두 장을 한 장의 좌·우 단으로
+   합치고 쪽 번호를 다시 매긴다(16p → 11p, 머리글 태그 "주제찾기 · 요지찾기"). 합친 뒤 잘림·푸터 침범을 반드시 재측정.
+
+### 빌드
+```bash
+cd mock-exam-analysis
+D=_oneoff-목일중3-동아이
+(cd $D && node _author-EXV-workbook.mjs && node _author-EXV-variant.mjs        && node verify-workbook-EXV.mjs && node verify-variant-EXV.mjs)      # 오류 0 이어야 빌드
+for L in EXV EX2V; do
+  # 워크북
+  node builder/build-workbook.mjs "$D/data/$L" "$D/dist/$L" --styles="$D/styles/workbook.css"
+  node builder/check-overflow.mjs "$D/dist/$L/workbook-1.html"           # overflow 0
+  node $D/combine-workbook.mjs $L                                         # 표지+본문, PDF 쪽수 대조
+  # 변형문제
+  node builder/build-variant.mjs "$D/data/$L" "$D/dist/$L" --styles="$D/styles/variant.css" --shared-writing-passage
+  node $D/_pack-variant.mjs "$D/dist/$L/variant-book.html"                # 반쪽 페이지 합치기
+  node $D/_measure-clip.mjs "$D/dist/$L/variant-book.html"; node $D/_measure-pages.mjs "$D/dist/$L/variant-book.html"
+  node $D/render-variant-pdf.mjs "$D/dist/$L/variant-book.html"
+done
+cp "$D/dist/EXV/variant-book.pdf"  "$D/dist/EXV/목일중3_추가지문_7_SupplementaryReading_변형문제.pdf"
+cp "$D/dist/EX2V/variant-book.pdf" "$D/dist/EX2V/목일중3_추가지문2_Unit8_SupplementaryReading_변형문제.pdf"
+```
+
+검수(2026-10-17): `verify-workbook-EXV` 오류 0·경고 0 · `verify-variant-EXV` 오류 0(직선따옴표 0, 요약문 no 정합) ·
+워크북 overflow 0(2권 × 14p) · 합본 PDF 15p = .page 15 · 변형 잘림 0·푸터 침범 0 ·
+PNG 렌더 육안 확인(표지·본문·양자택일 순서·밑줄·삽입 기호·요약표·서술형·정답지, ☰ 글리프 깨짐 없음).
+`styles/workbook.css` 는 봉영여중3 것(확장 글리프 범위 + Segoe UI Symbol + 한글 어절 줄바꿈)으로 교체했고, `styles/variant.css` 도 봉영여중3 것을 복제했다.
+
