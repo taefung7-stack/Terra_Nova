@@ -62,7 +62,7 @@ function write(lesson, topic_ko, bt) {
 
 /* ═══════════════════════ EX. Lee Suji’s Comedy ═══════════════════════ */
 const EX_A = [
-  'Comedian Lee Suji makes funny videos that copy everyday trends in Korea.',
+  'Comedian Lee Suji makes funny videos that make fun of everyday trends in Korea.',
   'In one of them, she plays an influencer who sells an ordinary ceramic cup as a “face slimming tool” at a ridiculous price.',
   'Her fans buy it right away simply because someone they admire recommends it.',
   'This shows conformity bias, the habit of copying others without thinking.',
@@ -74,7 +74,7 @@ const EX_A = [
 const EX_B = [
   'Why do people buy things just because everyone else does?',
   'Comedian Lee Suji answers this question with laughter.',
-  'Her videos show followers rushing to buy a useless cup that an influencer praises, and parents who send their children to hakwons for even the simplest skills.',
+  'Her videos show followers rushing to buy an ordinary cup that an influencer praises, and parents who send their children to hakwons for even the simplest skills.',
   'The first case is an example of conformity bias, and the second is an example of social comparison.',
   'Both habits come from social pressure, and both can lead to wasted money or stressed children.',
   'Lee does not lecture her viewers or criticize them directly.',
@@ -496,13 +496,13 @@ write('EX2V', 'AI는 도구일 뿐 — 정서적 위안은 줄 수 있어도 진
       { text: 'Talking to AI chatbots has become a common way to deal with loneliness.', slot_after: 1 },
       { text: 'They are always available, polite, and free from judgment.', slot_after: 2 },
       { text: 'Nevertheless, depending too heavily on AI comes with serious drawbacks.', slot_after: 3 },
-      { text: 'What looks like sympathy is merely a simulation based on programmed data.', slot_after: 4 },
-      { text: 'People who rely only on AI may therefore miss the deep connections that only real people can provide.', slot_after: 5 },
+      { text: 'Therefore, what looks like sympathy is merely a simulation based on programmed data.', slot_after: 4 },
+      { text: 'People who rely only on AI may miss the deep connections that only real people can provide.', slot_after: 5 },
     ],
     choices: NUM,
     answer: 3,
-    explanation_ko: '주어진 문장은 Most importantly 로 단점의 첫째를 꺼내므로 ‘심각한 단점이 있다’는 문장 바로 뒤인 ③에 들어가고, 이어서 공감처럼 보이는 것이 모방일 뿐이라는 설명이 뒤따른다.',
-    distractor_ko: '①② 아직 단점이 나오기 전이라 Most importantly 가 어색하다. ④ 가장 중요한 단점이 설명보다 뒤에 오게 된다. ⑤ 결론 뒤에 단점이 다시 나와 흐름이 끊긴다.',
+    explanation_ko: '주어진 문장은 Most importantly 로 ‘심각한 단점’의 핵심(진정한 감정이 없음)을 꺼내므로 ③에 들어간다. 뒤 문장의 Therefore(그러므로 공감처럼 보이는 것은 모방일 뿐)는 바로 이 ‘감정이 없다’를 근거로 받는다.',
+    distractor_ko: '①② 아직 단점이 나오기 전이라 Most importantly 가 어색하다. ④⑤ 주어진 문장이 빠지면 Therefore 가 근거 없이 단점 소개 문장에 바로 이어져 흐름이 끊긴다.',
   },
   summary: {
     passage: EX2_B,

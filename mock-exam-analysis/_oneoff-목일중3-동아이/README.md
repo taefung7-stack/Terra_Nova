@@ -350,3 +350,20 @@ cp "$D/dist/EX2V/variant-book.pdf" "$D/dist/EX2V/목일중3_추가지문2_Unit8_
 PNG 렌더 육안 확인(표지·본문·양자택일 순서·밑줄·삽입 기호·요약표·서술형·정답지, ☰ 글리프 깨짐 없음).
 `styles/workbook.css` 는 봉영여중3 것(확장 글리프 범위 + Segoe UI Symbol + 한글 어절 줄바꿈)으로 교체했고, `styles/variant.css` 도 봉영여중3 것을 복제했다.
 
+
+### 원문 대조 전체 재검수 (2026-10-17)
+
+**기계 대조** — 워크북 PDF 는 이미지 렌더(텍스트층 없음)라 렌더 원본 `workbook-combined.html` 로 대조, 페이지 수는 PDF 와 일치(15=15).
+- 워크북: STEP1 원문·해석 전 문장(EX 18·EX2 21) 누락 0 · STEP2·3 정답 대입 = 원문, 제시 해석 = 해당 문장 해석 ·
+  STEP4 빈칸을 정답으로 채우면 원문(EX 12/12·EX2 13/13) · STEP5 영어·STEP7 한글 제시문 = 원문 · STEP6 배열 박스 단어 = 정답 토큰(10/10) ·
+  STEP8 8/8 · STEP9 배열·영작·해석 정답 = 원문/해석.
+- 변형문제(텍스트 PDF): 서술형 본문 제시 지문에 원문 전 문장 · 배열/조건 영작 정답 = 원문 문장, 제시 우리말 = 해석 ·
+  빈칸 완성 문맥 복원 = 원문 · 요약문 완성 정답이 본문에 있음 · 정답지 ①~⑤ 가 데이터와 일치 · ☰/U+FFFD 깨짐 0 · `carefuliy` 0.
+
+**내용 대조로 고친 것 4건**
+1. EX2 변형 문장삽입: 주어진 문장이 ④에도 들어갈 수 있었다 → ④번 문장을 `Therefore, what looks like sympathy …` 로 바꿔 정답 ③만 성립하게 함.
+2. EX 변형 주제·제목 지문 `videos that copy everyday trends` → `make fun of`(원문은 유행을 따라 하는 영상이 아니라 풍자하는 영상).
+3. EX 변형 요지·요약 지문 `a useless cup` → `an ordinary cup`(원문 a regular ceramic cup — useless 는 원문에 없는 과장).
+4. EX2 워크북 어휘 양자택일 `reconciliation/separation` → `reconciliation/revenge`(separation 도 '실제 경험'으로 읽힐 수 있어 오답이 약했음).
+
+재빌드 후 검증 오류 0 · 워크북 overflow 0 · 변형 잘림·푸터 침범 0 · 위 기계 대조 전부 재통과.
