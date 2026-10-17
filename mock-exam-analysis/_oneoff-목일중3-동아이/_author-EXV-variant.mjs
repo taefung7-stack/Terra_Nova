@@ -25,6 +25,25 @@ const ul = (list) => list.map(([sent_index, text, fix], i) => (fix
   : { no: i + 1, sent_index, text, correct: true }));
 const summaryOpts = (pairs) => pairs.map(([A, B], i) => ({ no: i + 1, A, B }));
 
+/* 배열 영작 <보기> 섞기 — build-variant.mjs 는 words 를 적힌 순서 그대로 찍으므로 여기서 섞는다.
+ * 결정적(같은 문장이면 같은 결과)이며, 원문에서 이웃한 두 단어가 같은 순서로 붙어 남지 않고
+ * 첫 단어도 원래 첫 단어가 아니도록 고른다. */
+const hash = (str) => { let h = 2166136261; for (const c of str) { h ^= c.codePointAt(0); h = Math.imul(h, 16777619); } return h >>> 0; };
+const rngOf = (seed) => { let t = seed; return () => { t = (t + 0x6D2B79F5) >>> 0; let r = Math.imul(t ^ (t >>> 15), 1 | t); r ^= r + Math.imul(r ^ (r >>> 7), 61 | r); return ((r ^ (r >>> 14)) >>> 0) / 4294967296; }; };
+const keptPairs = (orig, arr) => arr.slice(1).filter((w, i) => orig.indexOf(arr[i]) + 1 === orig.indexOf(w)).length;
+function scramble(words, seedKey) {
+  let best = null, bestScore = Infinity;
+  for (let attempt = 0; attempt < 500; attempt++) {
+    const rng = rngOf(hash(`${seedKey}#${attempt}`));
+    const arr = words.slice();
+    for (let i = arr.length - 1; i > 0; i--) { const j = Math.floor(rng() * (i + 1)); [arr[i], arr[j]] = [arr[j], arr[i]]; }
+    const score = keptPairs(words, arr) * 2 + (arr[0] === words[0] ? 1 : 0);
+    if (score < bestScore) { best = arr; bestScore = score; }
+    if (score === 0) break;
+  }
+  return best;
+}
+
 function write(lesson, topic_ko, bt) {
   const DIR = path.join(HERE, 'data', lesson);
   const data = JSON.parse(fs.readFileSync(path.join(DIR, '1.json'), 'utf8'));
@@ -36,8 +55,8 @@ function write(lesson, topic_ko, bt) {
       if (w.subtype === 'word_order') {
         w.answer = en(w.ref);
         w.ko_prompt = ko(w.ref);
-        w.words = en(w.ref).split(/\s+/).map(t => t.replace(/[,.!?:;”“]/g, '')).filter(Boolean)
-          .map((t, i) => (i === 0 && t !== 'AI' ? t.toLowerCase() : t));
+        w.words = scramble(en(w.ref).split(/\s+/).map(t => t.replace(/[,.!?:;”“]/g, '')).filter(Boolean)
+          .map((t, i) => (i === 0 && t !== 'AI' ? t.toLowerCase() : t)), `${lesson}|${w.ref}`);
       } else if (w.subtype === 'translate_ko') {
         w.en_prompt = en(w.ref);
         w.answer = ko(w.ref);

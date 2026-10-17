@@ -81,6 +81,33 @@ function appearsInPassage(word, passageText) {
   return false;
 }
 
+/* build-workbook.mjs shuffleWords 재현(mulberry32 + Fisher–Yates, 시드 `${exam}|${qno}|j${ref}`) */
+function seededRng(seed) {
+  let a = seed >>> 0;
+  return function () {
+    a |= 0; a = (a + 0x6D2B79F5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+function strSeed(s) {
+  let h = 2166136261 >>> 0;
+  for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); }
+  return h >>> 0;
+}
+function builderShuffle(words, seedKey) {
+  if (words.length < 2) return words.slice();
+  const orig = words.join('');
+  for (let attempt = 0; attempt < 4; attempt++) {
+    const rng = seededRng(strSeed(seedKey + '#' + attempt));
+    const arr = words.slice();
+    for (let i = arr.length - 1; i > 0; i--) { const j = Math.floor(rng() * (i + 1)); [arr[i], arr[j]] = [arr[j], arr[i]]; }
+    if (arr.join('') !== orig) return arr;
+  }
+  return words.slice();
+}
+
 function checkNoSequence(where, arr, label) {
   arr.forEach((it, i) => {
     if (it.no !== i + 1) fail(where, `${label}[${i}].no=${it.no} — 1..n 연속이어야 함`);
@@ -194,6 +221,16 @@ function verifyOne(lesson, n) {
       }
       // words 를 이어붙인 것이 answer 의 토큰과 같아야 함(구두점 제외)
       const bare = (s) => norm(s).replace(/[.,!?;:"']/g, '').split(/\s+/).filter(Boolean).sort().join(' ');
+      // 최종 인쇄 순서(빌더 섞기 후)가 원문 순서를 드러내지 않는가 — 원문 이웃쌍 0, 첫 단어 다름
+      {
+        const finalWords = builderShuffle(it.words, `${data.exam || ''}|${data.question_no || ''}|j${it.ref_sentence ?? it.no}`);
+        const ansWords = norm(it.answer).replace(/[.,!?;:"]/g, '').split(/\s+/).filter(Boolean);
+        const fw = finalWords.map(w => norm(w).replace(/[.,!?;:"]/g, ''));
+        const kept = fw.slice(1).filter((w, i) => ansWords.some((x, k) => x === fw[i] && ansWords[k + 1] === w)).length;
+        if (fw.join(' ') === ansWords.join(' ')) fail(where, `배열 #${it.no} 인쇄 순서가 정답 순서 그대로`);
+        else if (kept > 0) fail(where, `배열 #${it.no} 인쇄 순서에 원문 이웃쌍 ${kept}개 남음 — ${fw.join(' / ')}`);
+        if (fw[0] === ansWords[0]) fail(where, `배열 #${it.no} 첫 단어가 정답 첫 단어(${fw[0]})`);
+      }
       if (bare(it.words.join(' ')) !== bare(it.answer)) {
         fail(where, `배열 #${it.no} words 가 answer 의 단어 집합과 불일치\n      words:  ${bare(it.words.join(' '))}\n      answer: ${bare(it.answer)}`);
       }

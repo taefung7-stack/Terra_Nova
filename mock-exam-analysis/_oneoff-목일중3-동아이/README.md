@@ -367,3 +367,12 @@ PNG 렌더 육안 확인(표지·본문·양자택일 순서·밑줄·삽입 기
 4. EX2 워크북 어휘 양자택일 `reconciliation/separation` → `reconciliation/revenge`(separation 도 '실제 경험'으로 읽힐 수 있어 오답이 약했음).
 
 재빌드 후 검증 오류 0 · 워크북 overflow 0 · 변형 잘림·푸터 침범 0 · 위 기계 대조 전부 재통과.
+
+### 배열 문제 섞기 보강 (2026-10-17)
+- **변형문제 서술형 ‘배열 영작’ <보기>가 정답 순서 그대로 인쇄되던 문제** — `build-variant.mjs` 는 `words` 를 섞지 않는다.
+  `_author-EXV-variant.mjs` 의 `scramble()` 이 결정적으로 섞어 원문 이웃쌍 0·첫 단어 다름을 보장한다.
+- **워크북 STEP 6·8 배열** — 빌더 `shuffleWords` 만으로는 원문 이웃 단어가 최대 3쌍 붙어 남거나 첫 단어가 정답 첫 단어였다.
+  `_author-EXV-workbook.mjs` 의 `preShuffle()` 이 빌더 섞기(시드 `${exam}|${question_no}|j${ref}`)를 재현해
+  **최종 인쇄 순서**가 원문 이웃쌍 0·첫 단어 다름이 되도록 입력 순서를 역산한다. 같은 단어가 두 번 나오는 문장(is 등)도
+  인쇄된 글자 기준으로 센다.
+- 두 검증기에 같은 규칙을 넣어 빌드 전에 차단한다. 인쇄 HTML/PDF 실측: 워크북 배열 EX·EX2 각 11개 이웃쌍 0·첫 단어 같음 0.

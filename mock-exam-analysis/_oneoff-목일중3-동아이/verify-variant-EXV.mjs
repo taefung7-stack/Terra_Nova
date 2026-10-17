@@ -184,6 +184,16 @@ for (const lesson of LESSONS) {
     for (const item of w) {
       if (!item.subtype) err(f, 'writing', `subtype 없는 항목`);
       // summary_word 는 스펙상 answer 대신 answer_a / answer_b 를 쓴다.
+      // 11) 배열 영작 <보기>가 정답 순서 그대로면 안 된다(빌더는 섞지 않는다)
+      if (item.subtype === 'word_order') {
+        const ans = String(item.answer || '').split(/\s+/).map(t => t.replace(/[,.!?:;”“]/g, '').toLowerCase()).filter(Boolean);
+        const ws = (item.words || []).map(t => t.toLowerCase());
+        if ([...ans].sort().join(' ') !== [...ws].sort().join(' ')) err(f, 'writing', `word_order: words 가 정답 단어와 불일치`);
+        const kept = ws.slice(1).filter((w, i) => ans.indexOf(ws[i]) + 1 === ans.indexOf(w)).length;
+        if (ws.join(' ') === ans.join(' ')) err(f, 'writing', `word_order: <보기>가 정답 순서 그대로`);
+        else if (kept > 1) err(f, 'writing', `word_order: 원문 순서대로 붙은 단어쌍 ${kept}개 — 더 섞을 것`);
+        if (ws[0] === ans[0]) warn(f, 'writing', `word_order: 첫 단어가 정답 첫 단어와 같음`);
+      }
       if (item.subtype === 'summary_word') {
         if (!item.answer_a || !item.answer_b) err(f, 'writing', `summary_word: answer_a/answer_b 없음`);
       } else if (!item.answer) {

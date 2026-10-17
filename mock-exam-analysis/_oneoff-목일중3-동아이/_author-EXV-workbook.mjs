@@ -35,6 +35,63 @@ const wordsOf = (s) => s.split(/\s+/)
   .map(w => w.replace(/^[“"‘(]+/, '').replace(/[”"’),.!?:;]+$/, '').replace(/[”"),.!?:;]+$/, ''))
   .filter(w => w && w !== '–');
 
+/* ── 배열 단어 순서 ───────────────────────────────────────────────
+ * build-workbook.mjs 는 jumble.words 를 시드(`${exam}|${question_no}|j${ref}`)로 한 번 더 섞는다(mulberry32 +
+ * Fisher–Yates, 결정적). 그 섞기만으로는 원문에서 이웃한 단어가 그대로 붙어 남거나 첫 단어가 정답 첫 단어인
+ * 경우가 생기므로(실측 최대 3쌍), 빌더 섞기를 그대로 재현해 "최종 인쇄 순서"가 원문 이웃쌍 0·첫 단어 다름이
+ * 되도록 입력 순서를 역산한다. verify-workbook-EXV.mjs 가 같은 재현으로 결과를 검사한다. */
+function seededRng(seed) {
+  let a = seed >>> 0;
+  return function () {
+    a |= 0; a = (a + 0x6D2B79F5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+function strSeed(s) {
+  let h = 2166136261 >>> 0;
+  for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); }
+  return h >>> 0;
+}
+/* 빌더 shuffleWords 의 첫 시도 순열: 최종[i] = 입력[perm[i]] */
+function builderPerm(n, seedKey) {
+  const rng = seededRng(strSeed(seedKey + '#0'));
+  const idx = [...Array(n).keys()];
+  for (let i = n - 1; i > 0; i--) { const j = Math.floor(rng() * (i + 1)); [idx[i], idx[j]] = [idx[j], idx[i]]; }
+  return idx;
+}
+/* 원문 위치 배열(order)에서 이웃쌍 수 + 첫 단어 유지 벌점 — 같은 단어가 두 번 나오는 문장(is·the 등)도
+ * 인쇄된 글자로 이웃쌍이 보이면 안 되므로 위치가 아니라 단어 문자열 쌍으로 센다. */
+function orderScore(words, order) {
+  const key = (w) => w.toLowerCase();
+  const adj = new Set(words.slice(1).map((w, i) => `${key(words[i])} ${key(w)}`));
+  const kept = order.slice(1).filter((p, i) => adj.has(`${key(words[order[i]])} ${key(words[p])}`)).length;
+  return kept * 2 + (key(words[order[0]]) === key(words[0]) ? 1 : 0);
+}
+function targetOrder(words, seedKey) {
+  const n = words.length;
+  let best = null, bestScore = Infinity;
+  for (let attempt = 0; attempt < 2000 && bestScore > 0; attempt++) {
+    const rng = seededRng(strSeed(`${seedKey}|target#${attempt}`));
+    const o = [...Array(n).keys()];
+    for (let i = n - 1; i > 0; i--) { const j = Math.floor(rng() * (i + 1)); [o[i], o[j]] = [o[j], o[i]]; }
+    const sc = orderScore(words, o);
+    if (sc < bestScore) { best = o; bestScore = sc; }
+  }
+  return best;
+}
+/* 빌더가 섞은 뒤 targetOrder 가 되도록 입력 순서를 역산 */
+function preShuffle(words, seedKey) {
+  const n = words.length;
+  if (n < 2) return words.slice();
+  const want = targetOrder(words, seedKey);       // 최종 인쇄 순서(원문 위치)
+  const perm = builderPerm(n, seedKey);           // 최종[i] = 입력[perm[i]]
+  const input = new Array(n);
+  perm.forEach((src, i) => { input[src] = words[want[i]]; });
+  return input;
+}
+
 function build(lesson, spec) {
   const DIR = path.join(HERE, 'data', lesson);
   const data = JSON.parse(fs.readFileSync(path.join(DIR, '1.json'), 'utf8'));
@@ -57,7 +114,8 @@ function build(lesson, spec) {
       ko_full: ko(ref),
     })),
     ko_translation: spec.KO.map((ref, i) => ({ no: i + 1, ref_sentence: ref })),
-    jumble: spec.J.map((ref, i) => ({ no: i + 1, ref_sentence: ref, words: wordsOf(en(ref)), answer: en(ref) })),
+    jumble: spec.J.map((ref, i) => ({ no: i + 1, ref_sentence: ref,
+      words: preShuffle(wordsOf(en(ref)), `${data.exam || ''}|${data.question_no || ''}|j${ref}`), answer: en(ref) })),
     sentence_translation: spec.S.map((ref, i) => ({ no: i + 1, ref_sentence: ref, given: 'ko' })),
     mixed: spec.M.map(([kind, ref], i) => ({ kind, ref, no: i + 1 })),
   };
