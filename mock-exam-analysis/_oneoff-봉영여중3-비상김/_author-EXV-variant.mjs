@@ -24,6 +24,23 @@ const ul = (list) => list.map(([sent_index, text, fix], i) => (fix
   : { no: i + 1, sent_index, text, correct: true }));
 const summaryOpts = (pairs) => pairs.map(([A, B], i) => ({ no: i + 1, A, B }));
 
+/* 배열 영작 <보기> 섞기 — build-variant.mjs 는 words 를 데이터 순서 그대로 찍으므로
+ * (워크북 빌더와 달리 셔플이 없다) 저작 단계에서 섞는다. 시드 고정이라 재생성해도 같은 순서.
+ * 첫 단어가 맨 앞에 오지 않고, 원문에서 이웃한 두 단어가 그대로 붙어 남는 경우가 1쌍 이하일 때까지 다시 섞는다. */
+function shuffleWords(words, seedKey) {
+  let h = 2166136261 >>> 0;
+  for (const ch of seedKey) { h ^= ch.charCodeAt(0); h = Math.imul(h, 16777619); }
+  const rng = () => { h |= 0; h = (h + 0x6D2B79F5) | 0; let t = Math.imul(h ^ (h >>> 15), 1 | h);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+  const idx = words.map((_, i) => i);
+  for (let tries = 0; tries < 500; tries++) {
+    for (let i = idx.length - 1; i > 0; i--) { const j = Math.floor(rng() * (i + 1)); [idx[i], idx[j]] = [idx[j], idx[i]]; }
+    const kept = idx.slice(1).filter((v, i) => v === idx[i] + 1).length;
+    if (idx[0] !== 0 && kept <= 1) return idx.map(i => words[i]);
+  }
+  throw new Error(`배열 보기 섞기 실패: ${seedKey}`);
+}
+
 function write(n, topic_ko, bt) {
   const data = JSON.parse(fs.readFileSync(path.join(DIR, `${n}.json`), 'utf8'));
   const ko = (r) => data.passage_ko[r - 1];
@@ -34,8 +51,8 @@ function write(n, topic_ko, bt) {
       if (w.subtype === 'word_order') {
         w.answer = en(w.ref);
         w.ko_prompt = ko(w.ref).replace(/^\((예시|요약)\)\s*/, '');
-        w.words = en(w.ref).split(/\s+/).map(t => t.replace(/[,.!?:;”“]/g, '')).filter(Boolean)
-          .map((t, i) => (i === 0 ? t.toLowerCase() : t));
+        w.words = shuffleWords(en(w.ref).split(/\s+/).map(t => t.replace(/[,.!?:;”“]/g, '')).filter(Boolean)
+          .map((t, i) => (i === 0 ? t.toLowerCase() : t)), `${n}|${w.ref}`);
       } else if (w.subtype === 'translate_ko') {
         w.en_prompt = en(w.ref);
         w.answer = ko(w.ref).replace(/^\((예시|요약)\)\s*/, '');

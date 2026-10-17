@@ -123,6 +123,14 @@ ok(ansSeq.slice(0, 33).join('') === expect.join(''), `정답지 객관식 순서
 // 문항 번호 1..51
 const qnos = new Set([...raw.matchAll(/^(\d{1,2})\r?$/gm)].map(m => +m[1]));
 for (let i = 1; i <= 51; i++) ok(qnos.has(i), `문항 번호 ${i} 없음`);
+// 배열 영작 <보기>: 정답과 같은 단어 집합이되 정답 순서 그대로면 안 된다(2026-10-17 사용자 지적)
+for (const n of NS) for (const w of V[n].writing.filter(x => x.words)) {
+  const ansWords = w.answer.split(/\s+/).map(t => t.replace(/[,.!?:;”“]/g, '')).filter(Boolean);
+  const norm = (a) => a.map(x => x.toLowerCase()).sort().join(' ');
+  ok(norm(w.words) === norm(ansWords), `${n} 배열 영작 보기 단어 집합 ≠ 정답`);
+  ok(w.words.map(x => x.toLowerCase()).join(' ') !== ansWords.map(x => x.toLowerCase()).join(' '), `${n} 배열 영작 보기가 정답 순서 그대로`);
+  ok(has(`[ ${w.words.join(' / ')} ]`), `${n} 배열 영작 보기 순서가 PDF 와 다름`);
+}
 // 서술형 정답
 for (const n of NS) for (const w of V[n].writing) {
   for (const a of [w.answer, w.answer_a, w.answer_b].filter(Boolean)) ok(has(a), `${n} 서술형 ${w.subtype} 정답 미인쇄: ${a.slice(0, 50)}`);
