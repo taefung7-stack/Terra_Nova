@@ -11,13 +11,14 @@
  *   ( ① ) / ① 등 보기 번호는 문제 장치라 지운다.
  * 분할 규칙: 문장부호(. ? !, 닫는 따옴표 포함) 뒤 공백 + 대문자/여는 따옴표에서 끊는다.
  *   Dr. 같은 약어 뒤에서는 끊지 않는다. 말줄임표(...) 뒤 소문자는 끊지 않는다.
- * 사용법: node _gen-textbook-EX.mjs */
+ * 사용법: node _gen-textbook-EX.mjs [EX|EX4]   (EX4 = 추가지문 4: _PDF-RAW-EX4.txt → _TEXTBOOK-EX4.js) */
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const raw = fs.readFileSync(path.join(__dirname, '_PDF-RAW-EX.txt'), 'utf8').split(/\r?\n/);
+const LID = (process.argv[2] || 'EX').toUpperCase();
+const raw = fs.readFileSync(path.join(__dirname, `_PDF-RAW-${LID}.txt`), 'utf8').split(/\r?\n/);
 const TB = {};
 let cur = null;
 for (const ln of raw) {
@@ -56,5 +57,5 @@ const out = `/* ================================================================
 
 export const TEXTBOOK_EX = ${JSON.stringify(TB, null, 2)};
 `;
-fs.writeFileSync(path.join(__dirname, '_TEXTBOOK-EX.js'), out, 'utf8');
+fs.writeFileSync(path.join(__dirname, `_TEXTBOOK-${LID}.js`), out, 'utf8');
 console.log(Object.entries(TB).map(([n, p]) => `${n}:${p.sentences.length}`).join(' '));

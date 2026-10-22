@@ -24,12 +24,22 @@ const LESSONS = {
     docTitle: "봉영여중 3학년 추가지문 9·10·11 워크북 합본 — Terra Nova",
     out: "봉영여중3_추가지문_9-11_워크북_합본.pdf",
   },
+  /* EX4V — L7 추가지문 4(12 The Lipstick Effect · 13 The Halo Effect) 워크북 */
+  EX4V: {
+    lessonNo: null,
+    titleEn: "Spend Wisely 추가지문 4",
+    sentences: 14,
+    coverTitle: "봉영여중 3학년<br>추가지문 워크북",
+    coverSub: "Lesson 07 Spend Wisely 추가지문 4<br>The Lipstick Effect · The Halo Effect",
+    docTitle: "봉영여중 3학년 추가지문 12·13 워크북 합본 — Terra Nova",
+    out: "봉영여중3_추가지문_12-13_워크북_합본.pdf",
+  },
 };
 
 const lessonId = (process.argv[2] || 'EXV').toUpperCase();
 const LESSON = LESSONS[lessonId];
 if (!LESSON) {
-  console.error(`알 수 없는 과: ${lessonId} (EXV)`);
+  console.error(`알 수 없는 과: ${lessonId} (EXV / EX4V)`);
   process.exit(2);
 }
 const DIST = path.join(__dirname, 'dist', lessonId);

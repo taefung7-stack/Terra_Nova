@@ -287,3 +287,62 @@ cp "$D/dist/EXV/variant-book.pdf" "$D/dist/EXV/봉영여중3_추가지문_9-11_�
   `words` 를 **섞지 않고 데이터 순서 그대로** 찍는다. `_author-EXV-variant.mjs` 의 `shuffleWords()` 로 고정 시드 셔플
   (첫 단어가 맨 앞에 오지 않고, 원문 이웃 단어쌍이 1쌍 이하로 남을 때까지). `_audit-EXV.mjs` 가 단어 집합 일치·정답 순서 아님·
   PDF 인쇄 순서를 검사한다(808건 오류 0). ⚠️ 다른 `_oneoff` 의 변형문제도 `words` 를 정답 순서로 저작했다면 같은 문제가 있다.
+
+---
+
+## 추가지문 4 — 12 The Lipstick Effect · 13 The Halo Effect — 본문분석 + 워크북 + 변형문제 (EX4 · EX4V, 2026-10-22)
+
+사용자가 촬영한 프린트 사진 1장(Lesson 07 Spend Wisely 「추가지문 4」, 필기 포함)으로 9~11 에 이어 **12·13번 3종 세트**를 만들었다.
+1~11 합본·9~11 워크북/변형은 건드리지 않고 **별도 책**으로 냈다.
+
+| 산출물 | 파일 | 구성 |
+|--------|------|------|
+| 본문분석 | `dist/EX4/봉영여중3_추가지문_12-13_본문분석.pdf` | 표지1 + 본문 전문2(지문별) + 분석 8 = **11p** |
+| 워크북 합본 | `dist/EX4V/봉영여중3_추가지문_12-13_워크북_합본.pdf` | 표지1 + 목차1 + 본문19(12번 9p · 13번 10p, 9-STEP) = **21p** |
+| 변형문제 | `dist/EX4V/봉영여중3_추가지문_12-13_변형문제.pdf` (= `variant-book.pdf`) | **19p · 34문항** — 객관식 11유형×2 = 22 + 서술형 6×2 = 12, 정답·해설 포함 |
+
+- **원문**: 12번 6문장 · 13번 8문장(총 14). 정본 `_SOURCE-EX4.js`(손 분할) ↔ `_PDF-RAW-EX4.txt`(인쇄 줄 그대로) 기계 분할
+  `_xcheck-EX.mjs EX4` 문자 단위 대조 14문장 1,245자 오류 0, `--pdf` 로 분석지에 전 문장 ≥2회. 인쇄 오탈자 없음.
+  `_gen-textbook-EX.mjs` · `_xcheck-EX.mjs` 는 과 id 인자(`EX` 기본 / `EX4`)를 받는다 — EX(1~11) 결과는 그대로(108문장 오류 0).
+- **필기 반영**(`[수업 필기]`): 12 phenomenon=현상 · When/less 박스(접속사 when, little 의 비교급 less) · instead of + buy(ing) ·
+  bag, 뒤 끊어읽기 사선 · feel + 형용사 / 13 Halo=후광 · when 박스 · may 동그라미 + think 밑줄(조동사 + 동사원형) ·
+  promotes=광고하다(→ “(상품을) 홍보하다”로 보충).
+- 분석지 문제 형식(인쇄 안 됨): 12 요지 ④ · 13 주제 ①. 삽화는 **아직 없음**(placeholder) — 프롬프트 `_ILLUSTRATION_PROMPTS-EX4.md`
+  (12 화장대의 립스틱·향수 / 13 시장 사과 상자의 빛나는 사과 한 개 — 07 책상·09 운동화·10 부티크와 겹치지 않게).
+- `data/EX4V/{12,13}.json` 은 `data/EX4` 사본이며 `exam` 만 `봉영여중 추가지문 3학년`(9~11 EXV 와 같은 이유).
+- 워크북·변형 저작은 9~11 형식 + 목일중3 의 보강 3가지를 그대로 넣었다:
+  ① 양자택일 표시 순서 섞기(정답 앞/뒤 12번 12:11 · 13번 13:14) ② 배열 단어 순서 역산(인쇄 순서 원문 이웃쌍 0·첫 단어 다름) ③ 변형 배열 영작 <보기> 섞기.
+- 변형 정답 분포 ①4 ②5 ③4 ④5 ⑤4. 요약문 `options[].no` = 배열 위치. 고유명사 오탐 차단어: 12 `when however these` · 13 `english it for therefore`.
+
+### ⚠️ 이번에 새로 잡은 함정 — 빈칸 정답의 빌더 기초어 목록
+`build-workbook.mjs` 의 `EASY_STOPWORDS`(126개, `should` `could` `would` 등 5글자 이상 포함)에 든 단어는 4글자 규칙과 별개로
+**STEP4 빈칸에서 조용히 지워진다**. 13번 빈칸 8번의 `should` 가 실제로 사라져 5칸이 4칸이 됐다(에러 0). `people` 로 바꾸고,
+`verify-workbook-EX4V.mjs` 에 빌더 목록 사본을 넣어 빌드 전에 차단한다.
+
+### 빌드
+```bash
+cd mock-exam-analysis
+D=_oneoff-봉영여중3-비상김
+# 본문분석
+(cd $D && node _gen-textbook-EX.mjs EX4 && node _author-EX4.mjs && node verify.mjs EX4 && node _xcheck-EX.mjs EX4 && node _gen-prompts-doc-EX4.mjs)
+node builder/build.mjs "$D/data/EX4" "$D/dist/EX4" --styles="$D/styles/analysis.css"
+for n in 12 13; do node builder/check-overflow.mjs "$D/dist/EX4/$n.html"; done          # overflow 0
+node builder/pdf.mjs "$D/dist/EX4" && node $D/combine.mjs EX4
+# 워크북·변형 (data/EX4V/{12,13}.json 은 data/EX4 사본 + exam 변경)
+(cd $D && node _author-EX4V-workbook.mjs && node _author-EX4V-variant.mjs \
+       && node verify-workbook-EX4V.mjs && node verify-variant-EX4V.mjs)                # 오류 0 이어야 빌드
+node builder/build-workbook.mjs "$D/data/EX4V" "$D/dist/EX4V" --styles="$D/styles/workbook.css"
+for n in 12 13; do node builder/check-overflow.mjs "$D/dist/EX4V/workbook-$n.html"; done
+node builder/pdf-image.mjs "$D/dist/EX4V" --match='^workbook-\d+\.html$'
+node $D/combine-workbook.mjs EX4V
+node builder/build-variant.mjs "$D/data/EX4V" "$D/dist/EX4V" --styles="$D/styles/variant.css" --shared-writing-passage
+node $D/_measure-clip.mjs "$D/dist/EX4V/variant-book.html"; node $D/_measure-pages.mjs "$D/dist/EX4V/variant-book.html"
+node $D/render-variant-pdf.mjs "$D/dist/EX4V/variant-book.html"
+cp "$D/dist/EX4V/variant-book.pdf" "$D/dist/EX4V/봉영여중3_추가지문_12-13_변형문제.pdf"
+```
+
+검수(2026-10-22): `verify EX4` 오류 0·경고 0 · `verify-workbook-EX4V` 오류 0·경고 0(14문장 전수 커버) · `verify-variant-EX4V` 오류 0 ·
+분석지 overflow 0 · 워크북 overflow 0 · 합본 21p = .page 21 · 변형 잘림 0·푸터 침범 0 ·
+산출물 대조: 워크북 STEP1 원문·해석, STEP2·3 정답 대입 = 원문, STEP4 빈칸 복원 14/14, STEP5·7 제시문, STEP6·8 배열 이웃쌍 0,
+STEP9 정답 · 변형 PDF 원문 전문·서술형 정답 = 원문 · 정답지 22개 순서까지 데이터와 일치 · 글리프 깨짐 0 ·
+PNG 렌더 육안 확인(표지·목차·전 STEP·변형 전 유형·정답지).

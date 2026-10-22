@@ -21,6 +21,7 @@ import { SOURCE as SOURCE_L5 } from './_SOURCE-L5.js';
 import { SOURCE as SOURCE_L6 } from './_SOURCE-L6.js';
 import { SOURCE as SOURCE_L7 } from './_SOURCE-L7.js';
 import { SOURCE as SOURCE_EX } from './_SOURCE-EX.js';
+import { SOURCE as SOURCE_EX4 } from './_SOURCE-EX4.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -67,13 +68,24 @@ const LESSONS = {
     docTitle: '봉영여중 3학년 추가지문 본문분석 합본 — Terra Nova',
     out: '봉영여중3_추가지문_본문분석_합본.pdf',
   },
+  /* EX4 — L7 추가지문 4 (12 The Lipstick Effect · 13 The Halo Effect). 1~11 합본과 별도 책. */
+  EX4: {
+    source: SOURCE_EX4,
+    lessonNo: 0,
+    splitFulltextByChapter: true,
+    coverTitle: '봉영여중 3학년<br>추가지문 4',
+    titleEn: 'Additional Reading Passages 12–13',
+    coverSub: 'Lesson 07 Spend Wisely 추가지문 4<br>12 The Lipstick Effect · 13 The Halo Effect',
+    docTitle: '봉영여중 3학년 추가지문 12·13 본문분석 — Terra Nova',
+    out: '봉영여중3_추가지문_12-13_본문분석.pdf',
+  },
 };
 
 
 const lessonId = (process.argv[2] || 'L5').toUpperCase();
 const LESSON = LESSONS[lessonId];
 if (!LESSON) {
-  console.error(`알 수 없는 과: ${lessonId} (L5 / L6 / L7 / EX)`);
+  console.error(`알 수 없는 과: ${lessonId} (L5 / L6 / L7 / EX / EX4)`);
   process.exit(2);
 }
 const SOURCE = LESSON.source;

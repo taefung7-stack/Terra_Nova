@@ -1,12 +1,14 @@
 /* 추가지문(EX) 전사 대조 — 정본(손 분할) ↔ RAW 기계 분할 ↔ 챕터 JSON ↔ 합본 PDF 텍스트
  * ★ 정규화 없이 **문자 단위 완전 일치**를 요구한다(따옴표·대시·쉼표까지).
- * 사용법: node _gen-textbook-EX.mjs && node _xcheck-EX.mjs [--pdf]
- *   --pdf : dist/_audit/EX-combined.txt(합본 PDF 텍스트 덤프)에 전 문장이 실렸는지도 본다. */
+ * 사용법: node _gen-textbook-EX.mjs [EX|EX4] && node _xcheck-EX.mjs [EX|EX4] [--pdf]
+ *   --pdf : dist/_audit/{EX|EX4}-combined.txt(합본 PDF 텍스트 덤프)에 전 문장이 실렸는지도 본다. */
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { SOURCE } from './_SOURCE-EX.js';
-import { TEXTBOOK_EX } from './_TEXTBOOK-EX.js';
+
+const LID = (process.argv.slice(2).find(a => !a.startsWith('--')) || 'EX').toUpperCase();
+const { SOURCE } = await import(`./_SOURCE-${LID}.js`);
+const { TEXTBOOK_EX } = await import(`./_TEXTBOOK-${LID}.js`);
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 let err = 0, chars = 0;
@@ -22,7 +24,7 @@ for (const ch of SOURCE) {
       bad(`Ch${ch.no} #${i + 1} 불일치 @${k}\n     정본: …${s.slice(Math.max(0, k - 25), k + 25)}\n     RAW : …${(tb[i] ?? '').slice(Math.max(0, k - 25), k + 25)}`);
     }
   });
-  const jf = path.join(__dirname, 'data', 'EX', `${ch.no}.json`);
+  const jf = path.join(__dirname, 'data', LID, `${ch.no}.json`);
   if (fs.existsSync(jf)) {
     const d = JSON.parse(fs.readFileSync(jf, 'utf8'));
     if (JSON.stringify(d.passage) !== JSON.stringify(ch.sentences)) bad(`Ch${ch.no}: JSON passage ≠ 정본`);
@@ -30,7 +32,7 @@ for (const ch of SOURCE) {
   }
 }
 if (process.argv.includes('--pdf')) {
-  const dump = path.join(__dirname, 'dist', '_audit', 'EX-combined.txt');
+  const dump = path.join(__dirname, 'dist', '_audit', `${LID}-combined.txt`);
   const flat = (t) => t.replace(/\s+/g, '');
   const txt = flat(fs.readFileSync(dump, 'utf8'));
   let n = 0;
