@@ -356,3 +356,8 @@ PNG 렌더 육안 확인(표지·목차·전 STEP·변형 전 유형·정답지)
   2. 13 변형 제목 ① `Great at English, Great at Everything` — 후광 효과가 만드는 착각 자체라 반어적 제목으로도 읽혀 복수정답 소지 →
      `Why English Is the Most Important Subject` 로 교체.
 - 재빌드 후 verify 3종 오류 0 · overflow 0 · 잘림 0 · 위 대조 전부 재통과.
+
+### 삽화 반영 (2026-10-22)
+사용자가 넣은 `dist/EX4/{12,13}.png`(1952×608 — 이미 가로 2000px 이하라 축소 없이 그대로)를 `dist/EX4/assets/illust-{12,13}.png` 로 복사해 재빌드.
+placeholder 0 · 이미지 2 · overflow 0 · `_xcheck-EX EX4 --pdf` 오류 0 · 합본 11p 약 6.6MB. 원본·assets 모두 gitignore(저장소에 없음).
+육안 확인: 12 화장대 립스틱·뒤쪽 흐린 가방 / 13 나무 상자의 사과(가운데 한 개가 가장 밝음) — 깨진 글자 없음.
