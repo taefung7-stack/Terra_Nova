@@ -374,7 +374,7 @@ write(13, '후광 효과 — 한 가지 좋은 특성이 다른 특성에 대한
   title: {
     passage: P13_A,
     choices: [
-      'Great at English, Great at Everything',
+      'Why English Is the Most Important Subject',
       'One Bright Spot: How the Halo Effect Shapes Our Judgments',
       'Why Famous Stars Sell More Products',
       'Tips for Making a Strong First Impression',
@@ -382,7 +382,7 @@ write(13, '후광 효과 — 한 가지 좋은 특성이 다른 특성에 대한
     ],
     answer: 2,
     explanation_ko: '한 가지 좋은 점(One Bright Spot)이 판단 전체를 좌우하는 후광 효과를 다루므로 ②가 제목으로 알맞다.',
-    distractor_ko: '① 후광 효과로 생기는 잘못된 생각 자체이다. ③ 연예인 광고는 예시 중 하나이다. ④ 첫인상을 강하게 남기는 법은 다루지 않는다. ⑤ 여러 과목 학습법은 나오지 않는다.',
+    distractor_ko: '① 영어가 가장 중요한 과목이라는 내용은 없다(영어는 예시의 소재). ③ 연예인 광고는 예시 중 하나이다. ④ 첫인상을 강하게 남기는 법은 다루지 않는다. ⑤ 여러 과목 학습법은 나오지 않는다.',
   },
   implication: {
     passage: [
