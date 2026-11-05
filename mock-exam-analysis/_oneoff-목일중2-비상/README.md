@@ -1,4 +1,4 @@
-# 목일중 2학년 — 2022 개정 비상(황종배) 중2 본문분석 + 본문암기 (Lesson 5·6)
+# 목일중 2학년 — 2022 개정 비상(황종배) 중2 본문분석 + 본문암기 (Lesson 5·6·7·8)
 
 > ⚠️ **개인 용도 1회성 산출물입니다. 테라노바 판매용이 아닙니다.**
 > 판매·구독 파이프라인(Supabase Storage 업로드, dispatch-order-pdf, market)에
@@ -200,3 +200,55 @@ verify.mjs                      무결성 검증
 combine.mjs                     분석지 합본
 build-memorize.mjs              본문암기 빌더
 ```
+
+## Lesson 7 · Food Brings Us Together / Lesson 8 · The Last Wild Race (2026-11-05)
+
+교과서 본문 PDF(`목일중/중2 비상황/26년 2학기 기말고사/목일중 {7,8}과.pdf`)로 만든 **본문분석 + 본문암기**.
+
+| 과 | Ch | 제목 | 원문 문장 | 분석 카드 |
+|----|----|------|-----------|-----------|
+| L7 | 1 | 민찬 — 김장 | 8 | 4 |
+| L7 | 2 | 에밀 — 플랫브레드 (2문단) | 11 | 5 |
+| L7 | 3 | 비비안 — 호커 센터 | 6 | 4 |
+| L7 | 4 | 비비안 — 호커 문화를 사랑하는 이유 | 6 | 4 |
+| | | **L7 합계** | **31** | **17** |
+| L8 | 1 | (도입) The Last Wild Race | 6 | 4 |
+| L8 | 2 | What Is the Race Like? (2문단) | 9 | 5 |
+| L8 | 3 | What Are the Rules of the Race? | 7 | 5 |
+| L8 | 4 | Join Us! | 4 | 3 |
+| | | **L8 합계** | **26** | **17** |
+
+| 과 | 본문분석 합본 | 본문암기 |
+|----|---------------|----------|
+| L7 | `dist/L7/목일중2_비상_Lesson7_본문분석_합본.pdf` — 표지1+본문전문1+본문13 = **15p** | `…Lesson7_본문암기.pdf` — **5p** (31문항 · qSplit `[11, 10, 10]`) |
+| L8 | `dist/L8/목일중2_비상_Lesson8_본문분석_합본.pdf` — 표지1+본문전문1+본문14 = **16p** | `…Lesson8_본문암기.pdf` — **4p** (26문항 · qSplit `[13, 13]`) |
+
+- **저작 방식이 바뀌었다** — L5·L6·L6X 는 JSON 을 직접 썼지만, L7·L8 은 봉영여중3 의 미니 마크업 헬퍼 `_author.mjs`
+  (`{영어}`·`**굵게**`·`[g:]`/`[r:]`/`[h:]` 하이라이트·` | ` 끊어읽기)를 복제해 `_author-L7.mjs`·`_author-L8.mjs` 에서 생성한다.
+  **JSON 을 직접 고치지 말고 저작 스크립트를 고친 뒤 `node _author-L{7,8}.mjs`.** 헬퍼가 직선따옴표를 곱슬로 바꾸고 낫표 「 」 를 차단한다.
+- **원문**: PDF 왼쪽 단을 PyMuPDF 로 좌표 클립 추출한 `_PDF-RAW-L{7,8}.txt`(사람 손 안 거친 독립 경로) ↔ 손 분할 정본 `_SOURCE-L{7,8}.js`
+  를 `node _xcheck.mjs L7|L8` 로 **문자 단위 완전 일치** 확인(L7 1538자 · L8 1539자). L8 소제목 3개는 본문 문장이 아니라 챕터 제목.
+- **해석**: 교과서 PDF 오른쪽 단의 우리말을 문장 단위로 옮겼다(PDF 텍스트 추출은 구두점이 줄 끝으로 밀려 깨지므로 페이지 이미지 기준).
+  인명은 한글(에밀·비비안), L8 25번 “의미도 있을 것입니다” → 원문 시제(is)에 맞춰 “의미도 있습니다”.
+- 원본에 문제가 없어 각 챕터 문제 유형·보기는 형식상 새로 붙였다(`hide_answer` 라 인쇄 안 됨).
+- `styles/analysis.css`·`workbook.css` 에 봉영여중3 의 확장 글리프 보정(`% × ○ ←` + ▶ ✗ Segoe UI Symbol)과 한글 제시문 어절 줄바꿈을 이식했다
+  (기존 `+ = | ↔` 보정은 유지).
+- **삽화는 아직 없음**(INTRO 면 placeholder) — 프롬프트 8장은 `_ILLUSTRATION_PROMPTS.md` 맨 아래 절.
+
+### 빌드
+```bash
+cd mock-exam-analysis
+D=_oneoff-목일중2-비상
+(cd $D && node _xcheck.mjs L7 && node _xcheck.mjs L8 && node _author-L7.mjs && node _author-L8.mjs && node verify.mjs L7 && node verify.mjs L8)
+for L in L7 L8; do
+  node builder/build.mjs "$D/data/$L" "$D/dist/$L" --styles="$D/styles/analysis.css"
+  for n in 1 2 3 4; do node builder/check-overflow.mjs "$D/dist/$L/$n.html"; done   # overflow 0
+  node builder/pdf.mjs "$D/dist/$L" && node $D/combine.mjs $L
+  node $D/build-memorize.mjs $L
+done
+```
+
+### 검수 (2026-11-05)
+- `_xcheck` 정본 = PDF 추출본 문자 단위 일치(L7 31문장 · L8 26문장) · `verify.mjs L7/L8` 오류 0·경고 0 · overflow 8챕터 전부 0.
+- 실제 PDF 페이지 수 = 빌드 로그(분석 15·16p, 암기 5·4p — 함정 1 대조) · 분석지에 전 문장 ≥2회·해석 ≥4회 ·
+  암기장에 영어 정답·한글 제시 전 문장 수록 · 글리프 깨짐 0 · PNG 렌더 육안 확인(표지·본문 전문·INTRO·PASSAGE·분석 카드·암기 문제/정답면).

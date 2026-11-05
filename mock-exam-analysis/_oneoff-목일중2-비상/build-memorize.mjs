@@ -53,6 +53,18 @@ const LESSONS = {
     out: '목일중2_비상_Lesson6_ExtraReading_본문암기.pdf',
     qSplit: [11, 11],
   },
+  L7: {
+    lessonNo: 7,
+    titleEn: 'Food Brings Us Together',
+    out: '목일중2_비상_Lesson7_본문암기.pdf',
+    qSplit: [11, 10, 10],      // 31문장 → 3페이지
+  },
+  L8: {
+    lessonNo: 8,
+    titleEn: 'The Last Wild Race',
+    out: '목일중2_비상_Lesson8_본문암기.pdf',
+    qSplit: [13, 13],          // 26문장 → 2페이지
+  },
 };
 
 const esc = (s) => String(s ?? '')
@@ -61,7 +73,7 @@ const esc = (s) => String(s ?? '')
 /* ── 한 과 빌드 ───────────────────────────────────────────────── */
 async function buildOne(lessonId) {
   const LESSON = LESSONS[lessonId];
-  if (!LESSON) { console.error(`알 수 없는 과: ${lessonId} (L5 / L6 / L6X)`); process.exit(2); }
+  if (!LESSON) { console.error(`알 수 없는 과: ${lessonId} (L5 / L6 / L6X / L7 / L8)`); process.exit(2); }
 
   const { SOURCE } = await import(`./_SOURCE-${lessonId}.js`);
   const DIST = path.join(__dirname, 'dist', lessonId);

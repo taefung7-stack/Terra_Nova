@@ -20,6 +20,8 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { SOURCE as SOURCE_L5 } from './_SOURCE-L5.js';
 import { SOURCE as SOURCE_L6 } from './_SOURCE-L6.js';
 import { SOURCE as SOURCE_L6X } from './_SOURCE-L6X.js';
+import { SOURCE as SOURCE_L7 } from './_SOURCE-L7.js';
+import { SOURCE as SOURCE_L8 } from './_SOURCE-L8.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -62,12 +64,30 @@ const LESSONS = {
     docTitle: '목일중 2학년 · 비상 Lesson 6 Extra Reading 본문분석 합본 — Terra Nova',
     out: '목일중2_비상_Lesson6_ExtraReading_본문분석_합본.pdf',
   },
+  L7: {
+    source: SOURCE_L7,
+    lessonNo: 7,
+    coverTitle: '목일중 2학년<br>비상 영어 2',
+    titleEn: 'Food Brings Us Together',
+    coverSub: '비상(황종배) 중학교 영어 2<br>Lesson 7 · Food Brings Us Together',
+    docTitle: '목일중 2학년 · 비상 Lesson 7 본문분석 합본 — Terra Nova',
+    out: '목일중2_비상_Lesson7_본문분석_합본.pdf',
+  },
+  L8: {
+    source: SOURCE_L8,
+    lessonNo: 8,
+    coverTitle: '목일중 2학년<br>비상 영어 2',
+    titleEn: 'The Last Wild Race',
+    coverSub: '비상(황종배) 중학교 영어 2<br>Lesson 8 · The Last Wild Race',
+    docTitle: '목일중 2학년 · 비상 Lesson 8 본문분석 합본 — Terra Nova',
+    out: '목일중2_비상_Lesson8_본문분석_합본.pdf',
+  },
 };
 
 const lessonId = (process.argv[2] || 'L5').toUpperCase();
 const LESSON = LESSONS[lessonId];
 if (!LESSON) {
-  console.error(`알 수 없는 과: ${lessonId} (L5 / L6 / L6X)`);
+  console.error(`알 수 없는 과: ${lessonId} (L5 / L6 / L6X / L7 / L8)`);
   process.exit(2);
 }
 const SOURCE = LESSON.source;

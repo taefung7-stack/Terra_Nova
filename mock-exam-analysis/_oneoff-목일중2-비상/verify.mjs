@@ -20,6 +20,8 @@ import { fileURLToPath } from 'node:url';
 import { SOURCE as SOURCE_L5 } from './_SOURCE-L5.js';
 import { SOURCE as SOURCE_L6 } from './_SOURCE-L6.js';
 import { SOURCE as SOURCE_L6X } from './_SOURCE-L6X.js';
+import { SOURCE as SOURCE_L7 } from './_SOURCE-L7.js';
+import { SOURCE as SOURCE_L8 } from './_SOURCE-L8.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -28,12 +30,14 @@ const LESSONS = [
   { id: 'L5', label: 'Lesson 5 · The Pea Blossom', source: SOURCE_L5 },
   { id: 'L6', label: 'Lesson 6 · Science Is the Key', source: SOURCE_L6 },
   { id: 'L6X', label: 'Lesson 6 Extra Reading · Day of Silence', source: SOURCE_L6X },
+  { id: 'L7', label: 'Lesson 7 · Food Brings Us Together', source: SOURCE_L7 },
+  { id: 'L8', label: 'Lesson 8 · The Last Wild Race', source: SOURCE_L8 },
 ];
 
 const only = (process.argv[2] || '').toUpperCase();
 const TARGETS = only ? LESSONS.filter(l => l.id === only) : LESSONS;
 if (!TARGETS.length) {
-  console.error(`알 수 없는 과: ${only} (L5 / L6 / L6X)`);
+  console.error(`알 수 없는 과: ${only} (L5 / L6 / L6X / L7 / L8)`);
   process.exit(2);
 }
 

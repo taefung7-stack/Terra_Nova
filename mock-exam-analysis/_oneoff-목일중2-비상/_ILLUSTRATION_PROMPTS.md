@@ -286,3 +286,77 @@ Editorial travel photograph, subject centered: a completely deserted tropical be
 ```
 Editorial travel photograph, subject centered: an empty traditional Balinese village street on the Day of Silence, a tall carved stone temple split gate in the middle, small woven palm-leaf baskets of bright flower offerings on the stone steps, closed wooden shop shutters on both sides, frangipani trees in bloom, quiet deserted road, complete stillness. Natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, airy fresh colors, clean bright background --ar 16:5 --v 8.1 --style raw --no people, person, human, figure, crowd, face, portrait, hands, text, letters, words, signage, logo, watermark, golden hour, sunset, night, dramatic lighting, heavy shadows, dark moody grading, car, motorbike, scooter, vehicle, traffic
 ```
+
+
+---
+
+## Lesson 7 · Food Brings Us Together / Lesson 8 · The Last Wild Race (2026-11-05, 전 8장)
+
+> 실사 포토리얼 · `--ar 16:5 --v 8.1` · 밝기는 조명 조건으로 · **사람 없음** · 배제는 `--no` 파라미터(인라인 NO 금지) · 글자 차단.
+> 원문 = `data/{L7,L8}/{N}.json` 의 `illustration.prompt`(저작: `_author-L7.mjs`·`_author-L8.mjs`).
+> 받으면 `dist/{L}/{N}.png` 로 두고 가로 2000px 축소본을 `dist/{L}/assets/illust-{N}.png` 로 넣어 분석지 3)·4) 재실행.
+
+### L7 Ch1 — 민찬의 김장 — 함께 모여 김치를 담그는 문화
+
+`dist/L7/assets/illust-1.png` — 김장 — 거실 바닥의 절인 배추 대야와 빨간 김치 양념, 뒤쪽 옹기
+
+```
+Photorealistic still-life photograph, wide banner composition. A traditional Korean wooden floor covered with large round plastic basins full of salted napa cabbage halves and a big bowl of bright red kimchi seasoning, ceramic onggi jars in the background, a warm family home atmosphere without anyone in the frame. natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, clean bright palette, fresh green, warm red and soft beige. --no text, letters, words, numbers, signage, logo, brand, watermark, people, person, hands, faces, sunset, golden hour, night, dark moody grading, heavy shadows, gloves, chopsticks, bread, noodles, market stalls
+```
+
+### L7 Ch2 — 에밀의 플랫브레드 — 행운을 비는 아제르바이잔의 빵
+
+`dist/L7/assets/illust-2.png` — 에밀 — 나무 의자에 걸친 커다란 플랫브레드, 밀가루·소금·물 항아리
+
+```
+Photorealistic still-life photograph, wide banner composition. A huge thin round golden flatbread draped over the back of a carved wooden chair beside a rustic table, with a small bowl of white flour, a pinch of coarse salt and a clay water jug on the table, a softly blurred festive room with simple white fabric decorations behind. natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, clean bright palette, warm wheat beige, cream and soft terracotta. --no text, letters, words, numbers, signage, logo, brand, watermark, people, person, hands, faces, sunset, golden hour, night, dark moody grading, heavy shadows, kimchi, cabbage, noodles, food stalls, bride, dress
+```
+
+### L7 Ch3 — 비비안의 호커 센터 — 싱가포르의 거대한 음식 공동체
+
+`dist/L7/assets/illust-3.png` — 비비안 — 텅 빈 싱가포르식 호커 센터(노점 카운터·원형 테이블·국수·카레·사테)
+
+```
+Photorealistic interior photograph, wide banner composition. A spacious open-air Singapore-style hawker center under a high airy roof: long rows of small food stall counters with steaming woks and noodle pots, many round tables with simple stools in the foreground, bowls of noodles, curry and satay skewers on a counter, completely empty of diners. natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, clean bright palette, bright white, soft teal and warm orange accents. --no text, letters, words, numbers, signage, logo, brand, watermark, people, person, hands, faces, sunset, golden hour, night, dark moody grading, heavy shadows, kimchi, flatbread, menus, price boards, wooden crates
+```
+
+### L7 Ch4 — 비비안이 호커 문화를 사랑하는 이유 — 다른 입맛, 같은 식탁
+
+`dist/L7/assets/illust-4.png` — 비비안 — 여러 나라 음식이 함께 놓인 큰 공용 원탁과 빈 의자들
+
+```
+Photorealistic still-life photograph, wide banner composition, seen from slightly above. One large shared round table at a bright food court crowded with many different dishes side by side: a bowl of noodles, a plate of yellow curry with rice, satay skewers with peanut sauce, dumplings and fresh juice cups, several empty stools around the table inviting strangers to sit together. natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, clean bright palette, warm yellow, fresh green and soft red accents. --no text, letters, words, numbers, signage, logo, brand, watermark, people, person, hands, faces, sunset, golden hour, night, dark moody grading, heavy shadows, kimchi, flatbread, stall counters, menus
+```
+
+### L8 Ch1 — 세상에서 가장 도전적인 경주 — 남부 파타고니아로의 초대
+
+`dist/L8/assets/illust-1.png` — 남부 파타고니아 — 설산·빙하호·초원의 야생 풍경
+
+```
+Photorealistic landscape photograph, wide banner composition. The vast wild landscape of Southern Patagonia: jagged granite mountain peaks with patches of snow, a turquoise glacier lake below and wide open golden-green grassland in the foreground, a faint narrow hiking trail winding toward the mountains, untouched nature with no buildings. natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, clean bright palette, turquoise, slate grey and soft sage green. --no text, letters, words, numbers, signage, logo, brand, watermark, people, person, hands, faces, sunset, golden hour, night, dark moody grading, heavy shadows, bikes, boats, ropes, maps, flags, tents, campfire
+```
+
+### L8 Ch2 — 경주는 어떤 모습일까요? — 매년 바뀌는 코스와 자연 보호
+
+`dist/L8/assets/illust-2.png` — 경주 코스 — 거친 길의 트레킹 폴·자갈길의 산악자전거·급류 옆 카약
+
+```
+Photorealistic outdoor photograph, wide banner composition. A wild Patagonian valley with three empty adventure race routes side by side: a rocky rough trail with a sturdy pair of trekking poles leaning on a boulder, a muddy mountain bike leaning against a fence post beside a tough gravel road, and a red kayak pulled up on the bank of a fast white-water river, pristine nature with no litter. natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, clean bright palette, river blue, rock grey and fresh moss green. --no text, letters, words, numbers, signage, logo, brand, watermark, people, person, hands, faces, sunset, golden hour, night, dark moody grading, heavy shadows, campfire, smoke, trash, flags, maps, ropes, first-aid kit
+```
+
+### L8 Ch3 — 경주의 규칙은 무엇인가요? — 팀 구성·테스트·체크포인트
+
+`dist/L8/assets/illust-3.png` — 규칙 — 바위 위 로프·지도·나침반·구급상자
+
+```
+Photorealistic still-life photograph, wide banner composition. Adventure race gear laid out neatly on a flat granite rock in the Patagonian wilderness: a coiled climbing rope with a carabiner, a folded paper topographic map with a compass on top, a compact red first-aid kit and a water bottle, distant mountains softly blurred behind. natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, clean bright palette, bright red, rope orange and stone grey. --no text, letters, words, numbers, signage, logo, brand, watermark, people, person, hands, faces, sunset, golden hour, night, dark moody grading, heavy shadows, bikes, kayaks, campfire, flags, tents, map labels
+```
+
+### L8 Ch4 — 함께하세요! — 평생 남을 모험으로의 초대
+
+`dist/L8/assets/illust-4.png` — Join Us! — 능선 위 체크포인트 깃발과 파타고니아 전경
+
+```
+Photorealistic landscape photograph, wide banner composition. A small bright orange checkpoint flag on a slim pole planted at the top of a rocky ridge, overlooking a sweeping Patagonian panorama of turquoise lakes, glaciers and distant mountains, the end of a long wild journey, wide open sky above. natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, clean bright palette, sky blue, glacier white and bright orange accent. --no text, letters, words, numbers, signage, logo, brand, watermark, people, person, hands, faces, sunset, golden hour, night, dark moody grading, heavy shadows, bikes, kayaks, ropes, maps, first-aid kit, tents, banners
+```
+
