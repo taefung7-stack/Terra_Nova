@@ -72,6 +72,8 @@ const LESSONS = {
     coverSub: '비상(황종배) 중학교 영어 2<br>Lesson 7 · Food Brings Us Together',
     docTitle: '목일중 2학년 · 비상 Lesson 7 본문분석 합본 — Terra Nova',
     out: '목일중2_비상_Lesson7_본문분석_합본.pdf',
+    /* 본문 전문 31문장을 한 장에 몰면 너무 길다(사용자 요청 2026-11-05) → 두 장으로 나눈다. */
+    fulltextPages: 2,
   },
   L8: {
     source: SOURCE_L8,
