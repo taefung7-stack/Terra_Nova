@@ -92,7 +92,7 @@ const chapters = [
         ],
       },
     ],
-    prompt: `Photorealistic landscape photograph, wide banner composition. The vast wild landscape of Southern Patagonia: jagged granite mountain peaks with patches of snow, a turquoise glacier lake below and wide open golden-green grassland in the foreground, a faint narrow hiking trail winding toward the mountains, untouched nature with no buildings. ${LIGHT}, turquoise, slate grey and soft sage green. ${NO}, bikes, boats, ropes, maps, flags, tents, campfire --ar 16:5 --v 8.1`,
+    prompt: `Photorealistic landscape photograph, wide banner composition. The vast wild landscape of Southern Patagonia: jagged granite mountain peaks with patches of snow, a turquoise glacier lake below and wide open pale green grassland in the foreground, a faint narrow hiking trail winding toward the mountains, untouched nature with no buildings. ${LIGHT}, turquoise, slate grey and soft sage green. ${NO}, bikes, boats, ropes, maps, flags, tents, campfire --ar 16:5 --v 8.1`,
   },
 
   /* ── Ch2 What Is the Race Like? ─────────────────────────── */

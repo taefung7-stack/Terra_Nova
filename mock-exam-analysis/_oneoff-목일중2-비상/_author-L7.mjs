@@ -202,7 +202,7 @@ const chapters = [
         ],
       },
     ],
-    prompt: `Photorealistic still-life photograph, wide banner composition. A huge thin round golden flatbread draped over the back of a carved wooden chair beside a rustic table, with a small bowl of white flour, a pinch of coarse salt and a clay water jug on the table, a softly blurred festive room with simple white fabric decorations behind. ${LIGHT}, warm wheat beige, cream and soft terracotta. ${NO}, kimchi, cabbage, noodles, food stalls, bride, dress --ar 16:5 --v 8.1`,
+    prompt: `Photorealistic still-life photograph, wide banner composition. A huge thin round lightly toasted flatbread draped over the back of a carved wooden chair beside a rustic table, with a small bowl of white flour, a pinch of coarse salt and a clay water jug on the table, a softly blurred festive room with simple white fabric decorations behind. ${LIGHT}, warm wheat beige, cream and soft terracotta. ${NO}, kimchi, cabbage, noodles, food stalls, bride, dress --ar 16:5 --v 8.1`,
   },
 
   /* ── Ch3 비비안 — 호커 센터 ─────────────────────────── */

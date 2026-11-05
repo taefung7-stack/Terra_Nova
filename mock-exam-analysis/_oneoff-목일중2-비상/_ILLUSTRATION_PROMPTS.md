@@ -310,7 +310,7 @@ Photorealistic still-life photograph, wide banner composition. A traditional Kor
 `dist/L7/assets/illust-2.png` — 에밀 — 나무 의자에 걸친 커다란 플랫브레드, 밀가루·소금·물 항아리
 
 ```
-Photorealistic still-life photograph, wide banner composition. A huge thin round golden flatbread draped over the back of a carved wooden chair beside a rustic table, with a small bowl of white flour, a pinch of coarse salt and a clay water jug on the table, a softly blurred festive room with simple white fabric decorations behind. natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, clean bright palette, warm wheat beige, cream and soft terracotta. --no text, letters, words, numbers, signage, logo, brand, watermark, people, person, hands, faces, sunset, golden hour, night, dark moody grading, heavy shadows, kimchi, cabbage, noodles, food stalls, bride, dress --ar 16:5 --v 8.1
+Photorealistic still-life photograph, wide banner composition. A huge thin round lightly toasted flatbread draped over the back of a carved wooden chair beside a rustic table, with a small bowl of white flour, a pinch of coarse salt and a clay water jug on the table, a softly blurred festive room with simple white fabric decorations behind. natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, clean bright palette, warm wheat beige, cream and soft terracotta. --no text, letters, words, numbers, signage, logo, brand, watermark, people, person, hands, faces, sunset, golden hour, night, dark moody grading, heavy shadows, kimchi, cabbage, noodles, food stalls, bride, dress --ar 16:5 --v 8.1
 ```
 
 ### L7 Ch3 — 비비안의 호커 센터 — 싱가포르의 거대한 음식 공동체
@@ -334,7 +334,7 @@ Photorealistic still-life photograph, wide banner composition, seen from slightl
 `dist/L8/assets/illust-1.png` — 남부 파타고니아 — 설산·빙하호·초원의 야생 풍경
 
 ```
-Photorealistic landscape photograph, wide banner composition. The vast wild landscape of Southern Patagonia: jagged granite mountain peaks with patches of snow, a turquoise glacier lake below and wide open golden-green grassland in the foreground, a faint narrow hiking trail winding toward the mountains, untouched nature with no buildings. natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, clean bright palette, turquoise, slate grey and soft sage green. --no text, letters, words, numbers, signage, logo, brand, watermark, people, person, hands, faces, sunset, golden hour, night, dark moody grading, heavy shadows, bikes, boats, ropes, maps, flags, tents, campfire --ar 16:5 --v 8.1
+Photorealistic landscape photograph, wide banner composition. The vast wild landscape of Southern Patagonia: jagged granite mountain peaks with patches of snow, a turquoise glacier lake below and wide open pale green grassland in the foreground, a faint narrow hiking trail winding toward the mountains, untouched nature with no buildings. natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, clean bright palette, turquoise, slate grey and soft sage green. --no text, letters, words, numbers, signage, logo, brand, watermark, people, person, hands, faces, sunset, golden hour, night, dark moody grading, heavy shadows, bikes, boats, ropes, maps, flags, tents, campfire --ar 16:5 --v 8.1
 ```
 
 ### L8 Ch2 — 경주는 어떤 모습일까요? — 매년 바뀌는 코스와 자연 보호
