@@ -233,7 +233,7 @@ build-memorize.mjs              본문암기 빌더
 - 원본에 문제가 없어 각 챕터 문제 유형·보기는 형식상 새로 붙였다(`hide_answer` 라 인쇄 안 됨).
 - `styles/analysis.css`·`workbook.css` 에 봉영여중3 의 확장 글리프 보정(`% × ○ ←` + ▶ ✗ Segoe UI Symbol)과 한글 제시문 어절 줄바꿈을 이식했다
   (기존 `+ = | ↔` 보정은 유지).
-- **삽화 8장 반영(2026-11-05)** — 미드저니 원본 `dist/{L7,L8}/{1..4}.png`(3952×1232)를 가로 2000px 로 줄여 `dist/{L}/assets/illust-{N}.png` 에 넣고 재빌드. placeholder 0 · 이미지 4/4 · overflow 0 · 합본 각 약 13MB. 원본·assets 모두 gitignore. 프롬프트는 `_ILLUSTRATION_PROMPTS.md` 맨 아래 절.
+- **삽화 8장 반영(2026-11-05)** — 미드저니 원본 `dist/{L7,L8}/{1..4}.png`(3952×1232)를 가로 2000px 로 줄여 `dist/{L}/assets/illust-{N}.png` 에 넣고 재빌드. placeholder 0 · 이미지 4/4 · overflow 0 · 합본 각 약 13MB. 축소본 assets(8장 15MB)는 L5·L6X 와 같이 저장소에 포함, 3952px 원본은 미포함(gitignore). 프롬프트는 `_ILLUSTRATION_PROMPTS.md` 맨 아래 절.
 
 ### 빌드
 ```bash
