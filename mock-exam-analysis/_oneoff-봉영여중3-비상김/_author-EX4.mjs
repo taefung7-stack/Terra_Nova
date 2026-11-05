@@ -108,7 +108,7 @@ const chapters = [
         ],
       },
     ],
-    prompt: `Photorealistic still-life photograph, wide banner composition. A bright minimalist vanity table: one small lipstick in a plain white case and a tiny round perfume bottle stand in sharp focus on a white ceramic tray, while far behind them on a glass shelf a large leather handbag sits softly blurred and out of reach. Calm contrast between a small affordable pleasure and an expensive luxury. ${LIGHT}, white, blush pink and pale beige. ${NO}, sneakers, shoe boxes, watches, pedestal, spotlight, price tags, money, coins`,
+    prompt: `Photorealistic still-life photograph, wide banner composition. A bright minimalist vanity table: one small lipstick in a plain white case and a tiny round perfume bottle stand in sharp focus on a white ceramic tray, while far behind them on a glass shelf a large leather handbag sits softly blurred and out of reach. Calm contrast between a small affordable pleasure and an expensive luxury. ${LIGHT}, white, blush pink and pale beige. ${NO}, sneakers, shoe boxes, watches, pedestal, spotlight, price tags, money, coins --ar 16:5 --v 8.1`,
   },
 
   /* ── 13 The Halo Effect ──────────────────────────── */
@@ -215,7 +215,7 @@ const chapters = [
         ],
       },
     ],
-    prompt: `Photorealistic still-life photograph, wide banner composition. A rustic wooden crate full of ordinary red apples at a bright market stall; one apple in the center is wrapped in a soft circular glow of light like a gentle halo, making it look special, while all the apples around it are plainly the same. Quiet contrast between one shining quality and the unexamined rest. ${LIGHT}, fresh red, warm wood brown and soft cream. ${NO}, desk, books, textbooks, cards, sneakers, shoe boxes, handbags, lipstick, perfume, pedestal, stage, spotlight beam, price tags`,
+    prompt: `Photorealistic still-life photograph, wide banner composition. A rustic wooden crate full of ordinary red apples at a bright market stall; one apple in the center is wrapped in a soft circular glow of light like a gentle halo, making it look special, while all the apples around it are plainly the same. Quiet contrast between one shining quality and the unexamined rest. ${LIGHT}, fresh red, warm wood brown and soft cream. ${NO}, desk, books, textbooks, cards, sneakers, shoe boxes, handbags, lipstick, perfume, pedestal, stage, spotlight beam, price tags --ar 16:5 --v 8.1`,
   },
 ];
 

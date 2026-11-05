@@ -94,7 +94,7 @@ const chapters = [
         ],
       },
     ],
-    prompt: `Photorealistic still-life photograph, wide banner composition. A traditional Korean wooden floor covered with large round plastic basins full of salted napa cabbage halves and a big bowl of bright red kimchi seasoning, ceramic onggi jars in the background, a warm family home atmosphere without anyone in the frame. ${LIGHT}, fresh green, warm red and soft beige. ${NO}, gloves, chopsticks, bread, noodles, market stalls`,
+    prompt: `Photorealistic still-life photograph, wide banner composition. A traditional Korean wooden floor covered with large round plastic basins full of salted napa cabbage halves and a big bowl of bright red kimchi seasoning, ceramic onggi jars in the background, a warm family home atmosphere without anyone in the frame. ${LIGHT}, fresh green, warm red and soft beige. ${NO}, gloves, chopsticks, bread, noodles, market stalls --ar 16:5 --v 8.1`,
   },
 
   /* ── Ch2 에밀 — 플랫브레드 ─────────────────────────── */
@@ -202,7 +202,7 @@ const chapters = [
         ],
       },
     ],
-    prompt: `Photorealistic still-life photograph, wide banner composition. A huge thin round golden flatbread draped over the back of a carved wooden chair beside a rustic table, with a small bowl of white flour, a pinch of coarse salt and a clay water jug on the table, a softly blurred festive room with simple white fabric decorations behind. ${LIGHT}, warm wheat beige, cream and soft terracotta. ${NO}, kimchi, cabbage, noodles, food stalls, bride, dress`,
+    prompt: `Photorealistic still-life photograph, wide banner composition. A huge thin round golden flatbread draped over the back of a carved wooden chair beside a rustic table, with a small bowl of white flour, a pinch of coarse salt and a clay water jug on the table, a softly blurred festive room with simple white fabric decorations behind. ${LIGHT}, warm wheat beige, cream and soft terracotta. ${NO}, kimchi, cabbage, noodles, food stalls, bride, dress --ar 16:5 --v 8.1`,
   },
 
   /* ── Ch3 비비안 — 호커 센터 ─────────────────────────── */
@@ -287,7 +287,7 @@ const chapters = [
         ],
       },
     ],
-    prompt: `Photorealistic interior photograph, wide banner composition. A spacious open-air Singapore-style hawker center under a high airy roof: long rows of small food stall counters with steaming woks and noodle pots, many round tables with simple stools in the foreground, bowls of noodles, curry and satay skewers on a counter, completely empty of diners. ${LIGHT}, bright white, soft teal and warm orange accents. ${NO}, kimchi, flatbread, menus, price boards, wooden crates`,
+    prompt: `Photorealistic interior photograph, wide banner composition. A spacious open-air Singapore-style hawker center under a high airy roof: long rows of small food stall counters with steaming woks and noodle pots, many round tables with simple stools in the foreground, bowls of noodles, curry and satay skewers on a counter, completely empty of diners. ${LIGHT}, bright white, soft teal and warm orange accents. ${NO}, kimchi, flatbread, menus, price boards, wooden crates --ar 16:5 --v 8.1`,
   },
 
   /* ── Ch4 비비안 — 호커 문화를 사랑하는 이유 ─────────────────────────── */
@@ -372,7 +372,7 @@ const chapters = [
         ],
       },
     ],
-    prompt: `Photorealistic still-life photograph, wide banner composition, seen from slightly above. One large shared round table at a bright food court crowded with many different dishes side by side: a bowl of noodles, a plate of yellow curry with rice, satay skewers with peanut sauce, dumplings and fresh juice cups, several empty stools around the table inviting strangers to sit together. ${LIGHT}, warm yellow, fresh green and soft red accents. ${NO}, kimchi, flatbread, stall counters, menus`,
+    prompt: `Photorealistic still-life photograph, wide banner composition, seen from slightly above. One large shared round table at a bright food court crowded with many different dishes side by side: a bowl of noodles, a plate of yellow curry with rice, satay skewers with peanut sauce, dumplings and fresh juice cups, several empty stools around the table inviting strangers to sit together. ${LIGHT}, warm yellow, fresh green and soft red accents. ${NO}, kimchi, flatbread, stall counters, menus --ar 16:5 --v 8.1`,
   },
 ];
 

@@ -92,7 +92,7 @@ const chapters = [
         ],
       },
     ],
-    prompt: `Photorealistic landscape photograph, wide banner composition. The vast wild landscape of Southern Patagonia: jagged granite mountain peaks with patches of snow, a turquoise glacier lake below and wide open golden-green grassland in the foreground, a faint narrow hiking trail winding toward the mountains, untouched nature with no buildings. ${LIGHT}, turquoise, slate grey and soft sage green. ${NO}, bikes, boats, ropes, maps, flags, tents, campfire`,
+    prompt: `Photorealistic landscape photograph, wide banner composition. The vast wild landscape of Southern Patagonia: jagged granite mountain peaks with patches of snow, a turquoise glacier lake below and wide open golden-green grassland in the foreground, a faint narrow hiking trail winding toward the mountains, untouched nature with no buildings. ${LIGHT}, turquoise, slate grey and soft sage green. ${NO}, bikes, boats, ropes, maps, flags, tents, campfire --ar 16:5 --v 8.1`,
   },
 
   /* ── Ch2 What Is the Race Like? ─────────────────────────── */
@@ -194,7 +194,7 @@ const chapters = [
         ],
       },
     ],
-    prompt: `Photorealistic outdoor photograph, wide banner composition. A wild Patagonian valley with three empty adventure race routes side by side: a rocky rough trail with a sturdy pair of trekking poles leaning on a boulder, a muddy mountain bike leaning against a fence post beside a tough gravel road, and a red kayak pulled up on the bank of a fast white-water river, pristine nature with no litter. ${LIGHT}, river blue, rock grey and fresh moss green. ${NO}, campfire, smoke, trash, flags, maps, ropes, first-aid kit`,
+    prompt: `Photorealistic outdoor photograph, wide banner composition. A wild Patagonian valley with three empty adventure race routes side by side: a rocky rough trail with a sturdy pair of trekking poles leaning on a boulder, a muddy mountain bike leaning against a fence post beside a tough gravel road, and a red kayak pulled up on the bank of a fast white-water river, pristine nature with no litter. ${LIGHT}, river blue, rock grey and fresh moss green. ${NO}, campfire, smoke, trash, flags, maps, ropes, first-aid kit --ar 16:5 --v 8.1`,
   },
 
   /* ── Ch3 What Are the Rules of the Race? ─────────────────────────── */
@@ -297,7 +297,7 @@ const chapters = [
         ],
       },
     ],
-    prompt: `Photorealistic still-life photograph, wide banner composition. Adventure race gear laid out neatly on a flat granite rock in the Patagonian wilderness: a coiled climbing rope with a carabiner, a folded paper topographic map with a compass on top, a compact red first-aid kit and a water bottle, distant mountains softly blurred behind. ${LIGHT}, bright red, rope orange and stone grey. ${NO}, bikes, kayaks, campfire, flags, tents, map labels`,
+    prompt: `Photorealistic still-life photograph, wide banner composition. Adventure race gear laid out neatly on a flat granite rock in the Patagonian wilderness: a coiled climbing rope with a carabiner, a folded paper topographic map with a compass on top, a compact red first-aid kit and a water bottle, distant mountains softly blurred behind. ${LIGHT}, bright red, rope orange and stone grey. ${NO}, bikes, kayaks, campfire, flags, tents, map labels --ar 16:5 --v 8.1`,
   },
 
   /* ── Ch4 Join Us! ─────────────────────────── */
@@ -373,7 +373,7 @@ const chapters = [
         ],
       },
     ],
-    prompt: `Photorealistic landscape photograph, wide banner composition. A small bright orange checkpoint flag on a slim pole planted at the top of a rocky ridge, overlooking a sweeping Patagonian panorama of turquoise lakes, glaciers and distant mountains, the end of a long wild journey, wide open sky above. ${LIGHT}, sky blue, glacier white and bright orange accent. ${NO}, bikes, kayaks, ropes, maps, first-aid kit, tents, banners`,
+    prompt: `Photorealistic landscape photograph, wide banner composition. A small bright orange checkpoint flag on a slim pole planted at the top of a rocky ridge, overlooking a sweeping Patagonian panorama of turquoise lakes, glaciers and distant mountains, the end of a long wild journey, wide open sky above. ${LIGHT}, sky blue, glacier white and bright orange accent. ${NO}, bikes, kayaks, ropes, maps, first-aid kit, tents, banners --ar 16:5 --v 8.1`,
   },
 ];
 
