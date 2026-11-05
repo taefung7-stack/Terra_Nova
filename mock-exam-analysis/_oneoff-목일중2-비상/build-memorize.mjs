@@ -65,6 +65,22 @@ const LESSONS = {
     out: '목일중2_비상_Lesson8_본문암기.pdf',
     qSplit: [13, 13],          // 26문장 → 2페이지
   },
+  /* 봉영여중 2학년용 사본(2026-11-05 요청) — L7·L8 과 내용 동일, 학교명만 다르다.
+     data/{L7B,L8B} 는 _make-bongyoung.mjs 가 data/{L7,L8} 에서 만든다. */
+  L7B: {
+    school: '봉영여중',
+    lessonNo: 7,
+    titleEn: 'Food Brings Us Together',
+    out: '봉영여중2_비상_Lesson7_본문암기.pdf',
+    qSplit: [11, 10, 10],
+  },
+  L8B: {
+    school: '봉영여중',
+    lessonNo: 8,
+    titleEn: 'The Last Wild Race',
+    out: '봉영여중2_비상_Lesson8_본문암기.pdf',
+    qSplit: [13, 13],
+  },
 };
 
 const esc = (s) => String(s ?? '')
@@ -73,10 +89,12 @@ const esc = (s) => String(s ?? '')
 /* ── 한 과 빌드 ───────────────────────────────────────────────── */
 async function buildOne(lessonId) {
   const LESSON = LESSONS[lessonId];
-  if (!LESSON) { console.error(`알 수 없는 과: ${lessonId} (L5 / L6 / L6X / L7 / L8)`); process.exit(2); }
+  if (!LESSON) { console.error(`알 수 없는 과: ${lessonId} (L5 / L6 / L6X / L7 / L8 / L7B / L8B)`); process.exit(2); }
 
   const { SOURCE } = await import(`./_SOURCE-${lessonId}.js`);
   const DIST = path.join(__dirname, 'dist', lessonId);
+  /* 학교명 — 헤더·표지·문서 제목에 찍힌다(함정 5: 하드코딩 금지). 기본은 목일중. */
+  const SCHOOL = LESSON.school ?? '목일중';
 
   /* 정본의 영어 + 챕터 JSON 의 해석을 짝지어 전 문장을 모은다.
      해석이 하나라도 비면 암기장이 성립하지 않으므로 즉시 중단한다. */
@@ -102,7 +120,7 @@ async function buildOne(lessonId) {
 
   /* ── 페이지 조립 헬퍼 ── */
   const pageHead = (subtitle) => `  <header class="page-head">
-    <span class="exam-tag">목일중 2학년 · 비상(황종배)</span>
+    <span class="exam-tag">${esc(SCHOOL)} 2학년 · 비상(황종배)</span>
     <span class="sep">|</span>
     <span class="grade-tag">2학년</span>
     <span class="sep">·</span>
@@ -154,7 +172,7 @@ ${chunk.map(aRow).join('\n')}
   const cover = `<section class="page cover-page">
   <div class="cover-wrap">
     <div class="cover-brand">Terra Nova</div>
-    <div class="cover-title">목일중 2학년<br>비상 영어 2</div>
+    <div class="cover-title">${esc(SCHOOL)} 2학년<br>비상 영어 2</div>
     <div class="cover-sub">${esc(LESSON.lessonLabel ?? `Lesson ${LESSON.lessonNo}`)} · ${esc(LESSON.titleEn)}</div>
     <div class="cover-meta">본문 암기 · 원문 ${items.length}문장 전수</div>
   </div>
@@ -201,7 +219,7 @@ ${chunk.map(aRow).join('\n')}
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<title>목일중 2학년 · 비상 ${esc(LESSON.lessonLabel ?? `Lesson ${LESSON.lessonNo}`)} 본문암기 — Terra Nova</title>
+<title>${esc(SCHOOL)} 2학년 · 비상 ${esc(LESSON.lessonLabel ?? `Lesson ${LESSON.lessonNo}`)} 본문암기 — Terra Nova</title>
 <link rel="stylesheet" href="${cssHref}">
 <style>${extraCss}</style>
 </head>

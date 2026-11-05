@@ -252,3 +252,28 @@ done
 - `_xcheck` 정본 = PDF 추출본 문자 단위 일치(L7 31문장 · L8 26문장) · `verify.mjs L7/L8` 오류 0·경고 0 · overflow 8챕터 전부 0.
 - 실제 PDF 페이지 수 = 빌드 로그(분석 15·16p, 암기 5·4p — 함정 1 대조) · 분석지에 전 문장 ≥2회·해석 ≥4회 ·
   암기장에 영어 정답·한글 제시 전 문장 수록 · 글리프 깨짐 0 · PNG 렌더 육안 확인(표지·본문 전문·INTRO·PASSAGE·분석 카드·암기 문제/정답면).
+
+## 봉영여중 2학년용 사본 — Lesson 7·8 (`L7B`·`L8B`, 2026-11-05)
+
+목일중 L7·L8 과 **내용이 똑같고 학교명만 “봉영여중 2학년”** 인 본문분석·본문암기(사용자 요청).
+머리글(왼쪽 위)·표지·문서 제목·파일명이 봉영여중으로 바뀐다.
+
+| 과 | 본문분석 합본 | 본문암기 |
+|----|---------------|----------|
+| L7B | `dist/L7B/봉영여중2_비상_Lesson7_본문분석_합본.pdf` — 16p | `dist/L7B/봉영여중2_비상_Lesson7_본문암기.pdf` — 5p |
+| L8B | `dist/L8B/봉영여중2_비상_Lesson8_본문분석_합본.pdf` — 16p | `dist/L8B/봉영여중2_비상_Lesson8_본문암기.pdf` — 4p |
+
+- **data/{L7B,L8B} 를 직접 고치지 말 것** — `node _make-bongyoung.mjs` 가 data/{L7,L8} 를 복사하며 `exam` 만 바꾸고,
+  삽화 축소본도 복사한다(사본 삽화는 gitignore — 중복 업로드 방지). 정본은 `_SOURCE-L{7,8}.js` 하나(`_SOURCE-L{7,8}B.js` 는 재수출).
+- `build-memorize.mjs` 의 하드코딩 학교명(머리글·표지·title, 함정 5)을 `LESSONS[].school`(기본 목일중)로 바꿨다 — 기존 목일중 산출물 변화 없음(재빌드 확인).
+- 검수: verify L7B·L8B 오류 0 · overflow 0 · 쪽수 목일중판과 동일 · **목일중 잔존 0** · 학교명을 맞바꾸면 전 쪽 텍스트가 목일중판과 완전 동일 · 삽화 4/4.
+
+```bash
+cd mock-exam-analysis
+D=_oneoff-목일중2-비상
+(cd $D && node _make-bongyoung.mjs && node verify.mjs L7B && node verify.mjs L8B)
+for L in L7B L8B; do
+  node builder/build.mjs "$D/data/$L" "$D/dist/$L" --styles="$D/styles/analysis.css"
+  node builder/pdf.mjs "$D/dist/$L" && node $D/combine.mjs $L && node $D/build-memorize.mjs $L
+done
+```
