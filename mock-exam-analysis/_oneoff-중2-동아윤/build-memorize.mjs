@@ -53,6 +53,13 @@ const LESSONS = {
     /* 26문항을 13/13 두 장에 담는다(L6 와 동일 규칙). */
     maxPerPage: 13,
   },
+  L8: {
+    lessonNo: 8,
+    titleEn: 'A Butterfly That Changed the Future',
+    out: '중2_동아윤정미_Lesson8_본문암기.pdf',
+    /* 86문항(대화체라 짧은 문장이 많다) — 장당 18 → 5장으로 고르게. 넘치면 빌더가 실측해 뒤로 넘긴다. */
+    maxPerPage: 18,
+  },
   BY: {
     lessonNo: 0,
     lessonLabel: '추가지문',
@@ -78,7 +85,7 @@ const esc = (s) => String(s ?? '')
 /* ── 한 과 빌드 ───────────────────────────────────────────────── */
 async function buildOne(lessonId) {
   const LESSON = LESSONS[lessonId];
-  if (!LESSON) { console.error(`알 수 없는 과: ${lessonId} (L5 / L6 / L7 / BY)`); process.exit(2); }
+  if (!LESSON) { console.error(`알 수 없는 과: ${lessonId} (L5 / L6 / L7 / L8 / BY)`); process.exit(2); }
 
   const { SOURCE } = await import(`./_SOURCE-${lessonId}.js`);
   const DIST = path.join(__dirname, 'dist', lessonId);
@@ -345,6 +352,6 @@ ${pagesHtml}
 }
 
 const arg = (process.argv[2] || '').toUpperCase();
-const targets = arg ? [arg] : ['L5', 'L6', 'L7', 'BY'];
+const targets = arg ? [arg] : ['L5', 'L6', 'L7', 'L8', 'BY'];
 console.log('📝 본문암기 워크북 빌드\n');
 for (const t of targets) await buildOne(t);

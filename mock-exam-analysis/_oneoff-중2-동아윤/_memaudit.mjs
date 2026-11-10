@@ -47,6 +47,14 @@ const TEXTBOOK = {
     `Many Mexicans believe that once a year dead people come back home to meet their family and friends. They call this day the Day of the Dead. To welcome dead people, Mexicans hold a festival on November 1 and 2. They believe it is important to remember dead people. So, people set up altars in their homes and have big parties in cemeteries. In some areas, people dress up like skeletons and hold big parades.`,
     `At the end of February, people in Alaska hold the Fur Rondy festival, one of the biggest winter festivals in the world. During this festival, visitors can enjoy various winter sports and Alaskan traditional games. They can also enjoy many special events such as the Running of the Reindeer. People who participate in this race wear fun costumes and try to run faster than reindeer. Is it possible to do so? Not really, but it doesn't matter. Everyone is just having fun!`,
   ],
+  /* L8 — 교과서 PDF(동아윤 8과.pdf) 영어 단을 PyMuPDF 로 좌표 추출한 _PDF-RAW-L8.txt 를 교과서 빈 줄 구획대로 이었다
+     (정본 _SOURCE-L8.js 와 독립). 정규화는 공백 뭉치 → 한 칸, 조판 공백 “! ”” → “!”” 두 가지뿐. */
+  L8: [
+    `Eckels walked into the office of Time Travel. The big sign on the wall said, “NAME ANY YEAR IN THE PAST. WE TAKE YOU THERE.” There was a TV on the wall, and Mr. Keith, the new president, was on the news. “How can we help you?” said Mr. Parker, the founder of Time Travel. “I’ve always wanted to see a dinosaur. Is it possible?” asked Eckels. “Sure,” said Mr. Parker. “We can take you back to the jungle of 60 million years ago.” “Great,” said Eckels. “Can you take me there now?” “You’re lucky. There’s a time machine that leaves in 10 minutes,” said Mr. Parker. “This is Travis, your travel guide,” he continued. “To stay safe, you must follow his instructions.”`,
+    `Inside the time machine, there were two other travelers. Eckels sat down and closed his eyes. He felt the machine moving under his feet. After only a few minutes, the machine stopped. “We’ve just arrived in the jungle of 60 million years ago,” Travis explained. “Do you see the path over there? You must not leave it at any time. Do not touch anything. You might kill something by accident. A little change here can cause something unthinkable in the future.” Slowly, everyone got out of the time machine. The jungle was covered in fog. It was very quiet. “I’m so excited,” said Eckels. “Be careful. Some of the dinosaurs are hungry,” said Travis. “Just stay calm. I don’t want you to do anything foolish.” “Don’t worry. I’m not a fool,” said Eckels. They all began to walk on the path.`,
+    `After some time, Travis whispered, “Look over there. There is a T. rex.” One hundred meters away, a T. rex slowly appeared. “It,” whispered Eckels. “It ...” “Sh!” “It ... is huge. I’ve never seen such a huge thing. I’m so scared,” said Eckels. “Sh ... quiet!” Travis said angrily. “You don’t want it to see you.” “I can’t breathe,” said Eckels. “Get me out of here!” “Don’t panic, Eckels,” said Travis. “Turn around, and walk quietly back to the machine.” Eckels turned around and started to run. He was so terrified that he left the path by accident. “Eckels!” shouted Travis. “Don’t leave the path!” The T. rex heard Travis and turned its head toward him and the other travelers. There was a moment of silence. Then, it suddenly started to run toward them with a loud roar. “Run, everybody! Run!” shouted Travis. Travis and the other travelers returned safely to the machine and found Eckels inside. “You put all of us in danger,” said Travis to Eckels in an angry voice. “You left the path.” “I’m sorry, but I didn’t kill anything,” said Eckels. “There’s only a little mud on my shoes.” Travis stared at Eckels for a long time without saying anything. “Let’s go home,” said Travis finally.`,
+    `The machine stopped. They all returned to the present safely. “Is everything okay here?” asked Travis. “Fine. Welcome home!” said Mr. Parker. Eckels looked around the room carefully. Everything looked the same, except the big sign on the wall. The sign now said, “NAIM ANY YEER EN THE PAST. WEE TAEK YU THAIR.” Eckels was confused. Then, he saw the TV. The new president was on the news, but it was not Mr. Keith. “What’s going on?” He got more confused. He sat down and looked closely at the mud on his shoes. “No, it can’t be,” said Eckels. “It’s all because of this little thing?” He was shocked. In the mud on his right shoe, he found a small dead butterfly.`,
+  ],
   /* BY — 봉영여중 추가지문. 2026-09-19 추가분(지문 5·6)만 싣는다.
      앞의 03·04·05·06 은 전사 당시 이 블록이 없었고, 지금 _SOURCE 에서
      옮겨 오면 '독립 전사본'이 아니게 되어(함정 2) 검수 의미가 사라진다.
@@ -76,6 +84,9 @@ function splitSentences(para) {
       /* ★ 약어의 마침표는 문장 끝이 아니다 — Dr. Schofield / Frank W. Schofield /
          2 p.m. 를 문장 경계로 보면 26문장이 35문장으로 쪼개진다(실제로 겪음). */
       if (/(^|[\s("'])(Dr|Mr|Mrs|Ms|St|Jr|Sr|vs|etc|[A-Z]|a\.m|p\.m)\.$/.test(buf)) continue;
+      /* ★ 따옴표 뒤의 화자 표시(“Sh ... quiet!” Travis said angrily.)는 같은 문장이다 — L8 대화체에서 추가.
+         닫는 따옴표로 끝났고 바로 뒤가 대문자 이름 + 말하기 동사면 끊지 않는다(L5~L7·BY 문장 수 불변 확인). */
+      if (/[”"]$/.test(buf) && /^\s+[A-Z][a-z]+\s+(said|asked|shouted|whispered|explained|continued|answered)\b/.test(rest)) continue;
       if (!rest.trim() || /^\s+["“']?[A-Z]/.test(rest)) {
         out.push(buf.trim());
         buf = '';
@@ -96,7 +107,7 @@ const sq = (s) => String(s ?? '')
 const sqk = (s) => String(s ?? '').replace(/\s+/g, '').replace(/[.,!?"'“”‘’()·…]/g, '');
 
 let block = 0;
-const AUDIT_TARGETS = (process.argv[2] ? [process.argv[2].toUpperCase()] : ['L5', 'L6', 'L7', 'BY']);
+const AUDIT_TARGETS = (process.argv[2] ? [process.argv[2].toUpperCase()] : ['L5', 'L6', 'L7', 'L8', 'BY']);
 for (const L of AUDIT_TARGETS) {
   if (!TEXTBOOK[L]) { console.log(`\n(${L} — 교과서 기준 없음, 건너뜀)`); continue; }
   console.log(`\n${'='.repeat(66)}\n${L} — 교과서 원문 기준 검수\n${'='.repeat(66)}`);

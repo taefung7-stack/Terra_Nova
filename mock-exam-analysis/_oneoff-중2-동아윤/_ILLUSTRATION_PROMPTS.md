@@ -194,6 +194,50 @@ Photorealistic winter documentary photograph, subject centered, wide banner comp
 
 ---
 
+## Lesson 8 — A Butterfly That Changed the Future
+
+> 2026-11-10 추가. 실존 인물은 없지만 **사람은 넣지 않는다**(손·얼굴 뭉개짐 방지) — 사물·장소로 장면을 암시. 원문 = `_author-L8.mjs` 의 prompt(→ `data/L8/{N}.json`).
+
+### Ch1 · Time Travel 사무실 — Time Travel 사무실 — 빈 간판·벽걸이 TV·화석 진열장
+
+저장 경로: `dist/L8/assets/illust-1.png`
+
+```
+Photorealistic interior photograph, wide banner composition. A sleek retro-futuristic travel agency office: a polished reception desk, a large blank framed sign board on the wall, a small vintage television on a wall bracket, glass cases displaying dinosaur fossils and an antique pocket watch, an open doorway glowing softly toward a metal time machine. natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, true-to-life color, sharp focus, cool white, brushed silver and soft teal. --no people, person, face, hands, text, letters, words, numbers, signage, logo, watermark, golden hour, sunset, dramatic lighting, neon, night, heavy shadows, dark moody grading, jungle, butterfly, mud, dinosaur alive --ar 16:5 --v 8.1 --style raw
+```
+
+### Ch2 · 6천만 년 전 정글 — 안개 낀 선사시대 정글 — 한가운데로 뻗은 금속 보행로
+
+저장 경로: `dist/L8/assets/illust-2.png`
+
+```
+Photorealistic landscape photograph, wide banner composition. A prehistoric jungle wrapped in soft white morning fog: giant ferns, cycads and tall primeval trees, a narrow raised metal walkway path running straight through the middle of the dense green vegetation, perfectly quiet and still. natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, true-to-life color, sharp focus, misty white, fern green and pale grey. --no people, person, face, hands, text, letters, words, numbers, signage, logo, watermark, golden hour, sunset, dramatic lighting, neon, night, heavy shadows, dark moody grading, dinosaur, butterfly, office, television, sign board --ar 16:5 --v 8.1 --style raw
+```
+
+### Ch3 · 티라노사우루스가 나타나다 — 안개 속에서 나타나는 티라노사우루스(100m 거리)
+
+저장 경로: `dist/L8/assets/illust-3.png`
+
+```
+Photorealistic nature photograph, wide banner composition. Deep inside a misty prehistoric jungle, a huge Tyrannosaurus rex emerges slowly between giant tree trunks about one hundred meters away, half hidden by soft fog, seen from a low angle along a narrow metal walkway path in the foreground, tense and silent atmosphere. natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, true-to-life color, sharp focus, fog white, jungle green and muted brown. --no people, person, face, hands, text, letters, words, numbers, signage, logo, watermark, golden hour, sunset, dramatic lighting, neon, night, heavy shadows, dark moody grading, butterfly, office, television, mud close-up, blood, gore --ar 16:5 --v 8.1 --style raw
+```
+
+### Ch4 · 길을 벗어난 Eckels — 타임머신 바닥의 진흙투성이 등산화와 짓밟힌 고사리
+
+저장 경로: `dist/L8/assets/illust-4.png`
+
+```
+Photorealistic still-life photograph, wide banner composition. Close view of the floor inside a futuristic time machine cabin: a pair of hiking boots caked with wet dark jungle mud sitting beside a metal seat, a few crushed fern leaves on the steel floor, a round porthole window showing blurred green prehistoric jungle outside. natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, true-to-life color, sharp focus, brushed steel grey, earthy brown and fern green. --no people, person, face, hands, text, letters, words, numbers, signage, logo, watermark, golden hour, sunset, dramatic lighting, neon, night, heavy shadows, dark moody grading, butterfly, dinosaur, office, television, sign board, blood --ar 16:5 --v 8.1 --style raw
+```
+
+### Ch5 · 바뀐 현재와 작은 나비 — 진흙 묻은 신발 앞코 속 죽은 작은 나비(접사)
+
+저장 경로: `dist/L8/assets/illust-5.png`
+
+```
+Photorealistic macro still-life photograph, wide banner composition. Extreme close-up of the toe of a muddy hiking boot resting on a polished office floor: in the dark wet mud lies a single tiny delicate dead butterfly with pale yellow and black wings, fine details sharp, the background a softly blurred bright modern office with a wall-mounted screen glowing faintly. natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, true-to-life color, sharp focus, earthy brown, butterfly yellow and soft office white. --no people, person, face, hands, text, letters, words, numbers, signage, logo, watermark, golden hour, sunset, dramatic lighting, neon, night, heavy shadows, dark moody grading, dinosaur, jungle, time machine interior, blood --ar 16:5 --v 8.1 --style raw
+```
+
 ## 검증
 
 ```bash

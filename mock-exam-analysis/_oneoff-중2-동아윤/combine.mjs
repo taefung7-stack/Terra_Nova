@@ -20,6 +20,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { SOURCE as SOURCE_L5 } from './_SOURCE-L5.js';
 import { SOURCE as SOURCE_L6 } from './_SOURCE-L6.js';
 import { SOURCE as SOURCE_L7 } from './_SOURCE-L7.js';
+import { SOURCE as SOURCE_L8 } from './_SOURCE-L8.js';
 import { SOURCE as SOURCE_BY } from './_SOURCE-BY.js';
 import { countSMasks, flatten } from '../builder/goodnotes-safe.mjs';
 
@@ -53,6 +54,17 @@ const LESSONS = {
     docTitle: '중2 · 동아(윤정미) Lesson 7 본문분석 합본 — Terra Nova',
     out: '중2_동아윤정미_Lesson7_본문분석_합본.pdf',
   },
+  L8: {
+    source: SOURCE_L8,
+    lessonNo: 8,
+    /* 86문장 — 한 장이면 배율이 너무 작아진다. 장당 29문장 → 29/29/28 세 장(그리디 분할이라 고르게 맞춘 값). */
+    fulltextMaxPerPage: 29,
+    coverTitle: '중학교 2학년<br>동아 영어 2',
+    titleEn: 'A Butterfly That Changed the Future',
+    coverSub: '동아(윤정미) 중학교 영어 2<br>Lesson 8 · A Butterfly That Changed the Future',
+    docTitle: '중2 · 동아(윤정미) Lesson 8 본문분석 합본 — Terra Nova',
+    out: '중2_동아윤정미_Lesson8_본문분석_합본.pdf',
+  },
   BY: {
     source: SOURCE_BY,
     lessonNo: 0,
@@ -73,7 +85,7 @@ const LESSONS = {
 const lessonId = (process.argv[2] || 'L5').toUpperCase();
 const LESSON = LESSONS[lessonId];
 if (!LESSON) {
-  console.error(`알 수 없는 과: ${lessonId} (L5 / L6 / L7 / BY)`);
+  console.error(`알 수 없는 과: ${lessonId} (L5 / L6 / L7 / L8 / BY)`);
   process.exit(2);
 }
 const SOURCE = LESSON.source;

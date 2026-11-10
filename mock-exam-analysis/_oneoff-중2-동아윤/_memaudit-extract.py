@@ -21,6 +21,7 @@ COMBINED_PDF = {
     'L5': '중2_동아윤정미_Lesson5_본문분석_합본.pdf',
     'L6': '중2_동아윤정미_Lesson6_본문분석_합본.pdf',
     'L7': '중2_동아윤정미_Lesson7_본문분석_합본.pdf',
+    'L8': '중2_동아윤정미_Lesson8_본문분석_합본.pdf',
     'BY': '봉영여중_2학년_영어B_추가지문_본문분석_합본.pdf',
 }
 
@@ -28,6 +29,7 @@ OUT_PDF = {
     'L5': '중2_동아윤정미_Lesson5_본문암기.pdf',
     'L6': '중2_동아윤정미_Lesson6_본문암기.pdf',
     'L7': '중2_동아윤정미_Lesson7_본문암기.pdf',
+    'L8': '중2_동아윤정미_Lesson8_본문암기.pdf',
     'BY': '봉영여중_2학년_영어B_추가지문_본문암기.pdf',
 }
 
@@ -48,7 +50,7 @@ def page_text(page):
 
 def main():
     arg = (sys.argv[1] if len(sys.argv) > 1 else '').upper()
-    targets = [arg] if arg else ['L5', 'L6', 'L7', 'BY']
+    targets = [arg] if arg else ['L5', 'L6', 'L7', 'L8', 'BY']
     out_dir = os.path.join(HERE, 'dist', '_memaudit')
     os.makedirs(out_dir, exist_ok=True)
     rc = 0

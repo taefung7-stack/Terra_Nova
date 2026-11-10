@@ -1,4 +1,4 @@
-# 중2 — 2022 개정 동아(윤정미) 중학교 영어 2 본문분석 + 본문암기 (Lesson 5·6·7)
+# 중2 — 2022 개정 동아(윤정미) 중학교 영어 2 본문분석 + 본문암기 (Lesson 5·6·7·8)
 
 > ⚠️ **개인 용도 1회성 산출물입니다. 테라노바 판매용이 아닙니다.**
 > 판매·구독 파이프라인(Supabase Storage 업로드, dispatch-order-pdf, market)에
@@ -13,6 +13,7 @@
 - **Lesson 5** — Street Art in London (런던 거리 예술 투어: STIK · Banksy · Ben Wilson)
 - **Lesson 6** — Dr. Schofield, a Foreigner Who Loved Korea (석호필, 한국을 사랑한 이방인)
 - **Lesson 7** — Seasonal Festivals Around the World (전 세계의 계절 축제들)
+- **Lesson 8** — A Butterfly That Changed the Future (미래를 바꾼 나비 한 마리 — 시간 여행 이야기)
 - **BY** — 봉영여중 2학년 영어B 추가지문 03·04·05·06 + 중간고사 추가 5·6 (교과서 과가 아닌 **별도 추가지문 묶음**, 6지문)
 
 > 요청 범위는 **본문분석 + 본문암기 2종**입니다. 9-STEP 워크북·변형문제는 만들지 않았습니다.
@@ -307,3 +308,46 @@ exit 0 으로 조용히 끝난다.** `import.meta.url === pathToFileURL(process.
 
 > ⚠️ **삽화 반영은 눈으로 확인해야 한다.** placeholder 인 채로도 빌드는 성공한다.
 > `pypdf` 로 페이지별 임베드 이미지를 세고, 텍스트에 `Illustration` 이 0건인지 볼 것.
+
+## Lesson 8 — A Butterfly That Changed the Future (2026-11-10)
+
+교과서 본문 PDF(`중2 동아윤/2학기 기말/동아윤 8과.pdf`)로 만든 **본문분석 + 본문암기**.
+
+| Ch | 제목 | 원문 문장 | 분석 카드 | 문제 유형(인쇄 안 됨) |
+|----|------|-----------|-----------|-----------|
+| 1 | The Office of Time Travel | 15 | 6 | 내용일치 ③ |
+| 2 | The Jungle of 60 Million Years Ago | 21 | 6 | 심경 ① |
+| 3 | A T. rex Appears | 15 | 6 | 심경변화 ④ |
+| 4 | Eckels Leaves the Path | 16 | 7 | 내용불일치 ② |
+| 5 | A Butterfly That Changed the Future | 19 | 6 | 주제 ⑤ |
+| | **합계** | **86** | **31** | |
+
+| 산출물 | 구성 |
+|--------|------|
+| `dist/L8/중2_동아윤정미_Lesson8_본문분석_합본.pdf` | 표지1 + 본문 전문 3(29·29·28문장) + 본문 22 = **26p** |
+| `dist/L8/중2_동아윤정미_Lesson8_본문암기.pdf` | 표지1 + 문제5(장당 최대 18) + 정답2 = **8p**, 86문항 |
+
+- **대화체 문장 나누기 규칙**(봉영여중3 추가지문 11번과 같음) — 따옴표 안의 여러 문장은 문장 끝마다 나누고, said·asked 같은 화자 표시는
+  그 따옴표의 마지막 문장에 붙인다. 그래서 86문장이 되며 “Fine. / Welcome home!” said Mr. Parker. 처럼 짧은 문장이 많다.
+  인쇄본의 느낌표 뒤 조판 공백(“Sh! ”)만 붙여 썼고 철자·구두점은 그대로. **75·76번 간판의 틀린 철자(NAIM ANY YEER …)는 원문 그대로**(바뀐 미래의 장치).
+- **저작 방식** — 이 과부터 미니 마크업 헬퍼 `_author.mjs`(목일중2 복제) + `_author-L8.mjs` 로 생성한다. **data/L8 을 직접 고치지 말 것.**
+  해석은 교과서 PDF 오른쪽 단 우리말을 문장 단위로 옮겼다(인명은 교과서처럼 영문). 31번은 원문 시제대로 “배가 고픕니다”(교과서 해석은 “고플 수도 있습니다”).
+- **원문 검수 2중** — ① `node _xcheck.mjs L8`: PDF 영어 단 좌표 추출본 `_PDF-RAW-L8.txt` ↔ 정본 문자 단위 일치(3,306자).
+  ② `_memaudit.mjs` 에 `TEXTBOOK.L8`(같은 추출본을 정본과 독립적으로 실음) — 교과서 86문장 = 정본 86문장.
+  ⚠️ 이를 위해 `_memaudit.mjs` 의 문장 분할기에 **“따옴표 + 대문자 이름 + said/asked/shouted… 는 끊지 않는다”** 규칙을 넣었다
+  (`“Sh ... quiet!” Travis said angrily.` 이 두 문장으로 잘리던 문제). L5·L6·L7 문장 수는 그대로(28·26·26) 확인.
+- 본문 전문은 이 폴더의 `fulltextMaxPerPage`(그리디 분할)로 나눈다 — 29 로 두어 29/29/28 세 장. (`fulltextPages` 는 목일중2 폴더 전용 옵션이라 여기선 안 먹는다.)
+- **삽화는 아직 없음**(INTRO 면 placeholder 5) — 프롬프트 5장은 `_ILLUSTRATION_PROMPTS.md` Lesson 8 절(`_sync-prompts.mjs` 규격 검사 통과, 사람 없음).
+- 검수: verify 오류 0(경고 1 = 표제어 feel ↔ 본문 felt, 정상) · overflow 5챕터 0 · `_audit L8` 오류 0 ·
+  `_memaudit L8` 정답면 86/86·문제면 한글 86/86·번호 연속·잘림 0 · 글리프 깨짐 0 · PNG 렌더 육안 확인.
+  (PyMuPDF 의 `cannot find XObject resource` 메시지는 goodnotes-safe 평탄화 PDF 공통 — 기존 L7 도 동일, 렌더 정상.)
+
+```bash
+cd mock-exam-analysis
+D=_oneoff-중2-동아윤
+(cd $D && node _xcheck.mjs L8 && node _author-L8.mjs && node verify.mjs L8)
+node builder/build.mjs "$D/data/L8" "$D/dist/L8" --styles="$D/styles/analysis.css"
+for n in 1 2 3 4 5; do node builder/check-overflow.mjs "$D/dist/L8/$n.html"; done
+node builder/pdf.mjs "$D/dist/L8" && node $D/combine.mjs L8 && node $D/build-memorize.mjs L8
+(cd $D && python _memaudit-extract.py L8 && node _audit.mjs L8 && node _memaudit.mjs L8)
+```
