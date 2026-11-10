@@ -337,7 +337,7 @@ exit 0 으로 조용히 끝난다.** `import.meta.url === pathToFileURL(process.
   ⚠️ 이를 위해 `_memaudit.mjs` 의 문장 분할기에 **“따옴표 + 대문자 이름 + said/asked/shouted… 는 끊지 않는다”** 규칙을 넣었다
   (`“Sh ... quiet!” Travis said angrily.` 이 두 문장으로 잘리던 문제). L5·L6·L7 문장 수는 그대로(28·26·26) 확인.
 - 본문 전문은 이 폴더의 `fulltextMaxPerPage`(그리디 분할)로 나눈다 — 29 로 두어 29/29/28 세 장. (`fulltextPages` 는 목일중2 폴더 전용 옵션이라 여기선 안 먹는다.)
-- **삽화는 아직 없음**(INTRO 면 placeholder 5) — 프롬프트 5장은 `_ILLUSTRATION_PROMPTS.md` Lesson 8 절(`_sync-prompts.mjs` 규격 검사 통과, 사람 없음).
+- **삽화 5장 반영(2026-11-10)** — 미드저니 원본 `dist/L8/{1..5}.png`(3952px, 저장소 미포함)를 2000px 로 축소해 `dist/L8/assets/illust-N.png` 에 넣고 재빌드(합본 26p, 이미지 p.5·9·14·18·23, `Illustration` 0건, overflow 0). 프롬프트 5장은 `_ILLUSTRATION_PROMPTS.md` Lesson 8 절(`_sync-prompts.mjs` 규격 검사 통과, 사람 없음).
 - 검수: verify 오류 0(경고 1 = 표제어 feel ↔ 본문 felt, 정상) · overflow 5챕터 0 · `_audit L8` 오류 0 ·
   `_memaudit L8` 정답면 86/86·문제면 한글 86/86·번호 연속·잘림 0 · 글리프 깨짐 0 · PNG 렌더 육안 확인.
   (PyMuPDF 의 `cannot find XObject resource` 메시지는 goodnotes-safe 평탄화 PDF 공통 — 기존 L7 도 동일, 렌더 정상.)
