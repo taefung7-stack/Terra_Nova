@@ -155,7 +155,7 @@ node "_oneoff-신서중2-미래엔/build-memorize.mjs" L5     # 한 과만
 - **원문 검수 2중** — ① `node _xcheck.mjs L7|L8`: 첨부 PDF 텍스트 레이어 영어 단(`_PDF-RAW-{L}.txt`) ↔ 정본 문자 단위 일치(L7 1,702자 / L8 1,417자).
   ② `_memaudit.mjs` 에 `TEXTBOOK.L7·L8` — 교과서 37·40문장 = 정본.
 - 검수: verify 오류 0·경고 0 · overflow 9챕터 0 · `_audit` 차단 0 · `_memaudit` 정답면 37/37·40/40, 문제면 한글 전부, 번호 연속·잘림 0 · PNG 렌더 육안 확인.
-- **삽화 아직 없음**(INTRO 면 placeholder 9장) — 프롬프트는 `_ILLUSTRATION_PROMPTS.md` Lesson 7·8 절(`_sync-prompts.mjs` 규격 검사 통과, 사람 없음, `--no` 파라미터 방식).
+- **삽화 9장 반영(2026-11-12)** — 미드저니 원본 `dist/{L7,L8}/{N}.png`(3952px, 저장소 미포함)를 가로 2000px 로 줄여 `dist/{L}/assets/illust-N.png` 에 넣고 재빌드. 합본 이미지 L7 p.4·7·11·14·17 / L8 p.4·8·11·14, `Illustration` 0건, overflow 0, `_audit` 경고 0. 프롬프트는 `_ILLUSTRATION_PROMPTS.md` Lesson 7·8 절(`_sync-prompts.mjs` 규격 검사 통과, 사람 없음, `--no` 파라미터 방식).
   이미지를 `dist/{L7,L8}/{N}.png` 로 받으면 가로 2000px 로 줄여 `dist/{L}/assets/illust-N.png` 에 넣고 재빌드.
 
 ```bash
