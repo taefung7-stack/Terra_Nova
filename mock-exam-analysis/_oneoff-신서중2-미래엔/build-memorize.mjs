@@ -44,11 +44,16 @@ const LESSONS = {
     lessonNo: 7,
     titleEn: 'Animals in Cold Places',
     out: '신서중2_미래엔_Lesson7_본문암기.pdf',
+    // 요청(2026-11-12): 문제면이 12+12+12+1 로 애매하게 4장이 돼 3장에 맞춤
+    // (37문장 → 13+13+11). 답란 간격은 compact CSS 로 약간 줄인다.
+    qPageCount: 3,
   },
   L8: {
     lessonNo: 8,
     titleEn: 'Comparing Prices',
     out: '신서중2_미래엔_Lesson8_본문암기.pdf',
+    // 요청(2026-11-12): 12+12+12+4 → 3장(40문장 → 14+14+12)
+    qPageCount: 3,
   },
   // ── More Reading(추가지문) — 2026-09-21 신규 ──────────────────
   // 정식 Lesson 본문이 아니라 각 과의 "More Reading" 부록 지문이므로
@@ -240,6 +245,9 @@ ${pagesHtml}
   const MAX_PER_PAGE = 12;
   const qPages = [];
   let rest = [...items], firstQ = true;
+  if (LESSON.qPageCount && !LESSON.qPerPage) {
+    LESSON.qPerPage = Math.ceil(items.length / LESSON.qPageCount);
+  }
   if (LESSON.qPerPage) {
     /* 고정 개수 균등 분배 — 마지막 페이지만 남는 개수를 받고,
        그 앞의 모든 페이지는 항상 정확히 qPerPage 개씩 (예: 16문장/8개 → 8+8). */
