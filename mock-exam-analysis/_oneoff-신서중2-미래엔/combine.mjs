@@ -19,6 +19,8 @@ import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { SOURCE as SOURCE_L5 } from './_SOURCE-L5.js';
 import { SOURCE as SOURCE_L6 } from './_SOURCE-L6.js';
+import { SOURCE as SOURCE_L7 } from './_SOURCE-L7.js';
+import { SOURCE as SOURCE_L8 } from './_SOURCE-L8.js';
 import { countSMasks, flatten } from '../builder/goodnotes-safe.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -42,12 +44,32 @@ const LESSONS = {
     docTitle: '신서중 2학년 · 미래엔 Lesson 6 본문분석 합본 — Terra Nova',
     out: '신서중2_미래엔_Lesson6_본문분석_합본.pdf',
   },
+  L7: {
+    source: SOURCE_L7,
+    lessonNo: 7,
+    coverTitle: '신서중 2학년<br>미래엔 영어 2',
+    titleEn: 'Animals in Cold Places',
+    coverSub: '미래엔(문영인) 중학교 영어 2<br>Lesson 7 · Animals in Cold Places',
+    docTitle: '신서중 2학년 · 미래엔 Lesson 7 본문분석 합본 — Terra Nova',
+    out: '신서중2_미래엔_Lesson7_본문분석_합본.pdf',
+    fulltextMaxPerPage: 19,   // 37문장 → 19·18 두 장(한 장이면 배율 0.67 로 글씨가 너무 작다)
+  },
+  L8: {
+    source: SOURCE_L8,
+    lessonNo: 8,
+    coverTitle: '신서중 2학년<br>미래엔 영어 2',
+    titleEn: 'Comparing Prices',
+    coverSub: '미래엔(문영인) 중학교 영어 2<br>Lesson 8 · Comparing Prices',
+    docTitle: '신서중 2학년 · 미래엔 Lesson 8 본문분석 합본 — Terra Nova',
+    out: '신서중2_미래엔_Lesson8_본문분석_합본.pdf',
+    fulltextMaxPerPage: 20,   // 40문장 → 20·20 두 장(한 장이면 배율 0.62)
+  },
 };
 
 const lessonId = (process.argv[2] || 'L5').toUpperCase();
 const LESSON = LESSONS[lessonId];
 if (!LESSON) {
-  console.error(`알 수 없는 과: ${lessonId} (L5 / L6)`);
+  console.error(`알 수 없는 과: ${lessonId} (L5~L8)`);
   process.exit(2);
 }
 const SOURCE = LESSON.source;
@@ -133,7 +155,12 @@ for (const ch of SOURCE) {
       </div>`);
   });
 }
-const tocRows = fullLines.join('\n');
+/* 본문 전문을 여러 장으로 나눌 수 있다(L7·L8 부터, 2026-11-12 — _oneoff-중2-동아윤 combine 에서 이식).
+   fulltextMaxPerPage 가 없으면 기존처럼 한 장(L5·L6 영향 없음). */
+const FULLTEXT_MAX_PER_PAGE = LESSON.fulltextMaxPerPage ?? 999;
+const fullPages = [];
+for (let i = 0; i < fullLines.length; i += FULLTEXT_MAX_PER_PAGE) fullPages.push(fullLines.slice(i, i + FULLTEXT_MAX_PER_PAGE));
+const FT_PAGES = fullPages.length;
 
 const cover = `<section class="page cover-page">
   <div class="cover-wrap">
@@ -144,14 +171,14 @@ const cover = `<section class="page cover-page">
   </div>
 </section>
 
-<section class="page toc-page-sec">
+${fullPages.map((rows, pi) => `<section class="page toc-page-sec">
   <div class="page-body">
-    <div class="section-bar alt">FULL TEXT · 본문 전문<span class="bar-sub">원문 ${SENTENCE_TOTAL}문장</span></div>
+    <div class="section-bar alt">FULL TEXT · 본문 전문<span class="bar-sub">원문 ${SENTENCE_TOTAL}문장${FT_PAGES > 1 ? ` (${pi + 1}/${FT_PAGES})` : ''}</span></div>
     <div class="fulltext fulltext-all">
-${tocRows}
+${rows.join('\n')}
     </div>
   </div>
-</section>`;
+</section>`).join('\n')}`;
 
 const extraCss = `
   /* 합본 N페이지 누적 시 Chromium PDF 페이지 경계 드리프트 방지 — A4 박스 고정.
@@ -213,7 +240,7 @@ ${allPages}
 
 const combinedHtmlPath = path.join(DIST, 'combined.html');
 await fs.writeFile(combinedHtmlPath, combinedHtml, 'utf8');
-console.log(`\n📄 combined.html — 표지1 + 본문전문1 + 본문 ${pageNo}p (총 ${pageNo + 2}p)`);
+console.log(`\n📄 combined.html — 표지1 + 본문전문${FT_PAGES} + 본문 ${pageNo}p (총 ${pageNo + 1 + FT_PAGES}p)`);
 
 // ── 3) PDF 렌더 ────────────────────────────────────────────────
 const puppeteer = (await import('puppeteer')).default;
@@ -225,34 +252,47 @@ await page.goto(pathToFileURL(combinedHtmlPath).href, { waitUntil: 'networkidle0
    --ft 배율을 이분 탐색해 '넘치지 않는 최대값'을 찾는다.
    .page-body 가 overflow:hidden 이라 넘침은 눈에 안 보이므로 실측이 유일한 안전장치다.
    찾은 배율을 combined.html 에 다시 써 넣어 HTML 과 PDF 가 같은 모습이 되게 한다. */
-const fitScale = await page.evaluate(() => {
-  const list = document.querySelector('.fulltext-all');
-  if (!list) return null;
-  const body = list.closest('.page-body');
-  const fits = (v) => {
-    list.style.setProperty('--ft', String(v));
-    void body.offsetHeight;                       // 강제 리플로우
-    return body.scrollHeight <= body.clientHeight;
-  };
-  let lo = 0.6, hi = 2.0;
-  if (!fits(lo)) { list.style.setProperty('--ft', String(lo)); return lo; }
-  for (let i = 0; i < 22; i++) {                  // 0.6~2.0 을 22회 이분 → 오차 ~0.0001
-    const mid = (lo + hi) / 2;
-    if (fits(mid)) lo = mid; else hi = mid;
-  }
-  const v = Math.floor(lo * 1000) / 1000;         // 안전하게 내림
-  list.style.setProperty('--ft', String(v));
-  return v;
+/* 본문 전문이 여러 장일 수 있으므로 '각 장'을 따로 맞춘다. 하한(0.6)으로도 넘치면 잘린 채 인쇄되므로 빌드를 실패시킨다. */
+const fitResults = await page.evaluate(() => {
+  const lists = [...document.querySelectorAll('.fulltext-all')];
+  if (!lists.length) return null;
+  const res = lists.map((list) => {
+    const body = list.closest('.page-body');
+    const fits = (v) => {
+      list.style.setProperty('--ft', String(v));
+      void body.offsetHeight;                       // 강제 리플로우
+      return body.scrollHeight <= body.clientHeight;
+    };
+    let lo = 0.6, hi = 2.0, overflow = false;
+    if (!fits(lo)) { list.style.setProperty('--ft', String(lo)); overflow = true; }
+    else {
+      for (let i = 0; i < 22; i++) {                // 0.6~2.0 을 22회 이분 → 오차 ~0.0001
+        const mid = (lo + hi) / 2;
+        if (fits(mid)) lo = mid; else hi = mid;
+      }
+      lo = Math.floor(lo * 1000) / 1000;            // 안전하게 내림
+      list.style.setProperty('--ft', String(lo));
+    }
+    return { list, body, scale: lo, overflow };
+  });
+  /* 여러 장이면 글씨 크기가 장마다 달라 보이지 않게 가장 작은 배율로 통일한다(작게 = 넘침 없음). */
+  const min = Math.min(...res.map(r => r.scale));
+  for (const r of res) { r.list.style.setProperty('--ft', String(min)); void r.body.offsetHeight; }
+  return res.map(r => ({ scale: min, overflow: r.overflow, used: r.body.scrollHeight, avail: r.body.clientHeight }));
 });
 
-if (fitScale != null) {
-  const m = await page.evaluate(() => {
-    const b = document.querySelector('.fulltext-all').closest('.page-body');
-    return { used: b.scrollHeight, avail: b.clientHeight };
+if (fitResults != null) {
+  fitResults.forEach((r, i) => {
+    const tag = fitResults.length > 1 ? ` (${i + 1}/${fitResults.length})` : '';
+    console.log(`   ↔ 본문 전문 자동 맞춤${tag}: 배율 ${r.scale}  (${r.used}/${r.avail}px, ${(r.used / r.avail * 100).toFixed(1)}% 사용)`);
   });
-  console.log(`   ↔ 본문 전문 자동 맞춤: 배율 ${fitScale}  (${m.used}/${m.avail}px, ${(m.used / m.avail * 100).toFixed(1)}% 사용)`);
-  // HTML 산출물에도 동일 배율을 박아 둔다(브라우저로 열어도 PDF 와 같게).
-  const fixed = combinedHtml.replace('.fulltext-all {\n    --ft: 1;', `.fulltext-all {\n    --ft: ${fitScale};`);
+  const bad = fitResults.filter(r => r.overflow);
+  if (bad.length) {
+    console.error(`❌ 본문 전문 ${bad.length}개 장이 하한 배율로도 넘칩니다 — 잘린 채 인쇄됩니다. LESSONS.${lessonId}.fulltextMaxPerPage 를 줄이세요.`);
+    process.exit(1);
+  }
+  // HTML 산출물에도 첫 장 배율을 박아 둔다(PDF 는 장마다 인라인 배율로 렌더).
+  const fixed = combinedHtml.replace('.fulltext-all {\n    --ft: 1;', `.fulltext-all {\n    --ft: ${fitResults[0].scale};`);
   await fs.writeFile(combinedHtmlPath, fixed, 'utf8');
 }
 

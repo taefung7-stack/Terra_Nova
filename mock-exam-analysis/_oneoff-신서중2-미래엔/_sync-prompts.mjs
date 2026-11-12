@@ -36,7 +36,8 @@ for (const f of found) {
   if (!/--v\s*8\.1/.test(f.prompt)) { console.error(`✗ ${f.L}/${f.ch}: --v 8.1 없음`); process.exitCode = 1; continue; }
 
   /* 금지어 검사 — NO 배제절을 지운 '지시부'에만 적용한다 */
-  const body = f.prompt.replace(/NO [^,.]*/gi, '');
+  /* L7·L8(2026-11-12)부터는 인라인 NO 대신 --no 파라미터를 쓴다 — --no 부터 --ar 앞까지도 지운다. */
+  const body = f.prompt.replace(/--no\s[\s\S]*?(?=--ar|$)/i, '').replace(/NO [^,.]*/gi, '');
   const banned = ['golden hour', 'dramatic lighting', 'chiaroscuro', 'moody', 'neon', 'night scene', 'sunlit', 'twilight', 'sunset'];
   const hit = banned.filter(b => new RegExp(b, 'i').test(body));
   if (hit.length) { console.error(`✗ ${f.L}/${f.ch}: 지시부에 금지어 [${hit}]`); process.exitCode = 1; continue; }

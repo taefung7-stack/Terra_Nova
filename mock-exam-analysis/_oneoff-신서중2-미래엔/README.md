@@ -1,4 +1,4 @@
-# 신서중 2학년 — 2022 개정 미래엔(문영인) 중2 본문분석 + 워크북 (Lesson 5·6 + More Reading)
+# 신서중 2학년 — 2022 개정 미래엔(문영인) 중2 본문분석 + 워크북 (Lesson 5·6 + More Reading) · Lesson 7·8 본문분석 + 본문암기
 
 > ⚠️ **개인 용도 1회성 산출물입니다. 테라노바 판매용이 아닙니다.**
 > 판매·구독 파이프라인(Supabase Storage 업로드, dispatch-order-pdf, market)에
@@ -133,6 +133,40 @@ node "_oneoff-신서중2-미래엔/build-memorize.mjs" L5     # 한 과만
   한글 해석 → 영문 배열 → 통문장 영작 → 종합 → 정답·해설
 - **ANSWER(정답·오답 분석) 블록 없음** — 문제집이 아니라 본문 분석이므로
   `hide_answer: true` 로 제거(신서고 폴더와 동일 정책)
+
+## Lesson 7·8 — 본문분석 + 본문암기 (2026-11-12)
+
+교과서 본문 PDF(`7과본문.pdf` / `8과본문.pdf`)로 만든 **본문분석 + 본문암기**. 워크북·변형문제는 요청 범위가 아니다.
+
+| 과 | 제목 | 챕터(문장) | 본문분석 합본 | 본문암기 |
+|----|------|-----------|---------------|----------|
+| L7 | Animals in Cold Places | 도입6 · 북극곰9 · 북극여우6 · 고래8 · 송장개구리8 = **37** | 표지1 + 본문전문2(19·18) + 본문16 = **19p** | 표지1 + 문제4 + 정답1 = **6p** |
+| L8 | Comparing Prices | 11 · 8 · 9 · 12 = **40** | 표지1 + 본문전문2(20·20) + 본문14 = **17p** | 표지1 + 문제4 + 정답1 = **6p** |
+
+- **저작 방식이 L5·L6 와 다르다** — 미니 마크업 헬퍼 `_author.mjs`(중2 동아윤 복제) + `_author-L7.mjs`·`_author-L8.mjs` 로 JSON 을 만든다. **data/L7·L8 을 직접 고치지 말 것.**
+  이 폴더의 `covers` 는 **챕터 안 번호**라, 저작 파일은 원문 전체 번호로 쓰고 맨 아래 루프에서 바꾼다.
+- **L8 대화문 규칙** — 화자 표시(`Mom:` `Nick:` …)는 그 말차례의 **첫 문장 앞에만** 붙인다(금옥중3 L6 와 같음).
+  관광 안내 책자 표·Nick 의 가격표는 본문 문장이 아니라 Ch1 카드 note·flow 에 내용을 적었다.
+- **해석** — 교과서 PDF 오른쪽 단 우리말을 문장 단위로 옮겼다. L8 10번만 교과서가 두 문장으로 나눈 것을 한 문장으로 합쳤다.
+- **본문 전문 2장 분할** — 한 장이면 배율 0.67(L7)·0.62(L8)로 글씨가 너무 작아 `combine.mjs` 에 `fulltextMaxPerPage`(동아윤 combine 에서 이식)를 넣었다.
+  여러 장이면 **가장 작은 배율로 통일**하고, 하한(0.6)으로도 넘치면 빌드를 실패시킨다. L5·L6 는 설정이 없어 기존처럼 한 장(배율 1.027 / 0.801 그대로).
+- **글리프 보정 확장** — L8 가격 설명에서 한글 서체 속 `$ + = ×`, L7 의 `↔` 가 **빈칸으로 렌더**됐다(텍스트 레이어엔 있어 검사로 못 잡음, 육안 발견).
+  `styles/analysis.css`·`workbook.css` 의 PretendardTN unicode-range 에 `$ % + = × ÷ ↔` 를 추가했다. 🇦🇺 같은 **국기 이모지는 "AU" 글자로 렌더**되므로 쓰지 않는다.
+- **원문 검수 2중** — ① `node _xcheck.mjs L7|L8`: 첨부 PDF 텍스트 레이어 영어 단(`_PDF-RAW-{L}.txt`) ↔ 정본 문자 단위 일치(L7 1,702자 / L8 1,417자).
+  ② `_memaudit.mjs` 에 `TEXTBOOK.L7·L8` — 교과서 37·40문장 = 정본.
+- 검수: verify 오류 0·경고 0 · overflow 9챕터 0 · `_audit` 차단 0 · `_memaudit` 정답면 37/37·40/40, 문제면 한글 전부, 번호 연속·잘림 0 · PNG 렌더 육안 확인.
+- **삽화 아직 없음**(INTRO 면 placeholder 9장) — 프롬프트는 `_ILLUSTRATION_PROMPTS.md` Lesson 7·8 절(`_sync-prompts.mjs` 규격 검사 통과, 사람 없음, `--no` 파라미터 방식).
+  이미지를 `dist/{L7,L8}/{N}.png` 로 받으면 가로 2000px 로 줄여 `dist/{L}/assets/illust-N.png` 에 넣고 재빌드.
+
+```bash
+cd mock-exam-analysis
+D=_oneoff-신서중2-미래엔; L=L7   # 또는 L8
+(cd $D && node _xcheck.mjs $L && node _author-$L.mjs && node verify.mjs $L)
+node builder/build.mjs "$D/data/$L" "$D/dist/$L" --styles="$D/styles/analysis.css"
+for f in $D/dist/$L/[0-9].html; do node builder/check-overflow.mjs $f; done
+node builder/pdf.mjs "$D/dist/$L" && node $D/combine.mjs $L && node $D/build-memorize.mjs $L
+(cd $D && python _memaudit-extract.py $L && node _audit.mjs $L && node _memaudit.mjs $L)
+```
 
 ## 폴더 구조
 

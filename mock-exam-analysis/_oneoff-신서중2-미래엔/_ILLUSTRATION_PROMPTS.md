@@ -114,6 +114,86 @@ Photorealistic lifestyle photograph, wide banner composition. Seen from behind a
 
 ---
 
+## Lesson 7 — Animals in Cold Places
+
+> 2026-11-12 추가. **사람은 넣지 않는다**(손·얼굴 뭉개짐 방지). 배제는 인라인 NO 가 아니라 `--no` 파라미터로 쓴다. 원문 = `_author-L7.mjs` 의 prompt(→ `data/L7/{N}.json`).
+
+### Ch1 · 도입 — 동물들은 추위를 어떻게 견딜까?
+
+저장 경로: `dist/L7/assets/illust-1.png`
+
+```
+Photorealistic still-life photograph, wide banner composition. A cozy indoor window seat on a snowy winter day: a thick knitted wool blanket folded on the cushion, a steaming mug of hot chocolate, a pair of warm gloves and a puffy winter jacket hanging nearby, soft falling snow and frosty pine trees visible through the large window. natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, true-to-life color, sharp focus, creamy white, warm cocoa brown and pale icy blue. --no people, person, face, hands, text, letters, words, numbers, signage, logo, watermark, golden hour, sunset, dramatic lighting, neon, night, heavy shadows, dark moody grading, polar bear, fox, whale, frog, animals --ar 16:5 --v 8.1 --style raw
+```
+
+### Ch2 · 북극곰 — 투명한 털과 검은 피부
+
+저장 경로: `dist/L7/assets/illust-2.png`
+
+```
+Photorealistic wildlife photograph, wide banner composition. A large polar bear walking across white Arctic sea ice, its thick fur glowing almost translucent cream-white at the tips, faint dark skin visible around the nose and eyes, wide flat snowfield and pale blue ice ridges behind. natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, true-to-life color, sharp focus, snow white, ivory and pale ice blue. --no people, person, face, hands, text, letters, words, numbers, signage, logo, watermark, golden hour, sunset, dramatic lighting, neon, night, heavy shadows, dark moody grading, fox, whale, frog, water splash, blood --ar 16:5 --v 8.1 --style raw
+```
+
+### Ch3 · 북극여우 — 담요 같은 꼬리와 작은 귀
+
+저장 경로: `dist/L7/assets/illust-3.png`
+
+```
+Photorealistic wildlife photograph, wide banner composition. An arctic fox curled up asleep on fresh snow, its huge fluffy tail wrapped around its body like a blanket covering its nose, its small rounded ears visible, soft snowy tundra and low snow-covered shrubs in the background. natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, true-to-life color, sharp focus, snow white, soft grey and pale blue. --no people, person, face, hands, text, letters, words, numbers, signage, logo, watermark, golden hour, sunset, dramatic lighting, neon, night, heavy shadows, dark moody grading, polar bear, whale, frog, sea, ice floe, blood --ar 16:5 --v 8.1 --style raw
+```
+
+### Ch4 · 고래 — 40cm가 넘는 두꺼운 지방
+
+저장 경로: `dist/L7/assets/illust-4.png`
+
+```
+Photorealistic ocean photograph, wide banner composition. A huge bowhead whale surfacing slowly between floating white ice floes in a calm icy polar sea, its smooth rounded dark back and thick body breaking the still grey-blue water, small chunks of ice drifting around it. natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, true-to-life color, sharp focus, icy grey-blue, white ice and deep slate. --no people, person, face, hands, text, letters, words, numbers, signage, logo, watermark, golden hour, sunset, dramatic lighting, neon, night, heavy shadows, dark moody grading, polar bear, fox, frog, boat, ship, blood --ar 16:5 --v 8.1 --style raw
+```
+
+### Ch5 · 송장개구리 — 스스로 얼었다가 봄에 다시 살아나다
+
+저장 경로: `dist/L7/assets/illust-5.png`
+
+```
+Photorealistic macro nature photograph, wide banner composition. A small brown wood frog frozen still among frosty fallen leaves on a forest floor in early winter, delicate ice crystals covering its back, and beside it fresh green spring shoots pushing up through melting snow hinting at the coming spring. natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, true-to-life color, sharp focus, frosty white, leaf brown and fresh spring green. --no people, person, face, hands, text, letters, words, numbers, signage, logo, watermark, golden hour, sunset, dramatic lighting, neon, night, heavy shadows, dark moody grading, polar bear, fox, whale, sea, ice floe, blood --ar 16:5 --v 8.1 --style raw
+```
+
+## Lesson 8 — Comparing Prices
+
+> 2026-11-12 추가. **사람은 넣지 않는다**(손·얼굴 뭉개짐 방지). 배제는 인라인 NO 가 아니라 `--no` 파라미터로 쓴다. 원문 = `_author-L8.mjs` 의 prompt(→ `data/L8/{N}.json`).
+
+### Ch1 · 호주 여행 — 코알라 투어 안내 책자 세 개
+
+저장 경로: `dist/L8/assets/illust-1.png`
+
+```
+Photorealistic travel still-life photograph, wide banner composition. A bright hotel room table during a family vacation in Australia: an open suitcase, two sun hats, a camera and a small plush koala toy, a large window behind showing green eucalyptus-covered hills and a calm blue bay. natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, true-to-life color, sharp focus, eucalyptus green, sand beige and sky blue. --no people, person, face, hands, text, letters, words, numbers, signage, logo, watermark, golden hour, sunset, dramatic lighting, neon, night, heavy shadows, dark moody grading, calculator, brochure rack, real koala, chart --ar 16:5 --v 8.1 --style raw
+```
+
+### Ch2 · 1시간 25달러는 싼 걸까? — 같은 시간 기준으로 비교하기
+
+저장 경로: `dist/L8/assets/illust-2.png`
+
+```
+Photorealistic interior photograph, wide banner composition. A bright hotel lobby front desk with a tall wooden rack holding many colorful folded travel brochures with plain blank covers, a small bell on the counter and potted eucalyptus branches nearby, soft daylight from tall windows. natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, true-to-life color, sharp focus, warm wood, white and leafy green. --no people, person, face, hands, text, letters, words, numbers, signage, logo, watermark, golden hour, sunset, dramatic lighting, neon, night, heavy shadows, dark moody grading, koala, calculator, chart, suitcase --ar 16:5 --v 8.1 --style raw
+```
+
+### Ch3 · 3시간 기준 — Star Tour 가 가장 싸다? 확인할 것이 하나 더
+
+저장 경로: `dist/L8/assets/illust-3.png`
+
+```
+Photorealistic still-life photograph, wide banner composition. A wooden café table by a bright window: a simple calculator, a sharpened pencil and a blank open notepad, three folded travel brochures with plain blank covers fanned out beside a cup of flat white coffee, a eucalyptus sprig in a small vase. natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, true-to-life color, sharp focus, natural wood, cream white and soft eucalyptus green. --no people, person, face, hands, text, letters, words, numbers, signage, logo, watermark, golden hour, sunset, dramatic lighting, neon, night, heavy shadows, dark moody grading, koala, hotel lobby, suitcase, chart, banknotes --ar 16:5 --v 8.1 --style raw
+```
+
+### Ch4 · per pair — 한 사람당 55달러, Top Tour 로 결정
+
+저장 경로: `dist/L8/assets/illust-4.png`
+
+```
+Photorealistic wildlife photograph, wide banner composition. A pair of two fluffy grey koalas sitting close together side by side on a thick eucalyptus branch in a green Australian forest, soft rounded ears and dark noses, surrounded by fresh eucalyptus leaves. natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, true-to-life color, sharp focus, soft koala grey, eucalyptus green and pale sky white. --no people, person, face, hands, text, letters, words, numbers, signage, logo, watermark, golden hour, sunset, dramatic lighting, neon, night, heavy shadows, dark moody grading, calculator, brochure, hotel, suitcase, chart --ar 16:5 --v 8.1 --style raw
+```
+
 ## 검증 방법
 
 프롬프트를 고쳤다면 **`_sync-prompts.mjs` 로 JSON 에 반영한 뒤** 검증한다.

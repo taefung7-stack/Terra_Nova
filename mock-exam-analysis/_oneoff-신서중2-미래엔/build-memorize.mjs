@@ -40,6 +40,16 @@ const LESSONS = {
     titleEn: 'My First Skateboarding Lesson',
     out: '신서중2_미래엔_Lesson6_본문암기.pdf',
   },
+  L7: {
+    lessonNo: 7,
+    titleEn: 'Animals in Cold Places',
+    out: '신서중2_미래엔_Lesson7_본문암기.pdf',
+  },
+  L8: {
+    lessonNo: 8,
+    titleEn: 'Comparing Prices',
+    out: '신서중2_미래엔_Lesson8_본문암기.pdf',
+  },
   // ── More Reading(추가지문) — 2026-09-21 신규 ──────────────────
   // 정식 Lesson 본문이 아니라 각 과의 "More Reading" 부록 지문이므로
   // 표지 부제를 "Lesson N-Nʼth More Reading" 형태로 별도 지정한다.
@@ -67,7 +77,7 @@ const esc = (s) => String(s ?? '')
 /* ── 한 과 빌드 ───────────────────────────────────────────────── */
 async function buildOne(lessonId) {
   const LESSON = LESSONS[lessonId];
-  if (!LESSON) { console.error(`알 수 없는 과: ${lessonId} (L5 / L6)`); process.exit(2); }
+  if (!LESSON) { console.error(`알 수 없는 과: ${lessonId} (L5~L8)`); process.exit(2); }
 
   const { SOURCE } = await import(`./_SOURCE-${lessonId}.js`);
   const DIST = path.join(__dirname, 'dist', lessonId);

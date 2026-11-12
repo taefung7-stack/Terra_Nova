@@ -36,6 +36,36 @@ const TEXTBOOK = {
     `The lesson finally began. Eric taught me the most basic skill, the "push-off." To push off on the skateboard, I put one foot on the board and pushed against the ground with the other foot. Tada! I moved forward! This skill looked simple, but I fell down many times. With practice, I was able to keep my balance and ride. I heard Eric cheering for me.`,
     `After the lesson, I realized skateboarding is more than just a cool-looking sport. It makes me feel free. I am glad that I started my skateboarding journey today. My shoes and jeans got dirty, but I felt great. It shows I practiced really hard. I hope to skate better and more freely someday. Do you want to try skateboarding, too? Just visit the nearest skatepark!`,
   ],
+  /* L7·L8 — 7과본문.pdf / 8과본문.pdf(2026-11-12) 영어 단을 문단·말차례 단위로 옮김(표·소제목 제외).
+     L8 화자 표시는 정본 규칙(말차례 첫 문장 앞)과 같게 둔다. */
+  L7: [
+    `When it gets cold outside, people put on jackets and gloves. Some people drink hot chocolate. Others stay inside under blankets. But how about animals? How do they survive the cold? Let’s find out some of their survival secrets.`,
+    `First, meet polar bears. Did you know that polar bears have clear fur? Their fur only looks white to us because of the sunlight. So, why is clear fur helpful in the cold? It lets more sunlight reach their skin. Here comes another interesting fact about polar bears. They have black skin! Dark skin helps them take in more heat. Having clear fur and black skin keeps polar bears warm.`,
+    `Arctic foxes have dark skin and fur, too. They also use their big tails to keep themselves warm. When they sleep, they wrap their tails around their bodies like blankets! However, they may lose body heat through their ears in the cold air. Unlike other foxes in warm places, arctic foxes have small ears. Their ears are so small that they can help the foxes lose less heat.`,
+    `Now, what about animals without fur? How do whales live in icy water? The winter sea is so cold that you cannot swim there, even for a second. However, whales have a special way to stay warm in icy water. They have thick fat under their skin. The fat can be more than 40 cm thick. It covers their bodies and keeps them warm. The fat also gives whales energy when they cannot find food for a long time.`,
+    `Lastly, in Alaska, winters can be too cold for wood frogs. What do they do to survive the freezing weather? These frogs freeze themselves! Up to 60 percent of their bodies freeze. They stop breathing, and their heart stops beating. But don’t worry. When spring comes, they come back to life. Nature is so amazing.`,
+  ],
+  L8: [
+    `Emily’s family is on vacation in Australia. They are traveling for a week. They are talking about their plans for the day.`,
+    `Mom: Guys, what do you want to do today?`,
+    `Nick: I really want to see koalas. They’re so cute!`,
+    `Emily: There may be some koala tours. Should I ask for information at the desk?`,
+    `Dad: You don’t have to. There are three tour brochures here: Smile Tour, Star Tour, and Top Tour. Let’s see which koala tour will be the best for us.`,
+    `Nick: First, let me compare the prices. The price of Smile Tour looks really good! It’s only $25.`,
+    `Emily: Oh, it’s $25 for one hour. Look, the other tours are all 3 hours.`,
+    `Dad: Right. We need to find out the price for the same amount of time.`,
+    `Nick: Okay, but how can we do that?`,
+    `Emily: Let’s start with Smile Tour. If we take a 3-hour tour, it will cost $75.`,
+    `Nick: Star Tour is $60 for 3 hours, and Top Tour is $110. Wow, now Star Tour is the cheapest!`,
+    `Mom: Right, but we have one more thing to check.`,
+    `Nick: What is it, Mom?`,
+    `Mom: The price of Top Tour is $110, but it’s for two people.`,
+    `Nick: Really? Where does it say that?`,
+    `Mom: Here, it says $110 “per pair.” Do you know what a pair is? It means two.`,
+    `Emily: Oh, now I know what to do! Divide 110 by 2 to get the price for one person.`,
+    `Nick: It’s $55! Wow, it’s cheaper than Star Tour. That’s amazing! Let me make a chart.`,
+    `Mom: Nick, you did a good job. Now you can see why Top Tour is the cheapest. Let’s go with this one.`,
+  ],
 };
 
 /* 문단 → 문장 분리.
@@ -71,7 +101,8 @@ const sq = (s) => String(s ?? '')
 const sqk = (s) => String(s ?? '').replace(/\s+/g, '').replace(/[.,!?"'“”‘’()·…]/g, '');
 
 let block = 0;
-for (const L of ['L5', 'L6']) {
+const AUDIT_TARGETS = process.argv[2] ? [process.argv[2].toUpperCase()] : ['L5', 'L6', 'L7', 'L8'];
+for (const L of AUDIT_TARGETS) {
   console.log(`\n${'='.repeat(66)}\n${L} — 교과서 원문 기준 검수\n${'='.repeat(66)}`);
 
   /* 1) 교과서에서 기준 문장 집합 생성 */
