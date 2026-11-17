@@ -43,6 +43,10 @@ const TEXTBOOK = {
     `Mom smiled and said, “I hope you are right. I wanted to become that kind of person.”`,
     `“Mom! You’re already that kind of person!”`,
     `Just then, I had an idea. “That’s it! Thanks, Mom!”`,
+    `The next day, I gave a presentation.`,
+    `“What do I want to be when I grow up? I don’t know. Who do I want to be? I know that!`,
+    `I want to be a caring person. I want to help others. I also want to be a brave person. I want to try new things.`,
+    `Who do I want to be? I want to be me.”`,
   ],
   L7: [
     `Host: Welcome to the Paran Quiz Show! I’m your host, Suji. Today, we have two finalists, Namjun from Class 2 and Sara from Class 5. Namjun and Sara, how are you today?`,

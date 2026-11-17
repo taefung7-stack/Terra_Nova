@@ -3,7 +3,8 @@
  * Who Do I Want to Be?
  * ===================================================================
  * 사용자 제공 교과서 본문 PDF(신서중1 6과.pdf, 2026-11-17)에서 verbatim 전사. ★ 임의 수정 금지.
- * 원문 총 39문장 · 교과서 구획 2개 = 2챕터(14 + 25).
+ * 원문 총 50문장 · 교과서 구획 3개 = 3챕터(14 + 25 + 11).
+ * (처음 받은 PDF 는 3번째 구획 '다음 날의 발표'가 빠진 판이었다 — 2026-11-17 다시 받은 PDF 로 보충.)
  *
  * ★ 문장 나누기 규칙(대화가 많은 이야기 — 중2 동아윤 L8·봉영여중3 11번과 같은 규칙)
  *   - 따옴표 안의 여러 문장은 문장 끝(. ? !)마다 나눈다. 여는 따옴표는 첫 문장, 닫는 따옴표는 끝 문장에 둔다.
@@ -66,6 +67,26 @@ export const SOURCE = [
       "Just then, I had an idea.",
       "“That’s it!",
       "Thanks, Mom!”",
+    ],
+  },
+  {
+    no: 3,
+    title: 'Who Do I Want to Be?',
+    subtitle: '다음 날의 발표 — 나는 내가 되고 싶다',
+    // 2026-11-17 추가: 사용자가 다시 준 PDF 에 이 구획이 있었다(처음 PDF 엔 없었음).
+    // 발표 인용은 문단 셋에 걸쳐 이어진다 — 여는 따옴표는 41번, 닫는 따옴표는 50번에만 있다.
+    sentences: [
+      "The next day, I gave a presentation.",
+      "“What do I want to be when I grow up?",
+      "I don’t know.",
+      "Who do I want to be?",
+      "I know that!",
+      "I want to be a caring person.",
+      "I want to help others.",
+      "I also want to be a brave person.",
+      "I want to try new things.",
+      "Who do I want to be?",
+      "I want to be me.”",
     ],
   },
 ];

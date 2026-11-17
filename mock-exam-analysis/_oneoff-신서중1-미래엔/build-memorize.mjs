@@ -35,7 +35,7 @@ const LESSONS = {
     lessonNo: 6,
     titleEn: 'Who Do I Want to Be?',
     out: '신서중1_미래엔_Lesson6_본문암기.pdf',
-    qPageCount: 3,   // 39문장 → 13+13+13 (기본 12 상한이면 12+12+12+3 으로 마지막 장이 비어 보임)
+    qPageCount: 4,   // 50문장 → 13+13+13+11 (기본 12 상한이면 12×4+2 로 마지막 장이 비어 보임)
   },
   L7: {
     lessonNo: 7,
