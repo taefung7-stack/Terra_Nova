@@ -1,0 +1,27 @@
+# 신서중 1학년 — 2022 개정 미래엔(문영인) 중1 본문암기 (Lesson 6·7)
+
+> ⚠️ **개인 용도 1회성 산출물입니다. 테라노바 판매용이 아닙니다.**
+> 판매·구독 파이프라인(Supabase Storage 업로드, dispatch-order-pdf, market)에 **절대 연결하지 마세요.**
+
+요청(2026-11-17): 교과서 본문 PDF(`신서중1 6과.pdf` / `신서중1 7과.pdf`)로 **본문암기 PDF만** 제작.
+본문분석·워크북·변형문제는 요청 범위가 아니다. 빌더는 `_oneoff-신서중2-미래엔/build-memorize.mjs` 복제(학년 표기만 1학년).
+
+| 과 | 제목 | 문장 | 산출물 |
+|----|------|------|--------|
+| L6 | Who Do I Want to Be? | 39 (2챕터 14·25) | `dist/L6/신서중1_미래엔_Lesson6_본문암기.pdf` — 표지1 + 문제3(13·13·13) + 정답1 = **5p** |
+| L7 | Amazing Facts About the World | 53 (4챕터 11·15·13·14) | `dist/L7/신서중1_미래엔_Lesson7_본문암기.pdf` — 표지1 + 문제4(14·14·14·11) + 정답1 = **6p** |
+
+- **문장 나누기** — L6 은 대화가 많은 이야기라 따옴표 안도 문장 끝마다 나누고 화자 표시(`I cried.` 등)는 따옴표 끝 문장에 붙였다.
+  L7 은 퀴즈 쇼 대본이라 화자 표시(`Host:` `Namjun:` …)를 말차례 **첫 문장 앞에만** 붙였다(신서중2 L8 과 같음).
+- **인쇄본 표기 정리** — 닫는 따옴표가 여는 모양(“)으로 찍힌 곳은 ”로, 느낌표 뒤 조판 공백은 붙여, 말줄임표(…)는 `...` 로 썼다. 철자·단어는 그대로.
+- **해석** — 교과서 PDF 에 우리말이 없어 새로 썼다(`_make-data.mjs`). Namjun 만 '남준', 나머지 인명은 영문, Host = 진행자. **data/ 를 직접 고치지 말 것.**
+- **글리프** — L7 `Namjun & Sara` 의 `&` 가 빈칸으로 렌더돼 `styles/workbook.css` PretendardTN 범위에 `U+0026` 을 추가했다.
+- 검수: `_memaudit.mjs`(교과서 원문 문단 → 문장 기준) L6 39/39 · L7 53/53, 문제면 한글 전부, 번호 연속·순서·잘림 0 · PNG 렌더 육안 확인.
+  분리 규칙 함정: `“…?” I said to myself, …` 는 새 문장이고 `…!” I cried.` 는 앞 문장의 화자 표시다 — 화자 동사 뒤가 마침표일 때만 붙인다.
+
+```bash
+cd mock-exam-analysis/_oneoff-신서중1-미래엔
+node _make-data.mjs                 # 정본 + 해석 → data/{L}/{N}.json
+node build-memorize.mjs             # L6·L7 (한 과만: node build-memorize.mjs L7)
+python _memaudit-extract.py && node _memaudit.mjs
+```
