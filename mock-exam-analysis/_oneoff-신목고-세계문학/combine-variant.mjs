@@ -35,6 +35,13 @@ const LESSONS = {
     docTitle: '신목고 2-2 중간 · 세계문학 Unit 3 변형문제 합본 — Terra Nova',
     out: '신목고2-2중간_세계문학_Unit3_변형문제_합본.pdf',
   },
+  WE: {
+    titleEn: 'World Englishes',
+    coverTitle: '기말고사 대비',
+    coverSub: '신목고 2-2 기말 · 세계문화<br>World Englishes (Language: Insights into Diversity)',
+    docTitle: '신목고 2-2 기말 · 세계문화 World Englishes 변형문제 합본 — Terra Nova',
+    out: '신목고2-2기말_세계문화_WorldEnglishes_변형문제_합본.pdf',
+  },
 };
 
 const lessonId = (process.argv[2] || 'U1').toUpperCase();
@@ -52,7 +59,7 @@ if (!bodyPages) { console.error('variant-book.html 에서 .page 를 찾지 못�
 const cover = `<section class="page cover-page">
   <div class="cover-wrap">
     <div class="cover-brand">Terra Nova</div>
-    <div class="cover-title">신목고 2학년 2학기<br>중간고사 대비</div>
+    <div class="cover-title">신목고 2학년 2학기<br>${LESSON.coverTitle ?? '중간고사 대비'}</div>
     <div class="cover-sub">${LESSON.coverSub}</div>
     <div class="cover-meta">변형문제 합본 · 전 ${bodyPages}페이지</div>
   </div>

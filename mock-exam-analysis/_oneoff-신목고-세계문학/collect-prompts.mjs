@@ -44,6 +44,11 @@ const UNITS = {
     label: 'Unit 3 — Noodle Dishes from Around the World',
     byline: (ch) => `**${ch.part}**`,
   },
+  WE: {
+    file: './_SOURCE-WE.js',
+    label: 'World Englishes',
+    byline: (ch) => `**${ch.part}**`,
+  },
 };
 
 const UNIT = (process.argv[2] || 'U1').toUpperCase();
@@ -95,7 +100,7 @@ const TONE_NOTE = `> 톤: **실사 사진(포토리얼)** — 현대 한국의 �
 > - 삽화 슬롯은 **16:5 레터박스 + \`object-fit: cover\`(중앙 크롭)** 이다.
 >   주제를 **화면 중앙**에 두고, 위아래가 잘려도 살아남는 구도로 잡는다.`;
 
-const HEADER = `# 신목고 2-2 중간 · 세계문학 ${UNIT_LABEL} — 챕터별 삽화 프롬프트
+const HEADER = `# 신목고 2-2 ${UNIT === "WE" ? "기말 · 세계문화" : "중간 · 세계문학"} ${UNIT_LABEL} — 챕터별 삽화 프롬프트
 
 > 규격: **\`--ar 16:5 --v 8.1\`** (와이드 배너, 본문 180mm 폭 전면)
 ${TONE_NOTE}

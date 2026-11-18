@@ -28,6 +28,7 @@ const UNITS = [
   { id: 'U1', file: './_SOURCE-U1.js', label: 'Unit 1 · Korean Culture from Different Angles', shape: 'comments' },
   { id: 'U2', file: './_SOURCE-U2.js', label: 'Unit 2 · A French Student in Dublin', shape: 'blog' },
   { id: 'U3', file: './_SOURCE-U3.js', label: 'Unit 3 · Noodle Dishes from Around the World', shape: 'plain' },
+  { id: 'WE', file: './_SOURCE-WE.js', label: '기말 · World Englishes', shape: 'plain' },
 ];
 
 const only = (process.argv[2] || '').toUpperCase();

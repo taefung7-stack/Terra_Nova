@@ -56,6 +56,15 @@ const LESSONS = {
     docTitle: '신목고 2-2 중간 · 세계문학 Unit 3 워크북 합본 — Terra Nova',
     out: '신목고2-2중간_세계문학_Unit3_워크북_합본.pdf',
   },
+  WE: {
+    lessonNo: null,
+    titleEn: 'World Englishes',
+    sentences: 59,
+    coverTitle: '기말고사 대비',
+    coverSub: '신목고 2-2 기말 · 세계문화<br>World Englishes (Language: Insights into Diversity)',
+    docTitle: '신목고 2-2 기말 · 세계문화 World Englishes 워크북 합본 — Terra Nova',
+    out: '신목고2-2기말_세계문화_WorldEnglishes_워크북_합본.pdf',
+  },
 };
 
 const lessonId = (process.argv[2] || 'U1').toUpperCase();
@@ -135,7 +144,7 @@ const tocRows = toc.map(t => `      <div class="toc-row">
 const cover = `<section class="page cover-page">
   <div class="cover-wrap">
     <div class="cover-brand">Terra Nova</div>
-    <div class="cover-title">신목고 2학년 2학기<br>중간고사 대비</div>
+    <div class="cover-title">신목고 2학년 2학기<br>${LESSON.coverTitle ?? '중간고사 대비'}</div>
     <div class="cover-sub">${LESSON.coverSub ?? `YBM(박준언) 영어II · Lesson ${LESSON.lessonNo}<br>${esc(LESSON.titleEn)}`}</div>
     <div class="cover-meta">워크북 합본 · 전 ${pageNo}페이지 · 원문 ${LESSON.sentences}문장 · 9-STEP</div>
   </div>

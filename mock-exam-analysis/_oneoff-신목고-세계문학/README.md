@@ -3,6 +3,7 @@
 > 유닛: **U1**(완료) · **U2**(완료 — 삽화 4장 반영까지 끝, 아래 「Unit 2」 절 참조)
 > · **U3**(완료 — 삽화 미반영, 아래 「Unit 3」 절 참조 — Ch1~6)
 > · **U3 Ch7**(본문분석·변형문제만 완료, 워크북 없음 — 아래 「Ch7」 절 참조)
+> · **WE — 기말고사 세계문화 World Englishes**(3종 완료 — 삽화 미반영, 맨 아래 「기말 WE」 절 참조 — Ch1~7)
 
 > ⚠️ **개인 용도 1회성 산출물입니다. 테라노바 판매용이 아닙니다.**
 > 판매·구독 파이프라인(Supabase Storage 업로드, dispatch-order-pdf, 합본, market)에
@@ -569,3 +570,106 @@ Ch7 원문은 37개 배열 원소(약 4,025자)로 다른 챕터(최대 816자)�
 
 ⚠️ 요리 사진은 젓가락·포크가 자연스럽게 어울리는 장면이라 인라인 `NO` 배제가
 오히려 그 물건을 부른다. 배제는 `--no` 파라미터에만 최소로 적는다.
+
+
+---
+
+# 기말 WE — World Englishes (세계문화 "Language: Insights into Diversity" pp.92~99)
+
+**상태: 3종 완료 (2026-11-18).** 2학기 **기말고사** 범위. 지도서 스캔 사진 8장에서 전사했다.
+검증기 5종 오류 0 · 경고 0, overflow 0, 변형문제 잘림 0 · 푸터 넘침 0.
+**삽화는 아직 반영 전**(placeholder) — 프롬프트는 `_ILLUSTRATION_PROMPTS-WE.md`.
+
+| 산출물 | 페이지 | 파일 (`dist/WE/`) |
+|--------|--------|------|
+| 본문분석 합본 | 53p | `신목고2-2기말_세계문화_WorldEnglishes_본문분석_합본.pdf` (GoodNotes 평탄화 완료) |
+| 워크북 합본 | 72p | `신목고2-2기말_세계문화_WorldEnglishes_워크북_합본.pdf` (전 페이지 이미지) |
+| 변형문제 합본 | 72p | `신목고2-2기말_세계문화_WorldEnglishes_변형문제_합본.pdf` |
+
+원문 정본 `_SOURCE-WE.js` **59문장**, 단순 산문(shape `plain`).
+
+| Ch | 소재 | 문장 | 대표문제 |
+|----|------|------|----------|
+| 1 | INTRO — 영어의 확산과 World Englishes, Kachru의 Expanding Circle | 11 | 주제 |
+| 2 | British English (RP, Scots, 바이킹 어휘) | 8 | 내용 일치 |
+| 3 | American English (melting pot, 어휘·발음·철자 차이) | 8 | 내용 불일치 |
+| 4 | Australian English (koala, hoo-roo, "Yeah, nah") | 9 | 내용 일치 |
+| 5 | South Asian English (Hinglish, would-be, airdash) | 8 | 내용 일치 |
+| 6 | African English (Howzit!, robots, lekker, "just now") | 11 | 내용 불일치 |
+| 7 | CLOSING — A Language for Everyone | 4 | 요지 |
+
+> 유닛 ID 를 `U4` 가 아니라 **`WE`** 로 둔 이유: 중간고사 U1~U3 와 다른 교재·다른 시험이고,
+> 사진 하단의 단원 번호가 잘려 확정할 수 없었다. 합본 표지는 `coverTitle: '기말고사 대비'`
+> (combine 3종에 유닛별 표지 제목 필드를 추가 — 기존 유닛은 기본값 "중간고사 대비" 그대로).
+
+## U1~U3 와 저작 방식이 다르다 — 생성기 `_author-WE.mjs`
+
+`data/WE/*.json` 21개는 **손으로 쓰지 않고** `_spec-WE/ch{N}.mjs`(압축 표기)에서 생성한다.
+**JSON 을 직접 고치지 말 것** — 스펙을 고치고 `node _author-WE.mjs [N]` 을 다시 돌린다.
+
+생성기가 저작 시점에 막는 조용한 실패:
+1. **정답 위치 쏠림** — 보기는 항상 정답을 맨 앞에 적고, 배치는 `POS` 표(챕터×유형 라틴 방진)가 정한다.
+   오답 해설은 보기 순서대로 적으면 ①~⑤ 번호를 생성기가 붙인다 → `_rebalance-variant.mjs` 불필요(쓰지 말 것).
+2. **요약문 `options[].no`** — 배열 위치로만 부여(재배치 번호 어긋남 버그 원천 차단).
+3. **워크북 고유명사 오탐·4글자 이하 빈칸** — 빌더의 `buildProperNounSet`/`isEasyWord` 를 재현해 오류로 차단.
+   챕터별 금지 토큰은 각 `N-workbook.json` 의 `_note` 에 기록된다.
+4. **배열 단어 순서 유출** — 빌더의 결정적 섞기를 역산해 원문 이웃쌍이 남지 않게 입력 순서를 정한다.
+5. **조건 영작 단어 수** — "총 n단어" 조건과 정답 단어 수가 다르면 오류.
+6. **분석 카드 ↔ 원문** — 카드 영문(태그 제거)이 정본 문장과 다르면 오류(verify.mjs 와 이중 확인).
+
+## 빌드 (U3 와 다른 점 2가지)
+
+```bash
+cd mock-exam-analysis
+D=_oneoff-신목고-세계문학
+node $D/_author-WE.mjs                     # ★ 스펙 → JSON
+node $D/verify-source.mjs WE && node $D/verify.mjs WE && node $D/verify-tags.mjs
+node $D/verify-workbook.mjs WE && node $D/verify-variant.mjs WE
+node $D/collect-prompts.mjs WE
+
+node builder/build.mjs "$D/data/WE" "$D/dist/WE" --styles="$D/styles/analysis.css"
+node builder/pdf.mjs "$D/dist/WE"
+for n in 1 2 3 4 5 6 7; do node builder/check-overflow.mjs "$D/dist/WE/$n.html"; done
+node $D/combine.mjs WE
+node builder/goodnotes-safe.mjs "$D/dist/WE/신목고2-2기말_세계문화_WorldEnglishes_본문분석_합본.pdf"   # ★ 1
+
+node builder/build-workbook.mjs "$D/data/WE" "$D/dist/WE" --styles="$D/styles/workbook.css"
+node $D/_flip-wb-choices.mjs "$D/dist/WE"                                  # ★ 2 (pdf-image 전에)
+for n in 1 2 3 4 5 6 7; do node builder/check-overflow.mjs "$D/dist/WE/workbook-$n.html"; done
+node builder/pdf-image.mjs "$D/dist/WE" --match='^workbook-\d+\.html$'
+node $D/combine-workbook.mjs WE
+
+node builder/build-variant.mjs "$D/data/WE" "$D/dist/WE" --styles="$D/styles/variant.css" --shared-writing-passage
+node $D/_measure-clip.mjs "$D/dist/WE/variant-book.html"
+node $D/_measure-pages.mjs "$D/dist/WE/variant-book.html"
+node $D/render-variant-pdf.mjs "$D/dist/WE/variant-book.html"
+node $D/combine-variant.mjs WE
+```
+
+- ★1 **GoodNotes 백지 방지** — 본문분석 합본은 형광펜(.hl) 투명 마스크가 많아 `--check` 에서 위험으로 잡힌다. 평탄화 필수.
+- ★2 **워크북 양자택일 정답 순서 유출** — 빌더가 `{{n:A/B}}` 를 A(정답)부터 찍으므로, 빌드 직후
+  `_flip-wb-choices.mjs` 가 HTML 에서 절반을 B/A 로 뒤집는다(실측 앞 124 · 뒤 133).
+  JSON 은 verify 규약(A=정답) 그대로라 검증기와 충돌하지 않는다. 같은 HTML 에 두 번 돌려도 안전(표식으로 건너뜀).
+
+## 저작 중 발견·수정한 것
+
+1. **`=` 기호 빈칸 렌더** — 한글 해설의 "영어 = 세계 언어" 가 PDF 에서 빈칸으로 찍혔다(텍스트 추출은 정상이라 육안으로만 발견).
+   세 CSS 의 PretendardTN `unicode-range` 에 `U+003D(=) U+0025(%) U+007C(|) U+00D7(×)` 를 추가했다.
+   (U1~U3 산출물은 재빌드하지 않았으므로 영향 없음 — 재빌드하면 같이 고쳐진다.)
+2. **변형 요약문 13px 넘침** — Ch1 변형 지문이 9문장으로 가장 길어 요약문 카드가 넘쳤다. 지문 두 문장을 줄여 해결.
+3. **`[r:(that)]` 같은 지도서식 생략어 표기** — 카드 영문에 넣으면 원문 대조가 깨진다(생성기가 차단). 생략어는 note 로만.
+
+## 삽화 (7장, 실사·사람/글자 배제·--ar 16:5 --v 8.1 --style raw)
+
+| Ch | 소재 |
+|----|------|
+| 1 | 라벨 없는 앤티크 지구본 |
+| 2 | 돌담이 가로지르는 북잉글랜드의 초록 언덕(fell) |
+| 3 | 흰 선이 그어진 거의 빈 주차장 항공 사진(parking lot) |
+| 4 | 유칼립투스 초원의 캥거루 한 마리 (`--no human face` — 동물 얼굴은 살림) |
+| 5 | 놋쇠 쟁반의 짜이·향신료·금잔화 |
+| 6 | 자카란다 꽃나무 아래 신호등(robot) |
+| 7 | 코르크 보드의 빈 색종이 말풍선 |
+
+반영 시 `dist/WE/assets/illust-{1..7}.jpg`(2200px 폭 JPEG)로 두고 분석지 재렌더 → 합본 → 평탄화.
+**분석지 재렌더(`pdf.mjs`)는 워크북까지 벡터로 덮으므로** 반드시 워크북 `pdf-image` + 합본을 다시 돌릴 것(U2·U3 절 참조).

@@ -1,0 +1,881 @@
+{
+ "$schema_version": "1.0",
+ "$ref_source": "6.json",
+ "_note": "WE Ch6 워크북 — _author-WE.mjs 가 _spec-WE/ch6.mjs 에서 생성(직접 수정 금지). 고유명사 금지 토큰: africa african british english hello howzit i'll many south sub-saharan today traffic while",
+ "voca_check": {
+  "en_to_ko": [
+   {
+    "word": "anywhere",
+    "pos": "부"
+   },
+   {
+    "word": "reserved",
+    "pos": "동"
+   },
+   {
+    "word": "continent",
+    "pos": "명"
+   },
+   {
+    "word": "recognize",
+    "pos": "동"
+   },
+   {
+    "word": "major",
+    "pos": "형"
+   },
+   {
+    "word": "present",
+    "pos": "형"
+   },
+   {
+    "word": "dramatically",
+    "pos": "부"
+   },
+   {
+    "word": "colorful",
+    "pos": "형"
+   },
+   {
+    "word": "confused",
+    "pos": "형"
+   },
+   {
+    "word": "actually",
+    "pos": "부"
+   }
+  ],
+  "ko_to_en": [
+   {
+    "meaning": "~ 안에서",
+    "pos": "전",
+    "answer": "within"
+   },
+   {
+    "meaning": "일반적으로",
+    "pos": "부",
+    "answer": "typically"
+   },
+   {
+    "meaning": "공식의, 공용의",
+    "pos": "형",
+    "answer": "official"
+   },
+   {
+    "meaning": "도착하다",
+    "pos": "동",
+    "answer": "arrived"
+   },
+   {
+    "meaning": "영향을 주다",
+    "pos": "동",
+    "answer": "influenced"
+   },
+   {
+    "meaning": "어구",
+    "pos": "명",
+    "answer": "phrases"
+   },
+   {
+    "meaning": "~ 대신에",
+    "pos": "전",
+    "answer": "instead of"
+   },
+   {
+    "meaning": "신호등",
+    "pos": "명",
+    "answer": "traffic lights"
+   },
+   {
+    "meaning": "사용자, 화자",
+    "pos": "명",
+    "answer": "speakers"
+   },
+   {
+    "meaning": "미래",
+    "pos": "명",
+    "answer": "future"
+   }
+  ],
+  "definitions": [
+   {
+    "def": "one of the seven large areas of land on the Earth",
+    "answer": "continent"
+   },
+   {
+    "def": "to accept that something is true, legal, or official",
+    "answer": "recognize"
+   },
+   {
+    "def": "in a sudden or very great way",
+    "answer": "dramatically"
+   },
+   {
+    "def": "interesting and full of variety",
+    "answer": "colorful"
+   },
+   {
+    "def": "unable to understand something clearly",
+    "answer": "confused"
+   }
+  ],
+  "expressions": [
+   {
+    "ko": "~에 한정되어 쓰이다",
+    "answer": "reserved for"
+   },
+   {
+    "ko": "A를 B로 인정하다",
+    "answer": "recognize English as"
+   },
+   {
+    "ko": "우선, 한 가지 예로",
+    "answer": "For one"
+   },
+   {
+    "ko": "~ 대신에",
+    "answer": "instead of"
+   },
+   {
+    "ko": "미래의 언젠가",
+    "answer": "sometime in the future"
+   }
+  ]
+ },
+ "grammar_choice": [
+  {
+   "no": 1,
+   "ref_sentence": 1,
+   "en_template": "While African English can refer to English {{1:spoken/speaking}} anywhere within Africa, the term is typically {{2:reserved/reserving}} for Sub-Saharan Africa.",
+   "ko_full": "아프리카 영어는 아프리카 내 어디서든 쓰이는 영어를 가리킬 수 있지만, 이 용어는 일반적으로 사하라 이남 아프리카에 한정되어 쓰인다.",
+   "answers": [
+    "spoken",
+    "reserved"
+   ],
+   "explain": [
+    "영어는 \"말해지는\" 대상이므로 과거분사 spoken 이 맞다.",
+    "용어가 \"한정되어 쓰이는\" 수동태이므로 reserved 가 맞다."
+   ]
+  },
+  {
+   "no": 2,
+   "ref_sentence": 2,
+   "en_template": "Today, 27 countries on the continent {{1:recognize/recognizes}} English as an official language.",
+   "ko_full": "오늘날 그 대륙의 27개국이 영어를 공용어로 인정한다.",
+   "answers": [
+    "recognize"
+   ],
+   "explain": [
+    "핵심 주어 countries 가 복수이므로 recognize 가 맞다."
+   ]
+  },
+  {
+   "no": 3,
+   "ref_sentence": 4,
+   "en_template": "English {{1:has been/was}} an official language in South Africa {{2:since/for}} the British arrived in 1795.",
+   "ko_full": "영국인들이 1795년에 도착한 이래로 영어는 남아프리카에서 공용어였다.",
+   "answers": [
+    "has been",
+    "since"
+   ],
+   "explain": [
+    "1795년부터 지금까지 이어지므로 현재완료 has been 이 맞다.",
+    "뒤에 시점을 나타내는 절이 오므로 since 가 맞다."
+   ]
+  },
+  {
+   "no": 4,
+   "ref_sentence": 5,
+   "en_template": "Many languages {{1:present/presenting}} in the nation {{2:have/has}} dramatically influenced the variety of English used there.",
+   "ko_full": "그 나라에 존재하는 많은 언어들이 그곳에서 쓰이는 영어 변종에 극적으로 영향을 미쳤다.",
+   "answers": [
+    "present",
+    "have"
+   ],
+   "explain": [
+    "\"존재하는\"이라는 형용사 present 가 앞 명사를 뒤에서 꾸민다.",
+    "핵심 주어 languages 가 복수이므로 have 가 맞다."
+   ]
+  },
+  {
+   "no": 5,
+   "ref_sentence": 5,
+   "en_template": "Many languages present in the nation have {{1:dramatically/dramatic}} influenced the variety of English {{2:used/using}} there.",
+   "ko_full": "그 나라에 존재하는 많은 언어들이 그곳에서 쓰이는 영어 변종에 극적으로 영향을 미쳤다.",
+   "answers": [
+    "dramatically",
+    "used"
+   ],
+   "explain": [
+    "동사 influenced 를 꾸미므로 부사 dramatically 가 맞다.",
+    "영어 변종은 \"쓰이는\" 대상이므로 과거분사 used 가 맞다."
+   ]
+  },
+  {
+   "no": 6,
+   "ref_sentence": 7,
+   "en_template": "For instance, when they meet someone, they might say Howzit! {{1:instead of/instead}} \"Hello, how's it going?\"",
+   "ko_full": "예를 들어, 그들은 누군가를 만날 때 \"Hello, how's it going?(안녕, 어떻게 지내?)\" 대신 Howzit!이라고 말할지도 모른다.",
+   "answers": [
+    "instead of"
+   ],
+   "explain": [
+    "뒤에 명사(인용구)가 오므로 전치사구 instead of 가 맞다. instead 는 부사이다."
+   ]
+  },
+  {
+   "no": 7,
+   "ref_sentence": 8,
+   "en_template": "Traffic lights in South Africa {{1:are called/call}} robots, and lekker {{2:means/mean}} \"nice.\"",
+   "ko_full": "남아프리카에서 신호등은 robots라고 불리고, lekker는 \"좋은\"을 의미한다.",
+   "answers": [
+    "are called",
+    "means"
+   ],
+   "explain": [
+    "신호등이 robots 라고 \"불리는\" 것이므로 수동태 are called 가 맞다.",
+    "주어 lekker 가 단수이므로 means 가 맞다."
+   ]
+  },
+  {
+   "no": 8,
+   "ref_sentence": 9,
+   "en_template": "English speakers from other countries are sometimes {{1:confused/confusing}} when a South African says, \"I'll do it just now.\"",
+   "ko_full": "다른 나라에서 온 영어 사용자들은 남아프리카 사람이 \"I'll do it just now.\"라고 말할 때 때때로 혼란스러워한다.",
+   "answers": [
+    "confused"
+   ],
+   "explain": [
+    "사람이 혼란을 \"느끼는\" 것이므로 confused 가 맞다."
+   ]
+  },
+  {
+   "no": 9,
+   "ref_sentence": 10,
+   "en_template": "That does not mean {{1:that/what}} they will do it now.",
+   "ko_full": "그것은 그들이 그것을 지금 하겠다는 뜻이 아니다.",
+   "answers": [
+    "that"
+   ],
+   "explain": [
+    "뒤에 완전한 절이 오므로 명사절 접속사 that 이 맞다. what 은 불완전한 절을 이끈다."
+   ]
+  }
+ ],
+ "vocab_choice": [
+  {
+   "no": 1,
+   "ref_sentence": 1,
+   "en_template": "While African English can refer to English spoken {{1:anywhere/nowhere}} within Africa, the term is typically {{2:reserved/banned}} for Sub-Saharan Africa.",
+   "ko_full": "아프리카 영어는 아프리카 내 어디서든 쓰이는 영어를 가리킬 수 있지만, 이 용어는 일반적으로 사하라 이남 아프리카에 한정되어 쓰인다.",
+   "answers": [
+    "anywhere",
+    "reserved"
+   ],
+   "explain": [
+    "아프리카 \"어디서든\"이므로 anywhere 가 맞다.",
+    "사하라 이남에 \"한정되어\" 쓰인다이므로 reserved 가 맞다."
+   ]
+  },
+  {
+   "no": 2,
+   "ref_sentence": 2,
+   "en_template": "Today, 27 countries on the {{1:continent/content}} {{2:recognize/reject}} English as an official language.",
+   "ko_full": "오늘날 그 대륙의 27개국이 영어를 공용어로 인정한다.",
+   "answers": [
+    "continent",
+    "recognize"
+   ],
+   "explain": [
+    "아프리카 \"대륙\"이므로 continent 가 맞다.",
+    "공용어로 \"인정한다\"이므로 recognize 가 맞다."
+   ]
+  },
+  {
+   "no": 3,
+   "ref_sentence": 3,
+   "en_template": "South African English is a {{1:major/minor}} variety of African English.",
+   "ko_full": "남아프리카 영어는 아프리카 영어의 주요 변종이다.",
+   "answers": [
+    "major"
+   ],
+   "explain": [
+    "아프리카 영어의 대표로 소개되므로 major(주요한)가 맞다."
+   ]
+  },
+  {
+   "no": 4,
+   "ref_sentence": 4,
+   "en_template": "English has been an official language in South Africa since the British {{1:arrived/departed}} in 1795.",
+   "ko_full": "영국인들이 1795년에 도착한 이래로 영어는 남아프리카에서 공용어였다.",
+   "answers": [
+    "arrived"
+   ],
+   "explain": [
+    "영국인이 \"도착한\" 이래로 공용어가 되었으므로 arrived 가 맞다."
+   ]
+  },
+  {
+   "no": 5,
+   "ref_sentence": 5,
+   "en_template": "Many languages present in the nation have {{1:dramatically/barely}} influenced the variety of English used there.",
+   "ko_full": "그 나라에 존재하는 많은 언어들이 그곳에서 쓰이는 영어 변종에 극적으로 영향을 미쳤다.",
+   "answers": [
+    "dramatically"
+   ],
+   "explain": [
+    "뒤에서 다채로운 고유 표현이 나오므로 \"극적으로\" 영향을 주었다는 dramatically 가 맞다."
+   ]
+  },
+  {
+   "no": 6,
+   "ref_sentence": 6,
+   "en_template": "For one, South African English has some {{1:colorful/colorless}} words and phrases.",
+   "ko_full": "우선, 남아프리카 영어에는 몇몇 다채로운 단어와 어구가 있다.",
+   "answers": [
+    "colorful"
+   ],
+   "explain": [
+    "생기 있고 독특한 표현이므로 colorful 이 맞다."
+   ]
+  },
+  {
+   "no": 7,
+   "ref_sentence": 8,
+   "en_template": "Traffic lights in South Africa are called robots, and lekker means \"{{1:nice/nasty}}.\"",
+   "ko_full": "남아프리카에서 신호등은 robots라고 불리고, lekker는 \"좋은\"을 의미한다.",
+   "answers": [
+    "nice"
+   ],
+   "explain": [
+    "lekker 는 \"좋은\"이라는 뜻이므로 nice 가 맞다."
+   ]
+  },
+  {
+   "no": 8,
+   "ref_sentence": 9,
+   "en_template": "English speakers from other countries are sometimes {{1:confused/convinced}} when a South African says, \"I'll do it just now.\"",
+   "ko_full": "다른 나라에서 온 영어 사용자들은 남아프리카 사람이 \"I'll do it just now.\"라고 말할 때 때때로 혼란스러워한다.",
+   "answers": [
+    "confused"
+   ],
+   "explain": [
+    "뜻이 달라 \"혼란스러워한다\"이므로 confused 가 맞다."
+   ]
+  },
+  {
+   "no": 9,
+   "ref_sentence": 11,
+   "en_template": "It {{1:actually/never}} means they might do it {{2:sometime/sometimes}} in the {{3:future/past}}.",
+   "ko_full": "그것은 실제로는 그들이 미래의 언젠가 그것을 할지도 모른다는 뜻이다.",
+   "answers": [
+    "actually",
+    "sometime",
+    "future"
+   ],
+   "explain": [
+    "\"실제로는\" 다른 뜻이라는 정정이므로 actually 가 맞다.",
+    "\"언젠가\"는 sometime 이다. sometimes 는 \"때때로\".",
+    "나중에 할지도 모른다는 뜻이므로 future 가 맞다."
+   ]
+  }
+ ],
+ "fill_first_letter": [
+  {
+   "no": 1,
+   "ref_sentence": 1,
+   "hints": [
+    {
+     "pos": 1,
+     "letter": "a",
+     "answer": "anywhere",
+     "after": ""
+    },
+    {
+     "pos": 2,
+     "letter": "r",
+     "answer": "reserved",
+     "after": ""
+    }
+   ],
+   "ko_full": "아프리카 영어는 아프리카 내 어디서든 쓰이는 영어를 가리킬 수 있지만, 이 용어는 일반적으로 사하라 이남 아프리카에 한정되어 쓰인다."
+  },
+  {
+   "no": 2,
+   "ref_sentence": 2,
+   "hints": [
+    {
+     "pos": 1,
+     "letter": "c",
+     "answer": "countries",
+     "after": ""
+    },
+    {
+     "pos": 2,
+     "letter": "c",
+     "answer": "continent",
+     "after": ""
+    },
+    {
+     "pos": 3,
+     "letter": "r",
+     "answer": "recognize",
+     "after": ""
+    }
+   ],
+   "ko_full": "오늘날 그 대륙의 27개국이 영어를 공용어로 인정한다."
+  },
+  {
+   "no": 3,
+   "ref_sentence": 3,
+   "hints": [
+    {
+     "pos": 1,
+     "letter": "m",
+     "answer": "major",
+     "after": ""
+    },
+    {
+     "pos": 2,
+     "letter": "v",
+     "answer": "variety",
+     "after": ""
+    }
+   ],
+   "ko_full": "남아프리카 영어는 아프리카 영어의 주요 변종이다."
+  },
+  {
+   "no": 4,
+   "ref_sentence": 4,
+   "hints": [
+    {
+     "pos": 1,
+     "letter": "o",
+     "answer": "official",
+     "after": ""
+    },
+    {
+     "pos": 2,
+     "letter": "a",
+     "answer": "arrived",
+     "after": ""
+    }
+   ],
+   "ko_full": "영국인들이 1795년에 도착한 이래로 영어는 남아프리카에서 공용어였다."
+  },
+  {
+   "no": 5,
+   "ref_sentence": 5,
+   "hints": [
+    {
+     "pos": 1,
+     "letter": "p",
+     "answer": "present",
+     "after": ""
+    },
+    {
+     "pos": 2,
+     "letter": "d",
+     "answer": "dramatically",
+     "after": ""
+    },
+    {
+     "pos": 3,
+     "letter": "i",
+     "answer": "influenced",
+     "after": ""
+    }
+   ],
+   "ko_full": "그 나라에 존재하는 많은 언어들이 그곳에서 쓰이는 영어 변종에 극적으로 영향을 미쳤다."
+  },
+  {
+   "no": 6,
+   "ref_sentence": 6,
+   "hints": [
+    {
+     "pos": 1,
+     "letter": "c",
+     "answer": "colorful",
+     "after": ""
+    },
+    {
+     "pos": 2,
+     "letter": "p",
+     "answer": "phrases",
+     "after": ""
+    }
+   ],
+   "ko_full": "우선, 남아프리카 영어에는 몇몇 다채로운 단어와 어구가 있다."
+  },
+  {
+   "no": 7,
+   "ref_sentence": 7,
+   "hints": [
+    {
+     "pos": 1,
+     "letter": "i",
+     "answer": "instead",
+     "after": ""
+    }
+   ],
+   "ko_full": "예를 들어, 그들은 누군가를 만날 때 \"Hello, how's it going?(안녕, 어떻게 지내?)\" 대신 Howzit!이라고 말할지도 모른다."
+  },
+  {
+   "no": 8,
+   "ref_sentence": 8,
+   "hints": [
+    {
+     "pos": 1,
+     "letter": "l",
+     "answer": "lights",
+     "after": ""
+    },
+    {
+     "pos": 2,
+     "letter": "c",
+     "answer": "called",
+     "after": ""
+    },
+    {
+     "pos": 3,
+     "letter": "r",
+     "answer": "robots",
+     "after": ""
+    }
+   ],
+   "ko_full": "남아프리카에서 신호등은 robots라고 불리고, lekker는 \"좋은\"을 의미한다."
+  },
+  {
+   "no": 9,
+   "ref_sentence": 9,
+   "hints": [
+    {
+     "pos": 1,
+     "letter": "s",
+     "answer": "speakers",
+     "after": ""
+    },
+    {
+     "pos": 2,
+     "letter": "c",
+     "answer": "countries",
+     "after": ""
+    },
+    {
+     "pos": 3,
+     "letter": "c",
+     "answer": "confused",
+     "after": ""
+    }
+   ],
+   "ko_full": "다른 나라에서 온 영어 사용자들은 남아프리카 사람이 \"I'll do it just now.\"라고 말할 때 때때로 혼란스러워한다."
+  }
+ ],
+ "ko_translation": [
+  {
+   "no": 1,
+   "ref_sentence": 1
+  },
+  {
+   "no": 2,
+   "ref_sentence": 2
+  },
+  {
+   "no": 3,
+   "ref_sentence": 4
+  },
+  {
+   "no": 4,
+   "ref_sentence": 5
+  },
+  {
+   "no": 5,
+   "ref_sentence": 7
+  },
+  {
+   "no": 6,
+   "ref_sentence": 9
+  },
+  {
+   "no": 7,
+   "ref_sentence": 10
+  },
+  {
+   "no": 8,
+   "ref_sentence": 11
+  },
+  {
+   "no": 9,
+   "ref_sentence": 6
+  }
+ ],
+ "jumble": [
+  {
+   "no": 1,
+   "ref_sentence": 2,
+   "words": [
+    "language.",
+    "27",
+    "official",
+    "an",
+    "recognize",
+    "continent",
+    "as",
+    "on",
+    "English",
+    "the",
+    "Today,",
+    "countries"
+   ],
+   "answer": "Today, 27 countries on the continent recognize English as an official language."
+  },
+  {
+   "no": 2,
+   "ref_sentence": 3,
+   "words": [
+    "is",
+    "African",
+    "major",
+    "of",
+    "a",
+    "South",
+    "English.",
+    "African",
+    "English",
+    "variety"
+   ],
+   "answer": "South African English is a major variety of African English."
+  },
+  {
+   "no": 3,
+   "ref_sentence": 4,
+   "words": [
+    "Africa",
+    "an",
+    "official",
+    "in",
+    "language",
+    "has",
+    "British",
+    "since",
+    "1795.",
+    "in",
+    "South",
+    "English",
+    "the",
+    "arrived",
+    "been"
+   ],
+   "answer": "English has been an official language in South Africa since the British arrived in 1795."
+  },
+  {
+   "no": 4,
+   "ref_sentence": 6,
+   "words": [
+    "English",
+    "For",
+    "African",
+    "has",
+    "phrases.",
+    "colorful",
+    "South",
+    "and",
+    "words",
+    "one,",
+    "some"
+   ],
+   "answer": "For one, South African English has some colorful words and phrases."
+  },
+  {
+   "no": 5,
+   "ref_sentence": 8,
+   "words": [
+    "South",
+    "robots,",
+    "lekker",
+    "are",
+    "lights",
+    "\"nice.\"",
+    "means",
+    "Africa",
+    "Traffic",
+    "in",
+    "called",
+    "and"
+   ],
+   "answer": "Traffic lights in South Africa are called robots, and lekker means \"nice.\""
+  },
+  {
+   "no": 6,
+   "ref_sentence": 10,
+   "words": [
+    "does",
+    "not",
+    "mean",
+    "now.",
+    "that",
+    "do",
+    "will",
+    "they",
+    "That",
+    "it"
+   ],
+   "answer": "That does not mean that they will do it now."
+  },
+  {
+   "no": 7,
+   "ref_sentence": 11,
+   "words": [
+    "the",
+    "might",
+    "future.",
+    "sometime",
+    "It",
+    "do",
+    "actually",
+    "in",
+    "means",
+    "it",
+    "they"
+   ],
+   "answer": "It actually means they might do it sometime in the future."
+  },
+  {
+   "no": 8,
+   "ref_sentence": 1,
+   "words": [
+    "is",
+    "term",
+    "Africa.",
+    "the",
+    "English",
+    "spoken",
+    "anywhere",
+    "Africa,",
+    "for",
+    "to",
+    "typically",
+    "While",
+    "African",
+    "Sub-Saharan",
+    "refer",
+    "within",
+    "reserved",
+    "English",
+    "can"
+   ],
+   "answer": "While African English can refer to English spoken anywhere within Africa, the term is typically reserved for Sub-Saharan Africa."
+  },
+  {
+   "no": 9,
+   "ref_sentence": 5,
+   "words": [
+    "Many",
+    "in",
+    "present",
+    "have",
+    "nation",
+    "influenced",
+    "English",
+    "used",
+    "there.",
+    "the",
+    "of",
+    "languages",
+    "the",
+    "variety",
+    "dramatically"
+   ],
+   "answer": "Many languages present in the nation have dramatically influenced the variety of English used there."
+  }
+ ],
+ "sentence_translation": [
+  {
+   "no": 1,
+   "ref_sentence": 1,
+   "given": "ko"
+  },
+  {
+   "no": 2,
+   "ref_sentence": 3,
+   "given": "ko"
+  },
+  {
+   "no": 3,
+   "ref_sentence": 5,
+   "given": "ko"
+  },
+  {
+   "no": 4,
+   "ref_sentence": 6,
+   "given": "ko"
+  },
+  {
+   "no": 5,
+   "ref_sentence": 7,
+   "given": "ko"
+  },
+  {
+   "no": 6,
+   "ref_sentence": 8,
+   "given": "ko"
+  },
+  {
+   "no": 7,
+   "ref_sentence": 9,
+   "given": "ko"
+  },
+  {
+   "no": 8,
+   "ref_sentence": 10,
+   "given": "ko"
+  },
+  {
+   "no": 9,
+   "ref_sentence": 11,
+   "given": "ko"
+  }
+ ],
+ "mixed": [
+  {
+   "kind": "grammar",
+   "ref": 4,
+   "no": 1
+  },
+  {
+   "kind": "vocab",
+   "ref": 5,
+   "no": 2
+  },
+  {
+   "kind": "fill",
+   "ref": 5,
+   "no": 3
+  },
+  {
+   "kind": "ko",
+   "ref": 6,
+   "no": 4
+  },
+  {
+   "kind": "jumble",
+   "ref": 6,
+   "no": 5
+  },
+  {
+   "kind": "sent",
+   "ref": 7,
+   "no": 6
+  },
+  {
+   "kind": "grammar",
+   "ref": 8,
+   "no": 7
+  },
+  {
+   "kind": "vocab",
+   "ref": 9,
+   "no": 8
+  }
+ ]
+}

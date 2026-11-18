@@ -20,6 +20,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { SOURCE as SOURCE_RAW } from './_SOURCE-U1.js';
 import { SOURCE as SOURCE_U2_RAW } from './_SOURCE-U2.js';
 import { SOURCE as SOURCE_U3_RAW } from './_SOURCE-U3.js';
+import { SOURCE as SOURCE_WE_RAW } from './_SOURCE-WE.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -40,6 +41,8 @@ const SOURCE_U2 = SOURCE_U2_RAW.map(ch => ({
 /** U3 평탄화 — 댓글도 블로그도 없는 단순 산문이라 본문 문장이 곧 passage 다.
  *  verify.mjs 의 flattenPlain() 과 같은 규칙. */
 const SOURCE_U3 = SOURCE_U3_RAW.map(ch => ({ ...ch, sentences: [...ch.sentences] }));
+/** WE(기말 World Englishes) — U3 와 같은 단순 산문 */
+const SOURCE_WE = SOURCE_WE_RAW.map(ch => ({ ...ch, sentences: [...ch.sentences] }));
 
 const LESSONS = {
   U1: {
@@ -65,6 +68,15 @@ const LESSONS = {
     coverSub: '신목고 2-2 중간 · 세계문학<br>Unit 3 Noodle Dishes from Around the World',
     docTitle: '신목고 2-2 중간 · 세계문학 Unit 3 본문분석 합본 — Terra Nova',
     out: '신목고2-2중간_세계문학_Unit3_본문분석_합본.pdf',
+  },
+  WE: {
+    source: SOURCE_WE,
+    lessonNo: null,
+    titleEn: 'World Englishes',
+    coverTitle: '기말고사 대비',
+    coverSub: '신목고 2-2 기말 · 세계문화<br>World Englishes (Language: Insights into Diversity)',
+    docTitle: '신목고 2-2 기말 · 세계문화 World Englishes 본문분석 합본 — Terra Nova',
+    out: '신목고2-2기말_세계문화_WorldEnglishes_본문분석_합본.pdf',
   },
 };
 
@@ -148,7 +160,7 @@ const tocRows = toc.map(t => `      <div class="toc-row">
 const cover = `<section class="page cover-page">
   <div class="cover-wrap">
     <div class="cover-brand">Terra Nova</div>
-    <div class="cover-title">신목고 2학년 2학기<br>중간고사 대비</div>
+    <div class="cover-title">신목고 2학년 2학기<br>${LESSON.coverTitle ?? '중간고사 대비'}</div>
     <div class="cover-sub">${LESSON.coverSub ?? `YBM(박준언) 영어II · Lesson ${LESSON.lessonNo}<br>${esc(LESSON.titleEn)}`}</div>
     <div class="cover-meta">본문 분석 합본 · 전 ${pageNo}페이지 · 원문 ${SENTENCE_TOTAL}문장 전수 분석</div>
   </div>

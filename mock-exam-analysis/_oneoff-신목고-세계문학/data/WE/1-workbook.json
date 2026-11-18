@@ -1,0 +1,910 @@
+{
+ "$schema_version": "1.0",
+ "$ref_source": "1.json",
+ "_note": "WE Ch1 워크북 — _author-WE.mjs 가 _spec-WE/ch1.mjs 에서 생성(직접 수정 금지). 고유명사 금지 토큰: additionally america australia braj britain china circle colonialism english englishes expanding india kachru kenya korea let's mexico new nigeria north nowadays philippines singapore states united world zealand",
+ "voca_check": {
+  "en_to_ko": [
+   {
+    "word": "global",
+    "pos": "형"
+   },
+   {
+    "word": "migration",
+    "pos": "명"
+   },
+   {
+    "word": "colonialism",
+    "pos": "명"
+   },
+   {
+    "word": "countless",
+    "pos": "형"
+   },
+   {
+    "word": "characteristics",
+    "pos": "명"
+   },
+   {
+    "word": "evolve",
+    "pos": "동"
+   },
+   {
+    "word": "fulfill",
+    "pos": "동"
+   },
+   {
+    "word": "diverse",
+    "pos": "형"
+   },
+   {
+    "word": "official",
+    "pos": "형"
+   },
+   {
+    "word": "prominent",
+    "pos": "형"
+   }
+  ],
+  "ko_to_en": [
+   {
+    "meaning": "다수의, 여러",
+    "pos": "형",
+    "answer": "multiple"
+   },
+   {
+    "meaning": "변종, 다양성",
+    "pos": "명",
+    "answer": "varieties"
+   },
+   {
+    "meaning": "사회",
+    "pos": "명",
+    "answer": "societies"
+   },
+   {
+    "meaning": "발달시키다, 발달하다",
+    "pos": "동",
+    "answer": "developed"
+   },
+   {
+    "meaning": "포함하다",
+    "pos": "동",
+    "answer": "include"
+   },
+   {
+    "meaning": "정부",
+    "pos": "명",
+    "answer": "government"
+   },
+   {
+    "meaning": "주로",
+    "pos": "부",
+    "answer": "primarily"
+   },
+   {
+    "meaning": "외국의",
+    "pos": "형",
+    "answer": "foreign"
+   },
+   {
+    "meaning": "국제적인",
+    "pos": "형",
+    "answer": "international"
+   },
+   {
+    "meaning": "탐구하다, 살펴보다",
+    "pos": "동",
+    "answer": "explore"
+   }
+  ],
+  "definitions": [
+   {
+    "def": "the movement of people to another place or country to live",
+    "answer": "migration"
+   },
+   {
+    "def": "to develop and change gradually over a long time",
+    "answer": "evolve"
+   },
+   {
+    "def": "too many to be counted",
+    "answer": "countless"
+   },
+   {
+    "def": "to satisfy a need or meet a requirement",
+    "answer": "fulfill"
+   },
+   {
+    "def": "important and well known; easy to notice",
+    "answer": "prominent"
+   }
+  ],
+  "expressions": [
+   {
+    "ko": "~에서 역할을 하다",
+    "answer": "played a role"
+   },
+   {
+    "ko": "~을 낳다, 일으키다",
+    "answer": "given rise to"
+   },
+   {
+    "ko": "A뿐만 아니라",
+    "answer": "not just"
+   },
+   {
+    "ko": "~가 설명한 대로",
+    "answer": "as described by"
+   },
+   {
+    "ko": "모국어",
+    "answer": "native languages"
+   }
+  ]
+ },
+ "grammar_choice": [
+  {
+   "no": 1,
+   "ref_sentence": 1,
+   "en_template": "English {{1:has been/was being}} a global language {{2:for/since}} centuries.",
+   "ko_full": "영어는 수 세기 동안 세계적인 언어였다.",
+   "answers": [
+    "has been",
+    "for"
+   ],
+   "explain": [
+    "과거부터 지금까지 이어지는 상태이므로 계속의 현재완료 has been 이 맞다.",
+    "뒤에 기간(centuries)이 오므로 for 가 맞다. since 뒤에는 시점이 온다."
+   ]
+  },
+  {
+   "no": 2,
+   "ref_sentence": 2,
+   "en_template": "English mostly {{1:spread/spreaded}} by migration from Britain to places {{2:such as/such}} Australia, New Zealand, and North America.",
+   "ko_full": "영어는 주로 영국에서 호주, 뉴질랜드, 북미와 같은 곳으로의 이주를 통해 퍼졌다.",
+   "answers": [
+    "spread",
+    "such as"
+   ],
+   "explain": [
+    "spread 는 spread-spread-spread 로 변하는 불규칙 동사이다.",
+    "예를 들 때는 such as(~와 같은)를 쓴다. such 만으로는 예시를 이끌 수 없다."
+   ]
+  },
+  {
+   "no": 3,
+   "ref_sentence": 3,
+   "en_template": "Colonialism also {{1:played/was played}} a role in countries {{2:including/included}} India, Nigeria, and the Philippines.",
+   "ko_full": "식민주의 또한 인도, 나이지리아, 필리핀을 포함한 나라들에서 (영어 확산에) 한몫을 했다.",
+   "answers": [
+    "played",
+    "including"
+   ],
+   "explain": [
+    "식민주의가 역할을 \"한\" 것이므로 능동 played 가 맞다.",
+    "\"~을 포함하여\"라는 전치사 including 이 맞다. included 는 \"포함된\"이라 뜻이 뒤집힌다."
+   ]
+  },
+  {
+   "no": 4,
+   "ref_sentence": 4,
+   "en_template": "Nowadays, the varieties of English {{1:are/is}} countless, and they have their own characteristics since languages evolve {{2:to fulfill/fulfilling}} the diverse needs of the societies {{3:that/what}} use them.",
+   "ko_full": "오늘날 영어의 변종은 셀 수 없이 많으며, 언어는 그것을 사용하는 사회의 다양한 요구를 충족시키기 위해 진화하기 때문에 그 변종들은 저마다의 특징을 지닌다.",
+   "answers": [
+    "are",
+    "to fulfill",
+    "that"
+   ],
+   "explain": [
+    "주어의 핵심은 varieties(복수)이므로 are 가 맞다.",
+    "\"충족시키기 위해\"라는 목적의 to부정사가 맞다.",
+    "선행사 the societies 를 받는 주격 관계대명사 that 이 맞다. what 은 선행사를 가질 수 없다."
+   ]
+  },
+  {
+   "no": 5,
+   "ref_sentence": 5,
+   "en_template": "The multiple varieties of English thus {{1:developed/developing}} {{2:have/has}} given rise to \"World Englishes.\"",
+   "ko_full": "이렇게 발달한 영어의 여러 변종들이 \"세계 영어(World Englishes)\"를 낳았다.",
+   "answers": [
+    "developed",
+    "have"
+   ],
+   "explain": [
+    "변종은 \"발달된\" 대상이므로 과거분사 developed 가 앞 명사를 수식한다.",
+    "주어의 핵심 varieties 가 복수이므로 have 가 맞다."
+   ]
+  },
+  {
+   "no": 6,
+   "ref_sentence": 6,
+   "en_template": "World Englishes include not just the varieties of English {{1:spoken/speaking}} in countries like Britain and the United States {{2:where/which}} English is the first language of most people.",
+   "ko_full": "세계 영어는 영어가 대부분 사람들의 모국어인 영국과 미국 같은 나라에서 쓰이는 영어 변종들만 포함하는 것이 아니다.",
+   "answers": [
+    "spoken",
+    "where"
+   ],
+   "explain": [
+    "영어는 \"말해지는\" 대상이므로 과거분사 spoken 이 맞다.",
+    "뒤에 완전한 절이 오고 선행사가 장소이므로 관계부사 where 가 맞다."
+   ]
+  },
+  {
+   "no": 7,
+   "ref_sentence": 7,
+   "en_template": "They also include the varieties used in nations such as India, Singapore, and Kenya, {{1:in which/which}} English is an official language in education, business, and government.",
+   "ko_full": "세계 영어는 또한 영어가 교육, 비즈니스, 정부에서 공용어인 인도, 싱가포르, 케냐 같은 국가들에서 쓰이는 변종들도 포함한다.",
+   "answers": [
+    "in which"
+   ],
+   "explain": [
+    "뒤에 완전한 절이 오므로 전치사 + 관계대명사 in which(= where)가 맞다. which 만 쓰면 전치사 in 이 빠진다."
+   ]
+  },
+  {
+   "no": 8,
+   "ref_sentence": 9,
+   "en_template": "They include English varieties spoken in countries like Korea, Mexico, and China, {{1:where/that}} English {{2:is used/uses}} primarily as a foreign language for international communication.",
+   "ko_full": "그것들은 한국, 멕시코, 중국과 같은 나라에서 쓰이는 영어 변종들을 포함하는데, 이 나라들에서 영어는 주로 국제적인 의사소통을 위한 외국어로 사용된다.",
+   "answers": [
+    "where",
+    "is used"
+   ],
+   "explain": [
+    "콤마 뒤 계속적 용법이 가능하고 뒤 절이 완전하므로 관계부사 where 가 맞다. that 은 계속적 용법으로 쓸 수 없다.",
+    "영어는 \"사용되는\" 대상이므로 수동태 is used 가 맞다."
+   ]
+  },
+  {
+   "no": 9,
+   "ref_sentence": 10,
+   "en_template": "In these Expanding Circle countries, English is often used for communication between speakers {{1:whose/who}} native languages {{2:are/is}} different.",
+   "ko_full": "이러한 확장 원 국가들에서 영어는 흔히 모국어가 서로 다른 화자들 사이의 의사소통에 사용된다.",
+   "answers": [
+    "whose",
+    "are"
+   ],
+   "explain": [
+    "speakers 의 모국어를 연결하는 소유격 관계대명사 whose 가 맞다.",
+    "관계절의 주어 native languages 가 복수이므로 are 가 맞다."
+   ]
+  }
+ ],
+ "vocab_choice": [
+  {
+   "no": 1,
+   "ref_sentence": 1,
+   "en_template": "English has been a {{1:global/local}} language for centuries.",
+   "ko_full": "영어는 수 세기 동안 세계적인 언어였다.",
+   "answers": [
+    "global"
+   ],
+   "explain": [
+    "수 세기 동안 세계에 퍼진 언어라는 뜻이므로 global(세계적인)이 맞다. local 은 \"지역의\"이다."
+   ]
+  },
+  {
+   "no": 2,
+   "ref_sentence": 2,
+   "en_template": "English mostly spread by {{1:migration/isolation}} from Britain to places such as Australia, New Zealand, and North America.",
+   "ko_full": "영어는 주로 영국에서 호주, 뉴질랜드, 북미와 같은 곳으로의 이주를 통해 퍼졌다.",
+   "answers": [
+    "migration"
+   ],
+   "explain": [
+    "영국에서 다른 곳으로 \"옮겨 가며\" 퍼졌으므로 migration(이주)이 맞다. isolation 은 고립이다."
+   ]
+  },
+  {
+   "no": 3,
+   "ref_sentence": 3,
+   "en_template": "Colonialism also played a {{1:role/rule}} in countries including India, Nigeria, and the Philippines.",
+   "ko_full": "식민주의 또한 인도, 나이지리아, 필리핀을 포함한 나라들에서 (영어 확산에) 한몫을 했다.",
+   "answers": [
+    "role"
+   ],
+   "explain": [
+    "play a role 은 \"역할을 하다\"이다. rule 은 규칙·통치라는 뜻이다."
+   ]
+  },
+  {
+   "no": 4,
+   "ref_sentence": 4,
+   "en_template": "Nowadays, the varieties of English are {{1:countless/few}}, and they have their own {{2:characteristics/charities}} since languages {{3:evolve/vanish}} to fulfill the diverse needs of the societies that use them.",
+   "ko_full": "오늘날 영어의 변종은 셀 수 없이 많으며, 언어는 그것을 사용하는 사회의 다양한 요구를 충족시키기 위해 진화하기 때문에 그 변종들은 저마다의 특징을 지닌다.",
+   "answers": [
+    "countless",
+    "characteristics",
+    "evolve"
+   ],
+   "explain": [
+    "변종이 셀 수 없이 많다는 뜻이므로 countless 가 맞다.",
+    "저마다의 \"특징\"이므로 characteristics 가 맞다. charities 는 자선 단체이다.",
+    "사회의 필요를 채우며 \"진화한다\"이므로 evolve 가 맞다. vanish 는 사라지다."
+   ]
+  },
+  {
+   "no": 5,
+   "ref_sentence": 5,
+   "en_template": "The {{1:multiple/single}} varieties of English thus developed have given {{2:rise/fall}} to \"World Englishes.\"",
+   "ko_full": "이렇게 발달한 영어의 여러 변종들이 \"세계 영어(World Englishes)\"를 낳았다.",
+   "answers": [
+    "multiple",
+    "rise"
+   ],
+   "explain": [
+    "여러 변종이므로 multiple 이 맞다. single 은 varieties(복수)와 어울리지 않는다.",
+    "give rise to 는 \"~을 낳다\"이다."
+   ]
+  },
+  {
+   "no": 6,
+   "ref_sentence": 7,
+   "en_template": "They also include the varieties used in nations such as India, Singapore, and Kenya, in which English is an {{1:official/informal}} language in education, business, and government.",
+   "ko_full": "세계 영어는 또한 영어가 교육, 비즈니스, 정부에서 공용어인 인도, 싱가포르, 케냐 같은 국가들에서 쓰이는 변종들도 포함한다.",
+   "answers": [
+    "official"
+   ],
+   "explain": [
+    "교육·정부에서 쓰이는 \"공식\" 언어이므로 official 이 맞다."
+   ]
+  },
+  {
+   "no": 7,
+   "ref_sentence": 8,
+   "en_template": "Additionally, the term \"World Englishes\" {{1:covers/excludes}} varieties spoken in the Expanding Circle as described by Braj Kachru.",
+   "ko_full": "게다가 \"세계 영어\"라는 용어는 Braj Kachru가 설명한 확장 원(Expanding Circle)에서 쓰이는 변종들도 아우른다.",
+   "answers": [
+    "covers"
+   ],
+   "explain": [
+    "Additionally 로 범위를 넓히는 문장이므로 covers(포함하다)가 맞다. excludes 는 제외하다."
+   ]
+  },
+  {
+   "no": 8,
+   "ref_sentence": 9,
+   "en_template": "They include English varieties spoken in countries like Korea, Mexico, and China, where English is used {{1:primarily/rarely}} as a {{2:foreign/native}} language for international communication.",
+   "ko_full": "그것들은 한국, 멕시코, 중국과 같은 나라에서 쓰이는 영어 변종들을 포함하는데, 이 나라들에서 영어는 주로 국제적인 의사소통을 위한 외국어로 사용된다.",
+   "answers": [
+    "primarily",
+    "foreign"
+   ],
+   "explain": [
+    "확장 원에서 영어의 주된 쓰임을 말하므로 primarily(주로)가 맞다.",
+    "한국·멕시코·중국에서 영어는 외국어이므로 foreign 이 맞다."
+   ]
+  },
+  {
+   "no": 9,
+   "ref_sentence": 11,
+   "en_template": "Let's explore some of the most {{1:prominent/obscure}} World Englishes.",
+   "ko_full": "가장 두드러진 세계 영어 몇 가지를 살펴보자.",
+   "answers": [
+    "prominent"
+   ],
+   "explain": [
+    "대표적인 세계 영어를 소개하려는 것이므로 prominent(두드러진)가 맞다. obscure 는 잘 알려지지 않은."
+   ]
+  }
+ ],
+ "fill_first_letter": [
+  {
+   "no": 1,
+   "ref_sentence": 1,
+   "hints": [
+    {
+     "pos": 1,
+     "letter": "g",
+     "answer": "global",
+     "after": ""
+    },
+    {
+     "pos": 2,
+     "letter": "c",
+     "answer": "centuries",
+     "after": ""
+    }
+   ],
+   "ko_full": "영어는 수 세기 동안 세계적인 언어였다."
+  },
+  {
+   "no": 2,
+   "ref_sentence": 2,
+   "hints": [
+    {
+     "pos": 1,
+     "letter": "m",
+     "answer": "mostly",
+     "after": ""
+    },
+    {
+     "pos": 2,
+     "letter": "m",
+     "answer": "migration",
+     "after": ""
+    }
+   ],
+   "ko_full": "영어는 주로 영국에서 호주, 뉴질랜드, 북미와 같은 곳으로의 이주를 통해 퍼졌다."
+  },
+  {
+   "no": 3,
+   "ref_sentence": 3,
+   "hints": [
+    {
+     "pos": 1,
+     "letter": "p",
+     "answer": "played",
+     "after": ""
+    },
+    {
+     "pos": 2,
+     "letter": "i",
+     "answer": "including",
+     "after": ""
+    }
+   ],
+   "ko_full": "식민주의 또한 인도, 나이지리아, 필리핀을 포함한 나라들에서 (영어 확산에) 한몫을 했다."
+  },
+  {
+   "no": 4,
+   "ref_sentence": 4,
+   "hints": [
+    {
+     "pos": 1,
+     "letter": "c",
+     "answer": "countless",
+     "after": ""
+    },
+    {
+     "pos": 2,
+     "letter": "c",
+     "answer": "characteristics",
+     "after": ""
+    },
+    {
+     "pos": 3,
+     "letter": "f",
+     "answer": "fulfill",
+     "after": ""
+    }
+   ],
+   "ko_full": "오늘날 영어의 변종은 셀 수 없이 많으며, 언어는 그것을 사용하는 사회의 다양한 요구를 충족시키기 위해 진화하기 때문에 그 변종들은 저마다의 특징을 지닌다."
+  },
+  {
+   "no": 5,
+   "ref_sentence": 5,
+   "hints": [
+    {
+     "pos": 1,
+     "letter": "m",
+     "answer": "multiple",
+     "after": ""
+    },
+    {
+     "pos": 2,
+     "letter": "d",
+     "answer": "developed",
+     "after": ""
+    }
+   ],
+   "ko_full": "이렇게 발달한 영어의 여러 변종들이 \"세계 영어(World Englishes)\"를 낳았다."
+  },
+  {
+   "no": 6,
+   "ref_sentence": 6,
+   "hints": [
+    {
+     "pos": 1,
+     "letter": "s",
+     "answer": "spoken",
+     "after": ""
+    },
+    {
+     "pos": 2,
+     "letter": "f",
+     "answer": "first",
+     "after": ""
+    }
+   ],
+   "ko_full": "세계 영어는 영어가 대부분 사람들의 모국어인 영국과 미국 같은 나라에서 쓰이는 영어 변종들만 포함하는 것이 아니다."
+  },
+  {
+   "no": 7,
+   "ref_sentence": 7,
+   "hints": [
+    {
+     "pos": 1,
+     "letter": "o",
+     "answer": "official",
+     "after": ""
+    },
+    {
+     "pos": 2,
+     "letter": "g",
+     "answer": "government",
+     "after": ""
+    }
+   ],
+   "ko_full": "세계 영어는 또한 영어가 교육, 비즈니스, 정부에서 공용어인 인도, 싱가포르, 케냐 같은 국가들에서 쓰이는 변종들도 포함한다."
+  },
+  {
+   "no": 8,
+   "ref_sentence": 8,
+   "hints": [
+    {
+     "pos": 1,
+     "letter": "c",
+     "answer": "covers",
+     "after": ""
+    },
+    {
+     "pos": 2,
+     "letter": "d",
+     "answer": "described",
+     "after": ""
+    }
+   ],
+   "ko_full": "게다가 \"세계 영어\"라는 용어는 Braj Kachru가 설명한 확장 원(Expanding Circle)에서 쓰이는 변종들도 아우른다."
+  },
+  {
+   "no": 9,
+   "ref_sentence": 10,
+   "hints": [
+    {
+     "pos": 1,
+     "letter": "c",
+     "answer": "communication",
+     "after": ""
+    },
+    {
+     "pos": 2,
+     "letter": "n",
+     "answer": "native",
+     "after": ""
+    }
+   ],
+   "ko_full": "이러한 확장 원 국가들에서 영어는 흔히 모국어가 서로 다른 화자들 사이의 의사소통에 사용된다."
+  }
+ ],
+ "ko_translation": [
+  {
+   "no": 1,
+   "ref_sentence": 4
+  },
+  {
+   "no": 2,
+   "ref_sentence": 5
+  },
+  {
+   "no": 3,
+   "ref_sentence": 6
+  },
+  {
+   "no": 4,
+   "ref_sentence": 7
+  },
+  {
+   "no": 5,
+   "ref_sentence": 8
+  },
+  {
+   "no": 6,
+   "ref_sentence": 9
+  },
+  {
+   "no": 7,
+   "ref_sentence": 10
+  },
+  {
+   "no": 8,
+   "ref_sentence": 11
+  },
+  {
+   "no": 9,
+   "ref_sentence": 3
+  }
+ ],
+ "jumble": [
+  {
+   "no": 1,
+   "ref_sentence": 1,
+   "words": [
+    "a",
+    "been",
+    "English",
+    "for",
+    "language",
+    "centuries.",
+    "has",
+    "global"
+   ],
+   "answer": "English has been a global language for centuries."
+  },
+  {
+   "no": 2,
+   "ref_sentence": 2,
+   "words": [
+    "by",
+    "and",
+    "America.",
+    "Australia,",
+    "English",
+    "as",
+    "migration",
+    "New",
+    "Britain",
+    "from",
+    "Zealand,",
+    "mostly",
+    "to",
+    "spread",
+    "such",
+    "North",
+    "places"
+   ],
+   "answer": "English mostly spread by migration from Britain to places such as Australia, New Zealand, and North America."
+  },
+  {
+   "no": 3,
+   "ref_sentence": 3,
+   "words": [
+    "played",
+    "the",
+    "role",
+    "including",
+    "a",
+    "India,",
+    "Nigeria,",
+    "countries",
+    "Philippines.",
+    "also",
+    "Colonialism",
+    "and",
+    "in"
+   ],
+   "answer": "Colonialism also played a role in countries including India, Nigeria, and the Philippines."
+  },
+  {
+   "no": 4,
+   "ref_sentence": 5,
+   "words": [
+    "rise",
+    "Englishes.\"",
+    "have",
+    "to",
+    "English",
+    "multiple",
+    "The",
+    "thus",
+    "developed",
+    "\"World",
+    "varieties",
+    "given",
+    "of"
+   ],
+   "answer": "The multiple varieties of English thus developed have given rise to \"World Englishes.\""
+  },
+  {
+   "no": 5,
+   "ref_sentence": 6,
+   "words": [
+    "English",
+    "the",
+    "and",
+    "United",
+    "of",
+    "the",
+    "language",
+    "of",
+    "Britain",
+    "where",
+    "spoken",
+    "is",
+    "people.",
+    "like",
+    "the",
+    "varieties",
+    "include",
+    "World",
+    "countries",
+    "States",
+    "English",
+    "most",
+    "not",
+    "Englishes",
+    "in",
+    "just",
+    "first"
+   ],
+   "answer": "World Englishes include not just the varieties of English spoken in countries like Britain and the United States where English is the first language of most people."
+  },
+  {
+   "no": 6,
+   "ref_sentence": 10,
+   "words": [
+    "used",
+    "for",
+    "languages",
+    "Circle",
+    "whose",
+    "communication",
+    "English",
+    "are",
+    "native",
+    "is",
+    "countries,",
+    "speakers",
+    "Expanding",
+    "often",
+    "In",
+    "these",
+    "different.",
+    "between"
+   ],
+   "answer": "In these Expanding Circle countries, English is often used for communication between speakers whose native languages are different."
+  },
+  {
+   "no": 7,
+   "ref_sentence": 11,
+   "words": [
+    "explore",
+    "World",
+    "prominent",
+    "most",
+    "Let's",
+    "some",
+    "of",
+    "Englishes.",
+    "the"
+   ],
+   "answer": "Let's explore some of the most prominent World Englishes."
+  },
+  {
+   "no": 8,
+   "ref_sentence": 7,
+   "words": [
+    "official",
+    "such",
+    "in",
+    "and",
+    "English",
+    "They",
+    "which",
+    "and",
+    "Kenya,",
+    "in",
+    "is",
+    "as",
+    "government.",
+    "an",
+    "include",
+    "varieties",
+    "the",
+    "India,",
+    "used",
+    "business,",
+    "education,",
+    "nations",
+    "in",
+    "also",
+    "language",
+    "Singapore,"
+   ],
+   "answer": "They also include the varieties used in nations such as India, Singapore, and Kenya, in which English is an official language in education, business, and government."
+  },
+  {
+   "no": 9,
+   "ref_sentence": 8,
+   "words": [
+    "varieties",
+    "spoken",
+    "as",
+    "Braj",
+    "described",
+    "covers",
+    "by",
+    "Kachru.",
+    "term",
+    "Circle",
+    "the",
+    "Additionally,",
+    "in",
+    "the",
+    "\"World",
+    "Englishes\"",
+    "Expanding"
+   ],
+   "answer": "Additionally, the term \"World Englishes\" covers varieties spoken in the Expanding Circle as described by Braj Kachru."
+  }
+ ],
+ "sentence_translation": [
+  {
+   "no": 1,
+   "ref_sentence": 1,
+   "given": "ko"
+  },
+  {
+   "no": 2,
+   "ref_sentence": 2,
+   "given": "ko"
+  },
+  {
+   "no": 3,
+   "ref_sentence": 4,
+   "given": "ko"
+  },
+  {
+   "no": 4,
+   "ref_sentence": 5,
+   "given": "ko"
+  },
+  {
+   "no": 5,
+   "ref_sentence": 6,
+   "given": "ko"
+  },
+  {
+   "no": 6,
+   "ref_sentence": 7,
+   "given": "ko"
+  },
+  {
+   "no": 7,
+   "ref_sentence": 9,
+   "given": "ko"
+  },
+  {
+   "no": 8,
+   "ref_sentence": 10,
+   "given": "ko"
+  },
+  {
+   "no": 9,
+   "ref_sentence": 11,
+   "given": "ko"
+  }
+ ],
+ "mixed": [
+  {
+   "kind": "grammar",
+   "ref": 4,
+   "no": 1
+  },
+  {
+   "kind": "vocab",
+   "ref": 4,
+   "no": 2
+  },
+  {
+   "kind": "fill",
+   "ref": 5,
+   "no": 3
+  },
+  {
+   "kind": "ko",
+   "ref": 2,
+   "no": 4
+  },
+  {
+   "kind": "jumble",
+   "ref": 3,
+   "no": 5
+  },
+  {
+   "kind": "sent",
+   "ref": 6,
+   "no": 6
+  },
+  {
+   "kind": "grammar",
+   "ref": 7,
+   "no": 7
+  },
+  {
+   "kind": "vocab",
+   "ref": 8,
+   "no": 8
+  }
+ ]
+}
