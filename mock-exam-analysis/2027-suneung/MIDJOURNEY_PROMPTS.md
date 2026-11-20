@@ -1,7 +1,7 @@
 # 2027학년도 대학수학능력시험 영어 — 삽화 미드저니 프롬프트 (18지문)
 
 정책: 전 프롬프트 **`--ar 16:5`(와이드 배너) + `--v 8.1`** 고정. 톤 = 시네마틱 에디토리얼 + 페인터리 3D 혼합, **밝고 선명한(vivid) 톤**.
-장면은 **주어 하나**, **사람·손·얼굴·글자 없음**, 부정은 전부 `--no` 파라미터로만(문장 속 NO 금지). 지시부 800자 이하.
+장면은 **주어 하나**, **글자 없음**. 사람은 지문에 맞으면 넣는다(20·22·29·30·32~38·40번) — 뒷모습·옆모습·원경 위주로 손 클로즈업을 피하고 `--no`에 deformed hands, extra fingers, distorted faces 추가. 부정은 전부 `--no` 파라미터로만(문장 속 NO 금지). 지시부 800자 이하.
 생성 후 `2027-suneung/dist/assets/illust-{N}.png` 로 저장 → `npm run build:suneung` → pdf → combine → 평탄화.
 
 | N | 유형 | 제목(EN) |
@@ -31,7 +31,7 @@
 파일: `assets/illust-20.png`
 
 ```
-A tripod-mounted camera with a long lens waiting on a sunny sandy beach while a line of tiny baby sea turtles crawls from their nest toward gentle turquoise waves, soft coral and aqua sky, cinematic editorial illustration blended with painterly 3D rendering, bright vivid high-key daylight, cheerful airy mood, crisp clean composition, wide banner composition with the subject centered --ar 16:5 --v 8.1 --no text, letters, words, numbers, logos, labels, watermark, signature, people, crowd, faces, hands, dark mood, gloom, fog, night, muted colors
+A wildlife photographer crouching low behind a tripod-mounted camera with a long lens, seen from behind at a distance, patiently waiting on a sunny sandy beach as a line of tiny baby sea turtles crawls from their nest toward gentle turquoise waves, soft coral and aqua sky, cinematic editorial illustration blended with painterly 3D rendering, bright vivid high-key daylight, cheerful airy mood, crisp clean composition, wide banner composition with the subject centered --ar 16:5 --v 8.1 --no text, letters, words, numbers, logos, labels, watermark, signature, deformed hands, extra fingers, distorted faces, close-up portrait, dark mood, gloom, fog, night, muted colors
 ```
 
 ## 21번 (함축 의미)
@@ -45,7 +45,7 @@ A sleek sailboat straining forward on a sparkling turquoise sea while dragging a
 파일: `assets/illust-22.png`
 
 ```
-An open book on a sunny wooden library desk with a large magnifying glass focusing a bright beam of light onto one precise spot of the page, tall window light, mint green and butter yellow palette, cinematic editorial illustration blended with painterly 3D rendering, bright vivid high-key daylight, cheerful airy mood, crisp clean composition, wide banner composition with the subject centered --ar 16:5 --v 8.1 --no text, letters, words, numbers, logos, labels, watermark, signature, people, crowd, faces, hands, dark mood, gloom, fog, night, muted colors
+A high school student seen in three-quarter view from behind at a sunny wooden library desk, leaning over an open book as a large magnifying glass on a stand focuses a bright beam of light onto one precise spot of the page, tall window light, mint green and butter yellow palette, cinematic editorial illustration blended with painterly 3D rendering, bright vivid high-key daylight, cheerful airy mood, crisp clean composition, wide banner composition with the subject centered --ar 16:5 --v 8.1 --no text, letters, words, numbers, logos, labels, watermark, signature, deformed hands, extra fingers, distorted faces, close-up portrait, dark mood, gloom, fog, night, muted colors
 ```
 
 ## 23번 (주제)
@@ -66,14 +66,14 @@ A glowing globe with luminous delivery routes arcing from tropical fruit farms t
 파일: `assets/illust-29.png`
 
 ```
-A brass balance scale on a bright study desk weighing a glowing lightbulb full of floating idea bubbles against a neat stack of blank evidence cards, a magnifying glass resting beside it, mint and apricot palette, cinematic editorial illustration blended with painterly 3D rendering, bright vivid high-key daylight, cheerful airy mood, crisp clean composition, wide banner composition with the subject centered --ar 16:5 --v 8.1 --no text, letters, words, numbers, logos, labels, watermark, signature, people, crowd, faces, hands, dark mood, gloom, fog, night, muted colors
+A thoughtful student seen from the side at a bright study desk, studying a brass balance scale that weighs a glowing lightbulb full of floating idea bubbles against a neat stack of blank evidence cards, a magnifying glass resting beside it, mint and apricot palette, cinematic editorial illustration blended with painterly 3D rendering, bright vivid high-key daylight, cheerful airy mood, crisp clean composition, wide banner composition with the subject centered --ar 16:5 --v 8.1 --no text, letters, words, numbers, logos, labels, watermark, signature, deformed hands, extra fingers, distorted faces, close-up portrait, dark mood, gloom, fog, night, muted colors
 ```
 
 ## 30번 (어휘)
 파일: `assets/illust-30.png`
 
 ```
-A single desk lamp lighting an open notebook of abstract geometric sketches and a feather pen, while through the tall window a grand Gothic cathedral with scaffolding and cranes rises under a clear blue sky, sandstone and sky blue palette, cinematic editorial illustration blended with painterly 3D rendering, bright vivid high-key daylight, cheerful airy mood, crisp clean composition, wide banner composition with the subject centered --ar 16:5 --v 8.1 --no text, letters, words, numbers, logos, labels, watermark, signature, people, crowd, faces, hands, dark mood, gloom, fog, night, muted colors
+A lone young scholar seen from behind at a sunny window desk with an open notebook of abstract geometric sketches and a feather pen, while outside many tiny workers on scaffolding and cranes build a grand Gothic cathedral under a clear blue sky, sandstone and sky blue palette, cinematic editorial illustration blended with painterly 3D rendering, bright vivid high-key daylight, cheerful airy mood, crisp clean composition, wide banner composition with the subject centered --ar 16:5 --v 8.1 --no text, letters, words, numbers, logos, labels, watermark, signature, deformed hands, extra fingers, distorted faces, close-up portrait, dark mood, gloom, fog, night, muted colors
 ```
 
 ## 31번 (빈칸 추론)
@@ -87,49 +87,49 @@ A sleek control panel with a bold red switch recessed beneath a clear flip-up pr
 파일: `assets/illust-32.png`
 
 ```
-An empty VR headset resting on a red cinema seat, a sweeping 360-degree dome of colorful virtual landscape unfolding around it in every direction while a single film-frame spotlight glows on one side, violet and turquoise palette, cinematic editorial illustration blended with painterly 3D rendering, bright vivid high-key daylight, cheerful airy mood, crisp clean composition, wide banner composition with the subject centered --ar 16:5 --v 8.1 --no text, letters, words, numbers, logos, labels, watermark, signature, people, crowd, faces, hands, dark mood, gloom, fog, night, muted colors
+A teenager wearing a VR headset in a red cinema seat, turning their head in wonder as a sweeping 360-degree dome of colorful virtual landscape unfolds in every direction while a single film-frame spotlight glows on one side, violet and turquoise palette, cinematic editorial illustration blended with painterly 3D rendering, bright vivid high-key daylight, cheerful airy mood, crisp clean composition, wide banner composition with the subject centered --ar 16:5 --v 8.1 --no text, letters, words, numbers, logos, labels, watermark, signature, deformed hands, extra fingers, distorted faces, close-up portrait, dark mood, gloom, fog, night, muted colors
 ```
 
 ## 33번 (빈칸 추론)
 파일: `assets/illust-33.png`
 
 ```
-Several small floating islands above a calm turquoise sea, each island covered in matching houses of one uniform color around a small school building, every island a different color from the others, coral, teal and sunflower palette, cinematic editorial illustration blended with painterly 3D rendering, bright vivid high-key daylight, cheerful airy mood, crisp clean composition, wide banner composition with the subject centered --ar 16:5 --v 8.1 --no text, letters, words, numbers, logos, labels, watermark, signature, people, crowd, faces, hands, dark mood, gloom, fog, night, muted colors
+Several small floating islands above a calm turquoise sea, each covered in matching houses of one uniform color around a small school building, tiny children in uniforms of that same color walking to school on each island, every island a different color from the others, coral, teal and sunflower palette, cinematic editorial illustration blended with painterly 3D rendering, bright vivid high-key daylight, cheerful airy mood, crisp clean composition, wide banner composition with the subject centered --ar 16:5 --v 8.1 --no text, letters, words, numbers, logos, labels, watermark, signature, deformed hands, extra fingers, distorted faces, close-up portrait, dark mood, gloom, fog, night, muted colors
 ```
 
 ## 34번 (빈칸 추론)
 파일: `assets/illust-34.png`
 
 ```
-A large canvas on an easel painted with repeating waves of colorful lines and blocks flowing from left to right like a musical score, faint glowing musical notes drifting off the canvas, cobalt blue, sunflower yellow and coral palette, cinematic editorial illustration blended with painterly 3D rendering, bright vivid high-key daylight, cheerful airy mood, crisp clean composition, wide banner composition with the subject centered --ar 16:5 --v 8.1 --no text, letters, words, numbers, logos, labels, watermark, signature, people, crowd, faces, hands, dark mood, gloom, fog, night, muted colors
+A painter seen from behind standing before a large canvas on an easel painted with repeating waves of colorful lines and blocks flowing from left to right like a musical score, faint glowing musical notes drifting off the canvas, cobalt blue, sunflower yellow and coral palette, cinematic editorial illustration blended with painterly 3D rendering, bright vivid high-key daylight, cheerful airy mood, crisp clean composition, wide banner composition with the subject centered --ar 16:5 --v 8.1 --no text, letters, words, numbers, logos, labels, watermark, signature, deformed hands, extra fingers, distorted faces, close-up portrait, dark mood, gloom, fog, night, muted colors
 ```
 
 ## 35번 (무관한 문장)
 파일: `assets/illust-35.png`
 
 ```
-An empty futuristic esports arena stage with glowing screens of abstract colorful game graphics and gaming consoles and headsets on a team desk, light streams linking tiny globes around the stage, electric violet, cyan and orange palette, cinematic editorial illustration blended with painterly 3D rendering, bright vivid high-key daylight, cheerful airy mood, crisp clean composition, wide banner composition with the subject centered --ar 16:5 --v 8.1 --no text, letters, words, numbers, logos, labels, watermark, signature, people, crowd, faces, hands, dark mood, gloom, fog, night, muted colors
+A futuristic esports arena with a team of young players in matching jerseys and headsets seen from behind at a glowing stage desk, giant screens of abstract colorful game graphics above them, a cheering audience in silhouette and light streams linking tiny globes around the stage, electric violet, cyan and orange palette, cinematic editorial illustration blended with painterly 3D rendering, bright vivid high-key daylight, cheerful airy mood, crisp clean composition, wide banner composition with the subject centered --ar 16:5 --v 8.1 --no text, letters, words, numbers, logos, labels, watermark, signature, deformed hands, extra fingers, distorted faces, close-up portrait, dark mood, gloom, fog, night, muted colors
 ```
 
 ## 36번 (글의 순서)
 파일: `assets/illust-36.png`
 
 ```
-Woven market baskets of roasted crickets and grasshoppers beside bowls of grilled prawns and fresh vegetables on a colorful cloth at a sunny open-air food stall, saffron, leaf green and coral palette, cinematic editorial illustration blended with painterly 3D rendering, bright vivid high-key daylight, cheerful airy mood, crisp clean composition, wide banner composition with the subject centered --ar 16:5 --v 8.1 --no text, letters, words, numbers, logos, labels, watermark, signature, people, crowd, faces, hands, dark mood, gloom, fog, night, muted colors
+A smiling vendor seen at a distance behind a sunny open-air food stall, woven market baskets of roasted crickets and grasshoppers beside bowls of grilled prawns and fresh vegetables on a colorful cloth in the foreground, saffron, leaf green and coral palette, cinematic editorial illustration blended with painterly 3D rendering, bright vivid high-key daylight, cheerful airy mood, crisp clean composition, wide banner composition with the subject centered --ar 16:5 --v 8.1 --no text, letters, words, numbers, logos, labels, watermark, signature, deformed hands, extra fingers, distorted faces, close-up portrait, dark mood, gloom, fog, night, muted colors
 ```
 
 ## 37번 (글의 순서)
 파일: `assets/illust-37.png`
 
 ```
-A Renaissance cabinet of curiosities in a sunlit palace hall, carved wooden shelves of seashells, a brass globe, rare minerals and coral branches behind an ornate velvet rope, warm gold, teal and cream palette, cinematic editorial illustration blended with painterly 3D rendering, bright vivid high-key daylight, cheerful airy mood, crisp clean composition, wide banner composition with the subject centered --ar 16:5 --v 8.1 --no text, letters, words, numbers, logos, labels, watermark, signature, people, crowd, faces, hands, dark mood, gloom, fog, night, muted colors
+A sunlit palace hall turned public museum, a Renaissance cabinet of curiosities with carved wooden shelves of seashells, a brass globe, rare minerals and coral branches, a few small visitors seen from behind admiring it beyond a velvet rope, warm gold, teal and cream palette, cinematic editorial illustration blended with painterly 3D rendering, bright vivid high-key daylight, cheerful airy mood, crisp clean composition, wide banner composition with the subject centered --ar 16:5 --v 8.1 --no text, letters, words, numbers, logos, labels, watermark, signature, deformed hands, extra fingers, distorted faces, close-up portrait, dark mood, gloom, fog, night, muted colors
 ```
 
 ## 38번 (문장 삽입)
 파일: `assets/illust-38.png`
 
 ```
-An empty striped hammock swaying between two palm trees on a bright tropical beach, a pale crescent moon and a soft sun sharing the pastel sky above calm turquoise water, peach, lavender and aqua palette, cinematic editorial illustration blended with painterly 3D rendering, bright vivid high-key daylight, cheerful airy mood, crisp clean composition, wide banner composition with the subject centered --ar 16:5 --v 8.1 --no text, letters, words, numbers, logos, labels, watermark, signature, people, crowd, faces, hands, dark mood, gloom, fog, night, muted colors
+A person peacefully asleep in a striped hammock between two palm trees on a bright tropical beach, seen from a distance, a pale crescent moon and a soft sun sharing the pastel sky above calm turquoise water, peach, lavender and aqua palette, cinematic editorial illustration blended with painterly 3D rendering, bright vivid high-key daylight, cheerful airy mood, crisp clean composition, wide banner composition with the subject centered --ar 16:5 --v 8.1 --no text, letters, words, numbers, logos, labels, watermark, signature, deformed hands, extra fingers, distorted faces, close-up portrait, dark mood, gloom, fog, night, muted colors
 ```
 
 ## 39번 (문장 삽입)
@@ -143,7 +143,7 @@ A gleaming lightbulb-shaped rocket launching upward from a modern workshop while
 파일: `assets/illust-40.png`
 
 ```
-A product box being opened on a cozy sunny kitchen table, a soft beam of colorful light from a distant abstract billboard shining onto it, tiny sparkles of expectation floating above the box, coral, mint and lemon palette, cinematic editorial illustration blended with painterly 3D rendering, bright vivid high-key daylight, cheerful airy mood, crisp clean composition, wide banner composition with the subject centered --ar 16:5 --v 8.1 --no text, letters, words, numbers, logos, labels, watermark, signature, people, crowd, faces, hands, dark mood, gloom, fog, night, muted colors
+A delighted young customer seen in profile opening a product box on a cozy sunny kitchen table, a soft beam of colorful light from a distant abstract billboard shining onto it, tiny sparkles of satisfaction floating above the box, coral, mint and lemon palette, cinematic editorial illustration blended with painterly 3D rendering, bright vivid high-key daylight, cheerful airy mood, crisp clean composition, wide banner composition with the subject centered --ar 16:5 --v 8.1 --no text, letters, words, numbers, logos, labels, watermark, signature, deformed hands, extra fingers, distorted faces, close-up portrait, dark mood, gloom, fog, night, muted colors
 ```
 
 ## 41번 (장문(제목+어휘))
