@@ -24,7 +24,8 @@
 | 31 | 빈칸 | ① reconsider | 40 | 요약 | ② cultivate … trials |
 | 32 | 빈칸 | ① control exactly when and how … | 41 / 42 | 제목 / 어휘 | ① / ② (b) contradicts |
 
-> 정답은 제작 시 직접 풀어 확정했다(평가원 정답 공개본과 대조 권장).
+> **평가원 정답표(홀수형)와 대조 완료 (2026-11-20)** — 정답 18문항(42번 포함 19문항) 전부 일치.
+> 배점은 29번 1건이 3점으로 잘못 들어가 있어 2점으로 정정했다(공식: 29번 2점, 30번 3점).
 
 ## 본문 표기 규약 (2026-09 고2 회차와 동일)
 
@@ -69,5 +70,7 @@ node builder/goodnotes-safe.mjs "2027-suneung/dist/2027-수능-영어-분석지-
 
 ## 삽화
 
-미드저니 PNG 는 아직 없다(placeholder). 프롬프트 18개: [`MIDJOURNEY_PROMPTS.md`](MIDJOURNEY_PROMPTS.md).
+미드저니 PNG 는 아직 없다(placeholder). 프롬프트 18개: [`MIDJOURNEY_PROMPTS.md`](MIDJOURNEY_PROMPTS.md)
+(원본은 `_spec/{N}.mjs` 의 `illust` — 문서는 생성물). 규칙: 밝은 vivid 톤, 주어 하나, 사람·손·얼굴·글자 배제,
+부정은 `--no` 파라미터로만, 지시부 800자 이하(최장 455자).
 `dist/assets/illust-{N}.png` 로 저장 → `build` → `pdf` → `combine` → 평탄화.

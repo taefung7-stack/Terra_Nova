@@ -3,7 +3,7 @@ export default {
   summary_ko: '식물이 사는 환경은 식물 자체와 떼어 놓을 수 없어요. 환경은 식물의 몸 구조를 바꾸고 발달 방향을 정하는데, 그 변화가 자손에게 전해져 자손은 처음부터 다르게 자라 부모가 겪은 혹독한 조건을 더 잘 견디게 돼요. 예를 들어 애벌레의 공격을 견딘 야생 무는 더 까칠한 잎과 방어 화학 물질을 갖춘 새끼 무를 만들어요. 즉 부모 식물은 험한 세상에서 살아남는 기술을 물려줄 수 있어요.',
   main_idea_en: 'The environment a plant lives in shapes not only the plant itself but also its offspring, which inherit changes that prepare them for the conditions their parents faced.',
   title_en: 'Inherited Armor: How Plants Prepare Their Offspring',
-  illust: 'A bright vivid close-up of a young wild radish plant with extra-scratchy fuzzy green leaves sprouting beside its parent plant in a sunlit meadow, tiny glowing shield-like sparkles on the leaves suggesting natural defense, a small caterpillar keeping its distance on a nearby leaf, fresh emerald and soft lavender palette, high-key diffused daylight, cinematic editorial and painterly 3D mix, wide banner composition --ar 16:5 --v 8.1 --no text,letters,words,watermark,signature,people,faces,hands,dark mood,gloom',
+  illust: 'A young wild radish sprout growing beside its parent plant in a sunlit meadow, its leaves covered in tiny protective bristles wrapped in a soft glowing shield-like aura, fresh emerald and lavender palette, cinematic editorial illustration blended with painterly 3D rendering, bright vivid high-key daylight, cheerful airy mood, crisp clean composition, wide banner composition with the subject centered --ar 16:5 --v 8.1 --no text, letters, words, numbers, logos, labels, watermark, signature, people, crowd, faces, hands, dark mood, gloom, fog, night, muted colors',
   ko: [
     '식물이 사는 환경은 그 식물 자체와 분리될 수 없다.',
     '환경은 자손이 어떤 종류의 식물이 될지, 즉 힘든 상황에서 살아남아 번성하는 종류가 될지 아닐지를 결정한다.',

@@ -3,7 +3,7 @@ export default {
   summary_ko: '먹이 사슬에서 곤충이 사라지면 야생 동물만이 아니라 인간의 식량 공급에도 직접적인 영향이 있어요. 유럽인과 북미인 대부분은 곤충을 먹는다는 생각에 질색하지만, 생김새가 비슷한 새우는 먹고 그들의 조상도 분명 곤충을 먹었을 거예요. 그러나 세계적으로 보면 곤충을 먹는 것은 일반적이라서, 세계 인구의 약 80%가 곤충을 먹고, 약 2,000종이 식용으로 쓰이며 남아프리카에서만 매년 1,600톤의 모파네 벌레가 팔려요.',
   main_idea_en: 'The loss of insects would directly threaten the human food supply, since eating insects is the norm for most of the world.',
   title_en: 'Insects on the Menu: Why Their Loss Matters to Us',
-  illust: 'A bright vivid food-market still life of woven baskets filled with roasted crickets and grasshoppers beside bowls of fresh vegetables and grilled prawns, colorful market cloth and sunny open-air stall setting, warm saffron, leaf green and coral palette, high-key diffused daylight, cinematic editorial and painterly 3D mix, wide banner composition --ar 16:5 --v 8.1 --no text,letters,words,price tags,watermark,signature,people,faces,hands,dark mood,gloom',
+  illust: 'Woven market baskets of roasted crickets and grasshoppers beside bowls of grilled prawns and fresh vegetables on a colorful cloth at a sunny open-air food stall, saffron, leaf green and coral palette, cinematic editorial illustration blended with painterly 3D rendering, bright vivid high-key daylight, cheerful airy mood, crisp clean composition, wide banner composition with the subject centered --ar 16:5 --v 8.1 --no text, letters, words, numbers, logos, labels, watermark, signature, people, crowd, faces, hands, dark mood, gloom, fog, night, muted colors',
   ko: [
     '먹이 사슬에서 곤충 생물이 사라지는 것은 야생 동물에게만 재앙이 되는 것이 아닐 것이다.',
     '그것은 또한 인간의 식량 공급에도 직접적인 결과를 초래할 것이다.',

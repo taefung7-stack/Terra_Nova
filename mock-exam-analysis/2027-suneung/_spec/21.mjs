@@ -3,7 +3,7 @@ export default {
   summary_ko: '기업들은 수십 년간 데이터를 봉인된 상자처럼 비공개로 단단히 지켰고, 산업 경제에서는 데이터를 소유하는 것이 곧 힘이었어요. 하지만 지능 시대에는 가치가 정보를 쥐고 있는 데서가 아니라 연결하는 데서 나오기 때문에, 봉인된 상자를 붙들고 있는 것은 자산을 지키는 일이 아니라 "닻을 끌고 다니는 것", 즉 스스로 발목을 잡는 일이 되었어요. 가장 빠른 기업들은 데이터를 안전하고 선별적으로 연결해 우위를 얻어요.',
   main_idea_en: 'In the Intelligence Age, keeping data sealed away holds a company back, because value now comes from securely and selectively connecting data.',
   title_en: 'Open the Box: Why Hoarding Data Slows Companies Down',
-  illust: 'A bright vivid conceptual scene of a sleek modern sailing ship trying to move forward across a sunny turquoise sea while a heavy iron anchor shaped like a locked metal box drags behind it on a chain, beside it a lighter ship gliding freely with glowing data streams flowing between its sails, crisp sky blue and warm gold palette, high-key lighting, cinematic editorial and painterly 3D mix, wide banner composition --ar 16:5 --v 8.1 --no text,letters,words,numbers,watermark,signature,people,faces,hands,dark mood,gloom,storm',
+  illust: 'A sleek sailboat straining forward on a sparkling turquoise sea while dragging a heavy iron anchor shaped like a locked metal box on a long chain behind it, clear blue sky with warm gold highlights, cinematic editorial illustration blended with painterly 3D rendering, bright vivid high-key daylight, cheerful airy mood, crisp clean composition, wide banner composition with the subject centered --ar 16:5 --v 8.1 --no text, letters, words, numbers, logos, labels, watermark, signature, people, crowd, faces, hands, dark mood, gloom, fog, night, muted colors',
   ko: [
     '수십 년 동안 기업들은 데이터를 봉인된 상자처럼, 즉 가치 있고 비공개이며 단단히 보호되는 것으로 다루어 왔다.',
     '그러한 본능은 타당했다.',

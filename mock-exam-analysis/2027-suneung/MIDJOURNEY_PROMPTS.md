@@ -1,112 +1,154 @@
-# 2027학년도 수능 영어 — 지문별 미드저니 삽화 프롬프트
+# 2027학년도 대학수학능력시험 영어 — 삽화 미드저니 프롬프트 (18지문)
 
-원본은 data/{N}.json 의 illustration.prompt(_spec 에서 생성). 저장 위치: dist/assets/illust-{N}.png
+정책: 전 프롬프트 **`--ar 16:5`(와이드 배너) + `--v 8.1`** 고정. 톤 = 시네마틱 에디토리얼 + 페인터리 3D 혼합, **밝고 선명한(vivid) 톤**.
+장면은 **주어 하나**, **사람·손·얼굴·글자 없음**, 부정은 전부 `--no` 파라미터로만(문장 속 NO 금지). 지시부 800자 이하.
+생성 후 `2027-suneung/dist/assets/illust-{N}.png` 로 저장 → `npm run build:suneung` → pdf → combine → 평탄화.
 
-## 20번 — Know Your Subject: Preparedness in Wildlife Photography
+| N | 유형 | 제목(EN) |
+|---|---|---|
+| 20 | 주장 | Know Your Subject: Preparedness in Wildlife Photography |
+| 21 | 함축 의미 | Open the Box: Why Hoarding Data Slows Companies Down |
+| 22 | 요지 | Read Like a Detective: Know What You Are Looking For |
+| 23 | 주제 | Inherited Armor: How Plants Prepare Their Offspring |
+| 24 | 제목 | From Farm to Shelf Worldwide: The Technology Behind Fresh Food |
+| 29 | 어법 | Test Your Beliefs: The Habit of Critical Thinkers |
+| 30 | 어휘 | Crowds Build, Individuals Discover |
+| 31 | 빈칸 추론 | One More Step, One More Chance to Think Twice |
+| 32 | 빈칸 추론 | Free to Look Anywhere: What VR Cannot Direct |
+| 33 | 빈칸 추론 | Why No Society Lets You Learn Just Anything |
+| 34 | 빈칸 추론 | When Painting Borrows Time: Rhythm on the Canvas |
+| 35 | 무관한 문장 | Why Esports Took Over: Tech, Community, and Careers |
+| 36 | 글의 순서 | Insects on the Menu: Why Their Loss Matters to Us |
+| 37 | 글의 순서 | From Private Treasure to Public Museum: Collections as Power |
+| 38 | 문장 삽입 | More Than Rest: The Mystery of Sleep |
+| 39 | 문장 삽입 | When Old Shields Fall, Innovate or Fade |
+| 40 | 문단 요약 | Advertising's Real Payoff Comes After the Purchase |
+| 41 | 장문(제목+어휘) | Within or Beyond Earth's Rules: The Search for Alien Life |
 
-```
-A bright vivid beach scene at early dusk where tiny baby sea turtles crawl from a sandy nest toward gentle turquoise waves, a tripod-mounted camera with a long lens waiting on the sand in the foreground, soft pastel sky with warm coral and aqua tones, clean high-key lighting, cinematic editorial and painterly 3D mix, wide banner composition --ar 16:5 --v 8.1 --no text,letters,words,watermark,signature,people,faces,hands,dark mood,gloom
-```
+---
 
-## 21번 — Open the Box: Why Hoarding Data Slows Companies Down
-
-```
-A bright vivid conceptual scene of a sleek modern sailing ship trying to move forward across a sunny turquoise sea while a heavy iron anchor shaped like a locked metal box drags behind it on a chain, beside it a lighter ship gliding freely with glowing data streams flowing between its sails, crisp sky blue and warm gold palette, high-key lighting, cinematic editorial and painterly 3D mix, wide banner composition --ar 16:5 --v 8.1 --no text,letters,words,numbers,watermark,signature,people,faces,hands,dark mood,gloom,storm
-```
-
-## 22번 — Read Like a Detective: Know What You Are Looking For
-
-```
-A bright cheerful library reading nook with an open book on a wooden desk, a glowing magnifying glass hovering over one highlighted line of the page, warm golden lamp light mixed with soft daylight from a tall window, mint green and butter yellow palette, clean high-key lighting, cinematic editorial and painterly 3D mix, wide banner composition --ar 16:5 --v 8.1 --no text,letters,words,readable writing,watermark,signature,people,faces,hands,dark mood,gloom
-```
-
-## 23번 — Inherited Armor: How Plants Prepare Their Offspring
-
-```
-A bright vivid close-up of a young wild radish plant with extra-scratchy fuzzy green leaves sprouting beside its parent plant in a sunlit meadow, tiny glowing shield-like sparkles on the leaves suggesting natural defense, a small caterpillar keeping its distance on a nearby leaf, fresh emerald and soft lavender palette, high-key diffused daylight, cinematic editorial and painterly 3D mix, wide banner composition --ar 16:5 --v 8.1 --no text,letters,words,watermark,signature,people,faces,hands,dark mood,gloom
-```
-
-## 24번 — From Farm to Shelf Worldwide: The Technology Behind Fresh Food
-
-```
-A bright vivid conceptual scene of a glowing globe with luminous delivery routes arcing from tropical farms and sunny fields to a cheerful modern supermarket produce aisle full of colorful mangoes, tomatoes, and green beans, small cargo planes and refrigerated trucks traveling along the light trails, fresh coral, lime green and sky blue palette, high-key lighting, cinematic editorial and painterly 3D mix, wide banner composition --ar 16:5 --v 8.1 --no text,letters,words,numbers,logos,price tags,watermark,signature,people,faces,hands,dark mood,gloom
-```
-
-## 29번 — Test Your Beliefs: The Habit of Critical Thinkers
+## 20번 (주장)
+파일: `assets/illust-20.png`
 
 ```
-A bright airy study scene with a large glowing lightbulb-shaped glass jar on a desk holding colorful floating idea bubbles, a balance scale beside it weighing a feather against a stack of evidence cards with blank faces, a magnifying glass resting nearby, fresh mint and warm apricot palette, clean high-key lighting, cinematic editorial and painterly 3D mix, wide banner composition --ar 16:5 --v 8.1 --no text,letters,words,watermark,signature,people,faces,hands,dark mood,gloom
+A tripod-mounted camera with a long lens waiting on a sunny sandy beach while a line of tiny baby sea turtles crawls from their nest toward gentle turquoise waves, soft coral and aqua sky, cinematic editorial illustration blended with painterly 3D rendering, bright vivid high-key daylight, cheerful airy mood, crisp clean composition, wide banner composition with the subject centered --ar 16:5 --v 8.1 --no text, letters, words, numbers, logos, labels, watermark, signature, people, crowd, faces, hands, dark mood, gloom, fog, night, muted colors
 ```
 
-## 30번 — Crowds Build, Individuals Discover
+## 21번 (함축 의미)
+파일: `assets/illust-21.png`
 
 ```
-A bright vivid split scene: on one side a large cheerful team assembling the stone towers of a grand Gothic cathedral with scaffolding and cranes under clear blue sky, on the other side a single glowing desk lamp illuminating an open notebook with abstract geometric sketches and a feather pen, warm sandstone and sky blue palette, high-key lighting, cinematic editorial and painterly 3D mix, wide banner composition --ar 16:5 --v 8.1 --no text,letters,words,numbers,equations,watermark,signature,faces,hands,dark mood,gloom
+A sleek sailboat straining forward on a sparkling turquoise sea while dragging a heavy iron anchor shaped like a locked metal box on a long chain behind it, clear blue sky with warm gold highlights, cinematic editorial illustration blended with painterly 3D rendering, bright vivid high-key daylight, cheerful airy mood, crisp clean composition, wide banner composition with the subject centered --ar 16:5 --v 8.1 --no text, letters, words, numbers, logos, labels, watermark, signature, people, crowd, faces, hands, dark mood, gloom, fog, night, muted colors
 ```
 
-## 31번 — One More Step, One More Chance to Think Twice
+## 22번 (요지)
+파일: `assets/illust-22.png`
 
 ```
-A bright clean industrial design scene of a sleek control panel with a bold red switch recessed inside a clear protective flip-up cover and a small lock beside it, a sequence of three softly glowing step-lights leading toward the switch, cool mint and warm orange accents, high-key studio lighting, cinematic editorial and painterly 3D mix, wide banner composition --ar 16:5 --v 8.1 --no text,letters,words,numbers,labels,watermark,signature,people,faces,hands,dark mood,gloom
+An open book on a sunny wooden library desk with a large magnifying glass focusing a bright beam of light onto one precise spot of the page, tall window light, mint green and butter yellow palette, cinematic editorial illustration blended with painterly 3D rendering, bright vivid high-key daylight, cheerful airy mood, crisp clean composition, wide banner composition with the subject centered --ar 16:5 --v 8.1 --no text, letters, words, numbers, logos, labels, watermark, signature, people, crowd, faces, hands, dark mood, gloom, fog, night, muted colors
 ```
 
-## 32번 — Free to Look Anywhere: What VR Cannot Direct
+## 23번 (주제)
+파일: `assets/illust-23.png`
 
 ```
-A bright vivid conceptual scene comparing a cinema screen showing a single glowing close-up spotlight frame on one side with a sweeping 360-degree virtual landscape dome on the other, an empty VR headset resting on a seat in the foreground, playful arrows of light pointing in many directions inside the dome, violet and turquoise palette with warm highlights, high-key lighting, cinematic editorial and painterly 3D mix, wide banner composition --ar 16:5 --v 8.1 --no text,letters,words,watermark,signature,people,faces,hands,dark mood,gloom
+A young wild radish sprout growing beside its parent plant in a sunlit meadow, its leaves covered in tiny protective bristles wrapped in a soft glowing shield-like aura, fresh emerald and lavender palette, cinematic editorial illustration blended with painterly 3D rendering, bright vivid high-key daylight, cheerful airy mood, crisp clean composition, wide banner composition with the subject centered --ar 16:5 --v 8.1 --no text, letters, words, numbers, logos, labels, watermark, signature, people, crowd, faces, hands, dark mood, gloom, fog, night, muted colors
 ```
 
-## 33번 — Why No Society Lets You Learn Just Anything
+## 24번 (제목)
+파일: `assets/illust-24.png`
 
 ```
-A bright vivid conceptual scene of several distinct floating islands, each with its own uniform cluster of matching colorful houses and a small school building in the center, every island a different color scheme from the others, clear sky and calm turquoise sea, warm coral, teal and sunflower palette, high-key lighting, cinematic editorial and painterly 3D mix, wide banner composition --ar 16:5 --v 8.1 --no text,letters,words,flags,watermark,signature,people,faces,hands,dark mood,gloom
+A glowing globe with luminous delivery routes arcing from tropical fruit farms to a bright modern supermarket produce aisle piled with mangoes, tomatoes and green beans, coral, lime green and sky blue palette, cinematic editorial illustration blended with painterly 3D rendering, bright vivid high-key daylight, cheerful airy mood, crisp clean composition, wide banner composition with the subject centered --ar 16:5 --v 8.1 --no text, letters, words, numbers, logos, labels, watermark, signature, people, crowd, faces, hands, dark mood, gloom, fog, night, muted colors
 ```
 
-## 34번 — When Painting Borrows Time: Rhythm on the Canvas
+## 29번 (어법)
+파일: `assets/illust-29.png`
 
 ```
-A bright vivid abstract painting studio scene with a large canvas showing repeating waves of colorful lines and blocks that flow from left to right like a musical score, faint glowing musical notes drifting off the canvas into the air, an easel and brushes nearby, cobalt blue, sunflower yellow and coral palette, high-key lighting, cinematic editorial and painterly 3D mix, wide banner composition --ar 16:5 --v 8.1 --no text,letters,words,numbers,signature,watermark,people,faces,hands,dark mood,gloom
+A brass balance scale on a bright study desk weighing a glowing lightbulb full of floating idea bubbles against a neat stack of blank evidence cards, a magnifying glass resting beside it, mint and apricot palette, cinematic editorial illustration blended with painterly 3D rendering, bright vivid high-key daylight, cheerful airy mood, crisp clean composition, wide banner composition with the subject centered --ar 16:5 --v 8.1 --no text, letters, words, numbers, logos, labels, watermark, signature, people, crowd, faces, hands, dark mood, gloom, fog, night, muted colors
 ```
 
-## 35번 — Why Esports Took Over: Tech, Community, and Careers
+## 30번 (어휘)
+파일: `assets/illust-30.png`
 
 ```
-A bright vivid futuristic esports arena with glowing stage screens showing abstract colorful game graphics, sleek gaming consoles and headsets on a team desk in the foreground, streams of light connecting small globes around the arena to suggest players from many regions, electric violet, cyan and warm orange palette, high-key lighting, cinematic editorial and painterly 3D mix, wide banner composition --ar 16:5 --v 8.1 --no text,letters,words,numbers,logos,watermark,signature,faces,hands,dark mood,gloom
+A single desk lamp lighting an open notebook of abstract geometric sketches and a feather pen, while through the tall window a grand Gothic cathedral with scaffolding and cranes rises under a clear blue sky, sandstone and sky blue palette, cinematic editorial illustration blended with painterly 3D rendering, bright vivid high-key daylight, cheerful airy mood, crisp clean composition, wide banner composition with the subject centered --ar 16:5 --v 8.1 --no text, letters, words, numbers, logos, labels, watermark, signature, people, crowd, faces, hands, dark mood, gloom, fog, night, muted colors
 ```
 
-## 36번 — Insects on the Menu: Why Their Loss Matters to Us
+## 31번 (빈칸 추론)
+파일: `assets/illust-31.png`
 
 ```
-A bright vivid food-market still life of woven baskets filled with roasted crickets and grasshoppers beside bowls of fresh vegetables and grilled prawns, colorful market cloth and sunny open-air stall setting, warm saffron, leaf green and coral palette, high-key diffused daylight, cinematic editorial and painterly 3D mix, wide banner composition --ar 16:5 --v 8.1 --no text,letters,words,price tags,watermark,signature,people,faces,hands,dark mood,gloom
+A sleek control panel with a bold red switch recessed beneath a clear flip-up protective cover with a small lock, three softly glowing step lights leading toward it, cool mint and warm orange accents, clean studio light, cinematic editorial illustration blended with painterly 3D rendering, bright vivid high-key daylight, cheerful airy mood, crisp clean composition, wide banner composition with the subject centered --ar 16:5 --v 8.1 --no text, letters, words, numbers, logos, labels, watermark, signature, people, crowd, faces, hands, dark mood, gloom, fog, night, muted colors
 ```
 
-## 37번 — From Private Treasure to Public Museum: Collections as Power
+## 32번 (빈칸 추론)
+파일: `assets/illust-32.png`
 
 ```
-A bright vivid Renaissance cabinet of curiosities in a sunlit hall, carved wooden shelves filled with seashells, a brass globe, rare minerals, coral branches, and gilded objects, an ornate velvet rope in front of the display, warm gold, deep teal and cream palette, high-key lighting, cinematic editorial and painterly 3D mix, wide banner composition --ar 16:5 --v 8.1 --no text,letters,words,labels,watermark,signature,people,faces,hands,dark mood,gloom
+An empty VR headset resting on a red cinema seat, a sweeping 360-degree dome of colorful virtual landscape unfolding around it in every direction while a single film-frame spotlight glows on one side, violet and turquoise palette, cinematic editorial illustration blended with painterly 3D rendering, bright vivid high-key daylight, cheerful airy mood, crisp clean composition, wide banner composition with the subject centered --ar 16:5 --v 8.1 --no text, letters, words, numbers, logos, labels, watermark, signature, people, crowd, faces, hands, dark mood, gloom, fog, night, muted colors
 ```
 
-## 38번 — More Than Rest: The Mystery of Sleep
+## 33번 (빈칸 추론)
+파일: `assets/illust-33.png`
 
 ```
-A bright vivid tropical beach scene with an empty striped hammock gently swaying between two palm trees, a small glowing crescent moon and a sun shown together in the soft pastel sky to suggest the cycle of day and sleep, calm turquoise sea, warm peach, lavender and aqua palette, high-key lighting, cinematic editorial and painterly 3D mix, wide banner composition --ar 16:5 --v 8.1 --no text,letters,words,clock numbers,watermark,signature,people,faces,hands,dark mood,gloom
+Several small floating islands above a calm turquoise sea, each island covered in matching houses of one uniform color around a small school building, every island a different color from the others, coral, teal and sunflower palette, cinematic editorial illustration blended with painterly 3D rendering, bright vivid high-key daylight, cheerful airy mood, crisp clean composition, wide banner composition with the subject centered --ar 16:5 --v 8.1 --no text, letters, words, numbers, logos, labels, watermark, signature, people, crowd, faces, hands, dark mood, gloom, fog, night, muted colors
 ```
 
-## 39번 — When Old Shields Fall, Innovate or Fade
+## 34번 (빈칸 추론)
+파일: `assets/illust-34.png`
 
 ```
-A bright vivid business landscape where old stone walls and toll gates around small shops are crumbling into light, while a gleaming rocket-shaped lightbulb launches upward from a modern workshop at the center, open global trade routes glowing across the ground, electric blue, tangerine and mint palette, high-key lighting, cinematic editorial and painterly 3D mix, wide banner composition --ar 16:5 --v 8.1 --no text,letters,words,numbers,logos,watermark,signature,people,faces,hands,dark mood,gloom
+A large canvas on an easel painted with repeating waves of colorful lines and blocks flowing from left to right like a musical score, faint glowing musical notes drifting off the canvas, cobalt blue, sunflower yellow and coral palette, cinematic editorial illustration blended with painterly 3D rendering, bright vivid high-key daylight, cheerful airy mood, crisp clean composition, wide banner composition with the subject centered --ar 16:5 --v 8.1 --no text, letters, words, numbers, logos, labels, watermark, signature, people, crowd, faces, hands, dark mood, gloom, fog, night, muted colors
 ```
 
-## 40번 — Advertising's Real Payoff Comes After the Purchase
+## 35번 (무관한 문장)
+파일: `assets/illust-35.png`
 
 ```
-A bright vivid conceptual scene of a glowing billboard-shaped frame with abstract colorful shapes casting a warm light beam onto a small shopping bag and a product box being opened on a cozy kitchen table, tiny sparkles of expectation floating above the box, sunny coral, mint and lemon palette, high-key lighting, cinematic editorial and painterly 3D mix, wide banner composition --ar 16:5 --v 8.1 --no text,letters,words,logos,brand names,watermark,signature,people,faces,hands,dark mood,gloom
+An empty futuristic esports arena stage with glowing screens of abstract colorful game graphics and gaming consoles and headsets on a team desk, light streams linking tiny globes around the stage, electric violet, cyan and orange palette, cinematic editorial illustration blended with painterly 3D rendering, bright vivid high-key daylight, cheerful airy mood, crisp clean composition, wide banner composition with the subject centered --ar 16:5 --v 8.1 --no text, letters, words, numbers, logos, labels, watermark, signature, people, crowd, faces, hands, dark mood, gloom, fog, night, muted colors
 ```
 
-## 41번 — Within or Beyond Earth's Rules: The Search for Alien Life
+## 36번 (글의 순서)
+파일: `assets/illust-36.png`
 
 ```
-A bright vivid space scene of a blue Earth-like planet with oceans glowing near a warm sun inside a soft green ring marking the habitable zone, while beyond the ring an unusual rocky alien world glows with tiny bioluminescent microbial sparkles across its surface, deep sky blue, teal and soft gold palette, crisp high-key illumination, cinematic editorial and painterly 3D mix, wide banner composition --ar 16:5 --v 8.1 --no text,letters,words,watermark,signature,people,faces,hands,spaceships,dark gloomy mood
+Woven market baskets of roasted crickets and grasshoppers beside bowls of grilled prawns and fresh vegetables on a colorful cloth at a sunny open-air food stall, saffron, leaf green and coral palette, cinematic editorial illustration blended with painterly 3D rendering, bright vivid high-key daylight, cheerful airy mood, crisp clean composition, wide banner composition with the subject centered --ar 16:5 --v 8.1 --no text, letters, words, numbers, logos, labels, watermark, signature, people, crowd, faces, hands, dark mood, gloom, fog, night, muted colors
 ```
 
+## 37번 (글의 순서)
+파일: `assets/illust-37.png`
+
+```
+A Renaissance cabinet of curiosities in a sunlit palace hall, carved wooden shelves of seashells, a brass globe, rare minerals and coral branches behind an ornate velvet rope, warm gold, teal and cream palette, cinematic editorial illustration blended with painterly 3D rendering, bright vivid high-key daylight, cheerful airy mood, crisp clean composition, wide banner composition with the subject centered --ar 16:5 --v 8.1 --no text, letters, words, numbers, logos, labels, watermark, signature, people, crowd, faces, hands, dark mood, gloom, fog, night, muted colors
+```
+
+## 38번 (문장 삽입)
+파일: `assets/illust-38.png`
+
+```
+An empty striped hammock swaying between two palm trees on a bright tropical beach, a pale crescent moon and a soft sun sharing the pastel sky above calm turquoise water, peach, lavender and aqua palette, cinematic editorial illustration blended with painterly 3D rendering, bright vivid high-key daylight, cheerful airy mood, crisp clean composition, wide banner composition with the subject centered --ar 16:5 --v 8.1 --no text, letters, words, numbers, logos, labels, watermark, signature, people, crowd, faces, hands, dark mood, gloom, fog, night, muted colors
+```
+
+## 39번 (문장 삽입)
+파일: `assets/illust-39.png`
+
+```
+A gleaming lightbulb-shaped rocket launching upward from a modern workshop while old stone walls and toll gates around it crumble into sparkling light, glowing trade routes across the ground, electric blue, tangerine and mint palette, cinematic editorial illustration blended with painterly 3D rendering, bright vivid high-key daylight, cheerful airy mood, crisp clean composition, wide banner composition with the subject centered --ar 16:5 --v 8.1 --no text, letters, words, numbers, logos, labels, watermark, signature, people, crowd, faces, hands, dark mood, gloom, fog, night, muted colors
+```
+
+## 40번 (문단 요약)
+파일: `assets/illust-40.png`
+
+```
+A product box being opened on a cozy sunny kitchen table, a soft beam of colorful light from a distant abstract billboard shining onto it, tiny sparkles of expectation floating above the box, coral, mint and lemon palette, cinematic editorial illustration blended with painterly 3D rendering, bright vivid high-key daylight, cheerful airy mood, crisp clean composition, wide banner composition with the subject centered --ar 16:5 --v 8.1 --no text, letters, words, numbers, logos, labels, watermark, signature, people, crowd, faces, hands, dark mood, gloom, fog, night, muted colors
+```
+
+## 41번 (장문(제목+어휘))
+파일: `assets/illust-41.png`
+
+```
+A blue ocean planet inside a soft green ring marking the habitable zone around a warm golden star, and just beyond the ring an unusual rocky alien world glittering with tiny bioluminescent microbial sparkles, bright pastel nebula sky, teal and gold palette, cinematic editorial illustration blended with painterly 3D rendering, bright vivid high-key daylight, cheerful airy mood, crisp clean composition, wide banner composition with the subject centered --ar 16:5 --v 8.1 --no text, letters, words, numbers, logos, labels, watermark, signature, people, crowd, faces, hands, dark mood, gloom, fog, night, muted colors
+```

@@ -123,7 +123,7 @@ export const SOURCE = {
     ],
   },
   29: {
-    type: '어법', score: 3, ans: 3,
+    type: '어법', score: 2, ans: 3,
     q: '다음 글의 밑줄 친 부분 중, 어법상 틀린 것은?',
     choices: ['largely', 'it', 'think', 'what', 'do'],
     passage: [

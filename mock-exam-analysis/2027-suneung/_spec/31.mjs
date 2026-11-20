@@ -3,7 +3,7 @@ export default {
   summary_ko: '조작 장치가 실수로 작동되는 것을 막는 방법은 여러 가지예요. 장치를 멀리 두거나, 작동에 필요한 힘을 늘리거나, 패널 안으로 오목하게 넣거나 장벽 뒤에 두거나, 보호 덮개를 씌우거나 잠가 둘 수 있어요. 이런 방법은 조작을 어렵게 할 뿐 아니라 작동까지 여러 단계를 거치게 만들고, 각 단계마다 결정을 내려야 하므로 작업자는 매 지점에서 작동하겠다는 자신의 선택을 "다시 생각해 볼" 기회를 얻어요.',
   main_idea_en: 'Designs that require several steps to activate a control give the operator repeated chances to reconsider the choice, reducing accidental activation.',
   title_en: 'One More Step, One More Chance to Think Twice',
-  illust: 'A bright clean industrial design scene of a sleek control panel with a bold red switch recessed inside a clear protective flip-up cover and a small lock beside it, a sequence of three softly glowing step-lights leading toward the switch, cool mint and warm orange accents, high-key studio lighting, cinematic editorial and painterly 3D mix, wide banner composition --ar 16:5 --v 8.1 --no text,letters,words,numbers,labels,watermark,signature,people,faces,hands,dark mood,gloom',
+  illust: 'A sleek control panel with a bold red switch recessed beneath a clear flip-up protective cover with a small lock, three softly glowing step lights leading toward it, cool mint and warm orange accents, clean studio light, cinematic editorial illustration blended with painterly 3D rendering, bright vivid high-key daylight, cheerful airy mood, crisp clean composition, wide banner composition with the subject centered --ar 16:5 --v 8.1 --no text, letters, words, numbers, logos, labels, watermark, signature, people, crowd, faces, hands, dark mood, gloom, fog, night, muted colors',
   ko: [
     '설계자가 조작 장치의 우발적 작동 가능성을 최소화할 수 있는 방법은 여러 가지가 있다.',
     '아마도 가장 쉬운 방법은 작업자가 그것과 우연히 접촉할 가능성이 낮도록 조작 장치를 확실히 멀리 두는 것이다.',
