@@ -136,7 +136,7 @@ A person peacefully asleep in a striped hammock between two palm trees on a brig
 파일: `assets/illust-39.png`
 
 ```
-A gleaming lightbulb-shaped rocket launching upward from a modern workshop while old stone walls and toll gates around it crumble into sparkling light, glowing trade routes across the ground, electric blue, tangerine and mint palette, cinematic editorial illustration blended with painterly 3D rendering, bright vivid high-key daylight, cheerful airy mood, crisp clean composition, wide banner composition with the subject centered --ar 16:5 --v 8.1 --no text, letters, words, numbers, logos, labels, watermark, signature, people, crowd, faces, hands, dark mood, gloom, fog, night, muted colors
+A small village market stall that once stood safely alone across a wide river, now reached by several brand-new bridges carrying cargo crates and rival goods arriving from distant lands, while on the stall's counter one shining newly invented gadget glows under a glass dome, turquoise river, clear blue sky, tangerine and mint palette, cinematic editorial illustration blended with painterly 3D rendering, bright vivid high-key daylight, cheerful airy mood, crisp clean composition, wide banner composition with the subject centered --ar 16:5 --v 8.1 --no text, letters, words, numbers, logos, labels, price tags, watermark, signature, people, crowd, faces, hands, dark mood, gloom, fog, night, muted colors
 ```
 
 ## 40번 (문단 요약)
