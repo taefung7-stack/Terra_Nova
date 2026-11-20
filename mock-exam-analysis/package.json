@@ -44,7 +44,11 @@
     "pdf:sep2": "node builder/pdf.mjs 2026-sep-grade2/dist",
     "combine:sep2": "node builder/combine.mjs 2026-sep-grade2/dist 2026-9월-고2-영어-분석지-합본.pdf",
     "combine-wb:sep2": "node builder/combine-workbook.mjs 2026-sep-grade2/dist 2026-9월-고2-영어-워크북-합본.pdf",
-    "all:sep2": "npm run build:sep2 && npm run workbook:sep2 && npm run variant:sep2 && npm run pdf:sep2"
+    "all:sep2": "npm run build:sep2 && npm run workbook:sep2 && npm run variant:sep2 && npm run pdf:sep2",
+    "author:suneung": "node 2027-suneung/_author.mjs",
+    "build:suneung": "node builder/build.mjs 2027-suneung/data 2027-suneung/dist --styles=2027-suneung/styles/analysis.css",
+    "pdf:suneung": "node builder/pdf.mjs 2027-suneung/dist",
+    "combine:suneung": "node 2027-suneung/_combine.mjs 2027-suneung/dist 2027-수능-영어-분석지-합본.pdf"
   },
   "dependencies": {
     "puppeteer": "^22.15.0"
