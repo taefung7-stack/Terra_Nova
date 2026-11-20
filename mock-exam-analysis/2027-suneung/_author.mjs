@@ -82,7 +82,7 @@ async function build(n) {
     $schema_version: '1.0', exam: META.exam, question_no: n,
     type: src.type, score: src.score, question_text: src.q,
     summary_ko: spec.summary_ko, main_idea_en: spec.main_idea_en, title_en: spec.title_en,
-    illustration: { file: `assets/illust-${n}.png`, prompt: spec.illust },
+    illustration: { file: `assets/illust-${n}.jpg`, prompt: spec.illust },
     passage: P, passage_ko: spec.ko,
     choices: src.choices.map((en, i) => ({
       no: i + 1, en, ko: (spec.cko || [])[i] ?? '', comment: inter(spec.comments[i]), correct: i + 1 === src.ans,

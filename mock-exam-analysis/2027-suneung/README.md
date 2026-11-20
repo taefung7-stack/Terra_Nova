@@ -70,7 +70,8 @@ node builder/goodnotes-safe.mjs "2027-suneung/dist/2027-수능-영어-분석지-
 
 ## 삽화
 
-미드저니 PNG 는 아직 없다(placeholder). 프롬프트 18개: [`MIDJOURNEY_PROMPTS.md`](MIDJOURNEY_PROMPTS.md)
+**삽화 18장 반영 완료(2026-11-20)** — 원본 `dist/{N}.png`(3952×1232, gitignore) → `dist/assets/illust-{N}.jpg`(2200px, q88).
+합본은 이미지 때문에 63MB 가 되므로 평탄화(goodnotes-safe)로 압축까지 해야 한다. 프롬프트 18개: [`MIDJOURNEY_PROMPTS.md`](MIDJOURNEY_PROMPTS.md)
 (원본은 `_spec/{N}.mjs` 의 `illust` — 문서는 생성물). 규칙: 밝은 vivid 톤, 주어 하나, 사람·손·얼굴·글자 배제,
 부정은 `--no` 파라미터로만, 지시부 800자 이하(최장 455자).
 `dist/assets/illust-{N}.png` 로 저장 → `build` → `pdf` → `combine` → 평탄화.
