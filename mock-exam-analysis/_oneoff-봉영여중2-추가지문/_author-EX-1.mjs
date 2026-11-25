@@ -133,7 +133,7 @@ export const chapters = [
         ],
       },
     ],
-    prompt: 'Photorealistic macro nature photograph, wide banner composition. A delicate pale blue butterfly with small black spots on its wings resting on a purple wild thyme flower head in a bright summer meadow; on a grass stem below, a few tiny red ants walk in a line toward a small soil mound. Gentle, curious mood of a clever trick in nature. ' + LIGHT + ', soft sky blue, lavender and fresh meadow green. ' + NO + ', insects in close-up faces, deer, fish, water --ar 16:5 --v 8.1',
+    prompt: 'Photorealistic macro nature photograph, wide banner composition. A delicate pale blue butterfly with small black spots on its wings resting on a purple wild thyme flower head in a bright summer meadow; on a grass stem below, a few tiny red ants walk in a line toward a small soil mound. Gentle, curious mood of a clever trick in nature. ' + LIGHT + ', soft sky blue, lavender and fresh meadow green. ' + NO + ', caterpillars, spiders, bees, deer, fish, water, flower vase --ar 16:5 --v 8.1',
   },
 
   /* ── 8 Personal Space ─────────────────────────── */

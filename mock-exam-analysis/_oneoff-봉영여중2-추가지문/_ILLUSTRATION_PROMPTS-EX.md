@@ -8,7 +8,7 @@
 ## 공통 규칙
 
 1. **밝기는 조명 조건으로** — `natural soft diffused daylight, bright overcast sky, high-key exposure`.
-2. **사람은 뺀다** — 공항·커피숍·경주도 사물·장소로 암시했다.
+2. **사람은 원칙적으로 뺀다** — 공항·커피숍은 사물·장소로 암시. 11번만 능선 위 아주 작은 참가자 2명(뒷모습)을 넣어 경주를 보여 준다(얼굴·손 클로즈업 금지).
 3. **배제는 `--no` 파라미터로** — 문장 속 `NO xxx` 는 오히려 그 물건을 불러온다.
 4. **글자 차단** — 키오스크 화면·출발 안내판에 글자가 생기기 쉬워 `text, letters, words, numbers, signage` 를 늘 `--no` 에 넣었다.
 5. **5장이 서로 닮지 않게** — 서로의 소재(나비·개미·수조·키오스크·비행기)를 `--no` 에 넣었다.
@@ -20,7 +20,7 @@
 `dist/EX/assets/illust-7.png` — 여름 들판 — 보라색 백리향 꽃송이에 앉은 연푸른 점박이 나비(라지 블루), 아래 풀줄기를 따라 개미집으로 가는 붉은 개미 몇 마리
 
 ```
-Photorealistic macro nature photograph, wide banner composition. A delicate pale blue butterfly with small black spots on its wings resting on a purple wild thyme flower head in a bright summer meadow; on a grass stem below, a few tiny red ants walk in a line toward a small soil mound. Gentle, curious mood of a clever trick in nature. natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, clean bright palette, soft sky blue, lavender and fresh meadow green. --no text, letters, words, numbers, signage, logo, brand, watermark, people, person, hands, faces, sunset, golden hour, night, dark moody grading, heavy shadows, insects in close-up faces, deer, fish, water --ar 16:5 --v 8.1
+Photorealistic macro nature photograph, wide banner composition. A delicate pale blue butterfly with small black spots on its wings resting on a purple wild thyme flower head in a bright summer meadow; on a grass stem below, a few tiny red ants walk in a line toward a small soil mound. Gentle, curious mood of a clever trick in nature. natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, clean bright palette, soft sky blue, lavender and fresh meadow green. --no text, letters, words, numbers, signage, logo, brand, watermark, people, person, hands, faces, sunset, golden hour, night, dark moody grading, heavy shadows, caterpillars, spiders, bees, deer, fish, water, flower vase --ar 16:5 --v 8.1
 ```
 
 ## 8. 8 · Personal Space
@@ -49,9 +49,9 @@ Photorealistic interior photograph, wide banner composition. A bright, nearly em
 
 ## 11. 영상 스크립트 · Wenger Patagonian Expedition Race
 
-`dist/EX/assets/illust-11.png` — 칠레 파타고니아 — 화강암 봉우리 사이 깊은 피오르, 물가로 흘러내린 거대한 빙하, 울창한 숲
+`dist/EX/assets/illust-11.png` — 칠레 파타고니아 — 화강암 봉우리 사이 깊은 피오르, 거대한 빙하, 울창한 숲, 먼 능선 위 빨간 재킷의 작은 참가자 2명(뒷모습)
 
 ```
-Photorealistic landscape photograph, wide banner composition. A vast wild Patagonian landscape: a deep blue fjord winding between steep granite mountains, a huge pale blue glacier spilling down to the water, dense green forest on the slopes, and fast-moving clouds over the jagged peaks. Majestic, adventurous mood of an untouched wilderness. natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, clean bright palette, glacier blue, granite grey and deep forest green. --no text, letters, words, numbers, signage, logo, brand, watermark, people, person, hands, faces, sunset, golden hour, night, dark moody grading, heavy shadows, hikers, tents, flags, boats, buildings, roads, airplanes --ar 16:5 --v 8.1
+Photorealistic landscape photograph, wide banner composition. A vast wild Patagonian landscape: a deep blue fjord winding between steep granite mountains, a huge pale blue glacier spilling down to the water, dense green forest on the slopes, and fast-moving clouds over the jagged peaks; far away on a rocky ridge, two tiny adventurers in bright red jackets with backpacks walk away from the camera, seen only from behind and very small in the frame. Majestic, adventurous mood of a tough expedition race in untouched wilderness. natural soft diffused daylight, bright overcast sky, high-key exposure, low contrast, clean bright palette, glacier blue, granite grey, deep forest green and a small accent of red. --no text, letters, words, numbers, signage, logo, brand, watermark, hands, faces, sunset, golden hour, night, dark moody grading, heavy shadows, faces, close-up people, crowds, tents, flags, boats, buildings, roads, airplanes --ar 16:5 --v 8.1
 ```
 

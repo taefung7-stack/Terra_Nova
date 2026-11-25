@@ -72,3 +72,47 @@ node $D/build-memorize.mjs EX
 
 INTRO 면에 placeholder 가 찍혀 있다. 프롬프트 5장은 `_ILLUSTRATION_PROMPTS-EX.md`(16:5, v8.1).
 원본을 `dist/EX/{N}.png` 로 받아 가로 2000px 로 줄여 `dist/EX/assets/illust-{N}.png` 에 넣고 pdf → combine 을 다시 돌린다.
+
+---
+
+## 원본 사진 재검수 (2026-11-25) — 오류 0
+
+사진 5장을 띠 단위로 확대해 **처음부터 다시 받아 적은** `_RAW_RECHECK-EX.txt`(11번은 인쇄 해석 포함)를 독립 기준으로 두고
+`python -I _rawdiff-EX.py`(`_dump-EX.mjs` 사용)로 대조했다 — 5지문 66문장 4,683자 **오류 0**.
+
+- [0] 기존 RAW · [1] 정본 · [2] data passage · [3] 분석 카드 → 문자 단위 일치
+- [4] 합본 PDF 지문별 본문 전문 — 전 문장이 **순서대로** 있고, 제목·해석 외 잉여 영어 없음
+  (PDF 추출이 `To` → `T o` 로 쪼개는 일이 있어 공백 제거 후 대조)
+- [5] 합본 전 문장 ≥2회 · [6] 암기장 정답면 영어 전수, 제시 한글 66 전수 · [7] 11번 인쇄 해석 13문장 일치
+- 쉼표 판독 보강: 7번 `When ready,` · 9번 `As they expected,` `Just like the barracuda,` 는 사선(/) 획 안에
+  인쇄된 회색 쉼표가 비쳐 보여 **쉼표가 있음**을 확인했다(9번 `Then,` 도 같은 패턴이라 그대로 둠).
+- 사진의 직선따옴표(10·11번)는 곱슬따옴표로 바꿔 실었다 — PDF 빈칸 렌더 방지용 표기 차이이며 내용 차이 아님.
+
+## 삽화 프롬프트 보완 (2026-11-25)
+
+7번 `--no` 의 어색한 항목 정리, 11번에 먼 능선 위 빨간 재킷의 작은 참가자 2명(뒷모습)을 넣어 ‘경주’가 보이게 했다.
+지시부는 5장 모두 800자 이하. 이미지는 아직 없음 — `_ILLUSTRATION_PROMPTS-EX.md` 로 생성 후 `dist/EX/{N}.png` 에 넣으면 반영한다.
+
+## 변형문제 (EXV, 2026-11-25)
+
+`dist/EXV/봉영여중2_영어B_기말추가지문_변형문제.pdf` (= `variant-book.pdf`) — **52p · 85문항**
+(객관식 11유형 × 5지문 = 55 + 서술형 6유형 × 5지문 = 30, 유형별 묶음, 정답·해설 포함). 형식은 봉영여중3 EX4V 와 같다.
+
+- 객관식 정답 분포 **①11 ②11 ③11 ④11 ⑤11** — 지문 i·유형 j 의 정답 = ((2i + j) mod 5) + 1 로 미리 배치
+- `data/EXV/{7..11}.json` 은 `data/EX` 사본이고 `exam` 만 `봉영여중 영어B 추가지문 2학년`(빌더가 끝의 학년을 떼어 머리글에 붙임)
+- 내용 검토로 고친 것: 7 함축 ③ hide → run away(‘변장’과 겹침), 8 삽입 다음 문장을 `it`(= 주어진 문장의 the screen)으로 받아 ③ 자리 차단,
+  8 어법 지문의 원문 그대로 문장 2개 패러프레이즈
+- 검수: `verify-variant-EXV` 오류 0 · 잘림 0 · 푸터 침범 0 · SMask 0 ·
+  `python -I _audit-EXV.py` — 문항 번호 1~85, 정답지 55개 순서까지 데이터 일치, 서술형 정답 35건 인쇄, 밑줄 55·삽입 슬롯 25·빈칸 30
+
+```bash
+cd mock-exam-analysis
+D=_oneoff-봉영여중2-추가지문
+(cd $D && node _author-EXV-variant.mjs && node verify-variant-EXV.mjs)      # 오류 0 이어야 빌드
+node builder/build-variant.mjs "$D/data/EXV" "$D/dist/EXV" --styles="$D/styles/variant.css" --shared-writing-passage
+node $D/_measure-clip.mjs "$D/dist/EXV/variant-book.html"; node $D/_measure-pages.mjs "$D/dist/EXV/variant-book.html"
+node $D/render-variant-pdf.mjs "$D/dist/EXV/variant-book.html"
+cp "$D/dist/EXV/variant-book.pdf" "$D/dist/EXV/봉영여중2_영어B_기말추가지문_변형문제.pdf"
+(cd $D && python -I _audit-EXV.py)
+```
+원고: `_vlib-EXV.mjs`(헬퍼) · `_author-EXV-variant-1.mjs`(7·8) · `_author-EXV-variant-2.mjs`(9·10·11). JSON 직접 수정 금지.

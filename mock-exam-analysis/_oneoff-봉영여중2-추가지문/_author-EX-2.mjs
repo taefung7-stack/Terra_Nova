@@ -371,6 +371,6 @@ export const chapters = [
         ],
       },
     ],
-    prompt: 'Photorealistic landscape photograph, wide banner composition. A vast wild Patagonian landscape: a deep blue fjord winding between steep granite mountains, a huge pale blue glacier spilling down to the water, dense green forest on the slopes, and fast-moving clouds over the jagged peaks. Majestic, adventurous mood of an untouched wilderness. ' + LIGHT + ', glacier blue, granite grey and deep forest green. ' + NO + ', hikers, tents, flags, boats, buildings, roads, airplanes --ar 16:5 --v 8.1',
+    prompt: 'Photorealistic landscape photograph, wide banner composition. A vast wild Patagonian landscape: a deep blue fjord winding between steep granite mountains, a huge pale blue glacier spilling down to the water, dense green forest on the slopes, and fast-moving clouds over the jagged peaks; far away on a rocky ridge, two tiny adventurers in bright red jackets with backpacks walk away from the camera, seen only from behind and very small in the frame. Majestic, adventurous mood of a tough expedition race in untouched wilderness. ' + LIGHT + ', glacier blue, granite grey, deep forest green and a small accent of red. ' + NO.replace('people, person, ', '') + ', faces, close-up people, crowds, tents, flags, boats, buildings, roads, airplanes --ar 16:5 --v 8.1',
   },
 ];
