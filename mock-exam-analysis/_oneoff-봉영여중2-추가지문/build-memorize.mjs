@@ -37,7 +37,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const LESSONS = {
   EX: {
     out: '봉영여중2_영어B_기말추가지문_본문암기.pdf',
-    qSplitByCh: { 7: [7, 6], 8: [8, 8], 9: [6, 5], 10: [7, 6], 11: [7, 6] },
+    /* 2026-11-25 사용자 요청: 15문장 이하 지문은 한 페이지에. 16문장인 8번만 2장. */
+    qSplitByCh: { 7: [13], 8: [8, 8], 9: [11], 10: [13], 11: [13] },
   },
 };
 
