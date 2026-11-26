@@ -730,7 +730,11 @@ node builder/goodnotes-safe.mjs "$D/dist/WE/신목고2-2기말_세계문화_Cult
 (cd $D && node collect-prompts.mjs WI)
 ```
 
-## 삽화 — 아직 없음
+## 삽화 — 2026-11-26 반영 완료
+원본 6장(3952×1232, `dist/WI/{N}.png`, 로컬 보관·gitignore)을 2200px 폭 JPEG `dist/WI/assets/illust-{N}.jpg` 로 줄여 넣고 pdf → combine → 평탄화.
+합본 INTRO 면 3·8·15·20·25·30쪽에 이미지, placeholder 0, overflow 0, `_xcheck-WI --pdf` 오류 0. 콘택트시트로 지문 대응 확인, 깨진 글자 없음.
+평탄화가 150dpi 로 재압축해 합본은 약 2.2MB(평탄화 전 21MB).
+
 `_ILLUSTRATION_PROMPTS-WI.md` 6장(실사·사람/글자 배제, `--ar 16:5 --v 8.1 --style raw`): 1 사암 사원 계단의 원숭이 ·
 2 가죽 공방의 지갑과 악어 무늬 가죽 · 3 흙벽돌 농가의 암탉과 달걀 · 4 목초지의 당나귀 · 5 헛간 벽 틈의 쥐를 노려보는 고양이 ·
 6 스웨덴 얼어붙은 호수와 호숫가 목초지의 소. 생성 후 `dist/WI/assets/illust-{N}.jpg`(2200px 폭 JPEG, WE 와 같은 규격)로 넣고 pdf → combine → 평탄화.
