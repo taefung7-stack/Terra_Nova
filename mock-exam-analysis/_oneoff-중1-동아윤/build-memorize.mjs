@@ -30,6 +30,13 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const LESSONS = {
+  /* L5 — 2026-11-26 추가. 25문장 → 13+12 */
+  L5: {
+    lessonNo: 5,
+    titleEn: 'Who Threw a Cake at the Monalisa?',
+    out: '중1_동아윤정미_Lesson5_본문암기.pdf',
+    qPageCount: 2,
+  },
   /* 중1 · 동아(윤정미) 중학교 영어 1 — 2026-11-17 신규(본문암기만 요청) */
   L6: {
     lessonNo: 6,
@@ -56,7 +63,7 @@ const esc = (s) => String(s ?? '')
 /* ── 한 과 빌드 ───────────────────────────────────────────────── */
 async function buildOne(lessonId) {
   const LESSON = LESSONS[lessonId];
-  if (!LESSON) { console.error(`알 수 없는 과: ${lessonId} (L6 / L7 / L8)`); process.exit(2); }
+  if (!LESSON) { console.error(`알 수 없는 과: ${lessonId} (L5 / L6 / L7 / L8)`); process.exit(2); }
 
   const { SOURCE } = await import(`./_SOURCE-${lessonId}.js`);
   const DIST = path.join(__dirname, 'dist', lessonId);
@@ -302,6 +309,6 @@ ${pagesHtml}
 }
 
 const arg = (process.argv[2] || '').toUpperCase();
-const targets = arg ? [arg] : ['L6', 'L7', 'L8'];
+const targets = arg ? [arg] : ['L5', 'L6', 'L7', 'L8'];
 console.log('📝 본문암기 워크북 빌드\n');
 for (const t of targets) await buildOne(t);

@@ -24,6 +24,15 @@ const HERE = path.dirname(fileURLToPath(import.meta.url));
 /* 중1 동아윤 6과/7과/8과.pdf(2026-11-17) 영어 본문을 문단·말차례 단위로 옮김(소제목 제외).
    인쇄본 조판 정리(닫는 따옴표 모양·느낌표 뒤 공백)만 정본과 같게 맞췄다. */
 const TEXTBOOK = {
+  /* 중1 동아윤 5과.pdf(2026-11-26) — 목격자 소제목·용의자 표 제외. 정본과 독립으로 다시 옮김. */
+  L5: [
+    `Last Saturday, someone threw a cake at the Monalisa in the Botero Museum in Bogota, Colombia. There were four eyewitnesses. What did they say? Read the following, and find the criminal.`,
+    `I was looking at the Monalisa, and someone threw a cake at the painting. I turned around and saw an old man. He was standing in front of a wheelchair. I’m about 170 cm tall, and he was a little taller than me.`,
+    `An old man with gray hair was running away, and something fell off his head. It was his wig. I ran after him, but I couldn’t catch him. He was faster than me. In fact, the old man was not old. He was a young man with long brown hair.`,
+    `I went to the crime scene, and there were pieces of cake all over the painting. There was also a wheelchair near the painting, and I found a cake box next to the wheelchair. The box was from Camila’s Bakery.`,
+    `Last Friday, a young man came in. I spoke to him in Spanish, but he didn’t understand me. He spoke only English. We had a lot of different cakes, but he just wanted the smallest one. We sold only one cake that day, so I remember him clearly. Oh, he had blue eyes.`,
+    `Now, look at the information about the suspects. Who threw the cake at the Monalisa?`,
+  ],
   L6: [
     `Every day, we produce lots of waste, and the Earth is getting sicker and sicker. Do you want to save the Earth? Then, join the zero-waste challenge, and share your stories.`,
     `Olivia: My birthday was last Saturday, and my family and I ate out. There were lots of leftovers, but we brought them home. The next day, I made a nice lunch out of them. FYI, you can find great cooking ideas for leftovers on the Internet.`,
@@ -95,7 +104,7 @@ const sq = (s) => String(s ?? '')
 const sqk = (s) => String(s ?? '').replace(/\s+/g, '').replace(/[.,!?"'“”‘’()·…]/g, '');
 
 let block = 0;
-const AUDIT_TARGETS = process.argv[2] ? [process.argv[2].toUpperCase()] : ['L6', 'L7', 'L8'];
+const AUDIT_TARGETS = process.argv[2] ? [process.argv[2].toUpperCase()] : ['L5', 'L6', 'L7', 'L8'];
 for (const L of AUDIT_TARGETS) {
   console.log(`\n${'='.repeat(66)}\n${L} — 교과서 원문 기준 검수\n${'='.repeat(66)}`);
 

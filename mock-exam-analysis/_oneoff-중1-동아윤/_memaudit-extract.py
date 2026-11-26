@@ -20,6 +20,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 COMBINED_PDF = {}
 
 OUT_PDF = {
+    'L5': '중1_동아윤정미_Lesson5_본문암기.pdf',
     'L6': '중1_동아윤정미_Lesson6_본문암기.pdf',
     'L7': '중1_동아윤정미_Lesson7_본문암기.pdf',
     'L8': '중1_동아윤정미_Lesson8_본문암기.pdf',
@@ -42,7 +43,7 @@ def page_text(page):
 
 def main():
     arg = (sys.argv[1] if len(sys.argv) > 1 else '').upper()
-    targets = [arg] if arg else ['L6', 'L7', 'L8']
+    targets = [arg] if arg else ['L5', 'L6', 'L7', 'L8']
     out_dir = os.path.join(HERE, 'dist', '_memaudit')
     os.makedirs(out_dir, exist_ok=True)
     rc = 0

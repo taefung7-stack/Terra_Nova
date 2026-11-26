@@ -1,5 +1,5 @@
 /* ===================================================================
- * 중1 · 2022 개정 동아(윤정미) 중학교 영어 1 — Lesson 6·7·8 원문 정본 + 우리말 해석 (본문암기용)
+ * 중1 · 2022 개정 동아(윤정미) 중학교 영어 1 — Lesson 5·6·7·8 원문 정본 + 우리말 해석 (본문암기용)
  * ===================================================================
  * 사용자 제공 교과서 본문 PDF(중1 동아윤 6과/7과/8과.pdf, 2026-11-17)에서 verbatim 전사. ★ 영어 임의 수정 금지.
  * 각 항목 = [영어, 우리말]. PDF 에 우리말이 없어 해석은 새로 썼다(중1 눈높이, 문장 단위 1:1).
@@ -15,6 +15,48 @@
  * =================================================================== */
 
 export const LESSONS = {
+  /* L5 — 2026-11-26 추가. 목격자 진술 4편은 소제목(Ann Jones, a visitor …)이 화자라 영어는 원문 그대로 두고,
+     각 진술 첫 문장의 우리말 앞에만 (방문객 Ann Jones) 처럼 화자를 밝혔다. 용의자 표(The Suspects)는 문장이 아니라 제외.
+     작품명 Monalisa 의 이탤릭은 평문으로. */
+  L5: [
+    { title: 'Who Threw a Cake at the Monalisa?', rows: [
+      ['Last Saturday, someone threw a cake at the Monalisa in the Botero Museum in Bogota, Colombia.', '지난 토요일, 누군가가 콜롬비아 보고타의 보테로 미술관에 있는 모나리자에 케이크를 던졌어요.'],
+      ['There were four eyewitnesses.', '목격자가 네 명 있었어요.'],
+      ['What did they say?', '그들은 뭐라고 말했을까요?'],
+      ['Read the following, and find the criminal.', '다음 글을 읽고, 범인을 찾아보세요.'],
+    ] },
+    { title: 'Ann Jones, a visitor', rows: [
+      ['I was looking at the Monalisa, and someone threw a cake at the painting.', '(방문객 Ann Jones) 저는 모나리자를 보고 있었는데, 누군가가 그 그림에 케이크를 던졌어요.'],
+      ['I turned around and saw an old man.', '저는 뒤돌아서 한 노인을 보았어요.'],
+      ['He was standing in front of a wheelchair.', '그는 휠체어 앞에 서 있었어요.'],
+      ['I’m about 170 cm tall, and he was a little taller than me.', '저는 키가 약 170cm인데, 그는 저보다 조금 더 컸어요.'],
+    ] },
+    { title: 'Carlos Diaz, a janitor', rows: [
+      ['An old man with gray hair was running away, and something fell off his head.', '(관리인 Carlos Diaz) 회색 머리의 한 노인이 달아나고 있었는데, 그의 머리에서 무언가가 떨어졌어요.'],
+      ['It was his wig.', '그것은 그의 가발이었어요.'],
+      ['I ran after him, but I couldn’t catch him.', '저는 그를 뒤쫓아 갔지만, 그를 잡을 수 없었어요.'],
+      ['He was faster than me.', '그는 저보다 더 빨랐어요.'],
+      ['In fact, the old man was not old.', '사실, 그 노인은 늙지 않았어요.'],
+      ['He was a young man with long brown hair.', '그는 긴 갈색 머리의 젊은 남자였어요.'],
+    ] },
+    { title: 'Diego Perez, a guard', rows: [
+      ['I went to the crime scene, and there were pieces of cake all over the painting.', '(경비원 Diego Perez) 제가 범행 현장에 가 보니, 그림 전체에 케이크 조각들이 있었어요.'],
+      ['There was also a wheelchair near the painting, and I found a cake box next to the wheelchair.', '그림 근처에는 휠체어도 있었고, 저는 그 휠체어 옆에서 케이크 상자를 발견했어요.'],
+      ['The box was from Camila’s Bakery.', '그 상자는 Camila’s Bakery(카밀라 빵집)의 것이었어요.'],
+    ] },
+    { title: 'Camila Santos, the owner of Camila’s Bakery', rows: [
+      ['Last Friday, a young man came in.', '(Camila’s Bakery 주인 Camila Santos) 지난 금요일에 한 젊은 남자가 가게에 들어왔어요.'],
+      ['I spoke to him in Spanish, but he didn’t understand me.', '저는 그에게 스페인어로 말했지만, 그는 제 말을 이해하지 못했어요.'],
+      ['He spoke only English.', '그는 영어만 했어요.'],
+      ['We had a lot of different cakes, but he just wanted the smallest one.', '우리 가게에는 여러 가지 케이크가 많았지만, 그는 가장 작은 것만 원했어요.'],
+      ['We sold only one cake that day, so I remember him clearly.', '그날 우리는 케이크를 하나만 팔아서, 저는 그를 또렷이 기억해요.'],
+      ['Oh, he had blue eyes.', '아, 그는 파란 눈을 가지고 있었어요.'],
+    ] },
+    { title: 'The Suspects', rows: [
+      ['Now, look at the information about the suspects.', '이제, 용의자들에 대한 정보를 보세요.'],
+      ['Who threw the cake at the Monalisa?', '누가 모나리자에 케이크를 던졌을까요?'],
+    ] },
+  ],
   L6: [
     { title: 'Join the Zero-Waste Challenge', rows: [
       ['Every day, we produce lots of waste, and the Earth is getting sicker and sicker.', '매일 우리는 많은 쓰레기를 만들어 내고, 지구는 점점 더 아파지고 있어요.'],
