@@ -21,6 +21,7 @@ import { SOURCE as SOURCE_RAW } from './_SOURCE-U1.js';
 import { SOURCE as SOURCE_U2_RAW } from './_SOURCE-U2.js';
 import { SOURCE as SOURCE_U3_RAW } from './_SOURCE-U3.js';
 import { SOURCE as SOURCE_WE_RAW } from './_SOURCE-WE.js';
+import { SOURCE as SOURCE_WI_RAW } from './_SOURCE-WI.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -43,6 +44,7 @@ const SOURCE_U2 = SOURCE_U2_RAW.map(ch => ({
 const SOURCE_U3 = SOURCE_U3_RAW.map(ch => ({ ...ch, sentences: [...ch.sentences] }));
 /** WE(기말 World Englishes) — U3 와 같은 단순 산문 */
 const SOURCE_WE = SOURCE_WE_RAW.map(ch => ({ ...ch, sentences: [...ch.sentences] }));
+const SOURCE_WI = SOURCE_WI_RAW.map(ch => ({ ...ch, sentences: [...ch.sentences] }));
 
 const LESSONS = {
   U1: {
@@ -77,6 +79,17 @@ const LESSONS = {
     coverSub: '신목고 2-2 기말 · 세계문화<br>World Englishes (Language: Insights into Diversity)',
     docTitle: '신목고 2-2 기말 · 세계문화 World Englishes 본문분석 합본 — Terra Nova',
     out: '신목고2-2기말_세계문화_WorldEnglishes_본문분석_합본.pdf',
+  },
+  /* WI — 같은 단원 다음 지문 "Culture in Idioms"(pp.104~108). 빌드는 dist/WI 에서 하고
+     (dist/WE 에서 하면 1~7.html 과 번호가 섞여 WE 합본이 오염된다) 완성 PDF 만 dist/WE 로 낸다. */
+  WI: {
+    source: SOURCE_WI,
+    lessonNo: null,
+    titleEn: 'Culture in Idioms',
+    coverTitle: '기말고사 대비',
+    coverSub: '신목고 2-2 기말 · 세계문화<br>Culture in Idioms (Language: Insights into Diversity)',
+    docTitle: '신목고 2-2 기말 · 세계문화 Culture in Idioms 본문분석 합본 — Terra Nova',
+    out: '../WE/신목고2-2기말_세계문화_CultureInIdioms_본문분석_합본.pdf',
   },
 };
 

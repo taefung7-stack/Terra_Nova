@@ -21,6 +21,7 @@ import { SOURCE as SOURCE_RAW } from './_SOURCE-U1.js';
 import { SOURCE as SOURCE_U2_RAW } from './_SOURCE-U2.js';
 import { SOURCE as SOURCE_U3_RAW } from './_SOURCE-U3.js';
 import { SOURCE as SOURCE_WE_RAW } from './_SOURCE-WE.js';
+import { SOURCE as SOURCE_WI_RAW } from './_SOURCE-WI.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -67,6 +68,7 @@ const LESSONS = [
   { id: 'U2', label: 'Unit 2 · A French Student in Dublin', source: flattenBlog(SOURCE_U2_RAW) },
   { id: 'U3', label: 'Unit 3 · Noodle Dishes from Around the World', source: flattenPlain(SOURCE_U3_RAW) },
   { id: 'WE', label: '기말 · World Englishes', source: flattenPlain(SOURCE_WE_RAW) },
+  { id: 'WI', label: '기말 · Culture in Idioms', source: flattenPlain(SOURCE_WI_RAW) },
 ];
 
 const only = (process.argv[2] || '').toUpperCase();

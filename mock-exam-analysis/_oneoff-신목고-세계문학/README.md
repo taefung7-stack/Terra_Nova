@@ -4,6 +4,7 @@
 > · **U3**(완료 — 삽화 미반영, 아래 「Unit 3」 절 참조 — Ch1~6)
 > · **U3 Ch7**(본문분석·변형문제만 완료, 워크북 없음 — 아래 「Ch7」 절 참조)
 > · **WE — 기말고사 세계문화 World Englishes**(3종 + 삽화 7장 완료, 맨 아래 「기말 WE」 절 참조 — Ch1~7)
+> · **WI — 기말 세계문화 Culture in Idioms**(본문분석만, 2026-11-26 — 맨 아래 「기말 WI」 절 참조 — Ch1~6, 완성 PDF 는 `dist/WE/`)
 
 > ⚠️ **개인 용도 1회성 산출물입니다. 테라노바 판매용이 아닙니다.**
 > 판매·구독 파이프라인(Supabase Storage 업로드, dispatch-order-pdf, 합본, market)에
@@ -673,3 +674,64 @@ node $D/combine-variant.mjs WE
 
 반영 시 `dist/WE/assets/illust-{1..7}.jpg`(2200px 폭 JPEG)로 두고 분석지 재렌더 → 합본 → 평탄화.
 **분석지 재렌더(`pdf.mjs`)는 워크북까지 벡터로 덮으므로** 반드시 워크북 `pdf-image` + 합본을 다시 돌릴 것(U2·U3 절 참조).
+
+---
+
+# 기말 WI — Culture in Idioms (세계문화 "Language: Insights into Diversity" pp.104~108)
+
+**상태: 본문분석 완료 (2026-11-26).** WE(pp.92~99) 다음 지문. 지도서 스캔 사진 5장에서 전사했다. 워크북·변형문제는 요청이 없어 만들지 않았다.
+
+| 산출물 | 페이지 | 파일 |
+|--------|--------|------|
+| 본문분석 합본 | 32p | `dist/WE/신목고2-2기말_세계문화_CultureInIdioms_본문분석_합본.pdf` (GoodNotes 평탄화 완료) |
+
+> **유닛 ID 를 WI 로 분리한 이유** — 같은 단원이라 WE 에 Ch8~ 로 붙일 수도 있었지만, 그러면 `dist/WE` 의 `1~7.html` 과 번호가 섞이고
+> `combine.mjs WE` 를 다시 돌릴 때 WE 합본(53p)이 바뀐다. 그래서 빌드는 `dist/WI` 에서 하고, 사용자 요청대로
+> **완성 PDF 만 `dist/WE/` 에 둔다**(`combine.mjs` 의 WI `out: '../WE/…'`). 기존 WE 3종은 손대지 않았다.
+
+원문 정본 `_SOURCE-WI.js` **41문장**, 단순 산문(shape `plain`). 교과서 문단 = 챕터.
+
+| Ch | 소재 | 문장 | 대표문제(인쇄 안 됨) |
+|----|------|------|----------|
+| 1 | INTRO — 쥐(피해야 할 대상 ↔ 인도에서 신성)·원숭이(스페인 숭배 ↔ 독일·미국 추함) | 7 | 주제 ③ |
+| 2 | 쉽게 짐작되는 관용구 — 지갑 공장의 악어, 물속·물 밖의 물고기 | 10 | 내용 일치 ⑤ |
+| 3 | 짐작하기 어려운 관용구 — to be a rat(respectively), 닭(chicken out ↔ 이집트 안정된 수입) | 8 | 내용 불일치 ② |
+| 4 | 같은 생각·다른 동물 — 고집(당나귀·노새·소), 건망증(물고기·새), 위장(고양이·양의 탈을 쓴 늑대) | 6 | 내용 일치 ④ |
+| 5 | 두 동물 관용구 — 고양이와 쥐, 개와 원숭이의 관계 | 6 | 요지 ① |
+| 6 | CLOSING — 관용구의 기원, 스웨덴 "얼음 위에 소가 없다" | 4 | 제목 ③ |
+
+- 형식은 WE 분석지와 같다(카드별 패러프레이징 상·중·하, 보기 한국어). 지도서 주석(현재 완료·형용사적 용법 수동·관계 부사·부분 부정·
+  가정법 과거·계속적 용법·소유격 관계대명사·respectively·with+목적어+p.p. 등)은 카드에 "(지도서)"로 반영했고,
+  교과서 질문 1~6 의 정답 근거도 카드에 넣었다.
+- 저작은 WE 와 같은 방식으로 **스펙 → 생성기**: `_spec-WI/part{1,2}.mjs` → `node _author-WI.mjs` → `data/WI/*.json`.
+  **JSON 직접 수정 금지.** 생성기가 카드 영문 ≠ 정본, covers 누락, 해석 수, 품사 표기를 오류로 막는다.
+
+## 전사·검수 (2026-11-26)
+
+- **전사 경로 2개**: `_PDF-RAW-WI.txt`(인쇄 줄 그대로, 줄 끝 하이픈 복합어 `animal-`/`dog-and-` 처리) 기계 분할 ↔ 정본 손 분할 —
+  `node _xcheck-WI.mjs` 41문장 4,325자 **문자 단위 오류 0**. 사진은 띠 단위로 확대해 재판독(em dash `easily—to`,
+  작은따옴표 `'…for personal gain'.`(마침표 밖), `…to worry"?`(물음표 밖), 인용부호 안 콤마 확인).
+- `verify-source WI` · `verify WI` · `verify-tags` 오류 0 · 경고 0 / overflow 6챕터 0 / 소프트마스크 117 → 0.
+- `_xcheck-WI --pdf`: 합본 PDF 에 41문장 전부 2회(PASSAGE + 분석 카드) — 카드의 끊어읽기 `/` 를 걷어내고 센다
+  (이 합본은 본문 전문 페이지가 없어 그대로 세면 1회만 잡혀 37건 가짜 오류가 뜬다).
+- 육안: 따옴표·em dash·`× → =` 글리프 정상.
+- 내용 검토로 고친 것: Ch2 카드 `A as well as B` 설명이 규칙("B뿐만 아니라 A도")과 예시 방향이 엇갈려 정정.
+
+## 빌드
+```bash
+cd mock-exam-analysis
+D=_oneoff-신목고-세계문학
+(cd $D && node _author-WI.mjs && node verify-source.mjs WI && node verify.mjs WI && node verify-tags.mjs && node _xcheck-WI.mjs)
+node builder/build.mjs "$D/data/WI" "$D/dist/WI" --styles="$D/styles/analysis.css"
+for n in 1 2 3 4 5 6; do node builder/check-overflow.mjs "$D/dist/WI/$n.html"; done
+node builder/pdf.mjs "$D/dist/WI"
+node $D/combine.mjs WI                       # → dist/WE/신목고2-2기말_세계문화_CultureInIdioms_본문분석_합본.pdf
+node builder/goodnotes-safe.mjs "$D/dist/WE/신목고2-2기말_세계문화_CultureInIdioms_본문분석_합본.pdf"
+(cd $D && node collect-prompts.mjs WI)
+```
+
+## 삽화 — 아직 없음
+`_ILLUSTRATION_PROMPTS-WI.md` 6장(실사·사람/글자 배제, `--ar 16:5 --v 8.1 --style raw`): 1 사암 사원 계단의 원숭이 ·
+2 가죽 공방의 지갑과 악어 무늬 가죽 · 3 흙벽돌 농가의 암탉과 달걀 · 4 목초지의 당나귀 · 5 헛간 벽 틈의 쥐를 노려보는 고양이 ·
+6 스웨덴 얼어붙은 호수와 호숫가 목초지의 소. 생성 후 `dist/WI/assets/illust-{N}.jpg`(2200px 폭 JPEG, WE 와 같은 규격)로 넣고 pdf → combine → 평탄화.
+
